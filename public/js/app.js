@@ -25856,6 +25856,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -59557,46 +59558,51 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _vm._l(_vm.tableList, function(list, index) {
-                return _c(
-                  "div",
-                  { key: index, attrs: { cols: "4" } },
-                  [
-                    _c(
-                      "v-card",
-                      { staticClass: " pa-2", attrs: { elevation: "10" } },
-                      [
-                        _c("v-card-title", [_vm._v(_vm._s(list.name))]),
-                        _vm._v(" "),
-                        _c(
-                          "v-card",
-                          { attrs: { outlined: "" } },
-                          [
-                            _c(
-                              "v-card-text",
-                              _vm._l(list.fleets, function(fleet, index) {
-                                return _c("p", { key: index }, [
-                                  _vm._v(
-                                    "\n                                " +
-                                      _vm._s(fleet.name) +
-                                      "\n                            "
-                                  )
-                                ])
-                              }),
-                              0
-                            )
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              })
+              _c(
+                "div",
+                { attrs: { cols: "4" } },
+                _vm._l(_vm.tableList, function(list, index) {
+                  return _c(
+                    "div",
+                    { key: index },
+                    [
+                      _c(
+                        "v-card",
+                        { staticClass: " pa-2", attrs: { elevation: "10" } },
+                        [
+                          _c("v-card-title", [_vm._v(_vm._s(list.name))]),
+                          _vm._v(" "),
+                          _c(
+                            "v-card",
+                            { attrs: { outlined: "" } },
+                            [
+                              _c(
+                                "v-card-text",
+                                _vm._l(list.fleets, function(fleet, index) {
+                                  return _c("p", { key: index }, [
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(fleet.name) +
+                                        "\n                                "
+                                    )
+                                  ])
+                                }),
+                                0
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                }),
+                0
+              )
             ],
-            2
+            1
           )
         ],
         1

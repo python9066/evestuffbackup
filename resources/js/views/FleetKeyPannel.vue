@@ -141,21 +141,22 @@
                         </template>
                     </v-data-table>
                 </v-card>
-
-                <div v-for="(list, index) in tableList" :key="index" cols="4">
-                    <v-card elevation="10" class=" pa-2">
-                        <v-card-title>{{ list.name }}</v-card-title>
-                        <v-card outlined>
-                            <v-card-text>
-                                <p
-                                    v-for="(fleet, index) in list.fleets"
-                                    :key="index"
-                                >
-                                    {{ fleet.name }}
-                                </p>
-                            </v-card-text>
+                <div cols="4">
+                    <div v-for="(list, index) in tableList" :key="index">
+                        <v-card elevation="10" class=" pa-2">
+                            <v-card-title>{{ list.name }}</v-card-title>
+                            <v-card outlined>
+                                <v-card-text>
+                                    <p
+                                        v-for="(fleet, index) in list.fleets"
+                                        :key="index"
+                                    >
+                                        {{ fleet.name }}
+                                    </p>
+                                </v-card-text>
+                            </v-card>
                         </v-card>
-                    </v-card>
+                    </div>
                 </div>
             </v-col>
         </v-row>
