@@ -147,7 +147,7 @@
                     :key="index"
                     max-height="300px"
                     elevation="10"
-                    class="col-md-6 ma-10"
+                    class="col-md-5"
                 >
                     <v-card>
                         <v-card-title class="justify-center" elevation="10">{{
