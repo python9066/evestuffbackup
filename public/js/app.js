@@ -59372,10 +59372,7 @@ var render = function() {
         [
           _c(
             "v-col",
-            {
-              staticClass:
-                " d-inline-flex justify-content-center col-xs-6 col-md-8"
-            },
+            { staticClass: "col-xs-6 col-md-6" },
             [
               _c(
                 "v-card",
@@ -59567,9 +59564,11 @@ var render = function() {
             1
           ),
           _vm._v(" "),
+          _c("v-col", { staticClass: "col-md-1" }),
+          _vm._v(" "),
           _c(
             "v-col",
-            { staticClass: "col-xs-6 col-md-4" },
+            { staticClass: "col-md-4" },
             _vm._l(_vm.tableList, function(list, index) {
               return _c(
                 "v-card",
@@ -59604,7 +59603,9 @@ var render = function() {
               )
             }),
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("v-col", { staticClass: "col-md-1" })
         ],
         1
       )
