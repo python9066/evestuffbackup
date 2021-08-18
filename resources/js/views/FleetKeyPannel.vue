@@ -153,7 +153,7 @@
                         <v-card>
                             <v-card-title
                                 class="justify-center"
-                                elevation="10"
+                                elevation="24"
                                 >{{ list.name }}</v-card-title
                             >
                         </v-card>

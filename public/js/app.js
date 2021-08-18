@@ -59517,7 +59517,7 @@ var render = function() {
                             "v-card-title",
                             {
                               staticClass: "justify-center",
-                              attrs: { elevation: "10" }
+                              attrs: { elevation: "24" }
                             },
                             [_vm._v(_vm._s(list.name))]
                           )
