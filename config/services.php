@@ -35,8 +35,8 @@ return [
         // 'client_secret' => env('GOON_CLIENT_SECRET'),
         'client_secret' => env('GOON_CLIENT_SECRET', ($variables && array_key_exists('GOON_CLIENT_SECRET', $variables)) ? $variables['GOON_CLIENT_SECRET'] : 'null'),
         // 'redirect' => env('GOON_REDIRECT_URL'),
-        // 'redirect' => env('GOON_REDIRECT_URL', ($variables && array_key_exists('GOON_REDIRECT_URL', $variables)) ? $variables['GOON_REDIRECT_URL'] : 'null'),
-        'redirect' => "https://evestuff.online/oauth/callback",
+        'redirect' => env('GOON_REDIRECT_URL', ($variables && array_key_exists('GOON_REDIRECT_URL', $variables)) ? $variables['GOON_REDIRECT_URL'] : 'null'),
+
 
     ],
 ];
