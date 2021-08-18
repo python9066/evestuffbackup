@@ -59561,51 +59561,47 @@ var render = function() {
                   )
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "cols-4 col" },
-                _vm._l(_vm.tableList, function(list, index) {
-                  return _c(
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { staticClass: "cols-2 col" },
+            _vm._l(_vm.tableList, function(list, index) {
+              return _c(
+                "v-card",
+                { key: index, attrs: { elevation: "10" } },
+                [
+                  _c("v-card-title", { staticClass: "justify-center" }, [
+                    _vm._v(_vm._s(list.name))
+                  ]),
+                  _vm._v(" "),
+                  _c(
                     "v-card",
-                    {
-                      key: index,
-                      staticClass: " pa-2 cols-1 col",
-                      attrs: { elevation: "10" }
-                    },
+                    { attrs: { outlined: "" } },
                     [
-                      _c("v-card-title", { staticClass: "justify-center" }, [
-                        _vm._v(_vm._s(list.name))
-                      ]),
-                      _vm._v(" "),
                       _c(
-                        "v-card",
-                        { attrs: { outlined: "" } },
-                        [
-                          _c(
-                            "v-card-text",
-                            _vm._l(list.fleets, function(fleet, index) {
-                              return _c("p", { key: index }, [
-                                _vm._v(
-                                  "\n                                " +
-                                    _vm._s(fleet.name) +
-                                    "\n                            "
-                                )
-                              ])
-                            }),
-                            0
-                          )
-                        ],
-                        1
+                        "v-card-text",
+                        _vm._l(list.fleets, function(fleet, index) {
+                          return _c("p", { key: index }, [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(fleet.name) +
+                                "\n                        "
+                            )
+                          ])
+                        }),
+                        0
                       )
                     ],
                     1
                   )
-                }),
+                ],
                 1
               )
-            ],
+            }),
             1
           )
         ],
