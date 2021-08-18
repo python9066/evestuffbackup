@@ -142,33 +142,31 @@
             <v-col class="col-md-1"></v-col>
 
             <v-col class="col-md-4">
-                <v-card flat style=" width: 100%;">
-                    <v-card
-                        v-for="(list, index) in tableList"
-                        :key="index"
-                        elevation="10"
-                        class="col-md-6 pa-4"
-                    >
-                        <v-card>
-                            <v-card-title
-                                class="justify-center"
-                                elevation="10"
-                                width="80%"
-                                >{{ list.name }}</v-card-title
-                            >
-                        </v-card>
-                        <v-card>
-                            <v-card outlined width="80%">
-                                <v-card-text class="text-center">
-                                    <p
-                                        class="font-weight-light"
-                                        v-for="(fleet, index) in list.fleets"
-                                        :key="index"
-                                    >
-                                        {{ fleet.name }}
-                                    </p>
-                                </v-card-text>
-                            </v-card>
+                <v-card
+                    v-for="(list, index) in tableList"
+                    :key="index"
+                    elevation="10"
+                    class="col-md-6 pa-4"
+                >
+                    <v-card>
+                        <v-card-title
+                            class="justify-center"
+                            elevation="10"
+                            width="80%"
+                            >{{ list.name }}</v-card-title
+                        >
+                    </v-card>
+                    <v-card>
+                        <v-card outlined width="80%" class="col-md-6 pa-4">
+                            <v-card-text class="text-center">
+                                <p
+                                    class="font-weight-light"
+                                    v-for="(fleet, index) in list.fleets"
+                                    :key="index"
+                                >
+                                    {{ fleet.name }}
+                                </p>
+                            </v-card-text>
                         </v-card>
                     </v-card>
                 </v-card>
