@@ -14,7 +14,7 @@ class AddShowOnCoordToStationsTable extends Migration
     public function up()
     {
         Schema::table('stations', function (Blueprint $table) {
-            $table->tinyInteger('show_on_coord')->after('show_on_rc_move')->delete(0);
+            $table->tinyInteger('show_on_coord')->after('show_on_rc_move')->default(0);
         });
     }
 
