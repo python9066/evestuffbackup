@@ -59498,7 +59498,7 @@ var render = function() {
                 [
                   _c(
                     "v-card",
-                    { attrs: { flat: "" } },
+                    { staticStyle: { width: "100%" }, attrs: { flat: "" } },
                     _vm._l(_vm.tableList, function(list, index) {
                       return _c(
                         "v-card",

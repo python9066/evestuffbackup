@@ -143,7 +143,7 @@
 
             <v-col class="col-md-4">
                 <v-row>
-                    <v-card flat>
+                    <v-card flat style=" width: 100%;">
                         <v-card
                             v-for="(list, index) in tableList"
                             :key="index"
