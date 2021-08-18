@@ -59524,10 +59524,7 @@ var render = function() {
                     [
                       _c(
                         "v-card",
-                        {
-                          staticClass: "col-md-6 pa-4",
-                          attrs: { outlined: "", width: "80%" }
-                        },
+                        { attrs: { outlined: "", width: "80%" } },
                         [
                           _c(
                             "v-card-text",

@@ -157,7 +157,7 @@
                         >
                     </v-card>
                     <v-card>
-                        <v-card outlined width="80%" class="col-md-6 pa-4">
+                        <v-card outlined width="80%">
                             <v-card-text class="text-center">
                                 <p
                                     class="font-weight-light"
