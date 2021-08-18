@@ -141,12 +141,13 @@
             </v-col>
             <v-col class="col-md-1"></v-col>
 
-            <v-col class="col-md-4">
+            <v-col class="col-md-4 d-inline-flex">
                 <v-card
                     v-for="(list, index) in tableList"
                     :key="index"
+                    max-height="300px"
                     elevation="10"
-                    class="col-md-6"
+                    class="col-md-6 ma-10"
                 >
                     <v-card>
                         <v-card-title class="justify-center" elevation="10">{{

@@ -25821,6 +25821,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -59491,14 +59492,14 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-col",
-            { staticClass: "col-md-4" },
+            { staticClass: "col-md-4 d-inline-flex" },
             _vm._l(_vm.tableList, function(list, index) {
               return _c(
                 "v-card",
                 {
                   key: index,
-                  staticClass: "col-md-6",
-                  attrs: { elevation: "10" }
+                  staticClass: "col-md-6 ma-10",
+                  attrs: { "max-height": "300px", elevation: "10" }
                 },
                 [
                   _c(
