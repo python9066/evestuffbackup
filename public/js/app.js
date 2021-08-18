@@ -59506,7 +59506,7 @@ var render = function() {
                     "v-card",
                     {
                       key: index,
-                      staticClass: "col-md-6 pa-4",
+                      staticClass: "col-md-5 ma-4",
                       attrs: { "max-height": "300px", elevation: "10" }
                     },
                     [

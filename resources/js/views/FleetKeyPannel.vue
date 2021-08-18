@@ -148,7 +148,7 @@
                         :key="index"
                         max-height="300px"
                         elevation="10"
-                        class="col-md-6 pa-4"
+                        class="col-md-5 ma-4"
                     >
                         <v-card>
                             <v-card-title
