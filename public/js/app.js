@@ -25819,8 +25819,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -59173,11 +59171,11 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-row",
-        { attrs: { "no-gutters": "", justify: "center" } },
+        { attrs: { "no-gutters": "" } },
         [
           _c(
             "v-col",
-            { staticClass: " d-inline-flex", attrs: { cols: "9" } },
+            { staticClass: "col-xs-12 col-md-12" },
             [
               _c(
                 "v-card",
@@ -59227,11 +59225,11 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-row",
-        { attrs: { "no-gutters": "", justify: "center" } },
+        { attrs: { "no-gutters": "" } },
         [
           _c(
             "v-col",
-            { staticClass: " d-inline-flex", attrs: { cols: "9" } },
+            { staticClass: "col-xs-12 col-md-6" },
             [
               _c(
                 "v-card",
@@ -59494,61 +59492,53 @@ var render = function() {
             { staticClass: "col-md-4" },
             [
               _c(
-                "v-row",
-                [
-                  _c(
+                "v-card",
+                { staticStyle: { width: "100%" }, attrs: { flat: "" } },
+                _vm._l(_vm.tableList, function(list, index) {
+                  return _c(
                     "v-card",
-                    { staticStyle: { width: "100%" }, attrs: { flat: "" } },
-                    _vm._l(_vm.tableList, function(list, index) {
-                      return _c(
+                    {
+                      key: index,
+                      staticClass: "col-md-6 pa-4",
+                      attrs: { elevation: "24" }
+                    },
+                    [
+                      _c("v-card-title", { staticClass: "justify-center" }, [
+                        _vm._v(_vm._s(list.name))
+                      ]),
+                      _vm._v(" "),
+                      _c(
                         "v-card",
-                        {
-                          key: index,
-                          staticClass: "col-md-6 pa-4",
-                          attrs: { elevation: "24" }
-                        },
+                        { attrs: { outlined: "" } },
                         [
                           _c(
-                            "v-card-title",
-                            { staticClass: "justify-center" },
-                            [_vm._v(_vm._s(list.name))]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-card",
-                            { attrs: { outlined: "" } },
-                            [
-                              _c(
-                                "v-card-text",
-                                { staticClass: "text-center" },
-                                _vm._l(list.fleets, function(fleet, index) {
-                                  return _c(
-                                    "p",
-                                    {
-                                      key: index,
-                                      staticClass: "font-weight-light"
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                    " +
-                                          _vm._s(fleet.name) +
-                                          "\n                                "
-                                      )
-                                    ]
+                            "v-card-text",
+                            { staticClass: "text-center" },
+                            _vm._l(list.fleets, function(fleet, index) {
+                              return _c(
+                                "p",
+                                {
+                                  key: index,
+                                  staticClass: "font-weight-light"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                " +
+                                      _vm._s(fleet.name) +
+                                      "\n                            "
                                   )
-                                }),
-                                0
+                                ]
                               )
-                            ],
-                            1
+                            }),
+                            0
                           )
                         ],
                         1
                       )
-                    }),
+                    ],
                     1
                   )
-                ],
+                }),
                 1
               )
             ],

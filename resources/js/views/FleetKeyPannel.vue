@@ -1,8 +1,8 @@
 <template>
     <div class="pr-16 pl-16">
         <errorMessage></errorMessage>
-        <v-row no-gutters justify="center">
-            <v-col class=" d-inline-flex" cols="9">
+        <v-row no-gutters>
+            <v-col class="col-xs-12 col-md-12">
                 <v-card
                     tile
                     flat
@@ -30,8 +30,8 @@
                 <EditFleets v-if="$can('edit_fleet_keys')"></EditFleets>
             </v-col>
         </v-row>
-        <v-row no-gutters justify="center">
-            <v-col class=" d-inline-flex" cols="9">
+        <v-row no-gutters>
+            <v-col class="col-xs-12 col-md-6">
                 <v-card tile flat color="#121212" class="align-start">
                     <v-btn-toggle
                         right
@@ -142,31 +142,29 @@
             <v-col class="col-md-1"></v-col>
 
             <v-col class="col-md-4">
-                <v-row>
-                    <v-card flat style=" width: 100%;">
-                        <v-card
-                            v-for="(list, index) in tableList"
-                            :key="index"
-                            elevation="24"
-                            class="col-md-6 pa-4"
-                        >
-                            <v-card-title class="justify-center">{{
-                                list.name
-                            }}</v-card-title>
-                            <v-card outlined>
-                                <v-card-text class="text-center">
-                                    <p
-                                        class="font-weight-light"
-                                        v-for="(fleet, index) in list.fleets"
-                                        :key="index"
-                                    >
-                                        {{ fleet.name }}
-                                    </p>
-                                </v-card-text>
-                            </v-card>
+                <v-card flat style=" width: 100%;">
+                    <v-card
+                        v-for="(list, index) in tableList"
+                        :key="index"
+                        elevation="24"
+                        class="col-md-6 pa-4"
+                    >
+                        <v-card-title class="justify-center">{{
+                            list.name
+                        }}</v-card-title>
+                        <v-card outlined>
+                            <v-card-text class="text-center">
+                                <p
+                                    class="font-weight-light"
+                                    v-for="(fleet, index) in list.fleets"
+                                    :key="index"
+                                >
+                                    {{ fleet.name }}
+                                </p>
+                            </v-card-text>
                         </v-card>
                     </v-card>
-                </v-row>
+                </v-card>
             </v-col>
             <v-col class="col-md-1"></v-col>
         </v-row>
