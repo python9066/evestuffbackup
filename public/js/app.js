@@ -25858,7 +25858,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -59573,14 +59572,14 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "v-card-text",
-                          { attrs: { elevation: "12" } },
+                          { attrs: { elevation: "0" } },
                           [
                             _c(
                               "v-list",
                               _vm._l(list.fleets, function(fleet, index) {
                                 return _c(
                                   "v-list-item",
-                                  { key: index, staticClass: " pr-2" },
+                                  { key: index },
                                   [
                                     _c("v-list-item-title", [
                                       _vm._v(

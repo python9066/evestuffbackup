@@ -145,12 +145,11 @@
                 <div v-for="(list, index) in tableList" :key="index">
                     <v-card elevation="24">
                         <v-card-title>{{ list.name }}</v-card-title>
-                        <v-card-text elevation="12">
+                        <v-card-text elevation="0">
                             <v-list>
                                 <v-list-item
                                     v-for="(fleet, index) in list.fleets"
                                     :key="index"
-                                    class=" pr-2"
                                 >
                                     <v-list-item-title>
                                         {{ fleet.name }}
