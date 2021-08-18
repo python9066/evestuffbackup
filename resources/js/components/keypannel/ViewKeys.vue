@@ -13,7 +13,7 @@
                     <v-text-field
                         v-model="search"
                         append-icon="mdi-magnify"
-                        label="Search"
+                        labeffl="Search"
                         single-line
                         filled
                         hide-details
