@@ -141,40 +141,33 @@
             </v-col>
             <v-col class="col-md-1"></v-col>
 
-            <v-col class="col-md-4">
-                <v-row>
-                    <v-col class="col-xs-12 col-md-6">
-                        <v-card
-                            v-for="(list, index) in tableList"
-                            :key="index"
-                            max-height="300px"
-                            elevation="10"
-                            class="col-md-6"
-                        >
-                            <v-card>
-                                <v-card-title
-                                    class="justify-center"
-                                    elevation="10"
-                                    >{{ list.name }}</v-card-title
+            <v-col class="col-md-4 d-inline-flex">
+                <v-card
+                    v-for="(list, index) in tableList"
+                    :key="index"
+                    max-height="300px"
+                    elevation="10"
+                    class="col-md-6"
+                >
+                    <v-card>
+                        <v-card-title class="justify-center" elevation="10">{{
+                            list.name
+                        }}</v-card-title>
+                    </v-card>
+                    <v-card>
+                        <v-card outlined>
+                            <v-card-text class="text-center">
+                                <p
+                                    class="font-weight-light"
+                                    v-for="(fleet, index) in list.fleets"
+                                    :key="index"
                                 >
-                            </v-card>
-                            <v-card>
-                                <v-card outlined>
-                                    <v-card-text class="text-center">
-                                        <p
-                                            class="font-weight-light"
-                                            v-for="(fleet,
-                                            index) in list.fleets"
-                                            :key="index"
-                                        >
-                                            {{ fleet.name }}
-                                        </p>
-                                    </v-card-text>
-                                </v-card>
-                            </v-card>
+                                    {{ fleet.name }}
+                                </p>
+                            </v-card-text>
                         </v-card>
-                    </v-col>
-                </v-row>
+                    </v-card>
+                </v-card>
             </v-col>
             <v-col class="col-md-1"></v-col>
         </v-row>
