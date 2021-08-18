@@ -19,7 +19,7 @@ class RcSheetContoller extends Controller
      */
     public function index()
     {
-        return ['stations' => RcStationRecords::all()];
+        return ['stations' => RcStationRecords::where('show_on_rc', 1)->get()];
     }
 
     /**
