@@ -78,6 +78,8 @@ class Notifications
 
             $stationdata = Utils::jsonDecode($response->getBody(), true);
             if ($stationdata == "Error, Structure Not Found") {
+                Station::find($station->id)->delete();
+                StationItemJoin::where('station_id', $station->id)->delete();
             } else {
                 StationItemJoin::where('station_id', $station->id)->delete();
                 $oldupdate = $station->r_updated_at;
