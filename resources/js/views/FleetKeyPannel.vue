@@ -1,8 +1,8 @@
 <template>
     <div class="pr-16 pl-16">
         <errorMessage></errorMessage>
-        <v-row no-gutters justify="center">
-            <v-col class=" d-inline-flex" cols="9">
+        <v-row no-gutters>
+            <v-col class="col-xs-12 col-md-12 d-inline-flex">
                 <v-card
                     tile
                     flat
@@ -30,10 +30,9 @@
                 <EditFleets v-if="$can('edit_fleet_keys')"></EditFleets>
             </v-col>
         </v-row>
-        <v-row no-gutters justify="center">
-            <v-col class=" d-inline-flex" cols="9">
-                <v-spacer></v-spacer>
-                <v-card tile flat color="#121212" class="align-end">
+        <v-row no-gutters>
+            <v-col class="col-xs-12 col-md-6">
+                <v-card tile flat color="#121212" class="align-start">
                     <v-btn-toggle
                         right
                         v-model="toggle_exclusive"
@@ -56,12 +55,9 @@
                 </v-card>
             </v-col>
         </v-row>
-        <v-row no-gutters justify="center">
-            <v-col
-                class=" d-inline-flex justify-content-center w-auto"
-                cols="9"
-            >
-                <v-card width="100%">
+        <v-row no-gutters>
+            <v-col class="col-xs-6 col-md-6">
+                <v-card>
                     <v-data-table
                         :headers="headers"
                         :items="filteredItems"
@@ -143,6 +139,46 @@
                     </v-data-table>
                 </v-card>
             </v-col>
+            <v-col class="col-md-1"></v-col>
+
+            <v-col class="col-md-4">
+                <v-col class="col-md-12 d-flex flex-wrap">
+                    <v-card
+                        v-for="(list, index) in tableList"
+                        :key="index"
+                        max-height="300px"
+                        elevation="10"
+                        class="col-md-5 ma-4"
+                    >
+                        <v-card>
+                            <v-card-title class="justify-center" elevation="24"
+                                ><v-btn
+                                    text
+                                    @click="
+                                        (keyflag = list.id),
+                                            (toggle_exclusive = list.id)
+                                    "
+                                    >{{ list.name }}</v-btn
+                                ></v-card-title
+                            >
+                        </v-card>
+                        <v-card>
+                            <v-card outlined>
+                                <v-card-text class="text-center">
+                                    <p
+                                        class="font-weight-light"
+                                        v-for="(fleet, index) in list.fleets"
+                                        :key="index"
+                                    >
+                                        {{ fleet.name }}
+                                    </p>
+                                </v-card-text>
+                            </v-card>
+                        </v-card>
+                    </v-card>
+                </v-col>
+            </v-col>
+            <v-col class="col-md-1"></v-col>
         </v-row>
     </div>
 </template>
@@ -184,14 +220,13 @@ export default {
         Echo.private("fleetkeys").listen("FleetKeysUpdate", e => {
             this.refresh();
         });
-    },
-
-    async mounted() {
         await this.$store.dispatch("getUserKeys");
         await this.$store.dispatch("getKeys");
         await this.$store.dispatch("getFleets");
         await this.$store.dispatch("getKeyFleets");
     },
+
+    async mounted() {},
 
     methods: {
         filterKeys(keys) {
@@ -222,6 +257,12 @@ export default {
             } else {
                 return false;
             }
+        },
+
+        fliterFleets(fleets) {
+            console.log(fleets);
+
+            return fleets;
         },
 
         async userAddKey(item) {
@@ -262,7 +303,7 @@ export default {
     },
 
     computed: {
-        ...mapState(["userkeys", "keysList"]),
+        ...mapState(["userkeys", "keysList", "keyfleets"]),
         filteredItems() {
             var keyid = this.keyflag;
             if (this.keyflag != 0) {
@@ -288,6 +329,10 @@ export default {
             });
 
             return list;
+        },
+
+        tableList() {
+            return this.keyfleets;
         }
     },
     beforeDestroy() {
