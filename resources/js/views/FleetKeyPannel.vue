@@ -151,7 +151,7 @@
                         list.name
                     }}</v-card-title>
                     <v-card outlined>
-                        <v-card-text>
+                        <v-card-text class="justify-center">
                             <p
                                 v-for="(fleet, index) in list.fleets"
                                 :key="index"

@@ -59584,6 +59584,7 @@ var render = function() {
                     [
                       _c(
                         "v-card-text",
+                        { staticClass: "justify-center" },
                         _vm._l(list.fleets, function(fleet, index) {
                           return _c("p", { key: index }, [
                             _vm._v(
