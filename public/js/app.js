@@ -59368,12 +59368,12 @@ var render = function() {
             "v-col",
             {
               staticClass: " d-inline-flex justify-content-center w-auto",
-              attrs: { cols: "9" }
+              attrs: { cols: "12" }
             },
             [
               _c(
                 "v-card",
-                { attrs: { width: "100%" } },
+                { attrs: { cols: "8" } },
                 [
                   _c(
                     "v-data-table",
@@ -59562,17 +59562,17 @@ var render = function() {
               _vm._l(_vm.tableList, function(list, index) {
                 return _c(
                   "div",
-                  { key: index },
+                  { key: index, attrs: { cols: "4" } },
                   [
                     _c(
                       "v-card",
-                      { attrs: { elevation: "24" } },
+                      { attrs: { elevation: "10" } },
                       [
                         _c("v-card-title", [_vm._v(_vm._s(list.name))]),
                         _vm._v(" "),
                         _c(
-                          "v-card-text",
-                          { attrs: { elevation: "0" } },
+                          "v-card",
+                          { attrs: { outlined: "" } },
                           [
                             _c(
                               "v-list",

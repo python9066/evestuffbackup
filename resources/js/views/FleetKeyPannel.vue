@@ -58,9 +58,9 @@
         <v-row no-gutters justify="center">
             <v-col
                 class=" d-inline-flex justify-content-center w-auto"
-                cols="9"
+                cols="12"
             >
-                <v-card width="100%">
+                <v-card cols="8">
                     <v-data-table
                         :headers="headers"
                         :items="filteredItems"
@@ -142,10 +142,10 @@
                     </v-data-table>
                 </v-card>
 
-                <div v-for="(list, index) in tableList" :key="index">
-                    <v-card elevation="24">
+                <div v-for="(list, index) in tableList" :key="index" cols="4">
+                    <v-card elevation="10">
                         <v-card-title>{{ list.name }}</v-card-title>
-                        <v-card-text elevation="0">
+                        <v-card outlined>
                             <v-list>
                                 <v-list-item
                                     v-for="(fleet, index) in list.fleets"
@@ -156,7 +156,7 @@
                                     </v-list-item-title>
                                 </v-list-item>
                             </v-list>
-                        </v-card-text>
+                        </v-card>
                     </v-card>
                 </div>
             </v-col>
