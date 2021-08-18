@@ -59500,13 +59500,13 @@ var render = function() {
             [
               _c(
                 "v-col",
-                { staticClass: "col-md-12" },
+                { staticClass: "col-md-12 d-flex flex-wrap" },
                 _vm._l(_vm.tableList, function(list, index) {
                   return _c(
                     "v-card",
                     {
                       key: index,
-                      staticClass: "col-md-6",
+                      staticClass: "col-md-6 pa-4",
                       attrs: { "max-height": "300px", elevation: "10" }
                     },
                     [
