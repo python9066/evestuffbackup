@@ -25822,6 +25822,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -59492,69 +59499,82 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-col",
-            { staticClass: "col-md-4 d-inline-flex" },
-            _vm._l(_vm.tableList, function(list, index) {
-              return _c(
-                "v-card",
-                {
-                  key: index,
-                  staticClass: "col-md-5",
-                  attrs: { "max-height": "300px", elevation: "10" }
-                },
+            { staticClass: "col-md-4" },
+            [
+              _c(
+                "v-row",
                 [
                   _c(
-                    "v-card",
-                    [
-                      _c(
-                        "v-card-title",
-                        {
-                          staticClass: "justify-center",
-                          attrs: { elevation: "10" }
-                        },
-                        [_vm._v(_vm._s(list.name))]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-card",
-                    [
-                      _c(
+                    "v-col",
+                    { staticClass: "col-xs-12 col-md-6" },
+                    _vm._l(_vm.tableList, function(list, index) {
+                      return _c(
                         "v-card",
-                        { attrs: { outlined: "" } },
+                        {
+                          key: index,
+                          staticClass: "col-md-6",
+                          attrs: { "max-height": "300px", elevation: "10" }
+                        },
                         [
                           _c(
-                            "v-card-text",
-                            { staticClass: "text-center" },
-                            _vm._l(list.fleets, function(fleet, index) {
-                              return _c(
-                                "p",
+                            "v-card",
+                            [
+                              _c(
+                                "v-card-title",
                                 {
-                                  key: index,
-                                  staticClass: "font-weight-light"
+                                  staticClass: "justify-center",
+                                  attrs: { elevation: "10" }
                                 },
-                                [
-                                  _vm._v(
-                                    "\n                                " +
-                                      _vm._s(fleet.name) +
-                                      "\n                            "
-                                  )
-                                ]
+                                [_vm._v(_vm._s(list.name))]
                               )
-                            }),
-                            0
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-card",
+                            [
+                              _c(
+                                "v-card",
+                                { attrs: { outlined: "" } },
+                                [
+                                  _c(
+                                    "v-card-text",
+                                    { staticClass: "text-center" },
+                                    _vm._l(list.fleets, function(fleet, index) {
+                                      return _c(
+                                        "p",
+                                        {
+                                          key: index,
+                                          staticClass: "font-weight-light"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                        " +
+                                              _vm._s(fleet.name) +
+                                              "\n                                    "
+                                          )
+                                        ]
+                                      )
+                                    }),
+                                    0
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
                           )
                         ],
                         1
                       )
-                    ],
+                    }),
                     1
                   )
                 ],
                 1
               )
-            }),
+            ],
             1
           ),
           _vm._v(" "),
