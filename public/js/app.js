@@ -25856,8 +25856,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -59566,7 +59564,7 @@ var render = function() {
                   [
                     _c(
                       "v-card",
-                      { attrs: { elevation: "10" } },
+                      { staticClass: " pa-2", attrs: { elevation: "10" } },
                       [
                         _c("v-card-title", [_vm._v(_vm._s(list.name))]),
                         _vm._v(" "),
@@ -59575,24 +59573,17 @@ var render = function() {
                           { attrs: { outlined: "" } },
                           [
                             _c(
-                              "v-list",
+                              "v-card-text",
                               _vm._l(list.fleets, function(fleet, index) {
-                                return _c(
-                                  "v-list-item",
-                                  { key: index },
-                                  [
-                                    _c("v-list-item-title", [
-                                      _vm._v(
-                                        "\n                                    " +
-                                          _vm._s(fleet.name) +
-                                          "\n                                "
-                                      )
-                                    ])
-                                  ],
-                                  1
-                                )
+                                return _c("p", { key: index }, [
+                                  _vm._v(
+                                    "\n                                " +
+                                      _vm._s(fleet.name) +
+                                      "\n                            "
+                                  )
+                                ])
                               }),
-                              1
+                              0
                             )
                           ],
                           1
