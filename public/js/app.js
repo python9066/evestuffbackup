@@ -59188,7 +59188,7 @@ var render = function() {
                   staticClass: "d-inline-flex align-content-start",
                   attrs: { tile: "", flat: "", color: "#121212" }
                 },
-                [_c("v-card-title", [_vm._v("Add/Remove Keys")])],
+                [_c("v-card-title", [_vm._v("Add/Remove Keys test")])],
                 1
               ),
               _vm._v(" "),

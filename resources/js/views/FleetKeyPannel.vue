@@ -9,7 +9,7 @@
                     color="#121212"
                     class="d-inline-flex align-content-start"
                 >
-                    <v-card-title>Add/Remove Keys</v-card-title>
+                    <v-card-title>Add/Remove Keys test</v-card-title>
                 </v-card>
                 <v-card
                     width="500"
