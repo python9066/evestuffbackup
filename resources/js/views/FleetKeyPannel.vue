@@ -154,12 +154,12 @@
                         }}</v-card-title>
                         <v-card outlined>
                             <v-card-text class="text-center">
-                                <p
+                                <span
                                     v-for="(fleet, index) in list.fleets"
                                     :key="index"
                                 >
                                     {{ fleet.name }}
-                                </p>
+                                </span>
                             </v-card-text>
                         </v-card>
                     </v-card>
