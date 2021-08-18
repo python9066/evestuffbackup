@@ -57,8 +57,7 @@
         </v-row>
         <v-row no-gutters justify="center" class=" d-inline-block">
             <v-col
-                class=" d-inline-flex justify-content-center w-auto"
-                cols="8"
+                class=" d-inline-flex justify-content-center col-xs-6 col-md-8"
             >
                 <v-card>
                     <v-data-table
@@ -143,7 +142,7 @@
                 </v-card>
             </v-col>
 
-            <v-col cols="4">
+            <v-col class="col-xs-6 col-md-4">
                 <v-card
                     v-for="(list, index) in tableList"
                     :key="index"
