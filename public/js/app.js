@@ -13128,6 +13128,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     buttontext: function buttontext(item) {
       var ret = item.status_name.replace("Upcoming - ", "");
       return ret;
+    },
+    open: function open() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    close: function close() {
+      this.showDoneOverlay = false;
     }
   },
   computed: {},
@@ -46607,7 +46623,7 @@ var render = function() {
                           _vm._s(_vm.buttontext(_vm.item)) +
                           " - Done\n                "
                       ),
-                      _c("icon", { attrs: { right: "" } }, [
+                      _c("v-icon", { attrs: { right: "" } }, [
                         _vm._v(" faSvg fa-check-circle")
                       ])
                     ],

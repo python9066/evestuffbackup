@@ -16,7 +16,7 @@
                     :color="pillColor(item)"
                 >
                     {{ buttontext(item) }} - Done
-                    <icon right> faSvg fa-check-circle</icon>
+                    <v-icon right> faSvg fa-check-circle</v-icon>
                 </v-btn>
             </template>
 
@@ -82,6 +82,12 @@ export default {
         buttontext(item) {
             var ret = item.status_name.replace("Upcoming - ", "");
             return ret;
+        },
+
+        async open() {},
+
+        close() {
+            this.showDoneOverlay = false;
         }
     },
 
