@@ -109,7 +109,7 @@
                                     transition="scale-transition"
                                 >
                                     <span class="text-center">
-                                        TIMER IS NOT VAILD OR INCORRECT MAKE
+                                        TIMER IS NOT VAILD OR INCORRECT FORMAT
                                     </span>
                                 </v-alert>
                             </div>
