@@ -34,7 +34,7 @@ class Notifications
     public static function reconRegionPull($id)
     {
         $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
-        $url = "https://recon.gnf.lt/api/structure/hostile/region/" . $id;
+        $url = "https://recon.gnf.lt/api/structures/hostile/region/" . $id;
 
 
 
@@ -50,7 +50,7 @@ class Notifications
             'headers' => $headers,
             'http_errors' => false
         ]);
-        $data = $response;
+        $data = Utils::jsonDecode($response->getBody(), true);
         return $data;
     }
 
