@@ -222,12 +222,12 @@ export default {
             var s = this.refTime.substr(17, 2);
             var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
             return moment(full)
-                .format("YYYY-MM-DD HH:mm:ss", true)
+                .format("YYYY-MM-DD HH:mm:ss")
                 .isValid();
         },
 
         count() {
-            return this.refType.length();
+            return this.refTime.length;
         }
     },
 
