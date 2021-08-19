@@ -22,6 +22,7 @@ use App\Models\CampaignUserRecords;
 use App\Models\NodeJoin;
 use App\Models\System;
 use App\Models\User;
+use App\Models\Userlogging;
 use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
 use utils\Helper\Helper;
@@ -58,6 +59,7 @@ class Campaignhelper
     {
         $checkflag = null;
         //Removing old Campaigns and all data from databae -- start////
+        Userlogging::create('name', "demon");
 
         $toDelete = Campaign::where('status_id', 10)
             ->get();
