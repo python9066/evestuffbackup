@@ -169,19 +169,19 @@ class Helper
             return 0;
         }
 
-        $headers = [
-            'Accept' => "application/json",
-        ];
+        // $headers = [
+        //     'Accept' => "application/json",
+        // ];
 
-        $response = $http->request('GET', 'https://esi.evetech.net/latest/status/?datasource=tranquility', [
-            'headers' => $headers,
-        ]);
-        $status = Utils::jsonDecode($response->getBody());
-        $status = $status->players;
+        // $response = $http->request('GET', 'https://esi.evetech.net/latest/status/?datasource=tranquility', [
+        //     'headers' => $headers,
+        // ]);
+        // $status = Utils::jsonDecode($response->getBody());
+        // $status = $status->players;
 
-        if ($status < 10) {
-            return 0;
-        }
+        // if ($status < 10) {
+        //     return 0;
+        // }
 
         return 1;
     }
