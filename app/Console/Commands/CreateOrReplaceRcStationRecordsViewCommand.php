@@ -32,7 +32,7 @@ class CreateOrReplaceRcStationRecordsViewCommand extends Command
     }
 
     /**
-     * Execute the console command.
+     * Execute the coffffnsole command.
      *
      * @return int
      */
