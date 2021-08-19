@@ -17683,6 +17683,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -51794,7 +51806,7 @@ var render = function() {
                             [
                               _c("h5", [
                                 _c("strong", [
-                                  _vm._v("Enter Reninforced untill timer")
+                                  _vm._v("Enter Reinforced Until Timerr")
                                 ])
                               ]),
                               _vm._v(" "),
@@ -51858,7 +51870,28 @@ var render = function() {
                                       expression: "refTime"
                                     }
                                   })
-                                : _vm._e()
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "v-alert",
+                                {
+                                  attrs: {
+                                    value: _vm.showWarning,
+                                    dark: "",
+                                    type: "warning",
+                                    border: "top",
+                                    icon: "mdi-home",
+                                    transition: "scale-transition"
+                                  }
+                                },
+                                [
+                                  _c("span", { staticClass: "text-center" }, [
+                                    _vm._v(
+                                      "\n                                    TIMER IS NOT VAILD OR INCORRECT MAKE\n                                "
+                                    )
+                                  ])
+                                ]
+                              )
                             ],
                             1
                           )

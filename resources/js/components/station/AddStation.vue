@@ -140,7 +140,7 @@
                             <div>
                                 <h5>
                                     <strong
-                                        >Enter Reninforced untill timer</strong
+                                        >Enter Reinforced Until Timerr</strong
                                     >
                                 </h5>
                                 <v-text-field
@@ -157,6 +157,18 @@
                                         (timerShown = false), (hackTime = null)
                                     "
                                 ></v-text-field>
+                                <v-alert
+                                    :value="showWarning"
+                                    dark
+                                    type="warning"
+                                    border="top"
+                                    icon="mdi-home"
+                                    transition="scale-transition"
+                                >
+                                    <span class="text-center">
+                                        TIMER IS NOT VAILD OR INCORRECT MAKE
+                                    </span>
+                                </v-alert>
                             </div>
                         </div>
                     </v-fade-transition>
