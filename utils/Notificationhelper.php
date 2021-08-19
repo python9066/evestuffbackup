@@ -50,7 +50,7 @@ class Notifications
             'headers' => $headers,
             'http_errors' => false
         ]);
-        $data = Utils::jsonDecode($response->getBody(), true);
+        $data = $response->getBody();
         return $data;
     }
 
