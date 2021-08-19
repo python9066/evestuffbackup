@@ -188,7 +188,7 @@ export default {
         },
 
         async open() {
-            this.$emit("timeropen");
+            // this.$emit("timeropen");
         }
     },
 
