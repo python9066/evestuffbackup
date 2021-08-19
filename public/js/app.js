@@ -13005,6 +13005,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13043,6 +13048,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.showStationTimer = false;
       this.refType = null;
       this.refTime = null;
+    },
+    showSubmit: function showSubmit() {
+      if ((this.imageLink == null || this.imageLink == "") && this.count != 19 && vaildDate == true) {
+        return true;
+      } else {
+        return false;
+      }
     },
     submit: function submit() {
       var _this = this;
@@ -13127,47 +13139,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var s = this.refTime.substr(17, 2);
         var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
         var vaild = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss", true).isValid();
-        return vaild;
+
+        if (vaild == "Invalid date") {
+          return false;
+        } else {
+          return true;
+        }
       } else {
         return false;
-      }
-    },
-    test: function test() {
-      if (this.count == 19) {
-        var y = this.refTime.substr(0, 4);
-        var mo = this.refTime.substr(5, 2);
-        var d = this.refTime.substr(8, 2);
-        var h = this.refTime.substr(11, 2);
-        var m = this.refTime.substr(14, 2);
-        var s = this.refTime.substr(17, 2);
-        var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-        return full;
-      }
-    },
-    test2: function test2() {
-      if (this.count == 19) {
-        var y = this.refTime.substr(0, 4);
-        var mo = this.refTime.substr(5, 2);
-        var d = this.refTime.substr(8, 2);
-        var h = this.refTime.substr(11, 2);
-        var m = this.refTime.substr(14, 2);
-        var s = this.refTime.substr(17, 2);
-        var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-        var outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
-        return outTime;
-      }
-    },
-    test3: function test3() {
-      if (this.count == 19) {
-        var y = this.refTime.substr(0, 4);
-        var mo = this.refTime.substr(5, 2);
-        var d = this.refTime.substr(8, 2);
-        var h = this.refTime.substr(11, 2);
-        var m = this.refTime.substr(14, 2);
-        var s = this.refTime.substr(17, 2);
-        var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-        var outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss", true);
-        return outTime;
       }
     },
     count: function count() {
@@ -47064,7 +47043,7 @@ var render = function() {
                     "v-btn",
                     {
                       staticClass: "white--text",
-                      attrs: { color: "teal" },
+                      attrs: { color: "teal", disabled: _vm.showSubmit() },
                       on: {
                         click: function($event) {
                           return _vm.close()
