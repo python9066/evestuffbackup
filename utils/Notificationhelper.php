@@ -29,6 +29,33 @@ use GuzzleHttp\Client as GuzzleHttpClient;
 
 class Notifications
 {
+
+
+    public static function reconRegionPull($id)
+    {
+        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+        $url = "https://recon.gnf.lt/api/structure/hostile/region/" . $id;
+
+
+
+        $client = new GuzzleHttpClient();
+        $headers = [
+            // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
+            'x-gsf-user' => env('RECON_USER', ($variables && array_key_exists('RECON_USER', $variables)) ? $variables['RECON_USER'] : 'DANCE2'),
+            // 'token' =>  env('RECON_TOKEN', "DANCE")
+            'token' => env('RECON_TOKEN', ($variables && array_key_exists('RECON_TOKEN', $variables)) ? $variables['RECON_TOKEN'] : 'DANCE2'),
+
+        ];
+        $response = $client->request('GET', $url, [
+            'headers' => $headers,
+            'http_errors' => false
+        ]);
+        $data = Utils::jsonDecode($response->getBody(), true);
+        return $data;
+    }
+
+
+
     public static function reconPull($id)
     {
         $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
