@@ -108,10 +108,7 @@ export default {
         },
 
         showAddTimer() {
-            if (
-                this.item.station_status_id == 5 ||
-                this.station_status_id == 8
-            ) {
+            if (this.item.status_id == 5 || this.item.status_id == 8) {
                 return true;
             } else {
                 return false;

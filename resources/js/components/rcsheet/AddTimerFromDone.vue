@@ -27,9 +27,7 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title class="justify-center">
-                    <p>
-                        Enter Details for {{ item.station_name }}
-                    </p></v-card-title
+                    <p>Enter Details for {{ item.name }}</p></v-card-title
                 >
 
                 <v-card-text>
