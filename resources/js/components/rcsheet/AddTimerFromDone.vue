@@ -96,15 +96,15 @@
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
-                    <v-btn
-                        class="white--text"
-                        color="teal"
-                        @click="close()"
-                        :disabled="showSubmit()"
-                    >
+                    <v-btn class="white--text" color="teal" @click="close()">
                         Close
                     </v-btn>
-                    <v-btn class="white--text" color="green" @click="submit()">
+                    <v-btn
+                        class="white--text"
+                        color="green"
+                        @click="submit()"
+                        :disabled="showSubmit()"
+                    >
                         Submit
                     </v-btn></v-card-actions
                 >
@@ -154,7 +154,8 @@ export default {
         showSubmit() {
             if (
                 (this.imageLink == null || this.imageLink == "") &&
-                this.count != 19
+                this.count != 19 &&
+                this.vaildDate == true
             ) {
                 return true;
             } else {
@@ -229,28 +230,7 @@ export default {
         ...mapGetters([]),
         ...mapState([]),
 
-        // vaildDate() {
-        //     if (this.count == 19) {
-        //         var y = this.refTime.substr(0, 4);
-        //         var mo = this.refTime.substr(5, 2);
-        //         var d = this.refTime.substr(8, 2);
-        //         var h = this.refTime.substr(11, 2);
-        //         var m = this.refTime.substr(14, 2);
-        //         var s = this.refTime.substr(17, 2);
-        //         var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-        //         var vaild = moment(full)
-        //             .format("YYYY-MM-DD HH:mm:ss", true)
-        //             .isValid();
-        //             if(vaild == "Invalid date"){
-
-        //                 return false;
-        //             }else
-        //     } else {
-        //         return false;
-        //     }
-        // },
-
-        test() {
+        vaildDate() {
             if (this.count == 19) {
                 var y = this.refTime.substr(0, 4);
                 var mo = this.refTime.substr(5, 2);
@@ -259,35 +239,18 @@ export default {
                 var m = this.refTime.substr(14, 2);
                 var s = this.refTime.substr(17, 2);
                 var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-                return full;
-            }
-        },
-
-        test2() {
-            if (this.count == 19) {
-                var y = this.refTime.substr(0, 4);
-                var mo = this.refTime.substr(5, 2);
-                var d = this.refTime.substr(8, 2);
-                var h = this.refTime.substr(11, 2);
-                var m = this.refTime.substr(14, 2);
-                var s = this.refTime.substr(17, 2);
-                var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-                var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
-                return outTime;
-            }
-        },
-
-        test3() {
-            if (this.count == 19) {
-                var y = this.refTime.substr(0, 4);
-                var mo = this.refTime.substr(5, 2);
-                var d = this.refTime.substr(8, 2);
-                var h = this.refTime.substr(11, 2);
-                var m = this.refTime.substr(14, 2);
-                var s = this.refTime.substr(17, 2);
-                var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-                var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss", true);
-                return outTime;
+                var vaild = moment(full).format("YYYY-MM-DD HH:mm:ss", true);
+                if (vaild == "Invalid date") {
+                    return false;
+                } else {
+                    if (vaild > moment.utc().format("YYYY-MM-DD HH:mm:ss")) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            } else {
+                return false;
             }
         },
 
