@@ -78,6 +78,10 @@ export default {
             if (item.status_id == 17) {
                 return "#FF5EEA";
             }
+        },
+        buttontext(item) {
+            var ret = item.status_name.replace("Upcoming - ", "");
+            return ret;
         }
     },
 

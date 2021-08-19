@@ -13124,6 +13124,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       if (item.status_id == 17) {
         return "#FF5EEA";
       }
+    },
+    buttontext: function buttontext(item) {
+      var ret = item.status_name.replace("Upcoming - ", "");
+      return ret;
     }
   },
   computed: {},
