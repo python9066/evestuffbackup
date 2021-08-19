@@ -107,6 +107,8 @@ class Notifications
                 'r_cloning' => $stationdata['str_cloning'],
                 'r_composite' => $stationdata['str_composite'],
                 'r_cored' => $stationdata['str_cored'],
+                'system_id' => $stationdata['str_system_id'],
+                'item_id' => $stationdata['str_type_id'],
                 'show_on_coord' => 1,
                 'station_status_id' => 1,
             ]);
