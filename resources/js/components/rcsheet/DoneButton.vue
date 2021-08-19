@@ -32,16 +32,25 @@
 
                 <v-card-text>
                     <AddTimerFromDone
+                        v-if="showAddTimer()"
                         @timeropen="close()"
                         :item="item"
                     ></AddTimerFromDone>
-                    <v-btn color="amber accent-2" @click="statusUpdate(4)">
+                    <v-btn
+                        color="orange darken-1"
+                        class=" mx-4"
+                        @click="statusUpdate(4)"
+                    >
                         Repaired</v-btn
                     >
-                    <v-btn color="red" @click="softDestroyed()">
+                    <v-btn color="red" class=" mx-4" @click="softDestroyed()">
                         Destoryed</v-btn
                     >
-                    <v-btn color="brown lighten-2" @click="statusUpdate(18)">
+                    <v-btn
+                        color="brown lighten-2"
+                        class=" mx-4"
+                        @click="statusUpdate(18)"
+                    >
                         Unknown</v-btn
                     >
                 </v-card-text>
@@ -95,6 +104,17 @@ export default {
 
         close() {
             this.showDoneOverlay = false;
+        },
+
+        showAddTimer() {
+            if (
+                this.item.station_status_id == 5 ||
+                this.station_status_id == 8
+            ) {
+                return true;
+            } else {
+                return false;
+            }
         },
 
         async statusUpdate(statusID) {

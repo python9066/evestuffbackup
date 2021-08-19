@@ -101,7 +101,6 @@
                                 >
                                     <span class="text-center">
                                         TIMER IS NOT VAILD OR INCORRECT MAKE
-                                        SURE ITS YYYY:MM:DD HH:MM:SS
                                     </span>
                                 </v-alert>
                             </div>
@@ -160,7 +159,7 @@ export default {
 
     methods: {
         close() {
-            this.showStationTimer = false;
+            this.showAddTimer = false;
             this.refType = null;
             this.refTime = null;
         },
@@ -219,13 +218,12 @@ export default {
                 (this.showStationTimer = false),
                 (this.refType = null),
                 (this.refTime = null),
-                (this.showStationTimer = false)
+                (this.showStationTimer = false),
+                this.$emit("timeropen")
             );
         },
 
-        async open() {
-            // this.$emit("timeropen");
-        }
+        async open() {}
     },
 
     computed: {

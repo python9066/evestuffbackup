@@ -13023,7 +13023,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13059,7 +13058,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     close: function close() {
-      this.showStationTimer = false;
+      this.showAddTimer = false;
       this.refType = null;
       this.refTime = null;
     },
@@ -13110,7 +13109,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this.showStationTimer = false, _this.refType = null, _this.refTime = null, _this.showStationTimer = false);
+                }).then(_this.showStationTimer = false, _this.refType = null, _this.refTime = null, _this.showStationTimer = false, _this.$emit("timeropen"));
 
               case 15:
               case "end":
@@ -13120,8 +13119,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    open: function open() {// this.$emit("timeropen");
-
+    open: function open() {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
@@ -13424,6 +13422,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13486,6 +13493,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     close: function close() {
       this.showDoneOverlay = false;
+    },
+    showAddTimer: function showAddTimer() {
+      if (this.item.station_status_id == 5 || this.station_status_id == 8) {
+        return true;
+      } else {
+        return false;
+      }
     },
     statusUpdate: function statusUpdate(statusID) {
       var _this = this;
@@ -47081,7 +47095,7 @@ var render = function() {
                             [
                               _c("span", { staticClass: "text-center" }, [
                                 _vm._v(
-                                  "\n                                    TIMER IS NOT VAILD OR INCORRECT MAKE\n                                    SURE ITS YYYY:MM:DD HH:MM:SS\n                                "
+                                  "\n                                    TIMER IS NOT VAILD OR INCORRECT MAKE\n                                "
                                 )
                               ])
                             ]
@@ -47485,19 +47499,22 @@ var render = function() {
               _c(
                 "v-card-text",
                 [
-                  _c("AddTimerFromDone", {
-                    attrs: { item: _vm.item },
-                    on: {
-                      timeropen: function($event) {
-                        return _vm.close()
-                      }
-                    }
-                  }),
+                  _vm.showAddTimer()
+                    ? _c("AddTimerFromDone", {
+                        attrs: { item: _vm.item },
+                        on: {
+                          timeropen: function($event) {
+                            return _vm.close()
+                          }
+                        }
+                      })
+                    : _vm._e(),
                   _vm._v(" "),
                   _c(
                     "v-btn",
                     {
-                      attrs: { color: "amber accent-2" },
+                      staticClass: " mx-4",
+                      attrs: { color: "orange darken-1" },
                       on: {
                         click: function($event) {
                           return _vm.statusUpdate(4)
@@ -47510,6 +47527,7 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
+                      staticClass: " mx-4",
                       attrs: { color: "red" },
                       on: {
                         click: function($event) {
@@ -47523,6 +47541,7 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
+                      staticClass: " mx-4",
                       attrs: { color: "brown lighten-2" },
                       on: {
                         click: function($event) {
