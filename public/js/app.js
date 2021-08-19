@@ -13027,7 +13027,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         hh: "",
         mm: "",
         ss: ""
-      }
+      },
+      hull: "Hull"
     };
   },
   methods: {
@@ -13046,7 +13047,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 outTime = null;
-                console.log(_this.refTime);
 
                 if (_this.refTime != "" || _this.refTime != null) {
                   y = _this.refTime.substr(0, 4);
@@ -13068,12 +13068,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   };
                 } else {
                   request = {
-                    station_status_id: station_status_id,
-                    timer_image_link: timer_image_link
+                    station_status_id: 13,
+                    status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                    timer_image_link: timer_image_link,
+                    show_on_rc_move: 1,
+                    show_on_rc: 0
                   };
                 }
 
-                _context2.next = 6;
+                _context2.next = 5;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -13086,7 +13089,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(_this.showStationTimer = false, _this.refType = null, _this.refTime = null, _this.showStationTimer = false);
 
-              case 6:
+              case 5:
               case "end":
                 return _context2.stop();
             }
@@ -46865,9 +46868,13 @@ var render = function() {
                           _vm._v(" "),
                           _c("v-text-field", {
                             staticClass: " ml-2",
-                            attrs: {
-                              "v-model": _vm.statusName(),
-                              label: "Ref Type"
+                            attrs: { label: "Ref Type" },
+                            model: {
+                              value: this.hull,
+                              callback: function($$v) {
+                                _vm.$set(this, "hull", $$v)
+                              },
+                              expression: "this.hull"
                             }
                           })
                         ],

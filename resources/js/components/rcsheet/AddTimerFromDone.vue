@@ -57,7 +57,7 @@
                                 <h5><strong>Timer Type</strong></h5>
                                 <v-text-field
                                     class=" ml-2"
-                                    :v-model="statusName()"
+                                    v-model="this.hull"
                                     label="Ref Type"
                                 ></v-text-field>
                             </div>
@@ -127,7 +127,8 @@ export default {
                 hh: "",
                 mm: "",
                 ss: ""
-            }
+            },
+            hull: "Hull"
         };
     },
 
@@ -140,7 +141,6 @@ export default {
 
         async submit() {
             var outTime = null;
-            console.log(this.refTime);
 
             if (this.refTime != "" || this.refTime != null) {
                 var y = this.refTime.substr(0, 4);
@@ -162,8 +162,11 @@ export default {
                 };
             } else {
                 var request = {
-                    station_status_id: station_status_id,
-                    timer_image_link: timer_image_link
+                    station_status_id: 13,
+                    status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
+                    timer_image_link: timer_image_link,
+                    show_on_rc_move: 1,
+                    show_on_rc: 0
                 };
             }
 
