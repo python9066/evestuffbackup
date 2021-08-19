@@ -13000,6 +13000,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13064,9 +13069,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (outTime != null || outTime != "Invalid date") {
                   request = {
-                    station_status_id: station_status_id,
+                    station_status_id: 13,
                     out_time: outTime,
-                    timer_image_link: timer_image_link
+                    timer_image_link: timer_image_link,
+                    status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss")
                   };
                 } else {
                   request = {
@@ -32452,7 +32458,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n    opacity: 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.fade-enter-active,\n.fade-leave-active {\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -46817,7 +46823,11 @@ var render = function() {
                         "div",
                         [
                           _c("v-text-field", {
-                            attrs: { readonly: "" },
+                            attrs: {
+                              readonly: "",
+                              solo: "",
+                              label: "Station Name"
+                            },
                             model: {
                               value: _vm.item.name,
                               callback: function($$v) {
@@ -46837,7 +46847,11 @@ var render = function() {
                         },
                         [
                           _c("v-text-field", {
-                            attrs: { readonly: "", label: "System Name" },
+                            attrs: {
+                              readonly: "",
+                              solo: "",
+                              label: "System Name"
+                            },
                             model: {
                               value: _vm.item.system_name,
                               callback: function($$v) {
@@ -46849,7 +46863,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("v-text-field", {
                             staticClass: " ml-2",
-                            attrs: { label: "Corp Ticker" },
+                            attrs: { solo: "", label: "Corp Ticker" },
                             model: {
                               value: _vm.item.corp_ticker,
                               callback: function($$v) {
@@ -46869,7 +46883,11 @@ var render = function() {
                           _vm._v(" "),
                           _c("v-text-field", {
                             staticClass: " ml-2",
-                            attrs: { readonly: "", label: "Ref Type" },
+                            attrs: {
+                              solo: "",
+                              readonly: "",
+                              label: "Ref Type"
+                            },
                             model: {
                               value: this.hull,
                               callback: function($$v) {

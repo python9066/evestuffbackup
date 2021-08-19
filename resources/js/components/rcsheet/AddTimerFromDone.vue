@@ -39,16 +39,20 @@
                                 <v-text-field
                                     v-model="item.name"
                                     readonly
+                                    solo
+                                    label="Station Name"
                                 ></v-text-field>
                             </div>
                             <div class=" d-inline-flex justify-content-around">
                                 <v-text-field
                                     v-model="item.system_name"
                                     readonly
+                                    solo
                                     label="System Name"
                                 ></v-text-field>
                                 <v-text-field
                                     class=" ml-2"
+                                    solo
                                     v-model="item.corp_ticker"
                                     label="Corp Ticker"
                                 ></v-text-field>
@@ -57,6 +61,7 @@
                                 <h5><strong>Timer Type</strong></h5>
                                 <v-text-field
                                     class=" ml-2"
+                                    solo
                                     v-model="this.hull"
                                     readonly
                                     label="Ref Type"
@@ -158,9 +163,10 @@ export default {
 
             if (outTime != null || outTime != "Invalid date") {
                 var request = {
-                    station_status_id: station_status_id,
+                    station_status_id: 13,
                     out_time: outTime,
-                    timer_image_link: timer_image_link
+                    timer_image_link: timer_image_link,
+                    status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss")
                 };
             } else {
                 var request = {
