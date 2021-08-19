@@ -148,6 +148,25 @@ export default {
 
         async submit() {
             var outTime = null;
+            var editText = "Added by";
+
+            editText = editText + "\n";
+            if (this.notes == null) {
+                var note =
+                    moment.utc().format("HH:mm:ss") +
+                    " - " +
+                    this.$store.state.user_name +
+                    ": " +
+                    editText;
+            } else {
+                var note =
+                    moment.utc().format("HH:mm:ss") +
+                    " - " +
+                    this.$store.state.user_name +
+                    ": " +
+                    editText +
+                    this.station.notes;
+            }
 
             if (this.refTime != "" || this.refTime != null) {
                 var y = this.refTime.substr(0, 4);
@@ -168,7 +187,8 @@ export default {
                     timer_image_link: this.imageLink,
                     show_on_rc_move: 1,
                     show_on_rc: 0,
-                    status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss")
+                    status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
+                    notes: note
                 };
             } else {
                 var request = {
@@ -176,7 +196,8 @@ export default {
                     status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
                     timer_image_link: timer_image_link,
                     show_on_rc_move: 1,
-                    show_on_rc: 0
+                    show_on_rc: 0,
+                    notes: note
                 };
             }
 

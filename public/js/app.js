@@ -13048,12 +13048,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var outTime, y, mo, d, h, m, s, full, request;
+        var outTime, editText, note, y, mo, d, h, m, s, full, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 outTime = null;
+                editText = "Added by";
+                editText = editText + "\n";
+
+                if (_this.notes == null) {
+                  note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + _this.$store.state.user_name + ": " + editText;
+                } else {
+                  note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + _this.$store.state.user_name + ": " + editText + _this.station.notes;
+                }
 
                 if (_this.refTime != "" || _this.refTime != null) {
                   y = _this.refTime.substr(0, 4);
@@ -13074,7 +13082,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     timer_image_link: _this.imageLink,
                     show_on_rc_move: 1,
                     show_on_rc: 0,
-                    status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss")
+                    status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                    notes: note
                   };
                 } else {
                   request = {
@@ -13082,11 +13091,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
                     timer_image_link: timer_image_link,
                     show_on_rc_move: 1,
-                    show_on_rc: 0
+                    show_on_rc: 0,
+                    notes: note
                   };
                 }
 
-                _context2.next = 5;
+                _context2.next = 8;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -13099,7 +13109,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(_this.showStationTimer = false, _this.refType = null, _this.refTime = null, _this.showStationTimer = false);
 
-              case 5:
+              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -18294,13 +18304,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var outTime, y, mo, d, h, m, s, full, system_id, corp_id, item_id, station_status_id, timer_image_link, request;
+        var outTime, editText, note, y, mo, d, h, m, s, full, system_id, corp_id, item_id, station_status_id, timer_image_link, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 outTime = null;
-                console.log(_this4.refTime);
+                editText = "Edited by";
+                editText = editText + "\n";
+
+                if (_this4.notes == null) {
+                  note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + _this4.$store.state.user_name + ": " + editText;
+                } else {
+                  note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + _this4.$store.state.user_name + ": " + editText + _this4.station.notes;
+                }
 
                 if (_this4.refTime != "" || _this4.refTime != null) {
                   y = _this4.refTime.substr(0, 4);
@@ -18351,7 +18368,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     item_id: item_id,
                     station_status_id: station_status_id,
                     out_time: outTime,
-                    timer_image_link: timer_image_link
+                    timer_image_link: timer_image_link,
+                    notes: note
                   };
                 } else {
                   request = {
@@ -18359,11 +18377,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     corp_id: corp_id,
                     item_id: item_id,
                     station_status_id: station_status_id,
-                    timer_image_link: timer_image_link
+                    timer_image_link: timer_image_link,
+                    notes: note
                   };
                 }
 
-                _context2.next = 11;
+                _context2.next = 13;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -18376,7 +18395,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(_this4.showStationTimer = false, _this4.refType = null, _this4.refTime = null, _this4.structItems = [], _this4.structSearch = null, _this4.structSelect = null, _this4.sysItems = [], _this4.sysSearch = null, _this4.sysSelect = null, _this4.systems = [], _this4.tickItems = [], _this4.tickSearch = null, _this4.tickSelect = null, _this4.state = 1, _this4.showStationTimer = false);
 
-              case 11:
+              case 13:
               case "end":
                 return _context2.stop();
             }
