@@ -99,7 +99,9 @@
                                     icon="mdi-home"
                                     transition="scale-transition"
                                 >
-                                    Timer is before now. Or incorrect
+                                    <span class="text-center">
+                                        TIMER IS NOT VAILD OR INCORRECT
+                                    </span>
                                 </v-alert>
                             </div>
                         </div>
