@@ -240,7 +240,13 @@ export default {
                 var s = this.refTime.substr(17, 2);
                 var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
                 var vaild = moment(full).format("YYYY-MM-DD HH:mm:ss", true);
-                return vaild;
+                if (vaild == "this is not a format") {
+                    return false;
+                } else {
+                    return true;
+                }
+            } else {
+                return false;
             }
         },
 
@@ -266,9 +272,7 @@ export default {
                 var m = this.refTime.substr(14, 2);
                 var s = this.refTime.substr(17, 2);
                 var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-                var vaild = moment(full)
-                    .format("YYYY-MM-DD HH:mm:ss", true)
-                    .isValid();
+                var vaild = moment(full).format("YYYY-MM-DD HH:mm:ss", true);
                 return vaild;
             }
         },
