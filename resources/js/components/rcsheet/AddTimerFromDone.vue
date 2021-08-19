@@ -230,7 +230,7 @@ export default {
         ...mapGetters([]),
         ...mapState([]),
 
-        vaildDate() {
+        vaildDateStart() {
             if (this.count == 19) {
                 var y = this.refTime.substr(0, 4);
                 var mo = this.refTime.substr(5, 2);
@@ -242,13 +242,7 @@ export default {
                 var vaild = moment(full)
                     .format("YYYY-MM-DD HH:mm:ss", true)
                     .isValid();
-                if (vaild == "Invalid date") {
-                    return false;
-                } else {
-                    return true;
-                }
-            } else {
-                return false;
+                return vaild;
             }
         },
 
