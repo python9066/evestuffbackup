@@ -13346,6 +13346,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -47365,6 +47368,7 @@ var render = function() {
                 "v-card-text",
                 [
                   _c("AddTimerFromDone", {
+                    attrs: { item: _vm.item },
                     on: {
                       timeropen: function($event) {
                         return _vm.close()

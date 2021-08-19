@@ -31,7 +31,10 @@
                 </v-card-title>
 
                 <v-card-text>
-                    <AddTimerFromDone @timeropen="close()"></AddTimerFromDone>
+                    <AddTimerFromDone
+                        @timeropen="close()"
+                        :item="item"
+                    ></AddTimerFromDone>
                     <v-btn color="amber accent-2" @click="statusUpdate(4)">
                         Repaired</v-btn
                     >
