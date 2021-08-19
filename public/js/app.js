@@ -13118,14 +13118,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])([])), {}, {
     vaildDate: function vaildDate() {
-      var y = this.refTime.substr(0, 4);
-      var mo = this.refTime.substr(5, 2);
-      var d = this.refTime.substr(8, 2);
-      var h = this.refTime.substr(11, 2);
-      var m = this.refTime.substr(14, 2);
-      var s = this.refTime.substr(17, 2);
-      var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-      return moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss").isValid();
+      if (this.count == 19) {
+        var y = this.refTime.substr(0, 4);
+        var mo = this.refTime.substr(5, 2);
+        var d = this.refTime.substr(8, 2);
+        var h = this.refTime.substr(11, 2);
+        var m = this.refTime.substr(14, 2);
+        var s = this.refTime.substr(17, 2);
+        var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+        return moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss").isValid();
+      } else {
+        return false;
+      }
     },
     count: function count() {
       return this.refTime.length;
