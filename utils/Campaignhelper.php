@@ -25,6 +25,7 @@ use App\Models\User;
 use App\Models\Userlogging;
 use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
+use Illuminate\Support\Facades\Artisan;
 use utils\Helper\Helper;
 
 use function GuzzleHttp\json_decode;
@@ -53,6 +54,10 @@ class Campaignhelper
         ];
 
         return $data;
+    }
+    public static function runrun()
+    {
+        Artisan::call('schedule:run');
     }
 
     public static function update()

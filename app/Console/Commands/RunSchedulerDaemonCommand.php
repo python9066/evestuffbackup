@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Userlogging;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use utils\Campaignhelper\Campaignhelper;
 
 class RunSchedulerDaemonCommand extends Command
 {
@@ -41,9 +42,9 @@ class RunSchedulerDaemonCommand extends Command
     {
         while (true) {
             $this->call('schedule:run');
-            Artisan::call("schedule:run");
             sleep($this->option('sleep'));
             Userlogging::create(['name' => 'Demon trigger']);
+            Campaignhelper::runrun();
         }
     }
 }
