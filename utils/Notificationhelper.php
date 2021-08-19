@@ -50,7 +50,7 @@ class Notifications
             'headers' => $headers,
             'http_errors' => false
         ]);
-        $data = $response->getBody();
+        $data = $response;
         return $data;
     }
 
