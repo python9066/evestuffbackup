@@ -75,13 +75,13 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        stations.show_on_coord AS 'show_on_coord',
        if(stations.ammo_request_id IS NULL,0,1) AS 'ammo_request'
        FROM stations
-       JOIN systems ON systems.id = stations.system_id
-       JOIN corps ON corps.id = stations.corp_id
-       JOIN alliances on alliances.id = corps.alliance_id
-       JOIN constellations ON constellations.id = systems.constellation_id
-       JOIN regions ON regions.id = systems.region_id
-       JOIN items ON items.id = stations.item_id
-       JOIN station_statuses ON station_statuses.id = stations.station_status_id
+       LEFT JOIN systems ON systems.id = stations.system_id
+       LEFT JOIN corps ON corps.id = stations.corp_id
+       LEFT JOIN alliances on alliances.id = corps.alliance_id
+       LEFT JOIN constellations ON constellations.id = systems.constellation_id
+       LEFT JOIN regions ON regions.id = systems.region_id
+       LEFT JOIN items ON items.id = stations.item_id
+       LEFT JOIN station_statuses ON station_statuses.id = stations.station_status_id
        LEFT JOIN users AS s ON s.id = stations.user_id
        LEFT JOIN users AS g ON g.id = stations.gunner_id
        LEFT JOIN users AS i on i.id = stations.added_by_user_id
