@@ -61,4 +61,4 @@ crons:
   # Run Drupal's cron tasks every 19 minutes.
   update:
     spec: "* * * * *"
-    cmd: "php artisan schedule:run 1>> /dev/null 2>&1"
+    cmd: "php artisan schedule:run"
