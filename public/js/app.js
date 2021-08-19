@@ -12998,6 +12998,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46867,7 +46869,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("v-text-field", {
                             staticClass: " ml-2",
-                            attrs: { label: "Ref Type" },
+                            attrs: { readonly: "", label: "Ref Type" },
                             model: {
                               value: this.hull,
                               callback: function($$v) {
@@ -46888,7 +46890,10 @@ var render = function() {
                           _c("v-img", { attrs: { src: "../image/info.png" } }),
                           _vm._v(" "),
                           _c("v-text-field", {
-                            attrs: { label: "Selected Items Screen Shot" },
+                            attrs: {
+                              autofocus: "",
+                              label: "Selected Items Screen Shot"
+                            },
                             model: {
                               value: _vm.imageLink,
                               callback: function($$v) {

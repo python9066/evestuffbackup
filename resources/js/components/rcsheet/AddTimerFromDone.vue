@@ -58,6 +58,7 @@
                                 <v-text-field
                                     class=" ml-2"
                                     v-model="this.hull"
+                                    readonly
                                     label="Ref Type"
                                 ></v-text-field>
                             </div>
@@ -66,6 +67,7 @@
                                 <v-img src="../image/info.png"> </v-img>
                                 <v-text-field
                                     v-model="imageLink"
+                                    autofocus
                                     label="Selected Items Screen Shot"
                                 ></v-text-field>
                             </div>
