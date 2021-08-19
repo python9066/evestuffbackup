@@ -111,7 +111,8 @@ Vue.component('EditStation', require('./components/station/EditStation.vue').def
 Vue.component('RcMoveCopyButton', require('./components/rcsheet/RcMoveCopyButton.vue').default);
 Vue.component('EditFleets', require('./components/keypannel/EditFleet.vue').default);
 Vue.component('EditKeys', require('./components/keypannel/EditKeys.vue').default);
-
+Vue.component('DoneButton', require('./components/rcsheet/DoneButton.vue').default);
+Vue.component('AddTimerFromDone', require('./components/rcsheet/AddTimerFromDone.vue').default);
 
 
 

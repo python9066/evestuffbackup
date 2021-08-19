@@ -241,7 +241,25 @@ export default {
 
         async submit() {
             var outTime = null;
-            console.log(this.refTime);
+            var editText = "Edited Timer";
+
+            editText = editText + "\n";
+            if (this.notes == null) {
+                var note =
+                    moment.utc().format("HH:mm:ss") +
+                    " - " +
+                    this.$store.state.user_name +
+                    ": " +
+                    editText;
+            } else {
+                var note =
+                    moment.utc().format("HH:mm:ss") +
+                    " - " +
+                    this.$store.state.user_name +
+                    ": " +
+                    editText +
+                    this.station.notes;
+            }
 
             if (this.refTime != "" || this.refTime != null) {
                 var y = this.refTime.substr(0, 4);
@@ -307,7 +325,8 @@ export default {
                     item_id: item_id,
                     station_status_id: station_status_id,
                     out_time: outTime,
-                    timer_image_link: timer_image_link
+                    timer_image_link: timer_image_link,
+                    notes: note
                 };
             } else {
                 var request = {
@@ -315,7 +334,8 @@ export default {
                     corp_id: corp_id,
                     item_id: item_id,
                     station_status_id: station_status_id,
-                    timer_image_link: timer_image_link
+                    timer_image_link: timer_image_link,
+                    notes: note
                 };
             }
 

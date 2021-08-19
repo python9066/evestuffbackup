@@ -383,8 +383,14 @@ class StationController extends Controller
         $flag = collect([
             'message' => $message
         ]);
-        broadcast(new StationNotificationUpdate($flag));
-        broadcast(new RcMoveUpdate($flag));
+        // broadcast(new StationNotificationUpdate($flag));
+        $message = RCStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message
+        ]);
+
+        // broadcast(new RcMoveUpdate($flag));
+        //CHANGE BEFORE
         $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' at ' . now();
         $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }
@@ -392,8 +398,9 @@ class StationController extends Controller
     public function editUpdate(Request $request, $id)
     {
         // dd($id);
+        $now = now();
         if ($request->out_time == "Invalid date") {
-            Station::find($id)->update(['corp_id' => $request->corp_id, 'item_id' => $request->item_id, 'station_status_id' => $request->station_status_id, 'timer_image_link' => $request->timer_image_link]);
+            Station::find($id)->update(['corp_id' => $request->corp_id, 'item_id' => $request->item_id, 'station_status_id' => $request->station_status_id, 'timer_image_link' => $request->timer_image_link, 'notes' => $request->notes]);
         } else {
             Station::find($id)->update($request->all());
         }
@@ -402,8 +409,14 @@ class StationController extends Controller
         $flag = collect([
             'message' => $message
         ]);
-        broadcast(new StationNotificationUpdate($flag));
-        broadcast(new RcMoveUpdate($flag));
+        // broadcast(new StationNotificationUpdate($flag));
+
+        $message = RCStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message
+        ]);
+        // broadcast(new RcMoveUpdate($flag));
+        //CHANGE BEFORE
     }
 
 
@@ -421,5 +434,30 @@ class StationController extends Controller
             'id' => $id
         ]);
         broadcast(new RcMoveDelete($flag));
+    }
+
+    public function softDestroy($id)
+    {
+        Station::where('id', $id)->update(['show_on_rc' => 0, 'show_on_coord' => 1, 'station_status_id' => 7, "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null]);
+
+        $oldStatusID = Station::where('id', $id)->pluck('station_status_id')->first();
+        $oldStatusName = StationStatus::where('id', $oldStatusID)->pluck('name')->first();
+        $newStatusID = 7;
+        $newStatusName = StationStatus::where('id', $newStatusID)->pluck('name')->first();
+
+        $message = StationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message
+        ]);
+        // broadcast(new StationNotificationUpdate($flag));
+        // $message = RcStationRecords::where('id', $id)->first();
+        // $flag = collect([
+        //     'message' => $message,
+        // ]);
+        // broadcast(new RcSheetUpdate($flag));
+        //CHANGE BEFORE
+
+        $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' at ' . now();
+        $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }
 }

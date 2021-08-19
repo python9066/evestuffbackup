@@ -233,4 +233,5 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/keydelete/{id}', 'KeyTypeController@destroy');
     Route::put('/fleetssadd', 'KeyFleetJoinControllerController@store');
     Route::put('/fleetsremove', 'KeyFleetJoinControllerController@removefleet');
+    Route::put('/softdestory/{id}', 'StationController@softDestroy');
 });
