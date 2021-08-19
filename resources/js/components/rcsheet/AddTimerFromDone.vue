@@ -14,8 +14,8 @@
                     v-on="on"
                     @click="open()"
                 >
-                    {{ buttontext }}
-                    <v-icon> faSvg fa-edit</v-icon>
+                    Add Hull Timer
+                    <v-icon> </v-icon>
                 </v-btn>
             </template>
 

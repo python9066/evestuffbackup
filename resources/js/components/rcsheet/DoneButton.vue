@@ -124,11 +124,6 @@ export default {
             });
         },
 
-        buttontext(item) {
-            var ret = item.status_name.replace("Upcoming - ", "");
-            return ret;
-        },
-
         async softDestroyed() {
             var data = {
                 id: this.item.id,
