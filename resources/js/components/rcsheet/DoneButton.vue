@@ -30,14 +30,16 @@
                     <p>What is the Status of {{ item.name }}</p>
                 </v-card-title>
 
-                <v-card-text> </v-card-text>
+                <v-card-text>
+                    <v-btn color="green"> Reffed</v-btn>
+                    <v-btn color="green"> Reffed</v-btn>
+                    <v-btn color="amber accent-2"> Repaired</v-btn>
+                    <v-btn color="red"> Destoryed</v-btn>
+                    <v-btn color="brown lighten-2"> Unknown</v-btn>
+                </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
-                    <v-btn color="green"> Reffed</v-btn>
-                    <v-btn color="green"> Reffed</v-btn>
-                    <v-btn color="white"> Repaired</v-btn>
-                    <v-btn color="red"> Destoryed</v-btn>
-                    <v-btn color="gray"> Unknown</v-btn>
+                    <v-btn color="red"> Close</v-btn>
                 </v-card-actions>
             </v-card>
 

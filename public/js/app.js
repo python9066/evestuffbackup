@@ -13086,6 +13086,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46661,11 +46663,8 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("v-card-text"),
-              _vm._v(" "),
-              _c("v-spacer"),
               _c(
-                "v-card-actions",
+                "v-card-text",
                 [
                   _c("v-btn", { attrs: { color: "green" } }, [
                     _vm._v(" Reffed")
@@ -46675,7 +46674,7 @@ var render = function() {
                     _vm._v(" Reffed")
                   ]),
                   _vm._v(" "),
-                  _c("v-btn", { attrs: { color: "white" } }, [
+                  _c("v-btn", { attrs: { color: "amber accent-2" } }, [
                     _vm._v(" Repaired")
                   ]),
                   _vm._v(" "),
@@ -46683,10 +46682,17 @@ var render = function() {
                     _vm._v(" Destoryed")
                   ]),
                   _vm._v(" "),
-                  _c("v-btn", { attrs: { color: "gray" } }, [
+                  _c("v-btn", { attrs: { color: "brown lighten-2" } }, [
                     _vm._v(" Unknown")
                   ])
                 ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _c(
+                "v-card-actions",
+                [_c("v-btn", { attrs: { color: "red" } }, [_vm._v(" Close")])],
                 1
               )
             ],
