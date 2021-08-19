@@ -13058,12 +13058,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     close: function close() {
       this.showAddTimer = false;
       this.refType = null;
-      this.refTime = {
-        d: "",
-        hh: "",
-        mm: "",
-        ss: ""
-      };
+      this.refTime = "";
     },
     submit: function submit() {
       var _this = this;
@@ -13112,12 +13107,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this.showStationTimer = false, _this.refType = null, _this.refTime = {
-                  d: "",
-                  hh: "",
-                  mm: "",
-                  ss: ""
-                }, _this.showStationTimer = false, _this.$emit("timeropen"));
+                }).then(_this.showStationTimer = false, _this.refType = null, _this.refTime = "", _this.showStationTimer = false, _this.$emit("timeropen"));
 
               case 15:
               case "end":

@@ -2,6 +2,7 @@
     <div>
         <v-dialog
             max-width="700px"
+            persistent
             z-index="0"
             v-model="showAddTimer"
             @click:outside="close()"
@@ -159,12 +160,7 @@ export default {
         close() {
             this.showAddTimer = false;
             this.refType = null;
-            this.refTime = {
-                d: "",
-                hh: "",
-                mm: "",
-                ss: ""
-            };
+            this.refTime = "";
         },
 
         async submit() {
@@ -220,12 +216,7 @@ export default {
             }).then(
                 (this.showStationTimer = false),
                 (this.refType = null),
-                (this.refTime = {
-                    d: "",
-                    hh: "",
-                    mm: "",
-                    ss: ""
-                }),
+                (this.refTime = ""),
                 (this.showStationTimer = false),
                 this.$emit("timeropen")
             );
