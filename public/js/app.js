@@ -13021,8 +13021,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13495,7 +13493,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.showDoneOverlay = false;
     },
     showAddTimer: function showAddTimer() {
-      if (this.item.station_status_id == 5 || this.station_status_id == 8) {
+      if (this.item.status_id == 5 || this.item.status_id == 8) {
         return true;
       } else {
         return false;
@@ -13529,7 +13527,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   url: "/api/updatestationnotification/" + _this.item.id,
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + $store.state.token,
+                    Authorization: "Bearer " + _this.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -13554,7 +13552,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 data = {
                   id: _this2.item.id,
-                  show_on_rc: 0
+                  show_on_rc: 0,
+                  show_on_coord: 1
                 };
 
                 _this2.$store.dispatch("updateRcStation", data);
@@ -13564,7 +13563,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   method: "put",
                   url: "/api/softdestory/" + _this2.item.id,
                   headers: {
-                    Authorization: "Bearer " + $store.state.token,
+                    Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -46899,13 +46898,7 @@ var render = function() {
             },
             [
               _c("v-card-title", { staticClass: "justify-center" }, [
-                _c("p", [
-                  _vm._v(
-                    "\n                    Enter Details for " +
-                      _vm._s(_vm.item.station_name) +
-                      "\n                "
-                  )
-                ])
+                _c("p", [_vm._v("Enter Details for " + _vm._s(_vm.item.name))])
               ]),
               _vm._v(" "),
               _c(
