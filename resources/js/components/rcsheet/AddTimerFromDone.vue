@@ -243,14 +243,16 @@ export default {
         },
 
         hideSubmit() {
-            var a = 1;
-            var b = 1;
             if (this.imageLink == null || this.imageLink == "") {
                 a = 0;
+            } else {
+                a = 1;
             }
 
             if (this.vaildDate == false) {
                 b = 0;
+            } else {
+                b = 1;
             }
 
             var sum = a + b;
