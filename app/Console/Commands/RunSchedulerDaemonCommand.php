@@ -43,10 +43,12 @@ class RunSchedulerDaemonCommand extends Command
         while (true) {
             // $this->call('schedule:run');
             sleep($this->option('sleep'));
-            Artisan::call('update:campaigns');
-            Artisan::call('update:notifications');
-            Artisan::call('update:stationnotifications');
-            Artisan::call('update:towers');
+            // Artisan::call('update:campaigns');
+            // Artisan::call('update:notifications');
+            // Artisan::call('update:stationnotifications');
+            // Artisan::call('update:towers');
+            Artisan::call('schedule:run >> /dev/null 2>&1');
+            Userlogging::create(['nane' => 'demon TRIGGER']);
         }
     }
 }
