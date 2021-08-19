@@ -27,9 +27,8 @@
                 class=" d-flex flex-column"
             >
                 <v-card-title class="justify-center">
-                    <p>What is the Status of {{ item.station_name }}</p>
-                    ></v-card-title
-                >
+                    <p>What is the Status of {{ item.name }}</p>
+                </v-card-title>
 
                 <v-card-text> </v-card-text>
                 <v-spacer></v-spacer
