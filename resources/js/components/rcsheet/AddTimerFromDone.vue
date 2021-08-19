@@ -155,7 +155,7 @@ export default {
             if (
                 (this.imageLink == null || this.imageLink == "") &&
                 this.count != 19 &&
-                vaildDate == true
+                this.vaildDate == true
             ) {
                 return true;
             } else {

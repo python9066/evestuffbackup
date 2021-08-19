@@ -13050,7 +13050,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.refTime = null;
     },
     showSubmit: function showSubmit() {
-      if ((this.imageLink == null || this.imageLink == "") && this.count != 19 && vaildDate == true) {
+      if ((this.imageLink == null || this.imageLink == "") && this.count != 19 && this.vaildDate == true) {
         return true;
       } else {
         return false;
