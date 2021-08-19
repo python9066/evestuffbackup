@@ -40,7 +40,7 @@ class Notifications
 
         $client = new GuzzleHttpClient();
         $headers = [
-            // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
+            // 'x-gsf-user' => e     nv('RECON_USER', 'DANCE2'),
             'x-gsf-user' => env('RECON_USER', ($variables && array_key_exists('RECON_USER', $variables)) ? $variables['RECON_USER'] : 'DANCE2'),
             // 'token' =>  env('RECON_TOKEN', "DANCE")
             'token' => env('RECON_TOKEN', ($variables && array_key_exists('RECON_TOKEN', $variables)) ? $variables['RECON_TOKEN'] : 'DANCE2'),
@@ -51,6 +51,7 @@ class Notifications
             'http_errors' => false
         ]);
         $data = Utils::jsonDecode($response->getBody(), true);
+        dd('$data');
         return $data;
     }
 
