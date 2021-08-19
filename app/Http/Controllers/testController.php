@@ -38,8 +38,10 @@ class testController extends Controller
     {
 
         $id = 10000060;
-        $data =  Notifications::reconRegionPull($id);
-        dd($data);
+        $stations =  Notifications::reconRegionPull($id);
+        foreach ($stations as $station) {
+            echo $stations;
+        }
     }
 
 
