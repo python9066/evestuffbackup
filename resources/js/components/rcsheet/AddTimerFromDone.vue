@@ -103,7 +103,7 @@
                         class="white--text"
                         color="green"
                         @click="submit()"
-                        :disabled="showSubmit"
+                        :disabled="hideSubmit"
                     >
                         Submit
                     </v-btn></v-card-actions
@@ -242,7 +242,7 @@ export default {
             }
         },
 
-        showSubmit() {
+        hideSubmit() {
             var a = 1;
             var b = 1;
             if (this.imageLink == null || this.imageLink == "") {
@@ -254,7 +254,7 @@ export default {
             }
 
             var sum = a + b;
-            if (sum == 0) {
+            if (sum > 0) {
                 return true;
             } else {
                 return false;

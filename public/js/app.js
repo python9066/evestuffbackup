@@ -13146,7 +13146,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return false;
       }
     },
-    showSubmit: function showSubmit() {
+    hideSubmit: function hideSubmit() {
       var a = 1;
       var b = 1;
 
@@ -13160,7 +13160,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       var sum = a + b;
 
-      if (sum == 0) {
+      if (sum > 0) {
         return true;
       } else {
         return false;
@@ -47074,7 +47074,7 @@ var render = function() {
                     "v-btn",
                     {
                       staticClass: "white--text",
-                      attrs: { color: "green", disabled: _vm.showSubmit },
+                      attrs: { color: "green", disabled: _vm.hideSubmit },
                       on: {
                         click: function($event) {
                           return _vm.submit()
