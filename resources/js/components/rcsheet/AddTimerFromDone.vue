@@ -165,41 +165,27 @@ export default {
                     this.$store.state.user_name +
                     ": " +
                     editText +
-                    this.station.notes;
+                    this.item.notes;
             }
 
-            if (this.refTime != "" || this.refTime != null) {
-                var y = this.refTime.substr(0, 4);
-                var mo = this.refTime.substr(5, 2);
-                var d = this.refTime.substr(8, 2);
-                var h = this.refTime.substr(11, 2);
-                var m = this.refTime.substr(14, 2);
-                var s = this.refTime.substr(17, 2);
-                var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-                console.log("DANCE");
-                var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
-            }
+            var y = this.refTime.substr(0, 4);
+            var mo = this.refTime.substr(5, 2);
+            var d = this.refTime.substr(8, 2);
+            var h = this.refTime.substr(11, 2);
+            var m = this.refTime.substr(14, 2);
+            var s = this.refTime.substr(17, 2);
+            var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+            var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
 
-            if (outTime != null || outTime != "Invalid date") {
-                var request = {
-                    station_status_id: 13,
-                    out_time: outTime,
-                    timer_image_link: this.imageLink,
-                    show_on_rc_move: 1,
-                    show_on_rc: 0,
-                    status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-                    notes: note
-                };
-            } else {
-                var request = {
-                    station_status_id: 13,
-                    status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-                    timer_image_link: timer_image_link,
-                    show_on_rc_move: 1,
-                    show_on_rc: 0,
-                    notes: note
-                };
-            }
+            var request = {
+                station_status_id: 13,
+                out_time: outTime,
+                timer_image_link: this.imageLink,
+                show_on_rc_move: 1,
+                show_on_rc: 0,
+                status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
+                notes: note
+            };
 
             await axios({
                 method: "put", //you can set what request you want to be
@@ -225,7 +211,20 @@ export default {
 
     computed: {
         ...mapGetters([]),
-        ...mapState([])
+        ...mapState([]),
+
+        vaildDate() {
+            var y = this.refTime.substr(0, 4);
+            var mo = this.refTime.substr(5, 2);
+            var d = this.refTime.substr(8, 2);
+            var h = this.refTime.substr(11, 2);
+            var m = this.refTime.substr(14, 2);
+            var s = this.refTime.substr(17, 2);
+            var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+            return moment(full)
+                .format("YYYY-MM-DD HH:mm:ss", true)
+                .isValid();
+        }
     },
 
     beforeDestroy() {}

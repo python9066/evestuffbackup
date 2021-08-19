@@ -13060,43 +13060,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (_this.notes == null) {
                   note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + _this.$store.state.user_name + ": " + editText;
                 } else {
-                  note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + _this.$store.state.user_name + ": " + editText + _this.station.notes;
+                  note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + _this.$store.state.user_name + ": " + editText + _this.item.notes;
                 }
 
-                if (_this.refTime != "" || _this.refTime != null) {
-                  y = _this.refTime.substr(0, 4);
-                  mo = _this.refTime.substr(5, 2);
-                  d = _this.refTime.substr(8, 2);
-                  h = _this.refTime.substr(11, 2);
-                  m = _this.refTime.substr(14, 2);
-                  s = _this.refTime.substr(17, 2);
-                  full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-                  console.log("DANCE");
-                  outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
-                }
-
-                if (outTime != null || outTime != "Invalid date") {
-                  request = {
-                    station_status_id: 13,
-                    out_time: outTime,
-                    timer_image_link: _this.imageLink,
-                    show_on_rc_move: 1,
-                    show_on_rc: 0,
-                    status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
-                    notes: note
-                  };
-                } else {
-                  request = {
-                    station_status_id: 13,
-                    status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
-                    timer_image_link: timer_image_link,
-                    show_on_rc_move: 1,
-                    show_on_rc: 0,
-                    notes: note
-                  };
-                }
-
-                _context2.next = 8;
+                y = _this.refTime.substr(0, 4);
+                mo = _this.refTime.substr(5, 2);
+                d = _this.refTime.substr(8, 2);
+                h = _this.refTime.substr(11, 2);
+                m = _this.refTime.substr(14, 2);
+                s = _this.refTime.substr(17, 2);
+                full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
+                request = {
+                  station_status_id: 13,
+                  out_time: outTime,
+                  timer_image_link: _this.imageLink,
+                  show_on_rc_move: 1,
+                  show_on_rc: 0,
+                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  notes: note
+                };
+                _context2.next = 15;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -13109,7 +13093,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(_this.showStationTimer = false, _this.refType = null, _this.refTime = null, _this.showStationTimer = false);
 
-              case 8:
+              case 15:
               case "end":
                 return _context2.stop();
             }
@@ -13132,7 +13116,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])([])),
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])([])), {}, {
+    vaildDate: function vaildDate() {
+      var y = this.refTime.substr(0, 4);
+      var mo = this.refTime.substr(5, 2);
+      var d = this.refTime.substr(8, 2);
+      var h = this.refTime.substr(11, 2);
+      var m = this.refTime.substr(14, 2);
+      var s = this.refTime.substr(17, 2);
+      var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+      return moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss", true).isValid();
+    }
+  }),
   beforeDestroy: function beforeDestroy() {}
 });
 
