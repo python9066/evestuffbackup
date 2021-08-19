@@ -13081,7 +13081,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46600,11 +46599,7 @@ var render = function() {
                     _vm._g(
                       _vm._b(
                         {
-                          attrs: {
-                            small: "",
-                            rounded: "",
-                            color: _vm.pillColor(_vm.item)
-                          },
+                          attrs: { small: "", color: _vm.pillColor(_vm.item) },
                           on: {
                             click: function($event) {
                               return _vm.open()

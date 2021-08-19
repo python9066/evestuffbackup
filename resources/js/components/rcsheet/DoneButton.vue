@@ -9,7 +9,6 @@
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
                     small
-                    rounded
                     v-bind="attrs"
                     v-on="on"
                     @click="open()"
