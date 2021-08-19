@@ -35,6 +35,7 @@
                 <v-spacer></v-spacer
                 ><v-card-actions>
                     <v-btn color="green"> Reffed</v-btn>
+                    <v-btn color="green"> Reffed</v-btn>
                     <v-btn color="white"> Repaired</v-btn>
                     <v-btn color="red"> Destoryed</v-btn>
                     <v-btn color="gray"> Unknown</v-btn>
