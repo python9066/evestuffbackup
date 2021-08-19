@@ -96,15 +96,15 @@
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
-                    <v-btn
-                        class="white--text"
-                        color="teal"
-                        @click="close()"
-                        :disabled="showSubmit()"
-                    >
+                    <v-btn class="white--text" color="teal" @click="close()">
                         Close
                     </v-btn>
-                    <v-btn class="white--text" color="green" @click="submit()">
+                    <v-btn
+                        class="white--text"
+                        color="green"
+                        @click="submit()"
+                        :disabled="showSubmit()"
+                    >
                         Submit
                     </v-btn></v-card-actions
                 >
