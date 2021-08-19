@@ -56,6 +56,78 @@ class Notifications
 
 
 
+    public static function reconRegionPullIdCheck($id)
+    {
+        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+
+
+
+        $url = "https://recon.gnf.lt/api/structure/" . $id;
+        $client = new GuzzleHttpClient();
+        $headers = [
+            // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
+            'x-gsf-user' => env('RECON_USER', ($variables && array_key_exists('RECON_USER', $variables)) ? $variables['RECON_USER'] : 'DANCE2'),
+            // 'token' =>  env('RECON_TOKEN', "DANCE")
+            'token' => env('RECON_TOKEN', ($variables && array_key_exists('RECON_TOKEN', $variables)) ? $variables['RECON_TOKEN'] : 'DANCE2'),
+
+        ];
+        $response = $client->request('GET', $url, [
+            'headers' => $headers,
+            'http_errors' => false
+        ]);
+
+        $stationdata = Utils::jsonDecode($response->getBody(), true);
+        if ($stationdata == "Error, Structure Not Found") {
+            Station::find($id)->delete();
+            StationItemJoin::where('station_id', $id)->delete();
+        } else {
+            StationItemJoin::where('station_id', $id)->delete();
+            Station::where('id', $id)->updateOrCreate([
+                'name' => $stationdata['str_name'],
+                'r_hash' => $stationdata['str_structure_id_md5'],
+                'corp_id' => $stationdata['str_owner_corporation_id'],
+                'r_updated_at' => $stationdata['updated_at'],
+                'r_fitted' => $stationdata['str_has_no_fitting'],
+                'r_capital_shipyard' => $stationdata['str_capital_shipyard'],
+                'r_hyasyoda' => $stationdata['str_hyasyoda'],
+                'r_invention' => $stationdata['str_invention'],
+                'r_manufacturing' => $stationdata['str_manufacturing'],
+                'r_research' => $stationdata['str_research'],
+                'r_supercapital_shipyard' => $stationdata['str_supercapital_shipyard'],
+                'r_biochemical' => $stationdata['str_biochemical'],
+                'r_hybrid' => $stationdata['str_hybrid'],
+                'r_moon_drilling' => $stationdata['str_moon_drilling'],
+                'r_reprocessing' => $stationdata['str_reprocessing'],
+                'r_point_defense' => $stationdata['str_point_defense'],
+                'r_dooms_day' => $stationdata['str_dooms_day'],
+                'r_guide_bombs' => $stationdata['str_guide_bombs'],
+                'r_anti_cap' => $stationdata['str_anti_cap'],
+                'r_anti_subcap' => $stationdata['str_anti_subcap'],
+                'r_t2_rigged' => $stationdata['str_t2_rigged'],
+                'r_cloning' => $stationdata['str_cloning'],
+                'r_composite' => $stationdata['str_composite'],
+                'r_cored' => $stationdata['str_cored'],
+                'show_on_coord' => 1
+            ]);
+            if ($stationdata['str_has_no_fitting'] != null) {
+                if ($stationdata['str_has_no_fitting'] != 'No Fitting') {
+                    StationItemJoin::where('station_id', $id)->delete();
+                    $items = Utils::jsonDecode($stationdata['str_fitting'], true);
+                    foreach ($items as $item) {
+                        StationItems::where('id', $item['type_id'])->get()->count();
+                        if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
+                            StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                        }
+                        StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $id]);
+                    };
+                }
+            }
+        }
+    }
+
+
+
+    //////////////////
     public static function reconPull($id)
     {
         $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
