@@ -90,6 +90,13 @@
                                         (timerShown = false), (hackTime = null)
                                     "
                                 ></v-text-field>
+                                <v-alert
+                                    border="top"
+                                    type="warning"
+                                    :v-show="!vaildDate"
+                                    >The date is not vaild. Or the before
+                                    now</v-alert
+                                >
                             </div>
                         </div>
                     </v-fade-transition>

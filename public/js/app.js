@@ -13010,6 +13010,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -47043,7 +47050,23 @@ var render = function() {
                               },
                               expression: "refTime"
                             }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "v-alert",
+                            {
+                              attrs: {
+                                border: "top",
+                                type: "warning",
+                                "v-show": !_vm.vaildDate
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "The date is not vaild. Or the before\n                                now"
+                              )
+                            ]
+                          )
                         ],
                         1
                       )
