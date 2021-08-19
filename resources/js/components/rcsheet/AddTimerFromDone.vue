@@ -165,7 +165,7 @@ export default {
                 var request = {
                     station_status_id: 13,
                     out_time: outTime,
-                    timer_image_link: timer_image_link,
+                    timer_image_link: this.imageLink,
                     status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss")
                 };
             } else {

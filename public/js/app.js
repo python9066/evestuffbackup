@@ -13071,7 +13071,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   request = {
                     station_status_id: 13,
                     out_time: outTime,
-                    timer_image_link: timer_image_link,
+                    timer_image_link: _this.imageLink,
                     status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss")
                   };
                 } else {
