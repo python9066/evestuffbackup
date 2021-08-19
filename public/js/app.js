@@ -13126,7 +13126,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var m = this.refTime.substr(14, 2);
         var s = this.refTime.substr(17, 2);
         var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-        return moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss").isValid();
+        var vaild = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss", true).isValid();
+        return vaild;
       } else {
         return false;
       }

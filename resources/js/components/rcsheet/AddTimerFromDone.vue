@@ -222,9 +222,10 @@ export default {
                 var m = this.refTime.substr(14, 2);
                 var s = this.refTime.substr(17, 2);
                 var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-                return moment(full)
-                    .format("YYYY-MM-DD HH:mm:ss")
+                var vaild = moment(full)
+                    .format("YYYY-MM-DD HH:mm:ss", true)
                     .isValid();
+                return vaild;
             } else {
                 return false;
             }
