@@ -241,7 +241,7 @@ export default {
 
         async submit() {
             var outTime = null;
-            var editText = "Edited by";
+            var editText = "Edited Timer";
 
             editText = editText + "\n";
             if (this.notes == null) {

@@ -13054,7 +13054,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 outTime = null;
-                editText = "Added by";
+                editText = "Added the timer";
                 editText = editText + "\n";
 
                 if (_this.notes == null) {
@@ -18310,7 +18310,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 outTime = null;
-                editText = "Edited by";
+                editText = "Edited Timer";
                 editText = editText + "\n";
 
                 if (_this4.notes == null) {
