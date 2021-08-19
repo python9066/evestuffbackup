@@ -13148,20 +13148,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     hideSubmit: function hideSubmit() {
       if (this.imageLink == null || this.imageLink == "") {
-        var a = 0;
-      } else {
         var a = 1;
+      } else {
+        var a = 0;
       }
 
       if (this.vaildDate == false) {
-        var b = 0;
-      } else {
         var b = 1;
+      } else {
+        var b = 0;
       }
 
       var sum = a + b;
 
-      if (sum > 0) {
+      if (sum == 0) {
         return false;
       } else {
         return true;
