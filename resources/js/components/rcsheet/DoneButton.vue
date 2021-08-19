@@ -66,6 +66,7 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
+
 export default {
     props: {
         item: Object
@@ -137,7 +138,7 @@ export default {
                 url: "/api/updatestationnotification/" + this.item.id,
                 data: request,
                 headers: {
-                    Authorization: "Bearer " + $store.state.token,
+                    Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
@@ -156,7 +157,7 @@ export default {
                 method: "put",
                 url: "/api/softdestory/" + this.item.id,
                 headers: {
-                    Authorization: "Bearer " + $store.state.token,
+                    Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
