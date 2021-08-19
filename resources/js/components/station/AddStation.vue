@@ -213,7 +213,7 @@
                             <div>
                                 <h5>
                                     <strong
-                                        >Enter Reninforced untill timer</strong
+                                        >Enter Reinforced Until Timer</strong
                                     >
                                 </h5>
                                 <v-text-field
@@ -229,6 +229,18 @@
                                         (timerShown = false), (hackTime = null)
                                     "
                                 ></v-text-field>
+                                <v-alert
+                                    :value="showWarning"
+                                    dark
+                                    type="warning"
+                                    border="top"
+                                    icon="mdi-home"
+                                    transition="scale-transition"
+                                >
+                                    <span class="text-center">
+                                        TIMER IS NOT VAILD OR INCORRECT MAKE
+                                    </span>
+                                </v-alert>
                             </div>
                         </div>
                     </v-fade-transition>
@@ -418,13 +430,6 @@ export default {
         async submit() {
             if (this.type != 1) {
                 var full = this.refTime.replace(".", "-");
-                // var y = this.refTime.substr(0, 4);
-                // var mo = this.refTime.substr(5, 2);
-                // var d = this.refTime.substr(8, 2);
-                // var h = this.refTime.substr(11, 2);
-                // var m = this.refTime.substr(14, 2);
-                // var s = this.refTime.substr(17, 2);
-                // var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
                 var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
             } else {
                 var outTime = moment.utc().format("YYYY-MM-DD HH:mm:ss");
@@ -497,13 +502,6 @@ export default {
         async submit3() {
             if (this.type != 1) {
                 var full = this.refTime.replace(".", "-");
-                // var y = this.refTime.substr(0, 4);
-                // var mo = this.refTime.substr(5, 2);
-                // var d = this.refTime.substr(8, 2);
-                // var h = this.refTime.substr(11, 2);
-                // var m = this.refTime.substr(14, 2);
-                // var s = this.refTime.substr(17, 2);
-                // var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
                 var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
             } else {
                 var outTime = moment.utc().format("YYYY-MM-DD HH:mm:ss");
@@ -631,8 +629,8 @@ export default {
                     this.sysSelect != null &&
                     this.tickSelect != null &&
                     this.refType != null &&
-                    this.refTime != "" &&
-                    this.imageLink != null
+                    this.imageLink != null &&
+                    this.vaildDate == true
                 ) {
                     return false;
                 } else {
@@ -640,12 +638,11 @@ export default {
                 }
             } else {
                 if (
-                    (console.log(this.refTime),
                     this.structSelect != null &&
-                        this.sysSelect != null &&
-                        this.tickSelect != null &&
-                        this.refType != null &&
-                        this.refTime != "")
+                    this.sysSelect != null &&
+                    this.tickSelect != null &&
+                    this.refType != null &&
+                    this.vaildDate == true
                 ) {
                     return false;
                 } else {
@@ -657,7 +654,7 @@ export default {
             if (this.type == 3) {
                 if (
                     this.refType != null &&
-                    this.refTime != "" &&
+                    this.vaildDate == true &&
                     this.imageLink != null
                 ) {
                     return false;
@@ -665,7 +662,7 @@ export default {
                     return true;
                 }
             } else {
-                if (this.refType != null && this.refTime != "") {
+                if (this.refType != null && this.vaildDate == true) {
                     return false;
                 } else {
                     return true;
@@ -674,6 +671,36 @@ export default {
         },
         stationOutlined() {
             if (this.state == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        vaildDate() {
+            if (this.count == 19) {
+                var full = this.refTime.replace(".", "-");
+                var vaild = moment(full).format("YYYY-MM-DD HH:mm:ss", true);
+                if (vaild == "Invalid date") {
+                    return false;
+                } else {
+                    if (vaild > moment.utc().format("YYYY-MM-DD HH:mm:ss")) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            } else {
+                return false;
+            }
+        },
+
+        count() {
+            return this.refTime.length;
+        },
+
+        showWarning() {
+            if (this.count == 19 && this.vaildDate == false) {
                 return true;
             } else {
                 return false;

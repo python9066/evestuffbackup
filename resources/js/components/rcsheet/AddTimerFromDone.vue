@@ -76,7 +76,11 @@
                                 ></v-text-field>
                             </div>
                             <div>
-                                <h5><strong>Station Timer</strong></h5>
+                                <h5>
+                                    <strong
+                                        >Enter Reinforced Until Timer</strong
+                                    >
+                                </h5>
                                 <v-text-field
                                     v-model="refTime"
                                     label="Reinforced unit YYYY.MM.DD hh:mm:ss"
@@ -185,13 +189,7 @@ export default {
                     this.item.notes;
             }
 
-            var y = this.refTime.substr(0, 4);
-            var mo = this.refTime.substr(5, 2);
-            var d = this.refTime.substr(8, 2);
-            var h = this.refTime.substr(11, 2);
-            var m = this.refTime.substr(14, 2);
-            var s = this.refTime.substr(17, 2);
-            var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+            var full = this.refTime.replace(".", "-");
             var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
 
             var request = {
@@ -231,13 +229,7 @@ export default {
 
         vaildDate() {
             if (this.count == 19) {
-                var y = this.refTime.substr(0, 4);
-                var mo = this.refTime.substr(5, 2);
-                var d = this.refTime.substr(8, 2);
-                var h = this.refTime.substr(11, 2);
-                var m = this.refTime.substr(14, 2);
-                var s = this.refTime.substr(17, 2);
-                var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+                var full = this.refTime.replace(".", "-");
                 var vaild = moment(full).format("YYYY-MM-DD HH:mm:ss", true);
                 if (vaild == "Invalid date") {
                     return false;

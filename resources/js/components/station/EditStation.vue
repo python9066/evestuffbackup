@@ -100,6 +100,18 @@
                                         (timerShown = false), (hackTime = null)
                                     "
                                 ></v-text-field>
+                                <v-alert
+                                    :value="showWarning"
+                                    dark
+                                    type="warning"
+                                    border="top"
+                                    icon="mdi-home"
+                                    transition="scale-transition"
+                                >
+                                    <span class="text-center">
+                                        TIMER IS NOT VAILD OR INCORRECT MAKE
+                                    </span>
+                                </v-alert>
                             </div>
                         </div>
                     </v-fade-transition>
@@ -406,6 +418,36 @@ export default {
                 return "Enter FULL Structure Name here";
             } else {
                 return "";
+            }
+        },
+
+        count() {
+            return this.refTime.length;
+        },
+
+        vaildDate() {
+            if (this.count == 19) {
+                var full = this.refTime.replace(".", "-");
+                var vaild = moment(full).format("YYYY-MM-DD HH:mm:ss", true);
+                if (vaild == "Invalid date") {
+                    return false;
+                } else {
+                    if (vaild > moment.utc().format("YYYY-MM-DD HH:mm:ss")) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            } else {
+                return false;
+            }
+        },
+
+        showWarning() {
+            if (this.count == 19 && this.vaildDate == false) {
+                return true;
+            } else {
+                return false;
             }
         },
 
