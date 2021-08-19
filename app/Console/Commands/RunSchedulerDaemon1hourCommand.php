@@ -7,14 +7,14 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use utils\Campaignhelper\Campaignhelper;
 
-class RunSchedulerDaemonCommand extends Command
+class RunSchedulerDaemon1hourCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'schedule:daemon {--sleep=60}';
+    protected $signature = 'schedule:daemon1hour {--sleep=3600}';
 
     /**
      * The console command description.
@@ -43,10 +43,8 @@ class RunSchedulerDaemonCommand extends Command
         while (true) {
             // $this->call('schedule:run');
             sleep($this->option('sleep'));
-            Artisan::call('update:campaigns');
-            Artisan::call('update:notifications');
-            Artisan::call('update:stationnotifications');
-            Artisan::call('update:towers');
+            Artisan::call('update:reconstations');
+            Artisan::call('update:timers');
         }
     }
 }

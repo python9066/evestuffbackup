@@ -57,8 +57,15 @@ workers:
     commands:
       start: |
         php artisan schedule:daemon
-crons:
-  # Run Drupal's cron tasks every 19 minutes.
-  update:
-    spec: "* * * * *"
-    cmd: "php artisan schedule:run"
+
+  queue1hour:
+    size: S
+    commands:
+      start: |
+        php artisan schedule:daemon1hour
+
+  queue12hour:
+    size: S
+    commands:
+      start: |
+        php artisan schedule:daemon12hour
