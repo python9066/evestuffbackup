@@ -383,14 +383,13 @@ class StationController extends Controller
         $flag = collect([
             'message' => $message
         ]);
-        // broadcast(new StationNotificationUpdate($flag));
+        broadcast(new StationNotificationUpdate($flag));
         $message = RCStationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message
         ]);
 
-        // broadcast(new RcMoveUpdate($flag));
-        //CHANGE BEFORE
+        broadcast(new RcMoveUpdate($flag));
         $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' at ' . now();
         $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }
@@ -409,14 +408,13 @@ class StationController extends Controller
         $flag = collect([
             'message' => $message
         ]);
-        // broadcast(new StationNotificationUpdate($flag));
+        broadcast(new StationNotificationUpdate($flag));
 
         $message = RCStationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message
         ]);
-        // broadcast(new RcMoveUpdate($flag));
-        //CHANGE BEFORE
+        broadcast(new RcMoveUpdate($flag));
     }
 
 
@@ -449,13 +447,12 @@ class StationController extends Controller
         $flag = collect([
             'message' => $message
         ]);
-        // broadcast(new StationNotificationUpdate($flag));
-        // $message = RcStationRecords::where('id', $id)->first();
-        // $flag = collect([
-        //     'message' => $message,
-        // ]);
-        // broadcast(new RcSheetUpdate($flag));
-        //CHANGE BEFORE
+        broadcast(new StationNotificationUpdate($flag));
+        $message = RcStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new RcSheetUpdate($flag));
 
         $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' at ' . now();
         $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
