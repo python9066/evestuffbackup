@@ -51,7 +51,6 @@ class Notifications
             'http_errors' => false
         ]);
         $data = Utils::jsonDecode($response->getBody(), true);
-        dd('$data');
         return $data;
     }
 

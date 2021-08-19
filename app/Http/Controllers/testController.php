@@ -34,6 +34,15 @@ class testController extends Controller
         // }
     }
 
+    public function recontest()
+    {
+
+        $id = 10000060;
+        $data =  Notifications::reconRegionPull($id);
+        dd($data);
+    }
+
+
     public function notifications(Request $request)
     {
 

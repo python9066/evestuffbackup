@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Artisan;
@@ -36,7 +37,7 @@ Route::get('/home', 'HomeController@index');
 // Route::get('/pannel/{any}', 'RoleController@addCord')->where('any', '.*');
 Route::get('/updateNotifications', 'NotificationController@getNotifications');
 Route::get('/blablabla/{id}', 'NotificationController@test');
-Route::get('/test2', 'testController@userinfo');
+Route::get('/test2', 'testController@recontest');
 // Route::get('/updateAlliances', 'AllianceController@updateAlliances');
 // Route::get('/party2', 'HomeController@party2');
 // Route::get('/helper', function () {
