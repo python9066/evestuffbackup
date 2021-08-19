@@ -32,7 +32,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
     }
     // items.item_name AS 'item_name',
     /**
-     * Execute the console command.
+     * Execute the console com ffmand.
      *
      * @return int
      */
