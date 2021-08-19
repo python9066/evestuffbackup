@@ -107,7 +107,8 @@ class Notifications
                 'r_cloning' => $stationdata['str_cloning'],
                 'r_composite' => $stationdata['str_composite'],
                 'r_cored' => $stationdata['str_cored'],
-                'show_on_coord' => 1
+                'show_on_coord' => 1,
+                'station_status_id' => 1,
             ]);
             if ($stationdata['str_has_no_fitting'] != null) {
                 if ($stationdata['str_has_no_fitting'] != 'No Fitting') {
