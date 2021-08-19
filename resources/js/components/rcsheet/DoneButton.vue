@@ -148,7 +148,8 @@ export default {
         async softDestroyed() {
             var data = {
                 id: this.item.id,
-                show_on_rc: 0
+                show_on_rc: 0,
+                show_on_coord: 1
             };
 
             this.$store.dispatch("updateRcStation", data);
