@@ -12,9 +12,9 @@
                     v-bind="attrs"
                     v-on="on"
                     @click="open()"
-                    :color="pillColor(item)"
+                    :color="pillColor()"
                 >
-                    {{ buttontext(item) }} - Done
+                    {{ buttontext() }} - Done
                     <v-icon right> faSvg fa-check-circle</v-icon>
                 </v-btn>
             </template>
@@ -31,24 +31,20 @@
                 </v-card-title>
 
                 <v-card-text>
-                    <v-btn color="green"> Reffed</v-btn>
-                    <v-btn color="green"> Reffed</v-btn>
-                    <v-btn color="amber accent-2"> Repaired</v-btn>
-                    <v-btn color="red"> Destoryed</v-btn>
-                    <v-btn color="brown lighten-2"> Unknown</v-btn>
+                    <AddTimerFromDone @timeropen="close()"></AddTimerFromDone>
+                    <v-btn color="amber accent-2" @click="statusUpdate(4)">
+                        Repaired</v-btn
+                    >
+                    <v-btn color="red" @click="destoryed()"> Destoryed</v-btn>
+                    <v-btn color="brown lighten-2" @click="statusUpdate(18)">
+                        Unknown</v-btn
+                    >
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
-                    <v-btn color="red"> Close</v-btn>
+                    <v-btn color="red" @click="close()"> Close</v-btn>
                 </v-card-actions>
             </v-card>
-
-            <!-- <showStationTimer
-                :nodeNotestation="nodeNotestation"
-                v-if="$can('super')"
-                @closeMessage="showStationTimer = false"
-            >
-            </showStationTimer> -->
         </v-dialog>
     </div>
 </template>
@@ -71,22 +67,22 @@ export default {
     watch: {},
 
     methods: {
-        pillColor(item) {
-            if (item.status_id == 13) {
+        pillColor() {
+            if (this.item.status_id == 13) {
                 return "red darken-4";
             }
-            if (item.status_id == 5) {
+            if (this.item.status_id == 5) {
                 return "lime darken-4";
             }
-            if (item.status_id == 14) {
+            if (this.item.status_id == 14) {
                 return "green accent-4";
             }
-            if (item.status_id == 17) {
+            if (this.item.status_id == 17) {
                 return "#FF5EEA";
             }
         },
-        buttontext(item) {
-            var ret = item.status_name.replace("Upcoming - ", "");
+        buttontext() {
+            var ret = this.item.status_name.replace("Upcoming - ", "");
             return ret;
         },
 
@@ -94,6 +90,52 @@ export default {
 
         close() {
             this.showDoneOverlay = false;
+        },
+
+        async statusUpdate(statusID) {
+            var data = {
+                id: this.item.id,
+                show_on_rc: 0
+            };
+
+            this.$store.dispatch("updateRcStation", data);
+
+            var request = null;
+            request = {
+                station_status_id: statusID,
+                show_on_rc: 0,
+                show_on_coord: 1
+            };
+
+            await axios({
+                method: "put",
+                url: "/api/updatestationnotification/" + this.item.id,
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + $store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
+
+        async destroyed() {
+            var data = {
+                id: this.item.id,
+                show_on_rc: 0
+            };
+
+            this.$store.dispatch("updateRcStation", data);
+
+            await axios({
+                method: "delete",
+                url: "/api/rcmovedonebad/" + this.item.id,
+                headers: {
+                    Authorization: "Bearer " + $store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
         }
     },
 
