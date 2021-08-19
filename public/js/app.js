@@ -13050,7 +13050,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.refTime = null;
     },
     showSubmit: function showSubmit() {
-      if ((this.imageLink == null || this.imageLink == "") && this.count != 19 && this.vaildDate == true) {
+      if ((this.imageLink == null || this.imageLink == "") && this.count != 19) {
         return true;
       } else {
         return false;
@@ -13129,27 +13129,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])([])), {}, {
-    vaildDateStart: function vaildDateStart() {
-      if (this.count == 19) {
-        var y = this.refTime.substr(0, 4);
-        var mo = this.refTime.substr(5, 2);
-        var d = this.refTime.substr(8, 2);
-        var h = this.refTime.substr(11, 2);
-        var m = this.refTime.substr(14, 2);
-        var s = this.refTime.substr(17, 2);
-        var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-        var vaild = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss", true);
-
-        if (vaild == "this is not a format") {
-          return false;
-        } else {
-          return true;
-        }
-      } else {
-        return false;
-      }
-    },
-    test1: function test1() {
+    // vaildDate() {
+    //     if (this.count == 19) {
+    //         var y = this.refTime.substr(0, 4);
+    //         var mo = this.refTime.substr(5, 2);
+    //         var d = this.refTime.substr(8, 2);
+    //         var h = this.refTime.substr(11, 2);
+    //         var m = this.refTime.substr(14, 2);
+    //         var s = this.refTime.substr(17, 2);
+    //         var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+    //         var vaild = moment(full)
+    //             .format("YYYY-MM-DD HH:mm:ss", true)
+    //             .isValid();
+    //             if(vaild == "Invalid date"){
+    //                 return false;
+    //             }else
+    //     } else {
+    //         return false;
+    //     }
+    // },
+    test: function test() {
       if (this.count == 19) {
         var y = this.refTime.substr(0, 4);
         var mo = this.refTime.substr(5, 2);
@@ -13170,8 +13169,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var m = this.refTime.substr(14, 2);
         var s = this.refTime.substr(17, 2);
         var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-        var vaild = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss", true);
-        return vaild;
+        var outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
+        return outTime;
       }
     },
     test3: function test3() {
@@ -13183,8 +13182,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var m = this.refTime.substr(14, 2);
         var s = this.refTime.substr(17, 2);
         var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-        var vaild = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss").isValid();
-        return vaild;
+        var outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss", true);
+        return outTime;
       }
     },
     count: function count() {
@@ -47081,7 +47080,7 @@ var render = function() {
                     "v-btn",
                     {
                       staticClass: "white--text",
-                      attrs: { color: "teal" },
+                      attrs: { color: "teal", disabled: _vm.showSubmit() },
                       on: {
                         click: function($event) {
                           return _vm.close()
@@ -47095,7 +47094,7 @@ var render = function() {
                     "v-btn",
                     {
                       staticClass: "white--text",
-                      attrs: { color: "green", disabled: _vm.showSubmit() },
+                      attrs: { color: "green" },
                       on: {
                         click: function($event) {
                           return _vm.submit()

@@ -96,15 +96,15 @@
                 </v-card-text>
                 <v-spacer></v-spacer
                 ><v-card-actions>
-                    <v-btn class="white--text" color="teal" @click="close()">
-                        Close
-                    </v-btn>
                     <v-btn
                         class="white--text"
-                        color="green"
-                        @click="submit()"
+                        color="teal"
+                        @click="close()"
                         :disabled="showSubmit()"
                     >
+                        Close
+                    </v-btn>
+                    <v-btn class="white--text" color="green" @click="submit()">
                         Submit
                     </v-btn></v-card-actions
                 >
@@ -154,8 +154,7 @@ export default {
         showSubmit() {
             if (
                 (this.imageLink == null || this.imageLink == "") &&
-                this.count != 19 &&
-                this.vaildDate == true
+                this.count != 19
             ) {
                 return true;
             } else {
@@ -230,27 +229,28 @@ export default {
         ...mapGetters([]),
         ...mapState([]),
 
-        vaildDateStart() {
-            if (this.count == 19) {
-                var y = this.refTime.substr(0, 4);
-                var mo = this.refTime.substr(5, 2);
-                var d = this.refTime.substr(8, 2);
-                var h = this.refTime.substr(11, 2);
-                var m = this.refTime.substr(14, 2);
-                var s = this.refTime.substr(17, 2);
-                var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-                var vaild = moment(full).format("YYYY-MM-DD HH:mm:ss", true);
-                if (vaild == "this is not a format") {
-                    return false;
-                } else {
-                    return true;
-                }
-            } else {
-                return false;
-            }
-        },
+        // vaildDate() {
+        //     if (this.count == 19) {
+        //         var y = this.refTime.substr(0, 4);
+        //         var mo = this.refTime.substr(5, 2);
+        //         var d = this.refTime.substr(8, 2);
+        //         var h = this.refTime.substr(11, 2);
+        //         var m = this.refTime.substr(14, 2);
+        //         var s = this.refTime.substr(17, 2);
+        //         var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
+        //         var vaild = moment(full)
+        //             .format("YYYY-MM-DD HH:mm:ss", true)
+        //             .isValid();
+        //             if(vaild == "Invalid date"){
 
-        test1() {
+        //                 return false;
+        //             }else
+        //     } else {
+        //         return false;
+        //     }
+        // },
+
+        test() {
             if (this.count == 19) {
                 var y = this.refTime.substr(0, 4);
                 var mo = this.refTime.substr(5, 2);
@@ -272,8 +272,8 @@ export default {
                 var m = this.refTime.substr(14, 2);
                 var s = this.refTime.substr(17, 2);
                 var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-                var vaild = moment(full).format("YYYY-MM-DD HH:mm:ss", true);
-                return vaild;
+                var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
+                return outTime;
             }
         },
 
@@ -286,10 +286,8 @@ export default {
                 var m = this.refTime.substr(14, 2);
                 var s = this.refTime.substr(17, 2);
                 var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-                var vaild = moment(full)
-                    .format("YYYY-MM-DD HH:mm:ss")
-                    .isValid();
-                return vaild;
+                var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss", true);
+                return outTime;
             }
         },
 
