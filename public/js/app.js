@@ -13289,6 +13289,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 
 
+var _methods;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -13374,7 +13378,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   watch: {},
-  methods: {
+  methods: (_methods = {
     pillColor: function pillColor() {
       if (this.item.status_id == 13) {
         return "red darken-4";
@@ -13453,43 +13457,45 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee3);
       }))();
-    },
-    softDestroyed: function softDestroyed() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var data;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                data = {
-                  id: _this2.item.id,
-                  show_on_rc: 0
-                };
-
-                _this2.$store.dispatch("updateRcStation", data);
-
-                _context4.next = 4;
-                return axios({
-                  method: "put",
-                  url: "/api/softdestory/" + _this2.item.id,
-                  headers: {
-                    Authorization: "Bearer " + $store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 4:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }))();
     }
-  },
+  }, _defineProperty(_methods, "buttontext", function buttontext(item) {
+    var ret = item.status_name.replace("Upcoming - ", "");
+    return ret;
+  }), _defineProperty(_methods, "softDestroyed", function softDestroyed() {
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+      var data;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              data = {
+                id: _this2.item.id,
+                show_on_rc: 0
+              };
+
+              _this2.$store.dispatch("updateRcStation", data);
+
+              _context4.next = 4;
+              return axios({
+                method: "put",
+                url: "/api/softdestory/" + _this2.item.id,
+                headers: {
+                  Authorization: "Bearer " + $store.state.token,
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 4:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }))();
+  }), _methods),
   computed: {},
   beforeDestroy: function beforeDestroy() {}
 });
@@ -32454,7 +32460,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active,\n.fade-leave-active {\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n    opacity: 0;\n}\r\n", ""]);
 
 // exports
 
