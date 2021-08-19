@@ -236,27 +236,10 @@
                         </template>
 
                         <template v-slot:[`item.status_name`]="{ item }">
-                            <v-chip
-                                v-if="
-                                    item.out == 1 && $can('edit_killsheet_done')
-                                "
-                                pill
-                                outlined
-                                @click="stationdone(item)"
-                                small
-                                :color="pillColor(item)"
-                            >
-                                {{ buttontext(item) }} - Done?
-                            </v-chip>
-
-                            <v-chip
-                                v-else-if="item.out == 1"
-                                pill
-                                small
-                                :color="pillColor(item)"
-                            >
-                                {{ buttontext(item) }} - out
-                            </v-chip>
+                            <DoneButton
+                                v-if="item.out == 1"
+                                :item="item"
+                            ></DoneButton>
 
                             <v-chip v-else pill small :color="pillColor(item)">
                                 {{ buttontext(item) }}
