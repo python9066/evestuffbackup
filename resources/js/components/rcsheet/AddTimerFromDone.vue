@@ -90,13 +90,17 @@
                                         (timerShown = false), (hackTime = null)
                                     "
                                 ></v-text-field>
+
                                 <v-alert
-                                    border="top"
+                                    :value="showWarning"
+                                    dark
                                     type="warning"
-                                    :v-if="showWarning"
-                                    >The date is not vaild. Or the before
-                                    now</v-alert
+                                    border="top"
+                                    icon="mdi-home"
+                                    transition="scale-transition"
                                 >
+                                    Timer is before now. Or incorrect
+                                </v-alert>
                             </div>
                         </div>
                     </v-fade-transition>

@@ -13017,6 +13017,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -47063,14 +47067,17 @@ var render = function() {
                             "v-alert",
                             {
                               attrs: {
-                                border: "top",
+                                value: _vm.showWarning,
+                                dark: "",
                                 type: "warning",
-                                "v-if": _vm.showWarning
+                                border: "top",
+                                icon: "mdi-home",
+                                transition: "scale-transition"
                               }
                             },
                             [
                               _vm._v(
-                                "The date is not vaild. Or the before\n                                now"
+                                "\n                                Timer is before now. Or incorrect\n                            "
                               )
                             ]
                           )
