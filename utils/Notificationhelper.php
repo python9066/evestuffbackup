@@ -82,7 +82,7 @@ class Notifications
             StationItemJoin::where('station_id', $id)->delete();
         } else {
             StationItemJoin::where('station_id', $id)->delete();
-            $update = Station::updateOrCreate(['id' => $id], [
+            $update = Station::firstOrCreate(['id' => $id], [
                 'name' => $stationdata['str_name'],
                 'r_hash' => $stationdata['str_structure_id_md5'],
                 'corp_id' => $stationdata['str_owner_corporation_id'],
