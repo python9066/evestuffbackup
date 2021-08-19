@@ -13344,6 +13344,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13449,7 +13451,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
-    destroyed: function destroyed() {
+    softDestroyed: function softDestroyed() {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
@@ -13467,8 +13469,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _context4.next = 4;
                 return axios({
-                  method: "delete",
-                  url: "/api/rcmovedonebad/" + _this2.item.id,
+                  method: "put",
+                  url: "/api/softdestory/" + _this2.item.id,
                   headers: {
                     Authorization: "Bearer " + $store.state.token,
                     Accept: "application/json",
@@ -47389,11 +47391,11 @@ var render = function() {
                       attrs: { color: "red" },
                       on: {
                         click: function($event) {
-                          return _vm.destoryed()
+                          return _vm.softDestroyed()
                         }
                       }
                     },
-                    [_vm._v(" Destoryed")]
+                    [_vm._v("\n                    Destoryed")]
                   ),
                   _vm._v(" "),
                   _c(

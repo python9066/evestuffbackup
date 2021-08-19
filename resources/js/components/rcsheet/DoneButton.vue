@@ -35,7 +35,9 @@
                     <v-btn color="amber accent-2" @click="statusUpdate(4)">
                         Repaired</v-btn
                     >
-                    <v-btn color="red" @click="destoryed()"> Destoryed</v-btn>
+                    <v-btn color="red" @click="softDestroyed()">
+                        Destoryed</v-btn
+                    >
                     <v-btn color="brown lighten-2" @click="statusUpdate(18)">
                         Unknown</v-btn
                     >
@@ -119,7 +121,7 @@ export default {
             });
         },
 
-        async destroyed() {
+        async softDestroyed() {
             var data = {
                 id: this.item.id,
                 show_on_rc: 0
@@ -128,8 +130,8 @@ export default {
             this.$store.dispatch("updateRcStation", data);
 
             await axios({
-                method: "delete",
-                url: "/api/rcmovedonebad/" + this.item.id,
+                method: "put",
+                url: "/api/softdestory/" + this.item.id,
                 headers: {
                     Authorization: "Bearer " + $store.state.token,
                     Accept: "application/json",
