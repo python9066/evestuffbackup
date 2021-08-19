@@ -13058,7 +13058,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     close: function close() {
       this.showAddTimer = false;
       this.refType = null;
-      this.refTime = null;
+      this.refTime = {
+        d: "",
+        hh: "",
+        mm: "",
+        ss: ""
+      };
     },
     submit: function submit() {
       var _this = this;
@@ -13107,7 +13112,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this.showStationTimer = false, _this.refType = null, _this.refTime = null, _this.showStationTimer = false, _this.$emit("timeropen"));
+                }).then(_this.showStationTimer = false, _this.refType = null, _this.refTime = {
+                  d: "",
+                  hh: "",
+                  mm: "",
+                  ss: ""
+                }, _this.showStationTimer = false, _this.$emit("timeropen"));
 
               case 15:
               case "end":
@@ -32551,7 +32561,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n    opacity: 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.fade-enter-active,\n.fade-leave-active {\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 

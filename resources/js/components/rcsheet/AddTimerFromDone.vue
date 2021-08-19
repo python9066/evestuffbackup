@@ -159,7 +159,12 @@ export default {
         close() {
             this.showAddTimer = false;
             this.refType = null;
-            this.refTime = null;
+            this.refTime = {
+                d: "",
+                hh: "",
+                mm: "",
+                ss: ""
+            };
         },
 
         async submit() {
@@ -215,7 +220,12 @@ export default {
             }).then(
                 (this.showStationTimer = false),
                 (this.refType = null),
-                (this.refTime = null),
+                (this.refTime = {
+                    d: "",
+                    hh: "",
+                    mm: "",
+                    ss: ""
+                }),
                 (this.showStationTimer = false),
                 this.$emit("timeropen")
             );
