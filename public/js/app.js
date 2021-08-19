@@ -46914,7 +46914,7 @@ var render = function() {
                           _c("v-text-field", {
                             attrs: {
                               readonly: "",
-                              solo: "",
+                              outlined: "",
                               label: "Station Name"
                             },
                             model: {
@@ -46938,7 +46938,7 @@ var render = function() {
                           _c("v-text-field", {
                             attrs: {
                               readonly: "",
-                              solo: "",
+                              outlined: "",
                               label: "System Name"
                             },
                             model: {
@@ -46952,7 +46952,7 @@ var render = function() {
                           _vm._v(" "),
                           _c("v-text-field", {
                             staticClass: " ml-2",
-                            attrs: { solo: "", label: "Corp Ticker" },
+                            attrs: { outlined: "", label: "Corp Ticker" },
                             model: {
                               value: _vm.item.corp_ticker,
                               callback: function($$v) {
@@ -46973,7 +46973,7 @@ var render = function() {
                           _c("v-text-field", {
                             staticClass: " ml-2",
                             attrs: {
-                              solo: "",
+                              outlined: "",
                               readonly: "",
                               label: "Ref Type"
                             },

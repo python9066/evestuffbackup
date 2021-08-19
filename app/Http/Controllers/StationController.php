@@ -384,6 +384,11 @@ class StationController extends Controller
             'message' => $message
         ]);
         // broadcast(new StationNotificationUpdate($flag));
+        $message = RCStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message
+        ]);
+
         // broadcast(new RcMoveUpdate($flag));
         //CHANGE BEFORE
         $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' at ' . now();
@@ -405,6 +410,11 @@ class StationController extends Controller
             'message' => $message
         ]);
         // broadcast(new StationNotificationUpdate($flag));
+
+        $message = RCStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message
+        ]);
         // broadcast(new RcMoveUpdate($flag));
         //CHANGE BEFORE
     }

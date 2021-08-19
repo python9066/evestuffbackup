@@ -38,7 +38,7 @@
                                 <v-text-field
                                     v-model="item.name"
                                     readonly
-                                    solo
+                                    outlined
                                     label="Station Name"
                                 ></v-text-field>
                             </div>
@@ -46,12 +46,12 @@
                                 <v-text-field
                                     v-model="item.system_name"
                                     readonly
-                                    solo
+                                    outlined
                                     label="System Name"
                                 ></v-text-field>
                                 <v-text-field
                                     class=" ml-2"
-                                    solo
+                                    outlined
                                     v-model="item.corp_ticker"
                                     label="Corp Ticker"
                                 ></v-text-field>
@@ -60,7 +60,7 @@
                                 <h5><strong>Timer Type</strong></h5>
                                 <v-text-field
                                     class=" ml-2"
-                                    solo
+                                    outlined
                                     v-model="this.hull"
                                     readonly
                                     label="Ref Type"
