@@ -41,7 +41,7 @@ class RunSchedulerDaemonCommand extends Command
     {
         while (true) {
             $this->call('schedule:run');
-            Artisan::call('schedule:run');
+            Artisan::call("schedule:run");
             sleep($this->option('sleep'));
             Userlogging::create(['name' => 'Demon trigger']);
         }
