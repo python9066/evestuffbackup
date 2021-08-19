@@ -224,6 +224,10 @@ export default {
             return moment(full)
                 .format("YYYY-MM-DD HH:mm:ss", true)
                 .isValid();
+        },
+
+        count() {
+            return this.refType.length();
         }
     },
 
