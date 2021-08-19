@@ -82,7 +82,7 @@ class Notifications
             StationItemJoin::where('station_id', $id)->delete();
         } else {
             StationItemJoin::where('station_id', $id)->delete();
-            $update = Station::firstOrCreate(['id' => $id], [
+            Station::firstOrCreate(['id' => $id], [
                 'name' => $stationdata['str_name'],
                 'r_hash' => $stationdata['str_structure_id_md5'],
                 'corp_id' => $stationdata['str_owner_corporation_id'],
@@ -112,9 +112,12 @@ class Notifications
 
 
             ]);
-            if ($update->station_status_id == 1) {
-                $update->update(['show_on_coord' => 1]);
+            $checkflag = Station::find($id)->first();
+            if ($checkflag->station_status_id == 1) {
+                $checkflag->update(['show_on_coord' => 1]);
             }
+
+
 
             if ($stationdata['str_has_no_fitting'] != null) {
                 if ($stationdata['str_has_no_fitting'] != 'No Fitting') {
