@@ -57,15 +57,3 @@ workers:
     commands:
       start: |
         php artisan schedule:daemon
-
-  queue1hour:
-    size: S
-    commands:
-      start: |
-        php artisan schedule:daemon1hour
-
-  queue12hour:
-    size: S
-    commands:
-      start: |
-        php artisan schedule:daemon12hour
