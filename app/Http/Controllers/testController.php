@@ -40,7 +40,7 @@ class testController extends Controller
         $id = 10000060;
         $stations =  Notifications::reconRegionPull($id);
         foreach ($stations as $station) {
-            Notifications::reconUpdate($station);
+            Notifications::reconRegionPullIdCheck($station);
         }
     }
 
