@@ -28,12 +28,17 @@
             >
                 <v-card-title class="justify-center">
                     <p>What is the Status of {{ item.station_name }}</p>
-                    <p>I LOVE YOU @appear-cancelled=""</p>
-                    <p></p
-                ></v-card-title>
+                    ></v-card-title
+                >
 
                 <v-card-text> </v-card-text>
-                <v-spacer></v-spacer><v-card-actions> </v-card-actions>
+                <v-spacer></v-spacer
+                ><v-card-actions>
+                    <v-btn color="green"> Reffed</v-btn>
+                    <v-btn color="white"> Repaired</v-btn>
+                    <v-btn color="red"> Destoryed</v-btn>
+                    <v-btn color="gray"> Unknown</v-btn>
+                </v-card-actions>
             </v-card>
 
             <!-- <showStationTimer
