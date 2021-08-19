@@ -47491,6 +47491,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-card-text",
+                { staticClass: " d-inline-flex" },
                 [
                   _vm.showAddTimer()
                     ? _c("AddTimerFromDone", {

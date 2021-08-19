@@ -30,7 +30,7 @@
                     <p>What is the Status of {{ item.name }}</p>
                 </v-card-title>
 
-                <v-card-text>
+                <v-card-text class=" d-inline-flex">
                     <AddTimerFromDone
                         v-if="showAddTimer()"
                         @timeropen="close()"

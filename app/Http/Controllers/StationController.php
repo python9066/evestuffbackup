@@ -380,11 +380,13 @@ class StationController extends Controller
         $noteText = $now . " -  Submitted By :" . Auth::user()->name;
         Station::find($id)->update(['added_by_user_id' => Auth::id(), "notes" => $noteText, "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null,]);
         $message = StationRecords::where('id', $id)->first();
+        dd($message);
         $flag = collect([
             'message' => $message
         ]);
-        broadcast(new StationNotificationUpdate($flag));
-        broadcast(new RcMoveUpdate($flag));
+        // broadcast(new StationNotificationUpdate($flag));
+        // broadcast(new RcMoveUpdate($flag));
+        //CHANGE BEFORE
         $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' at ' . now();
         $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }
