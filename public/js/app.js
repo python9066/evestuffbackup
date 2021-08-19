@@ -13049,13 +13049,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.refType = null;
       this.refTime = null;
     },
-    showSubmit: function showSubmit() {
-      if ((this.imageLink == null || this.imageLink == "") && this.count != 19 && this.vaildDate == true) {
-        return true;
-      } else {
-        return false;
-      }
-    },
     submit: function submit() {
       var _this = this;
 
@@ -13149,6 +13142,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             return false;
           }
         }
+      } else {
+        return false;
+      }
+    },
+    showSubmit: function showSubmit() {
+      var a = 1;
+      var b = 1;
+
+      if (this.imageLink == null || this.imageLink == "") {
+        a = 0;
+      }
+
+      if (this.vaildDate == false) {
+        b = 0;
+      }
+
+      var sum = a + b;
+
+      if (sum == 0) {
+        return true;
       } else {
         return false;
       }
@@ -47061,7 +47074,7 @@ var render = function() {
                     "v-btn",
                     {
                       staticClass: "white--text",
-                      attrs: { color: "green", disabled: _vm.showSubmit() },
+                      attrs: { color: "green", disabled: _vm.showSubmit },
                       on: {
                         click: function($event) {
                           return _vm.submit()

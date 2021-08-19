@@ -103,7 +103,7 @@
                         class="white--text"
                         color="green"
                         @click="submit()"
-                        :disabled="showSubmit()"
+                        :disabled="showSubmit"
                     >
                         Submit
                     </v-btn></v-card-actions
@@ -149,18 +149,6 @@ export default {
             this.showStationTimer = false;
             this.refType = null;
             this.refTime = null;
-        },
-
-        showSubmit() {
-            if (
-                (this.imageLink == null || this.imageLink == "") &&
-                this.count != 19 &&
-                this.vaildDate == true
-            ) {
-                return true;
-            } else {
-                return false;
-            }
         },
 
         async submit() {
@@ -249,6 +237,25 @@ export default {
                         return false;
                     }
                 }
+            } else {
+                return false;
+            }
+        },
+
+        showSubmit() {
+            var a = 1;
+            var b = 1;
+            if (this.imageLink == null || this.imageLink == "") {
+                a = 0;
+            }
+
+            if (this.vaildDate == false) {
+                b = 0;
+            }
+
+            var sum = a + b;
+            if (sum == 0) {
+                return true;
             } else {
                 return false;
             }
