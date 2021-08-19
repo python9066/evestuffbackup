@@ -47065,7 +47065,7 @@ var render = function() {
                               attrs: {
                                 border: "top",
                                 type: "warning",
-                                "v-show": _vm.showWarning
+                                "v-if": _vm.showWarning
                               }
                             },
                             [

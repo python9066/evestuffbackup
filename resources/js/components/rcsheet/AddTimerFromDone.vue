@@ -93,7 +93,7 @@
                                 <v-alert
                                     border="top"
                                     type="warning"
-                                    :v-show="showWarning"
+                                    :v-if="showWarning"
                                     >The date is not vaild. Or the before
                                     now</v-alert
                                 >
