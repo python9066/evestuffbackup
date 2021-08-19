@@ -38,5 +38,18 @@ class UpdateReconStationsByRegion extends Command
      */
     public function handle()
     {
+        $ids = [
+            10000060,
+            10000050,
+            10000063,
+            10000058,
+        ];
+
+        foreach ($ids as $id) {
+            $stations =  Notifications::reconRegionPull($id);
+            foreach ($stations as $station) {
+                Notifications::reconRegionPullIdCheck($station);
+            }
+        }
     }
 }
