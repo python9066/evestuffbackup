@@ -41,9 +41,10 @@ class RunSchedulerDaemonCommand extends Command
     public function handle(): void
     {
         while (true) {
-            $this->call('schedule:run');
+            // $this->call('schedule:run');
             sleep($this->option('sleep'));
             Userlogging::create(['name' => 'Demon trigger']);
+            Artisan::call('update:campaigns');
             Campaignhelper::runrun();
         }
     }
