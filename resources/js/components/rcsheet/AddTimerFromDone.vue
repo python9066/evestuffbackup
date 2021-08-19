@@ -100,7 +100,8 @@
                                     transition="scale-transition"
                                 >
                                     <span class="text-center">
-                                        TIMER IS NOT VAILD OR INCORRECT
+                                        TIMER IS NOT VAILD OR INCORRECT MAKE
+                                        SURE ITS YYYY:MM:DD HH:MM:SS
                                     </span>
                                 </v-alert>
                             </div>
