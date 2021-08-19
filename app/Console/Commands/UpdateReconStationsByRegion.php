@@ -12,7 +12,7 @@ class UpdateReconStationsByRegion extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'update:reconstationsbyregion';
 
     /**
      * The console command description.
