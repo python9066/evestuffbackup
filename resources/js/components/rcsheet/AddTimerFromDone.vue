@@ -93,7 +93,7 @@
                                 <v-alert
                                     border="top"
                                     type="warning"
-                                    :v-show="!vaildDate"
+                                    :v-show="showWarning"
                                     >The date is not vaild. Or the before
                                     now</v-alert
                                 >
@@ -249,6 +249,13 @@ export default {
             }
         },
 
+        showWarning() {
+            if (this.count == 19 && this.vaildDate == false) {
+                return true;
+            } else {
+                return false;
+            }
+        },
         hideSubmit() {
             if (this.imageLink == null || this.imageLink == "") {
                 var a = 1;

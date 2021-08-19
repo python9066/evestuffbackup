@@ -13153,6 +13153,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return false;
       }
     },
+    showWarning: function showWarning() {
+      if (this.count == 19 && this.vaildDate == false) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     hideSubmit: function hideSubmit() {
       if (this.imageLink == null || this.imageLink == "") {
         var a = 1;
@@ -47058,7 +47065,7 @@ var render = function() {
                               attrs: {
                                 border: "top",
                                 type: "warning",
-                                "v-show": !_vm.vaildDate
+                                "v-show": _vm.showWarning
                               }
                             },
                             [
