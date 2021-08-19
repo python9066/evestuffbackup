@@ -13161,9 +13161,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var sum = a + b;
 
       if (sum > 0) {
-        return true;
-      } else {
         return false;
+      } else {
+        return true;
       }
     },
     count: function count() {

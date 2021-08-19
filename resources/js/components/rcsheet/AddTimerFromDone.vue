@@ -255,9 +255,9 @@ export default {
 
             var sum = a + b;
             if (sum > 0) {
-                return true;
-            } else {
                 return false;
+            } else {
+                return true;
             }
         },
 
