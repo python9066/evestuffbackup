@@ -56,11 +56,10 @@ workers:
     size: S
     commands:
       start: |
-        php artisan schedule:run
+        php artisan schedule:daemon
 
-# crons:
-#   # php artisan schedule:daemon
-#   # Run Drupal's cron tasks every 19 minutes.
-#   eve:
-#     spec: "* * * * *"
-#     cmd: "php artisan schedule:run >> /dev/null 2>&1"
+crons:
+  # Run Drupal's cron tasks every 19 minutes.
+  eve:
+    spec: "* * * * *"
+    cmd: "php artisan schedule:run >> /dev/null 2>&1"
