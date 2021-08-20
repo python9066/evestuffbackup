@@ -446,8 +446,11 @@ class StationController extends Controller
 
     public function softDestroy($id)
     {
+
+        $now = now();
+        $noteText = $now . " -  Submitted By :" . Auth::user()->name . " Station Destoryed";
         $stationName = Station::find($id)->value('name');
-        Station::where('id', $id)->update(['show_on_rc' => 0, 'show_on_coord' => 1, 'station_status_id' => 7, "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null]);
+        Station::where('id', $id)->update(['show_on_rc' => 0, 'show_on_coord' => 1, "notes" => $noteText, 'station_status_id' => 7, "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null]);
 
         $oldStatusID = Station::where('id', $id)->pluck('station_status_id')->first();
         $oldStatusName = StationStatus::where('id', $oldStatusID)->pluck('name')->first();
