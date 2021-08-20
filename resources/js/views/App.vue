@@ -31,6 +31,14 @@
                     </v-tab>
 
                     <v-tab
+                        v-if="$can('view_coord_sheet')"
+                        link
+                        to="/coordsheet"
+                    >
+                        Coord Sheet
+                    </v-tab>
+
+                    <v-tab
                         v-if="$can('view_killsheet')"
                         link
                         to="/fornatshealth"

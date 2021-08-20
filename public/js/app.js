@@ -23589,6 +23589,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 // import { EventBus } from "../event-bus";
 
 
@@ -26162,7 +26170,7 @@ function sleep(ms) {
               return _this.$store.dispatch("getTickList");
 
             case 5:
-              if (!_this.$can("view_station_info_killsheet")) {
+              if (!_this.$can("view_coord_sheet")) {
                 _context.next = 8;
                 break;
               }
@@ -26270,38 +26278,10 @@ function sleep(ms) {
         y: window.innerHeight
       };
     },
-    updatetext: function updatetext(payload, item) {
-      // console.log(item);
-      if (item.text != payload) {
-        item.text = payload;
-        var request = {
-          text: item.text
-        };
-        this.$store.dispatch("updateStationNotification", item);
-        axios({
-          method: "put",
-          //you can set what request you want to be
-          url: "api/updatestationnotification/" + item.id,
-          data: request,
-          headers: {
-            Authorization: "Bearer " + this.$store.state.token,
-            Accept: "application/json",
-            "Content-Type": "application/json"
-          }
-        });
-      }
-    },
     Systemcopied: function Systemcopied() {
       this.snack = true;
       this.snackColor = "success";
       this.snackText = "System Copied";
-    },
-    showNewTimer: function showNewTimer(item) {
-      if ((item.station_status_id == 8 || item.station_status_id == 9 || item.station_status_id == 14) && item.out_time == null && this.$can("edit_chill_timers")) {
-        return true;
-      } else {
-        return false;
-      }
     },
     showInfo: function showInfo(item) {
       if (item.item_id == 37534 || item.item_id == 35841 || item.item_id == 35840) {
@@ -26312,20 +26292,6 @@ function sleep(ms) {
         return true;
       } else {
         return false;
-      }
-    },
-    countDownStartTime: function countDownStartTime(item) {
-      if (item.station_status_id == 11) {
-        return moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.repair_time).unix();
-      } else {
-        return moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.timestamp).unix();
-      }
-    },
-    countDownColor: function countDownColor(item) {
-      if (item.station_status_id == 11) {
-        return "green--text pl-3";
-      } else {
-        return "blue--text pl-3";
       }
     },
     link: function link(item) {
@@ -26415,28 +26381,6 @@ function sleep(ms) {
 
       return "https://evemaps.dotlan.net/map/" + item.region_name + "/" + item.system_name + "#const";
     },
-    showGunner: function showGunner(item) {
-      if (this.$can("edit_chill_timers")) {
-        if (item.item_id == 37534 || item.item_id == 35841 || item.item_id == 35840) {
-          return false;
-        }
-
-        return true;
-      } else {
-        return false;
-      }
-    },
-    loadstations: function loadstations() {
-      var _this4 = this;
-
-      this.loadingr = true;
-      this.$store.dispatch("getStationData").then(function () {
-        _this4.loadingr = false;
-      }); // console.log("30secs");
-    },
-    numberDay: function numberDay(day) {
-      return parseInt(day, 10) + "d";
-    },
     pillColor: function pillColor(item) {
       if (item.station_status_id == 4) {
         return "orange darken-1";
@@ -26454,43 +26398,10 @@ function sleep(ms) {
         return "red";
       }
     },
-    campaignStart: function campaignStart(item) {
-      item.station_status_id = 6;
-      this.$store.dispatch("updateStationNotification", item);
-    },
-    save: function save() {
-      this.snack = true;
-      this.snackColor = "success";
-      this.snackText = "Data saved";
-    },
     itemRowBackground: function itemRowBackground(item) {
       if (item.under_attack == 1) {
         return "style-4";
       }
-    },
-    adashColor: function adashColor(item) {
-      if (item.text != null) {
-        return "green";
-      } else {
-        return "red";
-      }
-    },
-    cancel: function cancel() {
-      this.snack = true;
-      this.snackColor = "error";
-      this.snackText = "Canceled";
-    },
-    open: function open() {
-      this.snack = true;
-      this.snackColor = "info";
-      this.snackText = "Dialog opened";
-    },
-    close: function close() {},
-    sec: function sec(item) {
-      var a = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
-      var b = moment__WEBPACK_IMPORTED_MODULE_2___default()(item.timestamp);
-      this.diff = a.diff(b);
-      return this.diff;
     },
     standingCheck: function standingCheck(item) {
       if (item.standing > 0) {
@@ -26500,13 +26411,6 @@ function sleep(ms) {
       } else {
         return "white--text pl-3";
       }
-    },
-    showCountDown: function showCountDown(item) {
-      if (item.station_status_id == 5 || item.station_status_id == 8 || item.station_status_id == 9 || item.station_status_id == 11 || item.station_status_id == 13 || item.station_status_id == 14) {
-        return true;
-      }
-
-      return false;
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["coordsheetRegion", "coordsheetItem", "coordsheetStatus"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getShowOnCoordStations"])), {}, (_objectSpread2 = {
@@ -26514,13 +26418,13 @@ function sleep(ms) {
       return this.getShowOnCoordStations;
     },
     filter_start: function filter_start() {
-      var _this5 = this;
+      var _this4 = this;
 
       var data = [];
 
       if (this.statusPicked.length != 0) {
         this.statusPicked.forEach(function (p) {
-          var pick = _this5.filterSet.filter(function (f) {
+          var pick = _this4.filterSet.filter(function (f) {
             return f.station_status_id == p;
           });
 
@@ -26536,13 +26440,13 @@ function sleep(ms) {
       return this.filterSet;
     },
     filter_mid: function filter_mid() {
-      var _this6 = this;
+      var _this5 = this;
 
       var data = [];
 
       if (this.itemPicked.length != 0) {
         this.itemPicked.forEach(function (p) {
-          var pick = _this6.filter_start.filter(function (f) {
+          var pick = _this5.filter_start.filter(function (f) {
             return f.item_id == p;
           });
 
@@ -26558,13 +26462,13 @@ function sleep(ms) {
       return this.filter_start;
     },
     filter_end: function filter_end() {
-      var _this7 = this;
+      var _this6 = this;
 
       var data = [];
 
       if (this.regionPicked.length != 0) {
         this.regionPicked.forEach(function (p) {
-          var pick = _this7.filter_mid.filter(function (f) {
+          var pick = _this6.filter_mid.filter(function (f) {
             return f.region_id == p;
           });
 
@@ -26593,9 +26497,6 @@ function sleep(ms) {
     height: function height() {
       var num = this.windowSize.y - 370;
       return num;
-    },
-    user_name: function user_name() {
-      return this.$store.state.user_name;
     }
   }, _defineProperty(_objectSpread2, "dropdown_region_list", function dropdown_region_list() {
     return this.coordsheetRegion;
@@ -26603,8 +26504,7 @@ function sleep(ms) {
     return this.coordsheetItem;
   }), _objectSpread2)),
   beforeDestroy: function beforeDestroy() {
-    Echo.leave("notes");
-    Echo.leave("stationinfo");
+    Echo.leave("coord");
   }
 });
 
@@ -58763,6 +58663,14 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
+                  _vm.$can("view_coord_sheet")
+                    ? _c("v-tab", { attrs: { link: "", to: "/coordsheet" } }, [
+                        _vm._v(
+                          "\n                    Coord Sheet\n                "
+                        )
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
                   _vm.$can("view_killsheet")
                     ? _c(
                         "v-tab",
@@ -74741,7 +74649,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: "coordsheet",
     component: _views_CoordSheet_vue__WEBPACK_IMPORTED_MODULE_25__["default"],
     beforeEnter: function beforeEnter(to, from, next) {
-      if (Permissions.indexOf('super') !== -1) {
+      if (Permissions.indexOf('view_coord_sheet') !== -1) {
         next();
       } else {
         next("/notifications");

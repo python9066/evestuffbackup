@@ -156,7 +156,7 @@ export default new Router({
             name: "coordsheet",
             component: CoordSheet,
               beforeEnter(to, from, next) {
-                if(Permissions.indexOf('super' )!== -1){
+                if(Permissions.indexOf('view_coord_sheet' )!== -1){
                     next()
                 }else{
                    next("/notifications")

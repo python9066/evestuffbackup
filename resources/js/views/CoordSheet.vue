@@ -266,7 +266,7 @@ export default {
             await this.$store.dispatch("getTickList");
         }
 
-        if (this.$can("view_station_info_killsheet")) {
+        if (this.$can("view_coord_sheet")) {
             await this.$store.dispatch("loadStationInfo");
         }
         await this.$store.dispatch("getCoordRegions");
@@ -306,45 +306,11 @@ export default {
         onResize() {
             this.windowSize = { x: window.innerWidth, y: window.innerHeight };
         },
-        updatetext(payload, item) {
-            // console.log(item);
-            if (item.text != payload) {
-                item.text = payload;
-                var request = {
-                    text: item.text
-                };
-                this.$store.dispatch("updateStationNotification", item);
-                axios({
-                    method: "put", //you can set what request you want to be
-                    url: "api/updatestationnotification/" + item.id,
-                    data: request,
-                    headers: {
-                        Authorization: "Bearer " + this.$store.state.token,
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
-                });
-            }
-        },
 
         Systemcopied() {
             this.snack = true;
             this.snackColor = "success";
             this.snackText = "System Copied";
-        },
-
-        showNewTimer(item) {
-            if (
-                (item.station_status_id == 8 ||
-                    item.station_status_id == 9 ||
-                    item.station_status_id == 14) &&
-                item.out_time == null &&
-                this.$can("edit_chill_timers")
-            ) {
-                return true;
-            } else {
-                return false;
-            }
         },
 
         showInfo(item) {
@@ -359,22 +325,6 @@ export default {
                 return true;
             } else {
                 return false;
-            }
-        },
-
-        countDownStartTime(item) {
-            if (item.station_status_id == 11) {
-                return moment.utc(item.repair_time).unix();
-            } else {
-                return moment.utc(item.timestamp).unix();
-            }
-        },
-
-        countDownColor(item) {
-            if (item.station_status_id == 11) {
-                return "green--text pl-3";
-            } else {
-                return "blue--text pl-3";
             }
         },
 
@@ -535,33 +485,6 @@ export default {
             );
         },
 
-        showGunner(item) {
-            if (this.$can("edit_chill_timers")) {
-                if (
-                    item.item_id == 37534 ||
-                    item.item_id == 35841 ||
-                    item.item_id == 35840
-                ) {
-                    return false;
-                }
-                return true;
-            } else {
-                return false;
-            }
-        },
-
-        loadstations() {
-            this.loadingr = true;
-            this.$store.dispatch("getStationData").then(() => {
-                this.loadingr = false;
-            });
-            // console.log("30secs");
-        },
-
-        numberDay(day) {
-            return parseInt(day, 10) + "d";
-        },
-
         pillColor(item) {
             if (item.station_status_id == 4) {
                 return "orange darken-1";
@@ -577,47 +500,10 @@ export default {
             }
         },
 
-        campaignStart(item) {
-            item.station_status_id = 6;
-            this.$store.dispatch("updateStationNotification", item);
-        },
-
-        save() {
-            this.snack = true;
-            this.snackColor = "success";
-            this.snackText = "Data saved";
-        },
-
         itemRowBackground: function(item) {
             if (item.under_attack == 1) {
                 return "style-4";
             }
-        },
-
-        adashColor(item) {
-            if (item.text != null) {
-                return "green";
-            } else {
-                return "red";
-            }
-        },
-        cancel() {
-            this.snack = true;
-            this.snackColor = "error";
-            this.snackText = "Canceled";
-        },
-        open() {
-            this.snack = true;
-            this.snackColor = "info";
-            this.snackText = "Dialog opened";
-        },
-        close() {},
-
-        sec(item) {
-            var a = moment.utc();
-            var b = moment(item.timestamp);
-            this.diff = a.diff(b);
-            return this.diff;
         },
 
         standingCheck(item) {
@@ -628,21 +514,6 @@ export default {
             } else {
                 return "white--text pl-3";
             }
-        },
-
-        showCountDown(item) {
-            if (
-                item.station_status_id == 5 ||
-                item.station_status_id == 8 ||
-                item.station_status_id == 9 ||
-                item.station_status_id == 11 ||
-                item.station_status_id == 13 ||
-                item.station_status_id == 14
-            ) {
-                return true;
-            }
-
-            return false;
         }
     },
 
@@ -719,11 +590,6 @@ export default {
             let num = this.windowSize.y - 370;
             return num;
         },
-
-        user_name() {
-            return this.$store.state.user_name;
-        },
-
         dropdown_region_list() {
             return this.coordsheetRegion;
         },
@@ -733,8 +599,7 @@ export default {
         }
     },
     beforeDestroy() {
-        Echo.leave("notes");
-        Echo.leave("stationinfo");
+        Echo.leave("coord");
     }
 };
 </script>
