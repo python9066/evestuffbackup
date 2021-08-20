@@ -26439,8 +26439,71 @@ function sleep(ms) {
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["coordstations", "coordsheetRegion", "coordsheetItem", "coordsheetStatus"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getShowOnCoordStations"])), {}, {
-    filteredItems: function filteredItems() {
-      return this.getShowOnCoordStations;
+    filter_start: function filter_start() {
+      var _this4 = this;
+
+      var data = [];
+
+      if (this.statusPicked.length != 0) {
+        this.statusPicked.forEach(function (p) {
+          var pick = _this4.getActiveRcStations.filter(function (f) {
+            return f.status_id == p;
+          });
+
+          if (pick != null) {
+            pick.forEach(function (pk) {
+              data.push(pk);
+            });
+          }
+        });
+        return data;
+      }
+
+      return this.filter_fc;
+    },
+    filter_mid: function filter_mid() {
+      var _this5 = this;
+
+      var data = [];
+
+      if (this.itemPicked.length != 0) {
+        this.itemPicked.forEach(function (p) {
+          var pick = _this5.filter_start.filter(function (f) {
+            return f.item_id == p;
+          });
+
+          if (pick != null) {
+            pick.forEach(function (pk) {
+              data.push(pk);
+            });
+          }
+        });
+        return data;
+      }
+
+      return this.filter_start;
+    },
+    filter_end: function filter_end() {
+      var _this6 = this;
+
+      var data = [];
+
+      if (this.regionPicked.length != 0) {
+        this.regionPicked.forEach(function (p) {
+          var pick = _this6.filter_mid.filter(function (f) {
+            return f.region_id == p;
+          });
+
+          if (pick != null) {
+            pick.forEach(function (pk) {
+              data.push(pk);
+            });
+          }
+        });
+        return data;
+      }
+
+      return this.filter_mid;
     },
     user_name: function user_name() {
       return this.$store.state.user_name;

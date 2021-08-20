@@ -549,8 +549,54 @@ export default {
         ]),
         ...mapGetters(["getShowOnCoordStations"]),
 
-        filteredItems() {
-            return this.getShowOnCoordStations;
+        filter_start() {
+            let data = [];
+            if (this.statusPicked.length != 0) {
+                this.statusPicked.forEach(p => {
+                    let pick = this.getActiveRcStations.filter(
+                        f => f.status_id == p
+                    );
+                    if (pick != null) {
+                        pick.forEach(pk => {
+                            data.push(pk);
+                        });
+                    }
+                });
+                return data;
+            }
+            return this.filter_fc;
+        },
+
+        filter_mid() {
+            let data = [];
+            if (this.itemPicked.length != 0) {
+                this.itemPicked.forEach(p => {
+                    let pick = this.filter_start.filter(f => f.item_id == p);
+                    if (pick != null) {
+                        pick.forEach(pk => {
+                            data.push(pk);
+                        });
+                    }
+                });
+                return data;
+            }
+            return this.filter_start;
+        },
+
+        filter_end() {
+            let data = [];
+            if (this.regionPicked.length != 0) {
+                this.regionPicked.forEach(p => {
+                    let pick = this.filter_mid.filter(f => f.region_id == p);
+                    if (pick != null) {
+                        pick.forEach(pk => {
+                            data.push(pk);
+                        });
+                    }
+                });
+                return data;
+            }
+            return this.filter_mid;
         },
 
         user_name() {
