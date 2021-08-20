@@ -114,7 +114,9 @@ class Notifications
             ]);
             $rcCheck = Station::where('id', $id)->value('show_on_rc');
             $rcmove = Station::where('id', $id)->value('show_on_rc_move');
-            if ($rcCheck != 1 || $rcmove != 1) {
+            if ($rcCheck == 1 || $rcmove == 1) {
+            } else {
+
                 echo $rcCheck . " - " . $rcmove . "|||";
                 Station::where('id', $id)->update(['show_on_coord' => 1]);
                 $doneCheck = Station::where('id', $id)->value('station_status_id');
