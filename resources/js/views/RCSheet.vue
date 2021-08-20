@@ -240,13 +240,13 @@
                                 v-if="item.out == 1"
                                 :item="item"
                             ></DoneButton>
-        pill
-                                small
-                                :color="pillColor(item)"
-                            >
-                                {{ buttontext(item) }} - out
+
+                            <v-chip v-else pill small :color="pillColor(item)">
+                                {{ buttontext(item) }}
                             </v-chip>
-te v-slot:[`item.gsol_name`]="{ item }">
+                        </template>
+
+                        <template v-slot:[`item.gsol_name`]="{ item }">
                             <RcGsolButton
                                 class=" mr-2"
                                 :station="item"

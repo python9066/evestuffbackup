@@ -33499,7 +33499,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.style-4 {\n    background-color: rgba(255, 153, 0, 0.199);\n}\n", ""]);
+exports.push([module.i, "\n.style-4 {\r\n    background-color: rgba(255, 153, 0, 0.199);\n}\r\n", ""]);
 
 // exports
 
@@ -64719,7 +64719,7 @@ var render = function() {
                                           [
                                             _vm._v(
                                               _vm._s(item.alliance_ticker) +
-                                                "\n                                "
+                                                "\n                            "
                                             )
                                           ]
                                         )
@@ -64783,9 +64783,9 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                                " +
+                                      "\n                            " +
                                         _vm._s(item.system_name) +
-                                        "\n                            "
+                                        "\n                        "
                                     )
                                   ]
                                 )
@@ -64844,7 +64844,7 @@ var render = function() {
                                                             scope.props.days
                                                           )
                                                         ) +
-                                                          "\n                                        " +
+                                                          "\n                                    " +
                                                           _vm._s(
                                                             scope.props.hours
                                                           ) +
@@ -64983,15 +64983,31 @@ var render = function() {
                               return [
                                 item.out == 1
                                   ? _c("DoneButton", { attrs: { item: item } })
-                                  : _vm._e(),
-                                _vm._v(
-                                  '\n        pill\n                                small\n                                :color="pillColor(item)"\n                            >\n                                ' +
-                                    _vm._s(_vm.buttontext(item)) +
-                                    " - out\n                            "
-                                ),
-                                _vm._v(
-                                  '\nte v-slot:[`item.gsol_name`]="{ item }">\n                            '
-                                ),
+                                  : _c(
+                                      "v-chip",
+                                      {
+                                        attrs: {
+                                          pill: "",
+                                          small: "",
+                                          color: _vm.pillColor(item)
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                            " +
+                                            _vm._s(_vm.buttontext(item)) +
+                                            "\n                        "
+                                        )
+                                      ]
+                                    )
+                              ]
+                            }
+                          },
+                          {
+                            key: "item.gsol_name",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
                                 _c("RcGsolButton", {
                                   staticClass: " mr-2",
                                   attrs: { station: item }
@@ -65043,9 +65059,10 @@ var render = function() {
                       _vm._v(" "),
                       _vm._v(" "),
                       _vm._v(" "),
+                      _vm._v(" "),
                       _c("template", { slot: "no-data" }, [
                         _vm._v(
-                          "\n                            No Active or Upcoming Campaigns\n                        "
+                          "\n                        No Active or Upcoming Campaigns\n                    "
                         )
                       ])
                     ],
@@ -65085,7 +65102,7 @@ var render = function() {
                         ),
                         [
                           _vm._v(
-                            "\n                        Copied\n                    "
+                            "\n                    Copied\n                "
                           )
                         ]
                       )
@@ -65103,9 +65120,7 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n                " +
-                  _vm._s(_vm.snackText) +
-                  "\n\n                "
+                "\n            " + _vm._s(_vm.snackText) + "\n\n            "
               )
             ]
           )
