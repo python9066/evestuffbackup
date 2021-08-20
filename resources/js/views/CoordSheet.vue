@@ -613,8 +613,6 @@ export default {
 
         height() {
             let num = this.windowSize.y - 370;
-            // num = tostring(num);
-            // num.concat("px");
             return num;
         },
 

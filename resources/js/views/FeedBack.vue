@@ -79,7 +79,9 @@
             >
 
             <v-card>
-                <v-btn @click="reconpullregion()">Recon Pull</v-btn></v-card
+                <v-btn @click="startRecionRgionPull()"
+                    >Recon Pull</v-btn
+                ></v-card
             >
         </v-row>
 
