@@ -38,14 +38,14 @@ class CoordSheetController extends Controller
     {
         $data = [];
         $pull = StationRecords::where('show_on_coord', 1)->get();
-        $pull = $pull->unique('status_id');
-        $pull = $pull->sortBy('status_name');
+        $pull = $pull->unique('station_status_id');
+        $pull = $pull->sortBy('station_status_name');
         foreach ($pull as $pull) {
-            $text = str_replace("Upcoming - ", "", $pull['status_name'],);
+            $text = str_replace("Upcoming - ", "", $pull['station_status_name'],);
             $data1 = [];
             $data1 = [
                 "text" => $text,
-                "value" => $pull['status_id']
+                "value" => $pull['station_status_id']
             ];
 
             array_push($data, $data1);

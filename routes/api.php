@@ -238,5 +238,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/coordregionlist', 'CoordSheetController@coordSheetListRegion');
     Route::get('/coordTypelist', 'CoordSheetController@coordSheetListType');
     Route::get('/coordStatuslist', 'CoordSheetController@coordSheetListStatus');
-    Route::get('/coordsheet', 'CoordSheetController@index');
+    Route::get('/coordItemsheet', 'CoordSheetController@index');
 });
