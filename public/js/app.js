@@ -18964,6 +18964,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return false;
       }
     },
+    showAmmo: function showAmmo() {
+      if (this.$can("gunner") && item.standing > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     url: function url(item) {
       return "https://images.evetech.net/types/" + item.item_id + "/icon";
     },
@@ -26096,17 +26103,17 @@ function sleep(ms) {
         y: 0
       },
       headers: [{
-        text: "Region",
-        value: "region_name",
-        width: "5%"
+        text: "System",
+        value: "system_name",
+        width: "8%"
       }, {
         text: "Constellation",
         value: "constellation_name",
         width: "8%"
       }, {
-        text: "System",
-        value: "system_name",
-        width: "8%"
+        text: "Region",
+        value: "region_name",
+        width: "5%"
       }, {
         text: "Alliance",
         value: "alliance_ticker",
@@ -53732,7 +53739,7 @@ var render = function() {
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.$can("gunner")
+                    _vm.showAmmo()
                       ? _c("StationRequestAmmo", {
                           key: "ammorequest" + _vm.station.id,
                           attrs: { station: _vm.station }

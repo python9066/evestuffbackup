@@ -213,9 +213,9 @@ export default {
 
             headers: [
                 {
-                    text: "Region",
-                    value: "region_name",
-                    width: "5%"
+                    text: "System",
+                    value: "system_name",
+                    width: "8%"
                 },
                 {
                     text: "Constellation",
@@ -223,9 +223,9 @@ export default {
                     width: "8%"
                 },
                 {
-                    text: "System",
-                    value: "system_name",
-                    width: "8%"
+                    text: "Region",
+                    value: "region_name",
+                    width: "5%"
                 },
                 {
                     text: "Alliance",
