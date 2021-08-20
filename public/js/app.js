@@ -26231,6 +26231,11 @@ function sleep(ms) {
         });
       }
     },
+    Systemcopied: function Systemcopied() {
+      this.snack = true;
+      this.snackColor = "success";
+      this.snackText = "System Copied";
+    },
     showNewTimer: function showNewTimer(item) {
       if ((item.station_status_id == 8 || item.station_status_id == 9 || item.station_status_id == 14) && item.out_time == null && this.$can("edit_chill_timers")) {
         return true;

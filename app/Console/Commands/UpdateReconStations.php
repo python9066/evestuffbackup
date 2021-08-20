@@ -41,5 +41,6 @@ class UpdateReconStations extends Command
     public function handle()
     {
         Notifications::reconUpdate();
+        $this->info('test');
     }
 }

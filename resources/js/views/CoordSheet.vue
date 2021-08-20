@@ -316,6 +316,12 @@ export default {
             }
         },
 
+        Systemcopied() {
+            this.snack = true;
+            this.snackColor = "success";
+            this.snackText = "System Copied";
+        },
+
         showNewTimer(item) {
             if (
                 (item.station_status_id == 8 ||
