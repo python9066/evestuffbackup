@@ -65,7 +65,6 @@ class Station extends Model
         'show_on_rc_show' => 'integer',
         'show_on_coord' => 'integer',
         'rc_fc_id' => 'integer',
-        'show_on_rc' => 'integer',
         'rc_gsol_id' => 'integer',
         'rc_recon_id' => 'integer',
         'added_by_user_id' => 'integer',
