@@ -83,9 +83,9 @@ class RCSheet extends Controller
                     }
 
                     $current = now();
-                    if ($timer > $current) {
-                        $skip = 1;
-                    }
+                    // if ($timer > $current) {
+                    //     $skip = 1;
+                    // }
 
 
                     // dd($allianceIDID, $corpIDID);
@@ -122,9 +122,8 @@ class RCSheet extends Controller
                         if ($timer != $station->out_time) {
                             $station->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1, 'show_on_coord' => 0]);
                         } else {
-                            if ($skip == 0) {
-                                $station->update(['show_on_rc' => 1, 'station_status_id' => $statusID, 'show_on_coord' => 0]);
-                            }
+
+                            $station->update(['show_on_rc' => 1, 'station_status_id' => $statusID, 'show_on_coord' => 0]);
                         }
 
                         // dd($check->id);
@@ -147,7 +146,7 @@ class RCSheet extends Controller
 
 
 
-                            $new = Station::Create(['name' => $input['structure_name'], 'system_id' => $input['solar_system']['solar_system_id'], 'alliance_id' => $allianceIDID, 'corp_id' => $corpIDID, 'item_id' => $input['structure_type']['type_id'], 'station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1, 'rc_id' => $input['id']]);
+                            $new = Station::Create(['name' => $input['structure_name'], 'system_id' => $input['solar_system']['solar_system_id'], 'alliance_id' => $allianceIDID, 'corp_id' => $corpIDID, 'item_id' => $input['structure_type']['type_id'], 'station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1, 'rc_id' => $input['id'], 'show_on_coord' => 1]);
                             if ($allianceIDID == 0) {
                                 $new->update(['id' => $id, 'text' => $input['owning_corp_ticker']]);
                             } else {
@@ -156,7 +155,7 @@ class RCSheet extends Controller
                         } else {
 
                             $check = Station::where('id', $reconpull)->first();
-                            $check->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1]);
+                            $check->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1, 'show_on_coord' => 1]);
 
                             if ($check) {
                                 // echo "old";
