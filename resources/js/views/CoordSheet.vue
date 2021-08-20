@@ -611,6 +611,13 @@ export default {
             return this.coordsheetStatus.filter(l => l.text != null);
         },
 
+        height() {
+            let num = this.windowSize.y - 370;
+            // num = tostring(num);
+            // num.concat("px");
+            return num;
+        },
+
         user_name() {
             return this.$store.state.user_name;
         },

@@ -26518,6 +26518,12 @@ function sleep(ms) {
         return l.text != null;
       });
     },
+    height: function height() {
+      var num = this.windowSize.y - 370; // num = tostring(num);
+      // num.concat("px");
+
+      return num;
+    },
     user_name: function user_name() {
       return this.$store.state.user_name;
     }
@@ -30929,9 +30935,7 @@ function sleep(ms) {
       }
     },
     height: function height() {
-      var num = this.windowSize.y - 370; // num = tostring(num);
-      // num.concat("px");
-
+      var num = this.windowSize.y - 370;
       return num;
     },
     filter_start: function filter_start() {
