@@ -26165,24 +26165,17 @@ function sleep(ms) {
 
             case 16:
               _this.loadingt = false;
-              Echo["private"]("stations").listen("updateStationNotification");
+              Echo["private"]("coord").listen("updateStationNotification").listen("StaionUpdateCoord", function (e) {
+                if (e.flag.message != null) {
+                  _this.$store.dispatch("updateStationNotification", e.flag.message);
+                }
 
-              if (!_this.$can("view_admin_logs")) {
-                _context.next = 22;
-                break;
-              }
-
-              _context.next = 21;
-              return _this.$store.dispatch("getLoggingRcSheet");
-
-            case 21:
-              Echo["private"]("rcsheetadminlogs").listen("RcSheetAddLogging", function (e) {
-                console.log("ytoyoyo");
-
-                _this.$store.dispatch("addLoggingRcSheet", e.flag.message);
+                if (e.flag.flag == 1) {
+                  _this.freshUpdate();
+                }
               });
 
-            case 22:
+            case 18:
             case "end":
               return _context.stop();
           }

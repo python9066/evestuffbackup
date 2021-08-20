@@ -272,15 +272,20 @@ export default {
         await this.$store.dispatch("getRcItems");
         await this.$store.dispatch("getRcStatus");
         this.loadingt = false;
-        Echo.private("stations").listen("updateStationNotification");
+        Echo.private("coord")
+            .listen("updateStationNotification")
+            .listen("StaionUpdateCoord", e => {
+                if (e.flag.message != null) {
+                    this.$store.dispatch(
+                        "updateStationNotification",
+                        e.flag.message
+                    );
+                }
 
-        if (this.$can("view_admin_logs")) {
-            await this.$store.dispatch("getLoggingRcSheet");
-            Echo.private("rcsheetadminlogs").listen("RcSheetAddLogging", e => {
-                console.log("ytoyoyo");
-                this.$store.dispatch("addLoggingRcSheet", e.flag.message);
+                if (e.flag.flag == 1) {
+                    this.freshUpdate();
+                }
             });
-        }
     },
 
     async mounted() {
