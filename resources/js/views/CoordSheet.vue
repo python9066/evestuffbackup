@@ -494,7 +494,7 @@ export default {
         ...mapState(["stations"]),
 
         filteredItems() {
-            return this.stations;
+            return this.stations.filter(s => s.show_on_coord == 1);
         },
 
         user_name() {
