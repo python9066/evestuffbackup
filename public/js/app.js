@@ -18965,7 +18965,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     showAmmo: function showAmmo() {
-      if (this.$can("gunner") && this.item.standing > 0) {
+      if (this.$can("gunner") && this.station.standing > 0) {
         return true;
       } else {
         return false;
