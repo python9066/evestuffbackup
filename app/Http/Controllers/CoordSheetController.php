@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class CoordSheetController extends Controller
 {
+
+    public function index()
+    {
+        return ['stations' => StationRecords::where('show_on_coord', 1)->get()];
+    }
+
     public function coordSheetListType()
     {
         $data = [];

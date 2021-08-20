@@ -10,7 +10,7 @@ use App\Models\RcStationRecords;
 use App\Models\Station;
 use Illuminate\Http\Request;
 
-class RcSheetContoller extends Controller
+class RcSheetController extends Controller
 {
     /**
      * Display a listing of the resource.
