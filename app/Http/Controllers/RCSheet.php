@@ -169,7 +169,7 @@ class RCSheet extends Controller
             }
         }
 
-        Station::where('show_on_rc', 5)->udpate(['rc_id' => null]);
+        Station::where('show_on_rc', 5)->update(['rc_id' => null]);
         $flag = collect([
             'flag' => 2
         ]);
