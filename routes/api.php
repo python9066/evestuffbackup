@@ -235,7 +235,7 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/fleetssadd', 'KeyFleetJoinControllerController@store');
     Route::put('/fleetsremove', 'KeyFleetJoinControllerController@removefleet');
     Route::put('/softdestory/{id}', 'StationController@softDestroy');
-    Route::get('/coordregionlist', 'CoordSheetController@coordSheetListRegion');
+    Route::get('/coordRegionlist', 'CoordSheetController@coordSheetListRegion');
     Route::get('/coordItemlist', 'CoordSheetController@coordSheetListItem');
     Route::get('/coordStatuslist', 'CoordSheetController@coordSheetListStatus');
     Route::get('/coordsheet', 'CoordSheetController@index');

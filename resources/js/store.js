@@ -986,7 +986,7 @@ export default new Vuex.Store({
         async getCoordRegions({ commit, state }) {
             let res = await axios({
                 method: "get",
-                url: "/api/coordStatuslist",
+                url: "/api/coordRegionlist",
                 headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",

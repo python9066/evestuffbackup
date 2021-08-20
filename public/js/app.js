@@ -76414,7 +76414,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 _context32.next = 3;
                 return axios({
                   method: "get",
-                  url: "/api/coordStatuslist",
+                  url: "/api/coordRegionlist",
                   headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
