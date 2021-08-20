@@ -112,32 +112,30 @@ class Notifications
                 'item_id' => $stationdata['str_type_id'],
 
             ]);
-            $rcCheck = Station::where('id', $id)->value('show_on_rc');
-            $rcmove = Station::where('id', $id)->value('show_on_rc_move');
-            if ($rcCheck == 1 || $rcmove == 1) {
-            } else {
+            // $rcCheck = Station::where('id', $id)->value('show_on_rc');
+            // $rcmove = Station::where('id', $id)->value('show_on_rc_move');
+            // if ($rcCheck == 1 || $rcmove == 1) {
+            // } else {
 
-                echo $rcCheck . " - " . $rcmove . "|||";
-                Station::where('id', $id)->update(['show_on_coord' => 1]);
-                $doneCheck = Station::where('id', $id)->value('station_status_id');
-                if ($doneCheck == 10) {
-                    Station::where('id', $id)->update(['station_status_id' => 1]);
-                }
-            }
-
-            // $station = Station::where('id', $id)->first();
-            // if (!$station->show_on_rc == 1 || !$station->show_on_rc_move == 1) {
-
-            //     echo $station->show_on_rc . " - " . $station->show_on_rc_move . "|||";
-            //     $station->show_on_coord = 1;
-            //     $station->save();
-
-            //     if ($station->station_status_id == 10) {
-            //         $station = Station::where('id', $id)->first();
-            //         $station->station_status_id = 1;
-            //         $station->save();
+            //     echo $rcCheck . " - " . $rcmove . "|||";
+            //     Station::where('id', $id)->update(['show_on_coord' => 1]);
+            //     $doneCheck = Station::where('id', $id)->value('station_status_id');
+            //     if ($doneCheck == 10) {
+            //         Station::where('id', $id)->update(['station_status_id' => 1]);
             //     }
             // }
+
+            $station = Station::where('id', $id)->first();
+            if ($station->show_on_rc !== 1 || $station->show_on_rc_move !== 1) {
+                $station->show_on_coord = 1;
+                $station->save();
+
+                if ($station->station_status_id == 10) {
+                    $station = Station::where('id', $id)->first();
+                    $station->station_status_id = 1;
+                    $station->save();
+                }
+            }
 
 
 
