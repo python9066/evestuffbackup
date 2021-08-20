@@ -26145,15 +26145,15 @@ function sleep(ms) {
               if (_this.$can("view_station_info_killsheet")) {}
 
               _context.next = 8;
-              return _this.$store.dispatch("loadStationInfo");
+              return _this.$store.dispatch("getCoordStationRecords");
 
             case 8:
               _context.next = 10;
-              return _this.$store.dispatch("getCoordRegions");
+              return _this.$store.dispatch("loadStationInfo");
 
             case 10:
               _context.next = 12;
-              return _this.$store.dispatch("getCoordStationRecords");
+              return _this.$store.dispatch("getCoordRegions");
 
             case 12:
               _context.next = 14;
