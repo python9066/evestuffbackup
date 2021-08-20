@@ -450,6 +450,15 @@ class StationController extends Controller
         $now = now();
         $noteText = $now . " -  Submitted By :" . Auth::user()->name . " Station Destoryed";
         $stationName = Station::find($id)->value('name');
+
+        $RCmessage = RcStationRecords::where('id', $id)->first();
+        $RCmessage->put('show_on_rc', 0);
+        $flag = collect([
+            'message' => $RCmessage,
+        ]);
+        broadcast(new RcSheetUpdate($flag));
+
+
         Station::where('id', $id)->update(['show_on_rc' => 0, 'show_on_coord' => 1, "notes" => $noteText, 'station_status_id' => 7, "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null]);
 
         $oldStatusID = Station::where('id', $id)->pluck('station_status_id')->first();
@@ -464,11 +473,9 @@ class StationController extends Controller
         broadcast(new StationNotificationUpdate($flag));
         broadcast(new StationUpdateCoord($flag));
 
-        $message = RcStationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new RcSheetUpdate($flag));
+
+
+
 
         $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' for ' . $stationName . ' at ' . now();
         $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
