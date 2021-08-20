@@ -330,7 +330,7 @@ export default {
             }
         },
         showAmmo() {
-            if (this.$can("gunner") && item.standing > 0) {
+            if (this.$can("gunner") && this.item.standing > 0) {
                 return true;
             } else {
                 return false;
