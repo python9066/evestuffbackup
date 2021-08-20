@@ -174,7 +174,7 @@ class Notifications
     {
         $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
 
-        $stations = Station::where('id', '>=', 1000000000);
+        $stations = Station::where('id', '>=', 1000000000)->get();
         foreach ($stations as $station) {
             $url = "https://recon.gnf.lt/api/structure/" . $station->id;
             $client = new GuzzleHttpClient();
