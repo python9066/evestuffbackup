@@ -292,6 +292,17 @@ export default {
         this.onResize();
     },
     methods: {
+        async freshUpdate() {
+            await this.$store.dispatch("getCoordStationRecords");
+            await this.$store.dispatch("loadStationInfo");
+            await this.$store.dispatch("getCoordRegions");
+            await this.$store.dispatch("getCoordItems");
+            await this.$store.dispatch("getCoordStatus");
+        },
+        buttontext(item) {
+            var ret = item.status_name.replace("Upcoming - ", "");
+            return ret;
+        },
         onResize() {
             this.windowSize = { x: window.innerWidth, y: window.innerHeight };
         },
@@ -587,33 +598,18 @@ export default {
             return parseInt(day, 10) + "d";
         },
 
-        pillColor(statusId) {
-            if (statusId == 1) {
-                return "success";
+        pillColor(item) {
+            if (item.status_id == 13) {
+                return "red darken-4";
             }
-            if (statusId == 2) {
-                return "primary";
+            if (item.status_id == 5) {
+                return "lime darken-4";
             }
-            if (statusId == 3) {
+            if (item.status_id == 14) {
+                return "green accent-4";
+            }
+            if (item.status_id == 17) {
                 return "#FF5EEA";
-            }
-            if (statusId == 4 || statusId == 11 || statusId == 13) {
-                return "dark-orange";
-            }
-            if (statusId == 5) {
-                return "indigo accent-4";
-            }
-            if (statusId == 6) {
-                return "primary";
-            }
-            if (statusId == 7) {
-                return "red";
-            }
-            if (statusId == 8 || statusId == 9) {
-                return "warning";
-            }
-            if (statusId == 14) {
-                return "deep-orange darken-2";
             }
         },
 

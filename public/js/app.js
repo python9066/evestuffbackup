@@ -26213,6 +26213,45 @@ function sleep(ms) {
     }))();
   },
   methods: {
+    freshUpdate: function freshUpdate() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _this3.$store.dispatch("getCoordStationRecords");
+
+              case 2:
+                _context3.next = 4;
+                return _this3.$store.dispatch("loadStationInfo");
+
+              case 4:
+                _context3.next = 6;
+                return _this3.$store.dispatch("getCoordRegions");
+
+              case 6:
+                _context3.next = 8;
+                return _this3.$store.dispatch("getCoordItems");
+
+              case 8:
+                _context3.next = 10;
+                return _this3.$store.dispatch("getCoordStatus");
+
+              case 10:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    buttontext: function buttontext(item) {
+      var ret = item.status_name.replace("Upcoming - ", "");
+      return ret;
+    },
     onResize: function onResize() {
       this.windowSize = {
         x: window.innerWidth,
@@ -26376,11 +26415,11 @@ function sleep(ms) {
       }
     },
     loadstations: function loadstations() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.loadingr = true;
       this.$store.dispatch("getStationData").then(function () {
-        _this3.loadingr = false;
+        _this4.loadingr = false;
       }); // console.log("30secs");
     },
     pillIcon: function pillIcon(statusId) {
@@ -26431,41 +26470,21 @@ function sleep(ms) {
     numberDay: function numberDay(day) {
       return parseInt(day, 10) + "d";
     },
-    pillColor: function pillColor(statusId) {
-      if (statusId == 1) {
-        return "success";
+    pillColor: function pillColor(item) {
+      if (item.status_id == 13) {
+        return "red darken-4";
       }
 
-      if (statusId == 2) {
-        return "primary";
+      if (item.status_id == 5) {
+        return "lime darken-4";
       }
 
-      if (statusId == 3) {
+      if (item.status_id == 14) {
+        return "green accent-4";
+      }
+
+      if (item.status_id == 17) {
         return "#FF5EEA";
-      }
-
-      if (statusId == 4 || statusId == 11 || statusId == 13) {
-        return "dark-orange";
-      }
-
-      if (statusId == 5) {
-        return "indigo accent-4";
-      }
-
-      if (statusId == 6) {
-        return "primary";
-      }
-
-      if (statusId == 7) {
-        return "red";
-      }
-
-      if (statusId == 8 || statusId == 9) {
-        return "warning";
-      }
-
-      if (statusId == 14) {
-        return "deep-orange darken-2";
       }
     },
     campaignStart: function campaignStart(item) {
@@ -26555,13 +26574,13 @@ function sleep(ms) {
       return this.getShowOnCoordStations;
     },
     filter_start: function filter_start() {
-      var _this4 = this;
+      var _this5 = this;
 
       var data = [];
 
       if (this.statusPicked.length != 0) {
         this.statusPicked.forEach(function (p) {
-          var pick = _this4.filterSet.filter(function (f) {
+          var pick = _this5.filterSet.filter(function (f) {
             return f.station_status_id == p;
           });
 
@@ -26577,13 +26596,13 @@ function sleep(ms) {
       return this.filterSet;
     },
     filter_mid: function filter_mid() {
-      var _this5 = this;
+      var _this6 = this;
 
       var data = [];
 
       if (this.itemPicked.length != 0) {
         this.itemPicked.forEach(function (p) {
-          var pick = _this5.filter_start.filter(function (f) {
+          var pick = _this6.filter_start.filter(function (f) {
             return f.item_id == p;
           });
 
@@ -26599,13 +26618,13 @@ function sleep(ms) {
       return this.filter_start;
     },
     filter_end: function filter_end() {
-      var _this6 = this;
+      var _this7 = this;
 
       var data = [];
 
       if (this.regionPicked.length != 0) {
         this.regionPicked.forEach(function (p) {
-          var pick = _this6.filter_mid.filter(function (f) {
+          var pick = _this7.filter_mid.filter(function (f) {
             return f.region_id == p;
           });
 
