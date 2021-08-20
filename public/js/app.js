@@ -25859,6 +25859,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 
 
+var _objectSpread2;
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -26438,7 +26440,7 @@ function sleep(ms) {
       return false;
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["coordstations", "coordsheetRegion", "coordsheetItem", "coordsheetStatus"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getShowOnCoordStations"])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["coordstations", "coordsheetRegion", "coordsheetItem", "coordsheetStatus"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getShowOnCoordStations"])), {}, (_objectSpread2 = {
     filter_start: function filter_start() {
       var _this4 = this;
 
@@ -26505,9 +26507,6 @@ function sleep(ms) {
 
       return this.filter_mid;
     },
-    user_name: function user_name() {
-      return this.$store.state.user_name;
-    },
     dropdown_region_list: function dropdown_region_list() {
       return this.coordsheetRegion;
     },
@@ -26518,8 +26517,19 @@ function sleep(ms) {
       return this.coordsheetStatus.filter(function (l) {
         return l.text != null;
       });
+    },
+    user_name: function user_name() {
+      return this.$store.state.user_name;
     }
-  }),
+  }, _defineProperty(_objectSpread2, "dropdown_region_list", function dropdown_region_list() {
+    return this.coordsheetRegion;
+  }), _defineProperty(_objectSpread2, "dropdown_type_list", function dropdown_type_list() {
+    return this.coordsheetItem;
+  }), _defineProperty(_objectSpread2, "dropdown_status_list", function dropdown_status_list() {
+    return this.coordsheetStatus.filter(function (l) {
+      return l.text != null;
+    });
+  }), _objectSpread2)),
   beforeDestroy: function beforeDestroy() {
     Echo.leave("notes");
     Echo.leave("stationinfo");
