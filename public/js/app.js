@@ -26440,7 +26440,7 @@ function sleep(ms) {
       return false;
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["coordstations", "coordsheetRegion", "coordsheetItem", "coordsheetStatus"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getShowOnCoordStations"])), {}, (_objectSpread2 = {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["coordsheetRegion", "coordsheetItem", "coordsheetStatus"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getShowOnCoordStations"])), {}, (_objectSpread2 = {
     filterSet: function filterSet() {
       return this.getShowOnCoordStations;
     },
@@ -26464,7 +26464,7 @@ function sleep(ms) {
         return data;
       }
 
-      return this.filter_fc;
+      return this.filterSet;
     },
     filter_mid: function filter_mid() {
       var _this5 = this;
@@ -26532,10 +26532,6 @@ function sleep(ms) {
     return this.coordsheetRegion;
   }), _defineProperty(_objectSpread2, "dropdown_type_list", function dropdown_type_list() {
     return this.coordsheetItem;
-  }), _defineProperty(_objectSpread2, "dropdown_status_list", function dropdown_status_list() {
-    return this.coordsheetStatus.filter(function (l) {
-      return l.text != null;
-    });
   }), _objectSpread2)),
   beforeDestroy: function beforeDestroy() {
     Echo.leave("notes");

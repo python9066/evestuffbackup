@@ -541,12 +541,7 @@ export default {
     },
 
     computed: {
-        ...mapState([
-            "coordstations",
-            "coordsheetRegion",
-            "coordsheetItem",
-            "coordsheetStatus"
-        ]),
+        ...mapState(["coordsheetRegion", "coordsheetItem", "coordsheetStatus"]),
         ...mapGetters(["getShowOnCoordStations"]),
 
         filterSet() {
@@ -567,7 +562,7 @@ export default {
                 });
                 return data;
             }
-            return this.filter_fc;
+            return this.filterSet;
         },
 
         filter_mid() {
@@ -629,10 +624,6 @@ export default {
 
         dropdown_type_list() {
             return this.coordsheetItem;
-        },
-
-        dropdown_status_list() {
-            return this.coordsheetStatus.filter(l => l.text != null);
         }
     },
     beforeDestroy() {
