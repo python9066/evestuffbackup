@@ -274,7 +274,7 @@ export default {
         await this.$store.dispatch("getCoordItems");
         await this.$store.dispatch("getCoordStatus");
         this.loadingt = false;
-        Echo.private("coord").listen("StaionUpdateCoord", e => {
+        Echo.private("coord").listen("StationUpdateCoord", e => {
             if (e.flag.message != null) {
                 this.$store.dispatch(
                     "updateStationNotification",
