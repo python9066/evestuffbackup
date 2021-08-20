@@ -456,7 +456,7 @@ export default {
                 repair_time: item.repair_time
             };
             axios({
-                method: "put", //you can set what request you want to be
+                method: "put", //you can sfefeet what request you want to be
                 url: "api/updatestationnotification/" + item.id,
                 data: request,
                 headers: {
