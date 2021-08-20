@@ -26481,20 +26481,20 @@ function sleep(ms) {
       return parseInt(day, 10) + "d";
     },
     pillColor: function pillColor(item) {
-      if (item.status_id == 13) {
-        return "red darken-4";
+      if (item.status_id == 4) {
+        return "orange darken-1";
       }
 
-      if (item.status_id == 5) {
-        return "lime darken-4";
+      if (item.status_id == 18) {
+        return "brown lighten-2";
       }
 
-      if (item.status_id == 14) {
-        return "green accent-4";
+      if (item.status_id == 1) {
+        return "green";
       }
 
-      if (item.status_id == 17) {
-        return "#FF5EEA";
+      if (item.status_id == 7) {
+        return "red";
       }
     },
     campaignStart: function campaignStart(item) {
