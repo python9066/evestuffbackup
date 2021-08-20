@@ -451,7 +451,7 @@ class StationController extends Controller
         $noteText = $now . " -  Submitted By :" . Auth::user()->name . " Station Destoryed";
         $stationName = Station::find($id)->value('name');
 
-        $RCmessage = RcStationRecords::where('id', $id)->first();
+        $RCmessage = collect([RcStationRecords::where('id', $id)->first()]);
         $RCmessage->put('show_on_rc', 0);
         $flag = collect([
             'message' => $RCmessage,
