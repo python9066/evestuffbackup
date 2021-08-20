@@ -26441,6 +26441,9 @@ function sleep(ms) {
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["coordstations", "coordsheetRegion", "coordsheetItem", "coordsheetStatus"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getShowOnCoordStations"])), {}, (_objectSpread2 = {
+    filterSet: function filterSet() {
+      return this.getShowOnCoordStations;
+    },
     filter_start: function filter_start() {
       var _this4 = this;
 
@@ -26448,8 +26451,8 @@ function sleep(ms) {
 
       if (this.statusPicked.length != 0) {
         this.statusPicked.forEach(function (p) {
-          var pick = _this4.getShowOnCoordStations.filter(function (f) {
-            return f.status_id == p;
+          var pick = _this4.filterSet.filter(function (f) {
+            return f.station_status_id == p;
           });
 
           if (pick != null) {

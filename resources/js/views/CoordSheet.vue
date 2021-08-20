@@ -549,12 +549,15 @@ export default {
         ]),
         ...mapGetters(["getShowOnCoordStations"]),
 
+        filterSet() {
+            return this.getShowOnCoordStations;
+        },
         filter_start() {
             let data = [];
             if (this.statusPicked.length != 0) {
                 this.statusPicked.forEach(p => {
-                    let pick = this.getShowOnCoordStations.filter(
-                        f => f.status_id == p
+                    let pick = this.filterSet.filter(
+                        f => f.station_status_id == p
                     );
                     if (pick != null) {
                         pick.forEach(pk => {
