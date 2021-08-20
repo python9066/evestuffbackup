@@ -112,7 +112,7 @@ class RCSheet extends Controller
 
                         $check = Station::where('name', $input['structure_name'])->first();
                         if ($check) {
-                            Station::where('name', $input['structure_name'])->update(['rc_id' => $input['id'], 'show_on_rc' => 1]);
+                            Station::where('name', $input['structure_name'])->update(['rc_id' => $input['id'], 'show_on_rc' => 1, 'show_on_coord' => 0]);
                         } else {
                             $newStation = 1;
                         }
