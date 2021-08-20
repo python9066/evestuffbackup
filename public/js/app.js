@@ -25968,6 +25968,94 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -25982,53 +26070,20 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      atime: null,
-      check: "not here",
-      componentKey: 0,
-      dialog1: false,
-      dialog2: false,
-      dialog3: false,
-      diff: 0,
-      endcount: "",
-      icon: "justify",
-      loadingt: true,
-      loadingf: true,
-      loadingr: true,
-      name: "Timer",
-      poll: null,
+      regionPicked: [],
+      itemPicked: [],
+      statusPicked: [],
       search: "",
-      statusflag: 2,
+      toggleFC: false,
+      logs: false,
       snack: false,
       snackColor: "",
       snackText: "",
-      toggle_exclusive: 1,
-      today: 0,
-      text: "center",
-      toggle_none: null,
-      sortdesc: true,
-      sortby: "timestamp",
-      dropdown_edit: [{
-        title: "Repairing",
-        value: 11
-      }, {
-        title: "Saved",
-        value: 4
-      }, {
-        title: "Reffed - Armor",
-        value: 8
-      }, {
-        title: "Reffed - Hull",
-        value: 9
-      }, {
-        title: "Destroyed",
-        value: 7
-      }, {
-        title: "Anchoring",
-        value: 14
-      }, {
-        title: "New",
-        value: 1
-      }],
+      loadingt: true,
+      windowSize: {
+        x: 0,
+        y: 0
+      },
       headers: [{
         text: "Region",
         value: "region_name",
@@ -26054,15 +26109,6 @@ function sleep(ms) {
         value: "station_name",
         width: "15%"
       }, {
-        text: "Timestamp",
-        value: "timestamp",
-        align: "center",
-        width: "15%"
-      }, {
-        text: "Age/CountDown",
-        value: "count",
-        width: "5%"
-      }, {
         text: "Status",
         value: "station_status_name",
         align: "center",
@@ -26083,43 +26129,60 @@ function sleep(ms) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("notes").listen("chillStationNotificationNew", function (e) {
-                if (_this.$can("edit_chill_timers")) {
-                  _this.$store.dispatch("loadStationInfo");
-                }
-
-                _this.$store.dispatch("addStationNotification", e.flag.message);
-              }).listen("StationNotificationUpdate", function (e) {
-                _this.$store.dispatch("updateStationNotification", e.flag.message);
-              }).listen("StationNotificationDelete", function (e) {
-                _this.$store.dispatch("deleteStationNotification", e.flag.id);
-              }).listen("StationDataSet", function (e) {
-                _this.$store.dispatch("getStationData");
-              });
-
-              if (!_this.$can("edit_chill_timers")) {
+              if (!_this.$can("super")) {
                 _context.next = 5;
                 break;
               }
 
-              Echo["private"]("stationinfo").listen("StationInfoGet", function (e) {
-                _this.$store.dispatch("loadStationInfo");
-              }).listen("StationCoreUpdate", function (e) {
-                console.log(e);
+              _context.next = 3;
+              return _this.$store.dispatch("getAllianceTickList");
 
-                _this.$store.dispatch("updateCores", e.flag.message);
-              });
+            case 3:
               _context.next = 5;
-              return _this.$store.dispatch("loadStationInfo");
+              return _this.$store.dispatch("getTickList");
 
             case 5:
-              _this.$store.dispatch("getStationData").then(function () {
-                _this.loadingt = false;
-                _this.loadingf = false;
-                _this.loadingr = false;
+              if (_this.$can("view_station_info_killsheet")) {}
+
+              _context.next = 8;
+              return _this.$store.dispatch("loadStationInfo");
+
+            case 8:
+              _context.next = 10;
+              return _this.$store.dispatch("getRcRegions");
+
+            case 10:
+              _context.next = 12;
+              return _this.$store.dispatch("getRcStationRecords");
+
+            case 12:
+              _context.next = 14;
+              return _this.$store.dispatch("getRcItems");
+
+            case 14:
+              _context.next = 16;
+              return _this.$store.dispatch("getRcStatus");
+
+            case 16:
+              _this.loadingt = false;
+              Echo["private"]("stations").listen("CoordSheetupdate");
+
+              if (!_this.$can("view_admin_logs")) {
+                _context.next = 22;
+                break;
+              }
+
+              _context.next = 21;
+              return _this.$store.dispatch("getLoggingRcSheet");
+
+            case 21:
+              Echo["private"]("rcsheetadminlogs").listen("RcSheetAddLogging", function (e) {
+                console.log("ytoyoyo");
+
+                _this.$store.dispatch("addLoggingRcSheet", e.flag.message);
               });
 
-            case 6:
+            case 22:
             case "end":
               return _context.stop();
           }
@@ -60752,245 +60815,479 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: " pr-16 pl-16" },
+    {
+      directives: [
+        {
+          name: "resize",
+          rawName: "v-resize",
+          value: _vm.onResize,
+          expression: "onResize"
+        }
+      ],
+      staticClass: "pr-16 pl-16"
+    },
     [
       _c(
-        "div",
-        { staticClass: " d-flex align-items-center" },
+        "v-row",
+        {
+          attrs: { "no-gutters": "", justify: "space-between", align: "center" }
+        },
         [
-          _c("v-card-title", [_vm._v("None Reffed Hostile Stations")]),
-          _vm._v(" "),
-          _vm.$can("add_timer")
-            ? _c("AddStation", { attrs: { type: 2 } })
-            : _vm._e(),
-          _vm._v(" "),
-          _c("v-text-field", {
-            staticClass: " ml-5",
-            attrs: {
-              "append-icon": "mdi-magnify",
-              label: "Search",
-              "single-line": "",
-              "hide-details": ""
-            },
-            model: {
-              value: _vm.search,
-              callback: function($$v) {
-                _vm.search = $$v
-              },
-              expression: "search"
-            }
-          })
+          _c(
+            "v-col",
+            { attrs: { cols: "4", align: "start" } },
+            [
+              _c(
+                "v-card",
+                {
+                  attrs: {
+                    tile: "",
+                    flat: "",
+                    color: "#121212",
+                    width: "500px"
+                  }
+                },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      "append-icon": "mdi-magnify",
+                      label: "Search",
+                      "single-line": "",
+                      loading: _vm.loadingt,
+                      filled: "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.search,
+                      callback: function($$v) {
+                        _vm.search = $$v
+                      },
+                      expression: "search"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
         ],
         1
       ),
       _vm._v(" "),
       _c(
-        "v-data-table",
-        {
-          staticClass: "elevation-1",
-          attrs: {
-            headers: _vm.headers,
-            items: _vm.filteredItems,
-            "item-class": _vm.itemRowBackground,
-            "item-key": "id",
-            loading: _vm.loadingt,
-            "items-per-page": 25,
-            "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] },
-            "sort-by": _vm.sortby,
-            search: _vm.search,
-            "sort-desc": _vm.sortdesc,
-            "multi-sort": ""
-          },
-          on: {
-            "update:sortBy": function($event) {
-              _vm.sortby = $event
-            },
-            "update:sort-by": function($event) {
-              _vm.sortby = $event
-            },
-            "update:sortDesc": function($event) {
-              _vm.sortdesc = $event
-            },
-            "update:sort-desc": function($event) {
-              _vm.sortdesc = $event
-            }
-          },
-          scopedSlots: _vm._u(
-            [
-              {
-                key: "item.station_name",
-                fn: function(ref) {
-                  var item = ref.item
-                  return [
-                    _vm._v(
-                      "\n            " +
-                        _vm._s(item.station_name) +
-                        "\n        "
-                    )
-                  ]
-                }
-              },
-              {
-                key: "item.alliance_ticker",
-                fn: function(ref) {
-                  var item = ref.item
-                  return [
-                    _c("v-avatar", { attrs: { size: "35" } }, [
-                      _c("img", { attrs: { src: item.url } })
-                    ]),
-                    _vm._v(" "),
-                    item.standing > 0
-                      ? _c("span", { staticClass: " blue--text pl-3" }, [
-                          _vm._v(
-                            _vm._s(item.alliance_ticker) + "\n            "
-                          )
-                        ])
-                      : item.standing < 0
-                      ? _c("span", { staticClass: "red--text pl-3" }, [
-                          _vm._v(
-                            _vm._s(item.alliance_ticker) + "\n            "
-                          )
-                        ])
-                      : _c("span", { staticClass: "pl-3" }, [
-                          _vm._v(_vm._s(item.alliance_ticker))
-                        ])
-                  ]
-                }
-              },
-              _vm.$can("edit_chill_timers")
-                ? {
-                    key: "item.actions",
-                    fn: function(ref) {
-                      var item = ref.item
-                      return [
-                        _c(
-                          "div",
-                          { staticClass: " d-inline-flex" },
-                          [
-                            _vm.showGunner(item)
-                              ? _c("StationGunner", {
-                                  staticClass: " mr-2",
-                                  attrs: { station: item }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _c(
-                              "v-tooltip",
-                              {
-                                attrs: {
-                                  color: "#121212",
-                                  bottom: "",
-                                  "open-delay": 2000,
-                                  disabled: _vm.$store.state.tooltipToggle
-                                },
-                                scopedSlots: _vm._u(
-                                  [
-                                    {
-                                      key: "activator",
-                                      fn: function(ref) {
-                                        var tooltip = ref.on
-                                        var atooltip = ref.attrs
-                                        return [
-                                          _c(
-                                            "div",
-                                            _vm._g(
-                                              _vm._b(
-                                                {},
-                                                "div",
-                                                Object.assign({}, atooltip),
-                                                false
-                                              ),
-                                              Object.assign({}, tooltip)
-                                            ),
-                                            [
-                                              _vm.showInfo(item)
-                                                ? _c("Info", {
-                                                    attrs: { station: item }
-                                                  })
-                                                : _vm._e()
-                                            ],
-                                            1
-                                          )
-                                        ]
-                                      }
-                                    }
-                                  ],
-                                  null,
-                                  true
-                                )
-                              },
-                              [
-                                _vm._v(" "),
-                                _c("span", [
-                                  _vm._v(
-                                    "\n                        Where to see fitting of station, core status"
-                                  )
-                                ])
-                              ]
-                            )
-                          ],
-                          1
-                        )
-                      ]
-                    }
-                  }
-                : null
-            ],
-            null,
-            true
-          )
-        },
+        "v-row",
+        { attrs: { "no-gutters": "", justify: "center" } },
         [
-          _vm._v("\n        >\n\n        "),
-          _c("template", { slot: "no-data" }, [
-            _vm._v(
-              "\n            All Hostile Stations our reffed!!!!!!\n        "
-            )
-          ])
+          _c(
+            "v-col",
+            { staticClass: " d-inline-flex", attrs: { cols: "4" } },
+            [
+              _c(
+                "v-card",
+                {
+                  attrs: {
+                    "max-width": "600px",
+                    "min-width": "600px",
+                    color: "#121212",
+                    elevation: "0"
+                  }
+                },
+                [
+                  _c(
+                    "v-card-text",
+                    [
+                      _c("v-select", {
+                        staticClass: " pb-2",
+                        attrs: {
+                          items: _vm.dropdown_region_list,
+                          label: "Filter by Region",
+                          multiple: "",
+                          loading: _vm.loadingt,
+                          chips: "",
+                          "deletable-chips": "",
+                          "hide-details": ""
+                        },
+                        model: {
+                          value: _vm.regionPicked,
+                          callback: function($$v) {
+                            _vm.regionPicked = $$v
+                          },
+                          expression: "regionPicked"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { staticClass: " d-inline-flex", attrs: { cols: "4" } },
+            [
+              _c(
+                "v-card",
+                {
+                  attrs: {
+                    "max-width": "600px",
+                    "min-width": "600px",
+                    color: "#121212",
+                    elevation: "0"
+                  }
+                },
+                [
+                  _c(
+                    "v-card-text",
+                    [
+                      _c("v-select", {
+                        staticClass: " pb-2",
+                        attrs: {
+                          items: _vm.dropdown_type_list,
+                          label: "Filter by Type",
+                          loading: _vm.loadingt,
+                          multiple: "",
+                          chips: "",
+                          "deletable-chips": "",
+                          "hide-details": ""
+                        },
+                        model: {
+                          value: _vm.itemPicked,
+                          callback: function($$v) {
+                            _vm.itemPicked = $$v
+                          },
+                          expression: "itemPicked"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { staticClass: " d-inline-flex", attrs: { cols: "4" } },
+            [
+              _c(
+                "v-card",
+                {
+                  attrs: {
+                    "max-width": "600px",
+                    "min-width": "600px",
+                    color: "#121212",
+                    elevation: "0"
+                  }
+                },
+                [
+                  _c(
+                    "v-card-text",
+                    [
+                      _c("v-select", {
+                        staticClass: " pb-2",
+                        attrs: {
+                          items: _vm.dropdown_status_list,
+                          label: "Filter by Status",
+                          loading: _vm.loadingt,
+                          multiple: "",
+                          chips: "",
+                          "deletable-chips": "",
+                          "hide-details": ""
+                        },
+                        model: {
+                          value: _vm.statusPicked,
+                          callback: function($$v) {
+                            _vm.statusPicked = $$v
+                          },
+                          expression: "statusPicked"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
         ],
-        2
+        1
       ),
       _vm._v(" "),
       _c(
-        "v-snackbar",
-        {
-          attrs: { timeout: 3000, color: _vm.snackColor },
-          scopedSlots: _vm._u([
+        "v-row",
+        { attrs: { "no-gutters": "", justify: "center" } },
+        [
+          _c(
+            "v-col",
             {
-              key: "action",
-              fn: function(ref) {
-                var attrs = ref.attrs
-                return [
-                  _c(
-                    "v-btn",
-                    _vm._b(
-                      {
-                        attrs: { text: "" },
-                        on: {
-                          click: function($event) {
-                            _vm.snack = false
-                          }
-                        }
-                      },
-                      "v-btn",
-                      attrs,
-                      false
-                    ),
-                    [_vm._v("Close")]
-                  )
-                ]
-              }
-            }
-          ]),
-          model: {
-            value: _vm.snack,
-            callback: function($$v) {
-              _vm.snack = $$v
+              staticClass: " d-inline-flex justify-content-center w-auto",
+              attrs: { cols: "12" }
             },
-            expression: "snack"
-          }
-        },
-        [_vm._v("\n        " + _vm._s(_vm.snackText) + "\n\n        ")]
+            [
+              _c(
+                "v-card",
+                { attrs: { width: "100%" } },
+                [
+                  _c(
+                    "v-data-table",
+                    {
+                      staticClass: "elevation-5",
+                      attrs: {
+                        headers: _vm.headers,
+                        items: _vm.filter_end,
+                        "item-class": _vm.itemRowBackground,
+                        id: "table",
+                        "item-key": "id",
+                        height: _vm.height,
+                        "fixed-header": "",
+                        loading: _vm.loadingt,
+                        "items-per-page": 50,
+                        "footer-props": {
+                          "items-per-page-options": [10, 20, 30, 50, 100, -1]
+                        },
+                        search: _vm.search,
+                        "sort-by": ["region_name"],
+                        "sort-desc": [false, true],
+                        "multi-sort": ""
+                      },
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "item.alliance_ticker",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                item.url
+                                  ? _c(
+                                      "span",
+                                      [
+                                        _c(
+                                          "v-avatar",
+                                          { attrs: { size: "35" } },
+                                          [
+                                            _c("img", {
+                                              attrs: { src: item.url }
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "red--text pl-3" },
+                                          [
+                                            _vm._v(
+                                              _vm._s(item.alliance_ticker) +
+                                                "\n                            "
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  : _vm.$can("super")
+                                  ? _c(
+                                      "span",
+                                      [
+                                        _c("AddCorpTicker", {
+                                          attrs: { station: item }
+                                        }),
+                                        _c("AddAllianceTicker", {
+                                          attrs: { station: item }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e()
+                              ]
+                            }
+                          },
+                          {
+                            key: "item.system_name",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    attrs: {
+                                      href: _vm.link(item),
+                                      target: "_blank",
+                                      icon: "",
+                                      color: "green"
+                                    }
+                                  },
+                                  [_c("v-icon", [_vm._v(" fas fa-map fa-xs")])],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "clipboard",
+                                        rawName: "v-clipboard",
+                                        value: item.system_name,
+                                        expression: "item.system_name"
+                                      },
+                                      {
+                                        name: "clipboard",
+                                        rawName: "v-clipboard:success",
+                                        value: _vm.Systemcopied,
+                                        expression: "Systemcopied",
+                                        arg: "success"
+                                      }
+                                    ]
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(item.system_name) +
+                                        "\n                        "
+                                    )
+                                  ]
+                                )
+                              ]
+                            }
+                          },
+                          {
+                            key: "item.status_name",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "v-chip",
+                                  {
+                                    attrs: {
+                                      pill: "",
+                                      small: "",
+                                      color: _vm.pillColor(item)
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(_vm.buttontext(item)) +
+                                        "\n                        "
+                                    )
+                                  ]
+                                )
+                              ]
+                            }
+                          },
+                          {
+                            key: "item.actions",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "div",
+                                  { staticClass: " d-inline-flex" },
+                                  [
+                                    _c("RcStationMessage", {
+                                      staticClass: " mr-2",
+                                      attrs: { station: item }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      [
+                                        _vm.showInfo(item)
+                                          ? _c("Info", {
+                                              attrs: { station: item }
+                                            })
+                                          : _vm._e()
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            }
+                          }
+                        ],
+                        null,
+                        true
+                      )
+                    },
+                    [
+                      _c("template", { slot: "no-data" }, [
+                        _vm._v(
+                          "\n                        All Hostile Stations our reffed!!!!!!\n                    "
+                        )
+                      ])
+                    ],
+                    2
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-snackbar",
+            {
+              attrs: { timeout: 3000, color: _vm.snackColor },
+              scopedSlots: _vm._u([
+                {
+                  key: "action",
+                  fn: function(ref) {
+                    var attrs = ref.attrs
+                    return [
+                      _c(
+                        "v-btn",
+                        _vm._b(
+                          {
+                            attrs: { text: "" },
+                            on: {
+                              click: function($event) {
+                                _vm.snack = false
+                              }
+                            }
+                          },
+                          "v-btn",
+                          attrs,
+                          false
+                        ),
+                        [
+                          _vm._v(
+                            "\n                    Copied\n                "
+                          )
+                        ]
+                      )
+                    ]
+                  }
+                }
+              ]),
+              model: {
+                value: _vm.snack,
+                callback: function($$v) {
+                  _vm.snack = $$v
+                },
+                expression: "snack"
+              }
+            },
+            [
+              _vm._v(
+                "\n            " + _vm._s(_vm.snackText) + "\n\n            "
+              )
+            ]
+          )
+        ],
+        1
       )
     ],
     1
@@ -64422,7 +64719,7 @@ var render = function() {
                                           [
                                             _vm._v(
                                               _vm._s(item.alliance_ticker) +
-                                                "\n                            "
+                                                "\n                                "
                                             )
                                           ]
                                         )
@@ -64486,9 +64783,9 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                            " +
+                                      "\n                                " +
                                         _vm._s(item.system_name) +
-                                        "\n                        "
+                                        "\n                            "
                                     )
                                   ]
                                 )
@@ -64547,7 +64844,7 @@ var render = function() {
                                                             scope.props.days
                                                           )
                                                         ) +
-                                                          "\n                                    " +
+                                                          "\n                                        " +
                                                           _vm._s(
                                                             scope.props.hours
                                                           ) +
@@ -64686,31 +64983,15 @@ var render = function() {
                               return [
                                 item.out == 1
                                   ? _c("DoneButton", { attrs: { item: item } })
-                                  : _c(
-                                      "v-chip",
-                                      {
-                                        attrs: {
-                                          pill: "",
-                                          small: "",
-                                          color: _vm.pillColor(item)
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                            " +
-                                            _vm._s(_vm.buttontext(item)) +
-                                            "\n                        "
-                                        )
-                                      ]
-                                    )
-                              ]
-                            }
-                          },
-                          {
-                            key: "item.gsol_name",
-                            fn: function(ref) {
-                              var item = ref.item
-                              return [
+                                  : _vm._e(),
+                                _vm._v(
+                                  '\n        pill\n                                small\n                                :color="pillColor(item)"\n                            >\n                                ' +
+                                    _vm._s(_vm.buttontext(item)) +
+                                    " - out\n                            "
+                                ),
+                                _vm._v(
+                                  '\nte v-slot:[`item.gsol_name`]="{ item }">\n                            '
+                                ),
                                 _c("RcGsolButton", {
                                   staticClass: " mr-2",
                                   attrs: { station: item }
@@ -64762,10 +65043,9 @@ var render = function() {
                       _vm._v(" "),
                       _vm._v(" "),
                       _vm._v(" "),
-                      _vm._v(" "),
                       _c("template", { slot: "no-data" }, [
                         _vm._v(
-                          "\n                        No Active or Upcoming Campaigns\n                    "
+                          "\n                            No Active or Upcoming Campaigns\n                        "
                         )
                       ])
                     ],
@@ -64805,7 +65085,7 @@ var render = function() {
                         ),
                         [
                           _vm._v(
-                            "\n                    Copied\n                "
+                            "\n                        Copied\n                    "
                           )
                         ]
                       )
@@ -64823,7 +65103,9 @@ var render = function() {
             },
             [
               _vm._v(
-                "\n            " + _vm._s(_vm.snackText) + "\n\n            "
+                "\n                " +
+                  _vm._s(_vm.snackText) +
+                  "\n\n                "
               )
             ]
           )

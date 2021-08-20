@@ -1,100 +1,188 @@
 <template>
-    <div class=" pr-16 pl-16">
-        <div class=" d-flex align-items-center">
-            <v-card-title>None Reffed Hostile Stations</v-card-title>
-            <!-- <ChillAddStation v-if="$can('edit_chill_timers')"></ChillAddStation> -->
-            <AddStation v-if="$can('add_timer')" :type="2"></AddStation>
-
-            <v-text-field
-                class=" ml-5"
-                v-model="search"
-                append-icon="mdi-magnify"
-                label="Search"
-                single-line
-                hide-details
-            ></v-text-field>
-        </div>
-        <v-data-table
-            :headers="headers"
-            :items="filteredItems"
-            :item-class="itemRowBackground"
-            item-key="id"
-            :loading="loadingt"
-            :items-per-page="25"
-            :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
-            :sort-by.sync="sortby"
-            :search="search"
-            :sort-desc.sync="sortdesc"
-            multi-sort
-            class="elevation-1"
-        >
+    <div class="pr-16 pl-16" v-resize="onResize">
+        <v-row no-gutters justify="space-between" align="center">
+            <v-col cols="4" align="start">
+                <v-card tile flat color="#121212" width="500px">
+                    <v-text-field
+                        v-model="search"
+                        append-icon="mdi-magnify"
+                        label="Search"
+                        single-line
+                        :loading="loadingt"
+                        filled
+                        hide-details
+                    ></v-text-field>
+                </v-card>
+            </v-col>
+        </v-row>
+        <v-row no-gutters justify="center">
+            <v-col class=" d-inline-flex" cols="4">
+                <v-card
+                    max-width="600px"
+                    min-width="600px"
+                    color="#121212"
+                    elevation="0"
+                >
+                    <v-card-text>
+                        <v-select
+                            class=" pb-2"
+                            v-model="regionPicked"
+                            :items="dropdown_region_list"
+                            label="Filter by Region"
+                            multiple
+                            :loading="loadingt"
+                            chips
+                            deletable-chips
+                            hide-details
+                        ></v-select>
+                    </v-card-text>
+                </v-card>
+            </v-col>
+            <v-col class=" d-inline-flex" cols="4">
+                <v-card
+                    max-width="600px"
+                    min-width="600px"
+                    color="#121212"
+                    elevation="0"
+                >
+                    <v-card-text>
+                        <v-select
+                            class=" pb-2"
+                            v-model="itemPicked"
+                            :items="dropdown_type_list"
+                            label="Filter by Type"
+                            :loading="loadingt"
+                            multiple
+                            chips
+                            deletable-chips
+                            hide-details
+                        ></v-select>
+                    </v-card-text>
+                </v-card>
+            </v-col>
+            <v-col class=" d-inline-flex" cols="4">
+                <v-card
+                    max-width="600px"
+                    min-width="600px"
+                    color="#121212"
+                    elevation="0"
+                >
+                    <v-card-text>
+                        <v-select
+                            class=" pb-2"
+                            v-model="statusPicked"
+                            :items="dropdown_status_list"
+                            label="Filter by Status"
+                            :loading="loadingt"
+                            multiple
+                            chips
+                            deletable-chips
+                            hide-details
+                        ></v-select>
+                    </v-card-text>
+                </v-card>
+            </v-col>
+        </v-row>
+        <v-row no-gutters justify="center">
+            <v-col
+                class=" d-inline-flex justify-content-center w-auto"
+                cols="12"
             >
-
-            <template slot="no-data">
-                All Hostile Stations our reffed!!!!!!
-            </template>
-
-            <template
-                v-slot:[`item.station_name`]="{ item }"
-                class="d-inline-flex align-center"
-            >
-                {{ item.station_name }}
-            </template>
-            <template
-                v-slot:[`item.alliance_ticker`]="{ item }"
-                class="d-inline-flex align-center"
-            >
-                <v-avatar size="35"><img :src="item.url"/></v-avatar>
-                <span v-if="item.standing > 0" class=" blue--text pl-3"
-                    >{{ item.alliance_ticker }}
-                </span>
-                <span v-else-if="item.standing < 0" class="red--text pl-3"
-                    >{{ item.alliance_ticker }}
-                </span>
-                <span v-else class="pl-3">{{ item.alliance_ticker }}</span>
-            </template>
-
-            <template
-                v-slot:[`item.actions`]="{ item }"
-                v-if="$can('edit_chill_timers')"
-            >
-                <div class=" d-inline-flex">
-                    <StationGunner
-                        class=" mr-2"
-                        :station="item"
-                        v-if="showGunner(item)"
-                    ></StationGunner>
-
-                    <v-tooltip
-                        color="#121212"
-                        bottom
-                        :open-delay="2000"
-                        :disabled="$store.state.tooltipToggle"
+                <v-card width="100%">
+                    <v-data-table
+                        :headers="headers"
+                        :items="filter_end"
+                        :item-class="itemRowBackground"
+                        id="table"
+                        item-key="id"
+                        :height="height"
+                        fixed-header
+                        :loading="loadingt"
+                        :items-per-page="50"
+                        :footer-props="{
+                            'items-per-page-options': [10, 20, 30, 50, 100, -1]
+                        }"
+                        :search="search"
+                        :sort-by="['region_name']"
+                        :sort-desc="[false, true]"
+                        multi-sort
+                        class="elevation-5"
                     >
+                        <template slot="no-data">
+                            All Hostile Stations our reffed!!!!!!
+                        </template>
+
                         <template
-                            v-slot:activator="{ on: tooltip, attrs: atooltip }"
+                            v-slot:[`item.alliance_ticker`]="{ item }"
+                            class="d-inline-flex align-center"
                         >
-                            <div v-on="{ ...tooltip }" v-bind="{ ...atooltip }">
-                                <Info
+                            <span v-if="item.url">
+                                <v-avatar size="35"
+                                    ><img :src="item.url"
+                                /></v-avatar>
+                                <span class="red--text pl-3"
+                                    >{{ item.alliance_ticker }}
+                                </span>
+                            </span>
+                            <span v-else-if="$can('super')">
+                                <AddCorpTicker :station="item"></AddCorpTicker
+                                ><AddAllianceTicker
                                     :station="item"
-                                    v-if="showInfo(item)"
-                                ></Info>
+                                ></AddAllianceTicker>
+                            </span>
+                        </template>
+                        <template
+                            v-slot:[`item.system_name`]="{ item }"
+                            class="d-inline-flex align-center"
+                        >
+                            <v-btn
+                                :href="link(item)"
+                                target="_blank"
+                                icon
+                                color="green"
+                            >
+                                <v-icon> fas fa-map fa-xs</v-icon>
+                            </v-btn>
+                            <button
+                                v-clipboard="item.system_name"
+                                v-clipboard:success="Systemcopied"
+                            >
+                                {{ item.system_name }}
+                            </button>
+                        </template>
+
+                        <template v-slot:[`item.status_name`]="{ item }">
+                            <v-chip pill small :color="pillColor(item)">
+                                {{ buttontext(item) }}
+                            </v-chip>
+                        </template>
+                        <template v-slot:[`item.actions`]="{ item }">
+                            <div class=" d-inline-flex">
+                                <RcStationMessage
+                                    class=" mr-2"
+                                    :station="item"
+                                ></RcStationMessage>
+                                <div>
+                                    <Info
+                                        :station="item"
+                                        v-if="showInfo(item)"
+                                    ></Info>
+                                </div>
                             </div>
                         </template>
-                        <span>
-                            Where to see fitting of station, core status</span
-                        >
-                    </v-tooltip>
-                </div>
-            </template>
-        </v-data-table>
-        <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-            {{ snackText }}
+                    </v-data-table>
+                </v-card>
+            </v-col>
+            <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
+                {{ snackText }}
 
-            <template v-slot:action="{ attrs }">
-                <v-btn v-bind="attrs" text @click="snack = false">Close</v-btn>
-            </template>
-        </v-snackbar>
+                <template v-slot:action="{ attrs }">
+                    <v-btn v-bind="attrs" text @click="snack = false">
+                        Copied
+                    </v-btn>
+                </template>
+            </v-snackbar>
+        </v-row>
     </div>
 </template>
 <script>
@@ -108,41 +196,20 @@ function sleep(ms) {
 export default {
     data() {
         return {
-            atime: null,
-            check: "not here",
-            componentKey: 0,
-            dialog1: false,
-            dialog2: false,
-            dialog3: false,
-            diff: 0,
-            endcount: "",
-            icon: "justify",
-            loadingt: true,
-            loadingf: true,
-            loadingr: true,
-            name: "Timer",
-            poll: null,
+            regionPicked: [],
+            itemPicked: [],
+            statusPicked: [],
             search: "",
-            statusflag: 2,
+            toggleFC: false,
+            logs: false,
             snack: false,
             snackColor: "",
             snackText: "",
-            toggle_exclusive: 1,
-            today: 0,
-            text: "center",
-            toggle_none: null,
-            sortdesc: true,
-            sortby: "timestamp",
-
-            dropdown_edit: [
-                { title: "Repairing", value: 11 },
-                { title: "Saved", value: 4 },
-                { title: "Reffed - Armor", value: 8 },
-                { title: "Reffed - Hull", value: 9 },
-                { title: "Destroyed", value: 7 },
-                { title: "Anchoring", value: 14 },
-                { title: "New", value: 1 }
-            ],
+            loadingt: true,
+            windowSize: {
+                x: 0,
+                y: 0
+            },
 
             headers: [
                 {
@@ -176,17 +243,6 @@ export default {
                     width: "15%"
                 },
                 {
-                    text: "Timestamp",
-                    value: "timestamp",
-                    align: "center",
-                    width: "15%"
-                },
-                {
-                    text: "Age/CountDown",
-                    value: "count",
-                    width: "5%"
-                },
-                {
                     text: "Status",
                     value: "station_status_name",
                     align: "center",
@@ -203,44 +259,28 @@ export default {
     },
 
     async created() {
-        Echo.private("notes")
-            .listen("chillStationNotificationNew", e => {
-                if (this.$can("edit_chill_timers")) {
-                    this.$store.dispatch("loadStationInfo");
-                }
-                this.$store.dispatch("addStationNotification", e.flag.message);
-            })
-            .listen("StationNotificationUpdate", e => {
-                this.$store.dispatch(
-                    "updateStationNotification",
-                    e.flag.message
-                );
-            })
-            .listen("StationNotificationDelete", e => {
-                this.$store.dispatch("deleteStationNotification", e.flag.id);
-            })
-            .listen("StationDataSet", e => {
-                this.$store.dispatch("getStationData");
-            });
-
-        if (this.$can("edit_chill_timers")) {
-            Echo.private("stationinfo")
-                .listen("StationInfoGet", e => {
-                    this.$store.dispatch("loadStationInfo");
-                })
-                .listen("StationCoreUpdate", e => {
-                    console.log(e);
-                    this.$store.dispatch("updateCores", e.flag.message);
-                });
-
-            await this.$store.dispatch("loadStationInfo");
+        if (this.$can("super")) {
+            await this.$store.dispatch("getAllianceTickList");
+            await this.$store.dispatch("getTickList");
         }
 
-        this.$store.dispatch("getStationData").then(() => {
-            this.loadingt = false;
-            this.loadingf = false;
-            this.loadingr = false;
-        });
+        if (this.$can("view_station_info_killsheet")) {
+        }
+        await this.$store.dispatch("loadStationInfo");
+        await this.$store.dispatch("getRcRegions");
+        await this.$store.dispatch("getRcStationRecords");
+        await this.$store.dispatch("getRcItems");
+        await this.$store.dispatch("getRcStatus");
+        this.loadingt = false;
+        Echo.private("stations").listen("CoordSheetupdate");
+
+        if (this.$can("view_admin_logs")) {
+            await this.$store.dispatch("getLoggingRcSheet");
+            Echo.private("rcsheetadminlogs").listen("RcSheetAddLogging", e => {
+                console.log("ytoyoyo");
+                this.$store.dispatch("addLoggingRcSheet", e.flag.message);
+            });
+        }
     },
 
     async mounted() {},
