@@ -322,20 +322,6 @@ class Notifications
             }
         }
 
-
-        $dups = Station::groupBy('name')->select('name', DB::raw('count(*) as total'))->get();
-        foreach ($dups as $dup) {
-            if ($dup->total > 1) {
-                $stations = Station::where('name', $dup->name)->orderByDesc('id')->get();
-                dd($stations);
-            }
-        }
-
-
-
-
-
-
         $flag = [
             'message' => 'yoyo'
         ];
