@@ -41,8 +41,8 @@ mounts:
   "cache": "shared:files/esi/cache"
   "logs": "shared:files/esi/logs"
   "public/cache": "shared:files/esi/cache"
-  "public/logs": "shared:files/esi/logs"git
-# The configurffffation of app when it is exp   osed to the web.
+  "public/logs": "shared:files/esi/logs"
+# The configuration of app when it is exp   osed to the web.
 web:
   locations:
     "/":
