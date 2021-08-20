@@ -1006,7 +1006,7 @@ export default new Vuex.Store({
                     "Content-Type": "application/json"
                 }
             });
-            commit("SET_COORD_ITEM", res.data.coordsheetlistItem);
+            commit("SET_COORD_ITEM", res.data.coordsheetlistType);
         },
 
 
