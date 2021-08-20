@@ -126,8 +126,7 @@ class Notifications
             // }
 
             $station = Station::where('id', $id)->first();
-            if ($station->show_on_rc !== 1 && $station->show_on_rc_move !== 1) {
-                echo $station->show_on_rc . " - " . $station->show_on_rc_move . "|||";
+            if ($station->show_on_rc != 1 && $station->show_on_rc_move != 1) {
                 $station->show_on_coord = 1;
                 $station->save();
 
