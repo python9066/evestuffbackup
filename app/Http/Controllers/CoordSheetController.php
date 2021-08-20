@@ -29,7 +29,7 @@ class CoordSheetController extends Controller
             array_push($data, $data1);
         }
 
-        // dd($data);
+        // dd($   data);
 
         return ['coordsheetlistType' => $data];
     }
