@@ -26149,19 +26149,19 @@ function sleep(ms) {
 
             case 8:
               _context.next = 10;
-              return _this.$store.dispatch("getRcRegions");
+              return _this.$store.dispatch("getcoordRegions");
 
             case 10:
               _context.next = 12;
-              return _this.$store.dispatch("getRcStationRecords");
+              return _this.$store.dispatch("getcoordStationRecords");
 
             case 12:
               _context.next = 14;
-              return _this.$store.dispatch("getRcItems");
+              return _this.$store.dispatch("getcoordItems");
 
             case 14:
               _context.next = 16;
-              return _this.$store.dispatch("getRcStatus");
+              return _this.$store.dispatch("getcoordStatus");
 
             case 16:
               _this.loadingt = false;

@@ -267,10 +267,10 @@ export default {
         if (this.$can("view_station_info_killsheet")) {
         }
         await this.$store.dispatch("loadStationInfo");
-        await this.$store.dispatch("getRcRegions");
-        await this.$store.dispatch("getRcStationRecords");
-        await this.$store.dispatch("getRcItems");
-        await this.$store.dispatch("getRcStatus");
+        await this.$store.dispatch("getcoordRegions");
+        await this.$store.dispatch("getcoordStationRecords");
+        await this.$store.dispatch("getcoordItems");
+        await this.$store.dispatch("getcoordStatus");
         this.loadingt = false;
         Echo.private("coord")
             .listen("updateStationNotification")
