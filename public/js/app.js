@@ -26188,7 +26188,7 @@ function sleep(ms) {
 
             case 16:
               _this.loadingt = false;
-              Echo["private"]("coord").listen("updateStationNotification").listen("StaionUpdateCoord", function (e) {
+              Echo["private"]("coord").listen("StaionUpdateCoord", function (e) {
                 if (e.flag.message != null) {
                   _this.$store.dispatch("updateStationNotification", e.flag.message);
                 }

@@ -274,20 +274,18 @@ export default {
         await this.$store.dispatch("getCoordItems");
         await this.$store.dispatch("getCoordStatus");
         this.loadingt = false;
-        Echo.private("coord")
-            .listen("updateStationNotification")
-            .listen("StaionUpdateCoord", e => {
-                if (e.flag.message != null) {
-                    this.$store.dispatch(
-                        "updateStationNotification",
-                        e.flag.message
-                    );
-                }
+        Echo.private("coord").listen("StaionUpdateCoord", e => {
+            if (e.flag.message != null) {
+                this.$store.dispatch(
+                    "updateStationNotification",
+                    e.flag.message
+                );
+            }
 
-                if (e.flag.flag == 1) {
-                    this.freshUpdate();
-                }
-            });
+            if (e.flag.flag == 1) {
+                this.freshUpdate();
+            }
+        });
     },
 
     async mounted() {
