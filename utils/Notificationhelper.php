@@ -112,8 +112,9 @@ class Notifications
                 'item_id' => $stationdata['str_type_id'],
 
             ]);
-            $checkflag = Station::where('id', $id)->first();
-            if ($checkflag->show_on_rc != 1 || $checkflag->show_on_rc_move != 1) {
+            $rcCheck = Station::where('id', $id)->value('show_on_rc');
+            $rcmove = Station::where('id', $id)->value('show_on_rc_move');
+            if ($rcCheck != 1 || $rcmove != 1) {
 
                 Station::where('id', $id)->update(['show_on_coord' => 1]);
                 $doneCheck = Station::where('id', $id)->value('station_status_id');
