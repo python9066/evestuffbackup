@@ -494,46 +494,7 @@ export default {
         ...mapState(["stations"]),
 
         filteredItems() {
-            var hourBefore = moment
-                .utc()
-                .add(1, "hour")
-                .format("YYYY-MM-DD HH:mm:ss");
-            const filter = this.stations.filter(s => s.show_on_coord == 1);
-            if (this.statusflag == 2) {
-                return filter.filter(
-                    s =>
-                        s.station_status_id == 1 ||
-                        s.station_status_id == 4 ||
-                        (s.station_status_id == 5 && s.out_time < hourBefore) ||
-                        s.station_status_id == 6 ||
-                        s.station_status_id == 8 ||
-                        s.station_status_id == 9 ||
-                        s.station_status_id == 11 ||
-                        (s.station_status_id == 13 &&
-                            s.out_time < hourBefore) ||
-                        (s.station_status_id == 14 && s.out_time < hourBefore)
-                );
-            }
-            if (this.statusflag == 3) {
-                return filter.filter(
-                    s => s.station_status_id == 14 || s.station_status_id == 13
-                );
-            }
-
-            if (this.statusflag == 5) {
-                return filter.filter(s => s.station_status_id == 14);
-            }
-
-            if (this.statusflag == 4) {
-                return filter.filter(
-                    s =>
-                        s.station_status_id == 8 ||
-                        s.station_status_id == 9 ||
-                        s.station_status_id == 7
-                );
-            } else {
-                return filter.filter(s => s.station_status_id != 10);
-            }
+            return this.stations;
         },
 
         user_name() {
