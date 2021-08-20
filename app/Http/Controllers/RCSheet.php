@@ -120,10 +120,10 @@ class RCSheet extends Controller
                     if ($newStation == 0) {
                         $station = Station::where('rc_id', $input['id'])->first();
                         if ($timer != $station->out_time) {
-                            $station->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1, 'show_on_coord' => 0]);
+                            $station->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1, 'show_on_coord' => 0, 'name', $input['structure_name']]);
                         } else {
 
-                            $station->update(['show_on_rc' => 1, 'station_status_id' => $statusID, 'show_on_coord' => 0]);
+                            $station->update(['show_on_rc' => 1, 'station_status_id' => $statusID, 'show_on_coord' => 0, 'name', $input['structure_name']]);
                         }
 
                         // dd($check->id);
