@@ -33,7 +33,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/test', 'testController@key');
 
     Route::post('/rcInput', 'RCSheet@RCInput');
-    Route::get('/reconpullregion', 'Stationcon@reconRegionPull');
+    Route::get('/reconpullregion', 'Stationcontroller@reconRegionPull');
 
     //HACKING NOTIFICATION APIS//
     Route::get('/notifications/{region_id}', 'NotificationRecordsController@regionLink');
