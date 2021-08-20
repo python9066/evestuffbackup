@@ -241,7 +241,7 @@ class Notifications
                 }
             }
         }
-        $stations = Station::where('id', '<', 1000000000);
+        $stations = Station::where('id', '<', 1000000000)->get();
         foreach ($stations as $station) {
             $url = "https://recon.gnf.lt/api/structure/" . $station->name;
             $client = new GuzzleHttpClient();

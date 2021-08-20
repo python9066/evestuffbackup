@@ -120,7 +120,7 @@
                                 <v-avatar size="35"
                                     ><img :src="item.url"
                                 /></v-avatar>
-                                <span class="red--text pl-3"
+                                <span :class="standingCheck(item)"
                                     >{{ item.alliance_ticker }}
                                 </span>
                             </span>
@@ -685,6 +685,16 @@ export default {
             var b = moment(item.timestamp);
             this.diff = a.diff(b);
             return this.diff;
+        },
+
+        standingCheck(item) {
+            if (item.standing > 0) {
+                return "blue--text pl-3";
+            } else if (item.standing < 0) {
+                return "red--text pl-3";
+            } else {
+                return "white--text pl-3";
+            }
         },
 
         showCountDown(item) {

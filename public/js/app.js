@@ -26524,6 +26524,15 @@ function sleep(ms) {
       this.diff = a.diff(b);
       return this.diff;
     },
+    standingCheck: function standingCheck(item) {
+      if (item.standing > 0) {
+        return "blue--text pl-3";
+      } else if (item.standing < 0) {
+        return "red--text pl-3";
+      } else {
+        return "white--text pl-3";
+      }
+    },
     showCountDown: function showCountDown(item) {
       if (item.station_status_id == 5 || item.station_status_id == 8 || item.station_status_id == 9 || item.station_status_id == 11 || item.station_status_id == 13 || item.station_status_id == 14) {
         return true;
@@ -61295,7 +61304,7 @@ var render = function() {
                                         _vm._v(" "),
                                         _c(
                                           "span",
-                                          { staticClass: "red--text pl-3" },
+                                          { class: _vm.standingCheck(item) },
                                           [
                                             _vm._v(
                                               _vm._s(item.alliance_ticker) +
