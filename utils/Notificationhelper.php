@@ -118,7 +118,7 @@ class Notifications
                 Station::where('id', $id)->update(['show_on_coord' => 1]);
 
                 if ($checkflag->station_status_id == 10) {
-                    Station::where('id', $id)->update(['station_status_id' => 1]);
+                    Station::where('id', $id)->update(['station_status_id' => 1, 'show_on_rc' => 0]);
                 }
             }
 

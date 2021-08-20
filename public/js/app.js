@@ -13092,6 +13092,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   timer_image_link: _this.imageLink,
                   show_on_rc_move: 1,
                   show_on_rc: 0,
+                  show_on_coord: 0,
                   status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
                   notes: note
                 };
@@ -17888,7 +17889,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   rc_fc_id: null,
                   rc_gsol_id: null,
                   rc_recon_id: null
-                }, _defineProperty(_request, "show_on_main", _this5.show_on_main), _defineProperty(_request, "show_on_chill", _this5.show_on_chill), _defineProperty(_request, "show_on_rc_move", _this5.show_on_rc_move), _defineProperty(_request, "show_on_rc", _this5.show_rc), _request);
+                }, _defineProperty(_request, "show_on_main", _this5.show_on_main), _defineProperty(_request, "show_on_chill", _this5.show_on_chill), _defineProperty(_request, "show_on_rc_move", _this5.show_on_rc_move), _defineProperty(_request, "show_on_rc", _this5.show_rc), _defineProperty(_request, "show_on_coord", _this5.showOnCoord), _request);
                 _context2.next = 4;
                 return axios({
                   method: "put",
@@ -18094,6 +18095,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return true;
       } else {
         return false;
+      }
+    },
+    showOnCoord: function showOnCoord() {
+      if (this.refType == 5 || this.refType == 13) {
+        return 0;
+      } else {
+        return 1;
       }
     },
     vaildDate: function vaildDate() {
@@ -19944,6 +19952,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 request = {
                   station_status_id: _this.refType,
                   out_time: outTime,
+                  show_on_coord: 0,
                   status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss")
                 };
                 _context.next = 13;
@@ -26244,11 +26253,11 @@ function sleep(ms) {
       }
     },
     showInfo: function showInfo(item) {
-      if (this.$can("edit_chill_timers")) {
-        if (item.item_id == 37534 || item.item_id == 35841 || item.item_id == 35840) {
-          return false;
-        }
+      if (item.item_id == 37534 || item.item_id == 35841 || item.item_id == 35840) {
+        return false;
+      }
 
+      if (item.fitted == "Fitted") {
         return true;
       } else {
         return false;
@@ -33454,7 +33463,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n    opacity: 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.fade-enter-active,\n.fade-leave-active {\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -33549,7 +33558,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n    opacity: 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.fade-enter-active,\n.fade-leave-active {\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 

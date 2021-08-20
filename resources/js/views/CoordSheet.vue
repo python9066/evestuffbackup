@@ -337,14 +337,14 @@ export default {
         },
 
         showInfo(item) {
-            if (this.$can("edit_chill_timers")) {
-                if (
-                    item.item_id == 37534 ||
-                    item.item_id == 35841 ||
-                    item.item_id == 35840
-                ) {
-                    return false;
-                }
+            if (
+                item.item_id == 37534 ||
+                item.item_id == 35841 ||
+                item.item_id == 35840
+            ) {
+                return false;
+            }
+            if (item.fitted == "Fitted") {
                 return true;
             } else {
                 return false;
