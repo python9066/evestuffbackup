@@ -26448,7 +26448,7 @@ function sleep(ms) {
 
       if (this.statusPicked.length != 0) {
         this.statusPicked.forEach(function (p) {
-          var pick = _this4.getActiveRcStations.filter(function (f) {
+          var pick = _this4.getShowOnCoordStations.filter(function (f) {
             return f.status_id == p;
           });
 

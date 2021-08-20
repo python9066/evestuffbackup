@@ -553,7 +553,7 @@ export default {
             let data = [];
             if (this.statusPicked.length != 0) {
                 this.statusPicked.forEach(p => {
-                    let pick = this.getActiveRcStations.filter(
+                    let pick = this.getShowOnCoordStations.filter(
                         f => f.status_id == p
                     );
                     if (pick != null) {
