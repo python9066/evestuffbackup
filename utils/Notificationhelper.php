@@ -82,7 +82,7 @@ class Notifications
             StationItemJoin::where('station_id', $id)->delete();
         } else {
             StationItemJoin::where('station_id', $id)->delete();
-            $count = Station::find($id)->first();
+            $count = Station::where('id', $id)->first();
             if ($count) {
                 $count->update([
                     'name' => $stationdata['str_name'],
