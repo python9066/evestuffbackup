@@ -61,6 +61,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        alliances.ticker AS 'alliance_ticker',
        stations.text AS 'text',
        stations.notes AS 'notes',
+       stations.r_fitted AS fitted,
        stations.added_by_user_id AS 'added_by_user_id',
        i.name AS 'added_name',
        stations.attack_notes AS 'attack_notes',
