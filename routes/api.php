@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/timers','TimerController@getTimerData');
 
-// Route::middleware('auth:api')->get('/notifications', function (Request $request) {
+// Route::middleware('ffffauth:api')->get('/notifications', function (Request $request) {
 //     return $request->notifications();
 // });
 // Route::get('/notifications','NotificationRecordsController@index');
