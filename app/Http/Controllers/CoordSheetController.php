@@ -13,7 +13,7 @@ class CoordSheetController extends Controller
         return ['stations' => StationRecords::where('show_on_coord', 1)->get()];
     }
 
-    public function coordSheetListType()
+    public function coordSheetItemType()
     {
         $data = [];
         $pull = StationRecords::where('show_on_coord', 1)->get();
