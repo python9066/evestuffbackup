@@ -536,7 +536,12 @@ export default {
     },
 
     computed: {
-        ...mapState(["stations"]),
+        ...mapState([
+            "coordstations",
+            "coordsheetRegion",
+            "coordsheetItem",
+            "coordsheetStatus"
+        ]),
         ...mapGetters(["getShowOnCoordStations"]),
 
         filteredItems() {
@@ -545,6 +550,18 @@ export default {
 
         user_name() {
             return this.$store.state.user_name;
+        },
+
+        dropdown_region_list() {
+            return this.coordsheetRegion;
+        },
+
+        dropdown_type_list() {
+            return this.coordsheetItem;
+        },
+
+        dropdown_status_list() {
+            return this.coordsheetStatus.filter(l => l.text != null);
         }
     },
     beforeDestroy() {

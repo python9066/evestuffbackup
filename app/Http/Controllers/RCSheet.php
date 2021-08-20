@@ -31,6 +31,7 @@ class RCSheet extends Controller
             if ($input['is_hostile'] != null) {
                 if (
                     $input['structure_type']['type_id'] != 2774
+                    || $input['structure_type']['type_id'] != 32458
                     || $input['structure_type']['type_id'] != 2775
                     || $input['structure_type']['type_id'] != 2776
                     || $input['structure_type']['type_id'] != 2777
@@ -58,7 +59,6 @@ class RCSheet extends Controller
                     || $input['structure_type']['type_id'] != 35837
                     || $input['structure_type']['type_id'] != 16286
                     || $input['structure_type']['type_id'] != 32226
-                    || $input['structure_type']['type_id'] != 32458
 
 
                 ) {

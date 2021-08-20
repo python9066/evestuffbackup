@@ -26445,14 +26445,23 @@ function sleep(ms) {
       return false;
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stations"])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["coordstations", "coordsheetRegion", "coordsheetItem", "coordsheetStatus"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getShowOnCoordStations"])), {}, {
     filteredItems: function filteredItems() {
-      return this.stations.filter(function (s) {
-        return s.show_on_coord == 1;
-      });
+      return this.getShowOnCoordStations;
     },
     user_name: function user_name() {
       return this.$store.state.user_name;
+    },
+    dropdown_region_list: function dropdown_region_list() {
+      return this.coordsheetRegion;
+    },
+    dropdown_type_list: function dropdown_type_list() {
+      return this.coordsheetItem;
+    },
+    dropdown_status_list: function dropdown_status_list() {
+      return this.coordsheetStatus.filter(function (l) {
+        return l.text != null;
+      });
     }
   }),
   beforeDestroy: function beforeDestroy() {
