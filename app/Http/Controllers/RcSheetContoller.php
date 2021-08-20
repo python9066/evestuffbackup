@@ -91,8 +91,8 @@ class RcSheetContoller extends Controller
         $pull = RcStationRecords::where('show_on_rc', 1)->get();
         $pull = $pull->unique('status_id');
         $pull = $pull->sortBy('status_name');
-        $text = str_replace("Upcoming - ", "", $pull['status_name'],);
         foreach ($pull as $pull) {
+            $text = str_replace("Upcoming - ", "", $pull['status_name']);
             $data1 = [];
             $data1 = [
                 "text" => $text,

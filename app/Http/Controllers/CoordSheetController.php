@@ -34,8 +34,8 @@ class CoordSheetController extends Controller
         $pull = StationRecords::where('show_on_coord', 1)->get();
         $pull = $pull->unique('status_id');
         $pull = $pull->sortBy('status_name');
-        $text = str_replace("Upcoming - ", "", $pull['status_name'],);
         foreach ($pull as $pull) {
+            $text = str_replace("Upcoming - ", "", $pull['status_name'],);
             $data1 = [];
             $data1 = [
                 "text" => $text,

@@ -189,7 +189,7 @@
 import Axios from "axios";
 import moment from "moment";
 import { stringify } from "querystring";
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -537,9 +537,10 @@ export default {
 
     computed: {
         ...mapState(["stations"]),
+        ...mapGetters(["getShowOnCoordStations"]),
 
         filteredItems() {
-            return this.stations.filter(s => s.show_on_coord == 1);
+            return this.getShowOnCoordStations;
         },
 
         user_name() {
