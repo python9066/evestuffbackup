@@ -265,10 +265,10 @@ export default {
         }
 
         if (this.$can("view_station_info_killsheet")) {
+            await this.$store.dispatch("loadStationInfo");
         }
-        await this.$store.dispatch("getCoordStationRecords");
-        await this.$store.dispatch("loadStationInfo");
         await this.$store.dispatch("getCoordRegions");
+        await this.$store.dispatch("getCoordStationRecords");
         await this.$store.dispatch("getCoordItems");
         await this.$store.dispatch("getCoordStatus");
         this.loadingt = false;
@@ -355,7 +355,7 @@ export default {
             ) {
                 return false;
             }
-            if (item.fitted == "Fitted") {
+            if (item.fitted == "Fitted" && this.loadingt == false) {
                 return true;
             } else {
                 return false;

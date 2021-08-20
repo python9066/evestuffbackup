@@ -26153,18 +26153,21 @@ function sleep(ms) {
               return _this.$store.dispatch("getTickList");
 
             case 5:
-              if (_this.$can("view_station_info_killsheet")) {}
+              if (!_this.$can("view_station_info_killsheet")) {
+                _context.next = 8;
+                break;
+              }
 
               _context.next = 8;
-              return _this.$store.dispatch("getCoordStationRecords");
+              return _this.$store.dispatch("loadStationInfo");
 
             case 8:
               _context.next = 10;
-              return _this.$store.dispatch("loadStationInfo");
+              return _this.$store.dispatch("getCoordRegions");
 
             case 10:
               _context.next = 12;
-              return _this.$store.dispatch("getCoordRegions");
+              return _this.$store.dispatch("getCoordStationRecords");
 
             case 12:
               _context.next = 14;
@@ -26296,7 +26299,7 @@ function sleep(ms) {
         return false;
       }
 
-      if (item.fitted == "Fitted") {
+      if (item.fitted == "Fitted" && this.loadingt == false) {
         return true;
       } else {
         return false;
@@ -33482,7 +33485,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active,\n.fade-leave-active {\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n    opacity: 0;\n}\r\n", ""]);
 
 // exports
 
@@ -33577,7 +33580,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active,\n.fade-leave-active {\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n    opacity: 0;\n}\r\n", ""]);
 
 // exports
 
@@ -33615,7 +33618,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active,\n.fade-leave-active {\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n    opacity: 0;\n}\r\n", ""]);
 
 // exports
 
