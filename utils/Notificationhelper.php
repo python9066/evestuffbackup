@@ -26,7 +26,7 @@ use App\Models\TowerRecord;
 use GuzzleHttp\Utils;
 use Symfony\Component\Yaml\Yaml;
 use GuzzleHttp\Client as GuzzleHttpClient;
-
+use Illuminate\Support\Facades\DB;
 
 class Notifications
 {
@@ -321,6 +321,21 @@ class Notifications
                 }
             }
         }
+
+
+        $dups = Station::groupBy('name')->select('name', DB::raw('count(*) as total'))->get();
+        foreach ($dups as $dup) {
+            if ($dup->total > 1) {
+                $stations = Station::where('name', $dup->name)->orderByDesc('id')->get();
+                dd($stations);
+            }
+        }
+
+
+
+
+
+
         $flag = [
             'message' => 'yoyo'
         ];
