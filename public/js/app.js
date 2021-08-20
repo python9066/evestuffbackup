@@ -75360,7 +75360,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       state.rcstations = stations;
     },
     SET_COORD_STATIONS: function SET_COORD_STATIONS(state, stations) {
-      state.coordstations = stations;
+      state.stations = stations;
     },
     SET_RC_FCS: function SET_RC_FCS(state, fcs) {
       state.rcfcs = fcs;

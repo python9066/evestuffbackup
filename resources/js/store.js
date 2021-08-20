@@ -474,7 +474,7 @@ export default new Vuex.Store({
         },
 
         SET_COORD_STATIONS(state, stations) {
-            state.coordstations = stations;
+            state.stations = stations;
         },
 
         SET_RC_FCS(state, fcs) {
