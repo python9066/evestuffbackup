@@ -86,7 +86,7 @@
                             Request Made
                         </v-chip>
                         <StationRequestAmmo
-                            v-if="$can('gunner')"
+                            v-if="showAmmo()"
                             :station="station"
                             :key="'ammorequest' + station.id"
                         ></StationRequestAmmo>
@@ -329,7 +329,13 @@ export default {
                 return false;
             }
         },
-
+        showAmmo() {
+            if (this.$can("gunner") && this.station.standing > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        },
         url(item) {
             return "https://images.evetech.net/types/" + item.item_id + "/icon";
         },

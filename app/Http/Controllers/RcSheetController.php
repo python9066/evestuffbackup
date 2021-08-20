@@ -10,7 +10,7 @@ use App\Models\RcStationRecords;
 use App\Models\Station;
 use Illuminate\Http\Request;
 
-class RcSheetContoller extends Controller
+class RcSheetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -67,7 +67,7 @@ class RcSheetContoller extends Controller
     public function rcSheetListType()
     {
         $data = [];
-        $pull = RcStationRecords::all();
+        $pull = RcStationRecords::where('show_on_rc', 1)->get();
         $pull = $pull->unique('item_id');
         $pull = $pull->sortBy('item_name');
         foreach ($pull as $pull) {
@@ -88,13 +88,14 @@ class RcSheetContoller extends Controller
     public function rcSheetListStatus()
     {
         $data = [];
-        $pull = RcStationRecords::all();
+        $pull = RcStationRecords::where('show_on_rc', 1)->get();
         $pull = $pull->unique('status_id');
         $pull = $pull->sortBy('status_name');
         foreach ($pull as $pull) {
+            $text = str_replace("Upcoming - ", "", $pull['status_name']);
             $data1 = [];
             $data1 = [
-                "text" => $pull['status_name'],
+                "text" => $text,
                 "value" => $pull['status_id']
             ];
 
@@ -126,7 +127,7 @@ class RcSheetContoller extends Controller
     public function rcSheetListRegion()
     {
         $data = [];
-        $pull = RcStationRecords::all();
+        $pull = RcStationRecords::where('show_on_rc', 1)->get();
         $pull = $pull->unique('region_id');
         $pull = $pull->sortBy('region_name');
         foreach ($pull as $pull) {

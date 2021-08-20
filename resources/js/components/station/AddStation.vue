@@ -477,7 +477,8 @@ export default {
                 show_on_main: this.show_on_main,
                 show_on_chill: this.show_on_chill,
                 show_on_rc_move: this.show_on_rc_move,
-                show_on_rc: this.show_rc
+                show_on_rc: this.show_rc,
+                show_on_coord: this.showOnCoord
             };
 
             await axios({
@@ -686,6 +687,14 @@ export default {
                 return true;
             } else {
                 return false;
+            }
+        },
+
+        showOnCoord() {
+            if (this.refType == 5 || this.refType == 13) {
+                return 0;
+            } else {
+                return 1;
             }
         },
 

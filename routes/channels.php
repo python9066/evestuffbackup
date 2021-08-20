@@ -118,6 +118,9 @@ Broadcast::channel('fleetkeys', function () {
     return Auth::check();
 });
 
+Broadcast::channel('coord', function () {
+    return Auth::check();
+});
 
 
 

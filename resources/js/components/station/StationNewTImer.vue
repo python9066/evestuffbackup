@@ -175,6 +175,7 @@ export default {
             var request = {
                 station_status_id: this.refType,
                 out_time: outTime,
+                show_on_coord: 0,
                 status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss")
             };
 

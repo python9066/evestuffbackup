@@ -77,6 +77,10 @@
                     ><v-btn @click="sumbitrcdata()">Submmit</v-btn></v-card-text
                 ></v-card
             >
+
+            <v-card>
+                <v-btn @click="startReconRgionPull()">Recon Pull</v-btn></v-card
+            >
         </v-row>
 
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
@@ -194,6 +198,19 @@ export default {
             await axios({
                 method: "post", //you can set what request you want to be
                 url: "api/rcInput",
+                data: this.rcdata,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
+
+        async startReconRgionPull() {
+            await axios({
+                method: "get", //you can set what request you want to be
+                url: "api/reconpullregion",
                 data: this.rcdata,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,

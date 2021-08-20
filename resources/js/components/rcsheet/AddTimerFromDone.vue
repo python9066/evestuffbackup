@@ -198,6 +198,7 @@ export default {
                 timer_image_link: this.imageLink,
                 show_on_rc_move: 1,
                 show_on_rc: 0,
+                show_on_coord: 0,
                 status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
                 notes: note
             };

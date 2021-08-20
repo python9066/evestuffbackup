@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/timers','TimerController@getTimerData');
 
-// Route::middleware('auth:api')->get('/notifications', function (Request $request) {
+// Route::middleware('ffffauth:api')->get('/notifications', function (Request $request) {
 //     return $request->notifications();
 // });
 // Route::get('/notifications','NotificationRecordsController@index');
@@ -33,6 +33,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/test', 'testController@key');
 
     Route::post('/rcInput', 'RCSheet@RCInput');
+    Route::get('/reconpullregion', 'StationController@reconRegionPull');
 
     //HACKING NOTIFICATION APIS//
     Route::get('/notifications/{region_id}', 'NotificationRecordsController@regionLink');
@@ -199,24 +200,24 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/startcampaignsystemupdatetimer/{id}/{campid}', 'StartCampaignSystemController@updatetimer');
     Route::delete('/startcampaignsystemremovechar/{id}/{char}/{campid}', 'StartCampaignSystemController@removeChar');
 
-    Route::get('/rcsheet', 'RcSheetContoller@index');
+    Route::get('/rcsheet', 'RcSheetController@index');
     Route::put('/rcfcuseradd/{id}', 'RcFcUsersController@addFCtoStation');
     Route::put('/rcfcuserremove/{id}', 'RcFcUsersController@removeFCtoStation');
     Route::put('/rcreconuseradd/{id}', 'RcReconUsersController@addRecontoStation');
     Route::put('/rcreconuserremove/{id}', 'RcReconUsersController@removeRecontoStation');
     Route::put('/rcgsoluseradd/{id}', 'RcGsolUsersController@addGsoltoStation');
     Route::put('/rcgsoluserremove/{id}', 'RcGsolUsersController@removeGsoltoStation');
-    Route::put('finishrcstation/{id}', 'RcSheetContoller@stationdone');
+    Route::put('finishrcstation/{id}', 'RcSheetController@stationdone');
     Route::get('/rcfc', 'RcFcUsersController@index');
     Route::put('/rcfcnew', 'RcFcUsersController@newfc');
     Route::delete('/rcfcdelete/{id}', 'RcFcUsersController@removeFC');
     Route::post('/rcfcadd/{id}', 'RcFcUsersController@addFCadd');
-    Route::get('/rcregionlist', 'RcSheetContoller@rcSheetListRegion');
-    Route::get('/rcTypelist', 'RcSheetContoller@rcSheetListType');
-    Route::get('/rcStatuslist', 'RcSheetContoller@rcSheetListStatus');
-    Route::put('/rcfixcorp/{id}', 'RcSheetContoller@fixcorp');
-    Route::put('/rcfixalliance/{id}', 'RcSheetContoller@fixalliance');
-    Route::put('/sheetmessage/{id}', 'RcSheetContoller@updateMessage');
+    Route::get('/rcregionlist', 'RcSheetController@rcSheetListRegion');
+    Route::get('/rcTypelist', 'RcSheetController@rcSheetListType');
+    Route::get('/rcStatuslist', 'RcSheetController@rcSheetListStatus');
+    Route::put('/rcfixcorp/{id}', 'RcSheetController@fixcorp');
+    Route::put('/rcfixalliance/{id}', 'RcSheetController@fixalliance');
+    Route::put('/sheetmessage/{id}', 'RcSheetController@updateMessage');
     Route::get('/rcadminlogs', 'LoggingController@rcSheetLogging');
     Route::put('/rcmovedone/{id}', 'StationController@rcMoveDone');
     Route::delete('/rcmovedonebad/{id}', 'StationController@destroy');
@@ -234,4 +235,8 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/fleetssadd', 'KeyFleetJoinControllerController@store');
     Route::put('/fleetsremove', 'KeyFleetJoinControllerController@removefleet');
     Route::put('/softdestory/{id}', 'StationController@softDestroy');
+    Route::get('/coordRegionlist', 'CoordSheetController@coordSheetListRegion');
+    Route::get('/coordItemlist', 'CoordSheetController@coordSheetListItem');
+    Route::get('/coordStatuslist', 'CoordSheetController@coordSheetListStatus');
+    Route::get('/coordsheet', 'CoordSheetController@index');
 });

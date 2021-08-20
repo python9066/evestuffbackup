@@ -41,7 +41,10 @@ export default new Vuex.Store({
         rcfcs: [],
         rcsheetRegion: [],
         rcsheetItem: [],
-        rcsheetStatus:[],
+        rcsheetStatus: [],
+        coordsheetRegion: [],
+        coordsheetItem: [],
+        coordsheetStatus:[],
         rcstations:[],
         recontasksystems:[],
         rolesList: [],
@@ -314,6 +317,18 @@ export default new Vuex.Store({
             state.rcsheetStatus = rcsheetStatus;
         },
 
+        SET_COORD_REGION(state, coordsheetRegion) {
+            state.coordsheetRegion = coordsheetRegion;
+        },
+
+        SET_COORD_ITEM(state, coordsheetItem) {
+            state.coordsheetItem = coordsheetItem;
+        },
+
+        SET_COORD_STATUS(state, coordsheetStatus) {
+            state.coordsheetStatus = coordsheetStatus;
+        },
+
 
 
 
@@ -456,6 +471,10 @@ export default new Vuex.Store({
 
         SET_RC_STATIONS(state, stations) {
             state.rcstations = stations;
+        },
+
+        SET_COORD_STATIONS(state, stations) {
+            state.stations = stations;
         },
 
         SET_RC_FCS(state, fcs) {
@@ -951,6 +970,46 @@ export default new Vuex.Store({
         },
 
 
+        async getCoordStatus({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/coordStatuslist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_COORD_STATUS", res.data.coordsheetlistStatus);
+        },
+
+        async getCoordRegions({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/coordRegionlist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_COORD_REGION", res.data.coordsheetlistRegion);
+        },
+
+        async getCoordItems({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/coordItemlist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_COORD_ITEM", res.data.coordsheetlistType);
+        },
+
+
 
 
 
@@ -1326,6 +1385,22 @@ export default new Vuex.Store({
         },
 
 
+        async getCoordStationRecords({ commit, state }) {
+            let res = await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/coordsheet",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            if (res.data.length != 0) {
+                commit("SET_COORD_STATIONS", res.data.stations);
+            }
+        },
+
+
         async getRcFcs({ commit, state }) {
             let res = await axios({
                 method: "get", //you can set what request you want to be
@@ -1464,6 +1539,8 @@ export default new Vuex.Store({
         getMultiCampaignName: state => campid => {
             return state.multicampaigns.filter(m => m.id == campid)
         },
+
+
 
 
 
@@ -1619,6 +1696,10 @@ export default new Vuex.Store({
             ).length
         },
 
+
+        getShowOnCoordStations: state => {
+            return state.stations.filter(stations => stations.show_on_coord == 1);
+        },
 
 
         getTotalNodeCountBySystem: state => payload => {

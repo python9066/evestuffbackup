@@ -23,6 +23,7 @@ import StartCampaign from "./views/StartCampaignSystem"
 import KillList from "./views/RCsheet.vue"
 import RCMOVETIMER from "./views/RCMove.vue"
 import FleetKeys from "./views/FleetKeyPannel.vue"
+import CoordSheet from "./views/CoordSheet.vue"
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -142,6 +143,20 @@ export default new Router({
             component: FeedBack,
               beforeEnter(to, from, next) {
                 if(Permissions.indexOf('super' )!== -1){
+                    next()
+                }else{
+                   next("/notifications")
+                }
+
+              }
+        },
+
+        {
+            path: "/coordsheet",
+            name: "coordsheet",
+            component: CoordSheet,
+              beforeEnter(to, from, next) {
+                if(Permissions.indexOf('view_coord_sheet' )!== -1){
                     next()
                 }else{
                    next("/notifications")

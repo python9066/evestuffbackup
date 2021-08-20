@@ -11,6 +11,7 @@ use App\Events\StationCoreUpdate;
 use App\Events\StationMessageUpdate;
 use App\Events\StationNotificationNew;
 use App\Events\StationNotificationUpdate;
+use App\Events\StationUpdateCoord;
 use App\Models\Corp;
 use App\Models\Item;
 use App\Models\Logging;
@@ -25,6 +26,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Utils;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 class StationController extends Controller
@@ -80,6 +82,12 @@ class StationController extends Controller
             'fit' => Station::where('r_hash', '!=', null)->get(),
             'items' => $items
         ];
+    }
+
+
+    public function reconRegionPull()
+    {
+        Artisan::call('update:reconstationsbyregion');
     }
 
     public function taskRequest(Request $request)
@@ -384,6 +392,7 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new StationNotificationUpdate($flag));
+        broadcast(new StationUpdateCoord($flag));
         $message = RCStationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message
@@ -409,6 +418,7 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new StationNotificationUpdate($flag));
+        broadcast(new StationUpdateCoord($flag));
 
         $message = RCStationRecords::where('id', $id)->first();
         $flag = collect([
@@ -436,7 +446,23 @@ class StationController extends Controller
 
     public function softDestroy($id)
     {
-        Station::where('id', $id)->update(['show_on_rc' => 0, 'show_on_coord' => 1, 'station_status_id' => 7, "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null]);
+
+        $now = now();
+        $noteText = $now . " -  Submitted By :" . Auth::user()->name . " Station Destoryed";
+        $stationName = Station::find($id)->value('name');
+
+        $RCmessage = RcStationRecords::where('id', $id)->first();
+        $RCmessageSend = [
+            'id' => $RCmessage->id,
+            'show_on_rc' => 0
+        ];
+        $flag = collect([
+            'message' => $RCmessageSend,
+        ]);
+        broadcast(new RcSheetUpdate($flag));
+
+
+        Station::where('id', $id)->update(['show_on_rc' => 0, 'show_on_coord' => 1, "notes" => $noteText, 'station_status_id' => 7, "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null]);
 
         $oldStatusID = Station::where('id', $id)->pluck('station_status_id')->first();
         $oldStatusName = StationStatus::where('id', $oldStatusID)->pluck('name')->first();
@@ -448,13 +474,13 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new StationNotificationUpdate($flag));
-        $message = RcStationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new RcSheetUpdate($flag));
+        broadcast(new StationUpdateCoord($flag));
 
-        $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' at ' . now();
+
+
+
+
+        $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' for ' . $stationName . ' at ' . now();
         $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }
 }
