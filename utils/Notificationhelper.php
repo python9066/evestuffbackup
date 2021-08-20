@@ -112,13 +112,13 @@ class Notifications
                 'item_id' => $stationdata['str_type_id'],
 
             ]);
-            $checkflag = Station::find($id)->first();
+            $checkflag = Station::where('id', $id)->first();
             if ($checkflag->show_on_rc != 1 || $checkflag->show_on_rc_move != 1) {
 
                 Station::where('id', $id)->update(['show_on_coord' => 1]);
                 $doneCheck = Station::where('id', $id)->value('station_status_id');
                 if ($doneCheck == 10) {
-                    Station::where('id', $id)->update(['station_status_id' => 10]);
+                    Station::where('id', $id)->update(['station_status_id' => 1]);
                 }
             }
 
