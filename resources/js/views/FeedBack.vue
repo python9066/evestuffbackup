@@ -79,9 +79,7 @@
             >
 
             <v-card>
-                <v-btn @click="startRecionRgionPull()"
-                    >Recon Pull</v-btn
-                ></v-card
+                <v-btn @click="startReconRgionPull()">Recon Pull</v-btn></v-card
             >
         </v-row>
 
@@ -209,7 +207,7 @@ export default {
             });
         },
 
-        async startRecionRgionPull() {
+        async startReconRgionPull() {
             await axios({
                 method: "get", //you can set what request you want to be
                 url: "api/reconpullregion",

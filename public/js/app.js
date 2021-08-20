@@ -26733,8 +26733,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -26933,7 +26931,7 @@ function sleep(ms) {
         }, _callee4);
       }))();
     },
-    startRecionRgionPull: function startRecionRgionPull() {
+    startReconRgionPull: function startReconRgionPull() {
       var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
@@ -61682,7 +61680,7 @@ var render = function() {
                 {
                   on: {
                     click: function($event) {
-                      return _vm.startRecionRgionPull()
+                      return _vm.startReconRgionPull()
                     }
                   }
                 },
