@@ -41,7 +41,10 @@ export default new Vuex.Store({
         rcfcs: [],
         rcsheetRegion: [],
         rcsheetItem: [],
-        rcsheetStatus:[],
+        rcsheetStatus: [],
+        coordRegion: [],
+        coordItem: [],
+        coordStatus:[],
         rcstations:[],
         recontasksystems:[],
         rolesList: [],
@@ -312,6 +315,18 @@ export default new Vuex.Store({
 
         SET_RC_STATUS(state, rcsheetStatus) {
             state.rcsheetStatus = rcsheetStatus;
+        },
+
+        SET_COORD_REGION(state, coordsheetRegion) {
+            state.coordsheetRegion = coordsheetRegion;
+        },
+
+        SET_COORD_ITEM(state, coordsheetItem) {
+            state.coordsheetItem = coordsheetItem;
+        },
+
+        SET_COORD_STATUS(state, coordsheetStatus) {
+            state.coordsheetStatus = coordsheetStatus;
         },
 
 
@@ -948,6 +963,46 @@ export default new Vuex.Store({
                 }
             });
             commit("SET_RC_STATUS", res.data.rcsheetlistStatus);
+        },
+
+
+        async getCoordStatus({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/coordStatuslist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_COORD_STATUS", res.data.coordsheetlistStatus);
+        },
+
+        async getCoordRegion({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/coordStatuslist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_COORD_REGION", res.data.coordsheetlistRegion);
+        },
+
+        async getCoordItem({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/coordItemlist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_COORD_ITEM", res.data.coordsheetlistItem);
         },
 
 
@@ -1623,7 +1678,7 @@ export default new Vuex.Store({
 
 
         getShowOnCoordStations: state => {
-            return state.stations.find(stations => stations.show_on_coord == 1);
+            return state.stations.filter(stations => stations.show_on_coord == 1);
         },
 
 

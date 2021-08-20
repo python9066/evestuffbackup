@@ -83,7 +83,7 @@ class RCSheet extends Controller
                     }
 
                     $current = now();
-                    if ($timer < $current) {
+                    if ($timer > $current) {
                         $skip = 1;
                     }
 

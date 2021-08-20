@@ -26,6 +26,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Utils;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 class StationController extends Controller
@@ -81,6 +82,12 @@ class StationController extends Controller
             'fit' => Station::where('r_hash', '!=', null)->get(),
             'items' => $items
         ];
+    }
+
+
+    public function reconRegionPull()
+    {
+        Artisan::call('update:reconstationsbyregion');
     }
 
     public function taskRequest(Request $request)

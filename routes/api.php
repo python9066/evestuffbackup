@@ -33,6 +33,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/test', 'testController@key');
 
     Route::post('/rcInput', 'RCSheet@RCInput');
+    Route::get('/reconpullregion', 'Stationcon@reconRegionPull');
 
     //HACKING NOTIFICATION APIS//
     Route::get('/notifications/{region_id}', 'NotificationRecordsController@regionLink');
@@ -234,4 +235,7 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/fleetssadd', 'KeyFleetJoinControllerController@store');
     Route::put('/fleetsremove', 'KeyFleetJoinControllerController@removefleet');
     Route::put('/softdestory/{id}', 'StationController@softDestroy');
+    Route::get('/coordregionlist', 'CoordSheetContoller@coordSheetListRegion');
+    Route::get('/coordTypelist', 'CoordSheetContoller@coordSheetListType');
+    Route::get('/coordStatuslist', 'CoordSheetContoller@coordSheetListStatus');
 });

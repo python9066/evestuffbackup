@@ -80,6 +80,7 @@ LEFT JOIN rc_fc_users AS fc ON fc.id = stations.rc_fc_id
 LEFT JOIN rc_recon_users AS recon ON recon.id = stations.rc_recon_id
 LEFT JOIN users AS reconuser on reconuser.id = recon.user_id
 LEFT JOIN users AS fcuser on fcuser.id = fc.user_id
-LEFT JOIN users AS gsoluser on gsoluser.id = stations.rc_gsol_id");
+LEFT JOIN users AS gsoluser on gsoluser.id = stations.rc_gsol_id
+WHERE stations.show_on_rc = 1");
     }
 }

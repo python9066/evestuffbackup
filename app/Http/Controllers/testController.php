@@ -37,11 +37,11 @@ class testController extends Controller
     public function recontest()
     {
 
-        $id = 10000060;
-        $stations =  Notifications::reconRegionPull($id);
-        foreach ($stations as $station) {
-            Notifications::reconRegionPullIdCheck($station);
-        }
+        // $id = 10000060;
+        // $stations =  Notifications::reconRegionPull($id);
+        // foreach ($stations as $station) {
+        //     Notifications::reconRegionPullIdCheck($station);
+        // }
     }
 
 
