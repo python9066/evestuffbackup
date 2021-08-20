@@ -26074,6 +26074,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -26259,7 +26261,7 @@ function sleep(ms) {
       }))();
     },
     buttontext: function buttontext(item) {
-      var ret = item.status_name.replace("Upcoming - ", "");
+      var ret = item.station_status_name.replace("Upcoming - ", "");
       return ret;
     },
     onResize: function onResize() {
@@ -26432,68 +26434,23 @@ function sleep(ms) {
         _this4.loadingr = false;
       }); // console.log("30secs");
     },
-    pillIcon: function pillIcon(statusId) {
-      if (statusId == 1) {
-        return "faSvg fa-plus";
-      }
-
-      if (statusId == 2) {
-        return "faSvg fa-route";
-      }
-
-      if (statusId == 3) {
-        return "faSvg fa-fist-raised";
-      }
-
-      if (statusId == 4) {
-        return "faSvg fa-thumbs-up";
-      }
-
-      if (statusId == 5 || statusId == 13) {
-        return "faSvg fa-clock";
-      }
-
-      if (statusId == 6) {
-        return "faSvg fa-life-ring";
-      }
-
-      if (statusId == 7) {
-        return "faSvg fa-dumpster-fire";
-      }
-
-      if (statusId == 8) {
-        return "faSvg fa-shield-alt";
-      }
-
-      if (statusId == 9) {
-        return "faSvg fa-house-damage";
-      }
-
-      if (statusId == 11) {
-        return "faSvg fa-toolbox";
-      }
-
-      if (statusId == 14) {
-        return "faSvg fa-anchor";
-      }
-    },
     numberDay: function numberDay(day) {
       return parseInt(day, 10) + "d";
     },
     pillColor: function pillColor(item) {
-      if (item.status_id == 4) {
+      if (item.station_status_id == 4) {
         return "orange darken-1";
       }
 
-      if (item.status_id == 18) {
+      if (item.station_status_id == 18) {
         return "brown lighten-2";
       }
 
-      if (item.status_id == 1) {
+      if (item.station_status_id == 1) {
         return "green";
       }
 
-      if (item.status_id == 7) {
+      if (item.station_status_id == 7) {
         return "red";
       }
     },
@@ -26529,33 +26486,6 @@ function sleep(ms) {
       this.snackText = "Dialog opened";
     },
     close: function close() {},
-    click: function click(item, list) {
-      if (item.station_status_id == 11) {
-        item.repair_time = null;
-      }
-
-      item.station_status_id = list.value;
-      item.station_status_name = list.title;
-      item.user_name = this.user_name;
-      var request = {
-        station_status_id: item.station_status_id,
-        user_id: this.$store.state.user_id,
-        status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD  HH:mm:ss"),
-        out_time: null,
-        repair_time: item.repair_time
-      };
-      axios({
-        method: "put",
-        //you can sfefeet what request you want to be
-        url: "api/updatestationnotification/" + item.id,
-        data: request,
-        headers: {
-          Authorization: "Bearer " + this.$store.state.token,
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        }
-      });
-    },
     sec: function sec(item) {
       var a = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
       var b = moment__WEBPACK_IMPORTED_MODULE_2___default()(item.timestamp);
@@ -61420,7 +61350,7 @@ var render = function() {
                             }
                           },
                           {
-                            key: "item.status_name",
+                            key: "item.station_status_name",
                             fn: function(ref) {
                               var item = ref.item
                               return [

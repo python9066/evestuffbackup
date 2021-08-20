@@ -151,7 +151,9 @@
                             </button>
                         </template>
 
-                        <template v-slot:[`item.status_name`]="{ item }">
+                        <template
+                            v-slot:[`item.station_status_name`]="{ item }"
+                        >
                             <v-chip pill small :color="pillColor(item)">
                                 {{ buttontext(item) }}
                             </v-chip>
@@ -300,7 +302,7 @@ export default {
             await this.$store.dispatch("getCoordStatus");
         },
         buttontext(item) {
-            var ret = item.status_name.replace("Upcoming - ", "");
+            var ret = item.station_status_name.replace("Upcoming - ", "");
             return ret;
         },
         onResize() {
@@ -558,57 +560,21 @@ export default {
             // console.log("30secs");
         },
 
-        pillIcon(statusId) {
-            if (statusId == 1) {
-                return "faSvg fa-plus";
-            }
-            if (statusId == 2) {
-                return "faSvg fa-route";
-            }
-            if (statusId == 3) {
-                return "faSvg fa-fist-raised";
-            }
-            if (statusId == 4) {
-                return "faSvg fa-thumbs-up";
-            }
-            if (statusId == 5 || statusId == 13) {
-                return "faSvg fa-clock";
-            }
-            if (statusId == 6) {
-                return "faSvg fa-life-ring";
-            }
-            if (statusId == 7) {
-                return "faSvg fa-dumpster-fire";
-            }
-            if (statusId == 8) {
-                return "faSvg fa-shield-alt";
-            }
-            if (statusId == 9) {
-                return "faSvg fa-house-damage";
-            }
-            if (statusId == 11) {
-                return "faSvg fa-toolbox";
-            }
-            if (statusId == 14) {
-                return "faSvg fa-anchor";
-            }
-        },
-
         numberDay(day) {
             return parseInt(day, 10) + "d";
         },
 
         pillColor(item) {
-            if (item.status_id == 4) {
+            if (item.station_status_id == 4) {
                 return "orange darken-1";
             }
-            if (item.status_id == 18) {
+            if (item.station_status_id == 18) {
                 return "brown lighten-2";
             }
-            if (item.status_id == 1) {
+            if (item.station_status_id == 1) {
                 return "green";
             }
-            if (item.status_id == 7) {
+            if (item.station_status_id == 7) {
                 return "red";
             }
         },
@@ -648,33 +614,6 @@ export default {
             this.snackText = "Dialog opened";
         },
         close() {},
-
-        click(item, list) {
-            if (item.station_status_id == 11) {
-                item.repair_time = null;
-            }
-            item.station_status_id = list.value;
-            item.station_status_name = list.title;
-            item.user_name = this.user_name;
-
-            var request = {
-                station_status_id: item.station_status_id,
-                user_id: this.$store.state.user_id,
-                status_update: moment.utc().format("YYYY-MM-DD  HH:mm:ss"),
-                out_time: null,
-                repair_time: item.repair_time
-            };
-            axios({
-                method: "put", //you can sfefeet what request you want to be
-                url: "api/updatestationnotification/" + item.id,
-                data: request,
-                headers: {
-                    Authorization: "Bearer " + this.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-        },
 
         sec(item) {
             var a = moment.utc();
