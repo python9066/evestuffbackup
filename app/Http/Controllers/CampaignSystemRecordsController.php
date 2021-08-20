@@ -29,7 +29,7 @@ class CampaignSystemRecordsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the cccccspecified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
