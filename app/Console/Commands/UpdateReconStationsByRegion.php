@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Events\StationUpdateCoord;
 use Illuminate\Console\Command;
 use utils\Notificationhelper\Notifications;
 
@@ -51,5 +52,10 @@ class UpdateReconStationsByRegion extends Command
                 Notifications::reconRegionPullIdCheck($station);
             }
         }
+
+        $flag = collect([
+            'flag' => 1
+        ]);
+        broadcast(new StationUpdateCoord($flag));
     }
 }

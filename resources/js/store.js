@@ -1467,6 +1467,8 @@ export default new Vuex.Store({
 
 
 
+
+
         getSystemReadyToGoCount: state => payload => {
 
             return state.campaignusers.filter(u => u.campaign_id == payload.campaign_id && u.system_id == payload.system_id && u.status_id ==  3).length
@@ -1619,6 +1621,10 @@ export default new Vuex.Store({
             ).length
         },
 
+
+        getShowOnCoordStations: state => {
+            return state.stations.find(stations => stations.show_on_coord == 1);
+        },
 
 
         getTotalNodeCountBySystem: state => payload => {

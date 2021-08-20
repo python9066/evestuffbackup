@@ -7,6 +7,7 @@ use App\Events\StationInfoSet;
 use App\Events\StationNotificationDelete;
 use App\Events\StationNotificationNew;
 use App\Events\StationNotificationUpdate;
+use App\Events\StationUpdateCoord;
 use App\Events\TowerChanged;
 use App\Events\TowerDelete;
 use App\Models\Notification;

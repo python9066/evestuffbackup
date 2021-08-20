@@ -26165,7 +26165,7 @@ function sleep(ms) {
 
             case 16:
               _this.loadingt = false;
-              Echo["private"]("stations").listen("CoordSheetupdate");
+              Echo["private"]("stations").listen("updateStationNotification");
 
               if (!_this.$can("view_admin_logs")) {
                 _context.next = 22;
@@ -26191,11 +26191,16 @@ function sleep(ms) {
     }))();
   },
   mounted: function mounted() {
+    var _this2 = this;
+
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              _this2.onResize();
+
+            case 1:
             case "end":
               return _context2.stop();
           }
@@ -26204,6 +26209,12 @@ function sleep(ms) {
     }))();
   },
   methods: {
+    onResize: function onResize() {
+      this.windowSize = {
+        x: window.innerWidth,
+        y: window.innerHeight
+      };
+    },
     updatetext: function updatetext(payload, item) {
       // console.log(item);
       if (item.text != payload) {
@@ -26269,11 +26280,11 @@ function sleep(ms) {
       }
     },
     loadstations: function loadstations() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.loadingr = true;
       this.$store.dispatch("getStationData").then(function () {
-        _this2.loadingr = false;
+        _this3.loadingr = false;
       }); // console.log("30secs");
     },
     pillIcon: function pillIcon(statusId) {
@@ -33499,7 +33510,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.style-4 {\r\n    background-color: rgba(255, 153, 0, 0.199);\n}\r\n", ""]);
+exports.push([module.i, "\n.style-4 {\n    background-color: rgba(255, 153, 0, 0.199);\n}\n", ""]);
 
 // exports
 
@@ -77281,6 +77292,11 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
           return sys.custom_campaign_id == id && sys.warmup == 1 && (sys.status_id == 7 || sys.status_id == 5);
         }).length;
       };
+    },
+    getShowOnCoordStations: function getShowOnCoordStations(state) {
+      return state.stations.find(function (stations) {
+        return stations.show_on_coord == 1;
+      });
     },
     getTotalNodeCountBySystem: function getTotalNodeCountBySystem(state) {
       return function (payload) {

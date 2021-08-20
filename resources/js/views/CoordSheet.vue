@@ -272,7 +272,7 @@ export default {
         await this.$store.dispatch("getRcItems");
         await this.$store.dispatch("getRcStatus");
         this.loadingt = false;
-        Echo.private("stations").listen("CoordSheetupdate");
+        Echo.private("stations").listen("updateStationNotification");
 
         if (this.$can("view_admin_logs")) {
             await this.$store.dispatch("getLoggingRcSheet");
@@ -283,8 +283,13 @@ export default {
         }
     },
 
-    async mounted() {},
+    async mounted() {
+        this.onResize();
+    },
     methods: {
+        onResize() {
+            this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+        },
         updatetext(payload, item) {
             // console.log(item);
             if (item.text != payload) {

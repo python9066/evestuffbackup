@@ -11,6 +11,7 @@ use App\Events\StationCoreUpdate;
 use App\Events\StationMessageUpdate;
 use App\Events\StationNotificationNew;
 use App\Events\StationNotificationUpdate;
+use App\Events\StationUpdateCoord;
 use App\Models\Corp;
 use App\Models\Item;
 use App\Models\Logging;
@@ -384,6 +385,7 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new StationNotificationUpdate($flag));
+        broadcast(new StationUpdateCoord($flag));
         $message = RCStationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message
@@ -409,6 +411,7 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new StationNotificationUpdate($flag));
+        broadcast(new StationUpdateCoord($flag));
 
         $message = RCStationRecords::where('id', $id)->first();
         $flag = collect([
@@ -436,6 +439,7 @@ class StationController extends Controller
 
     public function softDestroy($id)
     {
+        $stationName = Station::find($id)->value('name');
         Station::where('id', $id)->update(['show_on_rc' => 0, 'show_on_coord' => 1, 'station_status_id' => 7, "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null]);
 
         $oldStatusID = Station::where('id', $id)->pluck('station_status_id')->first();
@@ -448,13 +452,15 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new StationNotificationUpdate($flag));
+        broadcast(new StationUpdateCoord($flag));
+
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
 
-        $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' at ' . now();
+        $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' for ' . $stationName . ' at ' . now();
         $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }
 }
