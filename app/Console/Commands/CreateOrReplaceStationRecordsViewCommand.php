@@ -44,6 +44,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        systems.system_name AS 'system_name',
        constellations.constellation_name AS 'constellation_name',
        regions.region_name AS 'region_name',
+       regions.id AS 'region_id',
        stations.item_id AS 'item_id',
        if(items.id = 35840 , 'Cyno Beacon', if(items.id = 37534 , 'Cyno Jammer', if(items.id = 35841, 'Jump Gate', items.item_name))) AS 'item_name',
        stations.user_id AS 'user_id',
