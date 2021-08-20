@@ -41,8 +41,8 @@ mounts:
   "cache": "shared:files/esi/cache"
   "logs": "shared:files/esi/logs"
   "public/cache": "shared:files/esi/cache"
-  "public/logs": "shared:files/esi/logs"
-# The configuration of app when it is exp   osed to the web.
+  "public/logs": "shared:files/esi/logs"git
+# The configurffffation of app when it is exp   osed to the web.
 web:
   locations:
     "/":
@@ -51,15 +51,15 @@ web:
         - index.php
       allow: true
       passthru: "/index.php"
-# workers:
-#   queue:
-#     size: S
-#     commands:
-#       start: |
-#         php artisan schedule:daemon
+workers:
+  queue:
+    size: S
+    commands:
+      start: |
+        php artisan schedule:daemon
 
-# crons:
-#   # Run Drupal's cron tasks every 19 minutes.
-#   eve:
-#     spec: "* * * * *"
-#     cmd: "php artisan schedule:run >> /dev/null 2>&1"
+crons:
+  # Run Drupal's cron tasks every 19 minutes.
+  eve:
+    spec: "* * * * *"
+    cmd: "php artisan schedule:run >> /dev/null 2>&1"
