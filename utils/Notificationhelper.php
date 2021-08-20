@@ -112,10 +112,12 @@ class Notifications
 
             ]);
             $checkflag = Station::find($id)->first();
-            if ($checkflag->show_on_rc != 1 || $checkflag->show_on_rc_move != 1) {
-                $checkflag->update(['show_on_coord' => 1]);
-                if ($checkflag->station_status_id == 10) {
-                    $checkflag->update(['station_status_id' => 1]);
+            if ($checkflag->show_on_rc != 1) {
+                if ($checkflag->show_on_rc_move != 1) {
+                    $checkflag->update(['show_on_coord' => 1]);
+                    if ($checkflag->station_status_id == 10) {
+                        $checkflag->update(['station_status_id' => 1]);
+                    }
                 }
             }
 
