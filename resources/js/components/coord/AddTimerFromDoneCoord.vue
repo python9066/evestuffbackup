@@ -15,7 +15,7 @@
                     v-on="on"
                     @click="open()"
                 >
-                    Add Ref Timer
+                    Add Timer
                     <v-icon> </v-icon>
                 </v-btn>
             </template>

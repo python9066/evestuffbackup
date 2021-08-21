@@ -6913,6 +6913,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -41426,9 +41427,7 @@ var render = function() {
                       on
                     ),
                     [
-                      _vm._v(
-                        "\n                Add Ref Timer\n                "
-                      ),
+                      _vm._v("\n                Add Timer\n                "),
                       _c("v-icon")
                     ],
                     1
@@ -41825,9 +41824,10 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "v-card-text",
-                { staticClass: " d-inline-flex" },
+                { staticClass: " d-inline-flex", attrs: { justify: "center" } },
                 [
                   _c("AddTimerFromDoneCoord", {
+                    staticClass: " mx-4",
                     attrs: { item: _vm.item },
                     on: {
                       timeropen: function($event) {

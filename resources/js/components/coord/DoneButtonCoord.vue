@@ -31,10 +31,11 @@
                     <p>What is the Status of {{ item.name }}</p>
                 </v-card-title>
 
-                <v-card-text class=" d-inline-flex">
+                <v-card-text class=" d-inline-flex" justify="center">
                     <AddTimerFromDoneCoord
                         @timeropen="close()"
                         :item="item"
+                        class=" mx-4"
                     ></AddTimerFromDoneCoord>
                     <v-btn
                         color="orange darken-1"
