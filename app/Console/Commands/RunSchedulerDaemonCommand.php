@@ -42,6 +42,7 @@ class RunSchedulerDaemonCommand extends Command
     {
         while (true) {
             // $this->call('schedule:run');
+            sleep($this->option('sleep'));
             Userlogging::create(['url' => 'demon START', 'user_id' => 9999999999]);
             Artisan::call('update:campaigns');
             Artisan::call('update:notifications');
@@ -49,7 +50,6 @@ class RunSchedulerDaemonCommand extends Command
             Artisan::call('update:towers');
             Artisan::call('clean:coordsheet');
             Userlogging::create(['url' => 'demon TRIGGER', 'user_id' => 9999999999]);
-            sleep($this->option('sleep'));
 
             // Artisan::call('schedule:run >> /dev/null 2>&1');
         }
