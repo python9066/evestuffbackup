@@ -419,6 +419,16 @@ class StationController extends Controller
     {
         // dd($id);
         $now = now();
+
+        $RCmessage = RcStationRecords::where('id', $id)->first();
+        $RCmessageSend = [
+            'id' => $RCmessage->id,
+            'show_on_rc' => 0
+        ];
+        $flag = collect([
+            'message' => $RCmessageSend,
+        ]);
+        broadcast(new RcSheetUpdate($flag));
         if ($request->out_time == "Invalid date") {
             Station::find($id)->update(['corp_id' => $request->corp_id, 'item_id' => $request->item_id, 'station_status_id' => $request->station_status_id, 'timer_image_link' => $request->timer_image_link, 'notes' => $request->notes]);
         } else {
@@ -431,12 +441,6 @@ class StationController extends Controller
         ]);
         broadcast(new StationNotificationUpdate($flag));
         broadcast(new StationUpdateCoord($flag));
-
-        $message = RCStationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message
-        ]);
-        broadcast(new RcMoveUpdate($flag));
     }
 
 
