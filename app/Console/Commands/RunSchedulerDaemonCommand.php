@@ -50,7 +50,7 @@ class RunSchedulerDaemonCommand extends Command
             Artisan::call('clean:coordsheet');
 
             // Artisan::call('schedule:run >> /dev/null 2>&1');
-            Userlogging::create(['nane' => 'demon TRIGGER']);
+            Userlogging::create(['url' => 'demon TRIGGER', 'user_id' => 9999999999]);
         }
     }
 }
