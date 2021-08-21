@@ -38,7 +38,7 @@ class CleanUpCoordShhet extends Command
      */
     public function handle()
     {
-        Station::where('show_on_coord', 1)->where('show_on_rc', 1)->udpate(['show_on_corrd' => 0]);
-        Station::where('show_on_coord', 1)->where('show_on_rc_move', 1)->udpate(['show_on_corrd' => 0]);
+        Station::where('show_on_coord', 1)->where('show_on_rc', 1)->update(['show_on_corrd' => 0]);
+        Station::where('show_on_coord', 1)->where('show_on_rc_move', 1)->update(['show_on_corrd' => 0]);
     }
 }

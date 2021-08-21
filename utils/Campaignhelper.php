@@ -64,7 +64,7 @@ class Campaignhelper
     {
         $checkflag = null;
         //Removing old Campaigns and all data from databae -- start////
-        Userlogging::create(['name' => "demon"]);
+
 
         $toDelete = Campaign::where('status_id', 10)
             ->get();
