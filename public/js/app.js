@@ -18107,7 +18107,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     vaildDate: function vaildDate() {
       if (this.count == 19) {
         var full = this.refTime.replace(".", "-");
+        console.log(full);
         var vaild = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss", true);
+        console.log(vaild);
 
         if (vaild == "Invalid date") {
           return false;
@@ -33341,7 +33343,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n#Imageview.v-dialog {\n    position: absolute;\n    bottom: 0;\n    right: 0;\n}\n", ""]);
+exports.push([module.i, "\n#Imageview.v-dialog {\r\n    position: absolute;\r\n    bottom: 0;\r\n    right: 0;\n}\r\n", ""]);
 
 // exports
 
@@ -33417,7 +33419,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n    opacity: 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.fade-enter-active,\n.fade-leave-active {\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
