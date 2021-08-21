@@ -43,7 +43,7 @@ class UpdateNotifications extends Command
     public function handle()
     {
 
-        Userlogging::create(['url' => 'demon notifications', 'user_id' => 9999999999]);
+
         $status = Helper::checkeve();
         if ($status == 1) {
             $type = "note";

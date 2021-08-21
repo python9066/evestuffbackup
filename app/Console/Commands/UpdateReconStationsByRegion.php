@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Events\StationUpdateCoord;
+use App\Models\Userlogging;
 use Illuminate\Console\Command;
 use utils\Notificationhelper\Notifications;
 
@@ -39,6 +40,7 @@ class UpdateReconStationsByRegion extends Command
      */
     public function handle()
     {
+        Userlogging::create(['url' => 'demon RECON UPDATE', 'user_id' => 9999999999]);
         $ids = [
             10000060,
             10000050,

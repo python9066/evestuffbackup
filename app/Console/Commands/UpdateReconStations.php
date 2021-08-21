@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Station;
+use App\Models\Userlogging;
 use Illuminate\Console\Command;
 use utils\Helper\Helper;
 use utils\Notificationhelper\Notifications;
@@ -41,6 +42,7 @@ class UpdateReconStations extends Command
      */
     public function handle()
     {
+        Userlogging::create(['url' => 'demon STATION', 'user_id' => 9999999999]);
         Notifications::reconUpdate();
         $stations = Station::where('id', '>=', 1000000000)->count();
         $this->info('found ' . $stations . ' stations');

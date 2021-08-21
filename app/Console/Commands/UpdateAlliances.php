@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Userlogging;
 use Illuminate\Console\Command;
 use utils\Alliancehelper\Alliancehelper;
 use utils\Helper\Helper;
@@ -39,6 +40,8 @@ class UpdateAlliances extends Command
      */
     public function handle()
     {
+
+        Userlogging::create(['url' => 'demon ALLIANCE', 'user_id' => 9999999999]);
         $status = Helper::checkeve();
         if ($status == 1) {
             Alliancehelper::updateAlliances();
