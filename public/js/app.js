@@ -26726,9 +26726,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -62790,11 +62787,7 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                item.out == 1
-                                  ? _c("DoneButtonCoord", {
-                                      attrs: { item: item }
-                                    })
-                                  : _vm._e()
+                                _c("DoneButtonCoord", { attrs: { item: item } })
                               ]
                             }
                           },

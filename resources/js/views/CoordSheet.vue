@@ -154,10 +154,7 @@
                         <template
                             v-slot:[`item.station_status_name`]="{ item }"
                         >
-                            <DoneButtonCoord
-                                v-if="item.out == 1"
-                                :item="item"
-                            ></DoneButtonCoord>
+                            <DoneButtonCoord :item="item"></DoneButtonCoord>
                         </template>
                         <template v-slot:[`item.actions`]="{ item }">
                             <div class=" d-inline-flex">
