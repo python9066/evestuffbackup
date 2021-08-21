@@ -68,7 +68,6 @@
             </v-btn-toggle>
 
             <v-btn-toggle v-model="toggle_exclusive" mandatory :value="1">
-                >
                 <v-btn
                     :loading="loading3"
                     :disabled="loading3"
