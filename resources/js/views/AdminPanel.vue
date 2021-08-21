@@ -277,7 +277,7 @@ function sleep(ms) {
 
 export default {
     title() {
-        return `EveStuff — Admin`;
+        return `EveStuff - Admin`;
     },
     data() {
         return {

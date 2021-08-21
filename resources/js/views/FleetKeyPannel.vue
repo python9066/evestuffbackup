@@ -193,7 +193,7 @@ function sleep(ms) {
 
 export default {
     title() {
-        return `EveStuff — Fleet Keys`;
+        return `EveStuff - Fleet Keys`;
     },
     data() {
         return {

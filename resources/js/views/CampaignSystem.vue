@@ -482,7 +482,7 @@ function sleep(ms) {
 
 export default {
     title() {
-        return `EveStuff — ${this.campaign.system} - ${this.campaign.item_name}`;
+        return `EveStuff - ${this.campaign.system} - ${this.campaign.item_name}`;
     },
     data() {
         return {

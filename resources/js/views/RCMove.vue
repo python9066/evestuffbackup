@@ -576,7 +576,7 @@ export default {
 
         pageTitle() {
             if (this.$can("finish_move_timer")) {
-                return "Evestuff - Timers to move";
+                return "EveStuff - Timers to move";
             } else {
                 return "Add Timer";
             }

@@ -377,7 +377,7 @@ function sleep(ms) {
 
 export default {
     title() {
-        return `EveStuff Campaigns`;
+        return `EveStuff - Campaigns`;
     },
     data() {
         return {

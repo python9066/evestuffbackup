@@ -100,7 +100,7 @@ import moment from "moment";
 export default {
     props: {},
     title() {
-        return `EveStuff — ${this.startcampaign[0]["name"]}`;
+        return `EveStuff - ${this.startcampaign[0]["name"]}`;
     },
     async created() {
         this.campaignId = this.$route.params.id;

@@ -23459,7 +23459,7 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {
-    return "EveStuff \u2014 Admin";
+    return "EveStuff - Admin";
   },
   data: function data() {
     return {
@@ -24850,7 +24850,7 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {
-    return "EveStuff \u2014 ".concat(this.campaign.system, " - ").concat(this.campaign.item_name);
+    return "EveStuff - ".concat(this.campaign.system, " - ").concat(this.campaign.item_name);
   },
   data: function data() {
     return {
@@ -26195,7 +26195,7 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {
-    return "EveStuff Campaigns";
+    return "EveStuff - Campaigns";
   },
   data: function data() {
     return {
@@ -27888,7 +27888,7 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {
-    return "EveStuff \u2014 Fleet Keys";
+    return "EveStuff - Fleet Keys";
   },
   data: function data() {
     return {
@@ -28513,7 +28513,7 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {
-    return "EveStuff \u2014 ".concat(this.$route.params.name);
+    return "EveStuff - ".concat(this.$route.params.name);
   },
   data: function data() {
     return {
@@ -30938,7 +30938,7 @@ function sleep(ms) {
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stations"])), {}, {
     pageTitle: function pageTitle() {
       if (this.$can("finish_move_timer")) {
-        return "Evestuff - Timers to move";
+        return "EveStuff - Timers to move";
       } else {
         return "Add Timer";
       }
@@ -32231,7 +32231,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {},
   title: function title() {
-    return "EveStuff \u2014 ".concat(this.startcampaign[0]["name"]);
+    return "EveStuff - ".concat(this.startcampaign[0]["name"]);
   },
   created: function created() {
     var _this = this;
@@ -34538,7 +34538,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.rainbow-2[data-v-55568bd4]:hover {\r\n    background-image: linear-gradient(\r\n        to right,\r\n        red,\r\n        orange,\r\n        yellow,\r\n        green,\r\n        blue,\r\n        indigo,\r\n        violet,\r\n        red\r\n    );\r\n    -webkit-animation: slidebg-data-v-55568bd4 2s linear infinite;\r\n            animation: slidebg-data-v-55568bd4 2s linear infinite;\n}\n@-webkit-keyframes slidebg-data-v-55568bd4 {\nto {\r\n        background-position: 20vw;\n}\n}\n@keyframes slidebg-data-v-55568bd4 {\nto {\r\n        background-position: 20vw;\n}\n}\n.follow[data-v-55568bd4] {\r\n    margin-top: 40px;\n}\n.follow a[data-v-55568bd4] {\r\n    color: black;\r\n    padding: 8px 16px;\r\n    text-decoration: none;\n}\r\n", ""]);
+exports.push([module.i, "\n.rainbow-2[data-v-55568bd4]:hover {\n    background-image: linear-gradient(\n        to right,\n        red,\n        orange,\n        yellow,\n        green,\n        blue,\n        indigo,\n        violet,\n        red\n    );\n    -webkit-animation: slidebg-data-v-55568bd4 2s linear infinite;\n            animation: slidebg-data-v-55568bd4 2s linear infinite;\n}\n@-webkit-keyframes slidebg-data-v-55568bd4 {\nto {\n        background-position: 20vw;\n}\n}\n@keyframes slidebg-data-v-55568bd4 {\nto {\n        background-position: 20vw;\n}\n}\n.follow[data-v-55568bd4] {\n    margin-top: 40px;\n}\n.follow a[data-v-55568bd4] {\n    color: black;\n    padding: 8px 16px;\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -34576,7 +34576,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.rainbow-2[data-v-497c3fc8]:hover {\r\n    background-image: linear-gradient(\r\n        to right,\r\n        red,\r\n        orange,\r\n        yellow,\r\n        green,\r\n        blue,\r\n        indigo,\r\n        violet,\r\n        red\r\n    );\r\n    -webkit-animation: slidebg-data-v-497c3fc8 2s linear infinite;\r\n            animation: slidebg-data-v-497c3fc8 2s linear infinite;\n}\n@-webkit-keyframes slidebg-data-v-497c3fc8 {\nto {\r\n        background-position: 20vw;\n}\n}\n@keyframes slidebg-data-v-497c3fc8 {\nto {\r\n        background-position: 20vw;\n}\n}\n.follow[data-v-497c3fc8] {\r\n    margin-top: 40px;\n}\n.follow a[data-v-497c3fc8] {\r\n    color: black;\r\n    padding: 8px 16px;\r\n    text-decoration: none;\n}\r\n", ""]);
+exports.push([module.i, "\n.rainbow-2[data-v-497c3fc8]:hover {\n    background-image: linear-gradient(\n        to right,\n        red,\n        orange,\n        yellow,\n        green,\n        blue,\n        indigo,\n        violet,\n        red\n    );\n    -webkit-animation: slidebg-data-v-497c3fc8 2s linear infinite;\n            animation: slidebg-data-v-497c3fc8 2s linear infinite;\n}\n@-webkit-keyframes slidebg-data-v-497c3fc8 {\nto {\n        background-position: 20vw;\n}\n}\n@keyframes slidebg-data-v-497c3fc8 {\nto {\n        background-position: 20vw;\n}\n}\n.follow[data-v-497c3fc8] {\n    margin-top: 40px;\n}\n.follow a[data-v-497c3fc8] {\n    color: black;\n    padding: 8px 16px;\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -34595,7 +34595,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.style-4 {\r\n    background-color: rgba(255, 153, 0, 0.199);\n}\r\n", ""]);
+exports.push([module.i, "\n.style-4 {\n    background-color: rgba(255, 153, 0, 0.199);\n}\n", ""]);
 
 // exports
 
