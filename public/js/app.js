@@ -7019,6 +7019,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 6:
+                _this.showDoneCoordOverlay = false;
+
+              case 7:
               case "end":
                 return _context3.stop();
             }
@@ -26850,7 +26853,7 @@ function sleep(ms) {
                 if (e.flag.flag == 1) {
                   _this.freshUpdate();
                 }
-              }).listen("StationNotificationDelete", function (e) {
+              }).listen("StationDeadCoord", function (e) {
                 _this.$store.dispatch("deleteStationNotification", e.flag.id);
               });
 
@@ -41477,11 +41480,11 @@ var render = function() {
                               label: "Station Name"
                             },
                             model: {
-                              value: _vm.item.name,
+                              value: _vm.item.station_name,
                               callback: function($$v) {
-                                _vm.$set(_vm.item, "name", $$v)
+                                _vm.$set(_vm.item, "station_name", $$v)
                               },
-                              expression: "item.name"
+                              expression: "item.station_name"
                             }
                           })
                         ],

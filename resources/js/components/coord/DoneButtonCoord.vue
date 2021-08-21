@@ -137,6 +137,7 @@ export default {
                     "Content-Type": "application/json"
                 }
             });
+            this.showDoneCoordOverlay = false;
         },
 
         async destroyed() {

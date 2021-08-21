@@ -288,7 +288,7 @@ export default {
                     this.freshUpdate();
                 }
             })
-            .listen("StationNotificationDelete", e => {
+            .listen("StationDeadCoord", e => {
                 this.$store.dispatch("deleteStationNotification", e.flag.id);
             });
     },

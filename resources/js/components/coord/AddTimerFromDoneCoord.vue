@@ -36,7 +36,7 @@
                         <div>
                             <div>
                                 <v-text-field
-                                    v-model="item.name"
+                                    v-model="item.station_name"
                                     readonly
                                     outlined
                                     label="Station Name"
