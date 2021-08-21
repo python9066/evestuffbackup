@@ -6940,19 +6940,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   watch: {},
   methods: {
     pillColor: function pillColor(item) {
-      if (item.station_status_id == 4) {
+      if (item.status_id == 4) {
         return "orange darken-1";
       }
 
-      if (item.station_status_id == 18) {
+      if (item.status_id == 18) {
         return "brown lighten-2";
       }
 
-      if (item.station_status_id == 1) {
+      if (item.status_id == 1) {
         return "green";
       }
 
-      if (item.station_status_id == 7) {
+      if (item.status_id == 7) {
         return "red";
       }
     },
@@ -7001,7 +7001,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 request = null;
                 request = {
-                  station_status_id: statusID,
+                  status_id: statusID,
                   show_on_rc: 0,
                   show_on_coord: 1
                 };
