@@ -6957,7 +6957,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     buttontext: function buttontext() {
-      var ret = this.item.status_name.replace("Upcoming - ", "");
+      var ret = this.item.station_status_name.replace("Upcoming - ", "");
       return ret;
     },
     open: function open() {
