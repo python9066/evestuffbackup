@@ -441,6 +441,7 @@ class StationController extends Controller
         ]);
         broadcast(new StationNotificationUpdate($flag));
         broadcast(new StationUpdateCoord($flag));
+        broadcast(new RcMoveUpdate($flag));
     }
 
 
