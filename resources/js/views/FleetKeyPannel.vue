@@ -193,7 +193,7 @@ function sleep(ms) {
 
 export default {
     title() {
-        return `EVE — Fleet Keys`;
+        return `EveStuff - Fleet Keys`;
     },
     data() {
         return {
@@ -226,9 +226,27 @@ export default {
         await this.$store.dispatch("getKeyFleets");
     },
 
-    async mounted() {},
+    async mounted() {
+        this.log();
+    },
 
     methods: {
+        log() {
+            var request = {
+                url: this.$route.path
+            };
+
+            axios({
+                method: "post", //you can set what request you want to be
+                url: "api/url",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
         filterKeys(keys) {
             // console.log(roles);
             return keys;

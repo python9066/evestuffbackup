@@ -15,7 +15,7 @@
                     v-on="on"
                     @click="open()"
                 >
-                    Add Hull Timer
+                    Add Timer
                     <v-icon> </v-icon>
                 </v-btn>
             </template>
@@ -36,7 +36,7 @@
                         <div>
                             <div>
                                 <v-text-field
-                                    v-model="item.name"
+                                    v-model="item.station_name"
                                     readonly
                                     outlined
                                     label="Station Name"
@@ -58,13 +58,14 @@
                             </div>
                             <div>
                                 <h5><strong>Timer Type</strong></h5>
-                                <v-text-field
-                                    class=" ml-2"
-                                    outlined
-                                    v-model="this.hull"
-                                    readonly
-                                    label="Ref Type"
-                                ></v-text-field>
+                                <v-radio-group
+                                    v-model="refType"
+                                    row
+                                    :rules="[rules.required]"
+                                >
+                                    <v-radio label="Armor" value="5"></v-radio>
+                                    <v-radio label="Hull" value="13"></v-radio>
+                                </v-radio-group>
                             </div>
                             <div>
                                 <h5><strong>Image Link 2</strong></h5>
@@ -156,7 +157,10 @@ export default {
                 mm: "",
                 ss: ""
             },
-            hull: "Hull"
+
+            rules: {
+                required: value => !!value || "Required"
+            }
         };
     },
 
@@ -194,11 +198,11 @@ export default {
             var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
 
             var request = {
-                station_status_id: 13,
+                station_status_id: this.refType,
                 out_time: outTime,
                 timer_image_link: this.imageLink,
-                show_on_rc_move: 1,
-                show_on_rc: 0,
+                show_on_rc_move: 0,
+                show_on_rc: 1,
                 show_on_coord: 0,
                 status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
                 notes: note

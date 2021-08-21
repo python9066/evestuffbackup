@@ -154,9 +154,7 @@
                         <template
                             v-slot:[`item.station_status_name`]="{ item }"
                         >
-                            <v-chip pill small :color="pillColor(item)">
-                                {{ buttontext(item) }}
-                            </v-chip>
+                            <DoneButtonCoord :item="item"></DoneButtonCoord>
                         </template>
                         <template v-slot:[`item.actions`]="{ item }">
                             <div class=" d-inline-flex">
@@ -196,6 +194,9 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 export default {
+    title() {
+        return `EveStuff - Coord Sheet`;
+    },
     data() {
         return {
             regionPicked: [],
@@ -274,24 +275,45 @@ export default {
         await this.$store.dispatch("getCoordItems");
         await this.$store.dispatch("getCoordStatus");
         this.loadingt = false;
-        Echo.private("coord").listen("StationUpdateCoord", e => {
-            if (e.flag.message != null) {
-                this.$store.dispatch(
-                    "updateStationNotification",
-                    e.flag.message
-                );
-            }
+        Echo.private("coord")
+            .listen("StationUpdateCoord", e => {
+                if (e.flag.message != null) {
+                    this.$store.dispatch(
+                        "updateStationNotification",
+                        e.flag.message
+                    );
+                }
 
-            if (e.flag.flag == 1) {
-                this.freshUpdate();
-            }
-        });
+                if (e.flag.flag == 1) {
+                    this.freshUpdate();
+                }
+            })
+            .listen("StationDeadCoord", e => {
+                this.$store.dispatch("deleteStationNotification", e.flag.id);
+            });
     },
 
     async mounted() {
+        this.log();
         this.onResize();
     },
     methods: {
+        log() {
+            var request = {
+                url: this.$route.path
+            };
+
+            axios({
+                method: "post", //you can set what request you want to be
+                url: "api/url",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
         async freshUpdate() {
             await this.$store.dispatch("getCoordStationRecords");
             await this.$store.dispatch("loadStationInfo");

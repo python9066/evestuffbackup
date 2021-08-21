@@ -47,6 +47,7 @@ class RunSchedulerDaemonCommand extends Command
             Artisan::call('update:notifications');
             Artisan::call('update:stationnotifications');
             Artisan::call('update:towers');
+            Artisan::call('clean:coordsheet');
             // Artisan::call('schedule:run >> /dev/null 2>&1');
             // Userlogging::create(['nane' => 'demon TRIGGER']);
         }

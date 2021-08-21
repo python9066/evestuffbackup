@@ -113,8 +113,8 @@ Vue.component('EditFleets', require('./components/keypannel/EditFleet.vue').defa
 Vue.component('EditKeys', require('./components/keypannel/EditKeys.vue').default);
 Vue.component('DoneButton', require('./components/rcsheet/DoneButton.vue').default);
 Vue.component('AddTimerFromDone', require('./components/rcsheet/AddTimerFromDone.vue').default);
-
-
+Vue.component('AddTimerFromDoneCoord', require('./components/coord/AddTimerFromDoneCoord.vue').default);
+Vue.component('DoneButtonCoord', require('./components/coord/DoneButtonCoord.vue').default);
 
 
 

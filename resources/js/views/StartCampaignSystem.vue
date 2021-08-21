@@ -100,7 +100,7 @@ import moment from "moment";
 export default {
     props: {},
     title() {
-        return `EVE`;
+        return `EveStuff - ${this.startcampaign[0]["name"]}`;
     },
     async created() {
         this.campaignId = this.$route.params.id;
@@ -130,9 +130,28 @@ export default {
         };
     },
 
-    async mounted() {},
+    async mounted() {
+        this.log();
+    },
 
-    methods: {},
+    methods: {
+        log() {
+            var request = {
+                url: this.$route.path
+            };
+
+            axios({
+                method: "post", //you can set what request you want to be
+                url: "api/url",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        }
+    },
 
     computed: {
         ...mapGetters(["getStartCampaignsById", "getStartCampaignById"]),

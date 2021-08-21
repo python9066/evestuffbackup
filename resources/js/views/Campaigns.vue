@@ -377,7 +377,7 @@ function sleep(ms) {
 
 export default {
     title() {
-        return `EVE`;
+        return `EveStuff - Campaigns`;
     },
     data() {
         return {
@@ -427,8 +427,27 @@ export default {
         });
     },
 
-    async mounted() {},
+    async mounted() {
+        this.log();
+    },
     methods: {
+        log() {
+            var request = {
+                url: this.$route.path
+            };
+
+            axios({
+                method: "post", //you can set what request you want to be
+                url: "api/url",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
+
         async loadcampaigns() {
             this.loadingr = true;
             this.$store.dispatch("getCampaignsRegions");

@@ -31,6 +31,7 @@ Route::middleware('auth:api')->group(function () {
     //BROISES FEED//
     Route::post('/brois', 'testController@notifications');
     Route::get('/test', 'testController@key');
+    Route::post('/url', 'AppController@url');
 
     Route::post('/rcInput', 'RCSheet@RCInput');
     Route::get('/reconpullregion', 'StationController@reconRegionPull');

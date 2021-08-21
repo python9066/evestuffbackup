@@ -8,7 +8,9 @@ use App\Events\RcMoveUpdate;
 use App\Events\RcSheetUpdate;
 use App\Events\StationAttackMessageUpdate;
 use App\Events\StationCoreUpdate;
+use App\Events\StationDeadCoord;
 use App\Events\StationMessageUpdate;
+use App\Events\StationNotificationDelete;
 use App\Events\StationNotificationNew;
 use App\Events\StationNotificationUpdate;
 use App\Events\StationUpdateCoord;
@@ -383,14 +385,16 @@ class StationController extends Controller
         $oldStatusName = StationStatus::where('id', $oldStatusID)->pluck('name')->first();
 
         $RCmessage = RcStationRecords::where('id', $id)->first();
-        $RCmessageSend = [
-            'id' => $RCmessage->id,
-            'show_on_rc' => 0
-        ];
-        $flag = collect([
-            'message' => $RCmessageSend,
-        ]);
-        broadcast(new RcSheetUpdate($flag));
+        if ($RCmessage) {
+            $RCmessageSend = [
+                'id' => $RCmessage->id,
+                'show_on_rc' => 0
+            ];
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
+            broadcast(new RcSheetUpdate($flag));
+        }
 
 
 
@@ -450,6 +454,8 @@ class StationController extends Controller
             'id' => $id
         ]);
         broadcast(new RcMoveDelete($flag));
+        broadcast(new StationNotificationDelete($flag));
+        broadcast(new StationDeadCoord($flag));
     }
 
     public function softDestroy($id)

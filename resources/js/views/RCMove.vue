@@ -206,6 +206,9 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 export default {
+    title() {
+        return `${this.pageTitle}`;
+    },
     data() {
         return {
             atime: null,
@@ -354,8 +357,26 @@ export default {
         }
     },
 
-    async mounted() {},
+    async mounted() {
+        this.log();
+    },
     methods: {
+        log() {
+            var request = {
+                url: this.$route.path
+            };
+
+            axios({
+                method: "post", //you can set what request you want to be
+                url: "api/url",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
         countDownStartTime(item) {
             if (item.station_status_id == 11) {
                 return moment.utc(item.repair_time).unix();
@@ -552,6 +573,14 @@ export default {
     },
     computed: {
         ...mapState(["stations"]),
+
+        pageTitle() {
+            if (this.$can("finish_move_timer")) {
+                return "EveStuff - Timers to move";
+            } else {
+                return "Add Timer";
+            }
+        },
 
         filteredItems() {
             return this.stations.filter(s => s.show_on_rc_move == 1);
