@@ -10,7 +10,32 @@ class TimerController extends Controller
 {
 
 
-    public function getTimerData()
+    public function getTimerDataHostileOpen()
+    {
+        return ['timers' => TimersRecord::all()];
+    }
+
+    public function getTimerDataHostileClosed()
+    {
+        return ['timers' => TimersRecord::all()];
+    }
+
+    public function getTimerDataBlueOpen()
+    {
+        return ['timers' => TimersRecord::all()];
+    }
+
+    public function getTimerDataBlueClosed()
+    {
+        return ['timers' => TimersRecord::all()];
+    }
+
+    public function getTimerDataGoonOpen()
+    {
+        return ['timers' => TimersRecord::all()];
+    }
+
+    public function getTimerDataGoonClosed()
     {
         return ['timers' => TimersRecord::all()];
     }

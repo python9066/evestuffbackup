@@ -92,7 +92,7 @@ export default {
             }
         },
 
-        ions() {
+        icons() {
             if (this.item.station_status_id == 4) {
                 return "faSvg fa-check-circle";
             }
