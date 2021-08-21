@@ -90,7 +90,6 @@
             >
                 <v-card width="100%">
                     <v-data-table
-                        :v-if="(loadingt = false)"
                         :headers="headers"
                         :items="filter_end"
                         :item-class="itemRowBackground"

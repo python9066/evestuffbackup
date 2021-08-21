@@ -26726,7 +26726,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -41784,7 +41783,7 @@ var render = function() {
                       _vm._v(
                         "\n                " +
                           _vm._s(_vm.buttontext()) +
-                          " - Done\n                "
+                          "\n                "
                       ),
                       _c("v-icon", { attrs: { right: "" } }, [
                         _vm._v(" faSvg fa-check-circle")
@@ -62666,7 +62665,6 @@ var render = function() {
                     {
                       staticClass: "elevation-5",
                       attrs: {
-                        "v-if": (_vm.loadingt = false),
                         headers: _vm.headers,
                         items: _vm.filter_end,
                         "item-class": _vm.itemRowBackground,
