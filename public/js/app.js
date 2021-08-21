@@ -13085,6 +13085,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 full = _this.refTime.replace(".", "-");
+                full = full.replace(".", "-");
                 outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
                 request = {
                   station_status_id: 13,
@@ -13096,7 +13097,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
                   notes: note
                 };
-                _context2.next = 9;
+                _context2.next = 10;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -13109,7 +13110,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(_this.showStationTimer = false, _this.refType = null, _this.refTime = "", _this.showStationTimer = false, _this.$emit("timeropen"));
 
-              case 9:
+              case 10:
               case "end":
                 return _context2.stop();
             }
@@ -13135,6 +13136,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     vaildDate: function vaildDate() {
       if (this.count == 19) {
         var full = this.refTime.replace(".", "-");
+        full = full.replace(".", "-");
         var vaild = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss", true);
 
         if (vaild == "Invalid date") {
@@ -17858,6 +17860,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 if (_this5.type != 1) {
                   full = _this5.refTime.replace(".", "-");
+                  full = full.replace(".", "-");
                   outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
                 } else {
                   outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss");
@@ -17924,6 +17927,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 if (_this6.type != 1) {
                   full = _this6.refTime.replace(".", "-");
+                  full = full.replace(".", "-");
                   outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
                 } else {
                   outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss");
@@ -18108,9 +18112,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       if (this.count == 19) {
         var full = this.refTime.replace(".", "-");
         full = full.replace(".", "-");
-        console.log(full);
         var vaild = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss", true);
-        console.log(vaild);
 
         if (vaild == "Invalid date") {
           return false;
@@ -18589,6 +18591,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     vaildDate: function vaildDate() {
       if (this.count == 19) {
         var full = this.refTime.replace(".", "-");
+        full = full.replace(".", "-");
         var vaild = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss", true);
 
         if (vaild == "Invalid date") {
@@ -33325,7 +33328,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n    opacity: 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.fade-enter-active,\n.fade-leave-active {\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -33439,7 +33442,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n    opacity: 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.fade-enter-active,\n.fade-leave-active {\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 

@@ -442,6 +442,7 @@ export default {
         async submit() {
             if (this.type != 1) {
                 var full = this.refTime.replace(".", "-");
+                full = full.replace(".", "-");
                 var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
             } else {
                 var outTime = moment.utc().format("YYYY-MM-DD HH:mm:ss");
@@ -515,6 +516,7 @@ export default {
         async submit3() {
             if (this.type != 1) {
                 var full = this.refTime.replace(".", "-");
+                full = full.replace(".", "-");
                 var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
             } else {
                 var outTime = moment.utc().format("YYYY-MM-DD HH:mm:ss");
@@ -702,9 +704,7 @@ export default {
             if (this.count == 19) {
                 var full = this.refTime.replace(".", "-");
                 full = full.replace(".", "-");
-                console.log(full);
                 var vaild = moment(full).format("YYYY-MM-DD HH:mm:ss", true);
-                console.log(vaild);
                 if (vaild == "Invalid date") {
                     return false;
                 } else {
