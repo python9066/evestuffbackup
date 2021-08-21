@@ -75,17 +75,17 @@ export default {
     watch: {},
 
     methods: {
-        pillColor(item) {
-            if (item.status_id == 4) {
+        pillColor() {
+            if (this.item.station_status_id == 4) {
                 return "orange darken-1";
             }
-            if (item.status_id == 18) {
+            if (this.item.station_status_id == 18) {
                 return "brown lighten-2";
             }
-            if (item.status_id == 1) {
+            if (this.item.station_status_id == 1) {
                 return "green";
             }
-            if (item.status_id == 7) {
+            if (this.item.station_status_id == 7) {
                 return "red";
             }
         },
@@ -101,7 +101,10 @@ export default {
         },
 
         showAddTimer() {
-            if (this.item.status_id == 5 || this.item.status_id == 8) {
+            if (
+                this.item.station_status_id == 5 ||
+                this.item.station_status_id == 8
+            ) {
                 return true;
             } else {
                 return false;
@@ -118,7 +121,7 @@ export default {
 
             var request = null;
             request = {
-                status_id: statusID,
+                station_status_id: statusID,
                 show_on_rc: 0,
                 show_on_coord: 1
             };
