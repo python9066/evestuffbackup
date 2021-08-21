@@ -25,13 +25,13 @@
                 max-width="700px"
                 min-height="200px"
                 max-height="1000px"
-                class=" d-flex flex-column"
+                class=" d-flex flex-column justify-center"
             >
                 <v-card-title class="justify-center">
                     <p>What is the Status of {{ item.name }}</p>
                 </v-card-title>
 
-                <v-card-text class=" d-inline-flex" justify="center">
+                <v-card-text class=" d-inline-flex">
                     <AddTimerFromDoneCoord
                         @timeropen="close()"
                         :item="item"
