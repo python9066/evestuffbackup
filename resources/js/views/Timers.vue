@@ -54,13 +54,6 @@
                 <v-btn
                     :loading="loading3"
                     :disabled="loading3"
-                    @click="(itemFlag = 1), (endtext = 'Time till Change')"
-                >
-                    All
-                </v-btn>
-                <v-btn
-                    :loading="loading3"
-                    :disabled="loading3"
                     @click="(itemFlag = 2), (endtext = 'Time till Closed')"
                 >
                     Open
@@ -75,13 +68,7 @@
             </v-btn-toggle>
 
             <v-btn-toggle v-model="toggle_exclusive" mandatory :value="1">
-                <v-btn
-                    :loading="loading3"
-                    :disabled="loading3"
-                    @click="colorflag = 4"
                 >
-                    All
-                </v-btn>
                 <v-btn
                     :loading="loading3"
                     :disabled="loading3"
@@ -237,7 +224,12 @@ export default {
         },
 
         async loadtimers() {
-            await this.$store.dispatch("getTimerDataAll");
+            await this.$store.dispatch("getTimerDataRedOpen");
+            await this.$store.dispatch("getTimerDataRedClosed");
+            await this.$store.dispatch("getTimerDataBlueOpen");
+            await this.$store.dispatch("getTimerDataBlueClosed");
+            await this.$store.dispatch("getTimerDataGoonOpen");
+            await this.$store.dispatch("getTimerDataGoonClosed");
             await this.$store.dispatch("getTimerDataAllRegion");
             this.loading3 = false;
             this.loading = false;
@@ -273,47 +265,41 @@ export default {
         }
     },
     computed: {
-        ...mapState(["timers", "timersRegions"]),
-        filteredItems_start() {
+        ...mapState([
+            "timersRedOpen",
+            "timersRedClosed",
+            "timersBlueOpen",
+            "timersBlueClosed",
+            "timersGoonOpen",
+            "timersGoonClosed",
+            "timersRegions"
+        ]),
+        filteredItems() {
             if (this.colorflag == 1) {
-                return this.timers.filter(
-                    timers => timers.color == 1 && timers.status == 0
-                );
+                if (this.itemFlag == 2) {
+                    return this.timersRedOpen;
+                } else {
+                    return this.timersRedClosed;
+                }
             }
             if (this.colorflag == 2) {
-                return this.timers.filter(
-                    timers => timers.color > 1 && timers.status == 0
-                );
+                if (this.itemFlag == 2) {
+                    return this.timersBlueOpen;
+                } else {
+                    return this.timersBlueClosed;
+                }
             }
             if (this.colorflag == 3) {
-                return this.timers.filter(
-                    timers => timers.color == 3 && timers.status == 0
-                );
-            } else {
-                return this.timers.filter(timers => timers.status == 0);
+                if (this.itemFlag == 2) {
+                    return this.timersGoonOpen;
+                } else {
+                    return this.timersGoonClosed;
+                }
             }
         },
 
         dropdown_search_list() {
             return this.timersRegions;
-        },
-
-        filteredItems() {
-            if (this.itemFlag == 1) {
-                return this.filteredItems_start;
-            }
-
-            if (this.itemFlag == 2) {
-                return this.filteredItems_start.filter(
-                    t => t.window_station === "Open"
-                );
-            }
-
-            if (this.itemFlag == 3) {
-                return this.filteredItems_start.filter(
-                    t => t.window_station === "Closed"
-                );
-            }
         },
 
         filterEnd() {

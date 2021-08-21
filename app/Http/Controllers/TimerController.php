@@ -10,34 +10,39 @@ class TimerController extends Controller
 {
 
 
-    public function getTimerDataHostileOpen()
+    public function getTimerData()
     {
         return ['timers' => TimersRecord::all()];
+    }
+
+    public function getTimerDataHostileOpen()
+    {
+        return ['timers' => TimersRecord::where('color', 1)->where('window_station', 'Open')->where('status', 0)];
     }
 
     public function getTimerDataHostileClosed()
     {
-        return ['timers' => TimersRecord::all()];
+        return ['timers' => TimersRecord::where('color', 1)->where('window_station', 'Closed')->where('status', 0)];
     }
 
     public function getTimerDataBlueOpen()
     {
-        return ['timers' => TimersRecord::all()];
+        return ['timers' => TimersRecord::where('color', '>', 1)->where('window_station', 'Open')->where('status', 0)];
     }
 
     public function getTimerDataBlueClosed()
     {
-        return ['timers' => TimersRecord::all()];
+        return ['timers' => TimersRecord::where('color', '>', 1)->where('window_station', 'Closed')->where('status', 0)];
     }
 
     public function getTimerDataGoonOpen()
     {
-        return ['timers' => TimersRecord::all()];
+        return ['timers' => TimersRecord::where('color', 2)->where('window_station', 'Open')->where('status', 0)];;
     }
 
     public function getTimerDataGoonClosed()
     {
-        return ['timers' => TimersRecord::all()];
+        return ['timers' => TimersRecord::where('color', 2)->where('window_station', 'Closed')->where('status', 0)];
     }
 
     public function getTimerDataRegions()
