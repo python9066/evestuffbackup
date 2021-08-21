@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Userlogging;
 use Illuminate\Console\Command;
 use utils\Helper\Helper;
 use utils\Timerhelper\Timerhelper;
@@ -42,6 +43,7 @@ class UpdateTimers extends Command
         $status = Helper::checkeve();
         if ($status == 1) {
             Timerhelper::update();
+            Userlogging::create(['url' => 'TIMER UPDATE']);
         }
     }
 }
