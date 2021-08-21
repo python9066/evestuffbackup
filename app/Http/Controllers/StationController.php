@@ -381,6 +381,19 @@ class StationController extends Controller
 
         $oldStatusID = Station::where('id', $id)->pluck('station_status_id')->first();
         $oldStatusName = StationStatus::where('id', $oldStatusID)->pluck('name')->first();
+
+        $RCmessage = RcStationRecords::where('id', $id)->first();
+        $RCmessageSend = [
+            'id' => $RCmessage->id,
+            'show_on_rc' => 0
+        ];
+        $flag = collect([
+            'message' => $RCmessageSend,
+        ]);
+        broadcast(new RcSheetUpdate($flag));
+
+
+
         $newStatusID = $request->station_status_id;
         $newStatusName = StationStatus::where('id', $newStatusID)->pluck('name')->first();
         $new = Station::find($id)->update($request->all());
@@ -393,12 +406,7 @@ class StationController extends Controller
         ]);
         broadcast(new StationNotificationUpdate($flag));
         broadcast(new StationUpdateCoord($flag));
-        $message = RCStationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message
-        ]);
 
-        broadcast(new RcMoveUpdate($flag));
         $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' at ' . now();
         $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }

@@ -192,6 +192,51 @@ class Notifications
     {
         $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
 
+
+        $dups = Station::groupBy('name')->select('name', DB::raw('count(*) as total'))->get();
+        foreach ($dups as $dup) {
+            if ($dup->total > 1) {
+                $stations = Station::where('name', $dup->name)->orderByDesc('id')->get();
+
+                $stations[0]->update([
+
+                    'user_id' => $stations[1]['user_id'] ?? null,
+                    'text' => $stations[1]['text'] ?? null,
+                    'notes' => $stations[1]['notes'] ?? null,
+                    'attack_notes' => $stations[1]['attack_notes'] ?? null,
+                    'attack_adash_link' => $stations[1]['attack_adash_link'] ?? null,
+                    'station_status_id' => $stations[1]['station_status_id'] ?? null,
+                    'gunner_id' => $stations[1]['gunner_id'] ?? null,
+                    'out_time' => $stations[1]['out_time'] ?? null,
+                    'repair_time' => $stations[1]['repair_time'] ?? null,
+                    'ammo_request_id' => $stations[1]['ammo_request_id'] ?? null,
+                    'status_update' => $stations[1]['status_update'] ?? null,
+                    'timestamp' => $stations[1]['timestamp'] ?? null,
+                    'show_on_main' => $stations[1]['show_on_main'] ?? null,
+                    'show_on_chill' => $stations[1]['show_on_chill'] ?? null,
+                    'show_on_rc' => $stations[1]['show_on_rc'] ?? null,
+                    'show_on_rc_move' => $stations[1]['show_on_rc_move'] ?? null,
+                    'show_on_coord' => $stations[1]['show_on_coord'] ?? null,
+                    'added_by_user_id' => $stations[1]['added_by_user_id'] ?? null,
+                    'timer_image_link' => $stations[1]['timer_image_link'] ?? null,
+                    'rc_id' => $stations[1]['rc_id'] ?? null,
+                    'rc_fc_id' => $stations[1]['rc_fc_id'] ?? null,
+                    'rc_gsol_id' => $stations[1]['rc_gsol_id'] ?? null,
+                    'rc_recon_id' => $stations[1]['rc_recon_id'] ?? null,
+                    'rc_alliance_id' => $stations[1]['rc_alliance_id'] ?? null,
+                    'rc_corp_id' => $stations[1]['rc_corp_id'] ?? null,
+
+
+                ]);
+
+                Station::where('id', $stations[1]['id'])->delete();
+            }
+        }
+
+
+
+
+
         $stations = Station::where('id', '>=', 1000000000)->get();
         foreach ($stations as $station) {
             $url = "https://recon.gnf.lt/api/structure/" . $station->id;
@@ -319,47 +364,6 @@ class Notifications
                         StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
                     };
                 }
-            }
-        }
-
-
-        $dups = Station::groupBy('name')->select('name', DB::raw('count(*) as total'))->get();
-        foreach ($dups as $dup) {
-            if ($dup->total > 1) {
-                $stations = Station::where('name', $dup->name)->orderByDesc('id')->get();
-
-                $stations[0]->update([
-
-                    'user_id' => $stations[1]['user_id'] ?? null,
-                    'text' => $stations[1]['text'] ?? null,
-                    'notes' => $stations[1]['notes'] ?? null,
-                    'attack_notes' => $stations[1]['attack_notes'] ?? null,
-                    'attack_adash_link' => $stations[1]['attack_adash_link'] ?? null,
-                    'station_status_id' => $stations[1]['station_status_id'] ?? null,
-                    'gunner_id' => $stations[1]['gunner_id'] ?? null,
-                    'out_time' => $stations[1]['out_time'] ?? null,
-                    'repair_time' => $stations[1]['repair_time'] ?? null,
-                    'ammo_request_id' => $stations[1]['ammo_request_id'] ?? null,
-                    'status_update' => $stations[1]['status_update'] ?? null,
-                    'timestamp' => $stations[1]['timestamp'] ?? null,
-                    'show_on_main' => $stations[1]['show_on_main'] ?? null,
-                    'show_on_chill' => $stations[1]['show_on_chill'] ?? null,
-                    'show_on_rc' => $stations[1]['show_on_rc'] ?? null,
-                    'show_on_rc_move' => $stations[1]['show_on_rc_move'] ?? null,
-                    'show_on_coord' => $stations[1]['show_on_coord'] ?? null,
-                    'added_by_user_id' => $stations[1]['added_by_user_id'] ?? null,
-                    'timer_image_link' => $stations[1]['timer_image_link'] ?? null,
-                    'rc_id' => $stations[1]['rc_id'] ?? null,
-                    'rc_fc_id' => $stations[1]['rc_fc_id'] ?? null,
-                    'rc_gsol_id' => $stations[1]['rc_gsol_id'] ?? null,
-                    'rc_recon_id' => $stations[1]['rc_recon_id'] ?? null,
-                    'rc_alliance_id' => $stations[1]['rc_alliance_id'] ?? null,
-                    'rc_corp_id' => $stations[1]['rc_corp_id'] ?? null,
-
-
-                ]);
-
-                Station::where('id', $stations[1]['id'])->delete();
             }
         }
 
