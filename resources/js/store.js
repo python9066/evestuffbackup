@@ -58,12 +58,6 @@ export default new Vuex.Store({
         ticklist:[],
         timers: [],
         timersRegions: [],
-        timersRedOpen: [],
-        timersRedClosed: [],
-        timersBlueOpen: [],
-        timersBlueClosed: [],
-        timersGoonOpen: [],
-        timersGoonClosed: [],
         token: "",
         tooltipToggle: true,
         towers: [],
@@ -139,39 +133,6 @@ export default new Vuex.Store({
         SET_TIMERS(state, timers) {
             state.timers = timers;
         },
-
-
-
-
-        SET_TIMERS_RED_OPEN(state, timers) {
-            state.timersRedOpen = timers;
-        },
-        SET_TIMERS_RED_CLOSED(state, timers) {
-            state.timersRedClosed = timers;
-        },
-
-
-
-        SET_TIMERS_BLUE_OPEN(state, timers) {
-            state.timersBlueOpen = timers;
-        },
-        SET_TIMERS_BLUE_CLOSED(state, timers) {
-            state.timersBlueClosed = timers;
-        },
-
-
-
-        SET_TIMERS_GOON_OPEN(state, timers) {
-            state.timersGoonOpen = timers;
-        },
-        SET_TIMERS_GOON_CLOSED(state, timers) {
-            state.timersGoonClosed = timers;
-        },
-
-
-
-
-
 
         SET_TIMERS_REGIONS(state, timersRegions) {
             state.timersRegions = timersRegions;
@@ -578,97 +539,6 @@ export default new Vuex.Store({
             });
             commit("SET_TIMERS", res.data.timers);
         },
-
-
-         async getTimerDataRedOpen({ commit, state }) {
-            let res = await axios({
-                method: "get",
-                url: "/api/timerredopen",
-                headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            commit("SET_TIMERS_RED_OPEN", res.data.timers);
-        },
-
-          async getTimerDataRedClosed({ commit, state }) {
-            let res = await axios({
-                method: "get",
-                url: "/api/timerredclosed",
-                headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            commit("SET_TIMERS_RED_CLOSED", res.data.timers);
-        },
-
-
-
-            async getTimerDataBlueOpen({ commit, state }) {
-            let res = await axios({
-                method: "get",
-                url: "/api/timerblueopen",
-                headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            commit("SET_TIMERS_BLUE_OPEN", res.data.timers);
-        },
-
-          async getTimerDataBlueClosed({ commit, state }) {
-            let res = await axios({
-                method: "get",
-                url: "/api/timerblueclosed",
-                headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            commit("SET_TIMERS_BLUE_CLOSED", res.data.timers);
-        },
-
-
-               async getTimerDataGoonOpen({ commit, state }) {
-            let res = await axios({
-                method: "get",
-                url: "/api/timergoonopen",
-                headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            commit("SET_TIMERS_GOON_OPEN", res.data.timers);
-        },
-
-          async getTimerDataGoonClosed({ commit, state }) {
-            let res = await axios({
-                method: "get",
-                url: "/api/timergoonclosed",
-                headers: {
-                    Authorization: "Bearer " + state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            });
-            commit("SET_TIMERS_GOON_CLOSED", res.data.timers);
-        },
-
-
-
-
-
-
-
-
-
 
         async getTimerDataAllRegion({ commit, state }) {
             let res = await axios({
