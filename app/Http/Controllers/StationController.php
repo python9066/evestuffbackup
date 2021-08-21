@@ -384,14 +384,16 @@ class StationController extends Controller
         $oldStatusName = StationStatus::where('id', $oldStatusID)->pluck('name')->first();
 
         $RCmessage = RcStationRecords::where('id', $id)->first();
-        $RCmessageSend = [
-            'id' => $RCmessage->id,
-            'show_on_rc' => 0
-        ];
-        $flag = collect([
-            'message' => $RCmessageSend,
-        ]);
-        broadcast(new RcSheetUpdate($flag));
+        if ($RCmessage) {
+            $RCmessageSend = [
+                'id' => $RCmessage->id,
+                'show_on_rc' => 0
+            ];
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
+            broadcast(new RcSheetUpdate($flag));
+        }
 
 
 
