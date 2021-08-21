@@ -26726,6 +26726,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -62665,6 +62666,7 @@ var render = function() {
                     {
                       staticClass: "elevation-5",
                       attrs: {
+                        "v-if": (_vm.loadingt = false),
                         headers: _vm.headers,
                         items: _vm.filter_end,
                         "item-class": _vm.itemRowBackground,
