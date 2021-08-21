@@ -42,6 +42,7 @@ class RunSchedulerDaemonCommand extends Command
     {
         while (true) {
             // $this->call('schedule:run');
+            Userlogging::create(['url' => 'demon START', 'user_id' => 9999999999]);
             Artisan::call('update:campaigns');
             Artisan::call('update:notifications');
             Artisan::call('update:stationnotifications');
