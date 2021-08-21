@@ -26728,6 +26728,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -41849,7 +41850,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("\n                    New")]
+                    [_vm._v("\n                    Online")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -41863,7 +41864,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("\n                    Destoryed")]
+                    [_vm._v("\n                    DEAD")]
                   )
                 ],
                 1
@@ -62789,23 +62790,11 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                _c(
-                                  "v-chip",
-                                  {
-                                    attrs: {
-                                      pill: "",
-                                      small: "",
-                                      color: _vm.pillColor(item)
-                                    }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                            " +
-                                        _vm._s(_vm.buttontext(item)) +
-                                        "\n                        "
-                                    )
-                                  ]
-                                )
+                                item.out == 1
+                                  ? _c("DoneButtonCoord", {
+                                      attrs: { item: item }
+                                    })
+                                  : _vm._e()
                               ]
                             }
                           },

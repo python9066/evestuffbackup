@@ -154,9 +154,10 @@
                         <template
                             v-slot:[`item.station_status_name`]="{ item }"
                         >
-                            <v-chip pill small :color="pillColor(item)">
-                                {{ buttontext(item) }}
-                            </v-chip>
+                            <DoneButtonCoord
+                                v-if="item.out == 1"
+                                :item="item"
+                            ></DoneButtonCoord>
                         </template>
                         <template v-slot:[`item.actions`]="{ item }">
                             <div class=" d-inline-flex">

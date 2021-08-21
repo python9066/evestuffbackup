@@ -41,10 +41,10 @@
                         class=" mx-4"
                         @click="statusUpdate(1)"
                     >
-                        New</v-btn
+                        Online</v-btn
                     >
                     <v-btn color="red" class=" mx-4" @click="destroyed()">
-                        Destoryed</v-btn
+                        DEAD</v-btn
                     >
                 </v-card-text>
                 <v-spacer></v-spacer
