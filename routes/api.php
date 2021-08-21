@@ -45,6 +45,14 @@ Route::middleware('auth:api')->group(function () {
     //IHUB-TCU WINDOWS//
     Route::get('/timers', 'TimerController@getTimerData');
     Route::get('/timersregions', 'TimerController@getTimerDataRegions');
+    Route::get('/timerredclosed', "TimerController@getTimerDataHostileClosed");
+    Route::get('/timerredopen', "TimerController@getTimerDataHostileOpen");
+
+    Route::get('/timerblueopen', "TimerController@getTimerDataBlueOpen");
+    Route::get('/timerblueclosed', "TimerController@getTimerDataBlueClosed");
+
+    Route::get('/timergoonopen', "TimerController@getTimerDataGoonOpen");
+    Route::get('/timergoonclosed', "TimerController@getTimerDataGoonClosed");
 
     //HACKING Campaign APIs
     Route::get('/campaigns', 'CampaignRecordsController@index');

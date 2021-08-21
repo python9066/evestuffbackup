@@ -16,7 +16,7 @@
                     :color="pillColor()"
                 >
                     {{ buttontext() }}
-                    <v-icon right> faSvg fa-check-circle</v-icon>
+                    <v-icon right> {{ icons() }}</v-icon>
                 </v-btn>
             </template>
 
@@ -25,13 +25,14 @@
                 max-width="700px"
                 min-height="200px"
                 max-height="1000px"
-                class=" d-flex flex-column"
+                class=" d-flex flex-column justify-center"
             >
-                <v-card-title class="justify-center">
-                    <p>What is the Status of {{ item.name }}</p>
+                <v-card-title class="justify-center" elevation="24">
+                    <p>What is the Status of {{ item.station_name }}</p>
                 </v-card-title>
-
-                <v-card-text class=" d-inline-flex" justify="center">
+            </v-card>
+            <v-card>
+                <v-card-text class=" d-inline-flex justify-center">
                     <AddTimerFromDoneCoord
                         @timeropen="close()"
                         :item="item"
@@ -90,6 +91,21 @@ export default {
                 return "red";
             }
         },
+
+        icons() {
+            if (this.item.station_status_id == 4) {
+                return "faSvg fa-check-circle";
+            }
+            if (this.item.station_status_id == 18) {
+                return "faSvg fa-question-circle";
+            }
+            if (this.item.station_status_id == 1) {
+                return "faSvg fa-exclamation-triangle";
+            }
+            if (this.item.station_status_id == 7) {
+                return "faSvg fa-skull-crossbones";
+            }
+        },
         buttontext() {
             var ret = this.item.station_status_name.replace("Upcoming - ", "");
             return ret;
@@ -113,13 +129,6 @@ export default {
         },
 
         async statusUpdate(statusID) {
-            var data = {
-                id: this.item.id,
-                show_on_rc: 0
-            };
-
-            this.$store.dispatch("updateRcStation", data);
-
             var request = null;
             request = {
                 station_status_id: statusID,
