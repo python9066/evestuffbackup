@@ -8,6 +8,7 @@ use utils\Helper\Helper;
 use App\Events\CampaignChanged;
 use App\Events\CampaignSystemUpdate;
 use App\Models\CampaignUser;
+use App\Models\Userlogging;
 use utils\Notificationhelper\Notifications;
 
 class UpdateStationNotifications extends Command
@@ -46,6 +47,7 @@ class UpdateStationNotifications extends Command
     public function handle()
     {
 
+        Userlogging::create(['url' => 'demon stationnotifications', 'user_id' => 9999999999]);
         Notifications::stationNotificationCheck();
     }
 }

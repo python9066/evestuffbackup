@@ -8,6 +8,7 @@ use utils\Helper\Helper;
 use App\Events\CampaignChanged;
 use App\Events\CampaignSystemUpdate;
 use App\Models\CampaignUser;
+use App\Models\Userlogging;
 
 class UpdateCampaigns extends Command
 {
@@ -78,6 +79,7 @@ class UpdateCampaigns extends Command
 
     public function handle()
     {
+        Userlogging::create(['url' => 'demon CAMP', 'user_id' => 9999999999]);
         $status = Helper::checkeve();
         if ($status == 1) {
             Campaignhelper::update();
