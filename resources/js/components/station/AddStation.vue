@@ -701,7 +701,6 @@ export default {
         vaildDate() {
             if (this.count == 19) {
                 var full = this.refTime.replace(".", "-");
-                console.log(full);
                 var vaild = moment(full).format("YYYY-MM-DD HH:mm:ss", true);
                 if (vaild == "Invalid date") {
                     return false;
