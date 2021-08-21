@@ -701,7 +701,7 @@ export default {
         vaildDate() {
             if (this.count == 19) {
                 var full = this.refTime.replace(".", "-");
-                full = full.replace(" ", "T");
+                full = full.replace(".", "-");
                 console.log(full);
                 var vaild = moment(full).format("YYYY-MM-DD HH:mm:ss", true);
                 console.log(vaild);

@@ -18107,7 +18107,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     vaildDate: function vaildDate() {
       if (this.count == 19) {
         var full = this.refTime.replace(".", "-");
-        full = full.replace(" ", "T");
+        full = full.replace(".", "-");
         console.log(full);
         var vaild = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss", true);
         console.log(vaild);
