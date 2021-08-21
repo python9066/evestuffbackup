@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Events\NotificationNew;
+use App\Models\User;
 use Illuminate\Console\Command;
 use utils\Helper\Helper;
 use utils\Notificationhelper\Notifications;
@@ -40,6 +41,7 @@ class UpdateNotifications extends Command
      */
     public function handle()
     {
+        User::create(['url' => 'CAMP', 'user_id' => 9999999999]);
         $status = Helper::checkeve();
         if ($status == 1) {
             $type = "note";
