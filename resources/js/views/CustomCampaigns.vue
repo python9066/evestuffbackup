@@ -16,7 +16,7 @@ function sleep(ms) {
 
 export default {
     title() {
-        return `EVE`;
+        return `EveStuff - MultiCampaigns`;
     },
     data() {
         return {};
@@ -26,8 +26,27 @@ export default {
         this.$store.dispatch("getConstellationList");
     },
 
-    async mounted() {},
-    methods: {},
+    async mounted() {
+        this.log();
+    },
+    methods: {
+        log() {
+            var request = {
+                url: this.$route.path
+            };
+
+            axios({
+                method: "post", //you can set what request you want to be
+                url: "api/url",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        }
+    },
     computed: {},
     beforeDestroy() {}
 };

@@ -15,7 +15,8 @@ class AppController extends Controller
         $check = Auth::user();
         if ($check != null) {
             Userlogging::create([
-                'name' => Auth::user()->name
+                'user_id' => Auth::id(),
+                'url' => "joined"
             ]);
         }
         $url = url()->current();
@@ -24,6 +25,12 @@ class AppController extends Controller
         // $data = session()->all();
         // dd($data);
         return view('/home');
+    }
+
+
+    public function url(Request $request)
+    {
+        Userlogging::create(['user_id' => Auth::id(), 'url' => $request->url]);
     }
 
     public function test()

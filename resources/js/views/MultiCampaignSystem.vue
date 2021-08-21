@@ -239,7 +239,7 @@ function sleep(ms) {
 }
 export default {
     title() {
-        return `EVE — ${this.$route.params.name}`;
+        return `EveStuff — ${this.$route.params.name}`;
     },
     data() {
         return {
@@ -440,6 +440,7 @@ export default {
     },
 
     async mounted() {
+        this.log();
         if (this.$store.getters.getCampaignsCount == 0) {
             await this.$store.dispatch("getCampaigns");
         }
@@ -463,6 +464,22 @@ export default {
         await this.$store.dispatch("getCampaignSolaSystems");
     },
     methods: {
+        log() {
+            var request = {
+                url: this.$route.path
+            };
+
+            axios({
+                method: "post", //you can set what request you want to be
+                url: "api/url",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
         updateBar() {
             this.loadcampaigns();
         },
@@ -577,7 +594,6 @@ export default {
                 campaign_id: this.$route.params.id,
                 type: 2
             };
-            console.log("dance");
             await axios({
                 method: "POST",
                 url: "/api/campaignsystemusers/" + this.$route.params.id,

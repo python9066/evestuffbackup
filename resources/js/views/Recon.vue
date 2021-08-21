@@ -46,7 +46,7 @@ function sleep(ms) {
 
 export default {
     title() {
-        return `EVE`;
+        return `EveStuff - Recon`;
     },
     data() {
         return {
@@ -69,11 +69,28 @@ export default {
     beforeCreate() {},
 
     async mounted() {
+        this.log();
         await this.getTasks();
         await this.$store.dispatch("getReconTaskSystemsRecords");
     },
 
     methods: {
+        log() {
+            var request = {
+                url: this.$route.path
+            };
+
+            axios({
+                method: "post", //you can set what request you want to be
+                url: "api/url",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
         async getTasks() {
             // console.log(id, this.$store.state.token);
             let res = await axios({

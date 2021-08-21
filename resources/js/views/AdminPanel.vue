@@ -277,7 +277,7 @@ function sleep(ms) {
 
 export default {
     title() {
-        return `EVE — Admin`;
+        return `EveStuff — Admin`;
     },
     data() {
         return {
@@ -312,9 +312,27 @@ export default {
     async mounted() {
         await this.$store.dispatch("getUsers");
         await this.$store.dispatch("getRoles");
+        this.log();
     },
 
     methods: {
+        log() {
+            var request = {
+                url: this.$route.path
+            };
+
+            axios({
+                method: "post", //you can set what request you want to be
+                url: "api/url",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
+
         filterRoles(roles) {
             // console.log(roles);
             return roles.filter(r => r.name != "Super Admin");

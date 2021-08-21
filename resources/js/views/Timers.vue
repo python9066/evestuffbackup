@@ -193,7 +193,7 @@ function sleep(ms) {
 }
 export default {
     title() {
-        return `EVE`;
+        return `EveStuff - Vulnerability Windows`;
     },
     data() {
         return {
@@ -215,9 +215,27 @@ export default {
         };
     },
     async mounted() {
+        this.log();
         this.loadtimers();
     },
     methods: {
+        log() {
+            var request = {
+                url: this.$route.path
+            };
+
+            axios({
+                method: "post", //you can set what request you want to be
+                url: "api/url",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
+
         async loadtimers() {
             await this.$store.dispatch("getTimerDataAll");
             await this.$store.dispatch("getTimerDataAllRegion");

@@ -484,7 +484,7 @@ function sleep(ms) {
 }
 export default {
     title() {
-        return `EVE`;
+        return `EveStuff - Notifications`;
     },
     data() {
         return {
@@ -577,8 +577,27 @@ export default {
         this.$store.dispatch("getperiodbasisLink");
     },
 
-    async mounted() {},
+    async mounted() {
+        this.log();
+    },
     methods: {
+        log() {
+            var request = {
+                url: this.$route.path
+            };
+
+            axios({
+                method: "post", //you can set what request you want to be
+                url: "api/url",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
+
         timecheck(item) {
             if (item.status_id == 4 || item.status_id == 2) {
                 item.status_id = 10;

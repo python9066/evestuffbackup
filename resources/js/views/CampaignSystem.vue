@@ -482,7 +482,7 @@ function sleep(ms) {
 
 export default {
     title() {
-        return `EVE`;
+        return `EveStuff — ${this.campaign.system} - ${this.campaign.item_name}`;
     },
     data() {
         return {
@@ -680,6 +680,7 @@ export default {
     async beforeCreate() {},
 
     async mounted() {
+        this.log();
         let payload = {
             campaign_id: this.$route.params.id,
             user_id: this.$store.state.user_id,
@@ -689,6 +690,23 @@ export default {
         await this.getSystems();
     },
     methods: {
+        log() {
+            var request = {
+                url: this.$route.path
+            };
+
+            axios({
+                method: "post", //you can set what request you want to be
+                url: "api/url",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
+
         checkAddUser() {
             if (this.userCount == 0) {
                 this.bullhorn = true;

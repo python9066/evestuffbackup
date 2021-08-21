@@ -327,7 +327,7 @@ function sleep(ms) {
 }
 export default {
     title() {
-        return `EVE`;
+        return `EveStuff - Towers`;
     },
     data() {
         return {
@@ -425,8 +425,26 @@ export default {
         });
     },
 
-    async mounted() {},
+    async mounted() {
+        this.log();
+    },
     methods: {
+        log() {
+            var request = {
+                url: this.$route.path
+            };
+
+            axios({
+                method: "post", //you can set what request you want to be
+                url: "api/url",
+                data: request,
+                headers: {
+                    Authorization: "Bearer " + this.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+        },
         checkexpanded(towers) {
             if (towers.tower_status_id == 1 || towers.tower_status_id == 6) {
                 if (towers.id == this.expanded_id) {
