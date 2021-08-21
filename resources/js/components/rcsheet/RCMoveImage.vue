@@ -110,7 +110,7 @@ export default {
     },
 
     beforeDestroy() {
-        Echo.leave("stationmessage." + this.station.id);
+        Echo.leave("rcsheet");
     }
 };
 </script>
