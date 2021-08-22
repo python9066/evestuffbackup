@@ -52,17 +52,17 @@ web:
       allow: true
       passthru: "/index.php"
 workers:
-  queue:
+  queue60:
     size: S
+    disk: 512
     commands:
       start: |
         php artisan schedule:daemon
+  queue600:
+    size: 512
+    commands:
+      start: |
         php artisan schedule:daemon1
-  # queue:
-  #   size: 512
-  #   commands:
-  #     start: |
-  #       php artisan schedule:daemon1
 
 crons:
   # Run Drupal's cron tasks every 19 minutes.
