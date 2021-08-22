@@ -58,17 +58,16 @@ workers:
     commands:
       start: |
         php artisan schedule:daemon
-  queue60:
-    disk: 512
-    commands:
-      start: |
-        php artisan schedule:daemon1
-
-  queue10h:
-    disk: 512
-    commands:
-      start: |
-        php artisan schedule:daemon2
+  # queue60:
+  #   disk: 512
+  #   commands:
+  #     start: |
+  #       php artisan schedule:daemon1
+  # queue10h:
+  #   disk: 512
+  #   commands:
+  #     start: |
+  #       php artisan schedule:daemon2
 
 crons:
   # Run Drupal's cron tasks every 19 minutes.

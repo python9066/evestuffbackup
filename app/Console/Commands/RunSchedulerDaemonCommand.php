@@ -41,14 +41,14 @@ class RunSchedulerDaemonCommand extends Command
     public function handle(): void
     {
         while (true) {
-            // $this->call('schedule:run');
             sleep($this->option('sleep'));
+            $this->call('schedule:run');
 
-            Artisan::call('update:campaigns');
+            // Artisan::call('update:campaigns');
             // Artisan::call('update:notifications');
-            Artisan::call('update:stationnotifications');
-            Artisan::call('update:towers');
-            Artisan::call('clean:coordsheet');
+            // Artisan::call('update:stationnotifications');
+            // Artisan::call('update:towers');
+            // Artisan::call('clean:coordsheet');
 
             // Artisan::call('schedule:run >> /dev/null 2>&1');
         }
