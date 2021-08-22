@@ -53,7 +53,7 @@ web:
       passthru: "/index.php"
 workers:
   queue:
-    size: 512
+    size: S
     commands:
       start: |
         php artisan schedule:daemon
