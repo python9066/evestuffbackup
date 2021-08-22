@@ -14,7 +14,7 @@ class RunScheduler1DaemonCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'schedule:daemon1 {--sleep=30}';
+    protected $signature = 'schedule:daemon1 {--sleep=3600}';
 
     /**
      * The console command description.
@@ -43,11 +43,9 @@ class RunScheduler1DaemonCommand extends Command
         while (true) {
             // $this->call('schedule:run');
             sleep($this->option('sleep'));
-            Userlogging::create(['url' => "30303030303030", 'user_id' => 999999999999]);
-
-            // Artisan::call('update:campaigns');
-            // Artisan::call('update:notifications');
-            // Artisan::call('update:stationnotifications');
+            Artisan::call('update:reconstations');
+            Artisan::call('update:reconstationsbyregion');
+            Artisan::call('update:timers');
             // Artisan::call('update:towers');
             // Artisan::call('clean:coordsheet');
 
