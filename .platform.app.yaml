@@ -62,4 +62,4 @@ crons:
   # Run Drupal's cron tasks every 19 minutes.
   eve:
     spec: "* * * * *"
-    cmd: "php artisan schedule:run >> /dev/null 2>&1"
+    cmd: "cd web ; php artisan schedule:run >> /dev/null 2>&1"

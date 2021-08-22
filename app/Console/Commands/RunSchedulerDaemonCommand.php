@@ -45,11 +45,10 @@ class RunSchedulerDaemonCommand extends Command
             sleep($this->option('sleep'));
 
             Artisan::call('update:campaigns');
-            Artisan::call('update:notifications');
+            // Artisan::call('update:notifications');
             Artisan::call('update:stationnotifications');
             Artisan::call('update:towers');
             Artisan::call('clean:coordsheet');
-            Userlogging::create(['url' => 'demon END', 'user_id' => 9999999999]);
 
             // Artisan::call('schedule:run >> /dev/null 2>&1');
         }
