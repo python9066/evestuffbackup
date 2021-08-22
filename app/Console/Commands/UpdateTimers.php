@@ -41,7 +41,7 @@ class UpdateTimers extends Command
     public function handle()
     {
 
-        Userlogging::create(['url' => 'TIMER UPDATE', 'user_id' => 9999999999]);
+
         $status = Helper::checkeve();
         if ($status == 1) {
             Timerhelper::update();

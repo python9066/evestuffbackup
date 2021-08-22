@@ -7,21 +7,21 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use utils\Campaignhelper\Campaignhelper;
 
-class RunScheduler1DaemonCommand extends Command
+class RunScheduler2DaemonCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'schedule:daemon1 {--sleep=3600}';
+    protected $signature = 'schedule:daemon2 {--sleep=36000}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Starts a daemon that will automatically run the Laravel schedule every 1hour';
+    protected $description = 'Starts a daemon that will automatically run the Laravel schedule every 10hour';
 
     /**
      * Create a new command instance.
@@ -43,9 +43,9 @@ class RunScheduler1DaemonCommand extends Command
         while (true) {
             // $this->call('schedule:run');
             sleep($this->option('sleep'));
-            Artisan::call('update:reconstations');
-            Artisan::call('update:reconstationsbyregion');
-            Artisan::call('update:timers');
+            Artisan::call('update:alliances');
+            Artisan::call('clear:remembertoken');
+            // Artisan::call('update:timers');
             // Artisan::call('update:towers');
             // Artisan::call('clean:coordsheet');
 
