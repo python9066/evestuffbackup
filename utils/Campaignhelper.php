@@ -149,7 +149,7 @@ class Campaignhelper
                     $defenders_old = floatval($defenders_old[0]['defenders_score']);
                     $new = $var['attackers_score'];
                     if ($new != $attackers_old) {
-                        echo "diffurent";
+                        // echo "diffurent";
                         $flag = 1;
                         $checkflag = 1;
                         Campaign::where('id', $id)->update(['defenders_score_old' => $defenders_old, 'attackers_score_old' => $attackers_old]);
@@ -218,7 +218,7 @@ class Campaignhelper
 
                 // Campaignhelper::removeNode($warm->id);
                 $checkflag = 1;
-                echo "1";
+                // echo "1";
             }
 
 
@@ -289,7 +289,7 @@ class Campaignhelper
                     'id' => $b->id
                 ]);
                 broadcast(new CampaignUpdate($flag))->toOthers();
-                echo "3";
+                // echo "3";
             }
 
 
@@ -308,7 +308,7 @@ class Campaignhelper
                     'id' => $c->id
                 ]);
                 broadcast(new CampaignUpdate($flag))->toOthers();
-                echo "4";
+                // echo "4";
             }
         }
 
@@ -349,7 +349,7 @@ class Campaignhelper
             ]);
             broadcast(new CampaignUpdate($flag))->toOthers();
             $checkflag = 1;
-            echo "5";
+            // echo "5";
         }
 
 
@@ -361,7 +361,7 @@ class Campaignhelper
                 'message' => $message,
                 'id' => $check
             ]);
-            echo "yoyo";
+            // echo "yoyo";
             broadcast(new CampaignChanged($flag))->toOthers();
         }
     }
@@ -441,7 +441,7 @@ class Campaignhelper
             'message' => $message,
             'id' => $check
         ]);
-        echo "8";
+        // echo "8";
         broadcast(new CampaignUpdate($flag));
         return;
     }
