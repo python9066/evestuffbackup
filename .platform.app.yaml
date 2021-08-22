@@ -64,7 +64,7 @@ workers:
       start: |
         php artisan schedule:daemon1
 
-    queue10h:
+  queue10h:
     disk: 512
     commands:
       start: |
