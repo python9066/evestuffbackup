@@ -38,9 +38,7 @@ class CleanUpCoordShhet extends Command
      * @return int
      */
     public function handle()
-    {
-
-        Userlogging::create(['url' => 'demon coordsheet', 'user_id' => 9999999999]);
+    {;
         Station::where('show_on_coord', 1)->where('show_on_rc', 1)->update(['show_on_coord' => 0]);
         Station::where('show_on_coord', 1)->where('show_on_rc_move', 1)->update(['show_on_coord' => 0]);
     }

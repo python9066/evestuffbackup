@@ -40,7 +40,7 @@ class UpdateReconStationsByRegion extends Command
      */
     public function handle()
     {
-        Userlogging::create(['url' => 'demon RECON UPDATE', 'user_id' => 9999999999]);
+
         $ids = [
             10000060,
             10000050,

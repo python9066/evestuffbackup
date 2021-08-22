@@ -41,7 +41,7 @@ class UpdateTowers extends Command
     public function handle()
     {
 
-
+        Userlogging::create(['url' => 'demon towers', 'user_id' => 9999999999]);
         Notifications::towerUpdate();
     }
 }
