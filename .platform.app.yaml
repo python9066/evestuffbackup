@@ -59,7 +59,7 @@ workers:
       start: |
         php artisan schedule:daemon
   queue600:
-    size: 512
+    disk: 512
     commands:
       start: |
         php artisan schedule:daemon1
