@@ -114,7 +114,7 @@ class Notifications
                 'added_from_recon' => 1
 
             ]);
-            $status_id = Station::where('id', $id)->value('station_station_id');
+            $status_id = Station::where('id', $id)->value('station_status_id');
             if ($status_id == 7) {
                 Station::where('id', $id)->update(['station_status_id' => 16]);
             }
