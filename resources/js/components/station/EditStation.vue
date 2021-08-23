@@ -2,9 +2,9 @@
     <div>
         <v-dialog
             max-width="700px"
+            persistent
             z-index="0"
             v-model="showStationTimer"
-            @click:outside="close()"
         >
             <template v-slot:activator="{ on, attrs }">
                 <v-icon
@@ -37,7 +37,10 @@
                             <div>
                                 <v-text-field
                                     v-model="stationName"
+                                    :loading="structLoading"
                                     label="Station Name"
+                                    clearable
+                                    outlined
                                 ></v-text-field>
                             </div>
                             <div>
@@ -47,7 +50,6 @@
                                     :items="structItems"
                                     :search-input.sync="structSearch"
                                     clearable
-                                    autofocus
                                     label="Structure Type"
                                     outlined
                                 ></v-autocomplete>
@@ -155,21 +157,21 @@ export default {
     data() {
         return {
             imageLink: null,
-            systems: [],
             showStationTimer: false,
+            systems: [],
             sysItems: [],
+            sysLoading: false,
             sysSearch: null,
             sysSelect: null,
-            sysLoading: false,
-            tickItems: [],
-            tickSearch: null,
-            tickSelect: null,
-            tickLoading: false,
             stationName: null,
             structItems: [],
             structSearch: null,
             structSelect: null,
             structLoading: false,
+            tickItems: [],
+            tickSearch: null,
+            tickSelect: null,
+            tickLoading: false,
             refType: null,
             refTime: {
                 d: "",
@@ -256,7 +258,9 @@ export default {
             this.tickSelect = null;
             this.stationName = null;
             this.state = 1;
+            this.sysLoading = false;
             this.showStationTimer = false;
+            this.imageLink = null;
         },
 
         async submit() {

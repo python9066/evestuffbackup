@@ -18923,6 +18923,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -18945,21 +18947,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       imageLink: null,
-      systems: [],
       showStationTimer: false,
+      systems: [],
       sysItems: [],
+      sysLoading: false,
       sysSearch: null,
       sysSelect: null,
-      sysLoading: false,
-      tickItems: [],
-      tickSearch: null,
-      tickSelect: null,
-      tickLoading: false,
       stationName: null,
       structItems: [],
       structSearch: null,
       structSelect: null,
       structLoading: false,
+      tickItems: [],
+      tickSearch: null,
+      tickSelect: null,
+      tickLoading: false,
       refType: null,
       refTime: {
         d: "",
@@ -19033,7 +19035,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.tickSelect = null;
       this.stationName = null;
       this.state = 1;
+      this.sysLoading = false;
       this.showStationTimer = false;
+      this.imageLink = null;
     },
     submit: function submit() {
       var _this4 = this;
@@ -54572,12 +54576,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { "max-width": "700px", "z-index": "0" },
-          on: {
-            "click:outside": function($event) {
-              return _vm.close()
-            }
-          },
+          attrs: { "max-width": "700px", persistent: "", "z-index": "0" },
           scopedSlots: _vm._u([
             {
               key: "activator",
@@ -54650,7 +54649,12 @@ var render = function() {
                         "div",
                         [
                           _c("v-text-field", {
-                            attrs: { label: "Station Name" },
+                            attrs: {
+                              loading: _vm.structLoading,
+                              label: "Station Name",
+                              clearable: "",
+                              outlined: ""
+                            },
                             model: {
                               value: _vm.stationName,
                               callback: function($$v) {
@@ -54672,7 +54676,6 @@ var render = function() {
                               items: _vm.structItems,
                               "search-input": _vm.structSearch,
                               clearable: "",
-                              autofocus: "",
                               label: "Structure Type",
                               outlined: ""
                             },
