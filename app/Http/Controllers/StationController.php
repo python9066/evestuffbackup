@@ -532,7 +532,8 @@ class StationController extends Controller
         $oldStatus = StationStatus::where('id', $oldStation->station_status_id)->value('name');
 
 
-        $newStation = Station::find($id)->update($request->all());
+        Station::find($id)->update($request->all());
+        $newStation = Station::where('id', $id)->get();
         $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
 
         $RCmessage = RcStationRecords::where('id', $id)->first();
@@ -557,7 +558,7 @@ class StationController extends Controller
 
 
         if ($request->station_status_id != $oldStation->station_status_id) {
-            $text = Auth::user()->name .  "changed the " . $oldStation->station_status_id . " to " . $request->station_status_id . " at " . now();
+            $text = Auth::user()->name .  "changed the Status from " . $oldStatus . " to " . $newStatus . " at " . now();
             Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
         }
 
