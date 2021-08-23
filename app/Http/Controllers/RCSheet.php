@@ -296,6 +296,8 @@ class RCSheet extends Controller
                     'r_cored' => $stationdata['str_cored'],
                     'show_on_rc' => 1,
                     'rc_id' => $rcid,
+                    'added_from_recon' => 1
+
 
                 ]);
                 // dd($stationdata);

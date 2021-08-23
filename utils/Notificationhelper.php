@@ -111,6 +111,7 @@ class Notifications
                 'system_id' => $stationdata['str_system_id'],
                 'item_id' => $stationdata['str_type_id'],
                 'station_status_id' => 16,
+                'added_from_recon' => 1
 
             ]);
             // $rcCheck = Station::where('id', $id)->value('show_on_rc');
@@ -288,7 +289,8 @@ class Notifications
                     'r_t2_rigged' => $stationdata['str_t2_rigged'],
                     'r_cloning' => $stationdata['str_cloning'],
                     'r_composite' => $stationdata['str_composite'],
-                    'r_cored' => $stationdata['str_cored']
+                    'r_cored' => $stationdata['str_cored'],
+                    'added_from_recon' => 1
                 ]);
 
                 if ($station->station_status_id == 7) {
@@ -358,7 +360,8 @@ class Notifications
                     'r_t2_rigged' => $stationdata['str_t2_rigged'],
                     'r_cloning' => $stationdata['str_cloning'],
                     'r_composite' => $stationdata['str_composite'],
-                    'r_cored' => $stationdata['str_cored']
+                    'r_cored' => $stationdata['str_cored'],
+                    'added_from_recon' => 1
                 ]);
                 if ($stationdata['str_has_no_fitting'] != null) {
                     $items = Utils::jsonDecode($stationdata['str_fitting'], true);
@@ -507,7 +510,8 @@ class Notifications
                             'r_cored' => $stationdata['str_cored'],
                             'status_update' => $current,
                             'show_on_main' => Notifications::setShowMainNew($show),
-                            'show_on_chill' => Notifications::setShowChillNew($show)
+                            'show_on_chill' => Notifications::setShowChillNew($show),
+                            'added_from_recon' => 1
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
                             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
@@ -615,7 +619,8 @@ class Notifications
                             'status_update' => $current,
                             'out_time' =>  $outTime,
                             'show_on_main' => Notifications::setShowMainNew($show),
-                            'show_on_chill' => Notifications::setShowChillNew($show)
+                            'show_on_chill' => Notifications::setShowChillNew($show),
+                            'added_from_recon' => 1
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
                             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
@@ -720,7 +725,8 @@ class Notifications
                             'status_update' => $current,
                             'out_time' =>  $outTime,
                             'show_on_main' => Notifications::setShowMainNew($show),
-                            'show_on_chill' => Notifications::setShowChillNew($show)
+                            'show_on_chill' => Notifications::setShowChillNew($show),
+                            'added_from_recon' => 1
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
                             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
