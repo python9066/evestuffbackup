@@ -89,7 +89,7 @@ class StationController extends Controller
 
     public function reconRegionPull()
     {
-        Artisan::call('update:reconstationsbyregion');
+        Artisan::call('update:reconstations');
     }
 
     public function taskRequest(Request $request)
