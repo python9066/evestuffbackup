@@ -168,7 +168,7 @@ class RCSheet extends Controller
             }
         }
 
-        Station::where('show_on_rc', 5)->update(['rc_id' => null]);
+        Station::where('show_on_rc', 5)->update(['rc_id' => null, 'station_status_id' => 18]);
         $flag = collect([
             'flag' => 2
         ]);
