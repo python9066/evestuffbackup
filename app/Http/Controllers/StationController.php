@@ -528,22 +528,24 @@ class StationController extends Controller
     {
         // dd($id);
         $now = now();
-        $oldStation = Station::where('id', $id)->first();
-        $oldStatus = Logging::where('id', $oldStation->station_status_id)->value('name');
-
-
-        $newStation = Station::find($id)->update($request->all());
-        $newStatus = Logging::where('id', $newStation->station_status_id)->value('name');
 
         $RCmessage = RcStationRecords::where('id', $id)->first();
         $RCmessageSend = [
             'id' => $RCmessage->id,
+            'show_on_rc' => 0
         ];
         $flag = collect([
             'message' => $RCmessageSend,
         ]);
         broadcast(new RcSheetUpdate($flag));
 
+        $oldStation = Station::where('id', $id)->first();
+        $oldStatus = StationStatus::where('id', $oldStation->station_status_id)->value('name');
+
+
+        Station::find($id)->update($request->all());
+        $newStation = Station::where('id', $id)->first();
+        $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
 
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
@@ -557,12 +559,12 @@ class StationController extends Controller
 
 
         if ($request->station_status_id != $oldStation->station_status_id) {
-            $text = Auth::user()->name .  "changed the " . $oldStation->station_status_id . " to " . $request->station_status_id . " at " . now();
+            $text = Auth::user()->name .  " changed the Status from " . $oldStatus . " to " . $newStatus . " at " . now();
             Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
         }
 
         if ($request->out_time != $oldStation->out_time) {
-            $text = Auth::user()->name .  "changed the " . $oldStation->out_time . " to " . $request->out_time . " at " . now();
+            $text = Auth::user()->name .  " changed the " . $oldStation->out_time . " to " . $request->out_time . " at " . now();
             Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
         }
     }
