@@ -532,6 +532,7 @@ class StationController extends Controller
         $RCmessage = RcStationRecords::where('id', $id)->first();
         $RCmessageSend = [
             'id' => $RCmessage->id,
+            'show_on_rc' => 0
         ];
         $flag = collect([
             'message' => $RCmessageSend,
