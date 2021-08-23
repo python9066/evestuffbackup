@@ -19100,7 +19100,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   name = _this4.item.timer_image_link;
                 }
 
-                if (outTime != null || outTime != "Invalid date") {
+                if (_this4.vaildDate == true) {
                   request = {
                     system_id: system_id,
                     corp_id: corp_id,
