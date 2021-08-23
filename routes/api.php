@@ -240,5 +240,5 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/coordItemlist', 'CoordSheetController@coordSheetListItem');
     Route::get('/coordStatuslist', 'CoordSheetController@coordSheetListStatus');
     Route::get('/coordsheet', 'CoordSheetController@index');
-    Route::put('/editstationname', 'Stationcontroller@editStationNameReconCheck')
+    Route::put('/editstationname', 'Stationcontroller@editStationNameReconCheck');
 });
