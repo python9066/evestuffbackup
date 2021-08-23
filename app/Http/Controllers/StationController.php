@@ -533,7 +533,7 @@ class StationController extends Controller
 
 
         Station::find($id)->update($request->all());
-        $newStation = Station::where('id', $id)->get();
+        $newStation = Station::where('id', $id)->first();
         $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
 
         $RCmessage = RcStationRecords::where('id', $id)->first();
