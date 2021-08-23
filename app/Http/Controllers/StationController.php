@@ -537,6 +537,7 @@ class StationController extends Controller
         $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
 
         $RCmessage = RcStationRecords::where('id', $id)->first();
+        dd($RCmessage);
         $RCmessageSend = [
             'id' => $RCmessage->id,
         ];
