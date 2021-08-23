@@ -29,7 +29,7 @@ class Helper
     {
         $auths = Auth::all();
         foreach ($auths as $auth) {
-            echo " - " . $auth->name . " - ";
+            // echo " - " . $auth->name . " - ";
 
             $expire_date = new DateTime($auth->expire_date);
             $date = new DateTime();
@@ -69,7 +69,7 @@ class Helper
         if ($type == "standing") {
             $token = Auth::where('flag_standing', 0)->first();
             // dd($token);
-            echo "auth pull - ";
+            // echo "auth pull - ";
             if ($token == null) {
                 Auth::where('flag_standing', 1)->update(['flag_standing' => 0]);
                 $token = Auth::where('flag_standing', 0)->first();
@@ -83,7 +83,7 @@ class Helper
             $token = Auth::where('flag_note', 0)->first();
 
             if ($token == null) {
-                echo "yo yo yo";
+                // echo "yo yo yo";
                 Auth::where('flag_note', 1)->update(['flag_note' => 0]);
                 $token = Auth::where('flag_note', 0)->first();
                 $token->update(['flag_note' => 1]);

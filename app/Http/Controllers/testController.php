@@ -97,12 +97,12 @@ class testController extends Controller
         ]);
         $data = Utils::jsonDecode($response->getBody(), true);
         if ($data = "Error, Structure Not Found") {
-            echo "NO STATION";
+            // echo "NO STATION";
         } else {
-            echo $dance . " - " . $dance2;
-            echo '<pre>';
-            print_r($data);
-            echo '</pre>';
+            // echo $dance . " - " . $dance2;
+            // echo '<pre>';
+            // print_r($data);
+            // echo '</pre>';
         }
     }
 }

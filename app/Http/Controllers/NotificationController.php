@@ -28,11 +28,11 @@ class NotificationController extends Controller
         $data = Notifications::reconPull($id);
 
         if (array_key_exists('str_structure_id_md5', $data)) {
-            echo "RECON";
+            // echo "RECON";
         }
-        echo '<pre>';
-        print_r($data);
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r($data);
+        // echo '</pre>';
     }
 
     public function update(Request $request, $id)
