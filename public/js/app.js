@@ -19227,6 +19227,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     count: function count() {
       if (this.refTime != null) {
         return this.refTime.length;
+      } else {
+        return 0;
       }
     },
     vaildDate: function vaildDate() {

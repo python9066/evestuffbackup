@@ -457,6 +457,8 @@ export default {
         count() {
             if (this.refTime != null) {
                 return this.refTime.length;
+            } else {
+                return 0;
             }
         },
 
