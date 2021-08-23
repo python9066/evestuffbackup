@@ -110,6 +110,7 @@ class Notifications
                 'r_cored' => $stationdata['str_cored'],
                 'system_id' => $stationdata['str_system_id'],
                 'item_id' => $stationdata['str_type_id'],
+                'station_status_id' => 16,
 
             ]);
             // $rcCheck = Station::where('id', $id)->value('show_on_rc');
