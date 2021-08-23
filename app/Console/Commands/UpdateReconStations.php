@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Events\StationUpdateCoord;
 use App\Models\Station;
 use App\Models\Userlogging;
 use Illuminate\Console\Command;
@@ -45,6 +46,25 @@ class UpdateReconStations extends Command
         Userlogging::create(['url' => "demon recon station", 'user_id' => 9999999999]);
         Notifications::reconUpdate();
         $stations = Station::where('added_from_recon', 1)->count();
-        $this->info('found ' . $stations . ' stations');
+
+        Userlogging::create(['url' => "demon region", 'user_id' => 9999999999]);
+        $ids = [
+            10000060,
+            10000050,
+            10000063,
+            10000058,
+        ];
+
+        foreach ($ids as $id) {
+            $stations =  Notifications::reconRegionPull($id);
+            foreach ($stations as $station) {
+                Notifications::reconRegionPullIdCheck($station);
+            }
+        }
+
+        $flag = collect([
+            'flag' => 1
+        ]);
+        broadcast(new StationUpdateCoord($flag));
     }
 }
