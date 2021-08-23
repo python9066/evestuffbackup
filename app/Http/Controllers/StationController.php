@@ -530,14 +530,16 @@ class StationController extends Controller
         $now = now();
 
         $RCmessage = RcStationRecords::where('id', $id)->first();
-        $RCmessageSend = [
-            'id' => $RCmessage->id,
-            'show_on_rc' => 0
-        ];
-        $flag = collect([
-            'message' => $RCmessageSend,
-        ]);
-        broadcast(new RcSheetUpdate($flag));
+        if ($RCmessage) {
+            $RCmessageSend = [
+                'id' => $RCmessage->id,
+                'show_on_rc' => 0
+            ];
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
+            broadcast(new RcSheetUpdate($flag));
+        }
 
         $oldStation = Station::where('id', $id)->first();
         $oldStatus = StationStatus::where('id', $oldStation->station_status_id)->value('name');
