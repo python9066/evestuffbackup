@@ -313,7 +313,7 @@ class StationController extends Controller
                 $checkifthere = Station::find($stationdata['str_structure_id']);
                 $showMain = 0;
                 $showChill = 0;
-                $showRcMove = 1;
+                $showRcMove = 0;
                 if ($checkifthere) {
                     $showMain = $checkifthere->show_on_main;
                     $showChill = $checkifthere->show_on_chill;
@@ -331,14 +331,12 @@ class StationController extends Controller
 
 
 
-                Station::updateOrCreate(['id' => $stationdata['str_structure_id']], [
+                Station::updateOrCreate(['id' => $id], [
+                    'id' => $stationdata['str_structure_id'],
                     'name' => $stationdata['str_name'],
                     'system_id' => $stationdata['str_system_id'],
                     'corp_id' => $stationdata['str_owner_corporation_id'],
                     'item_id' => $stationdata['str_type_id'],
-                    'text' => null,
-                    'station_status_id' => 10,
-                    'user_id' => null,
                     'timestamp' => now(),
                     'r_hash' => $stationdata['str_structure_id_md5'],
                     'r_updated_at' => $stationdata['updated_at'],
@@ -377,6 +375,8 @@ class StationController extends Controller
                         StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
                     };
                 };
+
+                Logging::where('station_id', $id)->update(['station_id' => $stationdata['str_structure_id']]);
             }
         } else {
 

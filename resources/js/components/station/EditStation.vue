@@ -344,22 +344,6 @@ export default {
             } else {
                 var name = this.item.timer_image_link;
             }
-            if (this.stationName != null || this.stationName == "") {
-                var request = {
-                    name: name
-                };
-
-                await axios({
-                    method: "put", //you can set what request you want to be
-                    url: "api/editstationname/" + this.item.id,
-                    data: request,
-                    headers: {
-                        Authorization: "Bearer " + this.$store.state.token,
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
-                });
-            }
 
             if (outTime != null || outTime != "Invalid date") {
                 var request = {
@@ -391,8 +375,27 @@ export default {
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
-            }).then(
-                (this.showStationTimer = false),
+            });
+
+            if (this.stationName != null || this.stationName == "") {
+                var request = {
+                    name: name,
+                    show_on_rc_move: 0
+                };
+
+                await axios({
+                    method: "put", //you can set what request you want to be
+                    url: "api/editstationname/" + this.item.id,
+                    data: request,
+                    headers: {
+                        Authorization: "Bearer " + this.$store.state.token,
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    }
+                });
+            }
+
+            (this.showStationTimer = false),
                 (this.refType = null),
                 (this.refTime = null),
                 (this.structItems = []),
@@ -406,8 +409,7 @@ export default {
                 (this.tickSearch = null),
                 (this.tickSelect = null),
                 (this.state = 1),
-                (this.showStationTimer = false)
-            );
+                (this.showStationTimer = false);
         },
 
         async open() {
