@@ -10,6 +10,7 @@ use App\Events\StationNotificationUpdate;
 use App\Events\StationUpdateCoord;
 use App\Events\TowerChanged;
 use App\Events\TowerDelete;
+use App\Models\Logging;
 use App\Models\Notification;
 use App\Models\Temp_notifcation;
 use utils\Helper\Helper;
@@ -113,22 +114,10 @@ class Notifications
                 'added_from_recon' => 1
 
             ]);
-            $status_id = Station::where('id', $id)->value('station_station_id');
+            $status_id = Station::where('id', $id)->value('station_status_id');
             if ($status_id == 7) {
                 Station::where('id', $id)->update(['station_status_id' => 16]);
             }
-            // $rcCheck = Station::where('id', $id)->value('show_on_rc');
-            // $rcmove = Station::where('id', $id)->value('show_on_rc_move');
-            // if ($rcCheck == 1 || $rcmove == 1) {
-            // } else {
-
-            //     echo $rcCheck . " - " . $rcmove . "|||";
-            //     Station::where('id', $id)->update(['show_on_coord' => 1]);
-            //     $doneCheck = Station::where('id', $id)->value('station_status_id');
-            //     if ($doneCheck == 10) {
-            //         Station::where('id', $id)->update(['station_status_id' => 1]);
-            //     }
-            // }
 
             $station = Station::where('id', $id)->first();
             if ($station->show_on_rc != 1 && $station->show_on_rc_move != 1) {
@@ -234,6 +223,7 @@ class Notifications
 
                 ]);
 
+                Logging::where('station_id', $stations[1]['id'])->update(['station_id' => $stations[0]['id']]);
                 Station::where('id', $stations[1]['id'])->delete();
             }
         }
@@ -334,7 +324,9 @@ class Notifications
             $stationdata = Utils::jsonDecode($response->getBody(), true);
             if ($stationdata == "Error, Structure Not Found") {
             } else {
-                StationItemJoin::where('station_id', $stationdata['str_structure_id'])->delete();
+
+                Logging::where('station_id', $station->id)->update(['station_id' => $stationdata['str_structure_id']]);
+
                 $oldupdate = $station->r_updated_at;
                 if ($oldupdate != $stationdata['updated_at']) {
                     System::where('id', $station->system_id)->update(['task_flag' => 0]);

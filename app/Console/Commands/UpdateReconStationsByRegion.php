@@ -40,24 +40,24 @@ class UpdateReconStationsByRegion extends Command
      */
     public function handle()
     {
-        Userlogging::create(['url' => "demon region", 'user_id' => 9999999999]);
-        $ids = [
-            10000060,
-            10000050,
-            10000063,
-            10000058,
-        ];
+        // Userlogging::create(['url' => "demon region", 'user_id' => 9999999999]);
+        // $ids = [
+        //     10000060,
+        //     10000050,
+        //     10000063,
+        //     10000058,
+        // ];
 
-        foreach ($ids as $id) {
-            $stations =  Notifications::reconRegionPull($id);
-            foreach ($stations as $station) {
-                Notifications::reconRegionPullIdCheck($station);
-            }
-        }
+        // foreach ($ids as $id) {
+        //     $stations =  Notifications::reconRegionPull($id);
+        //     foreach ($stations as $station) {
+        //         Notifications::reconRegionPullIdCheck($station);
+        //     }
+        // }
 
-        $flag = collect([
-            'flag' => 1
-        ]);
-        broadcast(new StationUpdateCoord($flag));
+        // $flag = collect([
+        //     'flag' => 1
+        // ]);
+        // broadcast(new StationUpdateCoord($flag));
     }
 }

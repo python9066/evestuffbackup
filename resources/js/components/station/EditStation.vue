@@ -2,9 +2,9 @@
     <div>
         <v-dialog
             max-width="700px"
+            persistent
             z-index="0"
             v-model="showStationTimer"
-            @click:outside="close()"
         >
             <template v-slot:activator="{ on, attrs }">
                 <v-icon
@@ -35,13 +35,21 @@
                     <v-fade-transition>
                         <div>
                             <div>
+                                <v-text-field
+                                    v-model="stationName"
+                                    :loading="structLoading"
+                                    label="Station Name"
+                                    clearable
+                                    outlined
+                                ></v-text-field>
+                            </div>
+                            <div>
                                 <v-autocomplete
                                     v-model="structSelect"
                                     :loading="structLoading"
                                     :items="structItems"
                                     :search-input.sync="structSearch"
                                     clearable
-                                    autofocus
                                     label="Structure Type"
                                     outlined
                                 ></v-autocomplete>
@@ -149,20 +157,21 @@ export default {
     data() {
         return {
             imageLink: null,
-            systems: [],
             showStationTimer: false,
+            systems: [],
             sysItems: [],
+            sysLoading: false,
             sysSearch: null,
             sysSelect: null,
-            sysLoading: false,
-            tickItems: [],
-            tickSearch: null,
-            tickSelect: null,
-            tickLoading: false,
+            stationName: null,
             structItems: [],
             structSearch: null,
             structSelect: null,
             structLoading: false,
+            tickItems: [],
+            tickSearch: null,
+            tickSelect: null,
+            tickLoading: false,
             refType: null,
             refTime: {
                 d: "",
@@ -247,8 +256,11 @@ export default {
             this.tickItems = [];
             this.tickSearch = null;
             this.tickSelect = null;
+            this.stationName = null;
             this.state = 1;
+            this.sysLoading = false;
             this.showStationTimer = false;
+            this.imageLink = null;
         },
 
         async submit() {
@@ -273,15 +285,9 @@ export default {
                     this.station.notes;
             }
 
-            if (this.refTime != "" || this.refTime != null) {
-                var y = this.refTime.substr(0, 4);
-                var mo = this.refTime.substr(5, 2);
-                var d = this.refTime.substr(8, 2);
-                var h = this.refTime.substr(11, 2);
-                var m = this.refTime.substr(14, 2);
-                var s = this.refTime.substr(17, 2);
-                var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-                console.log("DANCE");
+            if (this.vaildDate == true) {
+                var full = this.refTime.replace(".", "-");
+                full = full.replace(".", "-");
                 var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
             }
 
@@ -330,7 +336,16 @@ export default {
                 var timer_image_link = this.item.timer_image_link;
             }
 
-            if (outTime != null || outTime != "Invalid date") {
+            if (
+                this.stationName != null &&
+                this.stationName != this.item.station_name
+            ) {
+                var name = this.stationName;
+            } else {
+                var name = this.item.timer_image_link;
+            }
+
+            if (this.vaildDate == true) {
                 var request = {
                     system_id: system_id,
                     corp_id: corp_id,
@@ -360,8 +375,27 @@ export default {
                     Accept: "application/json",
                     "Content-Type": "application/json"
                 }
-            }).then(
-                (this.showStationTimer = false),
+            });
+
+            if (this.stationName != null || this.stationName == "") {
+                var request = {
+                    stationName: name,
+                    show_on_rc_move: 0
+                };
+
+                await axios({
+                    method: "put", //you can set what request you want to be
+                    url: "api/editstationname/" + this.item.id,
+                    data: request,
+                    headers: {
+                        Authorization: "Bearer " + this.$store.state.token,
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    }
+                });
+            }
+
+            (this.showStationTimer = false),
                 (this.refType = null),
                 (this.refTime = null),
                 (this.structItems = []),
@@ -375,8 +409,7 @@ export default {
                 (this.tickSearch = null),
                 (this.tickSelect = null),
                 (this.state = 1),
-                (this.showStationTimer = false)
-            );
+                (this.showStationTimer = false);
         },
 
         async open() {
@@ -422,7 +455,11 @@ export default {
         },
 
         count() {
-            return this.refTime.length;
+            if (this.refTime != null) {
+                return this.refTime.length;
+            } else {
+                return 0;
+            }
         },
 
         vaildDate() {
