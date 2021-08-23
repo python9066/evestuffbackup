@@ -30,6 +30,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->everyMinute();
         $schedule->command('update:campaigns')->everyMinute()->unlessBetween('11:00', '11:10')->withoutOverlapping();
+        $schedule->command('clean:coordsheet')->everyMinute()->withoutOverlapping();
         $schedule->command('update:towers')->everyMinute()->withoutOverlapping();
         $schedule->command('update:notifications')->everyMinute()->unlessBetween('11:00', '11:20')->withoutOverlapping();
         $schedule->command('update:stationnotifications')->everyMinute()->withoutOverlapping();
