@@ -529,11 +529,11 @@ class StationController extends Controller
         // dd($id);
         $now = now();
         $oldStation = Station::where('id', $id)->first();
-        $oldStatus = Logging::where('id', $oldStation->station_status_id)->value('name');
+        $oldStatus = StationStatus::where('id', $oldStation->station_status_id)->value('name');
 
 
         $newStation = Station::find($id)->update($request->all());
-        $newStatus = Logging::where('id', $newStation->station_status_id)->value('name');
+        $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
 
         $RCmessage = RcStationRecords::where('id', $id)->first();
         $RCmessageSend = [
