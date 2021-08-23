@@ -5,6 +5,7 @@ namespace utils\Alliancehelper;
 use GuzzleHttp\Client;
 use App\Models\Alliance;
 use App\Models\Corp;
+use App\Models\Userlogging;
 use utils\Helper\Helper;
 use GuzzleHttp\Utils;
 use function GuzzleHttp\json_decode;
@@ -17,6 +18,7 @@ class Alliancehelper
     public static function updateAlliances()
 
     {
+        Userlogging::created(['url' => "demon alliances", 'user_id' => 9999999999]);
         $client = new Client();
         $headers = [
             'Content-Type' => 'application/json',
