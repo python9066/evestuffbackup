@@ -110,10 +110,13 @@ class Notifications
                 'r_cored' => $stationdata['str_cored'],
                 'system_id' => $stationdata['str_system_id'],
                 'item_id' => $stationdata['str_type_id'],
-                'station_status_id' => 16,
                 'added_from_recon' => 1
 
             ]);
+            $status_id = Station::where('id', $id)->value('station_station_id');
+            if ($status_id == 7) {
+                Station::where('id', $id)->update(['station_status_id' => 16]);
+            }
             // $rcCheck = Station::where('id', $id)->value('show_on_rc');
             // $rcmove = Station::where('id', $id)->value('show_on_rc_move');
             // if ($rcCheck == 1 || $rcmove == 1) {
