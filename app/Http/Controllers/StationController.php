@@ -301,7 +301,7 @@ class StationController extends Controller
             'http_errors' => false
         ]);
 
-        dd($response);
+        // dd($response->getBody());
 
         $stationdata = Utils::jsonDecode($response->getBody(), true);
         if ($response->getStatusCode() == 200) {

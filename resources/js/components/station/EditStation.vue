@@ -342,7 +342,7 @@ export default {
             ) {
                 var name = this.stationName;
             } else {
-                var name = this.item.timer_image_link;
+                var name = this.stationName;
             }
 
             if (this.vaildDate == true) {
