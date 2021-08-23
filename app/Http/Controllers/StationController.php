@@ -281,6 +281,7 @@ class StationController extends Controller
     public static function editStationNameReconCheck(Request $request, $id)
     {
         $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+        $oldName = Station::where('id', $id)->value('name');
 
         $name = preg_replace("/\([^\)]+\)(\R|$)/", "$1", $request->stationName);
         $name = rtrim($name);
@@ -375,12 +376,30 @@ class StationController extends Controller
                         StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
                     };
                 };
-
+                $text = Auth::user()->name .  " changed the station name from " . $oldName . " to " . $name . " at " . now();
+                Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
                 Logging::where('station_id', $id)->update(['station_id' => $stationdata['str_structure_id']]);
+
+                $message = StationRecords::where('id', $stationdata['str_structure_id'])->first();
+                $flag = collect([
+                    'message' => $message
+                ]);
+
+                broadcast(new RcMoveUpdate($flag));
             }
         } else {
 
             Station::where('id', $id)->update(['name' => $name, 'added_from_recon' => 0]);
+
+            $text = Auth::user()->name .  " changed the station name from " . $oldName . " to " . $name . " at " . now();
+            Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
+
+            $message = StationRecords::where('id', $id)->first();
+            $flag = collect([
+                'message' => $message
+            ]);
+
+            broadcast(new RcMoveUpdate($flag));
         };
     }
 
@@ -566,7 +585,7 @@ class StationController extends Controller
         }
 
         if ($request->out_time != $oldStation->out_time) {
-            $text = Auth::user()->name .  " changed the " . $oldStation->out_time . " to " . $request->out_time . " at " . now();
+            $text = Auth::user()->name .  " changed the timer from " . $oldStation->out_time . " to " . $request->out_time . " at " . now();
             Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
         }
     }
