@@ -223,6 +223,7 @@ class Notifications
 
                 ]);
 
+                Logging::where('station_id', $stations[1]['id'])->update(['station_id' => $stations[0]['id']]);
                 Station::where('id', $stations[1]['id'])->delete();
             }
         }
