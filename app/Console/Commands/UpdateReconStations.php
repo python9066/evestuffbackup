@@ -42,7 +42,7 @@ class UpdateReconStations extends Command
      */
     public function handle()
     {
-        Userlogging::create(['url' => "demon reconstation", 'user_id' => 9999999999]);
+        Userlogging::create(['url' => "demon recon station", 'user_id' => 9999999999]);
         Notifications::reconUpdate();
         $stations = Station::where('added_from_recon', 1)->count();
         $this->info('found ' . $stations . ' stations');

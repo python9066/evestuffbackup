@@ -159,6 +159,7 @@ export default {
             tickSearch: null,
             tickSelect: null,
             tickLoading: false,
+            stationName: null,
             structItems: [],
             structSearch: null,
             structSelect: null,
@@ -247,6 +248,7 @@ export default {
             this.tickItems = [];
             this.tickSearch = null;
             this.tickSelect = null;
+            this.stationName = null;
             this.state = 1;
             this.showStationTimer = false;
         },
@@ -274,14 +276,8 @@ export default {
             }
 
             if (this.refTime != "" || this.refTime != null) {
-                var y = this.refTime.substr(0, 4);
-                var mo = this.refTime.substr(5, 2);
-                var d = this.refTime.substr(8, 2);
-                var h = this.refTime.substr(11, 2);
-                var m = this.refTime.substr(14, 2);
-                var s = this.refTime.substr(17, 2);
-                var full = y + "-" + mo + "-" + d + " " + h + ":" + m + ":" + s;
-                console.log("DANCE");
+                var full = this.refTime.replace(".", "-");
+                full = full.replace(".", "-");
                 var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
             }
 
@@ -328,6 +324,31 @@ export default {
                 var timer_image_link = this.imageLink;
             } else {
                 var timer_image_link = this.item.timer_image_link;
+            }
+
+            if (
+                this.stationName != null &&
+                this.stationName != this.item.station_name
+            ) {
+                var name = this.stationName;
+            } else {
+                var name = this.item.timer_image_link;
+            }
+            if (this.stationName != null || this.stationName == "") {
+                var request = {
+                    name: name
+                };
+
+                await axios({
+                    method: "put", //you can set what request you want to be
+                    url: "api/editstationname/" + this.item.id,
+                    data: request,
+                    headers: {
+                        Authorization: "Bearer " + this.$store.state.token,
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    }
+                });
             }
 
             if (outTime != null || outTime != "Invalid date") {

@@ -276,6 +276,114 @@ class StationController extends Controller
         };
     }
 
+
+
+    public static function editStationNameReconCheck(Request $request, $id)
+    {
+        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+
+        $name = preg_replace("/\([^\)]+\)(\R|$)/", "$1", $request->stationName);
+        $name = rtrim($name);
+        // dd($name);
+        $url = "https://recon.gnf.lt/api/structure/" . $name;
+
+        $client = new GuzzleHttpClient();
+        $headers = [
+            // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
+            'x-gsf-user' => env('RECON_USER', ($variables && array_key_exists('RECON_USER', $variables)) ? $variables['RECON_USER'] : 'DANCE2'),
+            // 'token' =>  env('RECON_TOKEN', "DANCE")
+            'token' => env('RECON_TOKEN', ($variables && array_key_exists('RECON_TOKEN', $variables)) ? $variables['RECON_TOKEN'] : 'DANCE2'),
+
+        ];
+        $response = $client->request('GET', $url, [
+            'headers' => $headers,
+            'http_errors' => false
+        ]);
+
+        // dd($response);
+
+        $stationdata = Utils::jsonDecode($response->getBody(), true);
+        if ($response->getStatusCode() == 200) {
+
+            if ($stationdata == "Error, Structure Not Found") {
+
+                Station::where('id', $id)->update(['name' => $name, 'added_from_recon' => 0]);
+            } else {
+
+                $checkifthere = Station::find($stationdata['str_structure_id']);
+                $showMain = 0;
+                $showChill = 0;
+                $showRcMove = 1;
+                if ($checkifthere) {
+                    $showMain = $checkifthere->show_on_main;
+                    $showChill = $checkifthere->show_on_chill;
+                    $showRcMove =  $checkifthere->show_on_rc_move;
+                    if ($request->show == 1) {
+                        $showMain = 1;
+                    }
+                    if ($request->show == 2) {
+                        $showChill = 1;
+                    }
+                    if ($request->show == 3) {
+                        $showRcMove = 1;
+                    }
+                }
+
+
+
+                Station::updateOrCreate(['id' => $stationdata['str_structure_id']], [
+                    'name' => $stationdata['str_name'],
+                    'system_id' => $stationdata['str_system_id'],
+                    'corp_id' => $stationdata['str_owner_corporation_id'],
+                    'item_id' => $stationdata['str_type_id'],
+                    'text' => null,
+                    'station_status_id' => 10,
+                    'user_id' => null,
+                    'timestamp' => now(),
+                    'r_hash' => $stationdata['str_structure_id_md5'],
+                    'r_updated_at' => $stationdata['updated_at'],
+                    'r_fitted' => $stationdata['str_has_no_fitting'],
+                    'r_capital_shipyard' => $stationdata['str_capital_shipyard'],
+                    'r_hyasyoda' => $stationdata['str_hyasyoda'],
+                    'r_invention' => $stationdata['str_invention'],
+                    'r_manufacturing' => $stationdata['str_manufacturing'],
+                    'r_research' => $stationdata['str_research'],
+                    'r_supercapital_shipyard' => $stationdata['str_supercapital_shipyard'],
+                    'r_biochemical' => $stationdata['str_biochemical'],
+                    'r_hybrid' => $stationdata['str_hybrid'],
+                    'r_moon_drilling' => $stationdata['str_moon_drilling'],
+                    'r_reprocessing' => $stationdata['str_reprocessing'],
+                    'r_point_defense' => $stationdata['str_point_defense'],
+                    'r_dooms_day' => $stationdata['str_dooms_day'],
+                    'r_guide_bombs' => $stationdata['str_guide_bombs'],
+                    'r_anti_cap' => $stationdata['str_anti_cap'],
+                    'r_anti_subcap' => $stationdata['str_anti_subcap'],
+                    'r_t2_rigged' => $stationdata['str_t2_rigged'],
+                    'r_cloning' => $stationdata['str_cloning'],
+                    'r_composite' => $stationdata['str_composite'],
+                    'r_cored' => $stationdata['str_cored'],
+                    'show_on_main' => $showMain,
+                    'show_on_chill' => $showChill,
+                    'show_on_rc_move' => $showRcMove,
+                    'added_from_recon' => 1
+                ]);
+                if ($stationdata['str_has_no_fitting'] != null) {
+                    $items = Utils::jsonDecode($stationdata['str_fitting'], true);
+                    foreach ($items as $item) {
+                        StationItems::where('id', $item['type_id'])->get()->count();
+                        if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
+                            StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                        }
+                        StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
+                    };
+                };
+            }
+        } else {
+
+            Station::where('id', $id)->update(['name' => $name, 'added_from_recon' => 0]);
+        };
+    }
+
     /**
      * Store a newly created resource in storage.
      *
