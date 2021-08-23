@@ -290,6 +290,11 @@ class Notifications
                     'r_composite' => $stationdata['str_composite'],
                     'r_cored' => $stationdata['str_cored']
                 ]);
+
+                if ($station->station_status_id == 7) {
+                    Station::where('id', $station->id)->update(['station_status_id' => 16]);
+                }
+
                 if ($stationdata['str_has_no_fitting'] != null) {
                     if ($stationdata['str_has_no_fitting'] != 'No Fitting') {
                         StationItemJoin::where('station_id', $station->id)->delete();
