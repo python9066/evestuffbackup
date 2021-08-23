@@ -455,7 +455,9 @@ export default {
         },
 
         count() {
-            return this.refTime.length;
+            if (this.refTime != null) {
+                return this.refTime.length;
+            }
         },
 
         vaildDate() {
