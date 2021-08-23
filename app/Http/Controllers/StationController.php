@@ -528,16 +528,8 @@ class StationController extends Controller
     {
         // dd($id);
         $now = now();
-        $oldStation = Station::where('id', $id)->first();
-        $oldStatus = StationStatus::where('id', $oldStation->station_status_id)->value('name');
-
-
-        Station::find($id)->update($request->all());
-        $newStation = Station::where('id', $id)->first();
-        $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
 
         $RCmessage = RcStationRecords::where('id', $id)->first();
-        dd($RCmessage);
         $RCmessageSend = [
             'id' => $RCmessage->id,
         ];
@@ -546,6 +538,13 @@ class StationController extends Controller
         ]);
         broadcast(new RcSheetUpdate($flag));
 
+        $oldStation = Station::where('id', $id)->first();
+        $oldStatus = StationStatus::where('id', $oldStation->station_status_id)->value('name');
+
+
+        Station::find($id)->update($request->all());
+        $newStation = Station::where('id', $id)->first();
+        $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
 
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
