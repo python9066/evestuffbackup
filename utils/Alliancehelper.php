@@ -18,7 +18,7 @@ class Alliancehelper
     public static function updateAlliances()
 
     {
-        Userlogging::created(['url' => "demon alliances", 'user_id' => 9999999999]);
+        Userlogging::create(['url' => "demon alliances", 'user_id' => 9999999999]);
         $client = new Client();
         $headers = [
             'Content-Type' => 'application/json',
