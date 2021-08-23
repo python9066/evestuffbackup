@@ -239,7 +239,7 @@ class Notifications
 
 
 
-        $stations = Station::where('id', '>=', 1000000000)->get();
+        $stations = Station::where('added_from_recon', 1)->get();
         foreach ($stations as $station) {
             $url = "https://recon.gnf.lt/api/structure/" . $station->id;
             $client = new GuzzleHttpClient();
@@ -312,7 +312,7 @@ class Notifications
                 }
             }
         }
-        $stations = Station::where('id', '<', 1000000000)->get();
+        $stations = Station::where('added_from_recon', 0)->get();
         foreach ($stations as $station) {
             $url = "https://recon.gnf.lt/api/structure/" . $station->name;
             $client = new GuzzleHttpClient();

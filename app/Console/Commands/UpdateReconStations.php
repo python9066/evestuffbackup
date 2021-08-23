@@ -44,7 +44,7 @@ class UpdateReconStations extends Command
     {
         Userlogging::create(['url' => "demon reconstation", 'user_id' => 9999999999]);
         Notifications::reconUpdate();
-        $stations = Station::where('id', '>=', 1000000000)->count();
+        $stations = Station::where('added_from_recon', 1)->count();
         $this->info('found ' . $stations . ' stations');
     }
 }

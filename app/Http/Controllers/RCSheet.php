@@ -137,7 +137,7 @@ class RCSheet extends Controller
 
                         if ($reconpull == false) {
                             // dd("yoyo");
-                            $id = Station::where('id', '<', 10000000000)->max('id');
+                            $id = Station::where('added_from_recon',  0)->max('id');
                             if ($id == null) {
                                 $id = 1;
                             } else {
