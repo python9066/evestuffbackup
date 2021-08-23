@@ -35,6 +35,12 @@
                     <v-fade-transition>
                         <div>
                             <div>
+                                <v-text-field
+                                    v-model="stationName"
+                                    label="Station Name"
+                                ></v-text-field>
+                            </div>
+                            <div>
                                 <v-autocomplete
                                     v-model="structSelect"
                                     :loading="structLoading"
