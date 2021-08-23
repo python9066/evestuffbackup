@@ -379,7 +379,7 @@ export default {
 
             if (this.stationName != null || this.stationName == "") {
                 var request = {
-                    name: name,
+                    stationName: name,
                     show_on_rc_move: 0
                 };
 

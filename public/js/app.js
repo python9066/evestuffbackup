@@ -19141,7 +19141,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 request = {
-                  name: name,
+                  stationName: name,
                   show_on_rc_move: 0
                 };
                 _context2.next = 18;
