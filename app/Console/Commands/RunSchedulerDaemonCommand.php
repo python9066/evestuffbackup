@@ -43,7 +43,7 @@ class RunSchedulerDaemonCommand extends Command
         while (true) {
             sleep($this->option('sleep'));
             Userlogging::create(['url' => 'demon start', 'user_id' => 9999999999]);
-            $this->call('schedule:run');
+            $this->call('schedule:work');
             Userlogging::create(['url' => 'demon end', 'user_id' => 9999999999]);
             // Artisan::call('update:campaigns');
             // Artisan::call('update:notifications');
