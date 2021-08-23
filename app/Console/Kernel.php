@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('update:towers')->everyMinute()->withoutOverlapping();
         $schedule->command('update:notifications')->everyMinute()->unlessBetween('11:00', '11:20')->withoutOverlapping();
         $schedule->command('update:stationnotifications')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:reconstations')->hourly()->withoutOverlapping();
+        $schedule->command('update:reconstations')->everyMinute()->withoutOverlapping();
         $schedule->command('update:reconstationsbyregion')->hourly()->withoutOverlapping();
         $schedule->command('update:timers')->hourly()->unlessBetween('11:00', '11:20')->withoutOverlapping();
         $schedule->command('update:alliances')->twiceDaily(9, 22)->withoutOverlapping();
