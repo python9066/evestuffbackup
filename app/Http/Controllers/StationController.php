@@ -559,12 +559,12 @@ class StationController extends Controller
 
 
         if ($request->station_status_id != $oldStation->station_status_id) {
-            $text = Auth::user()->name .  "changed the Status from " . $oldStatus . " to " . $newStatus . " at " . now();
+            $text = Auth::user()->name .  " changed the Status from " . $oldStatus . " to " . $newStatus . " at " . now();
             Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
         }
 
         if ($request->out_time != $oldStation->out_time) {
-            $text = Auth::user()->name .  "changed the " . $oldStation->out_time . " to " . $request->out_time . " at " . now();
+            $text = Auth::user()->name .  " changed the " . $oldStation->out_time . " to " . $request->out_time . " at " . now();
             Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
         }
     }
