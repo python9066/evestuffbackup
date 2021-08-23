@@ -84,7 +84,7 @@ export default {
             if (this.item.station_status_id == 18) {
                 return "brown lighten-2";
             }
-            if (this.item.station_status_id == 17) {
+            if (this.item.station_status_id == 16) {
                 return "green";
             }
             if (this.item.station_status_id == 7) {
@@ -99,7 +99,7 @@ export default {
             if (this.item.station_status_id == 18) {
                 return "faSvg fa-question-circle";
             }
-            if (this.item.station_status_id == 17) {
+            if (this.item.station_status_id == 16) {
                 return "faSvg fa-exclamation-triangle";
             }
             if (this.item.station_status_id == 7) {
