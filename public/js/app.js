@@ -19058,7 +19058,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + _this4.$store.state.user_name + ": " + editText + _this4.station.notes;
                 }
 
-                if (_this4.refTime != "" || _this4.refTime != null) {
+                if (_this4.vaildDate == true) {
                   full = _this4.refTime.replace(".", "-");
                   full = full.replace(".", "-");
                   outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");

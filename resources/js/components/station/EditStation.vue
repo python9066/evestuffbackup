@@ -285,7 +285,7 @@ export default {
                     this.station.notes;
             }
 
-            if (this.refTime != "" || this.refTime != null) {
+            if (this.vaildDate == true) {
                 var full = this.refTime.replace(".", "-");
                 full = full.replace(".", "-");
                 var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
