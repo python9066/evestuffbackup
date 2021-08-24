@@ -8948,9 +8948,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (e.flag.id == _this.user.id) {
                   _this.$store.dispatch("updateKeyMessage", e.flag.message);
 
-                  _this.showNumber = true;
-
                   if (_this.showUserNotes == false) {
+                    _this.showNumber = true;
                     _this.messageCount = _this.messageCount + 1;
                   }
                 }
@@ -16269,9 +16268,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (e.flag.id == _this.station.id) {
                   _this.$store.dispatch("updateRcStation", e.flag.message);
 
-                  _this.showNumber = true;
-
                   if (_this.showStationNotes == false) {
+                    _this.showNumber = true;
                     _this.messageCount = _this.messageCount + 1;
                   }
                 }

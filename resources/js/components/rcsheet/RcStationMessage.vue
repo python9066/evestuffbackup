@@ -101,8 +101,8 @@ export default {
         Echo.private("rcsheet").listen("RcSheetMessageUpdate", e => {
             if (e.flag.id == this.station.id) {
                 this.$store.dispatch("updateRcStation", e.flag.message);
-                this.showNumber = true;
                 if (this.showStationNotes == false) {
+                    this.showNumber = true;
                     this.messageCount = this.messageCount + 1;
                 }
             }

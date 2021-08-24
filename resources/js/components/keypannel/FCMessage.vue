@@ -99,8 +99,8 @@ export default {
         Echo.private("fleetkeys").listen("FleetKeysUpdate", e => {
             if (e.flag.id == this.user.id) {
                 this.$store.dispatch("updateKeyMessage", e.flag.message);
-                this.showNumber = true;
                 if (this.showUserNotes == false) {
+                    this.showNumber = true;
                     this.messageCount = this.messageCount + 1;
                 }
             }
