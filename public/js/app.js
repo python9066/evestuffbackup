@@ -8821,6 +8821,207 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/keypannel/FCMessage.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/keypannel/FCMessage.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    user: Object
+  },
+  data: function data() {
+    return {
+      messageCount: 0,
+      showNumber: false,
+      showUserNotes: false,
+      editText: null
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              Echo["private"]("fleetkeys").listen("RcMoveMessageUpdate", function (e) {
+                if (e.flag.id == _this.user.id) {
+                  _this.$store.dispatch("updateKeyMessage", e.flag.message);
+
+                  _this.showNumber = true;
+
+                  if (_this.showUserNotes == false) {
+                    _this.messageCount = _this.messageCount + 1;
+                  }
+                }
+              });
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  methods: {
+    close: function close() {
+      this.editText = null;
+      this.showUserNotes = false;
+    },
+    open: function open() {
+      this.showNumber = false, this.messageCount = 0;
+    },
+    updatetext: function updatetext() {
+      this.editText = this.editText + "\n";
+
+      if (this.user.notes == null) {
+        var note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText;
+      } else {
+        var note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.user.notes;
+      }
+
+      this.user.notes = note;
+      var request = {
+        fc_notes: note
+      };
+      this.$store.dispatch("updateKeyMessage", this.user);
+      axios({
+        method: "put",
+        url: "/api/sheetmessage/" + this.station.id,
+        data: request,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      });
+      this.editText = null;
+    }
+  },
+  computed: {
+    icon: function icon() {
+      if (this.user.notes == null) {
+        return "far fa-comment-alt";
+      } else {
+        return "fas fa-comment-alt";
+      }
+    },
+    submitActive: function submitActive() {
+      if (this.editText != null) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
+  beforeDestroy: function beforeDestroy() {
+    Echo.leave("fleetkeys");
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/logging/adminpanel/AdminLogging.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/logging/adminpanel/AdminLogging.vue?vue&type=script&lang=js& ***!
@@ -27949,10 +28150,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -44126,6 +44323,208 @@ var render = function() {
               _c(
                 "v-card-actions",
                 [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { color: "teal" },
+                      on: {
+                        click: function($event) {
+                          return _vm.close()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Close\n                ")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/keypannel/FCMessage.vue?vue&type=template&id=58154712&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/keypannel/FCMessage.vue?vue&type=template&id=58154712& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { "max-width": "700px", "z-index": "0" },
+          on: {
+            "click:outside": function($event) {
+              return _vm.close()
+            }
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-badge",
+                    {
+                      attrs: {
+                        color: "green",
+                        overlap: "",
+                        content: _vm.messageCount,
+                        value: _vm.showNumber
+                      }
+                    },
+                    [
+                      _c(
+                        "v-icon",
+                        _vm._g(
+                          _vm._b(
+                            {
+                              attrs: { color: "blue" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.open()
+                                }
+                              }
+                            },
+                            "v-icon",
+                            attrs,
+                            false
+                          ),
+                          on
+                        ),
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(_vm.icon) +
+                              "\n                "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.showUserNotes,
+            callback: function($$v) {
+              _vm.showUserNotes = $$v
+            },
+            expression: "showUserNotes"
+          }
+        },
+        [
+          _vm._v(" "),
+          _c(
+            "v-card",
+            {
+              staticClass: " d-flex flex-column",
+              attrs: {
+                tile: "",
+                "max-width": "700px",
+                "min-height": "200px",
+                "max-height": "700px"
+              }
+            },
+            [
+              _c("v-card-title", [
+                _vm._v("Notes for " + _vm._s(_vm.user.name) + ". ")
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c("v-textarea", {
+                    attrs: {
+                      height: "400px",
+                      readonly: "",
+                      "no-resize": "",
+                      outlined: "",
+                      placeholder: "No Notes"
+                    },
+                    model: {
+                      value: _vm.station.notes,
+                      callback: function($$v) {
+                        _vm.$set(_vm.station, "notes", $$v)
+                      },
+                      expression: "station.notes"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-divider"),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    [
+                      _c("v-text-field", {
+                        attrs: {
+                          "auto-grow": "",
+                          filled: "",
+                          autofocus: "",
+                          label: "Enter New Notes Here"
+                        },
+                        model: {
+                          value: _vm.editText,
+                          callback: function($$v) {
+                            _vm.editText = $$v
+                          },
+                          expression: "editText"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-spacer"),
+              _c(
+                "v-card-actions",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "white--text",
+                      attrs: { color: "green", disabled: _vm.submitActive },
+                      on: {
+                        click: function($event) {
+                          return _vm.updatetext()
+                        }
+                      }
+                    },
+                    [_vm._v("\n                    Submit\n                ")]
+                  ),
+                  _vm._v(" "),
                   _c(
                     "v-btn",
                     {
@@ -63662,9 +64061,10 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                _vm._v(
-                                  "\n                        DANCE\n                        "
-                                )
+                                _c("FCMessage", {
+                                  staticClass: " mr-2",
+                                  attrs: { user: item }
+                                })
                               ]
                             }
                           }
@@ -68812,6 +69212,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('DoneButton', __webpack_req
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AddTimerFromDone', __webpack_require__(/*! ./components/rcsheet/AddTimerFromDone.vue */ "./resources/js/components/rcsheet/AddTimerFromDone.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AddTimerFromDoneCoord', __webpack_require__(/*! ./components/coord/AddTimerFromDoneCoord.vue */ "./resources/js/components/coord/AddTimerFromDoneCoord.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('DoneButtonCoord', __webpack_require__(/*! ./components/coord/DoneButtonCoord.vue */ "./resources/js/components/coord/DoneButtonCoord.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('FCmessage', __webpack_require__(/*! ./components/keypannel/FCMessage.vue */ "./resources/js/components/keypannel/FCMessage.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_clipboard__WEBPACK_IMPORTED_MODULE_18___default.a);
@@ -71727,6 +72128,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditKeys_vue_vue_type_template_id_605955e1___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditKeys_vue_vue_type_template_id_605955e1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/keypannel/FCMessage.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/keypannel/FCMessage.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FCMessage_vue_vue_type_template_id_58154712___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FCMessage.vue?vue&type=template&id=58154712& */ "./resources/js/components/keypannel/FCMessage.vue?vue&type=template&id=58154712&");
+/* harmony import */ var _FCMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FCMessage.vue?vue&type=script&lang=js& */ "./resources/js/components/keypannel/FCMessage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FCMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FCMessage_vue_vue_type_template_id_58154712___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FCMessage_vue_vue_type_template_id_58154712___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/keypannel/FCMessage.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/keypannel/FCMessage.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/keypannel/FCMessage.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FCMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./FCMessage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/keypannel/FCMessage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FCMessage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/keypannel/FCMessage.vue?vue&type=template&id=58154712&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/keypannel/FCMessage.vue?vue&type=template&id=58154712& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FCMessage_vue_vue_type_template_id_58154712___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./FCMessage.vue?vue&type=template&id=58154712& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/keypannel/FCMessage.vue?vue&type=template&id=58154712&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FCMessage_vue_vue_type_template_id_58154712___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FCMessage_vue_vue_type_template_id_58154712___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -76885,6 +77355,20 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         state.stations.push(data);
       }
     },
+    UPDATE_KEY_MESSAGE: function UPDATE_KEY_MESSAGE(state, data) {
+      var item = state.userskeys.find(function (item) {
+        return item.id === data.id;
+      });
+      var count = state.userskeys.filter(function (item) {
+        return item.id === data.id;
+      }).length;
+
+      if (count > 0) {
+        Object.assign(item, data);
+      } else {
+        state.userskeys.push(data);
+      }
+    },
     UPDATE_RC_STATION: function UPDATE_RC_STATION(state, data) {
       var item = state.rcstations.find(function (item) {
         return item.id === data.id;
@@ -78429,138 +78913,142 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       var commit = _ref42.commit;
       commit("UPDATE_STATION_NOTIFICATION", data);
     },
-    updateRcStation: function updateRcStation(_ref43, data) {
+    updateKeyMessage: function updateKeyMessage(_ref43, data) {
       var commit = _ref43.commit;
+      commit("UPDATE_KEY_MESSAGE", data);
+    },
+    updateRcStation: function updateRcStation(_ref44, data) {
+      var commit = _ref44.commit;
       commit("UPDATE_RC_STATION", data);
     },
-    updateRcFC: function updateRcFC(_ref44, data) {
-      var commit = _ref44.commit;
+    updateRcFC: function updateRcFC(_ref45, data) {
+      var commit = _ref45.commit;
       commit("UPDATE_RC_FC", data);
     },
-    updateCores: function updateCores(_ref45, data) {
-      var commit = _ref45.commit;
+    updateCores: function updateCores(_ref46, data) {
+      var commit = _ref46.commit;
       commit("UPDATE_CORES", data);
     },
-    updateCampaigns: function updateCampaigns(_ref46, data) {
-      var commit = _ref46.commit;
+    updateCampaigns: function updateCampaigns(_ref47, data) {
+      var commit = _ref47.commit;
       commit("UPDATE_CAMPAIGNS", data);
     },
-    updateTowers: function updateTowers(_ref47, data) {
-      var commit = _ref47.commit;
+    updateTowers: function updateTowers(_ref48, data) {
+      var commit = _ref48.commit;
       commit("UPDATE_TOWERS", data);
     },
-    updateCampaignSystem: function updateCampaignSystem(_ref48, data) {
-      var commit = _ref48.commit;
+    updateCampaignSystem: function updateCampaignSystem(_ref49, data) {
+      var commit = _ref49.commit;
       commit("UPDATE_CAMPAIGN_SYSTEM", data);
     },
-    updateStartCampaignSystem: function updateStartCampaignSystem(_ref49, data) {
-      var commit = _ref49.commit;
+    updateStartCampaignSystem: function updateStartCampaignSystem(_ref50, data) {
+      var commit = _ref50.commit;
       commit("UPDATE_START_CAMPAIGN_SYSTEM", data);
     },
-    updateTooltipToggle: function updateTooltipToggle(_ref50, data) {
-      var commit = _ref50.commit;
+    updateTooltipToggle: function updateTooltipToggle(_ref51, data) {
+      var commit = _ref51.commit;
       commit("UPDATE_TOOLTIP_TOGGLE", data);
     },
-    updateCampaignSystemByUserID: function updateCampaignSystemByUserID(_ref51, payload) {
-      var commit = _ref51.commit;
+    updateCampaignSystemByUserID: function updateCampaignSystemByUserID(_ref52, payload) {
+      var commit = _ref52.commit;
       commit("UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID", payload);
     },
-    updateCampaignSolaSystem: function updateCampaignSolaSystem(_ref52, data) {
-      var commit = _ref52.commit;
+    updateCampaignSolaSystem: function updateCampaignSolaSystem(_ref53, data) {
+      var commit = _ref53.commit;
       commit("UPDATE_CAMPAIGN_SOLA_SYSTEMS", data);
     },
-    updateCampaignSystemBar: function updateCampaignSystemBar(_ref53, data) {
-      var commit = _ref53.commit;
+    updateCampaignSystemBar: function updateCampaignSystemBar(_ref54, data) {
+      var commit = _ref54.commit;
       commit("UPDATE_CAMPAIGN_SYSTEM_UPDATE", data);
     },
-    updateCampaign: function updateCampaign(_ref54, data) {
-      var commit = _ref54.commit;
+    updateCampaign: function updateCampaign(_ref55, data) {
+      var commit = _ref55.commit;
       commit("UPDATE_CAMPAIGN", data);
     },
-    updateCampaignUsers: function updateCampaignUsers(_ref55, data) {
-      var commit = _ref55.commit;
+    updateCampaignUsers: function updateCampaignUsers(_ref56, data) {
+      var commit = _ref56.commit;
       commit("UPDATE_CAMPAIGN_USERS", data);
     },
-    updateUsersChars: function updateUsersChars(_ref56, data) {
-      var commit = _ref56.commit;
+    updateUsersChars: function updateUsersChars(_ref57, data) {
+      var commit = _ref57.commit;
       commit("UPDATE_USERS_CHARS", data);
     },
-    updateAmmoRequest: function updateAmmoRequest(_ref57, data) {
-      var commit = _ref57.commit;
+    updateAmmoRequest: function updateAmmoRequest(_ref58, data) {
+      var commit = _ref58.commit;
       commit("UPDATE_AMMO_REQUEST", data);
     },
-    updateNodeJoin: function updateNodeJoin(_ref58, data) {
-      var commit = _ref58.commit;
+    updateNodeJoin: function updateNodeJoin(_ref59, data) {
+      var commit = _ref59.commit;
       commit('UPDATE_NODE_JOIN', data);
     },
-    updateReconTaskSystems: function updateReconTaskSystems(_ref59, data) {
-      var commit = _ref59.commit;
+    updateReconTaskSystems: function updateReconTaskSystems(_ref60, data) {
+      var commit = _ref60.commit;
       commit("UPDATE_RECON_TASK_SYSTEMS", data);
     },
-    addNodeJoin: function addNodeJoin(_ref60, data) {
-      var commit = _ref60.commit;
+    addNodeJoin: function addNodeJoin(_ref61, data) {
+      var commit = _ref61.commit;
       commit("ADD_NODE_JOIN", data);
     },
-    addAmmoRequest: function addAmmoRequest(_ref61, data) {
-      var commit = _ref61.commit;
+    addAmmoRequest: function addAmmoRequest(_ref62, data) {
+      var commit = _ref62.commit;
       commit("ADD_AMMO_REQUEST", data);
     },
-    addStationNotification: function addStationNotification(_ref62, data) {
-      var commit = _ref62.commit;
+    addStationNotification: function addStationNotification(_ref63, data) {
+      var commit = _ref63.commit;
       commit("ADD_STATION_NOTIFICATION", data);
     },
-    addLoggingCampaign: function addLoggingCampaign(_ref63, data) {
-      var commit = _ref63.commit;
+    addLoggingCampaign: function addLoggingCampaign(_ref64, data) {
+      var commit = _ref64.commit;
       commit("ADD_LOGGING_CAMPGIN", data);
     },
-    addLoggingRcSheet: function addLoggingRcSheet(_ref64, data) {
-      var commit = _ref64.commit;
+    addLoggingRcSheet: function addLoggingRcSheet(_ref65, data) {
+      var commit = _ref65.commit;
       commit("ADD_LOGGING_RC_SHEET", data);
     },
-    addCampaignUserNew: function addCampaignUserNew(_ref65, data) {
-      var commit = _ref65.commit;
+    addCampaignUserNew: function addCampaignUserNew(_ref66, data) {
+      var commit = _ref66.commit;
       commit("ADD_CAMPAIGN_USERS", data);
     },
-    addCampaignSystem: function addCampaignSystem(_ref66, data) {
-      var commit = _ref66.commit;
+    addCampaignSystem: function addCampaignSystem(_ref67, data) {
+      var commit = _ref67.commit;
       commit("ADD_CAMPAIGN_SYSTEM", data);
     },
-    deleteCampaignUser: function deleteCampaignUser(_ref67, id) {
-      var commit = _ref67.commit;
+    deleteCampaignUser: function deleteCampaignUser(_ref68, id) {
+      var commit = _ref68.commit;
       commit("DELETE_CAMPAIGN_USER", id);
     },
-    deleteStationNotification: function deleteStationNotification(_ref68, id) {
-      var commit = _ref68.commit;
+    deleteStationNotification: function deleteStationNotification(_ref69, id) {
+      var commit = _ref69.commit;
       commit("DELETE_STATION_NOTIFICATION", id);
     },
-    deleteUsersChars: function deleteUsersChars(_ref69, id) {
-      var commit = _ref69.commit;
+    deleteUsersChars: function deleteUsersChars(_ref70, id) {
+      var commit = _ref70.commit;
       commit("DELETE_USER_CHAR", id);
     },
-    deleteNodeJoin: function deleteNodeJoin(_ref70, id) {
-      var commit = _ref70.commit;
+    deleteNodeJoin: function deleteNodeJoin(_ref71, id) {
+      var commit = _ref71.commit;
       commit("DELETE_NODE_JOIN", id);
     },
-    deleteAmmoRequest: function deleteAmmoRequest(_ref71, id) {
-      var commit = _ref71.commit;
+    deleteAmmoRequest: function deleteAmmoRequest(_ref72, id) {
+      var commit = _ref72.commit;
       commit("DELETE_AMMO_REQUEST", id);
     },
-    deleteTower: function deleteTower(_ref72, id) {
-      var commit = _ref72.commit;
+    deleteTower: function deleteTower(_ref73, id) {
+      var commit = _ref73.commit;
       commit("DELETE_TOWERS", id);
     },
-    deleteCampaignSystem: function deleteCampaignSystem(_ref73, id) {
-      var commit = _ref73.commit;
+    deleteCampaignSystem: function deleteCampaignSystem(_ref74, id) {
+      var commit = _ref74.commit;
       commit("DELETE_CAMPAIGN_SYSTEM", id);
     },
-    getNotifications: function getNotifications(_ref74) {
+    getNotifications: function getNotifications(_ref75) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee40() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee40$(_context40) {
           while (1) {
             switch (_context40.prev = _context40.next) {
               case 0:
-                commit = _ref74.commit, state = _ref74.state;
+                commit = _ref75.commit, state = _ref75.state;
                 _context40.next = 3;
                 return axios({
                   method: "get",
@@ -78586,14 +79074,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee40);
       }))();
     },
-    getdelveLink: function getdelveLink(_ref75) {
+    getdelveLink: function getdelveLink(_ref76) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee41() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee41$(_context41) {
           while (1) {
             switch (_context41.prev = _context41.next) {
               case 0:
-                commit = _ref75.commit, state = _ref75.state;
+                commit = _ref76.commit, state = _ref76.state;
                 _context41.next = 3;
                 return axios({
                   method: "get",
@@ -78618,14 +79106,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee41);
       }))();
     },
-    getqueriousLink: function getqueriousLink(_ref76) {
+    getqueriousLink: function getqueriousLink(_ref77) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee42() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee42$(_context42) {
           while (1) {
             switch (_context42.prev = _context42.next) {
               case 0:
-                commit = _ref76.commit, state = _ref76.state;
+                commit = _ref77.commit, state = _ref77.state;
                 _context42.next = 3;
                 return axios({
                   method: "get",
@@ -78650,14 +79138,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee42);
       }))();
     },
-    getperiodbasisLink: function getperiodbasisLink(_ref77) {
+    getperiodbasisLink: function getperiodbasisLink(_ref78) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee43() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee43$(_context43) {
           while (1) {
             switch (_context43.prev = _context43.next) {
               case 0:
-                commit = _ref77.commit, state = _ref77.state;
+                commit = _ref78.commit, state = _ref78.state;
                 _context43.next = 3;
                 return axios({
                   method: "get",
@@ -78682,26 +79170,26 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee43);
       }))();
     },
-    setToken: function setToken(_ref78, token) {
-      var commit = _ref78.commit;
+    setToken: function setToken(_ref79, token) {
+      var commit = _ref79.commit;
       commit("SET_TOKEN", token);
     },
-    setUser_id: function setUser_id(_ref79, user_id) {
-      var commit = _ref79.commit;
+    setUser_id: function setUser_id(_ref80, user_id) {
+      var commit = _ref80.commit;
       commit("SET_USER_ID", user_id);
     },
-    setUser_name: function setUser_name(_ref80, user_name) {
-      var commit = _ref80.commit;
+    setUser_name: function setUser_name(_ref81, user_name) {
+      var commit = _ref81.commit;
       commit("SET_USER_NAME", user_name);
     },
-    getCampaignUsersRecords: function getCampaignUsersRecords(_ref81, id) {
+    getCampaignUsersRecords: function getCampaignUsersRecords(_ref82, id) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee44() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee44$(_context44) {
           while (1) {
             switch (_context44.prev = _context44.next) {
               case 0:
-                commit = _ref81.commit, state = _ref81.state;
+                commit = _ref82.commit, state = _ref82.state;
                 _context44.next = 3;
                 return axios({
                   method: "get",
@@ -78729,14 +79217,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee44);
       }))();
     },
-    getCampaignSystemsRecords: function getCampaignSystemsRecords(_ref82) {
+    getCampaignSystemsRecords: function getCampaignSystemsRecords(_ref83) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee45() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee45$(_context45) {
           while (1) {
             switch (_context45.prev = _context45.next) {
               case 0:
-                commit = _ref82.commit, state = _ref82.state;
+                commit = _ref83.commit, state = _ref83.state;
                 _context45.next = 3;
                 return axios({
                   method: "get",
@@ -78764,14 +79252,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee45);
       }))();
     },
-    getStartCampaignSystemsRecords: function getStartCampaignSystemsRecords(_ref83) {
+    getStartCampaignSystemsRecords: function getStartCampaignSystemsRecords(_ref84) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee46() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee46$(_context46) {
           while (1) {
             switch (_context46.prev = _context46.next) {
               case 0:
-                commit = _ref83.commit, state = _ref83.state;
+                commit = _ref84.commit, state = _ref84.state;
                 _context46.next = 3;
                 return axios({
                   method: "get",
@@ -78799,14 +79287,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee46);
       }))();
     },
-    getReconTaskSystemsRecords: function getReconTaskSystemsRecords(_ref84) {
+    getReconTaskSystemsRecords: function getReconTaskSystemsRecords(_ref85) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee47() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee47$(_context47) {
           while (1) {
             switch (_context47.prev = _context47.next) {
               case 0:
-                commit = _ref84.commit, state = _ref84.state;
+                commit = _ref85.commit, state = _ref85.state;
                 _context47.next = 3;
                 return axios({
                   method: "get",
@@ -78834,14 +79322,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee47);
       }))();
     },
-    getRcStationRecords: function getRcStationRecords(_ref85) {
+    getRcStationRecords: function getRcStationRecords(_ref86) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee48() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee48$(_context48) {
           while (1) {
             switch (_context48.prev = _context48.next) {
               case 0:
-                commit = _ref85.commit, state = _ref85.state;
+                commit = _ref86.commit, state = _ref86.state;
                 _context48.next = 3;
                 return axios({
                   method: "get",
@@ -78869,14 +79357,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee48);
       }))();
     },
-    getCoordStationRecords: function getCoordStationRecords(_ref86) {
+    getCoordStationRecords: function getCoordStationRecords(_ref87) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee49() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee49$(_context49) {
           while (1) {
             switch (_context49.prev = _context49.next) {
               case 0:
-                commit = _ref86.commit, state = _ref86.state;
+                commit = _ref87.commit, state = _ref87.state;
                 _context49.next = 3;
                 return axios({
                   method: "get",
@@ -78904,14 +79392,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee49);
       }))();
     },
-    getRcFcs: function getRcFcs(_ref87) {
+    getRcFcs: function getRcFcs(_ref88) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee50() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee50$(_context50) {
           while (1) {
             switch (_context50.prev = _context50.next) {
               case 0:
-                commit = _ref87.commit, state = _ref87.state;
+                commit = _ref88.commit, state = _ref88.state;
                 _context50.next = 3;
                 return axios({
                   method: "get",
@@ -78939,14 +79427,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee50);
       }))();
     },
-    getFleets: function getFleets(_ref88) {
+    getFleets: function getFleets(_ref89) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee51() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee51$(_context51) {
           while (1) {
             switch (_context51.prev = _context51.next) {
               case 0:
-                commit = _ref88.commit, state = _ref88.state;
+                commit = _ref89.commit, state = _ref89.state;
                 _context51.next = 3;
                 return axios({
                   method: "get",
@@ -78974,14 +79462,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee51);
       }))();
     },
-    getConstellationList: function getConstellationList(_ref89) {
+    getConstellationList: function getConstellationList(_ref90) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee52() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee52$(_context52) {
           while (1) {
             switch (_context52.prev = _context52.next) {
               case 0:
-                commit = _ref89.commit, state = _ref89.state;
+                commit = _ref90.commit, state = _ref90.state;
                 _context52.next = 3;
                 return axios({
                   method: "get",
@@ -79006,14 +79494,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee52);
       }))();
     },
-    loadCampaignSystemData: function loadCampaignSystemData(_ref90, payload) {
+    loadCampaignSystemData: function loadCampaignSystemData(_ref91, payload) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee53() {
         var commit, state, request, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee53$(_context53) {
           while (1) {
             switch (_context53.prev = _context53.next) {
               case 0:
-                commit = _ref90.commit, state = _ref90.state;
+                commit = _ref91.commit, state = _ref91.state;
                 request = {
                   user_id: payload.user_id,
                   campaign_id: payload.campaign_id,
@@ -79052,14 +79540,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee53);
       }))();
     },
-    loadStationInfo: function loadStationInfo(_ref91) {
+    loadStationInfo: function loadStationInfo(_ref92) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee54() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee54$(_context54) {
           while (1) {
             switch (_context54.prev = _context54.next) {
               case 0:
-                commit = _ref91.commit, state = _ref91.state;
+                commit = _ref92.commit, state = _ref92.state;
                 _context54.next = 3;
                 return axios({
                   method: "get",
@@ -79089,14 +79577,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee54);
       }))();
     },
-    loadAmmoRequestInfo: function loadAmmoRequestInfo(_ref92) {
+    loadAmmoRequestInfo: function loadAmmoRequestInfo(_ref93) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee55() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee55$(_context55) {
           while (1) {
             switch (_context55.prev = _context55.next) {
               case 0:
-                commit = _ref92.commit, state = _ref92.state;
+                commit = _ref93.commit, state = _ref93.state;
                 _context55.next = 3;
                 return axios({
                   method: "get",

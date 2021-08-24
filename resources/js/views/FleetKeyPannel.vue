@@ -134,11 +134,7 @@
                             </div>
                         </template>
                         <template v-slot:[`item.actions`]="{ item }">
-                            DANCE
-                            <!-- <RcStationMessage
-                                    class=" mr-2"
-                                    :station="item"
-                                ></RcStationMessage> -->
+                            <FCMessage class=" mr-2" :user="item"></FCMessage>
                         </template>
                         <template slot="no-data">
                             Nothing matches your filters
