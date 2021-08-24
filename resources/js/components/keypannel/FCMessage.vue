@@ -37,7 +37,7 @@
                         height="400px"
                         readonly
                         no-resize
-                        v-model="user.notes"
+                        v-model="user.fc_notes"
                         outlined
                         placeholder="No Notes"
                     ></v-textarea>
@@ -119,7 +119,7 @@ export default {
 
         updatetext() {
             this.editText = this.editText + "\n";
-            if (this.user.notes == null) {
+            if (this.user.fc_notes == null) {
                 var note =
                     moment.utc().format("HH:mm:ss") +
                     " - " +
@@ -133,10 +133,10 @@ export default {
                     this.$store.state.user_name +
                     ": " +
                     this.editText +
-                    this.user.notes;
+                    this.user.fc_notes;
             }
 
-            this.user.notes = note;
+            this.user.fc_notes = note;
             let request = {
                 fc_notes: note
             };
@@ -157,7 +157,7 @@ export default {
 
     computed: {
         icon() {
-            if (this.user.notes == null) {
+            if (this.user.fc_notes == null) {
                 return "far fa-comment-alt";
             } else {
                 return "fas fa-comment-alt";

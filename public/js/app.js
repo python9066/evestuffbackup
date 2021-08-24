@@ -8975,13 +8975,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     updatetext: function updatetext() {
       this.editText = this.editText + "\n";
 
-      if (this.user.notes == null) {
+      if (this.user.fc_notes == null) {
         var note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText;
       } else {
-        var note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.user.notes;
+        var note = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("HH:mm:ss") + " - " + this.$store.state.user_name + ": " + this.editText + this.user.fc_notes;
       }
 
-      this.user.notes = note;
+      this.user.fc_notes = note;
       var request = {
         fc_notes: note
       };
@@ -9001,7 +9001,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     icon: function icon() {
-      if (this.user.notes == null) {
+      if (this.user.fc_notes == null) {
         return "far fa-comment-alt";
       } else {
         return "fas fa-comment-alt";
@@ -44472,11 +44472,11 @@ var render = function() {
                       placeholder: "No Notes"
                     },
                     model: {
-                      value: _vm.user.notes,
+                      value: _vm.user.fc_notes,
                       callback: function($$v) {
-                        _vm.$set(_vm.user, "notes", $$v)
+                        _vm.$set(_vm.user, "fc_notes", $$v)
                       },
-                      expression: "user.notes"
+                      expression: "user.fc_notes"
                     }
                   }),
                   _vm._v(" "),
