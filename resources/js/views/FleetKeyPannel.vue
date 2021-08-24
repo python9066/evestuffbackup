@@ -165,16 +165,16 @@
                         <v-card>
                             <v-card outlined>
                                 <v-card-text class="text-center">
-                                    <v-textarea readonly outlined>
-                                        <p
-                                            class="font-weight-light"
-                                            v-for="(fleet,
-                                            index) in list.fleets"
-                                            :key="index"
-                                        >
+                                    <v-list
+                                        max-height="250px"
+                                        class="font-weight-light"
+                                        v-for="(fleet, index) in list.fleets"
+                                        :key="index"
+                                    >
+                                        <v-list-item>
                                             {{ fleet.name }}
-                                        </p>
-                                    </v-textarea>
+                                        </v-list-item>
+                                    </v-list>
                                 </v-card-text>
                             </v-card>
                         </v-card>

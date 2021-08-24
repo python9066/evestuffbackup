@@ -63720,29 +63720,26 @@ var render = function() {
                               _c(
                                 "v-card-text",
                                 { staticClass: "text-center" },
-                                [
-                                  _c(
-                                    "v-textarea",
-                                    { attrs: { readonly: "", outlined: "" } },
-                                    _vm._l(list.fleets, function(fleet, index) {
-                                      return _c(
-                                        "p",
-                                        {
-                                          key: index,
-                                          staticClass: "font-weight-light"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                        " +
-                                              _vm._s(fleet.name) +
-                                              "\n                                    "
-                                          )
-                                        ]
-                                      )
-                                    }),
-                                    0
+                                _vm._l(list.fleets, function(fleet, index) {
+                                  return _c(
+                                    "v-list",
+                                    {
+                                      key: index,
+                                      staticClass: "font-weight-light",
+                                      attrs: { "max-height": "250px" }
+                                    },
+                                    [
+                                      _c("v-list-item", [
+                                        _vm._v(
+                                          "\n                                        " +
+                                            _vm._s(fleet.name) +
+                                            "\n                                    "
+                                        )
+                                      ])
+                                    ],
+                                    1
                                   )
-                                ],
+                                }),
                                 1
                               )
                             ],
