@@ -217,12 +217,12 @@ export default new Vuex.Store({
         },
 
         UPDATE_KEY_MESSAGE(state, data) {
-            const item = state.userskeys.find(item => item.id === data.id);
-            const count = state.userskeys.filter(item => item.id === data.id).length
+            const item = state.userkeys.find(item => item.id === data.id);
+            const count = state.userkeys.filter(item => item.id === data.id).length
             if (count > 0) {
                 Object.assign(item, data);
             } else {
-                state.userskeys.push(data)
+                state.userkeys.push(data)
             }
         },
 

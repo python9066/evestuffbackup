@@ -77356,17 +77356,17 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       }
     },
     UPDATE_KEY_MESSAGE: function UPDATE_KEY_MESSAGE(state, data) {
-      var item = state.userskeys.find(function (item) {
+      var item = state.userkeys.find(function (item) {
         return item.id === data.id;
       });
-      var count = state.userskeys.filter(function (item) {
+      var count = state.userkeys.filter(function (item) {
         return item.id === data.id;
       }).length;
 
       if (count > 0) {
         Object.assign(item, data);
       } else {
-        state.userskeys.push(data);
+        state.userkeys.push(data);
       }
     },
     UPDATE_RC_STATION: function UPDATE_RC_STATION(state, data) {
