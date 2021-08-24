@@ -6734,7 +6734,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 full = full.replace(".", "-");
                 outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
                 request = {
-                  status_id: _this.refType,
+                  station_status_id: _this.refType,
                   out_time: outTime,
                   timer_image_link: _this.imageLink,
                   rc_fc_id: 0,
