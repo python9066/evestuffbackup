@@ -198,7 +198,7 @@ export default {
             var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
 
             var request = {
-                station_status_id: this.refType,
+                status_id: this.refType,
                 out_time: outTime,
                 timer_image_link: this.imageLink,
                 rc_fc_id: 0,
