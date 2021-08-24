@@ -162,8 +162,7 @@
                                 ></v-card-title
                             >
                             <v-card-text class="text-center">
-                                <v-list
-                                    dense
+                                <v-list-group
                                     max-height="200px"
                                     class="font-weight-light text-center"
                                     outlined
@@ -173,7 +172,7 @@
                                     <v-list-item>
                                         {{ fleet.name }}
                                     </v-list-item>
-                                </v-list>
+                                </v-list-group>
                             </v-card-text>
                         </v-card>
                     </v-card>

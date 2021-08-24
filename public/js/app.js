@@ -27936,7 +27936,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -63710,15 +63709,11 @@ var render = function() {
                             { staticClass: "text-center" },
                             _vm._l(list.fleets, function(fleet, index) {
                               return _c(
-                                "v-list",
+                                "v-list-group",
                                 {
                                   key: index,
                                   staticClass: "font-weight-light text-center",
-                                  attrs: {
-                                    dense: "",
-                                    "max-height": "200px",
-                                    outlined: ""
-                                  }
+                                  attrs: { "max-height": "200px", outlined: "" }
                                 },
                                 [
                                   _c("v-list-item", [
