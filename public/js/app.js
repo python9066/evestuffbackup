@@ -34640,7 +34640,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.rainbow-2[data-v-497c3fc8]:hover {\r\n    background-image: linear-gradient(\r\n        to right,\r\n        red,\r\n        orange,\r\n        yellow,\r\n        green,\r\n        blue,\r\n        indigo,\r\n        violet,\r\n        red\r\n    );\r\n    -webkit-animation: slidebg-data-v-497c3fc8 2s linear infinite;\r\n            animation: slidebg-data-v-497c3fc8 2s linear infinite;\n}\n@-webkit-keyframes slidebg-data-v-497c3fc8 {\nto {\r\n        background-position: 20vw;\n}\n}\n@keyframes slidebg-data-v-497c3fc8 {\nto {\r\n        background-position: 20vw;\n}\n}\n.follow[data-v-497c3fc8] {\r\n    margin-top: 40px;\n}\n.follow a[data-v-497c3fc8] {\r\n    color: black;\r\n    padding: 8px 16px;\r\n    text-decoration: none;\n}\r\n", ""]);
+exports.push([module.i, "\n.rainbow-2[data-v-497c3fc8]:hover {\n    background-image: linear-gradient(\n        to right,\n        red,\n        orange,\n        yellow,\n        green,\n        blue,\n        indigo,\n        violet,\n        red\n    );\n    -webkit-animation: slidebg-data-v-497c3fc8 2s linear infinite;\n            animation: slidebg-data-v-497c3fc8 2s linear infinite;\n}\n@-webkit-keyframes slidebg-data-v-497c3fc8 {\nto {\n        background-position: 20vw;\n}\n}\n@keyframes slidebg-data-v-497c3fc8 {\nto {\n        background-position: 20vw;\n}\n}\n.follow[data-v-497c3fc8] {\n    margin-top: 40px;\n}\n.follow a[data-v-497c3fc8] {\n    color: black;\n    padding: 8px 16px;\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -63719,27 +63719,31 @@ var render = function() {
                             [
                               _c(
                                 "v-card-text",
-                                {
-                                  staticClass: "text-center",
-                                  attrs: { "max-height": "150px" }
-                                },
-                                _vm._l(list.fleets, function(fleet, index) {
-                                  return _c(
-                                    "p",
-                                    {
-                                      key: index,
-                                      staticClass: "font-weight-light"
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                                    " +
-                                          _vm._s(fleet.name) +
-                                          "\n                                "
+                                { staticClass: "text-center" },
+                                [
+                                  _c(
+                                    "v-textarea",
+                                    { attrs: { readonly: "", outlined: "" } },
+                                    _vm._l(list.fleets, function(fleet, index) {
+                                      return _c(
+                                        "p",
+                                        {
+                                          key: index,
+                                          staticClass: "font-weight-light"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                        " +
+                                              _vm._s(fleet.name) +
+                                              "\n                                    "
+                                          )
+                                        ]
                                       )
-                                    ]
+                                    }),
+                                    0
                                   )
-                                }),
-                                0
+                                ],
+                                1
                               )
                             ],
                             1
