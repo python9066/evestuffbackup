@@ -27939,6 +27939,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -63725,8 +63727,13 @@ var render = function() {
                                     "v-list",
                                     {
                                       key: index,
-                                      staticClass: "font-weight-light",
-                                      attrs: { "max-height": "250px" }
+                                      staticClass:
+                                        "font-weight-light text-center",
+                                      attrs: {
+                                        dense: "",
+                                        "max-height": "200px",
+                                        outlined: ""
+                                      }
                                     },
                                     [
                                       _c("v-list-item", [

@@ -166,8 +166,10 @@
                             <v-card outlined>
                                 <v-card-text class="text-center">
                                     <v-list
-                                        max-height="250px"
-                                        class="font-weight-light"
+                                        dense
+                                        max-height="200px"
+                                        class="font-weight-light text-center"
+                                        outlined
                                         v-for="(fleet, index) in list.fleets"
                                         :key="index"
                                     >
