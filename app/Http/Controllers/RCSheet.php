@@ -29,39 +29,7 @@ class RCSheet extends Controller
         foreach ($inputs as $input) {
             // echo  $input['structure_name'];
             if ($input['is_hostile'] != null) {
-                if (
-                    $input['structure_type']['type_id'] != 2774
-                    || $input['structure_type']['type_id'] != 32458
-                    || $input['structure_type']['type_id'] != 2775
-                    || $input['structure_type']['type_id'] != 2776
-                    || $input['structure_type']['type_id'] != 2777
-                    || $input['structure_type']['type_id'] != 2778
-                    || $input['structure_type']['type_id'] != 2779
-                    || $input['structure_type']['type_id'] != 2780
-                    || $input['structure_type']['type_id'] != 2781
-                    || $input['structure_type']['type_id'] != 2782
-                    || $input['structure_type']['type_id'] != 2783
-                    || $input['structure_type']['type_id'] != 2784
-                    || $input['structure_type']['type_id'] != 2785
-                    || $input['structure_type']['type_id'] != 3059
-                    || $input['structure_type']['type_id'] != 3495
-                    || $input['structure_type']['type_id'] != 3499
-                    || $input['structure_type']['type_id'] != 3591
-                    || $input['structure_type']['type_id'] != 4361
-                    || $input['structure_type']['type_id'] != 12235
-                    || $input['structure_type']['type_id'] != 12236
-                    || $input['structure_type']['type_id'] != 16213
-                    || $input['structure_type']['type_id'] != 16214
-                    || $input['structure_type']['type_id'] != 17777
-                    || $input['structure_type']['type_id'] != 17778
-                    || $input['structure_type']['type_id'] != 17779
-                    || $input['structure_type']['type_id'] != 2233
-                    || $input['structure_type']['type_id'] != 35837
-                    || $input['structure_type']['type_id'] != 16286
-                    || $input['structure_type']['type_id'] != 32226
-
-
-                ) {
+                if ($this->invalidStructure($input['structure_type']['type_id'])) {
                     // dd($input);
                     $newStation = 0;
                     $skip = 0;
@@ -175,6 +143,54 @@ class RCSheet extends Controller
         broadcast(new RcSheetUpdate($flag));
         // dd('yo');
     }
+
+
+    public function invalidStructure($item_id)
+    {
+        $items = [
+            2774,
+            32458,
+            2775,
+            2776,
+            2777,
+            2778,
+            2779,
+            2780,
+            2781,
+            2782,
+            2783,
+            2784,
+            2785,
+            3059,
+            3495,
+            3499,
+            3591,
+            4361,
+            12235,
+            12236,
+            16213,
+            16214,
+            17777,
+            17778,
+            17779,
+            2233,
+            35837,
+            16286,
+            32226,
+        ];
+
+        if (in_array($item_id, $items)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+
+
+
+
 
     // $inputs = $request->all();
     // foreach ($inputs as $input) {
