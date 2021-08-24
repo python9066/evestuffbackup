@@ -51,12 +51,12 @@ web:
         - index.php
       allow: true
       passthru: "/index.php"
-# workers:
-#   queue1:
-#     size: S
-#     commands:
-#       start: |
-#         php artisan schedule:daemon
+workers:
+  queue1:
+    size: S
+    commands:
+      start: |
+        php artisan schedule:daemon
 
 # crons:
 #   # Run Drupal's cron tasks every 19 minutes.
