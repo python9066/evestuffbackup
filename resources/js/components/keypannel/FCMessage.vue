@@ -37,7 +37,7 @@
                         height="400px"
                         readonly
                         no-resize
-                        v-model="station.notes"
+                        v-model="user.notes"
                         outlined
                         placeholder="No Notes"
                     ></v-textarea>
@@ -143,7 +143,7 @@ export default {
             this.$store.dispatch("updateKeyMessage", this.user);
             axios({
                 method: "put",
-                url: "/api/sheetmessage/" + this.station.id,
+                url: "/api/sheetmessage/" + this.user.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,

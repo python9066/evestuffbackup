@@ -8988,7 +8988,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$store.dispatch("updateKeyMessage", this.user);
       axios({
         method: "put",
-        url: "/api/sheetmessage/" + this.station.id,
+        url: "/api/sheetmessage/" + this.user.id,
         data: request,
         headers: {
           Authorization: "Bearer " + this.$store.state.token,
@@ -44472,11 +44472,11 @@ var render = function() {
                       placeholder: "No Notes"
                     },
                     model: {
-                      value: _vm.station.notes,
+                      value: _vm.user.notes,
                       callback: function($$v) {
-                        _vm.$set(_vm.station, "notes", $$v)
+                        _vm.$set(_vm.user, "notes", $$v)
                       },
-                      expression: "station.notes"
+                      expression: "user.notes"
                     }
                   }),
                   _vm._v(" "),
