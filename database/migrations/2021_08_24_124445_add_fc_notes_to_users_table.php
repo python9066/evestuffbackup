@@ -15,7 +15,7 @@ class AddFcNotesToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
 
-            $table->string('notes')->after('api_token')->nullable();
+            $table->string('fc_notes')->after('api_token')->nullable();
         });
     }
 
