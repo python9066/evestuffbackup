@@ -6821,7 +6821,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         var b = 0;
       }
 
-      var sum = a + b;
+      if (this.refType == false || this.refType == "") {
+        var b = 1;
+      } else {
+        var b = 0;
+      }
+
+      var sum = a + b + c;
 
       if (sum == 0) {
         return false;
