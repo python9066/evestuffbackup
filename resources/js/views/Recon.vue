@@ -92,7 +92,7 @@ export default {
             });
         },
         async getTasks() {
-            // console.log(id, this.$store.state.token);
+            // console.log(id, this.$store.state.token);  dddddd
             let res = await axios({
                 method: "get",
                 url: "/api/recontask",
