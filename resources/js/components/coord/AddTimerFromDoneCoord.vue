@@ -203,7 +203,7 @@ export default {
                 timer_image_link: this.imageLink,
                 rc_fc_id: 0,
                 rc_recon_id: 0,
-                gsol_user_id: 0,
+                rc_gsol_id: 0,
                 show_on_rc_move: 0,
                 show_on_rc: 1,
                 show_on_coord: 0,
