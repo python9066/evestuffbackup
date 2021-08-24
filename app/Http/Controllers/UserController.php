@@ -57,7 +57,7 @@ class UserController extends Controller
         ]);
 
         // dd($request, $id, $flag);
-        broadcast(new KeyMessageUpdate($flag))->toOthers();
+        broadcast(new KeyMessageUpdate($flag));
     }
 
 

@@ -28201,6 +28201,16 @@ function sleep(ms) {
             case 0:
               Echo["private"]("fleetkeys").listen("FleetKeysUpdate", function (e) {
                 _this.refresh();
+              }).listen("KeyMessageUpdate", function (e) {
+                if (e.flag.id == _this.user.id) {
+                  _this.$store.dispatch("updateKeyMessage", e.flag.message);
+
+                  _this.showNumber = true;
+
+                  if (_this.showUserNotes == false) {
+                    _this.messageCount = _this.messageCount + 1;
+                  }
+                }
               });
               _context.next = 3;
               return _this.$store.dispatch("getUserKeys");

@@ -225,9 +225,19 @@ export default {
     },
 
     async created() {
-        Echo.private("fleetkeys").listen("FleetKeysUpdate", e => {
-            this.refresh();
-        });
+        Echo.private("fleetkeys")
+            .listen("FleetKeysUpdate", e => {
+                this.refresh();
+            })
+            .listen("KeyMessageUpdate", e => {
+                if (e.flag.id == this.user.id) {
+                    this.$store.dispatch("updateKeyMessage", e.flag.message);
+                    this.showNumber = true;
+                    if (this.showUserNotes == false) {
+                        this.messageCount = this.messageCount + 1;
+                    }
+                }
+            });
         await this.$store.dispatch("getUserKeys");
         await this.$store.dispatch("getKeys");
         await this.$store.dispatch("getFleets");
