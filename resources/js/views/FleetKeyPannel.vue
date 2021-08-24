@@ -161,24 +161,20 @@
                                     >{{ list.name }}</v-btn
                                 ></v-card-title
                             >
-                        </v-card>
-                        <v-card>
-                            <v-card outlined>
-                                <v-card-text class="text-center">
-                                    <v-list
-                                        dense
-                                        max-height="200px"
-                                        class="font-weight-light text-center"
-                                        outlined
-                                        v-for="(fleet, index) in list.fleets"
-                                        :key="index"
-                                    >
-                                        <v-list-item>
-                                            {{ fleet.name }}
-                                        </v-list-item>
-                                    </v-list>
-                                </v-card-text>
-                            </v-card>
+                            <v-card-text class="text-center">
+                                <v-list
+                                    dense
+                                    max-height="200px"
+                                    class="font-weight-light text-center"
+                                    outlined
+                                    v-for="(fleet, index) in list.fleets"
+                                    :key="index"
+                                >
+                                    <v-list-item>
+                                        {{ fleet.name }}
+                                    </v-list-item>
+                                </v-list>
+                            </v-card-text>
                         </v-card>
                     </v-card>
                 </v-col>
