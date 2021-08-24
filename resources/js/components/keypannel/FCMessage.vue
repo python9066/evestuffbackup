@@ -3,7 +3,7 @@
         <v-dialog
             max-width="700px"
             z-index="0"
-            v-model="showStationNotes"
+            v-model="showUserNotes"
             @click:outside="close()"
         >
             <template v-slot:activator="{ on, attrs }">
@@ -31,15 +31,13 @@
                 max-height="700px"
                 class=" d-flex flex-column"
             >
-                <v-card-title
-                    >Notes for Station {{ station.name }}.
-                </v-card-title>
+                <v-card-title>Notes for {{ user.name }}. </v-card-title>
                 <v-card-text>
                     <v-textarea
                         height="400px"
                         readonly
                         no-resize
-                        v-model="station.notes"
+                        v-model="user.fc_notes"
                         outlined
                         placeholder="No Notes"
                     ></v-textarea>
@@ -71,12 +69,12 @@
                 >
             </v-card>
 
-            <!-- <ShowStationNotes
+            <!-- <ShowUserNotes
                 :nodeNoteItem="nodeNoteItem"
                 v-if="$can('super')"
-                @closeMessage="showStationNotes = false"
+                @closeMessage="showUserNotes = false"
             >
-            </ShowStationNotes> -->
+            </ShowUserNotes> -->
         </v-dialog>
     </div>
 </template>
@@ -86,22 +84,22 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        station: Object
+        user: Object
     },
     data() {
         return {
             messageCount: 0,
             showNumber: false,
-            showStationNotes: false,
+            showUserNotes: false,
             editText: null
         };
     },
 
     async created() {
-        Echo.private("rcsheet").listen("RcSheetMessageUpdate", e => {
-            if (e.flag.id == this.station.id) {
-                this.$store.dispatch("updateRcStation", e.flag.message);
-                if (this.showStationNotes == false) {
+        Echo.private("fleetkeys").listen("FleetKeysUpdate", e => {
+            if (e.flag.id == this.user.id) {
+                this.$store.dispatch("updateKeyMessage", e.flag.message);
+                if (this.showUserNotes == false) {
                     this.showNumber = true;
                     this.messageCount = this.messageCount + 1;
                 }
@@ -112,7 +110,7 @@ export default {
     methods: {
         close() {
             this.editText = null;
-            this.showStationNotes = false;
+            this.showUserNotes = false;
         },
 
         open() {
@@ -121,31 +119,31 @@ export default {
 
         updatetext() {
             this.editText = this.editText + "\n";
-            if (this.station.notes == null) {
+            if (this.user.fc_notes == null) {
                 var note =
-                    moment.utc().format("YYYY-MM-DD HH:mm:ss") +
+                    moment.utc().format("HH:mm:ss") +
                     " - " +
                     this.$store.state.user_name +
                     ": " +
                     this.editText;
             } else {
                 var note =
-                    moment.utc().format("YYYY-MM-DD HH:mm:ss") +
+                    moment.utc().format("HH:mm:ss") +
                     " - " +
                     this.$store.state.user_name +
                     ": " +
                     this.editText +
-                    this.station.notes;
+                    this.user.fc_notes;
             }
 
-            this.station.notes = note;
+            this.user.fc_notes = note;
             let request = {
-                notes: note
+                fc_notes: note
             };
-            this.$store.dispatch("updateStationNotification", this.station);
+            this.$store.dispatch("updateKeyMessage", this.user);
             axios({
-                method: "put",
-                url: "/api/sheetmessage/" + this.station.id,
+                method: "post",
+                url: "/api/userupdate/" + this.user.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
@@ -159,7 +157,7 @@ export default {
 
     computed: {
         icon() {
-            if (this.station.notes == null) {
+            if (this.user.fc_notes == null) {
                 return "far fa-comment-alt";
             } else {
                 return "fas fa-comment-alt";
@@ -175,7 +173,9 @@ export default {
         }
     },
 
-    beforeDestroy() {}
+    beforeDestroy() {
+        Echo.leave("fleetkeys");
+    }
 };
 </script>
 

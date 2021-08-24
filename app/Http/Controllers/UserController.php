@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Events\FleetKeysUpdate;
-use App\Models\KeyFleetJoin;
-use App\Models\KeyType;
+use App\Events\KeyMessageUpdate;
 use App\Models\User;
-use App\Models\UserKeyJoin;
 use Illuminate\Http\Request;
 
-class KeyTypeController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,12 +16,7 @@ class KeyTypeController extends Controller
      */
     public function index()
     {
-        return ['keys' => KeyType::where('id', '>', 0)->select('id', 'name')->orderBy('name', 'asc')->get()];
-    }
-
-    public function getAllUsersKeys()
-    {
-        return ['userskeys' => User::with('keys')->select('id', 'name', 'fc_notes')->get()];
+        //
     }
 
     /**
@@ -34,20 +27,7 @@ class KeyTypeController extends Controller
      */
     public function store(Request $request)
     {
-        KeyType::create($request->all());
-        $flag = collect([
-            'id' => 1
-        ]);
-        broadcast(new FleetKeysUpdate($flag));
-    }
-
-    public function removeKey(Request $request)
-    {
-        UserKeyJoin::where('key_type_id', $request->key_type_id)->where('user_id', $request->user_id)->delete();
-        $flag = collect([
-            'id' => 1
-        ]);
-        broadcast(new FleetKeysUpdate($flag));
+        //
     }
 
     /**
@@ -68,9 +48,23 @@ class KeyTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function updateMessage(Request $request, $id)
+    {
+        User::where('id', $id)->update($request->all());
+        $message = User::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+            'id' => $id
+        ]);
+
+        // dd($request, $id, $flag);
+        broadcast(new FleetKeysUpdate($flag));
+    }
+
+
     public function update(Request $request, $id)
     {
-        //
+        User::where('id', $id)->update($request->all());
     }
 
     /**
@@ -81,12 +75,6 @@ class KeyTypeController extends Controller
      */
     public function destroy($id)
     {
-        KeyType::find($id)->delete();
-        UserKeyJoin::where('key_type_id', $id)->delete();
-        KeyFleetJoin::where('key_type_id', $id)->delete();
-        $flag = collect([
-            'id' => 1
-        ]);
-        broadcast(new FleetKeysUpdate($flag));
+        //
     }
 }

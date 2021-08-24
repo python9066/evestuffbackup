@@ -133,6 +133,9 @@
                                 </div>
                             </div>
                         </template>
+                        <template v-slot:[`item.actions`]="{ item }">
+                            <FCMessage class=" mr-2" :user="item"></FCMessage>
+                        </template>
                         <template slot="no-data">
                             Nothing matches your filters
                         </template>
@@ -205,7 +208,8 @@ export default {
 
             headers: [
                 { text: "Name", value: "name" },
-                { text: "Keys", value: "keys", width: "80%" }
+                { text: "Keys", value: "keys", width: "75%" },
+                { text: "", value: "actions" }
             ],
             loadingr: false,
             loadingf: false,
@@ -222,7 +226,11 @@ export default {
 
     async created() {
         Echo.private("fleetkeys").listen("FleetKeysUpdate", e => {
-            this.refresh();
+            if (e.flag.message != null) {
+                this.$store.dispatch("updateKeyMessage", e.flag.message);
+            } else {
+                this.refresh();
+            }
         });
         await this.$store.dispatch("getUserKeys");
         await this.$store.dispatch("getKeys");
