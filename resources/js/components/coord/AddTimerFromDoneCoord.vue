@@ -276,9 +276,9 @@ export default {
             }
 
             if (this.refType == false || this.refType == "") {
-                var b = 1;
+                var c = 1;
             } else {
-                var b = 0;
+                var c = 0;
             }
 
             var sum = a + b + c;
