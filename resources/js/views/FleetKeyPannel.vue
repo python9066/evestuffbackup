@@ -162,9 +162,8 @@
                                 ></v-card-title
                             >
                             <v-card-text class="text-center">
-                                <v-list>
+                                <v-list outlined max-height="200px">
                                     <v-list-item
-                                        max-height="200px"
                                         class="font-weight-light text-center"
                                         v-for="(fleet, index) in list.fleets"
                                         :key="index"
