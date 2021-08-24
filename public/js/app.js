@@ -69212,7 +69212,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('DoneButton', __webpack_req
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AddTimerFromDone', __webpack_require__(/*! ./components/rcsheet/AddTimerFromDone.vue */ "./resources/js/components/rcsheet/AddTimerFromDone.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('AddTimerFromDoneCoord', __webpack_require__(/*! ./components/coord/AddTimerFromDoneCoord.vue */ "./resources/js/components/coord/AddTimerFromDoneCoord.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('DoneButtonCoord', __webpack_require__(/*! ./components/coord/DoneButtonCoord.vue */ "./resources/js/components/coord/DoneButtonCoord.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('FCmessage', __webpack_require__(/*! ./components/keypannel/FCMessage.vue */ "./resources/js/components/keypannel/FCMessage.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('FCMessage', __webpack_require__(/*! ./components/keypannel/FCMessage.vue */ "./resources/js/components/keypannel/FCMessage.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_clipboard__WEBPACK_IMPORTED_MODULE_18___default.a);
