@@ -8987,7 +8987,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       };
       this.$store.dispatch("updateKeyMessage", this.user);
       axios({
-        method: "put",
+        method: "post",
         url: "/api/userupdate/" + this.user.id,
         data: request,
         headers: {

@@ -142,7 +142,7 @@ export default {
             };
             this.$store.dispatch("updateKeyMessage", this.user);
             axios({
-                method: "put",
+                method: "post",
                 url: "/api/userupdate/" + this.user.id,
                 data: request,
                 headers: {

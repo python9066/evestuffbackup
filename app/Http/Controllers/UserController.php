@@ -50,13 +50,6 @@ class UserController extends Controller
     public function updateMessage(Request $request, $id)
     {
         User::where('id', $id)->update($request->all());
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        User::where('id', $id)->update($request->all());
-
         $message = User::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
@@ -65,6 +58,12 @@ class UserController extends Controller
 
         // dd($request, $id, $flag);
         broadcast(new KeyMessageUpdate($flag))->toOthers();
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        User::where('id', $id)->update($request->all());
     }
 
     /**
