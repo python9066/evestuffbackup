@@ -190,8 +190,11 @@
                         background-opacity="0.2"
                     >
                         <strong>
-                            {{ this.campaign.defenders_score * 100 }} /
-                            {{ this.campaign.attackers_score * 100 }}
+                            {{ this.campaign.defenders_score * 100 }} ({{
+                                nodesTolose
+                            }}) / {{ this.campaign.attackers_score * 100 }} ({{
+                                nodesToWin
+                            }})
                         </strong>
                     </v-progress-linear>
 
@@ -312,6 +315,18 @@ export default {
             "getHackingNodeCountByCampaign",
             "getRedHackingNodeCountByCampaign"
         ]),
+
+        nodesToWin() {
+            var needed = 1 - this.campaign.attackers_score;
+            var need = needed / 0.07;
+            return Math.ceil(need);
+        },
+
+        nodesToLose() {
+            var needed = 1 - this.campaign.defenders_score;
+            var need = needed / 0.07;
+            return Math.ceil(need);
+        },
 
         campaign() {
             return this.getCampaignById(this.sCampaignID);
