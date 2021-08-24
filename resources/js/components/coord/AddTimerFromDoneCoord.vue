@@ -275,7 +275,7 @@ export default {
                 var b = 0;
             }
 
-            if (this.refType == false || this.refType == "") {
+            if (this.refType == null) {
                 var c = 1;
             } else {
                 var c = 0;
