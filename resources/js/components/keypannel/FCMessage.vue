@@ -96,7 +96,7 @@ export default {
     },
 
     async created() {
-        Echo.private("fleetkeys").listen("RcMoveMessageUpdate", e => {
+        Echo.private("fleetkeys").listen("KeyMessageUpdate", e => {
             if (e.flag.id == this.user.id) {
                 this.$store.dispatch("updateKeyMessage", e.flag.message);
                 this.showNumber = true;
@@ -143,7 +143,7 @@ export default {
             this.$store.dispatch("updateKeyMessage", this.user);
             axios({
                 method: "put",
-                url: "/api/sheetmessage/" + this.user.id,
+                url: "/api/userupdate/" + this.user.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,

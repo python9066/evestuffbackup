@@ -8944,7 +8944,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("fleetkeys").listen("RcMoveMessageUpdate", function (e) {
+              Echo["private"]("fleetkeys").listen("KeyMessageUpdate", function (e) {
                 if (e.flag.id == _this.user.id) {
                   _this.$store.dispatch("updateKeyMessage", e.flag.message);
 
@@ -8988,7 +8988,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$store.dispatch("updateKeyMessage", this.user);
       axios({
         method: "put",
-        url: "/api/sheetmessage/" + this.user.id,
+        url: "/api/userupdate/" + this.user.id,
         data: request,
         headers: {
           Authorization: "Bearer " + this.$store.state.token,
