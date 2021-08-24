@@ -6,7 +6,7 @@ use App\Events\KeyMessageUpdate;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SenKeyMessageUpdate
+class SendKeyMessageUpdate
 {
     /**
      * Create the event listener.
