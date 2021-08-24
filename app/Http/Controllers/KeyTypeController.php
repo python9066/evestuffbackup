@@ -23,7 +23,7 @@ class KeyTypeController extends Controller
 
     public function getAllUsersKeys()
     {
-        return ['userskeys' => User::with('keys')->select('id', 'name')->get()];
+        return ['userskeys' => User::with('keys')->select('id', 'name', 'fc_notes')->get()];
     }
 
     /**

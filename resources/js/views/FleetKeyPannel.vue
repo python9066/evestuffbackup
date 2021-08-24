@@ -133,6 +133,13 @@
                                 </div>
                             </div>
                         </template>
+                        <template v-slot:[`item.actions`]="{ item }">
+                            DANCE
+                            <!-- <RcStationMessage
+                                    class=" mr-2"
+                                    :station="item"
+                                ></RcStationMessage> -->
+                        </template>
                         <template slot="no-data">
                             Nothing matches your filters
                         </template>
@@ -205,7 +212,8 @@ export default {
 
             headers: [
                 { text: "Name", value: "name" },
-                { text: "Keys", value: "keys", width: "80%" }
+                { text: "Keys", value: "keys", width: "75%" },
+                { text: "", value: "actions" }
             ],
             loadingr: false,
             loadingf: false,
