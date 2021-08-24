@@ -27936,6 +27936,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -63711,6 +63715,7 @@ var render = function() {
                               _c(
                                 "v-list",
                                 {
+                                  staticClass: " overflow-y-auto",
                                   attrs: { outlined: "", "max-height": "200px" }
                                 },
                                 _vm._l(list.fleets, function(fleet, index) {
