@@ -27936,6 +27936,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -63707,26 +63708,33 @@ var render = function() {
                           _c(
                             "v-card-text",
                             { staticClass: "text-center" },
-                            _vm._l(list.fleets, function(fleet, index) {
-                              return _c(
-                                "v-list-group",
-                                {
-                                  key: index,
-                                  staticClass: "font-weight-light text-center",
-                                  attrs: { "max-height": "200px", outlined: "" }
-                                },
-                                [
-                                  _c("v-list-item", [
-                                    _vm._v(
-                                      "\n                                    " +
-                                        _vm._s(fleet.name) +
-                                        "\n                                "
-                                    )
-                                  ])
-                                ],
+                            [
+                              _c(
+                                "v-list",
+                                _vm._l(list.fleets, function(fleet, index) {
+                                  return _c(
+                                    "v-list-item",
+                                    {
+                                      key: index,
+                                      staticClass:
+                                        "font-weight-light text-center",
+                                      attrs: { "max-height": "200px" }
+                                    },
+                                    [
+                                      _c("v-list-item-title", [
+                                        _vm._v(
+                                          "\n                                        " +
+                                            _vm._s(fleet.name) +
+                                            "\n                                    "
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                }),
                                 1
                               )
-                            }),
+                            ],
                             1
                           )
                         ],

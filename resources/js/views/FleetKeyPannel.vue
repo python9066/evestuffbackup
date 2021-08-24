@@ -162,17 +162,18 @@
                                 ></v-card-title
                             >
                             <v-card-text class="text-center">
-                                <v-list-group
-                                    max-height="200px"
-                                    class="font-weight-light text-center"
-                                    outlined
-                                    v-for="(fleet, index) in list.fleets"
-                                    :key="index"
-                                >
-                                    <v-list-item>
-                                        {{ fleet.name }}
+                                <v-list>
+                                    <v-list-item
+                                        max-height="200px"
+                                        class="font-weight-light text-center"
+                                        v-for="(fleet, index) in list.fleets"
+                                        :key="index"
+                                    >
+                                        <v-list-item-title>
+                                            {{ fleet.name }}
+                                        </v-list-item-title>
                                     </v-list-item>
-                                </v-list-group>
+                                </v-list>
                             </v-card-text>
                         </v-card>
                     </v-card>
