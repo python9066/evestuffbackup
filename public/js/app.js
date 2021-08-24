@@ -8944,7 +8944,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("fleetkeys").listen("KeyMessageUpdate", function (e) {
+              Echo["private"]("fleetkeys").listen("FleetKeysUpdate", function (e) {
                 if (e.flag.id == _this.user.id) {
                   _this.$store.dispatch("updateKeyMessage", e.flag.message);
 
@@ -28200,16 +28200,10 @@ function sleep(ms) {
           switch (_context.prev = _context.next) {
             case 0:
               Echo["private"]("fleetkeys").listen("FleetKeysUpdate", function (e) {
-                _this.refresh();
-              }).listen("KeyMessageUpdate", function (e) {
-                if (e.flag.id == _this.user.id) {
+                if (e.flag.message != null) {
                   _this.$store.dispatch("updateKeyMessage", e.flag.message);
-
-                  _this.showNumber = true;
-
-                  if (_this.showUserNotes == false) {
-                    _this.messageCount = _this.messageCount + 1;
-                  }
+                } else {
+                  _this.refresh();
                 }
               });
               _context.next = 3;

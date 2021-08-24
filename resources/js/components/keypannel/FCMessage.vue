@@ -96,7 +96,7 @@ export default {
     },
 
     async created() {
-        Echo.private("fleetkeys").listen("KeyMessageUpdate", e => {
+        Echo.private("fleetkeys").listen("FleetKeysUpdate", e => {
             if (e.flag.id == this.user.id) {
                 this.$store.dispatch("updateKeyMessage", e.flag.message);
                 this.showNumber = true;

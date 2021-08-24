@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\FleetKeysUpdate;
 use App\Events\KeyMessageUpdate;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -57,7 +58,7 @@ class UserController extends Controller
         ]);
 
         // dd($request, $id, $flag);
-        broadcast(new KeyMessageUpdate($flag));
+        broadcast(new FleetKeysUpdate($flag));
     }
 
 
