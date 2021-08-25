@@ -31634,6 +31634,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -67228,6 +67237,19 @@ var render = function() {
                             }
                           },
                           {
+                            key: "item.region_name",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(item.region_name) +
+                                    "\n                    "
+                                )
+                              ]
+                            }
+                          },
+                          {
                             key: "item.recon_name",
                             fn: function(ref) {
                               var item = ref.item
@@ -67315,6 +67337,7 @@ var render = function() {
                       )
                     },
                     [
+                      _vm._v(" "),
                       _vm._v(" "),
                       _vm._v(" "),
                       _vm._v(" "),

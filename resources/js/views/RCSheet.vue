@@ -236,6 +236,15 @@
                                 class=" pl-6"
                             ></RcFCAdd>
                         </template>
+
+                        <template
+                            v-slot:[`item.region_name`]="{ item }"
+                            v-resize-text
+                            class="text-no-wrap"
+                        >
+                            {{ item.region_name }}
+                        </template>
+
                         <template v-slot:[`item.recon_name`]="{ item }">
                             <RcReconButton
                                 class=" mr-2"
