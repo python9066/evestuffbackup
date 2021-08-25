@@ -25,6 +25,7 @@ export default new Vuex.Store({
         constellationlist:[],
         cores:[],
         delveLink: "",
+        eveUserCount:0,
         fleets: [],
         items: [],
         keysList: [],
@@ -528,6 +529,14 @@ export default new Vuex.Store({
 
         SET_PERIOD_BASIS_LINK(state, periodbasisLink) {
             state.periodbasisLink = periodbasisLink;
+        },
+
+        SET_EVE_USER_COUNT(state, count) {
+            state.eveUserCount = count;
+        },
+
+        UPDATE_EVE_USER_COUNT(state, data) {
+            state.eveUserCount = data;
         },
 
 
@@ -1191,6 +1200,10 @@ export default new Vuex.Store({
             commit("UPDATE_RECON_TASK_SYSTEMS", data);
         },
 
+        updateEveUserCount({ commit }, data) {
+            commit("UPDATE_EVE_USER_COUNT", data);
+        },
+
         addNodeJoin({ commit }, data) {
             commit("ADD_NODE_JOIN", data)
         },
@@ -1309,6 +1322,19 @@ export default new Vuex.Store({
                 }
             });
             commit("SET_PERIOD_BASIS_LINK", res.data.link);
+        },
+
+        async geteveusercount({ commit, state }) {
+            let res = await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/eveusercount",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_EVE_USER_COUNT", res.data.count);
         },
 
         setToken({ commit }, token) {

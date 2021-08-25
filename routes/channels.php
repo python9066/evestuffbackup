@@ -22,6 +22,10 @@ Broadcast::channel('notes', function () {
     return Auth::check();
 });
 
+Broadcast::channel('evestuff', function () {
+    return Auth::check();
+});
+
 Broadcast::channel('campaigns', function () {
     return Auth::check();
 });

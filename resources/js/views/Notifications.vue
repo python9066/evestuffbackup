@@ -843,7 +843,6 @@ export default {
         // clearInterval(this.poll);
         // console.log('KILL THEM ALL');
         Echo.leave("notes");
-        Echo.leave("dance");
     }
 };
 </script>

@@ -11,7 +11,9 @@ use DateTime;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Utils;
 use App\Events\CampaignSystemUpdate;
+use App\Events\EveUserUpdate;
 use App\Events\LoggingUpdate;
+use App\Models\Eve;
 use App\Models\Logging;
 use App\Models\LoggingType;
 use App\Models\Station;
@@ -184,6 +186,26 @@ class Helper
         // }
 
         return 1;
+    }
+
+    public static function eveUserCount()
+    {
+
+        $http = new GuzzleHttpCLient();
+        $headers = [
+            'Accept' => "application/json",
+        ];
+
+        $response = $http->request('GET', 'https://esi.evetech.net/latest/status/?datasource=tranquility', [
+            'headers' => $headers,
+        ]);
+        $status = Utils::jsonDecode($response->getBody());
+        Eve::where('id', 1)->update(['user_count' => $status->players]);
+
+        $flag = collect([
+            'message' => $status->players
+        ]);
+        broadcast(new EveUserUpdate($flag));
     }
 
     public static function campaignName($campaignID)

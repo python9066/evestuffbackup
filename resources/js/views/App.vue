@@ -10,7 +10,10 @@
             class="align-items-baseline"
         >
             <v-toolbar-title class="pl-5">
-                <span class>{{ this.username }}</span>
+                <span class
+                    ><p>{{ this.username }}</p>
+                    <p>Eve Player Count {{ this.eveUserCount }}</p></span
+                >
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <div>
@@ -235,11 +238,17 @@ export default {
 
     async beforeCreate() {},
     async created() {
+        Echo.private("evestuff").listen("EveUserUpdate", e => {
+            if (e.flag.message != null) {
+                this.$store.dispatch("updateEveUserCount", e.flag.message);
+            }
+        });
         await this.$store.dispatch("setToken", this.token);
         await this.$store
             .dispatch("setUser_id", this.user_id)
             .then((this.ready = true));
         await this.$store.dispatch("setUser_name", this.username);
+        await this.$store.dispatch("geteveusercount");
     },
     methods: {
         gotoCovid() {
@@ -287,6 +296,8 @@ export default {
         }
     },
     computed: {
+        ...mapState["eveUserCount"],
+
         avatarsize() {
             if (this.$vuetify.breakpoint.smAndDown) {
                 return 32;
