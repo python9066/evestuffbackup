@@ -24631,6 +24631,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   computed: _objectSpread(_objectSpread({}, vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"]["eveUserCount"]), {}, {
+    eveUserCount: function eveUserCount() {
+      return this.eveUserCount;
+    },
     avatarsize: function avatarsize() {
       if (this.$vuetify.breakpoint.smAndDown) {
         return 32;

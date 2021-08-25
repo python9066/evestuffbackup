@@ -298,6 +298,10 @@ export default {
     computed: {
         ...mapState["eveUserCount"],
 
+        eveUserCount() {
+            return this.eveUserCount;
+        },
+
         avatarsize() {
             if (this.$vuetify.breakpoint.smAndDown) {
                 return 32;
