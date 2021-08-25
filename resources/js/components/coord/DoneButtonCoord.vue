@@ -41,7 +41,7 @@
                     <v-btn
                         color="orange darken-1"
                         class=" mx-4"
-                        @click="statusUpdate(1)"
+                        @click="statusUpdate(16)"
                     >
                         Online</v-btn
                     >
