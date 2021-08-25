@@ -24630,18 +24630,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread({}, vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"]["getEveCount"]), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(["getEveCount"])), {}, {
     count: function count() {
       return this.getEveCount;
-    },
-    avatarsize: function avatarsize() {
-      if (this.$vuetify.breakpoint.smAndDown) {
-        return 32;
-      } else {
-        return 48;
-      }
     }
-  })
+  }),
+  beforeDestroy: function beforeDestroy() {
+    // clearInterval(this.poll);
+    // console.log('KILL THEM ALL');
+    Echo.leave("evestuff");
+  }
 });
 
 /***/ }),

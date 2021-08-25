@@ -296,19 +296,17 @@ export default {
         }
     },
     computed: {
-        ...mapGetters["getEveCount"],
+        ...mapGetters(["getEveCount"]),
 
         count() {
             return this.getEveCount;
-        },
-
-        avatarsize() {
-            if (this.$vuetify.breakpoint.smAndDown) {
-                return 32;
-            } else {
-                return 48;
-            }
         }
+    },
+
+    beforeDestroy() {
+        // clearInterval(this.poll);
+        // console.log('KILL THEM ALL');
+        Echo.leave("evestuff");
     }
 };
 </script>
