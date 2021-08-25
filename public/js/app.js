@@ -66662,7 +66662,7 @@ var render = function() {
           expression: "onResize"
         }
       ],
-      staticClass: "pr-16 pl-16"
+      staticClass: "pr-1 pl-1"
     },
     [
       _c(

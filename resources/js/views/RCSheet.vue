@@ -1,5 +1,5 @@
 <template>
-    <div class="pr-16 pl-16" v-resize="onResize">
+    <div class="pr-1 pl-1" v-resize="onResize">
         <v-row no-gutters justify="space-between" align="center">
             <v-col cols="4" align="start">
                 <v-card tile flat color="#121212" width="500px">
