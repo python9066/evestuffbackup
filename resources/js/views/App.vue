@@ -9,7 +9,7 @@
             elevate-on-scroll
             class="align-items-baseline"
         >
-            <v-toolbar-title class="pl-5">
+            <v-toolbar-title class="pl-5 d-inline-block align-content-between">
                 <p>{{ this.username }}</p>
                 <p class="caption">
                     Eve Player Count:
