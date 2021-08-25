@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use utils\Helper\Helper;
 use App\Models\Eve;
 use App\Events\EveUserUpdate;
+use App\Models\Userlogging;
 
 class UpdateEveUserCount extends Command
 {
@@ -40,6 +41,7 @@ class UpdateEveUserCount extends Command
      */
     public function handle()
     {
+        Userlogging::create(['url' => "demon eve", 'user_id' => 9999999999]);
         $count =  Helper::eveUserCount();
         Eve::where('id', 1)->update(['user_count' => $count]);
 
