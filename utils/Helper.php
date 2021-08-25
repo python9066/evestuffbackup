@@ -200,12 +200,7 @@ class Helper
             'headers' => $headers,
         ]);
         $status = Utils::jsonDecode($response->getBody());
-        Eve::where('id', 1)->update(['user_count' => $status->players]);
-
-        $flag = collect([
-            'message' => $status->players
-        ]);
-        broadcast(new EveUserUpdate($flag));
+        return $status->players;
     }
 
     public static function campaignName($campaignID)

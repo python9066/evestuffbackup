@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use utils\Helper\Helper;
+use App\Models\Eve;
+use App\Events\EveUserUpdate;
 
 class UpdateEveUserCount extends Command
 {
@@ -38,6 +40,12 @@ class UpdateEveUserCount extends Command
      */
     public function handle()
     {
-        Helper::checkeve();
+        $count =  Helper::eveUserCount();
+        Eve::where('id', 1)->update(['user_count' => $count]);
+
+        $flag = collect([
+            'message' => $count
+        ]);
+        broadcast(new EveUserUpdate($flag));
     }
 }
