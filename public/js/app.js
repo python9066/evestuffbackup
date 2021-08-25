@@ -67068,12 +67068,16 @@ var render = function() {
                                         ]
                                       },
                                       [
-                                        _c("span", { staticClass: " pt-2" }, [
-                                          _vm._v(
-                                            "\n                                    " +
-                                              _vm._s(item.system_name)
-                                          )
-                                        ])
+                                        _c(
+                                          "span",
+                                          { staticClass: " pt-2 caption" },
+                                          [
+                                            _vm._v(
+                                              "\n                                    " +
+                                                _vm._s(item.system_name)
+                                            )
+                                          ]
+                                        )
                                       ]
                                     )
                                   ],

@@ -174,7 +174,7 @@
                                     v-clipboard="item.system_name"
                                     v-clipboard:success="Systemcopied"
                                 >
-                                    <span class=" pt-2">
+                                    <span class=" pt-2 caption">
                                         {{ item.system_name }}</span
                                     >
                                 </button>
