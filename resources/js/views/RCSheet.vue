@@ -155,9 +155,8 @@
                             {{ item.name }}
                         </template>
                         <template
-                            v-resize-text
                             v-slot:[`item.system_name`]="{ item }"
-                            class="d-inline-flex align-center text-no-wrap"
+                            class="d-inline-flex align-center "
                         >
                             <v-btn
                                 :href="link(item)"
@@ -171,7 +170,9 @@
                                 v-clipboard="item.system_name"
                                 v-clipboard:success="Systemcopied"
                             >
-                                {{ item.system_name }}
+                                <span class="text-no-wrap" v-resize-text>
+                                    {{ item.system_name }}</span
+                                >
                             </button>
                         </template>
                         <template v-slot:[`item.count`]="{ item }">
