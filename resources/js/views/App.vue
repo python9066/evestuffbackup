@@ -45,9 +45,6 @@
                             </v-tab>
                         </template>
                         <v-list>
-                            <v-list-item link to="/campaigns">
-                                Campaigns
-                            </v-list-item>
                             <v-list-item
                                 v-if="$can('view_killsheet')"
                                 link
