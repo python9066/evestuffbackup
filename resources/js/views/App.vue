@@ -73,6 +73,10 @@
                         Recon
                     </v-tab>
 
+                    <v-tab v-if="$can('view_fleet_key')" link to="/fleetkeys">
+                        Fleet Keys
+                    </v-tab>
+
                     <v-tab
                         v-if="$can('view_chill_timers')"
                         link
@@ -113,10 +117,6 @@
 
                     <v-tab v-if="$can('edit_users')" link to="/pannel">
                         Users
-                    </v-tab>
-
-                    <v-tab v-if="$can('view_fleet_key')" link to="/fleetkeys">
-                        Fleet Keys
                     </v-tab>
 
                     <v-tab v-if="$can('super')" link to="/feedback">
