@@ -125,7 +125,7 @@
                 </v-tabs>
             </div>
             <v-spacer></v-spacer>
-            <div
+            <!-- <div
                 class=" d-inline-flex align-content-center"
                 v-if="$can('gunner')"
             >
@@ -136,8 +136,8 @@
                     @change="changeTooltipToggle()"
                 ></v-switch>
                 <span class=" pt-1"> {{ tooltiponoff() }}</span>
-            </div>
-            <v-btn
+            </div> -->
+            <!-- <v-btn
                 text
                 class="mr-2"
                 v-if="this.$vuetify.breakpoint.mdAndUp"
@@ -145,7 +145,7 @@
             >
                 <v-icon class="mr-2 grey--text lighten-1">fa fa-clock</v-icon
                 >Tidi
-            </v-btn>
+            </v-btn> -->
             <v-btn
                 text
                 class="mr-2"
