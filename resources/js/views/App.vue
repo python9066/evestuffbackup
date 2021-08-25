@@ -38,25 +38,39 @@
                         Coord Sheet
                     </v-tab>
 
-                    <v-tab
-                        v-if="$can('view_killsheet')"
-                        link
-                        to="/fornatshealth"
-                    >
-                        Nats Health
-                    </v-tab>
-
-                    <v-tab v-if="$can('finish_move_timer')" link to="/addtimer">
-                        Move To RC
-                    </v-tab>
-
-                    <v-tab
-                        v-else-if="$can('view_move_timers')"
-                        link
-                        to="/addtimer"
-                    >
-                        ADD TIMER
-                    </v-tab>
+                    <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-tab v-bind="attrs" v-on="on">
+                                Nats Health
+                            </v-tab>
+                        </template>
+                        <v-list>
+                            <v-list-item link to="/campaigns">
+                                Campaigns
+                            </v-list-item>
+                            <v-list-item
+                                v-if="$can('view_killsheet')"
+                                link
+                                to="/fornatshealth"
+                            >
+                                Nats Health
+                            </v-list-item>
+                            <v-list-item
+                                v-if="$can('finish_move_timer')"
+                                link
+                                to="/addtimer"
+                            >
+                                Move To RC
+                            </v-list-item>
+                            <v-list-item
+                                v-else-if="$can('view_move_timers')"
+                                link
+                                to="/addtimer"
+                            >
+                                ADD TIMER
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
 
                     <v-tab v-if="$can('view_recon')" link to="/recon">
                         Recon
