@@ -31662,6 +31662,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -66960,6 +66973,7 @@ var render = function() {
                         loading: _vm.loadingt,
                         height: _vm.height,
                         "fixed-header": "",
+                        width: "",
                         id: "table",
                         "item-key": "id",
                         "sort-by": ["end_time"],
@@ -66998,7 +67012,9 @@ var render = function() {
                                               directives: [
                                                 {
                                                   name: "resize-text",
-                                                  rawName: "v-resize-text"
+                                                  rawName: "v-resize-text",
+                                                  value: { ratio: 2.0 },
+                                                  expression: "{ ratio: 2.0 }"
                                                 }
                                               ],
                                               staticClass:
@@ -67043,7 +67059,9 @@ var render = function() {
                                     directives: [
                                       {
                                         name: "resize-text",
-                                        rawName: "v-resize-text"
+                                        rawName: "v-resize-text",
+                                        value: { ratio: 2.0 },
+                                        expression: "{ ratio: 2.0 }"
                                       }
                                     ],
                                     staticClass: "text-no-wrap"
@@ -67069,7 +67087,9 @@ var render = function() {
                                     directives: [
                                       {
                                         name: "resize-text",
-                                        rawName: "v-resize-text"
+                                        rawName: "v-resize-text",
+                                        value: { ratio: 2.0 },
+                                        expression: "{ ratio: 2.0 }"
                                       }
                                     ],
                                     staticClass: "text-no-wrap"
@@ -67137,7 +67157,9 @@ var render = function() {
                                             directives: [
                                               {
                                                 name: "resize-text",
-                                                rawName: "v-resize-text"
+                                                rawName: "v-resize-text",
+                                                value: { ratio: 2.0 },
+                                                expression: "{ ratio: 2.0 }"
                                               }
                                             ],
                                             staticClass: "text-no-wrap pt-2"
@@ -67340,7 +67362,9 @@ var render = function() {
                                     directives: [
                                       {
                                         name: "resize-text",
-                                        rawName: "v-resize-text"
+                                        rawName: "v-resize-text",
+                                        value: { ratio: 2.0 },
+                                        expression: "{ ratio: 2.0 }"
                                       }
                                     ],
                                     staticClass: "text-no-wrap"
@@ -67366,7 +67390,9 @@ var render = function() {
                                     directives: [
                                       {
                                         name: "resize-text",
-                                        rawName: "v-resize-text"
+                                        rawName: "v-resize-text",
+                                        value: { ratio: 2.0 },
+                                        expression: "{ ratio: 2.0 }"
                                       }
                                     ],
                                     staticClass: "text-no-wrap"

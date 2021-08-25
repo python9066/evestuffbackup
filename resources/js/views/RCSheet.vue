@@ -117,6 +117,7 @@
                         :loading="loadingt"
                         :height="height"
                         fixed-header
+                        width
                         id="table"
                         item-key="id"
                         :sort-by="['end_time']"
@@ -139,7 +140,7 @@
                                     /></v-avatar>
                                     <span
                                         class="red--text pl-3 text-no-wrap"
-                                        v-resize-text
+                                        v-resize-text="{ ratio: 2.0 }"
                                         >{{ item.alliance_ticker }}
                                     </span>
                                 </span>
@@ -154,12 +155,18 @@
                             </div>
                         </template>
                         <template v-slot:[`item.name`]="{ item }">
-                            <span v-resize-text class="text-no-wrap">
+                            <span
+                                v-resize-text="{ ratio: 2.0 }"
+                                class="text-no-wrap"
+                            >
                                 {{ item.name }}</span
                             >
                         </template>
                         <template v-slot:[`item.end_time`]="{ item }">
-                            <span v-resize-text class="text-no-wrap">
+                            <span
+                                v-resize-text="{ ratio: 2.0 }"
+                                class="text-no-wrap"
+                            >
                                 {{ item.end_time }}</span
                             >
                         </template>
@@ -182,7 +189,7 @@
                                 >
                                     <span
                                         class="text-no-wrap pt-2"
-                                        v-resize-text
+                                        v-resize-text="{ ratio: 2.0 }"
                                     >
                                         {{ item.system_name }}</span
                                     >
@@ -253,13 +260,19 @@
                         </template>
 
                         <template v-slot:[`item.region_name`]="{ item }">
-                            <span v-resize-text class="text-no-wrap">
+                            <span
+                                v-resize-text="{ ratio: 2.0 }"
+                                class="text-no-wrap"
+                            >
                                 {{ item.region_name }}</span
                             >
                         </template>
 
                         <template v-slot:[`item.constellation_name`]="{ item }">
-                            <span v-resize-text class="text-no-wrap">
+                            <span
+                                v-resize-text="{ ratio: 2.0 }"
+                                class="text-no-wrap"
+                            >
                                 {{ item.constellation_name }}</span
                             >
                         </template>
