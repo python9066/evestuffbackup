@@ -31645,6 +31645,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -66960,47 +66977,58 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                item.url
-                                  ? _c(
-                                      "span",
-                                      [
-                                        _c(
-                                          "v-avatar",
-                                          { attrs: { size: "35" } },
-                                          [
-                                            _c("img", {
-                                              attrs: { src: item.url }
-                                            })
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "span",
-                                          { staticClass: "red--text pl-3" },
-                                          [
-                                            _vm._v(
-                                              _vm._s(item.alliance_ticker) +
-                                                "\n                            "
-                                            )
-                                          ]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  : _vm.$can("super")
-                                  ? _c(
-                                      "span",
-                                      [
-                                        _c("AddCorpTicker", {
-                                          attrs: { station: item }
-                                        }),
-                                        _c("AddAllianceTicker", {
-                                          attrs: { station: item }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e()
+                                _c("div", { staticClass: " d-inline-flex" }, [
+                                  item.url
+                                    ? _c(
+                                        "span",
+                                        [
+                                          _c(
+                                            "v-avatar",
+                                            { attrs: { size: "35" } },
+                                            [
+                                              _c("img", {
+                                                attrs: { src: item.url }
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            {
+                                              directives: [
+                                                {
+                                                  name: "resize-text",
+                                                  rawName: "v-resize-text"
+                                                }
+                                              ],
+                                              staticClass:
+                                                "red--text pl-3 text-no-wrap"
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(item.alliance_ticker) +
+                                                  "\n                                "
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    : _vm.$can("super")
+                                    ? _c(
+                                        "span",
+                                        [
+                                          _c("AddCorpTicker", {
+                                            attrs: { station: item }
+                                          }),
+                                          _c("AddAllianceTicker", {
+                                            attrs: { station: item }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e()
+                                ])
                               ]
                             }
                           },
@@ -67024,6 +67052,32 @@ var render = function() {
                                     _vm._v(
                                       "\n                            " +
                                         _vm._s(item.name)
+                                    )
+                                  ]
+                                )
+                              ]
+                            }
+                          },
+                          {
+                            key: "item.end_time",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "span",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "resize-text",
+                                        rawName: "v-resize-text"
+                                      }
+                                    ],
+                                    staticClass: "text-no-wrap"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(item.end_time)
                                     )
                                   ]
                                 )
@@ -67302,6 +67356,32 @@ var render = function() {
                             }
                           },
                           {
+                            key: "item.constellation_name",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "span",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "resize-text",
+                                        rawName: "v-resize-text"
+                                      }
+                                    ],
+                                    staticClass: "text-no-wrap"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(item.constellation_name)
+                                    )
+                                  ]
+                                )
+                              ]
+                            }
+                          },
+                          {
                             key: "item.recon_name",
                             fn: function(ref) {
                               var item = ref.item
@@ -67389,6 +67469,8 @@ var render = function() {
                       )
                     },
                     [
+                      _vm._v(" "),
+                      _vm._v(" "),
                       _vm._v(" "),
                       _vm._v(" "),
                       _vm._v(" "),

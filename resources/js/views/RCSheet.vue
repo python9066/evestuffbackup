@@ -132,24 +132,35 @@
                             v-slot:[`item.alliance_ticker`]="{ item }"
                             class="d-inline-flex align-center"
                         >
-                            <span v-if="item.url">
-                                <v-avatar size="35"
-                                    ><img :src="item.url"
-                                /></v-avatar>
-                                <span class="red--text pl-3"
-                                    >{{ item.alliance_ticker }}
+                            <div class=" d-inline-flex">
+                                <span v-if="item.url">
+                                    <v-avatar size="35"
+                                        ><img :src="item.url"
+                                    /></v-avatar>
+                                    <span
+                                        class="red--text pl-3 text-no-wrap"
+                                        v-resize-text
+                                        >{{ item.alliance_ticker }}
+                                    </span>
                                 </span>
-                            </span>
-                            <span v-else-if="$can('super')">
-                                <AddCorpTicker :station="item"></AddCorpTicker
-                                ><AddAllianceTicker
-                                    :station="item"
-                                ></AddAllianceTicker>
-                            </span>
+                                <span v-else-if="$can('super')">
+                                    <AddCorpTicker
+                                        :station="item"
+                                    ></AddCorpTicker
+                                    ><AddAllianceTicker
+                                        :station="item"
+                                    ></AddAllianceTicker>
+                                </span>
+                            </div>
                         </template>
                         <template v-slot:[`item.name`]="{ item }">
                             <span v-resize-text class="text-no-wrap">
                                 {{ item.name }}</span
+                            >
+                        </template>
+                        <template v-slot:[`item.end_time`]="{ item }">
+                            <span v-resize-text class="text-no-wrap">
+                                {{ item.end_time }}</span
                             >
                         </template>
                         <template
@@ -244,6 +255,12 @@
                         <template v-slot:[`item.region_name`]="{ item }">
                             <span v-resize-text class="text-no-wrap">
                                 {{ item.region_name }}</span
+                            >
+                        </template>
+
+                        <template v-slot:[`item.constellation_name`]="{ item }">
+                            <span v-resize-text class="text-no-wrap">
+                                {{ item.constellation_name }}</span
                             >
                         </template>
 
