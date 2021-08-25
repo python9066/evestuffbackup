@@ -9,12 +9,8 @@
             elevate-on-scroll
             class="align-items-baseline"
         >
-            <v-toolbar-title class="pl-15">
-                <span class>EveStuff - {{ this.username }}</span>
-
-                <v-avatar :size="avatarsize" tile class="">
-                    <v-icon color="">fa fa-rocket fa-sm </v-icon>
-                </v-avatar>
+            <v-toolbar-title>
+                <span class>{{ this.username }}</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <div>
