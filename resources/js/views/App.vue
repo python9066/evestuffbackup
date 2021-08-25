@@ -9,7 +9,7 @@
             elevate-on-scroll
             class="align-items-baseline"
         >
-            <v-toolbar-title>
+            <v-toolbar-title class="pl-5">
                 <span class>{{ this.username }}</span>
             </v-toolbar-title>
             <v-spacer></v-spacer>
