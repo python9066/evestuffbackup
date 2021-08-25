@@ -14968,10 +14968,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -31336,31 +31332,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -51075,10 +51046,9 @@ var render = function() {
                     rawName: "v-show",
                     value: _vm.showRcGsolButton(),
                     expression: "showRcGsolButton()"
-                  },
-                  { name: "resize-text", rawName: "v-resize-text" }
+                  }
                 ],
-                staticClass: "pl-2 text-no-wrap"
+                staticClass: "pl-2"
               },
               [
                 _vm._v(
@@ -67002,18 +66972,7 @@ var render = function() {
                                           _vm._v(" "),
                                           _c(
                                             "span",
-                                            {
-                                              directives: [
-                                                {
-                                                  name: "resize-text",
-                                                  rawName: "v-resize-text",
-                                                  value: { ratio: 1.5 },
-                                                  expression: "{ ratio: 1.5 }"
-                                                }
-                                              ],
-                                              staticClass:
-                                                "red--text pl-3 text-no-wrap"
-                                            },
+                                            { staticClass: "red--text pl-3 " },
                                             [
                                               _vm._v(
                                                 _vm._s(item.alliance_ticker) +
@@ -67047,26 +67006,7 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                _c(
-                                  "span",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "resize-text",
-                                        rawName: "v-resize-text",
-                                        value: { ratio: 1.5 },
-                                        expression: "{ ratio: 1.5 }"
-                                      }
-                                    ],
-                                    staticClass: "text-no-wrap"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                            " +
-                                        _vm._s(item.name)
-                                    )
-                                  ]
-                                )
+                                _c("span", [_vm._v(" " + _vm._s(item.name))])
                               ]
                             }
                           },
@@ -67075,26 +67015,9 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                _c(
-                                  "span",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "resize-text",
-                                        rawName: "v-resize-text",
-                                        value: { ratio: 1.5 },
-                                        expression: "{ ratio: 1.5 }"
-                                      }
-                                    ],
-                                    staticClass: "text-no-wrap"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                            " +
-                                        _vm._s(item.end_time)
-                                    )
-                                  ]
-                                )
+                                _c("span", [
+                                  _vm._v(" " + _vm._s(item.end_time))
+                                ])
                               ]
                             }
                           },
@@ -67145,26 +67068,12 @@ var render = function() {
                                         ]
                                       },
                                       [
-                                        _c(
-                                          "span",
-                                          {
-                                            directives: [
-                                              {
-                                                name: "resize-text",
-                                                rawName: "v-resize-text",
-                                                value: { ratio: 1.5 },
-                                                expression: "{ ratio: 1.5 }"
-                                              }
-                                            ],
-                                            staticClass: "text-no-wrap pt-2"
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                    " +
-                                                _vm._s(item.system_name)
-                                            )
-                                          ]
-                                        )
+                                        _c("span", { staticClass: " pt-2" }, [
+                                          _vm._v(
+                                            "\n                                    " +
+                                              _vm._s(item.system_name)
+                                          )
+                                        ])
                                       ]
                                     )
                                   ],
@@ -67350,26 +67259,9 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                _c(
-                                  "span",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "resize-text",
-                                        rawName: "v-resize-text",
-                                        value: { ratio: 1.5 },
-                                        expression: "{ ratio: 1.5 }"
-                                      }
-                                    ],
-                                    staticClass: "text-no-wrap"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                            " +
-                                        _vm._s(item.region_name)
-                                    )
-                                  ]
-                                )
+                                _c("span", [
+                                  _vm._v(" " + _vm._s(item.region_name))
+                                ])
                               ]
                             }
                           },
@@ -67378,26 +67270,9 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                _c(
-                                  "span",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "resize-text",
-                                        rawName: "v-resize-text",
-                                        value: { ratio: 1.5 },
-                                        expression: "{ ratio: 1.5 }"
-                                      }
-                                    ],
-                                    staticClass: "text-no-wrap"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                            " +
-                                        _vm._s(item.constellation_name)
-                                    )
-                                  ]
-                                )
+                                _c("span", [
+                                  _vm._v(" " + _vm._s(item.constellation_name))
+                                ])
                               ]
                             }
                           },
@@ -69386,15 +69261,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_titleMixin__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./mixins/titleMixin */ "./resources/js/mixins/titleMixin.js");
 /* harmony import */ var v_clipboard__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! v-clipboard */ "./node_modules/v-clipboard/dist/index.min.js");
 /* harmony import */ var v_clipboard__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(v_clipboard__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var vue_resize_text__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! vue-resize-text */ "./node_modules/vue-resize-text/dist/vue-resize-text.common.js");
-/* harmony import */ var vue_resize_text__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(vue_resize_text__WEBPACK_IMPORTED_MODULE_19__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window.Vue = require('vue');
-
 
 
 
@@ -69511,7 +69383,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('FCMessage', __webpack_requ
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_clipboard__WEBPACK_IMPORTED_MODULE_18___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_resize_text__WEBPACK_IMPORTED_MODULE_19___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countdown_index__WEBPACK_IMPORTED_MODULE_14__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuejs_countdown_timer__WEBPACK_IMPORTED_MODULE_12___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countup_index__WEBPACK_IMPORTED_MODULE_13__["default"]); // library.add(faUserSecret)

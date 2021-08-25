@@ -25,7 +25,6 @@ import VueMask from 'v-mask'
 import Permissions from './mixins/Permissions.vue'
 import titleMixin from './mixins/titleMixin'
 import Clipboard from 'v-clipboard'
-import VueResizeText from 'vue-resize-text';
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 library.add(fas) // Include needed icons
@@ -128,7 +127,6 @@ Vue.component('FCMessage', require('./components/keypannel/FCMessage.vue').defau
 Vue.prototype.moment = moment
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(Clipboard)
-Vue.use(VueResizeText)
 Vue.use(CountdownTimer)
 Vue.use(VueCountdownTimer)
 Vue.use(VueCountupTimer)

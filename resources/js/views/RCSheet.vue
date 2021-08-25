@@ -137,9 +137,7 @@
                                     <v-avatar size="35"
                                         ><img :src="item.url"
                                     /></v-avatar>
-                                    <span
-                                        class="red--text pl-3 text-no-wrap"
-                                        v-resize-text="{ ratio: 1.5 }"
+                                    <span class="red--text pl-3 "
                                         >{{ item.alliance_ticker }}
                                     </span>
                                 </span>
@@ -154,20 +152,10 @@
                             </div>
                         </template>
                         <template v-slot:[`item.name`]="{ item }">
-                            <span
-                                v-resize-text="{ ratio: 1.5 }"
-                                class="text-no-wrap"
-                            >
-                                {{ item.name }}</span
-                            >
+                            <span> {{ item.name }}</span>
                         </template>
                         <template v-slot:[`item.end_time`]="{ item }">
-                            <span
-                                v-resize-text="{ ratio: 1.5 }"
-                                class="text-no-wrap"
-                            >
-                                {{ item.end_time }}</span
-                            >
+                            <span> {{ item.end_time }}</span>
                         </template>
                         <template
                             v-slot:[`item.system_name`]="{ item }"
@@ -186,10 +174,7 @@
                                     v-clipboard="item.system_name"
                                     v-clipboard:success="Systemcopied"
                                 >
-                                    <span
-                                        class="text-no-wrap pt-2"
-                                        v-resize-text="{ ratio: 1.5 }"
-                                    >
+                                    <span class=" pt-2">
                                         {{ item.system_name }}</span
                                     >
                                 </button>
@@ -259,21 +244,11 @@
                         </template>
 
                         <template v-slot:[`item.region_name`]="{ item }">
-                            <span
-                                v-resize-text="{ ratio: 1.5 }"
-                                class="text-no-wrap"
-                            >
-                                {{ item.region_name }}</span
-                            >
+                            <span> {{ item.region_name }}</span>
                         </template>
 
                         <template v-slot:[`item.constellation_name`]="{ item }">
-                            <span
-                                v-resize-text="{ ratio: 1.5 }"
-                                class="text-no-wrap"
-                            >
-                                {{ item.constellation_name }}</span
-                            >
+                            <span> {{ item.constellation_name }}</span>
                         </template>
 
                         <template v-slot:[`item.recon_name`]="{ item }">
