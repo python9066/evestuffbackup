@@ -50362,7 +50362,7 @@ var render = function() {
                       _vm._v(
                         "\n                " +
                           _vm._s(_vm.buttontext()) +
-                          " - Done\n                "
+                          "\n                "
                       ),
                       _c("v-icon", { attrs: { right: "" } }, [
                         _vm._v(" faSvg fa-check-circle")

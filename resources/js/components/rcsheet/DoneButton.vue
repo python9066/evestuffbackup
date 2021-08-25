@@ -15,7 +15,7 @@
                     @click="open()"
                     :color="pillColor()"
                 >
-                    {{ buttontext() }} - Done
+                    {{ buttontext() }}
                     <v-icon right> faSvg fa-check-circle</v-icon>
                 </v-btn>
             </template>
