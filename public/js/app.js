@@ -31622,6 +31622,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -66993,11 +66995,7 @@ var render = function() {
                                       color: "green"
                                     }
                                   },
-                                  [
-                                    _c("v-icon", { attrs: { "x-small": "" } }, [
-                                      _vm._v(" fas fa-map fa-xs")
-                                    ])
-                                  ],
+                                  [_c("v-icon", [_vm._v(" fas fa-map fa-xs")])],
                                   1
                                 ),
                                 _vm._v(" "),
@@ -67021,11 +67019,12 @@ var render = function() {
                                     ]
                                   },
                                   [
-                                    _vm._v(
-                                      "\n                            " +
-                                        _vm._s(item.system_name) +
-                                        "\n                        "
-                                    )
+                                    _c("span", { staticClass: "Subtitle 2" }, [
+                                      _vm._v(
+                                        "\n                                " +
+                                          _vm._s(item.system_name)
+                                      )
+                                    ])
                                   ]
                                 )
                               ]

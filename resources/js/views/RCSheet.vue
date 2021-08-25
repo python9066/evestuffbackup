@@ -157,13 +157,15 @@
                                 icon
                                 color="green"
                             >
-                                <v-icon x-small> fas fa-map fa-xs</v-icon>
+                                <v-icon> fas fa-map fa-xs</v-icon>
                             </v-btn>
                             <button
                                 v-clipboard="item.system_name"
                                 v-clipboard:success="Systemcopied"
                             >
-                                {{ item.system_name }}
+                                <span class="Subtitle 2">
+                                    {{ item.system_name }}</span
+                                >
                             </button>
                         </template>
                         <template v-slot:[`item.count`]="{ item }">
