@@ -12,7 +12,7 @@
             <v-toolbar-title class="pl-5">
                 <span class
                     ><p>{{ this.username }}</p>
-                    <p>Eve Player Count {{ this.eveUserCount }}</p></span
+                    <p>Eve Player Count {{ eveUserCount }}</p></span
                 >
             </v-toolbar-title>
             <v-spacer></v-spacer>
