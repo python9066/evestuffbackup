@@ -157,7 +157,7 @@
                                 icon
                                 color="green"
                             >
-                                <v-icon> fas fa-map fa-xs</v-icon>
+                                <v-icon x-small> fas fa-map fa-xs</v-icon>
                             </v-btn>
                             <button
                                 v-clipboard="item.system_name"
