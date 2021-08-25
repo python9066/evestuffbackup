@@ -2,7 +2,11 @@
     <div class=" d-inline-flex align-items-md-center  pl-4">
         <div>
             <span class="d-inline-flex align-items-md-center pr-2">
-                <span class="pl-2" v-show="showRcGsolButton()">
+                <span
+                    class="pl-2 text-no-wrap"
+                    v-show="showRcGsolButton()"
+                    v-resize-text
+                >
                     {{ station.gsol_name }}
                 </span>
             </span>
