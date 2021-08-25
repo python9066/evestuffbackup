@@ -11,7 +11,7 @@
         >
             <v-toolbar-title class="pl-5 d-inline-block">
                 <p class=" mb-0">{{ this.username }}</p>
-                <p class="caption" v-if="$can('super')">
+                <p class="caption">
                     Eve Player Count:
                     <span class="green--text mb-2">{{ count }}</span>
                 </p>
