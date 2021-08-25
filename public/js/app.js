@@ -66986,9 +66986,18 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                _c("span", { staticClass: "caption" }, [
-                                  _vm._v(_vm._s(item.name))
-                                ])
+                                _c(
+                                  "span",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "resize-text",
+                                        rawName: "v-resize-text"
+                                      }
+                                    ]
+                                  },
+                                  [_vm._v(_vm._s(item.name))]
+                                )
                               ]
                             }
                           },
@@ -69195,12 +69204,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_titleMixin__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./mixins/titleMixin */ "./resources/js/mixins/titleMixin.js");
 /* harmony import */ var v_clipboard__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! v-clipboard */ "./node_modules/v-clipboard/dist/index.min.js");
 /* harmony import */ var v_clipboard__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(v_clipboard__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var vue_resize_text__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! vue-resize-text */ "./node_modules/vue-resize-text/dist/vue-resize-text.common.js");
+/* harmony import */ var vue_resize_text__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(vue_resize_text__WEBPACK_IMPORTED_MODULE_19__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window.Vue = require('vue');
+
 
 
 
@@ -69317,6 +69329,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('FCMessage', __webpack_requ
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_clipboard__WEBPACK_IMPORTED_MODULE_18___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_resize_text__WEBPACK_IMPORTED_MODULE_19___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countdown_index__WEBPACK_IMPORTED_MODULE_14__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuejs_countdown_timer__WEBPACK_IMPORTED_MODULE_12___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countup_index__WEBPACK_IMPORTED_MODULE_13__["default"]); // library.add(faUserSecret)
