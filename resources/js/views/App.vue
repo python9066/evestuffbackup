@@ -78,14 +78,10 @@
                         GSOL
                     </v-tab>
 
-                    <v-tab link to="/timers">
-                        Windows
-                    </v-tab>
-
-                    <v-menu offset-y v-if="$can('access_multi_campaigns')">
+                    <v-menu offset-y>
                         <template v-slot:activator="{ on, attrs }">
                             <v-tab v-bind="attrs" v-on="on">
-                                Campaigns
+                                Sovereignty
                             </v-tab>
                         </template>
                         <v-list>
@@ -98,11 +94,11 @@
                             >
                                 Custom-Campaign
                             </v-list-item>
+                            <v-list-item link to="/timers">
+                                Windows
+                            </v-list-item>
                         </v-list>
                     </v-menu>
-                    <v-tab v-else v-bind="attrs" v-on="on">
-                        Campaigns
-                    </v-tab>
 
                     <v-tab v-if="$can('edit_users')" link to="/pannel">
                         Users
