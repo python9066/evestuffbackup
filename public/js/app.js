@@ -24494,12 +24494,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 // import { EventBus } from "../event-bus";
 
 
@@ -60818,8 +60812,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c(
-                    "div",
-                    { staticClass: "text-center" },
+                    "v-tab",
                     [
                       _c(
                         "v-menu",
@@ -60861,39 +60854,25 @@ var render = function() {
                             [
                               _c(
                                 "v-list-item",
+                                { attrs: { link: "", to: "/campaigns" } },
                                 [
-                                  _c(
-                                    "v-list-item-title",
-                                    [
-                                      _c(
-                                        "v-tab",
-                                        {
-                                          attrs: { link: "", to: "/campaigns" }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                        Campaigns\n                                    "
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm.$can("access_multi_campaigns")
-                                        ? _c(
-                                            "v-tab",
-                                            { attrs: { to: "/mcampaigns" } },
-                                            [
-                                              _vm._v(
-                                                "\n                                        Custom-Campaign\n                                    "
-                                              )
-                                            ]
-                                          )
-                                        : _vm._e()
-                                    ],
-                                    1
+                                  _vm._v(
+                                    "\n                                Campaigns\n                            "
                                   )
-                                ],
-                                1
-                              )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _vm.$can("access_multi_campaigns")
+                                ? _c(
+                                    "v-list-item",
+                                    { attrs: { to: "/mcampaigns" } },
+                                    [
+                                      _vm._v(
+                                        "\n                                Custom-Campaign\n                            "
+                                      )
+                                    ]
+                                  )
+                                : _vm._e()
                             ],
                             1
                           )
