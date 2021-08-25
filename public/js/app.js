@@ -60721,9 +60721,9 @@ var render = function() {
         },
         [
           _c("v-toolbar-title", { staticClass: "pl-5" }, [
-            _c("span", [_vm._v(_vm._s(this.username))]),
+            _c("p", [_vm._v(_vm._s(this.username))]),
             _vm._v(" "),
-            _c("span", { staticClass: "caption" }, [
+            _c("p", { staticClass: "caption" }, [
               _vm._v("\n                Eve Player Count:\n                "),
               _c("span", { staticClass: "green--text mb-2" }, [
                 _vm._v(_vm._s(_vm.count))

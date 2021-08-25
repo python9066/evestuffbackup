@@ -10,11 +10,11 @@
             class="align-items-baseline"
         >
             <v-toolbar-title class="pl-5">
-                <span>{{ this.username }}</span>
-                <span class="caption">
+                <p>{{ this.username }}</p>
+                <p class="caption">
                     Eve Player Count:
                     <span class="green--text mb-2">{{ count }}</span>
-                </span>
+                </p>
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <div>
