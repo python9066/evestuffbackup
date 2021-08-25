@@ -32207,12 +32207,10 @@ function sleep(ms) {
           value: "region_name"
         }, {
           text: "Name",
-          value: "name",
-          width: "15%"
+          value: "name"
         }, {
           text: "Type",
-          value: "item_name",
-          width: "5%"
+          value: "item_name"
         }, {
           text: "Status",
           value: "status_name",
@@ -32253,12 +32251,10 @@ function sleep(ms) {
           value: "region_name"
         }, {
           text: "Name",
-          value: "name",
-          width: "15%"
+          value: "name"
         }, {
           text: "Type",
-          value: "item_name",
-          width: "5%"
+          value: "item_name"
         }, {
           text: "Status",
           value: "status_name",
