@@ -32085,7 +32085,7 @@ function sleep(ms) {
       }
     },
     height: function height() {
-      var num = this.windowSize.y - 370;
+      var num = this.windowSize.y - 375;
       return num;
     },
     filter_start: function filter_start() {
@@ -66662,7 +66662,7 @@ var render = function() {
           expression: "onResize"
         }
       ],
-      staticClass: "pr-1 pl-1"
+      staticClass: "pr-3 pl-3"
     },
     [
       _c(

@@ -1,5 +1,5 @@
 <template>
-    <div class="pr-1 pl-1" v-resize="onResize">
+    <div class="pr-3 pl-3" v-resize="onResize">
         <v-row no-gutters justify="space-between" align="center">
             <v-col cols="4" align="start">
                 <v-card tile flat color="#121212" width="500px">
@@ -693,7 +693,7 @@ export default {
         },
 
         height() {
-            let num = this.windowSize.y - 370;
+            let num = this.windowSize.y - 375;
             return num;
         },
 
