@@ -82,16 +82,38 @@
                         Windows
                     </v-tab>
 
-                    <v-tab link to="/campaigns">
-                        Campaigns
-                    </v-tab>
+                    <div class="text-center">
+                        <v-menu offset-y>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    color="primary"
+                                    dark
+                                    v-bind="attrs"
+                                    v-on="on"
+                                >
+                                    Dropdown
+                                </v-btn>
+                            </template>
+                            <v-list>
+                                <v-list-item>
+                                    <v-list-item-title>
+                                        <v-tab link to="/campaigns">
+                                            Campaigns
+                                        </v-tab>
+                                        <v-tab
+                                            v-if="
+                                                $can('access_multi_campaigns')
+                                            "
+                                            to="/mcampaigns"
+                                        >
+                                            Custom-Campaign
+                                        </v-tab>
+                                    </v-list-item-title>
+                                </v-list-item>
+                            </v-list>
+                        </v-menu>
+                    </div>
 
-                    <v-tab
-                        v-if="$can('access_multi_campaigns')"
-                        to="/mcampaigns"
-                    >
-                        Custom-Campaign
-                    </v-tab>
                     <v-tab v-if="$can('edit_users')" link to="/pannel">
                         Users
                     </v-tab>
