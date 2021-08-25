@@ -82,7 +82,7 @@
                         Windows
                     </v-tab>
 
-                    <v-menu offset-y>
+                    <v-menu offset-y v-if="$can('access_multi_campaigns')">
                         <template v-slot:activator="{ on, attrs }">
                             <v-tab v-bind="attrs" v-on="on">
                                 Campaigns
@@ -100,6 +100,9 @@
                             </v-list-item>
                         </v-list>
                     </v-menu>
+                    <v-tab v-else v-bind="attrs" v-on="on">
+                        Campaigns
+                    </v-tab>
 
                     <v-tab v-if="$can('edit_users')" link to="/pannel">
                         Users

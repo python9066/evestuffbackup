@@ -24492,6 +24492,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 // import { EventBus } from "../event-bus";
 
 
@@ -60809,63 +60812,81 @@ var render = function() {
                     _vm._v("\n                    Windows\n                ")
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "v-menu",
-                    {
-                      attrs: { "offset-y": "" },
-                      scopedSlots: _vm._u([
+                  _vm.$can("access_multi_campaigns")
+                    ? _c(
+                        "v-menu",
                         {
-                          key: "activator",
-                          fn: function(ref) {
-                            var on = ref.on
-                            var attrs = ref.attrs
-                            return [
+                          attrs: { "offset-y": "" },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "activator",
+                                fn: function(ref) {
+                                  var on = ref.on
+                                  var attrs = ref.attrs
+                                  return [
+                                    _c(
+                                      "v-tab",
+                                      _vm._g(
+                                        _vm._b({}, "v-tab", attrs, false),
+                                        on
+                                      ),
+                                      [
+                                        _vm._v(
+                                          "\n                            Campaigns\n                        "
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                }
+                              }
+                            ],
+                            null,
+                            false,
+                            2231008626
+                          )
+                        },
+                        [
+                          _vm._v(" "),
+                          _c(
+                            "v-list",
+                            [
                               _c(
-                                "v-tab",
-                                _vm._g(_vm._b({}, "v-tab", attrs, false), on),
+                                "v-list-item",
+                                { attrs: { link: "", to: "/campaigns" } },
                                 [
                                   _vm._v(
                                     "\n                            Campaigns\n                        "
                                   )
                                 ]
-                              )
-                            ]
-                          }
-                        }
-                      ])
-                    },
-                    [
-                      _vm._v(" "),
-                      _c(
-                        "v-list",
-                        [
-                          _c(
-                            "v-list-item",
-                            { attrs: { link: "", to: "/campaigns" } },
-                            [
-                              _vm._v(
-                                "\n                            Campaigns\n                        "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _vm.$can("access_multi_campaigns")
-                            ? _c(
-                                "v-list-item",
-                                { attrs: { to: "/mcampaigns" } },
-                                [
-                                  _vm._v(
-                                    "\n                            Custom-Campaign\n                        "
+                              ),
+                              _vm._v(" "),
+                              _vm.$can("access_multi_campaigns")
+                                ? _c(
+                                    "v-list-item",
+                                    { attrs: { to: "/mcampaigns" } },
+                                    [
+                                      _vm._v(
+                                        "\n                            Custom-Campaign\n                        "
+                                      )
+                                    ]
                                   )
-                                ]
-                              )
-                            : _vm._e()
+                                : _vm._e()
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
-                    ],
-                    1
-                  ),
+                    : _c(
+                        "v-tab",
+                        _vm._g(_vm._b({}, "v-tab", _vm.attrs, false), _vm.on),
+                        [
+                          _vm._v(
+                            "\n                    Campaigns\n                "
+                          )
+                        ]
+                      ),
                   _vm._v(" "),
                   _vm.$can("edit_users")
                     ? _c("v-tab", { attrs: { link: "", to: "/pannel" } }, [
