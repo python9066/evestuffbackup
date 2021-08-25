@@ -139,7 +139,7 @@
                                     /></v-avatar>
                                     <span
                                         class="red--text pl-3 text-no-wrap"
-                                        v-resize-text="{ ratio: 1.5 }"
+                                        v-resize-text="{ ratio: 0.5 }"
                                         >{{ item.alliance_ticker }}
                                     </span>
                                 </span>
@@ -155,7 +155,7 @@
                         </template>
                         <template v-slot:[`item.name`]="{ item }">
                             <span
-                                v-resize-text="{ ratio: 1.5 }"
+                                v-resize-text="{ ratio: 0.5 }"
                                 class="text-no-wrap"
                             >
                                 {{ item.name }}</span
@@ -163,7 +163,7 @@
                         </template>
                         <template v-slot:[`item.end_time`]="{ item }">
                             <span
-                                v-resize-text="{ ratio: 1.5 }"
+                                v-resize-text="{ ratio: 0.5 }"
                                 class="text-no-wrap"
                             >
                                 {{ item.end_time }}</span
@@ -188,7 +188,7 @@
                                 >
                                     <span
                                         class="text-no-wrap pt-2"
-                                        v-resize-text="{ ratio: 1.5 }"
+                                        v-resize-text="{ ratio: 0.5 }"
                                     >
                                         {{ item.system_name }}</span
                                     >
@@ -260,7 +260,7 @@
 
                         <template v-slot:[`item.region_name`]="{ item }">
                             <span
-                                v-resize-text="{ ratio: 1.5 }"
+                                v-resize-text="{ ratio: 0.5 }"
                                 class="text-no-wrap"
                             >
                                 {{ item.region_name }}</span
@@ -269,7 +269,7 @@
 
                         <template v-slot:[`item.constellation_name`]="{ item }">
                             <span
-                                v-resize-text="{ ratio: 1.5 }"
+                                v-resize-text="{ ratio: 0.5 }"
                                 class="text-no-wrap"
                             >
                                 {{ item.constellation_name }}</span

@@ -67011,8 +67011,8 @@ var render = function() {
                                                 {
                                                   name: "resize-text",
                                                   rawName: "v-resize-text",
-                                                  value: { ratio: 1.5 },
-                                                  expression: "{ ratio: 1.5 }"
+                                                  value: { ratio: 0.5 },
+                                                  expression: "{ ratio: 0.5 }"
                                                 }
                                               ],
                                               staticClass:
@@ -67058,8 +67058,8 @@ var render = function() {
                                       {
                                         name: "resize-text",
                                         rawName: "v-resize-text",
-                                        value: { ratio: 1.5 },
-                                        expression: "{ ratio: 1.5 }"
+                                        value: { ratio: 0.5 },
+                                        expression: "{ ratio: 0.5 }"
                                       }
                                     ],
                                     staticClass: "text-no-wrap"
@@ -67086,8 +67086,8 @@ var render = function() {
                                       {
                                         name: "resize-text",
                                         rawName: "v-resize-text",
-                                        value: { ratio: 1.5 },
-                                        expression: "{ ratio: 1.5 }"
+                                        value: { ratio: 0.5 },
+                                        expression: "{ ratio: 0.5 }"
                                       }
                                     ],
                                     staticClass: "text-no-wrap"
@@ -67156,8 +67156,8 @@ var render = function() {
                                               {
                                                 name: "resize-text",
                                                 rawName: "v-resize-text",
-                                                value: { ratio: 1.5 },
-                                                expression: "{ ratio: 1.5 }"
+                                                value: { ratio: 0.5 },
+                                                expression: "{ ratio: 0.5 }"
                                               }
                                             ],
                                             staticClass: "text-no-wrap pt-2"
@@ -67361,8 +67361,8 @@ var render = function() {
                                       {
                                         name: "resize-text",
                                         rawName: "v-resize-text",
-                                        value: { ratio: 1.5 },
-                                        expression: "{ ratio: 1.5 }"
+                                        value: { ratio: 0.5 },
+                                        expression: "{ ratio: 0.5 }"
                                       }
                                     ],
                                     staticClass: "text-no-wrap"
@@ -67389,8 +67389,8 @@ var render = function() {
                                       {
                                         name: "resize-text",
                                         rawName: "v-resize-text",
-                                        value: { ratio: 1.5 },
-                                        expression: "{ ratio: 1.5 }"
+                                        value: { ratio: 0.5 },
+                                        expression: "{ ratio: 0.5 }"
                                       }
                                     ],
                                     staticClass: "text-no-wrap"
