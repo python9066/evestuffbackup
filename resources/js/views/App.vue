@@ -12,7 +12,10 @@
             <v-toolbar-title class="pl-5">
                 <span class
                     ><p>{{ this.username }}</p>
-                    <p>Eve Player Count {{ count }}</p></span
+                    <p class="caption">
+                        Eve Player Count:
+                        <span class="green--text mb-2">{{ count }}</span>
+                    </p></span
                 >
             </v-toolbar-title>
             <v-spacer></v-spacer>

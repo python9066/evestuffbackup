@@ -24506,6 +24506,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 // import { EventBus } from "../event-bus";
 
 
@@ -60723,7 +60726,14 @@ var render = function() {
             _c("span", {}, [
               _c("p", [_vm._v(_vm._s(this.username))]),
               _vm._v(" "),
-              _c("p", [_vm._v("Eve Player Count " + _vm._s(_vm.count))])
+              _c("p", { staticClass: "caption" }, [
+                _vm._v(
+                  "\n                    Eve Player Count:\n                    "
+                ),
+                _c("span", { staticClass: "green--text mb-2" }, [
+                  _vm._v(_vm._s(_vm.count))
+                ])
+              ])
             ])
           ]),
           _vm._v(" "),
