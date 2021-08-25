@@ -221,7 +221,7 @@
 <script>
 // import { EventBus } from "../event-bus";
 import ClickOutside from "vue-click-outside";
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 export default {
     props: ["username", "token", "user_id"],
@@ -296,10 +296,10 @@ export default {
         }
     },
     computed: {
-        ...mapState["eveUserCount"],
+        ...mapGetters["getEveCount"],
 
         count() {
-            return this.eveUserCount;
+            return this.getEveCount;
         },
 
         avatarsize() {

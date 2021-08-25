@@ -24630,9 +24630,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread({}, vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"]["eveUserCount"]), {}, {
+  computed: _objectSpread(_objectSpread({}, vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"]["getEveCount"]), {}, {
     count: function count() {
-      return this.eveUserCount;
+      return this.getEveCount;
     },
     avatarsize: function avatarsize() {
       if (this.$vuetify.breakpoint.smAndDown) {
@@ -80103,6 +80103,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
           return [];
         }
       };
+    },
+    getEveCount: function getEveCount(state) {
+      return state.eveUserCount;
     },
     getSystemTableExpandableMulti: function getSystemTableExpandableMulti(state) {
       return function (payload) {
