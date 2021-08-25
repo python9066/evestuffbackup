@@ -31662,6 +31662,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -66994,7 +67006,9 @@ var render = function() {
                                               directives: [
                                                 {
                                                   name: "resize-text",
-                                                  rawName: "v-resize-text"
+                                                  rawName: "v-resize-text",
+                                                  value: { ratio: 1.5 },
+                                                  expression: "{ ratio: 1.5 }"
                                                 }
                                               ],
                                               staticClass:
@@ -67039,7 +67053,9 @@ var render = function() {
                                     directives: [
                                       {
                                         name: "resize-text",
-                                        rawName: "v-resize-text"
+                                        rawName: "v-resize-text",
+                                        value: { ratio: 1.5 },
+                                        expression: "{ ratio: 1.5 }"
                                       }
                                     ],
                                     staticClass: "text-no-wrap"
@@ -67065,7 +67081,9 @@ var render = function() {
                                     directives: [
                                       {
                                         name: "resize-text",
-                                        rawName: "v-resize-text"
+                                        rawName: "v-resize-text",
+                                        value: { ratio: 1.5 },
+                                        expression: "{ ratio: 1.5 }"
                                       }
                                     ],
                                     staticClass: "text-no-wrap"
@@ -67133,7 +67151,9 @@ var render = function() {
                                             directives: [
                                               {
                                                 name: "resize-text",
-                                                rawName: "v-resize-text"
+                                                rawName: "v-resize-text",
+                                                value: { ratio: 1.5 },
+                                                expression: "{ ratio: 1.5 }"
                                               }
                                             ],
                                             staticClass: "text-no-wrap pt-2"
@@ -67336,7 +67356,9 @@ var render = function() {
                                     directives: [
                                       {
                                         name: "resize-text",
-                                        rawName: "v-resize-text"
+                                        rawName: "v-resize-text",
+                                        value: { ratio: 1.5 },
+                                        expression: "{ ratio: 1.5 }"
                                       }
                                     ],
                                     staticClass: "text-no-wrap"
@@ -67362,7 +67384,9 @@ var render = function() {
                                     directives: [
                                       {
                                         name: "resize-text",
-                                        rawName: "v-resize-text"
+                                        rawName: "v-resize-text",
+                                        value: { ratio: 1.5 },
+                                        expression: "{ ratio: 1.5 }"
                                       }
                                     ],
                                     staticClass: "text-no-wrap"
