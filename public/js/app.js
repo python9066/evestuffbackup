@@ -31640,6 +31640,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -67031,58 +67036,69 @@ var render = function() {
                               var item = ref.item
                               return [
                                 _c(
-                                  "v-btn",
-                                  {
-                                    attrs: {
-                                      href: _vm.link(item),
-                                      target: "_blank",
-                                      icon: "",
-                                      color: "green"
-                                    }
-                                  },
-                                  [_c("v-icon", [_vm._v(" fas fa-map fa-xs")])],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    directives: [
-                                      {
-                                        name: "clipboard",
-                                        rawName: "v-clipboard",
-                                        value: item.system_name,
-                                        expression: "item.system_name"
-                                      },
-                                      {
-                                        name: "clipboard",
-                                        rawName: "v-clipboard:success",
-                                        value: _vm.Systemcopied,
-                                        expression: "Systemcopied",
-                                        arg: "success"
-                                      }
-                                    ]
-                                  },
+                                  "div",
+                                  { staticClass: " d-inline-flex" },
                                   [
                                     _c(
-                                      "span",
+                                      "v-btn",
+                                      {
+                                        attrs: {
+                                          href: _vm.link(item),
+                                          target: "_blank",
+                                          icon: "",
+                                          color: "green"
+                                        }
+                                      },
+                                      [
+                                        _c("v-icon", [
+                                          _vm._v(" fas fa-map fa-xs")
+                                        ])
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
                                       {
                                         directives: [
                                           {
-                                            name: "resize-text",
-                                            rawName: "v-resize-text"
+                                            name: "clipboard",
+                                            rawName: "v-clipboard",
+                                            value: item.system_name,
+                                            expression: "item.system_name"
+                                          },
+                                          {
+                                            name: "clipboard",
+                                            rawName: "v-clipboard:success",
+                                            value: _vm.Systemcopied,
+                                            expression: "Systemcopied",
+                                            arg: "success"
                                           }
-                                        ],
-                                        staticClass: "text-no-wrap"
+                                        ]
                                       },
                                       [
-                                        _vm._v(
-                                          "\n                                " +
-                                            _vm._s(item.system_name)
+                                        _c(
+                                          "span",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "resize-text",
+                                                rawName: "v-resize-text"
+                                              }
+                                            ],
+                                            staticClass: "text-no-wrap pt-2"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                    " +
+                                                _vm._s(item.system_name)
+                                            )
+                                          ]
                                         )
                                       ]
                                     )
-                                  ]
+                                  ],
+                                  1
                                 )
                               ]
                             }

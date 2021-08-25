@@ -156,22 +156,27 @@
                             v-slot:[`item.system_name`]="{ item }"
                             class="d-inline-flex align-center "
                         >
-                            <v-btn
-                                :href="link(item)"
-                                target="_blank"
-                                icon
-                                color="green"
-                            >
-                                <v-icon> fas fa-map fa-xs</v-icon>
-                            </v-btn>
-                            <button
-                                v-clipboard="item.system_name"
-                                v-clipboard:success="Systemcopied"
-                            >
-                                <span class="text-no-wrap" v-resize-text>
-                                    {{ item.system_name }}</span
+                            <div class=" d-inline-flex">
+                                <v-btn
+                                    :href="link(item)"
+                                    target="_blank"
+                                    icon
+                                    color="green"
                                 >
-                            </button>
+                                    <v-icon> fas fa-map fa-xs</v-icon>
+                                </v-btn>
+                                <button
+                                    v-clipboard="item.system_name"
+                                    v-clipboard:success="Systemcopied"
+                                >
+                                    <span
+                                        class="text-no-wrap pt-2"
+                                        v-resize-text
+                                    >
+                                        {{ item.system_name }}</span
+                                    >
+                                </button>
+                            </div>
                         </template>
                         <template v-slot:[`item.count`]="{ item }">
                             <CountDowntimer
