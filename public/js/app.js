@@ -69397,7 +69397,7 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js"); // window.Echo = new Echo({
 //     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
+//     key: process.env.MI  X_PUSHER_APP_KEY,
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     useTLS: true,
 //     disableStats: true,
