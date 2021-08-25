@@ -24631,7 +24631,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   computed: _objectSpread(_objectSpread({}, vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"]["eveUserCount"]), {}, {
-    eveUserCount: function eveUserCount() {
+    count: function count() {
       return this.eveUserCount;
     },
     avatarsize: function avatarsize() {
@@ -60725,7 +60725,7 @@ var render = function() {
             _c("span", {}, [
               _c("p", [_vm._v(_vm._s(this.username))]),
               _vm._v(" "),
-              _c("p", [_vm._v("Eve Player Count " + _vm._s(_vm.eveUserCount))])
+              _c("p", [_vm._v("Eve Player Count " + _vm._s(this.count))])
             ])
           ]),
           _vm._v(" "),
