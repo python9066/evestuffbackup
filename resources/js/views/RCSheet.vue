@@ -147,12 +147,10 @@
                                 ></AddAllianceTicker>
                             </span>
                         </template>
-                        <template
-                            v-slot:[`item.name`]="{ item }"
-                            v-resize-text
-                            class="text-no-wrap"
-                        >
-                            {{ item.name }}
+                        <template v-slot:[`item.name`]="{ item }">
+                            <span v-resize-text class="text-no-wrap">
+                                {{ item.name }}</span
+                            >
                         </template>
                         <template
                             v-slot:[`item.system_name`]="{ item }"
