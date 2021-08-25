@@ -148,7 +148,9 @@
                             </span>
                         </template>
                         <template v-slot:[`item.name`]="{ item }">
-                            <span v-resize-text>{{ item.name }}</span>
+                            <span class="text-no-wrap" v-resize-text no>{{
+                                item.name
+                            }}</span>
                         </template>
                         <template
                             v-slot:[`item.system_name`]="{ item }"

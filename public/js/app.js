@@ -31625,6 +31625,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -66994,7 +66996,9 @@ var render = function() {
                                         name: "resize-text",
                                         rawName: "v-resize-text"
                                       }
-                                    ]
+                                    ],
+                                    staticClass: "text-no-wrap",
+                                    attrs: { no: "" }
                                   },
                                   [_vm._v(_vm._s(item.name))]
                                 )
