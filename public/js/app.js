@@ -60725,7 +60725,7 @@ var render = function() {
             _c("span", {}, [
               _c("p", [_vm._v(_vm._s(this.username))]),
               _vm._v(" "),
-              _c("p", [_vm._v("Eve Player Count " + _vm._s(this.count))])
+              _c("p", [_vm._v("Eve Player Count " + _vm._s(_vm.count))])
             ])
           ]),
           _vm._v(" "),
