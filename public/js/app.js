@@ -60723,8 +60723,10 @@ var render = function() {
         },
         [
           _c("v-toolbar-title", { staticClass: "pl-5" }, [
-            _c("span", {}, [
-              _c("p", [_vm._v(_vm._s(this.username))]),
+            _c("span", { staticClass: " flex" }, [
+              _c("p", { staticClass: " align-bottom" }, [
+                _vm._v(_vm._s(this.username))
+              ]),
               _vm._v(" "),
               _c("p", { staticClass: "caption" }, [
                 _vm._v(

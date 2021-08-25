@@ -10,8 +10,8 @@
             class="align-items-baseline"
         >
             <v-toolbar-title class="pl-5">
-                <span class
-                    ><p>{{ this.username }}</p>
+                <span class=" flex"
+                    ><p class=" align-bottom">{{ this.username }}</p>
                     <p class="caption">
                         Eve Player Count:
                         <span class="green--text mb-2">{{ count }}</span>
