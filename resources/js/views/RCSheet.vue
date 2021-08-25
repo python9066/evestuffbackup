@@ -147,14 +147,17 @@
                                 ></AddAllianceTicker>
                             </span>
                         </template>
-                        <template v-slot:[`item.name`]="{ item }">
-                            <span class="text-no-wrap" v-resize-text no>{{
-                                item.name
-                            }}</span>
+                        <template
+                            v-slot:[`item.name`]="{ item }"
+                            v-resize-text
+                            class="text-no-wrap"
+                        >
+                            {{ item.name }}
                         </template>
                         <template
+                            v-resize-text
                             v-slot:[`item.system_name`]="{ item }"
-                            class="d-inline-flex align-center"
+                            class="d-inline-flex align-center text-no-wrap"
                         >
                             <v-btn
                                 :href="link(item)"
@@ -251,7 +254,11 @@
                             </v-chip>
                         </template>
 
-                        <template v-slot:[`item.gsol_name`]="{ item }">
+                        <template
+                            v-slot:[`item.gsol_name`]="{ item }"
+                            v-resize-text
+                            class="text-no-wrap"
+                        >
                             <RcGsolButton
                                 class=" mr-2"
                                 :station="item"
