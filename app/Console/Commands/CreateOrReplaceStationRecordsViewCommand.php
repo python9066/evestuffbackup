@@ -75,6 +75,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        stations.show_on_chill AS 'show_on_chill',
        stations.show_on_rc_move AS 'show_on_rc_move',
        stations.show_on_coord AS 'show_on_coord',
+       stations.added_from_recon AS 'added_from_recon',
        if(stations.ammo_request_id IS NULL,0,1) AS 'ammo_request'
        FROM stations
        LEFT JOIN systems ON systems.id = stations.system_id
