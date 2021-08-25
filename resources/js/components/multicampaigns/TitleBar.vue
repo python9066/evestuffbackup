@@ -191,7 +191,7 @@
                     >
                         <strong>
                             {{ this.campaign.defenders_score * 100 }} ({{
-                                nodesTolose
+                                nodesToLose
                             }}) / {{ this.campaign.attackers_score * 100 }} ({{
                                 nodesToWin
                             }})

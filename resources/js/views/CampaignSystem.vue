@@ -77,7 +77,7 @@
                         >
                             <strong>
                                 {{ this.campaign.defenders_score * 100 }} ({{
-                                    nodesTolose
+                                    nodesToLose
                                 }}) /
                                 {{ this.campaign.attackers_score * 100 }} ({{
                                     nodesToWin
@@ -124,11 +124,6 @@
                         >
                             fas fa-minus-circle
                         </v-icon>
-
-                        <span>
-                            {{ nodesToWin }} -
-                            {{ nodesTolose }}
-                        </span>
                     </div>
                     <div
                         class="d-flex full-width align-content-center"
