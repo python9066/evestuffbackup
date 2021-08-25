@@ -59,7 +59,7 @@ workers:
         php artisan schedule:daemon
 
 # crons:
-#   # Run Drupal's cron tasks every 19 minutes.
+#   # Run Drupal's cron tasks every 19 min       utes.
 #   eve:
 #     spec: "* * * * *"
 #     cmd: "cd web ; php artisan schedule:run >> /dev/null 2>&1"
