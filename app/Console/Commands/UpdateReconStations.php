@@ -44,8 +44,8 @@ class UpdateReconStations extends Command
     public function handle()
     {
         Userlogging::create(['url' => "demon recon station", 'user_id' => 9999999999]);
-        Notifications::reconUpdate();
-        $stations = Station::where('added_from_recon', 1)->count();
+        Notifications::dubp();
+        Station::where('id', '>', 0)->update(['import_flag' => 0]);
 
         Userlogging::create(['url' => "demon region", 'user_id' => 9999999999]);
         $ids = [
@@ -66,5 +66,6 @@ class UpdateReconStations extends Command
             'flag' => 1
         ]);
         broadcast(new StationUpdateCoord($flag));
+        Notifications::reconUpdate();
     }
 }

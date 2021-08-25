@@ -111,7 +111,8 @@ class Notifications
                 'r_cored' => $stationdata['str_cored'],
                 'system_id' => $stationdata['str_system_id'],
                 'item_id' => $stationdata['str_type_id'],
-                'added_from_recon' => 1
+                'added_from_recon' => 1,
+                'import_flag' => 1,
 
             ]);
             $status_id = Station::where('id', $id)->value('station_status_id');
@@ -182,11 +183,8 @@ class Notifications
         }
     }
 
-    public static function reconUpdate()
+    public static function dubp()
     {
-        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
-
-
         $dups = Station::groupBy('name')->select('name', DB::raw('count(*) as total'))->get();
         foreach ($dups as $dup) {
             if ($dup->total > 1) {
@@ -227,12 +225,12 @@ class Notifications
                 Station::where('id', $stations[1]['id'])->delete();
             }
         }
+    }
 
-
-
-
-
-        $stations = Station::where('added_from_recon', 1)->get();
+    public static function reconUpdate()
+    {
+        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+        $stations = Station::where('added_from_recon', 1)->where('import_flag', 0)->get();
         foreach ($stations as $station) {
             $url = "https://recon.gnf.lt/api/structure/" . $station->id;
             $client = new GuzzleHttpClient();
