@@ -66986,7 +66986,7 @@ var render = function() {
                             fn: function(ref) {
                               var item = ref.item
                               return [
-                                _c("span", { staticClass: " subtitle-1" }, [
+                                _c("span", { staticClass: "caption" }, [
                                   _vm._v(_vm._s(item.name))
                                 ])
                               ]
