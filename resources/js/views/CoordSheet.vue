@@ -343,7 +343,7 @@ export default {
             ) {
                 return false;
             }
-            if (item.fitted == "Fitted" && this.loadingt == false) {
+            if (item.added_from_recon == 1 && this.loadingt == false) {
                 return true;
             } else {
                 return false;
