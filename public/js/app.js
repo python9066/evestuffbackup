@@ -31624,6 +31624,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -66981,6 +66982,17 @@ var render = function() {
                             }
                           },
                           {
+                            key: "item.name",
+                            fn: function(ref) {
+                              var item = ref.item
+                              return [
+                                _c("span", { staticClass: " subtitle-1" }, [
+                                  _vm._v(_vm._s(item.name))
+                                ])
+                              ]
+                            }
+                          },
+                          {
                             key: "item.system_name",
                             fn: function(ref) {
                               var item = ref.item
@@ -67019,12 +67031,11 @@ var render = function() {
                                     ]
                                   },
                                   [
-                                    _c("span", { staticClass: "Subtitle 2" }, [
-                                      _vm._v(
-                                        "\n                                " +
-                                          _vm._s(item.system_name)
-                                      )
-                                    ])
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(item.system_name) +
+                                        "\n                        "
+                                    )
                                   ]
                                 )
                               ]
@@ -67290,6 +67301,7 @@ var render = function() {
                       )
                     },
                     [
+                      _vm._v(" "),
                       _vm._v(" "),
                       _vm._v(" "),
                       _vm._v(" "),

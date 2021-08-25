@@ -147,6 +147,9 @@
                                 ></AddAllianceTicker>
                             </span>
                         </template>
+                        <template v-slot:[`item.name`]="{ item }">
+                            <span class=" subtitle-1">{{ item.name }}</span>
+                        </template>
                         <template
                             v-slot:[`item.system_name`]="{ item }"
                             class="d-inline-flex align-center"
@@ -163,9 +166,7 @@
                                 v-clipboard="item.system_name"
                                 v-clipboard:success="Systemcopied"
                             >
-                                <span class="Subtitle 2">
-                                    {{ item.system_name }}</span
-                                >
+                                {{ item.system_name }}
                             </button>
                         </template>
                         <template v-slot:[`item.count`]="{ item }">
