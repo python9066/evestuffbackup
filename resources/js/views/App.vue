@@ -82,26 +82,24 @@
                         Windows
                     </v-tab>
 
-                    <v-tab>
-                        <v-menu offset-y>
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-btn dark text v-bind="attrs" v-on="on">
-                                    Dropdown
-                                </v-btn>
-                            </template>
-                            <v-list>
-                                <v-list-item link to="/campaigns">
-                                    Campaigns
-                                </v-list-item>
-                                <v-list-item
-                                    v-if="$can('access_multi_campaigns')"
-                                    to="/mcampaigns"
-                                >
-                                    Custom-Campaign
-                                </v-list-item>
-                            </v-list>
-                        </v-menu>
-                    </v-tab>
+                    <v-menu offset-y>
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-tab v-bind="attrs" v-on="on">
+                                Campaigns
+                            </v-tab>
+                        </template>
+                        <v-list>
+                            <v-list-item link to="/campaigns">
+                                Campaigns
+                            </v-list-item>
+                            <v-list-item
+                                v-if="$can('access_multi_campaigns')"
+                                to="/mcampaigns"
+                            >
+                                Custom-Campaign
+                            </v-list-item>
+                        </v-list>
+                    </v-menu>
 
                     <v-tab v-if="$can('edit_users')" link to="/pannel">
                         Users
