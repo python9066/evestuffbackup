@@ -237,12 +237,10 @@
                             ></RcFCAdd>
                         </template>
 
-                        <template
-                            v-slot:[`item.region_name`]="{ item }"
-                            v-resize-text
-                            class="text-no-wrap"
-                        >
-                            {{ item.region_name }}
+                        <template v-slot:[`item.region_name`]="{ item }">
+                            <span v-resize-text class="text-no-wrap">
+                                {{ item.region_name }}</span
+                            >
                         </template>
 
                         <template v-slot:[`item.recon_name`]="{ item }">
