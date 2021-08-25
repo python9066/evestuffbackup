@@ -79825,7 +79825,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         });
       };
     },
-    // getsActiveCampaignByIdDrop: st  ate => payload => {
+    // getsActiveCampaigfffffnByIdDrop: st  ate => payload => {
     //     return state.campaignJoin.filter(c => c.custom_campaign_id == payload.id && c.constellation_id == payload.constellation_id);
     // },
     getCampaignJoinById: function getCampaignJoinById(state) {
