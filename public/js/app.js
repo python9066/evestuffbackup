@@ -60722,20 +60722,16 @@ var render = function() {
           }
         },
         [
-          _c(
-            "v-toolbar-title",
-            { staticClass: "pl-5 d-inline-block align-content-between" },
-            [
-              _c("p", [_vm._v(_vm._s(this.username))]),
-              _vm._v(" "),
-              _c("p", { staticClass: "caption" }, [
-                _vm._v("\n                Eve Player Count:\n                "),
-                _c("span", { staticClass: "green--text mb-2" }, [
-                  _vm._v(_vm._s(_vm.count))
-                ])
+          _c("v-toolbar-title", { staticClass: "pl-5 d-inline-block" }, [
+            _c("p", { staticClass: " mb-0" }, [_vm._v(_vm._s(this.username))]),
+            _vm._v(" "),
+            _c("p", { staticClass: "caption" }, [
+              _vm._v("\n                Eve Player Count:\n                "),
+              _c("span", { staticClass: "green--text mb-2" }, [
+                _vm._v(_vm._s(_vm.count))
               ])
-            ]
-          ),
+            ])
+          ]),
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
