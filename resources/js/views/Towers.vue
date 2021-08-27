@@ -1,6 +1,5 @@
 <template>
     <div class=" pr-16 pl-16" v-resize="onResize">
-        <messageComponent></messageComponent>
         <div class=" d-flex align-items-center">
             <v-card-title>Towers</v-card-title>
 
@@ -677,7 +676,7 @@ export default {
         },
 
         height() {
-            let num = this.windowSize.y - 375;
+            let num = this.windowSize.y - 277;
             return num;
         },
 

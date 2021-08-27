@@ -33544,7 +33544,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -33970,7 +33969,7 @@ function sleep(ms) {
       }
     },
     height: function height() {
-      var num = this.windowSize.y - 375;
+      var num = this.windowSize.y - 277;
       return num;
     },
     filter_end: function filter_end() {
@@ -68326,8 +68325,6 @@ var render = function() {
       staticClass: " pr-16 pl-16"
     },
     [
-      _c("messageComponent"),
-      _vm._v(" "),
       _c(
         "div",
         { staticClass: " d-flex align-items-center" },
