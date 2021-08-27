@@ -26814,7 +26814,7 @@ function sleep(ms) {
       return this.campaignsRegion;
     },
     height: function height() {
-      var num = this.windowSize.y - 325;
+      var num = this.windowSize.y - 315;
       return num;
     },
     filteredItems_start: function filteredItems_start() {
