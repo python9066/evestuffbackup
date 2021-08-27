@@ -6029,6 +6029,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -6071,6 +6075,10 @@ function sleep(ms) {
       toggle_none: null,
       sortdesc: true,
       sortby: "timestamp",
+      windowSize: {
+        x: 0,
+        y: 0
+      },
       dropdown_edit: [{
         title: "Repairing",
         value: 11
@@ -6201,7 +6209,9 @@ function sleep(ms) {
             case 0:
               _this2.log();
 
-            case 1:
+              _this2.onResize();
+
+            case 2:
             case "end":
               return _context2.stop();
           }
@@ -6210,6 +6220,12 @@ function sleep(ms) {
     }))();
   },
   methods: {
+    onResize: function onResize() {
+      this.windowSize = {
+        x: window.innerWidth,
+        y: window.innerHeight
+      };
+    },
     log: function log() {
       var request = {
         url: this.$route.path
@@ -6493,6 +6509,10 @@ function sleep(ms) {
     },
     user_name: function user_name() {
       return this.$store.state.user_name;
+    },
+    height: function height() {
+      var num = this.windowSize.y - 375;
+      return num;
     }
   }),
   beforeDestroy: function beforeDestroy() {
@@ -34558,7 +34578,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.style-4 {\r\n    background-color: rgba(255, 153, 0, 0.199);\n}\r\n", ""]);
+exports.push([module.i, "\n.style-4 {\n    background-color: rgba(255, 153, 0, 0.199);\n}\n", ""]);
 
 // exports
 
@@ -40966,7 +40986,17 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: " pr-16 pl-16" },
+    {
+      directives: [
+        {
+          name: "resize",
+          rawName: "v-resize",
+          value: _vm.onResize,
+          expression: "onResize"
+        }
+      ],
+      staticClass: " pr-16 pl-16"
+    },
     [
       _c(
         "div",
@@ -41094,9 +41124,13 @@ var render = function() {
             items: _vm.filteredItems,
             "item-class": _vm.itemRowBackground,
             "item-key": "id",
+            height: _vm.height,
+            "fixed-header": "",
             loading: _vm.loadingt,
-            "items-per-page": 25,
-            "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] },
+            "items-per-page": 50,
+            "footer-props": {
+              "items-per-page-options": [10, 20, 30, 50, 100, -1]
+            },
             "sort-by": _vm.sortby,
             search: _vm.search,
             "sort-desc": _vm.sortdesc,
