@@ -26550,6 +26550,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -26580,6 +26582,10 @@ function sleep(ms) {
       itemFlag: 2,
       name: "Timer",
       typePicked: [],
+      windowSize: {
+        x: 0,
+        y: 0
+      },
       headers: [{
         text: "Region",
         value: "region",
@@ -26637,7 +26643,9 @@ function sleep(ms) {
             case 0:
               _this2.log();
 
-            case 1:
+              _this2.onResize();
+
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -26646,6 +26654,12 @@ function sleep(ms) {
     }))();
   },
   methods: {
+    onResize: function onResize() {
+      this.windowSize = {
+        x: window.innerWidth,
+        y: window.innerHeight
+      };
+    },
     log: function log() {
       var request = {
         url: this.$route.path
@@ -26797,6 +26811,10 @@ function sleep(ms) {
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["campaigns", "campaignsRegion"])), {}, {
     dropdown_search_list: function dropdown_search_list() {
       return this.campaignsRegion;
+    },
+    height: function height() {
+      var num = this.windowSize.y - 375;
+      return num;
     },
     filteredItems_start: function filteredItems_start() {
       // var timers = this.$store.state.timers;
@@ -62395,10 +62413,18 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: " pr-16 pl-16" },
+    {
+      directives: [
+        {
+          name: "resize",
+          rawName: "v-resize",
+          value: _vm.onResize,
+          expression: "onResize"
+        }
+      ],
+      staticClass: " pr-16 pl-16"
+    },
     [
-      _c("messageComponent"),
-      _vm._v(" "),
       _c(
         "div",
         { staticClass: " d-flex align-items-center" },
@@ -62622,8 +62648,11 @@ var render = function() {
             items: _vm.filter_end,
             "item-key": "id",
             loading: _vm.loading,
-            "items-per-page": 25,
-            "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] },
+            height: _vm.height,
+            "fixed-header": "",
+            "footer-props": {
+              "items-per-page-options": [10, 20, 30, 50, 100, -1]
+            },
             "sort-by": ["start"],
             search: _vm.search,
             "sort-desc": [false, true],

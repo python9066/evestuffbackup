@@ -1,6 +1,5 @@
 <template>
-    <div class=" pr-16 pl-16">
-        <messageComponent></messageComponent>
+    <div class=" pr-16 pl-16" v-resize="onResize">
         <div class=" d-flex align-items-center">
             <v-card-title>Campaigns</v-card-title>
 
@@ -124,8 +123,11 @@
             :items="filter_end"
             item-key="id"
             :loading="loading"
-            :items-per-page="25"
-            :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
+            :height="height"
+            fixed-header
+            :footer-props="{
+                'items-per-page-options': [10, 20, 30, 50, 100, -1]
+            }"
             :sort-by="['start']"
             :search="search"
             :sort-desc="[false, true]"
@@ -395,6 +397,10 @@ export default {
             itemFlag: 2,
             name: "Timer",
             typePicked: [],
+            windowSize: {
+                x: 0,
+                y: 0
+            },
 
             headers: [
                 { text: "Region", value: "region", width: "10%" },
@@ -429,8 +435,12 @@ export default {
 
     async mounted() {
         this.log();
+        this.onResize();
     },
     methods: {
+        onResize() {
+            this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+        },
         log() {
             var request = {
                 url: this.$route.path
@@ -570,6 +580,11 @@ export default {
 
         dropdown_search_list() {
             return this.campaignsRegion;
+        },
+
+        height() {
+            let num = this.windowSize.y - 375;
+            return num;
         },
 
         filteredItems_start() {
