@@ -100,6 +100,8 @@
             :items="filter_end"
             :expanded.sync="expanded"
             item-key="id"
+            :height="height"
+            fixed-header
             :loading="loadingt"
             :items-per-page="50"
             :footer-props="{

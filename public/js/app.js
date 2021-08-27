@@ -33543,6 +33543,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -68516,6 +68518,8 @@ var render = function() {
             items: _vm.filter_end,
             expanded: _vm.expanded,
             "item-key": "id",
+            height: _vm.height,
+            "fixed-header": "",
             loading: _vm.loadingt,
             "items-per-page": 50,
             "footer-props": {
