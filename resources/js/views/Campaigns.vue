@@ -125,6 +125,7 @@
             :loading="loading"
             :height="height"
             fixed-header
+            :items-per-page="50"
             :footer-props="{
                 'items-per-page-options': [10, 20, 30, 50, 100, -1]
             }"
@@ -583,7 +584,7 @@ export default {
         },
 
         height() {
-            let num = this.windowSize.y - 375;
+            let num = this.windowSize.y - 277;
             return num;
         },
 

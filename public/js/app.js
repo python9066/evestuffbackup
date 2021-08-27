@@ -26552,6 +26552,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -26813,7 +26814,7 @@ function sleep(ms) {
       return this.campaignsRegion;
     },
     height: function height() {
-      var num = this.windowSize.y - 375;
+      var num = this.windowSize.y - 277;
       return num;
     },
     filteredItems_start: function filteredItems_start() {
@@ -62650,6 +62651,7 @@ var render = function() {
             loading: _vm.loading,
             height: _vm.height,
             "fixed-header": "",
+            "items-per-page": 50,
             "footer-props": {
               "items-per-page-options": [10, 20, 30, 50, 100, -1]
             },
