@@ -6511,7 +6511,7 @@ function sleep(ms) {
       return this.$store.state.user_name;
     },
     height: function height() {
-      var num = this.windowSize.y - 473;
+      var num = this.windowSize.y - 277;
       return num;
     }
   }),

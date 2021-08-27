@@ -809,7 +809,7 @@ export default {
             return this.$store.state.user_name;
         },
         height() {
-            let num = this.windowSize.y - 473;
+            let num = this.windowSize.y - 277;
             return num;
         }
     },
