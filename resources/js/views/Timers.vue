@@ -1,6 +1,5 @@
 <template>
-    <div class=" pr-16 pl-16">
-        <messageComponent></messageComponent>
+    <div class=" pr-16 pl-16" v-resize="onResize">
         <div class=" d-flex align-items-center">
             <v-card-title>Vulnerability Windows</v-card-title>
 
@@ -211,14 +210,22 @@ export default {
             name: "Timer",
             test: now(),
             endtext: "Time Till Close",
-            typePicked: []
+            typePicked: [],
+            windowSize: {
+                x: 0,
+                y: 0
+            }
         };
     },
     async mounted() {
         this.log();
+        this.onResize();
         this.loadtimers();
     },
     methods: {
+        onResize() {
+            this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+        },
         log() {
             var request = {
                 url: this.$route.path
@@ -292,6 +299,11 @@ export default {
             } else {
                 return this.timers.filter(timers => timers.status == 0);
             }
+        },
+
+        height() {
+            let num = this.windowSize.y - 315;
+            return num;
         },
 
         dropdown_search_list() {
