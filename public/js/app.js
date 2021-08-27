@@ -33007,6 +33007,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -68213,9 +68217,13 @@ var render = function() {
             headers: _vm.getHeaders(),
             items: _vm.filterEnd,
             "item-key": "id",
+            height: _vm.height,
+            "fixed-header": "",
             loading: _vm.loading,
-            "items-per-page": 25,
-            "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] },
+            "items-per-page": 50,
+            "footer-props": {
+              "items-per-page-options": [10, 20, 30, 50, 100, -1]
+            },
             "sort-by": ["time"],
             search: _vm.search,
             "sort-desc": [false, true],
