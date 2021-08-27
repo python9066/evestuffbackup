@@ -24305,7 +24305,7 @@ function sleep(ms) {
       }
     },
     height: function height() {
-      var num = this.windowSize.y - 375;
+      var num = this.windowSize.y - 277;
       return num;
     }
   }),
