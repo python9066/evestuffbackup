@@ -7245,6 +7245,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -7304,7 +7308,11 @@ function sleep(ms) {
       loadingf: true,
       loadingr: true,
       search: "",
-      toggle_exclusive: 1
+      toggle_exclusive: 1,
+      windowSize: {
+        x: 0,
+        y: 0
+      }
     };
   },
   created: function created() {
@@ -7342,11 +7350,16 @@ function sleep(ms) {
     }))();
   },
   mounted: function mounted() {
+    var _this2 = this;
+
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              _this2.onResize();
+
+            case 1:
             case "end":
               return _context2.stop();
           }
@@ -7355,6 +7368,12 @@ function sleep(ms) {
     }))();
   },
   methods: {
+    onResize: function onResize() {
+      this.windowSize = {
+        x: window.innerWidth,
+        y: window.innerHeight
+      };
+    },
     numberDay: function numberDay(day) {
       return parseInt(day, 10) + "d";
     }
@@ -7376,6 +7395,10 @@ function sleep(ms) {
       } else {
         return filter;
       }
+    },
+    height: function height() {
+      var num = this.windowSize.y - 375;
+      return num;
     }
   }),
   beforeDestroy: function beforeDestroy() {
@@ -42655,7 +42678,16 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: " pt-16" },
+    {
+      directives: [
+        {
+          name: "resize",
+          rawName: "v-resize",
+          value: _vm.onResize,
+          expression: "onResize"
+        }
+      ]
+    },
     [
       _c(
         "div",
@@ -42692,8 +42724,12 @@ var render = function() {
             items: _vm.filteredItems,
             "item-key": "id",
             loading: _vm.loadingt,
-            "items-per-page": 25,
-            "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] },
+            height: _vm.height,
+            "fixed-header": "",
+            "items-per-page": 50,
+            "footer-props": {
+              "items-per-page-options": [10, 20, 30, 50, 100, -1]
+            },
             "sort-by": ["start_time"],
             search: _vm.search,
             "sort-desc": [true, false],

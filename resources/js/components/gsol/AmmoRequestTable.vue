@@ -1,5 +1,5 @@
 <template>
-    <div class=" pt-16">
+    <div v-resize="onResize">
         <div class=" d-flex align-items-center">
             <v-card-title>Restock Requests</v-card-title>
 
@@ -46,8 +46,12 @@
             :items="filteredItems"
             item-key="id"
             :loading="loadingt"
-            :items-per-page="25"
-            :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
+            :height="height"
+            fixed-header
+            :items-per-page="50"
+            :footer-props="{
+                'items-per-page-options': [10, 20, 30, 50, 100, -1]
+            }"
             :sort-by="['start_time']"
             :search="search"
             :sort-desc="[true, false]"
@@ -177,7 +181,11 @@ export default {
             loadingf: true,
             loadingr: true,
             search: "",
-            toggle_exclusive: 1
+            toggle_exclusive: 1,
+            windowSize: {
+                x: 0,
+                y: 0
+            }
         };
     },
 
@@ -204,8 +212,13 @@ export default {
         });
     },
 
-    async mounted() {},
+    async mounted() {
+        this.onResize();
+    },
     methods: {
+        onResize() {
+            this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+        },
         numberDay(day) {
             return parseInt(day, 10) + "d";
         }
@@ -224,6 +237,10 @@ export default {
             } else {
                 return filter;
             }
+        },
+        height() {
+            let num = this.windowSize.y - 375;
+            return num;
         }
     },
     beforeDestroy() {
