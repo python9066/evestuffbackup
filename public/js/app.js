@@ -23766,6 +23766,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -23840,17 +23841,19 @@ function sleep(ms) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
+              _this2.onResize();
+
+              _context2.next = 3;
               return _this2.$store.dispatch("getUsers");
 
-            case 2:
-              _context2.next = 4;
+            case 3:
+              _context2.next = 5;
               return _this2.$store.dispatch("getRoles");
 
-            case 4:
+            case 5:
               _this2.log();
 
-            case 5:
+            case 6:
             case "end":
               return _context2.stop();
           }
@@ -23859,6 +23862,12 @@ function sleep(ms) {
     }))();
   },
   methods: {
+    onResize: function onResize() {
+      this.windowSize = {
+        x: window.innerWidth,
+        y: window.innerHeight
+      };
+    },
     log: function log() {
       var request = {
         url: this.$route.path
@@ -24294,6 +24303,10 @@ function sleep(ms) {
       } else {
         return this.users;
       }
+    },
+    height: function height() {
+      var num = this.windowSize.y - 375;
+      return num;
     }
   }),
   beforeDestroy: function beforeDestroy() {
@@ -35019,7 +35032,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.rainbow-2[data-v-55568bd4]:hover {\r\n    background-image: linear-gradient(\r\n        to right,\r\n        red,\r\n        orange,\r\n        yellow,\r\n        green,\r\n        blue,\r\n        indigo,\r\n        violet,\r\n        red\r\n    );\r\n    -webkit-animation: slidebg-data-v-55568bd4 2s linear infinite;\r\n            animation: slidebg-data-v-55568bd4 2s linear infinite;\n}\n@-webkit-keyframes slidebg-data-v-55568bd4 {\nto {\r\n        background-position: 20vw;\n}\n}\n@keyframes slidebg-data-v-55568bd4 {\nto {\r\n        background-position: 20vw;\n}\n}\n.follow[data-v-55568bd4] {\r\n    margin-top: 40px;\n}\n.follow a[data-v-55568bd4] {\r\n    color: black;\r\n    padding: 8px 16px;\r\n    text-decoration: none;\n}\r\n", ""]);
+exports.push([module.i, "\n.rainbow-2[data-v-55568bd4]:hover {\n    background-image: linear-gradient(\n        to right,\n        red,\n        orange,\n        yellow,\n        green,\n        blue,\n        indigo,\n        violet,\n        red\n    );\n    -webkit-animation: slidebg-data-v-55568bd4 2s linear infinite;\n            animation: slidebg-data-v-55568bd4 2s linear infinite;\n}\n@-webkit-keyframes slidebg-data-v-55568bd4 {\nto {\n        background-position: 20vw;\n}\n}\n@keyframes slidebg-data-v-55568bd4 {\nto {\n        background-position: 20vw;\n}\n}\n.follow[data-v-55568bd4] {\n    margin-top: 40px;\n}\n.follow a[data-v-55568bd4] {\n    color: black;\n    padding: 8px 16px;\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -60167,10 +60180,18 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "pr-16 pl-16" },
+    {
+      directives: [
+        {
+          name: "resize",
+          rawName: "v-resize",
+          value: _vm.onResize,
+          expression: "onResize"
+        }
+      ],
+      staticClass: "pr-16 pl-16"
+    },
     [
-      _c("errorMessage"),
-      _vm._v(" "),
       _c(
         "v-row",
         { attrs: { "no-gutters": "", justify: "center" } },
@@ -60636,12 +60657,14 @@ var render = function() {
                         headers: _vm.headers,
                         items: _vm.filteredItems,
                         "item-key": "id",
+                        height: _vm.height,
+                        "fixed-header": "",
                         loading: _vm.loading,
                         "sort-by": ["name"],
-                        "items-per-page": 20,
                         search: _vm.search,
+                        "items-per-page": 50,
                         "footer-props": {
-                          "items-per-page-options": [10, 20, 50, 100, -1]
+                          "items-per-page-options": [10, 20, 30, 50, 100, -1]
                         }
                       },
                       scopedSlots: _vm._u(
