@@ -18,6 +18,8 @@
             :headers="headers"
             :items="filteredItems"
             :item-class="itemRowBackground"
+            :height="height"
+            fixed-header
             item-key="id"
             :loading="loadingt"
             :items-per-page="50"
