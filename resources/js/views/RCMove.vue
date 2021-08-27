@@ -597,7 +597,7 @@ export default {
         },
 
         height() {
-            let num = this.windowSize.y - 375;
+            let num = this.windowSize.y - 287;
             return num;
         },
 
