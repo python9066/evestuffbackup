@@ -33541,6 +33541,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -33591,6 +33593,10 @@ function sleep(ms) {
       querious: 0,
       toggle_exclusive1: 1,
       standingFlag: 2,
+      windowSize: {
+        x: 0,
+        y: 0
+      },
       dropdown_edit: [{
         title: "Scouted",
         value: 2
@@ -33683,7 +33689,9 @@ function sleep(ms) {
             case 0:
               _this2.log();
 
-            case 1:
+              _this2.onResize();
+
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -33692,6 +33700,12 @@ function sleep(ms) {
     }))();
   },
   methods: {
+    onResize: function onResize() {
+      this.windowSize = {
+        x: window.innerWidth,
+        y: window.innerHeight
+      };
+    },
     log: function log() {
       var request = {
         url: this.$route.path
@@ -33952,6 +33966,10 @@ function sleep(ms) {
           return towers.tower_status_id != 10;
         });
       }
+    },
+    height: function height() {
+      var num = this.windowSize.y - 375;
+      return num;
     },
     filter_end: function filter_end() {
       if (this.standingFlag == 1) {
@@ -68294,7 +68312,17 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: " pr-16 pl-16" },
+    {
+      directives: [
+        {
+          name: "resize",
+          rawName: "v-resize",
+          value: _vm.onResize,
+          expression: "onResize"
+        }
+      ],
+      staticClass: " pr-16 pl-16"
+    },
     [
       _c("messageComponent"),
       _vm._v(" "),
@@ -68489,8 +68517,10 @@ var render = function() {
             expanded: _vm.expanded,
             "item-key": "id",
             loading: _vm.loadingt,
-            "items-per-page": 25,
-            "footer-props": { "items-per-page-options": [15, 25, 50, 100, -1] },
+            "items-per-page": 50,
+            "footer-props": {
+              "items-per-page-options": [10, 20, 30, 50, 100, -1]
+            },
             "sort-by": ["timestamp"],
             search: _vm.search,
             "sort-desc": [true, false],
