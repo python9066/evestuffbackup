@@ -1,5 +1,5 @@
 <template>
-    <div class=" pr-16 pl-16">
+    <div class=" pr-16 pl-16" v-resize="onResize">
         <div class=" d-flex align-items-center">
             <v-card-title>Timers to input to RC</v-card-title>
             <!-- <ChillAddStation v-if="$can('edit_chill_timers')"></ChillAddStation> -->
@@ -18,6 +18,8 @@
             :headers="headers"
             :items="filteredItems"
             :item-class="itemRowBackground"
+            :height="height"
+            fixed-header
             item-key="id"
             :loading="loadingt"
             :items-per-page="25"
@@ -307,6 +309,10 @@ export default {
         };
     },
 
+    onResize() {
+        this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+    },
+
     async created() {
         if (this.$can("finish_move_timer")) {
             Echo.private("rcmovesheet")
@@ -359,6 +365,7 @@ export default {
 
     async mounted() {
         this.log();
+        this.onResize();
     },
     methods: {
         log() {
@@ -580,6 +587,11 @@ export default {
             } else {
                 return "Add Timer";
             }
+        },
+
+        height() {
+            let num = this.windowSize.y - 375;
+            return num;
         },
 
         filteredItems() {
