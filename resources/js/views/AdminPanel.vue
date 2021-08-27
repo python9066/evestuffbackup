@@ -1,6 +1,5 @@
 <template>
-    <div class="pr-16 pl-16">
-        <errorMessage></errorMessage>
+    <div class="pr-16 pl-16" v-resize="onResize">
         <v-row no-gutters justify="center">
             <v-col class=" d-inline-flex" cols="9">
                 <v-card
@@ -174,12 +173,14 @@
                         :headers="headers"
                         :items="filteredItems"
                         item-key="id"
+                        :height="height"
+                        fixed-header
                         :loading="loading"
                         :sort-by="['name']"
-                        :items-per-page="20"
                         :search="search"
+                        :items-per-page="50"
                         :footer-props="{
-                            'items-per-page-options': [10, 20, 50, 100, -1]
+                            'items-per-page-options': [10, 20, 30, 50, 100, -1]
                         }"
                         class="elevation-5"
                     >
@@ -310,12 +311,16 @@ export default {
     },
 
     async mounted() {
+        this.onResize();
         await this.$store.dispatch("getUsers");
         await this.$store.dispatch("getRoles");
         this.log();
     },
 
     methods: {
+        onResize() {
+            this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+        },
         log() {
             var request = {
                 url: this.$route.path
@@ -665,6 +670,10 @@ export default {
             } else {
                 return this.users;
             }
+        },
+        height() {
+            let num = this.windowSize.y - 315;
+            return num;
         }
     },
     beforeDestroy() {

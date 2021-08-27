@@ -20,8 +20,10 @@
             :item-class="itemRowBackground"
             item-key="id"
             :loading="loadingt"
-            :items-per-page="25"
-            :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
+            :items-per-page="50"
+            :footer-props="{
+                'items-per-page-options': [10, 20, 30, 50, 100, -1]
+            }"
             :search="search"
             multi-sort
             class="elevation-1"
@@ -303,7 +305,11 @@ export default {
                     value: "actions2",
                     align: "end"
                 }
-            ]
+            ],
+            windowSize: {
+                x: 0,
+                y: 0
+            }
         };
     },
 
@@ -377,6 +383,11 @@ export default {
                 }
             });
         },
+
+        onResize() {
+            this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+        },
+
         countDownStartTime(item) {
             if (item.station_status_id == 11) {
                 return moment.utc(item.repair_time).unix();
@@ -580,6 +591,11 @@ export default {
             } else {
                 return "Add Timer";
             }
+        },
+
+        height() {
+            let num = this.windowSize.y - 287;
+            return num;
         },
 
         filteredItems() {

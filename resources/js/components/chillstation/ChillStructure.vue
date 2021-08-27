@@ -1,5 +1,5 @@
 <template>
-    <div class=" pr-16 pl-16">
+    <div class=" pr-16 pl-16" v-resize="onResize">
         <div class=" d-flex align-items-center">
             <v-card-title>Structure Notifications</v-card-title>
             <!-- <ChillAddStation v-if="$can('edit_chill_timers')"></ChillAddStation> -->
@@ -74,9 +74,13 @@
             :items="filteredItems"
             :item-class="itemRowBackground"
             item-key="id"
+            :height="height"
+            fixed-header
             :loading="loadingt"
-            :items-per-page="25"
-            :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
+            :items-per-page="50"
+            :footer-props="{
+                'items-per-page-options': [10, 20, 30, 50, 100, -1]
+            }"
             :sort-by.sync="sortby"
             :search="search"
             :sort-desc.sync="sortdesc"
@@ -372,6 +376,10 @@ export default {
             toggle_none: null,
             sortdesc: true,
             sortby: "timestamp",
+            windowSize: {
+                x: 0,
+                y: 0
+            },
 
             dropdown_edit: [
                 { title: "Repairing", value: 11 },
@@ -484,8 +492,12 @@ export default {
 
     async mounted() {
         this.log();
+        this.onResize();
     },
     methods: {
+        onResize() {
+            this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+        },
         log() {
             var request = {
                 url: this.$route.path
@@ -795,6 +807,10 @@ export default {
 
         user_name() {
             return this.$store.state.user_name;
+        },
+        height() {
+            let num = this.windowSize.y - 277;
+            return num;
         }
     },
     beforeDestroy() {

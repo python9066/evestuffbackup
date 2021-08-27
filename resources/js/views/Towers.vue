@@ -1,6 +1,5 @@
 <template>
-    <div class=" pr-16 pl-16">
-        <messageComponent></messageComponent>
+    <div class=" pr-16 pl-16" v-resize="onResize">
         <div class=" d-flex align-items-center">
             <v-card-title>Towers</v-card-title>
 
@@ -100,9 +99,13 @@
             :items="filter_end"
             :expanded.sync="expanded"
             item-key="id"
+            :height="height"
+            fixed-header
             :loading="loadingt"
-            :items-per-page="25"
-            :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
+            :items-per-page="50"
+            :footer-props="{
+                'items-per-page-options': [10, 20, 30, 50, 100, -1]
+            }"
             :sort-by="['timestamp']"
             :search="search"
             :sort-desc="[true, false]"
@@ -363,6 +366,10 @@ export default {
             querious: 0,
             toggle_exclusive1: 1,
             standingFlag: 2,
+            windowSize: {
+                x: 0,
+                y: 0
+            },
 
             dropdown_edit: [
                 { title: "Scouted", value: 2 },
@@ -427,8 +434,12 @@ export default {
 
     async mounted() {
         this.log();
+        this.onResize();
     },
     methods: {
+        onResize() {
+            this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+        },
         log() {
             var request = {
                 url: this.$route.path
@@ -662,6 +673,11 @@ export default {
                     towers => towers.tower_status_id != 10
                 );
             }
+        },
+
+        height() {
+            let num = this.windowSize.y - 277;
+            return num;
         },
 
         filter_end() {

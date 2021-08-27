@@ -1,13 +1,12 @@
 <template>
-    <div class=" pr-16 pl-16">
-        <messageComponent></messageComponent>
+    <div class=" pr-16 pl-16" v-resize="onResize">
         <div class=" d-flex align-items-center">
             <v-card-title>Vulnerability Windows</v-card-title>
 
             <!-- <v-btn
                 :loading="loading3"
                 :disabled="loading3"
-                color="primary"
+                color="prfdefdfimary"
                 class="ma-2 white--text"
                 @click="
                     loading3 = true;
@@ -109,9 +108,13 @@
             :headers="getHeaders()"
             :items="filterEnd"
             item-key="id"
+            :height="height"
+            fixed-header
             :loading="loading"
-            :items-per-page="25"
-            :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
+            :items-per-page="50"
+            :footer-props="{
+                'items-per-page-options': [10, 20, 30, 50, 100, -1]
+            }"
             :sort-by="['time']"
             :search="search"
             :sort-desc="[false, true]"
@@ -211,14 +214,22 @@ export default {
             name: "Timer",
             test: now(),
             endtext: "Time Till Close",
-            typePicked: []
+            typePicked: [],
+            windowSize: {
+                x: 0,
+                y: 0
+            }
         };
     },
     async mounted() {
         this.log();
+        this.onResize();
         this.loadtimers();
     },
     methods: {
+        onResize() {
+            this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+        },
         log() {
             var request = {
                 url: this.$route.path
@@ -292,6 +303,11 @@ export default {
             } else {
                 return this.timers.filter(timers => timers.status == 0);
             }
+        },
+
+        height() {
+            let num = this.windowSize.y - 315;
+            return num;
         },
 
         dropdown_search_list() {
