@@ -239,7 +239,7 @@ export default {
             }
         },
         height() {
-            let num = this.windowSize.y - 375;
+            let num = this.windowSize.y - 277;
             return num;
         }
     },
