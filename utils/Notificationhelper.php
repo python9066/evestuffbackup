@@ -393,19 +393,6 @@ class Notifications
                 ]);
 
 
-                if ($oldStation->name != $stationNew->name) {
-                    $log = Logging::create(['station_id' => $stationdata['str_structure_id'], 'logging_type_id' => 18, 'text' => "Recon Tool changed station name from " . $oldStation->name . " to " . $stationNew->name]);
-                    Helper::stationlogs($log->id);
-                }
-
-                if ($oldStation->corp_id != $stationNew->corp_id) {
-                    $oldCorpName = Corp::where('id', $oldStation->corp_id)->value('name');
-                    $newCorpName = Corp::where('id', $stationNew->corp_id)->value('name');
-                    $log = Logging::create(['station_id' => $stationdata['str_structure_id'], 'logging_type_id' => 18, 'text' => "Recon Tool changed corp from " . $oldCorpName . " to " . $newCorpName]);
-                    Helper::stationlogs($log->id);
-                }
-
-
                 if ($stationdata['str_has_no_fitting'] != null) {
                     $items = Utils::jsonDecode($stationdata['str_fitting'], true);
                     foreach ($items as $item) {
