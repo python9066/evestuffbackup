@@ -585,7 +585,6 @@ export default {
             "coordsheetStatus",
             "stations"
         ]),
-        ...mapGetters(["getShowOnCoordStations"]),
 
         filterSet() {
             if ((this.loadingt = false)) {
