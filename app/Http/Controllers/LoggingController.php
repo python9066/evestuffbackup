@@ -125,7 +125,7 @@ class LoggingController extends Controller
 
         $data = [];
         $logs = Logging::where('logging_type_id', '>', 16)->where('logging_type_id', '<', 25)->get();
-        dd($logs);
+
         foreach ($logs as $log) {
             $timne = Helper::fixtime($log['created_at']);
             $data1 = null;
