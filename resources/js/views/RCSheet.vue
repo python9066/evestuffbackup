@@ -288,7 +288,7 @@
                                         v-if="showInfo(item)"
                                     ></Info>
                                 </div>
-                                <div>
+                                <div v-if="$can('view_station_logs')">
                                     <v-btn
                                         @click="
                                             (expanded = [item]),
@@ -391,7 +391,12 @@ export default {
             await this.$store.dispatch("loadStationInfo");
         }
         if (this.$can("view_station_logs")) {
-            await this.$store.dispatch("getLoggingStations");
+            await this.$store.dispatch("StationLogUpdate");
+            Echo.private("stationlogs").listen("RcSheetUpdate", e => {
+                if (e.flag.message != null) {
+                    this.$store.dispatch("addLoggingStation", e.flag.message);
+                }
+            });
         }
         await this.$store.dispatch("getRcRegions");
         await this.$store.dispatch("getRcStationRecords");

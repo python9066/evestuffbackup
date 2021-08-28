@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Listeners;
+
+use App\Events\vent=StationLogUpdate;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+
+class SendStationLogUpdate
+{
+    /**
+     * Create the event listener.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Handle the event.
+     *
+     * @param  vent=StationLogUpdate  $event
+     * @return void
+     */
+    public function handle(vent=StationLogUpdate $event)
+    {
+        //
+    }
+}

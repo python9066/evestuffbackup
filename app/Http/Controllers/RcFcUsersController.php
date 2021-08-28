@@ -100,12 +100,13 @@ class RcFcUsersController extends Controller
         ]);
         broadcast(new RcSheetUpdate($flag));
 
-        $text = Auth::user()->name . " Added " . $fcname . " to FC for " . $message->name;
+        $text = Auth::user()->name . " Added " . $fcname . " to FC";
 
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 19]);
         $log = $log->id;
         // dd($log);
         Helper::sheetlogs($log);
+        Helper::stationlogs($log);
     }
 
     public function addFCadd(Request $request, $id)
@@ -120,10 +121,11 @@ class RcFcUsersController extends Controller
         ]);
         broadcast(new RcSheetUpdate($flag));
 
-        $text = Auth::user()->name . " Added " . $userName . " as FC for " . $message->name;
+        $text = Auth::user()->name . " Added " . $userName . " as FC";
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 19]);
         $log = $log->id;
         Helper::sheetlogs($log);
+        Helper::stationlogs($log);
     }
 
     public function removeFCtoStation($id)
@@ -137,10 +139,11 @@ class RcFcUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
-        $text = Auth::user()->name . " Removed " . $userName . " as FC for " . $message->name;
+        $text = Auth::user()->name . " Removed " . $userName . " as FC";
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 20]);
         $log = $log->id;
         Helper::sheetlogs($log);
+        Helper::stationlogs($log);
     }
 
     public function removeFC($id)

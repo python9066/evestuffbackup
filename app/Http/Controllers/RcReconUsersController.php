@@ -43,11 +43,12 @@ class RcReconUsersController extends Controller
         ]);
         broadcast(new RcSheetUpdate($flag));
 
-        $text = Auth::user()->name . " Added as Cyno for the " . $message->name;
+        $text = Auth::user()->name . " Added as Cyno";
 
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 21]);
         $log = $log->id;
         Helper::sheetlogs($log);
+        Helper::stationlogs($log);
     }
 
     public function removeRecontoStation($id)
@@ -61,11 +62,12 @@ class RcReconUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
-        $text = Auth::user()->name . " Removed " . $username . " As Cyno from " . $message->name;
+        $text = Auth::user()->name . " Removed " . $username . " As Cyno";
 
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 22]);
         $log = $log->id;
         Helper::sheetlogs($log);
+        Helper::stationlogs($log);
     }
 
     /**

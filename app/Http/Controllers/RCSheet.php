@@ -137,7 +137,8 @@ class RCSheet extends Controller
             }
 
             $logStation = Station::where('rc_id', $input['id'])->first();
-            Logging::create(['station_id' => $logStation->id, 'logging_type_id' => 18, 'text' => "Added from RC2"]);
+            $log = Logging::create(['station_id' => $logStation->id, 'logging_type_id' => 18, 'text' => "Added from RC2"]);
+            Helper::stationlogs($log->id);
         }
 
         Station::where('show_on_rc', 5)->update(['rc_id' => null, 'station_status_id' => 18]);

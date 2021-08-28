@@ -126,6 +126,10 @@ Broadcast::channel('coord', function () {
     return Auth::check();
 });
 
+Broadcast::channel('stationlogs', function () {
+    return Auth::check();
+});
+
 
 
 

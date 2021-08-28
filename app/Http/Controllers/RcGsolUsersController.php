@@ -46,10 +46,11 @@ class RcGsolUsersController extends Controller
         ]);
         broadcast(new RcSheetUpdate($flag));
 
-        $text = Auth::user()->name . " Added to Gsol for the " . $message->name . " station ";
+        $text = Auth::user()->name . " Added to Gsol";
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 23]);
         $log = $log->id;
         Helper::sheetlogs($log);
+        Helper::stationlogs($log);
     }
 
     public function removeGsoltoStation($id)
@@ -62,10 +63,11 @@ class RcGsolUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
-        $text = Auth::user()->name . " Removed " . $gsolName . " from Gsol for the " . $message->name . " station ";
+        $text = Auth::user()->name . " Removed " . $gsolName . " from Gsol";
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 24]);
         $log = $log->id;
         Helper::sheetlogs($log);
+        Helper::stationlogs($log);
     }
 
     /**
