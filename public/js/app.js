@@ -31746,10 +31746,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -67131,7 +67127,6 @@ var render = function() {
                       staticClass: "elevation-5",
                       attrs: {
                         search: _vm.search,
-                        "single-expand": _vm.singleExpand,
                         expanded: _vm.expanded,
                         headers: _vm._headers,
                         items: _vm.filter_end,
@@ -67572,13 +67567,7 @@ var render = function() {
                             fn: function(ref) {
                               var headers = ref.headers
                               var item = ref.item
-                              return [
-                                _c("v-icon", { attrs: { color: "primary" } }, [
-                                  _vm._v(
-                                    "\n                            faSvg fa-history\n                        "
-                                  )
-                                ])
-                              ]
+                              return undefined
                             }
                           }
                         ],

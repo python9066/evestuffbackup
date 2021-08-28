@@ -112,7 +112,6 @@
                 <v-card width="100%">
                     <v-data-table
                         :search="search"
-                        :single-expand="singleExpand"
                         :expanded.sync="expanded"
                         :headers="_headers"
                         :items="filter_end"
@@ -300,9 +299,6 @@
                             class="align-center"
                             height="100%"
                         >
-                            <v-icon color="primary">
-                                faSvg fa-history
-                            </v-icon>
                         </template>
                     </v-data-table>
                 </v-card>
