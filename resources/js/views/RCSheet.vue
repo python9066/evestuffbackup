@@ -112,6 +112,7 @@
                 <v-card width="100%">
                     <v-data-table
                         :search="search"
+                        :single-expand="singleExpand"
                         :expanded.sync="expanded"
                         :headers="_headers"
                         :items="filter_end"
@@ -294,11 +295,10 @@
                             No Active or Upcoming Campaigns
                         </template>
 
-                        <template
-                            v-slot:expanded-item="{ headers, item }"
-                            class="align-center"
-                            height="100%"
-                        >
+                        <template v-slot:expanded-item="{ headers, item }">
+                            <td :colspan="headers.length">
+                                More info about {{ item.name }}
+                            </td>
                         </template>
                     </v-data-table>
                 </v-card>
@@ -349,7 +349,7 @@ export default {
                 y: 0
             },
             expanded: [],
-            expanded_id: 0
+            singleExpand: true
         };
     },
 

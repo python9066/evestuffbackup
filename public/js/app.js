@@ -31778,7 +31778,7 @@ function sleep(ms) {
         y: 0
       },
       expanded: [],
-      expanded_id: 0
+      singleExpand: true
     };
   },
   created: function created() {
@@ -67127,6 +67127,7 @@ var render = function() {
                       staticClass: "elevation-5",
                       attrs: {
                         search: _vm.search,
+                        "single-expand": _vm.singleExpand,
                         expanded: _vm.expanded,
                         headers: _vm._headers,
                         items: _vm.filter_end,
@@ -67567,7 +67568,19 @@ var render = function() {
                             fn: function(ref) {
                               var headers = ref.headers
                               var item = ref.item
-                              return undefined
+                              return [
+                                _c(
+                                  "td",
+                                  { attrs: { colspan: headers.length } },
+                                  [
+                                    _vm._v(
+                                      "\n                            More info about " +
+                                        _vm._s(item.name) +
+                                        "\n                        "
+                                    )
+                                  ]
+                                )
+                              ]
                             }
                           }
                         ],
