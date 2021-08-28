@@ -14,9 +14,7 @@
             <template v-slot:top>
                 <v-toolbar flat>
                     <v-toolbar-title
-                        >Logs for {{ station.name }} id={{
-                            station.id
-                        }}</v-toolbar-title
+                        >Logs for {{ station.name }}</v-toolbar-title
                     >
                     <v-spacer></v-spacer>
                 </v-toolbar>

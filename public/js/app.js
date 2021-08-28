@@ -20528,8 +20528,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -56893,12 +56891,7 @@ var render = function() {
                     { attrs: { flat: "" } },
                     [
                       _c("v-toolbar-title", [
-                        _vm._v(
-                          "Logs for " +
-                            _vm._s(_vm.station.name) +
-                            " id=" +
-                            _vm._s(_vm.station.id)
-                        )
+                        _vm._v("Logs for " + _vm._s(_vm.station.name))
                       ]),
                       _vm._v(" "),
                       _c("v-spacer")
