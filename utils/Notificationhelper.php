@@ -308,7 +308,7 @@ class Notifications
                     Station::where('id', $station->id)->update(['station_status_id' => 16]);
                 }
 
-
+                dd($oldStation, $stationNew);
                 if ($oldStation->name != $stationNew->name) {
                     $log = Logging::create(['station_id' => $station->id, 'logging_type_id' => 18, 'text' => "Recon Tool changed station name from " . $oldStation->name . " to " . $stationNew->name]);
                     Helper::stationlogs($log->id);
