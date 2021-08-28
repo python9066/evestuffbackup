@@ -31738,6 +31738,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -67539,7 +67542,19 @@ var render = function() {
                                           : _vm._e()
                                       ],
                                       1
-                                    )
+                                    ),
+                                    _vm._v(" "),
+                                    _vm.$can("view_station_logs")
+                                      ? _c(
+                                          "div",
+                                          [
+                                            _c("v-icon", [
+                                              _vm._v(" faSvg fa-history")
+                                            ])
+                                          ],
+                                          1
+                                        )
+                                      : _vm._e()
                                   ],
                                   1
                                 )

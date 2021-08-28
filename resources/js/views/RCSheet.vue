@@ -287,6 +287,9 @@
                                         v-if="showInfo(item)"
                                     ></Info>
                                 </div>
+                                <div v-if="$can('view_station_logs')">
+                                    <v-icon> faSvg fa-history</v-icon>
+                                </div>
                             </div>
                         </template>
                         <template slot="no-data">
