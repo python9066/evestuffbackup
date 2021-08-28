@@ -297,7 +297,7 @@
                                         v-show="!expanded.includes(item)"
                                         icon
                                         class=" pb-3"
-                                        color="green"
+                                        color="blue"
                                     >
                                         <v-icon> faSvg fa-history</v-icon>
                                     </v-btn>
@@ -391,8 +391,8 @@ export default {
             await this.$store.dispatch("loadStationInfo");
         }
         if (this.$can("view_station_logs")) {
-            await this.$store.dispatch("StationLogUpdate");
-            Echo.private("stationlogs").listen("RcSheetUpdate", e => {
+            await this.$store.dispatch("getLoggingStations");
+            Echo.private("stationlogs").listen("StationLogUpdate", e => {
                 if (e.flag.message != null) {
                     this.$store.dispatch("addLoggingStation", e.flag.message);
                 }

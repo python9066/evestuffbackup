@@ -31971,10 +31971,10 @@ function sleep(ms) {
               }
 
               _context.next = 11;
-              return _this.$store.dispatch("StationLogUpdate");
+              return _this.$store.dispatch("getLoggingStations");
 
             case 11:
-              Echo["private"]("stationlogs").listen("RcSheetUpdate", function (e) {
+              Echo["private"]("stationlogs").listen("StationLogUpdate", function (e) {
                 if (e.flag.message != null) {
                   _this.$store.dispatch("addLoggingStation", e.flag.message);
                 }
@@ -67824,7 +67824,7 @@ var render = function() {
                                                 staticClass: " pb-3",
                                                 attrs: {
                                                   icon: "",
-                                                  color: "green"
+                                                  color: "blue"
                                                 },
                                                 on: {
                                                   click: function($event) {
