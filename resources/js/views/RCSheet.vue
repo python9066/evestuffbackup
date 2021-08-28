@@ -340,7 +340,7 @@
                 </template>
             </v-snackbar>
         </v-row>
-        <!-- <v-row v-if="$can('super')" align="center" justify="center">
+        <!-- <v-row v-if="$can('super')" align="center" juvvvstify="center">
             <v-subheader>Window Size</v-subheader>
             {{ windowSize }} abd {{ highthtest }}
         </v-row> -->

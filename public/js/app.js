@@ -67611,7 +67611,7 @@ var render = function() {
                                           },
                                           [
                                             _c("v-icon", [
-                                              _vm._v(" fas fa-map fa-xs")
+                                              _vm._v(" faSvg fa-history")
                                             ])
                                           ],
                                           1
@@ -67641,7 +67641,7 @@ var render = function() {
                                           },
                                           [
                                             _c("v-icon", [
-                                              _vm._v(" fas fa-map fa-xs")
+                                              _vm._v(" faSvg fa-history")
                                             ])
                                           ],
                                           1
