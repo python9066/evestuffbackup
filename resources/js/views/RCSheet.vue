@@ -293,13 +293,16 @@
                         <template slot="no-data">
                             No Active or Upcoming Campaigns
                         </template>
-                        <v-expansion-panel-header>
-                            <template v-slot:actions>
-                                <v-icon color="primary">
-                                    faSvg fa-history
-                                </v-icon>
-                            </template>
-                        </v-expansion-panel-header>
+
+                        <template
+                            v-slot:expanded-item="{ headers, item }"
+                            class="align-center"
+                            height="100%"
+                        >
+                            <v-icon color="primary">
+                                faSvg fa-history
+                            </v-icon>
+                        </template>
                     </v-data-table>
                 </v-card>
             </v-col>

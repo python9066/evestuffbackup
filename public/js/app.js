@@ -31746,6 +31746,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -67554,6 +67557,20 @@ var render = function() {
                                 )
                               ]
                             }
+                          },
+                          {
+                            key: "expanded-item",
+                            fn: function(ref) {
+                              var headers = ref.headers
+                              var item = ref.item
+                              return [
+                                _c("v-icon", { attrs: { color: "primary" } }, [
+                                  _vm._v(
+                                    "\n                            faSvg fa-history\n                        "
+                                  )
+                                ])
+                              ]
+                            }
                           }
                         ],
                         null,
@@ -67577,25 +67594,7 @@ var render = function() {
                         _vm._v(
                           "\n                        No Active or Upcoming Campaigns\n                    "
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("v-expansion-panel-header", {
-                        scopedSlots: _vm._u([
-                          {
-                            key: "actions",
-                            fn: function() {
-                              return [
-                                _c("v-icon", { attrs: { color: "primary" } }, [
-                                  _vm._v(
-                                    "\n                                faSvg fa-history\n                            "
-                                  )
-                                ])
-                              ]
-                            },
-                            proxy: true
-                          }
-                        ])
-                      })
+                      ])
                     ],
                     2
                   )
