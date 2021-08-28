@@ -56872,7 +56872,7 @@ var render = function() {
       _c(
         "v-data-table",
         {
-          staticClass: "elevation-1",
+          staticClass: "elevation-24",
           attrs: {
             headers: _vm.headers,
             items: _vm.filteredItems,

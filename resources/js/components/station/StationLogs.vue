@@ -6,7 +6,7 @@
             :items="filteredItems"
             item-key="id"
             :items-per-page="10"
-            class="elevation-1"
+            class="elevation-24"
             :sort-by="['created_at']"
             :sort-desc="[false, true]"
         >
