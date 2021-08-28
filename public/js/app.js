@@ -32269,7 +32269,54 @@ function sleep(ms) {
       });
     },
     _headers: function _headers() {
-      if (this.$can("view_gsol_killsheet")) {
+      if (this.$can("view_station_logs")) {
+        var Headers = [{
+          text: "System",
+          value: "system_name"
+        }, {
+          text: "Const",
+          value: "constellation_name"
+        }, {
+          text: "Region",
+          value: "region_name"
+        }, {
+          text: "Name",
+          value: "name"
+        }, {
+          text: "Type",
+          value: "item_name"
+        }, {
+          text: "Status",
+          value: "status_name",
+          align: "center"
+        }, {
+          text: "Ticker",
+          value: "alliance_ticker"
+        }, {
+          text: "Expires",
+          value: "end_time"
+        }, {
+          text: "CountDown",
+          value: "count",
+          sortable: false
+        }, {
+          text: "FC",
+          value: "fc_name",
+          align: "center"
+        }, {
+          text: "Cyno",
+          value: "recon_name"
+        }, {
+          text: "GSOL",
+          value: "gsol_name"
+        }, {
+          text: "",
+          value: "actions"
+        }, {
+          text: "",
+          value: "data-table-expand"
+        }];
+      } else if (this.$can("view_gsol_killsheet")) {
         var Headers = [{
           text: "System",
           value: "system_name"
