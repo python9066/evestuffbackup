@@ -20549,8 +20549,11 @@ function sleep(ms) {
   data: function data() {
     return {
       headers: [{
-        text: "",
+        text: "Logs",
         value: "text"
+      }, {
+        text: "Date",
+        value: "created_at"
       }]
     };
   },

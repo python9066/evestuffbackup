@@ -45,8 +45,12 @@ export default {
         return {
             headers: [
                 {
-                    text: "",
+                    text: "Logs",
                     value: "text"
+                },
+                {
+                    text: "Date",
+                    value: "created_at"
                 }
             ]
         };
