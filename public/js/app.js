@@ -31749,6 +31749,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -31779,7 +31780,9 @@ function sleep(ms) {
       windowSize: {
         x: 0,
         y: 0
-      }
+      },
+      expanded: [],
+      expanded_id: 0
     };
   },
   created: function created() {
@@ -67128,7 +67131,8 @@ var render = function() {
                       staticClass: "elevation-5",
                       attrs: {
                         search: _vm.search,
-                        "single-expand": "",
+                        "single-expand": _vm.singleExpand,
+                        expanded: _vm.expanded,
                         headers: _vm._headers,
                         items: _vm.filter_end,
                         loading: _vm.loadingt,
@@ -67142,6 +67146,11 @@ var render = function() {
                         "items-per-page": 50,
                         "footer-props": {
                           "items-per-page-options": [10, 20, 30, 50, 100, -1]
+                        }
+                      },
+                      on: {
+                        "update:expanded": function($event) {
+                          _vm.expanded = $event
                         }
                       },
                       scopedSlots: _vm._u(

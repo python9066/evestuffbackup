@@ -112,7 +112,8 @@
                 <v-card width="100%">
                     <v-data-table
                         :search="search"
-                        single-expand
+                        :single-expand="singleExpand"
+                        :expanded.sync="expanded"
                         :headers="_headers"
                         :items="filter_end"
                         :loading="loadingt"
@@ -350,7 +351,9 @@ export default {
             windowSize: {
                 x: 0,
                 y: 0
-            }
+            },
+            expanded: [],
+            expanded_id: 0
         };
     },
 
