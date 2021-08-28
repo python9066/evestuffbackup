@@ -292,6 +292,10 @@ export default {
     },
 
     async created() {
+        await this.$store.dispatch("getCoordStationRecords");
+        await this.$store.dispatch("getCoordRegions");
+        await this.$store.dispatch("getCoordItems");
+        await this.$store.dispatch("getCoordStatus");
         if (this.$can("super")) {
             await this.$store.dispatch("getAllianceTickList");
             await this.$store.dispatch("getTickList");
@@ -309,10 +313,7 @@ export default {
         if (this.$can("view_coord_sheet")) {
             await this.$store.dispatch("loadStationInfo");
         }
-        await this.$store.dispatch("getCoordRegions");
-        await this.$store.dispatch("getCoordStationRecords");
-        await this.$store.dispatch("getCoordItems");
-        await this.$store.dispatch("getCoordStatus");
+
         this.loadingt = false;
         Echo.private("coord")
             .listen("StationUpdateCoord", e => {
@@ -587,11 +588,7 @@ export default {
         ]),
 
         filterSet() {
-            if ((this.loadingt = false)) {
-                return this.stations;
-            } else {
-                return [];
-            }
+            return this.stations;
         },
         filter_start() {
             let data = [];

@@ -27362,58 +27362,58 @@ function sleep(ms) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              if (!_this.$can("super")) {
-                _context.next = 5;
-                break;
-              }
+              _context.next = 2;
+              return _this.$store.dispatch("getCoordStationRecords");
 
-              _context.next = 3;
-              return _this.$store.dispatch("getAllianceTickList");
+            case 2:
+              _context.next = 4;
+              return _this.$store.dispatch("getCoordRegions");
 
-            case 3:
-              _context.next = 5;
-              return _this.$store.dispatch("getTickList");
+            case 4:
+              _context.next = 6;
+              return _this.$store.dispatch("getCoordItems");
 
-            case 5:
-              if (!_this.$can("view_station_logs")) {
-                _context.next = 9;
-                break;
-              }
-
+            case 6:
               _context.next = 8;
-              return _this.$store.dispatch("getLoggingStations");
+              return _this.$store.dispatch("getCoordStatus");
 
             case 8:
+              if (!_this.$can("super")) {
+                _context.next = 13;
+                break;
+              }
+
+              _context.next = 11;
+              return _this.$store.dispatch("getAllianceTickList");
+
+            case 11:
+              _context.next = 13;
+              return _this.$store.dispatch("getTickList");
+
+            case 13:
+              if (!_this.$can("view_station_logs")) {
+                _context.next = 17;
+                break;
+              }
+
+              _context.next = 16;
+              return _this.$store.dispatch("getLoggingStations");
+
+            case 16:
               Echo["private"]("stationlogs").listen("StationLogUpdate", function (e) {
                 if (e.flag.message != null) {
                   _this.$store.dispatch("addLoggingStation", e.flag.message);
                 }
               });
 
-            case 9:
+            case 17:
               if (!_this.$can("view_coord_sheet")) {
-                _context.next = 12;
+                _context.next = 20;
                 break;
               }
 
-              _context.next = 12;
-              return _this.$store.dispatch("loadStationInfo");
-
-            case 12:
-              _context.next = 14;
-              return _this.$store.dispatch("getCoordRegions");
-
-            case 14:
-              _context.next = 16;
-              return _this.$store.dispatch("getCoordStationRecords");
-
-            case 16:
-              _context.next = 18;
-              return _this.$store.dispatch("getCoordItems");
-
-            case 18:
               _context.next = 20;
-              return _this.$store.dispatch("getCoordStatus");
+              return _this.$store.dispatch("loadStationInfo");
 
             case 20:
               _this.loadingt = false;
@@ -27656,11 +27656,7 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["coordsheetRegion", "coordsheetItem", "coordsheetStatus", "stations"])), {}, (_objectSpread2 = {
     filterSet: function filterSet() {
-      if (this.loadingt = false) {
-        return this.stations;
-      } else {
-        return [];
-      }
+      return this.stations;
     },
     filter_start: function filter_start() {
       var _this4 = this;
