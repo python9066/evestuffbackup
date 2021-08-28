@@ -1,5 +1,5 @@
 <template>
-    <div class="pr-16 pl-16">
+    <div class="pr-16 pl-16 pt-3 pb-3">
         <div class=" d-flex align-items-center"></div>
         <v-data-table
             :headers="headers"
@@ -12,7 +12,9 @@
             <template v-slot:top>
                 <v-toolbar flat>
                     <v-toolbar-title
-                        >Logs for {{ station.name }}</v-toolbar-title
+                        >Logs for {{ station.name }} id={{
+                            station.id
+                        }}</v-toolbar-title
                     >
                     <v-spacer></v-spacer>
                 </v-toolbar>

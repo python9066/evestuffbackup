@@ -20526,6 +20526,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -56857,7 +56859,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "pr-16 pl-16" },
+    { staticClass: "pr-16 pl-16 pt-3 pb-3" },
     [
       _c("div", { staticClass: " d-flex align-items-center" }),
       _vm._v(" "),
@@ -56881,7 +56883,12 @@ var render = function() {
                     { attrs: { flat: "" } },
                     [
                       _c("v-toolbar-title", [
-                        _vm._v("Logs for " + _vm._s(_vm.station.name))
+                        _vm._v(
+                          "Logs for " +
+                            _vm._s(_vm.station.name) +
+                            " id=" +
+                            _vm._s(_vm.station.id)
+                        )
                       ]),
                       _vm._v(" "),
                       _c("v-spacer")
