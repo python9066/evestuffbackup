@@ -419,8 +419,7 @@ class StationController extends Controller
         }
         $new = Station::Create($request->all());
         $now = now();
-        $noteText = $now . " -  Submitted By :" . Auth::user()->name;
-        $new->update(['id' => $id, 'added_by_user_id' => Auth::id(), "notes" => $noteText]);
+        $new->update(['id' => $id, 'added_by_user_id' => Auth::id()]);
         $message = StationRecords::where('id', $new->id)->first();
         $flag = collect([
             'message' => $message
@@ -509,8 +508,8 @@ class StationController extends Controller
     public function update(Request $request, $id)
     {
 
-        $oldStatusID = Station::where('id', $id)->pluck('station_status_id');
-        $oldStatusName = StationStatus::where('id', $oldStatusID)->pluck('name');
+        $oldStatusID = Station::where('id', $id)->value('station_status_id');
+        $oldStatusName = StationStatus::where('id', $oldStatusID)->value('name');
 
         $RCmessage = RcStationRecords::where('id', $id)->first();
         if ($RCmessage) {
@@ -527,11 +526,10 @@ class StationController extends Controller
 
 
         $newStatusID = $request->station_status_id;
-        $newStatusName = StationStatus::where('id', $newStatusID)->pluck('name');
+        $newStatusName = StationStatus::where('id', $newStatusID)->value('name');
         $new = Station::find($id)->update($request->all());
         $now = now();
-        $noteText = $now . " -  Submitted By :" . Auth::user()->name;
-        Station::find($id)->update(['added_by_user_id' => Auth::id(), "notes" => $noteText, "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null,]);
+        Station::find($id)->update(['added_by_user_id' => Auth::id(), "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null,]);
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message
@@ -613,7 +611,6 @@ class StationController extends Controller
     {
 
         $now = now();
-        $noteText = $now . " -  Submitted By :" . Auth::user()->name . " Station Destoryed";
         $stationName = Station::find($id)->value('name');
 
         $RCmessage = RcStationRecords::where('id', $id)->first();
@@ -627,12 +624,12 @@ class StationController extends Controller
         broadcast(new RcSheetUpdate($flag));
 
 
-        Station::where('id', $id)->update(['show_on_rc' => 0, 'show_on_coord' => 1, "notes" => $noteText, 'station_status_id' => 7, "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null]);
+        Station::where('id', $id)->update(['show_on_rc' => 0, 'show_on_coord' => 1, 'station_status_id' => 7, "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null]);
 
         $oldStatusID = Station::where('id', $id)->pluck('station_status_id')->first();
-        $oldStatusName = StationStatus::where('id', $oldStatusID)->pluck('name')->first();
+        $oldStatusName = StationStatus::where('id', $oldStatusID)->value('name');
         $newStatusID = 7;
-        $newStatusName = StationStatus::where('id', $newStatusID)->pluck('name')->first();
+        $newStatusName = StationStatus::where('id', $newStatusID)->value('name');
 
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
