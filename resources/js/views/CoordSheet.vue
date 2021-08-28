@@ -281,9 +281,8 @@ export default {
                     align: "center"
                 },
                 {
-                    text: "Gunner/Info",
-                    value: "actions",
-                    align: "start"
+                    text: "",
+                    value: "actions"
                 }
             ]
         };

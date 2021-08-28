@@ -27346,9 +27346,8 @@ function sleep(ms) {
         value: "station_status_name",
         align: "center"
       }, {
-        text: "Gunner/Info",
-        value: "actions",
-        align: "start"
+        text: "",
+        value: "actions"
       }]
     };
   },
