@@ -69780,8 +69780,8 @@ window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/d
 
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: '588e30b463a02a48ec1c',
-  // key: 'python9066',
+  // key: '588e30b463a02a48ec1c',
+  key: 'python9066',
   cluster: 'eu',
   wsHost: 'socket.evestuff.online',
   wsPort: 443,
