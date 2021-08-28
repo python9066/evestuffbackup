@@ -31745,7 +31745,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -32313,7 +32312,7 @@ function sleep(ms) {
           text: "",
           value: "actions"
         }, {
-          text: "",
+          text: "555",
           value: "data-table-expand"
         }];
       } else if (this.$can("view_gsol_killsheet")) {
@@ -67636,6 +67635,7 @@ var render = function() {
                       )
                     },
                     [
+                      _vm._v(" "),
                       _vm._v(" "),
                       _vm._v(" "),
                       _vm._v(" "),

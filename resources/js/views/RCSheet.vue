@@ -291,14 +291,13 @@
                                 </div>
                             </div>
                         </template>
-                        <template slot="no-data">
-                            No Active or Upcoming Campaigns
-                        </template>
-
                         <template v-slot:expanded-item="{ headers, item }">
                             <td :colspan="headers.length">
                                 More info about {{ item.name }}
                             </td>
+                        </template>
+                        <template slot="no-data">
+                            No Active or Upcoming Campaigns
                         </template>
                     </v-data-table>
                 </v-card>
@@ -783,7 +782,7 @@ export default {
                     { text: "Cyno", value: "recon_name" },
                     { text: "GSOL", value: "gsol_name" },
                     { text: "", value: "actions" },
-                    { text: "", value: "data-table-expand" }
+                    { text: "555", value: "data-table-expand" }
                 ];
             } else if (this.$can("view_gsol_killsheet")) {
                 var Headers = [
