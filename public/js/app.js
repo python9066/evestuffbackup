@@ -27290,6 +27290,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -63920,80 +63923,87 @@ var render = function() {
                                           : _vm._e()
                                       ],
                                       1
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _vm.$can("view_station_logs")
-                                  ? _c(
-                                      "div",
-                                      [
-                                        _c(
-                                          "v-btn",
-                                          {
-                                            directives: [
-                                              {
-                                                name: "show",
-                                                rawName: "v-show",
-                                                value: !_vm.expanded.includes(
-                                                  item
-                                                ),
-                                                expression:
-                                                  "!expanded.includes(item)"
-                                              }
-                                            ],
-                                            staticClass: " pb-3",
-                                            attrs: { icon: "", color: "blue" },
-                                            on: {
-                                              click: function($event) {
-                                                ;(_vm.expanded = [item]),
-                                                  (_vm.expanded_id = item.id)
-                                              }
-                                            }
-                                          },
+                                    ),
+                                    _vm._v(" "),
+                                    _vm.$can("view_station_logs")
+                                      ? _c(
+                                          "div",
                                           [
-                                            _c("v-icon", [
-                                              _vm._v(" faSvg fa-history")
-                                            ])
-                                          ],
-                                          1
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-btn",
-                                          {
-                                            directives: [
+                                            _c(
+                                              "v-btn",
                                               {
-                                                name: "show",
-                                                rawName: "v-show",
-                                                value: _vm.expanded.includes(
-                                                  item
-                                                ),
-                                                expression:
-                                                  "expanded.includes(item)"
-                                              }
-                                            ],
-                                            staticClass: " pb-3",
-                                            attrs: { icon: "", color: "error" },
-                                            on: {
-                                              click: function($event) {
-                                                ;(_vm.expanded = []),
-                                                  (_vm.expanded_id = 0)
-                                              }
-                                            }
-                                          },
-                                          [
-                                            _c("v-icon", [
-                                              _vm._v(" faSvg fa-history")
-                                            ])
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value: !_vm.expanded.includes(
+                                                      item
+                                                    ),
+                                                    expression:
+                                                      "!expanded.includes(item)"
+                                                  }
+                                                ],
+                                                staticClass: " pb-3",
+                                                attrs: {
+                                                  icon: "",
+                                                  color: "blue"
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    ;(_vm.expanded = [item]),
+                                                      (_vm.expanded_id =
+                                                        item.id)
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("v-icon", [
+                                                  _vm._v(" faSvg fa-history")
+                                                ])
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-btn",
+                                              {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value: _vm.expanded.includes(
+                                                      item
+                                                    ),
+                                                    expression:
+                                                      "expanded.includes(item)"
+                                                  }
+                                                ],
+                                                staticClass: " pb-3",
+                                                attrs: {
+                                                  icon: "",
+                                                  color: "error"
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    ;(_vm.expanded = []),
+                                                      (_vm.expanded_id = 0)
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("v-icon", [
+                                                  _vm._v(" faSvg fa-history")
+                                                ])
+                                              ],
+                                              1
+                                            )
                                           ],
                                           1
                                         )
-                                      ],
-                                      1
-                                    )
-                                  : _vm._e()
+                                      : _vm._e()
+                                  ],
+                                  1
+                                )
                               ]
                             }
                           },
