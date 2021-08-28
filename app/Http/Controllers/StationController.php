@@ -376,7 +376,7 @@ class StationController extends Controller
                         StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
                     };
                 };
-                $text = Auth::user()->name .  " changed the station name from " . $oldName . " to " . $name . " at " . now();
+                $text = Auth::user()->name .  " changed the station name from " . $oldName . " to " . $name;
                 Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
                 Logging::where('station_id', $id)->update(['station_id' => $stationdata['str_structure_id']]);
 
@@ -391,7 +391,7 @@ class StationController extends Controller
 
             Station::where('id', $id)->update(['name' => $name, 'added_from_recon' => 0]);
 
-            $text = Auth::user()->name .  " changed the station name from " . $oldName . " to " . $name . " at " . now();
+            $text = Auth::user()->name .  " changed the station name from " . $oldName . " to " . $name;
             Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
 
             $message = StationRecords::where('id', $id)->first();
@@ -426,7 +426,7 @@ class StationController extends Controller
         ]);
         broadcast(new StationNotificationNew($flag));
         broadcast(new RcMoveUpdate($flag));
-        $text = Auth::user()->name . " Added " . $request->name . " At " . now();
+        $text = "Added by " . Auth::user()->name;
         $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 17, 'text' => $text]);
     }
 
@@ -539,7 +539,7 @@ class StationController extends Controller
         broadcast(new StationNotificationUpdate($flag));
         broadcast(new StationUpdateCoord($flag));
 
-        $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' at ' . now();
+        $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName;
         $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }
 
@@ -582,12 +582,12 @@ class StationController extends Controller
 
 
         if ($request->station_status_id != $oldStation->station_status_id) {
-            $text = Auth::user()->name .  " changed the Status from " . $oldStatus . " to " . $newStatus . " at " . now();
+            $text = Auth::user()->name .  " changed the Status from " . $oldStatus . " to " . $newStatus;
             Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
         }
 
         if ($request->out_time != $oldStation->out_time) {
-            $text = Auth::user()->name .  " changed the timer from " . $oldStation->out_time . " to " . $request->out_time . " at " . now();
+            $text = Auth::user()->name .  " changed the timer from " . $oldStation->out_time . " to " . $request->out_time;
             Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
         }
     }
@@ -648,7 +648,8 @@ class StationController extends Controller
 
 
 
-        $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' for ' . $stationName . ' at ' . now();
+        $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName;
         $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
+        dd($logNew);
     }
 }
