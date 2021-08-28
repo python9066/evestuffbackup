@@ -31840,26 +31840,35 @@ function sleep(ms) {
               return _this.$store.dispatch("loadStationInfo");
 
             case 8:
-              _context.next = 10;
+              if (!_this.$can("view_station_logs")) {
+                _context.next = 11;
+                break;
+              }
+
+              _context.next = 11;
+              return _this.$store.dispatch("getLoggingStations");
+
+            case 11:
+              _context.next = 13;
               return _this.$store.dispatch("getRcRegions");
 
-            case 10:
-              _context.next = 12;
+            case 13:
+              _context.next = 15;
               return _this.$store.dispatch("getRcStationRecords");
 
-            case 12:
-              _context.next = 14;
+            case 15:
+              _context.next = 17;
               return _this.$store.dispatch("getRcFcs");
 
-            case 14:
-              _context.next = 16;
+            case 17:
+              _context.next = 19;
               return _this.$store.dispatch("getRcItems");
 
-            case 16:
-              _context.next = 18;
+            case 19:
+              _context.next = 21;
               return _this.$store.dispatch("getRcStatus");
 
-            case 18:
+            case 21:
               _this.loadingt = false;
               Echo["private"]("rcsheet").listen("RcSheetUpdate", function (e) {
                 if (e.flag.message != null) {
@@ -31880,21 +31889,21 @@ function sleep(ms) {
               });
 
               if (!_this.$can("view_admin_logs")) {
-                _context.next = 24;
+                _context.next = 27;
                 break;
               }
 
-              _context.next = 23;
+              _context.next = 26;
               return _this.$store.dispatch("getLoggingRcSheet");
 
-            case 23:
+            case 26:
               Echo["private"]("rcsheetadminlogs").listen("RcSheetAddLogging", function (e) {
                 console.log("ytoyoyo");
 
                 _this.$store.dispatch("addLoggingRcSheet", e.flag.message);
               });
 
-            case 24:
+            case 27:
             case "end":
               return _context.stop();
           }
