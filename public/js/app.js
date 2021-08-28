@@ -20581,7 +20581,7 @@ function sleep(ms) {
   methods: {},
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getStationLogsByID"])), {}, {
     filteredItems: function filteredItems() {
-      return this.getStationLogsByID(this.$store.getters.station.id);
+      return this.getStationLogsByID(this.station.id);
     }
   }),
   beforeDestroy: function beforeDestroy() {}
