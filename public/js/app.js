@@ -27354,7 +27354,7 @@ function sleep(ms) {
       }]
     };
   },
-  created: function created() {
+  beforeCreate: function beforeCreate() {
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -27363,11 +27363,11 @@ function sleep(ms) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this.$store.dispatch("getCoordStationRecords");
+              return _this.$store.dispatch("getCoordRegions");
 
             case 2:
               _context.next = 4;
-              return _this.$store.dispatch("getCoordRegions");
+              return _this.$store.dispatch("getCoordStationRecords");
 
             case 4:
               _context.next = 6;
@@ -27378,58 +27378,6 @@ function sleep(ms) {
               return _this.$store.dispatch("getCoordStatus");
 
             case 8:
-              if (!_this.$can("super")) {
-                _context.next = 13;
-                break;
-              }
-
-              _context.next = 11;
-              return _this.$store.dispatch("getAllianceTickList");
-
-            case 11:
-              _context.next = 13;
-              return _this.$store.dispatch("getTickList");
-
-            case 13:
-              if (!_this.$can("view_station_logs")) {
-                _context.next = 17;
-                break;
-              }
-
-              _context.next = 16;
-              return _this.$store.dispatch("getLoggingStations");
-
-            case 16:
-              Echo["private"]("stationlogs").listen("StationLogUpdate", function (e) {
-                if (e.flag.message != null) {
-                  _this.$store.dispatch("addLoggingStation", e.flag.message);
-                }
-              });
-
-            case 17:
-              if (!_this.$can("view_coord_sheet")) {
-                _context.next = 20;
-                break;
-              }
-
-              _context.next = 20;
-              return _this.$store.dispatch("loadStationInfo");
-
-            case 20:
-              _this.loadingt = false;
-              Echo["private"]("coord").listen("StationUpdateCoord", function (e) {
-                if (e.flag.message != null) {
-                  _this.$store.dispatch("updateStationNotification", e.flag.message);
-                }
-
-                if (e.flag.flag == 1) {
-                  _this.freshUpdate();
-                }
-              }).listen("StationDeadCoord", function (e) {
-                _this.$store.dispatch("deleteStationNotification", e.flag.id);
-              });
-
-            case 22:
             case "end":
               return _context.stop();
           }
@@ -27437,7 +27385,7 @@ function sleep(ms) {
       }, _callee);
     }))();
   },
-  mounted: function mounted() {
+  created: function created() {
     var _this2 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -27445,16 +27393,83 @@ function sleep(ms) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _this2.log();
+              if (!_this2.$can("super")) {
+                _context2.next = 5;
+                break;
+              }
 
-              _this2.onResize();
+              _context2.next = 3;
+              return _this2.$store.dispatch("getAllianceTickList");
 
-            case 2:
+            case 3:
+              _context2.next = 5;
+              return _this2.$store.dispatch("getTickList");
+
+            case 5:
+              if (!_this2.$can("view_station_logs")) {
+                _context2.next = 9;
+                break;
+              }
+
+              _context2.next = 8;
+              return _this2.$store.dispatch("getLoggingStations");
+
+            case 8:
+              Echo["private"]("stationlogs").listen("StationLogUpdate", function (e) {
+                if (e.flag.message != null) {
+                  _this2.$store.dispatch("addLoggingStation", e.flag.message);
+                }
+              });
+
+            case 9:
+              if (!_this2.$can("view_coord_sheet")) {
+                _context2.next = 12;
+                break;
+              }
+
+              _context2.next = 12;
+              return _this2.$store.dispatch("loadStationInfo");
+
+            case 12:
+              _this2.loadingt = false;
+              Echo["private"]("coord").listen("StationUpdateCoord", function (e) {
+                if (e.flag.message != null) {
+                  _this2.$store.dispatch("updateStationNotification", e.flag.message);
+                }
+
+                if (e.flag.flag == 1) {
+                  _this2.freshUpdate();
+                }
+              }).listen("StationDeadCoord", function (e) {
+                _this2.$store.dispatch("deleteStationNotification", e.flag.id);
+              });
+
+            case 14:
             case "end":
               return _context2.stop();
           }
         }
       }, _callee2);
+    }))();
+  },
+  mounted: function mounted() {
+    var _this3 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _this3.log();
+
+              _this3.onResize();
+
+            case 2:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
     }))();
   },
   methods: {
@@ -27475,38 +27490,38 @@ function sleep(ms) {
       });
     },
     freshUpdate: function freshUpdate() {
-      var _this3 = this;
+      var _this4 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                _context3.next = 2;
-                return _this3.$store.dispatch("getCoordStationRecords");
+                _context4.next = 2;
+                return _this4.$store.dispatch("getCoordStationRecords");
 
               case 2:
-                _context3.next = 4;
-                return _this3.$store.dispatch("loadStationInfo");
+                _context4.next = 4;
+                return _this4.$store.dispatch("loadStationInfo");
 
               case 4:
-                _context3.next = 6;
-                return _this3.$store.dispatch("getCoordRegions");
+                _context4.next = 6;
+                return _this4.$store.dispatch("getCoordRegions");
 
               case 6:
-                _context3.next = 8;
-                return _this3.$store.dispatch("getCoordItems");
+                _context4.next = 8;
+                return _this4.$store.dispatch("getCoordItems");
 
               case 8:
-                _context3.next = 10;
-                return _this3.$store.dispatch("getCoordStatus");
+                _context4.next = 10;
+                return _this4.$store.dispatch("getCoordStatus");
 
               case 10:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3);
+        }, _callee4);
       }))();
     },
     buttontext: function buttontext(item) {
@@ -27654,18 +27669,18 @@ function sleep(ms) {
       }
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["coordsheetRegion", "coordsheetItem", "coordsheetStatus", "stations"])), {}, (_objectSpread2 = {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["coordsheetRegion", "coordsheetItem", "coordsheetStatus"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getShowOnCoordStations"])), {}, (_objectSpread2 = {
     filterSet: function filterSet() {
-      return this.stations;
+      return this.getShowOnCoordStations;
     },
     filter_start: function filter_start() {
-      var _this4 = this;
+      var _this5 = this;
 
       var data = [];
 
       if (this.statusPicked.length != 0) {
         this.statusPicked.forEach(function (p) {
-          var pick = _this4.filterSet.filter(function (f) {
+          var pick = _this5.filterSet.filter(function (f) {
             return f.station_status_id == p;
           });
 
@@ -27681,13 +27696,13 @@ function sleep(ms) {
       return this.filterSet;
     },
     filter_mid: function filter_mid() {
-      var _this5 = this;
+      var _this6 = this;
 
       var data = [];
 
       if (this.itemPicked.length != 0) {
         this.itemPicked.forEach(function (p) {
-          var pick = _this5.filter_start.filter(function (f) {
+          var pick = _this6.filter_start.filter(function (f) {
             return f.item_id == p;
           });
 
@@ -27703,13 +27718,13 @@ function sleep(ms) {
       return this.filter_start;
     },
     filter_end: function filter_end() {
-      var _this6 = this;
+      var _this7 = this;
 
       var data = [];
 
       if (this.regionPicked.length != 0) {
         this.regionPicked.forEach(function (p) {
-          var pick = _this6.filter_mid.filter(function (f) {
+          var pick = _this7.filter_mid.filter(function (f) {
             return f.region_id == p;
           });
 
@@ -80873,6 +80888,11 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
           return sys.custom_campaign_id == id && sys.warmup == 1 && (sys.status_id == 7 || sys.status_id == 5);
         }).length;
       };
+    },
+    getShowOnCoordStations: function getShowOnCoordStations(state) {
+      return state.stations.filter(function (stations) {
+        return stations.show_on_coord == 1;
+      });
     },
     getTotalNodeCountBySystem: function getTotalNodeCountBySystem(state) {
       return function (payload) {

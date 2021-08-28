@@ -291,11 +291,14 @@ export default {
         };
     },
 
-    async created() {
-        await this.$store.dispatch("getCoordStationRecords");
+    async beforeCreate() {
         await this.$store.dispatch("getCoordRegions");
+        await this.$store.dispatch("getCoordStationRecords");
         await this.$store.dispatch("getCoordItems");
         await this.$store.dispatch("getCoordStatus");
+    },
+
+    async created() {
         if (this.$can("super")) {
             await this.$store.dispatch("getAllianceTickList");
             await this.$store.dispatch("getTickList");
@@ -580,15 +583,11 @@ export default {
     },
 
     computed: {
-        ...mapState([
-            "coordsheetRegion",
-            "coordsheetItem",
-            "coordsheetStatus",
-            "stations"
-        ]),
+        ...mapState(["coordsheetRegion", "coordsheetItem", "coordsheetStatus"]),
+        ...mapGetters(["getShowOnCoordStations"]),
 
         filterSet() {
-            return this.stations;
+            return this.getShowOnCoordStations;
         },
         filter_start() {
             let data = [];
