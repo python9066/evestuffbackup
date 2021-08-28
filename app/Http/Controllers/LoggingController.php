@@ -122,32 +122,28 @@ class LoggingController extends Controller
     public function stationLogging()
     {
         // dd($campid);
-        $check = Auth::user();
-        if ($check->hasPermissionTo('view_station_logs')) {
-            $data = [];
-            $logs = Logging::where('logging_type_id', '>', 16)->where('logging_type_id', '<', 25)->get();
-            dd($logs);
-            foreach ($logs as $log) {
-                $timne = Helper::fixtime($log['created_at']);
-                $data1 = null;
-                $data1 = [
-                    'id' => $log['id'],
-                    'user_id' => $log['user_id'],
-                    'user_name' => $log->user()->value('name'),
-                    'logging_type_id' => $log['logging_type_id'],
-                    'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
-                    'station_id' => $log['station_id'],
-                    'station_name' => Station::where('id', $log['station_id'])->value('name'),
-                    'text' => $log['text'],
-                    'created_at' => $timne
-                ];
-                array_push($data, $data1);
-            }
 
-            return ["logs" => $data];
-        } else {
-            return ["logs" => null];
+        $data = [];
+        $logs = Logging::where('logging_type_id', '>', 16)->where('logging_type_id', '<', 25)->get();
+        dd($logs);
+        foreach ($logs as $log) {
+            $timne = Helper::fixtime($log['created_at']);
+            $data1 = null;
+            $data1 = [
+                'id' => $log['id'],
+                'user_id' => $log['user_id'],
+                'user_name' => $log->user()->value('name'),
+                'logging_type_id' => $log['logging_type_id'],
+                'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
+                'station_id' => $log['station_id'],
+                'station_name' => Station::where('id', $log['station_id'])->value('name'),
+                'text' => $log['text'],
+                'created_at' => $timne
+            ];
+            array_push($data, $data1);
         }
+
+        return ["logs" => $data];
     }
 
     public function logAdmin()
