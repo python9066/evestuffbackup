@@ -68,7 +68,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        stations.attack_adash_link AS 'attack_adash_link',
        if(((stations.attack_notes IS NULL) AND (stations.attack_adash_link IS NULL)),0,1) AS under_attack,
        stations.repair_time AS 'repair_time',
-       alliances.standing AS 'standing',
+       if(stations.corp_id IS NULL,0,alliances.standing) AS 'standing',
        alliances.url AS 'url',
        stations.timer_image_link AS timer_image_link,
        stations.show_on_main AS 'show_on_main',

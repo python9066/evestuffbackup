@@ -12,7 +12,7 @@ class CoordSheetController extends Controller
 
 
     {
-        return ['stations' => StationRecords::where('show_on_coord', 1)->where('standing', '<=', 0)->where('standing', null)->get()];
+        return ['stations' => StationRecords::where('show_on_coord', 1)->where('standing', '<=', 0)->get()];
     }
 
     public function coordSheetListItem()
