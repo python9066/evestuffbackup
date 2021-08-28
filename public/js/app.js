@@ -31773,6 +31773,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -67601,6 +67603,7 @@ var render = function() {
                                                   "!expanded.includes(item)"
                                               }
                                             ],
+                                            staticClass: " mb-2",
                                             attrs: { icon: "", color: "green" },
                                             on: {
                                               click: function($event) {
@@ -67631,6 +67634,7 @@ var render = function() {
                                                   "expanded.includes(item)"
                                               }
                                             ],
+                                            staticClass: " mb-2",
                                             attrs: { icon: "", color: "error" },
                                             on: {
                                               click: function($event) {
