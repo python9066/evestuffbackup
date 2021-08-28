@@ -15,6 +15,7 @@ use App\Models\StationItemJoin;
 use App\Models\StationItems;
 use App\Models\Corp;
 use App\Models\Item;
+use App\Models\Logging;
 use App\Models\System;
 use Illuminate\Support\Facades\Auth;
 
@@ -134,6 +135,9 @@ class RCSheet extends Controller
                     }
                 }
             }
+
+            $logStation = Station::where('rc_id', $input['id'])->first();
+            Logging::create(['station_id' => $logStation->id, 'logging_type_id' => 18, 'text' => "Added from RC2"]);
         }
 
         Station::where('show_on_rc', 5)->update(['rc_id' => null, 'station_status_id' => 18]);

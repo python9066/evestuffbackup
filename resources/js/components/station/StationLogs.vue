@@ -7,6 +7,8 @@
             item-key="id"
             :items-per-page="10"
             class="elevation-1"
+            :sort-by="['created_at']"
+            :sort-desc="[false, true]"
         >
             >
             <template v-slot:top>
@@ -46,11 +48,13 @@ export default {
             headers: [
                 {
                     text: "Logs",
-                    value: "text"
+                    value: "text",
+                    width: "80%"
                 },
                 {
                     text: "Date",
-                    value: "created_at"
+                    value: "created_at",
+                    align: "end"
                 }
             ]
         };

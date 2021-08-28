@@ -20528,6 +20528,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -20550,10 +20552,12 @@ function sleep(ms) {
     return {
       headers: [{
         text: "Logs",
-        value: "text"
+        value: "text",
+        width: "80%"
       }, {
         text: "Date",
-        value: "created_at"
+        value: "created_at",
+        align: "end"
       }]
     };
   },
@@ -56875,7 +56879,9 @@ var render = function() {
             headers: _vm.headers,
             items: _vm.filteredItems,
             "item-key": "id",
-            "items-per-page": 10
+            "items-per-page": 10,
+            "sort-by": ["created_at"],
+            "sort-desc": [false, true]
           },
           scopedSlots: _vm._u([
             {
