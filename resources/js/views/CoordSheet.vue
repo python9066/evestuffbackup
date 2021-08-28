@@ -579,11 +579,16 @@ export default {
     },
 
     computed: {
-        ...mapState(["coordsheetRegion", "coordsheetItem", "coordsheetStatus"]),
+        ...mapState([
+            "coordsheetRegion",
+            "coordsheetItem",
+            "coordsheetStatus",
+            "stations"
+        ]),
         ...mapGetters(["getShowOnCoordStations"]),
 
         filterSet() {
-            return this.getShowOnCoordStations;
+            return this.stations;
         },
         filter_start() {
             let data = [];
