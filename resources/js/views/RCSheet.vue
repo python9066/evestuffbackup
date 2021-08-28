@@ -321,9 +321,7 @@
                             height="100%"
                         >
                             <td :colspan="headers.length" align="center">
-                                <div>
-                                    {{ item.name }}
-                                </div>
+                                <StationLogs :station="item"></StationLogs>
                             </td>
                         </template>
                         <template slot="no-data">

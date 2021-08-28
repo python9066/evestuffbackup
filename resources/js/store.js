@@ -1889,6 +1889,16 @@ export default new Vuex.Store({
             }
         },
 
+        getStationLogsByID: state => stationid => {
+            let pull = state.loggingStations.filter(s => s.station_id == stationid)
+            let count = pull.length
+            if (count != 0) {
+                return pull
+            } else {
+                return []
+            }
+        },
+
         getEveCount: state => {
             return state.eveUserCount;
         },
