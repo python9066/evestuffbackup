@@ -291,14 +291,15 @@
                                 </div>
                                 <div>
                                     <v-btn
-                                    @click="
-                                    (expanded = [item]), (expanded_id = item.id)
-                                "
-                                    icon
-                                    color="green"
-                                >
-                                    <v-icon> fas fa-map fa-xs</v-icon>
-                                </v-btn>
+                                        @click="
+                                            (expanded = [item]),
+                                                (expanded_id = item.id)
+                                        "
+                                        icon
+                                        color="green"
+                                    >
+                                        <v-icon> fas fa-map fa-xs</v-icon>
+                                    </v-btn>
                                 </div>
                             </div>
                         </template>
@@ -309,7 +310,8 @@
                         >
                             <td :colspan="headers.length" align="center">
                                 <div>
-                                    {{item.name}}
+                                    {{ item.name }}
+                                </div>
                             </td>
                         </template>
                         <template slot="no-data">
@@ -364,7 +366,7 @@ export default {
                 y: 0
             },
             expanded: [],
-            expanded_id:0
+            expanded_id: 0
         };
     },
 
