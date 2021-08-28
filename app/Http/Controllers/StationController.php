@@ -650,6 +650,6 @@ class StationController extends Controller
 
         $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName;
         $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
-        dd($logNew);
+        dd($logNew->id);
     }
 }
