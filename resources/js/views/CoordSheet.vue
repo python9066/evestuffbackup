@@ -97,6 +97,7 @@
                         item-key="id"
                         :height="height"
                         fixed-header
+                        :expanded.sync="expanded"
                         :loading="loadingt"
                         :items-per-page="50"
                         :footer-props="{
@@ -169,6 +170,39 @@
                                     ></Info>
                                 </div>
                             </div>
+                            <div v-if="$can('view_station_logs')">
+                                <v-btn
+                                    @click="
+                                        (expanded = [item]),
+                                            (expanded_id = item.id)
+                                    "
+                                    v-show="!expanded.includes(item)"
+                                    icon
+                                    class=" pb-3"
+                                    color="blue"
+                                >
+                                    <v-icon> faSvg fa-history</v-icon>
+                                </v-btn>
+                                <v-btn
+                                    @click="(expanded = []), (expanded_id = 0)"
+                                    v-show="expanded.includes(item)"
+                                    icon
+                                    class=" pb-3"
+                                    color="error"
+                                >
+                                    <v-icon> faSvg fa-history</v-icon>
+                                </v-btn>
+                            </div>
+                        </template>
+                        <template
+                            v-slot:expanded-item="{ headers, item }"
+                            inset
+                            class="align-center"
+                            height="100%"
+                        >
+                            <td :colspan="headers.length" align="center">
+                                <StationLogs :station="item"></StationLogs>
+                            </td>
                         </template>
                     </v-data-table>
                 </v-card>
@@ -209,6 +243,8 @@ export default {
             snackColor: "",
             snackText: "",
             loadingt: true,
+            expanded: [],
+            expanded_id: 0,
             windowSize: {
                 x: 0,
                 y: 0
@@ -265,6 +301,15 @@ export default {
         if (this.$can("super")) {
             await this.$store.dispatch("getAllianceTickList");
             await this.$store.dispatch("getTickList");
+        }
+
+        if (this.$can("view_station_logs")) {
+            await this.$store.dispatch("getLoggingStations");
+            Echo.private("stationlogs").listen("StationLogUpdate", e => {
+                if (e.flag.message != null) {
+                    this.$store.dispatch("addLoggingStation", e.flag.message);
+                }
+            });
         }
 
         if (this.$can("view_coord_sheet")) {
@@ -622,6 +667,7 @@ export default {
     },
     beforeDestroy() {
         Echo.leave("coord");
+        Echo.leave("stationlogs");
     }
 };
 </script>

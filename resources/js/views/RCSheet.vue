@@ -121,7 +121,7 @@
                         id="table"
                         item-key="id"
                         :sort-by="['end_time']"
-                        :sort-desc="[false, true]"
+                        :sort-desc="[true, false]"
                         multi-sort
                         :items-per-page="50"
                         :footer-props="{
@@ -842,6 +842,7 @@ export default {
     },
     beforeDestroy() {
         Echo.leave("rcsheet");
+        Echo.leave("stationlogs");
     }
 };
 </script>

@@ -27256,6 +27256,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -27283,6 +27317,8 @@ function sleep(ms) {
       snackColor: "",
       snackText: "",
       loadingt: true,
+      expanded: [],
+      expanded_id: 0,
       windowSize: {
         x: 0,
         y: 0
@@ -27345,31 +27381,47 @@ function sleep(ms) {
               return _this.$store.dispatch("getTickList");
 
             case 5:
-              if (!_this.$can("view_coord_sheet")) {
-                _context.next = 8;
+              if (!_this.$can("view_station_logs")) {
+                _context.next = 9;
                 break;
               }
 
               _context.next = 8;
-              return _this.$store.dispatch("loadStationInfo");
+              return _this.$store.dispatch("getLoggingStations");
 
             case 8:
-              _context.next = 10;
-              return _this.$store.dispatch("getCoordRegions");
+              Echo["private"]("stationlogs").listen("StationLogUpdate", function (e) {
+                if (e.flag.message != null) {
+                  _this.$store.dispatch("addLoggingStation", e.flag.message);
+                }
+              });
 
-            case 10:
+            case 9:
+              if (!_this.$can("view_coord_sheet")) {
+                _context.next = 12;
+                break;
+              }
+
               _context.next = 12;
-              return _this.$store.dispatch("getCoordStationRecords");
+              return _this.$store.dispatch("loadStationInfo");
 
             case 12:
               _context.next = 14;
-              return _this.$store.dispatch("getCoordItems");
+              return _this.$store.dispatch("getCoordRegions");
 
             case 14:
               _context.next = 16;
-              return _this.$store.dispatch("getCoordStatus");
+              return _this.$store.dispatch("getCoordStationRecords");
 
             case 16:
+              _context.next = 18;
+              return _this.$store.dispatch("getCoordItems");
+
+            case 18:
+              _context.next = 20;
+              return _this.$store.dispatch("getCoordStatus");
+
+            case 20:
               _this.loadingt = false;
               Echo["private"]("coord").listen("StationUpdateCoord", function (e) {
                 if (e.flag.message != null) {
@@ -27383,7 +27435,7 @@ function sleep(ms) {
                 _this.$store.dispatch("deleteStationNotification", e.flag.id);
               });
 
-            case 18:
+            case 22:
             case "end":
               return _context.stop();
           }
@@ -27700,6 +27752,7 @@ function sleep(ms) {
   }), _objectSpread2)),
   beforeDestroy: function beforeDestroy() {
     Echo.leave("coord");
+    Echo.leave("stationlogs");
   }
 });
 
@@ -32531,6 +32584,7 @@ function sleep(ms) {
   }),
   beforeDestroy: function beforeDestroy() {
     Echo.leave("rcsheet");
+    Echo.leave("stationlogs");
   }
 });
 
@@ -63726,6 +63780,7 @@ var render = function() {
                         "item-key": "id",
                         height: _vm.height,
                         "fixed-header": "",
+                        expanded: _vm.expanded,
                         loading: _vm.loadingt,
                         "items-per-page": 50,
                         "footer-props": {
@@ -63735,6 +63790,11 @@ var render = function() {
                         "sort-by": ["region_name"],
                         "sort-desc": [false, true],
                         "multi-sort": ""
+                      },
+                      on: {
+                        "update:expanded": function($event) {
+                          _vm.expanded = $event
+                        }
                       },
                       scopedSlots: _vm._u(
                         [
@@ -63870,6 +63930,100 @@ var render = function() {
                                       ],
                                       1
                                     )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _vm.$can("view_station_logs")
+                                  ? _c(
+                                      "div",
+                                      [
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: !_vm.expanded.includes(
+                                                  item
+                                                ),
+                                                expression:
+                                                  "!expanded.includes(item)"
+                                              }
+                                            ],
+                                            staticClass: " pb-3",
+                                            attrs: { icon: "", color: "blue" },
+                                            on: {
+                                              click: function($event) {
+                                                ;(_vm.expanded = [item]),
+                                                  (_vm.expanded_id = item.id)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("v-icon", [
+                                              _vm._v(" faSvg fa-history")
+                                            ])
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: _vm.expanded.includes(
+                                                  item
+                                                ),
+                                                expression:
+                                                  "expanded.includes(item)"
+                                              }
+                                            ],
+                                            staticClass: " pb-3",
+                                            attrs: { icon: "", color: "error" },
+                                            on: {
+                                              click: function($event) {
+                                                ;(_vm.expanded = []),
+                                                  (_vm.expanded_id = 0)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("v-icon", [
+                                              _vm._v(" faSvg fa-history")
+                                            ])
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e()
+                              ]
+                            }
+                          },
+                          {
+                            key: "expanded-item",
+                            fn: function(ref) {
+                              var headers = ref.headers
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "td",
+                                  {
+                                    attrs: {
+                                      colspan: headers.length,
+                                      align: "center"
+                                    }
+                                  },
+                                  [
+                                    _c("StationLogs", {
+                                      attrs: { station: item }
+                                    })
                                   ],
                                   1
                                 )
@@ -67382,7 +67536,7 @@ var render = function() {
                         id: "table",
                         "item-key": "id",
                         "sort-by": ["end_time"],
-                        "sort-desc": [false, true],
+                        "sort-desc": [true, false],
                         "multi-sort": "",
                         "items-per-page": 50,
                         "footer-props": {
