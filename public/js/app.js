@@ -31740,7 +31740,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -67120,6 +67119,8 @@ var render = function() {
                       staticClass: "elevation-5",
                       attrs: {
                         search: _vm.search,
+                        "expand-icon": "faSvg fa-history",
+                        "single-expand": "",
                         headers: _vm._headers,
                         items: _vm.filter_end,
                         loading: _vm.loadingt,
@@ -67542,19 +67543,7 @@ var render = function() {
                                           : _vm._e()
                                       ],
                                       1
-                                    ),
-                                    _vm._v(" "),
-                                    _vm.$can("view_station_logs")
-                                      ? _c(
-                                          "div",
-                                          [
-                                            _c("v-icon", [
-                                              _vm._v(" faSvg fa-history")
-                                            ])
-                                          ],
-                                          1
-                                        )
-                                      : _vm._e()
+                                    )
                                   ],
                                   1
                                 )

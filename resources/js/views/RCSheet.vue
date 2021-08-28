@@ -112,6 +112,8 @@
                 <v-card width="100%">
                     <v-data-table
                         :search="search"
+                        expand-icon="faSvg fa-history"
+                        single-expand
                         :headers="_headers"
                         :items="filter_end"
                         :loading="loadingt"
@@ -286,9 +288,6 @@
                                         :station="item"
                                         v-if="showInfo(item)"
                                     ></Info>
-                                </div>
-                                <div v-if="$can('view_station_logs')">
-                                    <v-icon> faSvg fa-history</v-icon>
                                 </div>
                             </div>
                         </template>
