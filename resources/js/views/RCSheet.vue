@@ -112,7 +112,6 @@
                 <v-card width="100%">
                     <v-data-table
                         :search="search"
-                        expand-icon="faSvg fa-history"
                         single-expand
                         :headers="_headers"
                         :items="filter_end"
@@ -294,6 +293,13 @@
                         <template slot="no-data">
                             No Active or Upcoming Campaigns
                         </template>
+                        <v-expansion-panel-header>
+                            <template v-slot:actions>
+                                <v-icon color="primary">
+                                    faSvg fa-history
+                                </v-icon>
+                            </template>
+                        </v-expansion-panel-header>
                     </v-data-table>
                 </v-card>
             </v-col>

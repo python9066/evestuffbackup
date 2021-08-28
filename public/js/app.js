@@ -31740,6 +31740,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -67119,7 +67125,6 @@ var render = function() {
                       staticClass: "elevation-5",
                       attrs: {
                         search: _vm.search,
-                        "expand-icon": "faSvg fa-history",
                         "single-expand": "",
                         headers: _vm._headers,
                         items: _vm.filter_end,
@@ -67572,7 +67577,25 @@ var render = function() {
                         _vm._v(
                           "\n                        No Active or Upcoming Campaigns\n                    "
                         )
-                      ])
+                      ]),
+                      _vm._v(" "),
+                      _c("v-expansion-panel-header", {
+                        scopedSlots: _vm._u([
+                          {
+                            key: "actions",
+                            fn: function() {
+                              return [
+                                _c("v-icon", { attrs: { color: "primary" } }, [
+                                  _vm._v(
+                                    "\n                                faSvg fa-history\n                            "
+                                  )
+                                ])
+                              ]
+                            },
+                            proxy: true
+                          }
+                        ])
+                      })
                     ],
                     2
                   )
