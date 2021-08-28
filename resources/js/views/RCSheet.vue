@@ -112,7 +112,6 @@
                 <v-card width="100%">
                     <v-data-table
                         :search="search"
-                        :single-expand="singleExpand"
                         :expanded.sync="expanded"
                         :headers="_headers"
                         :items="filter_end"
@@ -295,10 +294,21 @@
                                             (expanded = [item]),
                                                 (expanded_id = item.id)
                                         "
+                                        v-show="!expanded.includes(item)"
                                         icon
                                         color="green"
                                     >
-                                        <v-icon> fas fa-map fa-xs</v-icon>
+                                        <v-icon> faSvg fa-history</v-icon>
+                                    </v-btn>
+                                    <v-btn
+                                        @click="
+                                            (expanded = []), (expanded_id = 0)
+                                        "
+                                        v-show="expanded.includes(item)"
+                                        icon
+                                        color="error"
+                                    >
+                                        <v-icon> faSvg fa-history</v-icon>
                                     </v-btn>
                                 </div>
                             </div>

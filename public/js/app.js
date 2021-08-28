@@ -31763,6 +31763,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -67144,7 +67154,6 @@ var render = function() {
                       staticClass: "elevation-5",
                       attrs: {
                         search: _vm.search,
-                        "single-expand": _vm.singleExpand,
                         expanded: _vm.expanded,
                         headers: _vm._headers,
                         items: _vm.filter_end,
@@ -67581,11 +67590,52 @@ var render = function() {
                                         _c(
                                           "v-btn",
                                           {
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: !_vm.expanded.includes(
+                                                  item
+                                                ),
+                                                expression:
+                                                  "!expanded.includes(item)"
+                                              }
+                                            ],
                                             attrs: { icon: "", color: "green" },
                                             on: {
                                               click: function($event) {
                                                 ;(_vm.expanded = [item]),
                                                   (_vm.expanded_id = item.id)
+                                              }
+                                            }
+                                          },
+                                          [
+                                            _c("v-icon", [
+                                              _vm._v(" fas fa-map fa-xs")
+                                            ])
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: _vm.expanded.includes(
+                                                  item
+                                                ),
+                                                expression:
+                                                  "expanded.includes(item)"
+                                              }
+                                            ],
+                                            attrs: { icon: "", color: "error" },
+                                            on: {
+                                              click: function($event) {
+                                                ;(_vm.expanded = []),
+                                                  (_vm.expanded_id = 0)
                                               }
                                             }
                                           },
