@@ -638,9 +638,7 @@ class StationController extends Controller
 
         Station::where('id', $id)->update(['show_on_rc' => 0, 'show_on_coord' => 1, 'station_status_id' => 7, "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null]);
 
-        $oldStatusID = Station::where('id', $id)->pluck('station_status_id')->first();
-        $oldStatusName = StationStatus::where('id', $oldStatusID)->value('name');
-        $oldStatusName = str_replace('Upcoming - ', "", $oldStatusName);
+
         $newStatusID = 7;
         $newStatusName = StationStatus::where('id', $newStatusID)->value('name');
         $newStatusName = str_replace('Upcoming - ', "", $newStatusName);
@@ -656,7 +654,7 @@ class StationController extends Controller
 
 
 
-        $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName;
+        $text = Auth::user()->name . " Changed the status from Hull to Destroyed";
         $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
         Helper::stationlogs($logNew->id);
     }
