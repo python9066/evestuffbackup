@@ -126,6 +126,7 @@ class LoggingController extends Controller
         if ($check->hasPermissionTo('view_station_logs')) {
             $data = [];
             $logs = Logging::where('logging_type_id', '>', 16)->where('logging_type_id', '<', 25)->get();
+            dd($logs);
             foreach ($logs as $log) {
                 $timne = Helper::fixtime($log['created_at']);
                 $data1 = null;
