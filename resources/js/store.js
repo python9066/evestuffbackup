@@ -1767,9 +1767,7 @@ export default new Vuex.Store({
         },
 
 
-        getShowOnCoordStations: state => {
-            return state.stations.filter(stations => stations.show_on_coord == 1);
-        },
+
 
 
         getTotalNodeCountBySystem: state => payload => {

@@ -588,7 +588,11 @@ export default {
         ...mapGetters(["getShowOnCoordStations"]),
 
         filterSet() {
-            return this.stations;
+            if ((this.loadingt = false)) {
+                return this.stations;
+            } else {
+                return [];
+            }
         },
         filter_start() {
             let data = [];
