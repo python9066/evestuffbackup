@@ -33,6 +33,7 @@ export default new Vuex.Store({
         loggingAdmin:[],
         loggingcampaign: [],
         loggingRcSheet: [],
+        loggingStations:[],
         moonlist:[],
         multicampaigns: [],
         nodeJoin: [],
@@ -375,9 +376,19 @@ export default new Vuex.Store({
             state.loggingRcSheet = logs;
         },
 
+        SET_LOGGING_STATIONS(state, logs) {
+            state.loggingStations = logs;
+        },
+
+
         ADD_LOGGING_RC_SHEET(state, data) {
             state.loggingcampaign.push(data)
         },
+
+        ADD_LOGGING_STATION(state, data) {
+            state.loggingStations.push(data)
+        },
+
 
         ADD_LOGGING_CAMPGIN(state, data) {
             state.loggingcampaign.push(data)
@@ -1101,6 +1112,21 @@ export default new Vuex.Store({
             commit("SET_LOGGING_RC_SHEET", res.data.logs);
         },
 
+        async getLoggingStations({ commit, state }, campaign_id) {
+            let res = await axios({
+                method: "get",
+                url: "/api/stationlogs",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_LOGGING_STATIONS", res.data.logs);
+        },
+
+
+
 
 
         async getLoggingAdmin({ commit, state }) {
@@ -1222,6 +1248,10 @@ export default new Vuex.Store({
 
         addLoggingRcSheet({ commit }, data) {
             commit("ADD_LOGGING_RC_SHEET",data)
+        },
+
+        addLoggingStation({ commit }, data) {
+            commit("ADD_LOGGING_STATION",data)
         },
 
 

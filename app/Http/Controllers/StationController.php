@@ -510,6 +510,7 @@ class StationController extends Controller
 
         $oldStatusID = Station::where('id', $id)->value('station_status_id');
         $oldStatusName = StationStatus::where('id', $oldStatusID)->value('name');
+        $oldStatusName = str_replace('Upcoming - ', "", $oldStatusName);
 
         $RCmessage = RcStationRecords::where('id', $id)->first();
         if ($RCmessage) {
@@ -527,6 +528,7 @@ class StationController extends Controller
 
         $newStatusID = $request->station_status_id;
         $newStatusName = StationStatus::where('id', $newStatusID)->value('name');
+        $newStatusName = str_replace('Upcoming - ', "", $newStatusName);
         $new = Station::find($id)->update($request->all());
         $now = now();
         Station::find($id)->update(['added_by_user_id' => Auth::id(), "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null,]);
@@ -560,11 +562,13 @@ class StationController extends Controller
 
         $oldStation = Station::where('id', $id)->first();
         $oldStatus = StationStatus::where('id', $oldStation->station_status_id)->value('name');
+        $oldStatus = str_replace('Upcoming - ', "", $oldStatus);
 
 
         Station::find($id)->update($request->all());
         $newStation = Station::where('id', $id)->first();
         $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
+        $newStatus = str_replace('Upcoming - ', "", $newStatus);
 
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
@@ -628,8 +632,10 @@ class StationController extends Controller
 
         $oldStatusID = Station::where('id', $id)->pluck('station_status_id')->first();
         $oldStatusName = StationStatus::where('id', $oldStatusID)->value('name');
+        $oldStatusName = str_replace('Upcoming - ', "", $oldStatusName);
         $newStatusID = 7;
         $newStatusName = StationStatus::where('id', $newStatusID)->value('name');
+        $newStatusName = str_replace('Upcoming - ', "", $newStatusName);
 
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
