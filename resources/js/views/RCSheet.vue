@@ -296,6 +296,7 @@
                                         "
                                         v-show="!expanded.includes(item)"
                                         icon
+                                        class=" pb-3"
                                         color="green"
                                     >
                                         <v-icon> faSvg fa-history</v-icon>
@@ -306,7 +307,7 @@
                                         "
                                         v-show="expanded.includes(item)"
                                         icon
-                                        class=" mb-2"
+                                        class=" pb-3"
                                         color="error"
                                     >
                                         <v-icon> faSvg fa-history</v-icon>
