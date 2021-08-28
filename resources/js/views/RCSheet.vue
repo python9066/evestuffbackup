@@ -121,7 +121,7 @@
                         id="table"
                         item-key="id"
                         :sort-by="['end_time']"
-                        :sort-desc="[true, false]"
+                        :sort-desc="[false, true]"
                         multi-sort
                         :items-per-page="50"
                         :footer-props="{

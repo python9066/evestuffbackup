@@ -8,7 +8,7 @@
             :items-per-page="10"
             class="elevation-24"
             :sort-by="['created_at']"
-            :sort-desc="[false, true]"
+            :sort-desc="[true, false]"
         >
             >
             <template v-slot:top>

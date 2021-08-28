@@ -253,44 +253,36 @@ export default {
             headers: [
                 {
                     text: "System",
-                    value: "system_name",
-                    width: "8%"
+                    value: "system_name"
                 },
                 {
                     text: "Constellation",
-                    value: "constellation_name",
-                    width: "8%"
+                    value: "constellation_name"
                 },
                 {
                     text: "Region",
-                    value: "region_name",
-                    width: "5%"
+                    value: "region_name"
                 },
                 {
                     text: "Alliance",
-                    value: "alliance_ticker",
-                    width: "10%"
+                    value: "alliance_ticker"
                 },
                 {
                     text: "Type",
-                    value: "item_name",
-                    width: "10%"
+                    value: "item_name"
                 },
                 {
                     text: "Name",
-                    value: "station_name",
-                    width: "15%"
+                    value: "station_name"
                 },
                 {
                     text: "Status",
                     value: "station_status_name",
-                    align: "center",
-                    width: "10%"
+                    align: "center"
                 },
                 {
                     text: "Gunner/Info",
                     value: "actions",
-                    width: "10%",
                     align: "start"
                 }
             ]
