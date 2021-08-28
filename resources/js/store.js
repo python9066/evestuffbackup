@@ -1099,7 +1099,7 @@ export default new Vuex.Store({
             commit("SET_LOGGING_CAMPAIGN", res.data.logs);
         },
 
-        async getLoggingRcSheet({ commit, state }, campaign_id) {
+        async getLoggingRcSheet({ commit, state }) {
             let res = await axios({
                 method: "get",
                 url: "/api/rcadminlogs",
@@ -1112,7 +1112,7 @@ export default new Vuex.Store({
             commit("SET_LOGGING_RC_SHEET", res.data.logs);
         },
 
-        async getLoggingStations({ commit, state }, campaign_id) {
+        async getLoggingStations({ commit, state }) {
             let res = await axios({
                 method: "get",
                 url: "/api/stationlogs",

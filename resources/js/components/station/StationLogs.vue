@@ -59,7 +59,7 @@ export default {
         ...mapGetters(["getStationLogsByID"]),
 
         filteredItems() {
-            return this.getStationLogsByID(this.station.station_id);
+            return this.getStationLogsByID(this.$store.getters.station.id);
         }
     },
     beforeDestroy() {}

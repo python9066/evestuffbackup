@@ -427,7 +427,7 @@ class StationController extends Controller
         broadcast(new StationNotificationNew($flag));
         broadcast(new RcMoveUpdate($flag));
         $text = Auth::user()->name . " Added " . $request->name . " At " . now();
-        $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 17, 'text' => $text]);
+        $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 17, 'text' => $text]);
     }
 
     public function updateAttackMessage(Request $request, $id)
@@ -540,7 +540,7 @@ class StationController extends Controller
         broadcast(new StationUpdateCoord($flag));
 
         $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' at ' . now();
-        $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
+        $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }
 
     public function editUpdate(Request $request, $id)
@@ -649,6 +649,6 @@ class StationController extends Controller
 
 
         $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName . ' for ' . $stationName . ' at ' . now();
-        $logNew = Logging::Create(['structure_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
+        $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
     }
 }

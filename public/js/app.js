@@ -20581,7 +20581,7 @@ function sleep(ms) {
   methods: {},
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getStationLogsByID"])), {}, {
     filteredItems: function filteredItems() {
-      return this.getStationLogsByID(this.station.station_id);
+      return this.getStationLogsByID(this.$store.getters.station.id);
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -79639,7 +79639,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee37);
       }))();
     },
-    getLoggingRcSheet: function getLoggingRcSheet(_ref38, campaign_id) {
+    getLoggingRcSheet: function getLoggingRcSheet(_ref38) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee38() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee38$(_context38) {
@@ -79670,7 +79670,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }, _callee38);
       }))();
     },
-    getLoggingStations: function getLoggingStations(_ref39, campaign_id) {
+    getLoggingStations: function getLoggingStations(_ref39) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee39() {
         var commit, state, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee39$(_context39) {
