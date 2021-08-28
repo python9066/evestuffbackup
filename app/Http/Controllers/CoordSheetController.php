@@ -9,8 +9,14 @@ class CoordSheetController extends Controller
 {
 
     public function index()
+
+
     {
-        return ['stations' => StationRecords::where('show_on_coord', 1)->where('standing', '<=', 0)->get()];
+        $stations = StationRecords::all();
+        $newStations = $stations->filter(function ($station) {
+            return $station->standing <= 0 || $station->standing = null;
+        });
+        return ['stations' => $newStations];
     }
 
     public function coordSheetListItem()
