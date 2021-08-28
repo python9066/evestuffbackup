@@ -56857,6 +56857,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "pr-16 pl-16" },
     [
       _c("div", { staticClass: " d-flex align-items-center" }),
       _vm._v(" "),
@@ -67802,7 +67803,6 @@ var render = function() {
                                                   "!expanded.includes(item)"
                                               }
                                             ],
-                                            staticClass: " mb-2",
                                             attrs: { icon: "", color: "green" },
                                             on: {
                                               click: function($event) {

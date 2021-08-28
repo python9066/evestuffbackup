@@ -296,7 +296,6 @@
                                         "
                                         v-show="!expanded.includes(item)"
                                         icon
-                                        class=" mb-2"
                                         color="green"
                                     >
                                         <v-icon> faSvg fa-history</v-icon>
@@ -317,6 +316,7 @@
                         </template>
                         <template
                             v-slot:expanded-item="{ headers, item }"
+                            inset
                             class="align-center"
                             height="100%"
                         >

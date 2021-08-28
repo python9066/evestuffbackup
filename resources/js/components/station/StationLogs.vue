@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pr-16 pl-16">
         <div class=" d-flex align-items-center"></div>
         <v-data-table
             :headers="headers"
