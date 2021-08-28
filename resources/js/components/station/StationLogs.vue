@@ -4,11 +4,8 @@
         <v-data-table
             :headers="headers"
             :items="filteredItems"
-            :item-class="itemRowBackground"
             item-key="id"
-            :loading="loadingt"
             :items-per-page="10"
-            :sort-by.sync="sortby"
             class="elevation-1"
         >
             >
@@ -46,7 +43,7 @@ export default {
         return {
             headers: [
                 {
-                    text: "Region",
+                    text: "",
                     value: "text"
                 }
             ]
@@ -61,7 +58,7 @@ export default {
     computed: {
         ...mapGetters(["getStationLogsByID"]),
 
-        filterItems() {
+        filteredItems() {
             return this.getStationLogsByID(this.station.station_id);
         }
     },

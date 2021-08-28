@@ -20526,9 +20526,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -20550,7 +20547,7 @@ function sleep(ms) {
   data: function data() {
     return {
       headers: [{
-        text: "Region",
+        text: "",
         value: "text"
       }]
     };
@@ -20583,7 +20580,7 @@ function sleep(ms) {
   },
   methods: {},
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getStationLogsByID"])), {}, {
-    filterItems: function filterItems() {
+    filteredItems: function filteredItems() {
       return this.getStationLogsByID(this.station.station_id);
     }
   }),
@@ -56870,19 +56867,8 @@ var render = function() {
           attrs: {
             headers: _vm.headers,
             items: _vm.filteredItems,
-            "item-class": _vm.itemRowBackground,
             "item-key": "id",
-            loading: _vm.loadingt,
-            "items-per-page": 10,
-            "sort-by": _vm.sortby
-          },
-          on: {
-            "update:sortBy": function($event) {
-              _vm.sortby = $event
-            },
-            "update:sort-by": function($event) {
-              _vm.sortby = $event
-            }
+            "items-per-page": 10
           },
           scopedSlots: _vm._u([
             {
