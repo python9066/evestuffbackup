@@ -276,7 +276,7 @@ class Notifications
                     System::where('id', $station->system_id)->update(['task_flag' => 0]);
                 }
                 $oldStation = Station::where('id', $station->id)->first();
-                $stationNew =  Station::where('id', $station->id)->update([
+                Station::where('id', $station->id)->update([
                     'name' => $stationdata['str_name'],
                     'r_hash' => $stationdata['str_structure_id_md5'],
                     'corp_id' => $stationdata['str_owner_corporation_id'],
@@ -303,6 +303,8 @@ class Notifications
                     'r_cored' => $stationdata['str_cored'],
                     'added_from_recon' => 1
                 ]);
+
+                $stationNew = Station::where('id', $station->id)->first();
 
                 if ($station->station_status_id == 7) {
                     Station::where('id', $station->id)->update(['station_status_id' => 16]);
