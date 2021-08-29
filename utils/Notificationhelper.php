@@ -86,7 +86,7 @@ class Notifications
         } else {
             StationItemJoin::where('station_id', $id)->delete();
             $oldStation = Station::where('id', $id)->first();
-            $stationNew = Station::updateOrCreate(['id' => $id], [
+            Station::updateOrCreate(['id' => $id], [
                 'name' => $stationdata['str_name'],
                 'r_hash' => $stationdata['str_structure_id_md5'],
                 'corp_id' => $stationdata['str_owner_corporation_id'],
@@ -117,6 +117,7 @@ class Notifications
                 'import_flag' => 1,
 
             ]);
+            $stationNew = Station::where('id', $id)->first();
             if (!$oldStation) {
                 $log =  Logging::create(['station_id' => $id, 'logging_type_id' => 17, 'text' => "Added by the Recon Tool"]);
                 Helper::stationlogs($log->id);
@@ -309,8 +310,6 @@ class Notifications
                 if ($station->station_status_id == 7) {
                     Station::where('id', $station->id)->update(['station_status_id' => 16]);
                 }
-
-                dd($oldStation, $stationNew);
                 if ($oldStation->name != $stationNew->name) {
                     $log = Logging::create(['station_id' => $station->id, 'logging_type_id' => 18, 'text' => "Recon Tool changed station name from " . $oldStation->name . " to " . $stationNew->name]);
                     Helper::stationlogs($log->id);
@@ -365,8 +364,8 @@ class Notifications
                 if ($oldupdate != $stationdata['updated_at']) {
                     System::where('id', $station->system_id)->update(['task_flag' => 0]);
                 }
-                $oldStation = Station::where('id', $station->name);
-                $stationNew =  Station::where('id', $station->name)->update([
+
+                Station::where('name', $station->name)->update([
                     'id' => $stationdata['str_structure_id'],
                     'r_hash' => $stationdata['str_structure_id_md5'],
                     'corp_id' => $stationdata['str_owner_corporation_id'],
