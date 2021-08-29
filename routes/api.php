@@ -221,6 +221,7 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/rcfixalliance/{id}', 'RcSheetController@fixalliance');
     Route::put('/sheetmessage/{id}', 'RcSheetController@updateMessage');
     Route::get('/rcadminlogs', 'LoggingController@rcSheetLogging');
+    Route::get('/stationlogs', "LoggingController@stationLogging");
     Route::put('/rcmovedone/{id}', 'StationController@rcMoveDone');
     Route::delete('/rcmovedonebad/{id}', 'StationController@destroy');
 

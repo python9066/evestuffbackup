@@ -112,6 +112,7 @@
                 <v-card width="100%">
                     <v-data-table
                         :search="search"
+                        :expanded.sync="expanded"
                         :headers="_headers"
                         :items="filter_end"
                         :loading="loadingt"
@@ -287,7 +288,42 @@
                                         v-if="showInfo(item)"
                                     ></Info>
                                 </div>
+                                <div v-if="$can('view_station_logs')">
+                                    <v-btn
+                                        @click="
+                                            (expanded = [item]),
+                                                (expanded_id = item.id)
+                                        "
+                                        v-show="!expanded.includes(item)"
+                                        icon
+                                        class=" pb-3"
+                                        color="blue"
+                                    >
+                                        <v-icon> faSvg fa-history</v-icon>
+                                    </v-btn>
+                                    <v-btn
+                                        @click="
+                                            (expanded = []), (expanded_id = 0)
+                                        "
+                                        v-show="expanded.includes(item)"
+                                        icon
+                                        class=" pb-3"
+                                        color="error"
+                                    >
+                                        <v-icon> faSvg fa-history</v-icon>
+                                    </v-btn>
+                                </div>
                             </div>
+                        </template>
+                        <template
+                            v-slot:expanded-item="{ headers, item }"
+                            inset
+                            class="align-center"
+                            height="100%"
+                        >
+                            <td :colspan="headers.length" align="center">
+                                <StationLogs :station="item"></StationLogs>
+                            </td>
                         </template>
                         <template slot="no-data">
                             No Active or Upcoming Campaigns
@@ -305,7 +341,7 @@
                 </template>
             </v-snackbar>
         </v-row>
-        <!-- <v-row v-if="$can('super')" align="center" justify="center">
+        <!-- <v-row v-if="$can('super')" align="center" juvvvstify="center">
             <v-subheader>Window Size</v-subheader>
             {{ windowSize }} abd {{ highthtest }}
         </v-row> -->
@@ -339,7 +375,9 @@ export default {
             windowSize: {
                 x: 0,
                 y: 0
-            }
+            },
+            expanded: [],
+            expanded_id: 0
         };
     },
 
@@ -351,6 +389,14 @@ export default {
 
         if (this.$can("view_station_info_killsheet")) {
             await this.$store.dispatch("loadStationInfo");
+        }
+        if (this.$can("view_station_logs")) {
+            await this.$store.dispatch("getLoggingStations");
+            Echo.private("stationlogs").listen("StationLogUpdate", e => {
+                if (e.flag.message != null) {
+                    this.$store.dispatch("addLoggingStation", e.flag.message);
+                }
+            });
         }
         await this.$store.dispatch("getRcRegions");
         await this.$store.dispatch("getRcStationRecords");
@@ -796,6 +842,7 @@ export default {
     },
     beforeDestroy() {
         Echo.leave("rcsheet");
+        Echo.leave("stationlogs");
     }
 };
 </script>

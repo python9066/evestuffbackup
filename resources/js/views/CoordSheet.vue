@@ -97,6 +97,7 @@
                         item-key="id"
                         :height="height"
                         fixed-header
+                        :expanded.sync="expanded"
                         :loading="loadingt"
                         :items-per-page="50"
                         :footer-props="{
@@ -168,7 +169,43 @@
                                         v-if="showInfo(item)"
                                     ></Info>
                                 </div>
+
+                                <div v-if="$can('view_station_logs')">
+                                    <v-btn
+                                        @click="
+                                            (expanded = [item]),
+                                                (expanded_id = item.id)
+                                        "
+                                        v-show="!expanded.includes(item)"
+                                        icon
+                                        class=" pb-3"
+                                        color="blue"
+                                    >
+                                        <v-icon> faSvg fa-history</v-icon>
+                                    </v-btn>
+                                    <v-btn
+                                        @click="
+                                            (expanded = []), (expanded_id = 0)
+                                        "
+                                        v-show="expanded.includes(item)"
+                                        icon
+                                        class=" pb-3"
+                                        color="error"
+                                    >
+                                        <v-icon> faSvg fa-history</v-icon>
+                                    </v-btn>
+                                </div>
                             </div>
+                        </template>
+                        <template
+                            v-slot:expanded-item="{ headers, item }"
+                            inset
+                            class="align-center"
+                            height="100%"
+                        >
+                            <td :colspan="headers.length" align="center">
+                                <StationLogs :station="item"></StationLogs>
+                            </td>
                         </template>
                     </v-data-table>
                 </v-card>
@@ -209,6 +246,8 @@ export default {
             snackColor: "",
             snackText: "",
             loadingt: true,
+            expanded: [],
+            expanded_id: 0,
             windowSize: {
                 x: 0,
                 y: 0
@@ -217,48 +256,46 @@ export default {
             headers: [
                 {
                     text: "System",
-                    value: "system_name",
-                    width: "8%"
+                    value: "system_name"
                 },
                 {
                     text: "Constellation",
-                    value: "constellation_name",
-                    width: "8%"
+                    value: "constellation_name"
                 },
                 {
                     text: "Region",
-                    value: "region_name",
-                    width: "5%"
+                    value: "region_name"
                 },
                 {
                     text: "Alliance",
-                    value: "alliance_ticker",
-                    width: "10%"
+                    value: "alliance_ticker"
                 },
                 {
                     text: "Type",
-                    value: "item_name",
-                    width: "10%"
+                    value: "item_name"
                 },
                 {
                     text: "Name",
-                    value: "station_name",
-                    width: "15%"
+                    value: "station_name"
                 },
                 {
                     text: "Status",
                     value: "station_status_name",
-                    align: "center",
-                    width: "10%"
+                    align: "center"
                 },
                 {
-                    text: "Gunner/Info",
-                    value: "actions",
-                    width: "10%",
-                    align: "start"
+                    text: "",
+                    value: "actions"
                 }
             ]
         };
+    },
+
+    async beforeCreate() {
+        await this.$store.dispatch("getCoordRegions");
+        await this.$store.dispatch("getCoordStationRecords");
+        await this.$store.dispatch("getCoordItems");
+        await this.$store.dispatch("getCoordStatus");
     },
 
     async created() {
@@ -267,13 +304,19 @@ export default {
             await this.$store.dispatch("getTickList");
         }
 
+        if (this.$can("view_station_logs")) {
+            await this.$store.dispatch("getLoggingStations");
+            Echo.private("stationlogs").listen("StationLogUpdate", e => {
+                if (e.flag.message != null) {
+                    this.$store.dispatch("addLoggingStation", e.flag.message);
+                }
+            });
+        }
+
         if (this.$can("view_coord_sheet")) {
             await this.$store.dispatch("loadStationInfo");
         }
-        await this.$store.dispatch("getCoordRegions");
-        await this.$store.dispatch("getCoordStationRecords");
-        await this.$store.dispatch("getCoordItems");
-        await this.$store.dispatch("getCoordStatus");
+
         this.loadingt = false;
         Echo.private("coord")
             .listen("StationUpdateCoord", e => {
@@ -622,6 +665,7 @@ export default {
     },
     beforeDestroy() {
         Echo.leave("coord");
+        Echo.leave("stationlogs");
     }
 };
 </script>

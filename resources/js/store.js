@@ -33,6 +33,7 @@ export default new Vuex.Store({
         loggingAdmin:[],
         loggingcampaign: [],
         loggingRcSheet: [],
+        loggingStations:[],
         moonlist:[],
         multicampaigns: [],
         nodeJoin: [],
@@ -375,9 +376,19 @@ export default new Vuex.Store({
             state.loggingRcSheet = logs;
         },
 
+        SET_LOGGING_STATIONS(state, logs) {
+            state.loggingStations = logs;
+        },
+
+
         ADD_LOGGING_RC_SHEET(state, data) {
             state.loggingcampaign.push(data)
         },
+
+        ADD_LOGGING_STATION(state, data) {
+            state.loggingStations.push(data)
+        },
+
 
         ADD_LOGGING_CAMPGIN(state, data) {
             state.loggingcampaign.push(data)
@@ -1088,7 +1099,7 @@ export default new Vuex.Store({
             commit("SET_LOGGING_CAMPAIGN", res.data.logs);
         },
 
-        async getLoggingRcSheet({ commit, state }, campaign_id) {
+        async getLoggingRcSheet({ commit, state }) {
             let res = await axios({
                 method: "get",
                 url: "/api/rcadminlogs",
@@ -1100,6 +1111,21 @@ export default new Vuex.Store({
             });
             commit("SET_LOGGING_RC_SHEET", res.data.logs);
         },
+
+        async getLoggingStations({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/stationlogs",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_LOGGING_STATIONS", res.data.logs);
+        },
+
+
 
 
 
@@ -1222,6 +1248,10 @@ export default new Vuex.Store({
 
         addLoggingRcSheet({ commit }, data) {
             commit("ADD_LOGGING_RC_SHEET",data)
+        },
+
+        addLoggingStation({ commit }, data) {
+            commit("ADD_LOGGING_STATION",data)
         },
 
 
@@ -1851,6 +1881,16 @@ export default new Vuex.Store({
 
         getCharsOnNodeByID: state => nodeid => {
             let pull = state.userschars.filter(char => char.campaign_system_id == nodeid)
+            let count = pull.length
+            if (count != 0) {
+                return pull
+            } else {
+                return []
+            }
+        },
+
+        getStationLogsByID: state => stationid => {
+            let pull = state.loggingStations.filter(s => s.station_id == stationid)
             let count = pull.length
             if (count != 0) {
                 return pull

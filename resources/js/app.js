@@ -116,7 +116,7 @@ Vue.component('AddTimerFromDone', require('./components/rcsheet/AddTimerFromDone
 Vue.component('AddTimerFromDoneCoord', require('./components/coord/AddTimerFromDoneCoord.vue').default);
 Vue.component('DoneButtonCoord', require('./components/coord/DoneButtonCoord.vue').default);
 Vue.component('FCMessage', require('./components/keypannel/FCMessage.vue').default);
-
+Vue.component('StationLogs', require('./components/station/StationLogs.vue').default);
 
 
 

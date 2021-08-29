@@ -10,6 +10,7 @@ use App\Events\StationNotificationUpdate;
 use App\Events\StationUpdateCoord;
 use App\Events\TowerChanged;
 use App\Events\TowerDelete;
+use App\Models\Corp;
 use App\Models\Logging;
 use App\Models\Notification;
 use App\Models\Temp_notifcation;
@@ -84,6 +85,7 @@ class Notifications
             StationItemJoin::where('station_id', $id)->delete();
         } else {
             StationItemJoin::where('station_id', $id)->delete();
+            $oldStation = Station::where('id', $id)->first();
             Station::updateOrCreate(['id' => $id], [
                 'name' => $stationdata['str_name'],
                 'r_hash' => $stationdata['str_structure_id_md5'],
@@ -115,6 +117,24 @@ class Notifications
                 'import_flag' => 1,
 
             ]);
+            $stationNew = Station::where('id', $id)->first();
+            if (!$oldStation) {
+                $log =  Logging::create(['station_id' => $id, 'logging_type_id' => 17, 'text' => "Added by the Recon Tool"]);
+                Helper::stationlogs($log->id);
+            } else {
+                if ($oldStation->name != $stationNew->name) {
+                    $log = Logging::create(['station_id' => $id, 'logging_type_id' => 18, 'text' => "Recon Tool changed station name from " . $oldStation->name . " to " . $stationNew->name]);
+                    Helper::stationlogs($log->id);
+                }
+
+                if ($oldStation->corp_id != $stationNew->corp_id) {
+                    $oldCorpName = Corp::where('id', $oldStation->corp_id)->value('name');
+                    $newCorpName = Corp::where('id', $stationNew->corp_id)->value('name');
+                    $log = Logging::create(['station_id' => $id, 'logging_type_id' => 18, 'text' => "Recon Tool changed corp from " . $oldCorpName . " to " . $newCorpName]);
+                    Helper::stationlogs($log->id);
+                }
+            }
+
             $status_id = Station::where('id', $id)->value('station_status_id');
             if ($status_id == 7) {
                 Station::where('id', $id)->update(['station_status_id' => 16]);
@@ -256,6 +276,7 @@ class Notifications
                 if ($oldupdate != $stationdata['updated_at']) {
                     System::where('id', $station->system_id)->update(['task_flag' => 0]);
                 }
+                $oldStation = Station::where('id', $station->id)->first();
                 Station::where('id', $station->id)->update([
                     'name' => $stationdata['str_name'],
                     'r_hash' => $stationdata['str_structure_id_md5'],
@@ -284,9 +305,23 @@ class Notifications
                     'added_from_recon' => 1
                 ]);
 
+                $stationNew = Station::where('id', $station->id)->first();
+
                 if ($station->station_status_id == 7) {
                     Station::where('id', $station->id)->update(['station_status_id' => 16]);
                 }
+                if ($oldStation->name != $stationNew->name) {
+                    $log = Logging::create(['station_id' => $station->id, 'logging_type_id' => 18, 'text' => "Recon Tool changed station name from " . $oldStation->name . " to " . $stationNew->name]);
+                    Helper::stationlogs($log->id);
+                }
+
+                if ($oldStation->corp_id != $stationNew->corp_id) {
+                    $oldCorpName = Corp::where('id', $oldStation->corp_id)->value('name');
+                    $newCorpName = Corp::where('id', $stationNew->corp_id)->value('name');
+                    $log = Logging::create(['station_id' => $station->id, 'logging_type_id' => 18, 'text' => "Recon Tool changed corp from " . $oldCorpName . " to " . $newCorpName]);
+                    Helper::stationlogs($log->id);
+                }
+
 
                 if ($stationdata['str_has_no_fitting'] != null) {
                     if ($stationdata['str_has_no_fitting'] != 'No Fitting') {
@@ -329,7 +364,8 @@ class Notifications
                 if ($oldupdate != $stationdata['updated_at']) {
                     System::where('id', $station->system_id)->update(['task_flag' => 0]);
                 }
-                Station::where('id', $station->name)->update([
+
+                Station::where('name', $station->name)->update([
                     'id' => $stationdata['str_structure_id'],
                     'r_hash' => $stationdata['str_structure_id_md5'],
                     'corp_id' => $stationdata['str_owner_corporation_id'],
@@ -356,6 +392,8 @@ class Notifications
                     'r_cored' => $stationdata['str_cored'],
                     'added_from_recon' => 1
                 ]);
+
+
                 if ($stationdata['str_has_no_fitting'] != null) {
                     $items = Utils::jsonDecode($stationdata['str_fitting'], true);
                     foreach ($items as $item) {

@@ -13,6 +13,7 @@ use GuzzleHttp\Utils;
 use App\Events\CampaignSystemUpdate;
 use App\Events\EveUserUpdate;
 use App\Events\LoggingUpdate;
+use App\Events\StationLogUpdate;
 use App\Models\Eve;
 use App\Models\Logging;
 use App\Models\LoggingType;
@@ -252,7 +253,7 @@ class Helper
     {
 
         $log = Logging::where('id', $log)->first();
-        $timne = Helper::fixtime($log['created_at']);
+        $time = Helper::fixtime($log['created_at']);
         $message = [
             'id' => $log['id'],
             'user_id' => $log['user_id'],
@@ -262,7 +263,7 @@ class Helper
             'station_id' => $log['station_id'],
             'station_name' => Station::where('id', $log['station_id'])->value('name'),
             'text' => $log['text'],
-            'created_at' => $timne
+            'created_at' => $time
         ];
 
 
@@ -271,5 +272,30 @@ class Helper
             'message' => $message,
         ]);
         broadcast(new RcSheetAddLogging($flag));
+    }
+
+    public static function stationlogs($log)
+    {
+
+        $log = Logging::where('id', $log)->first();
+        $time = Helper::fixtime($log['created_at']);
+        $message = [
+            'id' => $log['id'],
+            'user_id' => $log['user_id'],
+            'user_name' => $log->user()->value('name'),
+            'logging_type_id' => $log['logging_type_id'],
+            'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
+            'station_id' => $log['station_id'],
+            'station_name' => Station::where('id', $log['station_id'])->value('name'),
+            'text' => $log['text'],
+            'created_at' => $time
+        ];
+
+
+
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new StationLogUpdate($flag));
     }
 }
