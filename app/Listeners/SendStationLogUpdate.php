@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\vent=StationLogUpdate;
+use App\Events\StationLogUpdate;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -24,7 +24,7 @@ class SendStationLogUpdate
      * @param  vent=StationLogUpdate  $event
      * @return void
      */
-    public function handle(vent=StationLogUpdate $event)
+    public function handle(StationLogUpdate $event)
     {
         //
     }
