@@ -3,7 +3,7 @@
         <div class=" d-flex align-items-center">
             <v-card-title>Structure Notifications</v-card-title>
             <!-- <ChillAddStation v-if="$can('edit_chill_timers')"></ChillAddStation> -->
-            <AddStation v-if="$can('add_timer')" :type="2"></AddStation>
+            <AddStation v-if="$can('edit_chill_timers')" :type="2"></AddStation>
 
             <v-text-field
                 class=" ml-5"
@@ -108,6 +108,7 @@
                             v-if="scope.props.days == 0"
                             >{{ scope.props.hours }}:{{
                                 scope.props.minutes
+
                             }}:{{ scope.props.seconds }}</span
                         >
                         <span
@@ -130,6 +131,7 @@
                         <span class="red--text pl-3"
                             >{{ scope.props.hours }}:{{
                                 scope.props.minutes
+
                             }}:{{ scope.props.seconds }}</span
                         >
                     </template>
