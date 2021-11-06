@@ -58,12 +58,6 @@ workers:
       start: |
         php artisan schedule:daemon
 
-  queue2:
-    size: S
-    commands:
-      start: |
-        php artisan schedule:daemon5
-
 # crons:
 #   # Run Drupal's cron tasks every 19 min       utes.
 #   eve:
