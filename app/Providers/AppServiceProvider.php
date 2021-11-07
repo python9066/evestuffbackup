@@ -20,9 +20,7 @@ class AppServiceProvider extends ServiceProvider
             //$this->app->register(DibiServiceProvider::class);
             //$this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
             //$this->app->register(TelescopeServiceProvider::class);
-            $this->app->register(\Laravel\Horizon\HorizonServiceProvider::class);
-            $this->app->register(HorizonServiceProvider::class);
-            $this->app->register(\L5Swagger\L5SwaggerServiceProvider::class);
+            $this->app->register(\Prequel\PrequelServiceProvider::class);
             $this->app->register(PrequelServiceProvider::class);
         }
     }
