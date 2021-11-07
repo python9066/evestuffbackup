@@ -159,7 +159,5 @@ return [
 
     'middleware' => [
         Protoqol\Prequel\Http\Middleware\Authorised::class,
-        'web',
-        \App\Http\Middleware\Authenticate::class
     ],
 ];
