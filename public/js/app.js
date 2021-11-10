@@ -32047,42 +32047,36 @@ function sleep(ms) {
               return _this.$store.dispatch("loadStationInfo");
 
             case 8:
-              if (!_this.$can("view_station_logs")) {
-                _context.next = 12;
-                break;
+              if (_this.$can("view_station_logs")) {
+                _this.$store.dispatch("getLoggingStations");
+
+                Echo["private"]("stationlogs").listen("StationLogUpdate", function (e) {
+                  if (e.flag.message != null) {
+                    _this.$store.dispatch("addLoggingStation", e.flag.message);
+                  }
+                });
               }
 
               _context.next = 11;
-              return _this.$store.dispatch("getLoggingStations");
-
-            case 11:
-              Echo["private"]("stationlogs").listen("StationLogUpdate", function (e) {
-                if (e.flag.message != null) {
-                  _this.$store.dispatch("addLoggingStation", e.flag.message);
-                }
-              });
-
-            case 12:
-              _context.next = 14;
               return _this.$store.dispatch("getRcRegions");
 
-            case 14:
-              _context.next = 16;
+            case 11:
+              _context.next = 13;
               return _this.$store.dispatch("getRcStationRecords");
 
-            case 16:
-              _context.next = 18;
+            case 13:
+              _context.next = 15;
               return _this.$store.dispatch("getRcFcs");
 
-            case 18:
-              _context.next = 20;
+            case 15:
+              _context.next = 17;
               return _this.$store.dispatch("getRcItems");
 
-            case 20:
-              _context.next = 22;
+            case 17:
+              _context.next = 19;
               return _this.$store.dispatch("getRcStatus");
 
-            case 22:
+            case 19:
               _this.loadingt = false;
               Echo["private"]("rcsheet").listen("RcSheetUpdate", function (e) {
                 if (e.flag.message != null) {
@@ -32102,22 +32096,17 @@ function sleep(ms) {
                 }
               });
 
-              if (!_this.$can("view_admin_logs")) {
-                _context.next = 28;
-                break;
+              if (_this.$can("view_admin_logs")) {
+                _this.$store.dispatch("getLoggingRcSheet");
+
+                Echo["private"]("rcsheetadminlogs").listen("RcSheetAddLogging", function (e) {
+                  console.log("ytoyoyo");
+
+                  _this.$store.dispatch("addLoggingRcSheet", e.flag.message);
+                });
               }
 
-              _context.next = 27;
-              return _this.$store.dispatch("getLoggingRcSheet");
-
-            case 27:
-              Echo["private"]("rcsheetadminlogs").listen("RcSheetAddLogging", function (e) {
-                console.log("ytoyoyo");
-
-                _this.$store.dispatch("addLoggingRcSheet", e.flag.message);
-              });
-
-            case 28:
+            case 22:
             case "end":
               return _context.stop();
           }
@@ -67411,7 +67400,7 @@ var render = function () {
             { attrs: { cols: "4", align: "center" } },
             [
               _c("AddStation", {
-                staticClass: " pt-2 pl-2",
+                staticClass: "pt-2 pl-2",
                 attrs: { type: 3 },
               }),
             ],
@@ -67421,14 +67410,14 @@ var render = function () {
           _c(
             "v-col",
             {
-              staticClass: " d-inline-flex",
+              staticClass: "d-inline-flex",
               attrs: { cols: "4", justify: "end", align: "end" },
             },
             [
               _c("v-spacer"),
               _vm._v(" "),
               _vm.$can("view_admin_logs")
-                ? _c("AdminLoggingSheet", { staticClass: " pt-2 pl-2" })
+                ? _c("AdminLoggingSheet", { staticClass: "pt-2 pl-2" })
                 : _vm._e(),
               _vm._v(" "),
               _c(
@@ -67436,7 +67425,7 @@ var render = function () {
                 { attrs: { width: "150px", "min-height": "60px" } },
                 [
                   _c("v-switch", {
-                    staticClass: " pl-2 pr-2 pt-1",
+                    staticClass: "pl-2 pr-2 pt-1",
                     attrs: {
                       label: "No FC",
                       color: "pink",
@@ -67466,7 +67455,7 @@ var render = function () {
         [
           _c(
             "v-col",
-            { staticClass: " d-inline-flex", attrs: { cols: "4" } },
+            { staticClass: "d-inline-flex", attrs: { cols: "4" } },
             [
               _c(
                 "v-card",
@@ -67483,7 +67472,7 @@ var render = function () {
                     "v-card-text",
                     [
                       _c("v-select", {
-                        staticClass: " pb-2",
+                        staticClass: "pb-2",
                         attrs: {
                           items: _vm.dropdown_region_list,
                           label: "Filter by Region",
@@ -67513,7 +67502,7 @@ var render = function () {
           _vm._v(" "),
           _c(
             "v-col",
-            { staticClass: " d-inline-flex", attrs: { cols: "4" } },
+            { staticClass: "d-inline-flex", attrs: { cols: "4" } },
             [
               _c(
                 "v-card",
@@ -67530,7 +67519,7 @@ var render = function () {
                     "v-card-text",
                     [
                       _c("v-select", {
-                        staticClass: " pb-2",
+                        staticClass: "pb-2",
                         attrs: {
                           items: _vm.dropdown_type_list,
                           label: "Filter by Type",
@@ -67560,7 +67549,7 @@ var render = function () {
           _vm._v(" "),
           _c(
             "v-col",
-            { staticClass: " d-inline-flex", attrs: { cols: "4" } },
+            { staticClass: "d-inline-flex", attrs: { cols: "4" } },
             [
               _c(
                 "v-card",
@@ -67577,7 +67566,7 @@ var render = function () {
                     "v-card-text",
                     [
                       _c("v-select", {
-                        staticClass: " pb-2",
+                        staticClass: "pb-2",
                         attrs: {
                           items: _vm.dropdown_status_list,
                           label: "Filter by Status",
@@ -67615,7 +67604,7 @@ var render = function () {
           _c(
             "v-col",
             {
-              staticClass: " d-inline-flex justify-content-center w-auto",
+              staticClass: "d-inline-flex justify-content-center w-auto",
               attrs: { cols: "12" },
             },
             [
@@ -67657,7 +67646,7 @@ var render = function () {
                             fn: function (ref) {
                               var item = ref.item
                               return [
-                                _c("div", { staticClass: " d-inline-flex" }, [
+                                _c("div", { staticClass: "d-inline-flex" }, [
                                   item.url
                                     ? _c(
                                         "span",
@@ -67674,7 +67663,7 @@ var render = function () {
                                           _vm._v(" "),
                                           _c(
                                             "span",
-                                            { staticClass: "red--text pl-3 " },
+                                            { staticClass: "red--text pl-3" },
                                             [
                                               _vm._v(
                                                 _vm._s(item.alliance_ticker) +
@@ -67730,7 +67719,7 @@ var render = function () {
                               return [
                                 _c(
                                   "div",
-                                  { staticClass: " d-inline-flex" },
+                                  { staticClass: "d-inline-flex" },
                                   [
                                     _c(
                                       "v-btn",
@@ -67772,7 +67761,7 @@ var render = function () {
                                       [
                                         _c(
                                           "span",
-                                          { staticClass: " pt-2 caption" },
+                                          { staticClass: "pt-2 caption" },
                                           [
                                             _vm._v(
                                               "\n                                    " +
@@ -67943,7 +67932,7 @@ var render = function () {
                               return [
                                 _vm.showFC(item)
                                   ? _c("RcFCButton", {
-                                      staticClass: " mr-2",
+                                      staticClass: "mr-2",
                                       attrs: { station: item },
                                     })
                                   : _vm._e(),
@@ -67951,7 +67940,7 @@ var render = function () {
                                 !item.fc_user_id &&
                                 _vm.$can("view_killsheet_add_fc")
                                   ? _c("RcFCAdd", {
-                                      staticClass: " pl-6",
+                                      staticClass: "pl-6",
                                       attrs: { station: item },
                                     })
                                   : _vm._e(),
@@ -67986,7 +67975,7 @@ var render = function () {
                               var item = ref.item
                               return [
                                 _c("RcReconButton", {
-                                  staticClass: " mr-2",
+                                  staticClass: "mr-2",
                                   attrs: { station: item },
                                 }),
                               ]
@@ -68025,7 +68014,7 @@ var render = function () {
                               var item = ref.item
                               return [
                                 _c("RcGsolButton", {
-                                  staticClass: " mr-2",
+                                  staticClass: "mr-2",
                                   attrs: { station: item },
                                 }),
                               ]
@@ -68038,10 +68027,10 @@ var render = function () {
                               return [
                                 _c(
                                   "div",
-                                  { staticClass: " d-inline-flex" },
+                                  { staticClass: "d-inline-flex" },
                                   [
                                     _c("RcStationMessage", {
-                                      staticClass: " mr-2",
+                                      staticClass: "mr-2",
                                       attrs: { station: item },
                                     }),
                                     _vm._v(" "),
@@ -68076,7 +68065,7 @@ var render = function () {
                                                       "!expanded.includes(item)",
                                                   },
                                                 ],
-                                                staticClass: " pb-3",
+                                                staticClass: "pb-3",
                                                 attrs: {
                                                   icon: "",
                                                   color: "blue",
@@ -68112,7 +68101,7 @@ var render = function () {
                                                       "expanded.includes(item)",
                                                   },
                                                 ],
-                                                staticClass: " pb-3",
+                                                staticClass: "pb-3",
                                                 attrs: {
                                                   icon: "",
                                                   color: "error",

@@ -16,18 +16,18 @@
             </v-col>
 
             <v-col cols="4" align="center">
-                <AddStation :type="3" class=" pt-2 pl-2"></AddStation
+                <AddStation :type="3" class="pt-2 pl-2"></AddStation
             ></v-col>
-            <v-col cols="4" justify="end" align="end" class=" d-inline-flex">
+            <v-col cols="4" justify="end" align="end" class="d-inline-flex">
                 <v-spacer></v-spacer>
                 <AdminLoggingSheet
                     v-if="$can('view_admin_logs')"
-                    class=" pt-2 pl-2"
+                    class="pt-2 pl-2"
                 >
                 </AdminLoggingSheet>
                 <v-card width="150px" min-height="60px">
                     <v-switch
-                        class=" pl-2 pr-2 pt-1"
+                        class="pl-2 pr-2 pt-1"
                         v-model="toggleFC"
                         label="No FC"
                         color="pink"
@@ -37,7 +37,7 @@
             </v-col>
         </v-row>
         <v-row no-gutters justify="center">
-            <v-col class=" d-inline-flex" cols="4">
+            <v-col class="d-inline-flex" cols="4">
                 <v-card
                     max-width="600px"
                     min-width="600px"
@@ -46,7 +46,7 @@
                 >
                     <v-card-text>
                         <v-select
-                            class=" pb-2"
+                            class="pb-2"
                             v-model="regionPicked"
                             :items="dropdown_region_list"
                             label="Filter by Region"
@@ -59,7 +59,7 @@
                     </v-card-text>
                 </v-card>
             </v-col>
-            <v-col class=" d-inline-flex" cols="4">
+            <v-col class="d-inline-flex" cols="4">
                 <v-card
                     max-width="600px"
                     min-width="600px"
@@ -68,7 +68,7 @@
                 >
                     <v-card-text>
                         <v-select
-                            class=" pb-2"
+                            class="pb-2"
                             v-model="itemPicked"
                             :items="dropdown_type_list"
                             label="Filter by Type"
@@ -81,7 +81,7 @@
                     </v-card-text>
                 </v-card>
             </v-col>
-            <v-col class=" d-inline-flex" cols="4">
+            <v-col class="d-inline-flex" cols="4">
                 <v-card
                     max-width="600px"
                     min-width="600px"
@@ -90,7 +90,7 @@
                 >
                     <v-card-text>
                         <v-select
-                            class=" pb-2"
+                            class="pb-2"
                             v-model="statusPicked"
                             :items="dropdown_status_list"
                             label="Filter by Status"
@@ -106,7 +106,7 @@
         </v-row>
         <v-row no-gutters justify="center">
             <v-col
-                class=" d-inline-flex justify-content-center w-auto"
+                class="d-inline-flex justify-content-center w-auto"
                 cols="12"
             >
                 <v-card width="100%">
@@ -125,7 +125,7 @@
                         multi-sort
                         :items-per-page="50"
                         :footer-props="{
-                            'items-per-page-options': [10, 20, 30, 50, 100, -1]
+                            'items-per-page-options': [10, 20, 30, 50, 100, -1],
                         }"
                         class="elevation-5"
                     >
@@ -133,12 +133,12 @@
                             v-slot:[`item.alliance_ticker`]="{ item }"
                             class="d-inline-flex align-center"
                         >
-                            <div class=" d-inline-flex">
+                            <div class="d-inline-flex">
                                 <span v-if="item.url">
                                     <v-avatar size="35"
                                         ><img :src="item.url"
                                     /></v-avatar>
-                                    <span class="red--text pl-3 "
+                                    <span class="red--text pl-3"
                                         >{{ item.alliance_ticker }}
                                     </span>
                                 </span>
@@ -160,9 +160,9 @@
                         </template>
                         <template
                             v-slot:[`item.system_name`]="{ item }"
-                            class="d-inline-flex align-center "
+                            class="d-inline-flex align-center"
                         >
-                            <div class=" d-inline-flex">
+                            <div class="d-inline-flex">
                                 <v-btn
                                     :href="link(item)"
                                     target="_blank"
@@ -175,7 +175,7 @@
                                     v-clipboard="item.system_name"
                                     v-clipboard:success="Systemcopied"
                                 >
-                                    <span class=" pt-2 caption">
+                                    <span class="pt-2 caption">
                                         {{ item.system_name }}</span
                                     >
                                 </button>
@@ -213,7 +213,7 @@
                                     ><span
                                         v-if="
                                             scope.props.minutes < 5 &&
-                                                scope.props.hours == 0
+                                            scope.props.hours == 0
                                         "
                                         class="green--text pl-2 pr-2"
                                         >{{ scope.props.hours }}:{{
@@ -230,17 +230,17 @@
                         </template>
                         <template v-slot:[`item.fc_name`]="{ item }">
                             <RcFCButton
-                                class=" mr-2"
+                                class="mr-2"
                                 :station="item"
                                 v-if="showFC(item)"
                             ></RcFCButton>
                             <RcFCAdd
                                 v-if="
                                     !item.fc_user_id &&
-                                        $can('view_killsheet_add_fc')
+                                    $can('view_killsheet_add_fc')
                                 "
                                 :station="item"
-                                class=" pl-6"
+                                class="pl-6"
                             ></RcFCAdd>
                         </template>
 
@@ -254,7 +254,7 @@
 
                         <template v-slot:[`item.recon_name`]="{ item }">
                             <RcReconButton
-                                class=" mr-2"
+                                class="mr-2"
                                 :station="item"
                             ></RcReconButton>
                         </template>
@@ -272,14 +272,14 @@
 
                         <template v-slot:[`item.gsol_name`]="{ item }">
                             <RcGsolButton
-                                class=" mr-2"
+                                class="mr-2"
                                 :station="item"
                             ></RcGsolButton>
                         </template>
                         <template v-slot:[`item.actions`]="{ item }">
-                            <div class=" d-inline-flex">
+                            <div class="d-inline-flex">
                                 <RcStationMessage
-                                    class=" mr-2"
+                                    class="mr-2"
                                     :station="item"
                                 ></RcStationMessage>
                                 <div>
@@ -296,7 +296,7 @@
                                         "
                                         v-show="!expanded.includes(item)"
                                         icon
-                                        class=" pb-3"
+                                        class="pb-3"
                                         color="blue"
                                     >
                                         <v-icon> faSvg fa-history</v-icon>
@@ -307,7 +307,7 @@
                                         "
                                         v-show="expanded.includes(item)"
                                         icon
-                                        class=" pb-3"
+                                        class="pb-3"
                                         color="error"
                                     >
                                         <v-icon> faSvg fa-history</v-icon>
@@ -353,7 +353,7 @@ import moment, { now, utc } from "moment";
 import { stringify } from "querystring";
 import { mapGetters, mapState } from "vuex";
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export default {
@@ -374,10 +374,10 @@ export default {
             loadingt: true,
             windowSize: {
                 x: 0,
-                y: 0
+                y: 0,
             },
             expanded: [],
-            expanded_id: 0
+            expanded_id: 0,
         };
     },
 
@@ -391,8 +391,8 @@ export default {
             await this.$store.dispatch("loadStationInfo");
         }
         if (this.$can("view_station_logs")) {
-            await this.$store.dispatch("getLoggingStations");
-            Echo.private("stationlogs").listen("StationLogUpdate", e => {
+            this.$store.dispatch("getLoggingStations");
+            Echo.private("stationlogs").listen("StationLogUpdate", (e) => {
                 if (e.flag.message != null) {
                     this.$store.dispatch("addLoggingStation", e.flag.message);
                 }
@@ -404,7 +404,7 @@ export default {
         await this.$store.dispatch("getRcItems");
         await this.$store.dispatch("getRcStatus");
         this.loadingt = false;
-        Echo.private("rcsheet").listen("RcSheetUpdate", e => {
+        Echo.private("rcsheet").listen("RcSheetUpdate", (e) => {
             if (e.flag.message != null) {
                 this.$store.dispatch("updateRcStation", e.flag.message);
             }
@@ -423,11 +423,14 @@ export default {
         });
 
         if (this.$can("view_admin_logs")) {
-            await this.$store.dispatch("getLoggingRcSheet");
-            Echo.private("rcsheetadminlogs").listen("RcSheetAddLogging", e => {
-                console.log("ytoyoyo");
-                this.$store.dispatch("addLoggingRcSheet", e.flag.message);
-            });
+            this.$store.dispatch("getLoggingRcSheet");
+            Echo.private("rcsheetadminlogs").listen(
+                "RcSheetAddLogging",
+                (e) => {
+                    console.log("ytoyoyo");
+                    this.$store.dispatch("addLoggingRcSheet", e.flag.message);
+                }
+            );
         }
     },
 
@@ -439,7 +442,7 @@ export default {
     methods: {
         log() {
             var request = {
-                url: this.$route.path
+                url: this.$route.path,
             };
 
             axios({
@@ -449,8 +452,8 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
         },
         showCountDown(item) {
@@ -646,7 +649,7 @@ export default {
         campaignStart(item) {
             var data = {
                 id: item.id,
-                out: 1
+                out: 1,
             };
             this.$store.dispatch("updateRcStation", data);
         },
@@ -678,8 +681,8 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
         },
 
@@ -713,7 +716,7 @@ export default {
             } else {
                 return false;
             }
-        }
+        },
     },
 
     computed: {
@@ -721,7 +724,7 @@ export default {
             "rcstations",
             "rcsheetRegion",
             "rcsheetItem",
-            "rcsheetStatus"
+            "rcsheetStatus",
         ]),
 
         ...mapGetters(["getActiveRcStations"]),
@@ -732,7 +735,7 @@ export default {
 
         filter_fc() {
             if (this.toggleFC) {
-                return this.filteredItems.filter(s => s.rc_fc_id == null);
+                return this.filteredItems.filter((s) => s.rc_fc_id == null);
             } else {
                 return this.filteredItems;
             }
@@ -746,10 +749,10 @@ export default {
         filter_start() {
             let data = [];
             if (this.statusPicked.length != 0) {
-                this.statusPicked.forEach(p => {
-                    let pick = this.filter_fc.filter(f => f.status_id == p);
+                this.statusPicked.forEach((p) => {
+                    let pick = this.filter_fc.filter((f) => f.status_id == p);
                     if (pick != null) {
-                        pick.forEach(pk => {
+                        pick.forEach((pk) => {
                             data.push(pk);
                         });
                     }
@@ -762,10 +765,10 @@ export default {
         filter_mid() {
             let data = [];
             if (this.itemPicked.length != 0) {
-                this.itemPicked.forEach(p => {
-                    let pick = this.filter_start.filter(f => f.item_id == p);
+                this.itemPicked.forEach((p) => {
+                    let pick = this.filter_start.filter((f) => f.item_id == p);
                     if (pick != null) {
-                        pick.forEach(pk => {
+                        pick.forEach((pk) => {
                             data.push(pk);
                         });
                     }
@@ -778,10 +781,10 @@ export default {
         filter_end() {
             let data = [];
             if (this.regionPicked.length != 0) {
-                this.regionPicked.forEach(p => {
-                    let pick = this.filter_mid.filter(f => f.region_id == p);
+                this.regionPicked.forEach((p) => {
+                    let pick = this.filter_mid.filter((f) => f.region_id == p);
                     if (pick != null) {
-                        pick.forEach(pk => {
+                        pick.forEach((pk) => {
                             data.push(pk);
                         });
                     }
@@ -800,7 +803,7 @@ export default {
         },
 
         dropdown_status_list() {
-            return this.rcsheetStatus.filter(l => l.text != null);
+            return this.rcsheetStatus.filter((l) => l.text != null);
         },
 
         _headers() {
@@ -818,7 +821,7 @@ export default {
                     { text: "FC", value: "fc_name", align: "center" },
                     { text: "Cyno", value: "recon_name" },
                     { text: "GSOL", value: "gsol_name" },
-                    { text: "", value: "actions" }
+                    { text: "", value: "actions" },
                 ];
             } else {
                 var Headers = [
@@ -833,17 +836,17 @@ export default {
                     { text: "CountDown", value: "count", sortable: false },
                     { text: "FC", value: "fc_name", align: "center" },
                     { text: "Cyno", value: "recon_name" },
-                    { text: "", value: "actions" }
+                    { text: "", value: "actions" },
                 ];
             }
 
             return Headers;
-        }
+        },
     },
     beforeDestroy() {
         Echo.leave("rcsheet");
         Echo.leave("stationlogs");
-    }
+    },
 };
 </script>
 <style scoped></style>
