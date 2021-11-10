@@ -1,12 +1,12 @@
 <template>
-    <div class=" pr-16 pl-16" v-resize="onResize">
-        <div class=" d-flex align-items-center">
+    <div class="pr-16 pl-16" v-resize="onResize">
+        <div class="d-flex align-items-center">
             <v-card-title>Structure Notifications</v-card-title>
             <!-- <ChillAddStation v-if="$can('edit_chill_timers')"></ChillAddStation> -->
             <AddStation v-if="$can('edit_chill_timers')" :type="2"></AddStation>
 
             <v-text-field
-                class=" ml-5"
+                class="ml-5"
                 v-model="search"
                 append-icon="mdi-magnify"
                 label="Search"
@@ -79,7 +79,7 @@
             :loading="loadingt"
             :items-per-page="50"
             :footer-props="{
-                'items-per-page-options': [10, 20, 30, 50, 100, -1]
+                'items-per-page-options': [10, 20, 30, 50, 100, -1],
             }"
             :sort-by.sync="sortby"
             :search="search"
@@ -108,7 +108,6 @@
                             v-if="scope.props.days == 0"
                             >{{ scope.props.hours }}:{{
                                 scope.props.minutes
-
                             }}:{{ scope.props.seconds }}</span
                         >
                         <span
@@ -131,7 +130,6 @@
                         <span class="red--text pl-3"
                             >{{ scope.props.hours }}:{{
                                 scope.props.minutes
-
                             }}:{{ scope.props.seconds }}</span
                         >
                     </template>
@@ -218,7 +216,7 @@
                             <div v-on="{ ...tooltip }" v-bind="{ ...atooltip }">
                                 <StationMessage
                                     :station="item"
-                                    class=" pl-2"
+                                    class="pl-2"
                                     v-if="$can('edit_station_notifications')"
                                 >
                                 </StationMessage>
@@ -255,7 +253,7 @@
                             <CountDowntimer
                                 v-if="
                                     item.status_id == 11 &&
-                                        item.end_time != null
+                                    item.end_time != null
                                 "
                                 :start-time="
                                     moment.utc(item.repair_time).unix()
@@ -286,8 +284,8 @@
                 v-slot:[`item.alliance_ticker`]="{ item }"
                 class="d-inline-flex align-center"
             >
-                <v-avatar size="35"><img :src="item.url"/></v-avatar>
-                <span v-if="item.standing > 0" class=" blue--text pl-3"
+                <v-avatar size="35"><img :src="item.url" /></v-avatar>
+                <span v-if="item.standing > 0" class="blue--text pl-3"
                     >{{ item.alliance_ticker }}
                 </span>
                 <span v-else-if="item.standing < 0" class="red--text pl-3"
@@ -300,9 +298,9 @@
                 v-slot:[`item.actions`]="{ item }"
                 v-if="$can('edit_chill_timers')"
             >
-                <div class=" d-inline-flex">
+                <div class="d-inline-flex">
                     <StationGunner
-                        class=" mr-2"
+                        class="mr-2"
                         :station="item"
                         v-if="showGunner(item)"
                     ></StationGunner>
@@ -345,7 +343,7 @@ import moment from "moment";
 import { stringify } from "querystring";
 import { mapState } from "vuex";
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 export default {
     title() {
@@ -380,7 +378,7 @@ export default {
             sortby: "timestamp",
             windowSize: {
                 x: 0,
-                y: 0
+                y: 0,
             },
 
             dropdown_edit: [
@@ -390,94 +388,94 @@ export default {
                 { title: "Reffed - Hull", value: 9 },
                 { title: "Destroyed", value: 7 },
                 { title: "Anchoring", value: 14 },
-                { title: "New", value: 1 }
+                { title: "New", value: 1 },
             ],
 
             headers: [
                 {
                     text: "Region",
                     value: "region_name",
-                    width: "5%"
+                    width: "5%",
                 },
                 {
                     text: "Constellation",
                     value: "constellation_name",
-                    width: "8%"
+                    width: "8%",
                 },
                 {
                     text: "System",
                     value: "system_name",
-                    width: "8%"
+                    width: "8%",
                 },
                 {
                     text: "Alliance",
                     value: "alliance_ticker",
-                    width: "10%"
+                    width: "10%",
                 },
                 {
                     text: "Type",
                     value: "item_name",
-                    width: "10%"
+                    width: "10%",
                 },
                 {
                     text: "Name",
                     value: "station_name",
-                    width: "15%"
+                    width: "15%",
                 },
                 {
                     text: "Timestamp",
                     value: "timestamp",
                     align: "center",
-                    width: "15%"
+                    width: "15%",
                 },
                 {
                     text: "Age/CountDown",
                     value: "count",
-                    width: "5%"
+                    width: "5%",
                 },
                 {
                     text: "Status",
                     value: "station_status_name",
                     align: "center",
-                    width: "10%"
+                    width: "10%",
                 },
                 {
                     text: "Gunner/Info",
                     value: "actions",
                     width: "10%",
-                    align: "start"
-                }
-            ]
+                    align: "start",
+                },
+            ],
         };
     },
 
     async created() {
         Echo.private("notes")
-            .listen("chillStationNotificationNew", e => {
+            .listen("chillStationNotificationNew", (e) => {
                 if (this.$can("edit_chill_timers")) {
                     this.$store.dispatch("loadStationInfo");
                 }
                 this.$store.dispatch("addStationNotification", e.flag.message);
             })
-            .listen("StationNotificationUpdate", e => {
+            .listen("StationNotificationUpdate", (e) => {
                 this.$store.dispatch(
                     "updateStationNotification",
                     e.flag.message
                 );
             })
-            .listen("StationNotificationDelete", e => {
+            .listen("StationNotificationDelete", (e) => {
                 this.$store.dispatch("deleteStationNotification", e.flag.id);
             })
-            .listen("StationDataSet", e => {
+            .listen("StationDataSet", (e) => {
                 this.$store.dispatch("getStationData");
             });
 
         if (this.$can("edit_chill_timers")) {
             Echo.private("stationinfo")
-                .listen("StationInfoGet", e => {
+                .listen("StationInfoGet", (e) => {
                     this.$store.dispatch("loadStationInfo");
                 })
-                .listen("StationCoreUpdate", e => {
+                .listen("StationCoreUpdate", (e) => {
                     console.log(e);
                     this.$store.dispatch("updateCores", e.flag.message);
                 });
@@ -502,7 +500,7 @@ export default {
         },
         log() {
             var request = {
-                url: this.$route.path
+                url: this.$route.path,
             };
 
             axios({
@@ -512,8 +510,8 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
         },
         updatetext(payload, item) {
@@ -521,7 +519,7 @@ export default {
             if (item.text != payload) {
                 item.text = payload;
                 var request = {
-                    text: item.text
+                    text: item.text,
                 };
                 this.$store.dispatch("updateStationNotification", item);
                 axios({
@@ -531,8 +529,8 @@ export default {
                     headers: {
                         Authorization: "Bearer " + this.$store.state.token,
                         Accept: "application/json",
-                        "Content-Type": "application/json"
-                    }
+                        "Content-Type": "application/json",
+                    },
                 });
             }
         },
@@ -686,7 +684,7 @@ export default {
             this.snackText = "Data saved";
         },
 
-        itemRowBackground: function(item) {
+        itemRowBackground: function (item) {
             if (item.under_attack == 1) {
                 return "style-4";
             }
@@ -724,7 +722,7 @@ export default {
                 user_id: this.$store.state.user_id,
                 status_update: moment.utc().format("YYYY-MM-DD  HH:mm:ss"),
                 out_time: null,
-                repair_time: item.repair_time
+                repair_time: item.repair_time,
             };
             axios({
                 method: "put", //you can set what request you want to be
@@ -733,8 +731,8 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
         },
 
@@ -758,7 +756,7 @@ export default {
             }
 
             return false;
-        }
+        },
     },
 
     computed: {
@@ -769,10 +767,10 @@ export default {
                 .utc()
                 .add(1, "hour")
                 .format("YYYY-MM-DD HH:mm:ss");
-            const filter = this.stations.filter(s => s.show_on_chill == 1);
+            const filter = this.stations.filter((s) => s.show_on_chill == 1);
             if (this.statusflag == 2) {
                 return filter.filter(
-                    s =>
+                    (s) =>
                         s.station_status_id == 1 ||
                         s.station_status_id == 4 ||
                         (s.station_status_id == 5 && s.out_time < hourBefore) ||
@@ -787,23 +785,24 @@ export default {
             }
             if (this.statusflag == 3) {
                 return filter.filter(
-                    s => s.station_status_id == 14 || s.station_status_id == 13
+                    (s) =>
+                        s.station_status_id == 14 || s.station_status_id == 13
                 );
             }
 
             if (this.statusflag == 5) {
-                return filter.filter(s => s.station_status_id == 14);
+                return filter.filter((s) => s.station_status_id == 14);
             }
 
             if (this.statusflag == 4) {
                 return filter.filter(
-                    s =>
+                    (s) =>
                         s.station_status_id == 8 ||
                         s.station_status_id == 9 ||
                         s.station_status_id == 7
                 );
             } else {
-                return filter.filter(s => s.station_status_id != 10);
+                return filter.filter((s) => s.station_status_id != 10);
             }
         },
 
@@ -813,12 +812,12 @@ export default {
         height() {
             let num = this.windowSize.y - 277;
             return num;
-        }
+        },
     },
     beforeDestroy() {
         Echo.leave("notes");
         Echo.leave("stationinfo");
-    }
+    },
 };
 </script>
 

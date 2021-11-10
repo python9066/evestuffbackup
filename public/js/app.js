@@ -8496,8 +8496,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -47501,12 +47499,12 @@ var render = function () {
           expression: "onResize",
         },
       ],
-      staticClass: " pr-16 pl-16",
+      staticClass: "pr-16 pl-16",
     },
     [
       _c(
         "div",
-        { staticClass: " d-flex align-items-center" },
+        { staticClass: "d-flex align-items-center" },
         [
           _c("v-card-title", [_vm._v("Structure Notifications")]),
           _vm._v(" "),
@@ -47515,7 +47513,7 @@ var render = function () {
             : _vm._e(),
           _vm._v(" "),
           _c("v-text-field", {
-            staticClass: " ml-5",
+            staticClass: "ml-5",
             attrs: {
               "append-icon": "mdi-magnify",
               label: "Search",
@@ -47976,7 +47974,7 @@ var render = function () {
                                                 "edit_station_notifications"
                                               )
                                                 ? _c("StationMessage", {
-                                                    staticClass: " pl-2",
+                                                    staticClass: "pl-2",
                                                     attrs: { station: item },
                                                   })
                                                 : _vm._e(),
@@ -48135,7 +48133,7 @@ var render = function () {
                     ]),
                     _vm._v(" "),
                     item.standing > 0
-                      ? _c("span", { staticClass: " blue--text pl-3" }, [
+                      ? _c("span", { staticClass: "blue--text pl-3" }, [
                           _vm._v(
                             _vm._s(item.alliance_ticker) + "\n            "
                           ),
@@ -48160,11 +48158,11 @@ var render = function () {
                       return [
                         _c(
                           "div",
-                          { staticClass: " d-inline-flex" },
+                          { staticClass: "d-inline-flex" },
                           [
                             _vm.showGunner(item)
                               ? _c("StationGunner", {
-                                  staticClass: " mr-2",
+                                  staticClass: "mr-2",
                                   attrs: { station: item },
                                 })
                               : _vm._e(),
