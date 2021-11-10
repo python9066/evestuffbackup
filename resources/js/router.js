@@ -24,6 +24,7 @@ import KillList from "./views/RCsheet.vue"
 import RCMOVETIMER from "./views/RCMove.vue"
 import FleetKeys from "./views/FleetKeyPannel.vue"
 import CoordSheet from "./views/CoordSheet.vue"
+import TestChill from "./views/TestChill.vue"
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -60,6 +61,21 @@ export default new Router({
             //     }
 
             //   }
+        },
+
+
+        {
+            path: "/testchill",
+            name: "testchill",
+            component: TestChill,
+              beforeEnter(to, from, next) {
+                if(Permissions.indexOf('super' )!== -1){
+                    next()
+                }else{
+                   next("/notifications")
+                }
+
+              }
         },
 
         {
