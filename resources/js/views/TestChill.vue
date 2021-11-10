@@ -16,15 +16,18 @@
             </v-col>
 
             <v-col cols="4" align="center">
-                <AddStation :type="3" class="pt-2 pl-2"></AddStation
+                <AddStation
+                    v-if="$can('edit_chill_timers')"
+                    :type="2"
+                ></AddStation
             ></v-col>
             <v-col cols="4" justify="end" align="end" class="d-inline-flex">
                 <v-spacer></v-spacer>
-                <AdminLoggingSheet
+                <!-- <AdminLoggingSheet
                     v-if="$can('view_admin_logs')"
                     class="pt-2 pl-2"
                 >
-                </AdminLoggingSheet>
+                </AdminLoggingSheet> -->
                 <v-card width="150px" min-height="60px">
                     <v-switch
                         class="pl-2 pr-2 pt-1"
@@ -142,14 +145,14 @@
                                         >{{ item.alliance_ticker }}
                                     </span>
                                 </span>
-                                <span v-else-if="$can('super')">
+                                <!-- <span v-else-if="$can('super')">
                                     <AddCorpTicker
                                         :station="item"
                                     ></AddCorpTicker
                                     ><AddAllianceTicker
                                         :station="item"
                                     ></AddAllianceTicker>
-                                </span>
+                                </span> -->
                             </div>
                         </template>
                         <template v-slot:[`item.name`]="{ item }">
@@ -229,11 +232,11 @@
                             </VueCountUptimer>
                         </template>
                         <template v-slot:[`item.fc_name`]="{ item }">
-                            <RcFCButton
+                            <ChillStationRcFCButton
                                 class="mr-2"
                                 :station="item"
                                 v-if="showFC(item)"
-                            ></RcFCButton>
+                            ></ChillStationRcFCButton>
                             <RcFCAdd
                                 v-if="
                                     !item.fc_user_id &&

@@ -35886,6 +35886,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -74840,10 +74843,9 @@ var render = function () {
             "v-col",
             { attrs: { cols: "4", align: "center" } },
             [
-              _c("AddStation", {
-                staticClass: "pt-2 pl-2",
-                attrs: { type: 3 },
-              }),
+              _vm.$can("edit_chill_timers")
+                ? _c("AddStation", { attrs: { type: 2 } })
+                : _vm._e(),
             ],
             1
           ),
@@ -74856,10 +74858,6 @@ var render = function () {
             },
             [
               _c("v-spacer"),
-              _vm._v(" "),
-              _vm.$can("view_admin_logs")
-                ? _c("AdminLoggingSheet", { staticClass: "pt-2 pl-2" })
-                : _vm._e(),
               _vm._v(" "),
               _c(
                 "v-card",
@@ -75115,19 +75113,6 @@ var render = function () {
                                         ],
                                         1
                                       )
-                                    : _vm.$can("super")
-                                    ? _c(
-                                        "span",
-                                        [
-                                          _c("AddCorpTicker", {
-                                            attrs: { station: item },
-                                          }),
-                                          _c("AddAllianceTicker", {
-                                            attrs: { station: item },
-                                          }),
-                                        ],
-                                        1
-                                      )
                                     : _vm._e(),
                                 ]),
                               ]
@@ -75372,7 +75357,7 @@ var render = function () {
                               var item = ref.item
                               return [
                                 _vm.showFC(item)
-                                  ? _c("RcFCButton", {
+                                  ? _c("ChillStationRcFCButton", {
                                       staticClass: "mr-2",
                                       attrs: { station: item },
                                     })
