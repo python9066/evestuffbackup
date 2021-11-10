@@ -22,6 +22,7 @@ export default new Vuex.Store({
         campaignusers: [],
         campaignsystems: [],
         campaignmembers: [],
+        chillstations:[],
         constellationlist:[],
         cores:[],
         delveLink: "",
@@ -494,6 +495,13 @@ export default new Vuex.Store({
         SET_RC_STATIONS(state, stations) {
             state.rcstations = stations;
         },
+
+        SET_CHILL_STATIONS(state, stations) {
+            state.chillstations = stations;
+        },
+
+
+
 
         SET_COORD_STATIONS(state, stations) {
             state.stations = stations;
@@ -1451,6 +1459,22 @@ export default new Vuex.Store({
             });
             if (res.data.length != 0) {
                 commit("SET_RC_STATIONS", res.data.stations);
+            }
+        },
+
+
+        async getChillStationRecords({ commit, state }) {
+            let res = await axios({
+                method: "get", //you can set what request you want to be
+                url: "/api/chillsheet",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            if (res.data.length != 0) {
+                commit("SET_CHILL_STATIONS", res.data.stations);
             }
         },
 

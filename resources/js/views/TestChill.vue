@@ -385,10 +385,10 @@ export default {
     },
 
     async created() {
-        if (this.$can("super")) {
-            await this.$store.dispatch("getAllianceTickList");
-            await this.$store.dispatch("getTickList");
-        }
+        // if (this.$can("super")) {
+        //     await this.$store.dispatch("getAllianceTickList");
+        //     await this.$store.dispatch("getTickList");
+        // }
 
         if (this.$can("view_station_info_killsheet")) {
             await this.$store.dispatch("loadStationInfo");
@@ -402,7 +402,7 @@ export default {
             });
         }
         await this.$store.dispatch("getRcRegions");
-        await this.$store.dispatch("getRcStationRecords");
+        await this.$store.dispatch("getChillStationRecords");
         await this.$store.dispatch("getRcFcs");
         await this.$store.dispatch("getRcItems");
         await this.$store.dispatch("getRcStatus");
