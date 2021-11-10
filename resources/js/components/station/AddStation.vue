@@ -438,10 +438,6 @@ export default {
             this.structSelect = null;
             this.sysSearch = null;
             this.sysSelect = null;
-            this.show_on_rc = 0;
-            this.show_on_rc_move = 0;
-            this.show_on_chill = 0;
-            this.show_on_main = 0;
             this.showStationTimer = false;
             this.ticktemEdit = null;
             this.tickLoading = false;
@@ -528,10 +524,6 @@ export default {
                 (this.structSelect = null),
                 (this.sysSearch = null),
                 (this.sysSelect = null),
-                (this.show_on_rc = 0),
-                (this.show_on_rc_move = 0),
-                (this.show_on_chill = 0),
-                (this.show_on_main = 0),
                 (this.showStationTimer = false),
                 (this.ticktemEdit = null),
                 (this.tickLoading = false),
@@ -606,10 +598,6 @@ export default {
                 (this.structSelect = null),
                 (this.sysSearch = null),
                 (this.sysSelect = null),
-                (this.show_on_rc = 0),
-                (this.show_on_rc_move = 0),
-                (this.show_on_chill = 0),
-                (this.show_on_main = 0),
                 (this.showStationTimer = false),
                 (this.ticktemEdit = null),
                 (this.tickLoading = false),

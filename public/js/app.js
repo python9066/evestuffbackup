@@ -18711,10 +18711,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.structSelect = null;
       this.sysSearch = null;
       this.sysSelect = null;
-      this.show_on_rc = 0;
-      this.show_on_rc_move = 0;
-      this.show_on_chill = 0;
-      this.show_on_main = 0;
       this.showStationTimer = false;
       this.ticktemEdit = null;
       this.tickLoading = false;
@@ -18785,7 +18781,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   hh: "",
                   mm: "",
                   ss: ""
-                }, _this5.stationNameEdit = null, _this5.state = 1, _this5.systems = [], _this5.sysItems = [], _this5.systemEdit = null, _this5.sysLoading = false, _this5.structemEdit = [], _this5.stationPull = [], _this5.structLoading = false, _this5.structerEdit = null, _this5.stationName = null, _this5.structItems = [], _this5.structSearch = null, _this5.structSelect = null, _this5.sysSearch = null, _this5.sysSelect = null, _this5.show_on_rc = 0, _this5.show_on_rc_move = 0, _this5.show_on_chill = 0, _this5.show_on_main = 0, _this5.showStationTimer = false, _this5.ticktemEdit = null, _this5.tickLoading = false, _this5.tickerEdit = null, _this5.tickItems = [], _this5.tickSearch = null, _this5.tickSelect = null);
+                }, _this5.stationNameEdit = null, _this5.state = 1, _this5.systems = [], _this5.sysItems = [], _this5.systemEdit = null, _this5.sysLoading = false, _this5.structemEdit = [], _this5.stationPull = [], _this5.structLoading = false, _this5.structerEdit = null, _this5.stationName = null, _this5.structItems = [], _this5.structSearch = null, _this5.structSelect = null, _this5.sysSearch = null, _this5.sysSelect = null, _this5.showStationTimer = false, _this5.ticktemEdit = null, _this5.tickLoading = false, _this5.tickerEdit = null, _this5.tickItems = [], _this5.tickSearch = null, _this5.tickSelect = null);
 
               case 4:
               case "end":
@@ -18844,7 +18840,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   hh: "",
                   mm: "",
                   ss: ""
-                }, _this6.stationNameEdit = null, _this6.state = 1, _this6.systems = [], _this6.sysItems = [], _this6.systemEdit = null, _this6.sysLoading = false, _this6.structemEdit = [], _this6.stationPull = [], _this6.structLoading = false, _this6.structerEdit = null, _this6.stationName = null, _this6.structItems = [], _this6.structSearch = null, _this6.structSelect = null, _this6.sysSearch = null, _this6.sysSelect = null, _this6.show_on_rc = 0, _this6.show_on_rc_move = 0, _this6.show_on_chill = 0, _this6.show_on_main = 0, _this6.showStationTimer = false, _this6.ticktemEdit = null, _this6.tickLoading = false, _this6.tickerEdit = null, _this6.tickItems = [], _this6.tickSearch = null, _this6.tickSelect = null);
+                }, _this6.stationNameEdit = null, _this6.state = 1, _this6.systems = [], _this6.sysItems = [], _this6.systemEdit = null, _this6.sysLoading = false, _this6.structemEdit = [], _this6.stationPull = [], _this6.structLoading = false, _this6.structerEdit = null, _this6.stationName = null, _this6.structItems = [], _this6.structSearch = null, _this6.structSelect = null, _this6.sysSearch = null, _this6.sysSelect = null, _this6.showStationTimer = false, _this6.ticktemEdit = null, _this6.tickLoading = false, _this6.tickerEdit = null, _this6.tickItems = [], _this6.tickSearch = null, _this6.tickSelect = null);
 
               case 4:
               case "end":
