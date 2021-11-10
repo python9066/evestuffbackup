@@ -117,6 +117,17 @@ Vue.component('AddTimerFromDoneCoord', require('./components/coord/AddTimerFromD
 Vue.component('DoneButtonCoord', require('./components/coord/DoneButtonCoord.vue').default);
 Vue.component('FCMessage', require('./components/keypannel/FCMessage.vue').default);
 Vue.component('StationLogs', require('./components/station/StationLogs.vue').default);
+Vue.component('ChillStationAddCorpTicker', require('./components/chillstation/ChillStationAddCorpTicker.vue').default);
+Vue.component('ChillStationAddTimerFromDone', require('./components/chillstation/ChillStationAddTimerFromDone.vue').default);
+Vue.component('ChillStationAdminLoggingSheet', require('./components/chillstation/ChillStationAdminLoggingSheet.vue').default);
+Vue.component('ChillStationAddAllianceTicker', require('./components/chillstation/ChillStationAddAllianceTicker.vue').default);
+Vue.component('ChillStationDoneButton', require('./components/chillstation/ChillStationDoneButton.vue').default);
+Vue.component('ChillStationRcFCAdd', require('./components/chillstation/ChillStationRcFCAdd.vue').default);
+Vue.component('ChillStationRcFCButton', require('./components/chillstation/ChillStationRcFCButton.vue').default);
+Vue.component('ChillStationRcGsolButton', require('./components/chillstation/ChillStationRcGsolButton.vue').default);
+Vue.component('ChillStationRcInfo', require('./components/chillstation/ChillStationRcInfo.vue').default);
+Vue.component('ChillStationRcReconButton', require('./components/chillstation/ChillStationRcReconButton.vue').default);
+Vue.component('ChillStationRcStationMessage', require('./components/chillstation/ChillStationRcStationMessage.vue').default);
 
 
 
