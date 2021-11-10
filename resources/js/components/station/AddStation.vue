@@ -13,9 +13,7 @@
                     v-bind="attrs"
                     v-on="on"
                     @click="open()"
-                    ><v-icon>
-                        faSvg fa-plus
-                    </v-icon>
+                    ><v-icon> faSvg fa-plus </v-icon>
                     Add Timer
                 </v-btn>
             </template>
@@ -25,7 +23,7 @@
                 max-width="700px"
                 min-height="200px"
                 max-height="1000px"
-                class=" d-flex flex-column"
+                class="d-flex flex-column"
             >
                 <v-card-title class="justify-center">
                     <v-img
@@ -44,7 +42,11 @@
                 </v-card-title>
                 <v-card-text>
                     <div
-                        class=" d-inline-flex align-content-center justify-content-around"
+                        class="
+                            d-inline-flex
+                            align-content-center
+                            justify-content-around
+                        "
                         v-if="state == 1"
                     >
                         <v-text-field
@@ -55,10 +57,10 @@
                             placeholder="1DQ1-A - Thetastar of Dickbutt"
                             :label="stationLable"
                             :rules="[rules.required]"
-                            class=" shrink"
-                            style="width:600px"
+                            class="shrink"
+                            style="width: 600px"
                         ></v-text-field>
-                        <div class=" pl-2 pt-2">
+                        <div class="pl-2 pt-2">
                             <v-chip
                                 v-if="state == 1"
                                 pill
@@ -85,7 +87,7 @@
                                     outlined
                                 ></v-autocomplete>
                             </div>
-                            <div class=" d-inline-flex justify-content-around">
+                            <div class="d-inline-flex justify-content-around">
                                 <v-autocomplete
                                     v-model="sysSelect"
                                     :loading="sysLoading"
@@ -97,7 +99,7 @@
                                     outlined
                                 ></v-autocomplete>
                                 <v-autocomplete
-                                    class=" ml-2"
+                                    class="ml-2"
                                     v-model="tickSelect"
                                     :loading="tickLoading"
                                     :rules="[rules.required]"
@@ -181,7 +183,7 @@
                                     readonly
                                 ></v-text-field>
                             </div>
-                            <div class=" d-inline-flex justify-content-around">
+                            <div class="d-inline-flex justify-content-around">
                                 <v-text-field
                                     v-model="stationPull.system_name"
                                     label="System Name"
@@ -281,13 +283,6 @@
                     </v-btn></v-card-actions
                 >
             </v-card>
-
-            <!-- <showStationTimer
-                :nodeNotestation="nodeNotestation"
-                v-if="$can('super')"
-                @closeMessage="showStationTimer = false"
-            >
-            </showStationTimer> -->
         </v-dialog>
     </div>
 </template>
@@ -297,7 +292,7 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        type: Number
+        type: Number,
     },
 
     async created() {
@@ -324,7 +319,7 @@ export default {
             tickerEdit: null,
             stationPull: [],
             structItems: [],
-            structtemEdit: null,
+            structemEdit: null,
             structSearch: null,
             structSelect: null,
             structLoading: false,
@@ -334,16 +329,16 @@ export default {
                 d: "",
                 hh: "",
                 mm: "",
-                ss: ""
+                ss: "",
             },
 
             rules: {
-                required: value => !!value || "Required"
+                required: (value) => !!value || "Required",
             },
             show_on_main: 0,
             show_on_chill: 0,
             show_on_rc_move: 0,
-            show_rc: 0
+            show_rc: 0,
         };
     },
 
@@ -358,7 +353,7 @@ export default {
 
         structSearch(val) {
             val && val !== this.structSelect && this.structQuerySelections(val);
-        }
+        },
     },
 
     methods: {
@@ -377,7 +372,7 @@ export default {
             this.tickLoading = true;
             // Simulated ajax query
             setTimeout(() => {
-                this.tickItems = this.tickList.filter(e => {
+                this.tickItems = this.tickList.filter((e) => {
                     return (
                         (e.text || "")
                             .toLowerCase()
@@ -392,7 +387,7 @@ export default {
             this.structLoading = true;
             // Simulated ajax query
             setTimeout(() => {
-                this.structItems = this.structureList.filter(e => {
+                this.structItems = this.structureList.filter((e) => {
                     return (
                         (e.text || "")
                             .toLowerCase()
@@ -407,7 +402,7 @@ export default {
             this.sysLoading = true;
             // Simulated ajax query
             setTimeout(() => {
-                this.sysItems = this.systemList.filter(e => {
+                this.sysItems = this.systemList.filter((e) => {
                     return (
                         (e.text || "")
                             .toLowerCase()
@@ -419,24 +414,41 @@ export default {
         },
 
         close() {
-            this.stationNameEdit = null;
-            this.showStationTimer = false;
+            this.imageLink = null;
             this.refType = null;
-            this.refTime = null;
-            this.stationName = null;
+            this.refTime = {
+                d: "",
+                hh: "",
+                mm: "",
+                ss: "",
+            };
             this.stationNameEdit = null;
+            this.state = 1;
+            this.systems = [];
+            this.sysItems = [];
+            this.systemEdit = null;
+            this.sysLoading = false;
+            this.structemEdit = [];
+            this.stationPull = [];
+            this.structLoading = false;
+            this.structerEdit = null;
+            this.stationName = null;
             this.structItems = [];
             this.structSearch = null;
             this.structSelect = null;
-            this.sysItems = [];
             this.sysSearch = null;
             this.sysSelect = null;
-            this.systems = [];
+            this.show_on_rc = 0;
+            this.show_on_rc_move = 0;
+            this.show_on_chill = 0;
+            this.show_on_main = 0;
+            this.showStationTimer = false;
+            this.ticktemEdit = null;
+            this.tickLoading = false;
+            this.tickerEdit = null;
             this.tickItems = [];
             this.tickSearch = null;
             this.tickSelect = null;
-            this.state = 1;
-            this.showStationTimer = false;
         },
 
         async submit() {
@@ -479,7 +491,7 @@ export default {
                 show_on_chill: this.show_on_chill,
                 show_on_rc_move: this.show_on_rc_move,
                 show_on_rc: this.show_rc,
-                show_on_coord: this.showOnCoord
+                show_on_coord: this.showOnCoord,
             };
 
             await axios({
@@ -489,27 +501,44 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             }).then(
-                (this.stationNameEdit = null),
-                (this.showStationTimer = false),
+                (this.imageLink = null),
                 (this.refType = null),
-                (this.refTime = null),
-                (this.stationName = null),
+                (this.refTime = {
+                    d: "",
+                    hh: "",
+                    mm: "",
+                    ss: "",
+                }),
                 (this.stationNameEdit = null),
+                (this.state = 1),
+                (this.systems = []),
+                (this.sysItems = []),
+                (this.systemEdit = null),
+                (this.sysLoading = false),
+                (this.structemEdit = []),
+                (this.stationPull = []),
+                (this.structLoading = false),
+                (this.structerEdit = null),
+                (this.stationName = null),
                 (this.structItems = []),
                 (this.structSearch = null),
                 (this.structSelect = null),
-                (this.sysItems = []),
                 (this.sysSearch = null),
                 (this.sysSelect = null),
-                (this.systems = []),
+                (this.show_on_rc = 0),
+                (this.show_on_rc_move = 0),
+                (this.show_on_chill = 0),
+                (this.show_on_main = 0),
+                (this.showStationTimer = false),
+                (this.ticktemEdit = null),
+                (this.tickLoading = false),
+                (this.tickerEdit = null),
                 (this.tickItems = []),
                 (this.tickSearch = null),
-                (this.tickSelect = null),
-                (this.state = 1),
-                (this.showStationTimer = false)
+                (this.tickSelect = null)
             );
         },
 
@@ -538,7 +567,7 @@ export default {
                 show_on_main: this.show_on_main,
                 show_on_chill: this.show_on_chill,
                 show_on_rc_move: this.show_on_rc_move,
-                show_on_rc: this.show_rc
+                show_on_rc: this.show_rc,
             };
 
             await axios({
@@ -550,27 +579,44 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             }).then(
-                (this.stationNameEdit = null),
-                (this.showStationTimer = false),
+                (this.imageLink = null),
                 (this.refType = null),
-                (this.refTime = null),
-                (this.stationName = null),
+                (this.refTime = {
+                    d: "",
+                    hh: "",
+                    mm: "",
+                    ss: "",
+                }),
                 (this.stationNameEdit = null),
+                (this.state = 1),
+                (this.systems = []),
+                (this.sysItems = []),
+                (this.systemEdit = null),
+                (this.sysLoading = false),
+                (this.structemEdit = []),
+                (this.stationPull = []),
+                (this.structLoading = false),
+                (this.structerEdit = null),
+                (this.stationName = null),
                 (this.structItems = []),
                 (this.structSearch = null),
                 (this.structSelect = null),
-                (this.sysItems = []),
                 (this.sysSearch = null),
                 (this.sysSelect = null),
-                (this.systems = []),
+                (this.show_on_rc = 0),
+                (this.show_on_rc_move = 0),
+                (this.show_on_chill = 0),
+                (this.show_on_main = 0),
+                (this.showStationTimer = false),
+                (this.ticktemEdit = null),
+                (this.tickLoading = false),
+                (this.tickerEdit = null),
                 (this.tickItems = []),
                 (this.tickSearch = null),
-                (this.tickSelect = null),
-                (this.state = 1),
-                (this.showStationTimer = false)
+                (this.tickSelect = null)
             );
         },
 
@@ -583,7 +629,7 @@ export default {
         async stationNameAdd() {
             var request = {
                 stationName: this.stationNameEdit,
-                show: this.type
+                show: this.type,
             };
             await axios({
                 method: "put", //you can set what request you want to be
@@ -592,9 +638,9 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
-            }).then(response => {
+                    "Content-Type": "application/json",
+                },
+            }).then((response) => {
                 let res = response.data;
                 if (res.state == 2) {
                     this.stationPull = res;
@@ -607,7 +653,7 @@ export default {
                     this.state = res.state;
                 }
             });
-        }
+        },
     },
 
     computed: {
@@ -745,10 +791,10 @@ export default {
 
         tickList() {
             return this.ticklist;
-        }
+        },
     },
 
-    beforeDestroy() {}
+    beforeDestroy() {},
 };
 </script>
 

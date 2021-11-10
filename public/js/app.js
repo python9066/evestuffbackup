@@ -18557,11 +18557,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -18607,7 +18602,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       tickerEdit: null,
       stationPull: [],
       structItems: [],
-      structtemEdit: null,
+      structemEdit: null,
       structSearch: null,
       structSelect: null,
       structLoading: false,
@@ -18692,24 +18687,41 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, 500);
     },
     close: function close() {
-      this.stationNameEdit = null;
-      this.showStationTimer = false;
+      this.imageLink = null;
       this.refType = null;
-      this.refTime = null;
-      this.stationName = null;
+      this.refTime = {
+        d: "",
+        hh: "",
+        mm: "",
+        ss: ""
+      };
       this.stationNameEdit = null;
+      this.state = 1;
+      this.systems = [];
+      this.sysItems = [];
+      this.systemEdit = null;
+      this.sysLoading = false;
+      this.structemEdit = [];
+      this.stationPull = [];
+      this.structLoading = false;
+      this.structerEdit = null;
+      this.stationName = null;
       this.structItems = [];
       this.structSearch = null;
       this.structSelect = null;
-      this.sysItems = [];
       this.sysSearch = null;
       this.sysSelect = null;
-      this.systems = [];
+      this.show_on_rc = 0;
+      this.show_on_rc_move = 0;
+      this.show_on_chill = 0;
+      this.show_on_main = 0;
+      this.showStationTimer = false;
+      this.ticktemEdit = null;
+      this.tickLoading = false;
+      this.tickerEdit = null;
       this.tickItems = [];
       this.tickSearch = null;
       this.tickSelect = null;
-      this.state = 1;
-      this.showStationTimer = false;
     },
     submit: function submit() {
       var _this5 = this;
@@ -18768,7 +18780,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this5.stationNameEdit = null, _this5.showStationTimer = false, _this5.refType = null, _this5.refTime = null, _this5.stationName = null, _this5.stationNameEdit = null, _this5.structItems = [], _this5.structSearch = null, _this5.structSelect = null, _this5.sysItems = [], _this5.sysSearch = null, _this5.sysSelect = null, _this5.systems = [], _this5.tickItems = [], _this5.tickSearch = null, _this5.tickSelect = null, _this5.state = 1, _this5.showStationTimer = false);
+                }).then(_this5.imageLink = null, _this5.refType = null, _this5.refTime = {
+                  d: "",
+                  hh: "",
+                  mm: "",
+                  ss: ""
+                }, _this5.stationNameEdit = null, _this5.state = 1, _this5.systems = [], _this5.sysItems = [], _this5.systemEdit = null, _this5.sysLoading = false, _this5.structemEdit = [], _this5.stationPull = [], _this5.structLoading = false, _this5.structerEdit = null, _this5.stationName = null, _this5.structItems = [], _this5.structSearch = null, _this5.structSelect = null, _this5.sysSearch = null, _this5.sysSelect = null, _this5.show_on_rc = 0, _this5.show_on_rc_move = 0, _this5.show_on_chill = 0, _this5.show_on_main = 0, _this5.showStationTimer = false, _this5.ticktemEdit = null, _this5.tickLoading = false, _this5.tickerEdit = null, _this5.tickItems = [], _this5.tickSearch = null, _this5.tickSelect = null);
 
               case 4:
               case "end":
@@ -18822,7 +18839,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this6.stationNameEdit = null, _this6.showStationTimer = false, _this6.refType = null, _this6.refTime = null, _this6.stationName = null, _this6.stationNameEdit = null, _this6.structItems = [], _this6.structSearch = null, _this6.structSelect = null, _this6.sysItems = [], _this6.sysSearch = null, _this6.sysSelect = null, _this6.systems = [], _this6.tickItems = [], _this6.tickSearch = null, _this6.tickSelect = null, _this6.state = 1, _this6.showStationTimer = false);
+                }).then(_this6.imageLink = null, _this6.refType = null, _this6.refTime = {
+                  d: "",
+                  hh: "",
+                  mm: "",
+                  ss: ""
+                }, _this6.stationNameEdit = null, _this6.state = 1, _this6.systems = [], _this6.sysItems = [], _this6.systemEdit = null, _this6.sysLoading = false, _this6.structemEdit = [], _this6.stationPull = [], _this6.structLoading = false, _this6.structerEdit = null, _this6.stationName = null, _this6.structItems = [], _this6.structSearch = null, _this6.structSelect = null, _this6.sysSearch = null, _this6.sysSelect = null, _this6.show_on_rc = 0, _this6.show_on_rc_move = 0, _this6.show_on_chill = 0, _this6.show_on_main = 0, _this6.showStationTimer = false, _this6.ticktemEdit = null, _this6.tickLoading = false, _this6.tickerEdit = null, _this6.tickItems = [], _this6.tickSearch = null, _this6.tickSelect = null);
 
               case 4:
               case "end":
@@ -35123,7 +35145,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active,\r\n.fade-leave-active {\r\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\r\n    opacity: 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.fade-enter-active,\n.fade-leave-active {\n    transition: opacity 0.5s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {\n    opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -54785,11 +54807,7 @@ var render = function () {
                       on
                     ),
                     [
-                      _c("v-icon", [
-                        _vm._v(
-                          "\n                    faSvg fa-plus\n                "
-                        ),
-                      ]),
+                      _c("v-icon", [_vm._v(" faSvg fa-plus ")]),
                       _vm._v("\n                Add Timer\n            "),
                     ],
                     1
@@ -54811,7 +54829,7 @@ var render = function () {
           _c(
             "v-card",
             {
-              staticClass: " d-flex flex-column",
+              staticClass: "d-flex flex-column",
               attrs: {
                 tile: "",
                 "max-width": "700px",
@@ -54869,11 +54887,11 @@ var render = function () {
                         "div",
                         {
                           staticClass:
-                            " d-inline-flex align-content-center justify-content-around",
+                            "\n                        d-inline-flex\n                        align-content-center\n                        justify-content-around\n                    ",
                         },
                         [
                           _c("v-text-field", {
-                            staticClass: " shrink",
+                            staticClass: "shrink",
                             staticStyle: { width: "600px" },
                             attrs: {
                               readonly: _vm.stationReadonly,
@@ -54894,7 +54912,7 @@ var render = function () {
                           _vm._v(" "),
                           _c(
                             "div",
-                            { staticClass: " pl-2 pt-2" },
+                            { staticClass: "pl-2 pt-2" },
                             [
                               _vm.state == 1
                                 ? _c(
@@ -54967,7 +54985,7 @@ var render = function () {
                             "div",
                             {
                               staticClass:
-                                " d-inline-flex justify-content-around",
+                                "d-inline-flex justify-content-around",
                             },
                             [
                               _c("v-autocomplete", {
@@ -54998,7 +55016,7 @@ var render = function () {
                               }),
                               _vm._v(" "),
                               _c("v-autocomplete", {
-                                staticClass: " ml-2",
+                                staticClass: "ml-2",
                                 attrs: {
                                   loading: _vm.tickLoading,
                                   rules: [_vm.rules.required],
@@ -55232,7 +55250,7 @@ var render = function () {
                             "div",
                             {
                               staticClass:
-                                " d-inline-flex justify-content-around",
+                                "d-inline-flex justify-content-around",
                             },
                             [
                               _c("v-text-field", {
