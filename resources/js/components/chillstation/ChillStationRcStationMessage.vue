@@ -98,7 +98,7 @@ export default {
     },
 
     async created() {
-        Echo.private("sheet").listen("RcSheetMessageUpdate", (e) => {
+        Echo.private("chillsheet").listen("ChillSheetMessageUpdate", (e) => {
             if (e.flag.id == this.station.id) {
                 this.$store.dispatch("updateChillStation", e.flag.message);
                 if (this.showStationNotes == false) {

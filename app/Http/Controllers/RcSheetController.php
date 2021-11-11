@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ChillSheetMessageUpdate;
 use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetMessageUpdate;
 use App\Events\RcSheetUpdate;
@@ -136,7 +137,7 @@ class RcSheetController extends Controller
             ]);
 
             // dd($request, $id, $flag);
-            broadcast(new RcSheetMessageUpdate($flag))->toOthers();
+            broadcast(new ChillSheetMessageUpdate($flag))->toOthers();
         }
     }
 

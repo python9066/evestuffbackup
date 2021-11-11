@@ -8041,7 +8041,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("sheet").listen("RcSheetMessageUpdate", function (e) {
+              Echo["private"]("chillsheet").listen("ChillSheetMessageUpdate", function (e) {
                 if (e.flag.id == _this.station.id) {
                   _this.$store.dispatch("updateChillStation", e.flag.message);
 
