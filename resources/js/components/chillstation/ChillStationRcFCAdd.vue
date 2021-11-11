@@ -19,9 +19,7 @@
             </template>
 
             <v-card tile max-width="500px" min-height="200px">
-                <v-card-title
-                    class="d-flex justify-space-between align-center "
-                >
+                <v-card-title class="d-flex justify-space-between align-center">
                     <div>Table of FCs</div>
                     <v-card
                         width="500"
@@ -79,7 +77,8 @@
                                                 class="mr-4"
                                                 @click="
                                                     (addShown = false),
-                                                        (this.newCharName = null)
+                                                        (this.newCharName =
+                                                            null)
                                                 "
                                                 >Close</v-btn
                                             >
@@ -104,9 +103,7 @@
                         hide-default-footer
                         class="elevation-24"
                     >
-                        <template slot="no-data">
-                            No FCs
-                        </template>
+                        <template slot="no-data"> No FCs </template>
                         <!-- :color="pillColor(item)" -->
                         <template v-slot:[`item.addRemove`]="{ item }">
                             <span>
@@ -145,13 +142,13 @@ import { mapGetters } from "vuex";
 import { mapState } from "vuex";
 export default {
     props: {
-        station: Object
+        station: Object,
     },
     data() {
         return {
             headers: [
                 { text: "Name", value: "name" },
-                { text: "", value: "addRemove", align: "end" }
+                { text: "", value: "addRemove", align: "end" },
 
                 // { text: "Vulernable En d Time", value: "vulnerable_end_time" }
             ],
@@ -159,7 +156,7 @@ export default {
 
             addShown: false,
             overlay: false,
-            search: ""
+            search: "",
         };
     },
 
@@ -177,13 +174,13 @@ export default {
             var data = {
                 id: this.station.id,
                 fc_user_id: item.id,
-                fc_user_name: item.name
+                fc_user_name: item.name,
             };
 
-            this.$store.dispatch("updateRcStation", data);
+            this.$store.dispatch("updateChillStation", data);
 
             var request = {
-                rc_fc_id: item.id
+                rc_fc_id: item.id,
             };
 
             await axios({
@@ -193,8 +190,8 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
         },
 
@@ -205,8 +202,8 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
 
             this.$store.dispatch("getRcFcs");
@@ -214,7 +211,7 @@ export default {
 
         async newFCForm() {
             var request = {
-                char_name: this.newCharName
+                char_name: this.newCharName,
             };
 
             await axios({
@@ -224,8 +221,8 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
             this.$store.dispatch("getRcFcs");
             this.addShown = false;
@@ -245,19 +242,19 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
             this.$store.dispatch("getCampaignSystemsRecords");
-        }
+        },
     },
 
     computed: {
         ...mapState(["rcfcs"]),
         filteredItems() {
             return this.rcfcs;
-        }
-    }
+        },
+    },
 };
 </script>
 

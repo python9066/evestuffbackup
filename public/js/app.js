@@ -6815,9 +6815,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6864,7 +6861,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   fc_user_name: item.name
                 };
 
-                _this.$store.dispatch("updateRcStation", data);
+                _this.$store.dispatch("updateChillStation", data);
 
                 request = {
                   rc_fc_id: item.id
@@ -45991,7 +45988,7 @@ var render = function () {
             [
               _c(
                 "v-card-title",
-                { staticClass: "d-flex justify-space-between align-center " },
+                { staticClass: "d-flex justify-space-between align-center" },
                 [
                   _c("div", [_vm._v("Table of FCs")]),
                   _vm._v(" "),
@@ -46246,13 +46243,7 @@ var render = function () {
                         true
                       ),
                     },
-                    [
-                      _c("template", { slot: "no-data" }, [
-                        _vm._v(
-                          "\n                        No FCs\n                    "
-                        ),
-                      ]),
-                    ],
+                    [_c("template", { slot: "no-data" }, [_vm._v(" No FCs ")])],
                     2
                   ),
                 ],

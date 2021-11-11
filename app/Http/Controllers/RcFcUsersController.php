@@ -129,11 +129,20 @@ class RcFcUsersController extends Controller
         $userName = User::where('id', $userid)->value('name');
 
         $message = RcStationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new RcSheetUpdate($flag));
-        broadcast(new ChillSheetUpdate($flag));
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new RcSheetUpdate($flag));
+        }
+
+        $message = ChillStationRecords::where('id', $id)->first();
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new ChillSheetUpdate($flag));
+        }
 
         $text = Auth::user()->name . " Added " . $userName . " as FC";
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 19]);
