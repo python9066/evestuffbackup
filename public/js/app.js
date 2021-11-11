@@ -75422,7 +75422,7 @@ var render = function () {
                                   "div",
                                   { staticClass: "d-inline-flex" },
                                   [
-                                    _c("ChillRcStationMessage", {
+                                    _c("ChillStationRcStationMessage", {
                                       staticClass: "mr-2",
                                       attrs: { station: item },
                                     }),

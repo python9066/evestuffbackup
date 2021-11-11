@@ -281,10 +281,10 @@
                         </template>
                         <template v-slot:[`item.actions`]="{ item }">
                             <div class="d-inline-flex">
-                                <ChillRcStationMessage
+                                <ChillStationRcStationMessage
                                     class="mr-2"
                                     :station="item"
-                                ></ChillRcStationMessage>
+                                ></ChillStationRcStationMessage>
                                 <div>
                                     <Info
                                         :station="item"
