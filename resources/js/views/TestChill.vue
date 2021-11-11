@@ -256,10 +256,10 @@
                         </template>
 
                         <template v-slot:[`item.recon_name`]="{ item }">
-                            <RcReconButton
+                            <ChillStationRcReconButton
                                 class="mr-2"
                                 :station="item"
-                            ></RcReconButton>
+                            ></ChillStationRcReconButton>
                         </template>
 
                         <template v-slot:[`item.status_name`]="{ item }">
@@ -274,17 +274,17 @@
                         </template>
 
                         <template v-slot:[`item.gsol_name`]="{ item }">
-                            <RcGsolButton
+                            <ChillStationRcGsolButton
                                 class="mr-2"
                                 :station="item"
-                            ></RcGsolButton>
+                            ></ChillStationRcGsolButton>
                         </template>
                         <template v-slot:[`item.actions`]="{ item }">
                             <div class="d-inline-flex">
-                                <RcStationMessage
+                                <ChillRcStationMessage
                                     class="mr-2"
                                     :station="item"
-                                ></RcStationMessage>
+                                ></ChillRcStationMessage>
                                 <div>
                                     <Info
                                         :station="item"
@@ -361,7 +361,7 @@ function sleep(ms) {
 
 export default {
     title() {
-        return `EveStuff - Nats Health`;
+        return `EveStuff - Chill Times`;
     },
     data() {
         return {

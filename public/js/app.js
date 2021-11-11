@@ -7211,8 +7211,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7248,7 +7246,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   gsol_name: _this.$store.state.user_name
                 };
 
-                _this.$store.dispatch("updateRcStation", data);
+                _this.$store.dispatch("updateChillStation", data);
 
                 request = null;
                 request = {
@@ -7289,7 +7287,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   gsol_name: null
                 };
 
-                _this2.$store.dispatch("updateRcStation", data);
+                _this2.$store.dispatch("updateChillStation", data);
 
                 _context2.next = 4;
                 return axios({
@@ -7815,9 +7813,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7853,7 +7848,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   recon_name: _this.$store.state.user_name
                 };
 
-                _this.$store.dispatch("updateRcStation", data);
+                _this.$store.dispatch("updateChillStation", data);
 
                 request = null;
                 request = {
@@ -7894,7 +7889,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   recon_name: null
                 };
 
-                _this2.$store.dispatch("updateRcStation", data);
+                _this2.$store.dispatch("updateChillStation", data);
 
                 _context2.next = 4;
                 return axios({
@@ -8046,9 +8041,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("rcsheet").listen("RcSheetMessageUpdate", function (e) {
+              Echo["private"]("sheet").listen("RcSheetMessageUpdate", function (e) {
                 if (e.flag.id == _this.station.id) {
-                  _this.$store.dispatch("updateRcStation", e.flag.message);
+                  _this.$store.dispatch("updateChillStation", e.flag.message);
 
                   if (_this.showStationNotes == false) {
                     _this.showNumber = true;
@@ -35894,7 +35889,7 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {
-    return "EveStuff - Nats Health";
+    return "EveStuff - Chill Times";
   },
   data: function data() {
     return {
@@ -46420,7 +46415,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: " d-inline-flex align-items-md-center  pl-4" },
+    { staticClass: "d-inline-flex align-items-md-center pl-4" },
     [
       _c("div", [
         _c(
@@ -46476,7 +46471,7 @@ var render = function () {
             },
             [
               _c("v-icon", { attrs: { "x-small": "", dark: "", left: "" } }, [
-                _vm._v("\n                fas fa-plus\n            "),
+                _vm._v(" fas fa-plus "),
               ]),
               _vm._v("\n            GSOL"),
             ],
@@ -47139,7 +47134,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: " d-inline-flex align-items-md-center  pl-4" },
+    { staticClass: "d-inline-flex align-items-md-center pl-4" },
     [
       _c("div", [
         _c(
@@ -47195,7 +47190,7 @@ var render = function () {
             },
             [
               _c("v-icon", { attrs: { "x-small": "", dark: "", left: "" } }, [
-                _vm._v("\n                fas fa-plus\n            "),
+                _vm._v(" fas fa-plus "),
               ]),
               _vm._v("\n            CYNO"),
             ],
@@ -47214,7 +47209,7 @@ var render = function () {
                     (_vm.$can("edit_killsheet_remove_char") ||
                       this.station.recon_user_id == this.$store.state.user_id),
                   expression:
-                    "\n                showRcReconButton() &&\n                    ($can('edit_killsheet_remove_char') ||\n                        this.station.recon_user_id ==\n                            this.$store.state.user_id)\n            ",
+                    "\n                showRcReconButton() &&\n                ($can('edit_killsheet_remove_char') ||\n                    this.station.recon_user_id == this.$store.state.user_id)\n            ",
                 },
               ],
               attrs: { color: "orange darken-3 ", small: "" },
@@ -47330,7 +47325,7 @@ var render = function () {
           _c(
             "v-card",
             {
-              staticClass: " d-flex flex-column",
+              staticClass: "d-flex flex-column",
               attrs: {
                 tile: "",
                 "max-width": "700px",
@@ -75370,7 +75365,7 @@ var render = function () {
                             fn: function (ref) {
                               var item = ref.item
                               return [
-                                _c("RcReconButton", {
+                                _c("ChillStationRcReconButton", {
                                   staticClass: "mr-2",
                                   attrs: { station: item },
                                 }),
@@ -75411,7 +75406,7 @@ var render = function () {
                             fn: function (ref) {
                               var item = ref.item
                               return [
-                                _c("RcGsolButton", {
+                                _c("ChillStationRcGsolButton", {
                                   staticClass: "mr-2",
                                   attrs: { station: item },
                                 }),
@@ -75427,7 +75422,7 @@ var render = function () {
                                   "div",
                                   { staticClass: "d-inline-flex" },
                                   [
-                                    _c("RcStationMessage", {
+                                    _c("ChillRcStationMessage", {
                                       staticClass: "mr-2",
                                       attrs: { station: item },
                                     }),

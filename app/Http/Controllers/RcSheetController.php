@@ -6,6 +6,7 @@ use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetMessageUpdate;
 use App\Events\RcSheetUpdate;
 use App\Models\Alliance;
+use App\Models\ChillStationRecords;
 use App\Models\Corp;
 use App\Models\RcStationRecords;
 use App\Models\Station;
@@ -117,13 +118,26 @@ class RcSheetController extends Controller
         Station::where('id', $id)->update($request->all());
 
         $message = RcStationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-            'id' => $id
-        ]);
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+                'id' => $id
+            ]);
 
-        // dd($request, $id, $flag);
-        broadcast(new RcSheetMessageUpdate($flag))->toOthers();
+            // dd($request, $id, $flag);
+            broadcast(new RcSheetMessageUpdate($flag))->toOthers();
+        }
+
+        $message = ChillStationRecords::where('id', $id)->first();
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+                'id' => $id
+            ]);
+
+            // dd($request, $id, $flag);
+            broadcast(new RcSheetMessageUpdate($flag))->toOthers();
+        }
     }
 
 

@@ -29,7 +29,7 @@
                 max-width="700px"
                 min-height="200px"
                 max-height="700px"
-                class=" d-flex flex-column"
+                class="d-flex flex-column"
             >
                 <v-card-title
                     >Notes for Station {{ station.name }}.
@@ -86,21 +86,21 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        station: Object
+        station: Object,
     },
     data() {
         return {
             messageCount: 0,
             showNumber: false,
             showStationNotes: false,
-            editText: null
+            editText: null,
         };
     },
 
     async created() {
-        Echo.private("rcsheet").listen("RcSheetMessageUpdate", e => {
+        Echo.private("sheet").listen("RcSheetMessageUpdate", (e) => {
             if (e.flag.id == this.station.id) {
-                this.$store.dispatch("updateRcStation", e.flag.message);
+                this.$store.dispatch("updateChillStation", e.flag.message);
                 if (this.showStationNotes == false) {
                     this.showNumber = true;
                     this.messageCount = this.messageCount + 1;
@@ -140,7 +140,7 @@ export default {
 
             this.station.notes = note;
             let request = {
-                notes: note
+                notes: note,
             };
             this.$store.dispatch("updateStationNotification", this.station);
             axios({
@@ -150,11 +150,11 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
             this.editText = null;
-        }
+        },
     },
 
     computed: {
@@ -172,10 +172,10 @@ export default {
             } else {
                 return true;
             }
-        }
+        },
     },
 
-    beforeDestroy() {}
+    beforeDestroy() {},
 };
 </script>
 

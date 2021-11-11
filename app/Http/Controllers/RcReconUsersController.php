@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetUpdate;
+use App\Models\ChillStationRecords;
 use App\Models\Logging;
 use App\Models\RcReconUsers;
 use App\Models\RcStationRecords;
@@ -39,11 +40,20 @@ class RcReconUsersController extends Controller
         $reconid = RcReconUsers::where('user_id', $request->user_id)->value('id');
         Station::where('id', $id)->update(['rc_recon_id' => $reconid]);
         $message = RcStationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new RcSheetUpdate($flag));
-        broadcast(new ChillSheetUpdate($flag));
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new RcSheetUpdate($flag));
+        }
+
+        $message = ChillStationRecords::where('id', $id)->first();
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new ChillSheetUpdate($flag));
+        }
 
         $text = Auth::user()->name . " Added as Cyno";
 
@@ -60,11 +70,20 @@ class RcReconUsersController extends Controller
         $username = User::where('id', $userid)->value('name');
         Station::where('id', $id)->update(['rc_recon_id' => null]);
         $message = RcStationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new RcSheetUpdate($flag));
-        broadcast(new ChillSheetUpdate($flag));
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new RcSheetUpdate($flag));
+        }
+
+        $message = ChillStationRecords::where('id', $id)->first();
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new ChillSheetUpdate($flag));
+        }
         $text = Auth::user()->name . " Removed " . $username . " As Cyno";
 
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 22]);

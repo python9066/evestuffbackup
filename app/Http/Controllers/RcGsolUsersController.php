@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetUpdate;
+use App\Models\ChillStationRecords;
 use App\Models\Logging;
 use App\Models\RcGsolUsers;
 use App\Models\RcStationRecords;
@@ -42,11 +43,20 @@ class RcGsolUsersController extends Controller
         $gsolName = User::where('id', $gsolNameID)->value('name');
         Station::where('id', $id)->update(['rc_gsol_id' => $request->user_id]);
         $message = RcStationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new RcSheetUpdate($flag));
-        broadcast(new ChillSheetUpdate($flag));
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new RcSheetUpdate($flag));
+        }
+
+        $message = ChillStationRecords::where('id', $id)->first();
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new ChillSheetUpdate($flag));
+        }
 
         $text = Auth::user()->name . " Added to Gsol";
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 23]);
@@ -61,11 +71,20 @@ class RcGsolUsersController extends Controller
         $gsolName = User::where('id', $gsolNameID)->value('name');
         Station::where('id', $id)->update(['rc_gsol_id' => null]);
         $message = RcStationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new RcSheetUpdate($flag));
-        broadcast(new ChillSheetUpdate($flag));
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new RcSheetUpdate($flag));
+        }
+
+        $message = ChillStationRecords::where('id', $id)->first();
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new ChillSheetUpdate($flag));
+        }
         $text = Auth::user()->name . " Removed " . $gsolName . " from Gsol";
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 24]);
         $log = $log->id;
