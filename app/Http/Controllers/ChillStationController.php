@@ -222,7 +222,8 @@ class ChillStationController extends Controller
      */
     public function destroy($id)
     {
-        Station::where('id', $id)->delete();
+
+        Station::where('id', $id)->update(['show_on_chill' => 0]);
         $flag = collect([
             'flag' => 4
         ]);
