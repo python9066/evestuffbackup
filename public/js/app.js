@@ -6593,7 +6593,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 6;
                 return axios({
                   method: "put",
-                  url: "/api/updatestationnotification/" + _this.item.id,
+                  url: "/api/chillupdatestationnotification/" + _this.item.id,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,

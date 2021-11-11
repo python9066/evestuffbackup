@@ -133,7 +133,7 @@ export default {
 
             await axios({
                 method: "put",
-                url: "/api/updatestationnotification/" + this.item.id,
+                url: "/api/chillupdatestationnotification/" + this.item.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
