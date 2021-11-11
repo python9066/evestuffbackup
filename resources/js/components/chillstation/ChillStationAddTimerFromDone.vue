@@ -210,7 +210,7 @@ export default {
 
             await axios({
                 method: "put", //you can set whfffat request you want to be
-                url: "api/updatetimerinfo/" + this.item.id,
+                url: "api/chillupdatetimerinfo/" + this.item.id,
                 data: request,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,

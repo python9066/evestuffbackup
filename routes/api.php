@@ -231,6 +231,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/chillStatuslist', 'ChillstationController@chillSheetListStatus');
     Route::get('/chilltest', 'ChillStationController@test');
     Route::put('finishrcstationchill/{id}', 'ChillStationController@stationdone');
+    Route::put('/chillupdatetimerinfo/{id}', 'ChillStationController@chillEditUpdate');
+    Route::delete('/chilldelete/{id}', 'ChillStationController@destroy');
 
 
 

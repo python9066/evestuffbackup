@@ -6173,7 +6173,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios({
                   method: "put",
                   //you can set whfffat request you want to be
-                  url: "api/updatetimerinfo/" + _this.item.id,
+                  url: "api/chillupdatetimerinfo/" + _this.item.id,
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this.$store.state.token,
@@ -6582,7 +6582,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   show_on_rc: 0
                 };
 
-                _this.$store.dispatch("updateRcStation", data);
+                _this.$store.dispatch("updateChillStation", data);
 
                 request = null;
                 request = {
@@ -6621,16 +6621,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 data = {
                   id: _this2.item.id,
-                  show_on_rc: 0,
-                  show_on_coord: 1
+                  show_on_chill: 0
                 };
 
-                _this2.$store.dispatch("updateRcStation", data);
+                _this2.$store.dispatch("updateChillStation", data);
 
                 _context4.next = 4;
                 return axios({
-                  method: "put",
-                  url: "/api/softdestory/" + _this2.item.id,
+                  method: "delete",
+                  url: "/api/chilldelete/" + _this2.item.id,
                   headers: {
                     Authorization: "Bearer " + _this2.$store.state.token,
                     Accept: "application/json",

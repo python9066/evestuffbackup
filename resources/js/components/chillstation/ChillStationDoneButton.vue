@@ -122,7 +122,7 @@ export default {
                 show_on_rc: 0,
             };
 
-            this.$store.dispatch("updateRcStation", data);
+            this.$store.dispatch("updateChillStation", data);
 
             var request = null;
             request = {
@@ -146,15 +146,13 @@ export default {
         async softDestroyed() {
             var data = {
                 id: this.item.id,
-                show_on_rc: 0,
-                show_on_coord: 1,
+                show_on_chill: 0,
             };
-
-            this.$store.dispatch("updateRcStation", data);
+            this.$store.dispatch("updateChillStation", data);
 
             await axios({
-                method: "put",
-                url: "/api/softdestory/" + this.item.id,
+                method: "delete",
+                url: "/api/chilldelete/" + this.item.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",

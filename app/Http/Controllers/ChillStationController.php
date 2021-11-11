@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Events\ChillSheetUpdate;
+use App\Events\StationNotificationUpdate;
+use App\Events\StationUpdateCoord;
 use App\Models\ChillStationRecords;
+use App\Models\Logging;
 use App\Models\Station;
+use App\Models\StationRecords;
+use App\Models\StationStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use utils\Helper\Helper;
 
 class ChillStationController extends Controller
 {
@@ -131,6 +138,59 @@ class ChillStationController extends Controller
         return ['chillsheetlistType' => $data];
     }
 
+
+    public function chillEditUpdate(Request $request, $id)
+    {
+        // dd($id);
+        $now = now();
+
+        $RCmessage = ChillStationRecords::where('id', $id)->first();
+        if ($RCmessage) {
+            $RCmessageSend = [
+                'id' => $RCmessage->id,
+                'show_on_rc' => 0
+            ];
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
+            broadcast(new ChillSheetUpdate($flag));
+        }
+
+        $oldStation = Station::where('id', $id)->first();
+        $oldStatus = StationStatus::where('id', $oldStation->station_status_id)->value('name');
+        $oldStatus = str_replace('Upcoming - ', "", $oldStatus);
+
+
+        Station::find($id)->update($request->all());
+        $newStation = Station::where('id', $id)->first();
+        $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
+        $newStatus = str_replace('Upcoming - ', "", $newStatus);
+
+        $message = StationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message
+        ]);
+        broadcast(new StationNotificationUpdate($flag));
+        broadcast(new StationUpdateCoord($flag));
+        broadcast(new ChillSheetUpdate($flag));
+
+
+
+
+        if ($request->station_status_id != $oldStation->station_status_id) {
+            $text = Auth::user()->name .  " changed the Status from " . $oldStatus . " to " . $newStatus;
+            $log = Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
+            Helper::stationlogs($log->id);
+        }
+
+        if ($request->out_time != $oldStation->out_time) {
+            $text = Auth::user()->name .  " changed the timer from " . $oldStation->out_time . " to " . $request->out_time;
+            $log = Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
+            Helper::stationlogs($log->id);
+        }
+    }
+
+
     /**
      * Display the specified resource.
      *
@@ -162,6 +222,10 @@ class ChillStationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ChillStationRecords::where('id', $id)->delete();
+        $flag = collect([
+            'flag' => 4
+        ]);
+        broadcast(new ChillSheetUpdate($flag));
     }
 }
