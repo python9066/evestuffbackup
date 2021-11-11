@@ -6579,7 +6579,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 data = {
                   id: _this.item.id,
-                  show_on_rc: 0
+                  show_on_chill: 0
                 };
 
                 _this.$store.dispatch("updateChillStation", data);
@@ -6587,8 +6587,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 request = null;
                 request = {
                   station_status_id: statusID,
-                  show_on_rc: 0,
-                  show_on_coord: 1
+                  show_on_chill: 0,
+                  show_on_coord: 0
                 };
                 _context3.next = 6;
                 return axios({

@@ -233,6 +233,7 @@ Route::middleware('auth:api')->group(function () {
     Route::put('finishrcstationchill/{id}', 'ChillStationController@stationdone');
     Route::put('/chillupdatetimerinfo/{id}', 'ChillStationController@chillEditUpdate');
     Route::delete('/chilldelete/{id}', 'ChillStationController@destroy');
+    Route::put('/chillupdatestationnotification/{id}', 'ChillStationController@update');
 
 
 

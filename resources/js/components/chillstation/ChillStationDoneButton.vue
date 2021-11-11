@@ -119,7 +119,7 @@ export default {
         async statusUpdate(statusID) {
             var data = {
                 id: this.item.id,
-                show_on_rc: 0,
+                show_on_chill: 0,
             };
 
             this.$store.dispatch("updateChillStation", data);
@@ -127,8 +127,8 @@ export default {
             var request = null;
             request = {
                 station_status_id: statusID,
-                show_on_rc: 0,
-                show_on_coord: 1,
+                show_on_chill: 0,
+                show_on_coord: 0,
             };
 
             await axios({
