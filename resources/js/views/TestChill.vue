@@ -401,7 +401,7 @@ export default {
                 }
             });
         }
-        await this.$store.dispatch("getRcRegions");
+        await this.$store.dispatch("getChillRegions");
         await this.$store.dispatch("getChillStationRecords");
         await this.$store.dispatch("getRcFcs");
         await this.$store.dispatch("getRcItems");

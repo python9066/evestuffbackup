@@ -28,6 +28,27 @@ class ChillStationController extends Controller
         //
     }
 
+    public function rcSheetListRegion()
+    {
+        $data = [];
+        $pull = ChillStationRecords::where('show_on_chill', 1)->get();
+        $pull = $pull->unique('region_id');
+        $pull = $pull->sortBy('region_name');
+        foreach ($pull as $pull) {
+            $data1 = [];
+            $data1 = [
+                "text" => $pull['region_name'],
+                "value" => $pull['region_id']
+            ];
+
+            array_push($data, $data1);
+        }
+
+        // dd($data);
+
+        return ['chillsheetlistRegion' => $data];
+    }
+
     /**
      * Display the specified resource.
      *
