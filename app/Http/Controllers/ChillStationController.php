@@ -54,7 +54,7 @@ class ChillStationController extends Controller
 
     public function test()
     {
-        dd(ChillStationRecords::all());
+        dd("dance");
         $data = [];
         $pull = ChillStationRecords::where('show_on_chill', 1)->get();
         $pull = $pull->unique('status_id');
@@ -77,7 +77,7 @@ class ChillStationController extends Controller
 
     public function chillSheetListStatus()
     {
-        dd(ChillStationRecords::all());
+
         $data = [];
         $pull = ChillStationRecords::where('show_on_chill', 1)->get();
         $pull = $pull->unique('status_id');
