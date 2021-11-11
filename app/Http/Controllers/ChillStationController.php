@@ -145,18 +145,6 @@ class ChillStationController extends Controller
         // dd($id);
         $now = now();
 
-        $RCmessage = ChillStationRecords::where('id', $id)->first();
-        if ($RCmessage) {
-            $RCmessageSend = [
-                'id' => $RCmessage->id,
-                'show_on_chill' => 0
-            ];
-            $flag = collect([
-                'message' => $RCmessageSend,
-            ]);
-            broadcast(new ChillSheetUpdate($flag));
-        }
-
         $oldStation = Station::where('id', $id)->first();
         $oldStatus = StationStatus::where('id', $oldStation->station_status_id)->value('name');
         $oldStatus = str_replace('Upcoming - ', "", $oldStatus);
@@ -174,6 +162,14 @@ class ChillStationController extends Controller
         broadcast(new StationNotificationUpdate($flag));
         broadcast(new StationUpdateCoord($flag));
         broadcast(new ChillSheetUpdate($flag));
+
+        $message = ChillStationRecords::where('id', $id)->first();
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new ChillSheetUpdate($flag));
+        }
 
 
 

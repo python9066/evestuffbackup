@@ -203,7 +203,6 @@ export default {
                 show_on_rc_move: 0,
                 show_on_rc: 0,
                 show_on_coord: 0,
-                show_on_chill: 1,
                 status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
                 notes: note,
             };

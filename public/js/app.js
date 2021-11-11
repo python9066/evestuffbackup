@@ -6165,7 +6165,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   show_on_rc_move: 0,
                   show_on_rc: 0,
                   show_on_coord: 0,
-                  show_on_chill: 1,
                   status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
                   notes: note
                 };
