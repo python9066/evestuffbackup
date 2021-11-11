@@ -14,8 +14,8 @@ class ChillStationController extends Controller
      */
     public function index()
     {
-        dd(ChillStationRecords::where('show_on_chill', 1)->get());
-        return ['stations' => ChillStationRecords::where('show_on_chill', 1)->get()];
+        $data = ChillStationRecords::where('show_on_chill', 1)->get();
+        return ['stations' => $data];
     }
 
     /**
