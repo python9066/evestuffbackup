@@ -1071,7 +1071,7 @@ export default new Vuex.Store({
         async getChillStatus({ commit, state }) {
             let res = await axios({
                 method: "get",
-                url: "/api/chillStatuslist",
+                url: "/api/chilltest",
                 headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",

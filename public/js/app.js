@@ -87652,7 +87652,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 _context33.next = 3;
                 return axios({
                   method: "get",
-                  url: "/api/chillStatuslist",
+                  url: "/api/chilltest",
                   headers: {
                     Authorization: "Bearer " + state.token,
                     Accept: "application/json",
