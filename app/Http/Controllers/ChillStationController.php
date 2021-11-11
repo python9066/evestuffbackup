@@ -56,6 +56,7 @@ class ChillStationController extends Controller
     {
         $data = [];
         $pull = ChillStationRecords::where('show_on_chill', 1)->get();
+        dd($pull);
         $pull = $pull->unique('status_id');
         $pull = $pull->sortBy('status_name');
         foreach ($pull as $pull) {

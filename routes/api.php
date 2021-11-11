@@ -228,7 +228,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/chillsheet', 'ChillStationController@index');
     Route::get('/chillregionlist', 'ChillStationController@chillSheetListRegion');
     Route::get('/chillTypelist', 'ChillStationController@chillSheetListType');
-    Route::get('/chillStatuslist', 'Chillstationcontroller@chillSheetListStatus');
+    Route::get('/chillStatuslist', 'ChillstationController@chillSheetListStatus');
     Route::put('finishrcstationchill/{id}', 'ChillStationController@stationdone');
 
 
