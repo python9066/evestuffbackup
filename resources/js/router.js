@@ -16,7 +16,7 @@ import FeedBack from "./views/FeedBack.vue";
 import campaginSystemKick from "./views/redirect/campaginSystemKick.vue";
 import MultiCampagins from "./views/CustomCampaigns.vue";
 import campaignFinished from "./views/redirect/campaignOver.vue";
-import chillstations from "./components/chillstation/ChillStructure.vue";
+import chillstations from "./views/ChillTimers.vue"
 import Gsol from "./views/Gsol"
 import Recon from "./views/Recon";
 import StartCampaign from "./views/StartCampaignSystem"
@@ -24,7 +24,6 @@ import KillList from "./views/RCsheet.vue"
 import RCMOVETIMER from "./views/RCMove.vue"
 import FleetKeys from "./views/FleetKeyPannel.vue"
 import CoordSheet from "./views/CoordSheet.vue"
-import TestChill from "./views/TestChill.vue"
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -61,21 +60,6 @@ export default new Router({
             //     }
 
             //   }
-        },
-
-
-        {
-            path: "/testchill",
-            name: "testchill",
-            component: TestChill,
-              beforeEnter(to, from, next) {
-                if(Permissions.indexOf('view_chill_timers' )!== -1){
-                    next()
-                }else{
-                   next("/notifications")
-                }
-
-              }
         },
 
         {
