@@ -89,7 +89,7 @@ class ChillStationController extends Controller
     public function chillSheetListType()
     {
         $data = [];
-        $pull = ChillStationRecords::where('show_on_chillc', 1)->get();
+        $pull = ChillStationRecords::where('show_on_chill', 1)->get();
         $pull = $pull->unique('item_id');
         $pull = $pull->sortBy('item_name');
         foreach ($pull as $pull) {
