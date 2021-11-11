@@ -54,7 +54,7 @@ class ChillStationController extends Controller
 
     public function test()
     {
-        dd(ChillStationRecords::where('show_on_chill', 1)->get());
+        // dd(ChillStationRecords::where('show_on_chill', 1)->get());
         $data = [];
         $pull = ChillStationRecords::where('show_on_chill', 1)->get();
         $pull = $pull->unique('status_id');
