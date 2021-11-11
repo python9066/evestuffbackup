@@ -52,6 +52,29 @@ class ChillStationController extends Controller
         return ['chillsheetlistRegion' => $data];
     }
 
+    public function test()
+    {
+        dd(ChillStationRecords::all());
+        $data = [];
+        $pull = ChillStationRecords::where('show_on_chill', 1)->get();
+        $pull = $pull->unique('status_id');
+        $pull = $pull->sortBy('status_name');
+        foreach ($pull as $pull) {
+            $text = str_replace("Upcoming - ", "", $pull['status_name']);
+            $data1 = [];
+            $data1 = [
+                "text" => $text,
+                "value" => $pull['status_id']
+            ];
+
+            array_push($data, $data1);
+        }
+
+        // dd($data);
+
+        return ['chillsheetlistStatus' => $data];
+    }
+
     public function chillSheetListStatus()
     {
         dd(ChillStationRecords::all());
