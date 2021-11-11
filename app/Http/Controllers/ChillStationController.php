@@ -222,7 +222,7 @@ class ChillStationController extends Controller
      */
     public function destroy($id)
     {
-        ChillStationRecords::where('id', $id)->delete();
+        Station::where('id', $id)->delete();
         $flag = collect([
             'flag' => 4
         ]);
