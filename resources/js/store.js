@@ -23,7 +23,8 @@ export default new Vuex.Store({
         campaignsystems: [],
         campaignmembers: [],
         chillstations: [],
-        chillsheetRegion:[],
+        chillsheetRegion: [],
+        chillsheetItem:[],
         constellationlist:[],
         cores:[],
         delveLink: "",
@@ -332,6 +333,12 @@ export default new Vuex.Store({
         SET_RC_TYPE(state, rcsheetItem) {
             state.rcsheetItem = rcsheetItem;
         },
+
+        SET_CHILL_TYPE(state, chillsheetItem) {
+            state.chillsheetItem = chillsheetItem;
+        },
+
+
 
         SET_RC_STATUS(state, rcsheetStatus) {
             state.rcsheetStatus = rcsheetStatus;
@@ -1012,6 +1019,19 @@ export default new Vuex.Store({
                 }
             });
             commit("SET_RC_TYPE", res.data.rcsheetlistType);
+        },
+
+        async getChillItems({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/chillTypelist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_CHILL_TYPE", res.data.chillsheetlistType);
         },
 
         async getRcStatus({ commit, state }) {

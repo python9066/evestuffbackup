@@ -225,8 +225,9 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/rcmovedone/{id}', 'StationController@rcMoveDone');
     Route::delete('/rcmovedonebad/{id}', 'StationController@destroy');
 
-    Route::get('/chillsheet', 'ChillSheetController@index');
-    Route::get('/chillregionlist', 'RcSheetController@rcSheetListRegion');
+    Route::get('/chillsheet', 'ChillStationController@index');
+    Route::get('/chillregionlist', 'ChillStationController@chillSheetListRegion');
+    Route::get('/chillTypelist', 'ChillStationController@chillSheetListType');
 
 
 

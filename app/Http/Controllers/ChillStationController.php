@@ -14,6 +14,7 @@ class ChillStationController extends Controller
      */
     public function index()
     {
+        dd(ChillStationRecords::all());
         return ['stations' => ChillStationRecords::where('show_on_chill', 1)->get()];
     }
 
@@ -28,7 +29,7 @@ class ChillStationController extends Controller
         //
     }
 
-    public function rcSheetListRegion()
+    public function chillSheetListRegion()
     {
         $data = [];
         $pull = ChillStationRecords::where('show_on_chill', 1)->get();
@@ -47,6 +48,27 @@ class ChillStationController extends Controller
         // dd($data);
 
         return ['chillsheetlistRegion' => $data];
+    }
+
+    public function chillSheetListType()
+    {
+        $data = [];
+        $pull = ChillStationRecords::where('show_on_chillc', 1)->get();
+        $pull = $pull->unique('item_id');
+        $pull = $pull->sortBy('item_name');
+        foreach ($pull as $pull) {
+            $data1 = [];
+            $data1 = [
+                "text" => $pull['item_name'],
+                "value" => $pull['item_id']
+            ];
+
+            array_push($data, $data1);
+        }
+
+        // dd($data);
+
+        return ['chillsheetlistType' => $data];
     }
 
     /**
