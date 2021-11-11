@@ -24,7 +24,8 @@ export default new Vuex.Store({
         campaignmembers: [],
         chillstations: [],
         chillsheetRegion: [],
-        chillsheetItem:[],
+        chillsheetItem: [],
+        chillsheetStatus:[],
         constellationlist:[],
         cores:[],
         delveLink: "",
@@ -241,6 +242,19 @@ export default new Vuex.Store({
             }
         },
 
+        UPDATE_CHILL_STATION(state, data) {
+            const item = state.chillstations.find(item => item.id === data.id);
+            const count = state.chillstations.filter(item => item.id === data.id).length
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                state.chillstations.push(data)
+            }
+        },
+
+
+
+
         UPDATE_RC_FC(state, data) {
             const item = state.rcfcs.find(item => item.id === data.id);
             const count = state.rcfcs.filter(item => item.id === data.id).length
@@ -343,6 +357,12 @@ export default new Vuex.Store({
         SET_RC_STATUS(state, rcsheetStatus) {
             state.rcsheetStatus = rcsheetStatus;
         },
+
+         SET_CHILL_STATUS(state, chillsheetStatus) {
+            state.chillsheetStatus = chillsheetStatus;
+        },
+
+
 
         SET_COORD_REGION(state, coordsheetRegion) {
             state.coordsheetRegion = coordsheetRegion;
@@ -1048,6 +1068,20 @@ export default new Vuex.Store({
         },
 
 
+        async getChillStatus({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/chillStatuslist",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                }
+            });
+            commit("SET_CHILL_STATUS", res.data.chillsheetlistStatus);
+        },
+
+
         async getCoordStatus({ commit, state }) {
             let res = await axios({
                 method: "get",
@@ -1208,6 +1242,10 @@ export default new Vuex.Store({
 
         updateRcStation({ commit }, data) {
             commit("UPDATE_RC_STATION", data);
+        },
+
+        updateChillStation({ commit }, data) {
+            commit("UPDATE_CHILL_STATION", data);
         },
 
         updateRcFC({ commit }, data) {
@@ -1905,6 +1943,10 @@ export default new Vuex.Store({
 
         getActiveRcStations: state => {
             return state.rcstations.filter(station => station.show_on_rc == 1)
+        },
+
+        getActiveChillStations: state => {
+            return state.chillstations.filter(station => station.show_on_chill == 1)
         },
 
         getLoggingAdmin: state => campid => {

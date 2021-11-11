@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ChillSheetUpdate;
 use App\Events\ChillStationCoreUpdate;
 use App\Events\RcMoveDelete;
 use App\Events\RcMoveUpdate;
@@ -489,6 +490,7 @@ class StationController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+        broadcast(new ChillSheetUpdate($flag));
     }
 
 
@@ -527,6 +529,7 @@ class StationController extends Controller
                 'message' => $RCmessageSend,
             ]);
             broadcast(new RcSheetUpdate($flag));
+            broadcast(new ChillSheetUpdate($flag));
         }
 
 
@@ -564,6 +567,7 @@ class StationController extends Controller
                 'message' => $RCmessageSend,
             ]);
             broadcast(new RcSheetUpdate($flag));
+            broadcast(new ChillSheetUpdate($flag));
         }
 
         $oldStation = Station::where('id', $id)->first();
@@ -634,6 +638,7 @@ class StationController extends Controller
             'message' => $RCmessageSend,
         ]);
         broadcast(new RcSheetUpdate($flag));
+        broadcast(new ChillSheetUpdate($flag));
 
 
         Station::where('id', $id)->update(['show_on_rc' => 0, 'show_on_coord' => 1, 'station_status_id' => 7, "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null]);

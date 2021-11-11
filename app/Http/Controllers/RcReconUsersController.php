@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetUpdate;
 use App\Models\Logging;
 use App\Models\RcReconUsers;
@@ -42,6 +43,7 @@ class RcReconUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+        broadcast(new ChillSheetUpdate($flag));
 
         $text = Auth::user()->name . " Added as Cyno";
 
@@ -62,6 +64,7 @@ class RcReconUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+        broadcast(new ChillSheetUpdate($flag));
         $text = Auth::user()->name . " Removed " . $username . " As Cyno";
 
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 22]);

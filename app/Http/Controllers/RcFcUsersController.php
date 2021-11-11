@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetUpdate;
 use App\Models\Logging;
 use App\Models\RcFcUsers;
@@ -65,6 +66,7 @@ class RcFcUsersController extends Controller
             'flag' => 3
         ]);
         broadcast(new RcSheetUpdate($flag));
+        broadcast(new ChillSheetUpdate($flag));
     }
 
     /**
@@ -99,6 +101,7 @@ class RcFcUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+        broadcast(new ChillSheetUpdate($flag));
 
         $text = Auth::user()->name . " Added " . $fcname . " to FC";
 
@@ -120,6 +123,7 @@ class RcFcUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+        broadcast(new ChillSheetUpdate($flag));
 
         $text = Auth::user()->name . " Added " . $userName . " as FC";
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 19]);
@@ -139,6 +143,7 @@ class RcFcUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+        broadcast(new ChillSheetUpdate($flag));
         $text = Auth::user()->name . " Removed " . $userName . " as FC";
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 20]);
         $log = $log->id;
@@ -159,6 +164,7 @@ class RcFcUsersController extends Controller
             'flag' => 2
         ]);
         broadcast(new RcSheetUpdate($flag));
+        broadcast(new ChillSheetUpdate($flag));
     }
 
     /**

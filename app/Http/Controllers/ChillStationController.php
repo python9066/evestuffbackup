@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ChillSheetUpdate;
 use App\Models\ChillStationRecords;
+use App\Models\Station;
 use Illuminate\Http\Request;
 
 class ChillStationController extends Controller
@@ -49,6 +51,40 @@ class ChillStationController extends Controller
 
         return ['chillsheetlistRegion' => $data];
     }
+
+    public function chillSheetListStatus()
+    {
+        $data = [];
+        $pull = ChillStationRecords::where('show_on_chill', 1)->get();
+        $pull = $pull->unique('status_id');
+        $pull = $pull->sortBy('status_name');
+        foreach ($pull as $pull) {
+            $text = str_replace("Upcoming - ", "", $pull['status_name']);
+            $data1 = [];
+            $data1 = [
+                "text" => $text,
+                "value" => $pull['status_id']
+            ];
+
+            array_push($data, $data1);
+        }
+
+        // dd($data);
+
+        return ['chillsheetlistStatus' => $data];
+    }
+
+
+    public function stationdone($id)
+    {
+        Station::where('id', $id)->update(['show_on_chill' => 2, 'station_status_id' => 10, 'rc_fc_id' => null, 'rc_gsol_id' => null, 'rc_recon_id' => null, 'rc_id' => null, 'timer_image_link' => null, 'notes' => null]);
+        $message = ChillStationRecords::where('id', $id)->first();
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new ChillSheetUpdate($flag));
+    }
+
 
     public function chillSheetListType()
     {

@@ -4,6 +4,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetUpdate;
 use App\Models\Alliance;
 use Illuminate\Http\Request;
@@ -145,6 +146,7 @@ class RCSheet extends Controller
             'flag' => 2
         ]);
         broadcast(new RcSheetUpdate($flag));
+        broadcast(new ChillSheetUpdate($flag));
         // dd('yo');
     }
 

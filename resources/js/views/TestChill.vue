@@ -404,12 +404,12 @@ export default {
         await this.$store.dispatch("getChillRegions");
         await this.$store.dispatch("getChillStationRecords");
         await this.$store.dispatch("getRcFcs");
-        await this.$store.dispatch("getRcItems");
-        await this.$store.dispatch("getRcStatus");
+        await this.$store.dispatch("getChillItems");
+        await this.$store.dispatch("getChillStatus");
         this.loadingt = false;
-        Echo.private("rcsheet").listen("RcSheetUpdate", (e) => {
+        Echo.private("chillsheet").listen("ChillSheetUpdate", (e) => {
             if (e.flag.message != null) {
-                this.$store.dispatch("updateRcStation", e.flag.message);
+                this.$store.dispatch("updateChillStation", e.flag.message);
             }
 
             if (e.flag.flag == 2) {
@@ -425,16 +425,16 @@ export default {
             }
         });
 
-        if (this.$can("view_admin_logs")) {
-            this.$store.dispatch("getLoggingRcSheet");
-            Echo.private("rcsheetadminlogs").listen(
-                "RcSheetAddLogging",
-                (e) => {
-                    console.log("ytoyoyo");
-                    this.$store.dispatch("addLoggingRcSheet", e.flag.message);
-                }
-            );
-        }
+        // if (this.$can("view_admin_logs")) {
+        //     this.$store.dispatch("getLoggingRcSheet");
+        //     Echo.private("rcsheetadminlogs").listen(
+        //         "RcSheetAddLogging",
+        //         (e) => {
+        //             console.log("ytoyoyo");
+        //             this.$store.dispatch("addLoggingRcSheet", e.flag.message);
+        //         }
+        //     );
+        // }
     },
 
     async mounted() {
@@ -634,11 +634,11 @@ export default {
         },
 
         async freshUpdate() {
-            await this.$store.dispatch("getRcRegions");
-            await this.$store.dispatch("getRcStationRecords");
+            await this.$store.dispatch("getChillRegions");
+            await this.$store.dispatch("getChillStationRecords");
             await this.$store.dispatch("getRcFcs");
-            await this.$store.dispatch("getRcItems");
-            await this.$store.dispatch("getRcStatus");
+            await this.$store.dispatch("getChillItems");
+            await this.$store.dispatch("getChillStatus");
         },
 
         async fcupdate() {
@@ -646,7 +646,7 @@ export default {
         },
 
         async sheetupdate() {
-            await this.$store.dispatch("getRcStationRecords");
+            await this.$store.dispatch("getChillStationRecords");
         },
 
         campaignStart(item) {
@@ -654,7 +654,7 @@ export default {
                 id: item.id,
                 out: 1,
             };
-            this.$store.dispatch("updateRcStation", data);
+            this.$store.dispatch("updateChillStation", data);
         },
         countDownStartTime(item) {
             return moment.utc(item.end_time).unix();
@@ -680,7 +680,7 @@ export default {
         async stationdone(item) {
             await axios({
                 method: "put",
-                url: "/api/finishrcstation/" + item.id,
+                url: "/api/finishrcstationchill/" + item.id,
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
@@ -724,16 +724,16 @@ export default {
 
     computed: {
         ...mapState([
-            "rcstations",
-            "rcsheetRegion",
-            "rcsheetItem",
-            "rcsheetStatus",
+            "chillstations",
+            "chillsheetRegion",
+            "chillsheetItem",
+            "chillsheetStatus",
         ]),
 
-        ...mapGetters(["getActiveRcStations"]),
+        ...mapGetters(["getActiveChillStations"]),
         filteredItems() {
             // return this.rcstations.filter(f => f.show_on_rc == 1);
-            return this.getActiveRcStations;
+            return this.getActiveChillStations;
         },
 
         filter_fc() {
@@ -798,15 +798,15 @@ export default {
         },
 
         dropdown_region_list() {
-            return this.rcsheetRegion;
+            return this.chillsheetRegion;
         },
 
         dropdown_type_list() {
-            return this.rcsheetItem;
+            return this.chillsheetItem;
         },
 
         dropdown_status_list() {
-            return this.rcsheetStatus.filter((l) => l.text != null);
+            return this.chillsheetStatus.filter((l) => l.text != null);
         },
 
         _headers() {
@@ -847,7 +847,7 @@ export default {
         },
     },
     beforeDestroy() {
-        Echo.leave("rcsheet");
+        Echo.leave("chillsheet");
         Echo.leave("stationlogs");
     },
 };

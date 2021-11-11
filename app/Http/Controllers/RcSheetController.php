@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetMessageUpdate;
 use App\Events\RcSheetUpdate;
 use App\Models\Alliance;
@@ -46,6 +47,7 @@ class RcSheetController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+        broadcast(new ChillSheetUpdate($flag));
     }
 
     public function fixalliance(Request $request, $id)
@@ -59,6 +61,7 @@ class RcSheetController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+        broadcast(new ChillSheetUpdate($flag));
     }
 
 

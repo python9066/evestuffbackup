@@ -130,6 +130,12 @@ Broadcast::channel('stationlogs', function () {
     return Auth::check();
 });
 
+Broadcast::channel('chillsheet', function () {
+    return Auth::check();
+});
+
+
+
 
 
 

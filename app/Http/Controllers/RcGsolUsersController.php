@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetUpdate;
 use App\Models\Logging;
 use App\Models\RcGsolUsers;
@@ -45,6 +46,7 @@ class RcGsolUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+        broadcast(new ChillSheetUpdate($flag));
 
         $text = Auth::user()->name . " Added to Gsol";
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 23]);
@@ -63,6 +65,7 @@ class RcGsolUsersController extends Controller
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
+        broadcast(new ChillSheetUpdate($flag));
         $text = Auth::user()->name . " Removed " . $gsolName . " from Gsol";
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 24]);
         $log = $log->id;
