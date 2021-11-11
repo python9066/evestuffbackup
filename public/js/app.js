@@ -85736,7 +85736,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: "testchill",
     component: _views_TestChill_vue__WEBPACK_IMPORTED_MODULE_26__["default"],
     beforeEnter: function beforeEnter(to, from, next) {
-      if (Permissions.indexOf('super') !== -1) {
+      if (Permissions.indexOf('view_chill_timers') !== -1) {
         next();
       } else {
         next("/notifications");

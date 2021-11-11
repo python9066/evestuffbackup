@@ -69,7 +69,7 @@ export default new Router({
             name: "testchill",
             component: TestChill,
               beforeEnter(to, from, next) {
-                if(Permissions.indexOf('super' )!== -1){
+                if(Permissions.indexOf('view_chill_timers' )!== -1){
                     next()
                 }else{
                    next("/notifications")
