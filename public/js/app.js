@@ -7055,9 +7055,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -7093,7 +7090,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   fc_name: _this.$store.state.user_name
                 };
 
-                _this.$store.dispatch("updateRcStation", data);
+                _this.$store.dispatch("updateChillStation", data);
 
                 request = null;
                 request = {
@@ -7134,7 +7131,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   fc_name: null
                 };
 
-                _this2.$store.dispatch("updateRcStation", data);
+                _this2.$store.dispatch("updateChillStation", data);
 
                 _context2.next = 4;
                 return axios({
@@ -46315,7 +46312,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: " d-inline-flex align-items-md-center  pl-4" },
+    { staticClass: "d-inline-flex align-items-md-center pl-4" },
     [
       _c("div", [
         _c(
@@ -46371,7 +46368,7 @@ var render = function () {
             },
             [
               _c("v-icon", { attrs: { "x-small": "", dark: "", left: "" } }, [
-                _vm._v("\n                fas fa-plus\n            "),
+                _vm._v(" fas fa-plus "),
               ]),
               _vm._v("\n            FC"),
             ],
@@ -46390,7 +46387,7 @@ var render = function () {
                     (_vm.$can("edit_killsheet_remove_char") ||
                       this.station.fc_user_id == this.$store.state.user_id),
                   expression:
-                    "\n                showRcFCButton() &&\n                    ($can('edit_killsheet_remove_char') ||\n                        this.station.fc_user_id ==\n                            this.$store.state.user_id)\n            ",
+                    "\n                showRcFCButton() &&\n                ($can('edit_killsheet_remove_char') ||\n                    this.station.fc_user_id == this.$store.state.user_id)\n            ",
                 },
               ],
               attrs: { color: "orange darken-3", small: "" },

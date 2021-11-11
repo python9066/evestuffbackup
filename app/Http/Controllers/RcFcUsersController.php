@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetUpdate;
+use App\Models\ChillStationRecords;
 use App\Models\Logging;
 use App\Models\RcFcUsers;
 use App\Models\RcStationRecords;
@@ -97,11 +98,20 @@ class RcFcUsersController extends Controller
         $fcname = User::where('id', $userid)->value('name');
 
         $message = RcStationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new RcSheetUpdate($flag));
-        broadcast(new ChillSheetUpdate($flag));
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new RcSheetUpdate($flag));
+        }
+
+        $message = ChillStationRecords::where('id', $id)->first();
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new ChillSheetUpdate($flag));
+        }
 
         $text = Auth::user()->name . " Added " . $fcname . " to FC";
 
@@ -139,11 +149,21 @@ class RcFcUsersController extends Controller
         $userName = User::where('id', $userid)->value('name');
         Station::where('id', $id)->update(['rc_fc_id' => null]);
         $message = RcStationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new RcSheetUpdate($flag));
-        broadcast(new ChillSheetUpdate($flag));
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new RcSheetUpdate($flag));
+        }
+
+        $message = ChillStationRecords::where('id', $id)->first();
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new ChillSheetUpdate($flag));
+        }
+
         $text = Auth::user()->name . " Removed " . $userName . " as FC";
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 20]);
         $log = $log->id;

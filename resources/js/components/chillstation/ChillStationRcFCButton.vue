@@ -1,5 +1,5 @@
 <template>
-    <div class=" d-inline-flex align-items-md-center  pl-4">
+    <div class="d-inline-flex align-items-md-center pl-4">
         <div>
             <span class="d-inline-flex align-items-md-center pr-2">
                 <span class="pl-2" v-show="showRcFCButton()">
@@ -17,17 +17,14 @@
                 outlined
                 @click="fcAdd()"
             >
-                <v-icon x-small dark left>
-                    fas fa-plus
-                </v-icon>
+                <v-icon x-small dark left> fas fa-plus </v-icon>
                 FC</v-btn
             >
             <v-icon
                 v-show="
                     showRcFCButton() &&
-                        ($can('edit_killsheet_remove_char') ||
-                            this.station.fc_user_id ==
-                                this.$store.state.user_id)
+                    ($can('edit_killsheet_remove_char') ||
+                        this.station.fc_user_id == this.$store.state.user_id)
                 "
                 color="orange darken-3"
                 small
@@ -44,7 +41,7 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        station: Object
+        station: Object,
     },
     data() {
         return {};
@@ -67,14 +64,14 @@ export default {
             var data = {
                 id: this.station.id,
                 fc_user_id: this.$store.state.user_id,
-                fc_name: this.$store.state.user_name
+                fc_name: this.$store.state.user_name,
             };
 
-            this.$store.dispatch("updateRcStation", data);
+            this.$store.dispatch("updateChillStation", data);
 
             var request = null;
             request = {
-                user_id: this.$store.state.user_id
+                user_id: this.$store.state.user_id,
             };
 
             await axios({
@@ -84,8 +81,8 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
         },
 
@@ -93,10 +90,10 @@ export default {
             var data = {
                 id: this.station.id,
                 fc_user_id: null,
-                fc_name: null
+                fc_name: null,
             };
 
-            this.$store.dispatch("updateRcStation", data);
+            this.$store.dispatch("updateChillStation", data);
 
             await axios({
                 method: "put",
@@ -104,13 +101,13 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
-        }
+        },
     },
 
-    computed: {}
+    computed: {},
 };
 </script>
 
