@@ -16,6 +16,7 @@ use App\Events\StationNotificationDelete;
 use App\Events\StationNotificationNew;
 use App\Events\StationNotificationUpdate;
 use App\Events\StationUpdateCoord;
+use App\Models\ChillStationRecords;
 use App\Models\Corp;
 use App\Models\Item;
 use App\Models\Logging;
@@ -434,6 +435,14 @@ class StationController extends Controller
         $text = "Added by " . Auth::user()->name;
         $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 17, 'text' => $text]);
         Helper::stationlogs($logNew->id);
+
+        if ($request->show_on_chill == 1) {
+            $message = ChillStationRecords::where('id', $new->id)->first();
+            $flag = collect([
+                'message' => $message
+            ]);
+            broadcast(new ChillSheetUpdate($flag));
+        }
     }
 
     public function updateAttackMessage(Request $request, $id)
