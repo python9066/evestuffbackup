@@ -6162,9 +6162,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   rc_fc_id: 0,
                   rc_recon_id: 0,
                   rc_gsol_id: 0,
-                  show_on_rc_move: 1,
+                  show_on_rc_move: 0,
                   show_on_rc: 0,
                   show_on_coord: 0,
+                  show_on_chill: 1,
                   status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
                   notes: note
                 };
@@ -45219,7 +45220,7 @@ var render = function () {
           _c(
             "v-card",
             {
-              staticClass: " d-flex flex-column",
+              staticClass: "d-flex flex-column",
               attrs: {
                 tile: "",
                 "max-width": "700px",
@@ -45260,9 +45261,7 @@ var render = function () {
                       _vm._v(" "),
                       _c(
                         "div",
-                        {
-                          staticClass: " d-inline-flex justify-content-around",
-                        },
+                        { staticClass: "d-inline-flex justify-content-around" },
                         [
                           _c("v-text-field", {
                             attrs: {
@@ -45280,7 +45279,7 @@ var render = function () {
                           }),
                           _vm._v(" "),
                           _c("v-text-field", {
-                            staticClass: " ml-2",
+                            staticClass: "ml-2",
                             attrs: { outlined: "", label: "Corp Ticker" },
                             model: {
                               value: _vm.item.corp_ticker,
@@ -45300,7 +45299,7 @@ var render = function () {
                           _c("h5", [_c("strong", [_vm._v("Timer Type")])]),
                           _vm._v(" "),
                           _c("v-text-field", {
-                            staticClass: " ml-2",
+                            staticClass: "ml-2",
                             attrs: {
                               outlined: "",
                               readonly: "",
@@ -45809,7 +45808,7 @@ var render = function () {
           _c(
             "v-card",
             {
-              staticClass: " d-flex flex-column",
+              staticClass: "d-flex flex-column",
               attrs: {
                 tile: "",
                 "max-width": "700px",
@@ -45826,10 +45825,10 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-card-text",
-                { staticClass: " d-inline-flex" },
+                { staticClass: "d-inline-flex" },
                 [
                   _vm.showAddTimer()
-                    ? _c("AddTimerFromDone", {
+                    ? _c("ChillStationAddTimerFromDone", {
                         attrs: { item: _vm.item },
                         on: {
                           timeropen: function ($event) {
@@ -45842,7 +45841,7 @@ var render = function () {
                   _c(
                     "v-btn",
                     {
-                      staticClass: " mx-4",
+                      staticClass: "mx-4",
                       attrs: { color: "orange darken-1" },
                       on: {
                         click: function ($event) {
@@ -45856,7 +45855,7 @@ var render = function () {
                   _c(
                     "v-btn",
                     {
-                      staticClass: " mx-4",
+                      staticClass: "mx-4",
                       attrs: { color: "red" },
                       on: {
                         click: function ($event) {
@@ -45870,7 +45869,7 @@ var render = function () {
                   _c(
                     "v-btn",
                     {
-                      staticClass: " mx-4",
+                      staticClass: "mx-4",
                       attrs: { color: "brown lighten-2" },
                       on: {
                         click: function ($event) {
@@ -75397,7 +75396,9 @@ var render = function () {
                               var item = ref.item
                               return [
                                 item.out == 1
-                                  ? _c("DoneButton", { attrs: { item: item } })
+                                  ? _c("ChillStationDoneButton", {
+                                      attrs: { item: item },
+                                    })
                                   : _c(
                                       "v-chip",
                                       {

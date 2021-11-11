@@ -263,10 +263,10 @@
                         </template>
 
                         <template v-slot:[`item.status_name`]="{ item }">
-                            <DoneButton
+                            <ChillStationDoneButton
                                 v-if="item.out == 1"
                                 :item="item"
-                            ></DoneButton>
+                            ></ChillStationDoneButton>
 
                             <v-chip v-else pill small :color="pillColor(item)">
                                 {{ buttontext(item) }}

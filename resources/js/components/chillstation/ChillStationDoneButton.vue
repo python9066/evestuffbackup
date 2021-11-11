@@ -25,31 +25,31 @@
                 max-width="700px"
                 min-height="200px"
                 max-height="1000px"
-                class=" d-flex flex-column"
+                class="d-flex flex-column"
             >
                 <v-card-title class="justify-center">
                     <p>What is the Status of {{ item.name }}</p>
                 </v-card-title>
 
-                <v-card-text class=" d-inline-flex">
-                    <AddTimerFromDone
+                <v-card-text class="d-inline-flex">
+                    <ChillStationAddTimerFromDone
                         v-if="showAddTimer()"
                         @timeropen="close()"
                         :item="item"
-                    ></AddTimerFromDone>
+                    ></ChillStationAddTimerFromDone>
                     <v-btn
                         color="orange darken-1"
-                        class=" mx-4"
+                        class="mx-4"
                         @click="statusUpdate(4)"
                     >
                         Repaired</v-btn
                     >
-                    <v-btn color="red" class=" mx-4" @click="softDestroyed()">
+                    <v-btn color="red" class="mx-4" @click="softDestroyed()">
                         Destoryed</v-btn
                     >
                     <v-btn
                         color="brown lighten-2"
-                        class=" mx-4"
+                        class="mx-4"
                         @click="statusUpdate(18)"
                     >
                         Unknown</v-btn
@@ -70,13 +70,13 @@ import moment from "moment";
 
 export default {
     props: {
-        item: Object
+        item: Object,
     },
 
     async created() {},
     data() {
         return {
-            showDoneOverlay: false
+            showDoneOverlay: false,
         };
     },
 
@@ -119,7 +119,7 @@ export default {
         async statusUpdate(statusID) {
             var data = {
                 id: this.item.id,
-                show_on_rc: 0
+                show_on_rc: 0,
             };
 
             this.$store.dispatch("updateRcStation", data);
@@ -128,7 +128,7 @@ export default {
             request = {
                 station_status_id: statusID,
                 show_on_rc: 0,
-                show_on_coord: 1
+                show_on_coord: 1,
             };
 
             await axios({
@@ -138,8 +138,8 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
         },
 
@@ -147,7 +147,7 @@ export default {
             var data = {
                 id: this.item.id,
                 show_on_rc: 0,
-                show_on_coord: 1
+                show_on_coord: 1,
             };
 
             this.$store.dispatch("updateRcStation", data);
@@ -158,15 +158,15 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
-        }
+        },
     },
 
     computed: {},
 
-    beforeDestroy() {}
+    beforeDestroy() {},
 };
 </script>
 

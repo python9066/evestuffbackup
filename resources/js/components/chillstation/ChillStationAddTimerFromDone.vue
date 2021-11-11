@@ -25,7 +25,7 @@
                 max-width="700px"
                 min-height="200px"
                 max-height="1000px"
-                class=" d-flex flex-column"
+                class="d-flex flex-column"
             >
                 <v-card-title class="justify-center">
                     <p>Enter Details for {{ item.name }}</p></v-card-title
@@ -42,7 +42,7 @@
                                     label="Station Name"
                                 ></v-text-field>
                             </div>
-                            <div class=" d-inline-flex justify-content-around">
+                            <div class="d-inline-flex justify-content-around">
                                 <v-text-field
                                     v-model="item.system_name"
                                     readonly
@@ -50,7 +50,7 @@
                                     label="System Name"
                                 ></v-text-field>
                                 <v-text-field
-                                    class=" ml-2"
+                                    class="ml-2"
                                     outlined
                                     v-model="item.corp_ticker"
                                     label="Corp Ticker"
@@ -59,7 +59,7 @@
                             <div>
                                 <h5><strong>Timer Type</strong></h5>
                                 <v-text-field
-                                    class=" ml-2"
+                                    class="ml-2"
                                     outlined
                                     v-model="this.hull"
                                     readonly
@@ -141,7 +141,7 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
     props: {
-        item: Object
+        item: Object,
     },
 
     async created() {},
@@ -154,9 +154,9 @@ export default {
                 d: "",
                 hh: "",
                 mm: "",
-                ss: ""
+                ss: "",
             },
-            hull: "Hull"
+            hull: "Hull",
         };
     },
 
@@ -200,11 +200,12 @@ export default {
                 rc_fc_id: 0,
                 rc_recon_id: 0,
                 rc_gsol_id: 0,
-                show_on_rc_move: 1,
+                show_on_rc_move: 0,
                 show_on_rc: 0,
                 show_on_coord: 0,
+                show_on_chill: 1,
                 status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-                notes: note
+                notes: note,
             };
 
             await axios({
@@ -214,8 +215,8 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             }).then(
                 (this.showStationTimer = false),
                 (this.refType = null),
@@ -225,7 +226,7 @@ export default {
             );
         },
 
-        async open() {}
+        async open() {},
     },
 
     computed: {
@@ -281,10 +282,10 @@ export default {
 
         count() {
             return this.refTime.length;
-        }
+        },
     },
 
-    beforeDestroy() {}
+    beforeDestroy() {},
 };
 </script>
 
