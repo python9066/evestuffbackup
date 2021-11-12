@@ -9,6 +9,9 @@ type: php:7.4
 build:
   flavor: composer
 
+dependencies:
+  php:
+    composer/composer: "^2"
 # The hooks that will be performed when the package is deployed.
 hooks:
   deploy: |
