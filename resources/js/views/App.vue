@@ -10,7 +10,7 @@
             class="align-items-baseline"
         >
             <v-toolbar-title class="pl-5 d-inline-block">
-                <p class=" mb-0">{{ this.username }}</p>
+                <p class="mb-0">{{ this.username }}</p>
                 <p class="caption">
                     Eve Player Count:
                     <span class="green--text mb-2">{{ count }}</span>
@@ -26,9 +26,7 @@
                     align-with-title
                 >
                     <v-tabs-slider></v-tabs-slider>
-                    <v-tab link to="/notifications">
-                        Notifications
-                    </v-tab>
+                    <v-tab link to="/notifications"> Notifications </v-tab>
 
                     <v-tab
                         v-if="$can('view_coord_sheet')"
@@ -119,7 +117,7 @@
                         Users
                     </v-tab>
 
-                    <v-tab v-if="$can('super')" link to="/feedback">
+                    <v-tab v-if="$can('nats')" link to="/feedback">
                         FeedBack
                     </v-tab>
                 </v-tabs>
@@ -234,12 +232,12 @@ export default {
         overlay: false,
         feedBackText: "",
         tidiCalc: false,
-        tooltipToggle: false
+        tooltipToggle: false,
     }),
 
     async beforeCreate() {},
     async created() {
-        Echo.private("evestuff").listen("EveUserUpdate", e => {
+        Echo.private("evestuff").listen("EveUserUpdate", (e) => {
             if (e.flag.message != null) {
                 this.$store.dispatch("updateEveUserCount", e.flag.message);
             }
@@ -279,7 +277,7 @@ export default {
         async submitFeedBack() {
             let request = {
                 user_id: this.$store.state.user_id,
-                text: this.feedBackText
+                text: this.feedBackText,
             };
 
             await axios({
@@ -289,26 +287,26 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
 
             this.feedBackText == null;
-        }
+        },
     },
     computed: {
         ...mapGetters(["getEveCount"]),
 
         count() {
             return this.getEveCount;
-        }
+        },
     },
 
     beforeDestroy() {
         // clearInterval(this.poll);
         // console.log('KILL THEM ALL');
         Echo.leave("evestuff");
-    }
+    },
 };
 </script>
 <style lang="scss" scoped>

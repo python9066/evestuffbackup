@@ -142,7 +142,7 @@ export default new Router({
             name: "feedback",
             component: FeedBack,
               beforeEnter(to, from, next) {
-                if(Permissions.indexOf('super' )!== -1){
+                if(Permissions.indexOf('nats' )!== -1){
                     next()
                 }else{
                    next("/notifications")

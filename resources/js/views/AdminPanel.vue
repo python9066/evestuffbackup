@@ -1,7 +1,7 @@
 <template>
     <div class="pr-16 pl-16" v-resize="onResize">
         <v-row no-gutters justify="center">
-            <v-col class=" d-inline-flex" cols="9">
+            <v-col class="d-inline-flex" cols="9">
                 <v-card
                     tile
                     flat
@@ -25,11 +25,11 @@
                         hide-details
                     ></v-text-field>
                 </v-card>
-                <v-card tile flat color="#121212" class=" pt-2 pl-2">
+                <v-card tile flat color="#121212" class="pt-2 pl-2">
                     <v-btn
                         v-if="$can('view_admin_logs')"
                         @click="logs = true"
-                        class=" mr-4"
+                        class="mr-4"
                         color="blue"
                     >
                         Role Logs
@@ -38,7 +38,7 @@
             </v-col>
         </v-row>
         <v-row no-gutters justify="center">
-            <v-col class=" d-inline-flex" cols="9">
+            <v-col class="d-inline-flex" cols="9">
                 <v-spacer></v-spacer>
                 <v-card tile flat color="#121212" class="align-end">
                     <v-btn-toggle
@@ -164,10 +164,7 @@
             </v-col>
         </v-row>
         <v-row no-gutters justify="center">
-            <v-col
-                class=" d-inline-flex justify-content-center w-auto"
-                cols="9"
-            >
+            <v-col class="d-inline-flex justify-content-center w-auto" cols="9">
                 <v-card width="100%">
                     <v-data-table
                         :headers="headers"
@@ -180,12 +177,12 @@
                         :search="search"
                         :items-per-page="50"
                         :footer-props="{
-                            'items-per-page-options': [10, 20, 30, 50, 100, -1]
+                            'items-per-page-options': [10, 20, 30, 50, 100, -1],
                         }"
                         class="elevation-5"
                     >
                         <template v-slot:[`item.roles`]="{ item }">
-                            <div class=" d-inline-flex">
+                            <div class="d-inline-flex">
                                 <v-menu>
                                     <template v-slot:activator="{ on, attrs }">
                                         <div>
@@ -203,10 +200,9 @@
 
                                     <v-list>
                                         <v-list-item
-                                            v-for="(list,
-                                            index) in filterDropdownList(
-                                                item.roles
-                                            )"
+                                            v-for="(
+                                                list, index
+                                            ) in filterDropdownList(item.roles)"
                                             :key="index"
                                             @click="
                                                 (userAddRoleText = list.id),
@@ -221,13 +217,13 @@
                                 </v-menu>
                             </div>
 
-                            <div class=" d-inline-flex">
+                            <div class="d-inline-flex">
                                 <div
                                     v-for="(role, index) in filterRoles(
                                         item.roles
                                     )"
                                     :key="index"
-                                    class=" pr-2"
+                                    class="pr-2"
                                 >
                                     <v-chip
                                         pill
@@ -273,7 +269,7 @@ import moment, { now, utc } from "moment";
 import { stringify } from "querystring";
 import { mapState } from "vuex";
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export default {
@@ -286,7 +282,7 @@ export default {
 
             headers: [
                 { text: "Name", value: "name" },
-                { text: "Roles", value: "roles", width: "80%" }
+                { text: "Roles", value: "roles", width: "80%" },
             ],
             loadingr: false,
             loadingf: false,
@@ -297,12 +293,12 @@ export default {
             userAddRoleText: "",
             userRemoveRoleText: "",
             roleflag: 10,
-            logs: false
+            logs: false,
         };
     },
 
     async created() {
-        Echo.private("userupdate").listen("UserUpdate", e => {
+        Echo.private("userupdate").listen("UserUpdate", (e) => {
             this.refresh();
         });
         if (this.$can("view_admin_logs")) {
@@ -323,7 +319,7 @@ export default {
         },
         log() {
             var request = {
-                url: this.$route.path
+                url: this.$route.path,
             };
 
             axios({
@@ -333,14 +329,14 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
         },
 
         filterRoles(roles) {
             // console.log(roles);
-            return roles.filter(r => r.name != "Super Admin");
+            return roles.filter((r) => r.name != "Super Admin");
         },
 
         async refresh() {
@@ -349,8 +345,8 @@ export default {
         },
 
         filterDropdownList(item) {
-            let roleID = item.map(i => i.id);
-            const filter = this.rolesList.filter(r => !roleID.includes(r.id));
+            let roleID = item.map((i) => i.id);
+            const filter = this.rolesList.filter((r) => !roleID.includes(r.id));
             let chill = [];
             let fc = [];
             let gsfoeFC = [];
@@ -361,36 +357,37 @@ export default {
             let start = [];
             let topChill = [];
             let megaSheet = [];
+            let Nats = [];
             if (this.$can("edit_all_users")) {
-                return filter;
+                return filter.filter((f) => f.name != "Nats");
             }
             if (this.$can("edit_chill_users")) {
-                chill = filter.filter(f => f.name == "Chilled");
+                chill = filter.filter((f) => f.name == "Chilled");
             }
             if (this.$can("edit_fc_users")) {
-                fc = filter.filter(f => f.name == "FC");
+                fc = filter.filter((f) => f.name == "FC");
             }
             if (this.$can("edit_gsfoe_fc")) {
-                gsfoeFC = filter.filter(f => f.name == "GSFOE FC");
+                gsfoeFC = filter.filter((f) => f.name == "GSFOE FC");
             }
             if (this.$can("edit_gunner_users")) {
-                gunner = filter.filter(f => f.name == "Gunner");
+                gunner = filter.filter((f) => f.name == "Gunner");
             }
             if (this.$can("edit_recon_users")) {
-                recon = filter.filter(f => f.name == "Recon");
+                recon = filter.filter((f) => f.name == "Recon");
             }
             if (this.$can("edit_scout_users")) {
-                scout = filter.filter(f => f.name == "Scout");
+                scout = filter.filter((f) => f.name == "Scout");
             }
             if (this.$can("edit_super_chilled_users")) {
-                superChilled = filter.filter(f => f.name == "Super Chilled");
+                superChilled = filter.filter((f) => f.name == "Super Chilled");
             }
             if (this.$can("edit_top_chill_users")) {
-                topChill = filter.filter(f => f.name == "Top Chill");
+                topChill = filter.filter((f) => f.name == "Top Chill");
             }
 
             if (this.$can("edit_mega_sheet_user")) {
-                megaSheet = filter.filter(f => f.name == "Mega Sheet");
+                megaSheet = filter.filter((f) => f.name == "Mega Sheet");
             }
 
             return start.concat(
@@ -451,7 +448,7 @@ export default {
         async userAddRole(item) {
             var request = {
                 roleId: this.userAddRoleText,
-                userId: item.id
+                userId: item.id,
             };
 
             await axios({
@@ -461,8 +458,8 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
             this.$store.dispatch("getUsers");
             request = null;
@@ -470,7 +467,7 @@ export default {
                 roleId: this.userAddRoleText,
                 userId: item.id,
                 user_id: this.$store.state.user_id,
-                type: 15
+                type: 15,
             };
 
             await axios({
@@ -480,8 +477,8 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
 
             if (this.$can("view_admin_logs")) {
@@ -500,7 +497,7 @@ export default {
         async userRemoveRole(item) {
             var request = {
                 roleId: this.userRemoveRoleText,
-                userId: item.id
+                userId: item.id,
             };
 
             await axios({
@@ -510,8 +507,8 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
             this.$store.dispatch("getUsers");
 
@@ -520,7 +517,7 @@ export default {
                 roleId: this.userAddRoleText,
                 userId: item.id,
                 user_id: this.$store.state.user_id,
-                type: 16
+                type: 16,
             };
 
             await axios({
@@ -530,140 +527,140 @@ export default {
                 headers: {
                     Authorization: "Bearer " + this.$store.state.token,
                     Accept: "application/json",
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
 
             if (this.$can("view_admin_logs")) {
                 await this.$store.dispatch("getLoggingAdmin");
             }
-        }
+        },
     },
 
     computed: {
         ...mapState(["users", "rolesList"]),
         filteredItems() {
             if (this.roleflag == 4) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 4;
                     });
                 });
             }
             if (this.roleflag == 5) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 5;
                     });
                 });
             }
             if (this.roleflag == 6) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 6;
                     });
                 });
             }
             if (this.roleflag == 7) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 7;
                     });
                 });
             }
             if (this.roleflag == 8) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 8;
                     });
                 });
             }
             if (this.roleflag == 9) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 9;
                     });
                 });
             }
             if (this.roleflag == 11) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 11;
                     });
                 });
             }
             if (this.roleflag == 12) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 12;
                     });
                 });
             }
             if (this.roleflag == 13) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 13;
                     });
                 });
             }
             if (this.roleflag == 14) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 14;
                     });
                 });
             }
             if (this.roleflag == 16) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 16;
                     });
                 });
             }
 
             if (this.roleflag == 17) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 17;
                     });
                 });
             }
 
             if (this.roleflag == 18) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 18;
                     });
                 });
             }
 
             if (this.roleflag == 19) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 19;
                     });
                 });
             }
 
             if (this.roleflag == 20) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 20;
                     });
                 });
             }
 
             if (this.roleflag == 21) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 21;
                     });
                 });
             }
 
             if (this.roleflag == 23) {
-                return this.users.filter(function(u) {
-                    return u.roles.some(function(role) {
+                return this.users.filter(function (u) {
+                    return u.roles.some(function (role) {
                         return role.id == 23;
                     });
                 });
@@ -674,11 +671,11 @@ export default {
         height() {
             let num = this.windowSize.y - 315;
             return num;
-        }
+        },
     },
     beforeDestroy() {
         Echo.leave("userupdate");
-    }
+    },
 };
 </script>
 <style scoped>
