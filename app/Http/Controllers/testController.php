@@ -13,6 +13,7 @@ use Symfony\Component\Yaml\Yaml;
 use GuzzleHttp\Utils;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class testController extends Controller
 {
@@ -53,6 +54,18 @@ class testController extends Controller
         ]);
 
         dd($response);
+    }
+
+
+    public function corptest2()
+    {
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json"
+        ])
+            ->withBody('JohnMonty', 'json')
+            ->get("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en");
     }
 
 
