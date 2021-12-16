@@ -66,6 +66,8 @@ class testController extends Controller
         ])
             ->withBody('JohnMonty', 'json')
             ->get("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en");
+
+        dd($response);
     }
 
 
