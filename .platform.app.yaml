@@ -25,6 +25,7 @@ hooks:
     php artisan migrate --force
     php artisan route:cache
     php artisan config:cache
+    php artisan cache:clear
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name offfff the relationship as it will be exposed
