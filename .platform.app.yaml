@@ -12,23 +12,29 @@ build:
 dependencies:
   php:
     composer/composer: "^2"
+
+# .platform.app.yaml
+runtime:
+  extensions:
+    - gmp
+
 # The hooks that will be performed when the package is deployed.
 hooks:
   deploy: |
     set -e
     php artisan migrate --force
-    php artisan route:clear
     php artisan route:cache
+    php artisan config:cache
 
 # The relationships of the application with services or other applications.
-# The left-hand side is the na  me of the relationship as it will be exposed
+# The left-hand side is the name offfff the relationship as it will be exposed
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
   database: "mysqldb:mysql"
 
 # The size of the persistent disk of the application (in MB).
-disk: 2048
+disk: 4084
 
 # The mounts that will be performed when the package is deployed.
 mounts:
@@ -55,14 +61,8 @@ web:
       allow: true
       passthru: "/index.php"
 workers:
-  queue1:
+  schedule:
     size: S
     commands:
       start: |
         php artisan schedule:daemon
-
-# crons:
-#   # Run Drupal's cron tasks every 19 min       utes.
-#   eve:
-#     spec: "* * * * *"
-#     cmd: "cd web ; php artisan schedule:run >> /dev/null 2>&1"
