@@ -15,6 +15,27 @@ class Alliancehelper
 {
 
 
+    public static function getCorpWithNoAlliance($id)
+    {
+
+        $client = new Client();
+        $headers = [
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json",
+        ];
+        $url = "https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en";
+        $body = [
+            'JohnMonty'
+        ];
+
+        $response = $client->request('GET', $url, [
+            'headers' => $headers,
+            'body' => $body
+        ]);
+
+        dd($reponse);
+    }
+
     public static function updateAlliances()
 
     {
@@ -42,7 +63,7 @@ class Alliancehelper
 
 
         $allianceID = Alliance::all()->pluck('id');
-        Corp::whereNotNull('id')->update(['active' => 0]);
+        Corp::where(' alliance_id', '>', 0)->update(['active' => 0]);
         $errorCount = 100;
         $errorTime = 30;
         for ($i = 0; $i < count($allianceID); $i++) {

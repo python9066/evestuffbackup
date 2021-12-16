@@ -42,11 +42,7 @@
                 </v-card-title>
                 <v-card-text>
                     <div
-                        class="
-                            d-inline-flex
-                            align-content-center
-                            justify-content-around
-                        "
+                        class="d-inline-flex align-content-center justify-content-around"
                         v-if="state == 1"
                     >
                         <v-text-field
@@ -109,6 +105,7 @@
                                     label="Corp Ticker"
                                     outlined
                                 ></v-autocomplete>
+                                <v-btn text> This is a test </v-btn>
                             </div>
                             <div>
                                 <h5><strong>Timer Type</strong></h5>

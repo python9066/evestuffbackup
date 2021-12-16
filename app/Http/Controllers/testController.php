@@ -37,11 +37,22 @@ class testController extends Controller
     public function recontest()
     {
 
-        // $id = 10000060;
-        // $stations =  Notifications::reconRegionPull($id);
-        // foreach ($stations as $station) {
-        //     Notifications::reconRegionPullIdCheck($station);
-        // }
+        $client = new GuzzleHttpClient();
+        $headers = [
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json",
+        ];
+        $url = "https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en";
+        $body = [
+            'JohnMonty'
+        ];
+
+        $response = $client->request('GET', $url, [
+            'headers' => $headers,
+            'body' => $body
+        ]);
+
+        dd($response);
     }
 
 
