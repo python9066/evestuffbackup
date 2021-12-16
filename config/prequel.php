@@ -16,7 +16,6 @@ if ($relationships) {
 }
 
 $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
-
 return [
 
     /*
@@ -101,6 +100,15 @@ return [
         |
         */
 
+    // 'database' => [
+    //     'connection' => env('DB_CONNECTION', 'mysql'),
+    //     'host'       => env('DB_HOST', '127.0.0.1'),
+    //     'port'       => env('DB_PORT', '3306'),
+    //     'database'   => env('DB_DATABASE', 'homestead'),
+    //     'username'   => env('DB_USERNAME', 'homestead'),
+    //     'password'   => env('DB_PASSWORD', 'secret'),
+    // ],
+
     'database' => [
         'connection' => env('DB_CONNECTION', ($variables && array_key_exists('DB_CONNECTION', $variables)) ? $variables['DB_CONNECTION'] : null),
         'host'      => env('DB_HOST', ($database) ? $database['host'] : 'localhost'),
@@ -159,5 +167,7 @@ return [
 
     'middleware' => [
         Protoqol\Prequel\Http\Middleware\Authorised::class,
+        'web',
+        \App\Http\Middleware\Authenticate::class
     ],
 ];
