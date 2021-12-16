@@ -21,6 +21,7 @@ use Spatie\Permission\Models\Permission;
 
 
 
+Route::get('/dance', 'testController@index');
 Route::get('/73cbd63ecd4d2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff', 'AuthController@admin');
 Route::get('/7fegrghrthtrhtr2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff', 'AuthController@martyn');
 Route::get('/scopehIhaveNoIdeaWhatIamDoing', 'AuthController@scopeh');
@@ -37,7 +38,6 @@ Route::get('/home', 'HomeController@index');
 // Route::get('/pannel/{any}', 'RoleController@addCord')->where('any', '.*');
 Route::get('/updateNotifications', 'NotificationController@getNotifications');
 Route::get('/blablabla/{id}', 'NotificationController@test');
-Route::get('/test2', 'testController@recontest');
 // Route::get('/updateAlliances', 'AllianceController@updateAlliances');
 // Route::get('/party2', 'HomeController@party2');
 // Route::get('/helper', function () {
