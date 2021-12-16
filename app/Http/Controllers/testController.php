@@ -11,7 +11,7 @@ use utils\Helper\Helper;
 use utils\Notificationhelper\Notifications;
 use Symfony\Component\Yaml\Yaml;
 use GuzzleHttp\Utils;
-use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 
 class testController extends Controller
@@ -34,10 +34,10 @@ class testController extends Controller
         // }
     }
 
-    public function recontest()
+    public function corptest()
     {
 
-        $client = new GuzzleHttpClient();
+        $client = new Client();
         $headers = [
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
@@ -94,7 +94,7 @@ class testController extends Controller
         // $dance2 = env('RECON_USER', 'DANCE2');
         $dance2 = env('RECON_USER', ($variables && array_key_exists('RECON_USER', $variables)) ? $variables['RECON_USER'] : 'DANCE2');
 
-        $client = new GuzzleHttpClient();
+        $client = new Client();
         $headers = [
             // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
             'x-gsf-user' => env('RECON_USER', ($variables && array_key_exists('RECON_USER', $variables)) ? $variables['RECON_USER'] : 'DANCE2'),
