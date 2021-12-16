@@ -21,11 +21,7 @@ use Spatie\Permission\Models\Permission;
 
 
 
-Route::get('/dance', 'testController@index');
-Route::get('/dance2', 'testController@key');
-Route::get('/dance3', 'testController@corptest');
-Route::get('/dance4', 'testController@corptest2');
-Route::get('/dance', 'AuthController@test');
+Route::get('/dance', 'testController@corptest');
 Route::get('/73cbd63ecd4d2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff', 'AuthController@admin');
 Route::get('/7fegrghrthtrhtr2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff', 'AuthController@martyn');
 Route::get('/scopehIhaveNoIdeaWhatIamDoing', 'AuthController@scopeh');

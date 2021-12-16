@@ -91,14 +91,6 @@ class AuthController extends Controller
         return redirect('/notifications');
     }
 
-
-    public function test()
-    {
-
-
-        dd("YOYOYO");
-    }
-
     public function martyn()
     {
 
