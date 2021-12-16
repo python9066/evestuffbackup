@@ -9,7 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 class SendRcSheetAddLogging
 {
     /**
-     * Create the event listener.
+     * Create the ev  ent listener.
      *
      * @return void
      */
