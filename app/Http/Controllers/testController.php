@@ -48,7 +48,7 @@ class testController extends Controller
             'JohnMonty'
         ];
 
-        $response = $client->request('GET', $url, [
+        $response = $client->request('POST', $url, [
             'headers' => $headers,
             'body' => $body
         ]);
@@ -64,8 +64,8 @@ class testController extends Controller
             'Content-Type' => 'application/json',
             "Accept" => "application/json"
         ])
-            ->withBody('JohnMonty', 'json')
-            ->get("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en");
+            ->withBody(['JohnMonty'], 'json')
+            ->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en");
 
         dd($response);
     }
