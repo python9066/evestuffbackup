@@ -19,7 +19,7 @@ class SendStationAttackMessageUpdate
     }
 
     /**
-     * Handle the event.
+     * Handle t  he event.
      *
      * @param  StationAttackMessageUpdate  $event
      * @return void
