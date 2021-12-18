@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\NotificationNew;
+
 use App\Models\Notification;
-use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Http\Request;
-use utils\Helper\Helper;
 use utils\Notificationhelper\Notifications;
 use App\Events\NotificationChanged;
 use App\Models\NotificationRecords;
-use App\Events\TowerNew;
-use App\Models\StationItems;
-use GuzzleHttp\Utils;
 
 class NotificationController extends Controller
 {

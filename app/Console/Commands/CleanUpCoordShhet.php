@@ -20,7 +20,7 @@ class CleanUpCoordShhet extends Command
      *
      * @var string
      */
-    protected $description = 'removes stations that our on nats health.  But some how ended up on coord sheet';
+    protected $description = 'removes stations that our on nats health.  But some how ended up on coord sheet  and I cant spell';
 
     /**
      * Create a new command instance.

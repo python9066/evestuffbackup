@@ -8,13 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Providers\RouteServiceProvider;
-use GuzzleHttp\Client;
 use Illuminate\Support\Str;
-use function GuzzleHttp\json_encode;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 
 class AuthController extends Controller
 {
