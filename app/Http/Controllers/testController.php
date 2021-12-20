@@ -67,7 +67,10 @@ class testController extends Controller
 
         $returns = $response->collect();
         foreach ($returns as $key => $var) {
-            dd($key);
+            if ($key = "corporations") {
+
+                dd($key);
+            }
         }
     }
 
