@@ -66,6 +66,7 @@ class testController extends Controller
         ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", ["monty"]);
 
         $returns = $response->collect();
+        $returns->key("corporations");
         dd($returns);
         foreach ($returns as $var) {
             dd($var);
