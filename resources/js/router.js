@@ -10,23 +10,24 @@ import Stest from "./components/campaign/SystemTable.vue";
 import AdminPanel from "./views/AdminPanel.vue";
 import StationsRedirect from "./views/redirect/StationsRedirect.vue";
 // import Structures from "./views/structure.vue"
-import Towers from "./views/Towers.vue"
+import Towers from "./views/Towers.vue";
 import store from "./store";
 import FeedBack from "./views/FeedBack.vue";
 import campaginSystemKick from "./views/redirect/campaginSystemKick.vue";
 import MultiCampagins from "./views/CustomCampaigns.vue";
 import campaignFinished from "./views/redirect/campaignOver.vue";
-import chillstations from "./views/ChillTimers.vue"
-import Gsol from "./views/Gsol"
+import chillstations from "./views/ChillTimers.vue";
+import welptimers from "./views/WelpViolenceTimers.vue";
+import Gsol from "./views/Gsol";
 import Recon from "./views/Recon";
-import StartCampaign from "./views/StartCampaignSystem"
-import KillList from "./views/RCsheet.vue"
-import RCMOVETIMER from "./views/RCMove.vue"
-import FleetKeys from "./views/FleetKeyPannel.vue"
-import CoordSheet from "./views/CoordSheet.vue"
+import StartCampaign from "./views/StartCampaignSystem";
+import KillList from "./views/RCsheet.vue";
+import RCMOVETIMER from "./views/RCMove.vue";
+import FleetKeys from "./views/FleetKeyPannel.vue";
+import CoordSheet from "./views/CoordSheet.vue";
 
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 Vue.use(Router);
@@ -40,16 +41,16 @@ export default new Router({
         {
             path: "/",
             name: "default",
-            component: Notifications
+            component: Notifications,
         },
         {
             path: "/campaign/:id",
             name: "campaign",
             component: Campaign,
-            props: route => {
+            props: (route) => {
                 const id = route.params.id;
                 return { id };
-            }
+            },
             //   beforeEnter(to, from, next) {
 
             //     // console.log(Permissions.indexOf('access_campaigns' )!== -1)
@@ -66,13 +67,13 @@ export default new Router({
             path: "/mcampaign/:id/:name",
             name: "mcampaign",
             component: MultiCampaign,
-            props: route => {
+            props: (route) => {
                 const id = Number.parseInt(route.params.id, 10);
                 if (Number.isNaN(id)) {
                     return 0;
                 }
                 return { id };
-            }
+            },
             //   beforeEnter(to, from, next) {
 
             //     // console.log(Permissions.indexOf('access_campaigns' )!== -1)
@@ -84,19 +85,18 @@ export default new Router({
 
             //   }
         },
-
 
         {
             path: "/scampaign/:id",
             name: "scampaign",
             component: StartCampaign,
-            props: route => {
+            props: (route) => {
                 const id = Number.parseInt(route.params.id, 10);
                 if (Number.isNaN(id)) {
                     return 0;
                 }
                 return { id };
-            }
+            },
             //   beforeEnter(to, from, next) {
 
             //     // console.log(Permissions.indexOf('access_campaigns' )!== -1)
@@ -109,12 +109,10 @@ export default new Router({
             //   }
         },
 
-
-
         {
             path: "/timers",
             name: "timers",
-            component: Timers
+            component: Timers,
         },
 
         // {
@@ -141,139 +139,128 @@ export default new Router({
             path: "/feedback",
             name: "feedback",
             component: FeedBack,
-              beforeEnter(to, from, next) {
-                if(Permissions.indexOf('nats' )!== -1){
-                    next()
-                }else{
-                   next("/notifications")
+            beforeEnter(to, from, next) {
+                if (Permissions.indexOf("nats") !== -1) {
+                    next();
+                } else {
+                    next("/notifications");
                 }
-
-              }
+            },
         },
 
         {
             path: "/coordsheet",
             name: "coordsheet",
             component: CoordSheet,
-              beforeEnter(to, from, next) {
-                if(Permissions.indexOf('view_coord_sheet' )!== -1){
-                    next()
-                }else{
-                   next("/notifications")
+            beforeEnter(to, from, next) {
+                if (Permissions.indexOf("view_coord_sheet") !== -1) {
+                    next();
+                } else {
+                    next("/notifications");
                 }
-
-              }
+            },
         },
 
         {
             path: "/addtimer",
             name: "timerstomove",
             component: RCMOVETIMER,
-              beforeEnter(to, from, next) {
-                if(Permissions.indexOf('view_move_timers' )!== -1){
-                    next()
-                }else{
-                   next("/notifications")
+            beforeEnter(to, from, next) {
+                if (Permissions.indexOf("view_move_timers") !== -1) {
+                    next();
+                } else {
+                    next("/notifications");
                 }
-
-              }
+            },
         },
 
         {
             path: "/fleetkeys",
             name: "fleetkeys",
             component: FleetKeys,
-              beforeEnter(to, from, next) {
-                if(Permissions.indexOf('view_fleet_key' )!== -1){
-                    next()
-                }else{
-                   next("/notifications")
+            beforeEnter(to, from, next) {
+                if (Permissions.indexOf("view_fleet_key") !== -1) {
+                    next();
+                } else {
+                    next("/notifications");
                 }
-
-              }
+            },
         },
 
         {
             path: "/killlist",
             name: "killlist",
             component: KillList,
-              beforeEnter(to, from, next) {
-                if(Permissions.indexOf('view_killsheet' )!== -1){
-                    next()
-                }else{
-                   next("/notifications")
+            beforeEnter(to, from, next) {
+                if (Permissions.indexOf("view_killsheet") !== -1) {
+                    next();
+                } else {
+                    next("/notifications");
                 }
-
-              }
+            },
         },
 
         {
             path: "/fornatshealth",
             name: "killlist",
             component: KillList,
-              beforeEnter(to, from, next) {
-                if(Permissions.indexOf('view_killsheet' )!== -1){
-                    next()
-                }else{
-                   next("/notifications")
+            beforeEnter(to, from, next) {
+                if (Permissions.indexOf("view_killsheet") !== -1) {
+                    next();
+                } else {
+                    next("/notifications");
                 }
-
-              }
+            },
         },
 
         {
             path: "/gsol",
             name: "gsol",
             component: Gsol,
-              beforeEnter(to, from, next) {
-                if(Permissions.indexOf('view_gsol' )!== -1){
-                    next()
-                }else{
-                   next("/notifications")
+            beforeEnter(to, from, next) {
+                if (Permissions.indexOf("view_gsol") !== -1) {
+                    next();
+                } else {
+                    next("/notifications");
                 }
-
-              }
+            },
         },
 
         {
             path: "/towers",
             name: "towers",
             component: Towers,
-              beforeEnter(to, from, next) {
-                if(Permissions.indexOf('view_towers' )!== -1){
-                    next()
-                }else{
-                   next("/redirect/stations")
+            beforeEnter(to, from, next) {
+                if (Permissions.indexOf("view_towers") !== -1) {
+                    next();
+                } else {
+                    next("/redirect/stations");
                 }
-
-              }
+            },
         },
-
-
-
 
         {
             path: "/stest",
             name: "stest",
-            component: Stest
+            component: Stest,
         },
 
         {
             path: "/redirect/stations",
             name: "campagin_redirect",
-            component: StationsRedirect
+            component: StationsRedirect,
         },
 
         {
             path: "/campaignfinished",
             name: "campaignfinished",
-            component: campaignFinished
+            component: campaignFinished,
         },
 
         {
             path: "/dance",
             name: "test",
-            component: Vtest
+            component: Vtest,
         },
 
         {
@@ -288,19 +275,19 @@ export default new Router({
                 } else {
                     next("/notifications");
                 }
-            }
+            },
         },
 
         {
             path: "/notifications",
             name: "notifications",
-            component: Notifications
+            component: Notifications,
         },
 
         {
             path: "/campaigns",
             name: "campaigns",
-            component: Campagins
+            component: Campagins,
         },
 
         {
@@ -308,28 +295,38 @@ export default new Router({
             name: "mcampaigns",
             component: MultiCampagins,
             beforeEnter(to, from, next) {
-                if(Permissions.indexOf('access_multi_campaigns')!== -1){
-                    next()
-                }else{
-                   next("/campaigns")
+                if (Permissions.indexOf("access_multi_campaigns") !== -1) {
+                    next();
+                } else {
+                    next("/campaigns");
                 }
-
-              }
+            },
         },
-
 
         {
             path: "/chillstations",
             name: "chillstations",
             component: chillstations,
             beforeEnter(to, from, next) {
-                if(Permissions.indexOf('view_chill_timers')!== -1){
-                    next()
-                }else{
-                   next("/notifications")
+                if (Permissions.indexOf("view_chill_timers") !== -1) {
+                    next();
+                } else {
+                    next("/notifications");
                 }
+            },
+        },
 
-              }
+        {
+            path: "/welpviolence",
+            name: "welpviolence",
+            component: welptimers,
+            beforeEnter(to, from, next) {
+                if (Permissions.indexOf("nats") !== -1) {
+                    next();
+                } else {
+                    next("/notifications");
+                }
+            },
         },
 
         {
@@ -337,19 +334,14 @@ export default new Router({
             name: "recon",
             component: Recon,
             beforeEnter(to, from, next) {
-                if(Permissions.indexOf('view_recon')!== -1){
-                    next()
-                }else{
-                   next("/notifications")
+                if (Permissions.indexOf("view_recon") !== -1) {
+                    next();
+                } else {
+                    next("/notifications");
                 }
-
-              }
-        }
-
-
-
-
-    ]
+            },
+        },
+    ],
     // scrollBehavior(to, from, savedPosition) {
     //   return { x: 0, y: 0 }
     // },
