@@ -67,18 +67,18 @@ class testController extends Controller
 
         $returns = $response->collect();
         foreach ($returns as $key => $var) {
-            if ($key = "corporations") {
+            if ($key == "corporations") {
 
 
 
-                // $corpRep = Http::withHeaders([
-                //     'Content-Type' => 'application/json',
-                //     "Accept" => "application/json"
-                // ])->get("https://esi.evetech.net/latest/corporations/" . $var->id . "/?datasource=tranquility");
+                $corpRep = Http::withHeaders([
+                    'Content-Type' => 'application/json',
+                    "Accept" => "application/json"
+                ])->get("https://esi.evetech.net/latest/corporations/" . $var->id . "/?datasource=tranquility");
 
 
-                // $corpReturn = $corpRep->collect();
-                dd($var);
+                $corpReturn = $corpRep->collect();
+                dd($var, $corpReturn);
             }
         }
     }
