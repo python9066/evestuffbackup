@@ -65,7 +65,7 @@ class testController extends Controller
             "Accept" => "application/json"
         ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", ["JohnMonty"]);
 
-        dd($response);
+        dd($response->body());
     }
 
 
