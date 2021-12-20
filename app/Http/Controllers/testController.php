@@ -71,14 +71,14 @@ class testController extends Controller
 
 
 
-                $corpRep = Http::withHeaders([
-                    'Content-Type' => 'application/json',
-                    "Accept" => "application/json"
-                ])->get("https://esi.evetech.net/latest/corporations/" . $var->id . "/?datasource=tranquility");
+                // $corpRep = Http::withHeaders([
+                //     'Content-Type' => 'application/json',
+                //     "Accept" => "application/json"
+                // ])->get("https://esi.evetech.net/latest/corporations/" . $var->id . "/?datasource=tranquility");
 
 
-                $corpReturn = $corpRep->collect();
-                dd($var, $corpReturn);
+                // $corpReturn = $corpRep->collect();
+                dd($var);
             }
         }
     }
