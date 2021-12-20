@@ -21648,117 +21648,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -21794,7 +21683,8 @@ function sleep(ms) {
       userAddRoleText: "",
       userRemoveRoleText: "",
       roleflag: 10,
-      logs: false
+      logs: false,
+      wroles: 0
     };
   },
   created: function created() {
@@ -21859,6 +21749,16 @@ function sleep(ms) {
         x: window.innerWidth,
         y: window.innerHeight
       };
+    },
+    showClassButton: function showClassButton() {
+      if (this.wroles.length > 0) {
+        return true;
+      }
+
+      return false;
+    },
+    clearClass: function clearClass() {
+      this.wroles = [];
     },
     log: function log() {
       var request = {
@@ -22161,143 +22061,30 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["users", "rolesList"])), {}, {
     filteredItems: function filteredItems() {
-      if (this.roleflag == 4) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 4;
-          });
-        });
-      }
+      var roleid = this.wroles;
 
-      if (this.roleflag == 5) {
+      if (this.wroles != 0) {
         return this.users.filter(function (u) {
           return u.roles.some(function (role) {
-            return role.id == 5;
-          });
-        });
-      }
-
-      if (this.roleflag == 6) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 6;
-          });
-        });
-      }
-
-      if (this.roleflag == 7) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 7;
-          });
-        });
-      }
-
-      if (this.roleflag == 8) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 8;
-          });
-        });
-      }
-
-      if (this.roleflag == 9) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 9;
-          });
-        });
-      }
-
-      if (this.roleflag == 11) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 11;
-          });
-        });
-      }
-
-      if (this.roleflag == 12) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 12;
-          });
-        });
-      }
-
-      if (this.roleflag == 13) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 13;
-          });
-        });
-      }
-
-      if (this.roleflag == 14) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 14;
-          });
-        });
-      }
-
-      if (this.roleflag == 16) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 16;
-          });
-        });
-      }
-
-      if (this.roleflag == 17) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 17;
-          });
-        });
-      }
-
-      if (this.roleflag == 18) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 18;
-          });
-        });
-      }
-
-      if (this.roleflag == 19) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 19;
-          });
-        });
-      }
-
-      if (this.roleflag == 20) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 20;
-          });
-        });
-      }
-
-      if (this.roleflag == 21) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 21;
-          });
-        });
-      }
-
-      if (this.roleflag == 23) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 23;
+            return role.id == roleid;
           });
         });
       } else {
         return this.users;
-      }
+      } // return this.users;
+
+    },
+    buttonList: function buttonList() {
+      var list = this.rolesList;
+      var data = {
+        id: 0,
+        name: "All"
+      };
+      list.push(data);
+      list.sort(function (a, b) {
+        return a.id - b.id || a.name.localeCompare(b.name);
+      });
+      return list;
     },
     height: function height() {
       var num = this.windowSize.y - 315;
@@ -58052,365 +57839,229 @@ var render = function () {
     },
     [
       _c(
-        "v-row",
-        { attrs: { "no-gutters": "", justify: "center" } },
+        "v-col",
+        { attrs: { cols: "12" } },
         [
           _c(
-            "v-col",
-            { staticClass: "d-inline-flex", attrs: { cols: "9" } },
+            "v-row",
+            { attrs: { "no-gutters": "" } },
             [
               _c(
-                "v-card",
-                {
-                  staticClass: "d-inline-flex align-content-start",
-                  attrs: { tile: "", flat: "", color: "#121212" },
-                },
-                [_c("v-card-title", [_vm._v("Add/Remove Roles")])],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-card",
-                {
-                  staticClass: "align-start",
-                  attrs: { width: "500", tile: "", flat: "", color: "#121212" },
-                },
-                [
-                  _c("v-text-field", {
-                    attrs: {
-                      "append-icon": "mdi-magnify",
-                      label: "Search for Users",
-                      "single-line": "",
-                      "hide-details": "",
-                    },
-                    model: {
-                      value: _vm.search,
-                      callback: function ($$v) {
-                        _vm.search = $$v
-                      },
-                      expression: "search",
-                    },
-                  }),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-card",
-                {
-                  staticClass: "pt-2 pl-2",
-                  attrs: { tile: "", flat: "", color: "#121212" },
-                },
-                [
-                  _vm.$can("view_admin_logs")
-                    ? _c(
-                        "v-btn",
-                        {
-                          staticClass: "mr-4",
-                          attrs: { color: "blue" },
-                          on: {
-                            click: function ($event) {
-                              _vm.logs = true
-                            },
-                          },
-                        },
-                        [_vm._v("\n          Role Logs\n        ")]
-                      )
-                    : _vm._e(),
-                ],
-                1
-              ),
-            ],
-            1
-          ),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-row",
-        { attrs: { "no-gutters": "", justify: "center" } },
-        [
-          _c(
-            "v-col",
-            { staticClass: "d-inline-flex", attrs: { cols: "9" } },
-            [
-              _c("v-spacer"),
-              _vm._v(" "),
-              _c(
-                "v-card",
-                {
-                  staticClass: "align-end",
-                  attrs: { tile: "", flat: "", color: "#121212" },
-                },
+                "v-col",
+                { attrs: { cols: "8" } },
                 [
                   _c(
-                    "v-btn-toggle",
-                    {
-                      attrs: { right: "", mandatory: "", value: 1 },
-                      model: {
-                        value: _vm.toggle_exclusive,
-                        callback: function ($$v) {
-                          _vm.toggle_exclusive = $$v
-                        },
-                        expression: "toggle_exclusive",
-                      },
-                    },
+                    "v-card",
+                    { attrs: { rounded: "xl" } },
                     [
                       _c(
-                        "v-btn",
+                        "v-data-table",
                         {
+                          staticClass: "elevation-5",
                           attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 10
+                            headers: _vm.headers,
+                            items: _vm.filteredItems,
+                            "item-key": "id",
+                            height: _vm.height,
+                            "fixed-header": "",
+                            loading: _vm.loading,
+                            "sort-by": ["name"],
+                            search: _vm.search,
+                            "items-per-page": 50,
+                            "footer-props": {
+                              "items-per-page-options": [
+                                10, 20, 30, 50, 100, -1,
+                              ],
                             },
                           },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "item.roles",
+                                fn: function (ref) {
+                                  var item = ref.item
+                                  return [
+                                    _c(
+                                      "div",
+                                      { staticClass: "d-inline-flex" },
+                                      [
+                                        _c(
+                                          "v-menu",
+                                          {
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "activator",
+                                                  fn: function (ref) {
+                                                    var on = ref.on
+                                                    var attrs = ref.attrs
+                                                    return [
+                                                      _c(
+                                                        "div",
+                                                        [
+                                                          _c(
+                                                            "v-btn",
+                                                            _vm._g(
+                                                              _vm._b(
+                                                                {
+                                                                  attrs: {
+                                                                    icon: "",
+                                                                    color:
+                                                                      "success",
+                                                                  },
+                                                                },
+                                                                "v-btn",
+                                                                attrs,
+                                                                false
+                                                              ),
+                                                              on
+                                                            ),
+                                                            [
+                                                              _c("v-icon", [
+                                                                _vm._v(
+                                                                  "fas fa-plus"
+                                                                ),
+                                                              ]),
+                                                            ],
+                                                            1
+                                                          ),
+                                                        ],
+                                                        1
+                                                      ),
+                                                    ]
+                                                  },
+                                                },
+                                              ],
+                                              null,
+                                              true
+                                            ),
+                                          },
+                                          [
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-list",
+                                              _vm._l(
+                                                _vm.filterDropdownList(
+                                                  item.roles
+                                                ),
+                                                function (list, index) {
+                                                  return _c(
+                                                    "v-list-item",
+                                                    {
+                                                      key: index,
+                                                      on: {
+                                                        click: function (
+                                                          $event
+                                                        ) {
+                                                          ;(_vm.userAddRoleText =
+                                                            list.id),
+                                                            _vm.userAddRole(
+                                                              item
+                                                            )
+                                                        },
+                                                      },
+                                                    },
+                                                    [
+                                                      _c("v-list-item-title", [
+                                                        _vm._v(
+                                                          _vm._s(list.name)
+                                                        ),
+                                                      ]),
+                                                    ],
+                                                    1
+                                                  )
+                                                }
+                                              ),
+                                              1
+                                            ),
+                                          ],
+                                          1
+                                        ),
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "d-inline-flex" },
+                                      _vm._l(
+                                        _vm.filterRoles(item.roles),
+                                        function (role, index) {
+                                          return _c(
+                                            "div",
+                                            { key: index, staticClass: "pr-2" },
+                                            [
+                                              _c(
+                                                "v-chip",
+                                                {
+                                                  class: _vm.mittin(item),
+                                                  attrs: {
+                                                    pill: "",
+                                                    close: _vm.pillClose(
+                                                      role.name
+                                                    ),
+                                                    dark: "",
+                                                  },
+                                                  on: {
+                                                    "click:close": function (
+                                                      $event
+                                                    ) {
+                                                      ;(_vm.userRemoveRoleText =
+                                                        role.id),
+                                                        _vm.userRemoveRole(item)
+                                                    },
+                                                  },
+                                                },
+                                                [
+                                                  role.name == "Wizard"
+                                                    ? _c(
+                                                        "v-icon",
+                                                        {
+                                                          attrs: {
+                                                            small: "",
+                                                            left: "",
+                                                          },
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\n                      faSvg fa-hat-wizard\n                    "
+                                                          ),
+                                                        ]
+                                                      )
+                                                    : _vm._e(),
+                                                  _vm._v(" "),
+                                                  _c("span", [
+                                                    _vm._v(
+                                                      " " + _vm._s(role.name)
+                                                    ),
+                                                  ]),
+                                                ],
+                                                1
+                                              ),
+                                            ],
+                                            1
+                                          )
+                                        }
+                                      ),
+                                      0
+                                    ),
+                                  ]
+                                },
+                              },
+                            ],
+                            null,
+                            true
+                          ),
                         },
-                        [_vm._v("\n            All\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 4
-                            },
-                          },
-                        },
-                        [_vm._v("\n            Coord\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 13
-                            },
-                          },
-                        },
-                        [_vm._v("\n            Director\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 12
-                            },
-                          },
-                        },
-                        [_vm._v("\n            FC\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 9
-                            },
-                          },
-                        },
-                        [_vm._v("\n            GSFFOE FC\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 16
-                            },
-                          },
-                        },
-                        [_vm._v("\n            GSFOE Leader\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 21
-                            },
-                          },
-                        },
-                        [_vm._v("\n            GSOL Leader\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 17
-                            },
-                          },
-                        },
-                        [_vm._v("\n            GSOL\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 6
-                            },
-                          },
-                        },
-                        [_vm._v("\n            Ops\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 5
-                            },
-                          },
-                        },
-                        [_vm._v("\n            Recon\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 14
-                            },
-                          },
-                        },
-                        [_vm._v("\n            Recon Leader\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 7
-                            },
-                          },
-                        },
-                        [_vm._v("\n            Scout\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 18
-                            },
-                          },
-                        },
-                        [_vm._v("\n            Gunner\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 20
-                            },
-                          },
-                        },
-                        [_vm._v("\n            Chill\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 19
-                            },
-                          },
-                        },
-                        [_vm._v("\n            Super Chill\n          ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-btn",
-                        {
-                          attrs: {
-                            loading: _vm.loadingf,
-                            disabled: _vm.loadingf,
-                          },
-                          on: {
-                            click: function ($event) {
-                              _vm.roleflag = 23
-                            },
-                          },
-                        },
-                        [_vm._v("\n            Mega Sheet\n          ")]
+                        [
+                          _vm._v(" "),
+                          _c("template", { slot: "no-data" }, [
+                            _vm._v(
+                              "\n              No Active or Upcoming Campaigns\n            "
+                            ),
+                          ]),
+                        ],
+                        2
                       ),
                     ],
                     1
@@ -58418,222 +58069,96 @@ var render = function () {
                 ],
                 1
               ),
-            ],
-            1
-          ),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-row",
-        { attrs: { "no-gutters": "", justify: "center" } },
-        [
-          _c(
-            "v-col",
-            {
-              staticClass: "d-inline-flex justify-content-center w-auto",
-              attrs: { cols: "9" },
-            },
-            [
+              _vm._v(" "),
               _c(
-                "v-card",
-                { attrs: { width: "100%" } },
+                "v-col",
+                {
+                  staticClass: "pl-4 d-lg-flex flex-column",
+                  attrs: { cols: "4" },
+                },
                 [
                   _c(
-                    "v-data-table",
+                    "v-card",
                     {
-                      staticClass: "elevation-5",
-                      attrs: {
-                        headers: _vm.headers,
-                        items: _vm.filteredItems,
-                        "item-key": "id",
-                        height: _vm.height,
-                        "fixed-header": "",
-                        loading: _vm.loading,
-                        "sort-by": ["name"],
-                        search: _vm.search,
-                        "items-per-page": 50,
-                        "footer-props": {
-                          "items-per-page-options": [10, 20, 30, 50, 100, -1],
-                        },
-                      },
-                      scopedSlots: _vm._u(
-                        [
-                          {
-                            key: "item.roles",
-                            fn: function (ref) {
-                              var item = ref.item
-                              return [
-                                _c(
-                                  "div",
-                                  { staticClass: "d-inline-flex" },
-                                  [
-                                    _c(
-                                      "v-menu",
-                                      {
-                                        scopedSlots: _vm._u(
-                                          [
-                                            {
-                                              key: "activator",
-                                              fn: function (ref) {
-                                                var on = ref.on
-                                                var attrs = ref.attrs
-                                                return [
-                                                  _c(
-                                                    "div",
-                                                    [
-                                                      _c(
-                                                        "v-btn",
-                                                        _vm._g(
-                                                          _vm._b(
-                                                            {
-                                                              attrs: {
-                                                                icon: "",
-                                                                color:
-                                                                  "success",
-                                                              },
-                                                            },
-                                                            "v-btn",
-                                                            attrs,
-                                                            false
-                                                          ),
-                                                          on
-                                                        ),
-                                                        [
-                                                          _c("v-icon", [
-                                                            _vm._v(
-                                                              "fas fa-plus"
-                                                            ),
-                                                          ]),
-                                                        ],
-                                                        1
-                                                      ),
-                                                    ],
-                                                    1
-                                                  ),
-                                                ]
-                                              },
-                                            },
-                                          ],
-                                          null,
-                                          true
-                                        ),
-                                      },
-                                      [
-                                        _vm._v(" "),
-                                        _c(
-                                          "v-list",
-                                          _vm._l(
-                                            _vm.filterDropdownList(item.roles),
-                                            function (list, index) {
-                                              return _c(
-                                                "v-list-item",
-                                                {
-                                                  key: index,
-                                                  on: {
-                                                    click: function ($event) {
-                                                      ;(_vm.userAddRoleText =
-                                                        list.id),
-                                                        _vm.userAddRole(item)
-                                                    },
-                                                  },
-                                                },
-                                                [
-                                                  _c("v-list-item-title", [
-                                                    _vm._v(_vm._s(list.name)),
-                                                  ]),
-                                                ],
-                                                1
-                                              )
-                                            }
-                                          ),
-                                          1
-                                        ),
-                                      ],
-                                      1
-                                    ),
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "d-inline-flex" },
-                                  _vm._l(
-                                    _vm.filterRoles(item.roles),
-                                    function (role, index) {
-                                      return _c(
-                                        "div",
-                                        { key: index, staticClass: "pr-2" },
-                                        [
-                                          _c(
-                                            "v-chip",
-                                            {
-                                              class: _vm.mittin(item),
-                                              attrs: {
-                                                pill: "",
-                                                close: _vm.pillClose(role.name),
-                                                dark: "",
-                                              },
-                                              on: {
-                                                "click:close": function (
-                                                  $event
-                                                ) {
-                                                  ;(_vm.userRemoveRoleText =
-                                                    role.id),
-                                                    _vm.userRemoveRole(item)
-                                                },
-                                              },
-                                            },
-                                            [
-                                              role.name == "Wizard"
-                                                ? _c(
-                                                    "v-icon",
-                                                    {
-                                                      attrs: {
-                                                        small: "",
-                                                        left: "",
-                                                      },
-                                                    },
-                                                    [
-                                                      _vm._v(
-                                                        "\n                    faSvg fa-hat-wizard\n                  "
-                                                      ),
-                                                    ]
-                                                  )
-                                                : _vm._e(),
-                                              _vm._v(" "),
-                                              _c("span", [
-                                                _vm._v(" " + _vm._s(role.name)),
-                                              ]),
-                                            ],
-                                            1
-                                          ),
-                                        ],
-                                        1
-                                      )
-                                    }
-                                  ),
-                                  0
-                                ),
-                              ]
-                            },
-                          },
-                        ],
-                        null,
-                        true
-                      ),
+                      staticClass: "mb-5",
+                      attrs: { elevation: "10", rounded: "xl" },
                     },
                     [
+                      _c(
+                        "v-card-title",
+                        {
+                          staticClass:
+                            "pa-3 primary text-center text-capitalize",
+                          attrs: { dark: "", rounded: "t-xl" },
+                        },
+                        [_vm._v("\n            Roles\n          ")]
+                      ),
                       _vm._v(" "),
-                      _c("template", { slot: "no-data" }, [
-                        _vm._v(
-                          "\n            No Active or Upcoming Campaigns\n          "
-                        ),
-                      ]),
+                      _c(
+                        "v-card-text",
+                        { staticClass: "pa-4" },
+                        [
+                          _c(
+                            "v-chip-group",
+                            {
+                              attrs: {
+                                "active-class": "primary--text",
+                                column: "",
+                              },
+                              model: {
+                                value: _vm.wroles,
+                                callback: function ($$v) {
+                                  _vm.wroles = $$v
+                                },
+                                expression: "wroles",
+                              },
+                            },
+                            _vm._l(_vm.buttonList, function (list, index) {
+                              return _c(
+                                "v-chip",
+                                {
+                                  key: index,
+                                  attrs: {
+                                    filter: "",
+                                    value: list.id,
+                                    outlined: "",
+                                    small: "",
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(list.name) +
+                                      "\n              "
+                                  ),
+                                ]
+                              )
+                            }),
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-card-actions",
+                        { staticClass: "justify-content-center" },
+                        [
+                          _vm.showClassButton
+                            ? _c(
+                                "v-btn",
+                                {
+                                  attrs: { color: " warning", rounded: "" },
+                                  on: { click: _vm.clearClass },
+                                },
+                                [_vm._v("Clear")]
+                              )
+                            : _vm._e(),
+                        ],
+                        1
+                      ),
                     ],
-                    2
+                    1
                   ),
                 ],
                 1

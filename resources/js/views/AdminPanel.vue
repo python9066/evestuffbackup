@@ -1,228 +1,117 @@
 <template>
   <div class="pr-16 pl-16" v-resize="onResize">
-    <v-row no-gutters justify="center">
-      <v-col class="d-inline-flex" cols="9">
-        <v-card
-          tile
-          flat
-          color="#121212"
-          class="d-inline-flex align-content-start"
-        >
-          <v-card-title>Add/Remove Roles</v-card-title>
-        </v-card>
-        <v-card width="500" tile flat color="#121212" class="align-start">
-          <v-text-field
-            v-model="search"
-            append-icon="mdi-magnify"
-            label="Search for Users"
-            single-line
-            hide-details
-          ></v-text-field>
-        </v-card>
-        <v-card tile flat color="#121212" class="pt-2 pl-2">
-          <v-btn
-            v-if="$can('view_admin_logs')"
-            @click="logs = true"
-            class="mr-4"
-            color="blue"
-          >
-            Role Logs
-          </v-btn>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row no-gutters justify="center">
-      <v-col class="d-inline-flex" cols="9">
-        <v-spacer></v-spacer>
-        <v-card tile flat color="#121212" class="align-end">
-          <v-btn-toggle right v-model="toggle_exclusive" mandatory :value="1">
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 10"
+    <v-col cols="12">
+      <v-row no-gutters>
+        <v-col cols="8">
+          <v-card rounded="xl">
+            <v-data-table
+              :headers="headers"
+              :items="filteredItems"
+              item-key="id"
+              :height="height"
+              fixed-header
+              :loading="loading"
+              :sort-by="['name']"
+              :search="search"
+              :items-per-page="50"
+              :footer-props="{
+                'items-per-page-options': [10, 20, 30, 50, 100, -1],
+              }"
+              class="elevation-5"
             >
-              All
-            </v-btn>
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 4"
-            >
-              Coord
-            </v-btn>
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 13"
-            >
-              Director
-            </v-btn>
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 12"
-            >
-              FC
-            </v-btn>
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 9"
-            >
-              GSFFOE FC
-            </v-btn>
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 16"
-            >
-              GSFOE Leader
-            </v-btn>
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 21"
-            >
-              GSOL Leader
-            </v-btn>
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 17"
-            >
-              GSOL
-            </v-btn>
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 6"
-            >
-              Ops
-            </v-btn>
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 5"
-            >
-              Recon
-            </v-btn>
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 14"
-            >
-              Recon Leader
-            </v-btn>
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 7"
-            >
-              Scout
-            </v-btn>
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 18"
-            >
-              Gunner
-            </v-btn>
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 20"
-            >
-              Chill
-            </v-btn>
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 19"
-            >
-              Super Chill
-            </v-btn>
-            <v-btn
-              :loading="loadingf"
-              :disabled="loadingf"
-              @click="roleflag = 23"
-            >
-              Mega Sheet
-            </v-btn>
-          </v-btn-toggle>
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row no-gutters justify="center">
-      <v-col class="d-inline-flex justify-content-center w-auto" cols="9">
-        <v-card width="100%">
-          <v-data-table
-            :headers="headers"
-            :items="filteredItems"
-            item-key="id"
-            :height="height"
-            fixed-header
-            :loading="loading"
-            :sort-by="['name']"
-            :search="search"
-            :items-per-page="50"
-            :footer-props="{
-              'items-per-page-options': [10, 20, 30, 50, 100, -1],
-            }"
-            class="elevation-5"
-          >
-            <template v-slot:[`item.roles`]="{ item }">
-              <div class="d-inline-flex">
-                <v-menu>
-                  <template v-slot:activator="{ on, attrs }">
-                    <div>
-                      <v-btn icon v-bind="attrs" v-on="on" color="success"
-                        ><v-icon>fas fa-plus</v-icon></v-btn
+              <template v-slot:[`item.roles`]="{ item }">
+                <div class="d-inline-flex">
+                  <v-menu>
+                    <template v-slot:activator="{ on, attrs }">
+                      <div>
+                        <v-btn icon v-bind="attrs" v-on="on" color="success"
+                          ><v-icon>fas fa-plus</v-icon></v-btn
+                        >
+                      </div>
+                    </template>
+
+                    <v-list>
+                      <v-list-item
+                        v-for="(list, index) in filterDropdownList(item.roles)"
+                        :key="index"
+                        @click="(userAddRoleText = list.id), userAddRole(item)"
                       >
-                    </div>
-                  </template>
-
-                  <v-list>
-                    <v-list-item
-                      v-for="(list, index) in filterDropdownList(item.roles)"
-                      :key="index"
-                      @click="(userAddRoleText = list.id), userAddRole(item)"
-                    >
-                      <v-list-item-title>{{ list.name }}</v-list-item-title>
-                    </v-list-item>
-                  </v-list>
-                </v-menu>
-              </div>
-
-              <div class="d-inline-flex">
-                <div
-                  v-for="(role, index) in filterRoles(item.roles)"
-                  :key="index"
-                  class="pr-2"
-                >
-                  <v-chip
-                    pill
-                    :class="mittin(item)"
-                    :close="pillClose(role.name)"
-                    dark
-                    @click:close="
-                      (userRemoveRoleText = role.id), userRemoveRole(item)
-                    "
-                  >
-                    <v-icon v-if="role.name == 'Wizard'" small left>
-                      faSvg fa-hat-wizard
-                    </v-icon>
-                    <span> {{ role.name }}</span>
-                  </v-chip>
+                        <v-list-item-title>{{ list.name }}</v-list-item-title>
+                      </v-list-item>
+                    </v-list>
+                  </v-menu>
                 </div>
-              </div>
-            </template>
-            <template slot="no-data">
-              No Active or Upcoming Campaigns
-            </template>
-          </v-data-table>
-        </v-card>
-      </v-col>
-    </v-row>
+
+                <div class="d-inline-flex">
+                  <div
+                    v-for="(role, index) in filterRoles(item.roles)"
+                    :key="index"
+                    class="pr-2"
+                  >
+                    <v-chip
+                      pill
+                      :class="mittin(item)"
+                      :close="pillClose(role.name)"
+                      dark
+                      @click:close="
+                        (userRemoveRoleText = role.id), userRemoveRole(item)
+                      "
+                    >
+                      <v-icon v-if="role.name == 'Wizard'" small left>
+                        faSvg fa-hat-wizard
+                      </v-icon>
+                      <span> {{ role.name }}</span>
+                    </v-chip>
+                  </div>
+                </div>
+              </template>
+              <template slot="no-data">
+                No Active or Upcoming Campaigns
+              </template>
+            </v-data-table>
+          </v-card>
+        </v-col>
+        <v-col cols="4" class="pl-4 d-lg-flex flex-column">
+          <v-card elevation="10" rounded="xl" class="mb-5">
+            <v-card-title
+              class="pa-3 primary text-center text-capitalize"
+              dark
+              rounded="t-xl"
+            >
+              Roles
+            </v-card-title>
+
+            <v-card-text class="pa-4">
+              <v-chip-group
+                active-class="primary--text"
+                column
+                v-model="wroles"
+              >
+                <v-chip
+                  v-for="(list, index) in buttonList"
+                  :key="index"
+                  filter
+                  :value="list.id"
+                  outlined
+                  small
+                >
+                  {{ list.name }}
+                </v-chip>
+              </v-chip-group>
+            </v-card-text>
+            <v-card-actions class="justify-content-center">
+              <v-btn
+                @click="clearClass"
+                color=" warning"
+                rounded
+                v-if="showClassButton"
+                >Clear</v-btn
+              >
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-col>
     <v-overlay z-index="0" :value="logs">
       <AdminLogging v-if="$can('view_admin_logs')" @closeLog="logs = false">
       </AdminLogging>
@@ -260,6 +149,7 @@ export default {
       userRemoveRoleText: "",
       roleflag: 10,
       logs: false,
+      wroles: 0,
     };
   },
 
@@ -282,6 +172,17 @@ export default {
   methods: {
     onResize() {
       this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+    },
+
+    showClassButton() {
+      if (this.wroles.length > 0) {
+        return true;
+      }
+      return false;
+    },
+
+    clearClass() {
+      this.wroles = [];
     },
     log() {
       var request = {
@@ -506,134 +407,33 @@ export default {
   computed: {
     ...mapState(["users", "rolesList"]),
     filteredItems() {
-      if (this.roleflag == 4) {
+      var roleid = this.wroles;
+      if (this.wroles != 0) {
         return this.users.filter(function (u) {
           return u.roles.some(function (role) {
-            return role.id == 4;
-          });
-        });
-      }
-      if (this.roleflag == 5) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 5;
-          });
-        });
-      }
-      if (this.roleflag == 6) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 6;
-          });
-        });
-      }
-      if (this.roleflag == 7) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 7;
-          });
-        });
-      }
-      if (this.roleflag == 8) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 8;
-          });
-        });
-      }
-      if (this.roleflag == 9) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 9;
-          });
-        });
-      }
-      if (this.roleflag == 11) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 11;
-          });
-        });
-      }
-      if (this.roleflag == 12) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 12;
-          });
-        });
-      }
-      if (this.roleflag == 13) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 13;
-          });
-        });
-      }
-      if (this.roleflag == 14) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 14;
-          });
-        });
-      }
-      if (this.roleflag == 16) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 16;
-          });
-        });
-      }
-
-      if (this.roleflag == 17) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 17;
-          });
-        });
-      }
-
-      if (this.roleflag == 18) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 18;
-          });
-        });
-      }
-
-      if (this.roleflag == 19) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 19;
-          });
-        });
-      }
-
-      if (this.roleflag == 20) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 20;
-          });
-        });
-      }
-
-      if (this.roleflag == 21) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 21;
-          });
-        });
-      }
-
-      if (this.roleflag == 23) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == 23;
+            return role.id == roleid;
           });
         });
       } else {
         return this.users;
       }
+      // return this.users;
     },
+
+    buttonList() {
+      var list = this.rolesList;
+      var data = {
+        id: 0,
+        name: "All",
+      };
+      list.push(data);
+      list.sort(function (a, b) {
+        return a.id - b.id || a.name.localeCompare(b.name);
+      });
+
+      return list;
+    },
+
     height() {
       let num = this.windowSize.y - 315;
       return num;
