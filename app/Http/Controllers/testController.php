@@ -69,7 +69,7 @@ class testController extends Controller
         foreach ($returns as $key => $var) {
             if ($key == "corporations") {
 
-
+                dd($var[0]->id);
 
                 // $corpRep = Http::withHeaders([
                 //     'Content-Type' => 'application/json',
