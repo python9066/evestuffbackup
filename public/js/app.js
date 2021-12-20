@@ -60689,7 +60689,7 @@ var render = function () {
                             fn: function (ref) {
                               var item = ref.item
                               return [
-                                _c("StationRcGsolButton", {
+                                _c("RcGsolButton", {
                                   staticClass: "mr-2",
                                   attrs: { station: item, type: 2 },
                                 }),
@@ -60705,7 +60705,7 @@ var render = function () {
                                   "div",
                                   { staticClass: "d-inline-flex" },
                                   [
-                                    _c("StationRcStationMessage", {
+                                    _c("RcStationMessage", {
                                       staticClass: "mr-2",
                                       attrs: { station: item, type: 2 },
                                     }),

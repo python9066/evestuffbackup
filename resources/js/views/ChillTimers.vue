@@ -257,19 +257,19 @@
             </template>
 
             <template v-slot:[`item.gsol_name`]="{ item }">
-              <StationRcGsolButton
+              <RcGsolButton
                 class="mr-2"
                 :station="item"
                 :type="2"
-              ></StationRcGsolButton>
+              ></RcGsolButton>
             </template>
             <template v-slot:[`item.actions`]="{ item }">
               <div class="d-inline-flex">
-                <StationRcStationMessage
+                <RcStationMessage
                   class="mr-2"
                   :station="item"
                   :type="2"
-                ></StationRcStationMessage>
+                ></RcStationMessage>
                 <div>
                   <Info :station="item" v-if="showInfo(item)"></Info>
                 </div>

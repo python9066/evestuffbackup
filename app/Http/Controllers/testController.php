@@ -76,7 +76,7 @@ class testController extends Controller
 
 
                 $corpReturn = $corpRep->collect();
-                dd($corpReturn, $corpReturn->ticker);
+                dd($corpReturn, $corpReturn["ticker"]);
             }
         }
     }
