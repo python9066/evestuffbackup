@@ -2,7 +2,6 @@
     <div class=" pr-16 pl-16">
         <div class=" d-flex align-items-center">
             <v-card-title>Timers to input to RC</v-card-title>
-            <!-- <ChillAddStation v-if="$can('edit_chill_timers')"></ChillAddStation> -->
             <AddStation :type="3"></AddStation>
 
             <v-text-field

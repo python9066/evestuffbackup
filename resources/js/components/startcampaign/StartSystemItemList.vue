@@ -1,53 +1,51 @@
 <template>
-    <div class=" d-inline-flex">
-        <span v-if="systemcount">
-            <span v-for="(system, index) in systems" :key="index" class=" pr-2">
-                <v-chip pill color="red" dark>
-                    <span> {{ system.constellation_name }}</span>
-                </v-chip>
-            </span>
-        </span>
-        <span v-else>
-            <div>
-                All Campaigns have finished
-            </div>
-        </span>
-    </div>
+  <div class="d-inline-flex">
+    <span v-if="systemcount">
+      <span v-for="(system, index) in systems" :key="index" class="pr-2">
+        <v-chip pill color="red" dark>
+          <span> {{ system.constellation_name }}</span>
+        </v-chip>
+      </span>
+    </span>
+    <span v-else>
+      <div>All Campaigns have finished</div>
+    </span>
+  </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
-    props: {
-        campaignID: Number
+  props: {
+    campaignID: Number,
+  },
+  data() {
+    return {
+      test: "",
+    };
+  },
+
+  created() {},
+  async mounted() {},
+
+  methods: {},
+
+  computed: {
+    ...mapGetters(["getStartJoinById"]),
+
+    systems() {
+      return this.getStartJoinById(this.campaignID);
     },
-    data() {
-        return {
-            test: ""
-        };
+
+    systemcount() {
+      let count = this.getStartJoinById(this.campaignID).length;
+      if (count == 0) {
+        return false;
+      } else {
+        return true;
+      }
     },
-
-    created() {},
-    async mounted() {},
-
-    methods: {},
-
-    computed: {
-        ...mapGetters(["getStartJoinById"]),
-
-        systems() {
-            return this.getStartJoinById(this.campaignID);
-        },
-
-        systemcount() {
-            let count = this.getStartJoinById(this.campaignID).length;
-            if (count == 0) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-    }
+  },
 };
 </script>
