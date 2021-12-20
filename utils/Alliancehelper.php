@@ -8,6 +8,8 @@ use App\Models\Corp;
 use App\Models\Userlogging;
 use utils\Helper\Helper;
 use GuzzleHttp\Utils;
+use Illuminate\Support\Facades\Http;
+
 use function GuzzleHttp\json_decode;
 
 
@@ -18,22 +20,12 @@ class Alliancehelper
     public static function getCorpWithNoAlliance($id)
     {
 
-        $client = new Client();
-        $headers = [
+        $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json",
-        ];
-        $url = "https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en";
-        $body = [
-            'JohnMonty'
-        ];
+            "Accept" => "application/json"
+        ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", [$id]);
 
-        $response = $client->request('GET', $url, [
-            'headers' => $headers,
-            'body' => $body
-        ]);
-
-        dd($reponse);
+        dd($response->body());
     }
 
     public static function updateAlliances()
