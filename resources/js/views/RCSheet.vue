@@ -16,7 +16,7 @@
       </v-col>
 
       <v-col cols="4" align="center">
-        <AddStation :type="3" class="pt-2 pl-2"></AddStation
+        <AddStation :type="3" :type2="0" class="pt-2 pl-2"></AddStation
       ></v-col>
       <v-col cols="4" justify="end" align="end" class="d-inline-flex">
         <v-spacer></v-spacer>

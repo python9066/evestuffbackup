@@ -16617,7 +16617,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    type: Number
+    type: Number,
+    type2: Number
   },
   created: function created() {
     var _this = this;
@@ -16677,6 +16678,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       show_on_main: 0,
       show_on_chill: 0,
+      show_on_welp: 0,
       show_on_rc_move: 0,
       show_rc: 0
     };
@@ -16699,7 +16701,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       if (this.type == 2) {
-        this.show_on_chill = 1;
+        if (this.type2 == 1) {
+          this.show_on_chill = 1;
+        }
+
+        if (this.type2 == 2) {
+          this.show_on_welp = 1;
+        }
       }
 
       if (this.type == 3) {
@@ -16813,6 +16821,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
                   show_on_main: _this5.show_on_main,
                   show_on_chill: _this5.show_on_chill,
+                  show_on_welp: _this5.show_on_welp,
                   show_on_rc_move: _this5.show_on_rc_move,
                   timer_image_link: _this5.imageLink,
                   show_on_rc: 0,
@@ -16820,7 +16829,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   rc_fc_id: null,
                   rc_gsol_id: null,
                   rc_recon_id: null
-                }, _defineProperty(_request, "show_on_main", _this5.show_on_main), _defineProperty(_request, "show_on_chill", _this5.show_on_chill), _defineProperty(_request, "show_on_rc_move", _this5.show_on_rc_move), _defineProperty(_request, "show_on_rc", _this5.show_rc), _defineProperty(_request, "show_on_coord", _this5.showOnCoord), _request);
+                }, _defineProperty(_request, "show_on_main", _this5.show_on_main), _defineProperty(_request, "show_on_chill", _this5.show_on_chill), _defineProperty(_request, "show_on_welp", _this5.show_on_welp), _defineProperty(_request, "show_on_rc_move", _this5.show_on_rc_move), _defineProperty(_request, "show_on_rc", _this5.show_rc), _defineProperty(_request, "show_on_coord", _this5.showOnCoord), _request);
                 _context2.next = 4;
                 return axios({
                   method: "put",
@@ -16872,6 +16881,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
                   show_on_main: _this6.show_on_main,
                   show_on_chill: _this6.show_on_chill,
+                  show_on_welp: _this6.show_on_welp,
                   show_on_rc_move: _this6.show_on_rc_move,
                   timer_image_link: _this6.imageLink,
                   show_on_rc: 0,
@@ -16879,7 +16889,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   rc_fc_id: null,
                   rc_gsol_id: null,
                   rc_recon_id: null
-                }, _defineProperty(_request2, "show_on_main", _this6.show_on_main), _defineProperty(_request2, "show_on_chill", _this6.show_on_chill), _defineProperty(_request2, "show_on_rc_move", _this6.show_on_rc_move), _defineProperty(_request2, "show_on_rc", _this6.show_rc), _request2);
+                }, _defineProperty(_request2, "show_on_main", _this6.show_on_main), _defineProperty(_request2, "show_on_chill", _this6.show_on_chill), _defineProperty(_request2, "show_on_welp", _this6.show_on_welp), _defineProperty(_request2, "show_on_rc_move", _this6.show_on_rc_move), _defineProperty(_request2, "show_on_rc", _this6.show_rc), _request2);
                 _context3.next = 4;
                 return axios({
                   method: "put",
@@ -21648,6 +21658,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -24576,6 +24610,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -32643,6 +32681,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -58048,6 +58090,78 @@ var render = function () {
                                   ]
                                 },
                               },
+                              {
+                                key: "top",
+                                fn: function () {
+                                  return [
+                                    _c(
+                                      "v-row",
+                                      { attrs: { "no-gutters": "" } },
+                                      [
+                                        _c(
+                                          "v-col",
+                                          {
+                                            staticClass:
+                                              "justify-around d-flex flex-col",
+                                            attrs: {
+                                              cols: "12",
+                                              "align-self": "center",
+                                            },
+                                          },
+                                          [
+                                            _c(
+                                              "v-card",
+                                              {
+                                                staticClass:
+                                                  "d-inline-flex align-content-start",
+                                                attrs: { tile: "", flat: "" },
+                                              },
+                                              [
+                                                _c("v-card-title", [
+                                                  _vm._v("Add/Remove Roles"),
+                                                ]),
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c("v-spacer"),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-card",
+                                              {
+                                                staticClass: "align-start",
+                                                attrs: { tile: "", flat: "" },
+                                              },
+                                              [
+                                                _c("v-text-field", {
+                                                  attrs: {
+                                                    "append-icon":
+                                                      "mdi-magnify",
+                                                    label: "Search for Users",
+                                                    "single-line": "",
+                                                    "hide-details": "",
+                                                  },
+                                                  model: {
+                                                    value: _vm.search,
+                                                    callback: function ($$v) {
+                                                      _vm.search = $$v
+                                                    },
+                                                    expression: "search",
+                                                  },
+                                                }),
+                                              ],
+                                              1
+                                            ),
+                                          ],
+                                          1
+                                        ),
+                                      ],
+                                      1
+                                    ),
+                                  ]
+                                },
+                                proxy: true,
+                              },
                             ],
                             null,
                             true
@@ -60587,7 +60701,7 @@ var render = function () {
             { attrs: { cols: "4", align: "center" } },
             [
               _vm.$can("edit_chill_timers")
-                ? _c("AddStation", { attrs: { type: 2 } })
+                ? _c("AddStation", { attrs: { type: 2, type2: 1 } })
                 : _vm._e(),
             ],
             1
@@ -65189,7 +65303,7 @@ var render = function () {
             [
               _c("AddStation", {
                 staticClass: "pt-2 pl-2",
-                attrs: { type: 3 },
+                attrs: { type: 3, type2: 0 },
               }),
             ],
             1
@@ -67625,7 +67739,7 @@ var render = function () {
             { attrs: { cols: "4", align: "center" } },
             [
               _vm.$can("edit_welp_timers")
-                ? _c("AddStation", { attrs: { type: 2 } })
+                ? _c("AddStation", { attrs: { type: 2, type2: 2 } })
                 : _vm._e(),
             ],
             1

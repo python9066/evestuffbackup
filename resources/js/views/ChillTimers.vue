@@ -16,7 +16,11 @@
       </v-col>
 
       <v-col cols="4" align="center">
-        <AddStation v-if="$can('edit_chill_timers')" :type="2"></AddStation
+        <AddStation
+          v-if="$can('edit_chill_timers')"
+          :type="2"
+          :type2="1"
+        ></AddStation
       ></v-col>
       <v-col cols="4" justify="end" align="end" class="d-inline-flex">
         <v-spacer></v-spacer>

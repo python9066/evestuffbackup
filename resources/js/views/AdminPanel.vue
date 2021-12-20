@@ -68,6 +68,30 @@
               <template slot="no-data">
                 No Active or Upcoming Campaigns
               </template>
+
+              <template v-slot:top>
+                <v-row no-gutters>
+                  <v-col
+                    cols="12"
+                    align-self="center"
+                    class="justify-around d-flex flex-col"
+                  >
+                    <v-card tile flat class="d-inline-flex align-content-start">
+                      <v-card-title>Add/Remove Roles</v-card-title>
+                    </v-card>
+                    <v-spacer></v-spacer>
+                    <v-card tile flat class="align-start">
+                      <v-text-field
+                        v-model="search"
+                        append-icon="mdi-magnify"
+                        label="Search for Users"
+                        single-line
+                        hide-details
+                      ></v-text-field>
+                    </v-card>
+                  </v-col>
+                </v-row>
+              </template>
             </v-data-table>
           </v-card>
         </v-col>

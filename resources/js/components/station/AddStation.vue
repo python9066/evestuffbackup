@@ -262,6 +262,7 @@ import moment from "moment";
 export default {
   props: {
     type: Number,
+    type2: Number,
   },
 
   async created() {
@@ -306,6 +307,7 @@ export default {
       },
       show_on_main: 0,
       show_on_chill: 0,
+      show_on_welp: 0,
       show_on_rc_move: 0,
       show_rc: 0,
     };
@@ -331,7 +333,12 @@ export default {
         this.show_on_main = 1;
       }
       if (this.type == 2) {
-        this.show_on_chill = 1;
+        if (this.type2 == 1) {
+          this.show_on_chill = 1;
+        }
+        if (this.type2 == 2) {
+          this.show_on_welp = 1;
+        }
       }
       if (this.type == 3) {
         this.show_on_rc_move = 1;
@@ -439,6 +446,7 @@ export default {
         timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
         show_on_main: this.show_on_main,
         show_on_chill: this.show_on_chill,
+        show_on_welp: this.show_on_welp,
         show_on_rc_move: this.show_on_rc_move,
         timer_image_link: this.imageLink,
         show_on_rc: 0,
@@ -448,6 +456,7 @@ export default {
         rc_recon_id: null,
         show_on_main: this.show_on_main,
         show_on_chill: this.show_on_chill,
+        show_on_welp: this.show_on_welp,
         show_on_rc_move: this.show_on_rc_move,
         show_on_rc: this.show_rc,
         show_on_coord: this.showOnCoord,
@@ -512,6 +521,7 @@ export default {
         status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
         show_on_main: this.show_on_main,
         show_on_chill: this.show_on_chill,
+        show_on_welp: this.show_on_welp,
         show_on_rc_move: this.show_on_rc_move,
         timer_image_link: this.imageLink,
         show_on_rc: 0,
@@ -521,6 +531,7 @@ export default {
         rc_recon_id: null,
         show_on_main: this.show_on_main,
         show_on_chill: this.show_on_chill,
+        show_on_welp: this.show_on_welp,
         show_on_rc_move: this.show_on_rc_move,
         show_on_rc: this.show_rc,
       };
