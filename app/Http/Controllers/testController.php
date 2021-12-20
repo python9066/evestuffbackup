@@ -63,7 +63,7 @@ class testController extends Controller
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json"
-        ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", ['data' => "JohnMonty"]);
+        ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", ["JohnMonty"]);
 
         dd($response);
     }
