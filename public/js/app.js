@@ -21718,7 +21718,11 @@ function sleep(ms) {
       userRemoveRoleText: "",
       roleflag: 10,
       logs: false,
-      wroles: 0
+      wroles: 0,
+      windowSize: {
+        x: 0,
+        y: 0
+      }
     };
   },
   created: function created() {
