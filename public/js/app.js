@@ -67891,7 +67891,7 @@ var render = function () {
             { attrs: { cols: "4", align: "center" } },
             [
               _vm.$can("edit_welp_timers")
-                ? _c("AddStation", { attrs: { type: 2, type2: 2 } })
+                ? _c("AddStation", { attrs: { type: 3, type2: 2 } })
                 : _vm._e(),
             ],
             1
