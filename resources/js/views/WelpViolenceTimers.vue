@@ -222,13 +222,13 @@
                 class="mr-2"
                 :station="item"
                 v-if="showFC(item)"
-                :type="2"
+                :type="3"
               ></RcFCButton>
               <RcFCAdd
                 v-if="!item.fc_user_id && $can('view_killsheet_add_fc')"
                 :station="item"
                 class="pl-6"
-                :type="2"
+                :type="3"
               ></RcFCAdd>
             </template>
 
@@ -244,16 +244,16 @@
               <RcReconButton
                 class="mr-2"
                 :station="item"
-                :type="2"
+                :type="3"
               ></RcReconButton>
             </template>
 
             <template v-slot:[`item.status_name`]="{ item }">
-              <StationDoneButton
+              <DoneButton
                 v-if="item.out == 1"
                 :item="item"
-                :type="2"
-              ></StationDoneButton>
+                :type="3"
+              ></DoneButton>
 
               <v-chip v-else pill small :color="pillColor(item)">
                 {{ buttontext(item) }}
@@ -264,7 +264,7 @@
               <RcGsolButton
                 class="mr-2"
                 :station="item"
-                :type="2"
+                :type="3"
               ></RcGsolButton>
             </template>
             <template v-slot:[`item.actions`]="{ item }">
@@ -272,7 +272,7 @@
                 <RcStationMessage
                   class="mr-2"
                   :station="item"
-                  :type="2"
+                  :type="3"
                 ></RcStationMessage>
                 <div>
                   <Info :station="item" v-if="showInfo(item)"></Info>
@@ -340,7 +340,7 @@ function sleep(ms) {
 
 export default {
   title() {
-    return `EveStuff - Chill Times`;
+    return `EveStuff - Welp Violence`;
   },
   data() {
     return {
@@ -380,15 +380,15 @@ export default {
         }
       });
     }
-    await this.$store.dispatch("getChillRegions");
-    await this.$store.dispatch("getChillStationRecords");
+    await this.$store.dispatch("getWelpRegions");
+    await this.$store.dispatch("getWelpStationRecords");
     await this.$store.dispatch("getRcFcs");
-    await this.$store.dispatch("getChillItems");
-    await this.$store.dispatch("getChillStatus");
+    await this.$store.dispatch("getWelpItems");
+    await this.$store.dispatch("getWelpStatus");
     this.loadingt = false;
-    Echo.private("chillsheet").listen("ChillSheetUpdate", (e) => {
+    Echo.private("welpsheet").listen("WelpSheetUpdate", (e) => {
       if (e.flag.message != null) {
-        this.$store.dispatch("updateChillStation", e.flag.message);
+        this.$store.dispatch("updateWelpStation", e.flag.message);
       }
 
       if (e.flag.flag == 2) {
@@ -613,11 +613,11 @@ export default {
     },
 
     async freshUpdate() {
-      await this.$store.dispatch("getChillRegions");
-      await this.$store.dispatch("getChillStationRecords");
+      await this.$store.dispatch("getWelpRegions");
+      await this.$store.dispatch("getWelpStationRecords");
       await this.$store.dispatch("getRcFcs");
-      await this.$store.dispatch("getChillItems");
-      await this.$store.dispatch("getChillStatus");
+      await this.$store.dispatch("getWelpItems");
+      await this.$store.dispatch("getWelpStatus");
     },
 
     async fcupdate() {
@@ -625,7 +625,7 @@ export default {
     },
 
     async sheetupdate() {
-      await this.$store.dispatch("getChillStationRecords");
+      await this.$store.dispatch("getWelpStationRecords");
     },
 
     campaignStart(item) {
@@ -633,7 +633,7 @@ export default {
         id: item.id,
         out: 1,
       };
-      this.$store.dispatch("updateChillStation", data);
+      this.$store.dispatch("updateWelpStation", data);
     },
     countDownStartTime(item) {
       return moment.utc(item.end_time).unix();
@@ -659,7 +659,7 @@ export default {
     async stationdone(item) {
       await axios({
         method: "put",
-        url: "/api/finishrcstationchill/" + item.id,
+        url: "/api/finishrcstationwelp/" + item.id,
         headers: {
           Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
@@ -703,16 +703,16 @@ export default {
 
   computed: {
     ...mapState([
-      "chillstations",
-      "chillsheetRegion",
-      "chillsheetItem",
-      "chillsheetStatus",
+      "welpstations",
+      "welpsheetRegion",
+      "welpsheetItem",
+      "welpsheetStatus",
     ]),
 
-    ...mapGetters(["getActiveChillStations"]),
+    ...mapGetters(["getActiveWelpStations"]),
     filteredItems() {
       // return this.rcstations.filter(f => f.show_on_rc == 1);
-      return this.getActiveChillStations;
+      return this.getActiveWelpStations;
     },
 
     filter_fc() {
@@ -777,15 +777,15 @@ export default {
     },
 
     dropdown_region_list() {
-      return this.chillsheetRegion;
+      return this.welpsheetRegion;
     },
 
     dropdown_type_list() {
-      return this.chillsheetItem;
+      return this.welpsheetItem;
     },
 
     dropdown_status_list() {
-      return this.chillsheetStatus.filter((l) => l.text != null);
+      return this.welpsheetStatus.filter((l) => l.text != null);
     },
 
     _headers() {
@@ -826,7 +826,7 @@ export default {
     },
   },
   beforeDestroy() {
-    Echo.leave("chillsheet");
+    Echo.leave("welpsheet");
     Echo.leave("stationlogs");
   },
 };

@@ -249,11 +249,11 @@
             </template>
 
             <template v-slot:[`item.status_name`]="{ item }">
-              <StationDoneButton
+              <DoneButton
                 v-if="item.out == 1"
                 :item="item"
                 :type="2"
-              ></StationDoneButton>
+              ></DoneButton>
 
               <v-chip v-else pill small :color="pillColor(item)">
                 {{ buttontext(item) }}

@@ -236,6 +236,17 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/chillupdatestationnotification/{id}', 'ChillStationController@update');
 
 
+    Route::get('/welpsheet', 'WelpStationController@index');
+    Route::get('/welpregionlist', 'WelpStationController@welpSheetListRegion');
+    Route::get('/welpTypelist', 'WelpStationController@welpSheetListType');
+    Route::get('/welpStatuslist', 'WelpstationController@welpSheetListStatus');
+    Route::get('/welptest', 'WelpStationController@test');
+    Route::put('finishrcstationwelp/{id}', 'WelpStationController@stationdone');
+    Route::put('/welpupdatetimerinfo/{id}', 'WelpStationController@welpEditUpdate');
+    Route::delete('/welpdelete/{id}', 'WelpStationController@destroy');
+    Route::put('/welpupdatestationnotification/{id}', 'WelpStationController@update');
+
+
 
 
     Route::get('/alluserskeys', 'KeyTypeController@getAllUsersKeys');

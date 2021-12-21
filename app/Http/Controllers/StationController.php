@@ -16,6 +16,7 @@ use App\Events\StationNotificationDelete;
 use App\Events\StationNotificationNew;
 use App\Events\StationNotificationUpdate;
 use App\Events\StationUpdateCoord;
+use App\Events\WelpSheetUpdate;
 use App\Models\ChillStationRecords;
 use App\Models\Corp;
 use App\Models\Item;
@@ -27,6 +28,7 @@ use App\Models\StationItems;
 use App\Models\StationRecords;
 use App\Models\StationStatus;
 use App\Models\System;
+use App\Models\WelpStationRecords;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Promise\Create;
@@ -182,6 +184,7 @@ class StationController extends Controller
                     $showMain = $checkifthere->show_on_main;
                     $showChill = $checkifthere->show_on_chill;
                     $showRcMove =  $checkifthere->show_on_rc_move;
+                    $showWelp = $checkifthere->show_on_welp;
                     if ($request->show == 1) {
                         $showMain = 1;
                     }
@@ -190,6 +193,10 @@ class StationController extends Controller
                     }
                     if ($request->show == 3) {
                         $showRcMove = 1;
+                    }
+
+                    if ($request->show == 4) {
+                        $showWelp = 1;
                     }
                 }
 
@@ -229,6 +236,7 @@ class StationController extends Controller
                     'show_on_main' => $showMain,
                     'show_on_chill' => $showChill,
                     'show_on_rc_move' => $showRcMove,
+                    'show_on_welp' => $showWelp,
                     'added_by_user_id' => Auth::id(),
                     'added_from_recon' => 1
                 ]);
@@ -323,6 +331,7 @@ class StationController extends Controller
                     $showMain = $checkifthere->show_on_main;
                     $showChill = $checkifthere->show_on_chill;
                     $showRcMove =  $checkifthere->show_on_rc_move;
+                    $showWelp = $checkifthere->show_on_welp;
                     if ($request->show == 1) {
                         $showMain = 1;
                     }
@@ -331,6 +340,10 @@ class StationController extends Controller
                     }
                     if ($request->show == 3) {
                         $showRcMove = 1;
+                    }
+
+                    if ($request->show == 4) {
+                        $showWelp = 1;
                     }
                 }
 
@@ -368,6 +381,7 @@ class StationController extends Controller
                     'show_on_main' => $showMain,
                     'show_on_chill' => $showChill,
                     'show_on_rc_move' => $showRcMove,
+                    'show_on_welp' => $showWelp,
                     'added_from_recon' => 1
                 ]);
                 if ($stationdata['str_has_no_fitting'] != null) {
@@ -442,6 +456,14 @@ class StationController extends Controller
                 'message' => $message
             ]);
             broadcast(new ChillSheetUpdate($flag));
+        }
+
+        if ($request->show_on_welp == 1) {
+            $message = WelpStationRecords::where('id', $new->id)->first();
+            $flag = collect([
+                'message' => $message
+            ]);
+            broadcast(new WelpSheetUpdate($flag));
         }
     }
 

@@ -115,6 +115,18 @@ export default {
         }
       });
     }
+
+    if (this.type == 3) {
+      Echo.private("welpsheet").listen("WelpSheetMessageUpdate", (e) => {
+        if (e.flag.id == this.station.id) {
+          this.$store.dispatch("updateWelpStation", e.flag.message);
+          if (this.showStationNotes == false) {
+            this.showNumber = true;
+            this.messageCount = this.messageCount + 1;
+          }
+        }
+      });
+    }
   },
 
   methods: {

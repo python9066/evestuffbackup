@@ -134,6 +134,10 @@ Broadcast::channel('chillsheet', function () {
     return Auth::check();
 });
 
+Broadcast::channel('welpsheet', function () {
+    return Auth::check();
+});
+
 
 
 

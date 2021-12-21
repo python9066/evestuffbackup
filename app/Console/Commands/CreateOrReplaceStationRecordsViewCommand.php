@@ -73,6 +73,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
        stations.timer_image_link AS timer_image_link,
        stations.show_on_main AS 'show_on_main',
        stations.show_on_chill AS 'show_on_chill',
+       stations.show_on_welp AS 'show_on_welp',
        stations.show_on_rc_move AS 'show_on_rc_move',
        stations.show_on_coord AS 'show_on_coord',
        stations.added_from_recon AS 'added_from_recon',

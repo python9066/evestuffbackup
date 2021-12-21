@@ -63,6 +63,10 @@
             Fleet Keys
           </v-tab>
 
+          <v-tab v-if="$can('view_welp_timers')" link to="/welpviolence">
+            Welp Violence
+          </v-tab>
+
           <v-tab v-if="$can('view_chill_timers')" link to="/chillstations">
             Chilled Timers
           </v-tab>

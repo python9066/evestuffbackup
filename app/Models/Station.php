@@ -61,6 +61,7 @@ class Station extends Model
         'r_cored' => 'integer',
         'show_on_main' => 'integer',
         'show_on_chill' => 'integer',
+        'show_on_welp' => 'integer',
         'show_on_rc' => 'integer',
         'show_on_rc_move' => 'integer',
         'show_on_coord' => 'integer',

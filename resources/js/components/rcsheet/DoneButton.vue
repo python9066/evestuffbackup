@@ -150,13 +150,30 @@ export default {
       if (this.type == 2) {
         request = {
           station_status_id: statusID,
-          show_on_chill: 0,
-          show_on_coord: 0,
+          show_on_chill: 1,
         };
 
         await axios({
           method: "put",
           url: "/api/chillupdatestationnotification/" + this.item.id,
+          data: request,
+          headers: {
+            Authorization: "Bearer " + this.$store.state.token,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+      }
+
+      if (this.type == 3) {
+        request = {
+          station_status_id: statusID,
+          show_on_welp: 1,
+        };
+
+        await axios({
+          method: "put",
+          url: "/api/welpupdatestationnotification/" + this.item.id,
           data: request,
           headers: {
             Authorization: "Bearer " + this.$store.state.token,
@@ -198,6 +215,24 @@ export default {
         await axios({
           method: "delete",
           url: "/api/chilldelete/" + this.item.id,
+          headers: {
+            Authorization: "Bearer " + this.$store.state.token,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+      }
+
+      if (this.type == 3) {
+        var data = {
+          id: this.item.id,
+          show_on_chill: 0,
+        };
+        this.$store.dispatch("updateChillStation", data);
+
+        await axios({
+          method: "delete",
+          url: "/api/welpdelete/" + this.item.id,
           headers: {
             Authorization: "Bearer " + this.$store.state.token,
             Accept: "application/json",

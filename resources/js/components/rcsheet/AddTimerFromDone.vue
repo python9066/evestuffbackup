@@ -201,6 +201,7 @@ export default {
         show_on_rc_move: moveToRc,
         show_on_rc: 0,
         show_on_coord: 0,
+        show_on_welp: 0,
         status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
         notes: note,
       };
@@ -227,6 +228,25 @@ export default {
         await axios({
           method: "put", //you can set whfffat request you want to be
           url: "api/chillupdatetimerinfo/" + this.item.id,
+          data: request,
+          headers: {
+            Authorization: "Bearer " + this.$store.state.token,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }).then(
+          (this.showStationTimer = false),
+          (this.refType = null),
+          (this.refTime = ""),
+          (this.showStationTimer = false),
+          this.$emit("timeropen")
+        );
+      }
+
+      if (this.type == 3) {
+        await axios({
+          method: "put", //you can set whfffat request you want to be
+          url: "api/welpupdatetimerinfo/" + this.item.id,
           data: request,
           headers: {
             Authorization: "Bearer " + this.$store.state.token,

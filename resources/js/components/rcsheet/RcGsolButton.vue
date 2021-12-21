@@ -70,6 +70,9 @@ export default {
 
         case 2:
           this.$store.dispatch("updateChillStation", data);
+
+        case 3:
+          this.$store.dispatch("updateWelpStation", data);
       }
 
       var request = null;
@@ -102,6 +105,9 @@ export default {
 
         case 2:
           this.$store.dispatch("updateChillStation", data);
+
+        case 3:
+          this.$store.dispatch("updateWelpStation", data);
       }
 
       await axios({
