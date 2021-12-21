@@ -6,11 +6,13 @@ use App\Events\ChillSheetMessageUpdate;
 use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetMessageUpdate;
 use App\Events\RcSheetUpdate;
+use App\Events\WelpSheetUpdate;
 use App\Models\Alliance;
 use App\Models\ChillStationRecords;
 use App\Models\Corp;
 use App\Models\RcStationRecords;
 use App\Models\Station;
+use App\Models\WelpStationRecords;
 use Illuminate\Http\Request;
 
 class RcSheetController extends Controller
@@ -50,6 +52,7 @@ class RcSheetController extends Controller
         ]);
         broadcast(new RcSheetUpdate($flag));
         broadcast(new ChillSheetUpdate($flag));
+        broadcast(new WelpSheetUpdate($flag));
     }
 
     public function fixalliance(Request $request, $id)
@@ -64,6 +67,7 @@ class RcSheetController extends Controller
         ]);
         broadcast(new RcSheetUpdate($flag));
         broadcast(new ChillSheetUpdate($flag));
+        broadcast(new WelpSheetUpdate($flag));
     }
 
 

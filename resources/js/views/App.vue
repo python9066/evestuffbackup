@@ -28,10 +28,6 @@
           <v-tabs-slider></v-tabs-slider>
           <v-tab link to="/notifications"> Notifications </v-tab>
 
-          <v-tab v-if="$can('view_coord_sheet')" link to="/coordsheet">
-            Coord Sheet
-          </v-tab>
-
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
               <v-tab v-bind="attrs" v-on="on"> Nats Health </v-tab>
@@ -57,18 +53,22 @@
             </v-list>
           </v-menu>
 
-          <v-tab v-if="$can('view_recon')" link to="/recon"> Recon </v-tab>
-
-          <v-tab v-if="$can('view_fleet_key')" link to="/fleetkeys">
-            Fleet Keys
-          </v-tab>
-
           <v-tab v-if="$can('view_welp_timers')" link to="/welpviolence">
             Welp Violence
           </v-tab>
 
           <v-tab v-if="$can('view_chill_timers')" link to="/chillstations">
             Chilled Timers
+          </v-tab>
+
+          <v-tab v-if="$can('view_coord_sheet')" link to="/coordsheet">
+            Coord Sheet
+          </v-tab>
+
+          <v-tab v-if="$can('view_recon')" link to="/recon"> Recon </v-tab>
+
+          <v-tab v-if="$can('view_fleet_key')" link to="/fleetkeys">
+            Fleet Keys
           </v-tab>
 
           <v-tab v-if="$can('view_towers')" link to="/towers"> Towers </v-tab>

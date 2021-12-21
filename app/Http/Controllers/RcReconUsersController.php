@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetUpdate;
+use App\Events\WelpSheetUpdate;
 use App\Models\ChillStationRecords;
 use App\Models\Logging;
 use App\Models\RcReconUsers;
 use App\Models\RcStationRecords;
 use App\Models\Station;
 use App\Models\User;
+use App\Models\WelpStationRecords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use utils\Helper\Helper;
@@ -55,6 +57,13 @@ class RcReconUsersController extends Controller
             broadcast(new ChillSheetUpdate($flag));
         }
 
+        $message = WelpStationRecords::where('id', $id)->first();
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new WelpSheetUpdate($flag));
+        }
         $text = Auth::user()->name . " Added as Cyno";
 
         $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 21]);
@@ -83,6 +92,13 @@ class RcReconUsersController extends Controller
                 'message' => $message,
             ]);
             broadcast(new ChillSheetUpdate($flag));
+        }
+        $message = WelpStationRecords::where('id', $id)->first();
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new WelpSheetUpdate($flag));
         }
         $text = Auth::user()->name . " Removed " . $username . " As Cyno";
 

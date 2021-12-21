@@ -58522,12 +58522,6 @@ var render = function () {
                     _vm._v(" Notifications "),
                   ]),
                   _vm._v(" "),
-                  _vm.$can("view_coord_sheet")
-                    ? _c("v-tab", { attrs: { link: "", to: "/coordsheet" } }, [
-                        _vm._v("\n          Coord Sheet\n        "),
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
                   _c(
                     "v-menu",
                     {
@@ -58594,18 +58588,6 @@ var render = function () {
                     1
                   ),
                   _vm._v(" "),
-                  _vm.$can("view_recon")
-                    ? _c("v-tab", { attrs: { link: "", to: "/recon" } }, [
-                        _vm._v(" Recon "),
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.$can("view_fleet_key")
-                    ? _c("v-tab", { attrs: { link: "", to: "/fleetkeys" } }, [
-                        _vm._v("\n          Fleet Keys\n        "),
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
                   _vm.$can("view_welp_timers")
                     ? _c(
                         "v-tab",
@@ -58620,6 +58602,24 @@ var render = function () {
                         { attrs: { link: "", to: "/chillstations" } },
                         [_vm._v("\n          Chilled Timers\n        ")]
                       )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.$can("view_coord_sheet")
+                    ? _c("v-tab", { attrs: { link: "", to: "/coordsheet" } }, [
+                        _vm._v("\n          Coord Sheet\n        "),
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.$can("view_recon")
+                    ? _c("v-tab", { attrs: { link: "", to: "/recon" } }, [
+                        _vm._v(" Recon "),
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.$can("view_fleet_key")
+                    ? _c("v-tab", { attrs: { link: "", to: "/fleetkeys" } }, [
+                        _vm._v("\n          Fleet Keys\n        "),
+                      ])
                     : _vm._e(),
                   _vm._v(" "),
                   _vm.$can("view_towers")
