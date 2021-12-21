@@ -6,6 +6,7 @@ use App\Events\ChillSheetMessageUpdate;
 use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetMessageUpdate;
 use App\Events\RcSheetUpdate;
+use App\Events\WelpSheetMessageUpdate;
 use App\Events\WelpSheetUpdate;
 use App\Models\Alliance;
 use App\Models\ChillStationRecords;
@@ -142,6 +143,17 @@ class RcSheetController extends Controller
 
             // dd($request, $id, $flag);
             broadcast(new ChillSheetMessageUpdate($flag))->toOthers();
+        }
+
+        $message = WelpStationRecords::where('id', $id)->first();
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+                'id' => $id
+            ]);
+
+            // dd($request, $id, $flag);
+            broadcast(new WelpSheetMessageUpdate($flag))->toOthers();
         }
     }
 
