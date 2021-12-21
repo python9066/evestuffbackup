@@ -248,10 +248,19 @@ export default {
       let start = [];
       let topChill = [];
       let megaSheet = [];
-      let Nats = [];
+      let welp = [];
+      let violence = [];
       if (this.$can("edit_all_users")) {
         return filter.filter((f) => f.name != "Nats");
       }
+      if (this.$can("edit_welp_users")) {
+        welp = filter.filter((f) => f.name == "Welp");
+      }
+
+      if (this.$can("edit_violence_users")) {
+        violence = filter.filter((f) => f.name == "Violence");
+      }
+
       if (this.$can("edit_chill_users")) {
         chill = filter.filter((f) => f.name == "Chilled");
       }
@@ -290,7 +299,9 @@ export default {
         scout,
         superChilled,
         topChill,
-        megaSheet
+        megaSheet,
+        welp,
+        violence
       );
     },
 
@@ -329,6 +340,30 @@ export default {
         }
       } else if (this.$can("edit_scout_users")) {
         if (name == "Scout") {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (this.$can("edit_chill_users")) {
+        if (name == "Chilled") {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (this.$can("edit_super_chilled_users")) {
+        if (name == "Super Chilled") {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (this.$can("edit_welp_users")) {
+        if (name == "Welp") {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (this.$can("edit_violence_users")) {
+        if (name == "Violence") {
           return true;
         } else {
           return false;

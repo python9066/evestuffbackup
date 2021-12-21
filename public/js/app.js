@@ -21856,11 +21856,24 @@ function sleep(ms) {
       var start = [];
       var topChill = [];
       var megaSheet = [];
-      var Nats = [];
+      var welp = [];
+      var violence = [];
 
       if (this.$can("edit_all_users")) {
         return filter.filter(function (f) {
           return f.name != "Nats";
+        });
+      }
+
+      if (this.$can("edit_welp_users")) {
+        welp = filter.filter(function (f) {
+          return f.name == "Welp";
+        });
+      }
+
+      if (this.$can("edit_violence_users")) {
+        violence = filter.filter(function (f) {
+          return f.name == "Violence";
         });
       }
 
@@ -21918,7 +21931,7 @@ function sleep(ms) {
         });
       }
 
-      return start.concat(chill, fc, gsfoeFC, gunner, recon, scout, superChilled, topChill, megaSheet);
+      return start.concat(chill, fc, gsfoeFC, gunner, recon, scout, superChilled, topChill, megaSheet, welp, violence);
     },
     pillClose: function pillClose(name) {
       if (this.$can("edit_all_users")) {
@@ -21947,6 +21960,30 @@ function sleep(ms) {
         }
       } else if (this.$can("edit_scout_users")) {
         if (name == "Scout") {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (this.$can("edit_chill_users")) {
+        if (name == "Chilled") {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (this.$can("edit_super_chilled_users")) {
+        if (name == "Super Chilled") {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (this.$can("edit_welp_users")) {
+        if (name == "Welp") {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (this.$can("edit_violence_users")) {
+        if (name == "Violence") {
           return true;
         } else {
           return false;
