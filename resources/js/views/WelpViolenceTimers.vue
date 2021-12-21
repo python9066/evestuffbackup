@@ -711,7 +711,7 @@ export default {
 
     ...mapGetters(["getActiveWelpStations"]),
     filteredItems() {
-      // return this.rcstations.filter(f => f.show_on_rc == 1);
+      // return this.rcstations.filt  er(f => f.show_on_rc == 1);
       return this.getActiveWelpStations;
     },
 

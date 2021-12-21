@@ -33576,7 +33576,7 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["welpstations", "welpsheetRegion", "welpsheetItem", "welpsheetStatus"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getActiveWelpStations"])), {}, {
     filteredItems: function filteredItems() {
-      // return this.rcstations.filter(f => f.show_on_rc == 1);
+      // return this.rcstations.filt  er(f => f.show_on_rc == 1);
       return this.getActiveWelpStations;
     },
     filter_fc: function filter_fc() {
