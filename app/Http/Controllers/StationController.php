@@ -180,6 +180,7 @@ class StationController extends Controller
                 $showMain = 0;
                 $showChill = 0;
                 $showRcMove = 0;
+                $showWelp = 0;
                 if ($checkifthere) {
                     $showMain = $checkifthere->show_on_main;
                     $showChill = $checkifthere->show_on_chill;
@@ -327,6 +328,7 @@ class StationController extends Controller
                 $showMain = 0;
                 $showChill = 0;
                 $showRcMove = 0;
+                $showWelp = 0;
                 if ($checkifthere) {
                     $showMain = $checkifthere->show_on_main;
                     $showChill = $checkifthere->show_on_chill;
