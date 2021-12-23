@@ -447,10 +447,14 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new StationNotificationNew($flag));
+
         broadcast(new RcMoveUpdate($flag));
+
         $text = "Added by " . Auth::user()->name;
         $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 17, 'text' => $text]);
         Helper::stationlogs($logNew->id);
+
+
 
         if ($request->show_on_chill == 1) {
             $message = ChillStationRecords::where('id', $new->id)->first();
@@ -665,7 +669,7 @@ class StationController extends Controller
     {
 
         $now = now();
-        $stationName = Station::find($id)->value('name');
+        // $stationName = Station::find($id)->value('name');
 
         $RCmessage = RcStationRecords::where('id', $id)->first();
         $RCmessageSend = [
