@@ -574,22 +574,18 @@ class StationController extends Controller
         Helper::stationlogs($logNew->id);
         $RCmessage = RcStationRecords::where('id', $id)->first();
         if ($RCmessage) {
-            $RCmessageSend = [
-                'id' => $RCmessage->id,
-            ];
+
             $flag = collect([
-                'message' => $RCmessageSend,
+                'message' => $RCmessage,
             ]);
             broadcast(new RcSheetUpdate($flag));
         }
 
         $RCmessage = ChillStationRecords::where('id', $id)->first();
         if ($RCmessage) {
-            $RCmessageSend = [
-                'id' => $RCmessage->id,
-            ];
+
             $flag = collect([
-                'message' => $RCmessageSend,
+                'message' => $RCmessage,
             ]);
 
             broadcast(new ChillSheetUpdate($flag));
@@ -597,11 +593,9 @@ class StationController extends Controller
 
         $RCmessage = WelpStationRecords::where('id', $id)->first();
         if ($RCmessage) {
-            $RCmessageSend = [
-                'id' => $RCmessage->id,
-            ];
+
             $flag = collect([
-                'message' => $RCmessageSend,
+                'message' => $RCmessage,
             ]);
 
             broadcast(new WelpSheetUpdate($flag));
