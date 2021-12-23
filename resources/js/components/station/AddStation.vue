@@ -103,7 +103,7 @@
                   label="Corp Ticker"
                   outlined
                 ></v-autocomplete>
-                <v-btn text> This is a test </v-btn>
+                <v-btn text v-if="$can('super_admin')"> This is a test </v-btn>
               </div>
               <div>
                 <h5><strong>Timer Type</strong></h5>

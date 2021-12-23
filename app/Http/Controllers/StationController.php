@@ -676,7 +676,21 @@ class StationController extends Controller
             'message' => $RCmessageSend,
         ]);
         broadcast(new RcSheetUpdate($flag));
+        $RCmessageSend = [
+            'id' => $RCmessage->id,
+            'show_on_chill' => 0
+        ];
+        $flag = collect([
+            'message' => $RCmessageSend,
+        ]);
         broadcast(new ChillSheetUpdate($flag));
+        $RCmessageSend = [
+            'id' => $RCmessage->id,
+            'show_on_welp' => 0
+        ];
+        $flag = collect([
+            'message' => $RCmessageSend,
+        ]);
         broadcast(new WelpSheetUpdate($flag));
 
 
