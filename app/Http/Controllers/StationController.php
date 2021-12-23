@@ -580,7 +580,6 @@ class StationController extends Controller
             ]);
             broadcast(new RcSheetUpdate($flag));
         }
-
         $RCmessage = ChillStationRecords::where('id', $id)->first();
         if ($RCmessage) {
 
