@@ -556,47 +556,6 @@ class StationController extends Controller
         $oldStatusID = Station::where('id', $id)->value('station_status_id');
         $oldStatusName = StationStatus::where('id', $oldStatusID)->value('name');
         $oldStatusName = str_replace('Upcoming - ', "", $oldStatusName);
-
-        $RCmessage = RcStationRecords::where('id', $id)->first();
-        if ($RCmessage) {
-            $RCmessageSend = [
-                'id' => $RCmessage->id,
-                'show_on_rc' => 0
-            ];
-            $flag = collect([
-                'message' => $RCmessageSend,
-            ]);
-            broadcast(new RcSheetUpdate($flag));
-        }
-
-        $RCmessage = ChillStationRecords::where('id', $id)->first();
-        if ($RCmessage) {
-            $RCmessageSend = [
-                'id' => $RCmessage->id,
-                'show_on_rc' => 0
-            ];
-            $flag = collect([
-                'message' => $RCmessageSend,
-            ]);
-
-            broadcast(new ChillSheetUpdate($flag));
-        }
-
-        $RCmessage = WelpStationRecords::where('id', $id)->first();
-        if ($RCmessage) {
-            $RCmessageSend = [
-                'id' => $RCmessage->id,
-                'show_on_rc' => 0
-            ];
-            $flag = collect([
-                'message' => $RCmessageSend,
-            ]);
-
-            broadcast(new WelpSheetUpdate($flag));
-        }
-
-
-
         $newStatusID = $request->station_status_id;
         $newStatusName = StationStatus::where('id', $newStatusID)->value('name');
         $newStatusName = str_replace('Upcoming - ', "", $newStatusName);
@@ -613,6 +572,43 @@ class StationController extends Controller
         $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName;
         $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
         Helper::stationlogs($logNew->id);
+        $RCmessage = RcStationRecords::where('id', $id)->first();
+        if ($RCmessage) {
+            $RCmessageSend = [
+                'id' => $RCmessage->id,
+                'show_on_rc' => 0
+            ];
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
+            broadcast(new RcSheetUpdate($flag));
+        }
+
+        $RCmessage = ChillStationRecords::where('id', $id)->first();
+        if ($RCmessage) {
+            $RCmessageSend = [
+                'id' => $RCmessage->id,
+                'show_on_chill' => 0
+            ];
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
+
+            broadcast(new ChillSheetUpdate($flag));
+        }
+
+        $RCmessage = WelpStationRecords::where('id', $id)->first();
+        if ($RCmessage) {
+            $RCmessageSend = [
+                'id' => $RCmessage->id,
+                'show_on_welp' => 0
+            ];
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
+
+            broadcast(new WelpSheetUpdate($flag));
+        }
     }
 
     public function editUpdate(Request $request, $id)
