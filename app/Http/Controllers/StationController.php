@@ -694,7 +694,17 @@ class StationController extends Controller
         broadcast(new WelpSheetUpdate($flag));
 
 
-        Station::where('id', $id)->update(['show_on_rc' => 0, 'show_on_coord' => 1, 'station_status_id' => 7, "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null]);
+        Station::where('id', $id)->update([
+            'show_on_rc' => 0,
+            'show_on_coord' => 1,
+            'show_on_welp' => 0,
+            'show_on_chill' => 0,
+            'station_status_id' => 7,
+            "rc_id" => null,
+            "rc_fc_id" => null,
+            "rc_gsol_id" => null,
+            "rc_recon_id" => null
+        ]);
 
 
         $newStatusID = 7;
