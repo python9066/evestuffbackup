@@ -18,7 +18,7 @@
       <v-col cols="4" align="center">
         <AddStation
           v-if="$can('edit_welp_timers')"
-          :type="3"
+          :type="2"
           :type2="2"
         ></AddStation
       ></v-col>

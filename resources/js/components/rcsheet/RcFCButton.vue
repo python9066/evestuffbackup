@@ -67,16 +67,9 @@ export default {
         fc_user_id: this.$store.state.user_id,
         fc_name: this.$store.state.user_name,
       };
-      switch (this.type) {
-        case 1:
-          this.$store.dispatch("updateRcStation", data);
-
-        case 2:
-          this.$store.dispatch("updateChillStation", data);
-
-        case 3:
-          this.$store.dispatch("updateWelpStation", data);
-      }
+      this.$store.dispatch("updateRcStationCurrent", data);
+      this.$store.dispatch("updateChillStationCurrent", data);
+      this.$store.dispatch("updateWelpStationCurrent", data);
 
       var request = null;
       request = {
@@ -101,17 +94,9 @@ export default {
         fc_user_id: null,
         fc_name: null,
       };
-
-      switch (this.type) {
-        case 1:
-          this.$store.dispatch("updateRcStation", data);
-
-        case 2:
-          this.$store.dispatch("updateChillStation", data);
-
-        case 3:
-          this.$store.dispatch("updateWelpStation", data);
-      }
+      this.$store.dispatch("updateRcStationCurrent", data);
+      this.$store.dispatch("updateChillStationCurrent", data);
+      this.$store.dispatch("updateWelpStationCurrent", data);
 
       await axios({
         method: "put",

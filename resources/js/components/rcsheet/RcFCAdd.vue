@@ -163,16 +163,9 @@ export default {
         fc_user_id: item.id,
         fc_user_name: item.name,
       };
-      switch (this.type) {
-        case 1:
-          this.$store.dispatch("updateRcStation", data);
-
-        case 2:
-          this.$store.dispatch("updateChillStation", data);
-
-        case 3:
-          this.$store.dispatch("updateWelpStation", data);
-      }
+      this.$store.dispatch("updateRcStationCurrent", data);
+      this.$store.dispatch("updateChillStationCurrent", data);
+      this.$store.dispatch("updateWelpStationCurrent", data);
 
       var request = {
         rc_fc_id: item.id,

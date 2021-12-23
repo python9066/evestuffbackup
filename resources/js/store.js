@@ -284,6 +284,38 @@ export default new Vuex.Store({
             }
         },
 
+        UPDATE_RC_STATION_CURRENT(state, data) {
+            const item = state.rcstations.find((item) => item.id === data.id);
+            const count = state.rcstations.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            }
+        },
+
+        UPDATE_CHILL_STATION_CURRENT(state, data) {
+            const item = state.chillstations.find(
+                (item) => item.id === data.id
+            );
+            const count = state.chillstations.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            }
+        },
+
+        UPDATE_WELP_STATION_CURRENT(state, data) {
+            const item = state.welpstations.find((item) => item.id === data.id);
+            const count = state.welpstations.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            }
+        },
+
         UPDATE_RC_FC(state, data) {
             const item = state.rcfcs.find((item) => item.id === data.id);
             const count = state.rcfcs.filter(
@@ -1271,6 +1303,18 @@ export default new Vuex.Store({
 
         updateWelpStation({ commit }, data) {
             commit("UPDATE_WELP_STATION", data);
+        },
+
+        updateRcStationCurrent({ commit }, data) {
+            commit("UPDATE_RC_STATION_CURRENT", data);
+        },
+
+        updateChillStationCurrent({ commit }, data) {
+            commit("UPDATE_CHILL_STATION_CURRENT", data);
+        },
+
+        updateWelpStationCurrent({ commit }, data) {
+            commit("UPDATE_WELP_STATION_CURRENT", data);
         },
 
         updateRcFC({ commit }, data) {

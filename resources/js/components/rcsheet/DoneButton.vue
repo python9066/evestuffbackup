@@ -111,135 +111,136 @@ export default {
     },
 
     async statusUpdate(statusID) {
-      switch (this.type) {
-        case 1:
-          var data = {
-            id: this.item.id,
-            show_on_rc: 0,
-          };
-          this.$store.dispatch("updateRcStation", data);
-
-        case 2:
-          var data = {
-            id: this.item.id,
-            show_on_chill: 0,
-          };
-          this.$store.dispatch("updateChillStation", data);
-      }
+      var data = {
+        id: this.item.id,
+        show_on_rc: 0,
+      };
+      this.$store.dispatch("updateRcStationCurrent", data);
+      var data = {
+        id: this.item.id,
+        show_on_chill: 0,
+      };
+      this.$store.dispatch("updateChillStationCurrent", data);
+      var data = {
+        id: this.item.id,
+        show_on_welp: 0,
+      };
+      this.$store.dispatch("updateWelpStationCurrent", data);
 
       var request = null;
-      if (this.type == 1) {
-        request = {
-          station_status_id: statusID,
-          show_on_rc: 0,
-          show_on_coord: 1,
-        };
 
-        await axios({
-          method: "put",
-          url: "/api/updatestationnotification/" + this.item.id,
-          data: request,
-          headers: {
-            Authorization: "Bearer " + this.$store.state.token,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        });
-      }
+      request = {
+        station_status_id: statusID,
+        show_on_rc: 0,
+        show_on_coord: 1,
+      };
 
-      if (this.type == 2) {
-        request = {
-          station_status_id: statusID,
-          show_on_chill: 1,
-        };
+      await axios({
+        method: "put",
+        url: "/api/updatestationnotification/" + this.item.id,
+        data: request,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
 
-        await axios({
-          method: "put",
-          url: "/api/chillupdatestationnotification/" + this.item.id,
-          data: request,
-          headers: {
-            Authorization: "Bearer " + this.$store.state.token,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        });
-      }
+      request = {
+        station_status_id: statusID,
+        show_on_chill: 0,
+        show_on_coord: 1,
+      };
 
-      if (this.type == 3) {
-        request = {
-          station_status_id: statusID,
-          show_on_welp: 1,
-        };
+      await axios({
+        method: "put",
+        url: "/api/chillupdatestationnotification/" + this.item.id,
+        data: request,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
 
-        await axios({
-          method: "put",
-          url: "/api/welpupdatestationnotification/" + this.item.id,
-          data: request,
-          headers: {
-            Authorization: "Bearer " + this.$store.state.token,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        });
-      }
+      request = {
+        station_status_id: statusID,
+        show_on_welp: 0,
+        show_on_coord: 1,
+      };
+
+      await axios({
+        method: "put",
+        url: "/api/welpupdatestationnotification/" + this.item.id,
+        data: request,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
     },
 
     async softDestroyed() {
-      if (this.type == 1) {
-        var data = {
-          id: this.item.id,
-          show_on_rc: 0,
-          show_on_coord: 1,
-        };
+      var data = {
+        id: this.item.id,
+        show_on_rc: 0,
+        show_on_coord: 1,
+      };
+      this.$store.dispatch("updateRcStationCurrent", data);
+      var data = {
+        id: this.item.id,
+        show_on_chill: 0,
+        show_on_coord: 1,
+      };
+      this.$store.dispatch("updateChillStationCurrent", data);
+      var data = {
+        id: this.item.id,
+        show_on_welp: 0,
+        show_on_coord: 1,
+      };
 
-        this.$store.dispatch("updateRcStation", data);
+      this.$store.dispatch("updateWelpStationCurrent", data);
 
-        await axios({
-          method: "put",
-          url: "/api/softdestory/" + this.item.id,
-          headers: {
-            Authorization: "Bearer " + this.$store.state.token,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        });
-      }
+      await axios({
+        method: "put",
+        url: "/api/softdestory/" + this.item.id,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
 
-      if (this.type == 2) {
-        var data = {
-          id: this.item.id,
-          show_on_chill: 0,
-        };
-        this.$store.dispatch("updateChillStation", data);
+      var data = {
+        id: this.item.id,
+        show_on_chill: 0,
+      };
 
-        await axios({
-          method: "delete",
-          url: "/api/chilldelete/" + this.item.id,
-          headers: {
-            Authorization: "Bearer " + this.$store.state.token,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        });
-      }
+      await axios({
+        method: "delete",
+        url: "/api/chilldelete/" + this.item.id,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
 
-      if (this.type == 3) {
-        var data = {
-          id: this.item.id,
-          show_on_chill: 0,
-        };
-        this.$store.dispatch("updateChillStation", data);
+      var data = {
+        id: this.item.id,
+        show_on_welp: 0,
+      };
 
-        await axios({
-          method: "delete",
-          url: "/api/welpdelete/" + this.item.id,
-          headers: {
-            Authorization: "Bearer " + this.$store.state.token,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        });
-      }
+      await axios({
+        method: "delete",
+        url: "/api/welpdelete/" + this.item.id,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
     },
   },
 
