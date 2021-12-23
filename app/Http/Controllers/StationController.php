@@ -567,7 +567,31 @@ class StationController extends Controller
                 'message' => $RCmessageSend,
             ]);
             broadcast(new RcSheetUpdate($flag));
+        }
+
+        $RCmessage = ChillStationRecords::where('id', $id)->first();
+        if ($RCmessage) {
+            $RCmessageSend = [
+                'id' => $RCmessage->id,
+                'show_on_rc' => 0
+            ];
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
+
             broadcast(new ChillSheetUpdate($flag));
+        }
+
+        $RCmessage = WelpStationRecords::where('id', $id)->first();
+        if ($RCmessage) {
+            $RCmessageSend = [
+                'id' => $RCmessage->id,
+                'show_on_rc' => 0
+            ];
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
+
             broadcast(new WelpSheetUpdate($flag));
         }
 
@@ -606,9 +630,33 @@ class StationController extends Controller
                 'message' => $RCmessageSend,
             ]);
             broadcast(new RcSheetUpdate($flag));
+        }
+
+        $RCmessage = ChillStationRecords::where('id', $id)->first();
+        if ($RCmessage) {
+            $RCmessageSend = [
+                'id' => $RCmessage->id,
+                'show_on_rc' => 0
+            ];
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
             broadcast(new ChillSheetUpdate($flag));
+        }
+
+        $RCmessage = WelpStationRecords::where('id', $id)->first();
+        if ($RCmessage) {
+            $RCmessageSend = [
+                'id' => $RCmessage->id,
+                'show_on_rc' => 0
+            ];
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
             broadcast(new WelpSheetUpdate($flag));
         }
+
+
 
         $oldStation = Station::where('id', $id)->first();
         $oldStatus = StationStatus::where('id', $oldStation->station_status_id)->value('name');
@@ -672,30 +720,40 @@ class StationController extends Controller
         // $stationName = Station::find($id)->value('name');
 
         $RCmessage = RcStationRecords::where('id', $id)->first();
-        $RCmessageSend = [
-            'id' => $RCmessage->id,
-            'show_on_rc' => 0
-        ];
-        $flag = collect([
-            'message' => $RCmessageSend,
-        ]);
-        broadcast(new RcSheetUpdate($flag));
-        $RCmessageSend = [
-            'id' => $RCmessage->id,
-            'show_on_chill' => 0
-        ];
-        $flag = collect([
-            'message' => $RCmessageSend,
-        ]);
-        broadcast(new ChillSheetUpdate($flag));
-        $RCmessageSend = [
-            'id' => $RCmessage->id,
-            'show_on_welp' => 0
-        ];
-        $flag = collect([
-            'message' => $RCmessageSend,
-        ]);
-        broadcast(new WelpSheetUpdate($flag));
+        if ($RCmessage) {
+            $RCmessageSend = [
+                'id' => $RCmessage->id,
+                'show_on_rc' => 0
+            ];
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
+            broadcast(new RcSheetUpdate($flag));
+        }
+
+        $RCmessage = ChillStationRecords::where('id', $id)->first();
+        if ($RCmessage) {
+            $RCmessageSend = [
+                'id' => $RCmessage->id,
+                'show_on_chill' => 0
+            ];
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
+            broadcast(new ChillSheetUpdate($flag));
+        }
+
+        $RCmessage = WelpStationRecords::where('id', $id)->first();
+        if ($RCmessage) {
+            $RCmessageSend = [
+                'id' => $RCmessage->id,
+                'show_on_welp' => 0
+            ];
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
+            broadcast(new WelpSheetUpdate($flag));
+        }
 
 
         Station::where('id', $id)->update([
