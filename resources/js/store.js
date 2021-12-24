@@ -38,6 +38,8 @@ export default new Vuex.Store({
         loggingcampaign: [],
         loggingRcSheet: [],
         loggingStations: [],
+        missingCorpID: 0,
+        missingCorpTick: "",
         moonlist: [],
         multicampaigns: [],
         nodeJoin: [],
@@ -81,6 +83,14 @@ export default new Vuex.Store({
     mutations: {
         SET_AMMO_REQUEST(state, ammorequest) {
             state.ammoRequest = ammorequest;
+        },
+
+        SET_MISSING_CORP_ID(state, data) {
+            state.missingCorpID = data;
+        },
+
+        SET_MISSING_CORP_TICK(state, data) {
+            state.missingCorpTick = data;
         },
 
         DELETE_AMMO_REQUEST(state, id) {
@@ -136,6 +146,10 @@ export default new Vuex.Store({
 
         SET_TICKLIST(state, ticklist) {
             state.ticklist = ticklist;
+        },
+
+        UPDATE_TICKLIST(state, data) {
+            state.ticklist.push(data);
         },
 
         SET_ALLIANCE_TICKLIST(state, allianceticklist) {
@@ -669,6 +683,34 @@ export default new Vuex.Store({
                 },
             });
             commit("SET_TIMERS", res.data.timers);
+        },
+
+        async getTimerDataAll({ commit, state }) {
+            let res = await axios({
+                method: "get",
+                url: "/api/timers",
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_TIMERS", res.data.timers);
+        },
+
+        async updateTickList({ commit, state }, ticker) {
+            let res = await axios({
+                method: "get",
+                url: "/api/addmissingcorp/" + ticker,
+                headers: {
+                    Authorization: "Bearer " + state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_TICKLIST", res.data.ticklist);
+            commit("SET_MISSING_CORP_ID", res.data.corpID);
+            commit("SET_MISSING_CORP_TICK", res.data.tick);
         },
 
         async getTimerDataAllRegion({ commit, state }) {

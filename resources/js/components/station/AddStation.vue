@@ -103,7 +103,10 @@
                   label="Corp Ticker"
                   outlined
                 ></v-autocomplete>
-                <AddMissingCorp v-if="$can('super')"></AddMissingCorp>
+                <AddMissingCorp
+                  v-if="$can('super')"
+                  @setTicker="setTicker()"
+                ></AddMissingCorp>
               </div>
               <div>
                 <h5><strong>Timer Type</strong></h5>
@@ -355,6 +358,11 @@ export default {
         });
         this.tickLoading = false;
       }, 500);
+    },
+
+    setTicker() {
+      this.tickSearch = this.$store.state.missingCorpTick;
+      this.tickSelect = this.$store.state.missingCorpID;
     },
 
     structQuerySelections(v) {

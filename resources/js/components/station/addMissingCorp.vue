@@ -34,7 +34,13 @@ export default {
     };
   },
 
-  methods: {},
+  methods: {
+    async submit() {
+      await this.$store
+        .dispatch("updateTickList", ticker)
+        .then(this.$emit("setTicker"));
+    },
+  },
 
   computed: {},
 

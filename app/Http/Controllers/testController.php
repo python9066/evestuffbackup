@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Corp;
 use App\Models\testNote;
 use App\Models\User;
 use DateTime;
@@ -45,7 +45,8 @@ class testController extends Controller
 
     public function corptest2()
     {
-
+        $corpID = null;
+        $corpTciker = null;
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json"
@@ -62,9 +63,27 @@ class testController extends Controller
 
 
                 $corpReturn = $corpRep->collect();
-                dd($corpReturn, $corpReturn["ticker"], $corpReturn['id']);
+                Corp::create([
+                    'id' => $var[0]['id'],
+                    "name" => $corpReturn["name"],
+                    'ticker' => $corpReturn["ticker"],
+                    'url' => "https://images.evetech.net/Corporation/" . $var[0]['id'] . "_64.png",
+                    'active' => 1
+                ]);
+
+                $corpID = $var[0]['id'];
+                $corpTciker = $corpReturn["ticker"];
             }
         }
+
+        $tickerlist = Corp::select(['ticker as text', 'id as value'])->get();
+
+
+        return [
+            'ticklist' => $tickerlist,
+            'corpID' => $corpID,
+            'corpTicker' => $corpTciker
+        ];
     }
 
 
