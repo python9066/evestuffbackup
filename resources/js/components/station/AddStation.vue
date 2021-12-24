@@ -103,7 +103,7 @@
                   label="Corp Ticker"
                   outlined
                 ></v-autocomplete>
-                <AddMissingCorp v-if="$can('super_admin')"></AddMissingCorp>
+                <AddMissingCorp v-if="$can('super')"></AddMissingCorp>
               </div>
               <div>
                 <h5><strong>Timer Type</strong></h5>

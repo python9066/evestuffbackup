@@ -52543,7 +52543,7 @@ var render = function () {
                                 },
                               }),
                               _vm._v(" "),
-                              _vm.$can("super_admin")
+                              _vm.$can("super")
                                 ? _c("AddMissingCorp")
                                 : _vm._e(),
                             ],
