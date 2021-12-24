@@ -358,6 +358,10 @@ Vue.component(
     "StationLogs",
     require("./components/station/StationLogs.vue").default
 );
+Vue.component(
+    "MissingCorp",
+    require("./components/station/addMissingCorp.vue").default
+);
 
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
