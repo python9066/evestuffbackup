@@ -25,7 +25,20 @@ class Alliancehelper
             "Accept" => "application/json"
         ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", [$id]);
 
-        dd($response->body());
+        $returns = $response->collect();
+        foreach ($returns as $key => $var) {
+            if ($key == "corporations") {
+
+                $corpRep = Http::withHeaders([
+                    'Content-Type' => 'application/json',
+                    "Accept" => "application/json"
+                ])->get("https://esi.evetech.net/latest/corporations/" . $var[0]['id'] . "/?datasource=tranquility");
+
+
+                $corpReturn = $corpRep->collect();
+                dd($corpReturn, $corpReturn["ticker"]);
+            }
+        }
     }
 
     public static function updateAlliances()

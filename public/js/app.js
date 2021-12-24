@@ -52544,9 +52544,7 @@ var render = function () {
                               }),
                               _vm._v(" "),
                               _vm.$can("super_admin")
-                                ? _c("v-btn", { attrs: { text: "" } }, [
-                                    _vm._v(" This is a test "),
-                                  ])
+                                ? _c("AddMissingCorp")
                                 : _vm._e(),
                             ],
                             1

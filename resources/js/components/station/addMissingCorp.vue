@@ -16,8 +16,8 @@
           ></v-text-field></v-card-text
         ><v-card-actions>
           <v-btn>Submit</v-btn>
-        </v-card-actions></v-card
-      >
+        </v-card-actions>
+      </v-card>
     </v-menu>
   </div>
 </template>

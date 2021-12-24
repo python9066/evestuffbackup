@@ -14,6 +14,7 @@ use GuzzleHttp\Utils;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use utils\Alliancehelper\Alliancehelper;
 
 class testController extends Controller
 {
@@ -37,23 +38,8 @@ class testController extends Controller
 
     public function corptest()
     {
-
-        $client = new Client();
-        $headers = [
-            'Content-Type' => 'application/json',
-            "Accept" => "application/json",
-        ];
-        $url = "https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en";
-        $body = [
-            'JohnMonty'
-        ];
-
-        $response = $client->request('POST', $url, [
-            'headers' => $headers,
-            'body' => $body
-        ]);
-
-        dd($response);
+        $id = "Monty";
+        $corpID =  Alliancehelper::getCorpWithNoAlliance($id);
     }
 
 
