@@ -359,7 +359,7 @@ Vue.component(
     require("./components/station/StationLogs.vue").default
 );
 Vue.component(
-    "MissingCorp",
+    "AddMissingCorp",
     require("./components/station/addMissingCorp.vue").default
 );
 

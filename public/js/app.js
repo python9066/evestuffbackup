@@ -69217,7 +69217,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("AddTimerFromDoneCoord", __
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("DoneButtonCoord", __webpack_require__(/*! ./components/coord/DoneButtonCoord.vue */ "./resources/js/components/coord/DoneButtonCoord.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("FCMessage", __webpack_require__(/*! ./components/keypannel/FCMessage.vue */ "./resources/js/components/keypannel/FCMessage.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("StationLogs", __webpack_require__(/*! ./components/station/StationLogs.vue */ "./resources/js/components/station/StationLogs.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("MissingCorp", __webpack_require__(/*! ./components/station/addMissingCorp.vue */ "./resources/js/components/station/addMissingCorp.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("AddMissingCorp", __webpack_require__(/*! ./components/station/addMissingCorp.vue */ "./resources/js/components/station/addMissingCorp.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_clipboard__WEBPACK_IMPORTED_MODULE_18___default.a);
