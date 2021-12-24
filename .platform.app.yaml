@@ -33,7 +33,7 @@ hooks:
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
   database: "mysqldb:mysql"
-  redis: "redis:redis"
+  # redis: "redis:redis"
 # The size of the persistent disk of the application (in MB).
 disk: 2048
 
