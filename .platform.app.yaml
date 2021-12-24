@@ -67,9 +67,9 @@ workers:
     commands:
       start: |
         php artisan schedule:daemon
-  horizon:
-    size: S
-    disk: 1024
-    commands:
-      start: |
-        php artisan horizon
+  # horizon:
+  #   size: S
+  #   disk: 1024
+  #   commands:
+  #     start: |
+  #       php artisan horizon
