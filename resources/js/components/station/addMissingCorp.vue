@@ -4,6 +4,7 @@
       v-model="menu"
       :close-on-click="false"
       :close-on-content-click="false"
+      :nudge-left="200"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn outlined rounded small v-bind="attrs" v-on="on">

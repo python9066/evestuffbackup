@@ -20507,6 +20507,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -56590,7 +56591,11 @@ var render = function () {
       _c(
         "v-menu",
         {
-          attrs: { "close-on-click": false, "close-on-content-click": false },
+          attrs: {
+            "close-on-click": false,
+            "close-on-content-click": false,
+            "nudge-left": 200,
+          },
           scopedSlots: _vm._u([
             {
               key: "activator",
