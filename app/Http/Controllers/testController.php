@@ -65,13 +65,17 @@ class testController extends Controller
 
 
                 $corpReturn = $corpRep->collect();
-                Corp::create([
-                    'id' => $var[0]['id'],
-                    "name" => $corpReturn["name"],
-                    'ticker' => $corpReturn["ticker"],
-                    'url' => "https://images.evetech.net/Corporation/" . $var[0]['id'] . "_64.png",
-                    'active' => 1
-                ]);
+                Corp::updateOrCreate(
+                    [
+                        'id' => $var[0]['id']
+                    ],
+                    [
+                        "name" => $corpReturn["name"],
+                        'ticker' => $corpReturn["ticker"],
+                        'url' => "https://images.evetech.net/Corporation/" . $var[0]['id'] . "_64.png",
+                        'active' => 1
+                    ]
+                );
 
                 $corpID = $var[0]['id'];
                 $corpTciker = $corpReturn["ticker"];
