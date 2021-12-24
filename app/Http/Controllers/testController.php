@@ -39,7 +39,9 @@ class testController extends Controller
     public function corptest()
     {
         $id = "Monty";
-        $corpID =  Alliancehelper::getCorpWithNoAlliance($id);
+        $response =  Alliancehelper::getCorpWithNoAlliance($id);
+
+        return $response;
     }
 
 

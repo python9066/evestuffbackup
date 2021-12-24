@@ -20,10 +20,12 @@ class Alliancehelper
     public static function getCorpWithNoAlliance($id)
     {
 
+        $corpID = null;
+        $corpTciker = null;
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json"
-        ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", [$id]);
+        ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", ["monty"]);
 
         $returns = $response->collect();
         foreach ($returns as $key => $var) {
@@ -36,9 +38,27 @@ class Alliancehelper
 
 
                 $corpReturn = $corpRep->collect();
-                dd($corpReturn, $corpReturn["ticker"]);
+                Corp::create([
+                    'id' => $var[0]['id'],
+                    "name" => $corpReturn["name"],
+                    'ticker' => $corpReturn["ticker"],
+                    'url' => "https://images.evetech.net/Corporation/" . $var[0]['id'] . "_64.png",
+                    'active' => 1
+                ]);
+
+                $corpID = $var[0]['id'];
+                $corpTciker = $corpReturn["ticker"];
             }
         }
+
+        $tickerlist = Corp::select(['ticker as text', 'id as value'])->get();
+
+
+        return [
+            'ticklist' => $tickerlist,
+            'corpID' => $corpID,
+            'corpTicker' => $corpTciker
+        ];
     }
 
     public static function updateAlliances()
