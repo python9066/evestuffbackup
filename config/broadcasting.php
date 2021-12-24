@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('BROADCAST_DRIVER', 'null'),
+    'default' => env('BROADCAST_DRIVER', ($variables && array_key_exists('BROADCAST_DRIVER', $variables)) ? $variables['BROADCAST_DRIVER'] : 'null'),
 
     /*
     |--------------------------------------------------------------------------
