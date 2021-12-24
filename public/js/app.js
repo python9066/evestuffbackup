@@ -20502,6 +20502,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -20531,6 +20536,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    cancel: function cancel() {
+      this.ticker = null;
+      this.menu = false;
     }
   },
   computed: {},
@@ -56581,6 +56590,7 @@ var render = function () {
       _c(
         "v-menu",
         {
+          attrs: { "close-on-click": false, "close-on-content-click": false },
           scopedSlots: _vm._u([
             {
               key: "activator",
@@ -56638,7 +56648,25 @@ var render = function () {
                 ],
                 1
               ),
-              _c("v-card-actions", [_c("v-btn", [_vm._v("Submit")])], 1),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-btn", [_vm._v("Submit")]),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      on: {
+                        click: function ($event) {
+                          return _vm.cancel()
+                        },
+                      },
+                    },
+                    [_vm._v("Cancel")]
+                  ),
+                ],
+                1
+              ),
             ],
             1
           ),
@@ -76245,15 +76273,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************!*\
   !*** ./resources/js/components/station/addMissingCorp.vue ***!
   \************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _addMissingCorp_vue_vue_type_template_id_2f2e1c15___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addMissingCorp.vue?vue&type=template&id=2f2e1c15& */ "./resources/js/components/station/addMissingCorp.vue?vue&type=template&id=2f2e1c15&");
 /* harmony import */ var _addMissingCorp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addMissingCorp.vue?vue&type=script&lang=js& */ "./resources/js/components/station/addMissingCorp.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _addMissingCorp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _addMissingCorp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -76283,7 +76310,7 @@ component.options.__file = "resources/js/components/station/addMissingCorp.vue"
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/station/addMissingCorp.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

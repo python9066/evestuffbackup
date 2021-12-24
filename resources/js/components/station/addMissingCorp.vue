@@ -1,6 +1,10 @@
 <template>
   <div class="text-center">
-    <v-menu v-model="menu">
+    <v-menu
+      v-model="menu"
+      :close-on-click="false"
+      :close-on-content-click="false"
+    >
       <template v-slot:activator="{ on, attrs }">
         <v-btn outlined rounded small v-bind="attrs" v-on="on">
           Add Missing Corp
@@ -16,6 +20,7 @@
           ></v-text-field></v-card-text
         ><v-card-actions>
           <v-btn>Submit</v-btn>
+          <v-btn @click="cancel()">Cancel</v-btn>
         </v-card-actions>
       </v-card>
     </v-menu>
@@ -40,8 +45,12 @@ export default {
         .dispatch("updateTickList", ticker)
         .then(this.$emit("setTicker"));
     },
-  },
 
+    cancel() {
+      this.ticker = null;
+      this.menu = false;
+    },
+  },
   computed: {},
 
   beforeDestroy() {},
