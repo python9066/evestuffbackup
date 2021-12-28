@@ -40,7 +40,6 @@ class testController extends Controller
     {
         $id = $name;
         $response =  Alliancehelper::getCorpWithNoAlliance($id);
-
         return $response;
     }
 

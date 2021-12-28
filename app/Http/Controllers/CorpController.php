@@ -33,7 +33,8 @@ class CorpController extends Controller
     {
 
         $id = $name;
-        Alliancehelper::getCorpWithNoAlliance($id);
+        $response = Alliancehelper::getCorpWithNoAlliance($id);
+        return $response;
     }
 
     /**

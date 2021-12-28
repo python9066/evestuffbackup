@@ -269,5 +269,5 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/editstationname/{id}', 'StationController@editStationNameReconCheck');
     Route::post('/userupdate/{id}', 'UserController@updateMessage');
 
-    Route::post('/addmissingcorp/{name}', 'CorpController@addMissingCorp');
+    Route::get('/addmissingcorp/{name}', 'CorpController@addMissingCorp');
 });
