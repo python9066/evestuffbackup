@@ -187,9 +187,11 @@ export default {
       var full = this.refTime.replace(".", "-");
       full = full.replace(".", "-");
       var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
-      var moveToRc = 1;
-      if (this.type != 1) {
-        moveToRc = 0;
+      var moveToRc = 0;
+      var showOnRC = 1;
+      if ((this.type = 1)) {
+        moveToRc = 1;
+        showOnRC = 0;
       }
       var request = {
         station_status_id: 13,
@@ -199,68 +201,50 @@ export default {
         rc_recon_id: 0,
         rc_gsol_id: 0,
         show_on_rc_move: moveToRc,
-        show_on_rc: 0,
+        show_on_rc: showOnRC,
         show_on_coord: 0,
-        show_on_welp: 0,
         status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
         notes: note,
       };
-      if (this.type == 1) {
-        await axios({
-          method: "put", //you can set whfffat request you want to be
-          url: "api/updatetimerinfo/" + this.item.id,
-          data: request,
-          headers: {
-            Authorization: "Bearer " + this.$store.state.token,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }).then(
-          (this.showStationTimer = false),
-          (this.refType = null),
-          (this.refTime = ""),
-          (this.showStationTimer = false),
-          this.$emit("timeropen")
-        );
-      }
 
-      if (this.type == 2) {
-        await axios({
-          method: "put", //you can set whfffat request you want to be
-          url: "api/chillupdatetimerinfo/" + this.item.id,
-          data: request,
-          headers: {
-            Authorization: "Bearer " + this.$store.state.token,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }).then(
-          (this.showStationTimer = false),
-          (this.refType = null),
-          (this.refTime = ""),
-          (this.showStationTimer = false),
-          this.$emit("timeropen")
-        );
-      }
+      await axios({
+        method: "put", //you can set whfffat request you want to be
+        url: "api/updatetimerinfo/" + this.item.id,
+        data: request,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
 
-      if (this.type == 3) {
-        await axios({
-          method: "put", //you can set whfffat request you want to be
-          url: "api/welpupdatetimerinfo/" + this.item.id,
-          data: request,
-          headers: {
-            Authorization: "Bearer " + this.$store.state.token,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }).then(
-          (this.showStationTimer = false),
-          (this.refType = null),
-          (this.refTime = ""),
-          (this.showStationTimer = false),
-          this.$emit("timeropen")
-        );
-      }
+      await axios({
+        method: "put", //you can set whfffat request you want to be
+        url: "api/chillupdatetimerinfo/" + this.item.id,
+        data: request,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+
+      await axios({
+        method: "put", //you can set whfffat request you want to be
+        url: "api/welpupdatetimerinfo/" + this.item.id,
+        data: request,
+        headers: {
+          Authorization: "Bearer " + this.$store.state.token,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }).then(
+        (this.showStationTimer = false),
+        (this.refType = null),
+        (this.refTime = ""),
+        (this.showStationTimer = false),
+        this.$emit("timeropen")
+      );
     },
 
     async open() {},

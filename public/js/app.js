@@ -11983,7 +11983,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var outTime, editText, note, full, moveToRc, request;
+        var outTime, editText, note, full, moveToRc, showOnRC, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -12001,10 +12001,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 full = _this.refTime.replace(".", "-");
                 full = full.replace(".", "-");
                 outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
-                moveToRc = 1;
+                moveToRc = 0;
+                showOnRC = 1;
 
-                if (_this.type != 1) {
-                  moveToRc = 0;
+                if (_this.type = 1) {
+                  moveToRc = 1;
+                  showOnRC = 0;
                 }
 
                 request = {
@@ -12015,18 +12017,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   rc_recon_id: 0,
                   rc_gsol_id: 0,
                   show_on_rc_move: moveToRc,
-                  show_on_rc: 0,
+                  show_on_rc: showOnRC,
                   show_on_coord: 0,
-                  show_on_welp: 0,
                   status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
                   notes: note
                 };
-
-                if (!(_this.type == 1)) {
-                  _context2.next = 13;
-                  break;
-                }
-
                 _context2.next = 13;
                 return axios({
                   method: "put",
@@ -12038,15 +12033,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this.showStationTimer = false, _this.refType = null, _this.refTime = "", _this.showStationTimer = false, _this.$emit("timeropen"));
+                });
 
               case 13:
-                if (!(_this.type == 2)) {
-                  _context2.next = 16;
-                  break;
-                }
-
-                _context2.next = 16;
+                _context2.next = 15;
                 return axios({
                   method: "put",
                   //you can set whfffat request you want to be
@@ -12057,15 +12047,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
-                }).then(_this.showStationTimer = false, _this.refType = null, _this.refTime = "", _this.showStationTimer = false, _this.$emit("timeropen"));
+                });
 
-              case 16:
-                if (!(_this.type == 3)) {
-                  _context2.next = 19;
-                  break;
-                }
-
-                _context2.next = 19;
+              case 15:
+                _context2.next = 17;
                 return axios({
                   method: "put",
                   //you can set whfffat request you want to be
@@ -12078,7 +12063,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(_this.showStationTimer = false, _this.refType = null, _this.refTime = "", _this.showStationTimer = false, _this.$emit("timeropen"));
 
-              case 19:
+              case 17:
               case "end":
                 return _context2.stop();
             }
@@ -20478,6 +20463,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -56634,7 +56622,9 @@ var render = function () {
             "v-card",
             [
               _c("v-card-title", [
-                _vm._v(" ONLY USE IF CORP TICKER IS NOT FOUND"),
+                _c("p", [_vm._v("ONLY USE IF CORP TICKER IS NOT FOUND")]),
+                _vm._v(" "),
+                _c("p", [_vm._v("ENTER THE CORP TICKER")]),
               ]),
               _vm._v(" "),
               _c(

@@ -12,7 +12,10 @@
         </v-btn>
       </template>
       <v-card>
-        <v-card-title> ONLY USE IF CORP TICKER IS NOT FOUND</v-card-title>
+        <v-card-title>
+          <p>ONLY USE IF CORP TICKER IS NOT FOUND</p>
+          <p>ENTER THE CORP TICKER</p></v-card-title
+        >
         <v-card-text>
           <v-text-field
             outlined
