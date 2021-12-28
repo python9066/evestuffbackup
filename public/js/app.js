@@ -56646,7 +56646,17 @@ var render = function () {
               _c(
                 "v-card-actions",
                 [
-                  _c("v-btn", [_vm._v("Submit")]),
+                  _c(
+                    "v-btn",
+                    {
+                      on: {
+                        click: function ($event) {
+                          return _vm.submit()
+                        },
+                      },
+                    },
+                    [_vm._v("Submit")]
+                  ),
                   _vm._v(" "),
                   _c(
                     "v-btn",

@@ -23,7 +23,7 @@
             title="Corp Ticker"
           ></v-text-field></v-card-text
         ><v-card-actions>
-          <v-btn>Submit</v-btn>
+          <v-btn @click="submit()">Submit</v-btn>
           <v-btn @click="cancel()">Cancel</v-btn>
         </v-card-actions>
       </v-card>
