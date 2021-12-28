@@ -27,6 +27,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Artisan;
 use utils\Helper\Helper;
+use Illuminate\Support\Str;
 
 use function GuzzleHttp\json_decode;
 
@@ -132,12 +133,18 @@ class Campaignhelper
                     'check' => 1,
                 );
                 Campaign::updateOrCreate(['id' => $id], $data);
-                if (Campaign::where('id', $id)->where('link', "!=", null)->count() == 0) {
-                    $string = $id . $var['solar_system_id'] . $var['structure_id'] . substr(md5(rand()), 0, 7);
+                // if (Campaign::where('id', $id)->where('link', "!=", null)->count() == 0) {
+                //     $string = $id . $var['solar_system_id'] . $var['structure_id'] . substr(md5(rand()), 0, 7);
+                //     Campaign::where('id', $id)->update(['link' => hash('ripemd128', $string)]);
+                //     $checkflag = 1;
+                // }
+
+
+                if (Campaign::where('id', $id)->whereNotNull('link')->count() == 0) {
+                    $string = Str::uuid();
                     Campaign::where('id', $id)->update(['link' => hash('ripemd128', $string)]);
                     $checkflag = 1;
                 }
-
 
 
 

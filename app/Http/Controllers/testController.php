@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
 use App\Models\Corp;
 use App\Models\Station;
 use App\Models\testNote;
@@ -40,6 +41,8 @@ class testController extends Controller
 
     public function corptest()
     {
+        $test = Campaign::all();
+        $test->update(['link' => null]);
         $set =  WebWay::all();
         $set->update(['active' => 0]);
         $stations = Station::get();
