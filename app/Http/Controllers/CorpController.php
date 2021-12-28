@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Corp;
 use Illuminate\Http\Request;
+use utils\Alliancehelper\Alliancehelper;
 
 class CorpController extends Controller
 {
@@ -26,6 +27,13 @@ class CorpController extends Controller
             array_push($tickerlist, $data);
         }
         return ['ticklist' => $tickerlist];
+    }
+
+    public function addMissingCorp($name)
+    {
+
+        $id = $name;
+        Alliancehelper::getCorpWithNoAlliance($id);
     }
 
     /**
