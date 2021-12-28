@@ -263,6 +263,9 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 export default {
   props: {
     type: Number,
@@ -361,12 +364,12 @@ export default {
       }, 500);
     },
 
-    setTicker() {
+    async setTicker() {
       //   this.$nextTick(() => {
       //     this.tickSearch = this.$store.state.missingCorpTick;
       //     this.tickSelect = this.$store.state.missingCorpID;
       //   });
-
+      await sleep(1000);
       this.tickSearch = this.missingCorpTick;
       this.tickSelect = this.missingCorpID;
     },

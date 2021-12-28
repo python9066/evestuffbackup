@@ -16644,6 +16644,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 
+
+function sleep(ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+}
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     type: Number,
@@ -16756,35 +16763,50 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, 500);
     },
     setTicker: function setTicker() {
-      //   this.$nextTick(() => {
-      //     this.tickSearch = this.$store.state.missingCorpTick;
-      //     this.tickSelect = this.$store.state.missingCorpID;
-      //   });
-      this.tickSearch = this.missingCorpTick;
-      this.tickSelect = this.missingCorpID;
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return sleep(1000);
+
+              case 2:
+                _this3.tickSearch = _this3.missingCorpTick;
+                _this3.tickSelect = _this3.missingCorpID;
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     },
     structQuerySelections: function structQuerySelections(v) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.structLoading = true; // Simulated ajax query
 
       setTimeout(function () {
-        _this3.structItems = _this3.structureList.filter(function (e) {
+        _this4.structItems = _this4.structureList.filter(function (e) {
           return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
-        _this3.structLoading = false;
+        _this4.structLoading = false;
       }, 500);
     },
     sysQuerySelections: function sysQuerySelections(v) {
-      var _this4 = this;
+      var _this5 = this;
 
       this.sysLoading = true; // Simulated ajax query
 
       setTimeout(function () {
-        _this4.sysItems = _this4.systemList.filter(function (e) {
+        _this5.sysItems = _this5.systemList.filter(function (e) {
           return (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1;
         });
-        _this4.sysLoading = false;
+        _this5.sysLoading = false;
       }, 500);
     },
     close: function close() {
@@ -16821,18 +16843,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.tickSelect = null;
     },
     submit: function submit() {
-      var _this5 = this;
+      var _this6 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var _request;
 
         var full, outTime, request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                if (_this5.type != 1) {
-                  full = _this5.refTime.replace(".", "-");
+                if (_this6.type != 1) {
+                  full = _this6.refTime.replace(".", "-");
                   full = full.replace(".", "-");
                   outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
                 } else {
@@ -16848,74 +16870,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
                 request = (_request = {
-                  name: _this5.stationName,
-                  system_id: _this5.sysSelect,
-                  corp_id: _this5.tickSelect,
-                  item_id: _this5.structSelect,
-                  station_status_id: _this5.refType,
-                  out_time: outTime,
-                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
-                  timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
-                  show_on_main: _this5.show_on_main,
-                  show_on_chill: _this5.show_on_chill,
-                  show_on_welp: _this5.show_on_welp,
-                  show_on_rc_move: _this5.show_on_rc_move,
-                  timer_image_link: _this5.imageLink,
-                  show_on_rc: 0,
-                  rc_id: null,
-                  rc_fc_id: null,
-                  rc_gsol_id: null,
-                  rc_recon_id: null
-                }, _defineProperty(_request, "show_on_main", _this5.show_on_main), _defineProperty(_request, "show_on_chill", _this5.show_on_chill), _defineProperty(_request, "show_on_welp", _this5.show_on_welp), _defineProperty(_request, "show_on_rc_move", _this5.show_on_rc_move), _defineProperty(_request, "show_on_rc", _this5.show_rc), _defineProperty(_request, "show_on_coord", _this5.showOnCoord), _request);
-                _context2.next = 4;
-                return axios({
-                  method: "put",
-                  //you can set what request you want to be
-                  url: "api/stationnew",
-                  data: request,
-                  headers: {
-                    Authorization: "Bearer " + _this5.$store.state.token,
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                }).then(_this5.imageLink = null, _this5.refType = null, _this5.refTime = {
-                  d: "",
-                  hh: "",
-                  mm: "",
-                  ss: ""
-                }, _this5.stationNameEdit = null, _this5.state = 1, _this5.systems = [], _this5.sysItems = [], _this5.systemEdit = null, _this5.sysLoading = false, _this5.structemEdit = [], _this5.stationPull = [], _this5.structLoading = false, _this5.structerEdit = null, _this5.stationName = null, _this5.structItems = [], _this5.structSearch = null, _this5.structSelect = null, _this5.sysSearch = null, _this5.sysSelect = null, _this5.showStationTimer = false, _this5.ticktemEdit = null, _this5.tickLoading = false, _this5.tickerEdit = null, _this5.tickItems = [], _this5.tickSearch = null, _this5.tickSelect = null);
-
-              case 4:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
-    submit3: function submit3() {
-      var _this6 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var _request2;
-
-        var full, outTime, request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                if (_this6.type != 1) {
-                  full = _this6.refTime.replace(".", "-");
-                  full = full.replace(".", "-");
-                  outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
-                } else {
-                  outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss");
-                }
-
-                request = (_request2 = {
+                  name: _this6.stationName,
+                  system_id: _this6.sysSelect,
+                  corp_id: _this6.tickSelect,
+                  item_id: _this6.structSelect,
                   station_status_id: _this6.refType,
                   out_time: outTime,
                   status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  timestamp: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
                   show_on_main: _this6.show_on_main,
                   show_on_chill: _this6.show_on_chill,
                   show_on_welp: _this6.show_on_welp,
@@ -16926,12 +16888,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   rc_fc_id: null,
                   rc_gsol_id: null,
                   rc_recon_id: null
-                }, _defineProperty(_request2, "show_on_main", _this6.show_on_main), _defineProperty(_request2, "show_on_chill", _this6.show_on_chill), _defineProperty(_request2, "show_on_welp", _this6.show_on_welp), _defineProperty(_request2, "show_on_rc_move", _this6.show_on_rc_move), _defineProperty(_request2, "show_on_rc", _this6.show_rc), _request2);
+                }, _defineProperty(_request, "show_on_main", _this6.show_on_main), _defineProperty(_request, "show_on_chill", _this6.show_on_chill), _defineProperty(_request, "show_on_welp", _this6.show_on_welp), _defineProperty(_request, "show_on_rc_move", _this6.show_on_rc_move), _defineProperty(_request, "show_on_rc", _this6.show_rc), _defineProperty(_request, "show_on_coord", _this6.showOnCoord), _request);
                 _context3.next = 4;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
-                  url: "api/updatestationnotification/" + _this6.stationPull.station_id,
+                  url: "api/stationnew",
                   data: request,
                   headers: {
                     Authorization: "Bearer " + _this6.$store.state.token,
@@ -16953,26 +16915,59 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }))();
     },
-    open: function open() {
+    submit3: function submit3() {
       var _this7 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var _request2;
+
+        var full, outTime, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
-                return _this7.$store.dispatch("getSystemList");
+                if (_this7.type != 1) {
+                  full = _this7.refTime.replace(".", "-");
+                  full = full.replace(".", "-");
+                  outTime = moment__WEBPACK_IMPORTED_MODULE_2___default()(full).format("YYYY-MM-DD HH:mm:ss");
+                } else {
+                  outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss");
+                }
 
-              case 2:
+                request = (_request2 = {
+                  station_status_id: _this7.refType,
+                  out_time: outTime,
+                  status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  show_on_main: _this7.show_on_main,
+                  show_on_chill: _this7.show_on_chill,
+                  show_on_welp: _this7.show_on_welp,
+                  show_on_rc_move: _this7.show_on_rc_move,
+                  timer_image_link: _this7.imageLink,
+                  show_on_rc: 0,
+                  rc_id: null,
+                  rc_fc_id: null,
+                  rc_gsol_id: null,
+                  rc_recon_id: null
+                }, _defineProperty(_request2, "show_on_main", _this7.show_on_main), _defineProperty(_request2, "show_on_chill", _this7.show_on_chill), _defineProperty(_request2, "show_on_welp", _this7.show_on_welp), _defineProperty(_request2, "show_on_rc_move", _this7.show_on_rc_move), _defineProperty(_request2, "show_on_rc", _this7.show_rc), _request2);
                 _context4.next = 4;
-                return _this7.$store.dispatch("getTickList");
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "api/updatestationnotification/" + _this7.stationPull.station_id,
+                  data: request,
+                  headers: {
+                    Authorization: "Bearer " + _this7.$store.state.token,
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                }).then(_this7.imageLink = null, _this7.refType = null, _this7.refTime = {
+                  d: "",
+                  hh: "",
+                  mm: "",
+                  ss: ""
+                }, _this7.stationNameEdit = null, _this7.state = 1, _this7.systems = [], _this7.sysItems = [], _this7.systemEdit = null, _this7.sysLoading = false, _this7.structemEdit = [], _this7.stationPull = [], _this7.structLoading = false, _this7.structerEdit = null, _this7.stationName = null, _this7.structItems = [], _this7.structSearch = null, _this7.structSelect = null, _this7.sysSearch = null, _this7.sysSelect = null, _this7.showStationTimer = false, _this7.ticktemEdit = null, _this7.tickLoading = false, _this7.tickerEdit = null, _this7.tickItems = [], _this7.tickSearch = null, _this7.tickSelect = null);
 
               case 4:
-                _context4.next = 6;
-                return _this7.$store.dispatch("getStructureList");
-
-              case 6:
               case "end":
                 return _context4.stop();
             }
@@ -16980,27 +16975,54 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee4);
       }))();
     },
-    stationNameAdd: function stationNameAdd() {
+    open: function open() {
       var _this8 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
+                _context5.next = 2;
+                return _this8.$store.dispatch("getSystemList");
+
+              case 2:
+                _context5.next = 4;
+                return _this8.$store.dispatch("getTickList");
+
+              case 4:
+                _context5.next = 6;
+                return _this8.$store.dispatch("getStructureList");
+
+              case 6:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    stationNameAdd: function stationNameAdd() {
+      var _this9 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
                 request = {
-                  stationName: _this8.stationNameEdit,
-                  show: _this8.type
+                  stationName: _this9.stationNameEdit,
+                  show: _this9.type
                 };
-                _context5.next = 3;
+                _context6.next = 3;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
                   url: "api/stationname",
                   data: request,
                   headers: {
-                    Authorization: "Bearer " + _this8.$store.state.token,
+                    Authorization: "Bearer " + _this9.$store.state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json"
                   }
@@ -17008,23 +17030,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   var res = response.data;
 
                   if (res.state == 2) {
-                    _this8.stationPull = res;
-                    _this8.stationName = res.station_name;
-                    _this8.state = res.state;
+                    _this9.stationPull = res;
+                    _this9.stationName = res.station_name;
+                    _this9.state = res.state;
                   }
 
                   if (res.state == 3) {
-                    _this8.stationPull = res;
-                    _this8.state = res.state;
+                    _this9.stationPull = res;
+                    _this9.state = res.state;
                   }
                 });
 
               case 3:
               case "end":
-                return _context5.stop();
+                return _context6.stop();
             }
           }
-        }, _callee5);
+        }, _callee6);
       }))();
     }
   },
