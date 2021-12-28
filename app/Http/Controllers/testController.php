@@ -50,6 +50,7 @@ class testController extends Controller
 
         $systemIDs = $stationSystems->merge($campaginSystems);
         $systemIDs = $systemIDs->unique();
+        $systemIDs = $systemIDs->values();
         WebWay::whereIn('system_id', $systemIDs)->update(['active' => 1]);
 
         return $systemIDs;
