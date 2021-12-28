@@ -94,7 +94,7 @@ class testController extends Controller
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 "Accept" => "application/json"
-            ])->get($webwayURL, $data);
+            ])->post($webwayURL, $data);
 
         $response->collect();
 
