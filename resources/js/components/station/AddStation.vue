@@ -81,7 +81,7 @@
                   outlined
                 ></v-autocomplete>
               </div>
-              <div class="d-inline-flex justify-content-around">
+              <div class="d-inline-flex justify-content-around align-center">
                 <v-autocomplete
                   v-model="sysSelect"
                   :loading="sysLoading"

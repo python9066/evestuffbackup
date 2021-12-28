@@ -52518,7 +52518,7 @@ var render = function () {
                             "div",
                             {
                               staticClass:
-                                "d-inline-flex justify-content-around",
+                                "d-inline-flex justify-content-around align-center",
                             },
                             [
                               _c("v-autocomplete", {
