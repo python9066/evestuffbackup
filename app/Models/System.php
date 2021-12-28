@@ -53,6 +53,11 @@ class System extends Model
         return $this->hasMany(ReconTasks::class);
     }
 
+    public function webway()
+    {
+        return $this->hasOne(webway::class);
+    }
+
     protected $casts = [
         'region_id ' => 'integer',
         'constellation_id' => 'integer',

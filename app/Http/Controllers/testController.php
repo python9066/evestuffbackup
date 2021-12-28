@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Corp;
+use App\Models\Station;
 use App\Models\testNote;
 use App\Models\User;
 use DateTime;
@@ -36,11 +37,12 @@ class testController extends Controller
         // }
     }
 
-    public function corptest($name)
+    public function corptest()
     {
-        $id = $name;
-        $response =  Alliancehelper::getCorpWithNoAlliance($id);
-        return $response;
+        $stations = Station::get();
+        $stationSystems = $stations->pluck('system_id');
+        $stationSystems->uniqid();
+        return $stationSystems;
     }
 
 
