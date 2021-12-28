@@ -6,6 +6,7 @@ use App\Models\Corp;
 use App\Models\Station;
 use App\Models\testNote;
 use App\Models\User;
+use App\Models\WebWay;
 use DateTime;
 use Illuminate\Http\Request;
 use utils\Helper\Helper;
@@ -39,6 +40,7 @@ class testController extends Controller
 
     public function corptest()
     {
+        WebWay::all()->update(['active' => 0]);
         $stations = Station::get();
         $stationSystems = $stations->pluck('system_id');
         $stationSystems->uniqid();
