@@ -41,8 +41,7 @@ class testController extends Controller
 
     public function corptest()
     {
-        $test = Campaign::get();
-        $test->update(['link' => null]);
+        $test = Campaign::where('id', '>', 0)->update(['link' => null]);
         // $test->update(['link' => null]);
         // $set =  WebWay::get();
         // $set->update(['active' => 0]);
