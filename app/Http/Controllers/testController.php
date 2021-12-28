@@ -42,14 +42,12 @@ class testController extends Controller
     public function corptest()
     {
         $test = Campaign::where('id', '>', 0)->update(['link' => null]);
-        // $test->update(['link' => null]);
-        // $set =  WebWay::get();
-        // $set->update(['active' => 0]);
-        // $stations = Station::get();
-        // $stationSystems = $stations->pluck('system_id');
-        // $stationSystems->uniqid();
+        WebWay::where('id', '>', 0)->update(['active' => 0]);
+        $stations = Station::get();
+        $stationSystems = $stations->pluck('system_id');
+        $stationSystems->uniqid();
 
-        // return $stationSystems;
+        return $stationSystems;
     }
 
 
