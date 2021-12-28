@@ -40,10 +40,12 @@ class testController extends Controller
 
     public function corptest()
     {
-        WebWay::all()->update(['active' => 0]);
+        $set =  WebWay::all();
+        $set->update(['active' => 0]);
         $stations = Station::get();
         $stationSystems = $stations->pluck('system_id');
         $stationSystems->uniqid();
+
         return $stationSystems;
     }
 
