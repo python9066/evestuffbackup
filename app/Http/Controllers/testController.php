@@ -45,9 +45,13 @@ class testController extends Controller
         WebWay::where('id', '>', 0)->update(['active' => 0]);
         $stations = Station::get();
         $stationSystems = $stations->pluck('system_id');
-        $stationSystems->unique();
+        $campaigns = Campaign::get();
+        $campaginSystems = $campaigns->pluck('system_id');
 
-        return $stationSystems;
+        $systemIDs = $stationSystems->merge($campaginSystems);
+        $systemIDs->unique();
+
+        return $systemIDs;
     }
 
 
