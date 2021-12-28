@@ -362,8 +362,10 @@ export default {
     },
 
     setTicker() {
-      this.tickSearch = this.$store.state.missingCorpTick;
-      this.tickSelect = this.$store.state.missingCorpID;
+      this.$nextTick(() => {
+        this.tickSearch = this.$store.state.missingCorpTick;
+        this.tickSelect = this.$store.state.missingCorpID;
+      });
     },
 
     structQuerySelections(v) {
