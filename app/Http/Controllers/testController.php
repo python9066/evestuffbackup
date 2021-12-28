@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\updateWebway;
+use App\Jobs\updateWebwayJob;
 use App\Models\Campaign;
 use App\Models\Corp;
 use App\Models\Station;
@@ -52,6 +54,11 @@ class testController extends Controller
         $systemIDs = $systemIDs->unique();
         $systemIDs = $systemIDs->values();
         WebWay::whereIn('system_id', $systemIDs)->update(['active' => 1]);
+        WebWay::where('active', 0)->delete();
+
+        foreach ($systemIDs as $system_id) {
+            updateWebwayJob::dispatch($system_id);
+        }
 
         return $systemIDs;
     }

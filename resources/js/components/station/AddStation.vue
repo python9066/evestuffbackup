@@ -105,7 +105,6 @@
                 ></v-autocomplete>
                 <AddMissingCorp
                   class="pt-3 pl-1"
-                  v-if="$can('super')"
                   @setTicker="setTicker()"
                 ></AddMissingCorp>
               </div>

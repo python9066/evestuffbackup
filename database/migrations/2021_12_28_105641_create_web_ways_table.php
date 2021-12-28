@@ -16,9 +16,10 @@ class CreateWebWaysTable extends Migration
         Schema::create('web_ways', function (Blueprint $table) {
             $table->id();
             $table->foreignId('system_id');
-            $table->uuid('webway');
-            $table->tinyInteger('jumps');
+            $table->uuid('webway')->nullable();
+            $table->tinyInteger('jumps')->nullable();
             $table->boolean('active')->default(1);
+            $table->boolean('permissions')->default(0);
             $table->timestamps();
         });
     }
