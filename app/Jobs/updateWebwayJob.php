@@ -65,7 +65,7 @@ class updateWebwayJob implements ShouldQueue
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 "Accept" => "application/json"
-            ])->post($webwayURL, $data);
+            ])->get($webwayURL, $data);
 
         $response->collect();
 
