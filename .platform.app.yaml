@@ -33,7 +33,7 @@ hooks:
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
   database: "mysqldb:mysql"
-  # redis: "redis:redis"
+  redis: "redis:redis"
 # The size of the persistent disk of the application (in MB).
 disk: 2048
 
@@ -67,9 +67,9 @@ workers:
     commands:
       start: |
         php artisan schedule:daemon
-  # horizon:
-  #   size: S
-  #   disk: 1024
-  #   commands:
-  #     start: |
-  #       php artisan horizon
+  horizon:
+    size: S
+    disk: 1024
+    commands:
+      start: |
+        php artisan horizon
