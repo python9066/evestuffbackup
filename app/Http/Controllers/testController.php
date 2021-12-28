@@ -66,49 +66,39 @@ class testController extends Controller
 
     public function corptest2()
     {
-        $corpID = null;
-        $corpTciker = null;
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            "Accept" => "application/json"
-        ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", ["monty"]);
+        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+        /*
+        send = [
+            startSystem => start system get from env (1dq)
+            endStstem => $system_id
+        ]
+       return =  api code to request too webway repos $response will be:
+            [
+                link: UUID of the saved route
+                jumps: number of jumps from 1dq ( ID got from env file) to target system
+                link_p: UUID of the saved route (with permissions)
+                jumps_p: number of jumps from 1dq ( ID got from env file) to target system (with permissions)
+            ]
+        */
 
-        $returns = $response->collect();
-        foreach ($returns as $key => $var) {
-            if ($key == "corporations") {
+        $startSystem = env('HOME_SYSTEM_ID', ($variables && array_key_exists('HOME_SYSTEM_ID', $variables)) ? $variables['HOME_SYSTEM_ID'] : null);
+        $webwayURL = env('WEBWAY_URL', ($variables && array_key_exists('WEBWAY_URL', $variables)) ? $variables['WEBWAY_URL'] : null);
+        $webwayToken = env('WEBWAY_TOKEN', ($variables && array_key_exists('WEBWAY_TOKEN', $variables)) ? $variables['WEBWAY_TOKEN'] : null);
 
-                $corpRep = Http::withHeaders([
-                    'Content-Type' => 'application/json',
-                    "Accept" => "application/json"
-                ])->get("https://esi.evetech.net/latest/corporations/" . $var[0]['id'] . "/?datasource=tranquility");
-
-
-                $corpReturn = $corpRep->collect();
-                Corp::updateOrCreate(
-                    [
-                        'id' => $var[0]['id']
-                    ],
-                    [
-                        "name" => $corpReturn["name"],
-                        'ticker' => $corpReturn["ticker"],
-                        'url' => "https://images.evetech.net/Corporation/" . $var[0]['id'] . "_64.png",
-                        'active' => 1
-                    ]
-                );
-
-                $corpID = $var[0]['id'];
-                $corpTciker = $corpReturn["ticker"];
-            }
-        }
-
-        $tickerlist = Corp::select(['ticker as text', 'id as value'])->get();
-
-
-        return [
-            'ticklist' => $tickerlist,
-            'corpID' => $corpID,
-            'corpTicker' => $corpTciker
+        $data = [
+            'startSystem' => $startSystem,
+            'endSystem' => 30000142
         ];
+
+        $response = Http::withToken($webwayToken)
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                "Accept" => "application/json"
+            ])->post($webwayURL, $data);
+
+        $response->collect();
+
+        dd($response);
     }
 
 
