@@ -47,7 +47,7 @@ export default {
     async submit() {
       await this.$store
         .dispatch("updateTickList", this.ticker)
-        .then(this.$emit("setTicker"));
+        .then((this.menu = false), this.$emit("setTicker"));
     },
 
     cancel() {

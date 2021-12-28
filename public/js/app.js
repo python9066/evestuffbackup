@@ -20517,7 +20517,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.$store.dispatch("updateTickList", _this.ticker).then(_this.$emit("setTicker"));
+                return _this.$store.dispatch("updateTickList", _this.ticker).then(_this.menu = false, _this.$emit("setTicker"));
 
               case 2:
               case "end":
@@ -77914,7 +77914,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               res = _context3.sent;
               commit("SET_TICKLIST", res.data.ticklist);
               commit("SET_MISSING_CORP_ID", res.data.corpID);
-              commit("SET_MISSING_CORP_TICK", res.data.tick);
+              commit("SET_MISSING_CORP_TICK", res.data.corpTicker);
 
             case 7:
             case "end":

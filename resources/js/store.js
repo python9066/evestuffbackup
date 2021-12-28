@@ -710,7 +710,7 @@ export default new Vuex.Store({
             });
             commit("SET_TICKLIST", res.data.ticklist);
             commit("SET_MISSING_CORP_ID", res.data.corpID);
-            commit("SET_MISSING_CORP_TICK", res.data.tick);
+            commit("SET_MISSING_CORP_TICK", res.data.corpTicker);
         },
 
         async getTimerDataAllRegion({ commit, state }) {
