@@ -69,6 +69,7 @@ class updateWebwayJob implements ShouldQueue
 
         $response->collect();
 
+        dd($response);
 
         WebWay::updateOrCreate(
             [
