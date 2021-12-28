@@ -16641,6 +16641,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -20516,7 +20517,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.$store.dispatch("updateTickList", ticker).then(_this.$emit("setTicker"));
+                return _this.$store.dispatch("updateTickList", _this.ticker).then(_this.$emit("setTicker"));
 
               case 2:
               case "end":
@@ -52518,7 +52519,7 @@ var render = function () {
                             "div",
                             {
                               staticClass:
-                                "d-inline-flex justify-content-around align-center",
+                                "d-inline-flex justify-content-around align-top",
                             },
                             [
                               _c("v-autocomplete", {
@@ -52578,6 +52579,7 @@ var render = function () {
                               _vm._v(" "),
                               _vm.$can("super")
                                 ? _c("AddMissingCorp", {
+                                    staticClass: "pt-3 pl-1",
                                     on: {
                                       setTicker: function ($event) {
                                         return _vm.setTicker()
@@ -56622,9 +56624,9 @@ var render = function () {
             "v-card",
             [
               _c("v-card-title", [
-                _c("p", [_vm._v("ONLY USE IF CORP TICKER IS NOT FOUND")]),
-                _vm._v(" "),
-                _c("p", [_vm._v("ENTER THE CORP TICKER")]),
+                _vm._v("\n        ONLY USE IF CORP TICKER IS NOT FOUND"),
+                _c("br"),
+                _vm._v("\n        ENTER THE CORP TICKER"),
               ]),
               _vm._v(" "),
               _c(

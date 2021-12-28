@@ -81,7 +81,7 @@
                   outlined
                 ></v-autocomplete>
               </div>
-              <div class="d-inline-flex justify-content-around align-center">
+              <div class="d-inline-flex justify-content-around align-top">
                 <v-autocomplete
                   v-model="sysSelect"
                   :loading="sysLoading"
@@ -104,6 +104,7 @@
                   outlined
                 ></v-autocomplete>
                 <AddMissingCorp
+                  class="pt-3 pl-1"
                   v-if="$can('super')"
                   @setTicker="setTicker()"
                 ></AddMissingCorp>

@@ -13,8 +13,8 @@
       </template>
       <v-card>
         <v-card-title>
-          <p>ONLY USE IF CORP TICKER IS NOT FOUND</p>
-          <p>ENTER THE CORP TICKER</p></v-card-title
+          ONLY USE IF CORP TICKER IS NOT FOUND<br />
+          ENTER THE CORP TICKER</v-card-title
         >
         <v-card-text>
           <v-text-field
@@ -46,7 +46,7 @@ export default {
   methods: {
     async submit() {
       await this.$store
-        .dispatch("updateTickList", ticker)
+        .dispatch("updateTickList", this.ticker)
         .then(this.$emit("setTicker"));
     },
 
