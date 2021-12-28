@@ -362,10 +362,13 @@ export default {
     },
 
     setTicker() {
-      this.$nextTick(() => {
-        this.tickSearch = this.$store.state.missingCorpTick;
-        this.tickSelect = this.$store.state.missingCorpID;
-      });
+      //   this.$nextTick(() => {
+      //     this.tickSearch = this.$store.state.missingCorpTick;
+      //     this.tickSelect = this.$store.state.missingCorpID;
+      //   });
+
+      this.tickSearch = this.missingCorpTick;
+      this.tickSelect = this.missingCorpID;
     },
 
     structQuerySelections(v) {
@@ -629,7 +632,13 @@ export default {
 
   computed: {
     ...mapGetters([]),
-    ...mapState(["systemlist", "ticklist", "structurelist"]),
+    ...mapState([
+      "systemlist",
+      "ticklist",
+      "structurelist",
+      "missingCorpID",
+      "missingCorpTick",
+    ]),
 
     stationNameNext() {
       if (this.stationNameEdit == null) {
