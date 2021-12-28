@@ -49,7 +49,8 @@ class testController extends Controller
         $campaginSystems = $campaigns->pluck('system_id');
 
         $systemIDs = $stationSystems->merge($campaginSystems);
-        $systemIDs->unique();
+        $systemIDs = $systemIDs->unique();
+        WebWay::whereIn('system_id', $systemIDs)->update(['active' => 1]);
 
         return $systemIDs;
     }
