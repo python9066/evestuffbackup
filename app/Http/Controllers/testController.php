@@ -41,11 +41,11 @@ class testController extends Controller
 
     public function corptest()
     {
-        $test = Campaign::where('id', '>', 0)->update(['link' => null]);
+
         WebWay::where('id', '>', 0)->update(['active' => 0]);
         $stations = Station::get();
         $stationSystems = $stations->pluck('system_id');
-        $stationSystems->uniqid();
+        $stationSystems->unique();
 
         return $stationSystems;
     }
