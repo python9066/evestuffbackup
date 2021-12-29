@@ -75,7 +75,10 @@ class UpdateAlliances extends Command
             "Accept" => "application/json"
         ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/?datasource=tranquility");
         $allianceInfo = $response->collect();
-        dd($allianceInfo);
+        dd(
+            $allianceInfo->get('name'),
+            $allianceInfo->item->name
+        );
 
         Alliance::updatedOrCreate(
             ['id' => $allianceInfo->id],
