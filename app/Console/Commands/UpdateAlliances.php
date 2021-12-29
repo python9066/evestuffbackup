@@ -51,8 +51,6 @@ class UpdateAlliances extends Command
             'Content-Type' => 'application/json',
             "Accept" => "application/json"
         ])->get("https://esi.evetech.net/dev/alliances/?datasource=tranquility");
-        $ids = $response->collect();
-
-        return $ids;
+        dd($response);
     }
 }
