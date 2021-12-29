@@ -177,8 +177,8 @@ export default {
         method: "put",
         url: "/api/stationattackmessage/" + this.station.id,
         data: request,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -244,9 +244,9 @@ export default {
       axios({
         method: "put",
         url: "/api/stationattackmessage/" + this.station.id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

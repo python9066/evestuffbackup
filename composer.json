@@ -20,6 +20,7 @@
         "illuminate/support": "^8.77",
         "laravel/framework": "^8.0",
         "laravel/horizon": "^5.7",
+        "laravel/sanctum": "^2.13",
         "laravel/socialite": "^5.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",

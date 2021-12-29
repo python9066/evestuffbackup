@@ -277,9 +277,9 @@ export default {
           //removes char from campaign
           method: "PUT",
           url: "/api/campaignusersremove/" + item.id + "/" + this.campaign_id,
+          withCredentials: true,
           data: request,
           headers: {
-            Authorization: "Bearer " + this.$store.state.token,
             Accept: "application/json",
             "Content-Type": "application/json",
           },
@@ -306,9 +306,9 @@ export default {
         await axios({
           method: "put",
           url: "/api/checkaddremovechar/" + this.campaign_id,
+          withCredentials: true,
           data: request,
           headers: {
-            Authorization: "Bearer " + this.$store.state.token,
             Accept: "application/json",
             "Content-Type": "application/json",
           },
@@ -357,9 +357,9 @@ export default {
         await axios({
           method: "PUT",
           url: "/api/campaignusersadd/" + item.id + "/" + this.campaign_id,
+          withCredentials: true,
           data: request,
           headers: {
-            Authorization: "Bearer " + this.$store.state.token,
             Accept: "application/json",
             "Content-Type": "application/json",
           },
@@ -376,9 +376,9 @@ export default {
         await axios({
           method: "put",
           url: "/api/checkaddremovechar/" + this.campaign_id,
+          withCredentials: true,
           data: request,
           headers: {
-            Authorization: "Bearer " + this.$store.state.token,
             Accept: "application/json",
             "Content-Type": "application/json",
           },
@@ -401,9 +401,9 @@ export default {
       await axios({
         method: "POST",
         url: "/api/campaignusers/" + this.campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -422,9 +422,9 @@ export default {
       await axios({
         method: "put",
         url: "/api/checkaddremovechar/" + this.campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -452,8 +452,8 @@ export default {
           this.campaign_id +
           "/" +
           this.$store.state.user_id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

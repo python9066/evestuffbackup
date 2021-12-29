@@ -61,36 +61,10 @@ class updateWebwayJob implements ShouldQueue
             'endSystem' => $system_id
         ];
 
-        $response = Http::withToken($webwayToken)
+        Http::withToken($webwayToken)
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 "Accept" => "application/json"
             ])->post($webwayURL, $data);
-
-        $response->collect();
-
-        dd($response);
-
-        WebWay::updateOrCreate(
-            [
-                'system_id' => $system_id,
-                'permissions' => 0
-            ],
-            [
-                'link' => $response->link,
-                'jumps' => $response->jumps
-            ]
-        );
-
-        WebWay::updateOrCreate(
-            [
-                'system_id' => $system_id,
-                'permissions' => 1
-            ],
-            [
-                'link' => $response->link_p,
-                'jumps' => $response->jumps_p
-            ]
-        );
     }
 }

@@ -26,9 +26,10 @@ use Illuminate\Support\Facades\Route;
 // });
 // Route::get('/notifications','NotificationRecordsController@index');
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
 
     //BROISES FEED//
+    Route::post('/webway', 'WebWayController@getWebWay');
     Route::post('/brois', 'testController@notifications');
     Route::get('/test', 'testController@key');
     Route::post('/url', 'AppController@url');

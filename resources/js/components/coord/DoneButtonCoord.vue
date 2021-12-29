@@ -134,8 +134,8 @@ export default {
         method: "put",
         url: "/api/updatestationnotification/" + this.item.id,
         data: request,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -147,8 +147,8 @@ export default {
       await axios({
         method: "delete",
         url: "/api/rcmovedonebad/" + this.item.id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

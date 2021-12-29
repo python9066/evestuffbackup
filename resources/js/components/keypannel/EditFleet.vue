@@ -144,8 +144,8 @@ export default {
       await axios({
         method: "DELETE",
         url: "/api/fleetdelete/" + item.id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -163,8 +163,8 @@ export default {
         method: "PUT",
         url: "/api/fleetnew",
         data: request,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Contect-Type": "application/json",
         },

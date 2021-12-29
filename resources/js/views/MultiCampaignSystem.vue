@@ -452,9 +452,9 @@ export default {
       axios({
         method: "post", //you can set what request you want to be
         url: "api/url",
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -511,8 +511,8 @@ export default {
       await axios({
         method: "get",
         url: "/api/campaignsystemcheckaddchar/" + this.campaignId,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -523,8 +523,8 @@ export default {
       let res = await axios({
         method: "get",
         url: "/api/campaignjoinsystems/" + id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -538,8 +538,8 @@ export default {
       await axios({
         method: "get",
         url: "/api/mcampaignsystemfinished/" + this.$route.params.id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -548,8 +548,8 @@ export default {
       await axios({
         method: "delete",
         url: "/api/multicampaigns/" + this.$route.params.id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -568,9 +568,9 @@ export default {
       await axios({
         method: "POST",
         url: "/api/campaignsystemusers/" + this.$route.params.id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -584,8 +584,8 @@ export default {
           "/" +
           this.$store.state.user_id +
           "/4",
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -602,8 +602,8 @@ export default {
           this.$store.state.user_id +
           "/" +
           this.campaignId,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -617,8 +617,8 @@ export default {
           "/" +
           this.$store.state.user_id +
           "/5",
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -679,8 +679,8 @@ export default {
         method: "POST",
         url: "/api/campaignusers/" + this.campaignId,
         data: request,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -733,9 +733,9 @@ export default {
       axios({
         method: "PUT",
         url: "/api/campaignusers/" + this.oldChar.id + "/" + this.campaignId,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -754,8 +754,8 @@ export default {
       await axios({
         method: "DELETE",
         url: "/api/campaignusers/" + this.oldChar.id + "/" + this.campaignId,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

@@ -165,8 +165,8 @@ export default {
       let res = await axios({
         method: "GET", //you can set what request you want to be
         url: "api/feedback",
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -179,8 +179,8 @@ export default {
       let res = await axios({
         method: "delete", //you can set what request you want to be
         url: "api/feedback/" + item.id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -192,9 +192,9 @@ export default {
       await axios({
         method: "post", //you can set what request you want to be
         url: "api/rcInput",
+        withCredentials: true,
         data: this.rcdata,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -205,9 +205,9 @@ export default {
       await axios({
         method: "get", //you can set what request you want to be
         url: "api/reconpullregion",
+        withCredentials: true,
         data: this.rcdata,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

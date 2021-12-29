@@ -60,8 +60,8 @@ export default {
       await axios({
         method: "get",
         url: "/api/test",
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

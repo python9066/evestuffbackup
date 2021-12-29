@@ -174,9 +174,9 @@ export default {
       await axios({
         method: "post",
         url: "/api/rcfcadd/" + this.station.id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -187,8 +187,8 @@ export default {
       await axios({
         method: "DELETE",
         url: "/api/rcfcdelete/" + item.id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -205,9 +205,9 @@ export default {
       await axios({
         method: "PUT",
         url: "/api/rcfcnew",
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -227,8 +227,8 @@ export default {
           this.campaign_id +
           "/" +
           this.$store.state.user_id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

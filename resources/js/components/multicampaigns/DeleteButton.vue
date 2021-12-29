@@ -79,9 +79,9 @@ export default {
       await axios({
         method: "post", //you can set what request you want to be
         url: "api/recontask",
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -97,8 +97,8 @@ export default {
       await axios({
         method: "delete", //you can set what request you want to be
         url: "/api/multicampaigns/" + item.id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

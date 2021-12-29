@@ -66,9 +66,9 @@ export default {
       await axios({
         method: "put",
         url: "/api/rcfixcorp/" + this.station.id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

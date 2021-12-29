@@ -192,7 +192,7 @@ import ClickOutside from "vue-click-outside";
 import { mapGetters, mapState } from "vuex";
 
 export default {
-  props: ["username", "token", "user_id"],
+  props: ["username", "user_id"],
   mounted() {},
   data: () => ({
     ready: false,
@@ -211,7 +211,6 @@ export default {
         this.$store.dispatch("updateEveUserCount", e.flag.message);
       }
     });
-    await this.$store.dispatch("setToken", this.token);
     await this.$store
       .dispatch("setUser_id", this.user_id)
       .then((this.ready = true));
@@ -252,9 +251,9 @@ export default {
       await axios({
         method: "post", //you can set what request you want to be
         url: "/api/feedback",
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

@@ -526,8 +526,8 @@ export default {
         method: "put",
         url: "/api/campaignusers/" + this.charOnTheWay + "/" + this.campaign_id,
         data: request,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -543,9 +543,9 @@ export default {
       await axios({
         method: "put",
         url: "/api/campaignsystemremovechar/" + this.campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -576,9 +576,9 @@ export default {
         method: "put",
         url:
           "/api/campaignusers/" + this.charReadyToGo + "/" + this.campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -594,9 +594,9 @@ export default {
       await axios({
         method: "put",
         url: "/api/campaignsystemremovechar/" + this.campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -637,8 +637,8 @@ export default {
       await axios({
         method: "DELETE",
         url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -660,9 +660,9 @@ export default {
       axios({
         method: "POST",
         url: "/api/checkdeletenode/" + this.campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -709,9 +709,9 @@ export default {
       axios({
         method: "put",
         url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -720,9 +720,9 @@ export default {
       axios({
         method: "put",
         url: "/api/campaignusers/" + addChar.id + "/" + this.campaign_id,
+        withCredentials: true,
         data: request1,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -772,9 +772,9 @@ export default {
       await axios({
         method: "put",
         url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -869,9 +869,9 @@ export default {
       axios({
         method: "put",
         url: "/api/campaignsystems/" + item.id + "/" + this.campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -891,9 +891,9 @@ export default {
       await axios({
         method: "POST",
         url: "/api/campaignsystems/" + this.campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -914,9 +914,9 @@ export default {
       axios({
         method: "POST",
         url: "/api/checkaddnode/" + this.campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -965,9 +965,9 @@ export default {
       axios({
         method: "PUT",
         url: "/api/removecharfromnode/" + item.id + "/" + this.campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -984,9 +984,9 @@ export default {
       await axios({
         method: "PUT",
         url: "/api/campaignusers/" + item.id + "/" + this.campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

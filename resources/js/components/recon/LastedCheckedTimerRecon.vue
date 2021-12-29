@@ -60,9 +60,10 @@ export default {
         //adds user name of last checked
         method: "put",
         url: "/api/recontasksystemtimeupdate/" + this.item.id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
+
           Accept: "application/json",
           "Content-Type": "application/json",
         },

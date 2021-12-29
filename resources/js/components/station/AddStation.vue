@@ -481,9 +481,10 @@ export default {
       await axios({
         method: "put", //you can set what request you want to be
         url: "api/stationnew",
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
+
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -555,9 +556,10 @@ export default {
       await axios({
         method: "put", //you can set what request you want to be
         url: "api/updatestationnotification/" + this.stationPull.station_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
+
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -610,9 +612,10 @@ export default {
       await axios({
         method: "put", //you can set what request you want to be
         url: "api/stationname",
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
+
           Accept: "application/json",
           "Content-Type": "application/json",
         },

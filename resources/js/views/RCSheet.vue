@@ -416,9 +416,9 @@ export default {
       axios({
         method: "post", //you can set what request you want to be
         url: "api/url",
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -646,8 +646,8 @@ export default {
       await axios({
         method: "put",
         url: "/api/finishrcstation/" + item.id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

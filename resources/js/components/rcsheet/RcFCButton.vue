@@ -79,9 +79,9 @@ export default {
       await axios({
         method: "put",
         url: "/api/rcfcuseradd/" + this.station.id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -101,8 +101,8 @@ export default {
       await axios({
         method: "put",
         url: "/api/rcfcuserremove/" + this.station.id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

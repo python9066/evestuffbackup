@@ -56,9 +56,9 @@ export default {
       await axios({
         method: "POST",
         url: "/api/startcampaigns/" + id + "/" + this.name,
+        withCredentials: true,
         data: this.picked,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

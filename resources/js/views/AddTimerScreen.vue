@@ -396,9 +396,9 @@ export default {
       await axios({
         method: "put", //you can set what request you want to be
         url: "/api/rolesadd",
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -415,9 +415,9 @@ export default {
       await axios({
         method: "put", //you can set what request you want to be
         url: "/api/checkroleaddremove",
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -445,9 +445,9 @@ export default {
       await axios({
         method: "put", //you can set what request you want to be
         url: "/api/rolesremove",
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -465,9 +465,9 @@ export default {
       await axios({
         method: "put", //you can set what request you want to be
         url: "/api/checkroleaddremove",
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

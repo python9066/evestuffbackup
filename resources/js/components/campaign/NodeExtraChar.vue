@@ -49,9 +49,9 @@ export default {
       await axios({
         method: "post",
         url: "/api/nodejoin/" + item.campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -67,9 +67,9 @@ export default {
       await axios({
         method: "put",
         url: "/api/campaignusers/" + addChar.id + "/" + item.campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

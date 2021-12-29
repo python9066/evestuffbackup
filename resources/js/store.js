@@ -672,12 +672,12 @@ export default new Vuex.Store({
     },
 
     actions: {
-        async getTimerDataAll({ commit, state }) {
+        async getTimerDataAll({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/timers",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -685,12 +685,12 @@ export default new Vuex.Store({
             commit("SET_TIMERS", res.data.timers);
         },
 
-        async getTimerDataAll({ commit, state }) {
+        async getTimerDataAll({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/timers",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -698,12 +698,12 @@ export default new Vuex.Store({
             commit("SET_TIMERS", res.data.timers);
         },
 
-        async updateTickList({ commit, state }, ticker) {
+        async updateTickList({ commit }, ticker) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/addmissingcorp/" + ticker,
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -713,12 +713,12 @@ export default new Vuex.Store({
             commit("SET_MISSING_CORP_TICK", res.data.corpTicker);
         },
 
-        async getTimerDataAllRegion({ commit, state }) {
+        async getTimerDataAllRegion({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/timersregions",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -726,12 +726,12 @@ export default new Vuex.Store({
             commit("SET_TIMERS_REGIONS", res.data.timersregions);
         },
 
-        async getSystemList({ commit, state }) {
+        async getSystemList({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/systemlist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -739,12 +739,12 @@ export default new Vuex.Store({
             commit("SET_SYSTEMLIST", res.data.systemlist);
         },
 
-        async getAmmoRequest({ commit, state }) {
+        async getAmmoRequest({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/ammorequestrecords",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -752,12 +752,12 @@ export default new Vuex.Store({
             commit("SET_AMMO_REQUEST", res.data.ammorequest);
         },
 
-        async getMoonList({ commit, state }, system_id) {
+        async getMoonList({ commit }, system_id) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/moons/" + system_id,
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -765,12 +765,12 @@ export default new Vuex.Store({
             commit("SET_MOONLIST", res.data.moons);
         },
 
-        async getStructureList({ commit, state }) {
+        async getStructureList({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/structurelist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -778,12 +778,12 @@ export default new Vuex.Store({
             commit("SET_STRUCTURELIST", res.data.structurelist);
         },
 
-        async getTowerList({ commit, state }) {
+        async getTowerList({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/towerlist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -791,12 +791,12 @@ export default new Vuex.Store({
             commit("SET_TOWERLIST", res.data.towerlist);
         },
 
-        async getTickList({ commit, state }) {
+        async getTickList({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/ticklist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -804,12 +804,12 @@ export default new Vuex.Store({
             commit("SET_TICKLIST", res.data.ticklist);
         },
 
-        async getAllianceTickList({ commit, state }) {
+        async getAllianceTickList({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/allianceticklist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -817,12 +817,12 @@ export default new Vuex.Store({
             commit("SET_ALLIANCE_TICKLIST", res.data.allianceticklist);
         },
 
-        async getNodeJoinByCampaignId({ commit, state }, campaign_id) {
+        async getNodeJoinByCampaignId({ commit }, campaign_id) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/nodejoin/" + campaign_id,
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -830,12 +830,12 @@ export default new Vuex.Store({
             commit("SET_NODE_JOIN", res.data.nodeJoin);
         },
 
-        async getTowerData({ commit, state }) {
+        async getTowerData({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/towersrecords",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -843,12 +843,12 @@ export default new Vuex.Store({
             commit("SET_TOWERS", res.data.towers);
         },
 
-        async getStationData({ commit, state }) {
+        async getStationData({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/stationrecords",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -856,12 +856,12 @@ export default new Vuex.Store({
             commit("SET_STATIONS", res.data.stations);
         },
 
-        async getStationDataByUserId({ commit, state }) {
+        async getStationDataByUserId({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/stationrecordsbyid",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -869,13 +869,13 @@ export default new Vuex.Store({
             commit("SET_STATIONS", res.data.stations);
         },
 
-        async getCampaignJoinDataByCampaign({ commit, state }, campid) {
+        async getCampaignJoinDataByCampaign({ commit }, campid) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/campaignjoinbyid/" + campid,
                 data: this.picked,
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -883,13 +883,13 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGN_JOIN", res.data.value);
         },
 
-        async getCampaignJoinData({ commit, state }, campid) {
+        async getCampaignJoinData({ commit }, campid) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/campaignjoin",
                 data: this.picked,
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -897,13 +897,13 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGN_JOIN", res.data.value);
         },
 
-        async getStartCampaignJoinDataByCampaign({ commit, state }, campid) {
+        async getStartCampaignJoinDataByCampaign({ commit }, campid) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/startcampaignjoinbyid/" + campid,
                 data: this.picked,
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -911,13 +911,13 @@ export default new Vuex.Store({
             commit("SET_START_CAMPAIGN_JOIN", res.data.value);
         },
 
-        async getStartCampaignJoinData({ commit, state }, campid) {
+        async getStartCampaignJoinData({ commit }, campid) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/startcampaignjoin",
                 data: this.picked,
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -925,12 +925,12 @@ export default new Vuex.Store({
             commit("SET_START_CAMPAIGN_JOIN", res.data.value);
         },
 
-        async getCampaignMembers({ commit, state }, campaign_id) {
+        async getCampaignMembers({ commit }, campaign_id) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/campaignsystemusers/" + campaign_id,
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -938,12 +938,12 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGN_MEMBERS", res.data.users);
         },
 
-        async getUsersChars({ commit, state }, user_id) {
+        async getUsersChars({ commit }, user_id) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/campaignusersrecordsbychar/" + user_id,
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -951,12 +951,12 @@ export default new Vuex.Store({
             commit("SET_USERS_CHARS", res.data.users);
         },
 
-        async getCampaignSolaSystems({ commit, state }) {
+        async getCampaignSolaSystems({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/campaignsolasystems",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -964,15 +964,15 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.data);
         },
 
-        async getUsers({ commit, state }) {
+        async getUsers({ commit }) {
             if (state.token == "") {
                 await sleep(500);
             }
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/allusersroles",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -982,15 +982,15 @@ export default new Vuex.Store({
             // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
         },
 
-        async getUserKeys({ commit, state }) {
+        async getUserKeys({ commit }) {
             if (state.token == "") {
                 await sleep(500);
             }
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/alluserskeys",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1000,15 +1000,15 @@ export default new Vuex.Store({
             // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
         },
 
-        async getKeyFleets({ commit, state }) {
+        async getKeyFleets({ commit }) {
             if (state.token == "") {
                 await sleep(500);
             }
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/allkeyfleets",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1018,12 +1018,12 @@ export default new Vuex.Store({
             // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
         },
 
-        async getRoles({ commit, state }) {
+        async getRoles({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/roles",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1032,12 +1032,12 @@ export default new Vuex.Store({
             // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
         },
 
-        async getKeys({ commit, state }) {
+        async getKeys({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/keys",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1046,12 +1046,12 @@ export default new Vuex.Store({
             // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
         },
 
-        async getCampaigns({ commit, state }) {
+        async getCampaigns({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/campaigns",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1059,12 +1059,12 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGNS", res.data.campaigns);
         },
 
-        async getCampaignsRegions({ commit, state }) {
+        async getCampaignsRegions({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/campaignsregion",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1072,12 +1072,12 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGNS_REGION", res.data.campaignslistRegion);
         },
 
-        async getRcRegions({ commit, state }) {
+        async getRcRegions({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/rcregionlist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1085,12 +1085,12 @@ export default new Vuex.Store({
             commit("SET_RC_REGION", res.data.rcsheetlistRegion);
         },
 
-        async getChillRegions({ commit, state }) {
+        async getChillRegions({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/chillregionlist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1098,12 +1098,12 @@ export default new Vuex.Store({
             commit("SET_CHILL_REGION", res.data.chillsheetlistRegion);
         },
 
-        async getWelpRegions({ commit, state }) {
+        async getWelpRegions({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/welpregionlist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1111,12 +1111,12 @@ export default new Vuex.Store({
             commit("SET_WELP_REGION", res.data.welpsheetlistRegion);
         },
 
-        async getRcItems({ commit, state }) {
+        async getRcItems({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/rcTypelist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1124,12 +1124,12 @@ export default new Vuex.Store({
             commit("SET_RC_TYPE", res.data.rcsheetlistType);
         },
 
-        async getChillItems({ commit, state }) {
+        async getChillItems({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/chillTypelist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1137,12 +1137,12 @@ export default new Vuex.Store({
             commit("SET_CHILL_TYPE", res.data.chillsheetlistType);
         },
 
-        async getWelpItems({ commit, state }) {
+        async getWelpItems({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/welpTypelist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1150,12 +1150,12 @@ export default new Vuex.Store({
             commit("SET_WELP_TYPE", res.data.welpsheetlistType);
         },
 
-        async getRcStatus({ commit, state }) {
+        async getRcStatus({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/rcStatuslist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1163,12 +1163,12 @@ export default new Vuex.Store({
             commit("SET_RC_STATUS", res.data.rcsheetlistStatus);
         },
 
-        async getChillStatus({ commit, state }) {
+        async getChillStatus({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/chilltest",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1176,12 +1176,12 @@ export default new Vuex.Store({
             commit("SET_CHILL_STATUS", res.data.chillsheetlistStatus);
         },
 
-        async getWelpStatus({ commit, state }) {
+        async getWelpStatus({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/welptest",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1189,12 +1189,12 @@ export default new Vuex.Store({
             commit("SET_WELP_STATUS", res.data.welpsheetlistStatus);
         },
 
-        async getCoordStatus({ commit, state }) {
+        async getCoordStatus({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/coordStatuslist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1202,12 +1202,12 @@ export default new Vuex.Store({
             commit("SET_COORD_STATUS", res.data.coordsheetlistStatus);
         },
 
-        async getCoordRegions({ commit, state }) {
+        async getCoordRegions({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/coordRegionlist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1215,12 +1215,12 @@ export default new Vuex.Store({
             commit("SET_COORD_REGION", res.data.coordsheetlistRegion);
         },
 
-        async getCoordItems({ commit, state }) {
+        async getCoordItems({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/coordItemlist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1228,12 +1228,12 @@ export default new Vuex.Store({
             commit("SET_COORD_ITEM", res.data.coordsheetlistType);
         },
 
-        async getMultiCampaigns({ commit, state }) {
+        async getMultiCampaigns({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/multicampaigns",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1241,12 +1241,12 @@ export default new Vuex.Store({
             commit("SET_MULTI_CAMPAIGNS", res.data.campaigns);
         },
 
-        async getStartCampaigns({ commit, state }) {
+        async getStartCampaigns({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/startcampaigns",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1254,12 +1254,12 @@ export default new Vuex.Store({
             commit("SET_START_CAMPAIGNS", res.data.campaigns);
         },
 
-        async getCampaignsList({ commit, state }) {
+        async getCampaignsList({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/campaignslist",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1267,12 +1267,12 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
         },
 
-        async getLoggingCampaign({ commit, state }, campaign_id) {
+        async getLoggingCampaign({ commit }, campaign_id) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/checkcampaign/" + campaign_id,
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1280,12 +1280,12 @@ export default new Vuex.Store({
             commit("SET_LOGGING_CAMPAIGN", res.data.logs);
         },
 
-        async getLoggingRcSheet({ commit, state }) {
+        async getLoggingRcSheet({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/rcadminlogs",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1293,12 +1293,12 @@ export default new Vuex.Store({
             commit("SET_LOGGING_RC_SHEET", res.data.logs);
         },
 
-        async getLoggingStations({ commit, state }) {
+        async getLoggingStations({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/stationlogs",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1306,12 +1306,12 @@ export default new Vuex.Store({
             commit("SET_LOGGING_STATIONS", res.data.logs);
         },
 
-        async getLoggingAdmin({ commit, state }) {
+        async getLoggingAdmin({ commit }) {
             let res = await axios({
                 method: "get",
+                withCredentials: true,
                 url: "/api/checkadmin",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1487,13 +1487,13 @@ export default new Vuex.Store({
             commit("DELETE_CAMPAIGN_SYSTEM", id);
         },
 
-        async getNotifications({ commit, state }) {
+        async getNotifications({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/notifications",
                 // data: {id: varID},
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1501,12 +1501,12 @@ export default new Vuex.Store({
             commit("SET_NOTIFICATIONS", res.data.notifications);
         },
 
-        async getdelveLink({ commit, state }) {
+        async getdelveLink({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/notifications/10000060",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1514,12 +1514,12 @@ export default new Vuex.Store({
             commit("SET_DELVE_LINK", res.data.link);
         },
 
-        async getqueriousLink({ commit, state }) {
+        async getqueriousLink({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/notifications/10000050",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1527,12 +1527,12 @@ export default new Vuex.Store({
             commit("SET_QUERIOUS_LINK", res.data.link);
         },
 
-        async getperiodbasisLink({ commit, state }) {
+        async getperiodbasisLink({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/notifications/10000063",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1540,12 +1540,12 @@ export default new Vuex.Store({
             commit("SET_PERIOD_BASIS_LINK", res.data.link);
         },
 
-        async geteveusercount({ commit, state }) {
+        async geteveusercount({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/eveusercount",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1564,12 +1564,12 @@ export default new Vuex.Store({
             commit("SET_USER_NAME", user_name);
         },
 
-        async getCampaignUsersRecords({ commit, state }, id) {
+        async getCampaignUsersRecords({ commit }, id) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/campaignusersrecords/" + id,
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1579,12 +1579,12 @@ export default new Vuex.Store({
             }
         },
 
-        async getCampaignSystemsRecords({ commit, state }) {
+        async getCampaignSystemsRecords({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/campaignsystemsrecords",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1594,12 +1594,12 @@ export default new Vuex.Store({
             }
         },
 
-        async getStartCampaignSystemsRecords({ commit, state }) {
+        async getStartCampaignSystemsRecords({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/startcampaignsystemsrecords",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1609,12 +1609,12 @@ export default new Vuex.Store({
             }
         },
 
-        async getReconTaskSystemsRecords({ commit, state }) {
+        async getReconTaskSystemsRecords({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/recontasksystems",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1624,12 +1624,12 @@ export default new Vuex.Store({
             }
         },
 
-        async getRcStationRecords({ commit, state }) {
+        async getRcStationRecords({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/rcsheet",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1639,12 +1639,12 @@ export default new Vuex.Store({
             }
         },
 
-        async getChillStationRecords({ commit, state }) {
+        async getChillStationRecords({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/chillsheet",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1654,12 +1654,12 @@ export default new Vuex.Store({
             }
         },
 
-        async getWelpStationRecords({ commit, state }) {
+        async getWelpStationRecords({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/welpsheet",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1669,12 +1669,12 @@ export default new Vuex.Store({
             }
         },
 
-        async getCoordStationRecords({ commit, state }) {
+        async getCoordStationRecords({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/coordsheet",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1684,12 +1684,12 @@ export default new Vuex.Store({
             }
         },
 
-        async getRcFcs({ commit, state }) {
+        async getRcFcs({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/rcfc",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1699,12 +1699,12 @@ export default new Vuex.Store({
             }
         },
 
-        async getFleets({ commit, state }) {
+        async getFleets({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/fleets",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1714,12 +1714,12 @@ export default new Vuex.Store({
             }
         },
 
-        async getConstellationList({ commit, state }) {
+        async getConstellationList({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/constellations",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1728,7 +1728,7 @@ export default new Vuex.Store({
             commit("SET_CONSTELLATION_LIST", res.data.constellationlist);
         },
 
-        async loadCampaignSystemData({ commit, state }, payload) {
+        async loadCampaignSystemData({ commit }, payload) {
             let request = {
                 user_id: payload.user_id,
                 campaign_id: payload.campaign_id,
@@ -1737,10 +1737,10 @@ export default new Vuex.Store({
 
             let res = await axios({
                 method: "post", //you can set what request you want to be
+                withCredentials: true,
                 url: "/api/campaignsystemload",
                 data: request,
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1756,12 +1756,12 @@ export default new Vuex.Store({
             }
         },
 
-        async loadStationInfo({ commit, state }) {
+        async loadStationInfo({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/loadstationdata",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
@@ -1774,12 +1774,12 @@ export default new Vuex.Store({
             }
         },
 
-        async loadAmmoRequestInfo({ commit, state }) {
+        async loadAmmoRequestInfo({ commit }) {
             let res = await axios({
-                method: "get", //you can set what request you want to be
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
                 url: "/api/loadammorequestdata",
                 headers: {
-                    Authorization: "Bearer " + state.token,
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },

@@ -62,8 +62,8 @@ export default {
       let res = await axios({
         method: "get",
         url: "/api/campaignjoinlist/" + this.campaignID,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -77,9 +77,9 @@ export default {
       await axios({
         method: "POST",
         url: "/api/multicampaignsedit/" + this.campaignID + "/" + this.name,
+        withCredentials: true,
         data: this.picked,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

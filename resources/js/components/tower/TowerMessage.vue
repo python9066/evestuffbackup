@@ -141,9 +141,9 @@ export default {
       axios({
         method: "put",
         url: "/api/towermessage/" + this.tower.id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

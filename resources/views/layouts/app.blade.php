@@ -14,7 +14,14 @@
     <script src="{{ mix('js/manifest.js') }}" Cache-Control: no-cache, must-revalidate defer></script>
   <script src="{{ mix('js/vendor.js') }}" Cache-Control: no-cache, must-revalidate defer></script>
   <script src="{{ mix('js/app.js') }}" Cache-Control: no-cache, must-revalidate defer></script>
-
+<script>
+    //  import Axios from "axios";
+    window.onload = function()
+    {
+        axios.get('/sanctum/csrf-cookie')
+        // {withCredentials: true}
+    }
+</script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

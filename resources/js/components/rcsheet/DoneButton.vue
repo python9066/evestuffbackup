@@ -138,9 +138,9 @@ export default {
       await axios({
         method: "put",
         url: "/api/updatestationnotification/" + this.item.id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -155,9 +155,9 @@ export default {
       await axios({
         method: "put",
         url: "/api/chillupdatestationnotification/" + this.item.id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -172,9 +172,9 @@ export default {
       await axios({
         method: "put",
         url: "/api/welpupdatestationnotification/" + this.item.id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -205,8 +205,8 @@ export default {
       await axios({
         method: "put",
         url: "/api/softdestory/" + this.item.id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -220,8 +220,8 @@ export default {
       await axios({
         method: "delete",
         url: "/api/chilldelete/" + this.item.id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -235,8 +235,8 @@ export default {
       await axios({
         method: "delete",
         url: "/api/welpdelete/" + this.item.id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

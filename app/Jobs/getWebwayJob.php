@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Jobs;
+
+use App\Models\WebWay;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+
+class getWebwayJob implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    protected $system_id, $link, $jumps, $link_p, $jumps_p;
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct($system_id, $link, $jumps, $link_p, $jumps_p)
+    {
+        $this->system_id = $system_id;
+        $this->link = $link;
+        $this->link_p = $link_p;
+        $this->jumps = $jumps;
+        $this->jumps_p = $jumps_p;
+    }
+
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        WebWay::updateOrCreate(
+            [
+                'system_id' => $this->system_id,
+                'permissions' => 0
+            ],
+            [
+                'link' => $this->link,
+                'jumpss' => $this->jumpss,
+            ]
+        );
+
+        WebWay::updateOrCreate(
+            [
+                'system_id' => $this->system_id,
+                'permissions' => 1
+            ],
+            [
+                'link' => $this->link_p,
+                'jumpss' => $this->jumps_p
+            ]
+        );
+    }
+}

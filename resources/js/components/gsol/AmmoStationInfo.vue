@@ -332,9 +332,9 @@ export default {
       await axios({
         method: "post",
         url: "/api/ammorequestupdate/" + this.station.id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -350,9 +350,9 @@ export default {
       await axios({
         method: "post",
         url: "/api/ammorequestupdate/" + this.station.id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -364,8 +364,8 @@ export default {
       await axios({
         method: "delete",
         url: "/api/ammorequestdelete/" + this.station.id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

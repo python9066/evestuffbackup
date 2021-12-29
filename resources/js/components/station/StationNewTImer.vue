@@ -175,9 +175,9 @@ export default {
       await axios({
         method: "put", //you can set what request you want to be
         url: "api/updatestationnotification/" + this.station.id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

@@ -344,9 +344,9 @@ export default {
       await axios({
         method: "put", //you can set what request you want to be
         url: "api/updatetimerinfo/" + this.item.id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -361,9 +361,9 @@ export default {
         await axios({
           method: "put", //you can set what request you want to be
           url: "api/editstationname/" + this.item.id,
+          withCredentials: true,
           data: request,
           headers: {
-            Authorization: "Bearer " + this.$store.state.token,
             Accept: "application/json",
             "Content-Type": "application/json",
           },

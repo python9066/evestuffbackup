@@ -76,9 +76,9 @@ export default {
           this.CampaignSolaSystem[0]["id"] +
           "/" +
           this.CampaignSolaSystem[0]["campaign_id"],
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -96,9 +96,9 @@ export default {
         url:
           "/api/checklastedchecked/" +
           this.CampaignSolaSystem[0]["campaign_id"],
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

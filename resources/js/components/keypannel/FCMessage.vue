@@ -139,9 +139,9 @@ export default {
       axios({
         method: "post",
         url: "/api/userupdate/" + this.user.id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

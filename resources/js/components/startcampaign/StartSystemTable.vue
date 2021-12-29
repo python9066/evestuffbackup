@@ -161,9 +161,9 @@ export default {
           item.id +
           "/" +
           this.data.start_campaign_id,
+        withCredentials: true,
         data: request,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -186,8 +186,8 @@ export default {
           userId +
           "/" +
           this.data.start_campaign_id,
+        withCredentials: true,
         headers: {
-          Authorization: "Bearer " + this.$store.state.token,
           Accept: "application/json",
           "Content-Type": "application/json",
         },
