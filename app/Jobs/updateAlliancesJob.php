@@ -44,7 +44,7 @@ class updateAlliancesJob implements ShouldQueue
         ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/?datasource=tranquility");
         $allianceInfo = $response->collect();
 
-        Alliance::updatedOrCreate(
+        Alliance::updateOrCreate(
             ['id' => $allianceID],
             [
                 'name' => $allianceInfo->get('name'),
