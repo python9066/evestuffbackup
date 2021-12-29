@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
             //$this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
             //$this->app->register(TelescopeServiceProvider::class);
             // $this->app->register(\protoqol\prequel\PrequelServiceProvider::class);
-            // $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
             $this->app->register(\Laravel\Sanctum\SanctumServiceProvider::class);
             $this->app->register(PrequelServiceProvider::class);
             $this->app->register(\Laravel\Horizon\HorizonServiceProvider::class);
