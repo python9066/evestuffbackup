@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Str;
 
+$variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
 return [
 
     /*
@@ -18,7 +19,7 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'file'),
+    'driver' => env('SESSION_DRIVER', ($variables && array_key_exists('SESSION_DRIVER', $variables)) ? $variables['SESSION_DRIVER'] : 'cookie'),
 
     /*
     |--------------------------------------------------------------------------
@@ -46,7 +47,7 @@ return [
     |
     */
 
-    'encrypt' => false,
+    'encrypt' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -128,7 +129,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
+        Str::slug(env('APP_NAME', 'laravel'), '_') . '_session'
     ),
 
     /*
@@ -155,7 +156,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', null),
+    'domain' => env('SESSION_DOMAIN', ($variables && array_key_exists('SESSION_DOMAIN', $variables)) ? $variables['SESSION_DOMAIN'] : 'null'),
 
     /*
     |--------------------------------------------------------------------------
