@@ -46,7 +46,6 @@ class JobTestController extends Controller
         $standings = $response->collect();
         foreach ($standings as $standing) {
             $stand = collect($standing);
-            dd($stand->get('standing'));
             if ($stand->get('standing') > 0) {
                 $color = 2;
             } else {
