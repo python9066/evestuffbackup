@@ -38,8 +38,7 @@ class AuthController extends Controller
         // dd($userGice->grp);
 
 
-        // User::updateOrCreate(['id' => $userGice->sub], ['name' => $userGice->name, 'token' => $userGice->token, 'pri_grp' => $userGice->user['pri_grp'], 'api_token' => Str::random(60)]);
-        User::updateOrCreate(['id' => $userGice->sub], ['name' => $userGice->name, 'api_token' => Str::random(60)]);
+        User::updateOrCreate(['id' => $userGice->sub], ['name' => $userGice->name]);
 
         $user = User::where('id', $userGice->sub)->first();
         $this->purgeRoles($user);
@@ -76,11 +75,28 @@ class AuthController extends Controller
         return redirect($url);
     }
 
+    public function webwayUser()
+    {
+
+
+        $new = User::create([
+            'id' => 1,
+            'name' => "Webway",
+            'token' => "12348",
+            'pri_grp' => 9,
+
+        ]);
+
+        $token = $new->createToken('auth_token');
+
+        return ['token' => $token->plainTextToken];
+    }
+
     public function admin()
     {
 
 
-        User::updateOrCreate(['id' => 5], ['name' => 'admin', 'token' => '456456456456456', 'pri_grp' => 5, 'api_token' => Str::random(60)]);
+        User::updateOrCreate(['id' => 5], ['name' => 'admin', 'token' => '456456456456456', 'pri_grp' => 5]);
         $user = User::where('id', 5)->first();
         Auth::login($user, true);
 
@@ -91,7 +107,7 @@ class AuthController extends Controller
     {
 
 
-        User::updateOrCreate(['id' => 99999999], ['name' => 'martn', 'token' => '9999999999999999999999999', 'pri_grp' => 5, 'api_token' => Str::random(60)]);
+        User::updateOrCreate(['id' => 99999999], ['name' => 'martn', 'token' => '9999999999999999999999999', 'pri_grp' => 5]);
         $user = User::where('id', 99999999)->first();
         Auth::login($user, true);
 
@@ -102,7 +118,7 @@ class AuthController extends Controller
     {
 
 
-        User::updateOrCreate(['id' => 999999999], ['name' => 'Schpeh The Hero', 'token' => '9999999999999999999999999', 'pri_grp' => 5, 'api_token' => Str::random(60)]);
+        User::updateOrCreate(['id' => 999999999], ['name' => 'Schpeh The Hero', 'token' => '9999999999999999999999999', 'pri_grp' => 5]);
         $user = User::where('id', 999999999)->first();
         Auth::login($user, true);
         $user->assignRole('Super Admin');
