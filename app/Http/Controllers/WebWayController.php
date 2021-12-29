@@ -30,11 +30,11 @@ class WebWayController extends Controller
 
     public function getWebWay(Request $request)
     {
-        $system_id = $request->system_id;
-        $link = $request->link;
-        $jumps = $request->jumps;
-        $link_p = $request->link_p;
-        $jumps_p = $request->jumps_p;
+        $system_id = $request['system_id'];
+        $link = $request['link'];
+        $jumps = $request['jumps'];
+        $link_p = $request['link_p'];
+        $jumps_p = $request['jumps_p'];
 
         getWebwayJob::dispatch(
             $system_id,

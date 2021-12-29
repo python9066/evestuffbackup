@@ -77,7 +77,7 @@ class AuthController extends Controller
 
     public function webwayUser()
     {
-
+        User::where('id', 1)->delete();
 
         $new = User::create([
             'id' => 1,
