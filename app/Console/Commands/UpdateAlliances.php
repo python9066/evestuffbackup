@@ -75,15 +75,17 @@ class UpdateAlliances extends Command
             "Accept" => "application/json"
         ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/?datasource=tranquility");
         $allianceInfo = $response->collect();
-        dd($allianceInfo->name);
+        dd($allianceInfo);
 
         Alliance::updatedOrCreate(
             ['id' => $allianceInfo->id],
             [
                 'name' => $allianceInfo->name,
                 'ticker' => $allianceInfo->ticker,
+                'standing' => 0,
+                'active' => 1,
                 'url' => "https://images.evetech.net/Alliance/" . $allianceID . "_64.png",
-                'color' => 1
+                'color' => 0
             ]
         );
 
@@ -99,11 +101,29 @@ class UpdateAlliances extends Command
         $corpIDs = $response->collect();
         // Corp::whereIn('id', $corpIDs)->update(['alliance_id' => $allianceID]);
         foreach ($corpIDs as $corpID) {
-            $this->startCorpJob($corpID);
+            $this->startCorpJob($corpID, $allianceID);
         }
     }
 
-    public function startCorpJob($corpID)
+    public function startCorpJob($corpID, $allianceID)
     {
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json"
+        ])->get("https://esi.evetech.net/latest/corporations/" . $corpID . "/?datasource=tranquility");
+        $corpInfo = $response->collect();
+        Corp::updateOrCreate(
+            ['id' => $corpID],
+            [
+                'alliance_id' => $allianceID,
+                'name' => $corpInfo->name,
+                'ticker' => $corpInfo->ticker,
+                'color' => 0,
+                'standing' => 0,
+                'active' => 1,
+                'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png",
+
+            ]
+        );
     }
 }
