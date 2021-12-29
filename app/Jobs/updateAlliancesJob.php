@@ -45,7 +45,7 @@ class updateAlliancesJob implements ShouldQueue
         $allianceInfo = $response->collect();
 
         Alliance::updatedOrCreate(
-            ['id' => $allianceInfo->id],
+            ['id' => $allianceID],
             [
                 'name' => $allianceInfo->get('name'),
                 'ticker' => $allianceInfo->get('ticker'),
