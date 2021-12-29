@@ -185,7 +185,7 @@ return [
         'production' => [
             'hamsters' => [
                 'connection' => 'redis',
-                'queue' => ['corp', 'alliance', 'webway'],
+                'queue' => ['corp', 'alliance', 'webway', 'default'],
                 'balance' => 'auto',
                 'maxProcesses' => 20,
                 'memory' => 2048,
@@ -198,7 +198,7 @@ return [
         'local' => [
             'hamsters' => [
                 'connection' => 'redis',
-                'queue' => ['corp', 'alliance', 'webway'],
+                'queue' => ['corp', 'alliance', 'webway', 'default'],
                 'balance' => 'auto',
                 'maxProcesses' => 20,
                 'memory' => 2048,
