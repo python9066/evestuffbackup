@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\updateAlliancesJob;
 use App\Models\Alliance;
 use App\Models\Corp;
 use App\Models\Userlogging;
@@ -61,71 +62,65 @@ class UpdateAlliances extends Command
         }
 
         foreach ($allianceIDs as $allianceID) {
-            $this->startAlliance($allianceID);
+            updateAlliancesJob::dispatch($allianceID);
         }
     }
 
-    public function startAlliance($allianceID)
-    {
+    // public function startAlliance($allianceID)
+    // {
 
 
 
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            "Accept" => "application/json"
-        ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/?datasource=tranquility");
-        $allianceInfo = $response->collect();
-        dd(
-            $allianceInfo->get('name')
-        );
+    //     $response = Http::withHeaders([
+    //         'Content-Type' => 'application/json',
+    //         "Accept" => "application/json"
+    //     ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/?datasource=tranquility");
+    //     $allianceInfo = $response->collect();
 
-        Alliance::updatedOrCreate(
-            ['id' => $allianceInfo->id],
-            [
-                'name' => $allianceInfo->name,
-                'ticker' => $allianceInfo->ticker,
-                'standing' => 0,
-                'active' => 1,
-                'url' => "https://images.evetech.net/Alliance/" . $allianceID . "_64.png",
-                'color' => 0
-            ]
-        );
+    //     Alliance::updatedOrCreate(
+    //         ['id' => $allianceInfo->id],
+    //         [
+    //             'name' => $allianceInfo->get('name'),
+    //             'ticker' => $allianceInfo->get('ticker'),
+    //             'standing' => 0,
+    //             'active' => 1,
+    //             'url' => "https://images.evetech.net/Alliance/" . $allianceID . "_64.png",
+    //             'color' => 0
+    //         ]
+    //     );
 
 
+    //     Corp::where('alliance_id', $allianceID)->update(['alliance_id' => null]);
+    //     $response = Http::withHeaders([
+    //         'Content-Type' => 'application/json',
+    //         "Accept" => "application/json"
+    //     ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility");
+    //     $corpIDs = $response->collect();
+    //     // Corp::whereIn('id', $corpIDs)->update(['alliance_id' => $allianceID]);
+    //     foreach ($corpIDs as $corpID) {
+    //         $this->startCorpJob($corpID, $allianceID);
+    //     }
+    // }
 
+    // public function startCorpJob($corpID, $allianceID)
+    // {
+    //     $response = Http::withHeaders([
+    //         'Content-Type' => 'application/json',
+    //         "Accept" => "application/json"
+    //     ])->get("https://esi.evetech.net/latest/corporations/" . $corpID . "/?datasource=tranquility");
+    //     $corpInfo = $response->collect();
+    //     Corp::updateOrCreate(
+    //         ['id' => $corpID],
+    //         [
+    //             'alliance_id' => $allianceID,
+    //             'name' => $corpInfo->get('name'),
+    //             'ticker' => $corpInfo->get('ticker'),
+    //             'color' => 0,
+    //             'standing' => 0,
+    //             'active' => 1,
+    //             'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png",
 
-
-        Corp::where('alliance_id', $allianceID)->update(['alliance_id' => null]);
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            "Accept" => "application/json"
-        ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility");
-        $corpIDs = $response->collect();
-        // Corp::whereIn('id', $corpIDs)->update(['alliance_id' => $allianceID]);
-        foreach ($corpIDs as $corpID) {
-            $this->startCorpJob($corpID, $allianceID);
-        }
-    }
-
-    public function startCorpJob($corpID, $allianceID)
-    {
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            "Accept" => "application/json"
-        ])->get("https://esi.evetech.net/latest/corporations/" . $corpID . "/?datasource=tranquility");
-        $corpInfo = $response->collect();
-        Corp::updateOrCreate(
-            ['id' => $corpID],
-            [
-                'alliance_id' => $allianceID,
-                'name' => $corpInfo->name,
-                'ticker' => $corpInfo->ticker,
-                'color' => 0,
-                'standing' => 0,
-                'active' => 1,
-                'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png",
-
-            ]
-        );
-    }
+    //         ]
+    //     );
+    // }
 }
