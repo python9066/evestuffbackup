@@ -73,6 +73,8 @@ class UpdateAlliances extends Command
             "Accept" => "application/json"
         ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility");
         $corpIDs = $response->collect();
-        dd($corpIDs);
+        foreach ($corpIDs as $corpID) {
+            dd($corpID);
+        }
     }
 }
