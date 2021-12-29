@@ -93,10 +93,6 @@ class testController extends Controller
                 'Content-Type' => 'application/json',
                 "Accept" => "application/json"
             ])->post($webwayURL, $data);
-
-        $response->collect();
-
-        dd($response);
     }
 
 
