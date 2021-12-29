@@ -67,7 +67,7 @@ class UpdateAlliances extends Command
 
     public function start($allianceID)
     {
-        Corp::where('alliance_id', $allianceID)->update(['alliannce_id', null]);
+        Corp::where('alliance_id', $allianceID)->update(['alliance_id', null]);
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json"
