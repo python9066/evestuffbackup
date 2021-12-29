@@ -44,28 +44,24 @@ class JobTestController extends Controller
         ])->get($url);
 
         $standings = $response->collect();
-        foreach ($standings as $standing) {
-            $stand = collect($standing);
-            if ($stand->get('standing') > 0) {
+        foreach ($standings as $var) {
+            if ($var['standing'] > 0) {
                 $color = 2;
             } else {
                 $color = 1;
+            }
+            if ($var['contact_type'] == 'alliance') {
+                Alliance::where('id', $var['contact_id'])->update([
+                    'standing' => $var['standing'],
+                    'color' => $color
+                ]);
             };
-            $type = $stand->get('contact_type');
-
-            if ($type == "aliiance") {
-                Alliance::where('id', $stand->get('contact_id'))->update([
-                    'color' => $color,
-                    'standing' => $stand->get('standing')
+            if ($var['contact_type'] == 'corporation') {
+                Corp::where('id', $var['contact_id'])->update([
+                    'standing' => $var['standing'],
+                    'color' => $color
                 ]);
-            }
-
-            if ($type == "corporation") {
-                Corp::where('id', $stand->get('contact_id'))->update([
-                    'color' => $color,
-                    'standing' => $stand->get('standing')
-                ]);
-            }
+            };
         }
         Alliance::where('color', '0')->update(['color' => 1]);
         Corp::where('color', '0')->update(['color' => 1]);
