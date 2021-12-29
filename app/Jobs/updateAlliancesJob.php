@@ -65,7 +65,7 @@ class updateAlliancesJob implements ShouldQueue
         $corpIDs = $response->collect();
         // Corp::whereIn('id', $corpIDs)->update(['alliance_id' => $allianceID]);
         foreach ($corpIDs as $corpID) {
-            updateCorpsJob::dispatch($corpID, $allianceID);
+            updateCorpsJob::dispatch($corpID, $allianceID)->onQueue('corp');
         }
     }
 }

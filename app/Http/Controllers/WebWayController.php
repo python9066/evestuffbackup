@@ -42,7 +42,7 @@ class WebWayController extends Controller
             $jumps,
             $link_p,
             $jumps_p
-        )->onQueue('slow');
+        )->onQueue('webway');
     }
 
     /**

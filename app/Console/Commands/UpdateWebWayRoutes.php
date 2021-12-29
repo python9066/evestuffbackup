@@ -55,7 +55,7 @@ class UpdateWebWayRoutes extends Command
         WebWay::where('active', 0)->delete();
 
         foreach ($systemIDs as $system_id) {
-            updateWebwayJob::dispatch($system_id);
+            updateWebwayJob::dispatch($system_id)->onQueue('webway');
         }
     }
 }
