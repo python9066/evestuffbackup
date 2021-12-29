@@ -88,7 +88,7 @@ class testController extends Controller
             'endSystem' => 30000142
         ];
 
-        $response = Http::withToken($webwayToken)
+        Http::withToken($webwayToken)
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 "Accept" => "application/json"
