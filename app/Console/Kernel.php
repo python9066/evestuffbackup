@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
         $schedule->command('update:webway')->everyFiveMinutes();
         $schedule->command('update:timers')->hourly()->unlessBetween('11:00', '11:20')->withoutOverlapping();
-        $schedule->command('update:alliances')->twiceDaily(9, 22)->withoutOverlapping();
+        // $schedule->command('update:alliances')->twiceDaily(9, 22)->withoutOverlapping();
         $schedule->command('clear:remembertoken')->twiceDaily(9, 21)->withoutOverlapping();
     }
 

@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Userlogging;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
 use utils\Alliancehelper\Alliancehelper;
 use utils\Helper\Helper;
 
@@ -42,9 +43,16 @@ class UpdateAlliances extends Command
     {
 
 
-        $status = Helper::checkeve();
-        if ($status == 1) {
-            Alliancehelper::updateAlliances();
-        }
+        // $status = Helper::checkeve();
+        // if ($status == 1) {
+        //     Alliancehelper::updateAlliances();
+        // }
+        $response =  Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json"
+        ])->get("https://esi.evetech.net/dev/alliances/?datasource=tranquility");
+        $ids = $response->collect();
+
+        return $ids;
     }
 }
