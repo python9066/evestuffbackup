@@ -53,20 +53,26 @@ class UpdateAlliances extends Command
             'Content-Type' => 'application/json',
             "Accept" => "application/json"
         ])->get("https://esi.evetech.net/dev/alliances/?datasource=tranquility");
-        $ids = $response->collect();
-        $deads =   Alliance::whereNotIn('id', $ids)->get();
+        $allianceIDs = $response->collect();
+        $deads =   Alliance::whereNotIn('id', $allianceIDs)->get();
         foreach ($deads as $dead) {
             Corp::where('alliance_id', $dead->id)->update(['alliance_id' => null]);
             $dead->delete();
         }
 
-        foreach ($ids as $id) {
-            $this->start($id);
+        foreach ($allianceIDs as $allianceID) {
+            $this->start($allianceID);
         }
     }
 
-    public function start($id)
+    public function start($allianceID)
     {
-        dd($id);
+        Corp::where('alliance_id', $allianceID)->update(['alliannce_id', null]);
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json"
+        ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility");
+        $corpIDs = $response->collect();
+        dd($corpIDs);
     }
 }
