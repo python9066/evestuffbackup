@@ -61,20 +61,39 @@ class UpdateAlliances extends Command
         }
 
         foreach ($allianceIDs as $allianceID) {
-            $this->start($allianceID);
+            $this->startAlliance($allianceID);
         }
     }
 
-    public function start($allianceID)
+    public function startAlliance($allianceID)
     {
+
+
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json"
+        ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/?datasource=tranquility");
+        $allianceInfo = $response->collect();
+        dd($allianceInfo);
+
+
+
+
+
         Corp::where('alliance_id', $allianceID)->update(['alliance_id' => null]);
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json"
         ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility");
         $corpIDs = $response->collect();
+        // Corp::whereIn('id', $corpIDs)->update(['alliance_id' => $allianceID]);
         foreach ($corpIDs as $corpID) {
-            dd($corpID);
+            $this->startCorpJob($corpID);
         }
+    }
+
+    public function startCorpJob($corpID)
+    {
     }
 }
