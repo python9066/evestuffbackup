@@ -10,12 +10,12 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasPermissions;
+use Laravel\Sanctum\HasApiTokens;
+
 
 class User extends Authenticatable
 {
-    use Notifiable;
-    use HasRoles;
-    use HasPermissions;
+    use Notifiable, HasRoles, HasPermissions, HasApiTokens;
 
 
 
