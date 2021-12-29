@@ -51,15 +51,16 @@ class JobTestController extends Controller
             } else {
                 $color = 1;
             };
+            $type = $stand->get('contact_type');
 
-            if ($stand->get('contact_type') == "aliiance") {
+            if ($type == "aliiance") {
                 Alliance::where('id', $stand->get('contact_id'))->update([
                     'color' => $color,
                     'standing' => $stand->get('standing')
                 ]);
             }
 
-            if ($stand->get('contact_type') == "corporation") {
+            if ($type == "corporation") {
                 Corp::where('id', $stand->get('contact_id'))->update([
                     'color' => $color,
                     'standing' => $stand->get('standing')

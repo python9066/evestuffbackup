@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Alliance;
 use App\Models\Auth;
 use DateTime;
 use Illuminate\Bus\Queueable;
@@ -11,6 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Client;
+use App\Models\Corp;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Http;
@@ -60,10 +62,37 @@ class UpdateStandingJob implements ShouldQueue
             $url = 'https://esi.evetech.net/latest/alliances/1354830081/contacts/?datasource=tranquility';
         }
 
-        Http::withToken($token->access_token)->withHeaders([
+        $response = Http::withToken($token->access_token)->withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json"
         ])->get($url);
+
+        $standings = $response->collect();
+        foreach ($standings as $standing) {
+            $stand = collect($standing);
+            if ($stand->get('standing') > 0) {
+                $color = 2;
+            } else {
+                $color = 1;
+            };
+
+            if ($stand->get('contact_type') == "aliiance") {
+                Alliance::where('id', $stand->get('contact_id'))->update([
+                    'color' => $color,
+                    'standing' => $stand->get('standing')
+                ]);
+            }
+
+            if ($stand->get('contact_type') == "corporation") {
+                Corp::where('id', $stand->get('contact_id'))->update([
+                    'color' => $color,
+                    'standing' => $stand->get('standing')
+                ]);
+            }
+        }
+        Alliance::where('color', '0')->update(['color' => 1]);
+        Corp::where('color', '0')->update(['color' => 1]);
+        Alliance::where('id', '1354830081')->update(['standing' => 10, 'color' => 3]);
     }
 
     public function checkKeys()

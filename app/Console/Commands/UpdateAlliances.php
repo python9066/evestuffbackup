@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Jobs\updateAlliancesJob;
+use App\Jobs\UpdateStandingJob;
 use App\Models\Alliance;
 use App\Models\Corp;
 use App\Models\Userlogging;
@@ -64,6 +65,8 @@ class UpdateAlliances extends Command
         foreach ($allianceIDs as $allianceID) {
             updateAlliancesJob::dispatch($allianceID)->onQueue('alliance');
         }
+
+        UpdateStandingJob::dispatch()->onQueue('allince')->delay(now()->addMinutes(20));
     }
 
     // public function startAlliance($allianceID)
