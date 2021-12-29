@@ -116,7 +116,14 @@ class Alliancehelper
                 }
                 $corpIDs = Utils::jsonDecode($response->getBody(), true);
                 foreach ($corpIDs as $corpID) {
-                    Corp::updateOrCreate(['id' => $corpID], ['active' => 1, 'alliance_id' => $allianceID[$i], 'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png"]);
+                    Corp::updateOrCreate(
+                        ['id' => $corpID],
+                        [
+                            'active' => 1,
+                            'alliance_id' => $allianceID[$i],
+                            'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png"
+                        ]
+                    );
                 }
             } else {
                 sleep($errorTime);
