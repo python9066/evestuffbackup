@@ -42,7 +42,9 @@ class JobTestController extends Controller
         ])->get($url);
 
         $standings = $response->collect();
-        dd($standings);
+        foreach ($standings as $standing) {
+            dd($standing);
+        }
     }
 
 
