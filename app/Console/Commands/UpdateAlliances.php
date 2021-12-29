@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Alliance;
+use App\Models\Corp;
 use App\Models\Userlogging;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
@@ -53,7 +54,19 @@ class UpdateAlliances extends Command
             "Accept" => "application/json"
         ])->get("https://esi.evetech.net/dev/alliances/?datasource=tranquility");
         $ids = $response->collect();
-        $test =   Alliance::whereNotIn('id', $ids)->get();
-        dd($test);
+        $deads =   Alliance::whereNotIn('id', $ids)->get();
+        foreach ($deads as $dead) {
+            Corp::where('alliance_id', $dead->id)->update(['alliance_id' => null]);
+            $dead->delete();
+        }
+
+        foreach ($ids as $id) {
+            $this->start($id);
+        }
+    }
+
+    public function start($id)
+    {
+        dd($id);
     }
 }
