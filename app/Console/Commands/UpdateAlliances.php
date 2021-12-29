@@ -48,7 +48,7 @@ class UpdateAlliances extends Command
 
         // $status = Helper::checkeve();
         // if ($status == 1) {
-        //     Alliancehelper::updateAlliances();
+        // Alliancehelper::updateAlliances();
         // }
         $response =  Http::withHeaders([
             'Content-Type' => 'application/json',

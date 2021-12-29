@@ -49,10 +49,8 @@ class updateAlliancesJob implements ShouldQueue
             [
                 'name' => $allianceInfo->get('name'),
                 'ticker' => $allianceInfo->get('ticker'),
-                'standing' => 0,
                 'active' => 1,
                 'url' => "https://images.evetech.net/Alliance/" . $allianceID . "_64.png",
-                'color' => 0
             ]
         );
 

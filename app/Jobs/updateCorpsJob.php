@@ -49,8 +49,6 @@ class updateCorpsJob implements ShouldQueue
                 'alliance_id' => $allianceID,
                 'name' => $corpInfo->get('name'),
                 'ticker' => $corpInfo->get('ticker'),
-                'color' => 0,
-                'standing' => 0,
                 'active' => 1,
                 'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png",
 

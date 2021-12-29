@@ -66,7 +66,6 @@ export default new Vuex.Store({
         ticklist: [],
         timers: [],
         timersRegions: [],
-        token: "",
         tooltipToggle: true,
         towers: [],
         towerlist: [],
@@ -639,10 +638,6 @@ export default new Vuex.Store({
             const item = state.recontasksystems.find((c) => c.id === data.id);
             Object.assign(item, data);
         },
-
-        SET_TOKEN(state, token) {
-            state.token = token;
-        },
         SET_USER_ID(state, user_id) {
             state.user_id = user_id;
         },
@@ -965,9 +960,6 @@ export default new Vuex.Store({
         },
 
         async getUsers({ commit }) {
-            if (state.token == "") {
-                await sleep(500);
-            }
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -983,9 +975,6 @@ export default new Vuex.Store({
         },
 
         async getUserKeys({ commit }) {
-            if (state.token == "") {
-                await sleep(500);
-            }
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1001,9 +990,6 @@ export default new Vuex.Store({
         },
 
         async getKeyFleets({ commit }) {
-            if (state.token == "") {
-                await sleep(500);
-            }
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1551,10 +1537,6 @@ export default new Vuex.Store({
                 },
             });
             commit("SET_EVE_USER_COUNT", res.data.count);
-        },
-
-        setToken({ commit }, token) {
-            commit("SET_TOKEN", token);
         },
 
         setUser_id({ commit }, user_id) {
