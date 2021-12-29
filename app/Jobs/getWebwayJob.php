@@ -43,7 +43,7 @@ class getWebwayJob implements ShouldQueue
             ],
             [
                 'link' => $this->link,
-                'jumpss' => $this->jumpss,
+                'jumps' => $this->jumps,
             ]
         );
 
@@ -54,7 +54,7 @@ class getWebwayJob implements ShouldQueue
             ],
             [
                 'link' => $this->link_p,
-                'jumpss' => $this->jumps_p
+                'jumps' => $this->jumps_p
             ]
         );
     }
