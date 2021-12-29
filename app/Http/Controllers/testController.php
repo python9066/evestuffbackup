@@ -98,7 +98,7 @@ class testController extends Controller
 
         $response->collect();
 
-        dd($response);
+        return $response;
     }
 
 
