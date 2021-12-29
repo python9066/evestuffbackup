@@ -42,7 +42,7 @@ class getWebwayJob implements ShouldQueue
                 'permissions' => 0
             ],
             [
-                'link' => $this->link,
+                'webway' => $this->link,
                 'jumps' => $this->jumps,
             ]
         );
@@ -53,7 +53,7 @@ class getWebwayJob implements ShouldQueue
                 'permissions' => 1
             ],
             [
-                'link' => $this->link_p,
+                'webway' => $this->link_p,
                 'jumps' => $this->jumps_p
             ]
         );
