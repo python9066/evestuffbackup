@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alliance;
 use App\Models\Auth;
 use DateTime;
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Models\Corp;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Http;
@@ -43,8 +45,29 @@ class JobTestController extends Controller
 
         $standings = $response->collect();
         foreach ($standings as $standing) {
-            dd($standing);
+            if ($standing->get('standing') > 0) {
+                $color = 2;
+            } else {
+                $color = 1;
+            };
+
+            if ($standing->get('contact_type') == "aliiance") {
+                Alliance::where('id', $standing->get('contact_id'))->update([
+                    'color' => $color,
+                    'standing' => $standing->get('standing')
+                ]);
+            }
+
+            if ($standing->get('contact_type') == "corporation") {
+                Corp::where('id', $standing->get('contact_id'))->update([
+                    'color' => $color,
+                    'standing' => $standing->get('standing')
+                ]);
+            }
         }
+        Alliance::where('color', '0')->update(['color' => 1]);
+        Corp::where('color', '0')->update(['color' => 1]);
+        Alliance::where('id', '1354830081')->update(['standing' => 10, 'color' => 3]);
     }
 
 
