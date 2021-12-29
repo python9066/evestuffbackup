@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Alliance;
 use App\Models\Userlogging;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
@@ -52,6 +53,7 @@ class UpdateAlliances extends Command
             "Accept" => "application/json"
         ])->get("https://esi.evetech.net/dev/alliances/?datasource=tranquility");
         $ids = $response->collect();
-        dd($ids);
+        $test =   Alliance::whereNotIn('id', $ids)->get();
+        dd($test);
     }
 }
