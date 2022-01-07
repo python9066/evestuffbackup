@@ -91,8 +91,10 @@ class UpdateStandingJob implements ShouldQueue
             }
         }
         Alliance::where('color', '0')->update(['color' => 1]);
-        Corp::where('color', '0')->update(['color' => 1]);
+        Alliance::whereNull('standing')->update(['standing' => 0]);
         Alliance::where('id', '1354830081')->update(['standing' => 10, 'color' => 3]);
+        Corp::whereNull('standing')->update(['standing' => 0]);
+        Corp::where('color', '0')->update(['color' => 1]);
     }
 
     public function checkKeys()
