@@ -39,33 +39,61 @@ class updateAlliancesJob implements ShouldQueue
 
     public function startAlliance($allianceID)
     {
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            "Accept" => "application/json"
-        ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/?datasource=tranquility");
-        $allianceInfo = $response->collect();
-        testTable::create(['text' => $allianceInfo]);
+        $done = 0;
+        $corpCount = 0;
 
-        Alliance::updateOrCreate(
-            ['id' => $allianceID],
-            [
-                'name' => $allianceInfo->get('name'),
-                'ticker' => $allianceInfo->get('ticker'),
-                'active' => 1,
-                'url' => "https://images.evetech.net/Alliance/" . $allianceID . "_64.png",
-            ]
-        );
+        do {
 
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json',
+                "Accept" => "application/json"
+            ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/?datasource=tranquility");
 
-        Corp::where('alliance_id', $allianceID)->update(['alliance_id' => null]);
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            "Accept" => "application/json"
-        ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility");
-        $corpIDs = $response->collect();
-        // Corp::whereIn('id', $corpIDs)->update(['alliance_id' => $allianceID]);
-        foreach ($corpIDs as $corpID) {
-            updateCorpsJob::dispatch($corpID, $allianceID)->onQueue('corp');
-        }
+            if ($response->successful()) {
+                $done = 3;
+                $allianceInfo = $response->collect();
+                Alliance::updateOrCreate(
+                    ['id' => $allianceID],
+                    [
+                        'name' => $allianceInfo->get('name'),
+                        'ticker' => $allianceInfo->get('ticker'),
+                        'standing' => 0,
+                        'active' => 1,
+                        'url' => "https://images.evetech.net/Alliance/" . $allianceID . "_64.png",
+                        'color' => 0
+                    ]
+                );
+                Corp::where('alliance_id', $allianceID)->update(['alliance_id' => null]);
+                do {
+                    $responseCorp = Http::withHeaders([
+                        'Content-Type' => 'application/json',
+                        "Accept" => "application/json"
+                    ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility");
+                    if ($responseCorp->successful()) {
+                        $corpCount = 3;
+                        $corpIDs = $responseCorp->collect();
+                        foreach ($corpIDs as $corpID) {
+
+                            $corpCheck = Corp::where('id', $corpID)->first();
+                            if ($corpCheck) {
+                                $corpCheck->update(['alliance_id' => $allianceID]);
+                            } else {
+                                updateCorpsJob::dispatch($corpID, $allianceID)->onQueue('corp');
+                            }
+                        }
+                    } else {
+                        $headers = $response->headers();
+                        $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
+                        sleep($sleep);
+                        $corpCount++;
+                    }
+                } while ($corpCount != 3);
+            } else {
+                $headers = $response->headers();
+                $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
+                sleep($sleep);
+                $done++;
+            }
+        } while ($done != 3);
     }
 }

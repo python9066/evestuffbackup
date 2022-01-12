@@ -7,11 +7,9 @@ use App\Jobs\UpdateStandingJob;
 use App\Models\Alliance;
 use App\Models\Corp;
 use App\Models\Auth;
-use App\Models\Userlogging;
 use DateTime;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
-use utils\Alliancehelper\Alliancehelper;
 use utils\Helper\Helper;
 use App\Models\Client;
 use GuzzleHttp\Client as GuzzleHttpClient;
@@ -57,38 +55,37 @@ class UpdateAlliances extends Command
         //     Alliancehelper::updateAlliances();
         // }
         #############doing it in job###################
-        // $now = now();
-        // $response =  Http::withHeaders([
-        //     'Content-Type' => 'application/json',
-        //     "Accept" => "application/json"
-        // ])->get("https://esi.evetech.net/latest/alliances/?datasource=tranquility");
-        // $allianceIDs = $response->collect();
-        // $deads =   Alliance::whereNotIn('id', $allianceIDs)->get();
-        // foreach ($deads as $dead) {
-        //     Corp::where('alliance_id', $dead->id)->update(['alliance_id' => null]);
-        //     $dead->delete();
-        // }
-
-        // foreach ($allianceIDs as $allianceID) {
-        // updateAlliancesJob::dispatch($allianceID)->onQueue('alliance');
-        // }
-        // UpdateStandingJob::dispatch()->onQueue('allince')->delay(now()->addMinutes(20));
-        #############################
-        ### here is for not doing it in a job #######
-
-        Alliance::where('id', '>', 0)->update(['active' => 0]);
         $response =  Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json"
         ])->get("https://esi.evetech.net/latest/alliances/?datasource=tranquility");
         $allianceIDs = $response->collect();
-
-        foreach ($allianceIDs as $allianceID) {
-            $this->startAlliance($allianceID);
+        $deads =   Alliance::whereNotIn('id', $allianceIDs)->get();
+        foreach ($deads as $dead) {
+            Corp::where('alliance_id', $dead->id)->update(['alliance_id' => 0]);
+            $dead->delete();
         }
 
-        $this->runStandingUpdate();
-        Corp::where('alliance_id', 0)->delete();
+        foreach ($allianceIDs as $allianceID) {
+            updateAlliancesJob::dispatch($allianceID)->onQueue('alliance');
+        }
+        UpdateStandingJob::dispatch()->onQueue('allince')->delay(now()->addMinutes(10));
+        #############################
+        ### here is for not doing it in a job #######
+
+        // Alliance::where('id', '>', 0)->update(['active' => 0]);
+        // $response =  Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     "Accept" => "application/json"
+        // ])->get("https://esi.evetech.net/latest/alliances/?datasource=tranquility");
+        // $allianceIDs = $response->collect();
+
+        // foreach ($allianceIDs as $allianceID) {
+        //     $this->startAlliance($allianceID);
+        // }
+
+        // $this->runStandingUpdate();
+        // Corp::where('alliance_id', 0)->delete();
 
         ####################
     }
@@ -259,7 +256,7 @@ class UpdateAlliances extends Command
                 $color = 1;
             };
 
-            if ($stand->get('contact_type') == "aliiance") {
+            if ($stand->get('contact_type') == "alliance") {
                 Alliance::where('id', $stand->get('contact_id'))->update([
                     'color' => $color,
                     'standing' => $stand->get('standing')

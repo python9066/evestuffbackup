@@ -76,7 +76,7 @@ class UpdateStandingJob implements ShouldQueue
                 $color = 1;
             };
 
-            if ($stand->get('contact_type') == "aliiance") {
+            if ($stand->get('contact_type') == "alliance") {
                 Alliance::where('id', $stand->get('contact_id'))->update([
                     'color' => $color,
                     'standing' => $stand->get('standing')

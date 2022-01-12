@@ -38,21 +38,34 @@ class updateCorpsJob implements ShouldQueue
 
     public function startCorpJob($corpID, $allianceID)
     {
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            "Accept" => "application/json"
-        ])->get("https://esi.evetech.net/latest/corporations/" . $corpID . "/?datasource=tranquility");
-        $corpInfo = $response->collect();
-        Corp::updateOrCreate(
-            ['id' => $corpID],
-            [
-                'alliance_id' => $allianceID,
-                'name' => $corpInfo->get('name'),
-                'ticker' => $corpInfo->get('ticker'),
-                'active' => 1,
-                'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png",
+        $corpPull = 0;
+        do {
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json',
+                "Accept" => "application/json"
+            ])->get("https://esi.evetech.net/latest/corporations/" . $corpID . "/?datasource=tranquility");
+            if ($response->successful()) {
+                $corpPull = 3;
+                $corpInfo = $response->collect();
+                Corp::updateOrCreate(
+                    ['id' => $corpID],
+                    [
+                        'alliance_id' => $allianceID,
+                        'name' => $corpInfo->get('name'),
+                        'ticker' => $corpInfo->get('ticker'),
+                        'color' => 0,
+                        'standing' => 0,
+                        'active' => 1,
+                        'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png",
 
-            ]
-        );
+                    ]
+                );
+            } else {
+                $headers = $response->headers();
+                $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
+                sleep($sleep);
+                $corpPull++;
+            }
+        } while ($corpPull != 3);
     }
 }
