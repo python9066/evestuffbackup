@@ -118,4 +118,15 @@ class JobTestController extends Controller
 
         dd($allianceInfo, $allianceInfo->get('name'), $allianceInfo->get('ticker'));
     }
+
+    public function jobCorpTest($id)
+    {
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json"
+        ])->get("https://esi.evetech.net/latest/corporations/" . $id . "/?datasource=tranquility");
+        $corpInfo = $response->collect();
+
+        dd($corpInfo, $corpInfo->get('name'), $corpInfo->get('ticker'));
+    }
 }
