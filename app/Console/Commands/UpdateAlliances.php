@@ -53,9 +53,9 @@ class UpdateAlliances extends Command
 
 
         $status = Helper::checkeve();
-        if ($status == 1) {
-            Alliancehelper::updateAlliances();
-        }
+        // if ($status == 1) {
+        //     Alliancehelper::updateAlliances();
+        // }
         #############doing it in job###################
         // $now = now();
         // $response =  Http::withHeaders([
@@ -76,110 +76,112 @@ class UpdateAlliances extends Command
         #############################
         ### here is for not doing it in a job #######
 
-        // foreach ($allianceIDs as $allianceID) {
-        //     $this->startAlliance($allianceID);
-        // }
+        Alliance::get()->update(['active' => 0]);
+        $response =  Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json"
+        ])->get("https://esi.evetech.net/latest/alliances/?datasource=tranquility");
+        $allianceIDs = $response->collect();
 
-        // $retrys = Alliance::where('updated_at', '<', $now)->get();
-        // foreach ($retrys as $retry) {
-        //     $this->startAlliance($retry->id);
-        // }
+        foreach ($allianceIDs as $allianceID) {
+            $this->startAlliance($allianceID);
+        }
 
-        // $retrys = Corp::where('active', 5)->get();
-        // foreach ($retrys as $retry) {
-        //     $this->startCorpJob($retry->id, $retry->alliance_id);
-        // }
-
-        // $this->runStandingUpdate();
+        $this->runStandingUpdate();
 
         ####################
     }
 
     public function startAlliance($allianceID)
     {
+        $done = 0;
+        $corpCount = 0;
 
+        do {
 
-
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            "Accept" => "application/json"
-        ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/?datasource=tranquility");
-
-        if ($response->successful()) {
-            $allianceInfo = $response->collect();
-            Alliance::updatedOrCreate(
-                ['id' => $allianceInfo->id],
-                [
-                    'name' => $allianceInfo->get('name'),
-                    'ticker' => $allianceInfo->get('ticker'),
-                    'standing' => 0,
-                    'active' => 1,
-                    'url' => "https://images.evetech.net/Alliance/" . $allianceID . "_64.png",
-                    'color' => 0
-                ]
-            );
-            Alliance::where('id', $allianceInfo->id)->touch();
-            Corp::where('alliance_id', $allianceID)->update(['alliance_id' => null]);
-            $responseCorp = Http::withHeaders([
+            $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 "Accept" => "application/json"
-            ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility");
-            if ($responseCorp->successful()) {
-                $corpIDs = $responseCorp->collect();
-                foreach ($corpIDs as $corpID) {
-                    $this->startCorpJob($corpID, $allianceID);
-                }
+            ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/?datasource=tranquility");
+
+            if ($response->successful()) {
+                $done = 3;
+                $allianceInfo = $response->collect();
+                Alliance::updatedOrCreate(
+                    ['id' => $allianceInfo->id],
+                    [
+                        'name' => $allianceInfo->get('name'),
+                        'ticker' => $allianceInfo->get('ticker'),
+                        'standing' => 0,
+                        'active' => 1,
+                        'url' => "https://images.evetech.net/Alliance/" . $allianceID . "_64.png",
+                        'color' => 0
+                    ]
+                );
+                Corp::where('alliance_id', $allianceID)->update(['alliance_id' => null]);
+                do {
+                    $responseCorp = Http::withHeaders([
+                        'Content-Type' => 'application/json',
+                        "Accept" => "application/json"
+                    ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility");
+                    if ($responseCorp->successful()) {
+                        $corpCount = 3;
+                        $corpIDs = $responseCorp->collect();
+                        foreach ($corpIDs as $corpID) {
+                            $corpCheck = Corp::where('id', $corpID)->first();
+                            if ($corpCheck) {
+                                $corpCheck->update(['alliance_id' => $allianceID]);
+                            } else {
+                                $this->startCorpJob($corpID, $allianceID);
+                            }
+                        }
+                    } else {
+                        $headers = $response->headers();
+                        $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
+                        sleep($sleep);
+                        $corpCount++;
+                    }
+                } while ($corpCount != 3);
             } else {
                 $headers = $response->headers();
                 $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
                 sleep($sleep);
+                $done++;
             }
-        } else {
-            $headers = $response->headers();
-            $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
-            sleep($sleep);
-        }
+        } while ($done != 3);
     }
 
     public function startCorpJob($corpID, $allianceID)
     {
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            "Accept" => "application/json"
-        ])->get("https://esi.evetech.net/latest/corporations/" . $corpID . "/?datasource=tranquility");
-        if ($response->successful()) {
-            $corpInfo = $response->collect();
-            Corp::updateOrCreate(
-                ['id' => $corpID],
-                [
-                    'alliance_id' => $allianceID,
-                    'name' => $corpInfo->get('name'),
-                    'ticker' => $corpInfo->get('ticker'),
-                    'color' => 0,
-                    'standing' => 0,
-                    'active' => 1,
-                    'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png",
+        $corpPull = 0;
+        do {
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json',
+                "Accept" => "application/json"
+            ])->get("https://esi.evetech.net/latest/corporations/" . $corpID . "/?datasource=tranquility");
+            if ($response->successful()) {
+                $corpPull = 3;
+                $corpInfo = $response->collect();
+                Corp::updateOrCreate(
+                    ['id' => $corpID],
+                    [
+                        'alliance_id' => $allianceID,
+                        'name' => $corpInfo->get('name'),
+                        'ticker' => $corpInfo->get('ticker'),
+                        'color' => 0,
+                        'standing' => 0,
+                        'active' => 1,
+                        'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png",
 
-                ]
-            );
-        } else {
-            Corp::updateOrCreate(
-                ['id' => $corpID],
-                [
-                    'alliance_id' => $allianceID,
-                    'name' => null,
-                    'ticker' => null,
-                    'color' => 0,
-                    'standing' => 0,
-                    'active' => 5,
-                    'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png",
-
-                ]
-            );
-            $headers = $response->headers();
-            $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
-            sleep($sleep);
-        }
+                    ]
+                );
+            } else {
+                $headers = $response->headers();
+                $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
+                sleep($sleep);
+                $corpPull++;
+            }
+        } while ($corpPull != 3);
     }
 
     public function runStandingUpdate()

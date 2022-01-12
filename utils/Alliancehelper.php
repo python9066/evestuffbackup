@@ -40,6 +40,7 @@ class Alliancehelper
                 $corpReturn = $corpRep->collect();
                 Corp::create([
                     'id' => $var[0]['id'],
+                    'alliance_id' => 1,
                     "name" => $corpReturn["name"],
                     'ticker' => $corpReturn["ticker"],
                     'url' => "https://images.evetech.net/Corporation/" . $var[0]['id'] . "_64.png",
