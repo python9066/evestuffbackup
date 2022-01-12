@@ -51,39 +51,48 @@ class UpdateAlliances extends Command
     public function handle()
     {
 
-        $now = now();
-        // $status = Helper::checkeve();
-        // if ($status == 1) {
-        // Alliancehelper::updateAlliances();
+
+        $status = Helper::checkeve();
+        if ($status == 1) {
+            Alliancehelper::updateAlliances();
+        }
+        #############doing it in job###################
+        // $now = now();
+        // $response =  Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     "Accept" => "application/json"
+        // ])->get("https://esi.evetech.net/latest/alliances/?datasource=tranquility");
+        // $allianceIDs = $response->collect();
+        // $deads =   Alliance::whereNotIn('id', $allianceIDs)->get();
+        // foreach ($deads as $dead) {
+        //     Corp::where('alliance_id', $dead->id)->update(['alliance_id' => null]);
+        //     $dead->delete();
         // }
-        $response =  Http::withHeaders([
-            'Content-Type' => 'application/json',
-            "Accept" => "application/json"
-        ])->get("https://esi.evetech.net/latest/alliances/?datasource=tranquility");
-        $allianceIDs = $response->collect();
-        $deads =   Alliance::whereNotIn('id', $allianceIDs)->get();
-        foreach ($deads as $dead) {
-            Corp::where('alliance_id', $dead->id)->update(['alliance_id' => null]);
-            $dead->delete();
-        }
 
-        foreach ($allianceIDs as $allianceID) {
-            // updateAlliancesJob::dispatch($allianceID)->onQueue('alliance');
-            $this->startAlliance($allianceID);
-        }
-
-        $retrys = Alliance::where('updated_at', '<', $now)->get();
-        foreach ($retrys as $retry) {
-            $this->startAlliance($retry->id);
-        }
-
-        $retrys = Corp::where('active', 5)->get();
-        foreach ($retrys as $retry) {
-            $this->startCorpJob($retry->id, $retry->alliance_id);
-        }
-
+        // foreach ($allianceIDs as $allianceID) {
+        //     updateAlliancesJob::dispatch($allianceID)->onQueue('alliance');
+        // }
         // UpdateStandingJob::dispatch()->onQueue('allince')->delay(now()->addMinutes(20));
-        $this->runStandingUpdate();
+        #############################
+        ### here is for not doing it in a job #######
+
+        // foreach ($allianceIDs as $allianceID) {
+        //     $this->startAlliance($allianceID);
+        // }
+
+        // $retrys = Alliance::where('updated_at', '<', $now)->get();
+        // foreach ($retrys as $retry) {
+        //     $this->startAlliance($retry->id);
+        // }
+
+        // $retrys = Corp::where('active', 5)->get();
+        // foreach ($retrys as $retry) {
+        //     $this->startCorpJob($retry->id, $retry->alliance_id);
+        // }
+
+        // $this->runStandingUpdate();
+
+        ####################
     }
 
     public function startAlliance($allianceID)
@@ -122,12 +131,12 @@ class UpdateAlliances extends Command
                 }
             } else {
                 $headers = $response->headers();
-                $sleep = $headers['X-Esi-Error-Limit-Remain'][0];
+                $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
                 sleep($sleep);
             }
         } else {
             $headers = $response->headers();
-            $sleep = $headers['X-Esi-Error-Limit-Remain'][0];
+            $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
             sleep($sleep);
         }
     }
@@ -168,7 +177,7 @@ class UpdateAlliances extends Command
                 ]
             );
             $headers = $response->headers();
-            $sleep = $headers['X-Esi-Error-Limit-Remain'][0];
+            $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
             sleep($sleep);
         }
     }
