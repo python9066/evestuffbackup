@@ -26,6 +26,7 @@ hooks:
     php artisan route:cache
     php artisan config:cache
     php artisan cache:clear
+    php artisan queue:restart
 
 # The relationships of the affffffpplication with services or other applications.
 # The left-hand side is the name offfff the relationship as it will be exposed
@@ -67,9 +68,9 @@ workers:
     commands:
       start: |
         php artisan schedule:daemon
-  horizon:
-    size: S
-    disk: 1024
-    commands:
-      start: |
-        php artisan horizon
+  # horizon:
+  #   size: M
+  #   disk: 2048
+  #   commands:
+  #     start: |
+  #       php artisan horizon
