@@ -113,14 +113,13 @@ class UpdateStanding extends Command
         $this->info($standings);
         foreach ($standings as $standing) {
             $stand = collect($standing);
-            dd($stand->get('standing'));
             if ($stand->get('standing') > 0) {
                 $color = 2;
             } else {
                 $color = 1;
             };
 
-            if ($stand->get('contact_type') == "aliiance") {
+            if ($stand->get('contact_type') == "alliance") {
                 Alliance::where('id', $stand->get('contact_id'))->update([
                     'color' => $color,
                     'standing' => $stand->get('standing')
