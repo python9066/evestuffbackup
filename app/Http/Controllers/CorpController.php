@@ -15,18 +15,18 @@ class CorpController extends Controller
      */
     public function index()
     {
-        $tickerlist = [];
-        $tickers = Corp::all();
-        foreach ($tickers as $ticker) {
-            $data = [];
-            $data = [
-                'text' => $ticker->ticker,
-                'value' => $ticker->id
-            ];
 
-            array_push($tickerlist, $data);
-        }
-        return ['ticklist' => $tickerlist];
+        $tickers = Corp::select('ticker as text', 'id as value')->get();
+        // foreach ($tickers as $ticker) {
+        //     $data = [];
+        //     $data = [
+        //         'text' => $ticker->ticker,
+        //         'value' => $ticker->id
+        //     ];
+
+        //     array_push($tickerlist, $data);
+        // }
+        return ['ticklist' => $tickers];
     }
 
     public function addMissingCorp($name)
