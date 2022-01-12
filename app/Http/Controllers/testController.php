@@ -107,6 +107,22 @@ class testController extends Controller
         // ];
     }
 
+
+    public function testPull()
+    {
+        $client = new Client();
+        $headers = [
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ];
+        $url = "https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility";
+        $response = $client->request('GET', $url, [
+            'headers' => $headers
+        ]);
+        $response = Utils::jsonDecode($response->getBody(), true);
+        dd($response);
+    }
+
     public function corptest2()
     {
         $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
