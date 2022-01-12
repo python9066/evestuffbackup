@@ -30,16 +30,16 @@ class AllianceController extends Controller
 
     {
         $tickerlist = [];
-        $tickers = Alliance::all();
-        foreach ($tickers as $ticker) {
-            $data = [];
-            $data = [
-                'text' => $ticker->ticker,
-                'value' => $ticker->id
-            ];
+        $tickers = Alliance::select('ticker as text', 'id as value')->get();
+        // foreach ($tickers as $ticker) {
+        //     $data = [];
+        //     $data = [
+        //         'text' => $ticker->ticker,
+        //         'value' => $ticker->id
+        //     ];
 
-            array_push($tickerlist, $data);
-        }
-        return ['allianceticklist' => $tickerlist];
+        //     array_push($tickerlist, $data);
+        // }
+        return ['allianceticklist' => $tickers];
     }
 }
