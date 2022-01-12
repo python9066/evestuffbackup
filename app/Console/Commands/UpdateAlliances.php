@@ -70,7 +70,7 @@ class UpdateAlliances extends Command
         // }
 
         // foreach ($allianceIDs as $allianceID) {
-        //     updateAlliancesJob::dispatch($allianceID)->onQueue('alliance');
+        // updateAlliancesJob::dispatch($allianceID)->onQueue('alliance');
         // }
         // UpdateStandingJob::dispatch()->onQueue('allince')->delay(now()->addMinutes(20));
         #############################

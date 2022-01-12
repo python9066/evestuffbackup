@@ -57,15 +57,15 @@ class updateAlliancesJob implements ShouldQueue
         );
 
 
-        // Corp::where('alliance_id', $allianceID)->update(['alliance_id' => null]);
-        // $response = Http::withHeaders([
-        //     'Content-Type' => 'application/json',
-        //     "Accept" => "application/json"
-        // ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility");
-        // $corpIDs = $response->collect();
-        // // Corp::whereIn('id', $corpIDs)->update(['alliance_id' => $allianceID]);
-        // foreach ($corpIDs as $corpID) {
-        //     updateCorpsJob::dispatch($corpID, $allianceID)->onQueue('corp');
-        // }
+        Corp::where('alliance_id', $allianceID)->update(['alliance_id' => null]);
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json"
+        ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility");
+        $corpIDs = $response->collect();
+        // Corp::whereIn('id', $corpIDs)->update(['alliance_id' => $allianceID]);
+        foreach ($corpIDs as $corpID) {
+            updateCorpsJob::dispatch($corpID, $allianceID)->onQueue('corp');
+        }
     }
 }

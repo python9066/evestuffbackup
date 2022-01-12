@@ -88,7 +88,7 @@ class Alliancehelper
 
 
         $allianceID = Alliance::all()->pluck('id');
-        Corp::where(' alliance_id', '>', 0)->update(['active' => 0]);
+        Corp::where('alliance_id', '>', 0)->update(['active' => 0]);
         $errorCount = 100;
         $errorTime = 30;
         for ($i = 0; $i < count($allianceID); $i++) {
