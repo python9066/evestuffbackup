@@ -61,7 +61,7 @@ class testController extends Controller
         }
     }
 
-    public static function getCorpWithNoAlliance($id)
+    public static function getCorpWithNoAlliance()
     {
 
         $corpID = null;
@@ -105,6 +105,23 @@ class testController extends Controller
         //     'corpID' => $corpID,
         //     'corpTicker' => $corpTciker
         // ];
+    }
+
+    public function testGetAlliance($id)
+    {
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json"
+        ])->get("https://esi.evetech.net/latest/alliances/" . $id . "/?datasource=tranquility");
+        $allianceInfo = $response->collect();
+
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json"
+        ])->get("https://esi.evetech.net/latest/alliances/" . $id . "/corporations/?datasource=tranquility");
+        $corpIDs = $response->collect();
+
+        dd($allianceInfo, $corpIDs);
     }
 
 
