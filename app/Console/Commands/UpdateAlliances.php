@@ -108,7 +108,7 @@ class UpdateAlliances extends Command
                 $done = 3;
                 $allianceInfo = $response->collect();
                 $this->info($allianceInfo);
-                Alliance::updatedOrCreate(
+                Alliance::updateOrCreate(
                     ['id' => $allianceID],
                     [
                         'name' => $allianceInfo->get('name'),
