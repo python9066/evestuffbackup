@@ -59,7 +59,7 @@ class UpdateAlliances extends Command
         $response =  Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json"
-        ])->get("https://esi.evetech.net/dev/alliances/?datasource=tranquility");
+        ])->get("https://esi.evetech.net/lastest/alliances/?datasource=tranquility");
         $allianceIDs = $response->collect();
         $deads =   Alliance::whereNotIn('id', $allianceIDs)->get();
         foreach ($deads as $dead) {
