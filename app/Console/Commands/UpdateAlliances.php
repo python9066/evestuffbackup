@@ -88,6 +88,7 @@ class UpdateAlliances extends Command
         }
 
         $this->runStandingUpdate();
+        Corp::where('alliance_id', 0)->delete();
 
         ####################
     }
