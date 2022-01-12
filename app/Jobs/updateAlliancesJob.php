@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Alliance;
 use App\Models\Corp;
+use App\Models\testTable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -43,6 +44,7 @@ class updateAlliancesJob implements ShouldQueue
             "Accept" => "application/json"
         ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/?datasource=tranquility");
         $allianceInfo = $response->collect();
+        testTable::create(['text' => $allianceInfo]);
 
         Alliance::updateOrCreate(
             ['id' => $allianceID],
