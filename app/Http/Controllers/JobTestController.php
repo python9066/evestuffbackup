@@ -115,8 +115,9 @@ class JobTestController extends Controller
             "Accept" => "application/json"
         ])->get("https://esi.evetech.net/latest/alliances/" . $id . "/?datasource=tranquility");
         $allianceInfo = $response->collect();
+        $headers = $response->headers();
 
-        dd($allianceInfo, $allianceInfo->get('name'), $allianceInfo->get('ticker'));
+        dd($allianceInfo, $allianceInfo->get('name'), $allianceInfo->get('ticker'), $headers);
     }
 
     public function jobCorpTest($id)
