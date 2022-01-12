@@ -61,6 +61,51 @@ class testController extends Controller
         }
     }
 
+    public static function getCorpWithNoAlliance($id)
+    {
+
+        $corpID = null;
+        $corpTciker = null;
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json"
+        ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", ["monty"]);
+
+        $returns = $response->collect();
+        dd($returns);
+        foreach ($returns as $key => $var) {
+            if ($key == "corporations") {
+
+                $corpRep = Http::withHeaders([
+                    'Content-Type' => 'application/json',
+                    "Accept" => "application/json"
+                ])->get("https://esi.evetech.net/latest/corporations/" . $var[0]['id'] . "/?datasource=tranquility");
+
+
+
+                $corpReturn = $corpRep->collect();
+                // Corp::create([
+                //     'id' => $var[0]['id'],
+                //     "name" => $corpReturn["name"],
+                //     'ticker' => $corpReturn["ticker"],
+                //     'url' => "https://images.evetech.net/Corporation/" . $var[0]['id'] . "_64.png",
+                //     'active' => 1
+                // ]);
+
+                // $corpID = $var[0]['id'];
+                // $corpTciker = $corpReturn["ticker"];
+            }
+        }
+
+        // $tickerlist = Corp::select(['ticker as text', 'id as value'])->get();
+
+
+        // return [
+        //     'ticklist' => $tickerlist,
+        //     'corpID' => $corpID,
+        //     'corpTicker' => $corpTciker
+        // ];
+    }
 
     public function corptest2()
     {

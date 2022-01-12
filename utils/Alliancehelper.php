@@ -25,7 +25,7 @@ class Alliancehelper
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json"
-        ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", ["monty"]);
+        ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", [$id]);
 
         $returns = $response->collect();
         foreach ($returns as $key => $var) {

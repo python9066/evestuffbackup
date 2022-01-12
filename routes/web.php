@@ -22,7 +22,7 @@ use Spatie\Permission\Models\Permission;
 
 Route::get('/jobtest', 'JobTestController@standingJob');
 Route::get('/dance', 'testController@corptest');
-Route::get('/dance2', 'testController@corptest2');
+Route::get('/getCorpWithNoAlliance', 'testController@corptest2');
 Route::get('/73cbd63ecd4d2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff', 'AuthController@admin');
 Route::get('/73cbd63ecd4d2f33590be892ff', 'AuthController@webwayUser');
 Route::get('/7fegrghrthtrhtr2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff', 'AuthController@martyn');
