@@ -71,7 +71,7 @@ class Alliancehelper
             "Accept" => "application/json",
         ];
 
-        $url = "https://esi.evetech.net/lastest/alliances/?datasource=tranquility";
+        $url = "https://esi.evetech.net/latest/alliances/?datasource=tranquility";
         $response = $client->request('GET', $url, [
             'headers' => $headers
         ]);
