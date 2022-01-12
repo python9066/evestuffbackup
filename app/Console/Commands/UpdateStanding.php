@@ -113,6 +113,7 @@ class UpdateStanding extends Command
         $this->info($standings);
         foreach ($standings as $standing) {
             $stand = collect($standing);
+            dd($stand);
             if ($stand->get('standing') > 0) {
                 $color = 2;
             } else {
