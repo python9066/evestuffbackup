@@ -107,9 +107,9 @@ class UpdateAlliances extends Command
             if ($response->successful()) {
                 $done = 3;
                 $allianceInfo = $response->collect();
-                echo $allianceInfo;
+                $this->info($allianceInfo);
                 Alliance::updatedOrCreate(
-                    ['id' => $allianceInfo->id],
+                    ['id' => $allianceID],
                     [
                         'name' => $allianceInfo->get('name'),
                         'ticker' => $allianceInfo->get('ticker'),
@@ -128,7 +128,7 @@ class UpdateAlliances extends Command
                     if ($responseCorp->successful()) {
                         $corpCount = 3;
                         $corpIDs = $responseCorp->collect();
-                        echo $corpIDs;
+                        $this->info($corpIDs);
                         foreach ($corpIDs as $corpID) {
 
                             $corpCheck = Corp::where('id', $corpID)->first();
@@ -165,7 +165,7 @@ class UpdateAlliances extends Command
             if ($response->successful()) {
                 $corpPull = 3;
                 $corpInfo = $response->collect();
-                echo $corpInfo;
+                $this->info($corpInfo);
                 Corp::updateOrCreate(
                     ['id' => $corpID],
                     [
@@ -198,14 +198,14 @@ class UpdateAlliances extends Command
     {
         $auths = Auth::all();
         foreach ($auths as $auth) {
-            // echo " - " . $auth->name . " - ";
+            // print " - " . $auth->name . " - ";
 
             $expire_date = new DateTime($auth->expire_date);
             $date = new DateTime();
 
             if ($date > $expire_date) {
                 // if (1 > 0) {
-                // echo "old!¬¬¬¬¬ !!!! ----";
+                // print "old!¬¬¬¬¬ !!!! ----";
                 $client = Client::first();
                 $http = new GuzzleHttpCLient();
 
@@ -217,7 +217,7 @@ class UpdateAlliances extends Command
 
                 ];
                 $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
-                // echo $body;
+                // print $body;
                 $response = $http->request('POST', 'https://login.eveonline.com/v2/oauth/token', [
                     'headers' => $headers,
                     'body' => $body
