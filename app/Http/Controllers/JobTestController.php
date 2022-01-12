@@ -117,7 +117,7 @@ class JobTestController extends Controller
         $allianceInfo = $response->collect();
         $headers = $response->headers();
 
-        dd($allianceInfo, $allianceInfo->get('name'), $allianceInfo->get('ticker'), $headers);
+        dd($allianceInfo, $allianceInfo->get('name'), $allianceInfo->get('ticker'), $headers, $headers['X-Esi-Error-Limit-Remain']);
     }
 
     public function jobCorpTest($id)
