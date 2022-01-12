@@ -76,7 +76,7 @@ class UpdateAlliances extends Command
         #############################
         ### here is for not doing it in a job #######
 
-        Alliance::get()->update(['active' => 0]);
+        Alliance::where('id', '>', 0)->update(['active' => 0]);
         $response =  Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json"
@@ -107,6 +107,7 @@ class UpdateAlliances extends Command
             if ($response->successful()) {
                 $done = 3;
                 $allianceInfo = $response->collect();
+                echo $allianceInfo;
                 Alliance::updatedOrCreate(
                     ['id' => $allianceInfo->id],
                     [
@@ -127,7 +128,9 @@ class UpdateAlliances extends Command
                     if ($responseCorp->successful()) {
                         $corpCount = 3;
                         $corpIDs = $responseCorp->collect();
+                        echo $corpIDs;
                         foreach ($corpIDs as $corpID) {
+
                             $corpCheck = Corp::where('id', $corpID)->first();
                             if ($corpCheck) {
                                 $corpCheck->update(['alliance_id' => $allianceID]);
@@ -162,6 +165,7 @@ class UpdateAlliances extends Command
             if ($response->successful()) {
                 $corpPull = 3;
                 $corpInfo = $response->collect();
+                echo $corpInfo;
                 Corp::updateOrCreate(
                     ['id' => $corpID],
                     [
