@@ -106,4 +106,16 @@ class JobTestController extends Controller
             }
         }
     }
+
+
+    public function jobAllianceTest($id)
+    {
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json"
+        ])->get("https://esi.evetech.net/latest/alliances/" . $id . "/?datasource=tranquility");
+        $allianceInfo = $response->collect();
+
+        dd($allianceInfo, $allianceInfo->get('name'), $allianceInfo->get('ticker'));
+    }
 }
