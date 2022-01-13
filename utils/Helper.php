@@ -302,32 +302,34 @@ class Helper
 
     public static function StationRecords($type)
     {
+        $type = $type;
+        $station_query = Station::query();
         if ($type = 1) {
-            $station = Station::where('show_on_main', 1)->get();
+            $station_query->where('show_on_main', 1)->get();
         }
 
         if ($type = 2) {
-            $station = Station::where('show_on_chill', 1)->get();
+            $station_query->where('show_on_chill', 1)->get();
         }
 
         if ($type = 3) {
-            $station = Station::where('show_on_welp', 1)->get();
+            $station_query->where('show_on_welp', 1)->get();
         }
 
         if ($type = 4) {
-            $station = Station::where('show_on_rc', 1)->get();
+            $station_query->where('show_on_rc', 1)->get();
         }
 
         if ($type = 5) {
-            $station = Station::where('show_on_rc_move', 1)->get();
+            $station_query->where('show_on_rc_move', 1)->get();
         }
 
         if ($type = 6) {
-            $station = Station::where('show_on_coord', 1)->get();
+            $station_query->where('show_on_coord', 1)->get();
         }
 
 
-        return  $station->with([
+        $station_query->with([
             'system',
             'status',
             'fc',
@@ -335,6 +337,9 @@ class Helper
             'gsoluser',
             'corp',
             'alliance'
-        ])->get();
+        ]);
+
+        $stationRecords = $station_query->get();
+        return $stationRecords;
     }
 }
