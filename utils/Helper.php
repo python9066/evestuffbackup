@@ -305,27 +305,27 @@ class Helper
         $type = $type;
         $station_query = Station::query();
         if ($type = 1) {
-            $station_query->where('show_on_main', 1)->get();
+            $station_query->where('show_on_main', 1);
         }
 
         if ($type = 2) {
-            $station_query->where('show_on_chill', 1)->get();
+            $station_query->where('show_on_chill', 1);
         }
 
         if ($type = 3) {
-            $station_query->where('show_on_welp', 1)->get();
+            $station_query->where('show_on_welp', 1);
         }
 
         if ($type = 4) {
-            $station_query->where('show_on_rc', 1)->get();
+            $station_query->where('show_on_rc', 1);
         }
 
         if ($type = 5) {
-            $station_query->where('show_on_rc_move', 1)->get();
+            $station_query->where('show_on_rc_move', 1);
         }
 
         if ($type = 6) {
-            $station_query->where('show_on_coord', 1)->get();
+            $station_query->where('show_on_coord', 1);
         }
 
 
