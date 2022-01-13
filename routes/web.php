@@ -21,7 +21,7 @@ use Spatie\Permission\Models\Permission;
 
 
 Route::get('/jobtest', 'JobTestController@standingJob');
-Route::get('/stationrecord/{$type}', 'testController@standingJob');
+Route::get('/stationrecordtest/{id}', 'testController@testStationRecords');
 Route::get('/testGetAliiance/{id}', 'testController@testGetAlliance');
 Route::get('/testGetAliianceJob/{id}', 'JobTestController@jobAllianceTest');
 Route::get('/testGetCorpJob/{id}', 'JobTestController@jobCorpTest');
