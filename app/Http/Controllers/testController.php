@@ -125,6 +125,12 @@ class testController extends Controller
     }
 
 
+    public function testStationRecords($type)
+    {
+        return Helper::StationRecords($type);
+    }
+
+
     public function testPull()
     {
         $client = new Client();

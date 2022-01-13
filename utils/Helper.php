@@ -298,4 +298,43 @@ class Helper
         ]);
         broadcast(new StationLogUpdate($flag));
     }
+
+
+    public static function StationRecords($type)
+    {
+        if ($type = 1) {
+            $station = Station::where('show_on_main', 1)->get();
+        }
+
+        if ($type = 2) {
+            $station = Station::where('show_on_chill', 1)->get();
+        }
+
+        if ($type = 3) {
+            $station = Station::where('show_on_welp', 1)->get();
+        }
+
+        if ($type = 4) {
+            $station = Station::where('show_on_rc', 1)->get();
+        }
+
+        if ($type = 5) {
+            $station = Station::where('show_on_rc_move', 1)->get();
+        }
+
+        if ($type = 6) {
+            $station = Station::where('show_on_coord', 1)->get();
+        }
+
+
+        return  $station->with([
+            'system',
+            'status',
+            'fc',
+            'recon',
+            'gsoluser',
+            'corp',
+            'alliance'
+        ])->get();
+    }
 }

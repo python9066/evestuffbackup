@@ -26,6 +26,8 @@ class Corp extends Model
         return $this->hasMany(ChillStation::class);
     }
 
+
+
     protected $casts = [
         'id' => 'integer',
         'alliance_id' => 'integer',

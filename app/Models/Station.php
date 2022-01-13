@@ -25,6 +25,25 @@ class Station extends Model
         return $this->belongsTo(Item::class);
     }
 
+    public function status()
+    {
+        return $this->belongsTo(StationStatus::class);
+    }
+
+    public function fc()
+    {
+        return $this->belongsTo(RcFcUsers::class, 'rc_fc_id', 'id');
+    }
+    public function recon()
+    {
+        return $this->belongsTo(RcFcUsers::class);
+    }
+    public function gsoluser()
+    {
+        return $this->belongsTo(RcGsolUsers::class);
+    }
+
+
     public function corp()
     {
         return $this->belongsTo(Corp::class);

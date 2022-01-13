@@ -19,6 +19,6 @@
   upstream: "app:http"
   cache:
     enabled: false
-"https://{default}/bugfix085":
+"https://{default}/bugfix086":
   type: redirect
   to: "https://{default}/bugfix"
