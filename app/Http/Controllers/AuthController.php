@@ -92,6 +92,18 @@ class AuthController extends Controller
         return ['token' => $token->plainTextToken];
     }
 
+
+    public function borisToken()
+    {
+        $user =  User::where('id', 79231)->first();
+
+
+
+        $token = $user->createToken('auth_token');
+
+        return ['token' => $token->plainTextToken];
+    }
+
     public function admin()
     {
 
