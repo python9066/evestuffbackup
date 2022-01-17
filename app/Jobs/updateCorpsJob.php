@@ -42,7 +42,8 @@ class updateCorpsJob implements ShouldQueue
         do {
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-                "Accept" => "application/json"
+                "Accept" => "application/json",
+                'User-Agent' => 'evestuff.online python9066@gmail.com'
             ])->get("https://esi.evetech.net/latest/corporations/" . $corpID . "/?datasource=tranquility");
             if ($response->successful()) {
                 $corpPull = 3;

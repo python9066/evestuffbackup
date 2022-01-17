@@ -64,7 +64,8 @@ class UpdateStandingJob implements ShouldQueue
 
         $response = Http::withToken($token->access_token)->withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json"
+            "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ])->get($url);
 
         $standings = $response->collect();
@@ -116,7 +117,8 @@ class UpdateStandingJob implements ShouldQueue
                 $headers = [
                     'Authorization' => 'Basic ' . $client->code,
                     'Content-Type' => 'application/x-www-form-urlencoded',
-                    'Host' => 'login.eveonline.com'
+                    'Host' => 'login.eveonline.com',
+                    'User-Agent' => 'evestuff.online python9066@gmail.com'
 
                 ];
                 $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;

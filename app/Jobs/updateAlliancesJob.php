@@ -46,7 +46,8 @@ class updateAlliancesJob implements ShouldQueue
 
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-                "Accept" => "application/json"
+                "Accept" => "application/json",
+                'User-Agent' => 'evestuff.online python9066@gmail.com'
             ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/?datasource=tranquility");
 
             if ($response->successful()) {
@@ -67,7 +68,8 @@ class updateAlliancesJob implements ShouldQueue
                 do {
                     $responseCorp = Http::withHeaders([
                         'Content-Type' => 'application/json',
-                        "Accept" => "application/json"
+                        "Accept" => "application/json",
+                        'User-Agent' => 'evestuff.online python9066@gmail.com'
                     ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility");
                     if ($responseCorp->successful()) {
                         $corpCount = 3;

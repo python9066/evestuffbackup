@@ -20,6 +20,7 @@ class Timerhelper
         $headers = [
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ];
         $url = $url = "https://esi.evetech.net/latest/sovereignty/structures/?datasource=tranquility";
         $response = $client->request('GET', $url, [

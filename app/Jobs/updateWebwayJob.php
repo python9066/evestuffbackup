@@ -64,7 +64,8 @@ class updateWebwayJob implements ShouldQueue
         Http::withToken($webwayToken)
             ->withHeaders([
                 'Content-Type' => 'application/json',
-                "Accept" => "application/json"
+                "Accept" => "application/json",
+                'User-Agent' => 'evestuff.online python9066@gmail.com'
             ])->post($webwayURL, $data);
     }
 }

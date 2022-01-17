@@ -99,6 +99,7 @@ class Campaignhelper
         $headers = [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ];
         $url = "https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility";
         $response = $client->request('GET', $url, [

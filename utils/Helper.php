@@ -47,7 +47,8 @@ class Helper
                 $headers = [
                     'Authorization' => 'Basic ' . $client->code,
                     'Content-Type' => 'application/x-www-form-urlencoded',
-                    'Host' => 'login.eveonline.com'
+                    'Host' => 'login.eveonline.com',
+                    'User-Agent' => 'evestuff.online python9066@gmail.com'
 
                 ];
                 $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
@@ -118,6 +119,7 @@ class Helper
         $client = new GuzzleHttpClient();
         $headers = [
             'Authorization' => 'Bearer ' . $token->access_token,
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
 
         ];
         $good = 0;
@@ -164,6 +166,7 @@ class Helper
 
         $headers = [
             'Accept' => "text/plain",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ];
 
         $response = $http->request('GET', 'https://esi.evetech.net/ping');
@@ -195,6 +198,7 @@ class Helper
         $http = new GuzzleHttpCLient();
         $headers = [
             'Accept' => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ];
 
         $response = $http->request('GET', 'https://esi.evetech.net/latest/status/?datasource=tranquility', [

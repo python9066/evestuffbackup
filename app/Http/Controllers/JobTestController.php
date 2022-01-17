@@ -40,7 +40,8 @@ class JobTestController extends Controller
 
         $response = Http::withToken($token->access_token)->withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json"
+            "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ])->get($url);
 
         $standings = $response->collect();
@@ -89,7 +90,8 @@ class JobTestController extends Controller
                 $headers = [
                     'Authorization' => 'Basic ' . $client->code,
                     'Content-Type' => 'application/x-www-form-urlencoded',
-                    'Host' => 'login.eveonline.com'
+                    'Host' => 'login.eveonline.com',
+                    'User-Agent' => 'evestuff.online python9066@gmail.com'
 
                 ];
                 $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
@@ -112,7 +114,8 @@ class JobTestController extends Controller
     {
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json"
+            "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ])->get("https://esi.evetech.net/latest/alliances/" . $id . "/?datasource=tranquility");
         $allianceInfo = $response->collect();
         $headers = $response->headers();
@@ -124,7 +127,8 @@ class JobTestController extends Controller
     {
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json"
+            "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ])->get("https://esi.evetech.net/latest/corporations/" . $id . "/?datasource=tranquility");
         $corpInfo = $response->collect();
 

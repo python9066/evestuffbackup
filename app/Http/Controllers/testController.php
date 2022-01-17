@@ -68,7 +68,8 @@ class testController extends Controller
         $corpTciker = null;
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json"
+            "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", ["monty"]);
 
         $returns = $response->collect();
@@ -78,7 +79,8 @@ class testController extends Controller
 
                 $corpRep = Http::withHeaders([
                     'Content-Type' => 'application/json',
-                    "Accept" => "application/json"
+                    "Accept" => "application/json",
+                    'User-Agent' => 'evestuff.online python9066@gmail.com'
                 ])->get("https://esi.evetech.net/latest/corporations/" . $var[0]['id'] . "/?datasource=tranquility");
 
 
@@ -111,13 +113,15 @@ class testController extends Controller
     {
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json"
+            "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ])->get("https://esi.evetech.net/latest/alliances/" . $id . "/?datasource=tranquility");
         $allianceInfo = $response->collect();
 
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json"
+            "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ])->get("https://esi.evetech.net/latest/alliances/" . $id . "/corporations/?datasource=tranquility");
         $corpIDs = $response->collect();
 
@@ -137,6 +141,7 @@ class testController extends Controller
         $headers = [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ];
         $url = "https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility";
         $response = $client->request('GET', $url, [
@@ -175,7 +180,8 @@ class testController extends Controller
         Http::withToken($webwayToken)
             ->withHeaders([
                 'Content-Type' => 'application/json',
-                "Accept" => "application/json"
+                "Accept" => "application/json",
+                'User-Agent' => 'evestuff.online python9066@gmail.com'
             ])->post($webwayURL, $data);
     }
 

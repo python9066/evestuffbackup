@@ -24,7 +24,8 @@ class Alliancehelper
         $corpTciker = null;
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json"
+            "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", [$id]);
 
         $returns = $response->collect();
@@ -70,6 +71,7 @@ class Alliancehelper
         $headers = [
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ];
 
         $url = "https://esi.evetech.net/latest/alliances/?datasource=tranquility";

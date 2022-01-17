@@ -76,7 +76,8 @@ class UpdateAlliances extends Command
         Alliance::where('id', '>', 0)->update(['active' => 0]);
         $response =  Http::withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json"
+            "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ])->get("https://esi.evetech.net/latest/alliances/?datasource=tranquility");
         $allianceIDs = $response->collect();
 
@@ -99,7 +100,8 @@ class UpdateAlliances extends Command
 
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-                "Accept" => "application/json"
+                "Accept" => "application/json",
+                'User-Agent' => 'evestuff.online python9066@gmail.com'
             ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/?datasource=tranquility");
 
             if ($response->successful()) {
@@ -121,7 +123,8 @@ class UpdateAlliances extends Command
                 do {
                     $responseCorp = Http::withHeaders([
                         'Content-Type' => 'application/json',
-                        "Accept" => "application/json"
+                        "Accept" => "application/json",
+                        'User-Agent' => 'evestuff.online python9066@gmail.com'
                     ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility");
                     if ($responseCorp->successful()) {
                         $corpCount = 3;
@@ -158,7 +161,8 @@ class UpdateAlliances extends Command
         do {
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-                "Accept" => "application/json"
+                "Accept" => "application/json",
+                'User-Agent' => 'evestuff.online python9066@gmail.com'
             ])->get("https://esi.evetech.net/latest/corporations/" . $corpID . "/?datasource=tranquility");
             if ($response->successful()) {
                 $corpPull = 3;
@@ -211,7 +215,8 @@ class UpdateAlliances extends Command
                 $headers = [
                     'Authorization' => 'Basic ' . $client->code,
                     'Content-Type' => 'application/x-www-form-urlencoded',
-                    'Host' => 'login.eveonline.com'
+                    'Host' => 'login.eveonline.com',
+                    'User-Agent' => 'evestuff.online python9066@gmail.com'
 
                 ];
                 $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
@@ -244,7 +249,8 @@ class UpdateAlliances extends Command
 
         $response = Http::withToken($token->access_token)->withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json"
+            "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
         ])->get($url);
 
         $standings = $response->collect();
