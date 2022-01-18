@@ -102,14 +102,11 @@ class UpdateStandingJob implements ShouldQueue
     {
         $auths = Auth::all();
         foreach ($auths as $auth) {
-            // echo " - " . $auth->name . " - ";
 
             $expire_date = new DateTime($auth->expire_date);
             $date = new DateTime();
 
             if ($date > $expire_date) {
-                // if (1 > 0) {
-                // echo "old!¬¬¬¬¬ !!!! ----";
                 $client = Client::first();
                 $http = new GuzzleHttpCLient();
 
@@ -122,7 +119,6 @@ class UpdateStandingJob implements ShouldQueue
 
                 ];
                 $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
-                // echo $body;
                 $response = $http->request('POST', 'https://login.eveonline.com/v2/oauth/token', [
                     'headers' => $headers,
                     'body' => $body

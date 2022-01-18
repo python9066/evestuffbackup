@@ -64,8 +64,7 @@ class UpdateAlliances extends Command
         $allianceIDs = $response->collect();
         $deads =   Alliance::whereNotIn('id', $allianceIDs)->get();
         $deadIDs = $deads->pluck('id');
-        dd($deadIDs);
-        Corp::whereIn('alliance_id', $allianceIDs)->update(['alliance_id' => 0]);
+        Corp::whereIn('alliance_id', $deadIDs)->update(['alliance_id' => 0]);
         $deads->delete();
 
         foreach ($allianceIDs as $allianceID) {
