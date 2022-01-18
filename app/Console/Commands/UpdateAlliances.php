@@ -63,7 +63,7 @@ class UpdateAlliances extends Command
         ])->get("https://esi.evetech.net/latest/alliances/?datasource=tranquility");
         $allianceIDs = $response->collect();
         $deads =   Alliance::whereNotIn('id', $allianceIDs)->get();
-        $deadIDs = $deads->select('id');
+        $deadIDs = $deads->pluck('id');
         dd($deadIDs);
         Corp::whereIn('alliance_id', $allianceIDs)->update(['alliance_id' => 0]);
         $deads->delete();
