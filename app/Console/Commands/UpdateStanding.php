@@ -117,8 +117,10 @@ class UpdateStanding extends Command
             $stand = collect($standing);
             if ($stand->get('standing') > 0) {
                 $color = 2;
+                $this->info($standing, $color);
             } else {
                 $color = 1;
+                $this->info($standing, $color);
             };
 
             if ($stand->get('contact_type') == "alliance") {
@@ -126,6 +128,8 @@ class UpdateStanding extends Command
                     'color' => $color,
                     'standing' => $stand->get('standing')
                 ]);
+
+                $this->info($stand->get('contact_id'));
             }
 
             if ($stand->get('contact_type') == "corporation") {
@@ -133,6 +137,7 @@ class UpdateStanding extends Command
                     'color' => $color,
                     'standing' => $stand->get('standing')
                 ]);
+                $this->info($stand->get('contact_id'));
             }
         }
         Alliance::where('color', '0')->update(['color' => 1]);
