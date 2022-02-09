@@ -40,6 +40,8 @@ Route::get('/logout', 'AuthController@logout');
 Route::get('/home', 'HomeController@index');
 Route::get('/updateNotifications', 'NotificationController@getNotifications');
 Route::get('/blablabla/{id}', 'NotificationController@test');
+Route::get('/stationtest}', 'JobTestController@testStation');
+
 
 
 
