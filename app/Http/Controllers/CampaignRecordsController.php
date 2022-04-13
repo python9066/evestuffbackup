@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Events\CampaignSystemUpdate;
-use App\Models\Auth;
 use App\Models\Campaign;
 use App\Models\CampaignRecords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
 
