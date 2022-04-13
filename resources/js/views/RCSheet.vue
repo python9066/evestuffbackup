@@ -160,6 +160,7 @@
                 >
                   <span class="pt-2 caption"> {{ item.system_name }}</span>
                 </button>
+                <CampaginWebWay :item="item"></CampaginWebWay>
               </div>
             </template>
             <template v-slot:[`item.count`]="{ item }">
