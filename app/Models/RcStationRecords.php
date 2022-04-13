@@ -10,7 +10,7 @@ class RcStationRecords extends Model
     use HasFactory;
     public function webway()
     {
-        return $this->hasMany(webway::class, 'system_id', 'system_id');
+        return $this->hasMany(WebWay::class, 'system_id', 'system_id');
     }
 
     protected $casts = [
