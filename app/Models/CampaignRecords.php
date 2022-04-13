@@ -33,6 +33,6 @@ class CampaignRecords extends Model
 
     public function webway()
     {
-        return $this->belongsTo(WebWay::class, 'system_id', 'system_id');
+        return $this->hasMany(WebWay::class, 'system_id', 'system_id');
     }
 }
