@@ -35,4 +35,9 @@ class CampaignRecords extends Model
     {
         return $this->hasMany(WebWay::class, 'system_id', 'system_id');
     }
+
+    public function webwayP()
+    {
+        return $this->webway->where('permissions', 1);
+    }
 }
