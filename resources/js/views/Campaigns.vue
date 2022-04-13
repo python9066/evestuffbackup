@@ -223,7 +223,7 @@
         </span>
       </template>
       <template v-slot:[`item.webway`]="{ item }">
-        {{ item.webway["0"]["jumps"] }}
+        <CampaginWebWay :item="item"></CampaginWebWay>
       </template>
       <template v-slot:[`item.count`]="{ item }">
         <div class="d-inline-flex align-center">

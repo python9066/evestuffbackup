@@ -33,6 +33,10 @@ Vue.component(
     require("./components/random/messageComponent.vue").default
 );
 Vue.component(
+    "CampaginWebWay",
+    require("./components/campaign/CampaginWebWay.vue").default
+);
+Vue.component(
     "errorMessage",
     require("./components/random/errorMessage.vue").default
 ); //component name should be in camel-case
