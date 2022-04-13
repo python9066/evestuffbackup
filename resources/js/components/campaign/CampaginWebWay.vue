@@ -1,6 +1,14 @@
 <template>
   <div>
-    <v-btn class="mx-2" fab :href="url" color="green darken-4" dark x-small>
+    <v-btn
+      class="mx-2"
+      fab
+      :href="url"
+      target="_blank"
+      color="green darken-4"
+      dark
+      x-small
+    >
       {{ item.webway[0]["jumps"] }}
     </v-btn>
   </div>

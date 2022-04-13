@@ -20,6 +20,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -24488,6 +24496,10 @@ function sleep(ms) {
         y: 0
       },
       headers: [{
+        text: "WebWay",
+        value: "webway",
+        sortable: false
+      }, {
         text: "Region",
         value: "region",
         width: "10%"
@@ -24518,10 +24530,6 @@ function sleep(ms) {
       }, {
         text: "Countdown/Age",
         value: "count",
-        sortable: false
-      }, {
-        text: "WebWay",
-        value: "webway",
         sortable: false
       }]
     };
@@ -35556,6 +35564,7 @@ var render = function () {
           attrs: {
             fab: "",
             href: _vm.url,
+            target: "_blank",
             color: "green darken-4",
             dark: "",
             "x-small": "",

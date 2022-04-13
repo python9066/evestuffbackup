@@ -350,6 +350,7 @@ export default {
       },
 
       headers: [
+        { text: "WebWay", value: "webway", sortable: false },
         { text: "Region", value: "region", width: "10%" },
         { text: "Constellation", value: "constellation" },
         { text: "System", value: "system" },
@@ -364,7 +365,6 @@ export default {
           align: "center",
         },
         { text: "Countdown/Age", value: "count", sortable: false },
-        { text: "WebWay", value: "webway", sortable: false },
       ],
     };
   },
