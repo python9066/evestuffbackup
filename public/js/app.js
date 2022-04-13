@@ -24410,6 +24410,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -24475,6 +24477,10 @@ function sleep(ms) {
       }, {
         text: "Countdown/Age",
         value: "count",
+        sortable: false
+      }, {
+        text: "WebWay",
+        value: "webway",
         sortable: false
       }]
     };
@@ -60584,6 +60590,17 @@ var render = function () {
                               ),
                         ])
                       : _vm._e(),
+                  ]
+                },
+              },
+              {
+                key: "item.webway",
+                fn: function (ref) {
+                  var item = ref.item
+                  return [
+                    _vm._v(
+                      "\n      " + _vm._s(item.webway["0"]["jumps"]) + "\n    "
+                    ),
                   ]
                 },
               },

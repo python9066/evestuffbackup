@@ -222,7 +222,9 @@
           </p>
         </span>
       </template>
-
+      <template v-slot:[`item.webway`]="{ item }">
+        {{ item.webway["0"]["jumps"] }}
+      </template>
       <template v-slot:[`item.count`]="{ item }">
         <div class="d-inline-flex align-center">
           <CountDowntimer
@@ -362,6 +364,7 @@ export default {
           align: "center",
         },
         { text: "Countdown/Age", value: "count", sortable: false },
+        { text: "WebWay", value: "webway", sortable: false },
       ],
     };
   },
