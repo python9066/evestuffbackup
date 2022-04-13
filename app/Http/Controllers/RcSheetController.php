@@ -15,9 +15,14 @@ use App\Models\RcStationRecords;
 use App\Models\Station;
 use App\Models\WelpStationRecords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Traits\HasPermissions;
 
 class RcSheetController extends Controller
 {
+    use HasRoles;
+    use HasPermissions;
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +30,19 @@ class RcSheetController extends Controller
      */
     public function index()
     {
-        return ['stations' => RcStationRecords::where('show_on_rc', 1)->get()];
+        if (Auth::user()->can("use_reserved_connection")) {
+            return ['stations' => RcStationRecords::where('show_on_rc', 1)->with([
+                'webway' => function ($t) {
+                    $t->where('permissions', 1);
+                }
+            ])->get()];
+        } else {
+            return ['stations' => RcStationRecords::where('show_on_rc', 1)->with([
+                'webway' => function ($t) {
+                    $t->where('permissions', 0);
+                }
+            ])->get()];
+        }
     }
 
     /**
