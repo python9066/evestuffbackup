@@ -27,6 +27,7 @@ use App\Models\Userlogging;
 use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Http;
 use utils\Helper\Helper;
 use Illuminate\Support\Str;
 
@@ -383,6 +384,24 @@ class Campaignhelper
         }
 
         NewCampagin::where('id', '>', 0)->update(['check' => 0]);
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
+        ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
+
+        $campaigns = $response->collect();
+
+        foreach ($campaigns as $campaign) {
+            $event_type = $campaign['event_type'];
+            if ($event_type == 'ihub_defense' || $event_type == 'tcu_defense') {
+                if ($event_type == 'ihub_defense') {
+                    $event_type = 32458;
+                } else {
+                    $event_type = 32226;
+                }
+            }
+        }
     }
 
     public static function removeNode($check)
