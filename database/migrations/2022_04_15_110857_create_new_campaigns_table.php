@@ -15,7 +15,7 @@ class CreateNewCampaignsTable extends Migration
     {
         Schema::create('new_campaigns', function (Blueprint $table) {
             $table->id('id');
-            $table->uuid('link');
+            $table->uuid('link')->nullable();
             $table->float('attackers_score');
             $table->float('attackers_score_old')->nullable();
             $table->foreignId('constellation_id');
