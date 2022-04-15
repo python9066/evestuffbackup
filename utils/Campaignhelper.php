@@ -427,8 +427,6 @@ class Campaignhelper
                     'check' => 1,
                 );
 
-                dd($data);
-
                 NewCampaign::updateOrCreate(['id' => $id], $data);
                 if (NewCampaign::where('id', $id)->whereNotNull('link')->count() == 0) {
                     $string = Str::uuid();
