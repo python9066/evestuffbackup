@@ -9,4 +9,9 @@ class NewCampaginOperation extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function link()
+    {
+        return $this->hasMany(Logging::class);
+    }
 }

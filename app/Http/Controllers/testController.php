@@ -6,6 +6,7 @@ use App\Jobs\updateWebway;
 use App\Jobs\updateWebwayJob;
 use App\Models\Campaign;
 use App\Models\Corp;
+use App\Models\NewOperation;
 use App\Models\Station;
 use App\Models\testNote;
 use App\Models\User;
@@ -161,8 +162,8 @@ class testController extends Controller
 
         $campaigns = $response->collect();
         foreach ($campaigns as $campaign) {
-
-            dd($campaign);
+            $test = NewOperation::where('id', 12)->with(['Campaign'])->first();
+            dd($campaign, $test);
         }
     }
 
