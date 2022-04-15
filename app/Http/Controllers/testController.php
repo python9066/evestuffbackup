@@ -160,8 +160,10 @@ class testController extends Controller
         ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
 
         $campaigns = $response->collect();
+        foreach ($campaigns as $campaign) {
 
-        dd($campaigns);
+            dd($campaign);
+        }
     }
 
     public function corptest2()
