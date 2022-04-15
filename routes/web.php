@@ -41,6 +41,8 @@ Route::get('/home', 'HomeController@index');
 Route::get('/updateNotifications', 'NotificationController@getNotifications');
 Route::get('/blablabla/{id}', 'NotificationController@test');
 Route::get('/campaigntest', 'testController@campaginTest');
+Route::get('/campaignlisttest', 'testController@campaginListTest');
+
 
 
 

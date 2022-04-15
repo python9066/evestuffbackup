@@ -21,9 +21,13 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use utils\Alliancehelper\Alliancehelper;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Traits\HasPermissions;
 
 class testController extends Controller
 {
+    use HasRoles;
+    use HasPermissions;
     public function index()
     {
         return view('test2');
@@ -162,9 +166,25 @@ class testController extends Controller
 
         $campaigns = $response->collect();
         foreach ($campaigns as $campaign) {
-            $test = NewOperation::where('id', 12)->with(['Campaign'])->first();
+            $test = NewOperation::where('id', 12)->with(['campaign'])->first();
             $text = ["test" => $test];
             return $test;
+        }
+    }
+
+    public function campaginListTest()
+    {
+        if (Auth::user()->can('super')) {
+
+            $list = NewOperation::where('solo', 1)
+                ->with([
+                    'campaign.constellation',
+                    'campaign.alliance',
+                    'campaign.system',
+                    'campaign.structure'
+                ])
+                ->get();
+            return ['list' => $list];
         }
     }
 
