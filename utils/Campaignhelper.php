@@ -402,7 +402,7 @@ class Campaignhelper
                     $event_type = 32226;
                 }
 
-                $id = $var['campaign_id'];
+                $id = $campaign['campaign_id'];
                 $old = NewCampaign::where('id', $id)->first();
                 if ($old) {
                     if ($campaign['attackers_score'] != $old->attackers_score) {
@@ -412,18 +412,18 @@ class Campaignhelper
                     }
                 }
 
-                $time = $var['start_time'];
+                $time = $campaign['start_time'];
                 $start_time = Helper::fixtime($time);
                 $data = array();
                 $data = array(
-                    'attackers_score' => $var['attackers_score'],
-                    'constellation_id' => $var['constellation_id'],
-                    'alliance_id' => $var['defender_id'],
-                    'defenders_score' => $var['defender_score'],
+                    'attackers_score' => $campaign['attackers_score'],
+                    'constellation_id' => $campaign['constellation_id'],
+                    'alliance_id' => $campaign['defender_id'],
+                    'defenders_score' => $campaign['defender_score'],
                     'event_type' => $event_type,
-                    'system_id' => $var['solar_system_id'],
+                    'system_id' => $campaign['solar_system_id'],
                     'start_time' => $start_time,
-                    'structure_id' => $var['structure_id'],
+                    'structure_id' => $campaign['structure_id'],
                     'check' => 1,
                 );
 
