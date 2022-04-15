@@ -395,11 +395,39 @@ class Campaignhelper
         foreach ($campaigns as $campaign) {
             $event_type = $campaign['event_type'];
             if ($event_type == 'ihub_defense' || $event_type == 'tcu_defense') {
+                $score_changed = 0;
                 if ($event_type == 'ihub_defense') {
                     $event_type = 32458;
                 } else {
                     $event_type = 32226;
                 }
+
+                $id = $var['campaign_id'];
+                $old = NewCampagin::where('id', $id)->first();
+                if ($old) {
+                    if ($campaign['attackers_score'] != $old->attackers_score) {
+                        $attackers_score_old = $old->attackers_score;
+                        $defenders_score_old = $old->defenders_score;
+                        $score_changed = 1;
+                    }
+                }
+
+                $time = $var['start_time'];
+                $start_time = Helper::fixtime($time);
+                $data = array();
+                $data = array(
+                    'attackers_score' => $var['attackers_score'],
+                    'constellation_id' => $var['constellation_id'],
+                    'alliance_id' => $var['defender_id'],
+                    'defenders_score' => $var['defender_score'],
+                    'event_type' => $event_type,
+                    'system_id' => $var['solar_system_id'],
+                    'start_time' => $start_time,
+                    'structure_id' => $var['structure_id'],
+                    'check' => 1,
+                );
+
+                NewCampagin::updateOrCreate(['id' => $id], $data);
             }
         }
     }
