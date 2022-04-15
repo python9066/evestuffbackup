@@ -163,7 +163,8 @@ class testController extends Controller
         $campaigns = $response->collect();
         foreach ($campaigns as $campaign) {
             $test = NewOperation::where('id', 12)->with(['Campaign'])->first();
-            dd($campaign, $test);
+            $text = ["test" => $test];
+            dd($campaign, $text);
         }
     }
 
