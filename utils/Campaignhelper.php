@@ -28,6 +28,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use utils\Helper\Helper;
 use Illuminate\Support\Str;
 
@@ -428,6 +429,7 @@ class Campaignhelper
                 );
 
                 NewCampaign::updateOrCreate(['id' => $id], $data);
+                Log::info($data);
             }
         }
     }
