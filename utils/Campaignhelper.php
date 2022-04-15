@@ -19,6 +19,7 @@ use App\Models\CampaignSystemStatus;
 use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
 use App\Models\CampaignUserRecords;
+use App\Models\NewCampagin;
 use App\Models\NodeJoin;
 use App\Models\System;
 use App\Models\User;
@@ -372,6 +373,16 @@ class Campaignhelper
             // echo "yoyo";
             broadcast(new CampaignChanged($flag))->toOthers();
         }
+
+
+        //NEW SCRIPT FOR UPDATED CAMPAIGN/HACKING PAGE//
+
+        $newToDelete = NewCampagin::where('status_id', 10)->get();
+        foreach ($newToDelete as $newToDelete) {
+            NewCampagin::where('id', $newToDelete->id)->delete;
+        }
+
+        NewCampagin::where('id', '>', 0)->update(['check' => 0]);
     }
 
     public static function removeNode($check)

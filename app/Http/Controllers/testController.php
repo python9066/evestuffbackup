@@ -151,6 +151,19 @@ class testController extends Controller
         dd($response);
     }
 
+    public function campaginTest()
+    {
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
+        ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
+
+        $campaigns = $response->collect();
+
+        dd($campaigns);
+    }
+
     public function corptest2()
     {
         $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);

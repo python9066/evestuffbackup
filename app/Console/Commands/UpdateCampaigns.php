@@ -79,7 +79,7 @@ class UpdateCampaigns extends Command
 
     public function handle()
     {
-        Userlogging::create(['url' => 'demon camp', 'user_id' => 9999999999]);
+
         $status = Helper::checkeve();
         if ($status == 1) {
             Campaignhelper::update();
