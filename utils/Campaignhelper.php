@@ -392,7 +392,7 @@ class Campaignhelper
         ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
 
         $campaigns = $response->collect();
-
+        dd($campaigns);
         foreach ($campaigns as $campaign) {
             $event_type = $campaign['event_type'];
             if ($event_type == 'ihub_defense' || $event_type == 'tcu_defense') {
