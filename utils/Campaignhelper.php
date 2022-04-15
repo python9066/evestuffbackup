@@ -408,6 +408,10 @@ class Campaignhelper
                     if ($campaign['attackers_score'] != $old->attackers_score) {
                         $attackers_score_old = $old->attackers_score;
                         $defenders_score_old = $old->defenders_score;
+                        $old->update([
+                            'attackers_score_old' => $attackers_score_old,
+                            'defenders_score_old' => $$defenders_score_old
+                        ]);
                         $score_changed = 1;
                     }
                 }
@@ -426,6 +430,8 @@ class Campaignhelper
                     'structure_id' => $campaign['structure_id'],
                     'check' => 1,
                 );
+
+                dd($data);
 
                 NewCampaign::updateOrCreate(['id' => $id], $data);
                 if (NewCampaign::where('id', $id)->whereNotNull('link')->count() == 0) {
