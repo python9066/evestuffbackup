@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewCampaginsTable extends Migration
+class CreateNewCampaignsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateNewCampaginsTable extends Migration
      */
     public function up()
     {
-        Schema::create('new_campaigs', function (Blueprint $table) {
+        Schema::create('new_campaigns', function (Blueprint $table) {
             $table->id('id');
             $table->uuid('link');
             $table->float('attackers_score');
@@ -42,6 +42,6 @@ class CreateNewCampaginsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('new_campagins');
+        Schema::dropIfExists('new_campaigns');
     }
 }

@@ -19,7 +19,7 @@ use App\Models\CampaignSystemStatus;
 use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
 use App\Models\CampaignUserRecords;
-use App\Models\NewCampagin;
+use App\Models\NewCampaign;
 use App\Models\NodeJoin;
 use App\Models\System;
 use App\Models\User;
@@ -378,12 +378,12 @@ class Campaignhelper
 
         //NEW SCRIPT FOR UPDATED CAMPAIGN/HACKING PAGE//
 
-        $newToDelete = NewCampagin::where('status_id', 10)->get();
+        $newToDelete = NewCampaign::where('status_id', 10)->get();
         foreach ($newToDelete as $newToDelete) {
-            NewCampagin::where('id', $newToDelete->id)->delete;
+            NewCampaign::where('id', $newToDelete->id)->delete;
         }
 
-        NewCampagin::where('id', '>', 0)->update(['check' => 0]);
+        NewCampaign::where('id', '>', 0)->update(['check' => 0]);
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
@@ -403,7 +403,7 @@ class Campaignhelper
                 }
 
                 $id = $var['campaign_id'];
-                $old = NewCampagin::where('id', $id)->first();
+                $old = NewCampaign::where('id', $id)->first();
                 if ($old) {
                     if ($campaign['attackers_score'] != $old->attackers_score) {
                         $attackers_score_old = $old->attackers_score;
@@ -427,7 +427,7 @@ class Campaignhelper
                     'check' => 1,
                 );
 
-                NewCampagin::updateOrCreate(['id' => $id], $data);
+                NewCampaign::updateOrCreate(['id' => $id], $data);
             }
         }
     }
