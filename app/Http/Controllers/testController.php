@@ -162,7 +162,7 @@ class testController extends Controller
         $campaigns = $response->collect();
         foreach ($campaigns as $campaign) {
 
-            dd($campaign->attackers_score);
+            dd($campaign['attackers_score']);
         }
     }
 
