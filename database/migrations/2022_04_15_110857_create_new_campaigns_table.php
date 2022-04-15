@@ -31,6 +31,7 @@ class CreateNewCampaignsTable extends Migration
             $table->integer('attacker_node')->default(0);
             $table->integer('defender_node')->default(0);
             $table->boolean('check')->default(0);
+            $table->timestamps();
             $table->index('id');
         });
     }
