@@ -19,7 +19,9 @@ use App\Models\CampaignSystemStatus;
 use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
 use App\Models\CampaignUserRecords;
+use App\Models\NewCampaginOperation;
 use App\Models\NewCampaign;
+use App\Models\NewOperation;
 use App\Models\NodeJoin;
 use App\Models\System;
 use App\Models\User;
@@ -432,9 +434,23 @@ class Campaignhelper
                 );
 
                 NewCampaign::updateOrCreate(['id' => $id], $data);
-                if (NewCampaign::where('id', $id)->whereNotNull('link')->count() == 0) {
-                    $string = Str::uuid();
-                    Campaign::where('id', $id)->update(['link' => $string]);
+                // if (NewCampaign::where('id', $id)->whereNotNull('link')->count() == 0) {
+                //     $string = Str::uuid();
+                //     Campaign::where('id', $id)->update(['link' => $string]);
+                // }
+
+                if (NewCampaginOperation::where('campaign_id', $id)->count() == 0) {
+                    $uuid = Str::uuid();
+                    $newOp = NewOperation::create([
+                        'link' => $uuid,
+                        'solo' => 1,
+                        'status' => 1
+                    ]);
+
+                    NewCampaginOperation::create([
+                        'campaign_id' => $id,
+                        'operation_id' => $newOp->id
+                    ]);
                 }
             }
         }
