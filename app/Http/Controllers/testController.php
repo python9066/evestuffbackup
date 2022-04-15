@@ -181,7 +181,7 @@ class testController extends Controller
                     'campaign.constellation:id,constellation_name',
                     'campaign.alliance:id,name,ticker,standing,url,color',
                     'campaign.system:id,system_name,adm',
-                    'campaign.structure:id'
+                    'campaign.structure:id,age'
                 ])
                 ->get();
             return ['list' => $list];
