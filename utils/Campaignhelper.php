@@ -392,7 +392,6 @@ class Campaignhelper
         ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
 
         $campaigns = $response->collect();
-        dd($campaigns);
         foreach ($campaigns as $campaign) {
             $event_type = $campaign['event_type'];
             if ($event_type == 'ihub_defense' || $event_type == 'tcu_defense') {
@@ -428,8 +427,13 @@ class Campaignhelper
                     'check' => 1,
                 );
 
+                dd($data);
+
                 NewCampaign::updateOrCreate(['id' => $id], $data);
-                Log::info($data);
+                if (NewCampaign::where('id', $id)->whereNotNull('link')->count() == 0) {
+                    $string = Str::uuid();
+                    Campaign::where('id', $id)->update(['link' => $string]);
+                }
             }
         }
     }
