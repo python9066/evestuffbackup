@@ -164,7 +164,7 @@ class testController extends Controller
         foreach ($campaigns as $campaign) {
             $test = NewOperation::where('id', 12)->with(['Campaign'])->first();
             $text = ["test" => $test];
-            dd($campaign, $text);
+            return $test;
         }
     }
 
