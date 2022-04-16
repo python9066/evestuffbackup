@@ -455,8 +455,27 @@ class Campaignhelper
             }
         }
 
-        NewCampaign::where('status_id', 10)
-            ->delete();
+        $deathCampaign = NewCampaign::where('status_id', 10)->get();
+        foreach ($deathCampaign as $c) {
+            $campaginOperation = NewCampaginOperation::where('campaign_id', $c->id)->get();
+            foreach ($campaginOperation as $co) {
+
+                $op = NewOperation::where('id', $co->operation_id)->first();
+                if ($op->solo == 1) {
+                    $op->delete();
+                }
+                $co->delete();
+            }
+
+            $c->delete();
+        }
+
+        $noCampaigns = NewOperation::where('status', '!=', 0)
+            ->doesntHave('campaign')
+            ->get();
+        foreach ($noCampaigns as $noCampaign) {
+            NewCampaginOperation::where('operation_id', $noCampaign->id)->delete();
+        }
 
         NewCampaign::where('check', 0)
             ->whereNull('end_time')
