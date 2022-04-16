@@ -397,7 +397,7 @@ class Campaignhelper
         foreach ($campaigns as $campaign) {
             $event_type = $campaign['event_type'];
             if ($event_type == 'ihub_defense' || $event_type == 'tcu_defense') {
-                $score_changed = 0;
+                $score_changed = false;
                 if ($event_type == 'ihub_defense') {
                     $event_type = 32458;
                 } else {
@@ -414,7 +414,7 @@ class Campaignhelper
                             'attackers_score_old' => $attackers_score_old,
                             'defenders_score_old' => $$defenders_score_old
                         ]);
-                        $score_changed = 1;
+                        $score_changed = true;
                     }
                 }
 
@@ -454,6 +454,39 @@ class Campaignhelper
                 }
             }
         }
+
+        NewCampaign::where('status_id', 10)
+            ->delete();
+
+        NewCampaign::where('check', 0)
+            ->whereNull('end_time')
+            ->update([
+                'end_time' => now(),
+                'status_id' => 3,
+                'check' => 1,
+            ]);
+
+        NewCampaign::where('check', 0)
+            ->where('status_id', 2)
+            ->where('end_time', '>', now()->subMinutes(10))
+            ->update([
+                'status_id' => 3,
+                'check' => 1
+            ]);
+
+        NewCampaign::where('check', 0)
+            ->where('status_id', 3)
+            ->where('end_time', '<', now()->subMinutes(10))->update([
+                'status_id' => 4,
+                'check' => 1
+            ]);
+
+        NewCampaign::where('check', 0)
+            ->where('status_id', 4)
+            ->where('end_time', '<', now()->subDay())->update([
+                'status_id' => 10,
+                'check' => 1
+            ]);
     }
 
     public static function removeNode($check)
