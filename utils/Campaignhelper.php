@@ -412,7 +412,7 @@ class Campaignhelper
                         $defenders_score_old = $old->defenders_score;
                         $old->update([
                             'attackers_score_old' => $attackers_score_old,
-                            'defenders_score_old' => $$defenders_score_old
+                            'defenders_score_old' => $defenders_score_old
                         ]);
                         $score_changed = true;
                     }
