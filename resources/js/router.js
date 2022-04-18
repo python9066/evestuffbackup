@@ -25,6 +25,7 @@ import KillList from "./views/RCsheet.vue";
 import RCMOVETIMER from "./views/RCMove.vue";
 import FleetKeys from "./views/FleetKeyPannel.vue";
 import CoordSheet from "./views/CoordSheet.vue";
+import SoloOperations from "./views/SoloOperations.vue";
 
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -141,6 +142,19 @@ export default new Router({
             component: FeedBack,
             beforeEnter(to, from, next) {
                 if (Permissions.indexOf("nats") !== -1) {
+                    next();
+                } else {
+                    next("/notifications");
+                }
+            },
+        },
+
+        {
+            path: "/operations",
+            name: "operations",
+            component: SoloOperations,
+            beforeEnter(to, from, next) {
+                if (Permissions.indexOf("super") !== -1) {
                     next();
                 } else {
                     next("/notifications");
