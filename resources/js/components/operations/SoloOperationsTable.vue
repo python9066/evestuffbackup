@@ -4,13 +4,15 @@
       <v-col cols="12">
         <v-data-table
           :headers="headers"
-          :loading="loading"
-          :items="route"
+          :items="filteredItems"
           fixed-header
           :height="height"
           item-key="id"
-          dense
           :items-per-page="50"
+          :footer-props="{
+            'items-per-page-options': [10, 20, 30, 50, 100, -1],
+          }"
+          class="elevation-24 rounded-xl full-width"
         >
         </v-data-table>
       </v-col>
@@ -83,8 +85,11 @@ export default {
   mounted() {},
   methods: {},
   computed: {
+    filteredItems() {
+      return null;
+    },
     height() {
-      let num = this.windowSize.y - 239;
+      let num = this.windowSize.y - 262;
       return num;
     },
   },

@@ -11059,6 +11059,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11109,8 +11111,11 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {},
   computed: {
+    filteredItems: function filteredItems() {
+      return null;
+    },
     height: function height() {
-      var num = this.windowSize.y - 239;
+      var num = this.windowSize.y - 262;
       return num;
     }
   }
@@ -46884,15 +46889,17 @@ var render = function () {
             { attrs: { cols: "12" } },
             [
               _c("v-data-table", {
+                staticClass: "elevation-24 rounded-xl full-width",
                 attrs: {
                   headers: _vm.headers,
-                  loading: _vm.loading,
-                  items: _vm.route,
+                  items: _vm.filteredItems,
                   "fixed-header": "",
                   height: _vm.height,
                   "item-key": "id",
-                  dense: "",
                   "items-per-page": 50,
+                  "footer-props": {
+                    "items-per-page-options": [10, 20, 30, 50, 100, -1],
+                  },
                 },
               }),
             ],
@@ -59447,7 +59454,7 @@ var render = function () {
       _vm.ready == true
         ? _c(
             "v-main",
-            { staticClass: "pb-10" },
+            {},
             [
               _c(
                 "v-overlay",
@@ -67165,7 +67172,7 @@ var render = function () {
           expression: "onResize",
         },
       ],
-      staticClass: "pr-1 pl-1 pt-1",
+      staticClass: "pr-5 pl-5 pt-1",
       attrs: { "no-gutters": "", justify: "center" },
     },
     [

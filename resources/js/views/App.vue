@@ -140,7 +140,7 @@
     </v-app-bar>
 
     <!-- MAIN ROUTER-VIEW ------------------------------------->
-    <v-main class="pb-10" v-if="ready == true">
+    <v-main class="" v-if="ready == true">
       <!-- <v-overlay :value="tidiCalc">
                 <TidiCalc @closeCalc="tidiCalc = false"> </TidiCalc>
             </v-overlay> -->
