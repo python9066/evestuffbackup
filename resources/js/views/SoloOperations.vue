@@ -3,10 +3,14 @@
     <v-col cols="12 pb-5"
       ><v-expansion-panels>
         <v-expansion-panel class="rounded-xl">
-          <v-expansion-panel-header color="primary" class="rounded-t-xl">
+          <v-expansion-panel-header
+            color="primary"
+            class="rounded-t-xl"
+            @click="filterClick()"
+          >
             <template v-slot:default="{ open }">
               <v-row no-gutters>
-                <v-col cols="4"> Trip name </v-col>
+                <v-col cols="4"> Filters </v-col>
                 <v-col cols="8" class="text--secondary">
                   <v-fade-transition leave-absolute>
                     <span v-if="open" key="0"> Enter a name for the trip </span>
@@ -57,6 +61,8 @@ export default {
         y: 0,
       },
 
+      filterOpen: false,
+
       date: null,
       trip: {
         name: "",
@@ -82,6 +88,9 @@ export default {
     this.log();
   },
   methods: {
+    filterClick() {
+      this.filterOpen != this.filterOpen;
+    },
     onResize() {
       this.windowSize = { x: window.innerWidth, y: window.innerHeight };
     },

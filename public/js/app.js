@@ -31631,6 +31631,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -31653,6 +31657,7 @@ function sleep(ms) {
         x: 0,
         y: 0
       },
+      filterOpen: false,
       date: null,
       trip: {
         name: "",
@@ -31685,6 +31690,9 @@ function sleep(ms) {
     }))();
   },
   methods: {
+    filterClick: function filterClick() {
+      this.filterOpen != this.filterOpen;
+    },
     onResize: function onResize() {
       this.windowSize = {
         x: window.innerWidth,
@@ -67224,6 +67232,11 @@ var render = function () {
                   _c("v-expansion-panel-header", {
                     staticClass: "rounded-t-xl",
                     attrs: { color: "primary" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.filterClick()
+                      },
+                    },
                     scopedSlots: _vm._u([
                       {
                         key: "default",
@@ -67235,7 +67248,7 @@ var render = function () {
                               { attrs: { "no-gutters": "" } },
                               [
                                 _c("v-col", { attrs: { cols: "4" } }, [
-                                  _vm._v(" Trip name "),
+                                  _vm._v(" Filters "),
                                 ]),
                                 _vm._v(" "),
                                 _c(
