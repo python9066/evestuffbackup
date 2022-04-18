@@ -470,11 +470,10 @@ class Campaignhelper
             $c->delete();
         }
 
-        $noCampaigns = NewOperation::where('status', '!=', 0)
-            ->doesntHave('campaign')
-            ->get();
+        $noCampaigns = NewOperation::where('status', '!=', 0)->doesntHave('campaign')->get();
         foreach ($noCampaigns as $noCampaign) {
             NewCampaginOperation::where('operation_id', $noCampaign->id)->delete();
+            $noCampaign->delete();
         }
 
         NewCampaign::where('check', 0)
