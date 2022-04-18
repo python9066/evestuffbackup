@@ -1,9 +1,9 @@
 <template>
   <v-row class="pr-5 pl-5 pt-1" no-gutters v-resize="onResize" justify="center">
-    <v-col cols="12"
+    <v-col cols="12 pb-5"
       ><v-expansion-panels>
         <v-expansion-panel class="rounded-xl">
-          <v-expansion-panel-header color="primary" class="rounded-xl">
+          <v-expansion-panel-header color="primary" class="rounded-t-xl">
             <template v-slot:default="{ open }">
               <v-row no-gutters>
                 <v-col cols="4"> Trip name </v-col>

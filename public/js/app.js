@@ -67212,7 +67212,7 @@ var render = function () {
     [
       _c(
         "v-col",
-        { attrs: { cols: "12" } },
+        { attrs: { cols: "12 pb-5" } },
         [
           _c(
             "v-expansion-panels",
@@ -67222,7 +67222,7 @@ var render = function () {
                 { staticClass: "rounded-xl" },
                 [
                   _c("v-expansion-panel-header", {
-                    staticClass: "rounded-xl",
+                    staticClass: "rounded-t-xl",
                     attrs: { color: "primary" },
                     scopedSlots: _vm._u([
                       {
