@@ -13,7 +13,9 @@
                 <v-col cols="4"> Filters </v-col>
                 <v-col cols="8" class="text--secondary">
                   <v-fade-transition leave-absolute>
-                    <span v-if="open" key="0"> Enter a name for the trip </span>
+                    <span v-if="open" key="0">
+                      Select your Filter Setting below.
+                    </span>
                     <span v-else key="1">
                       {{ trip.name }}
                     </span>
@@ -77,7 +79,6 @@
                       active-class="primary--text"
                       column
                       v-model="filterStandingSelect"
-                      multiple
                     >
                       <v-chip
                         v-for="(list, index) in filterStandingSelectList"
@@ -104,7 +105,6 @@
                       active-class="primary--text"
                       column
                       v-model="filterStatusSelect"
-                      multiple
                     >
                       <v-chip
                         v-for="(list, index) in filterStatusSelectList"
@@ -186,7 +186,7 @@ export default {
       filterStatusSelect: [],
       filterStatusSelectList: [
         { text: "All", value: 1 },
-        { text: "ACtive", value: 2 },
+        { text: "Active", value: 2 },
         { text: "Finished", value: 3 },
       ],
     };

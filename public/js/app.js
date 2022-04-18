@@ -31791,7 +31791,7 @@ function sleep(ms) {
         text: "All",
         value: 1
       }, {
-        text: "ACtive",
+        text: "Active",
         value: 2
       }, {
         text: "Finished",
@@ -67407,7 +67407,7 @@ var render = function () {
                                         open
                                           ? _c("span", { key: "0" }, [
                                               _vm._v(
-                                                " Enter a name for the trip "
+                                                "\n                    Select your Filter Setting below.\n                  "
                                               ),
                                             ])
                                           : _c("span", { key: "1" }, [
@@ -67593,7 +67593,6 @@ var render = function () {
                                           attrs: {
                                             "active-class": "primary--text",
                                             column: "",
-                                            multiple: "",
                                           },
                                           model: {
                                             value: _vm.filterStandingSelect,
@@ -67669,7 +67668,6 @@ var render = function () {
                                           attrs: {
                                             "active-class": "primary--text",
                                             column: "",
-                                            multiple: "",
                                           },
                                           model: {
                                             value: _vm.filterStatusSelect,
