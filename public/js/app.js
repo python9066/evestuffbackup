@@ -31635,6 +31635,101 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -31665,7 +31760,43 @@ function sleep(ms) {
         start: null,
         end: null
       },
-      locations: ["Australia", "Barbados", "Chile", "Denmark", "Ecuador", "France"]
+      regionFilter: [],
+      filterItemTypeSelect: [],
+      filterItemTypeSelectList: [{
+        text: "All",
+        value: 1
+      }, {
+        text: "Ihub",
+        value: 2
+      }, {
+        text: "TCU",
+        value: 3
+      }],
+      filterStandingSelect: [],
+      filterStandingSelectList: [{
+        text: "All",
+        value: 1
+      }, {
+        text: "Goon",
+        value: 2
+      }, {
+        text: "Friendly",
+        value: 3
+      }, {
+        text: "Hostile",
+        value: 4
+      }],
+      filterStatusSelect: [],
+      filterStatusSelectList: [{
+        text: "All",
+        value: 1
+      }, {
+        text: "ACtive",
+        value: 2
+      }, {
+        text: "Finished",
+        value: 3
+      }]
     };
   },
   created: function created() {},
@@ -31723,6 +31854,9 @@ function sleep(ms) {
       } else {
         return "rounded-xl";
       }
+    },
+    systemlist: function systemlist() {
+      return [];
     }
   },
   beforeDestroy: function beforeDestroy() {}
@@ -67301,16 +67435,288 @@ var render = function () {
                     "v-expansion-panel-content",
                     { staticClass: "rounded-xl" },
                     [
-                      _c("v-text-field", {
-                        attrs: { placeholder: "Caribbean Cruise" },
-                        model: {
-                          value: _vm.trip.name,
-                          callback: function ($$v) {
-                            _vm.$set(_vm.trip, "name", $$v)
-                          },
-                          expression: "trip.name",
-                        },
-                      }),
+                      _c(
+                        "v-row",
+                        { attrs: { "no-gutters": "" } },
+                        [
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12" } },
+                            [
+                              _c(
+                                "v-card",
+                                { attrs: { flat: "" } },
+                                [
+                                  _c(
+                                    "v-card-text",
+                                    { staticClass: "py-0" },
+                                    [
+                                      _c(
+                                        "span",
+                                        { staticClass: "subheading" },
+                                        [_vm._v("Filter Regions")]
+                                      ),
+                                      _c("v-autocomplete", {
+                                        attrs: {
+                                          chips: "",
+                                          clearable: "",
+                                          "deletable-chips": "",
+                                          "solo-inverted": "",
+                                          dense: "",
+                                          "hide-details": "",
+                                          "hide-selected": "",
+                                          rounded: "",
+                                          "small-chips": "",
+                                          multiple: "",
+                                          items: _vm.systemlist,
+                                        },
+                                        model: {
+                                          value: _vm.regionFilter,
+                                          callback: function ($$v) {
+                                            _vm.regionFilter = $$v
+                                          },
+                                          expression: "regionFilter",
+                                        },
+                                      }),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-row",
+                        { attrs: { "no-gutters": "" } },
+                        [
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12" } },
+                            [
+                              _c(
+                                "v-card",
+                                { attrs: { flat: "" } },
+                                [
+                                  _c(
+                                    "v-card-text",
+                                    { staticClass: "py-0" },
+                                    [
+                                      _c(
+                                        "span",
+                                        { staticClass: "subheading" },
+                                        [_vm._v(" Filter Item")]
+                                      ),
+                                      _c(
+                                        "v-chip-group",
+                                        {
+                                          attrs: {
+                                            "active-class": "primary--text",
+                                            column: "",
+                                          },
+                                          model: {
+                                            value: _vm.filterItemTypeSelect,
+                                            callback: function ($$v) {
+                                              _vm.filterItemTypeSelect = $$v
+                                            },
+                                            expression: "filterItemTypeSelect",
+                                          },
+                                        },
+                                        _vm._l(
+                                          _vm.filterItemTypeSelectList,
+                                          function (list, index) {
+                                            return _c(
+                                              "v-chip",
+                                              {
+                                                key: index,
+                                                attrs: {
+                                                  filter: "",
+                                                  value: list.value,
+                                                  outlined: "",
+                                                  small: "",
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                      " +
+                                                    _vm._s(list.text) +
+                                                    "\n                    "
+                                                ),
+                                              ]
+                                            )
+                                          }
+                                        ),
+                                        1
+                                      ),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-row",
+                        { attrs: { "no-gutters": "" } },
+                        [
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12" } },
+                            [
+                              _c(
+                                "v-card",
+                                { attrs: { flat: "" } },
+                                [
+                                  _c(
+                                    "v-card-text",
+                                    { staticClass: "py-0" },
+                                    [
+                                      _c(
+                                        "span",
+                                        { staticClass: "subheading" },
+                                        [_vm._v(" Standing")]
+                                      ),
+                                      _c(
+                                        "v-chip-group",
+                                        {
+                                          attrs: {
+                                            "active-class": "primary--text",
+                                            column: "",
+                                            multiple: "",
+                                          },
+                                          model: {
+                                            value: _vm.filterStandingSelect,
+                                            callback: function ($$v) {
+                                              _vm.filterStandingSelect = $$v
+                                            },
+                                            expression: "filterStandingSelect",
+                                          },
+                                        },
+                                        _vm._l(
+                                          _vm.filterStandingSelectList,
+                                          function (list, index) {
+                                            return _c(
+                                              "v-chip",
+                                              {
+                                                key: index,
+                                                attrs: {
+                                                  filter: "",
+                                                  value: list.value,
+                                                  outlined: "",
+                                                  small: "",
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                      " +
+                                                    _vm._s(list.text) +
+                                                    "\n                    "
+                                                ),
+                                              ]
+                                            )
+                                          }
+                                        ),
+                                        1
+                                      ),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-row",
+                        { attrs: { "no-gutters": "" } },
+                        [
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12" } },
+                            [
+                              _c(
+                                "v-card",
+                                { attrs: { flat: "" } },
+                                [
+                                  _c(
+                                    "v-card-text",
+                                    { staticClass: "py-0" },
+                                    [
+                                      _c(
+                                        "span",
+                                        { staticClass: "subheading" },
+                                        [_vm._v(" Status")]
+                                      ),
+                                      _c(
+                                        "v-chip-group",
+                                        {
+                                          attrs: {
+                                            "active-class": "primary--text",
+                                            column: "",
+                                            multiple: "",
+                                          },
+                                          model: {
+                                            value: _vm.filterStatusSelect,
+                                            callback: function ($$v) {
+                                              _vm.filterStatusSelect = $$v
+                                            },
+                                            expression: "filterStatusSelect",
+                                          },
+                                        },
+                                        _vm._l(
+                                          _vm.filterStatusSelectList,
+                                          function (list, index) {
+                                            return _c(
+                                              "v-chip",
+                                              {
+                                                key: index,
+                                                attrs: {
+                                                  filter: "",
+                                                  value: list.value,
+                                                  outlined: "",
+                                                  small: "",
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                      " +
+                                                    _vm._s(list.text) +
+                                                    "\n                    "
+                                                ),
+                                              ]
+                                            )
+                                          }
+                                        ),
+                                        1
+                                      ),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
                     ],
                     1
                   ),
