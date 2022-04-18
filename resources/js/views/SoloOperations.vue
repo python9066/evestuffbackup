@@ -5,7 +5,7 @@
         <v-expansion-panel class="rounded-xl">
           <v-expansion-panel-header
             color="primary"
-            class="rounded-t-xl"
+            :class="filterRound"
             @click="filterClick()"
           >
             <template v-slot:default="{ open }">
@@ -112,7 +112,15 @@ export default {
     },
   },
 
-  computed: {},
+  computed: {
+    filterRound() {
+      if (this.filterOpen) {
+        return "rounded-t-xl";
+      } else {
+        return "rounded-xl";
+      }
+    },
+  },
   beforeDestroy() {},
 };
 </script>

@@ -31716,7 +31716,15 @@ function sleep(ms) {
       });
     }
   },
-  computed: {},
+  computed: {
+    filterRound: function filterRound() {
+      if (this.filterOpen) {
+        return "rounded-t-xl";
+      } else {
+        return "rounded-xl";
+      }
+    }
+  },
   beforeDestroy: function beforeDestroy() {}
 });
 
@@ -67230,7 +67238,7 @@ var render = function () {
                 { staticClass: "rounded-xl" },
                 [
                   _c("v-expansion-panel-header", {
-                    staticClass: "rounded-t-xl",
+                    class: _vm.filterRound,
                     attrs: { color: "primary" },
                     on: {
                       click: function ($event) {
