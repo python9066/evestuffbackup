@@ -11112,7 +11112,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {},
   computed: {
     filteredItems: function filteredItems() {
-      return null;
+      return [];
     },
     height: function height() {
       var num = this.windowSize.y - 262;

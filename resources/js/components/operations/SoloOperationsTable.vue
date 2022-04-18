@@ -86,7 +86,7 @@ export default {
   methods: {},
   computed: {
     filteredItems() {
-      return null;
+      return [];
     },
     height() {
       let num = this.windowSize.y - 262;
