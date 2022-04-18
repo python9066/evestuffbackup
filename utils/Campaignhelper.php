@@ -383,7 +383,7 @@ class Campaignhelper
 
         $newToDelete = NewCampaign::where('status_id', 10)->get();
         foreach ($newToDelete as $newToDelete) {
-            NewCampaign::where('id', $newToDelete->id)->delete;
+            NewCampaign::where('id', $newToDelete->id)->delete();
         }
 
         NewCampaign::where('id', '>', 0)->update(['check' => 0]);
