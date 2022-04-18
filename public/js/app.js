@@ -67219,9 +67219,11 @@ var render = function () {
             [
               _c(
                 "v-expansion-panel",
-                { attrs: { rounded: "xl" } },
+                { staticClass: "rounded-xl" },
                 [
                   _c("v-expansion-panel-header", {
+                    staticClass: "rounded-xl",
+                    attrs: { color: "primary" },
                     scopedSlots: _vm._u([
                       {
                         key: "default",
@@ -67230,10 +67232,7 @@ var render = function () {
                           return [
                             _c(
                               "v-row",
-                              {
-                                staticClass: "justify-center primary",
-                                attrs: { "no-gutters": "" },
-                              },
+                              { attrs: { "no-gutters": "" } },
                               [
                                 _c("v-col", { attrs: { cols: "4" } }, [
                                   _vm._v(" Trip name "),
@@ -67279,6 +67278,7 @@ var render = function () {
                   _vm._v(" "),
                   _c(
                     "v-expansion-panel-content",
+                    { staticClass: "rounded-xl" },
                     [
                       _c("v-text-field", {
                         attrs: { placeholder: "Caribbean Cruise" },

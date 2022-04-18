@@ -2,10 +2,10 @@
   <v-row class="pr-5 pl-5 pt-1" no-gutters v-resize="onResize" justify="center">
     <v-col cols="12"
       ><v-expansion-panels>
-        <v-expansion-panel rounded="xl">
-          <v-expansion-panel-header>
+        <v-expansion-panel class="rounded-xl">
+          <v-expansion-panel-header color="primary" class="rounded-xl">
             <template v-slot:default="{ open }">
-              <v-row no-gutters class="justify-center primary">
+              <v-row no-gutters>
                 <v-col cols="4"> Trip name </v-col>
                 <v-col cols="8" class="text--secondary">
                   <v-fade-transition leave-absolute>
@@ -18,7 +18,7 @@
               </v-row>
             </template>
           </v-expansion-panel-header>
-          <v-expansion-panel-content>
+          <v-expansion-panel-content class="rounded-xl">
             <v-text-field
               v-model="trip.name"
               placeholder="Caribbean Cruise"
