@@ -31691,7 +31691,7 @@ function sleep(ms) {
   },
   methods: {
     filterClick: function filterClick() {
-      this.filterOpen != this.filterOpen;
+      this.filterOpen = !this.filterOpen;
     },
     onResize: function onResize() {
       this.windowSize = {

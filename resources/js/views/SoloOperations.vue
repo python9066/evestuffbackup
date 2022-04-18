@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     filterClick() {
-      this.filterOpen != this.filterOpen;
+      this.filterOpen = !this.filterOpen;
     },
     onResize() {
       this.windowSize = { x: window.innerWidth, y: window.innerHeight };
