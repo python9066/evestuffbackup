@@ -67362,7 +67362,7 @@ var render = function () {
     [
       _c(
         "v-col",
-        { attrs: { cols: "12 pb-5" } },
+        { attrs: { cols: "6 pb-5" } },
         [
           _c(
             "v-expansion-panels",
