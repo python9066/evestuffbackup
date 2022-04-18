@@ -54,7 +54,7 @@ return [
         |
         */
 
-    'path' => 'prequel',
+    'path' => 'a524f35da058742f0defd6fb0db6afc4',
 
 
     /*
