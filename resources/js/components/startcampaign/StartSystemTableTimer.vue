@@ -207,7 +207,10 @@ export default {
     },
 
     checkHackUserEdit(item) {
-      if (item.site_id == this.$store.state.user_id) {
+      if (
+        item.site_id == this.$store.state.user_id ||
+        this.$can("access_multi_campaigns")
+      ) {
         return true;
       } else {
         return false;

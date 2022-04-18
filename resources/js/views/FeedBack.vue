@@ -75,6 +75,9 @@
       <v-card>
         <v-btn @click="startReconRgionPull()">Recon Pull TEST</v-btn></v-card
       >
+
+      <v-card> <v-btn @click="prequal()">Prequal</v-btn></v-card>
+      <v-card> <v-btn @click="horizon()"> Horizon </v-btn></v-card>
     </v-row>
 
     <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
@@ -159,6 +162,20 @@ export default {
         this.expanded = [];
         this.expanded_id = 0;
       }
+    },
+
+    prequal() {
+      let route = this.$router.resolve({
+        path: "/hithere",
+      });
+      window.open(route.href);
+    },
+
+    horizon() {
+      let route = this.$router.resolve({
+        path: "/hitherealso",
+      });
+      window.open(route.href);
     },
 
     async loadFeedBack() {

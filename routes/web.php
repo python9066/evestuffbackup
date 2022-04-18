@@ -42,6 +42,8 @@ Route::get('/updateNotifications', 'NotificationController@getNotifications');
 Route::get('/blablabla/{id}', 'NotificationController@test');
 Route::get('/campaigntest', 'testController@campaginTest');
 Route::get('/campaignlisttest', 'testController@campaginListTest');
+Route::get('/hithere', 'testController@prequal');
+Route::get('/hitherealso', 'testController@horizon');
 
 
 

@@ -114,6 +114,28 @@ class testController extends Controller
         // ];
     }
 
+    public function prequal()
+    {
+
+        $user = Auth::user();
+        if ($user->can('super')) {
+            return redirect('/a524f35da058742f0defd6fb0db6afc4');
+        } else {
+            return null;
+        }
+    }
+
+    public function horizon()
+    {
+
+        $user = Auth::user();
+        if ($user->can('super')) {
+            return redirect('/a3bc619080ec6c04c44fffff8cc780de');
+        } else {
+            return null;
+        }
+    }
+
     public function testGetAlliance($id)
     {
         $response = Http::withHeaders([
