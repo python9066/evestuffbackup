@@ -1,5 +1,10 @@
 <template>
-  <div class="pr-16 pl-16"></div>
+  <v-row
+    class="pr-1 pl-1 pt-1"
+    no-gutters
+    v-resize="onResize"
+    justify="center"
+  ></v-row>
 </template>
 <script>
 import Axios from "axios";
@@ -15,15 +20,24 @@ export default {
     return `EveStuff - Operations`;
   },
   data() {
-    return {};
+    return {
+      windowSize: {
+        x: 0,
+        y: 0,
+      },
+    };
   },
 
   created() {},
 
   async mounted() {
+    this.onResize();
     this.log();
   },
   methods: {
+    onResize() {
+      this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+    },
     log() {
       var request = {
         url: this.$route.path,

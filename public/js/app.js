@@ -31500,6 +31500,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -31517,7 +31522,12 @@ function sleep(ms) {
     return "EveStuff - Operations";
   },
   data: function data() {
-    return {};
+    return {
+      windowSize: {
+        x: 0,
+        y: 0
+      }
+    };
   },
   created: function created() {},
   mounted: function mounted() {
@@ -31528,9 +31538,11 @@ function sleep(ms) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              _this.onResize();
+
               _this.log();
 
-            case 1:
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -31539,6 +31551,12 @@ function sleep(ms) {
     }))();
   },
   methods: {
+    onResize: function onResize() {
+      this.windowSize = {
+        x: window.innerWidth,
+        y: window.innerHeight
+      };
+    },
     log: function log() {
       var request = {
         url: this.$route.path
@@ -66985,7 +67003,18 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "pr-16 pl-16" })
+  return _c("v-row", {
+    directives: [
+      {
+        name: "resize",
+        rawName: "v-resize",
+        value: _vm.onResize,
+        expression: "onResize",
+      },
+    ],
+    staticClass: "pr-1 pl-1 pt-1",
+    attrs: { "no-gutters": "", justify: "center" },
+  })
 }
 var staticRenderFns = []
 render._withStripped = true
