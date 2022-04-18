@@ -31605,6 +31605,177 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -31626,7 +31797,15 @@ function sleep(ms) {
       windowSize: {
         x: 0,
         y: 0
-      }
+      },
+      date: null,
+      trip: {
+        name: "",
+        location: null,
+        start: null,
+        end: null
+      },
+      locations: ["Australia", "Barbados", "Chile", "Denmark", "Ecuador", "France"]
     };
   },
   created: function created() {},
@@ -67176,6 +67355,587 @@ var render = function () {
       attrs: { "no-gutters": "", justify: "center" },
     },
     [
+      _c(
+        "v-col",
+        { attrs: { cols: "12" } },
+        [
+          _c(
+            "v-expansion-panels",
+            [
+              _c(
+                "v-expansion-panel",
+                [
+                  _c("v-expansion-panel-header", {
+                    scopedSlots: _vm._u([
+                      {
+                        key: "default",
+                        fn: function (ref) {
+                          var open = ref.open
+                          return [
+                            _c(
+                              "v-row",
+                              { attrs: { "no-gutters": "" } },
+                              [
+                                _c("v-col", { attrs: { cols: "4" } }, [
+                                  _vm._v(" Trip name "),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  {
+                                    staticClass: "text--secondary",
+                                    attrs: { cols: "8" },
+                                  },
+                                  [
+                                    _c(
+                                      "v-fade-transition",
+                                      { attrs: { "leave-absolute": "" } },
+                                      [
+                                        open
+                                          ? _c("span", { key: "0" }, [
+                                              _vm._v(
+                                                " Enter a name for the trip "
+                                              ),
+                                            ])
+                                          : _c("span", { key: "1" }, [
+                                              _vm._v(
+                                                "\n                    " +
+                                                  _vm._s(_vm.trip.name) +
+                                                  "\n                  "
+                                              ),
+                                            ]),
+                                      ]
+                                    ),
+                                  ],
+                                  1
+                                ),
+                              ],
+                              1
+                            ),
+                          ]
+                        },
+                      },
+                    ]),
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "v-expansion-panel-content",
+                    [
+                      _c("v-text-field", {
+                        attrs: { placeholder: "Caribbean Cruise" },
+                        model: {
+                          value: _vm.trip.name,
+                          callback: function ($$v) {
+                            _vm.$set(_vm.trip, "name", $$v)
+                          },
+                          expression: "trip.name",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-expansion-panel",
+                [
+                  _c("v-expansion-panel-header", {
+                    scopedSlots: _vm._u([
+                      {
+                        key: "default",
+                        fn: function (ref) {
+                          var open = ref.open
+                          return [
+                            _c(
+                              "v-row",
+                              { attrs: { "no-gutters": "" } },
+                              [
+                                _c("v-col", { attrs: { cols: "4" } }, [
+                                  _vm._v(" Location "),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  {
+                                    staticClass: "text--secondary",
+                                    attrs: { cols: "8" },
+                                  },
+                                  [
+                                    _c(
+                                      "v-fade-transition",
+                                      { attrs: { "leave-absolute": "" } },
+                                      [
+                                        open
+                                          ? _c("span", { key: "0" }, [
+                                              _vm._v(
+                                                " Select trip destination "
+                                              ),
+                                            ])
+                                          : _c("span", { key: "1" }, [
+                                              _vm._v(
+                                                "\n                  " +
+                                                  _vm._s(_vm.trip.location) +
+                                                  "\n                "
+                                              ),
+                                            ]),
+                                      ]
+                                    ),
+                                  ],
+                                  1
+                                ),
+                              ],
+                              1
+                            ),
+                          ]
+                        },
+                      },
+                    ]),
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "v-expansion-panel-content",
+                    [
+                      _c(
+                        "v-row",
+                        { attrs: { "no-gutters": "" } },
+                        [
+                          _c("v-spacer"),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "5" } },
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.locations,
+                                  chips: "",
+                                  flat: "",
+                                  solo: "",
+                                },
+                                model: {
+                                  value: _vm.trip.location,
+                                  callback: function ($$v) {
+                                    _vm.$set(_vm.trip, "location", $$v)
+                                  },
+                                  expression: "trip.location",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("v-divider", {
+                            staticClass: "mx-4",
+                            attrs: { vertical: "" },
+                          }),
+                          _vm._v(" "),
+                          _c("v-col", { attrs: { cols: "3" } }, [
+                            _vm._v(
+                              "\n              Select your destination of choice\n              "
+                            ),
+                            _c("br"),
+                            _vm._v(" "),
+                            _c("a", { attrs: { href: "#" } }, [
+                              _vm._v("Learn more"),
+                            ]),
+                          ]),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-card-actions",
+                        [
+                          _c("v-spacer"),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            { attrs: { text: "", color: "secondary" } },
+                            [_vm._v(" Cancel ")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            { attrs: { text: "", color: "primary" } },
+                            [_vm._v(" Save ")]
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-expansion-panel",
+                [
+                  _c("v-expansion-panel-header", {
+                    scopedSlots: _vm._u([
+                      {
+                        key: "default",
+                        fn: function (ref) {
+                          var open = ref.open
+                          return [
+                            _c(
+                              "v-row",
+                              { attrs: { "no-gutters": "" } },
+                              [
+                                _c("v-col", { attrs: { cols: "4" } }, [
+                                  _vm._v(" Start and end dates "),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  {
+                                    staticClass: "text--secondary",
+                                    attrs: { cols: "8" },
+                                  },
+                                  [
+                                    _c(
+                                      "v-fade-transition",
+                                      { attrs: { "leave-absolute": "" } },
+                                      [
+                                        open
+                                          ? _c("span", [
+                                              _vm._v(
+                                                "When do you want to travel?"
+                                              ),
+                                            ])
+                                          : _c(
+                                              "v-row",
+                                              {
+                                                staticStyle: { width: "100%" },
+                                                attrs: { "no-gutters": "" },
+                                              },
+                                              [
+                                                _c(
+                                                  "v-col",
+                                                  { attrs: { cols: "6" } },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                    Start date: " +
+                                                        _vm._s(
+                                                          _vm.trip.start ||
+                                                            "Not set"
+                                                        ) +
+                                                        "\n                  "
+                                                    ),
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-col",
+                                                  { attrs: { cols: "6" } },
+                                                  [
+                                                    _vm._v(
+                                                      "\n                    End date: " +
+                                                        _vm._s(
+                                                          _vm.trip.end ||
+                                                            "Not set"
+                                                        ) +
+                                                        "\n                  "
+                                                    ),
+                                                  ]
+                                                ),
+                                              ],
+                                              1
+                                            ),
+                                      ],
+                                      1
+                                    ),
+                                  ],
+                                  1
+                                ),
+                              ],
+                              1
+                            ),
+                          ]
+                        },
+                      },
+                    ]),
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "v-expansion-panel-content",
+                    [
+                      _c(
+                        "v-row",
+                        {
+                          attrs: { justify: "space-around", "no-gutters": "" },
+                        },
+                        [
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "3" } },
+                            [
+                              _c(
+                                "v-menu",
+                                {
+                                  ref: "startMenu",
+                                  attrs: {
+                                    "close-on-content-click": false,
+                                    "return-value": _vm.trip.start,
+                                    "offset-y": "",
+                                    "min-width": "290px",
+                                  },
+                                  on: {
+                                    "update:returnValue": function ($event) {
+                                      return _vm.$set(_vm.trip, "start", $event)
+                                    },
+                                    "update:return-value": function ($event) {
+                                      return _vm.$set(_vm.trip, "start", $event)
+                                    },
+                                  },
+                                  scopedSlots: _vm._u([
+                                    {
+                                      key: "activator",
+                                      fn: function (ref) {
+                                        var on = ref.on
+                                        var attrs = ref.attrs
+                                        return [
+                                          _c(
+                                            "v-text-field",
+                                            _vm._g(
+                                              _vm._b(
+                                                {
+                                                  attrs: {
+                                                    label: "Start date",
+                                                    "prepend-icon":
+                                                      "mdi-calendar",
+                                                    readonly: "",
+                                                  },
+                                                  model: {
+                                                    value: _vm.trip.start,
+                                                    callback: function ($$v) {
+                                                      _vm.$set(
+                                                        _vm.trip,
+                                                        "start",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression: "trip.start",
+                                                  },
+                                                },
+                                                "v-text-field",
+                                                attrs,
+                                                false
+                                              ),
+                                              on
+                                            )
+                                          ),
+                                        ]
+                                      },
+                                    },
+                                  ]),
+                                },
+                                [
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-date-picker",
+                                    {
+                                      attrs: { "no-title": "", scrollable: "" },
+                                      model: {
+                                        value: _vm.date,
+                                        callback: function ($$v) {
+                                          _vm.date = $$v
+                                        },
+                                        expression: "date",
+                                      },
+                                    },
+                                    [
+                                      _c("v-spacer"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: { text: "", color: "primary" },
+                                          on: {
+                                            click: function ($event) {
+                                              _vm.$refs.startMenu.isActive = false
+                                            },
+                                          },
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                    Cancel\n                  "
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: { text: "", color: "primary" },
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.$refs.startMenu.save(
+                                                _vm.date
+                                              )
+                                            },
+                                          },
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                    OK\n                  "
+                                          ),
+                                        ]
+                                      ),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "3" } },
+                            [
+                              _c(
+                                "v-menu",
+                                {
+                                  ref: "endMenu",
+                                  attrs: {
+                                    "close-on-content-click": false,
+                                    "return-value": _vm.trip.end,
+                                    "offset-y": "",
+                                    "min-width": "290px",
+                                  },
+                                  on: {
+                                    "update:returnValue": function ($event) {
+                                      return _vm.$set(_vm.trip, "end", $event)
+                                    },
+                                    "update:return-value": function ($event) {
+                                      return _vm.$set(_vm.trip, "end", $event)
+                                    },
+                                  },
+                                  scopedSlots: _vm._u([
+                                    {
+                                      key: "activator",
+                                      fn: function (ref) {
+                                        var on = ref.on
+                                        var attrs = ref.attrs
+                                        return [
+                                          _c(
+                                            "v-text-field",
+                                            _vm._g(
+                                              _vm._b(
+                                                {
+                                                  attrs: {
+                                                    label: "End date",
+                                                    "prepend-icon":
+                                                      "mdi-calendar",
+                                                    readonly: "",
+                                                  },
+                                                  model: {
+                                                    value: _vm.trip.end,
+                                                    callback: function ($$v) {
+                                                      _vm.$set(
+                                                        _vm.trip,
+                                                        "end",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression: "trip.end",
+                                                  },
+                                                },
+                                                "v-text-field",
+                                                attrs,
+                                                false
+                                              ),
+                                              on
+                                            )
+                                          ),
+                                        ]
+                                      },
+                                    },
+                                  ]),
+                                },
+                                [
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-date-picker",
+                                    {
+                                      attrs: { "no-title": "", scrollable: "" },
+                                      model: {
+                                        value: _vm.date,
+                                        callback: function ($$v) {
+                                          _vm.date = $$v
+                                        },
+                                        expression: "date",
+                                      },
+                                    },
+                                    [
+                                      _c("v-spacer"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: { text: "", color: "primary" },
+                                          on: {
+                                            click: function ($event) {
+                                              _vm.$refs.endMenu.isActive = false
+                                            },
+                                          },
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                    Cancel\n                  "
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: { text: "", color: "primary" },
+                                          on: {
+                                            click: function ($event) {
+                                              return _vm.$refs.endMenu.save(
+                                                _vm.date
+                                              )
+                                            },
+                                          },
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                    OK\n                  "
+                                          ),
+                                        ]
+                                      ),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c(
         "v-col",
         { attrs: { cols: "12" } },
