@@ -1,9 +1,14 @@
 <template>
-  <v-row
-    class="pr-1 pl-1 pt-1"
-    no-gutters
-    v-resize="onResize"
-    justify="center"
+  <v-row class="pr-1 pl-1 pt-1" no-gutters v-resize="onResize" justify="center">
+    <v-col cols="12">
+      <v-card elevation="10" rounded="xl" class="mb-5">
+        <v-card-title class="justify-center primary pa-3"
+          >Operations</v-card-title
+        >
+        <v-card-text class="pa-0">
+          <SoloOperationsTable :windowSize="windowSize"> </SoloOperationsTable>
+        </v-card-text>
+      </v-card> </v-col
   ></v-row>
 </template>
 <script>

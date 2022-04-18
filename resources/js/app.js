@@ -367,6 +367,11 @@ Vue.component(
     require("./components/station/addMissingCorp.vue").default
 );
 
+Vue.component(
+    "SoloOperationsTable",
+    require("./components/operations/SoloOperationsTable.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(Clipboard);
