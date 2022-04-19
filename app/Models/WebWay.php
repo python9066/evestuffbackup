@@ -12,6 +12,6 @@ class WebWay extends Model
 
     public function system()
     {
-        return $this->belongsTo(System::class);
+        return $this->hasOne(System::class);
     }
 }
