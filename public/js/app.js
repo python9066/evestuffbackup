@@ -32013,7 +32013,7 @@ function sleep(ms) {
       }
     },
     regionList: function regionList() {
-      return null;
+      return this.newSoloOperationsRegionList;
     },
     operationList: function operationList() {
       return this.newSoloOperations;

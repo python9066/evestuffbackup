@@ -374,7 +374,7 @@ export default {
     },
 
     regionList() {
-      return null;
+      return this.newSoloOperationsRegionList;
     },
 
     operationList() {
