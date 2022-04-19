@@ -11072,7 +11072,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       headers: [{
         text: "WebWay",
-        value: "filteredItems.campaign[0].system.webway[0].jumps",
+        value: "campaign[0].system.webway[0].jumps",
         sortable: false
       }, {
         text: "Region",
