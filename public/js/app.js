@@ -31761,7 +31761,7 @@ function sleep(ms) {
         end: null
       },
       regionFilter: [],
-      filterItemTypeSelect: [],
+      filterItemTypeSelect: 2,
       filterItemTypeSelectList: [{
         text: "All",
         value: 1
@@ -31772,7 +31772,7 @@ function sleep(ms) {
         text: "TCU",
         value: 3
       }],
-      filterStandingSelect: [],
+      filterStandingSelect: 1,
       filterStandingSelectList: [{
         text: "All",
         value: 1
@@ -31786,7 +31786,7 @@ function sleep(ms) {
         text: "Hostile",
         value: 4
       }],
-      filterStatusSelect: [],
+      filterStatusSelect: 2,
       filterStatusSelectList: [{
         text: "All",
         value: 1
@@ -31853,6 +31853,25 @@ function sleep(ms) {
         return "rounded-t-xl";
       } else {
         return "rounded-xl";
+      }
+    },
+    filterText: function filterText() {
+      //Showing all {{Structurs/Ihubs/TCUs}} in {{All regions/[region list]}} belonging too {{Everyone/Goons/Friendly/Hosiles}} {{that are Active/Finished/Logged}}
+      var start = "Showing all ";
+      var item = null;
+
+      switch (this.filterItemTypeSelect) {
+        case 1:
+          item = "structurs in ";
+          break;
+
+        case 2:
+          item = "Ihubs in ";
+          break;
+
+        case 3:
+          item = "TCUs in ";
+          break;
       }
     },
     systemlist: function systemlist() {
@@ -67413,7 +67432,7 @@ var render = function () {
                                           : _c("span", { key: "1" }, [
                                               _vm._v(
                                                 "\n                    " +
-                                                  _vm._s(_vm.trip.name) +
+                                                  _vm._s(_vm.filterText) +
                                                   "\n                  "
                                               ),
                                             ]),

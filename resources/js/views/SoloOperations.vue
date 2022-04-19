@@ -17,7 +17,7 @@
                       Select your Filter Setting below.
                     </span>
                     <span v-else key="1">
-                      {{ trip.name }}
+                      {{ filterText }}
                     </span>
                   </v-fade-transition>
                 </v-col>
@@ -168,14 +168,14 @@ export default {
 
       regionFilter: [],
 
-      filterItemTypeSelect: [],
+      filterItemTypeSelect: 2,
       filterItemTypeSelectList: [
         { text: "All", value: 1 },
         { text: "Ihub", value: 2 },
         { text: "TCU", value: 3 },
       ],
 
-      filterStandingSelect: [],
+      filterStandingSelect: 1,
       filterStandingSelectList: [
         { text: "All", value: 1 },
         { text: "Goon", value: 2 },
@@ -183,7 +183,7 @@ export default {
         { text: "Hostile", value: 4 },
       ],
 
-      filterStatusSelect: [],
+      filterStatusSelect: 2,
       filterStatusSelectList: [
         { text: "All", value: 1 },
         { text: "Active", value: 2 },
@@ -230,6 +230,63 @@ export default {
       } else {
         return "rounded-xl";
       }
+    },
+
+    filterText() {
+      //Showing all {{Structurs/Ihubs/TCUs}} in {{All regions/[region list]}} belonging too {{Everyone/Goons/Friendly/Hosiles}} {{that are Active/Finished/Logged}}
+
+      let start = "Showing all ";
+      let item = null;
+      let regions = "all regions belonging too ";
+      let standing = null;
+      let status = null;
+      switch (this.filterItemTypeSelect) {
+        case 1:
+          item = "structurs in ";
+          break;
+
+        case 2:
+          item = "Ihubs in ";
+          break;
+
+        case 3:
+          item = "TCUs in ";
+          break;
+      }
+
+      switch (this.filterStandingSelect) {
+        case 1:
+          standing = "everyone ";
+          break;
+
+        case 2:
+          standing = "Goons ";
+          break;
+
+        case 3:
+          standing = "Friendlys ";
+          break;
+
+        case 4:
+          standing = "Hostiles ";
+          break;
+      }
+
+      switch (this.filterStatusSelect) {
+        case 1:
+          status = null;
+          break;
+
+        case 2:
+          status = "active.";
+          break;
+
+        case 3:
+          status = "finished.";
+          break;
+      }
+
+      return start + item + regions + standing + status;
     },
 
     systemlist() {
