@@ -125,6 +125,18 @@ class testController extends Controller
         }
     }
 
+    public function getSoloOperations()
+    {
+
+        $user = Auth::user();
+        if ($user->can('super')) {
+
+            return ['operations' => NewOperation::where('solo', 1)->with('campaign')->get()];
+        } else {
+            return null;
+        }
+    }
+
     public function horizon()
     {
 
