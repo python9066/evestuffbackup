@@ -205,7 +205,7 @@ class testController extends Controller
     {
         $regionList = NewOperation::where('solo', 1)->with('campaign.constellation.region')->get();
         foreach ($regionList as $r) {
-            return $r;
+            return $r->campaign[0]->constellation->region;
         }
     }
 
