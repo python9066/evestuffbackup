@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\NewOperation;
+use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,7 +48,20 @@ class NewOperationsController extends Controller
                 ->get();
         }
 
-        return ['solooplist' => $data];
+        $regionIDs = collect();
+        $regions = NewOperation::where('solo', 1)->with('campaign.constellation.region')->get();
+        foreach ($regions as $r) {
+            $regionIDs->push($r->campaign[0]->constellation->region->id);
+        }
+
+        $uRegionIDs = $regionIDs->unique();
+        $regionList = Region::whereIn('id', $uRegionIDs)->select(['id as value', 'region_name as text'])->orderBy('region_name', 'asc')->get();
+
+
+        return [
+            'solooplist' => $data,
+            'regionList' => $regionList
+        ];
     }
 
     /**
