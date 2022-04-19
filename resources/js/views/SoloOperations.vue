@@ -186,8 +186,9 @@ export default {
       filterStatusSelect: 2,
       filterStatusSelectList: [
         { text: "All", value: 1 },
-        { text: "Active", value: 2 },
-        { text: "Finished", value: 3 },
+        { text: "Upcoming", value: 2 },
+        { text: "Active", value: 3 },
+        { text: "Finished", value: 4 },
       ],
     };
   },
@@ -278,10 +279,14 @@ export default {
           break;
 
         case 2:
-          status = "that are active.";
+          status = "That are upcoming";
           break;
 
         case 3:
+          status = "that are active.";
+          break;
+
+        case 4:
           status = "that have finished.";
           break;
       }

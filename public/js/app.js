@@ -31791,11 +31791,14 @@ function sleep(ms) {
         text: "All",
         value: 1
       }, {
-        text: "Active",
+        text: "Upcoming",
         value: 2
       }, {
-        text: "Finished",
+        text: "Active",
         value: 3
+      }, {
+        text: "Finished",
+        value: 4
       }]
     };
   },
@@ -31901,10 +31904,14 @@ function sleep(ms) {
           break;
 
         case 2:
-          status = "that are active.";
+          status = "That are upcoming";
           break;
 
         case 3:
+          status = "that are active.";
+          break;
+
+        case 4:
           status = "that have finished.";
           break;
       }
