@@ -134,10 +134,11 @@ class testController extends Controller
             return ['operations' => NewOperation::where('solo', 1)
                 ->with([
                     'campaign',
-                    'campaign.constellation',
-                    'campaign.alliance',
-                    'campaign.system',
-                    'campaign.structure',
+                    'campaign.constellation:id,constellation_name',
+                    'campaign.alliance:id,name,ticker,standing,url,color',
+                    'campaign.system.webway',
+                    'campaign.system:id,name,adm',
+                    'campaign.structure:id,item_id,age',
                 ])
                 ->get()];
         } else {
