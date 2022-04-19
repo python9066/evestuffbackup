@@ -324,7 +324,7 @@ export default {
           (o) => o.campaign[0].alliance.color == this.filterStandingSelect
         );
       } else {
-        return this.newSoloOperations;
+        return this.operationList;
       }
     },
 

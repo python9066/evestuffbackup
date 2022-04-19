@@ -31971,7 +31971,7 @@ function sleep(ms) {
           return o.campaign[0].alliance.color == _this3.filterStandingSelect;
         });
       } else {
-        return this.newSoloOperations;
+        return this.operationList;
       }
     },
     regionList: function regionList() {
