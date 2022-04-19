@@ -6,10 +6,9 @@
           Search
           <v-text-field
             label="Filled"
-            placeholder="Dense & Rounded"
             filled
             rounded
-            dense
+            single-line
           ></v-text-field>
         </v-col>
         <v-col cols="6"

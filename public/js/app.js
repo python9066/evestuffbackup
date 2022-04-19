@@ -31749,7 +31749,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -67468,10 +67467,9 @@ var render = function () {
                   _c("v-text-field", {
                     attrs: {
                       label: "Filled",
-                      placeholder: "Dense & Rounded",
                       filled: "",
                       rounded: "",
-                      dense: "",
+                      "single-line": "",
                     },
                   }),
                 ],
