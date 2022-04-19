@@ -212,7 +212,7 @@ class testController extends Controller
 
         $uRegionIDs = $regionIDs->unique();
         $regionList = Region::whereIn('id', $uRegionIDs)->select(['id as value', 'region_name as text'])->orderBy('region_name', 'asc')->get();
-        dd($regionList);
+        return ['regionList' => $regionList];
     }
 
     public function campaginListTest()
