@@ -249,6 +249,7 @@ export default {
   },
 
   computed: {
+    ...mapState(["newSoloOperations"]),
     filterRound() {
       if (this.filterOpen) {
         return "rounded-t-xl";
@@ -314,16 +315,11 @@ export default {
           status = "that have finished.";
           break;
       }
-      console.log(start);
-      console.log(item);
-      console.log(regions);
-      console.log(standing);
-      console.log(status);
       return start + item + regions + standing + status;
     },
 
     systemlist() {
-      return [];
+      return this.newSoloOperations;
     },
   },
   beforeDestroy() {},
