@@ -236,10 +236,10 @@ export default {
       //Showing all {{Structurs/Ihubs/TCUs}} in {{All regions/[region list]}} belonging too {{Everyone/Goons/Friendly/Hosiles}} {{that are Active/Finished/Logged}} belonging to everyone
 
       var start = "Showing all ";
-      var item = null;
+      var item = "";
       var regions = "belonging to ";
-      var standing = null;
-      var status = null;
+      var standing = "";
+      var status = "";
       switch (this.filterItemTypeSelect) {
         case 1:
           item = "structurs ";
@@ -274,7 +274,7 @@ export default {
 
       switch (this.filterStatusSelect) {
         case 1:
-          status = null;
+          status = "";
           break;
 
         case 2:
