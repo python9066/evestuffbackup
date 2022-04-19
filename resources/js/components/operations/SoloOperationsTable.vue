@@ -32,7 +32,7 @@ export default {
       headers: [
         {
           text: "WebWay",
-          value: "webway",
+          value: "filteredItems.campaign[0].system.webway[0].jumps",
           sortable: false,
         },
         {

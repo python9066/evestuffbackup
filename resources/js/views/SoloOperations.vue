@@ -384,7 +384,7 @@ export default {
       if (this.regionFilter.length != 0) {
         this.regionFilter.forEach((p) => {
           let pick = this.filterItemsMidMid.filter(
-            (f) => f.campaign[0]["constellation"]["region"]["id"] == p
+            (f) => f.campaign[0].constellation.region.id == p
           );
           if (pick != null) {
             pick.forEach((pk) => {

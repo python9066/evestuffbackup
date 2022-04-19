@@ -11072,7 +11072,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       headers: [{
         text: "WebWay",
-        value: "webway",
+        value: "filteredItems.campaign[0].system.webway[0].jumps",
         sortable: false
       }, {
         text: "Region",
@@ -32023,7 +32023,7 @@ function sleep(ms) {
       if (this.regionFilter.length != 0) {
         this.regionFilter.forEach(function (p) {
           var pick = _this4.filterItemsMidMid.filter(function (f) {
-            return f.campaign[0]["constellation"]["region"]["id"] == p;
+            return f.campaign[0].constellation.region.id == p;
           });
 
           if (pick != null) {
