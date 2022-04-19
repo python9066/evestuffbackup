@@ -1,152 +1,154 @@
 <template>
   <v-row class="pr-5 pl-5 pt-1" no-gutters v-resize="onResize" justify="center">
-    <v-row no-gutters justify="center">
-      <v-col cols="5">
-        <v-card class="rounded-xl" color="primary"
-          ><v-card-text>fefefef</v-card-text></v-card
-        >
-      </v-col>
-      <v-col cols="6 pb-5"
-        ><v-expansion-panels>
-          <v-expansion-panel class="rounded-xl">
-            <v-expansion-panel-header
-              color="primary"
-              :class="filterRound"
-              @click="filterClick()"
-            >
-              <template v-slot:actions>
-                <v-icon color="error"> fa-solid fa-filter </v-icon>
-              </template>
-              <template v-slot:default="{ open }">
-                <v-row no-gutters>
-                  <v-col cols="2" class="font-bold"> Filters </v-col>
-                  <v-col cols="8" class="align-content-start">
-                    <v-fade-transition leave-absolute>
-                      <span v-if="open" key="0">
-                        Select your Filter Setting below.
-                      </span>
-                      <span v-else key="1">
-                        {{ filterText }}
-                      </span>
-                    </v-fade-transition>
-                  </v-col>
-                </v-row>
-              </template>
-            </v-expansion-panel-header>
-            <v-expansion-panel-content class="rounded-xl">
-              <v-row no-gutters
-                ><v-col cols="12"
-                  ><v-card flat
-                    ><v-card-text class="py-0"
-                      ><span class="subheading">Filter Regions</span
-                      ><v-autocomplete
-                        chips
-                        clearable
-                        deletable-chips
-                        solo-inverted
-                        dense
-                        hide-details
-                        hide-selected
-                        rounded
-                        small-chips
-                        multiple
-                        v-model="regionFilter"
-                        :items="systemlist"
-                      ></v-autocomplete></v-card-text></v-card></v-col
-              ></v-row>
-              <v-row no-gutters
-                ><v-col cols="12">
-                  <v-card flat
-                    ><v-card-text class="py-0"
-                      ><span class="subheading"> Filter Item</span
-                      ><v-chip-group
-                        active-class="primary--text"
-                        column
-                        v-model="filterItemTypeSelect"
-                      >
-                        <v-chip
-                          v-for="(list, index) in filterItemTypeSelectList"
-                          :key="index"
-                          filter
-                          :value="list.value"
-                          outlined
-                          small
-                        >
-                          {{ list.text }}
-                        </v-chip>
-                      </v-chip-group>
-                    </v-card-text>
-                  </v-card>
-                </v-col></v-row
-              >
-              <v-row no-gutters
-                ><v-col cols="12">
-                  <v-card flat
-                    ><v-card-text class="py-0"
-                      ><span class="subheading"> Standing</span
-                      ><v-chip-group
-                        active-class="primary--text"
-                        column
-                        v-model="filterStandingSelect"
-                      >
-                        <v-chip
-                          v-for="(list, index) in filterStandingSelectList"
-                          :key="index"
-                          filter
-                          :value="list.value"
-                          outlined
-                          small
-                        >
-                          {{ list.text }}
-                        </v-chip>
-                      </v-chip-group>
-                    </v-card-text>
-                  </v-card>
-                </v-col></v-row
-              >
-
-              <v-row no-gutters
-                ><v-col cols="12">
-                  <v-card flat
-                    ><v-card-text class="py-0"
-                      ><span class="subheading"> Status</span
-                      ><v-chip-group
-                        active-class="primary--text"
-                        column
-                        v-model="filterStatusSelect"
-                      >
-                        <v-chip
-                          v-for="(list, index) in filterStatusSelectList"
-                          :key="index"
-                          filter
-                          :value="list.value"
-                          outlined
-                          small
-                        >
-                          {{ list.text }}
-                        </v-chip>
-                      </v-chip-group>
-                    </v-card-text>
-                  </v-card>
-                </v-col></v-row
-              >
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels></v-col
-      >
-    </v-row>
-    <v-row no-gutters justify="center">
-      <v-col cols="12">
-        <v-card elevation="10" rounded="xl" class="mb-5">
-          <v-card-title class="justify-center primary pa-3"
-            >Operations</v-card-title
+    <v-col cols="12">
+      <v-row no-gutters justify="center">
+        <v-col cols="5">
+          <v-card class="rounded-xl" color="primary"
+            ><v-card-text>fefefef</v-card-text></v-card
           >
-          <v-card-text class="pa-0">
-            <SoloOperationsTable :windowSize="windowSize">
-            </SoloOperationsTable>
-          </v-card-text>
-        </v-card> </v-col
-    ></v-row>
+        </v-col>
+        <v-col cols="6 pb-5"
+          ><v-expansion-panels>
+            <v-expansion-panel class="rounded-xl">
+              <v-expansion-panel-header
+                color="primary"
+                :class="filterRound"
+                @click="filterClick()"
+              >
+                <template v-slot:actions>
+                  <v-icon color="error"> fa-solid fa-filter </v-icon>
+                </template>
+                <template v-slot:default="{ open }">
+                  <v-row no-gutters>
+                    <v-col cols="2" class="font-bold"> Filters </v-col>
+                    <v-col cols="8" class="align-content-start">
+                      <v-fade-transition leave-absolute>
+                        <span v-if="open" key="0">
+                          Select your Filter Setting below.
+                        </span>
+                        <span v-else key="1">
+                          {{ filterText }}
+                        </span>
+                      </v-fade-transition>
+                    </v-col>
+                  </v-row>
+                </template>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content class="rounded-xl">
+                <v-row no-gutters
+                  ><v-col cols="12"
+                    ><v-card flat
+                      ><v-card-text class="py-0"
+                        ><span class="subheading">Filter Regions</span
+                        ><v-autocomplete
+                          chips
+                          clearable
+                          deletable-chips
+                          solo-inverted
+                          dense
+                          hide-details
+                          hide-selected
+                          rounded
+                          small-chips
+                          multiple
+                          v-model="regionFilter"
+                          :items="systemlist"
+                        ></v-autocomplete></v-card-text></v-card></v-col
+                ></v-row>
+                <v-row no-gutters
+                  ><v-col cols="12">
+                    <v-card flat
+                      ><v-card-text class="py-0"
+                        ><span class="subheading"> Filter Item</span
+                        ><v-chip-group
+                          active-class="primary--text"
+                          column
+                          v-model="filterItemTypeSelect"
+                        >
+                          <v-chip
+                            v-for="(list, index) in filterItemTypeSelectList"
+                            :key="index"
+                            filter
+                            :value="list.value"
+                            outlined
+                            small
+                          >
+                            {{ list.text }}
+                          </v-chip>
+                        </v-chip-group>
+                      </v-card-text>
+                    </v-card>
+                  </v-col></v-row
+                >
+                <v-row no-gutters
+                  ><v-col cols="12">
+                    <v-card flat
+                      ><v-card-text class="py-0"
+                        ><span class="subheading"> Standing</span
+                        ><v-chip-group
+                          active-class="primary--text"
+                          column
+                          v-model="filterStandingSelect"
+                        >
+                          <v-chip
+                            v-for="(list, index) in filterStandingSelectList"
+                            :key="index"
+                            filter
+                            :value="list.value"
+                            outlined
+                            small
+                          >
+                            {{ list.text }}
+                          </v-chip>
+                        </v-chip-group>
+                      </v-card-text>
+                    </v-card>
+                  </v-col></v-row
+                >
+
+                <v-row no-gutters
+                  ><v-col cols="12">
+                    <v-card flat
+                      ><v-card-text class="py-0"
+                        ><span class="subheading"> Status</span
+                        ><v-chip-group
+                          active-class="primary--text"
+                          column
+                          v-model="filterStatusSelect"
+                        >
+                          <v-chip
+                            v-for="(list, index) in filterStatusSelectList"
+                            :key="index"
+                            filter
+                            :value="list.value"
+                            outlined
+                            small
+                          >
+                            {{ list.text }}
+                          </v-chip>
+                        </v-chip-group>
+                      </v-card-text>
+                    </v-card>
+                  </v-col></v-row
+                >
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels></v-col
+        >
+      </v-row>
+      <v-row no-gutters justify="center">
+        <v-col cols="12">
+          <v-card elevation="10" rounded="xl" class="mb-5">
+            <v-card-title class="justify-center primary pa-3"
+              >Operations</v-card-title
+            >
+            <v-card-text class="pa-0">
+              <SoloOperationsTable :windowSize="windowSize">
+              </SoloOperationsTable>
+            </v-card-text>
+          </v-card> </v-col
+      ></v-row>
+    </v-col>
   </v-row>
 </template>
 <script>
