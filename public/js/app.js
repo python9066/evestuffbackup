@@ -31856,24 +31856,24 @@ function sleep(ms) {
       }
     },
     filterText: function filterText() {
-      //Showing all {{Structurs/Ihubs/TCUs}} in {{All regions/[region list]}} belonging too {{Everyone/Goons/Friendly/Hosiles}} {{that are Active/Finished/Logged}}
+      //Showing all {{Structurs/Ihubs/TCUs}} in {{All regions/[region list]}} belonging too {{Everyone/Goons/Friendly/Hosiles}} {{that are Active/Finished/Logged}} belonging to everyone
       var start = "Showing all ";
       var item = null;
-      var regions = "all regions belonging too ";
+      var regions = "belonging to ";
       var standing = null;
       var status = null;
 
       switch (this.filterItemTypeSelect) {
         case 1:
-          item = "structurs in ";
+          item = "structurs ";
           break;
 
         case 2:
-          item = "Ihubs in ";
+          item = "Ihubs ";
           break;
 
         case 3:
-          item = "TCUs in ";
+          item = "TCUs ";
           break;
       }
 
@@ -31901,11 +31901,11 @@ function sleep(ms) {
           break;
 
         case 2:
-          status = "active.";
+          status = "that are active.";
           break;
 
         case 3:
-          status = "finished.";
+          status = "that have finished.";
           break;
       }
 
