@@ -31,7 +31,6 @@ class NewOperationsController extends Controller
                     'campaign.structure:id,item_id,age',
                 ])
                 ->get();
-            return ['solooplist' => $data];
         } else {
             $data = NewOperation::where('solo', 1)
                 ->with([
@@ -46,8 +45,9 @@ class NewOperationsController extends Controller
                     'campaign.structure:id,item_id,age',
                 ])
                 ->get();
-            return ['solooplist' => $data];
         }
+
+        return ['solooplist' => $data];
     }
 
     /**

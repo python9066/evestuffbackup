@@ -203,17 +203,9 @@ class testController extends Controller
 
     public function campaginTest()
     {
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            "Accept" => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
-        ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
-
-        $campaigns = $response->collect();
-        foreach ($campaigns as $campaign) {
-            $test = NewOperation::where('id', 12)->with(['campaign'])->first();
-            $text = ["test" => $test];
-            return $test;
+        $regionList = NewOperation::where('solo', 1)->with('campaign.constellation.region')->get();
+        foreach ($regionList as $r) {
+            return $r;
         }
     }
 
