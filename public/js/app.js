@@ -31964,9 +31964,18 @@ function sleep(ms) {
       return start + item + regions + standing + status;
     },
     filteredItems: function filteredItems() {
-      if (this.filterItemTypeSelect != 4) {} else {
+      var _this3 = this;
+
+      if (this.filterItemTypeSelect != 4) {
+        return this.operationList.filter(function (o) {
+          return o.campaign[0].alliance.color == _this3.filterStandingSelect;
+        });
+      } else {
         return this.newSoloOperations;
       }
+    },
+    regionList: function regionList() {
+      return null;
     },
     operationList: function operationList() {
       return this.newSoloOperations;
@@ -67629,7 +67638,7 @@ var render = function () {
                                                   rounded: "",
                                                   "small-chips": "",
                                                   multiple: "",
-                                                  items: _vm.systemlist,
+                                                  items: _vm.regionList,
                                                 },
                                                 model: {
                                                   value: _vm.regionFilter,
