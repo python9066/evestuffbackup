@@ -21,8 +21,8 @@ class NewOperationsController extends Controller
             $data = NewOperation::where('solo', 1)
                 ->with([
                     'campaign',
-                    'campaign.constellation:id,constellation_name',
-                    'campaign.region:id,region_name',
+                    'campaign.constellation:id,constellation_name,region_id',
+                    'campaign.constellation.region:id,region_name',
                     'campaign.alliance:id,name,ticker,standing,url,color',
                     'campaign.system:id,system_name,adm',
                     'campaign.system.webway' => function ($t) {
@@ -36,8 +36,8 @@ class NewOperationsController extends Controller
             $data = NewOperation::where('solo', 1)
                 ->with([
                     'campaign:id,solo,status,created_at,updated_at',
-                    'campaign.constellation:id,constellation_name',
-                    'campaign.region:id,region_name',
+                    'campaign.constellation:id,constellation_name,region_id',
+                    'campaign.constellation.region:id,region_name',
                     'campaign.alliance:id,name,ticker,standing,url,color',
                     'campaign.system:id,system_name,adm',
                     'campaign.system.webway' => function ($t) {
