@@ -235,11 +235,11 @@ export default {
     filterText() {
       //Showing all {{Structurs/Ihubs/TCUs}} in {{All regions/[region list]}} belonging too {{Everyone/Goons/Friendly/Hosiles}} {{that are Active/Finished/Logged}}
 
-      let start = "Showing all ";
-      let item = null;
-      let regions = "all regions belonging too ";
-      let standing = null;
-      let status = null;
+      var start = "Showing all ";
+      var item = null;
+      var regions = "all regions belonging too ";
+      var standing = null;
+      var status = null;
       switch (this.filterItemTypeSelect) {
         case 1:
           item = "structurs in ";
@@ -285,7 +285,11 @@ export default {
           status = "finished.";
           break;
       }
-
+      console.log(start);
+      console.log(item);
+      console.log(regions);
+      console.log(standing);
+      console.log(status);
       return "this is a test";
     },
 
