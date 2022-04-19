@@ -80,10 +80,14 @@ export default new Vuex.Store({
         welpsheetStatus: [],
 
         newSoloOperations: [],
+        newSoloOperationsRegionList: [],
     },
     mutations: {
         SET_NEW_SOLO_OPERATIONS(state, solooplist) {
             state.newSoloOperations = solooplist;
+        },
+        SET_NEW_SOLO_OPERATIONS_REGIONS(state, regionList) {
+            state.newSoloOperationsRegionList = regionList;
         },
 
         SET_AMMO_REQUEST(state, ammorequest) {
@@ -684,6 +688,7 @@ export default new Vuex.Store({
                 },
             });
             commit("SET_NEW_SOLO_OPERATIONS", res.data.solooplist);
+            commit("SET_NEW_SOLO_OPERATIONS_REGIONS", res.data.regionList);
         },
 
         async getTimerDataAll({ commit }) {

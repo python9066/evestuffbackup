@@ -31895,7 +31895,7 @@ function sleep(ms) {
       });
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newSoloOperations"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newSoloOperations", "newSoloOperationsRegionList"])), {}, {
     filterRound: function filterRound() {
       if (this.filterOpen) {
         return "rounded-t-xl";
@@ -78867,11 +78867,15 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     welpsheetRegion: [],
     welpsheetItem: [],
     welpsheetStatus: [],
-    newSoloOperations: []
+    newSoloOperations: [],
+    newSoloOperationsRegionList: []
   },
   mutations: {
     SET_NEW_SOLO_OPERATIONS: function SET_NEW_SOLO_OPERATIONS(state, solooplist) {
       state.newSoloOperations = solooplist;
+    },
+    SET_NEW_SOLO_OPERATIONS_REGIONS: function SET_NEW_SOLO_OPERATIONS_REGIONS(state, regionList) {
+      state.newSoloOperationsRegionList = regionList;
     },
     SET_AMMO_REQUEST: function SET_AMMO_REQUEST(state, ammorequest) {
       state.ammoRequest = ammorequest;
@@ -79439,8 +79443,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               case 3:
                 res = _context.sent;
                 commit("SET_NEW_SOLO_OPERATIONS", res.data.solooplist);
+                commit("SET_NEW_SOLO_OPERATIONS_REGIONS", res.data.regionList);
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }

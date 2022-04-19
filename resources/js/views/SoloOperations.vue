@@ -249,7 +249,7 @@ export default {
   },
 
   computed: {
-    ...mapState(["newSoloOperations"]),
+    ...mapState(["newSoloOperations", "newSoloOperationsRegionList"]),
     filterRound() {
       if (this.filterOpen) {
         return "rounded-t-xl";
