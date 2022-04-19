@@ -131,7 +131,15 @@ class testController extends Controller
         $user = Auth::user();
         if ($user->can('super')) {
 
-            return ['operations' => NewOperation::where('solo', 1)->with('campaign')->get()];
+            return ['operations' => NewOperation::where('solo', 1)
+                ->with([
+                    'campaign',
+                    'campaign.constellation',
+                    'campaign.alliance',
+                    'campaign.system',
+                    'campaign.structure',
+                ])
+                ->get()];
         } else {
             return null;
         }
