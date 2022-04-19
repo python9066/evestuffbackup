@@ -37,47 +37,47 @@ export default {
         },
         {
           text: "Region",
-          value: "region",
+          value: "campaign[0].constellation.region.region_name",
           sortable: true,
         },
 
         {
           text: "Constellation",
-          value: "constellation",
+          value: "campaign[0].constellation.constellation_name",
           sortable: true,
         },
 
         {
           text: "System",
-          value: "system",
+          value: "campaign[0].system.system_name",
           sortable: true,
         },
         {
           text: "Alliance",
-          value: "alliance",
+          value: "campaign[0].alliance.name",
           sortable: true,
         },
         {
           text: "Ticker",
-          value: "ticker",
+          value: "campaign[0].alliance.ticker",
           sortable: true,
         },
 
         {
           text: "Structure",
-          value: "structure",
+          value: "campaign[0].event_type",
           sortable: true,
         },
 
         {
           text: "Start/Progress",
-          value: "startTime",
+          value: "campaign[0].start_time",
           sortable: true,
         },
 
         {
           text: "Countdown/Age",
-          value: "startTime",
+          value: "campaign[0].structure.age",
           sortable: true,
         },
       ],
