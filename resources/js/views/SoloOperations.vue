@@ -365,12 +365,31 @@ export default {
 
         if (this.filterStatusSelect == 4) {
           return this.filteredItemsMid.filter(
-            o.campaign[0]["status_id"] == 3 || o.campaign[0]["status_id"] == 4
+            (o) =>
+              o.campaign[0]["status_id"] == 3 || o.campaign[0]["status_id"] == 4
           );
         }
       } else {
         return this.filteredItemsMid;
       }
+    },
+
+    filterEnd() {
+      let data = [];
+      if (this.regionFilter.length != 0) {
+        this.regionFilter.forEach((p) => {
+          let pick = this.filterItemsMidMid.filter(
+            (f) => f.campaign[0].constellation.region.id == p
+          );
+          if (pick != null) {
+            pick.forEach((pk) => {
+              data.push(pk);
+            });
+          }
+        });
+        return data;
+      }
+      return this.filterItemsMidMid;
     },
 
     regionList() {

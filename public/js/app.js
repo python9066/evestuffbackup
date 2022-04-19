@@ -24932,8 +24932,6 @@ function sleep(ms) {
 
       if (this.typePicked.length != 0) {
         this.typePicked.forEach(function (p) {
-          console.log(p);
-
           var pick = _this4.filteredItems.filter(function (f) {
             return f.region_id == p;
           });
@@ -32006,11 +32004,35 @@ function sleep(ms) {
         }
 
         if (this.filterStatusSelect == 4) {
-          return this.filteredItemsMid.filter(o.campaign[0]["status_id"] == 3 || o.campaign[0]["status_id"] == 4);
+          return this.filteredItemsMid.filter(function (o) {
+            return o.campaign[0]["status_id"] == 3 || o.campaign[0]["status_id"] == 4;
+          });
         }
       } else {
         return this.filteredItemsMid;
       }
+    },
+    filterEnd: function filterEnd() {
+      var _this4 = this;
+
+      var data = [];
+
+      if (this.regionFilter.length != 0) {
+        this.regionFilter.forEach(function (p) {
+          var pick = _this4.filterItemsMidMid.filter(function (f) {
+            return f.campaign[0].constellation.region.id == p;
+          });
+
+          if (pick != null) {
+            pick.forEach(function (pk) {
+              data.push(pk);
+            });
+          }
+        });
+        return data;
+      }
+
+      return this.filterItemsMidMid;
     },
     regionList: function regionList() {
       return this.newSoloOperationsRegionList;
