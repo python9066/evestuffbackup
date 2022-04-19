@@ -25,6 +25,7 @@ import { mapGetters, mapState } from "vuex";
 export default {
   props: {
     windowSize: Object,
+    filteredItems: Array,
   },
   data() {
     return {
@@ -85,9 +86,6 @@ export default {
   mounted() {},
   methods: {},
   computed: {
-    filteredItems() {
-      return [];
-    },
     height() {
       let num = this.windowSize.y - 262;
       return num;
