@@ -55,7 +55,7 @@ class System extends Model
 
     public function webway()
     {
-        return $this->belongsTo(WebWay::class, 'id', 'system_id');
+        return $this->hasMany(WebWay::class, 'id', 'system_id');
     }
 
     protected $casts = [
