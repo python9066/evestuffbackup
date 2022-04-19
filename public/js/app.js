@@ -31859,6 +31859,9 @@ function sleep(ms) {
       //Showing all {{Structurs/Ihubs/TCUs}} in {{All regions/[region list]}} belonging too {{Everyone/Goons/Friendly/Hosiles}} {{that are Active/Finished/Logged}}
       var start = "Showing all ";
       var item = null;
+      var regions = "all regions belonging too ";
+      var standing = null;
+      var status = null;
 
       switch (this.filterItemTypeSelect) {
         case 1:
@@ -31873,6 +31876,45 @@ function sleep(ms) {
           item = "TCUs in ";
           break;
       }
+
+      switch (this.filterStandingSelect) {
+        case 1:
+          standing = "everyone ";
+          break;
+
+        case 2:
+          standing = "Goons ";
+          break;
+
+        case 3:
+          standing = "Friendlys ";
+          break;
+
+        case 4:
+          standing = "Hostiles ";
+          break;
+      }
+
+      switch (this.filterStatusSelect) {
+        case 1:
+          status = null;
+          break;
+
+        case 2:
+          status = "active.";
+          break;
+
+        case 3:
+          status = "finished.";
+          break;
+      }
+
+      console.log(start);
+      console.log(item);
+      console.log(regions);
+      console.log(standing);
+      console.log(status);
+      return start + item + regions + standing + status;
     },
     systemlist: function systemlist() {
       return [];

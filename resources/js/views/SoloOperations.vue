@@ -290,7 +290,7 @@ export default {
       console.log(regions);
       console.log(standing);
       console.log(status);
-      return "this is a test";
+      return start + item + regions + standing + status;
     },
 
     systemlist() {
