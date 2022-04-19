@@ -56,7 +56,7 @@
                           small-chips
                           multiple
                           v-model="regionFilter"
-                          :items="systemlist"
+                          :items="regionList"
                         ></v-autocomplete></v-card-text></v-card></v-col
                 ></v-row>
                 <v-row no-gutters
@@ -320,12 +320,16 @@ export default {
 
     filteredItems() {
       if (this.filterItemTypeSelect != 4) {
-        return this.newSoloOperations.filter(
+        return this.operationList.filter(
           (o) => o.campaign[0].alliance.color == this.filterStandingSelect
         );
       } else {
         return this.newSoloOperations;
       }
+    },
+
+    regionList() {
+      return null;
     },
 
     operationList() {
