@@ -31754,6 +31754,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -67558,13 +67560,15 @@ var render = function () {
                 "v-col",
                 { attrs: { cols: "5" } },
                 [
-                  _vm._v("\n        Search\n        "),
                   _c("v-text-field", {
                     attrs: {
-                      label: "Filled",
+                      label: "Search",
                       filled: "",
+                      dense: "",
                       rounded: "",
                       "single-line": "",
+                      clearable: "",
+                      color: "primary",
                     },
                   }),
                 ],

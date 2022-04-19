@@ -3,12 +3,14 @@
     <v-col cols="12">
       <v-row no-gutters justify="space-between" class="pb-5">
         <v-col cols="5">
-          Search
           <v-text-field
-            label="Filled"
+            label="Search"
             filled
+            dense
             rounded
             single-line
+            clearable
+            color="primary"
           ></v-text-field>
         </v-col>
         <v-col cols="6"
