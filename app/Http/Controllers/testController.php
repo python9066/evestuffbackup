@@ -138,7 +138,7 @@ class testController extends Controller
                     'campaign.alliance:id,name,ticker,standing,url,color',
                     'campaign.system:id,system_name,adm',
                     'campaign.system.webway' => function ($t) {
-                        $t->where('permission', 1);
+                        $t->where('permissions', 1);
                     },
                     'campaign.structure:id,item_id,age',
                 ])
