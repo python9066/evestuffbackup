@@ -214,8 +214,8 @@ export default {
     };
   },
 
-  created() {
-    Echo.private("").listen("SoloOperationUpdate", (e) => {});
+  async created() {
+    Echo.private("dwdw").listen("SoloOperationUpdate", (e) => {});
     await this.$store.dispatch("getSoloOperationList");
   },
 
