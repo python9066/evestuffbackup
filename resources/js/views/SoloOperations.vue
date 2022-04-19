@@ -1,8 +1,18 @@
 <template>
   <v-row class="pr-5 pl-5 pt-1" no-gutters v-resize="onResize" justify="center">
     <v-col cols="12">
-      <v-row no-gutters justify="end">
-        <v-col cols="6 pb-5"
+      <v-row no-gutters justify="space-between" class="pb-5">
+        <v-col cols="5">
+          Search
+          <v-text-field
+            label="Filled"
+            placeholder="Dense & Rounded"
+            filled
+            rounded
+            dense
+          ></v-text-field>
+        </v-col>
+        <v-col cols="6"
           ><v-expansion-panels>
             <v-expansion-panel class="rounded-xl">
               <v-expansion-panel-header

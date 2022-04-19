@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\SoloCampaignUpdate;
+use App\Events\SoloOperationUpdate;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendSoloCampaignUpdate
+class SendSoloOperationUpdate
 {
     /**
      * Create the event listener.
@@ -21,10 +21,10 @@ class SendSoloCampaignUpdate
     /**
      * Handle the event.
      *
-     * @param  \App\Events\SoloCampaignUpdate  $event
+     * @param  \App\Events\SoloOperationUpdate  $event
      * @return void
      */
-    public function handle(SoloCampaignUpdate $event)
+    public function handle(SoloOperationUpdate $event)
     {
         //
     }

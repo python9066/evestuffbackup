@@ -31740,6 +31740,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -67445,11 +67455,32 @@ var render = function () {
         [
           _c(
             "v-row",
-            { attrs: { "no-gutters": "", justify: "end" } },
+            {
+              staticClass: "pb-5",
+              attrs: { "no-gutters": "", justify: "space-between" },
+            },
             [
               _c(
                 "v-col",
-                { attrs: { cols: "6 pb-5" } },
+                { attrs: { cols: "5" } },
+                [
+                  _vm._v("\n        Search\n        "),
+                  _c("v-text-field", {
+                    attrs: {
+                      label: "Filled",
+                      placeholder: "Dense & Rounded",
+                      filled: "",
+                      rounded: "",
+                      dense: "",
+                    },
+                  }),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-col",
+                { attrs: { cols: "6" } },
                 [
                   _c(
                     "v-expansion-panels",

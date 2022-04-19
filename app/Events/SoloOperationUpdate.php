@@ -11,7 +11,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class SoloCampaignUpdate implements ShouldBroadcastNow
+class SoloOperationUpdate implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -33,6 +33,6 @@ class SoloCampaignUpdate implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('solocampaign');
+        return new PrivateChannel('solooperation');
     }
 }
