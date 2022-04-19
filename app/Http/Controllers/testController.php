@@ -136,8 +136,8 @@ class testController extends Controller
                     'campaign',
                     'campaign.constellation:id,constellation_name',
                     'campaign.alliance:id,name,ticker,standing,url,color',
-                    'campaign.system.webway',
                     'campaign.system:id,name,adm',
+                    'campaign.system.webway',
                     'campaign.structure:id,item_id,age',
                 ])
                 ->get()];
