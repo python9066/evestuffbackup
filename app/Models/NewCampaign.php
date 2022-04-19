@@ -32,6 +32,6 @@ class NewCampaign extends Model
 
     public function webway()
     {
-        return $this->hasMany(WebWay::class);
+        return $this->hasMany(WebWay::class, "system_id", "id");
     }
 }
