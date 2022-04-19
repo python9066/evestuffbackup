@@ -31964,11 +31964,17 @@ function sleep(ms) {
       return start + item + regions + standing + status;
     },
     filteredItems: function filteredItems() {
-      var _this3 = this;
-
-      if (this.filterItemTypeSelect != 4) {
+      if (this.filterItemTypeSelect == 1) {
         return this.operationList.filter(function (o) {
-          return o.campaign[0].alliance.color == _this3.filterStandingSelect;
+          return o.campaign[0].alliance.color == 1;
+        });
+      } else if (this.filterItemTypeSelect == 2) {
+        return this.operationList.filter(function (o) {
+          return o.campaign[0].alliance.color == 3 || o.campaign[0].alliance.color == 2;
+        });
+      } else if (this.filterItemTypeSelect == 3) {
+        return this.operationList.filter(function (o) {
+          return o.campaign[0].alliance.color == 3;
         });
       } else {
         return this.operationList;
