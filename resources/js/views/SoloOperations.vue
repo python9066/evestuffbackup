@@ -340,6 +340,9 @@ export default {
 
     filteredItemsMid() {
       if (this.filterItemTypeSelect != 1) {
+        return this.filteredItemsStart.filter(
+          (o) => o.campaign == this.filterItemTypeSelect
+        );
       } else {
         return this.filteredItemsStart;
       }

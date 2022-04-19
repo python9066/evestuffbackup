@@ -31981,7 +31981,13 @@ function sleep(ms) {
       }
     },
     filteredItemsMid: function filteredItemsMid() {
-      if (this.filterItemTypeSelect != 1) {} else {
+      var _this3 = this;
+
+      if (this.filterItemTypeSelect != 1) {
+        return this.filteredItemsStart.filter(function (o) {
+          return o.campaign == _this3.filterItemTypeSelect;
+        });
+      } else {
         return this.filteredItemsStart;
       }
     },
