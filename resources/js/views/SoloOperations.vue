@@ -198,11 +198,11 @@ export default {
 
       regionFilter: [],
 
-      filterItemTypeSelect: 2,
+      filterItemTypeSelect: 32458,
       filterItemTypeSelectList: [
         { text: "All", value: 1 },
-        { text: "Ihub", value: 2 },
-        { text: "TCU", value: 3 },
+        { text: "Ihub", value: 32458 },
+        { text: "TCU", value: 32226 },
       ],
 
       filterStandingSelect: 4,
@@ -217,7 +217,7 @@ export default {
       filterStatusSelectList: [
         { text: "All", value: 1 },
         { text: "Upcoming", value: 2 },
-        { text: "Active", value: 3 },
+        { text: "Active Only", value: 3 },
         { text: "Finished", value: 4 },
       ],
     };
@@ -341,10 +341,35 @@ export default {
     filteredItemsMid() {
       if (this.filterItemTypeSelect != 1) {
         return this.filteredItemsStart.filter(
-          (o) => o.campaign == this.filterItemTypeSelect
+          (o) => o.campaign[0]["event_type"] == this.filterItemTypeSelect
         );
       } else {
         return this.filteredItemsStart;
+      }
+    },
+
+    filterItemsMidMid() {
+      if (this.filterStatusSelect != 1) {
+        if (this.filterStatusSelect == 2) {
+          return this.filteredItemsMid.filter(
+            (o) =>
+              o.campaign[0]["status_id"] == 1 || o.campaign[0]["status_id"] == 2
+          );
+        }
+
+        if (this.filterStatusSelect == 3) {
+          return this.filteredItemsMid.filter(
+            (o) => o.campaign[0]["status_id"] == 2
+          );
+        }
+
+        if (this.filterStatusSelect == 4) {
+          return this.filteredItemsMid.filter(
+            o.campaign[0]["status_id"] == 3 || o.campaign[0]["status_id"] == 4
+          );
+        }
+      } else {
+        return this.filteredItemsMid;
       }
     },
 

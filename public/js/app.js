@@ -31827,16 +31827,16 @@ function sleep(ms) {
       },
       search: null,
       regionFilter: [],
-      filterItemTypeSelect: 2,
+      filterItemTypeSelect: 32458,
       filterItemTypeSelectList: [{
         text: "All",
         value: 1
       }, {
         text: "Ihub",
-        value: 2
+        value: 32458
       }, {
         text: "TCU",
-        value: 3
+        value: 32226
       }],
       filterStandingSelect: 4,
       filterStandingSelectList: [{
@@ -31860,7 +31860,7 @@ function sleep(ms) {
         text: "Upcoming",
         value: 2
       }, {
-        text: "Active",
+        text: "Active Only",
         value: 3
       }, {
         text: "Finished",
@@ -31985,10 +31985,31 @@ function sleep(ms) {
 
       if (this.filterItemTypeSelect != 1) {
         return this.filteredItemsStart.filter(function (o) {
-          return o.campaign == _this3.filterItemTypeSelect;
+          return o.campaign[0]["event_type"] == _this3.filterItemTypeSelect;
         });
       } else {
         return this.filteredItemsStart;
+      }
+    },
+    filterItemsMidMid: function filterItemsMidMid() {
+      if (this.filterStatusSelect != 1) {
+        if (this.filterStatusSelect == 2) {
+          return this.filteredItemsMid.filter(function (o) {
+            return o.campaign[0]["status_id"] == 1 || o.campaign[0]["status_id"] == 2;
+          });
+        }
+
+        if (this.filterStatusSelect == 3) {
+          return this.filteredItemsMid.filter(function (o) {
+            return o.campaign[0]["status_id"] == 2;
+          });
+        }
+
+        if (this.filterStatusSelect == 4) {
+          return this.filteredItemsMid.filter(o.campaign[0]["status_id"] == 3 || o.campaign[0]["status_id"] == 4);
+        }
+      } else {
+        return this.filteredItemsMid;
       }
     },
     regionList: function regionList() {

@@ -20,6 +20,11 @@ class NewCampaign extends Model
         return $this->belongsTo(Alliance::class);
     }
 
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
+
     public function system()
     {
         return $this->belongsTo(System::class);
