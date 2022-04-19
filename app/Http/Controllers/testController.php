@@ -211,7 +211,7 @@ class testController extends Controller
         }
 
         $uRegionIDs = $regionIDs->unique();
-        $regionList = Region::whereIn('id', $uRegionIDs)->select(['id as value', 'name as text'])->get();
+        $regionList = Region::whereIn('id', $uRegionIDs)->select(['id as value', 'region_name as text'])->get();
         dd($uRegionIDs->values());
     }
 
