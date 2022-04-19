@@ -7,6 +7,7 @@ use App\Jobs\updateWebwayJob;
 use App\Models\Campaign;
 use App\Models\Corp;
 use App\Models\NewOperation;
+use App\Models\Region;
 use App\Models\Station;
 use App\Models\testNote;
 use App\Models\User;
@@ -204,13 +205,14 @@ class testController extends Controller
     public function campaginTest()
     {
         $regionIDs = collect();
-        $regionList = NewOperation::where('solo', 1)->with('campaign.constellation.region')->get();
-        foreach ($regionList as $r) {
+        $regions = NewOperation::where('solo', 1)->with('campaign.constellation.region')->get();
+        foreach ($regions as $r) {
             $regionIDs->push($r->campaign[0]->constellation->region->id);
         }
 
         $uRegionIDs = $regionIDs->unique();
-        dd($uRegionIDs);
+        $regionList = Region::whereIn($uRegionIDs)->select(['id as value', 'name as text'])->get();
+        dd($regionList);
     }
 
     public function campaginListTest()
