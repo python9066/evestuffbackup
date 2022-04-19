@@ -1,23 +1,7 @@
 <template>
   <v-row class="pr-5 pl-5 pt-1" no-gutters v-resize="onResize" justify="center">
     <v-col cols="12">
-      <v-row no-gutters justify="center">
-        <v-col cols="5 pb-5">
-          <v-card class="rounded-xl" color="primary"
-            ><v-card-title>
-              <v-row no-gutters>
-                <v-col>Search</v-col>
-                <v-col>
-                  <v-text-field
-                    label="Filled"
-                    placeholder="Dense & Rounded"
-                    filled
-                    rounded
-                    dense
-                  ></v-text-field></v-col
-              ></v-row> </v-card-title
-          ></v-card>
-        </v-col>
+      <v-row no-gutters justify="end">
         <v-col cols="6 pb-5"
           ><v-expansion-panels>
             <v-expansion-panel class="rounded-xl">

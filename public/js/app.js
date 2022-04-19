@@ -31740,22 +31740,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -67461,53 +67445,8 @@ var render = function () {
         [
           _c(
             "v-row",
-            { attrs: { "no-gutters": "", justify: "center" } },
+            { attrs: { "no-gutters": "", justify: "end" } },
             [
-              _c(
-                "v-col",
-                { attrs: { cols: "5 pb-5" } },
-                [
-                  _c(
-                    "v-card",
-                    { staticClass: "rounded-xl", attrs: { color: "primary" } },
-                    [
-                      _c(
-                        "v-card-title",
-                        [
-                          _c(
-                            "v-row",
-                            { attrs: { "no-gutters": "" } },
-                            [
-                              _c("v-col", [_vm._v("Search")]),
-                              _vm._v(" "),
-                              _c(
-                                "v-col",
-                                [
-                                  _c("v-text-field", {
-                                    attrs: {
-                                      label: "Filled",
-                                      placeholder: "Dense & Rounded",
-                                      filled: "",
-                                      rounded: "",
-                                      dense: "",
-                                    },
-                                  }),
-                                ],
-                                1
-                              ),
-                            ],
-                            1
-                          ),
-                        ],
-                        1
-                      ),
-                    ],
-                    1
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
               _c(
                 "v-col",
                 { attrs: { cols: "6 pb-5" } },
