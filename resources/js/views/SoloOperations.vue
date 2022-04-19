@@ -2,10 +2,21 @@
   <v-row class="pr-5 pl-5 pt-1" no-gutters v-resize="onResize" justify="center">
     <v-col cols="12">
       <v-row no-gutters justify="center">
-        <v-col cols="5">
+        <v-col cols="5 pb-5">
           <v-card class="rounded-xl" color="primary"
-            ><v-card-text>fefefef</v-card-text></v-card
-          >
+            ><v-card-title>
+              <v-row no-gutters>
+                <v-col>Search</v-col>
+                <v-col>
+                  <v-text-field
+                    label="Filled"
+                    placeholder="Dense & Rounded"
+                    filled
+                    rounded
+                    dense
+                  ></v-text-field></v-col
+              ></v-row> </v-card-title
+          ></v-card>
         </v-col>
         <v-col cols="6 pb-5"
           ><v-expansion-panels>
@@ -16,7 +27,7 @@
                 @click="filterClick()"
               >
                 <template v-slot:actions>
-                  <v-icon color="error"> fa-solid fa-filter </v-icon>
+                  <v-icon> fa-solid fa-filter </v-icon>
                 </template>
                 <template v-slot:default="{ open }">
                   <v-row no-gutters>
@@ -180,6 +191,8 @@ export default {
         start: null,
         end: null,
       },
+
+      search: null,
 
       regionFilter: [],
 
