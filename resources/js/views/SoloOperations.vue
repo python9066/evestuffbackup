@@ -378,6 +378,7 @@ export default {
       let data = [];
       if (this.regionFilter.length != 0) {
         this.regionFilter.forEach((p) => {
+          console.log(f.campaign[0]["constellation"]["region"]["id"] == p);
           let pick = this.filterItemsMidMid.filter(
             (f) => f.campaign[0]["constellation"]["region"]["id"] == p
           );

@@ -32019,6 +32019,8 @@ function sleep(ms) {
 
       if (this.regionFilter.length != 0) {
         this.regionFilter.forEach(function (p) {
+          console.log(f.campaign[0]["constellation"]["region"]["id"] == p);
+
           var pick = _this4.filterItemsMidMid.filter(function (f) {
             return f.campaign[0]["constellation"]["region"]["id"] == p;
           });
