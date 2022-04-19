@@ -237,7 +237,7 @@ export default {
 
       var start = "Showing all ";
       var item = "";
-      var regions = "belonging to ";
+      var regions = "";
       var standing = "";
       var status = "";
       switch (this.filterItemTypeSelect) {
@@ -256,19 +256,19 @@ export default {
 
       switch (this.filterStandingSelect) {
         case 1:
-          standing = "everyone ";
+          standing = "";
           break;
 
         case 2:
-          standing = "Goons ";
+          standing = "belonging to Goons ";
           break;
 
         case 3:
-          standing = "Friendlys ";
+          standing = "belonging to Friendlys ";
           break;
 
         case 4:
-          standing = "Hostiles ";
+          standing = "belonging to Hostiles ";
           break;
       }
 

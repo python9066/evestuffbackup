@@ -31859,7 +31859,7 @@ function sleep(ms) {
       //Showing all {{Structurs/Ihubs/TCUs}} in {{All regions/[region list]}} belonging too {{Everyone/Goons/Friendly/Hosiles}} {{that are Active/Finished/Logged}} belonging to everyone
       var start = "Showing all ";
       var item = "";
-      var regions = "belonging to ";
+      var regions = "";
       var standing = "";
       var status = "";
 
@@ -31879,19 +31879,19 @@ function sleep(ms) {
 
       switch (this.filterStandingSelect) {
         case 1:
-          standing = "everyone ";
+          standing = "";
           break;
 
         case 2:
-          standing = "Goons ";
+          standing = "belonging to Goons ";
           break;
 
         case 3:
-          standing = "Friendlys ";
+          standing = "belonging to Friendlys ";
           break;
 
         case 4:
-          standing = "Hostiles ";
+          standing = "belonging to Hostiles ";
           break;
       }
 
