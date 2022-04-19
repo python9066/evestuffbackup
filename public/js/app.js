@@ -31753,6 +31753,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -67999,7 +68002,10 @@ var render = function () {
                         { staticClass: "pa-0" },
                         [
                           _c("SoloOperationsTable", {
-                            attrs: { windowSize: _vm.windowSize },
+                            attrs: {
+                              windowSize: _vm.windowSize,
+                              filteredItems: _vm.filterEnd,
+                            },
                           }),
                         ],
                         1

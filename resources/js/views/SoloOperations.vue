@@ -147,7 +147,10 @@
               >Operations</v-card-title
             >
             <v-card-text class="pa-0">
-              <SoloOperationsTable :windowSize="windowSize">
+              <SoloOperationsTable
+                :windowSize="windowSize"
+                :filteredItems="filterEnd"
+              >
               </SoloOperationsTable>
             </v-card-text>
           </v-card> </v-col
