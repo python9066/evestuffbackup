@@ -211,9 +211,8 @@ class testController extends Controller
         }
 
         $uRegionIDs = $regionIDs->unique();
-        $uRegionIDs = $uRegionIDs->values();
         // $regionList = Region::whereIn($uRegionIDs)->select(['id as value', 'name as text'])->get();
-        dd($uRegionIDs);
+        dd($uRegionIDs->values());
     }
 
     public function campaginListTest()
