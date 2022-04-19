@@ -9,9 +9,4 @@ class WebWay extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
-    public function system()
-    {
-        return $this->hasOne(System::class);
-    }
 }
