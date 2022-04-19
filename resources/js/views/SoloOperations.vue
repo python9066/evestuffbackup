@@ -286,7 +286,7 @@ export default {
           break;
       }
 
-      return start + item + regions + standing + status;
+      return "this is a test";
     },
 
     systemlist() {
