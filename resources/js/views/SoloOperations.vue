@@ -318,7 +318,7 @@ export default {
       return start + item + regions + standing + status;
     },
 
-    filteredItems() {
+    filteredItemsStart() {
       if (this.filterStandingSelect == 1) {
         return this.operationList.filter(
           (o) => o.campaign[0].alliance.color == 1
@@ -335,6 +335,13 @@ export default {
         );
       } else {
         return this.operationList;
+      }
+    },
+
+    filteredItemsMid() {
+      if (this.filterItemTypeSelect != 1) {
+      } else {
+        return this.filteredItemsStart;
       }
     },
 
