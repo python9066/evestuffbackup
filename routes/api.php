@@ -271,4 +271,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/userupdate/{id}', 'UserController@updateMessage');
 
     Route::get('/addmissingcorp/{name}', 'CorpController@addMissingCorp');
+
+    ///
+    Route::get('/solooperationlist', 'NewOperationsController@index');
 });

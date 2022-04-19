@@ -214,7 +214,10 @@ export default {
     };
   },
 
-  created() {},
+  created() {
+    Echo.private("").listen("SoloOperationUpdate", (e) => {});
+    await this.$store.dispatch("getSoloOperationList");
+  },
 
   async mounted() {
     this.onResize();

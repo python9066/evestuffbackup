@@ -78,8 +78,14 @@ export default new Vuex.Store({
         welpsheetRegion: [],
         welpsheetItem: [],
         welpsheetStatus: [],
+
+        newSoloOperations: [],
     },
     mutations: {
+        SET_NEW_SOLO_OPERATIONS(state, solooplist) {
+            state.newSoloOperations = solooplist;
+        },
+
         SET_AMMO_REQUEST(state, ammorequest) {
             state.ammoRequest = ammorequest;
         },
@@ -667,6 +673,19 @@ export default new Vuex.Store({
     },
 
     actions: {
+        async getSoloOperationList({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/solooperationlist",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_NEW_SOLO_OPERATIONS", res.data.solooplist);
+        },
+
         async getTimerDataAll({ commit }) {
             let res = await axios({
                 method: "get",
