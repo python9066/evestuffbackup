@@ -31741,6 +31741,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -67447,10 +67449,12 @@ var render = function () {
             "v-col",
             { attrs: { cols: "5" } },
             [
-              _c("v-card", {
-                staticClass: "rounded-xl",
-                attrs: { color: "primary" },
-              }),
+              _c(
+                "v-card",
+                { staticClass: "rounded-xl", attrs: { color: "primary" } },
+                [_c("v-card-text", [_vm._v("fefefef")])],
+                1
+              ),
             ],
             1
           ),
@@ -67480,7 +67484,7 @@ var render = function () {
                             fn: function () {
                               return [
                                 _c("v-icon", { attrs: { color: "error" } }, [
-                                  _vm._v(" mdi-alert-circle "),
+                                  _vm._v(" fa-solid fa-filter "),
                                 ]),
                               ]
                             },
@@ -67847,6 +67851,7 @@ var render = function () {
       _vm._v(" "),
       _c(
         "v-row",
+        { attrs: { "no-gutters": "", justify: "center" } },
         [
           _c(
             "v-col",
