@@ -31768,66 +31768,6 @@ function sleep(ms) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  title: function title() {
-    return "EveStuff - Operations";
-  },
-  data: function data() {
-    return {
-      windowSize: {
-        x: 0,
-        y: 0
-      },
-      filterOpen: false,
-      date: null,
-      trip: {
-        name: "",
-        location: null,
-        start: null,
-        end: null
-      },
-      search: null,
-      regionFilter: [],
-      filterItemTypeSelect: 2,
-      filterItemTypeSelectList: [{
-        text: "All",
-        value: 1
-      }, {
-        text: "Ihub",
-        value: 2
-      }, {
-        text: "TCU",
-        value: 3
-      }],
-      filterStandingSelect: 1,
-      filterStandingSelectList: [{
-        text: "All",
-        value: 1
-      }, {
-        text: "Goon",
-        value: 2
-      }, {
-        text: "Friendly",
-        value: 3
-      }, {
-        text: "Hostile",
-        value: 4
-      }],
-      filterStatusSelect: 2,
-      filterStatusSelectList: [{
-        text: "All",
-        value: 1
-      }, {
-        text: "Upcoming",
-        value: 2
-      }, {
-        text: "Active",
-        value: 3
-      }, {
-        text: "Finished",
-        value: 4
-      }]
-    };
-  },
   created: function created() {
     var _this = this;
 
@@ -31836,7 +31776,7 @@ function sleep(ms) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("dwdw").listen("SoloOperationUpdate", function (e) {});
+              Echo["private"]("solooperation").listen("SoloOperationUpdate", function (e) {});
               _context.next = 3;
               return _this.$store.dispatch("getSoloOperationList");
 
@@ -31867,6 +31807,66 @@ function sleep(ms) {
         }
       }, _callee2);
     }))();
+  },
+  title: function title() {
+    return "EveStuff - Operations";
+  },
+  data: function data() {
+    return {
+      windowSize: {
+        x: 0,
+        y: 0
+      },
+      filterOpen: false,
+      date: null,
+      trip: {
+        name: "",
+        location: null,
+        start: null,
+        end: null
+      },
+      search: null,
+      regionFilter: [],
+      filterItemTypeSelect: 2,
+      filterItemTypeSelectList: [{
+        text: "All",
+        value: 1
+      }, {
+        text: "Ihub",
+        value: 2
+      }, {
+        text: "TCU",
+        value: 3
+      }],
+      filterStandingSelect: 4,
+      filterStandingSelectList: [{
+        text: "All",
+        value: 4
+      }, {
+        text: "Goon",
+        value: 3
+      }, {
+        text: "Friendly",
+        value: 2
+      }, {
+        text: "Hostile",
+        value: 1
+      }],
+      filterStatusSelect: 2,
+      filterStatusSelectList: [{
+        text: "All",
+        value: 1
+      }, {
+        text: "Upcoming",
+        value: 2
+      }, {
+        text: "Active",
+        value: 3
+      }, {
+        text: "Finished",
+        value: 4
+      }]
+    };
   },
   methods: {
     filterClick: function filterClick() {
@@ -31963,7 +31963,12 @@ function sleep(ms) {
 
       return start + item + regions + standing + status;
     },
-    systemlist: function systemlist() {
+    filteredItems: function filteredItems() {
+      if (this.filterItemTypeSelect != 4) {} else {
+        return this.newSoloOperations;
+      }
+    },
+    operationList: function operationList() {
       return this.newSoloOperations;
     }
   }),

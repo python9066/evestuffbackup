@@ -165,6 +165,15 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 export default {
+  async created() {
+    Echo.private("solooperation").listen("SoloOperationUpdate", (e) => {});
+    await this.$store.dispatch("getSoloOperationList");
+  },
+
+  async mounted() {
+    this.onResize();
+    this.log();
+  },
   title() {
     return `EveStuff - Operations`;
   },
@@ -196,12 +205,12 @@ export default {
         { text: "TCU", value: 3 },
       ],
 
-      filterStandingSelect: 1,
+      filterStandingSelect: 4,
       filterStandingSelectList: [
-        { text: "All", value: 1 },
-        { text: "Goon", value: 2 },
-        { text: "Friendly", value: 3 },
-        { text: "Hostile", value: 4 },
+        { text: "All", value: 4 },
+        { text: "Goon", value: 3 },
+        { text: "Friendly", value: 2 },
+        { text: "Hostile", value: 1 },
       ],
 
       filterStatusSelect: 2,
@@ -214,15 +223,6 @@ export default {
     };
   },
 
-  async created() {
-    Echo.private("dwdw").listen("SoloOperationUpdate", (e) => {});
-    await this.$store.dispatch("getSoloOperationList");
-  },
-
-  async mounted() {
-    this.onResize();
-    this.log();
-  },
   methods: {
     filterClick() {
       this.filterOpen = !this.filterOpen;
@@ -318,7 +318,17 @@ export default {
       return start + item + regions + standing + status;
     },
 
-    systemlist() {
+    filteredItems() {
+      if (this.filterItemTypeSelect != 4) {
+        return this.newSoloOperations.filter(
+          (o) => o.campaign[0].alliance.color == this.filterStandingSelect
+        );
+      } else {
+        return this.newSoloOperations;
+      }
+    },
+
+    operationList() {
       return this.newSoloOperations;
     },
   },
