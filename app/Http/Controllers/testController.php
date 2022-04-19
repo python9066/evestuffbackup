@@ -203,10 +203,14 @@ class testController extends Controller
 
     public function campaginTest()
     {
+        $regionIDs = collect();
         $regionList = NewOperation::where('solo', 1)->with('campaign.constellation.region')->get();
         foreach ($regionList as $r) {
-            return $r->campaign[0]->constellation->region;
+            $regionIDs->push($r->campaign[0]->constellation->region->id);
         }
+
+        $uRegionIDs = $regionIDs->unique();
+        dd($uRegionIDs);
     }
 
     public function campaginListTest()
