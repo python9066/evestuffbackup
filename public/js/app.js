@@ -11072,6 +11072,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -47286,28 +47294,36 @@ var render = function () {
                   scopedSlots: _vm._u(
                     [
                       {
-                        key: "campaign[0].alliance.name",
+                        key: "item.campaign[0].alliance.name",
                         fn: function (ref) {
                           var item = ref.item
                           return [
                             _c("v-avatar", { attrs: { size: "35" } }, [
-                              _c("img", { attrs: { src: item.url } }),
+                              _c("img", {
+                                attrs: {
+                                  src: item.campaign[0].alliance.item.url,
+                                },
+                              }),
                             ]),
                             _vm._v(" "),
-                            item.standing > 0
+                            item.campaign[0].alliance.standing > 0
                               ? _c("span", { staticClass: "blue--text pl-3" }, [
                                   _vm._v(
-                                    _vm._s(item.alliance) + "\n          "
+                                    _vm._s(item.campaign[0].alliance.name) +
+                                      "\n          "
                                   ),
                                 ])
-                              : item.standing < 0
+                              : item.campaign[0].alliance.standing < 0
                               ? _c("span", { staticClass: "red--text pl-3" }, [
                                   _vm._v(
-                                    _vm._s(item.alliance) + "\n          "
+                                    _vm._s(item.campaign[0].alliance.name) +
+                                      "\n          "
                                   ),
                                 ])
                               : _c("span", { staticClass: "pl-3" }, [
-                                  _vm._v(_vm._s(item.alliance)),
+                                  _vm._v(
+                                    _vm._s(item.campaign[0].alliance.name)
+                                  ),
                                 ]),
                           ]
                         },

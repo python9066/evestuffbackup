@@ -15,15 +15,23 @@
           class="elevation-24 rounded-xl full-width"
         >
           <template slot="no-data"> No Active or Upcoming Campaigns </template>
-          <template v-slot:[`campaign[0].alliance.name`]="{ item }">
-            <v-avatar size="35"><img :src="item.url" /></v-avatar>
-            <span v-if="item.standing > 0" class="blue--text pl-3"
-              >{{ item.alliance }}
+          <template v-slot:[`item.campaign[0].alliance.name`]="{ item }">
+            <v-avatar size="35"
+              ><img :src="item.campaign[0].alliance.item.url"
+            /></v-avatar>
+            <span
+              v-if="item.campaign[0].alliance.standing > 0"
+              class="blue--text pl-3"
+              >{{ item.campaign[0].alliance.name }}
             </span>
-            <span v-else-if="item.standing < 0" class="red--text pl-3"
-              >{{ item.alliance }}
+            <span
+              v-else-if="item.campaign[0].alliance.standing < 0"
+              class="red--text pl-3"
+              >{{ item.campaign[0].alliance.name }}
             </span>
-            <span v-else class="pl-3">{{ item.alliance }}</span>
+            <span v-else class="pl-3">{{
+              item.campaign[0].alliance.name
+            }}</span>
           </template>
         </v-data-table>
       </v-col>
