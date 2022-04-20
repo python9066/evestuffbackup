@@ -25,6 +25,12 @@ class NewCampaign extends Model
         return $this->belongsTo(Region::class);
     }
 
+    public function status()
+    {
+        return $this->belongsTO(CampaignStatus::class);
+    }
+
+
     public function system()
     {
         return $this->belongsTo(System::class);
