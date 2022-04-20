@@ -382,7 +382,7 @@ export default {
   },
 
   async mounted() {
-    this.log();
+    // this.log();
     this.onResize();
   },
   methods: {
