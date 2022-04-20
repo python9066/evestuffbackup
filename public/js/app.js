@@ -11078,6 +11078,187 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/operations/SoloCampaignMap.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/operations/SoloCampaignMap.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    system_name: String,
+    region_name: String
+  },
+  data: function data() {
+    return {
+      dialog1: ""
+    };
+  },
+  methods: {
+    link: function link() {
+      if (this.region_name == "Black Rise") {
+        return "https://evemaps.dotlan.net/map/Black_Rise/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "The Bleak Lands") {
+        return "https://evemaps.dotlan.net/map/The_Bleak_Lands/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "The Citadel") {
+        return "https://evemaps.dotlan.net/map/The_Citadel/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Cloud Ring") {
+        return "https://evemaps.dotlan.net/map/Cloud_Ring/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Cobalt Edge") {
+        return "https://evemaps.dotlan.net/map/Cobalt_Edge/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Etherium Reach") {
+        return "https://evemaps.dotlan.net/map/Etherium_Reach/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "The Forge") {
+        return "https://evemaps.dotlan.net/map/The_Forge/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "The Kalevala Expanse") {
+        return "https://evemaps.dotlan.net/map/The_Kalevala_Expanse/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Molden Heath") {
+        return "https://evemaps.dotlan.net/map/Molden_Heath/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Outer Passage") {
+        return "https://evemaps.dotlan.net/map/Outer_Passage/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Outer Ring") {
+        return "https://evemaps.dotlan.net/map/Outer_Ring/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Paragon Soul") {
+        return "https://evemaps.dotlan.net/map/Paragon_Soul/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Period Basis") {
+        return "https://evemaps.dotlan.net/map/Period_Basis/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Perrigen Falls") {
+        return "https://evemaps.dotlan.net/map/Perrigen_Falls/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Pure Blind") {
+        return "https://evemaps.dotlan.net/map/Pure_Blind/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Scalding Pass") {
+        return "https://evemaps.dotlan.net/map/Scalding_Pass/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Sinq Laison") {
+        return "https://evemaps.dotlan.net/map/Sinq_Laison/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "The Spire") {
+        return "https://evemaps.dotlan.net/map/The_Spire/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Vale of the Silent") {
+        return "https://evemaps.dotlan.net/map/Vale_of_the_Silent/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Verge Vendor") {
+        return "https://evemaps.dotlan.net/map/Verge_Vendor/" + this.system_name + "#const";
+      }
+
+      if (this.region_name == "Wicked Creek") {
+        return "https://evemaps.dotlan.net/map/Wicked_Creek/" + this.system_name + "#const";
+      }
+
+      return "https://evemaps.dotlan.net/map/" + this.region_name + "/" + this.system_name + "#const";
+    }
+  },
+  computed: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/operations/SoloOperationsTable.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/operations/SoloOperationsTable.vue?vue&type=script&lang=js& ***!
@@ -47667,6 +47848,159 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/operations/SoloCampaignMap.vue?vue&type=template&id=21cecd15&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/operations/SoloCampaignMap.vue?vue&type=template&id=21cecd15& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: {
+            fullscreen: "",
+            "hide-overlay": "",
+            transition: "dialog-bottom-transition",
+          },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function (ref) {
+                var on = ref.on
+                var attrs = ref.attrs
+                return [
+                  [
+                    _c(
+                      "v-btn",
+                      _vm._g(
+                        _vm._b(
+                          {
+                            staticClass: "ma-2 white--text",
+                            attrs: { color: "primary", icon: "" },
+                            on: {
+                              click: function ($event) {
+                                _vm.dialog1 = true
+                              },
+                            },
+                          },
+                          "v-btn",
+                          attrs,
+                          false
+                        ),
+                        on
+                      ),
+                      [
+                        _c("v-icon", { attrs: { right: "", dark: "" } }, [
+                          _vm._v("fas fa-map fa-xs"),
+                        ]),
+                      ],
+                      1
+                    ),
+                  ],
+                ]
+              },
+            },
+          ]),
+          model: {
+            value: _vm.dialog1,
+            callback: function ($$v) {
+              _vm.dialog1 = $$v
+            },
+            expression: "dialog1",
+          },
+        },
+        [
+          _vm._v(" "),
+          _c(
+            "v-card",
+            [
+              _c(
+                "v-toolbar",
+                { attrs: { dark: "", color: "primary" } },
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { icon: "", dark: "" },
+                      on: {
+                        click: function ($event) {
+                          _vm.dialog1 = false
+                        },
+                      },
+                    },
+                    [_c("v-icon", [_vm._v("fas fa-times-circle")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-toolbar-title", [
+                    _vm._v(
+                      _vm._s(_vm.region_name) + " - " + _vm._s(_vm.system_name)
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticStyle: {
+                    position: "absolute",
+                    top: "64px",
+                    right: "0px",
+                    bottom: "0px",
+                    left: "0px",
+                  },
+                },
+                [
+                  _c("iframe", {
+                    staticStyle: {
+                      left: "0",
+                      bottom: "0",
+                      right: "0",
+                      width: "100%",
+                      height: "100%",
+                      border: "none",
+                      margin: "0",
+                      padding: "0",
+                      overflow: "hidden",
+                      "z-index": "999999",
+                    },
+                    attrs: { src: _vm.link() },
+                  }),
+                ]
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/operations/SoloOperationsTable.vue?vue&type=template&id=7c2876ab&":
 /*!*********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/operations/SoloOperationsTable.vue?vue&type=template&id=7c2876ab& ***!
@@ -48172,7 +48506,7 @@ var render = function () {
                                       ],
                                       1
                                     )
-                                  : item.status_id > 1
+                                  : item.campaign[0].status_id > 1
                                   ? _c("div", [
                                       _c("span", { staticClass: "pl-5" }, [
                                         _vm._v(
@@ -48182,7 +48516,7 @@ var render = function () {
                                     ])
                                   : _vm._e(),
                                 _vm._v(" "),
-                                item.status_id == 2
+                                item.campaign[0].status_id == 2
                                   ? _c(
                                       "div",
                                       {
@@ -48193,7 +48527,7 @@ var render = function () {
                                         _c("VueCountUptimer", {
                                           attrs: {
                                             "start-time": _vm.moment
-                                              .utc(item.start)
+                                              .utc(item.campaign[0].start_time)
                                               .unix(),
                                             "end-text": "Campaign Started",
                                             interval: 1000,
@@ -48243,16 +48577,19 @@ var render = function () {
                                 _vm._v(" "),
                                 _c("SoloCampaignMap", {
                                   attrs: {
-                                    system_name: item.system,
-                                    region_name: item.region,
+                                    system_name:
+                                      item.campaign[0].system.system_name,
+                                    region_name:
+                                      item.campaign[0].constellation.region
+                                        .region_name,
                                   },
                                 }),
                                 _vm._v(" "),
-                                item.Age != null
+                                item.campaign[0].structure.age != null
                                   ? _c("VueCountUptimer", {
                                       attrs: {
                                         "start-time": _vm.moment
-                                          .utc(item.Age)
+                                          .utc(item.campaign[0].structure.age)
                                           .unix(),
                                         "end-text": "Window Closed",
                                         interval: 1000,
@@ -68613,7 +68950,7 @@ var render = function () {
                       rounded: "",
                       "single-line": "",
                       clearable: "",
-                      color: "primary",
+                      color: "blue",
                     },
                   }),
                 ],
@@ -71806,6 +72143,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("FCMessage", __webpack_requ
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("StationLogs", __webpack_require__(/*! ./components/station/StationLogs.vue */ "./resources/js/components/station/StationLogs.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("AddMissingCorp", __webpack_require__(/*! ./components/station/addMissingCorp.vue */ "./resources/js/components/station/addMissingCorp.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("SoloOperationsTable", __webpack_require__(/*! ./components/operations/SoloOperationsTable.vue */ "./resources/js/components/operations/SoloOperationsTable.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("SoloCampaignMap", __webpack_require__(/*! ./components/operations/SoloCampaignMap.vue */ "./resources/js/components/operations/SoloCampaignMap.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_clipboard__WEBPACK_IMPORTED_MODULE_18___default.a);
@@ -75705,6 +76043,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SoloCampaginWebWay_vue_vue_type_template_id_145921e4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SoloCampaginWebWay_vue_vue_type_template_id_145921e4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/operations/SoloCampaignMap.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/operations/SoloCampaignMap.vue ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SoloCampaignMap_vue_vue_type_template_id_21cecd15___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SoloCampaignMap.vue?vue&type=template&id=21cecd15& */ "./resources/js/components/operations/SoloCampaignMap.vue?vue&type=template&id=21cecd15&");
+/* harmony import */ var _SoloCampaignMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SoloCampaignMap.vue?vue&type=script&lang=js& */ "./resources/js/components/operations/SoloCampaignMap.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _SoloCampaignMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SoloCampaignMap_vue_vue_type_template_id_21cecd15___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SoloCampaignMap_vue_vue_type_template_id_21cecd15___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/operations/SoloCampaignMap.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/operations/SoloCampaignMap.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/operations/SoloCampaignMap.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SoloCampaignMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./SoloCampaignMap.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/operations/SoloCampaignMap.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SoloCampaignMap_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/operations/SoloCampaignMap.vue?vue&type=template&id=21cecd15&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/operations/SoloCampaignMap.vue?vue&type=template&id=21cecd15& ***!
+  \***********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SoloCampaignMap_vue_vue_type_template_id_21cecd15___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./SoloCampaignMap.vue?vue&type=template&id=21cecd15& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/operations/SoloCampaignMap.vue?vue&type=template&id=21cecd15&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SoloCampaignMap_vue_vue_type_template_id_21cecd15___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SoloCampaignMap_vue_vue_type_template_id_21cecd15___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
