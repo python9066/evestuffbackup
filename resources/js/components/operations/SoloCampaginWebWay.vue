@@ -19,8 +19,7 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
   props: {
-    web: String,
-    jumps: Number,
+    item: Object,
   },
   data() {
     return {};
