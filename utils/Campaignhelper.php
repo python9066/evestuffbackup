@@ -481,6 +481,12 @@ class Campaignhelper
             $noCampaign->delete();
         }
 
+        $startedCampaigns = NewCampaign::where('start_time', '<=', now())->where('status_id', 1)->get();
+        foreach ($startedCampaigns as $start) {
+            $start->update(['status_id' => 2, 'check' => 1]);
+        };
+
+
         NewCampaign::where('check', 0)
             ->whereNull('end_time')
             ->update([
