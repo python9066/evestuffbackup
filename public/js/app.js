@@ -11080,6 +11080,138 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11133,7 +11265,53 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {},
-  methods: {},
+  methods: {
+    barColor: function barColor(item) {
+      var d = item.campaign[0].defenders_score * 100;
+
+      if (d > 50) {
+        return "blue darken-4";
+      }
+
+      return "red darken-4";
+    },
+    barScoure: function barScoure(item) {
+      var d = item.campaign[0].defenders_score * 100;
+      var a = item.campaign[0].attackers_score * 100;
+
+      if (d > 50) {
+        return d;
+      }
+
+      return a;
+    },
+    barActive: function barActive(item) {
+      if (item.campaign[0].status_id > 1) {
+        return true;
+      }
+
+      return false;
+    },
+    barReverse: function barReverse(item) {
+      var d = item.campaign[0].defenders_score * 100;
+
+      if (d > 50) {
+        return false;
+      }
+
+      return true;
+    },
+    barBgcolor: function barBgcolor(item) {
+      var d = item.campaign[0].defenders_score * 100;
+      var a = item.campaign[0].attackers_score * 100;
+
+      if (d > 50) {
+        return "red darken-4";
+      }
+
+      return "blue darken-4";
+    }
+  },
   computed: {
     height: function height() {
       var num = this.windowSize.y - 262;
@@ -47327,6 +47505,275 @@ var render = function () {
                                     _vm._s(item.campaign[0].alliance.name)
                                   ),
                                 ]),
+                          ]
+                        },
+                      },
+                      {
+                        key: "item.campaign[0].start_time",
+                        fn: function (ref) {
+                          var item = ref.item
+                          return [
+                            item.campaign[0].status_id == 1
+                              ? _c("span", [
+                                  _vm._v(
+                                    "\n            " +
+                                      _vm._s(item.campaign[0].start_time) +
+                                      "\n          "
+                                  ),
+                                ])
+                              : item.campaign[0].status_id != 3 &&
+                                item.campaign[0].status_id != 4
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass:
+                                      "d-flex full-width align-content-center",
+                                  },
+                                  [
+                                    _c(
+                                      "span",
+                                      [
+                                        item.campaign[0].defenders_score >
+                                          item.campaign[0]
+                                            .defenders_score_old &&
+                                        item.campaign[0].defenders_score_old > 0
+                                          ? _c(
+                                              "v-icon",
+                                              {
+                                                attrs: {
+                                                  small: "",
+                                                  left: "",
+                                                  dark: "",
+                                                  color: "blue darken-4",
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                fas fa-arrow-alt-circle-up\n              "
+                                                ),
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        item.campaign[0].defenders_score <
+                                          item.campaign[0]
+                                            .defenders_score_old &&
+                                        item.campaign[0].defenders_score_old > 0
+                                          ? _c(
+                                              "v-icon",
+                                              {
+                                                attrs: {
+                                                  small: "",
+                                                  left: "",
+                                                  dark: "",
+                                                  color: "blue darken-4",
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                fas fa-arrow-alt-circle-down\n              "
+                                                ),
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        item.campaign[0].defenders_score ==
+                                          item.campaign[0]
+                                            .defenders_score_old ||
+                                        item.campaign[0].defenders_score_old ===
+                                          null
+                                          ? _c(
+                                              "v-icon",
+                                              {
+                                                attrs: {
+                                                  small: "",
+                                                  left: "",
+                                                  dark: "",
+                                                  color: "grey darken-3",
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                fas fa-minus-circle\n              "
+                                                ),
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                      ],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-progress-linear",
+                                      {
+                                        attrs: {
+                                          color: _vm.barColor(item),
+                                          value: _vm.barScoure(item),
+                                          height: "20",
+                                          rounded: "",
+                                          active: _vm.barActive(item),
+                                          reverse: _vm.barReverse(item),
+                                          "background-color":
+                                            _vm.barBgcolor(item),
+                                          "background-opacity": "0.2",
+                                        },
+                                      },
+                                      [
+                                        _c("strong", [
+                                          _vm._v(
+                                            "\n                " +
+                                              _vm._s(
+                                                item.campaign[0]
+                                                  .defenders_score * 100
+                                              ) +
+                                              " /\n                " +
+                                              _vm._s(
+                                                item.campaign[0]
+                                                  .attackers_score * 100
+                                              ) +
+                                              "\n              "
+                                          ),
+                                        ]),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "span",
+                                      [
+                                        item.campaign[0].attackers_score >
+                                          item.campaign[0]
+                                            .attackers_score_old &&
+                                        item.campaign[0].attackers_score_old > 0
+                                          ? _c(
+                                              "v-icon",
+                                              {
+                                                attrs: {
+                                                  small: "",
+                                                  right: "",
+                                                  dark: "",
+                                                  color: "red darken-4",
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                fas fa-arrow-alt-circle-up\n              "
+                                                ),
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        item.campaign[0].attackers_score <
+                                          item.campaign[0]
+                                            .attackers_score_old &&
+                                        item.campaign[0].attackers_score_old > 0
+                                          ? _c(
+                                              "v-icon",
+                                              {
+                                                attrs: {
+                                                  small: "",
+                                                  right: "",
+                                                  dark: "",
+                                                  color: "red darken-4",
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                fas fa-arrow-alt-circle-down\n              "
+                                                ),
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                        _vm._v(" "),
+                                        item.campaign[0].attackers_score ==
+                                          item.campaign[0]
+                                            .attackers_score_old ||
+                                        item.campaign[0].attackers_score_old ==
+                                          null
+                                          ? _c(
+                                              "v-icon",
+                                              {
+                                                attrs: {
+                                                  small: "",
+                                                  right: "",
+                                                  dark: "",
+                                                  color: "grey darken-3",
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                fas fa-minus-circle\n              "
+                                                ),
+                                              ]
+                                            )
+                                          : _vm._e(),
+                                      ],
+                                      1
+                                    ),
+                                  ],
+                                  1
+                                )
+                              : item.campaign[0].status_id == 3 ||
+                                item.campaign[0].status_id == 4
+                              ? _c("span", [
+                                  item.campaign[0].attackers_score == 0
+                                    ? _c(
+                                        "p",
+                                        {
+                                          staticClass:
+                                            "text-md-center green--text",
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n              " +
+                                              _vm._s(
+                                                item.campaign[0].alliance.name
+                                              ) +
+                                              "\n              "
+                                          ),
+                                          _c(
+                                            "span",
+                                            { staticClass: "font-weight-bold" },
+                                            [_vm._v(" WON ")]
+                                          ),
+                                          _vm._v(
+                                            " the\n              " +
+                                              _vm._s(
+                                                item.campaign[0].event_type
+                                              ) +
+                                              " timer.\n            "
+                                          ),
+                                        ]
+                                      )
+                                    : _c(
+                                        "p",
+                                        {
+                                          staticClass:
+                                            "text-md-center red--text",
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n              " +
+                                              _vm._s(
+                                                item.campaign[0].alliance.name
+                                              ) +
+                                              "\n              "
+                                          ),
+                                          _c(
+                                            "span",
+                                            { staticClass: "font-weight-bold" },
+                                            [_vm._v(" LOST ")]
+                                          ),
+                                          _vm._v(
+                                            " the\n              " +
+                                              _vm._s(
+                                                item.campaign[0].event_type
+                                              ) +
+                                              " timer.\n            "
+                                          ),
+                                        ]
+                                      ),
+                                ])
+                              : _vm._e(),
                           ]
                         },
                       },

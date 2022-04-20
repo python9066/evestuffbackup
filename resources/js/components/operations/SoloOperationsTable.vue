@@ -33,6 +33,138 @@
               item.campaign[0].alliance.name
             }}</span>
           </template>
+
+          <template v-slot:[`item.campaign[0].start_time`]="{ item }">
+            <span v-if="item.campaign[0].status_id == 1">
+              {{ item.campaign[0].start_time }}
+            </span>
+            <span
+              v-else-if="
+                item.campaign[0].status_id != 3 &&
+                item.campaign[0].status_id != 4
+              "
+              class="d-flex full-width align-content-center"
+            >
+              <span>
+                <v-icon
+                  v-if="
+                    item.campaign[0].defenders_score >
+                      item.campaign[0].defenders_score_old &&
+                    item.campaign[0].defenders_score_old > 0
+                  "
+                  small
+                  left
+                  dark
+                  color="blue darken-4"
+                >
+                  fas fa-arrow-alt-circle-up
+                </v-icon>
+                <v-icon
+                  v-if="
+                    item.campaign[0].defenders_score <
+                      item.campaign[0].defenders_score_old &&
+                    item.campaign[0].defenders_score_old > 0
+                  "
+                  small
+                  left
+                  dark
+                  color="blue darken-4"
+                >
+                  fas fa-arrow-alt-circle-down
+                </v-icon>
+                <v-icon
+                  v-if="
+                    item.campaign[0].defenders_score ==
+                      item.campaign[0].defenders_score_old ||
+                    item.campaign[0].defenders_score_old === null
+                  "
+                  small
+                  left
+                  dark
+                  color="grey darken-3"
+                >
+                  fas fa-minus-circle
+                </v-icon>
+              </span>
+
+              <v-progress-linear
+                :color="barColor(item)"
+                :value="barScoure(item)"
+                height="20"
+                rounded
+                :active="barActive(item)"
+                :reverse="barReverse(item)"
+                :background-color="barBgcolor(item)"
+                background-opacity="0.2"
+              >
+                <strong>
+                  {{ item.campaign[0].defenders_score * 100 }} /
+                  {{ item.campaign[0].attackers_score * 100 }}
+                </strong>
+              </v-progress-linear>
+              <span>
+                <v-icon
+                  v-if="
+                    item.campaign[0].attackers_score >
+                      item.campaign[0].attackers_score_old &&
+                    item.campaign[0].attackers_score_old > 0
+                  "
+                  small
+                  right
+                  dark
+                  color="red darken-4"
+                >
+                  fas fa-arrow-alt-circle-up
+                </v-icon>
+                <v-icon
+                  v-if="
+                    item.campaign[0].attackers_score <
+                      item.campaign[0].attackers_score_old &&
+                    item.campaign[0].attackers_score_old > 0
+                  "
+                  small
+                  right
+                  dark
+                  color="red darken-4"
+                >
+                  fas fa-arrow-alt-circle-down
+                </v-icon>
+                <v-icon
+                  v-if="
+                    item.campaign[0].attackers_score ==
+                      item.campaign[0].attackers_score_old ||
+                    item.campaign[0].attackers_score_old == null
+                  "
+                  small
+                  right
+                  dark
+                  color="grey darken-3"
+                >
+                  fas fa-minus-circle
+                </v-icon>
+              </span>
+            </span>
+            <span
+              v-else-if="
+                item.campaign[0].status_id == 3 ||
+                item.campaign[0].status_id == 4
+              "
+            >
+              <p
+                v-if="item.campaign[0].attackers_score == 0"
+                class="text-md-center green--text"
+              >
+                {{ item.campaign[0].alliance.name }}
+                <span class="font-weight-bold"> WON </span> the
+                {{ item.campaign[0].event_type }} timer.
+              </p>
+              <p v-else class="text-md-center red--text">
+                {{ item.campaign[0].alliance.name }}
+                <span class="font-weight-bold"> LOST </span> the
+                {{ item.campaign[0].event_type }} timer.
+              </p>
+            </span>
+          </template>
         </v-data-table>
       </v-col>
     </v-row>
@@ -109,7 +241,54 @@ export default {
     };
   },
   mounted() {},
-  methods: {},
+  methods: {
+    barColor(item) {
+      var d = item.campaign[0].defenders_score * 100;
+      if (d > 50) {
+        return "blue darken-4";
+      }
+
+      return "red darken-4";
+    },
+
+    barScoure(item) {
+      var d = item.campaign[0].defenders_score * 100;
+      var a = item.campaign[0].attackers_score * 100;
+
+      if (d > 50) {
+        return d;
+      }
+
+      return a;
+    },
+
+    barActive(item) {
+      if (item.campaign[0].status_id > 1) {
+        return true;
+      }
+      return false;
+    },
+
+    barReverse(item) {
+      var d = item.campaign[0].defenders_score * 100;
+      if (d > 50) {
+        return false;
+      }
+
+      return true;
+    },
+
+    barBgcolor(item) {
+      var d = item.campaign[0].defenders_score * 100;
+      var a = item.campaign[0].attackers_score * 100;
+
+      if (d > 50) {
+        return "red darken-4";
+      }
+
+      return "blue darken-4";
+    },
+  },
   computed: {
     height() {
       let num = this.windowSize.y - 262;
