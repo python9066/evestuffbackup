@@ -381,6 +381,11 @@ class Campaignhelper
 
         //NEW SCRIPT FOR UPDATED CAMPAIGN/HACKING PAGE//
 
+
+    }
+
+    public static function newUpdate()
+    {
         $newToDelete = NewCampaign::where('status_id', 10)->get();
         foreach ($newToDelete as $newToDelete) {
             NewCampaign::where('id', $newToDelete->id)->delete();
