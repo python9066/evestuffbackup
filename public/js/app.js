@@ -11060,7 +11060,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    item: Object
+    jumps: Number,
+    web: String
   },
   data: function data() {
     return {};
@@ -11089,6 +11090,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+//
 //
 //
 //
@@ -47884,7 +47886,8 @@ var render = function () {
                           return [
                             _c("SoloCampaginWebWay", {
                               attrs: {
-                                item: item.campaign[0].system.webway[0],
+                                jumps: item.campaign[0].system.webway[0].jumps,
+                                web: item.campaign[0].system.webway[0].webway,
                               },
                             }),
                           ]
