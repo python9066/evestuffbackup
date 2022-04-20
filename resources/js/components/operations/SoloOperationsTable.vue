@@ -165,6 +165,12 @@
               </p>
             </span>
           </template>
+          <template v-slot:[`item.webway`]="{ item }">
+            <SoloCampaginWebWay
+              :url="item.campagin[0].system.webway[0].webway"
+              :jumps="item.campagin[0].system.webway[0].jumps"
+            ></SoloCampaginWebWay>
+          </template>
         </v-data-table>
       </v-col>
     </v-row>

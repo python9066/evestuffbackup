@@ -36,6 +36,11 @@ Vue.component(
     "CampaginWebWay",
     require("./components/campaign/CampaginWebWay.vue").default
 );
+
+Vue.component(
+    "SoloCampaginWebWay",
+    require("./components/operations/SoloCampaginWebWay.vue").default
+);
 Vue.component(
     "errorMessage",
     require("./components/random/errorMessage.vue").default
