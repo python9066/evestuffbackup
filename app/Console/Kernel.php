@@ -28,7 +28,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('update:campaigns')->everyMinute();
+        // $schedule->command('update:campaigns')->everyMinute();
+        $schedule->command('update:newnewfix')->everyMinute();
         $schedule->command('update:newCampaigns')->everyMinute();
         $schedule->command('update:eveusercount')->everyMinute();
         $schedule->command('clean:coordsheet')->everyMinute();
