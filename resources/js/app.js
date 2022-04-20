@@ -377,6 +377,11 @@ Vue.component(
     require("./components/operations/SoloOperationsTable.vue").default
 );
 
+Vue.component(
+    "SoloCampaignMap",
+    require("./components/operations/SoloCampaignMap.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(Clipboard);
