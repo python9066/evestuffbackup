@@ -10,7 +10,7 @@
             rounded
             single-line
             clearable
-            color="primary"
+            color="blue"
           ></v-text-field>
         </v-col>
         <v-col cols="6"
