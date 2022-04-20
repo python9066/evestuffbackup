@@ -165,9 +165,11 @@
               </p>
             </span>
           </template>
-          <template v-slot:[`item.webway`]="{ item }">
+          <template
+            v-slot:[`item.campaign[0].system.webway[0].jumps`]="{ item }"
+          >
             <SoloCampaginWebWay
-              :url="item.campagin[0].system.webway[0].webway"
+              :web="item.campagin[0].system.webway[0].webway"
               :jumps="item.campagin[0].system.webway[0].jumps"
             ></SoloCampaginWebWay>
           </template>
