@@ -22,7 +22,7 @@ class NewOperationsController extends Controller
             $data = NewOperation::where('solo', 1)
                 ->with([
                     'campaign',
-                    'campagin.status',
+                    'campaign.status',
                     'campaign.constellation:id,constellation_name,region_id',
                     'campaign.constellation.region:id,region_name',
                     'campaign.alliance:id,name,ticker,standing,url,color',
@@ -37,7 +37,7 @@ class NewOperationsController extends Controller
             $data = NewOperation::where('solo', 1)
                 ->with([
                     'campaign:id,solo,status,created_at,updated_at',
-                    'campagin.status',
+                    'campaign.status',
                     'campaign.constellation:id,constellation_name,region_id',
                     'campaign.constellation.region:id,region_name',
                     'campaign.alliance:id,name,ticker,standing,url,color',
