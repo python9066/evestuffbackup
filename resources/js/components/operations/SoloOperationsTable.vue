@@ -76,6 +76,12 @@ export default {
           value: "campaign[0].alliance.name",
           sortable: true,
         },
+
+        {
+          text: "ADM",
+          value: "campaign[0].system.adm",
+          sortable: true,
+        },
         {
           text: "Ticker",
           value: "campaign[0].alliance.ticker",
