@@ -169,7 +169,7 @@
             v-slot:[`item.campaign[0].system.webway[0].jumps`]="{ item }"
           >
             <SoloCampaginWebWay
-              :item="item.campagin[0].system"
+              :item="item.campaign[0].system.webway[0]"
             ></SoloCampaginWebWay>
           </template>
         </v-data-table>

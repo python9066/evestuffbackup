@@ -47883,7 +47883,9 @@ var render = function () {
                           var item = ref.item
                           return [
                             _c("SoloCampaginWebWay", {
-                              attrs: { item: item.campagin[0].system },
+                              attrs: {
+                                item: item.campaign[0].system.webway[0],
+                              },
                             }),
                           ]
                         },
