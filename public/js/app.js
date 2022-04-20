@@ -11270,6 +11270,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -47884,12 +47885,16 @@ var render = function () {
                         fn: function (ref) {
                           var item = ref.item
                           return [
-                            _c("SoloCampaginWebWay", {
-                              attrs: {
-                                web: item.campagin[0].system.webway[0].webway,
-                                jumps: item.campagin[0].system.webway[0].jumps,
-                              },
-                            }),
+                            item.campaign[0].system.webway[0].jumps
+                              ? _c("SoloCampaginWebWay", {
+                                  attrs: {
+                                    web: item.campagin[0].system.webway[0]
+                                      .webway,
+                                    jumps:
+                                      item.campagin[0].system.webway[0].jumps,
+                                  },
+                                })
+                              : _vm._e(),
                           ]
                         },
                       },
