@@ -28,20 +28,20 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('update:campaigns')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:newCampaigns')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:eveusercount')->everyMinute()->withoutOverlapping();
-        $schedule->command('clean:coordsheet')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:towers')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:notifications')->everyMinute()->unlessBetween('11:00', '11:20')->withoutOverlapping();
-        $schedule->command('update:stationnotifications')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:reconstations')->hourly()->withoutOverlapping();
+        $schedule->command('update:campaigns')->everyMinute();
+        $schedule->command('update:newCampaigns')->everyMinute();
+        $schedule->command('update:eveusercount')->everyMinute();
+        $schedule->command('clean:coordsheet')->everyMinute();
+        $schedule->command('update:towers')->everyMinute();
+        $schedule->command('update:notifications')->everyMinute()->unlessBetween('11:00', '11:20');
+        $schedule->command('update:stationnotifications')->everyMinute();
+        $schedule->command('update:reconstations')->hourly();
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
         $schedule->command('update:webway')->everyFiveMinutes();
         $schedule->command('update:standing')->everyTenMinutes();
-        $schedule->command('update:timers')->hourly()->unlessBetween('11:00', '11:20')->withoutOverlapping();
-        $schedule->command('update:alliances')->dailyAt('22:00')->withoutOverlapping();
-        $schedule->command('clear:remembertoken')->twiceDaily(9, 21)->withoutOverlapping();
+        $schedule->command('update:timers')->hourly()->unlessBetween('11:00', '11:20');
+        $schedule->command('update:alliances')->dailyAt('22:00');
+        $schedule->command('clear:remembertoken')->twiceDaily(9, 21);
     }
 
     /**
