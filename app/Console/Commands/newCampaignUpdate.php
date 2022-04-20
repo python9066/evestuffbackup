@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Userlogging;
 use Illuminate\Console\Command;
 use utils\Campaignhelper\Campaignhelper;
 use utils\Helper\Helper;
@@ -39,6 +40,7 @@ class newCampaignUpdate extends Command
      */
     public function handle()
     {
+        Userlogging::create(['url' => 'demon newCampaign', 'user_id' => 9999999999]);
         $status = Helper::checkeve();
         if ($status == 1) {
             Campaignhelper::newUpdate();
