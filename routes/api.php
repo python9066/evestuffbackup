@@ -274,4 +274,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
     ///
     Route::get('/solooperationlist', 'NewOperationsController@index');
+    Route::put('/newcampaigns/{id}', 'NewCampaignsController@update');
 });

@@ -86,6 +86,12 @@ export default new Vuex.Store({
         SET_NEW_SOLO_OPERATIONS(state, solooplist) {
             state.newSoloOperations = solooplist;
         },
+
+        UPDATE_NEW_SOLO_OPERATIONS(state, data) {
+            const item = state.newSoloOperations.find((c) => c.id === data.id);
+            Object.assign(item, data);
+        },
+
         SET_NEW_SOLO_OPERATIONS_REGIONS(state, regionList) {
             state.newSoloOperationsRegionList = regionList;
         },
@@ -1379,6 +1385,10 @@ export default new Vuex.Store({
 
         updateCampaigns({ commit }, data) {
             commit("UPDATE_CAMPAIGNS", data);
+        },
+
+        updateNewSoloOperation({ commit }, data) {
+            commit("UPDATE_NEW_SOLO_OPERATIONS", data);
         },
 
         updateTowers({ commit }, data) {

@@ -208,7 +208,11 @@
                   >
                 </template>
               </CountDowntimer>
-              <div v-if="item.status_id > 1 && $can('access_campaigns')">
+              <div
+                v-if="
+                  item.campaign[0].status_id > 1 && $can('access_campaigns')
+                "
+              >
                 <v-chip
                   class="ma-2 ma"
                   filter
@@ -216,19 +220,19 @@
                   :disabled="pillDisabled(item)"
                   :color="pillColor(item)"
                 >
-                  {{ item.status_name }}
+                  {{ item.campaign[0].status.name }}
                 </v-chip>
               </div>
-              <div v-else-if="item.status_id > 1">
-                <span class="pl-5">{{ item.status_name }}</span>
+              <div v-else-if="item.campaign[0].status_id > 1">
+                <span class="pl-5">{{ item.campaign[0].status.name }}</span>
               </div>
 
               <div
                 class="d-flex full-width align-content-center"
-                v-if="item.status_id == 2"
+                v-if="item.campaign[0].status_id == 2"
               >
                 <VueCountUptimer
-                  :start-time="moment.utc(item.start).unix()"
+                  :start-time="moment.utc(item.campaign[0].start_time).unix()"
                   :end-text="'Campaign Started'"
                   :interval="1000"
                 >
@@ -242,13 +246,13 @@
                 </VueCountUptimer>
               </div>
               <SoloCampaignMap
-                :system_name="item.system"
-                :region_name="item.region"
+                :system_name="item.campaign[0].system.system_name"
+                :region_name="item.campaign[0].constellation.region.region_name"
               >
               </SoloCampaignMap>
               <VueCountUptimer
-                v-if="item.Age != null"
-                :start-time="moment.utc(item.Age).unix()"
+                v-if="item.campaign[0].structure.age != null"
+                :start-time="moment.utc(item.campaign[0].structure.age).unix()"
                 :end-text="'Window Closed'"
                 :interval="1000"
                 :leadingZero="false"
@@ -350,17 +354,17 @@ export default {
     },
 
     campaignStart(item) {
-      item.status_name = "Active";
-      item.status_id = 2;
+      item.campaign[0].status.status_name = "Active";
+      item.campaign[0].status_id = 2;
       var request = {
         status_id: 2,
       };
 
-      this.$store.dispatch("updateCampaign", item);
+      this.$store.dispatch("updateNewSoloOperation", item);
 
       axios({
         method: "put", //you can set what request you want to be
-        url: "api/campaigns/" + item.id,
+        url: "api/newcampaigns/" + item.campaign[0].id,
         withCredentials: true,
         data: request,
         headers: {
@@ -408,6 +412,20 @@ export default {
       return "blue darken-4";
     },
 
+    pillDisabled(item) {
+      if (item.campaign[0].status_id == 3) {
+        return true;
+      }
+      return false;
+    },
+
+    pillColor(item) {
+      if (item.campaign[0].status_id == 3) {
+        return "blue-grey darken-4";
+      }
+
+      return "green darken-3";
+    },
     itemType(typeID) {
       if (typeID == 32458) {
         return "Ihub";
