@@ -241,11 +241,11 @@
                   </template>
                 </VueCountUptimer>
               </div>
-              <CampaignMap
+              <SoloCampaignMap
                 :system_name="item.system"
                 :region_name="item.region"
               >
-              </CampaignMap>
+              </SoloCampaignMap>
               <VueCountUptimer
                 v-if="item.Age != null"
                 :start-time="moment.utc(item.Age).unix()"
@@ -347,6 +347,27 @@ export default {
       }
 
       return "red darken-4";
+    },
+
+    campaignStart(item) {
+      item.status_name = "Active";
+      item.status_id = 2;
+      var request = {
+        status_id: 2,
+      };
+
+      this.$store.dispatch("updateCampaign", item);
+
+      axios({
+        method: "put", //you can set what request you want to be
+        url: "api/campaigns/" + item.id,
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
     },
 
     barScoure(item) {
