@@ -47304,9 +47304,7 @@ var render = function () {
                           return [
                             _c("v-avatar", { attrs: { size: "35" } }, [
                               _c("img", {
-                                attrs: {
-                                  src: item.campaign[0].alliance.item.url,
-                                },
+                                attrs: { src: item.campaign[0].alliance.url },
                               }),
                             ]),
                             _vm._v(" "),

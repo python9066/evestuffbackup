@@ -17,7 +17,7 @@
           <template slot="no-data"> No Active or Upcoming Campaigns </template>
           <template v-slot:[`item.campaign[0].alliance.name`]="{ item }">
             <v-avatar size="35"
-              ><img :src="item.campaign[0].alliance.item.url"
+              ><img :src="item.campaign[0].alliance.url"
             /></v-avatar>
             <span
               v-if="item.campaign[0].alliance.standing > 0"
