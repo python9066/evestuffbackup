@@ -156,12 +156,12 @@
               >
                 {{ item.campaign[0].alliance.name }}
                 <span class="font-weight-bold"> WON </span> the
-                {{ item.campaign[0].event_type }} timer.
+                {{ itemType(item.campaign[0].event_type) }} timer.
               </p>
               <p v-else class="text-md-center red--text">
                 {{ item.campaign[0].alliance.name }}
                 <span class="font-weight-bold"> LOST </span> the
-                {{ item.campaign[0].event_type }} timer.
+                {{ itemType(item.campaign[0].event_type) }} timer.
               </p>
             </span>
           </template>
@@ -172,6 +172,96 @@
               :jumps="item.campaign[0].system.webway[0].jumps"
               :web="item.campaign[0].system.webway[0].webway"
             ></SoloCampaginWebWay>
+          </template>
+          <template v-slot:[`item.count`]="{ item }">
+            <div class="d-inline-flex align-center">
+              <CountDowntimer
+                v-if="item.campaign[0].status_id == 1"
+                :start-time="moment.utc(item.campaign[0].start_time).unix()"
+                :end-text="'Window Closed'"
+                :interval="1000"
+                @campaignStart="campaignStart(item)"
+              >
+                <template slot="countdown" slot-scope="scope">
+                  <span
+                    v-if="
+                      scope.props.hours == 0 &&
+                      scope.props.days == 0 &&
+                      $can('access_campaigns')
+                    "
+                    class="red--text pl-3"
+                  >
+                    <v-chip
+                      class="ma-2 ma"
+                      filter
+                      pill
+                      :disabled="pillDisabled(item)"
+                      color="light-blue lighten-1"
+                    >
+                      {{ scope.props.minutes }}:{{ scope.props.seconds }}
+                    </v-chip>
+                  </span>
+                  <span v-else class="red--text pl-3"
+                    >{{ scope.props.days }}:{{ scope.props.hours }}:{{
+                      scope.props.minutes
+                    }}:{{ scope.props.seconds }}</span
+                  >
+                </template>
+              </CountDowntimer>
+              <div v-if="item.status_id > 1 && $can('access_campaigns')">
+                <v-chip
+                  class="ma-2 ma"
+                  filter
+                  pill
+                  :disabled="pillDisabled(item)"
+                  :color="pillColor(item)"
+                >
+                  {{ item.status_name }}
+                </v-chip>
+              </div>
+              <div v-else-if="item.status_id > 1">
+                <span class="pl-5">{{ item.status_name }}</span>
+              </div>
+
+              <div
+                class="d-flex full-width align-content-center"
+                v-if="item.status_id == 2"
+              >
+                <VueCountUptimer
+                  :start-time="moment.utc(item.start).unix()"
+                  :end-text="'Campaign Started'"
+                  :interval="1000"
+                >
+                  <template slot="countup" slot-scope="scope">
+                    <span class="green--text pl-3"
+                      >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                        scope.props.seconds
+                      }}</span
+                    >
+                  </template>
+                </VueCountUptimer>
+              </div>
+              <CampaignMap
+                :system_name="item.system"
+                :region_name="item.region"
+              >
+              </CampaignMap>
+              <VueCountUptimer
+                v-if="item.Age != null"
+                :start-time="moment.utc(item.Age).unix()"
+                :end-text="'Window Closed'"
+                :interval="1000"
+                :leadingZero="false"
+              >
+                <template slot="countup" slot-scope="scope">
+                  <span class="green--text pl-3"
+                    ><span v-if="scope.props.days != 0">
+                      {{ scope.props.days }} Days - </span
+                    >{{ scope.props.hours }} Hours</span
+                  >
+                </template>
+              </VueCountUptimer>
+            </div>
           </template>
         </v-data-table>
       </v-col>
@@ -242,7 +332,7 @@ export default {
 
         {
           text: "Countdown/Age",
-          value: "campaign[0].structure.age",
+          value: "count",
           sortable: true,
         },
       ],
@@ -295,6 +385,14 @@ export default {
       }
 
       return "blue darken-4";
+    },
+
+    itemType(typeID) {
+      if (typeID == 32458) {
+        return "Ihub";
+      } else {
+        return "TCU";
+      }
     },
   },
   computed: {
