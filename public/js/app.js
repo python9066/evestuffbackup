@@ -70569,7 +70569,7 @@ var render = function () {
                                           {
                                             attrs: {
                                               pill: "",
-                                              color: _vm.pillcolor(item),
+                                              color: _vm.pillColor(item),
                                             },
                                           },
                                           [

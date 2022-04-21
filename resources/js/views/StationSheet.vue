@@ -72,7 +72,7 @@
                 </template>
 
                 <template v-slot:[`item.status.name`]="{ item }">
-                  <v-chip pill :color="pillcolor(item)">
+                  <v-chip pill :color="pillColor(item)">
                     {{ buttontext(item) }}
                     <v-icon right> {{ icons(item) }}</v-icon>
                   </v-chip>
