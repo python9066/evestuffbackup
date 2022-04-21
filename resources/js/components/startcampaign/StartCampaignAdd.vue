@@ -1,7 +1,9 @@
 <template>
   <div>
-    <v-card min-width="1200" max-width="1200">
-      <v-card-title> Make your Inital-Campaign Here </v-card-title>
+    <v-card min-width="1200" max-width="1200" rounded="xl">
+      <v-card-title class="primary pt-0 pb-0">
+        Make your Inital-Campaign Here
+      </v-card-title>
       <v-card-text>
         <v-text-field
           label="Inital-Campaign Name"
@@ -10,15 +12,22 @@
           filled
         >
         </v-text-field>
+
         <v-autocomplete
           v-model="picked"
           :items="list"
           label="Select"
-          multiple
           chips
+          clearable
           deletable-chips
+          dense
           hint="Which Campaigns do you want"
+          hide-selected
+          multiple
           persistent-hint
+          rounded
+          small-chips
+          solo-inverted
         ></v-autocomplete>
       </v-card-text>
       <v-card-actions>

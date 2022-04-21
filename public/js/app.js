@@ -16295,6 +16295,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -53716,9 +53725,11 @@ var render = function () {
     [
       _c(
         "v-card",
-        { attrs: { "min-width": "1200", "max-width": "1200" } },
+        { attrs: { "min-width": "1200", "max-width": "1200", rounded: "xl" } },
         [
-          _c("v-card-title", [_vm._v(" Make your Inital-Campaign Here ")]),
+          _c("v-card-title", { staticClass: "primary pt-0 pb-0" }, [
+            _vm._v("\n      Make your Inital-Campaign Here\n    "),
+          ]),
           _vm._v(" "),
           _c(
             "v-card-text",
@@ -53742,11 +53753,17 @@ var render = function () {
                 attrs: {
                   items: _vm.list,
                   label: "Select",
-                  multiple: "",
                   chips: "",
+                  clearable: "",
                   "deletable-chips": "",
+                  dense: "",
                   hint: "Which Campaigns do you want",
+                  "hide-selected": "",
+                  multiple: "",
                   "persistent-hint": "",
+                  rounded: "",
+                  "small-chips": "",
+                  "solo-inverted": "",
                 },
                 model: {
                   value: _vm.picked,
