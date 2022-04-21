@@ -33109,6 +33109,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -33205,6 +33207,23 @@ function sleep(ms) {
         x: window.innerWidth,
         y: window.innerHeight
       };
+    },
+    standingCheck: function standingCheck(item) {
+      var standing = 0;
+
+      if (item.corp.alliance) {
+        standing = item.corp.alliance.standing;
+      } else {
+        standing = item.corp.standing;
+      }
+
+      if (standing > 0) {
+        return "blue--text pl-3";
+      } else if (standing < 0) {
+        return "red--text pl-3";
+      } else {
+        return "white--text pl-3";
+      }
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stationList"])), {}, {
@@ -70227,11 +70246,11 @@ var render = function () {
                               scopedSlots: _vm._u(
                                 [
                                   {
-                                    key: "item.alliance_ticker",
+                                    key: "item.corp.alliance.ticker",
                                     fn: function (ref) {
                                       var item = ref.item
                                       return [
-                                        item.url
+                                        item.corp.alliance.ticker.url
                                           ? _c(
                                               "span",
                                               [
@@ -70240,7 +70259,10 @@ var render = function () {
                                                   { attrs: { size: "35" } },
                                                   [
                                                     _c("img", {
-                                                      attrs: { src: item.url },
+                                                      attrs: {
+                                                        src: item.corp.alliance
+                                                          .ticker.url,
+                                                      },
                                                     }),
                                                   ]
                                                 ),
@@ -70254,7 +70276,8 @@ var render = function () {
                                                   [
                                                     _vm._v(
                                                       _vm._s(
-                                                        item.alliance_ticker
+                                                        item.corp.alliance
+                                                          .ticker
                                                       ) + "\n                  "
                                                     ),
                                                   ]
@@ -70280,7 +70303,7 @@ var render = function () {
                                     },
                                   },
                                   {
-                                    key: "item.system_name",
+                                    key: "item.system.system_name",
                                     fn: function (ref) {
                                       var item = ref.item
                                       return [
@@ -70309,8 +70332,9 @@ var render = function () {
                                               {
                                                 name: "clipboard",
                                                 rawName: "v-clipboard",
-                                                value: item.system_name,
-                                                expression: "item.system_name",
+                                                value: item.system.system_name,
+                                                expression:
+                                                  "item.system.system_name",
                                               },
                                               {
                                                 name: "clipboard",
@@ -70324,7 +70348,9 @@ var render = function () {
                                           [
                                             _vm._v(
                                               "\n                  " +
-                                                _vm._s(item.system_name) +
+                                                _vm._s(
+                                                  item.system.system_name
+                                                ) +
                                                 "\n                "
                                             ),
                                           ]
@@ -70333,7 +70359,7 @@ var render = function () {
                                     },
                                   },
                                   {
-                                    key: "item.station_status_name",
+                                    key: "item.status.name",
                                     fn: function (ref) {
                                       var item = ref.item
                                       return [

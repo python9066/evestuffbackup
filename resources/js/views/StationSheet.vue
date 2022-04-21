@@ -30,13 +30,15 @@
                 </template>
 
                 <template
-                  v-slot:[`item.alliance_ticker`]="{ item }"
+                  v-slot:[`item.corp.alliance.ticker`]="{ item }"
                   class="d-inline-flex align-center"
                 >
-                  <span v-if="item.url">
-                    <v-avatar size="35"><img :src="item.url" /></v-avatar>
+                  <span v-if="item.corp.alliance.ticker.url">
+                    <v-avatar size="35"
+                      ><img :src="item.corp.alliance.ticker.url"
+                    /></v-avatar>
                     <span :class="standingCheck(item)"
-                      >{{ item.alliance_ticker }}
+                      >{{ item.corp.alliance.ticker }}
                     </span>
                   </span>
                   <span v-else-if="$can('super')">
@@ -45,21 +47,21 @@
                   </span>
                 </template>
                 <template
-                  v-slot:[`item.system_name`]="{ item }"
+                  v-slot:[`item.system.system_name`]="{ item }"
                   class="d-inline-flex align-center"
                 >
                   <v-btn :href="link(item)" target="_blank" icon color="green">
                     <v-icon> fas fa-map fa-xs</v-icon>
                   </v-btn>
                   <button
-                    v-clipboard="item.system_name"
+                    v-clipboard="item.system.system_name"
                     v-clipboard:success="Systemcopied"
                   >
-                    {{ item.system_name }}
+                    {{ item.system.system_name }}
                   </button>
                 </template>
 
-                <template v-slot:[`item.station_status_name`]="{ item }">
+                <template v-slot:[`item.status.name`]="{ item }">
                   <DoneButtonCoord :item="item"></DoneButtonCoord>
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
@@ -183,6 +185,22 @@ export default {
   methods: {
     onResize() {
       this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+    },
+
+    standingCheck(item) {
+      var standing = 0;
+      if (item.corp.alliance) {
+        standing = item.corp.alliance.standing;
+      } else {
+        standing = item.corp.standing;
+      }
+      if (standing > 0) {
+        return "blue--text pl-3";
+      } else if (standing < 0) {
+        return "red--text pl-3";
+      } else {
+        return "white--text pl-3";
+      }
     },
   },
 
