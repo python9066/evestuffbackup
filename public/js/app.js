@@ -33110,6 +33110,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -33218,6 +33225,23 @@ function sleep(ms) {
 
       if (item.corp.alliance) {
         standing = item.corp.alliance.standing;
+      } else {
+        standing = item.corp.standing;
+      }
+
+      if (standing > 0) {
+        return "blue--text pl-3";
+      } else if (standing < 0) {
+        return "red--text pl-3";
+      } else {
+        return "white--text pl-3";
+      }
+    },
+    standingCheckCorp: function standingCheckCorp(item) {
+      var standing = 0;
+
+      if (item.corp) {
+        standing = item.corp.standing;
       } else {
         standing = item.corp.standing;
       }
@@ -70390,20 +70414,41 @@ var render = function () {
                                               ],
                                               1
                                             )
-                                          : _vm.$can("super")
-                                          ? _c(
+                                          : _c(
                                               "span",
                                               [
-                                                _c("AddCorpTicker", {
-                                                  attrs: { station: item },
-                                                }),
-                                                _c("AddAllianceTicker", {
-                                                  attrs: { station: item },
-                                                }),
+                                                _c(
+                                                  "v-avatar",
+                                                  { attrs: { size: "35" } },
+                                                  [
+                                                    _c("img", {
+                                                      attrs: {
+                                                        src: item.corp.url,
+                                                      },
+                                                    }),
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "span",
+                                                  {
+                                                    class:
+                                                      _vm.standingCheckCorp(
+                                                        item
+                                                      ),
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(
+                                                        item.corp.alliance
+                                                          .ticker
+                                                      ) + "\n                  "
+                                                    ),
+                                                  ]
+                                                ),
                                               ],
                                               1
-                                            )
-                                          : _vm._e(),
+                                            ),
                                       ]
                                     },
                                   },

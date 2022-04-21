@@ -40,10 +40,17 @@
                       >{{ item.corp.alliance.ticker }}
                     </span>
                   </span>
-                  <span v-else-if="$can('super')">
+                  <span v-else>
+                    <v-avatar size="35"><img :src="item.corp.url" /></v-avatar>
+                    <span :class="standingCheckCorp(item)"
+                      >{{ item.corp.alliance.ticker }}
+                    </span>
+                  </span>
+
+                  <!-- <span v-else-if="$can('super')">
                     <AddCorpTicker :station="item"></AddCorpTicker
                     ><AddAllianceTicker :station="item"></AddAllianceTicker>
-                  </span>
+                  </span> -->
                 </template>
                 <template
                   v-slot:[`item.system.system_name`]="{ item }"
@@ -197,6 +204,22 @@ export default {
       var standing = 0;
       if (item.corp.alliance) {
         standing = item.corp.alliance.standing;
+      } else {
+        standing = item.corp.standing;
+      }
+      if (standing > 0) {
+        return "blue--text pl-3";
+      } else if (standing < 0) {
+        return "red--text pl-3";
+      } else {
+        return "white--text pl-3";
+      }
+    },
+
+    standingCheckCorp(item) {
+      var standing = 0;
+      if (item.corp) {
+        standing = item.corp.standing;
       } else {
         standing = item.corp.standing;
       }

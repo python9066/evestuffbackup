@@ -19,6 +19,7 @@ use App\Models\Logging;
 use App\Models\LoggingType;
 use App\Models\Station;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 use function GuzzleHttp\json_decode;
 
@@ -307,6 +308,7 @@ class Helper
 
     public static function StationRecords($type)
     {
+
         $type = $type;
         $station_query = Station::query();
         if ($type == 1) {
@@ -334,6 +336,7 @@ class Helper
         }
 
         $station_query->where('standing', '=<', 0);
+
         $station_query->with([
             'system',
             'system.constellation',
