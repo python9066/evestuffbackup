@@ -169,6 +169,7 @@
             v-slot:[`item.campaign[0].system.webway[0].jumps`]="{ item }"
           >
             <SoloCampaginWebWay
+              v-if="item.campaign[0].system.webway[0]"
               :jumps="item.campaign[0].system.webway[0].jumps"
               :web="item.campaign[0].system.webway[0].webway"
             ></SoloCampaginWebWay>
