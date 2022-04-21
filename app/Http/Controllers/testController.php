@@ -182,7 +182,8 @@ class testController extends Controller
 
     public function testStationRecords($type)
     {
-        return Helper::StationRecords($type);
+        $data = Helper::StationRecords($type);
+        return ['stations' => $data];
     }
 
 
