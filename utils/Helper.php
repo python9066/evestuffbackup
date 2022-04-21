@@ -18,6 +18,7 @@ use App\Models\Eve;
 use App\Models\Logging;
 use App\Models\LoggingType;
 use App\Models\Station;
+use Illuminate\Database\Eloquent\Builder;
 
 use function GuzzleHttp\json_decode;
 
@@ -333,7 +334,8 @@ class Helper
         }
 
 
-        $station_query->with([
+        $station_query->whereHas('corp', function (Builder $query) {
+        })->with([
             'system',
             'system.constellation',
             'system.region',

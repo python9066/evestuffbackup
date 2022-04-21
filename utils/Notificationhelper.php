@@ -86,6 +86,7 @@ class Notifications
             Station::find($id)->delete();
             StationItemJoin::where('station_id', $id)->delete();
         } else {
+            dd($stationdata);
             $core = 0;
             if ($stationdata['str_cored'] == "Yes") {
                 $core = 1;
