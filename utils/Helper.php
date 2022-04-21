@@ -339,8 +339,9 @@ class Helper
             'fc',
             'recon',
             'gsoluser',
-            'corp',
-            'item'
+            'corp.alliance',
+            'item',
+            'fit'
         ]);
 
         $stationRecords = $station_query->get();

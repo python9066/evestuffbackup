@@ -48,7 +48,10 @@ class Station extends Model
         return $this->belongsTo(RcGsolUsers::class);
     }
 
-
+    public function fit()
+    {
+        return $this->belongsToMany(StationItems::class, 'station_item_joins');
+    }
     public function corp()
     {
         return $this->belongsTo(Corp::class);
