@@ -16099,6 +16099,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -53500,40 +53505,56 @@ var render = function () {
                 [
                   _c(
                     "v-row",
-                    {
-                      attrs: {
-                        "no-gutters": "",
-                        "align-content": "space-around",
-                      },
-                    },
+                    { attrs: { "no-gutters": "", "align-content": "start" } },
                     [
-                      _c("v-col", { attrs: { cols: "3" } }, [
-                        _vm._v(" Initial Campaigns "),
-                      ]),
-                      _vm._v(" "),
                       _c(
                         "v-col",
+                        { attrs: { cols: "6" } },
                         [
                           _c(
-                            "v-btn",
+                            "v-row",
                             {
                               attrs: {
-                                dark: "",
-                                rounded: "",
-                                loading: _vm.loadingf,
-                                disabled: _vm.loadingf,
-                              },
-                              on: {
-                                click: function ($event) {
-                                  _vm.overlay = !_vm.overlay
-                                },
+                                "no-gutters": "",
+                                "align-content": "space-between",
                               },
                             },
                             [
-                              _vm._v(
-                                "\n              ADD CAMPAIGN\n            "
+                              _c("v-col", { attrs: { cols: "6" } }, [
+                                _vm._v(" Initial Campaigns "),
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "6" } },
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: {
+                                        dark: "",
+                                        rounded: "",
+                                        loading: _vm.loadingf,
+                                        disabled: _vm.loadingf,
+                                        color: "green",
+                                      },
+                                      on: {
+                                        click: function ($event) {
+                                          _vm.overlay = !_vm.overlay
+                                        },
+                                      },
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                  ADD CAMPAIGN\n                "
+                                      ),
+                                    ]
+                                  ),
+                                ],
+                                1
                               ),
-                            ]
+                            ],
+                            1
                           ),
                         ],
                         1

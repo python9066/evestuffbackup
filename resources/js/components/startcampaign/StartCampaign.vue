@@ -3,18 +3,23 @@
     <v-col cols="10" class="pt-0">
       <v-card elevation="10" rounded="xl">
         <v-card-title class="primary">
-          <v-row no-gutters align-content="space-around">
-            <v-col cols="3"> Initial Campaigns </v-col>
-            <v-col>
-              <v-btn
-                dark
-                rounded
-                :loading="loadingf"
-                :disabled="loadingf"
-                @click="overlay = !overlay"
-              >
-                ADD CAMPAIGN
-              </v-btn>
+          <v-row no-gutters align-content="start">
+            <v-col cols="6">
+              <v-row no-gutters align-content="space-between">
+                <v-col cols="6"> Initial Campaigns </v-col>
+                <v-col cols="6">
+                  <v-btn
+                    dark
+                    rounded
+                    :loading="loadingf"
+                    :disabled="loadingf"
+                    @click="overlay = !overlay"
+                    color="green"
+                  >
+                    ADD CAMPAIGN
+                  </v-btn>
+                </v-col>
+              </v-row>
             </v-col>
           </v-row>
         </v-card-title>
