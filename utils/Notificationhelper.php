@@ -82,7 +82,6 @@ class Notifications
 
 
         $stationdata = Utils::jsonDecode($response->getBody(), true);
-        dd($stationdata);
         if ($stationdata == "Error, Structure Not Found") {
             Station::find($id)->delete();
             StationItemJoin::where('station_id', $id)->delete();
