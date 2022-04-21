@@ -1,19 +1,22 @@
 <template>
   <v-row class="pr-1 pl-1 pt-3" no-gutters v-resize="onResize" justify="center">
     <v-col cols="10" class="pt-0">
-      <v-card elevation="10" rounded="xl" class="mb-5">
+      <v-card elevation="10" rounded="xl">
         <v-card-title class="primary">
-          Initial Campaigns
-
-          <v-btn
-            class="pl-3"
-            :loading="loadingf"
-            :disabled="loadingf"
-            @click="overlay = !overlay"
-            color="light-blue darken-4"
-          >
-            ADD CAMPAIGN
-          </v-btn>
+          <v-row no-gutters>
+            <v-col cols="3"> Initial Campaigns </v-col>
+            <v-col>
+              <v-btn
+                class="pl-3"
+                :loading="loadingf"
+                :disabled="loadingf"
+                @click="overlay = !overlay"
+                color="green"
+              >
+                ADD CAMPAIGN
+              </v-btn>
+            </v-col>
+          </v-row>
         </v-card-title>
         <v-card-text>
           <v-data-table
@@ -23,7 +26,6 @@
             :loading="loading"
             :items-per-page="25"
             :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
-            class="elevation-1"
           >
             <!-- @click:row="rowClick($event)" -->
             <template slot="no-data">

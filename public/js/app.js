@@ -16097,6 +16097,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -53490,29 +53492,49 @@ var render = function () {
         [
           _c(
             "v-card",
-            { staticClass: "mb-5", attrs: { elevation: "10", rounded: "xl" } },
+            { attrs: { elevation: "10", rounded: "xl" } },
             [
               _c(
                 "v-card-title",
                 { staticClass: "primary" },
                 [
-                  _vm._v("\n        Initial Campaigns\n\n        "),
                   _c(
-                    "v-btn",
-                    {
-                      staticClass: "pl-3",
-                      attrs: {
-                        loading: _vm.loadingf,
-                        disabled: _vm.loadingf,
-                        color: "light-blue darken-4",
-                      },
-                      on: {
-                        click: function ($event) {
-                          _vm.overlay = !_vm.overlay
-                        },
-                      },
-                    },
-                    [_vm._v("\n          ADD CAMPAIGN\n        ")]
+                    "v-row",
+                    { attrs: { "no-gutters": "" } },
+                    [
+                      _c("v-col", { attrs: { cols: "3" } }, [
+                        _vm._v(" Initial Campaigns "),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "pl-3",
+                              attrs: {
+                                loading: _vm.loadingf,
+                                disabled: _vm.loadingf,
+                                color: "green",
+                              },
+                              on: {
+                                click: function ($event) {
+                                  _vm.overlay = !_vm.overlay
+                                },
+                              },
+                            },
+                            [
+                              _vm._v(
+                                "\n              ADD CAMPAIGN\n            "
+                              ),
+                            ]
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
                   ),
                 ],
                 1
@@ -53524,7 +53546,6 @@ var render = function () {
                   _c(
                     "v-data-table",
                     {
-                      staticClass: "elevation-1",
                       attrs: {
                         headers: _vm.headers,
                         items: _vm.campaigns,
