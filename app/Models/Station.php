@@ -59,7 +59,7 @@ class Station extends Model
 
     public function logs()
     {
-        return $this->belongsTo(Logging::class);
+        return $this->hasMany(Logging::class);
     }
 
     protected $casts = [
