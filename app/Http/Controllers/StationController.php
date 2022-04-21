@@ -49,6 +49,16 @@ class StationController extends Controller
         //
     }
 
+
+    public function stationSheet()
+    {
+        $user = Auth::user();
+        if ($user->can('super')) {
+
+            $data = Helper::StationRecords(6);
+            return ['stations' => $data];
+        }
+    }
     public function loadStationData()
     {
         $coreData = [];

@@ -81,8 +81,14 @@ export default new Vuex.Store({
 
         newSoloOperations: [],
         newSoloOperationsRegionList: [],
+
+        stationList: [],
     },
     mutations: {
+        SET_STATION_LIST(state, stations) {
+            state.stationList = stations;
+        },
+
         SET_NEW_SOLO_OPERATIONS(state, solooplist) {
             state.newSoloOperations = solooplist;
         },
@@ -683,6 +689,19 @@ export default new Vuex.Store({
     },
 
     actions: {
+        async getSoloOperationList({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/stationsheet",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit(" SET_STATION_LIST", res.data.stations);
+        },
+
         async getSoloOperationList({ commit }) {
             let res = await axios({
                 method: "get",

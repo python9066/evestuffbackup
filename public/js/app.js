@@ -32964,6 +32964,117 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/StationSheet.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/StationSheet.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! querystring */ "./node_modules/querystring-es3/index.js");
+/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(querystring__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _service_apil__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../service/apil */ "./resources/js/service/apil.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+
+
+
+
+
+
+function sleep(ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this.$store.dispatch("getStationList");
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _this2.onResize();
+
+            case 1:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  title: function title() {
+    return "EveStuff - Stations";
+  },
+  data: function data() {
+    return {
+      windowSize: {
+        x: 0,
+        y: 0
+      }
+    };
+  },
+  methods: {
+    onResize: function onResize() {
+      this.windowSize = {
+        x: window.innerWidth,
+        y: window.innerHeight
+      };
+    }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stationList"])),
+  beforeDestroy: function beforeDestroy() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Timers.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Timers.vue?vue&type=script&lang=js& ***!
@@ -69888,6 +69999,46 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/StationSheet.vue?vue&type=template&id=45c9b7aa&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/StationSheet.vue?vue&type=template&id=45c9b7aa& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-row",
+    {
+      directives: [
+        {
+          name: "resize",
+          rawName: "v-resize",
+          value: _vm.onResize,
+          expression: "onResize",
+        },
+      ],
+      staticClass: "pr-5 pl-5 pt-1",
+      attrs: { "no-gutters": "", justify: "center" },
+    },
+    [_c("v-col", { attrs: { cols: "12" } })],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Timers.vue?vue&type=template&id=1a9004ad&":
 /*!****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Timers.vue?vue&type=template&id=1a9004ad& ***!
@@ -80171,6 +80322,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_CoordSheet_vue__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./views/CoordSheet.vue */ "./resources/js/views/CoordSheet.vue");
 /* harmony import */ var _views_SoloOperations_vue__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./views/SoloOperations.vue */ "./resources/js/views/SoloOperations.vue");
 /* harmony import */ var _views_CustomOperations_vue__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./views/CustomOperations.vue */ "./resources/js/views/CustomOperations.vue");
+/* harmony import */ var _views_StationSheet_vue__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./views/StationSheet.vue */ "./resources/js/views/StationSheet.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -80188,6 +80340,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
  // import Structures from "./views/structure.vue"
+
 
 
 
@@ -80523,6 +80676,17 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         next("/notifications");
       }
     }
+  }, {
+    path: "/stations",
+    name: "stations",
+    component: _views_StationSheet_vue__WEBPACK_IMPORTED_MODULE_29__["default"],
+    beforeEnter: function beforeEnter(to, from, next) {
+      if (Permissions.indexOf("super") !== -1) {
+        next();
+      } else {
+        next("/notifications");
+      }
+    }
   }] // scrollBehavior(to, from, savedPosition) {
   //   return { x: 0, y: 0 }
   // },
@@ -80667,9 +80831,13 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     welpsheetItem: [],
     welpsheetStatus: [],
     newSoloOperations: [],
-    newSoloOperationsRegionList: []
+    newSoloOperationsRegionList: [],
+    stationList: []
   },
   mutations: {
+    SET_STATION_LIST: function SET_STATION_LIST(state, stations) {
+      state.stationList = stations;
+    },
     SET_NEW_SOLO_OPERATIONS: function SET_NEW_SOLO_OPERATIONS(state, solooplist) {
       state.newSoloOperations = solooplist;
     },
@@ -81238,7 +81406,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 return axios({
                   method: "get",
                   withCredentials: true,
-                  url: "/api/solooperationlist",
+                  url: "/api/stationsheet",
                   headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json"
@@ -81247,49 +81415,48 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context.sent;
-                commit("SET_NEW_SOLO_OPERATIONS", res.data.solooplist);
-                commit("SET_NEW_SOLO_OPERATIONS_REGIONS", res.data.regionList);
+                commit(" SET_STATION_LIST", res.data.stations);
 
-              case 6:
+              case 5:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee);
       }))();
-    },
-    getTimerDataAll: function getTimerDataAll(_ref2) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var commit, res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                commit = _ref2.commit;
-                _context2.next = 3;
-                return axios({
-                  method: "get",
-                  withCredentials: true,
-                  url: "/api/timers",
-                  headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 3:
-                res = _context2.sent;
-                commit("SET_TIMERS", res.data.timers);
-
-              case 5:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
     }
-  }, _defineProperty(_actions, "getTimerDataAll", function getTimerDataAll(_ref3) {
+  }, _defineProperty(_actions, "getSoloOperationList", function getSoloOperationList(_ref2) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      var commit, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              commit = _ref2.commit;
+              _context2.next = 3;
+              return axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/solooperationlist",
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context2.sent;
+              commit("SET_NEW_SOLO_OPERATIONS", res.data.solooplist);
+              commit("SET_NEW_SOLO_OPERATIONS_REGIONS", res.data.regionList);
+
+            case 6:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  }), _defineProperty(_actions, "getTimerDataAll", function getTimerDataAll(_ref3) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
@@ -81319,7 +81486,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee3);
     }))();
-  }), _defineProperty(_actions, "updateTickList", function updateTickList(_ref4, ticker) {
+  }), _defineProperty(_actions, "getTimerDataAll", function getTimerDataAll(_ref4) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
@@ -81331,7 +81498,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/addmissingcorp/" + ticker,
+                url: "/api/timers",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81340,18 +81507,16 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context4.sent;
-              commit("SET_TICKLIST", res.data.ticklist);
-              commit("SET_MISSING_CORP_ID", res.data.corpID);
-              commit("SET_MISSING_CORP_TICK", res.data.corpTicker);
+              commit("SET_TIMERS", res.data.timers);
 
-            case 7:
+            case 5:
             case "end":
               return _context4.stop();
           }
         }
       }, _callee4);
     }))();
-  }), _defineProperty(_actions, "getTimerDataAllRegion", function getTimerDataAllRegion(_ref5) {
+  }), _defineProperty(_actions, "updateTickList", function updateTickList(_ref5, ticker) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
@@ -81363,7 +81528,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/timersregions",
+                url: "/api/addmissingcorp/" + ticker,
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81372,16 +81537,18 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context5.sent;
-              commit("SET_TIMERS_REGIONS", res.data.timersregions);
+              commit("SET_TICKLIST", res.data.ticklist);
+              commit("SET_MISSING_CORP_ID", res.data.corpID);
+              commit("SET_MISSING_CORP_TICK", res.data.corpTicker);
 
-            case 5:
+            case 7:
             case "end":
               return _context5.stop();
           }
         }
       }, _callee5);
     }))();
-  }), _defineProperty(_actions, "getSystemList", function getSystemList(_ref6) {
+  }), _defineProperty(_actions, "getTimerDataAllRegion", function getTimerDataAllRegion(_ref6) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
@@ -81393,7 +81560,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/systemlist",
+                url: "/api/timersregions",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81402,7 +81569,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context6.sent;
-              commit("SET_SYSTEMLIST", res.data.systemlist);
+              commit("SET_TIMERS_REGIONS", res.data.timersregions);
 
             case 5:
             case "end":
@@ -81411,7 +81578,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee6);
     }))();
-  }), _defineProperty(_actions, "getAmmoRequest", function getAmmoRequest(_ref7) {
+  }), _defineProperty(_actions, "getSystemList", function getSystemList(_ref7) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
@@ -81423,7 +81590,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/ammorequestrecords",
+                url: "/api/systemlist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81432,7 +81599,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context7.sent;
-              commit("SET_AMMO_REQUEST", res.data.ammorequest);
+              commit("SET_SYSTEMLIST", res.data.systemlist);
 
             case 5:
             case "end":
@@ -81441,7 +81608,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee7);
     }))();
-  }), _defineProperty(_actions, "getMoonList", function getMoonList(_ref8, system_id) {
+  }), _defineProperty(_actions, "getAmmoRequest", function getAmmoRequest(_ref8) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
@@ -81453,7 +81620,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/moons/" + system_id,
+                url: "/api/ammorequestrecords",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81462,7 +81629,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context8.sent;
-              commit("SET_MOONLIST", res.data.moons);
+              commit("SET_AMMO_REQUEST", res.data.ammorequest);
 
             case 5:
             case "end":
@@ -81471,7 +81638,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee8);
     }))();
-  }), _defineProperty(_actions, "getStructureList", function getStructureList(_ref9) {
+  }), _defineProperty(_actions, "getMoonList", function getMoonList(_ref9, system_id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
@@ -81483,7 +81650,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/structurelist",
+                url: "/api/moons/" + system_id,
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81492,7 +81659,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context9.sent;
-              commit("SET_STRUCTURELIST", res.data.structurelist);
+              commit("SET_MOONLIST", res.data.moons);
 
             case 5:
             case "end":
@@ -81501,7 +81668,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee9);
     }))();
-  }), _defineProperty(_actions, "getTowerList", function getTowerList(_ref10) {
+  }), _defineProperty(_actions, "getStructureList", function getStructureList(_ref10) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee10() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee10$(_context10) {
@@ -81513,7 +81680,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/towerlist",
+                url: "/api/structurelist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81522,7 +81689,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context10.sent;
-              commit("SET_TOWERLIST", res.data.towerlist);
+              commit("SET_STRUCTURELIST", res.data.structurelist);
 
             case 5:
             case "end":
@@ -81531,7 +81698,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee10);
     }))();
-  }), _defineProperty(_actions, "getTickList", function getTickList(_ref11) {
+  }), _defineProperty(_actions, "getTowerList", function getTowerList(_ref11) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee11() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee11$(_context11) {
@@ -81543,7 +81710,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/ticklist",
+                url: "/api/towerlist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81552,7 +81719,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context11.sent;
-              commit("SET_TICKLIST", res.data.ticklist);
+              commit("SET_TOWERLIST", res.data.towerlist);
 
             case 5:
             case "end":
@@ -81561,7 +81728,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee11);
     }))();
-  }), _defineProperty(_actions, "getAllianceTickList", function getAllianceTickList(_ref12) {
+  }), _defineProperty(_actions, "getTickList", function getTickList(_ref12) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee12() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee12$(_context12) {
@@ -81573,7 +81740,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/allianceticklist",
+                url: "/api/ticklist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81582,7 +81749,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context12.sent;
-              commit("SET_ALLIANCE_TICKLIST", res.data.allianceticklist);
+              commit("SET_TICKLIST", res.data.ticklist);
 
             case 5:
             case "end":
@@ -81591,7 +81758,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee12);
     }))();
-  }), _defineProperty(_actions, "getNodeJoinByCampaignId", function getNodeJoinByCampaignId(_ref13, campaign_id) {
+  }), _defineProperty(_actions, "getAllianceTickList", function getAllianceTickList(_ref13) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee13() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee13$(_context13) {
@@ -81603,7 +81770,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/nodejoin/" + campaign_id,
+                url: "/api/allianceticklist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81612,7 +81779,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context13.sent;
-              commit("SET_NODE_JOIN", res.data.nodeJoin);
+              commit("SET_ALLIANCE_TICKLIST", res.data.allianceticklist);
 
             case 5:
             case "end":
@@ -81621,7 +81788,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee13);
     }))();
-  }), _defineProperty(_actions, "getTowerData", function getTowerData(_ref14) {
+  }), _defineProperty(_actions, "getNodeJoinByCampaignId", function getNodeJoinByCampaignId(_ref14, campaign_id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee14() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee14$(_context14) {
@@ -81633,7 +81800,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/towersrecords",
+                url: "/api/nodejoin/" + campaign_id,
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81642,7 +81809,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context14.sent;
-              commit("SET_TOWERS", res.data.towers);
+              commit("SET_NODE_JOIN", res.data.nodeJoin);
 
             case 5:
             case "end":
@@ -81651,7 +81818,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee14);
     }))();
-  }), _defineProperty(_actions, "getStationData", function getStationData(_ref15) {
+  }), _defineProperty(_actions, "getTowerData", function getTowerData(_ref15) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee15() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee15$(_context15) {
@@ -81663,7 +81830,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/stationrecords",
+                url: "/api/towersrecords",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81672,7 +81839,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context15.sent;
-              commit("SET_STATIONS", res.data.stations);
+              commit("SET_TOWERS", res.data.towers);
 
             case 5:
             case "end":
@@ -81681,7 +81848,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee15);
     }))();
-  }), _defineProperty(_actions, "getStationDataByUserId", function getStationDataByUserId(_ref16) {
+  }), _defineProperty(_actions, "getStationData", function getStationData(_ref16) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee16() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee16$(_context16) {
@@ -81693,7 +81860,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/stationrecordsbyid",
+                url: "/api/stationrecords",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81711,9 +81878,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee16);
     }))();
-  }), _defineProperty(_actions, "getCampaignJoinDataByCampaign", function getCampaignJoinDataByCampaign(_ref17, campid) {
-    var _this = this;
-
+  }), _defineProperty(_actions, "getStationDataByUserId", function getStationDataByUserId(_ref17) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee17() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee17$(_context17) {
@@ -81725,8 +81890,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/campaignjoinbyid/" + campid,
-                data: _this.picked,
+                url: "/api/stationrecordsbyid",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81735,7 +81899,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context17.sent;
-              commit("SET_CAMPAIGN_JOIN", res.data.value);
+              commit("SET_STATIONS", res.data.stations);
 
             case 5:
             case "end":
@@ -81744,8 +81908,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee17);
     }))();
-  }), _defineProperty(_actions, "getCampaignJoinData", function getCampaignJoinData(_ref18, campid) {
-    var _this2 = this;
+  }), _defineProperty(_actions, "getCampaignJoinDataByCampaign", function getCampaignJoinDataByCampaign(_ref18, campid) {
+    var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee18() {
       var commit, res;
@@ -81758,8 +81922,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/campaignjoin",
-                data: _this2.picked,
+                url: "/api/campaignjoinbyid/" + campid,
+                data: _this.picked,
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81777,8 +81941,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee18);
     }))();
-  }), _defineProperty(_actions, "getStartCampaignJoinDataByCampaign", function getStartCampaignJoinDataByCampaign(_ref19, campid) {
-    var _this3 = this;
+  }), _defineProperty(_actions, "getCampaignJoinData", function getCampaignJoinData(_ref19, campid) {
+    var _this2 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee19() {
       var commit, res;
@@ -81791,8 +81955,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/startcampaignjoinbyid/" + campid,
-                data: _this3.picked,
+                url: "/api/campaignjoin",
+                data: _this2.picked,
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81801,7 +81965,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context19.sent;
-              commit("SET_START_CAMPAIGN_JOIN", res.data.value);
+              commit("SET_CAMPAIGN_JOIN", res.data.value);
 
             case 5:
             case "end":
@@ -81810,8 +81974,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee19);
     }))();
-  }), _defineProperty(_actions, "getStartCampaignJoinData", function getStartCampaignJoinData(_ref20, campid) {
-    var _this4 = this;
+  }), _defineProperty(_actions, "getStartCampaignJoinDataByCampaign", function getStartCampaignJoinDataByCampaign(_ref20, campid) {
+    var _this3 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee20() {
       var commit, res;
@@ -81824,8 +81988,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/startcampaignjoin",
-                data: _this4.picked,
+                url: "/api/startcampaignjoinbyid/" + campid,
+                data: _this3.picked,
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81843,7 +82007,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee20);
     }))();
-  }), _defineProperty(_actions, "getCampaignMembers", function getCampaignMembers(_ref21, campaign_id) {
+  }), _defineProperty(_actions, "getStartCampaignJoinData", function getStartCampaignJoinData(_ref21, campid) {
+    var _this4 = this;
+
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee21() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee21$(_context21) {
@@ -81855,7 +82021,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/campaignsystemusers/" + campaign_id,
+                url: "/api/startcampaignjoin",
+                data: _this4.picked,
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81864,7 +82031,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context21.sent;
-              commit("SET_CAMPAIGN_MEMBERS", res.data.users);
+              commit("SET_START_CAMPAIGN_JOIN", res.data.value);
 
             case 5:
             case "end":
@@ -81873,7 +82040,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee21);
     }))();
-  }), _defineProperty(_actions, "getUsersChars", function getUsersChars(_ref22, user_id) {
+  }), _defineProperty(_actions, "getCampaignMembers", function getCampaignMembers(_ref22, campaign_id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee22() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee22$(_context22) {
@@ -81885,7 +82052,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/campaignusersrecordsbychar/" + user_id,
+                url: "/api/campaignsystemusers/" + campaign_id,
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81894,7 +82061,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context22.sent;
-              commit("SET_USERS_CHARS", res.data.users);
+              commit("SET_CAMPAIGN_MEMBERS", res.data.users);
 
             case 5:
             case "end":
@@ -81903,7 +82070,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee22);
     }))();
-  }), _defineProperty(_actions, "getCampaignSolaSystems", function getCampaignSolaSystems(_ref23) {
+  }), _defineProperty(_actions, "getUsersChars", function getUsersChars(_ref23, user_id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee23() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee23$(_context23) {
@@ -81915,7 +82082,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/campaignsolasystems",
+                url: "/api/campaignusersrecordsbychar/" + user_id,
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81924,7 +82091,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context23.sent;
-              commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.data);
+              commit("SET_USERS_CHARS", res.data.users);
 
             case 5:
             case "end":
@@ -81933,7 +82100,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee23);
     }))();
-  }), _defineProperty(_actions, "getUsers", function getUsers(_ref24) {
+  }), _defineProperty(_actions, "getCampaignSolaSystems", function getCampaignSolaSystems(_ref24) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee24() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee24$(_context24) {
@@ -81945,7 +82112,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/allusersroles",
+                url: "/api/campaignsolasystems",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81954,8 +82121,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context24.sent;
-              // debugger
-              commit("SET_USERS", res.data.usersroles); // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
+              commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.data);
 
             case 5:
             case "end":
@@ -81964,7 +82130,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee24);
     }))();
-  }), _defineProperty(_actions, "getUserKeys", function getUserKeys(_ref25) {
+  }), _defineProperty(_actions, "getUsers", function getUsers(_ref25) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee25() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee25$(_context25) {
@@ -81976,7 +82142,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/alluserskeys",
+                url: "/api/allusersroles",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -81986,7 +82152,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
             case 3:
               res = _context25.sent;
               // debugger
-              commit("SET_USER_KEYS", res.data.userskeys); // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
+              commit("SET_USERS", res.data.usersroles); // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
 
             case 5:
             case "end":
@@ -81995,7 +82161,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee25);
     }))();
-  }), _defineProperty(_actions, "getKeyFleets", function getKeyFleets(_ref26) {
+  }), _defineProperty(_actions, "getUserKeys", function getUserKeys(_ref26) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee26() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee26$(_context26) {
@@ -82007,7 +82173,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/allkeyfleets",
+                url: "/api/alluserskeys",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82017,7 +82183,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
             case 3:
               res = _context26.sent;
               // debugger
-              commit("SET_KEY_FLEETS", res.data.keyfleets); // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
+              commit("SET_USER_KEYS", res.data.userskeys); // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
 
             case 5:
             case "end":
@@ -82026,7 +82192,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee26);
     }))();
-  }), _defineProperty(_actions, "getRoles", function getRoles(_ref27) {
+  }), _defineProperty(_actions, "getKeyFleets", function getKeyFleets(_ref27) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee27() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee27$(_context27) {
@@ -82038,7 +82204,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/roles",
+                url: "/api/allkeyfleets",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82047,7 +82213,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context27.sent;
-              commit("SET_ROLES", res.data.roles); // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
+              // debugger
+              commit("SET_KEY_FLEETS", res.data.keyfleets); // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
 
             case 5:
             case "end":
@@ -82056,7 +82223,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee27);
     }))();
-  }), _defineProperty(_actions, "getKeys", function getKeys(_ref28) {
+  }), _defineProperty(_actions, "getRoles", function getRoles(_ref28) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee28() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee28$(_context28) {
@@ -82068,7 +82235,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/keys",
+                url: "/api/roles",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82077,7 +82244,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context28.sent;
-              commit("SET_KEYS", res.data.keys); // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
+              commit("SET_ROLES", res.data.roles); // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
 
             case 5:
             case "end":
@@ -82086,7 +82253,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee28);
     }))();
-  }), _defineProperty(_actions, "getCampaigns", function getCampaigns(_ref29) {
+  }), _defineProperty(_actions, "getKeys", function getKeys(_ref29) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee29() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee29$(_context29) {
@@ -82098,7 +82265,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/campaigns",
+                url: "/api/keys",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82107,7 +82274,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context29.sent;
-              commit("SET_CAMPAIGNS", res.data.campaigns);
+              commit("SET_KEYS", res.data.keys); // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
 
             case 5:
             case "end":
@@ -82116,7 +82283,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee29);
     }))();
-  }), _defineProperty(_actions, "getCampaignsRegions", function getCampaignsRegions(_ref30) {
+  }), _defineProperty(_actions, "getCampaigns", function getCampaigns(_ref30) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee30() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee30$(_context30) {
@@ -82128,7 +82295,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/campaignsregion",
+                url: "/api/campaigns",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82137,7 +82304,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context30.sent;
-              commit("SET_CAMPAIGNS_REGION", res.data.campaignslistRegion);
+              commit("SET_CAMPAIGNS", res.data.campaigns);
 
             case 5:
             case "end":
@@ -82146,7 +82313,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee30);
     }))();
-  }), _defineProperty(_actions, "getRcRegions", function getRcRegions(_ref31) {
+  }), _defineProperty(_actions, "getCampaignsRegions", function getCampaignsRegions(_ref31) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee31() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee31$(_context31) {
@@ -82158,7 +82325,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/rcregionlist",
+                url: "/api/campaignsregion",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82167,7 +82334,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context31.sent;
-              commit("SET_RC_REGION", res.data.rcsheetlistRegion);
+              commit("SET_CAMPAIGNS_REGION", res.data.campaignslistRegion);
 
             case 5:
             case "end":
@@ -82176,7 +82343,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee31);
     }))();
-  }), _defineProperty(_actions, "getChillRegions", function getChillRegions(_ref32) {
+  }), _defineProperty(_actions, "getRcRegions", function getRcRegions(_ref32) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee32() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee32$(_context32) {
@@ -82188,7 +82355,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/chillregionlist",
+                url: "/api/rcregionlist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82197,7 +82364,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context32.sent;
-              commit("SET_CHILL_REGION", res.data.chillsheetlistRegion);
+              commit("SET_RC_REGION", res.data.rcsheetlistRegion);
 
             case 5:
             case "end":
@@ -82206,7 +82373,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee32);
     }))();
-  }), _defineProperty(_actions, "getWelpRegions", function getWelpRegions(_ref33) {
+  }), _defineProperty(_actions, "getChillRegions", function getChillRegions(_ref33) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee33() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee33$(_context33) {
@@ -82218,7 +82385,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/welpregionlist",
+                url: "/api/chillregionlist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82227,7 +82394,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context33.sent;
-              commit("SET_WELP_REGION", res.data.welpsheetlistRegion);
+              commit("SET_CHILL_REGION", res.data.chillsheetlistRegion);
 
             case 5:
             case "end":
@@ -82236,7 +82403,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee33);
     }))();
-  }), _defineProperty(_actions, "getRcItems", function getRcItems(_ref34) {
+  }), _defineProperty(_actions, "getWelpRegions", function getWelpRegions(_ref34) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee34() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee34$(_context34) {
@@ -82248,7 +82415,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/rcTypelist",
+                url: "/api/welpregionlist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82257,7 +82424,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context34.sent;
-              commit("SET_RC_TYPE", res.data.rcsheetlistType);
+              commit("SET_WELP_REGION", res.data.welpsheetlistRegion);
 
             case 5:
             case "end":
@@ -82266,7 +82433,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee34);
     }))();
-  }), _defineProperty(_actions, "getChillItems", function getChillItems(_ref35) {
+  }), _defineProperty(_actions, "getRcItems", function getRcItems(_ref35) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee35() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee35$(_context35) {
@@ -82278,7 +82445,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/chillTypelist",
+                url: "/api/rcTypelist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82287,7 +82454,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context35.sent;
-              commit("SET_CHILL_TYPE", res.data.chillsheetlistType);
+              commit("SET_RC_TYPE", res.data.rcsheetlistType);
 
             case 5:
             case "end":
@@ -82296,7 +82463,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee35);
     }))();
-  }), _defineProperty(_actions, "getWelpItems", function getWelpItems(_ref36) {
+  }), _defineProperty(_actions, "getChillItems", function getChillItems(_ref36) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee36() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee36$(_context36) {
@@ -82308,7 +82475,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/welpTypelist",
+                url: "/api/chillTypelist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82317,7 +82484,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context36.sent;
-              commit("SET_WELP_TYPE", res.data.welpsheetlistType);
+              commit("SET_CHILL_TYPE", res.data.chillsheetlistType);
 
             case 5:
             case "end":
@@ -82326,7 +82493,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee36);
     }))();
-  }), _defineProperty(_actions, "getRcStatus", function getRcStatus(_ref37) {
+  }), _defineProperty(_actions, "getWelpItems", function getWelpItems(_ref37) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee37() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee37$(_context37) {
@@ -82338,7 +82505,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/rcStatuslist",
+                url: "/api/welpTypelist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82347,7 +82514,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context37.sent;
-              commit("SET_RC_STATUS", res.data.rcsheetlistStatus);
+              commit("SET_WELP_TYPE", res.data.welpsheetlistType);
 
             case 5:
             case "end":
@@ -82356,7 +82523,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee37);
     }))();
-  }), _defineProperty(_actions, "getChillStatus", function getChillStatus(_ref38) {
+  }), _defineProperty(_actions, "getRcStatus", function getRcStatus(_ref38) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee38() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee38$(_context38) {
@@ -82368,7 +82535,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/chilltest",
+                url: "/api/rcStatuslist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82377,7 +82544,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context38.sent;
-              commit("SET_CHILL_STATUS", res.data.chillsheetlistStatus);
+              commit("SET_RC_STATUS", res.data.rcsheetlistStatus);
 
             case 5:
             case "end":
@@ -82386,7 +82553,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee38);
     }))();
-  }), _defineProperty(_actions, "getWelpStatus", function getWelpStatus(_ref39) {
+  }), _defineProperty(_actions, "getChillStatus", function getChillStatus(_ref39) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee39() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee39$(_context39) {
@@ -82398,7 +82565,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/welptest",
+                url: "/api/chilltest",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82407,7 +82574,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context39.sent;
-              commit("SET_WELP_STATUS", res.data.welpsheetlistStatus);
+              commit("SET_CHILL_STATUS", res.data.chillsheetlistStatus);
 
             case 5:
             case "end":
@@ -82416,7 +82583,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee39);
     }))();
-  }), _defineProperty(_actions, "getCoordStatus", function getCoordStatus(_ref40) {
+  }), _defineProperty(_actions, "getWelpStatus", function getWelpStatus(_ref40) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee40() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee40$(_context40) {
@@ -82428,7 +82595,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/coordStatuslist",
+                url: "/api/welptest",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82437,7 +82604,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context40.sent;
-              commit("SET_COORD_STATUS", res.data.coordsheetlistStatus);
+              commit("SET_WELP_STATUS", res.data.welpsheetlistStatus);
 
             case 5:
             case "end":
@@ -82446,7 +82613,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee40);
     }))();
-  }), _defineProperty(_actions, "getCoordRegions", function getCoordRegions(_ref41) {
+  }), _defineProperty(_actions, "getCoordStatus", function getCoordStatus(_ref41) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee41() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee41$(_context41) {
@@ -82458,7 +82625,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/coordRegionlist",
+                url: "/api/coordStatuslist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82467,7 +82634,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context41.sent;
-              commit("SET_COORD_REGION", res.data.coordsheetlistRegion);
+              commit("SET_COORD_STATUS", res.data.coordsheetlistStatus);
 
             case 5:
             case "end":
@@ -82476,7 +82643,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee41);
     }))();
-  }), _defineProperty(_actions, "getCoordItems", function getCoordItems(_ref42) {
+  }), _defineProperty(_actions, "getCoordRegions", function getCoordRegions(_ref42) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee42() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee42$(_context42) {
@@ -82488,7 +82655,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/coordItemlist",
+                url: "/api/coordRegionlist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82497,7 +82664,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context42.sent;
-              commit("SET_COORD_ITEM", res.data.coordsheetlistType);
+              commit("SET_COORD_REGION", res.data.coordsheetlistRegion);
 
             case 5:
             case "end":
@@ -82506,7 +82673,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee42);
     }))();
-  }), _defineProperty(_actions, "getMultiCampaigns", function getMultiCampaigns(_ref43) {
+  }), _defineProperty(_actions, "getCoordItems", function getCoordItems(_ref43) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee43() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee43$(_context43) {
@@ -82518,7 +82685,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/multicampaigns",
+                url: "/api/coordItemlist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82527,7 +82694,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context43.sent;
-              commit("SET_MULTI_CAMPAIGNS", res.data.campaigns);
+              commit("SET_COORD_ITEM", res.data.coordsheetlistType);
 
             case 5:
             case "end":
@@ -82536,7 +82703,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee43);
     }))();
-  }), _defineProperty(_actions, "getStartCampaigns", function getStartCampaigns(_ref44) {
+  }), _defineProperty(_actions, "getMultiCampaigns", function getMultiCampaigns(_ref44) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee44() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee44$(_context44) {
@@ -82548,7 +82715,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/startcampaigns",
+                url: "/api/multicampaigns",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82557,7 +82724,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context44.sent;
-              commit("SET_START_CAMPAIGNS", res.data.campaigns);
+              commit("SET_MULTI_CAMPAIGNS", res.data.campaigns);
 
             case 5:
             case "end":
@@ -82566,7 +82733,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee44);
     }))();
-  }), _defineProperty(_actions, "getCampaignsList", function getCampaignsList(_ref45) {
+  }), _defineProperty(_actions, "getStartCampaigns", function getStartCampaigns(_ref45) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee45() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee45$(_context45) {
@@ -82578,7 +82745,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/campaignslist",
+                url: "/api/startcampaigns",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82587,7 +82754,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context45.sent;
-              commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
+              commit("SET_START_CAMPAIGNS", res.data.campaigns);
 
             case 5:
             case "end":
@@ -82596,7 +82763,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee45);
     }))();
-  }), _defineProperty(_actions, "getLoggingCampaign", function getLoggingCampaign(_ref46, campaign_id) {
+  }), _defineProperty(_actions, "getCampaignsList", function getCampaignsList(_ref46) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee46() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee46$(_context46) {
@@ -82608,7 +82775,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/checkcampaign/" + campaign_id,
+                url: "/api/campaignslist",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82617,7 +82784,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context46.sent;
-              commit("SET_LOGGING_CAMPAIGN", res.data.logs);
+              commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
 
             case 5:
             case "end":
@@ -82626,7 +82793,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee46);
     }))();
-  }), _defineProperty(_actions, "getLoggingRcSheet", function getLoggingRcSheet(_ref47) {
+  }), _defineProperty(_actions, "getLoggingCampaign", function getLoggingCampaign(_ref47, campaign_id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee47() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee47$(_context47) {
@@ -82638,7 +82805,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/rcadminlogs",
+                url: "/api/checkcampaign/" + campaign_id,
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82647,7 +82814,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context47.sent;
-              commit("SET_LOGGING_RC_SHEET", res.data.logs);
+              commit("SET_LOGGING_CAMPAIGN", res.data.logs);
 
             case 5:
             case "end":
@@ -82656,7 +82823,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee47);
     }))();
-  }), _defineProperty(_actions, "getLoggingStations", function getLoggingStations(_ref48) {
+  }), _defineProperty(_actions, "getLoggingRcSheet", function getLoggingRcSheet(_ref48) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee48() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee48$(_context48) {
@@ -82668,7 +82835,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/stationlogs",
+                url: "/api/rcadminlogs",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82677,7 +82844,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context48.sent;
-              commit("SET_LOGGING_STATIONS", res.data.logs);
+              commit("SET_LOGGING_RC_SHEET", res.data.logs);
 
             case 5:
             case "end":
@@ -82686,7 +82853,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee48);
     }))();
-  }), _defineProperty(_actions, "getLoggingAdmin", function getLoggingAdmin(_ref49) {
+  }), _defineProperty(_actions, "getLoggingStations", function getLoggingStations(_ref49) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee49() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee49$(_context49) {
@@ -82698,7 +82865,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               return axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/checkadmin",
+                url: "/api/stationlogs",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82707,7 +82874,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context49.sent;
-              commit("SET_LOGGING_ADMIN", res.data.logs);
+              commit("SET_LOGGING_STATIONS", res.data.logs);
 
             case 5:
             case "end":
@@ -82716,144 +82883,174 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee49);
     }))();
-  }), _defineProperty(_actions, "markOver", function markOver(_ref50, timer) {
-    var commit = _ref50.commit;
-    commit("MARK_TIMER_OVER", timer);
-  }), _defineProperty(_actions, "updateNotification", function updateNotification(_ref51, data) {
-    var commit = _ref51.commit;
-    commit("UPDATE_NOTIFICATIONS", data);
-  }), _defineProperty(_actions, "updateStationNotification", function updateStationNotification(_ref52, data) {
-    var commit = _ref52.commit;
-    commit("UPDATE_STATION_NOTIFICATION", data);
-  }), _defineProperty(_actions, "updateKeyMessage", function updateKeyMessage(_ref53, data) {
-    var commit = _ref53.commit;
-    commit("UPDATE_KEY_MESSAGE", data);
-  }), _defineProperty(_actions, "updateRcStation", function updateRcStation(_ref54, data) {
-    var commit = _ref54.commit;
-    commit("UPDATE_RC_STATION", data);
-  }), _defineProperty(_actions, "updateChillStation", function updateChillStation(_ref55, data) {
-    var commit = _ref55.commit;
-    commit("UPDATE_CHILL_STATION", data);
-  }), _defineProperty(_actions, "updateWelpStation", function updateWelpStation(_ref56, data) {
-    var commit = _ref56.commit;
-    commit("UPDATE_WELP_STATION", data);
-  }), _defineProperty(_actions, "updateRcStationCurrent", function updateRcStationCurrent(_ref57, data) {
-    var commit = _ref57.commit;
-    commit("UPDATE_RC_STATION_CURRENT", data);
-  }), _defineProperty(_actions, "updateChillStationCurrent", function updateChillStationCurrent(_ref58, data) {
-    var commit = _ref58.commit;
-    commit("UPDATE_CHILL_STATION_CURRENT", data);
-  }), _defineProperty(_actions, "updateWelpStationCurrent", function updateWelpStationCurrent(_ref59, data) {
-    var commit = _ref59.commit;
-    commit("UPDATE_WELP_STATION_CURRENT", data);
-  }), _defineProperty(_actions, "updateRcFC", function updateRcFC(_ref60, data) {
-    var commit = _ref60.commit;
-    commit("UPDATE_RC_FC", data);
-  }), _defineProperty(_actions, "updateCores", function updateCores(_ref61, data) {
-    var commit = _ref61.commit;
-    commit("UPDATE_CORES", data);
-  }), _defineProperty(_actions, "updateCampaigns", function updateCampaigns(_ref62, data) {
-    var commit = _ref62.commit;
-    commit("UPDATE_CAMPAIGNS", data);
-  }), _defineProperty(_actions, "updateNewSoloOperation", function updateNewSoloOperation(_ref63, data) {
-    var commit = _ref63.commit;
-    commit("UPDATE_NEW_SOLO_OPERATIONS", data);
-  }), _defineProperty(_actions, "updateTowers", function updateTowers(_ref64, data) {
-    var commit = _ref64.commit;
-    commit("UPDATE_TOWERS", data);
-  }), _defineProperty(_actions, "updateCampaignSystem", function updateCampaignSystem(_ref65, data) {
-    var commit = _ref65.commit;
-    commit("UPDATE_CAMPAIGN_SYSTEM", data);
-  }), _defineProperty(_actions, "updateStartCampaignSystem", function updateStartCampaignSystem(_ref66, data) {
-    var commit = _ref66.commit;
-    commit("UPDATE_START_CAMPAIGN_SYSTEM", data);
-  }), _defineProperty(_actions, "updateTooltipToggle", function updateTooltipToggle(_ref67, data) {
-    var commit = _ref67.commit;
-    commit("UPDATE_TOOLTIP_TOGGLE", data);
-  }), _defineProperty(_actions, "updateCampaignSystemByUserID", function updateCampaignSystemByUserID(_ref68, payload) {
-    var commit = _ref68.commit;
-    commit("UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID", payload);
-  }), _defineProperty(_actions, "updateCampaignSolaSystem", function updateCampaignSolaSystem(_ref69, data) {
-    var commit = _ref69.commit;
-    commit("UPDATE_CAMPAIGN_SOLA_SYSTEMS", data);
-  }), _defineProperty(_actions, "updateCampaignSystemBar", function updateCampaignSystemBar(_ref70, data) {
-    var commit = _ref70.commit;
-    commit("UPDATE_CAMPAIGN_SYSTEM_UPDATE", data);
-  }), _defineProperty(_actions, "updateCampaign", function updateCampaign(_ref71, data) {
-    var commit = _ref71.commit;
-    commit("UPDATE_CAMPAIGN", data);
-  }), _defineProperty(_actions, "updateCampaignUsers", function updateCampaignUsers(_ref72, data) {
-    var commit = _ref72.commit;
-    commit("UPDATE_CAMPAIGN_USERS", data);
-  }), _defineProperty(_actions, "updateUsersChars", function updateUsersChars(_ref73, data) {
-    var commit = _ref73.commit;
-    commit("UPDATE_USERS_CHARS", data);
-  }), _defineProperty(_actions, "updateAmmoRequest", function updateAmmoRequest(_ref74, data) {
-    var commit = _ref74.commit;
-    commit("UPDATE_AMMO_REQUEST", data);
-  }), _defineProperty(_actions, "updateNodeJoin", function updateNodeJoin(_ref75, data) {
-    var commit = _ref75.commit;
-    commit("UPDATE_NODE_JOIN", data);
-  }), _defineProperty(_actions, "updateReconTaskSystems", function updateReconTaskSystems(_ref76, data) {
-    var commit = _ref76.commit;
-    commit("UPDATE_RECON_TASK_SYSTEMS", data);
-  }), _defineProperty(_actions, "updateEveUserCount", function updateEveUserCount(_ref77, data) {
-    var commit = _ref77.commit;
-    commit("UPDATE_EVE_USER_COUNT", data);
-  }), _defineProperty(_actions, "addNodeJoin", function addNodeJoin(_ref78, data) {
-    var commit = _ref78.commit;
-    commit("ADD_NODE_JOIN", data);
-  }), _defineProperty(_actions, "addAmmoRequest", function addAmmoRequest(_ref79, data) {
-    var commit = _ref79.commit;
-    commit("ADD_AMMO_REQUEST", data);
-  }), _defineProperty(_actions, "addStationNotification", function addStationNotification(_ref80, data) {
-    var commit = _ref80.commit;
-    commit("ADD_STATION_NOTIFICATION", data);
-  }), _defineProperty(_actions, "addLoggingCampaign", function addLoggingCampaign(_ref81, data) {
-    var commit = _ref81.commit;
-    commit("ADD_LOGGING_CAMPGIN", data);
-  }), _defineProperty(_actions, "addLoggingRcSheet", function addLoggingRcSheet(_ref82, data) {
-    var commit = _ref82.commit;
-    commit("ADD_LOGGING_RC_SHEET", data);
-  }), _defineProperty(_actions, "addLoggingStation", function addLoggingStation(_ref83, data) {
-    var commit = _ref83.commit;
-    commit("ADD_LOGGING_STATION", data);
-  }), _defineProperty(_actions, "addCampaignUserNew", function addCampaignUserNew(_ref84, data) {
-    var commit = _ref84.commit;
-    commit("ADD_CAMPAIGN_USERS", data);
-  }), _defineProperty(_actions, "addCampaignSystem", function addCampaignSystem(_ref85, data) {
-    var commit = _ref85.commit;
-    commit("ADD_CAMPAIGN_SYSTEM", data);
-  }), _defineProperty(_actions, "deleteCampaignUser", function deleteCampaignUser(_ref86, id) {
-    var commit = _ref86.commit;
-    commit("DELETE_CAMPAIGN_USER", id);
-  }), _defineProperty(_actions, "deleteStationNotification", function deleteStationNotification(_ref87, id) {
-    var commit = _ref87.commit;
-    commit("DELETE_STATION_NOTIFICATION", id);
-  }), _defineProperty(_actions, "deleteUsersChars", function deleteUsersChars(_ref88, id) {
-    var commit = _ref88.commit;
-    commit("DELETE_USER_CHAR", id);
-  }), _defineProperty(_actions, "deleteNodeJoin", function deleteNodeJoin(_ref89, id) {
-    var commit = _ref89.commit;
-    commit("DELETE_NODE_JOIN", id);
-  }), _defineProperty(_actions, "deleteAmmoRequest", function deleteAmmoRequest(_ref90, id) {
-    var commit = _ref90.commit;
-    commit("DELETE_AMMO_REQUEST", id);
-  }), _defineProperty(_actions, "deleteTower", function deleteTower(_ref91, id) {
-    var commit = _ref91.commit;
-    commit("DELETE_TOWERS", id);
-  }), _defineProperty(_actions, "deleteCampaignSystem", function deleteCampaignSystem(_ref92, id) {
-    var commit = _ref92.commit;
-    commit("DELETE_CAMPAIGN_SYSTEM", id);
-  }), _defineProperty(_actions, "getNotifications", function getNotifications(_ref93) {
+  }), _defineProperty(_actions, "getLoggingAdmin", function getLoggingAdmin(_ref50) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee50() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee50$(_context50) {
         while (1) {
           switch (_context50.prev = _context50.next) {
             case 0:
-              commit = _ref93.commit;
+              commit = _ref50.commit;
               _context50.next = 3;
+              return axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/checkadmin",
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context50.sent;
+              commit("SET_LOGGING_ADMIN", res.data.logs);
+
+            case 5:
+            case "end":
+              return _context50.stop();
+          }
+        }
+      }, _callee50);
+    }))();
+  }), _defineProperty(_actions, "markOver", function markOver(_ref51, timer) {
+    var commit = _ref51.commit;
+    commit("MARK_TIMER_OVER", timer);
+  }), _defineProperty(_actions, "updateNotification", function updateNotification(_ref52, data) {
+    var commit = _ref52.commit;
+    commit("UPDATE_NOTIFICATIONS", data);
+  }), _defineProperty(_actions, "updateStationNotification", function updateStationNotification(_ref53, data) {
+    var commit = _ref53.commit;
+    commit("UPDATE_STATION_NOTIFICATION", data);
+  }), _defineProperty(_actions, "updateKeyMessage", function updateKeyMessage(_ref54, data) {
+    var commit = _ref54.commit;
+    commit("UPDATE_KEY_MESSAGE", data);
+  }), _defineProperty(_actions, "updateRcStation", function updateRcStation(_ref55, data) {
+    var commit = _ref55.commit;
+    commit("UPDATE_RC_STATION", data);
+  }), _defineProperty(_actions, "updateChillStation", function updateChillStation(_ref56, data) {
+    var commit = _ref56.commit;
+    commit("UPDATE_CHILL_STATION", data);
+  }), _defineProperty(_actions, "updateWelpStation", function updateWelpStation(_ref57, data) {
+    var commit = _ref57.commit;
+    commit("UPDATE_WELP_STATION", data);
+  }), _defineProperty(_actions, "updateRcStationCurrent", function updateRcStationCurrent(_ref58, data) {
+    var commit = _ref58.commit;
+    commit("UPDATE_RC_STATION_CURRENT", data);
+  }), _defineProperty(_actions, "updateChillStationCurrent", function updateChillStationCurrent(_ref59, data) {
+    var commit = _ref59.commit;
+    commit("UPDATE_CHILL_STATION_CURRENT", data);
+  }), _defineProperty(_actions, "updateWelpStationCurrent", function updateWelpStationCurrent(_ref60, data) {
+    var commit = _ref60.commit;
+    commit("UPDATE_WELP_STATION_CURRENT", data);
+  }), _defineProperty(_actions, "updateRcFC", function updateRcFC(_ref61, data) {
+    var commit = _ref61.commit;
+    commit("UPDATE_RC_FC", data);
+  }), _defineProperty(_actions, "updateCores", function updateCores(_ref62, data) {
+    var commit = _ref62.commit;
+    commit("UPDATE_CORES", data);
+  }), _defineProperty(_actions, "updateCampaigns", function updateCampaigns(_ref63, data) {
+    var commit = _ref63.commit;
+    commit("UPDATE_CAMPAIGNS", data);
+  }), _defineProperty(_actions, "updateNewSoloOperation", function updateNewSoloOperation(_ref64, data) {
+    var commit = _ref64.commit;
+    commit("UPDATE_NEW_SOLO_OPERATIONS", data);
+  }), _defineProperty(_actions, "updateTowers", function updateTowers(_ref65, data) {
+    var commit = _ref65.commit;
+    commit("UPDATE_TOWERS", data);
+  }), _defineProperty(_actions, "updateCampaignSystem", function updateCampaignSystem(_ref66, data) {
+    var commit = _ref66.commit;
+    commit("UPDATE_CAMPAIGN_SYSTEM", data);
+  }), _defineProperty(_actions, "updateStartCampaignSystem", function updateStartCampaignSystem(_ref67, data) {
+    var commit = _ref67.commit;
+    commit("UPDATE_START_CAMPAIGN_SYSTEM", data);
+  }), _defineProperty(_actions, "updateTooltipToggle", function updateTooltipToggle(_ref68, data) {
+    var commit = _ref68.commit;
+    commit("UPDATE_TOOLTIP_TOGGLE", data);
+  }), _defineProperty(_actions, "updateCampaignSystemByUserID", function updateCampaignSystemByUserID(_ref69, payload) {
+    var commit = _ref69.commit;
+    commit("UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID", payload);
+  }), _defineProperty(_actions, "updateCampaignSolaSystem", function updateCampaignSolaSystem(_ref70, data) {
+    var commit = _ref70.commit;
+    commit("UPDATE_CAMPAIGN_SOLA_SYSTEMS", data);
+  }), _defineProperty(_actions, "updateCampaignSystemBar", function updateCampaignSystemBar(_ref71, data) {
+    var commit = _ref71.commit;
+    commit("UPDATE_CAMPAIGN_SYSTEM_UPDATE", data);
+  }), _defineProperty(_actions, "updateCampaign", function updateCampaign(_ref72, data) {
+    var commit = _ref72.commit;
+    commit("UPDATE_CAMPAIGN", data);
+  }), _defineProperty(_actions, "updateCampaignUsers", function updateCampaignUsers(_ref73, data) {
+    var commit = _ref73.commit;
+    commit("UPDATE_CAMPAIGN_USERS", data);
+  }), _defineProperty(_actions, "updateUsersChars", function updateUsersChars(_ref74, data) {
+    var commit = _ref74.commit;
+    commit("UPDATE_USERS_CHARS", data);
+  }), _defineProperty(_actions, "updateAmmoRequest", function updateAmmoRequest(_ref75, data) {
+    var commit = _ref75.commit;
+    commit("UPDATE_AMMO_REQUEST", data);
+  }), _defineProperty(_actions, "updateNodeJoin", function updateNodeJoin(_ref76, data) {
+    var commit = _ref76.commit;
+    commit("UPDATE_NODE_JOIN", data);
+  }), _defineProperty(_actions, "updateReconTaskSystems", function updateReconTaskSystems(_ref77, data) {
+    var commit = _ref77.commit;
+    commit("UPDATE_RECON_TASK_SYSTEMS", data);
+  }), _defineProperty(_actions, "updateEveUserCount", function updateEveUserCount(_ref78, data) {
+    var commit = _ref78.commit;
+    commit("UPDATE_EVE_USER_COUNT", data);
+  }), _defineProperty(_actions, "addNodeJoin", function addNodeJoin(_ref79, data) {
+    var commit = _ref79.commit;
+    commit("ADD_NODE_JOIN", data);
+  }), _defineProperty(_actions, "addAmmoRequest", function addAmmoRequest(_ref80, data) {
+    var commit = _ref80.commit;
+    commit("ADD_AMMO_REQUEST", data);
+  }), _defineProperty(_actions, "addStationNotification", function addStationNotification(_ref81, data) {
+    var commit = _ref81.commit;
+    commit("ADD_STATION_NOTIFICATION", data);
+  }), _defineProperty(_actions, "addLoggingCampaign", function addLoggingCampaign(_ref82, data) {
+    var commit = _ref82.commit;
+    commit("ADD_LOGGING_CAMPGIN", data);
+  }), _defineProperty(_actions, "addLoggingRcSheet", function addLoggingRcSheet(_ref83, data) {
+    var commit = _ref83.commit;
+    commit("ADD_LOGGING_RC_SHEET", data);
+  }), _defineProperty(_actions, "addLoggingStation", function addLoggingStation(_ref84, data) {
+    var commit = _ref84.commit;
+    commit("ADD_LOGGING_STATION", data);
+  }), _defineProperty(_actions, "addCampaignUserNew", function addCampaignUserNew(_ref85, data) {
+    var commit = _ref85.commit;
+    commit("ADD_CAMPAIGN_USERS", data);
+  }), _defineProperty(_actions, "addCampaignSystem", function addCampaignSystem(_ref86, data) {
+    var commit = _ref86.commit;
+    commit("ADD_CAMPAIGN_SYSTEM", data);
+  }), _defineProperty(_actions, "deleteCampaignUser", function deleteCampaignUser(_ref87, id) {
+    var commit = _ref87.commit;
+    commit("DELETE_CAMPAIGN_USER", id);
+  }), _defineProperty(_actions, "deleteStationNotification", function deleteStationNotification(_ref88, id) {
+    var commit = _ref88.commit;
+    commit("DELETE_STATION_NOTIFICATION", id);
+  }), _defineProperty(_actions, "deleteUsersChars", function deleteUsersChars(_ref89, id) {
+    var commit = _ref89.commit;
+    commit("DELETE_USER_CHAR", id);
+  }), _defineProperty(_actions, "deleteNodeJoin", function deleteNodeJoin(_ref90, id) {
+    var commit = _ref90.commit;
+    commit("DELETE_NODE_JOIN", id);
+  }), _defineProperty(_actions, "deleteAmmoRequest", function deleteAmmoRequest(_ref91, id) {
+    var commit = _ref91.commit;
+    commit("DELETE_AMMO_REQUEST", id);
+  }), _defineProperty(_actions, "deleteTower", function deleteTower(_ref92, id) {
+    var commit = _ref92.commit;
+    commit("DELETE_TOWERS", id);
+  }), _defineProperty(_actions, "deleteCampaignSystem", function deleteCampaignSystem(_ref93, id) {
+    var commit = _ref93.commit;
+    commit("DELETE_CAMPAIGN_SYSTEM", id);
+  }), _defineProperty(_actions, "getNotifications", function getNotifications(_ref94) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee51() {
+      var commit, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee51$(_context51) {
+        while (1) {
+          switch (_context51.prev = _context51.next) {
+            case 0:
+              commit = _ref94.commit;
+              _context51.next = 3;
               return axios({
                 method: "get",
                 withCredentials: true,
@@ -82867,39 +83064,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               });
 
             case 3:
-              res = _context50.sent;
-              commit("SET_NOTIFICATIONS", res.data.notifications);
-
-            case 5:
-            case "end":
-              return _context50.stop();
-          }
-        }
-      }, _callee50);
-    }))();
-  }), _defineProperty(_actions, "getdelveLink", function getdelveLink(_ref94) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee51() {
-      var commit, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee51$(_context51) {
-        while (1) {
-          switch (_context51.prev = _context51.next) {
-            case 0:
-              commit = _ref94.commit;
-              _context51.next = 3;
-              return axios({
-                method: "get",
-                withCredentials: true,
-                //you can set what request you want to be
-                url: "/api/notifications/10000060",
-                headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
               res = _context51.sent;
-              commit("SET_DELVE_LINK", res.data.link);
+              commit("SET_NOTIFICATIONS", res.data.notifications);
 
             case 5:
             case "end":
@@ -82908,7 +83074,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee51);
     }))();
-  }), _defineProperty(_actions, "getqueriousLink", function getqueriousLink(_ref95) {
+  }), _defineProperty(_actions, "getdelveLink", function getdelveLink(_ref95) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee52() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee52$(_context52) {
@@ -82921,7 +83087,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 method: "get",
                 withCredentials: true,
                 //you can set what request you want to be
-                url: "/api/notifications/10000050",
+                url: "/api/notifications/10000060",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82930,7 +83096,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context52.sent;
-              commit("SET_QUERIOUS_LINK", res.data.link);
+              commit("SET_DELVE_LINK", res.data.link);
 
             case 5:
             case "end":
@@ -82939,7 +83105,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee52);
     }))();
-  }), _defineProperty(_actions, "getperiodbasisLink", function getperiodbasisLink(_ref96) {
+  }), _defineProperty(_actions, "getqueriousLink", function getqueriousLink(_ref96) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee53() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee53$(_context53) {
@@ -82952,7 +83118,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 method: "get",
                 withCredentials: true,
                 //you can set what request you want to be
-                url: "/api/notifications/10000063",
+                url: "/api/notifications/10000050",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82961,7 +83127,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context53.sent;
-              commit("SET_PERIOD_BASIS_LINK", res.data.link);
+              commit("SET_QUERIOUS_LINK", res.data.link);
 
             case 5:
             case "end":
@@ -82970,7 +83136,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee53);
     }))();
-  }), _defineProperty(_actions, "geteveusercount", function geteveusercount(_ref97) {
+  }), _defineProperty(_actions, "getperiodbasisLink", function getperiodbasisLink(_ref97) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee54() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee54$(_context54) {
@@ -82983,7 +83149,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 method: "get",
                 withCredentials: true,
                 //you can set what request you want to be
-                url: "/api/eveusercount",
+                url: "/api/notifications/10000063",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -82992,7 +83158,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context54.sent;
-              commit("SET_EVE_USER_COUNT", res.data.count);
+              commit("SET_PERIOD_BASIS_LINK", res.data.link);
 
             case 5:
             case "end":
@@ -83001,26 +83167,20 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee54);
     }))();
-  }), _defineProperty(_actions, "setUser_id", function setUser_id(_ref98, user_id) {
-    var commit = _ref98.commit;
-    commit("SET_USER_ID", user_id);
-  }), _defineProperty(_actions, "setUser_name", function setUser_name(_ref99, user_name) {
-    var commit = _ref99.commit;
-    commit("SET_USER_NAME", user_name);
-  }), _defineProperty(_actions, "getCampaignUsersRecords", function getCampaignUsersRecords(_ref100, id) {
+  }), _defineProperty(_actions, "geteveusercount", function geteveusercount(_ref98) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee55() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee55$(_context55) {
         while (1) {
           switch (_context55.prev = _context55.next) {
             case 0:
-              commit = _ref100.commit;
+              commit = _ref98.commit;
               _context55.next = 3;
               return axios({
                 method: "get",
                 withCredentials: true,
                 //you can set what request you want to be
-                url: "/api/campaignusersrecords/" + id,
+                url: "/api/eveusercount",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -83029,10 +83189,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context55.sent;
-
-              if (res.data.length != 0) {
-                commit("SET_CAMPAIGN_USERS", res.data.users);
-              }
+              commit("SET_EVE_USER_COUNT", res.data.count);
 
             case 5:
             case "end":
@@ -83041,7 +83198,13 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee55);
     }))();
-  }), _defineProperty(_actions, "getCampaignSystemsRecords", function getCampaignSystemsRecords(_ref101) {
+  }), _defineProperty(_actions, "setUser_id", function setUser_id(_ref99, user_id) {
+    var commit = _ref99.commit;
+    commit("SET_USER_ID", user_id);
+  }), _defineProperty(_actions, "setUser_name", function setUser_name(_ref100, user_name) {
+    var commit = _ref100.commit;
+    commit("SET_USER_NAME", user_name);
+  }), _defineProperty(_actions, "getCampaignUsersRecords", function getCampaignUsersRecords(_ref101, id) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee56() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee56$(_context56) {
@@ -83054,7 +83217,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 method: "get",
                 withCredentials: true,
                 //you can set what request you want to be
-                url: "/api/campaignsystemsrecords",
+                url: "/api/campaignusersrecords/" + id,
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -83065,7 +83228,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               res = _context56.sent;
 
               if (res.data.length != 0) {
-                commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
+                commit("SET_CAMPAIGN_USERS", res.data.users);
               }
 
             case 5:
@@ -83075,7 +83238,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee56);
     }))();
-  }), _defineProperty(_actions, "getStartCampaignSystemsRecords", function getStartCampaignSystemsRecords(_ref102) {
+  }), _defineProperty(_actions, "getCampaignSystemsRecords", function getCampaignSystemsRecords(_ref102) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee57() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee57$(_context57) {
@@ -83088,7 +83251,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 method: "get",
                 withCredentials: true,
                 //you can set what request you want to be
-                url: "/api/startcampaignsystemsrecords",
+                url: "/api/campaignsystemsrecords",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -83099,7 +83262,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               res = _context57.sent;
 
               if (res.data.length != 0) {
-                commit("SET_START_CAMPAIGN_SYSTEMS", res.data.systems);
+                commit("SET_CAMPAIGN_SYSTEMS", res.data.systems);
               }
 
             case 5:
@@ -83109,7 +83272,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee57);
     }))();
-  }), _defineProperty(_actions, "getReconTaskSystemsRecords", function getReconTaskSystemsRecords(_ref103) {
+  }), _defineProperty(_actions, "getStartCampaignSystemsRecords", function getStartCampaignSystemsRecords(_ref103) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee58() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee58$(_context58) {
@@ -83122,7 +83285,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 method: "get",
                 withCredentials: true,
                 //you can set what request you want to be
-                url: "/api/recontasksystems",
+                url: "/api/startcampaignsystemsrecords",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -83133,7 +83296,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               res = _context58.sent;
 
               if (res.data.length != 0) {
-                commit("SET_RECON_TASK_SYSTEMS", res.data.systems);
+                commit("SET_START_CAMPAIGN_SYSTEMS", res.data.systems);
               }
 
             case 5:
@@ -83143,7 +83306,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee58);
     }))();
-  }), _defineProperty(_actions, "getRcStationRecords", function getRcStationRecords(_ref104) {
+  }), _defineProperty(_actions, "getReconTaskSystemsRecords", function getReconTaskSystemsRecords(_ref104) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee59() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee59$(_context59) {
@@ -83156,7 +83319,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 method: "get",
                 withCredentials: true,
                 //you can set what request you want to be
-                url: "/api/rcsheet",
+                url: "/api/recontasksystems",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -83167,7 +83330,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               res = _context59.sent;
 
               if (res.data.length != 0) {
-                commit("SET_RC_STATIONS", res.data.stations);
+                commit("SET_RECON_TASK_SYSTEMS", res.data.systems);
               }
 
             case 5:
@@ -83177,7 +83340,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee59);
     }))();
-  }), _defineProperty(_actions, "getChillStationRecords", function getChillStationRecords(_ref105) {
+  }), _defineProperty(_actions, "getRcStationRecords", function getRcStationRecords(_ref105) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee60() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee60$(_context60) {
@@ -83190,7 +83353,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 method: "get",
                 withCredentials: true,
                 //you can set what request you want to be
-                url: "/api/chillsheet",
+                url: "/api/rcsheet",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -83201,7 +83364,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               res = _context60.sent;
 
               if (res.data.length != 0) {
-                commit("SET_CHILL_STATIONS", res.data.stations);
+                commit("SET_RC_STATIONS", res.data.stations);
               }
 
             case 5:
@@ -83211,7 +83374,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee60);
     }))();
-  }), _defineProperty(_actions, "getWelpStationRecords", function getWelpStationRecords(_ref106) {
+  }), _defineProperty(_actions, "getChillStationRecords", function getChillStationRecords(_ref106) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee61() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee61$(_context61) {
@@ -83224,7 +83387,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 method: "get",
                 withCredentials: true,
                 //you can set what request you want to be
-                url: "/api/welpsheet",
+                url: "/api/chillsheet",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -83235,7 +83398,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               res = _context61.sent;
 
               if (res.data.length != 0) {
-                commit("SET_WELP_STATIONS", res.data.stations);
+                commit("SET_CHILL_STATIONS", res.data.stations);
               }
 
             case 5:
@@ -83245,7 +83408,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee61);
     }))();
-  }), _defineProperty(_actions, "getCoordStationRecords", function getCoordStationRecords(_ref107) {
+  }), _defineProperty(_actions, "getWelpStationRecords", function getWelpStationRecords(_ref107) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee62() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee62$(_context62) {
@@ -83258,7 +83421,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 method: "get",
                 withCredentials: true,
                 //you can set what request you want to be
-                url: "/api/coordsheet",
+                url: "/api/welpsheet",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -83269,7 +83432,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               res = _context62.sent;
 
               if (res.data.length != 0) {
-                commit("SET_COORD_STATIONS", res.data.stations);
+                commit("SET_WELP_STATIONS", res.data.stations);
               }
 
             case 5:
@@ -83279,7 +83442,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee62);
     }))();
-  }), _defineProperty(_actions, "getRcFcs", function getRcFcs(_ref108) {
+  }), _defineProperty(_actions, "getCoordStationRecords", function getCoordStationRecords(_ref108) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee63() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee63$(_context63) {
@@ -83292,7 +83455,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 method: "get",
                 withCredentials: true,
                 //you can set what request you want to be
-                url: "/api/rcfc",
+                url: "/api/coordsheet",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -83303,7 +83466,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               res = _context63.sent;
 
               if (res.data.length != 0) {
-                commit("SET_RC_FCS", res.data.fcs);
+                commit("SET_COORD_STATIONS", res.data.stations);
               }
 
             case 5:
@@ -83313,7 +83476,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee63);
     }))();
-  }), _defineProperty(_actions, "getFleets", function getFleets(_ref109) {
+  }), _defineProperty(_actions, "getRcFcs", function getRcFcs(_ref109) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee64() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee64$(_context64) {
@@ -83326,7 +83489,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 method: "get",
                 withCredentials: true,
                 //you can set what request you want to be
-                url: "/api/fleets",
+                url: "/api/rcfc",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -83337,7 +83500,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               res = _context64.sent;
 
               if (res.data.length != 0) {
-                commit("SET_FLEETS", res.data.fleets);
+                commit("SET_RC_FCS", res.data.fcs);
               }
 
             case 5:
@@ -83347,7 +83510,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee64);
     }))();
-  }), _defineProperty(_actions, "getConstellationList", function getConstellationList(_ref110) {
+  }), _defineProperty(_actions, "getFleets", function getFleets(_ref110) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee65() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee65$(_context65) {
@@ -83360,7 +83523,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 method: "get",
                 withCredentials: true,
                 //you can set what request you want to be
-                url: "/api/constellations",
+                url: "/api/fleets",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -83369,7 +83532,10 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 3:
               res = _context65.sent;
-              commit("SET_CONSTELLATION_LIST", res.data.constellationlist);
+
+              if (res.data.length != 0) {
+                commit("SET_FLEETS", res.data.fleets);
+              }
 
             case 5:
             case "end":
@@ -83378,20 +83544,51 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       }, _callee65);
     }))();
-  }), _defineProperty(_actions, "loadCampaignSystemData", function loadCampaignSystemData(_ref111, payload) {
+  }), _defineProperty(_actions, "getConstellationList", function getConstellationList(_ref111) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee66() {
-      var commit, request, res;
+      var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee66$(_context66) {
         while (1) {
           switch (_context66.prev = _context66.next) {
             case 0:
               commit = _ref111.commit;
+              _context66.next = 3;
+              return axios({
+                method: "get",
+                withCredentials: true,
+                //you can set what request you want to be
+                url: "/api/constellations",
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context66.sent;
+              commit("SET_CONSTELLATION_LIST", res.data.constellationlist);
+
+            case 5:
+            case "end":
+              return _context66.stop();
+          }
+        }
+      }, _callee66);
+    }))();
+  }), _defineProperty(_actions, "loadCampaignSystemData", function loadCampaignSystemData(_ref112, payload) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee67() {
+      var commit, request, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee67$(_context67) {
+        while (1) {
+          switch (_context67.prev = _context67.next) {
+            case 0:
+              commit = _ref112.commit;
               request = {
                 user_id: payload.user_id,
                 campaign_id: payload.campaign_id,
                 type: payload.type
               };
-              _context66.next = 4;
+              _context67.next = 4;
               return axios({
                 method: "post",
                 //you can set what request you want to be
@@ -83405,7 +83602,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
               });
 
             case 4:
-              res = _context66.sent;
+              res = _context67.sent;
 
               if (res.data.length != 0) {
                 commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.sola);
@@ -83418,48 +83615,12 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
             case 6:
             case "end":
-              return _context66.stop();
-          }
-        }
-      }, _callee66);
-    }))();
-  }), _defineProperty(_actions, "loadStationInfo", function loadStationInfo(_ref112) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee67() {
-      var commit, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee67$(_context67) {
-        while (1) {
-          switch (_context67.prev = _context67.next) {
-            case 0:
-              commit = _ref112.commit;
-              _context67.next = 3;
-              return axios({
-                method: "get",
-                withCredentials: true,
-                //you can set what request you want to be
-                url: "/api/loadstationdata",
-                headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context67.sent;
-
-              if (res.data.length != 0) {
-                commit("SET_CORES", res.data.cores);
-                commit("SET_ITEMS", res.data.items);
-                commit("SET_STATIONS_FIT", res.data.fit);
-              }
-
-            case 5:
-            case "end":
               return _context67.stop();
           }
         }
       }, _callee67);
     }))();
-  }), _defineProperty(_actions, "loadAmmoRequestInfo", function loadAmmoRequestInfo(_ref113) {
+  }), _defineProperty(_actions, "loadStationInfo", function loadStationInfo(_ref113) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee68() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee68$(_context68) {
@@ -83472,7 +83633,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 method: "get",
                 withCredentials: true,
                 //you can set what request you want to be
-                url: "/api/loadammorequestdata",
+                url: "/api/loadstationdata",
                 headers: {
                   Accept: "application/json",
                   "Content-Type": "application/json"
@@ -83486,7 +83647,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 commit("SET_CORES", res.data.cores);
                 commit("SET_ITEMS", res.data.items);
                 commit("SET_STATIONS_FIT", res.data.fit);
-                commit("SET_AMMO_REQUEST", res.data.ammorequest);
               }
 
             case 5:
@@ -83495,6 +83655,43 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
           }
         }
       }, _callee68);
+    }))();
+  }), _defineProperty(_actions, "loadAmmoRequestInfo", function loadAmmoRequestInfo(_ref114) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee69() {
+      var commit, res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee69$(_context69) {
+        while (1) {
+          switch (_context69.prev = _context69.next) {
+            case 0:
+              commit = _ref114.commit;
+              _context69.next = 3;
+              return axios({
+                method: "get",
+                withCredentials: true,
+                //you can set what request you want to be
+                url: "/api/loadammorequestdata",
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json"
+                }
+              });
+
+            case 3:
+              res = _context69.sent;
+
+              if (res.data.length != 0) {
+                commit("SET_CORES", res.data.cores);
+                commit("SET_ITEMS", res.data.items);
+                commit("SET_STATIONS_FIT", res.data.fit);
+                commit("SET_AMMO_REQUEST", res.data.ammorequest);
+              }
+
+            case 5:
+            case "end":
+              return _context69.stop();
+          }
+        }
+      }, _callee69);
     }))();
   }), _actions),
   getters: {
@@ -85268,6 +85465,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StartCampaignSystem_vue_vue_type_template_id_71906e92___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StartCampaignSystem_vue_vue_type_template_id_71906e92___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/StationSheet.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/views/StationSheet.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _StationSheet_vue_vue_type_template_id_45c9b7aa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./StationSheet.vue?vue&type=template&id=45c9b7aa& */ "./resources/js/views/StationSheet.vue?vue&type=template&id=45c9b7aa&");
+/* harmony import */ var _StationSheet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./StationSheet.vue?vue&type=script&lang=js& */ "./resources/js/views/StationSheet.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _StationSheet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _StationSheet_vue_vue_type_template_id_45c9b7aa___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _StationSheet_vue_vue_type_template_id_45c9b7aa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/StationSheet.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/StationSheet.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/views/StationSheet.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_StationSheet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./StationSheet.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/StationSheet.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_StationSheet_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/StationSheet.vue?vue&type=template&id=45c9b7aa&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/views/StationSheet.vue?vue&type=template&id=45c9b7aa& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StationSheet_vue_vue_type_template_id_45c9b7aa___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./StationSheet.vue?vue&type=template&id=45c9b7aa& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/StationSheet.vue?vue&type=template&id=45c9b7aa&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StationSheet_vue_vue_type_template_id_45c9b7aa___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_StationSheet_vue_vue_type_template_id_45c9b7aa___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
