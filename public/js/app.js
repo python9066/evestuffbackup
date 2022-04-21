@@ -33434,7 +33434,9 @@ function sleep(ms) {
       return num;
     }
   }),
-  beforeDestroy: function beforeDestroy() {}
+  beforeDestroy: function beforeDestroy() {
+    Echo.leave("stationsheet");
+  }
 });
 
 /***/ }),

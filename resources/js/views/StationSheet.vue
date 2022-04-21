@@ -475,6 +475,8 @@ export default {
       return num;
     },
   },
-  beforeDestroy() {},
+  beforeDestroy() {
+    Echo.leave("stationsheet");
+  },
 };
 </script>
