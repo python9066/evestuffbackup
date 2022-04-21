@@ -53500,7 +53500,12 @@ var render = function () {
                 [
                   _c(
                     "v-row",
-                    { attrs: { "no-gutters": "" } },
+                    {
+                      attrs: {
+                        "no-gutters": "",
+                        "align-content": "space-around",
+                      },
+                    },
                     [
                       _c("v-col", { attrs: { cols: "3" } }, [
                         _vm._v(" Initial Campaigns "),
@@ -53512,11 +53517,11 @@ var render = function () {
                           _c(
                             "v-btn",
                             {
-                              staticClass: "pl-3",
                               attrs: {
+                                dark: "",
+                                rounded: "",
                                 loading: _vm.loadingf,
                                 disabled: _vm.loadingf,
-                                color: "green",
                               },
                               on: {
                                 click: function ($event) {

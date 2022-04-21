@@ -3,15 +3,15 @@
     <v-col cols="10" class="pt-0">
       <v-card elevation="10" rounded="xl">
         <v-card-title class="primary">
-          <v-row no-gutters>
+          <v-row no-gutters align-content="space-around">
             <v-col cols="3"> Initial Campaigns </v-col>
             <v-col>
               <v-btn
-                class="pl-3"
+                dark
+                rounded
                 :loading="loadingf"
                 :disabled="loadingf"
                 @click="overlay = !overlay"
-                color="green"
               >
                 ADD CAMPAIGN
               </v-btn>
