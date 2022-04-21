@@ -1,55 +1,63 @@
 <template>
-  <div class="pr-16 pl-16">
-    <div class="d-flex align-items-center">
-      <v-card-title> Initial Campaigns</v-card-title>
+  <v-row class="pr-1 pl-1 pt-1" no-gutters v-resize="onResize" justify="center">
+    <v-col cols="10" class="pt-0">
+      <v-card elevation="10" rounded="xl" class="mb-5">
+        <v-card-title>
+          Initial Campaigns
 
-      <v-btn
-        :loading="loadingf"
-        :disabled="loadingf"
-        @click="overlay = !overlay"
-        color="light-blue darken-4"
-      >
-        ADD CAMPAIGN
-      </v-btn>
-    </div>
-    <v-data-table
-      :headers="headers"
-      :items="campaigns"
-      item-key="id"
-      :loading="loading"
-      :items-per-page="25"
-      :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
-      class="elevation-1"
-    >
-      <!-- @click:row="rowClick($event)" -->
-      <template slot="no-data"> No Multi Campaigns have been made </template>
-      <template v-slot:[`item.system`]="{ item }">
-        <StartSystemItemList :campaignID="item.id"> </StartSystemItemList>
-      </template>
-      <template v-slot:[`item.actions`]="{ item }">
-        <v-btn
-          icon
-          @click="
-            (overlayEditID = item.id),
-              (overlayEditName = item.name),
-              (overlayEdit = !overlayEdit)
-          "
-          color="warning"
-          ><v-icon small>fas fa-edit</v-icon></v-btn
-        >
-        <v-btn icon @click="deleteCampaign(item)" color="warning"
-          ><v-icon small>fas fa-trash</v-icon></v-btn
-        >
-        <v-btn @click="clickCampaign(item)" color="green">View</v-btn>
-      </template>
-    </v-data-table>
+          <v-btn
+            :loading="loadingf"
+            :disabled="loadingf"
+            @click="overlay = !overlay"
+            color="light-blue darken-4"
+          >
+            ADD CAMPAIGN
+          </v-btn>
+        </v-card-title>
+        <v-card-text>
+          <v-data-table
+            :headers="headers"
+            :items="campaigns"
+            item-key="id"
+            :loading="loading"
+            :items-per-page="25"
+            :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
+            class="elevation-1"
+          >
+            <!-- @click:row="rowClick($event)" -->
+            <template slot="no-data">
+              No Multi Campaigns have been made
+            </template>
+            <template v-slot:[`item.system`]="{ item }">
+              <StartSystemItemList :campaignID="item.id"> </StartSystemItemList>
+            </template>
+            <template v-slot:[`item.actions`]="{ item }">
+              <v-btn
+                icon
+                @click="
+                  (overlayEditID = item.id),
+                    (overlayEditName = item.name),
+                    (overlayEdit = !overlayEdit)
+                "
+                color="warning"
+                ><v-icon small>fas fa-edit</v-icon></v-btn
+              >
+              <v-btn icon @click="deleteCampaign(item)" color="warning"
+                ><v-icon small>fas fa-trash</v-icon></v-btn
+              >
+              <v-btn @click="clickCampaign(item)" color="green">View</v-btn>
+            </template>
+          </v-data-table>
+        </v-card-text>
+      </v-card>
+    </v-col>
     <v-overlay :value="overlay">
       <StartCampaignAdd
         @closeAddNew="updatemultiCampaginAdd()"
         @closeAdd="overlay = !overlay"
       ></StartCampaignAdd>
     </v-overlay>
-  </div>
+  </v-row>
 </template>
 <script>
 import Axios from "axios";
@@ -126,7 +134,6 @@ export default {
         url: "/api/startcampaigns/" + item.id,
         withCredentials: true,
         headers: {
-
           Accept: "application/json",
           "Content-Type": "application/json",
         },
