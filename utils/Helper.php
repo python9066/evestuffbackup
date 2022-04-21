@@ -333,9 +333,8 @@ class Helper
             $station_query->where('show_on_coord', 1);
         }
 
-
-        $station_query->whereHas('corp', function (Builder $query) {
-        })->with([
+        $station_query->where('standing', '=<', 0);
+        $station_query->with([
             'system',
             'system.constellation',
             'system.region',
