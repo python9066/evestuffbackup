@@ -32,7 +32,7 @@ class Station extends Model
 
     public function status()
     {
-        return $this->belongsTo(StationStatus::class);
+        return $this->belongsTo(StationStatus::class, 'station_status_id');
     }
 
     public function fc()
