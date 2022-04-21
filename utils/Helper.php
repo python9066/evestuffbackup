@@ -348,7 +348,11 @@ class Helper
             'logs:id,station_id,user_id,logging_type_id,text,created_at',
             'logs.type:id,name',
             'logs.user:id,name',
-            'addedBy:id,name'
+            'addedBy:id,name',
+            'system.webway'
+            => function ($t) {
+                $t->where('permissions', 1);
+            },
         ]);
 
         $stationRecords = $station_query->get();
