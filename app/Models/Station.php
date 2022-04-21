@@ -15,6 +15,11 @@ class Station extends Model
         return $this->belongsTo(System::class);
     }
 
+    public function alliance()
+    {
+        return $this->belongsTo(Alliance::class);
+    }
+
     public function notification()
     {
         return $this->hasOne(StationNotification::class);

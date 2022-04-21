@@ -333,15 +333,15 @@ class Helper
         }
 
 
-        // $station_query->with([
-        //     'system',
-        //     'status',
-        //     'fc',
-        //     'recon',
-        //     'gsoluser',
-        //     'corp',
-        //     'alliance'
-        // ]);
+        $station_query->with([
+            'system',
+            'status',
+            'fc',
+            'recon',
+            'gsoluser',
+            'corp',
+            'item'
+        ]);
 
         $stationRecords = $station_query->get();
         return $stationRecords;
