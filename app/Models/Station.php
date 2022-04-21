@@ -30,6 +30,12 @@ class Station extends Model
         return $this->belongsTo(Item::class);
     }
 
+    public function addedBy()
+    {
+        return $this->belongsTo(User::class, 'added_by_user_id', 'id');
+    }
+
+
     public function status()
     {
         return $this->belongsTo(StationStatus::class, 'station_status_id');
@@ -41,11 +47,11 @@ class Station extends Model
     }
     public function recon()
     {
-        return $this->belongsTo(RcFcUsers::class);
+        return $this->belongsTo(RcReconUsers::class, 'rc_recon_id', 'id');
     }
     public function gsoluser()
     {
-        return $this->belongsTo(RcGsolUsers::class);
+        return $this->belongsTo(RcGsolUsers::class, 'rc_gsol_id', 'id');
     }
 
     public function fit()

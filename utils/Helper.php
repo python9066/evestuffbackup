@@ -336,16 +336,17 @@ class Helper
         $station_query->with([
             'system:id,system_name',
             'status:id,name',
-            'fc',
-            'recon',
-            'gsoluser',
+            'fc.user:id,name',
+            'recon.user:id,name',
+            'gsoluser.user:id,name',
             'corp:id,alliance_id,name,ticker,standing,url,color',
             'corp.alliance:id,name,ticker,standing,url,color',
             'item',
             'fit:id,item_name',
             'logs:id,station_id,user_id,logging_type_id,text,created_at',
-            'logs.type',
+            'logs.type:id,name',
             'logs.user:id,name',
+            'addedBy:id,name'
         ]);
 
         $stationRecords = $station_query->get();
