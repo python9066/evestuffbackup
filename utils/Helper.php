@@ -334,7 +334,9 @@ class Helper
 
 
         $station_query->with([
-            'system:id,system_name',
+            'system',
+            'system.constellation',
+            'system.region',
             'status:id,name',
             'fc.user:id,name',
             'recon.user:id,name',
