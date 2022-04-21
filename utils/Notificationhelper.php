@@ -87,7 +87,7 @@ class Notifications
             Station::find($id)->delete();
             StationItemJoin::where('station_id', $id)->delete();
         } else {
-            dd($stationdata);
+
             $core = 0;
             $standing = 0;
             $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();

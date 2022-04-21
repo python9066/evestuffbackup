@@ -44,6 +44,6 @@ class AppController extends Controller
 
     public function saveAllianceData(Request $request)
     {
-        dd($request);
+        $request;
     }
 }
