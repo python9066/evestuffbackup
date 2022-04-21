@@ -33172,6 +33172,7 @@ function sleep(ms) {
       expanded: [],
       expanded_id: 0,
       loadingt: true,
+      search: "",
       headers: [{
         text: "System",
         value: "system.system_name"
@@ -33207,6 +33208,11 @@ function sleep(ms) {
         y: window.innerHeight
       };
     },
+    Systemcopied: function Systemcopied() {
+      this.snack = true;
+      this.snackColor = "success";
+      this.snackText = "System Copied";
+    },
     standingCheck: function standingCheck(item) {
       var standing = 0;
 
@@ -33222,6 +33228,17 @@ function sleep(ms) {
         return "red--text pl-3";
       } else {
         return "white--text pl-3";
+      }
+    },
+    showInfo: function showInfo(item) {
+      if (item.item.id == 37534 || item.item.id == 35841 || item.item.id == 35840) {
+        return false;
+      }
+
+      if (item.added_from_recon == 1 && this.loadingt == false) {
+        return true;
+      } else {
+        return false;
       }
     },
     link: function link(item) {

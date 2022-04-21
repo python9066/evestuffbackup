@@ -142,6 +142,7 @@ export default {
       expanded: [],
       expanded_id: 0,
       loadingt: true,
+      search: "",
 
       headers: [
         {
@@ -186,6 +187,12 @@ export default {
       this.windowSize = { x: window.innerWidth, y: window.innerHeight };
     },
 
+    Systemcopied() {
+      this.snack = true;
+      this.snackColor = "success";
+      this.snackText = "System Copied";
+    },
+
     standingCheck(item) {
       var standing = 0;
       if (item.corp.alliance) {
@@ -199,6 +206,21 @@ export default {
         return "red--text pl-3";
       } else {
         return "white--text pl-3";
+      }
+    },
+
+    showInfo(item) {
+      if (
+        item.item.id == 37534 ||
+        item.item.id == 35841 ||
+        item.item.id == 35840
+      ) {
+        return false;
+      }
+      if (item.added_from_recon == 1 && this.loadingt == false) {
+        return true;
+      } else {
+        return false;
       }
     },
 
