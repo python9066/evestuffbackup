@@ -10,6 +10,7 @@ use App\Events\StationNotificationUpdate;
 use App\Events\StationUpdateCoord;
 use App\Events\TowerChanged;
 use App\Events\TowerDelete;
+use App\Models\Alliance;
 use App\Models\Corp;
 use App\Models\Logging;
 use App\Models\Notification;
@@ -88,13 +89,28 @@ class Notifications
         } else {
             dd($stationdata);
             $core = 0;
+            $standing = 0;
+            $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
+            $alliance = Alliance::where('id', $corp->alliance_id)->first();
+            if ($alliance) {
+                if ($corp->standing > $alliance->standing) {
+                    $standing = $corp->standing;
+                } else {
+                    $standing = $alliance->standing;
+                }
+            } else {
+                $standing = $corp->standing;
+            }
+
             if ($stationdata['str_cored'] == "Yes") {
                 $core = 1;
             };
             StationItemJoin::where('station_id', $id)->delete();
             $oldStation = Station::where('id', $id)->first();
+
             Station::updateOrCreate(['id' => $id], [
                 'name' => $stationdata['str_name'],
+                'standing' => $standing,
                 'r_hash' => $stationdata['str_structure_id_md5'],
                 'corp_id' => $stationdata['str_owner_corporation_id'],
                 'r_updated_at' => $stationdata['updated_at'],
@@ -286,11 +302,24 @@ class Notifications
                 }
                 $oldStation = Station::where('id', $station->id)->first();
                 $core = 0;
+                $standing = 0;
+                $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
+                $alliance = Alliance::where('id', $corp->alliance_id)->first();
+                if ($alliance) {
+                    if ($corp->standing > $alliance->standing) {
+                        $standing = $corp->standing;
+                    } else {
+                        $standing = $alliance->standing;
+                    }
+                } else {
+                    $standing = $corp->standing;
+                }
                 if ($stationdata['str_cored'] == "Yes") {
                     $core = 1;
                 };
                 Station::where('id', $station->id)->update([
                     'name' => $stationdata['str_name'],
+                    'standing' => $standing,
                     'r_hash' => $stationdata['str_structure_id_md5'],
                     'corp_id' => $stationdata['str_owner_corporation_id'],
                     'r_updated_at' => $stationdata['updated_at'],
@@ -526,9 +555,23 @@ class Notifications
                         if ($stationdata['str_cored'] == "Yes") {
                             $core = 1;
                         };
+
+                        $standing = 0;
+                        $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
+                        $alliance = Alliance::where('id', $corp->alliance_id)->first();
+                        if ($alliance) {
+                            if ($corp->standing > $alliance->standing) {
+                                $standing = $corp->standing;
+                            } else {
+                                $standing = $alliance->standing;
+                            }
+                        } else {
+                            $standing = $corp->standing;
+                        }
                         Station::Create([
                             'id' => $text['structureID'],
                             'name' => $stationdata['str_name'],
+                            'standing' => $standing,
                             'corp_id' => $stationdata['str_owner_corporation_id'],
                             'system_id' => $stationdata['str_system_id'],
                             'item_id' => $stationdata['str_type_id'],
@@ -641,9 +684,22 @@ class Notifications
                         if ($stationdata['str_cored'] == "Yes") {
                             $core = 1;
                         };
+                        $standing = 0;
+                        $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
+                        $alliance = Alliance::where('id', $corp->alliance_id)->first();
+                        if ($alliance) {
+                            if ($corp->standing > $alliance->standing) {
+                                $standing = $corp->standing;
+                            } else {
+                                $standing = $alliance->standing;
+                            }
+                        } else {
+                            $standing = $corp->standing;
+                        }
                         Station::Create([
                             'id' => $text['structureID'],
                             'name' => $stationdata['str_name'],
+                            'standing' => $standing,
                             'system_id' => $stationdata['str_system_id'],
                             'corp_id' => $stationdata['str_owner_corporation_id'],
                             'item_id' => $stationdata['str_type_id'],
@@ -754,9 +810,22 @@ class Notifications
                         if ($stationdata['str_cored'] == "Yes") {
                             $core = 1;
                         };
+                        $standing = 0;
+                        $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
+                        $alliance = Alliance::where('id', $corp->alliance_id)->first();
+                        if ($alliance) {
+                            if ($corp->standing > $alliance->standing) {
+                                $standing = $corp->standing;
+                            } else {
+                                $standing = $alliance->standing;
+                            }
+                        } else {
+                            $standing = $corp->standing;
+                        }
                         Station::Create([
                             'id' => $text['structureID'],
                             'name' => $stationdata['str_name'],
+                            'standing' => $standing,
                             'system_id' => $stationdata['str_system_id'],
                             'item_id' => $stationdata['str_type_id'],
                             'text' => null,

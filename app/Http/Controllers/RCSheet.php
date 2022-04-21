@@ -222,11 +222,24 @@ class RCSheet extends Controller
                 return false;
             } else {
                 $core = 0;
+                $standing = 0;
+                $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
+                $alliance = Alliance::where('id', $corp->alliance_id)->first();
+                if ($alliance) {
+                    if ($corp->standing > $alliance->standing) {
+                        $standing = $corp->standing;
+                    } else {
+                        $standing = $alliance->standing;
+                    }
+                } else {
+                    $standing = $corp->standing;
+                }
                 if ($stationdata['str_cored'] == "Yes") {
                     $core = 1;
                 };
                 Station::updateOrCreate(['id' => $stationdata['str_structure_id']], [
                     'name' => $stationdata['str_name'],
+                    'standing' => $standing,
                     'system_id' => $stationdata['str_system_id'],
                     'corp_id' => $stationdata['str_owner_corporation_id'],
                     'item_id' => $stationdata['str_type_id'],

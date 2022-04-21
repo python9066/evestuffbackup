@@ -17,6 +17,7 @@ use App\Events\StationNotificationNew;
 use App\Events\StationNotificationUpdate;
 use App\Events\StationUpdateCoord;
 use App\Events\WelpSheetUpdate;
+use App\Models\Alliance;
 use App\Models\ChillStationRecords;
 use App\Models\Corp;
 use App\Models\Item;
@@ -215,9 +216,21 @@ class StationController extends Controller
                 if ($stationdata['str_cored'] == "Yes") {
                     $core = 1;
                 };
-
+                $standing = 0;
+                $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
+                $alliance = Alliance::where('id', $corp->alliance_id)->first();
+                if ($alliance) {
+                    if ($corp->standing > $alliance->standing) {
+                        $standing = $corp->standing;
+                    } else {
+                        $standing = $alliance->standing;
+                    }
+                } else {
+                    $standing = $corp->standing;
+                }
                 Station::updateOrCreate(['id' => $stationdata['str_structure_id']], [
                     'name' => $stationdata['str_name'],
+                    'standing' => $standing,
                     'system_id' => $stationdata['str_system_id'],
                     'corp_id' => $stationdata['str_owner_corporation_id'],
                     'item_id' => $stationdata['str_type_id'],
@@ -367,8 +380,22 @@ class StationController extends Controller
                     $core = 1;
                 };
 
+                $standing = 0;
+                $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
+                $alliance = Alliance::where('id', $corp->alliance_id)->first();
+                if ($alliance) {
+                    if ($corp->standing > $alliance->standing) {
+                        $standing = $corp->standing;
+                    } else {
+                        $standing = $alliance->standing;
+                    }
+                } else {
+                    $standing = $corp->standing;
+                }
+
                 Station::updateOrCreate(['id' => $id], [
                     'id' => $stationdata['str_structure_id'],
+                    'standing' => $standing,
                     'name' => $stationdata['str_name'],
                     'system_id' => $stationdata['str_system_id'],
                     'corp_id' => $stationdata['str_owner_corporation_id'],
