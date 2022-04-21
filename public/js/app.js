@@ -53499,7 +53499,7 @@ var render = function () {
             [
               _c(
                 "v-card-title",
-                { staticClass: "primary" },
+                { staticClass: "primary pt-0 pb-0" },
                 [
                   _c(
                     "v-row",

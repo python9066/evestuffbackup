@@ -2,7 +2,7 @@
   <v-row class="pr-1 pl-1 pt-3" no-gutters v-resize="onResize" justify="center">
     <v-col cols="10" class="pt-0">
       <v-card elevation="10" rounded="xl">
-        <v-card-title class="primary">
+        <v-card-title class="primary pt-0 pb-0">
           <v-row no-gutters align-content="start" align="center">
             <v-col cols="6">
               <v-col cols="6">
