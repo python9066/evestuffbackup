@@ -9,7 +9,6 @@
               <v-data-table
                 :headers="headers"
                 :items="filter_end"
-                :item-class="itemRowBackground"
                 id="table"
                 item-key="id"
                 :height="height"
@@ -124,7 +123,7 @@ function sleep(ms) {
 }
 export default {
   async created() {
-    await this.$store.dispatch("getStationList");
+    await this.$store.dispatch("getStationList").then((this.loadingt = true));
   },
   async mounted() {
     this.onResize();
@@ -139,34 +138,38 @@ export default {
         y: 0,
       },
 
+      expanded: [],
+      expanded_id: 0,
+      loadingt: true,
+
       headers: [
         {
           text: "System",
-          value: "system_name",
+          value: "system.system_name",
         },
         {
           text: "Constellation",
-          value: "constellation_name",
+          value: "system.constellation.constellation_name",
         },
         {
           text: "Region",
-          value: "region_name",
+          value: "system.region.region_name",
         },
         {
           text: "Alliance",
-          value: "alliance_ticker",
+          value: "corp.alliance.ticker",
         },
         {
           text: "Type",
-          value: "item_name",
+          value: "item.item_name",
         },
         {
           text: "Name",
-          value: "station_name",
+          value: "name",
         },
         {
           text: "Status",
-          value: "station_status_name",
+          value: "status.name",
           align: "center",
         },
         {
@@ -185,6 +188,15 @@ export default {
 
   computed: {
     ...mapState(["stationList"]),
+
+    filter_end() {
+      return this.stationList;
+    },
+
+    height() {
+      let num = this.windowSize.y - 370;
+      return num;
+    },
   },
   beforeDestroy() {},
 };

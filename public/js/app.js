@@ -33109,7 +33109,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -33132,7 +33131,7 @@ function sleep(ms) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this.$store.dispatch("getStationList");
+              return _this.$store.dispatch("getStationList").then(_this.loadingt = true);
 
             case 2:
             case "end":
@@ -33169,27 +33168,30 @@ function sleep(ms) {
         x: 0,
         y: 0
       },
+      expanded: [],
+      expanded_id: 0,
+      loadingt: true,
       headers: [{
         text: "System",
-        value: "system_name"
+        value: "system.system_name"
       }, {
         text: "Constellation",
-        value: "constellation_name"
+        value: "system.constellation.constellation_name"
       }, {
         text: "Region",
-        value: "region_name"
+        value: "system.region.region_name"
       }, {
         text: "Alliance",
-        value: "alliance_ticker"
+        value: "corp.alliance.ticker"
       }, {
         text: "Type",
-        value: "item_name"
+        value: "item.item_name"
       }, {
         text: "Name",
-        value: "station_name"
+        value: "name"
       }, {
         text: "Status",
-        value: "station_status_name",
+        value: "status.name",
         align: "center"
       }, {
         text: "",
@@ -33205,7 +33207,15 @@ function sleep(ms) {
       };
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stationList"])),
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stationList"])), {}, {
+    filter_end: function filter_end() {
+      return this.stationList;
+    },
+    height: function height() {
+      var num = this.windowSize.y - 370;
+      return num;
+    }
+  }),
   beforeDestroy: function beforeDestroy() {}
 });
 
@@ -70192,7 +70202,6 @@ var render = function () {
                               attrs: {
                                 headers: _vm.headers,
                                 items: _vm.filter_end,
-                                "item-class": _vm.itemRowBackground,
                                 id: "table",
                                 "item-key": "id",
                                 height: _vm.height,
