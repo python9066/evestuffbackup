@@ -1,11 +1,12 @@
 <template>
-  <v-row class="pr-1 pl-1 pt-1" no-gutters v-resize="onResize" justify="center">
+  <v-row class="pr-1 pl-1 pt-3" no-gutters v-resize="onResize" justify="center">
     <v-col cols="10" class="pt-0">
       <v-card elevation="10" rounded="xl" class="mb-5">
-        <v-card-title>
+        <v-card-title class="primary">
           Initial Campaigns
 
           <v-btn
+            class="pl-3"
             :loading="loadingf"
             :disabled="loadingf"
             @click="overlay = !overlay"

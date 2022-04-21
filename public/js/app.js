@@ -16096,6 +16096,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -53479,7 +53480,7 @@ var render = function () {
           expression: "onResize",
         },
       ],
-      staticClass: "pr-1 pl-1 pt-1",
+      staticClass: "pr-1 pl-1 pt-3",
       attrs: { "no-gutters": "", justify: "center" },
     },
     [
@@ -53493,11 +53494,13 @@ var render = function () {
             [
               _c(
                 "v-card-title",
+                { staticClass: "primary" },
                 [
                   _vm._v("\n        Initial Campaigns\n\n        "),
                   _c(
                     "v-btn",
                     {
+                      staticClass: "pl-3",
                       attrs: {
                         loading: _vm.loadingf,
                         disabled: _vm.loadingf,
