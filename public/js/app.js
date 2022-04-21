@@ -70207,8 +70207,11 @@ var render = function () {
                 [
                   _c(
                     "v-card",
+                    { attrs: { elevation: "10", rounded: "xl" } },
                     [
-                      _c("v-card-title", [_vm._v("Stations")]),
+                      _c("v-card-title", { staticClass: "primary" }, [
+                        _vm._v("Stations"),
+                      ]),
                       _vm._v(" "),
                       _c(
                         "v-card-text",

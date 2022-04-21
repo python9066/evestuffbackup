@@ -3,8 +3,8 @@
     <v-col cols="12">
       <v-row no-gutters>
         <v-col cols="11">
-          <v-card>
-            <v-card-title>Stations</v-card-title>
+          <v-card elevation="10" rounded="xl">
+            <v-card-title class="primary">Stations</v-card-title>
             <v-card-text>
               <v-data-table
                 :headers="headers"
