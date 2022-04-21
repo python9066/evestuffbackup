@@ -689,7 +689,7 @@ export default new Vuex.Store({
     },
 
     actions: {
-        async getSoloOperationList({ commit }) {
+        async getStationList({ commit }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,

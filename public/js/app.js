@@ -81394,7 +81394,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     }
   },
   actions: (_actions = {
-    getSoloOperationList: function getSoloOperationList(_ref) {
+    getStationList: function getStationList(_ref) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var commit, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -81424,69 +81424,71 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
           }
         }, _callee);
       }))();
+    },
+    getSoloOperationList: function getSoloOperationList(_ref2) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var commit, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                commit = _ref2.commit;
+                _context2.next = 3;
+                return axios({
+                  method: "get",
+                  withCredentials: true,
+                  url: "/api/solooperationlist",
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context2.sent;
+                commit("SET_NEW_SOLO_OPERATIONS", res.data.solooplist);
+                commit("SET_NEW_SOLO_OPERATIONS_REGIONS", res.data.regionList);
+
+              case 6:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    getTimerDataAll: function getTimerDataAll(_ref3) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var commit, res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                commit = _ref3.commit;
+                _context3.next = 3;
+                return axios({
+                  method: "get",
+                  withCredentials: true,
+                  url: "/api/timers",
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+                res = _context3.sent;
+                commit("SET_TIMERS", res.data.timers);
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
     }
-  }, _defineProperty(_actions, "getSoloOperationList", function getSoloOperationList(_ref2) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-      var commit, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              commit = _ref2.commit;
-              _context2.next = 3;
-              return axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/solooperationlist",
-                headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context2.sent;
-              commit("SET_NEW_SOLO_OPERATIONS", res.data.solooplist);
-              commit("SET_NEW_SOLO_OPERATIONS_REGIONS", res.data.regionList);
-
-            case 6:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }))();
-  }), _defineProperty(_actions, "getTimerDataAll", function getTimerDataAll(_ref3) {
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-      var commit, res;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              commit = _ref3.commit;
-              _context3.next = 3;
-              return axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/timers",
-                headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json"
-                }
-              });
-
-            case 3:
-              res = _context3.sent;
-              commit("SET_TIMERS", res.data.timers);
-
-            case 5:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }))();
-  }), _defineProperty(_actions, "getTimerDataAll", function getTimerDataAll(_ref4) {
+  }, _defineProperty(_actions, "getTimerDataAll", function getTimerDataAll(_ref4) {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
       var commit, res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
