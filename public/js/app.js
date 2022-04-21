@@ -33226,41 +33226,41 @@ function sleep(ms) {
       };
     },
     pillColor: function pillColor(item) {
-      if (item.station.status.id == 4) {
+      if (item.status.id == 4) {
         return "orange darken-1";
       }
 
-      if (item.station.status.id == 18) {
+      if (item.status.id == 18) {
         return "brown lighten-2";
       }
 
-      if (item.station.status.id == 16) {
+      if (item.status.id == 16) {
         return "green";
       }
 
-      if (item.station.status.id == 7) {
+      if (item.status.id == 7) {
         return "red";
       }
     },
     icons: function icons(item) {
-      if (item.station.status.id == 4) {
+      if (item.status.id == 4) {
         return "faSvg fa-check-circle";
       }
 
-      if (item.station.status.id == 18) {
+      if (item.status.id == 18) {
         return "faSvg fa-question-circle";
       }
 
-      if (item.station.status.id == 16) {
+      if (item.status.id == 16) {
         return "faSvg fa-exclamation-triangle";
       }
 
-      if (item.station.status.id == 7) {
+      if (item.status.id == 7) {
         return "faSvg fa-skull-crossbones";
       }
     },
     buttontext: function buttontext(item) {
-      var ret = item.station.status.name.replace("Upcoming - ", "");
+      var ret = item.status.name.replace("Upcoming - ", "");
       return ret;
     },
     Systemcopied: function Systemcopied() {
