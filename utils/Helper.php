@@ -341,7 +341,8 @@ class Helper
             'gsoluser',
             'corp.alliance',
             'item',
-            'fit'
+            'fit',
+            'logs'
         ]);
 
         $stationRecords = $station_query->get();

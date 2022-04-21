@@ -57,6 +57,11 @@ class Station extends Model
         return $this->belongsTo(Corp::class);
     }
 
+    public function logs()
+    {
+        return $this->belongsTo(Logging::class);
+    }
+
     protected $casts = [
         'id' => 'integer',
         'system_id' => 'integer',
