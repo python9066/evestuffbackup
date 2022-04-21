@@ -699,7 +699,7 @@ export default new Vuex.Store({
                     "Content-Type": "application/json",
                 },
             });
-            commit(" SET_STATION_LIST", res.data.stations);
+            commit("SET_STATION_LIST", res.data.stations);
         },
 
         async getSoloOperationList({ commit }) {

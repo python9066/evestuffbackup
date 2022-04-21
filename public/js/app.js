@@ -81415,7 +81415,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context.sent;
-                commit(" SET_STATION_LIST", res.data.stations);
+                commit("SET_STATION_LIST", res.data.stations);
 
               case 5:
               case "end":
