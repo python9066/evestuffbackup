@@ -33117,6 +33117,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -70439,10 +70440,8 @@ var render = function () {
                                                   },
                                                   [
                                                     _vm._v(
-                                                      _vm._s(
-                                                        item.corp.alliance
-                                                          .ticker
-                                                      ) + "\n                  "
+                                                      _vm._s(item.corp.ticker) +
+                                                        "\n                  "
                                                     ),
                                                   ]
                                                 ),

@@ -40,10 +40,11 @@
                       >{{ item.corp.alliance.ticker }}
                     </span>
                   </span>
+
                   <span v-else>
                     <v-avatar size="35"><img :src="item.corp.url" /></v-avatar>
                     <span :class="standingCheckCorp(item)"
-                      >{{ item.corp.alliance.ticker }}
+                      >{{ item.corp.ticker }}
                     </span>
                   </span>
 
