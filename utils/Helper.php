@@ -393,7 +393,7 @@ class Helper
         }
 
         $station_query->where('standing', '=<', 0);
-        $station_query->where('id' . $id);
+        $station_query->where('id', $id);
         $station_query->with([
             'system',
             'system.constellation',
