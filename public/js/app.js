@@ -33162,6 +33162,17 @@ function sleep(ms) {
               return _this.$store.dispatch("getStationList").then(_this.loadingt = true);
 
             case 2:
+              Echo["private"]("stationsheet").listen("StationSheetUpdate", function (e) {
+                if (e.flag.message != null) {}
+
+                if (e.flag.flag == 2) {}
+
+                if (e.flag.flag == 3) {}
+
+                if (e.flag.flag == 4) {}
+              });
+
+            case 3:
             case "end":
               return _context.stop();
           }

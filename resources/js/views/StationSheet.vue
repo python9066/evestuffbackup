@@ -139,6 +139,19 @@ function sleep(ms) {
 export default {
   async created() {
     await this.$store.dispatch("getStationList").then((this.loadingt = true));
+    Echo.private("stationsheet").listen("StationSheetUpdate", (e) => {
+      if (e.flag.message != null) {
+      }
+
+      if (e.flag.flag == 2) {
+      }
+
+      if (e.flag.flag == 3) {
+      }
+
+      if (e.flag.flag == 4) {
+      }
+    });
   },
   async mounted() {
     this.onResize();
