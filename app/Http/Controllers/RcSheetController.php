@@ -6,6 +6,7 @@ use App\Events\ChillSheetMessageUpdate;
 use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetMessageUpdate;
 use App\Events\RcSheetUpdate;
+use App\Events\StationSheetMessageUpdate;
 use App\Events\WelpSheetMessageUpdate;
 use App\Events\WelpSheetUpdate;
 use App\Models\Alliance;
@@ -18,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
+use utils\Helper\Helper;
 
 class RcSheetController extends Controller
 {
@@ -171,6 +173,17 @@ class RcSheetController extends Controller
 
             // dd($request, $id, $flag);
             broadcast(new WelpSheetMessageUpdate($flag))->toOthers();
+        }
+
+        $message = Helper::StationRecordsSolo(6, $id);
+        if ($message) {
+            $flag = collect([
+                'message' => $message,
+                'id' => $id
+            ]);
+
+            // dd($request, $id, $flag);
+            broadcast(new StationSheetMessageUpdate($flag))->toOthers();
         }
     }
 

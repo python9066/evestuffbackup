@@ -89,6 +89,18 @@ export default new Vuex.Store({
             state.stationList = stations;
         },
 
+        UPDATE_STATION_LIST(state, data) {
+            const item = state.stationList.find((item) => item.id === data.id);
+            const count = state.stationList.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                state.stationList.push(data);
+            }
+        },
+
         SET_NEW_SOLO_OPERATIONS(state, solooplist) {
             state.newSoloOperations = solooplist;
         },
@@ -1380,6 +1392,10 @@ export default new Vuex.Store({
 
         updateWelpStation({ commit }, data) {
             commit("UPDATE_WELP_STATION", data);
+        },
+
+        updateStationList({ commit }, data) {
+            commit("UPDATE_STATION_LIST", data);
         },
 
         updateRcStationCurrent({ commit }, data) {

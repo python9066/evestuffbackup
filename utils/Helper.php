@@ -362,4 +362,61 @@ class Helper
         $stationRecords = $station_query->get();
         return $stationRecords;
     }
+
+    public static function StationRecordsSolo($type, $id)
+    {
+
+        $type = $type;
+        $station_query = Station::query();
+        if ($type == 1) {
+            $station_query->where('show_on_main', 1);
+        }
+
+        if ($type == 2) {
+            $station_query->where('show_on_chill', 1);
+        }
+
+        if ($type == 3) {
+            $station_query->where('show_on_welp', 1);
+        }
+
+        if ($type == 4) {
+            $station_query->where('show_on_rc', 1);
+        }
+
+        if ($type == 5) {
+            $station_query->where('show_on_rc_move', 1);
+        }
+
+        if ($type == 6) {
+            $station_query->where('show_on_coord', 1);
+        }
+
+        $station_query->where('standing', '=<', 0);
+        $station_query->where('id' . $id);
+        $station_query->with([
+            'system',
+            'system.constellation',
+            'system.region',
+            'status:id,name',
+            'fc.user:id,name',
+            'recon.user:id,name',
+            'gsoluser.user:id,name',
+            'corp:id,alliance_id,name,ticker,standing,url,color',
+            'corp.alliance:id,name,ticker,standing,url,color',
+            'item',
+            'fit:id,item_name',
+            'logs:id,station_id,user_id,logging_type_id,text,created_at',
+            'logs.type:id,name',
+            'logs.user:id,name',
+            'addedBy:id,name',
+            'system.webway'
+            => function ($t) {
+                $t->where('permissions', 1);
+            },
+        ]);
+
+        $stationRecords = $station_query->first();
+        return $stationRecords;
+    }
 }

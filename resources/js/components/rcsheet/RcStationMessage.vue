@@ -131,7 +131,7 @@ export default {
     if (this.type == 4) {
       Echo.private("stationsheet").listen("StationSheetMessageUpdate", (e) => {
         if (e.flag.id == this.station.id) {
-          this.$store.dispatch("updateWelpStation", e.flag.message);
+          this.$store.dispatch("updateStationList", e.flag.message);
           if (this.showStationNotes == false) {
             this.showNumber = true;
             this.messageCount = this.messageCount + 1;
