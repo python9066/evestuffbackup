@@ -335,7 +335,7 @@ class Helper
 
         $station_query->with([
             'system:id,system_name',
-            'status',
+            'status:id,name',
             'fc',
             'recon',
             'gsoluser',
@@ -345,7 +345,7 @@ class Helper
             'fit:id,item_name',
             'logs:id,station_id,user_id,logging_type_id,text,created_at',
             'logs.type',
-            'logs.user',
+            'logs.user:id,name',
         ]);
 
         $stationRecords = $station_query->get();

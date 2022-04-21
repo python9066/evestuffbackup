@@ -33,7 +33,7 @@ class Logging extends Model
 
     public function type()
     {
-        return $this->belongsTo(LoggingType::class);
+        return $this->belongsTo(LoggingType::class, 'logging_type_id');
     }
 
     public function role()
