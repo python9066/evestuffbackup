@@ -33118,6 +33118,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -33190,6 +33193,9 @@ function sleep(ms) {
       }, {
         text: "Region",
         value: "system.region.region_name"
+      }, {
+        text: "Corp",
+        value: "corp.ticker"
       }, {
         text: "Alliance",
         value: "corp.alliance.ticker"
@@ -70376,6 +70382,43 @@ var render = function () {
                               scopedSlots: _vm._u(
                                 [
                                   {
+                                    key: "item.corp.ticker",
+                                    fn: function (ref) {
+                                      var item = ref.item
+                                      return [
+                                        _c(
+                                          "span",
+                                          [
+                                            _c(
+                                              "v-avatar",
+                                              { attrs: { size: "35" } },
+                                              [
+                                                _c("img", {
+                                                  attrs: { src: item.corp.url },
+                                                }),
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "span",
+                                              {
+                                                class:
+                                                  _vm.standingCheckCorp(item),
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(item.corp.ticker) +
+                                                    "\n                  "
+                                                ),
+                                              ]
+                                            ),
+                                          ],
+                                          1
+                                        ),
+                                      ]
+                                    },
+                                  },
+                                  {
                                     key: "item.corp.alliance.ticker",
                                     fn: function (ref) {
                                       var item = ref.item
@@ -70415,39 +70458,7 @@ var render = function () {
                                               ],
                                               1
                                             )
-                                          : _c(
-                                              "span",
-                                              [
-                                                _c(
-                                                  "v-avatar",
-                                                  { attrs: { size: "35" } },
-                                                  [
-                                                    _c("img", {
-                                                      attrs: {
-                                                        src: item.corp.url,
-                                                      },
-                                                    }),
-                                                  ]
-                                                ),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    class:
-                                                      _vm.standingCheckCorp(
-                                                        item
-                                                      ),
-                                                  },
-                                                  [
-                                                    _vm._v(
-                                                      _vm._s(item.corp.ticker) +
-                                                        "\n                  "
-                                                    ),
-                                                  ]
-                                                ),
-                                              ],
-                                              1
-                                            ),
+                                          : _vm._e(),
                                       ]
                                     },
                                   },

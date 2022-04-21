@@ -27,7 +27,17 @@
                 <template slot="no-data">
                   All Hostile Stations our reffed!!!!!!
                 </template>
-
+                <template
+                  v-slot:[`item.corp.ticker`]="{ item }"
+                  class="d-inline-flex align-center"
+                >
+                  <span>
+                    <v-avatar size="35"><img :src="item.corp.url" /></v-avatar>
+                    <span :class="standingCheckCorp(item)"
+                      >{{ item.corp.ticker }}
+                    </span>
+                  </span></template
+                >
                 <template
                   v-slot:[`item.corp.alliance.ticker`]="{ item }"
                   class="d-inline-flex align-center"
@@ -38,13 +48,6 @@
                     /></v-avatar>
                     <span :class="standingCheck(item)"
                       >{{ item.corp.alliance.ticker }}
-                    </span>
-                  </span>
-
-                  <span v-else>
-                    <v-avatar size="35"><img :src="item.corp.url" /></v-avatar>
-                    <span :class="standingCheckCorp(item)"
-                      >{{ item.corp.ticker }}
                     </span>
                   </span>
 
@@ -164,6 +167,10 @@ export default {
         {
           text: "Region",
           value: "system.region.region_name",
+        },
+        {
+          text: "Corp",
+          value: "corp.ticker",
         },
         {
           text: "Alliance",
