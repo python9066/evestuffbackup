@@ -72,7 +72,10 @@
                 </template>
 
                 <template v-slot:[`item.status.name`]="{ item }">
-                  <DoneButtonCoord :item="item"></DoneButtonCoord>
+                  <v-chip pill :color="pillcolor(item)">
+                    {{ buttontext(item) }}
+                    <v-icon right> {{ icons(item) }}</v-icon>
+                  </v-chip>
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
                   <div class="d-inline-flex">
@@ -190,7 +193,7 @@ export default {
           align: "center",
         },
         {
-          text: "",
+          text: "Actions",
           value: "actions",
         },
       ],
@@ -200,6 +203,40 @@ export default {
   methods: {
     onResize() {
       this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+    },
+
+    pillColor(item) {
+      if (item.station.status.id == 4) {
+        return "orange darken-1";
+      }
+      if (item.station.status.id == 18) {
+        return "brown lighten-2";
+      }
+      if (item.station.status.id == 16) {
+        return "green";
+      }
+      if (item.station.status.id == 7) {
+        return "red";
+      }
+    },
+
+    icons(item) {
+      if (item.station.status.id == 4) {
+        return "faSvg fa-check-circle";
+      }
+      if (item.station.status.id == 18) {
+        return "faSvg fa-question-circle";
+      }
+      if (item.station.status.id == 16) {
+        return "faSvg fa-exclamation-triangle";
+      }
+      if (item.station.status.id == 7) {
+        return "faSvg fa-skull-crossbones";
+      }
+    },
+    buttontext(item) {
+      var ret = item.station.status.name.replace("Upcoming - ", "");
+      return ret;
     },
 
     Systemcopied() {

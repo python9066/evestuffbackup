@@ -33121,6 +33121,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -33210,7 +33213,7 @@ function sleep(ms) {
         value: "status.name",
         align: "center"
       }, {
-        text: "",
+        text: "Actions",
         value: "actions"
       }]
     };
@@ -33221,6 +33224,44 @@ function sleep(ms) {
         x: window.innerWidth,
         y: window.innerHeight
       };
+    },
+    pillColor: function pillColor(item) {
+      if (item.station.status.id == 4) {
+        return "orange darken-1";
+      }
+
+      if (item.station.status.id == 18) {
+        return "brown lighten-2";
+      }
+
+      if (item.station.status.id == 16) {
+        return "green";
+      }
+
+      if (item.station.status.id == 7) {
+        return "red";
+      }
+    },
+    icons: function icons(item) {
+      if (item.station.status.id == 4) {
+        return "faSvg fa-check-circle";
+      }
+
+      if (item.station.status.id == 18) {
+        return "faSvg fa-question-circle";
+      }
+
+      if (item.station.status.id == 16) {
+        return "faSvg fa-exclamation-triangle";
+      }
+
+      if (item.station.status.id == 7) {
+        return "faSvg fa-skull-crossbones";
+      }
+    },
+    buttontext: function buttontext(item) {
+      var ret = item.station.status.name.replace("Upcoming - ", "");
+      return ret;
     },
     Systemcopied: function Systemcopied() {
       this.snack = true;
@@ -70523,9 +70564,32 @@ var render = function () {
                                     fn: function (ref) {
                                       var item = ref.item
                                       return [
-                                        _c("DoneButtonCoord", {
-                                          attrs: { item: item },
-                                        }),
+                                        _c(
+                                          "v-chip",
+                                          {
+                                            attrs: {
+                                              pill: "",
+                                              color: _vm.pillcolor(item),
+                                            },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                  " +
+                                                _vm._s(_vm.buttontext(item)) +
+                                                "\n                  "
+                                            ),
+                                            _c(
+                                              "v-icon",
+                                              { attrs: { right: "" } },
+                                              [
+                                                _vm._v(
+                                                  " " + _vm._s(_vm.icons(item))
+                                                ),
+                                              ]
+                                            ),
+                                          ],
+                                          1
+                                        ),
                                       ]
                                     },
                                   },
