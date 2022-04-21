@@ -79,6 +79,8 @@ class Notifications
             'http_errors' => false
         ]);
 
+        dd($response);
+
         $stationdata = Utils::jsonDecode($response->getBody(), true);
         if ($stationdata == "Error, Structure Not Found") {
             Station::find($id)->delete();
