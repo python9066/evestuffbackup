@@ -70307,7 +70307,7 @@ var render = function () {
             [
               _c(
                 "v-col",
-                { attrs: { cols: "11" } },
+                { attrs: { cols: "12" } },
                 [
                   _c(
                     "v-card",
@@ -70355,7 +70355,7 @@ var render = function () {
                                     fn: function (ref) {
                                       var item = ref.item
                                       return [
-                                        item.corp.alliance.ticker.url
+                                        item.corp.alliance
                                           ? _c(
                                               "span",
                                               [
@@ -70366,7 +70366,7 @@ var render = function () {
                                                     _c("img", {
                                                       attrs: {
                                                         src: item.corp.alliance
-                                                          .ticker.url,
+                                                          .url,
                                                       },
                                                     }),
                                                   ]

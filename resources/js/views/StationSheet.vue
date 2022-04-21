@@ -2,7 +2,7 @@
   <v-row class="pr-5 pl-5 pt-1" no-gutters v-resize="onResize" justify="center">
     <v-col cols="12">
       <v-row no-gutters justify="center">
-        <v-col cols="11">
+        <v-col cols="12">
           <v-card elevation="10" rounded="xl">
             <v-card-title class="primary">Stations</v-card-title>
             <v-card-text>
@@ -32,9 +32,9 @@
                   v-slot:[`item.corp.alliance.ticker`]="{ item }"
                   class="d-inline-flex align-center"
                 >
-                  <span v-if="item.corp.alliance.ticker.url">
+                  <span v-if="item.corp.alliance">
                     <v-avatar size="35"
-                      ><img :src="item.corp.alliance.ticker.url"
+                      ><img :src="item.corp.alliance.url"
                     /></v-avatar>
                     <span :class="standingCheck(item)"
                       >{{ item.corp.alliance.ticker }}
