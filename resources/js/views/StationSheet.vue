@@ -20,10 +20,9 @@
                   'items-per-page-options': [10, 20, 30, 50, 100, -1],
                 }"
                 :search="search"
-                :sort-by="['region_name']"
+                :sort-by="['system.region.region_name']"
                 :sort-desc="[false, true]"
                 multi-sort
-                class="elevation-5"
               >
                 <template slot="no-data">
                   All Hostile Stations our reffed!!!!!!

@@ -33110,7 +33110,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -70217,7 +70216,6 @@ var render = function () {
                           _c(
                             "v-data-table",
                             {
-                              staticClass: "elevation-5",
                               attrs: {
                                 headers: _vm.headers,
                                 items: _vm.filter_end,
@@ -70234,7 +70232,7 @@ var render = function () {
                                   ],
                                 },
                                 search: _vm.search,
-                                "sort-by": ["region_name"],
+                                "sort-by": ["system.region.region_name"],
                                 "sort-desc": [false, true],
                                 "multi-sort": "",
                               },
