@@ -87,6 +87,10 @@ class Notifications
             Station::find($id)->delete();
             StationItemJoin::where('station_id', $id)->delete();
         } else {
+            $core = 0;
+            if ($stationdata['str_cored'] == "Yes") {
+                $core = 1;
+            };
             StationItemJoin::where('station_id', $id)->delete();
             $oldStation = Station::where('id', $id)->first();
             Station::updateOrCreate(['id' => $id], [
@@ -113,7 +117,7 @@ class Notifications
                 'r_t2_rigged' => $stationdata['str_t2_rigged'],
                 'r_cloning' => $stationdata['str_cloning'],
                 'r_composite' => $stationdata['str_composite'],
-                'r_cored' => $stationdata['str_cored'],
+                'r_cored' => $core,
                 'system_id' => $stationdata['str_system_id'],
                 'item_id' => $stationdata['str_type_id'],
                 'added_from_recon' => 1,
@@ -281,6 +285,10 @@ class Notifications
                     System::where('id', $station->system_id)->update(['task_flag' => 0]);
                 }
                 $oldStation = Station::where('id', $station->id)->first();
+                $core = 0;
+                if ($stationdata['str_cored'] == "Yes") {
+                    $core = 1;
+                };
                 Station::where('id', $station->id)->update([
                     'name' => $stationdata['str_name'],
                     'r_hash' => $stationdata['str_structure_id_md5'],
@@ -305,7 +313,7 @@ class Notifications
                     'r_t2_rigged' => $stationdata['str_t2_rigged'],
                     'r_cloning' => $stationdata['str_cloning'],
                     'r_composite' => $stationdata['str_composite'],
-                    'r_cored' => $stationdata['str_cored'],
+                    'r_cored' => $core,
                     'added_from_recon' => 1
                 ]);
 
@@ -368,7 +376,10 @@ class Notifications
                 if ($oldupdate != $stationdata['updated_at']) {
                     System::where('id', $station->system_id)->update(['task_flag' => 0]);
                 }
-
+                $core = 0;
+                if ($stationdata['str_cored'] == "Yes") {
+                    $core = 1;
+                };
                 Station::where('name', $station->name)->update([
                     'id' => $stationdata['str_structure_id'],
                     'r_hash' => $stationdata['str_structure_id_md5'],
@@ -393,7 +404,7 @@ class Notifications
                     'r_t2_rigged' => $stationdata['str_t2_rigged'],
                     'r_cloning' => $stationdata['str_cloning'],
                     'r_composite' => $stationdata['str_composite'],
-                    'r_cored' => $stationdata['str_cored'],
+                    'r_cored' => $core,
                     'added_from_recon' => 1
                 ]);
 
@@ -511,6 +522,10 @@ class Notifications
                 if ($station == null) {
                     $stationdata = Notifications::reconPull($text['structureID']);
                     if (array_key_exists('str_structure_id_md5', $stationdata)) {
+                        $core = 0;
+                        if ($stationdata['str_cored'] == "Yes") {
+                            $core = 1;
+                        };
                         Station::Create([
                             'id' => $text['structureID'],
                             'name' => $stationdata['str_name'],
@@ -542,7 +557,7 @@ class Notifications
                             'r_t2_rigged' => $stationdata['str_t2_rigged'],
                             'r_cloning' => $stationdata['str_cloning'],
                             'r_composite' => $stationdata['str_composite'],
-                            'r_cored' => $stationdata['str_cored'],
+                            'r_cored' => $core,
                             'status_update' => $current,
                             'show_on_main' => Notifications::setShowMainNew($show),
                             'show_on_chill' => Notifications::setShowChillNew($show),
@@ -622,6 +637,10 @@ class Notifications
                 if ($station == null) {
                     $stationdata = Notifications::reconPull($text['structureID']);
                     if (array_key_exists('str_structure_id_md5', $stationdata)) {
+                        $core = 0;
+                        if ($stationdata['str_cored'] == "Yes") {
+                            $core = 1;
+                        };
                         Station::Create([
                             'id' => $text['structureID'],
                             'name' => $stationdata['str_name'],
@@ -653,7 +672,7 @@ class Notifications
                             'r_t2_rigged' => $stationdata['str_t2_rigged'],
                             'r_cloning' => $stationdata['str_cloning'],
                             'r_composite' => $stationdata['str_composite'],
-                            'r_cored' => $stationdata['str_cored'],
+                            'r_cored' => $core,
                             'status_update' => $current,
                             'out_time' =>  $outTime,
                             'show_on_main' => Notifications::setShowMainNew($show),
@@ -731,6 +750,10 @@ class Notifications
                 if ($station == null) {
                     $stationdata = Notifications::reconPull($text['structureID']);
                     if (array_key_exists('str_structure_id_md5', $stationdata)) {
+                        $core = 0;
+                        if ($stationdata['str_cored'] == "Yes") {
+                            $core = 1;
+                        };
                         Station::Create([
                             'id' => $text['structureID'],
                             'name' => $stationdata['str_name'],
@@ -762,7 +785,7 @@ class Notifications
                             'r_t2_rigged' => $stationdata['str_t2_rigged'],
                             'r_cloning' => $stationdata['str_cloning'],
                             'r_composite' => $stationdata['str_composite'],
-                            'r_cored' => $stationdata['str_cored'],
+                            'r_cored' => $core,
                             'status_update' => $current,
                             'out_time' =>  $outTime,
                             'show_on_main' => Notifications::setShowMainNew($show),

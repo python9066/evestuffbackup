@@ -221,7 +221,10 @@ class RCSheet extends Controller
 
                 return false;
             } else {
-
+                $core = 0;
+                if ($stationdata['str_cored'] == "Yes") {
+                    $core = 1;
+                };
                 Station::updateOrCreate(['id' => $stationdata['str_structure_id']], [
                     'name' => $stationdata['str_name'],
                     'system_id' => $stationdata['str_system_id'],
@@ -252,7 +255,7 @@ class RCSheet extends Controller
                     'r_t2_rigged' => $stationdata['str_t2_rigged'],
                     'r_cloning' => $stationdata['str_cloning'],
                     'r_composite' => $stationdata['str_composite'],
-                    'r_cored' => $stationdata['str_cored'],
+                    'r_cored' => $core,
                     'show_on_rc' => 1,
                     'rc_id' => $rcid,
                     'added_from_recon' => 1

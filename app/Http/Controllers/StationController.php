@@ -201,7 +201,10 @@ class StationController extends Controller
                     }
                 }
 
-
+                $core = 0;
+                if ($stationdata['str_cored'] == "Yes") {
+                    $core = 1;
+                };
 
                 Station::updateOrCreate(['id' => $stationdata['str_structure_id']], [
                     'name' => $stationdata['str_name'],
@@ -233,7 +236,7 @@ class StationController extends Controller
                     'r_t2_rigged' => $stationdata['str_t2_rigged'],
                     'r_cloning' => $stationdata['str_cloning'],
                     'r_composite' => $stationdata['str_composite'],
-                    'r_cored' => $stationdata['str_cored'],
+                    'r_cored' => $core,
                     'show_on_main' => $showMain,
                     'show_on_chill' => $showChill,
                     'show_on_rc_move' => $showRcMove,
@@ -349,7 +352,10 @@ class StationController extends Controller
                     }
                 }
 
-
+                $core = 0;
+                if ($stationdata['str_cored'] == "Yes") {
+                    $core = 1;
+                };
 
                 Station::updateOrCreate(['id' => $id], [
                     'id' => $stationdata['str_structure_id'],
@@ -379,7 +385,7 @@ class StationController extends Controller
                     'r_t2_rigged' => $stationdata['str_t2_rigged'],
                     'r_cloning' => $stationdata['str_cloning'],
                     'r_composite' => $stationdata['str_composite'],
-                    'r_cored' => $stationdata['str_cored'],
+                    'r_cored' => $core,
                     'show_on_main' => $showMain,
                     'show_on_chill' => $showChill,
                     'show_on_rc_move' => $showRcMove,
