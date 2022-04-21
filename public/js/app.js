@@ -16304,6 +16304,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -53727,7 +53728,7 @@ var render = function () {
         "v-card",
         { attrs: { "min-width": "1200", "max-width": "1200", rounded: "xl" } },
         [
-          _c("v-card-title", { staticClass: "primary pt-0 pb-0" }, [
+          _c("v-card-title", { staticClass: "primary" }, [
             _vm._v("\n      Make your Inital-Campaign Here\n    "),
           ]),
           _vm._v(" "),
@@ -53737,6 +53738,7 @@ var render = function () {
               _c("v-text-field", {
                 attrs: {
                   label: "Inital-Campaign Name",
+                  rounded: "",
                   hint: "Enter The name of your Campaign here",
                   filled: "",
                 },

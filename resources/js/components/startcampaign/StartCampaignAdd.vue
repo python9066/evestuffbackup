@@ -1,13 +1,14 @@
 <template>
   <div>
     <v-card min-width="1200" max-width="1200" rounded="xl">
-      <v-card-title class="primary pt-0 pb-0">
+      <v-card-title class="primary">
         Make your Inital-Campaign Here
       </v-card-title>
       <v-card-text>
         <v-text-field
           label="Inital-Campaign Name"
           v-model="name"
+          rounded
           hint="Enter The name of your Campaign here"
           filled
         >
