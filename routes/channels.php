@@ -142,6 +142,10 @@ Broadcast::channel('solooperation', function () {
     return Auth::check();
 });
 
+Broadcast::channel('stationsheet', function () {
+    return Auth::check();
+});
+
 
 
 

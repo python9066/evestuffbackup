@@ -15222,7 +15222,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
               }
 
-            case 3:
+              if (_this.type == 4) {
+                Echo["private"]("stationsheet").listen("StationSheetMessageUpdate", function (e) {
+                  if (e.flag.id == _this.station.id) {
+                    _this.$store.dispatch("updateWelpStation", e.flag.message);
+
+                    if (_this.showStationNotes == false) {
+                      _this.showNumber = true;
+                      _this.messageCount = _this.messageCount + 1;
+                    }
+                  }
+                });
+              }
+
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -70576,19 +70589,9 @@ var render = function () {
                                             _vm._v(
                                               "\n                  " +
                                                 _vm._s(_vm.buttontext(item)) +
-                                                "\n                  "
+                                                "\n                "
                                             ),
-                                            _c(
-                                              "v-icon",
-                                              { attrs: { right: "" } },
-                                              [
-                                                _vm._v(
-                                                  " " + _vm._s(_vm.icons(item))
-                                                ),
-                                              ]
-                                            ),
-                                          ],
-                                          1
+                                          ]
                                         ),
                                       ]
                                     },
@@ -70604,7 +70607,7 @@ var render = function () {
                                           [
                                             _c("RcStationMessage", {
                                               staticClass: "mr-2",
-                                              attrs: { station: item },
+                                              attrs: { station: item, tyoe: 4 },
                                             }),
                                             _vm._v(" "),
                                             _c(

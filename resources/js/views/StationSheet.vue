@@ -74,7 +74,6 @@
                 <template v-slot:[`item.status.name`]="{ item }">
                   <v-chip pill :color="pillColor(item)">
                     {{ buttontext(item) }}
-                    <v-icon right> {{ icons(item) }}</v-icon>
                   </v-chip>
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
@@ -82,6 +81,7 @@
                     <RcStationMessage
                       class="mr-2"
                       :station="item"
+                      :tyoe="4"
                     ></RcStationMessage>
                     <div>
                       <Info :station="item" v-if="showInfo(item)"></Info>
