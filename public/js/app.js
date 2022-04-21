@@ -70303,7 +70303,7 @@ var render = function () {
         [
           _c(
             "v-row",
-            { attrs: { "no-gutters": "" } },
+            { attrs: { "no-gutters": "", justify: "center" } },
             [
               _c(
                 "v-col",

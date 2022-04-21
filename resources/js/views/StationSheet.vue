@@ -1,7 +1,7 @@
 <template>
   <v-row class="pr-5 pl-5 pt-1" no-gutters v-resize="onResize" justify="center">
     <v-col cols="12">
-      <v-row no-gutters>
+      <v-row no-gutters justify="center">
         <v-col cols="11">
           <v-card elevation="10" rounded="xl">
             <v-card-title class="primary">Stations</v-card-title>
