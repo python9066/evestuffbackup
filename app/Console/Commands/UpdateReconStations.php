@@ -53,7 +53,8 @@ class UpdateReconStations extends Command
             10000050,
             10000063,
             10000058,
-            10000051
+            10000051,
+            10000056
         ];
 
         foreach ($ids as $id) {
