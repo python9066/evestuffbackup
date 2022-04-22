@@ -30,10 +30,6 @@ class HotRegionController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
-        if ($user->can('edit_hot_region')) {
-            HotRegion::updateOrCreate(['id' => $request->id], $request->all());
-        }
     }
 
     /**
@@ -56,7 +52,10 @@ class HotRegionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = Auth::user();
+        if ($user->can('edit_hot_region')) {
+            HotRegion::where('id', $request->id)->update($request->all());
+        }
     }
 
     /**
