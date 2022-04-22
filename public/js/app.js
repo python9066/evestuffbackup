@@ -72623,7 +72623,7 @@ var render = function () {
                       _c(
                         "v-card-title",
                         { staticClass: "primary" },
-                        [_vm._v("Stations "), _c("StationPannel")],
+                        [_vm._v("Stations "), _c("SettingPannel")],
                         1
                       ),
                       _vm._v(" "),
