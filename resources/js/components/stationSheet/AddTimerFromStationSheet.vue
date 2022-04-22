@@ -22,7 +22,7 @@
         elevation="10"
         rounded="xl"
       >
-        <v-card-title class="justify-center primary">
+        <v-card-title class="justify-center primary pt-0 pb-0">
           <p>Enter Details for {{ item.name }}</p></v-card-title
         >
 
