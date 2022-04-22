@@ -60700,7 +60700,7 @@ var render = function () {
                       ),
                       on
                     ),
-                    [_vm._v("\n        faSvg-reqular fa-clock\n      ")]
+                    [_vm._v("\n        fa-reqular fa-clock\n      ")]
                   ),
                 ]
               },

@@ -9,7 +9,7 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
-          faSvg-reqular fa-clock
+          fa-reqular fa-clock
         </v-icon>
       </template>
 
