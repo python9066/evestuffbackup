@@ -15,9 +15,11 @@ use App\Events\EveUserUpdate;
 use App\Events\LoggingUpdate;
 use App\Events\StationLogUpdate;
 use App\Models\Eve;
+use App\Models\HotRegion;
 use App\Models\Logging;
 use App\Models\LoggingType;
 use App\Models\Station;
+use App\Models\System;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
@@ -308,9 +310,15 @@ class Helper
 
     public static function StationRecords($type)
     {
-
+        $regionIDs = HotRegion::where('show_fc', 1)->pluck('region_id');
+        $systemIDs = System::whereIn('region_id', $regionIDs)->pluck('id');
+        $user = FacadesAuth::user();
         $type = $type;
         $station_query = Station::query();
+        if ($user->can('view_coord_sheet')) {
+        } else {
+            $station_query->whereIn('system_id', $systemIDs);
+        }
         if ($type == 1) {
             $station_query->where('show_on_main', 1);
         }
@@ -336,6 +344,7 @@ class Helper
         }
 
         $station_query->where('standing', '=<', 0);
+
 
         $station_query->with([
             'system',
@@ -366,8 +375,15 @@ class Helper
     public static function StationRecordsSolo($type, $id)
     {
 
+        $regionIDs = HotRegion::where('show_fc', 1)->pluck('region_id');
+        $systemIDs = System::whereIn('region_id', $regionIDs)->pluck('id');
+        $user = FacadesAuth::user();
         $type = $type;
         $station_query = Station::query();
+        if ($user->can('view_coord_sheet')) {
+        } else {
+            $station_query->whereIn('system_id', $systemIDs);
+        }
         if ($type == 1) {
             $station_query->where('show_on_main', 1);
         }

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Events\StationUpdateCoord;
+use App\Models\HotRegion;
 use App\Models\Station;
 use App\Models\Userlogging;
 use Illuminate\Console\Command;
@@ -48,14 +49,7 @@ class UpdateReconStations extends Command
         Station::where('id', '>', 0)->update(['import_flag' => 0]);
 
         Userlogging::create(['url' => "demon region", 'user_id' => 9999999999]);
-        $ids = [
-            // 10000060,
-            // 10000050,
-            // 10000063,
-            // 10000058,
-            // 10000051,
-            10000056
-        ];
+        $ids = HotRegion::where('update', 1)->pluck('region_id');
 
         foreach ($ids as $id) {
             $stations =  Notifications::reconRegionPull($id);

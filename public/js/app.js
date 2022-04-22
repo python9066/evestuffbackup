@@ -34302,11 +34302,15 @@ function sleep(ms) {
                   _this.$store.dispatch("updateStationList", e.flag.message);
                 }
 
+                if (e.flag.flag == 1) {
+                  _this.$store.dispatch("getStationRegionLists");
+                }
+
                 if (e.flag.flag == 2) {}
 
-                if (e.flag.flag == 3) {}
+                _this.$store.dispatch("getStationList");
 
-                if (e.flag.flag == 4) {}
+                if (e.flag.flag == 3) {}
               });
 
             case 3:

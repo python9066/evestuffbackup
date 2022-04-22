@@ -164,13 +164,14 @@ export default {
         this.$store.dispatch("updateStationList", e.flag.message);
       }
 
+      if (e.flag.flag == 1) {
+        this.$store.dispatch("getStationRegionLists");
+      }
+
       if (e.flag.flag == 2) {
       }
-
+      this.$store.dispatch("getStationList");
       if (e.flag.flag == 3) {
-      }
-
-      if (e.flag.flag == 4) {
       }
     });
   },

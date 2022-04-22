@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\StationSheetUpdate;
 use App\Models\HotRegion;
+use utils\Notificationhelper\Notifications;
 use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,11 +66,30 @@ class HotRegionController extends Controller
 
 
 
-        dd($ids);
+
 
         HotRegion::whereNotNull('id')->update(['update' => 0, 'show_fc' => 0]);
         HotRegion::whereIn('region_id', $ids)->update(['update' => 1]);
-        HotRegion::whereIn('region_id', $fc)->update(['update' => 1]);
+        HotRegion::whereIn('region_id', $fc)->update(['show_fc' => 1]);
+
+        $flag = collect([
+            'flag' => 1
+        ]);
+        broadcast(new StationSheetUpdate($flag));
+
+        $ids = HotRegion::where('update', 1)->pluck('region_id');
+
+        foreach ($ids as $id) {
+            $stations =  Notifications::reconRegionPull($id);
+            foreach ($stations as $station) {
+                Notifications::reconRegionPullIdCheck($station);
+            }
+        }
+
+        $flag = collect([
+            'flag' => 2
+        ]);
+        broadcast(new StationSheetUpdate($flag));
     }
 
     /**
