@@ -310,7 +310,7 @@ class Helper
 
     public static function StationRecords($type)
     {
-        $regionIDs = HotRegion::where('show_fc', 1)->pluck('region_id');
+        $regionIDs = HotRegion::where('show_fcs', 1)->pluck('region_id');
         $systemIDs = System::whereIn('region_id', $regionIDs)->pluck('id');
         $user = FacadesAuth::user();
         $type = $type;
@@ -375,7 +375,7 @@ class Helper
     public static function StationRecordsSolo($type, $id)
     {
 
-        $regionIDs = HotRegion::where('show_fc', 1)->pluck('region_id');
+        $regionIDs = HotRegion::where('show_fcs', 1)->pluck('region_id');
         $systemIDs = System::whereIn('region_id', $regionIDs)->pluck('id');
         $user = FacadesAuth::user();
         $type = $type;
