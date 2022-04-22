@@ -3,9 +3,10 @@
     <v-col cols="12">
       <v-row no-gutters justify="center">
         <v-col cols="12">
-
           <v-card elevation="10" rounded="xl">
-            <v-card-title class="primary">Stations <SettingPannel></SettingPannel></v-card-title>
+            <v-card-title class="primary"
+              >Stations <SettingPannel></SettingPannel
+            ></v-card-title>
             <v-card-text>
               <v-data-table
                 :headers="headers"
@@ -175,6 +176,7 @@ export default {
   },
   async mounted() {
     this.onResize();
+    await this.$store.dispatch("getStationRegionLists");
   },
   title() {
     return `EveStuff - Stations`;

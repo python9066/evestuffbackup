@@ -87,10 +87,7 @@ export default {
     };
   },
 
-  async created() {
-    await this.$store.dispatch("getStationRegionLists");
-    await this.setPicked();
-  },
+  async created() {},
 
   methods: {
     close() {
@@ -99,6 +96,7 @@ export default {
 
     open() {
       this.openInfo = true;
+      this.setPicked();
     },
 
     setPicked() {
