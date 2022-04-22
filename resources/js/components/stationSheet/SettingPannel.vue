@@ -8,7 +8,7 @@
       @click:outside="close()"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="blue" v-bind="attrs" v-on="on" @click="open()" icon>
+        <v-btn color="red" v-bind="attrs" v-on="on" @click="open()" icon>
           <v-icon> fa-solid fa-gears </v-icon>
         </v-btn>
       </template>

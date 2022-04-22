@@ -61148,7 +61148,7 @@ var render = function () {
                     _vm._g(
                       _vm._b(
                         {
-                          attrs: { color: "blue", icon: "" },
+                          attrs: { color: "red", icon: "" },
                           on: {
                             click: function ($event) {
                               return _vm.open()
