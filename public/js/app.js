@@ -21657,6 +21657,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -21764,6 +21765,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else {
         return false;
       }
+    },
+    randomID: function randomID(item) {
+      var num = Math.ceil(Math.random() * random());
+      var numtext = num.toString();
+      var idtext = this.item.id.toString();
+      var text = numtext + idtext;
+      return text;
     },
     lastUpdated: function lastUpdated() {
       if (this.r_updated_at != null) {
@@ -60710,6 +60718,7 @@ var render = function () {
                               _c("v-data-table", {
                                 staticClass: "elevation-12",
                                 attrs: {
+                                  "item-key": _vm.randomID(_vm.item),
                                   headers: _vm.headers,
                                   items: _vm.items,
                                   "disable-sort": "",
