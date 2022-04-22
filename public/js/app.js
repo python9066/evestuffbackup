@@ -70626,7 +70626,7 @@ var render = function () {
                                           [
                                             _c("RcStationMessage", {
                                               staticClass: "mr-2",
-                                              attrs: { station: item, tyoe: 4 },
+                                              attrs: { station: item, type: 4 },
                                             }),
                                             _vm._v(" "),
                                             _c(

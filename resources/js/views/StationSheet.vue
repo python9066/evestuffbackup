@@ -81,7 +81,7 @@
                     <RcStationMessage
                       class="mr-2"
                       :station="item"
-                      :tyoe="4"
+                      :type="4"
                     ></RcStationMessage>
                     <div>
                       <Info :station="item" v-if="showInfo(item)"></Info>
