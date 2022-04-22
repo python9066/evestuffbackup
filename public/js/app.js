@@ -87667,9 +87667,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
           return "NO";
         }
       };
-    },
-    getRegionFCPickedList: function getRegionFCPickedList(stat) {
-      var pull = state.stationListFCRegions;
     }
   }
 }));

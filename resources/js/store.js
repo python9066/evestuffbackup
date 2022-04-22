@@ -2348,9 +2348,5 @@ export default new Vuex.Store({
                 return "NO";
             }
         },
-
-        getRegionFCPickedList: (stat) => {
-            let pull = state.stationListFCRegions;
-        },
     },
 });

@@ -26,7 +26,7 @@ class HotRegionController extends Controller
             $pullStart = HotRegion::where('update', 1)->pluck('region_id');
             $pull = Region::whereIn('id', $pullStart)->select(['region_name as text', 'id as value'])->get();
             $fcsStart = HotRegion::where('show_fcs', 1)->pluck('region_id');
-            $fcs = Region::whereIn('id', $pullStart)->select(['region_name as text', 'id as value'])->get();
+            $fcs = Region::whereIn('id', $fcsStart)->select(['region_name as text', 'id as value'])->get();
             $regionList = Region::whereNotNull('id')->select(['region_name as text', 'id as value'])->get();
             return [
                 'pull' => $pull,
