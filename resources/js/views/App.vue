@@ -30,18 +30,21 @@
 
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
-              <v-tab v-bind="attrs" v-on="on"> Nats Health </v-tab>
+              <v-tab v-bind="attrs" v-on="on"> Stations </v-tab>
             </template>
             <v-list>
               <v-list-item
                 v-if="$can('view_killsheet')"
                 link
-                to="/fornatshealth"
+                to="/stationtimers"
               >
-                Nats Health
+                Timers
               </v-list-item>
               <v-list-item v-if="$can('finish_move_timer')" link to="/addtimer">
-                Move To RC
+                To Check
+              </v-list-item>
+              <v-list-item v-if="$can('view_coord_sheet')" link to="/stations">
+                Station List
               </v-list-item>
               <v-list-item
                 v-else-if="$can('view_move_timers')"

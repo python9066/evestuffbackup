@@ -24442,6 +24442,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 // import { EventBus } from "../event-bus";
 
 
@@ -64014,7 +64017,7 @@ var render = function () {
                               _c(
                                 "v-tab",
                                 _vm._g(_vm._b({}, "v-tab", attrs, false), on),
-                                [_vm._v(" Nats Health ")]
+                                [_vm._v(" Stations ")]
                               ),
                             ]
                           },
@@ -64029,12 +64032,8 @@ var render = function () {
                           _vm.$can("view_killsheet")
                             ? _c(
                                 "v-list-item",
-                                { attrs: { link: "", to: "/fornatshealth" } },
-                                [
-                                  _vm._v(
-                                    "\n              Nats Health\n            "
-                                  ),
-                                ]
+                                { attrs: { link: "", to: "/stationtimers" } },
+                                [_vm._v("\n              Timers\n            ")]
                               )
                             : _vm._e(),
                           _vm._v(" "),
@@ -64044,7 +64043,19 @@ var render = function () {
                                 { attrs: { link: "", to: "/addtimer" } },
                                 [
                                   _vm._v(
-                                    "\n              Move To RC\n            "
+                                    "\n              To Check\n            "
+                                  ),
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.$can("view_coord_sheet")
+                            ? _c(
+                                "v-list-item",
+                                { attrs: { link: "", to: "/stations" } },
+                                [
+                                  _vm._v(
+                                    "\n              Station List\n            "
                                   ),
                                 ]
                               )
@@ -83973,7 +83984,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       }
     }
   }, {
-    path: "/killlist",
+    path: "/stationtimers",
     name: "killlist",
     component: _views_RCsheet_vue__WEBPACK_IMPORTED_MODULE_23__["default"],
     beforeEnter: function beforeEnter(to, from, next) {
@@ -84138,7 +84149,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: "stations",
     component: _views_StationSheet_vue__WEBPACK_IMPORTED_MODULE_29__["default"],
     beforeEnter: function beforeEnter(to, from, next) {
-      if (Permissions.indexOf("super") !== -1) {
+      if (Permissions.indexOf("view_coord_list") !== -1) {
         next();
       } else {
         next("/notifications");

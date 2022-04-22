@@ -204,7 +204,7 @@ export default new Router({
         },
 
         {
-            path: "/killlist",
+            path: "/stationtimers",
             name: "killlist",
             component: KillList,
             beforeEnter(to, from, next) {
@@ -376,7 +376,7 @@ export default new Router({
             name: "stations",
             component: Station,
             beforeEnter(to, from, next) {
-                if (Permissions.indexOf("super") !== -1) {
+                if (Permissions.indexOf("view_coord_list") !== -1) {
                     next();
                 } else {
                     next("/notifications");
