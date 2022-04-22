@@ -56,7 +56,7 @@ class Station extends Model
 
     public function fit()
     {
-        return $this->belongsToMany(StationItems::class, 'station_item_joins', 'station_id', 'station_item_id');
+        return $this->belongsToMany(StationItems::class, 'station_item_joins', 'station_id', 'station_item_id')->withPivot('id');
     }
     public function corp()
     {
