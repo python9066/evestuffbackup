@@ -382,6 +382,14 @@ Vue.component(
     require("./components/operations/SoloCampaignMap.vue").default
 );
 
+Vue.component(
+    "StationSheetInfo",
+    require("./components/stationSheet/StationSheetInfo.vue").default
+);
+Vue.component(
+    "StationSheetLogs",
+    require("./components/stationSheet/StationSheetLogs.vue").default
+);
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(Clipboard);

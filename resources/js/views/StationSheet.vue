@@ -84,7 +84,10 @@
                       :type="4"
                     ></RcStationMessage>
                     <div>
-                      <Info :station="item" v-if="showInfo(item)"></Info>
+                      <StationSheetInfo
+                        :station="item"
+                        v-if="showInfo(item)"
+                      ></StationSheetInfo>
                     </div>
 
                     <div v-if="$can('view_station_logs')">
@@ -116,7 +119,7 @@
                   height="100%"
                 >
                   <td :colspan="headers.length" align="center">
-                    <StationLogs :station="item"></StationLogs>
+                    <StationSheetLogs :station="item"></StationSheetLogs>
                   </td>
                 </template>
               </v-data-table>
@@ -138,7 +141,7 @@ function sleep(ms) {
 }
 export default {
   async created() {
-    await this.$store.dispatch("getStationList").then((this.loadingt = true));
+    await this.$store.dispatch("getStationList").then((this.loadingt = false));
     Echo.private("stationsheet").listen("StationSheetUpdate", (e) => {
       if (e.flag.message != null) {
       }
@@ -172,6 +175,10 @@ export default {
       search: "",
 
       headers: [
+        {
+          text: "WebWay",
+          value: "webway[0].jumps",
+        },
         {
           text: "System",
           value: "system.system_name",

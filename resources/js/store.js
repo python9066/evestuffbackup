@@ -2263,6 +2263,16 @@ export default new Vuex.Store({
             }
         },
 
+        getStationSheetLogsByID: (state) => (stationid) => {
+            let pull = state.stationList.filter((s) => id == stationid);
+            let count = pull.length;
+            if (count != 0) {
+                return pull.logs;
+            } else {
+                return [];
+            }
+        },
+
         getEveCount: (state) => {
             return state.eveUserCount;
         },
