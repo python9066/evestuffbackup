@@ -27,7 +27,7 @@
                 <template slot="no-data">
                   All Hostile Stations our reffed!!!!!!
                 </template>
-                <template v-slot:[`item.webway`]="{ item }">
+                <template v-slot:[`item.webway[0].jumps`]="{ item }">
                   <SoloCampaginWebWay
                     v-if="item.system.webway[0]"
                     :jumps="item.system.webway[0].jumps"

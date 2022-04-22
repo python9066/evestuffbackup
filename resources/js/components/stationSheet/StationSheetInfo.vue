@@ -398,8 +398,10 @@ export default {
 
     monthOld() {
       var a = moment(this.station.r_updated_at);
+      console.log(a);
       var b = a.add(1, "month");
-      if (moment() > b) {
+      console.log(b);
+      if (moment() >= b) {
         return true;
       } else {
         return false;

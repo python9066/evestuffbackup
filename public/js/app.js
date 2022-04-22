@@ -21782,9 +21782,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     monthOld: function monthOld() {
       var a = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.station.r_updated_at);
+      console.log(a);
       var b = a.add(1, "month");
+      console.log(b);
 
-      if (moment__WEBPACK_IMPORTED_MODULE_2___default()() > b) {
+      if (moment__WEBPACK_IMPORTED_MODULE_2___default()() >= b) {
         return true;
       } else {
         return false;
@@ -71691,7 +71693,7 @@ var render = function () {
                               scopedSlots: _vm._u(
                                 [
                                   {
-                                    key: "item.webway",
+                                    key: "item.webway[0].jumps",
                                     fn: function (ref) {
                                       var item = ref.item
                                       return [
