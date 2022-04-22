@@ -9,7 +9,7 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="red" v-bind="attrs" v-on="on" @click="open()" icon>
-          <v-icon> as fa-map fa-xs </v-icon>
+          <v-icon> fa-gears fa-xs </v-icon>
         </v-btn>
       </template>
       <v-card

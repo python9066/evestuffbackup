@@ -61161,7 +61161,7 @@ var render = function () {
                       ),
                       on
                     ),
-                    [_c("v-icon", [_vm._v(" as fa-map fa-xs ")])],
+                    [_c("v-icon", [_vm._v(" fa-gears fa-xs ")])],
                     1
                   ),
                 ]
