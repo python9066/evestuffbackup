@@ -21683,7 +21683,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       win.focus();
     },
     taskFlag: function taskFlag() {
-      if (this.stationInfo[0]["task_flag"] == 1) {
+      if (this.station.system.task_flag) {
         return true;
       } else {
         return false;
@@ -21697,11 +21697,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     url: function url(item) {
-      return "https://images.evetech.net/types/" + item.item_id + "/icon";
+      return "https://images.evetech.net/types/" + item.id + "/icon";
     },
     open: function open() {},
-    openRecon: function openRecon(hash) {
-      var url = "https://recon.gnf.lt/structures/" + hash + "/view";
+    openRecon: function openRecon() {
+      var url = "https://recon.gnf.lt/structures/" + this.station.r_hash + "/view";
       var win = window.open(url, "_blank");
       win.focus();
     },
@@ -21735,41 +21735,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     lastUpdated: function lastUpdated() {
-      if (this.fit[0]["r_updated_at"] != null) {
-        var ago = moment__WEBPACK_IMPORTED_MODULE_1___default()(this.fit[0]["r_updated_at"]).fromNow();
+      if (this["this"].r_updated_at != null) {
+        var ago = moment__WEBPACK_IMPORTED_MODULE_1___default()(this.r.r_updated_at).fromNow();
         return ago;
       } else {
         return "Never";
       }
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getStationItemsByStationID", "getCoreByStationID", "getStationFitByStationID"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(["getStationItemsByStationID", "getCoreByStationID"])), {}, {
     items: function items() {
-      return this.getStationItemsByStationID(this.station.id);
+      //   return this.getStationItemsByStationID(this.station.id);
+      return this.station.fit;
     },
     fit: function fit() {
-      var fit = this.getStationFitByStationID(this.station.id);
-
-      if (fit[0]["r_fitted"] == "Fitted") {
+      if (this.station.r_fitted == "Fitted") {
         this.fitted = true;
       }
-
-      return fit;
     },
     r_lastupdated: function r_lastupdated() {
-      return this.fit.r_updated_at;
+      return this.station.r_updated_at;
     },
     stationInfo: function stationInfo() {
       return this.getCoreByStationID(this.station.id);
     },
     core: function core() {
-      var core = this.getCoreByStationID(this.station.id);
-
-      if (this.fit == "NO") {
-        return "No Info";
-      }
-
-      if (core[0].cored == "Yes") {
+      if (this.station.r_cored == 1) {
         return "Yes";
       } else {
         return "No";
@@ -21783,7 +21774,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     showLinkButton: function showLinkButton() {
-      if (this.$can("request_recon_task") && this.fit[0]["r_research"] != null) {
+      if (this.$can("request_recon_task") && this["this"].station.r_research != null) {
         return true;
       } else {
         return false;
@@ -60313,7 +60304,7 @@ var render = function () {
                             },
                             on: {
                               click: function ($event) {
-                                return _vm.openRecon(_vm.fit[0]["r_hash"])
+                                return _vm.openRecon()
                               },
                             },
                           },
@@ -60439,7 +60430,7 @@ var render = function () {
                     ? _c(
                         "div",
                         [
-                          _vm.fit[0]["r_anti_cap"] == 1
+                          this.station.r_anti_cap == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60450,7 +60441,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_anti_subcap"] == 1
+                          this.station.r_anti_subcap == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60465,7 +60456,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_dooms_day"] == 1
+                          this.station.r_dooms_day == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60476,7 +60467,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_point_defense"] == 1
+                          this.station.r_point_defense == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60491,7 +60482,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_biochemical"] == 1
+                          this.station.r_biochemical == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60506,7 +60497,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_capital_shipyard"] == 1
+                          this.station.r_capital_shipyard == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60521,7 +60512,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_cloning"] == 1
+                          this.station.r_cloning == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60532,7 +60523,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_composite"] == 1
+                          this.station.r_composite == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60543,7 +60534,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_guide_bombs"] == 1
+                          this.station.r_guide_bombs == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60558,7 +60549,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_hyasyoda"] == 1
+                          this.station.r_hyasyoda == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60569,7 +60560,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_hybrid"] == 1
+                          this.station.r_hybrid == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60580,7 +60571,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_invention"] == 1
+                          this.station.r_invention == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60591,7 +60582,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_manufacturing"] == 1
+                          this.station.r_manufacturing == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60606,7 +60597,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_moon_drilling"] == 1
+                          this.station.r_moon_drilling == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60621,7 +60612,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_reprocessing"] == 1
+                          this.station.r_reprocessing == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60636,7 +60627,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_research"] == 1
+                          this.station.r_research == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60647,7 +60638,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_supercapital_shipyard"] == 1
+                          this.station.r_supercapital_shipyard == 1
                             ? _c(
                                 "v-chip",
                                 {
@@ -60662,7 +60653,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.fit[0]["r_t2_rigged"] == 1
+                          this.station.r_t2_rigged == 1
                             ? _c(
                                 "v-chip",
                                 {

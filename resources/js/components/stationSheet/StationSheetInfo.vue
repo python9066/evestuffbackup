@@ -28,7 +28,7 @@
               small
               outlined
               color="teal"
-              @click="openRecon(fit[0]['r_hash'])"
+              @click="openRecon()"
               v-if="showLinkButton"
             >
               View On Recon Tool
@@ -90,7 +90,7 @@
               small
               color="red"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_anti_cap'] == 1"
+              v-if="this.station.r_anti_cap == 1"
             >
               anti cap
             </v-chip>
@@ -98,7 +98,7 @@
               small
               color="red"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_anti_subcap'] == 1"
+              v-if="this.station.r_anti_subcap == 1"
             >
               anti subcap
             </v-chip>
@@ -106,7 +106,7 @@
               small
               color="red"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_dooms_day'] == 1"
+              v-if="this.station.r_dooms_day == 1"
             >
               dooms day
             </v-chip>
@@ -114,7 +114,7 @@
               small
               color="red"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_point_defense'] == 1"
+              v-if="this.station.r_point_defense == 1"
             >
               point defense
             </v-chip>
@@ -122,7 +122,7 @@
               small
               color="blue"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_biochemical'] == 1"
+              v-if="this.station.r_biochemical == 1"
             >
               biochemical
             </v-chip>
@@ -130,7 +130,7 @@
               small
               color="blue"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_capital_shipyard'] == 1"
+              v-if="this.station.r_capital_shipyard == 1"
             >
               capital shipyard
             </v-chip>
@@ -138,7 +138,7 @@
               small
               color="blue"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_cloning'] == 1"
+              v-if="this.station.r_cloning == 1"
             >
               cloning
             </v-chip>
@@ -146,7 +146,7 @@
               small
               color="blue"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_composite'] == 1"
+              v-if="this.station.r_composite == 1"
             >
               composite
             </v-chip>
@@ -155,7 +155,7 @@
               small
               color="red"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_guide_bombs'] == 1"
+              v-if="this.station.r_guide_bombs == 1"
             >
               guide bombs
             </v-chip>
@@ -163,7 +163,7 @@
               small
               color="blue"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_hyasyoda'] == 1"
+              v-if="this.station.r_hyasyoda == 1"
             >
               hyasyoda
             </v-chip>
@@ -171,7 +171,7 @@
               small
               color="blue"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_hybrid'] == 1"
+              v-if="this.station.r_hybrid == 1"
             >
               hybrid
             </v-chip>
@@ -179,7 +179,7 @@
               small
               color="blue"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_invention'] == 1"
+              v-if="this.station.r_invention == 1"
             >
               invention
             </v-chip>
@@ -187,7 +187,7 @@
               small
               color="blue"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_manufacturing'] == 1"
+              v-if="this.station.r_manufacturing == 1"
             >
               manufacturing
             </v-chip>
@@ -195,7 +195,7 @@
               small
               color="blue"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_moon_drilling'] == 1"
+              v-if="this.station.r_moon_drilling == 1"
             >
               moon drilling
             </v-chip>
@@ -204,7 +204,7 @@
               small
               color="blue"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_reprocessing'] == 1"
+              v-if="this.station.r_reprocessing == 1"
             >
               reprocessing
             </v-chip>
@@ -212,7 +212,7 @@
               small
               color="blue"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_research'] == 1"
+              v-if="this.station.r_research == 1"
             >
               research
             </v-chip>
@@ -220,7 +220,7 @@
               small
               color="blue"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_supercapital_shipyard'] == 1"
+              v-if="this.station.r_supercapital_shipyard == 1"
             >
               supercapital shipyard
             </v-chip>
@@ -228,7 +228,7 @@
               small
               color="blue"
               class="mt-2 mb-2"
-              v-if="fit[0]['r_t2_rigged'] == 1"
+              v-if="this.station.r_t2_rigged == 1"
             >
               t2 rigged
             </v-chip>
@@ -311,7 +311,7 @@ export default {
     },
 
     taskFlag() {
-      if (this.stationInfo[0]["task_flag"] == 1) {
+      if (this.station.system.task_flag) {
         return true;
       } else {
         return false;
@@ -325,13 +325,14 @@ export default {
       }
     },
     url(item) {
-      return "https://images.evetech.net/types/" + item.item_id + "/icon";
+      return "https://images.evetech.net/types/" + item.id + "/icon";
     },
 
     open() {},
 
-    openRecon(hash) {
-      var url = "https://recon.gnf.lt/structures/" + hash + "/view";
+    openRecon() {
+      var url =
+        "https://recon.gnf.lt/structures/" + this.station.r_hash + "/view";
       var win = window.open(url, "_blank");
       win.focus();
     },
@@ -367,8 +368,8 @@ export default {
     },
 
     lastUpdated() {
-      if (this.fit[0]["r_updated_at"] != null) {
-        var ago = moment(this.fit[0]["r_updated_at"]).fromNow();
+      if (this.this.r_updated_at != null) {
+        var ago = moment(this.r.r_updated_at).fromNow();
         return ago;
       } else {
         return "Never";
@@ -377,40 +378,28 @@ export default {
   },
 
   computed: {
-    ...mapGetters([
-      "getStationItemsByStationID",
-      "getCoreByStationID",
-      "getStationFitByStationID",
-    ]),
+    ...mapGetters(["getStationItemsByStationID", "getCoreByStationID"]),
 
     items() {
-      return this.getStationItemsByStationID(this.station.id);
+      //   return this.getStationItemsByStationID(this.station.id);
+      return this.station.fit;
     },
 
     fit() {
-      var fit = this.getStationFitByStationID(this.station.id);
-      if (fit[0]["r_fitted"] == "Fitted") {
+      if (this.station.r_fitted == "Fitted") {
         this.fitted = true;
       }
-
-      return fit;
     },
 
     r_lastupdated() {
-      return this.fit.r_updated_at;
+      return this.station.r_updated_at;
     },
 
     stationInfo() {
       return this.getCoreByStationID(this.station.id);
     },
     core() {
-      var core = this.getCoreByStationID(this.station.id);
-
-      if (this.fit == "NO") {
-        return "No Info";
-      }
-
-      if (core[0].cored == "Yes") {
+      if (this.station.r_cored == 1) {
         return "Yes";
       } else {
         return "No";
@@ -428,7 +417,7 @@ export default {
     showLinkButton() {
       if (
         this.$can("request_recon_task") &&
-        this.fit[0]["r_research"] != null
+        this.this.station.r_research != null
       ) {
         return true;
       } else {
