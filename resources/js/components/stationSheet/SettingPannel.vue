@@ -1,8 +1,6 @@
 <template>
   <div>
-    <v-icon color="red" @click="open()">
-      <font-awesome-icon icon="fa-solid fa-gear" />
-    </v-icon>
+    <v-icon color="red" @click="open()"> fa-solid fa-gear </v-icon>
     <v-dialog
       max-width="700px"
       z-index="0"
