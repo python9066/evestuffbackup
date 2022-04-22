@@ -390,6 +390,11 @@ Vue.component(
     "StationSheetLogs",
     require("./components/stationSheet/StationSheetLogs.vue").default
 );
+
+Vue.component(
+    "AddTimerFromStationSheet",
+    require("./components/stationSheet/AddTimerFromStationSheet.vue").default
+);
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(Clipboard);

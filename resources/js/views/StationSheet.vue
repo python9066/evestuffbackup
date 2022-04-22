@@ -86,9 +86,9 @@
                 <template v-slot:[`item.actions`]="{ item }">
                   <div class="d-inline-flex">
                     <div>
-                      <AddTimerFromDoneCoord
+                      <AddTimerFromStationSheet
                         :item="item"
-                      ></AddTimerFromDoneCoord>
+                      ></AddTimerFromStationSheet>
                     </div>
                     <div>
                       <RcStationMessage
