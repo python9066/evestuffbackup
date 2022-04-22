@@ -117,6 +117,7 @@ class Notifications
 
                             ]
                         );
+                        $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
                     } else {
                         $headers = $response->headers();
                         $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
