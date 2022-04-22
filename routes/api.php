@@ -279,4 +279,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::get('/stationsheet', 'StationController@stationSheet');
+    Route::get('/hotregion', 'HotRegionController@index');
 });
