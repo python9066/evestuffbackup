@@ -300,6 +300,10 @@ export default {
     };
   },
 
+  async mounted() {
+    this.checkfit();
+  },
+
   methods: {
     close() {
       this.showInfo = false;
@@ -335,6 +339,12 @@ export default {
         "https://recon.gnf.lt/structures/" + this.station.r_hash + "/view";
       var win = window.open(url, "_blank");
       win.focus();
+    },
+
+    checkfit() {
+      if (this.station.r_fitted == "Fitted") {
+        this.fitted = true;
+      }
     },
 
     taskRequest() {
@@ -383,12 +393,6 @@ export default {
     items() {
       //   return this.getStationItemsByStationID(this.station.id);
       return this.station.fit;
-    },
-
-    fit() {
-      if (this.station.r_fitted == "Fitted") {
-        this.fitted = true;
-      }
     },
 
     r_lastupdated() {
