@@ -111,7 +111,7 @@ export default {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-      });
+      }).then(this.close());
     },
 
     open() {

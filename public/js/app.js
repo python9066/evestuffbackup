@@ -21837,7 +21837,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           Accept: "application/json",
           "Content-Type": "application/json"
         }
-      });
+      }).then(this.close());
     },
     open: function open() {
       this.openInfo = true;
