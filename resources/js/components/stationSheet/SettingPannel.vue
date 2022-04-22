@@ -57,9 +57,9 @@
         </v-card-text>
         <v-spacer></v-spacer
         ><v-card-actions>
-          <v-btn @click="submit()" color="primery"> Update </v-btn>
+          <v-btn rounded @click="submit()" color="primery"> Update </v-btn>
 
-          <v-btn class="white--text" color="teal" @click="close()">
+          <v-btn rounded class="white--text" color="teal" @click="close()">
             Close
           </v-btn></v-card-actions
         >

@@ -61323,7 +61323,7 @@ var render = function () {
                   _c(
                     "v-btn",
                     {
-                      attrs: { color: "primery" },
+                      attrs: { rounded: "", color: "primery" },
                       on: {
                         click: function ($event) {
                           return _vm.submit()
@@ -61337,7 +61337,7 @@ var render = function () {
                     "v-btn",
                     {
                       staticClass: "white--text",
-                      attrs: { color: "teal" },
+                      attrs: { rounded: "", color: "teal" },
                       on: {
                         click: function ($event) {
                           return _vm.close()

@@ -53,7 +53,7 @@ class HotRegionController extends Controller
     }
 
 
-    public function updateSetting($request)
+    public function updateSetting(Request $request)
     {
         $fc = $request->fc;
         $pull = $request->pullPicked;
