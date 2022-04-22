@@ -396,6 +396,16 @@ export default {
       return this.station.fit;
     },
 
+    monthOld() {
+      var a = moment(this.station.r_updated_at);
+      var b = a.add(1, "month");
+      if (moment() > b) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
     r_lastupdated() {
       return this.station.r_updated_at;
     },

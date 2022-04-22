@@ -21780,6 +21780,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       //   return this.getStationItemsByStationID(this.station.id);
       return this.station.fit;
     },
+    monthOld: function monthOld() {
+      var a = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.station.r_updated_at);
+      var b = a.add(1, "month");
+
+      if (moment__WEBPACK_IMPORTED_MODULE_2___default()() > b) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     r_lastupdated: function r_lastupdated() {
       return this.station.r_updated_at;
     },
