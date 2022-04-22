@@ -85,11 +85,18 @@
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
                   <div class="d-inline-flex">
-                    <RcStationMessage
-                      class="mr-2"
-                      :station="item"
-                      :type="4"
-                    ></RcStationMessage>
+                    <div>
+                      <AddTimerFromDoneCoord
+                        :item="item"
+                      ></AddTimerFromDoneCoord>
+                    </div>
+                    <div>
+                      <RcStationMessage
+                        class="mr-2"
+                        :station="item"
+                        :type="4"
+                      ></RcStationMessage>
+                    </div>
                     <div>
                       <StationSheetInfo
                         :station="item"

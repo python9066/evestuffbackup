@@ -15,6 +15,7 @@ use App\Events\StationMessageUpdate;
 use App\Events\StationNotificationDelete;
 use App\Events\StationNotificationNew;
 use App\Events\StationNotificationUpdate;
+use App\Events\StationSheetUpdate;
 use App\Events\StationUpdateCoord;
 use App\Events\WelpSheetUpdate;
 use App\Models\Alliance;
@@ -711,6 +712,7 @@ class StationController extends Controller
         broadcast(new RcMoveUpdate($flag));
         broadcast(new ChillSheetUpdate($flag));
         broadcast(new WelpSheetUpdate($flag));
+        broadcast(new StationSheetUpdate($flag));
 
 
 

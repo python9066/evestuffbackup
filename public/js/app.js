@@ -33746,6 +33746,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -71880,10 +71887,29 @@ var render = function () {
                                           "div",
                                           { staticClass: "d-inline-flex" },
                                           [
-                                            _c("RcStationMessage", {
-                                              staticClass: "mr-2",
-                                              attrs: { station: item, type: 4 },
-                                            }),
+                                            _c(
+                                              "div",
+                                              [
+                                                _c("AddTimerFromDoneCoord", {
+                                                  attrs: { item: item },
+                                                }),
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "div",
+                                              [
+                                                _c("RcStationMessage", {
+                                                  staticClass: "mr-2",
+                                                  attrs: {
+                                                    station: item,
+                                                    type: 4,
+                                                  },
+                                                }),
+                                              ],
+                                              1
+                                            ),
                                             _vm._v(" "),
                                             _c(
                                               "div",
@@ -71986,8 +72012,7 @@ var render = function () {
                                                   1
                                                 )
                                               : _vm._e(),
-                                          ],
-                                          1
+                                          ]
                                         ),
                                       ]
                                     },
