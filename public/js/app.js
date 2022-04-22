@@ -84268,7 +84268,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     SET_STATION_LIST: function SET_STATION_LIST(state, stations) {
       state.stationList = stations;
     },
-    SET_STATION_REGION_LIST: function SET_STATION_REGION_LIST(state, stations) {
+    SET_STATION_REGION_LIST: function SET_STATION_REGION_LIST(state, regionlist) {
       state.stationListRegionList = regionlist;
     },
     SET_STATION_PULL_REGIONS: function SET_STATION_PULL_REGIONS(state, pull) {

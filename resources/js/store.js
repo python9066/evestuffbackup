@@ -93,7 +93,7 @@ export default new Vuex.Store({
             state.stationList = stations;
         },
 
-        SET_STATION_REGION_LIST(state, stations) {
+        SET_STATION_REGION_LIST(state, regionlist) {
             state.stationListRegionList = regionlist;
         },
 
