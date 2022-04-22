@@ -129,7 +129,7 @@ export default {
     }
 
     if (this.type == 4) {
-      console.log("channel 4");
+      console.log("chanSSSnel 4");
       Echo.private("stationsheet").listen("StationSheetMessageUpdate", (e) => {
         console.log(e);
         if (e.flag.id == this.station.id) {

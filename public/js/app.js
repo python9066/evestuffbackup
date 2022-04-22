@@ -15223,7 +15223,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               }
 
               if (_this.type == 4) {
-                console.log("channel 4");
+                console.log("chanSSSnel 4");
                 Echo["private"]("stationsheet").listen("StationSheetMessageUpdate", function (e) {
                   console.log(e);
 
