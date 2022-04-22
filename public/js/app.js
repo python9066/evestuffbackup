@@ -60711,7 +60711,7 @@ var render = function () {
                               _c("v-data-table", {
                                 staticClass: "elevation-12",
                                 attrs: {
-                                  "item-key": "uuid",
+                                  "item-key": "pivot.id",
                                   headers: _vm.headers,
                                   items: _vm.items,
                                   "disable-sort": "",

@@ -239,7 +239,7 @@
             <v-card-title> Fitting </v-card-title>
             <v-card-text>
               <v-data-table
-                item-key="uuid"
+                item-key="pivot.id"
                 :headers="headers"
                 :items="items"
                 disable-sort
