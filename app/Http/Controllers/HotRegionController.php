@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HotRegion;
+use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,8 +18,16 @@ class HotRegionController extends Controller
     {
         $user = Auth::user();
         if ($user->can('edit_hot_region')) {
-            HotRegion::all();
-            return ['hotregion' => HotRegion::all()];
+            $pullStart = HotRegion::where('update', 1)->pluck('region_id');
+            $pull = Region::whereIn('id', $pullStart)->select(['region_name as text', 'id as value'])->get();
+            $fcsStart = HotRegion::where('show_fcs', 1)->pluck('region_id');
+            $fcs = Region::whereIn('id', $pullStart)->select(['region_name as text', 'id as value'])->get();
+            $regionList = Region::whereNotNull('id')->select(['region_name as text', 'id as value'])->get();
+            return [
+                'pull' => $pull,
+                'fcs' => $fcs,
+                'regionlist' => $regionList,
+            ];
         }
     }
 

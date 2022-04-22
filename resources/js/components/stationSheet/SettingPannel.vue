@@ -8,7 +8,7 @@
       @click:outside="close()"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="red" v-bind="attrs" v-on="on" @click="open()" icon>
+        <v-btn color="gray" v-bind="attrs" v-on="on" @click="open()" icon>
           <v-icon> fas fa-cogs fa-xs </v-icon>
         </v-btn>
       </template>
@@ -20,10 +20,43 @@
         class="d-flex flex-column"
       >
         <v-card-title>Setting for Station Page</v-card-title>
-        <v-card-text> </v-card-text>
+        <v-card-text>
+          <v-autocomplete
+            v-model="pullPicked"
+            :items="regionList"
+            label="Select"
+            chips
+            clearable
+            deletable-chips
+            dense
+            hint="Which Campaigns do you want"
+            hide-selected
+            multiple
+            persistent-hint
+            rounded
+            small-chips
+            solo-inverted
+          ></v-autocomplete>
+          <v-autocomplete
+            v-model="fcPicked"
+            :items="regionList"
+            label="Select"
+            chips
+            clearable
+            deletable-chips
+            dense
+            hint="Which Campaigns do you want"
+            hide-selected
+            multiple
+            persistent-hint
+            rounded
+            small-chips
+            solo-inverted
+          ></v-autocomplete>
+        </v-card-text>
         <v-spacer></v-spacer
         ><v-card-actions>
-          <v-btn> Submit </v-btn>
+          <v-btn> Update </v-btn>
 
           <v-btn class="white--text" color="teal" @click="close()">
             Close
@@ -49,10 +82,15 @@ export default {
   data() {
     return {
       openInfo: false,
+      pullPicked: [],
+      fcPicked: [],
     };
   },
 
-  async created() {},
+  async created() {
+    await this.$store.dispatch("getStationRegionLists");
+    await this.setPicked();
+  },
 
   methods: {
     close() {
@@ -62,10 +100,31 @@ export default {
     open() {
       this.openInfo = true;
     },
+
+    setPicked() {
+      this.fcPicked = this.fcPickedComp;
+      this.pullPicked = this.pullPickedComp;
+    },
   },
 
   computed: {
-    ...mapState([]),
+    ...mapState([
+      "stationListPullRegions",
+      "stationListFCRegions",
+      "stationListRegionList",
+    ]),
+
+    regionList() {
+      return this.stationListRegionList;
+    },
+
+    fcPickedComp() {
+      return this.stationListFCRegions;
+    },
+
+    pullPickedComp() {
+      return this.stationListRegionList;
+    },
 
     showStationSettingPannel() {
       if (this.openInfo) {

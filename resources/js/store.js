@@ -83,10 +83,26 @@ export default new Vuex.Store({
         newSoloOperationsRegionList: [],
 
         stationList: [],
+
+        stationListPullRegions: [],
+        stationListFCRegions: [],
+        stationListRegionList: [],
     },
     mutations: {
         SET_STATION_LIST(state, stations) {
             state.stationList = stations;
+        },
+
+        SET_STATION_REGION_LIST(state, stations) {
+            state.stationList = stations;
+        },
+
+        SET_STATION_LIST_REGIONS(state, pull) {
+            state.stationListPullRegions = pull;
+        },
+
+        SET_STATION_LIST_FC(state, fcs) {
+            state.stationListFCRegions = fcs;
         },
 
         UPDATE_STATION_LIST(state, data) {
@@ -712,6 +728,21 @@ export default new Vuex.Store({
                 },
             });
             commit("SET_STATION_LIST", res.data.stations);
+        },
+
+        async getStationRegionLists({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/getregionlists",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_STATION_LIST_REGIONS", res.data.pull);
+            commit("SET_STATION_LIST_FC", res.data.fcs);
+            commit("SET_STATION_REGION_LIST", res.data.regionlist);
         },
 
         async getSoloOperationList({ commit }) {
@@ -2316,6 +2347,10 @@ export default new Vuex.Store({
             } else {
                 return "NO";
             }
+        },
+
+        getRegionFCPickedList: (stat) => {
+            let pull = state.stationListFCRegions;
         },
     },
 });
