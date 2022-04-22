@@ -4,7 +4,9 @@
       <v-row no-gutters justify="center">
         <v-col cols="12">
           <v-card elevation="10" rounded="xl">
-            <v-card-title class="primary">Stations</v-card-title>
+            <v-card-title class="primary"
+              >Stations <StationPannel></StationPannel
+            ></v-card-title>
             <v-card-text>
               <v-data-table
                 :headers="headers"

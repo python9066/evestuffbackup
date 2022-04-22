@@ -54,7 +54,7 @@ class HotRegionController extends Controller
     {
         $user = Auth::user();
         if ($user->can('edit_hot_region')) {
-            HotRegion::where('id', $request->id)->update($request->all());
+            HotRegion::where('id', $id)->update($request->all());
         }
     }
 
