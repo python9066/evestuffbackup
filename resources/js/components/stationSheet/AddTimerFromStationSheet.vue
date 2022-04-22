@@ -21,11 +21,11 @@
         elevation="10"
         rounded="xl"
       >
-        <v-card-title class="justify-center primary pt-0 pb-0">
-          <p>Enter Details for {{ item.name }}</p></v-card-title
+        <v-card-title class="justify-center primary">
+          Enter Details for {{ item.name }}</v-card-title
         >
 
-        <v-card-text>
+        <v-card-text class="pt-2">
           <v-fade-transition>
             <div>
               <div>

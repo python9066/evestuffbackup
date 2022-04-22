@@ -60724,18 +60724,13 @@ var render = function () {
               },
             },
             [
-              _c(
-                "v-card-title",
-                { staticClass: "justify-center primary pt-0 pb-0" },
-                [
-                  _c("p", [
-                    _vm._v("Enter Details for " + _vm._s(_vm.item.name)),
-                  ]),
-                ]
-              ),
+              _c("v-card-title", { staticClass: "justify-center primary" }, [
+                _vm._v("\n        Enter Details for " + _vm._s(_vm.item.name)),
+              ]),
               _vm._v(" "),
               _c(
                 "v-card-text",
+                { staticClass: "pt-2" },
                 [
                   _c("v-fade-transition", [
                     _c("div", [
