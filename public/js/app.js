@@ -33737,6 +33737,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -71683,6 +71690,24 @@ var render = function () {
                               },
                               scopedSlots: _vm._u(
                                 [
+                                  {
+                                    key: "item.webway",
+                                    fn: function (ref) {
+                                      var item = ref.item
+                                      return [
+                                        item.system.webway[0]
+                                          ? _c("SoloCampaginWebWay", {
+                                              attrs: {
+                                                jumps:
+                                                  item.system.webway[0].jumps,
+                                                web: item.system.webway[0]
+                                                  .webway,
+                                              },
+                                            })
+                                          : _vm._e(),
+                                      ]
+                                    },
+                                  },
                                   {
                                     key: "item.corp.ticker",
                                     fn: function (ref) {

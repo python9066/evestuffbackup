@@ -27,6 +27,13 @@
                 <template slot="no-data">
                   All Hostile Stations our reffed!!!!!!
                 </template>
+                <template v-slot:[`item.webway`]="{ item }">
+                  <SoloCampaginWebWay
+                    v-if="item.system.webway[0]"
+                    :jumps="item.system.webway[0].jumps"
+                    :web="item.system.webway[0].webway"
+                  ></SoloCampaginWebWay>
+                </template>
                 <template
                   v-slot:[`item.corp.ticker`]="{ item }"
                   class="d-inline-flex align-center"
