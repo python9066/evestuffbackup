@@ -1,6 +1,8 @@
 <template>
   <div>
-    <v-icon color="blue" @click="open()"> fa-solid fa-gear </v-icon>
+    <v-icon color="red" @click="open()">
+      <font-awesome-icon icon="fa-solid fa-gear" />
+    </v-icon>
     <v-dialog
       max-width="700px"
       z-index="0"
@@ -40,9 +42,7 @@
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
-  props: {
-    sig: Object,
-  },
+  props: {},
   data() {
     return {
       openInfo: false,

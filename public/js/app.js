@@ -21754,12 +21754,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    sig: Object
-  },
+  props: {},
   data: function data() {
     return {
       openInfo: false
@@ -61128,14 +61128,15 @@ var render = function () {
       _c(
         "v-icon",
         {
-          attrs: { color: "blue" },
+          attrs: { color: "red" },
           on: {
             click: function ($event) {
               return _vm.open()
             },
           },
         },
-        [_vm._v(" fa-solid fa-gear ")]
+        [_c("font-awesome-icon", { attrs: { icon: "fa-solid fa-gear" } })],
+        1
       ),
       _vm._v(" "),
       _c(
