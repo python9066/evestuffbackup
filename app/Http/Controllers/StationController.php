@@ -67,7 +67,7 @@ class StationController extends Controller
         $coreData = [];
         $stations = Station::all();
         foreach ($stations as $station) {
-            if ($station->r_cored == "Yes") {
+            if ($station->r_cored == 1) {
                 $core = "Yes";
             } else {
                 $core = "No";
