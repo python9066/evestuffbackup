@@ -217,6 +217,7 @@ class Notifications
 
             if ($stationdata['str_has_no_fitting'] != null) {
                 echo $stationdata['str_structure_id_md5'];
+                echo $stationdata['str_fitting'];
                 if ($stationdata['str_has_no_fitting'] != 'No Fitting') {
                     StationItemJoin::where('station_id', $id)->delete();
                     $items = Utils::jsonDecode($stationdata['str_fitting'], true);
