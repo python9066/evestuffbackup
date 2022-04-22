@@ -92,7 +92,7 @@ class Notifications
             $core = 0;
             $standing = 0;
             $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
-            $alliance = Alliance::where('id', $corp->alliance_id)->first();
+            $alliance = Alliance::where('id', $corp->alliance_id)->first() ?? null;
             if ($alliance) {
                 if ($corp->standing > $alliance->standing) {
                     $standing = $corp->standing;
