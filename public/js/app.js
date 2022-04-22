@@ -21767,8 +21767,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     lastUpdated: function lastUpdated() {
-      if (this.r_updated_at != null) {
-        var ago = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.r.r_updated_at).fromNow();
+      if (this.station.r_updated_at != null) {
+        var ago = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.station.r_updated_at).fromNow();
         return ago;
       } else {
         return "Never";
