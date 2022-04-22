@@ -380,7 +380,7 @@ export default {
 
     lastUpdated() {
       if (this.station.r_updated_at != null) {
-        var ago = moment(this.station.r_updated_at).fromNow();
+        var ago = moment.utc(this.station.r_updated_at).fromNow();
         return ago;
       } else {
         return "Never";
