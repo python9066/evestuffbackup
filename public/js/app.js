@@ -21781,12 +21781,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.station.fit;
     },
     monthOld: function monthOld() {
-      var a = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.station.r_updated_at);
+      var a = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(this.station.r_updated_at);
+      var b = a.clone();
       console.log(a);
-      var b = a.add(1, "month");
+      b = b.add(1, "months");
       console.log(b);
 
-      if (moment__WEBPACK_IMPORTED_MODULE_2___default()() >= b) {
+      if (moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc() >= b) {
         return true;
       } else {
         return false;
