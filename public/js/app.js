@@ -61161,7 +61161,7 @@ var render = function () {
                       ),
                       on
                     ),
-                    [_c("v-icon", [_vm._v(" fa-gears fa-xs ")])],
+                    [_c("v-icon", [_vm._v(" fas fa-cogs fa-xs ")])],
                     1
                   ),
                 ]
