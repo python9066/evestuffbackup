@@ -21495,6 +21495,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -60719,10 +60721,12 @@ var render = function () {
                 "max-width": "700px",
                 "min-height": "200px",
                 "max-height": "1000px",
+                elevation: "10",
+                rounded: "xl",
               },
             },
             [
-              _c("v-card-title", { staticClass: "justify-center" }, [
+              _c("v-card-title", { staticClass: "justify-center primary" }, [
                 _c("p", [_vm._v("Enter Details for " + _vm._s(_vm.item.name))]),
               ]),
               _vm._v(" "),

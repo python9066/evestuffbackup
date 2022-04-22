@@ -19,8 +19,10 @@
         min-height="200px"
         max-height="1000px"
         class="d-flex flex-column"
+        elevation="10"
+        rounded="xl"
       >
-        <v-card-title class="justify-center">
+        <v-card-title class="justify-center primary">
           <p>Enter Details for {{ item.name }}</p></v-card-title
         >
 
