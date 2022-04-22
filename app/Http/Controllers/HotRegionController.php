@@ -55,10 +55,16 @@ class HotRegionController extends Controller
 
     public function updateSetting(Request $request)
     {
+        $data = [];
         $fc = $request->fc;
         $pull = $request->pull;
+        foreach ($pull as $pull) {
+            array_push($data, $pull['value']);
+        }
 
-        dd($fc, $pull);
+        $ids = array_merge($fc, $data);
+
+        dd($ids);
     }
 
     /**
