@@ -72626,14 +72626,8 @@ var render = function () {
                                               "div",
                                               [
                                                 _c("AddTimerFromStationSheet", {
+                                                  staticClass: "mr-2",
                                                   attrs: { item: item },
-                                                  on: {
-                                                    timeropen: function (
-                                                      $event
-                                                    ) {
-                                                      return _vm.close()
-                                                    },
-                                                  },
                                                 }),
                                               ],
                                               1
