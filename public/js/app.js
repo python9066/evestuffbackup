@@ -21822,6 +21822,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     close: function close() {
       this.openInfo = false;
     },
+    submit: function submit() {
+      var request = {
+        pull: this.pullPicked,
+        fc: this.fcPicked
+      };
+      axios({
+        method: "post",
+        //you can set what request you want to be
+        url: "api/updatesetting",
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      });
+    },
     open: function open() {
       this.openInfo = true;
       this.setPicked();
@@ -61309,7 +61326,17 @@ var render = function () {
               _c(
                 "v-card-actions",
                 [
-                  _c("v-btn", [_vm._v(" Update ")]),
+                  _c(
+                    "v-btn",
+                    {
+                      on: {
+                        click: function ($event) {
+                          return _vm.sumbit()
+                        },
+                      },
+                    },
+                    [_vm._v(" Update ")]
+                  ),
                   _vm._v(" "),
                   _c(
                     "v-btn",

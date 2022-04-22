@@ -52,6 +52,15 @@ class HotRegionController extends Controller
         //
     }
 
+
+    public function updateSetting($request)
+    {
+        $fc = $request->fc;
+        $pull = $request->pullPicked;
+
+        dd($fc, $pull);
+    }
+
     /**
      * Update the specified resource in storage.
      *

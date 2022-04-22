@@ -281,4 +281,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/stationsheet', 'StationController@stationSheet');
     Route::get('/getregionlists', 'HotRegionController@index');
     Route::post('/hotregionedit/{id}', 'HotRegionController@update');
+    Route::post('/updatesetting', 'HotRegionController@updateSetting');
 });

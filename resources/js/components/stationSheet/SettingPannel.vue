@@ -58,7 +58,7 @@
         </v-card-text>
         <v-spacer></v-spacer
         ><v-card-actions>
-          <v-btn> Update </v-btn>
+          <v-btn @click="sumbit()"> Update </v-btn>
 
           <v-btn class="white--text" color="teal" @click="close()">
             Close
@@ -94,6 +94,24 @@ export default {
   methods: {
     close() {
       this.openInfo = false;
+    },
+
+    submit() {
+      var request = {
+        pull: this.pullPicked,
+        fc: this.fcPicked,
+      };
+
+      axios({
+        method: "post", //you can set what request you want to be
+        url: "api/updatesetting",
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
     },
 
     open() {
