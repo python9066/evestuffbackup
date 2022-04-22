@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Events\StationSheetUpdate;
+use App\Jobs\updateWebwayJob;
 use App\Models\HotRegion;
 use utils\Notificationhelper\Notifications;
 use App\Models\Region;
+use App\Models\Station;
+use App\Models\WebWay;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -85,6 +88,22 @@ class HotRegionController extends Controller
                 Notifications::reconRegionPullIdCheck($station);
             }
         }
+
+        WebWay::where('id', '>', 0)->update(['active' => 0]);
+        $stations = Station::get();
+        $stationSystems = $stations->pluck('system_id');
+
+        $systemIDs = $stationSystems;
+        $systemIDs = $systemIDs->unique();
+        $systemIDs = $systemIDs->values();
+        WebWay::whereIn('system_id', $systemIDs)->update(['active' => 1]);
+        WebWay::where('active', 0)->delete();
+
+        foreach ($systemIDs as $system_id) {
+            updateWebwayJob::dispatch($system_id)->onQueue('webway');
+        }
+
+
 
         $flag = collect([
             'flag' => 2

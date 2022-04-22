@@ -216,9 +216,9 @@ class Notifications
 
 
             if ($stationdata['str_has_no_fitting'] != null) {
-                echo '<pre>';
-                print_r($stationdata);
-                echo '</pre>';
+                // echo '<pre>';
+                // print_r($stationdata);
+                // echo '</pre>';
                 if ($stationdata['str_has_no_fitting'] != 'No Fitting') {
                     StationItemJoin::where('station_id', $id)->delete();
                     if ($stationdata['str_fitting']) {
