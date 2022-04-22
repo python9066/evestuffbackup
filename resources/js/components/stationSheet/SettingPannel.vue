@@ -1,12 +1,17 @@
 <template>
   <div>
-    <v-icon color="red" @click="open()"> fa-solid fa-gear </v-icon>
     <v-dialog
       max-width="700px"
       z-index="0"
+      persistent
       v-model="showStationSettingPannel"
       @click:outside="close()"
     >
+      <template v-slot:activator="{ on, attrs }">
+        <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
+          fa-solid fa-gears
+        </v-icon>
+      </template>
       <v-card
         tile
         max-width="700px"

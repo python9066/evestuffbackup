@@ -21754,6 +21754,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -61123,27 +61128,45 @@ var render = function () {
     "div",
     [
       _c(
-        "v-icon",
-        {
-          attrs: { color: "red" },
-          on: {
-            click: function ($event) {
-              return _vm.open()
-            },
-          },
-        },
-        [_vm._v(" fa-solid fa-gear ")]
-      ),
-      _vm._v(" "),
-      _c(
         "v-dialog",
         {
-          attrs: { "max-width": "700px", "z-index": "0" },
+          attrs: { "max-width": "700px", "z-index": "0", persistent: "" },
           on: {
             "click:outside": function ($event) {
               return _vm.close()
             },
           },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function (ref) {
+                var on = ref.on
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-icon",
+                    _vm._g(
+                      _vm._b(
+                        {
+                          attrs: { color: "blue" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.open()
+                            },
+                          },
+                        },
+                        "v-icon",
+                        attrs,
+                        false
+                      ),
+                      on
+                    ),
+                    [_vm._v("\n        fa-solid fa-gears\n      ")]
+                  ),
+                ]
+              },
+            },
+          ]),
           model: {
             value: _vm.showStationSettingPannel,
             callback: function ($$v) {
@@ -61153,6 +61176,7 @@ var render = function () {
           },
         },
         [
+          _vm._v(" "),
           _c(
             "v-card",
             {
@@ -72609,15 +72633,16 @@ var render = function () {
                 "v-col",
                 { attrs: { cols: "12" } },
                 [
-                  _c("SettingPannel"),
-                  _vm._v(" "),
                   _c(
                     "v-card",
                     { attrs: { elevation: "10", rounded: "xl" } },
                     [
-                      _c("v-card-title", { staticClass: "primary" }, [
-                        _vm._v("Stations "),
-                      ]),
+                      _c(
+                        "v-card-title",
+                        { staticClass: "primary" },
+                        [_vm._v("Stations "), _c("SettingPannel")],
+                        1
+                      ),
                       _vm._v(" "),
                       _c(
                         "v-card-text",
