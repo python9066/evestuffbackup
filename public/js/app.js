@@ -86200,7 +86200,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     getStationSheetLogsByID: function getStationSheetLogsByID(state) {
       return function (stationid) {
         var pull = state.stationList.filter(function (s) {
-          return id == stationid;
+          return s.id == stationid;
         });
         var count = pull.length;
 
