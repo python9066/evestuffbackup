@@ -21792,6 +21792,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -21837,7 +21839,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.stationListFCRegions;
     },
     pullPickedComp: function pullPickedComp() {
-      return this.stationListRegionList;
+      return this.stationListPullRegions;
     },
     showStationSettingPannel: function showStationSettingPannel() {
       if (this.openInfo) {
@@ -61263,6 +61265,7 @@ var render = function () {
                       rounded: "",
                       "small-chips": "",
                       "solo-inverted": "",
+                      "return-object": "",
                     },
                     model: {
                       value: _vm.pullPicked,
@@ -61288,6 +61291,7 @@ var render = function () {
                       rounded: "",
                       "small-chips": "",
                       "solo-inverted": "",
+                      stationListPullRegions: "",
                     },
                     model: {
                       value: _vm.fcPicked,

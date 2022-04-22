@@ -36,6 +36,7 @@
             rounded
             small-chips
             solo-inverted
+            return-object
           ></v-autocomplete>
           <v-autocomplete
             v-model="fcPicked"
@@ -52,6 +53,7 @@
             rounded
             small-chips
             solo-inverted
+            stationListPullRegions
           ></v-autocomplete>
         </v-card-text>
         <v-spacer></v-spacer
@@ -121,7 +123,7 @@ export default {
     },
 
     pullPickedComp() {
-      return this.stationListRegionList;
+      return this.stationListPullRegions;
     },
 
     showStationSettingPannel() {
