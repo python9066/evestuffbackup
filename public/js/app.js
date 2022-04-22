@@ -34116,7 +34116,9 @@ function sleep(ms) {
 
             case 2:
               Echo["private"]("stationsheet").listen("StationSheetUpdate", function (e) {
-                if (e.flag.message != null) {}
+                if (e.flag.message != null) {
+                  _this.$store.dispatch("updateStationList", e.flag.message);
+                }
 
                 if (e.flag.flag == 2) {}
 
@@ -34383,7 +34385,9 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stationList"])), {}, {
     filter_end: function filter_end() {
-      return this.stationList;
+      return this.stationList.filter(function (f) {
+        return f.show_on_coord == 1;
+      });
     },
     height: function height() {
       var num = this.windowSize.y - 370;
@@ -85959,7 +85963,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     commit("UPDATE_WELP_STATION", data);
   }), _defineProperty(_actions, "updateStationList", function updateStationList(_ref58, data) {
     var commit = _ref58.commit;
-    console.log("yes");
     commit("UPDATE_STATION_LIST", data);
   }), _defineProperty(_actions, "updateRcStationCurrent", function updateRcStationCurrent(_ref59, data) {
     var commit = _ref59.commit;

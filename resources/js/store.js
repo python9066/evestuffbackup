@@ -1397,7 +1397,6 @@ export default new Vuex.Store({
         },
 
         updateStationList({ commit }, data) {
-            console.log("yes");
             commit("UPDATE_STATION_LIST", data);
         },
 

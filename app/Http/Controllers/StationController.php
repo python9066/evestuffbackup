@@ -712,6 +712,11 @@ class StationController extends Controller
         broadcast(new RcMoveUpdate($flag));
         broadcast(new ChillSheetUpdate($flag));
         broadcast(new WelpSheetUpdate($flag));
+
+        $message = Helper::StationRecordsSolo(6, $id);
+        $flag = collect([
+            'message' => $message
+        ]);
         broadcast(new StationSheetUpdate($flag));
 
 

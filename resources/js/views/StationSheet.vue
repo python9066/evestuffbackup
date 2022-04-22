@@ -159,6 +159,7 @@ export default {
     await this.$store.dispatch("getStationList").then((this.loadingt = false));
     Echo.private("stationsheet").listen("StationSheetUpdate", (e) => {
       if (e.flag.message != null) {
+        this.$store.dispatch("updateStationList", e.flag.message);
       }
 
       if (e.flag.flag == 2) {
@@ -489,7 +490,7 @@ export default {
     ...mapState(["stationList"]),
 
     filter_end() {
-      return this.stationList;
+      return this.stationList.filter((f) => f.show_on_coord == 1);
     },
 
     height() {
