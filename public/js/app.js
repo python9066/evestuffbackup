@@ -61144,24 +61144,25 @@ var render = function () {
                 var attrs = ref.attrs
                 return [
                   _c(
-                    "v-icon",
+                    "v-btn",
                     _vm._g(
                       _vm._b(
                         {
-                          attrs: { color: "blue" },
+                          attrs: { color: "blue", icon: "" },
                           on: {
                             click: function ($event) {
                               return _vm.open()
                             },
                           },
                         },
-                        "v-icon",
+                        "v-btn",
                         attrs,
                         false
                       ),
                       on
                     ),
-                    [_vm._v("\n        fa-solid fa-gears\n      ")]
+                    [_c("v-icon", [_vm._v(" fa-solid fa-gears ")])],
+                    1
                   ),
                 ]
               },
