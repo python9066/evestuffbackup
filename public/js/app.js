@@ -21788,15 +21788,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])([])), {}, {
     showStationSettingPannel: function showStationSettingPannel() {
-      if (!this.openInfo) {
-        if (!this.sig.wormhole_info_mass) {
-          return this.$store.getters.getCheckOpenInfoPannel(this.sig.id);
-        } else {
-          return false;
-        }
-      } else {
-        return true;
-      }
+      return true;
     }
   }),
   beforeDestroy: function beforeDestroy() {}

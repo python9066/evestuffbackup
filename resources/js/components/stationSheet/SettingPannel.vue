@@ -65,15 +65,7 @@ export default {
     ...mapState([]),
 
     showStationSettingPannel() {
-      if (!this.openInfo) {
-        if (!this.sig.wormhole_info_mass) {
-          return this.$store.getters.getCheckOpenInfoPannel(this.sig.id);
-        } else {
-          return false;
-        }
-      } else {
-        return true;
-      }
+      return true;
     },
   },
 
