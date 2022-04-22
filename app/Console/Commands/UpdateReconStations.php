@@ -49,11 +49,11 @@ class UpdateReconStations extends Command
 
         Userlogging::create(['url' => "demon region", 'user_id' => 9999999999]);
         $ids = [
-            10000060,
-            10000050,
-            10000063,
-            10000058,
-            10000051,
+            // 10000060,
+            // 10000050,
+            // 10000063,
+            // 10000058,
+            // 10000051,
             10000056
         ];
 
