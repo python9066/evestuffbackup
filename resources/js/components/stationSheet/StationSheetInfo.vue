@@ -415,10 +415,7 @@ export default {
     },
 
     showLinkButton() {
-      if (
-        this.$can("request_recon_task") &&
-        this.this.station.r_research != null
-      ) {
+      if (this.$can("request_recon_task") && this.station.r_research != null) {
         return true;
       } else {
         return false;
