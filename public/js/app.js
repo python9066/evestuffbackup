@@ -83848,8 +83848,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       state.stationList = stations;
     },
     UPDATE_STATION_LIST: function UPDATE_STATION_LIST(state, data) {
-      console.log("Yes this triggered also");
-      console.log(data);
       var item = state.stationList.find(function (item) {
         return item.id === data.id;
       });

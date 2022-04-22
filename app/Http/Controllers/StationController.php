@@ -695,7 +695,7 @@ class StationController extends Controller
         if ($RCmessage) {
             $RCmessageSend = [
                 'id' => $RCmessage->id,
-                'show_on_rc' => 0
+                'show_on_coord' => 0
             ];
             $flag = collect([
                 'message' => $RCmessageSend,
