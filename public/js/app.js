@@ -15223,8 +15223,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               }
 
               if (_this.type == 4) {
+                console.log("channel 4");
                 Echo["private"]("stationsheet").listen("StationSheetMessageUpdate", function (e) {
+                  console.log(e);
+
                   if (e.flag.id == _this.station.id) {
+                    console.log("£true");
+                    console.log(e.flag.message);
+
                     _this.$store.dispatch("updateStationList", e.flag.message);
 
                     if (_this.showStationNotes == false) {
