@@ -23,7 +23,7 @@ class PopulateHotRegionTable extends Migration
         Artisan::call('permission:create-role "Coord" web "Recon Leader"');
         $regionIDs = Region::whereNotNull('id')->pluck('id');
         foreach ($regionIDs as $id) {
-            HotRegion::create(['region' => $id]);
+            HotRegion::create(['region_id' => $id]);
         }
     }
 
