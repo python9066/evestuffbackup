@@ -398,11 +398,11 @@ export default {
 
     monthOld() {
       var a = moment.utc(this.station.r_updated_at);
-      var b = a.clone();
-      console.log(a);
-      b = b.add(1, "months");
-      console.log(b);
-      if (moment.utc() >= b) {
+      var b = moment.utc();
+      var diff = b.diff(a, "months");
+      console.log(diff);
+
+      if (diff > 0) {
         return true;
       } else {
         return false;

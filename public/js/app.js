@@ -21782,12 +21782,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     monthOld: function monthOld() {
       var a = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(this.station.r_updated_at);
-      var b = a.clone();
-      console.log(a);
-      b = b.add(1, "months");
-      console.log(b);
+      var b = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
+      var diff = b.diff(a, "months");
+      console.log(diff);
 
-      if (moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc() >= b) {
+      if (diff > 0) {
         return true;
       } else {
         return false;
