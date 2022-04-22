@@ -21788,7 +21788,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])([])), {}, {
     showStationSettingPannel: function showStationSettingPannel() {
-      return true;
+      if (this.openInfo) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }),
   beforeDestroy: function beforeDestroy() {}

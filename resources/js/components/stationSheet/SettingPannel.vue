@@ -65,7 +65,11 @@ export default {
     ...mapState([]),
 
     showStationSettingPannel() {
-      return true;
+      if (this.openInfo) {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
 
