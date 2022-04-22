@@ -109,13 +109,6 @@
           </v-btn></v-card-actions
         >
       </v-card>
-
-      <!-- <showStationTimer
-                :nodeNotestation="nodeNotestation"
-                v-if="$can('super')"
-                @closeMessage="showStationTimer = false"
-            >
-            </showStationTimer> -->
     </v-dialog>
   </div>
 </template>
@@ -149,9 +142,9 @@ export default {
 
   methods: {
     close() {
-      this.showAddTimer = false;
       this.refType = null;
       this.refTime = "";
+      this.showAddTimer = false;
     },
 
     async submit() {
@@ -219,13 +212,7 @@ export default {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-      }).then(
-        (this.showStationTimer = false),
-        (this.refType = null),
-        (this.refTime = ""),
-        (this.showStationTimer = false),
-        this.$emit("timeropen")
-      );
+      }).then(this.close());
     },
 
     async open() {},

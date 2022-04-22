@@ -87,6 +87,7 @@
                   <div class="d-inline-flex">
                     <div>
                       <AddTimerFromStationSheet
+                        @timeropen="close()"
                         :item="item"
                       ></AddTimerFromStationSheet>
                     </div>
