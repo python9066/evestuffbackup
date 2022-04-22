@@ -21735,7 +21735,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     },
     lastUpdated: function lastUpdated() {
-      if (this["this"].r_updated_at != null) {
+      if (this.r_updated_at != null) {
         var ago = moment__WEBPACK_IMPORTED_MODULE_1___default()(this.r.r_updated_at).fromNow();
         return ago;
       } else {

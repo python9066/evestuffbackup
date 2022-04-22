@@ -368,7 +368,7 @@ export default {
     },
 
     lastUpdated() {
-      if (this.this.r_updated_at != null) {
+      if (this.r_updated_at != null) {
         var ago = moment(this.r.r_updated_at).fromNow();
         return ago;
       } else {
