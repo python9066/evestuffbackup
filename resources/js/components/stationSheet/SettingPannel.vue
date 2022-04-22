@@ -5,7 +5,6 @@
       z-index="0"
       persistent
       v-model="showStationSettingPannel"
-      @click:outside="close()"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="gray" v-bind="attrs" v-on="on" @click="open()" icon>
@@ -58,7 +57,7 @@
         </v-card-text>
         <v-spacer></v-spacer
         ><v-card-actions>
-          <v-btn @click="sumbit()"> Update </v-btn>
+          <v-btn @click="submit()" color="primery"> Update </v-btn>
 
           <v-btn class="white--text" color="teal" @click="close()">
             Close
