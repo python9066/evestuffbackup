@@ -84269,9 +84269,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       state.stationList = stations;
     },
     SET_STATION_REGION_LIST: function SET_STATION_REGION_LIST(state, stations) {
-      state.stationList = stations;
+      state.stationListRegionList = regionlist;
     },
-    SET_STATION_LIST_REGIONS: function SET_STATION_LIST_REGIONS(state, pull) {
+    SET_STATION_PULL_REGIONS: function SET_STATION_PULL_REGIONS(state, pull) {
       state.stationListPullRegions = pull;
     },
     SET_STATION_LIST_FC: function SET_STATION_LIST_FC(state, fcs) {
@@ -84899,7 +84899,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context2.sent;
-                commit("SET_STATION_LIST_REGIONS", res.data.pull);
+                commit("SET_STATION_PULL_REGIONS", res.data.pull);
                 commit("SET_STATION_LIST_FC", res.data.fcs);
                 commit("SET_STATION_REGION_LIST", res.data.regionlist);
 

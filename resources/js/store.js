@@ -94,10 +94,10 @@ export default new Vuex.Store({
         },
 
         SET_STATION_REGION_LIST(state, stations) {
-            state.stationList = stations;
+            state.stationListRegionList = regionlist;
         },
 
-        SET_STATION_LIST_REGIONS(state, pull) {
+        SET_STATION_PULL_REGIONS(state, pull) {
             state.stationListPullRegions = pull;
         },
 
@@ -740,7 +740,7 @@ export default new Vuex.Store({
                     "Content-Type": "application/json",
                 },
             });
-            commit("SET_STATION_LIST_REGIONS", res.data.pull);
+            commit("SET_STATION_PULL_REGIONS", res.data.pull);
             commit("SET_STATION_LIST_FC", res.data.fcs);
             commit("SET_STATION_REGION_LIST", res.data.regionlist);
         },
