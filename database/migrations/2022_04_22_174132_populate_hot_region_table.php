@@ -16,9 +16,7 @@ class PopulateHotRegionTable extends Migration
      */
     public function up()
     {
-        Schema::table('hot_regions', function (Blueprint $table) {
-            $table->renameColumn('system_id', 'region_id');
-        });
+
         Artisan::call('permission:create-role "Coord" web "edit_hot_region"');
         Artisan::call('permission:create-role "Coord" web "Recon Leader"');
         $regionIDs = Region::whereNotNull('id')->pluck('id');
