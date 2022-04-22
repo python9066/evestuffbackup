@@ -60391,7 +60391,8 @@ var render = function () {
                               var atooltip = ref.attrs
                               return [
                                 _vm.$can("request_recon_task") &&
-                                !_vm.taskFlag()
+                                !_vm.taskFlag() &&
+                                _vm.monthOld
                                   ? _c(
                                       "v-chip",
                                       _vm._g(

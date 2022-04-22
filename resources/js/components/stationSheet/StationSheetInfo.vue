@@ -56,7 +56,7 @@
                   small
                   outlined
                   color="teal"
-                  v-if="$can('request_recon_task') && !taskFlag()"
+                  v-if="$can('request_recon_task') && !taskFlag() && monthOld"
                   @click="taskRequest()"
                 >
                   Request Update
