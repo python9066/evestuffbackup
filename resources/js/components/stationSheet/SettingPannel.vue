@@ -39,7 +39,7 @@
           ></v-autocomplete>
           <v-autocomplete
             v-model="fcPicked"
-            :items="regionList"
+            :items="pullPicked"
             label="Select"
             chips
             clearable
@@ -102,8 +102,8 @@ export default {
     },
 
     setPicked() {
-      this.fcPicked = this.fcPickedComp;
       this.pullPicked = this.pullPickedComp;
+      this.fcPicked = this.fcPickedComp;
     },
   },
 

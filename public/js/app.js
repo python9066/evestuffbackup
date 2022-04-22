@@ -21834,8 +21834,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.openInfo = true;
     },
     setPicked: function setPicked() {
-      this.fcPicked = this.fcPickedComp;
       this.pullPicked = this.pullPickedComp;
+      this.fcPicked = this.fcPickedComp;
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["stationListPullRegions", "stationListFCRegions", "stationListRegionList"])), {}, {
@@ -61280,7 +61280,7 @@ var render = function () {
                   _vm._v(" "),
                   _c("v-autocomplete", {
                     attrs: {
-                      items: _vm.regionList,
+                      items: _vm.pullPicked,
                       label: "Select",
                       chips: "",
                       clearable: "",
