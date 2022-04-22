@@ -30,6 +30,7 @@ use GuzzleHttp\Utils;
 use Symfony\Component\Yaml\Yaml;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 class Notifications
@@ -92,7 +93,39 @@ class Notifications
             $core = 0;
             $standing = 0;
             $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
-            $alliance = Alliance::where('id', $corp->alliance_id)->first() ?? null;
+            if (!$corp) {
+                $corpPull = 0;
+                do {
+                    $response = Http::withHeaders([
+                        'Content-Type' => 'application/json',
+                        "Accept" => "application/json",
+                        'User-Agent' => 'evestuff.online python9066@gmail.com'
+                    ])->get("https://esi.evetech.net/latest/corporations/" . $stationdata['str_owner_corporation_id'] . "/?datasource=tranquility");
+                    if ($response->successful()) {
+                        $corpPull = 3;
+                        $corpInfo = $response->collect();
+                        Corp::updateOrCreate(
+                            ['id' => $stationdata['str_owner_corporation_id']],
+                            [
+                                'alliance_id' => null,
+                                'name' => $corpInfo->get('name'),
+                                'ticker' => $corpInfo->get('ticker'),
+                                'color' => 0,
+                                'standing' => 0,
+                                'active' => 1,
+                                'url' => "https://images.evetech.net/Corporation/" . $stationdata['str_owner_corporation_id'] . "_64.png",
+
+                            ]
+                        );
+                    } else {
+                        $headers = $response->headers();
+                        $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
+                        sleep($sleep);
+                        $corpPull++;
+                    }
+                } while ($corpPull != 3);
+            }
+            $alliance = Alliance::where('id', $corp->alliance_id)->first();
             if ($alliance) {
                 if ($corp->standing > $alliance->standing) {
                     $standing = $corp->standing;
