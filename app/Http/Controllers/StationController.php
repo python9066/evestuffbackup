@@ -37,6 +37,7 @@ use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use utils\Helper\Helper;
+use Illuminate\Support\Str;
 
 class StationController extends Controller
 {
@@ -272,7 +273,9 @@ class StationController extends Controller
                     foreach ($items as $item) {
                         StationItems::where('id', $item['type_id'])->get()->count();
                         if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-                            StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                            $uuid = Str::uuid();
+
+                            StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name'], 'uuid' => $uuid]);
                         }
                         StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
                     };
@@ -434,7 +437,8 @@ class StationController extends Controller
                     foreach ($items as $item) {
                         StationItems::where('id', $item['type_id'])->get()->count();
                         if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-                            StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                            $uuid = Str::uuid();
+                            StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name'], 'uuid' => $uuid]);
                         }
                         StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
                     };

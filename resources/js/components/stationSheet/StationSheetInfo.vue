@@ -239,7 +239,7 @@
             <v-card-title> Fitting </v-card-title>
             <v-card-text>
               <v-data-table
-                :item-key="randomID(item)"
+                item-key="uuid"
                 :headers="headers"
                 :items="items"
                 disable-sort
@@ -376,14 +376,6 @@ export default {
       } else {
         return false;
       }
-    },
-
-    randomID(item) {
-      var num = Math.ceil(Math.random() * random());
-      var numtext = num.toString();
-      var idtext = this.item.id.toString();
-      var text = numtext + idtext;
-      return text;
     },
 
     lastUpdated() {

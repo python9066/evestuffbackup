@@ -30,6 +30,7 @@ use GuzzleHttp\Utils;
 use Symfony\Component\Yaml\Yaml;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Notifications
 {
@@ -187,7 +188,8 @@ class Notifications
                     foreach ($items as $item) {
                         StationItems::where('id', $item['type_id'])->get()->count();
                         if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-                            StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                            $uuid = Str::uuid();
+                            StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name'], 'uuid' => $uuid]);
                         }
                         StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $id]);
                     };
@@ -371,7 +373,8 @@ class Notifications
                         foreach ($items as $item) {
                             StationItems::where('id', $item['type_id'])->get()->count();
                             if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-                                StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                                $uuid = Str::uuid();
+                                StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name'], 'uuid' => $uuid]);
                             }
                             StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $station->id]);
                         };
@@ -443,7 +446,8 @@ class Notifications
                     foreach ($items as $item) {
                         StationItems::where('id', $item['type_id'])->get()->count();
                         if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-                            StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                            $uuid = Str::uuid();
+                            StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name'], 'uuid' => $uuid]);
                         }
                         StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
                     };
@@ -612,7 +616,8 @@ class Notifications
                             foreach ($items as $item) {
                                 StationItems::where('id', $item['type_id'])->get()->count();
                                 if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-                                    StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                                    $uuid = Str::uuid();
+                                    StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name'], 'uuid' => $uuid]);
                                 }
                                 StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $text['structureID']]);
                             };
@@ -741,7 +746,8 @@ class Notifications
                             foreach ($items as $item) {
                                 StationItems::where('id', $item['type_id'])->get()->count();
                                 if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-                                    StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                                    $uuid = Str::uuid();
+                                    StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name'], 'uuid' => $uuid]);
                                 }
                                 StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $text['structureID']]);
                             };
@@ -867,7 +873,8 @@ class Notifications
                             foreach ($items as $item) {
                                 StationItems::where('id', $item['type_id'])->get()->count();
                                 if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-                                    StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                                    $uuid = Str::uuid();
+                                    StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name'], 'uuid' => $uuid]);
                                 }
                                 StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $text['structureID']]);
                             };

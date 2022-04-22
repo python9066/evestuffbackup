@@ -20,6 +20,7 @@ use App\Models\Item;
 use App\Models\Logging;
 use App\Models\System;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class RCSheet extends Controller
 {
@@ -283,7 +284,8 @@ class RCSheet extends Controller
                         foreach ($items as $item) {
                             StationItems::where('id', $item['type_id'])->get()->count();
                             if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-                                StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                                $uuid = Str::uuid();
+                                StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name'], 'uuid' => $uuid]);
                             }
                             StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
                         };
