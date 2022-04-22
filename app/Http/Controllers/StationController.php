@@ -691,16 +691,24 @@ class StationController extends Controller
             broadcast(new WelpSheetUpdate($flag));
         }
 
+        $RCmessage = Helper::StationRecordsSolo(6, $id);
+        if ($RCmessage) {
+            $RCmessageSend = [
+                'id' => $RCmessage->id,
+                'show_on_rc' => 0
+            ];
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
+            broadcast(new StationSheetUpdate($flag));
+        }
+
 
 
         $oldStation = Station::where('id', $id)->first();
         $oldStatus = StationStatus::where('id', $oldStation->station_status_id)->value('name');
         $oldStatus = str_replace('Upcoming - ', "", $oldStatus);
-        $message = Helper::StationRecordsSolo(6, $id);
-        $flag = collect([
-            'message' => $message
-        ]);
-        broadcast(new StationSheetUpdate($flag));
+
 
         Station::find($id)->update($request->all());
         $newStation = Station::where('id', $id)->first();
@@ -716,6 +724,12 @@ class StationController extends Controller
         broadcast(new RcMoveUpdate($flag));
         broadcast(new ChillSheetUpdate($flag));
         broadcast(new WelpSheetUpdate($flag));
+
+        $message = Helper::StationRecordsSolo(6, $id);
+        $flag = collect([
+            'message' => $message
+        ]);
+        broadcast(new StationSheetUpdate($flag));
 
 
 
