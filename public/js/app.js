@@ -81594,6 +81594,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       state.stationList = stations;
     },
     UPDATE_STATION_LIST: function UPDATE_STATION_LIST(state, data) {
+      console.log("Yes this triggered also");
+      console.log(data);
       var item = state.stationList.find(function (item) {
         return item.id === data.id;
       });
@@ -83707,6 +83709,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     commit("UPDATE_WELP_STATION", data);
   }), _defineProperty(_actions, "updateStationList", function updateStationList(_ref58, data) {
     var commit = _ref58.commit;
+    console.log("yes");
     commit("UPDATE_STATION_LIST", data);
   }), _defineProperty(_actions, "updateRcStationCurrent", function updateRcStationCurrent(_ref59, data) {
     var commit = _ref59.commit;

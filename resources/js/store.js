@@ -90,6 +90,8 @@ export default new Vuex.Store({
         },
 
         UPDATE_STATION_LIST(state, data) {
+            console.log("Yes this triggered also");
+            console.log(data);
             const item = state.stationList.find((item) => item.id === data.id);
             const count = state.stationList.filter(
                 (item) => item.id === data.id
@@ -1395,6 +1397,7 @@ export default new Vuex.Store({
         },
 
         updateStationList({ commit }, data) {
+            console.log("yes");
             commit("UPDATE_STATION_LIST", data);
         },
 
