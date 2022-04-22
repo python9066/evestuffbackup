@@ -43,15 +43,16 @@
               <v-list-item v-if="$can('finish_move_timer')" link to="/addtimer">
                 To Check
               </v-list-item>
-              <v-list-item v-if="$can('view_coord_sheet')" link to="/stations">
-                Station List
-              </v-list-item>
+
               <v-list-item
                 v-else-if="$can('view_move_timers')"
                 link
                 to="/addtimer"
               >
                 ADD TIMER
+              </v-list-item>
+              <v-list-item v-if="$can('view_coord_sheet')" link to="/stations">
+                Station List
               </v-list-item>
             </v-list>
           </v-menu>
