@@ -68,9 +68,9 @@ class HotRegionController extends Controller
 
 
 
-        HotRegion::whereNotNull('id')->update(['update' => 0, 'show_fc' => 0]);
+        HotRegion::whereNotNull('id')->update(['update' => 0, 'show_fcs' => 0]);
         HotRegion::whereIn('region_id', $ids)->update(['update' => 1]);
-        HotRegion::whereIn('region_id', $fc)->update(['show_fc' => 1]);
+        HotRegion::whereIn('region_id', $fc)->update(['show_fcs' => 1]);
 
         $flag = collect([
             'flag' => 1
