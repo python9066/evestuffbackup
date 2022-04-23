@@ -312,7 +312,7 @@ class Helper
     {
         $regionIDs = HotRegion::where('show_fcs', 1)->pluck('region_id');
         $systemIDs = System::whereIn('region_id', $regionIDs)->pluck('id');
-        dd($regionIDs);
+
         $user = FacadesAuth::user();
         $type = $type;
         $station_query = Station::query();
