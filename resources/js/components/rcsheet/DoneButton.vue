@@ -74,13 +74,13 @@ export default {
   },
 
   async created() {
+    this.setdone();
     EventBus.$on("timerDone", (data) => {
       console.log("party");
       if (this.item == data) {
         this.done = false;
       }
     });
-    this.setdone();
   },
   data() {
     return {
@@ -97,7 +97,7 @@ export default {
     },
 
     setdone() {
-      var outTime = moment.utc(this.station.out_time);
+      var outTime = moment.utc(this.item.out_time);
       var now = moment.utc();
       if (outTime.isAfter(now)) {
         this.done = true;

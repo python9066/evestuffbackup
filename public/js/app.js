@@ -13097,6 +13097,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              _this.setdone();
+
               _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$on("timerDone", function (data) {
                 console.log("party");
 
@@ -13104,8 +13106,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.done = false;
                 }
               });
-
-              _this.setdone();
 
             case 2:
             case "end":
@@ -13127,7 +13127,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       console.log("YAY");
     },
     setdone: function setdone() {
-      var outTime = moment__WEBPACK_IMPORTED_MODULE_3___default.a.utc(this.station.out_time);
+      var outTime = moment__WEBPACK_IMPORTED_MODULE_3___default.a.utc(this.item.out_time);
       var now = moment__WEBPACK_IMPORTED_MODULE_3___default.a.utc();
 
       if (outTime.isAfter(now)) {
