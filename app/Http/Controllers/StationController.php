@@ -643,6 +643,12 @@ class StationController extends Controller
         broadcast(new StationNotificationUpdate($flag));
         broadcast(new StationUpdateCoord($flag));
 
+        $message = Helper::StationRecordsSolo(6, $id);
+        $flag = collect([
+            'message' => $message
+        ]);
+        broadcast(new StationSheetUpdate($flag));
+
         $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName;
         $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
         Helper::stationlogs($logNew->id);
@@ -668,6 +674,28 @@ class StationController extends Controller
         }
 
         broadcast(new RcSheetUpdate($flag));
+
+
+        $RCmessage = Helper::StationRecordsSolo(6, $id);
+        if ($RCmessage) {
+
+            $flag = collect([
+                'message' => $RCmessage,
+            ]);
+        } else {
+            $stationID = intval($id);
+            $RCmessageSend = collect([
+
+                'id' => $stationID,
+                'show_on_rc' => 0
+            ]);
+
+            $flag = collect([
+                'message' => $RCmessageSend,
+            ]);
+        }
+
+        broadcast(new StationSheetUpdate($flag));
 
         $RCmessage = ChillStationRecords::where('id', $id)->first();
         if ($RCmessage) {
