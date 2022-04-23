@@ -651,7 +651,7 @@ export default {
 
     ...mapGetters(["getActiveRcStations"]),
     filteredItems() {
-      // return this.rcstations.filter(f => f.show_on_rc == 1);
+      //   return this.rcstations.filter(f => f.show_on_rc == 1);
       return this.getActiveRcStations;
     },
 

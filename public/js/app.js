@@ -33079,7 +33079,7 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapState"])(["rcstations", "rcsheetRegion", "rcsheetItem", "rcsheetStatus"])), Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapGetters"])(["getActiveRcStations"])), {}, {
     filteredItems: function filteredItems() {
-      // return this.rcstations.filter(f => f.show_on_rc == 1);
+      //   return this.rcstations.filter(f => f.show_on_rc == 1);
       return this.getActiveRcStations;
     },
     filter_fc: function filter_fc() {
