@@ -166,7 +166,11 @@
                 <v-btn :href="link(item)" target="_blank" icon color="green">
                   <v-icon> fas fa-map fa-xs</v-icon>
                 </v-btn>
-                <CampaginWebWay :item="item"></CampaginWebWay>
+                <SoloCampaginWebWay
+                  v-if="item.system.webway[0]"
+                  :jumps="item.system.webway[0].jumps"
+                  :web="item.system.webway[0].webway"
+                ></SoloCampaginWebWay>
                 <button
                   v-clipboard="item.system.system_name"
                   v-clipboard:success="Systemcopied"

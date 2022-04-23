@@ -355,9 +355,9 @@ class Helper
             } else {
                 $station_query->where('show_on_coord', 1)->whereIn('system_id', $systemIDs);
             }
+            $station_query->where('standing', '=<', 0);
         }
 
-        $station_query->where('standing', '=<', 0);
 
 
         $station_query->with([
