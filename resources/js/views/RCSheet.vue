@@ -259,19 +259,19 @@
             </template>
 
             <template v-slot:[`item.status.name`]="{ item }">
-              <!-- <DoneButton
+              <DoneButton
                 v-if="showDoneButton(item)"
                 :item="item"
                 :type="1"
-              ></DoneButton> -->
+              ></DoneButton>
 
-              <!-- <v-chip v-else pill small :color="pillColor(item)">
-                {{ buttontext(item) }}
-              </v-chip> -->
-
-              <v-chip pill small :color="pillColor(item)">
+              <v-chip v-else pill small :color="pillColor(item)">
                 {{ buttontext(item) }}
               </v-chip>
+
+              <!-- <v-chip pill small :color="pillColor(item)">
+                {{ buttontext(item) }}
+              </v-chip> -->
             </template>
 
             <template v-slot:[`item.gsol.user.name`]="{ item }">
@@ -827,7 +827,7 @@ export default {
           { text: "Region", value: "system.region.region_name" },
           { text: "Name", value: "name" },
           { text: "Type", value: "item.item_name" },
-          { text: "Status", value: "status.status_name", align: "center" },
+          { text: "Status", value: "item.status.name", align: "center" },
           { text: "Ticker", value: "corp.alliance.ticker" },
           { text: "Expires", value: "end_time" },
           { text: "CountDown", value: "count", sortable: false },
@@ -843,7 +843,7 @@ export default {
           { text: "Region", value: "system.region.region_name" },
           { text: "Name", value: "name" },
           { text: "Type", value: "item.item_name" },
-          { text: "Status", value: "status.status_name", align: "center" },
+          { text: "Status", value: "item.status.name", align: "center" },
           { text: "Ticker", value: "corp.alliance.ticker" },
           { text: "Expires", value: "end_time" },
           { text: "CountDown", value: "count", sortable: false },
