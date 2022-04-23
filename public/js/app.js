@@ -12716,8 +12716,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 showOnRC = 1;
 
                 if (_this.type = 1) {
-                  moveToRc = 1;
-                  showOnRC = 0;
+                  if (_this.$can("add_timer")) {
+                    moveToRc = 0;
+                    showOnRC = 1;
+                  } else {
+                    moveToRc = 1;
+                    showOnRC = 0;
+                  }
                 }
 
                 request = {
@@ -52025,11 +52030,11 @@ var render = function () {
                               label: "System Name",
                             },
                             model: {
-                              value: _vm.item.system_name,
+                              value: _vm.item.system.name,
                               callback: function ($$v) {
-                                _vm.$set(_vm.item, "system_name", $$v)
+                                _vm.$set(_vm.item.system, "name", $$v)
                               },
-                              expression: "item.system_name",
+                              expression: "item.system.name",
                             },
                           }),
                           _vm._v(" "),
@@ -52037,11 +52042,11 @@ var render = function () {
                             staticClass: "ml-2",
                             attrs: { outlined: "", label: "Corp Ticker" },
                             model: {
-                              value: _vm.item.corp_ticker,
+                              value: _vm.item.corp.ticker,
                               callback: function ($$v) {
-                                _vm.$set(_vm.item, "corp_ticker", $$v)
+                                _vm.$set(_vm.item.corp, "ticker", $$v)
                               },
-                              expression: "item.corp_ticker",
+                              expression: "item.corp.ticker",
                             },
                           }),
                         ],
@@ -52075,7 +52080,7 @@ var render = function () {
                       _c(
                         "div",
                         [
-                          _c("h5", [_c("strong", [_vm._v("Image Link 2")])]),
+                          _c("h5", [_c("strong", [_vm._v("Image Link")])]),
                           _vm._v(" "),
                           _c("v-img", { attrs: { src: "../image/info.png" } }),
                           _vm._v(" "),

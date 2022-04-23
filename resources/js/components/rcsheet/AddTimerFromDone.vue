@@ -44,7 +44,7 @@
               </div>
               <div class="d-inline-flex justify-content-around">
                 <v-text-field
-                  v-model="item.system_name"
+                  v-model="item.system.name"
                   readonly
                   outlined
                   label="System Name"
@@ -52,7 +52,7 @@
                 <v-text-field
                   class="ml-2"
                   outlined
-                  v-model="item.corp_ticker"
+                  v-model="item.corp.ticker"
                   label="Corp Ticker"
                 ></v-text-field>
               </div>
@@ -67,7 +67,7 @@
                 ></v-text-field>
               </div>
               <div>
-                <h5><strong>Image Link 2</strong></h5>
+                <h5><strong>Image Link</strong></h5>
                 <v-img src="../image/info.png"> </v-img>
                 <v-text-field
                   v-model="imageLink"
@@ -190,8 +190,13 @@ export default {
       var moveToRc = 0;
       var showOnRC = 1;
       if ((this.type = 1)) {
-        moveToRc = 1;
-        showOnRC = 0;
+        if (this.$can("add_timer")) {
+          moveToRc = 0;
+          showOnRC = 1;
+        } else {
+          moveToRc = 1;
+          showOnRC = 0;
+        }
       }
       var request = {
         station_status_id: 13,
