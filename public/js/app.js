@@ -32926,11 +32926,9 @@ function sleep(ms) {
         }, _callee5);
       }))();
     },
-    campaignStart: function campaignStart(item) {//   var data = {
-      //     id: item.id,
-      //     out: 1,
-      //   };
-      //   this.$store.dispatch("updateRcStation", data);
+    campaignStart: function campaignStart(item) {
+      this.showCountDown(item);
+      this.showDoneButton(item);
     },
     countDownStartTime: function countDownStartTime(item) {
       return moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.out_time).unix();

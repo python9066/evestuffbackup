@@ -654,11 +654,8 @@ export default {
     },
 
     campaignStart(item) {
-      //   var data = {
-      //     id: item.id,
-      //     out: 1,
-      //   };
-      //   this.$store.dispatch("updateRcStation", data);
+      this.showCountDown(item);
+      this.showDoneButton(item);
     },
     countDownStartTime(item) {
       return moment.utc(item.out_time).unix();
