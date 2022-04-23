@@ -182,48 +182,7 @@
               </div>
             </template>
             <template v-slot:[`item.count`]="{ item }">
-              <CountDowntimer
-                v-if="showCountDown(item)"
-                :start-time="countDownStartTime(item)"
-                :end-text="'OUT'"
-                :interval="1000"
-                :day-text="'Days'"
-                @campaignStart="campaignStart(item)"
-              >
-                <template slot="countdown" slot-scope="scope">
-                  <span v-if="scope.props.days == 0"
-                    >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                      scope.props.seconds
-                    }}</span
-                  >
-                  <span v-if="scope.props.days != 0"
-                    >{{ numberDay(scope.props.days) }}
-                    {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                      scope.props.seconds
-                    }}</span
-                  >
-                </template>
-              </CountDowntimer>
-              <VueCountUptimer
-                v-else
-                :start-time="countDownStartTime(item)"
-                :end-text="'Window Closed'"
-                :interval="1000"
-                ><template slot="countup" slot-scope="scope"
-                  ><span
-                    v-if="scope.props.minutes < 5 && scope.props.hours == 0"
-                    class="green--text pl-2 pr-2"
-                    >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                      scope.props.seconds
-                    }}</span
-                  >
-                  <span v-else class="red--text pl-2 pr-2"
-                    >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                      scope.props.seconds
-                    }}</span
-                  >
-                </template>
-              </VueCountUptimer>
+              <RcTimer :station="item"></RcTimer>
             </template>
             <template v-slot:[`item.fc.user.name`]="{ item }">
               <RcFCButton
@@ -259,15 +218,7 @@
             </template>
 
             <template v-slot:[`item.status.name`]="{ item }">
-              <DoneButton
-                v-if="showDoneButton(item)"
-                :item="item"
-                :type="1"
-              ></DoneButton>
-
-              <v-chip v-else pill small :color="pillColor(item)">
-                {{ buttontext(item) }}
-              </v-chip>
+              <DoneButton :item="item" :type="1"></DoneButton>
 
               <!-- <v-chip pill small :color="pillColor(item)">
                 {{ buttontext(item) }}
@@ -448,27 +399,6 @@ export default {
           "Content-Type": "application/json",
         },
       });
-    },
-    showCountDown(item) {
-      var outTime = moment.utc(item.out_time);
-      var now = moment.utc();
-      if (outTime.isAfter(now)) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-
-    showDoneButton(item) {
-      var outTime = moment.utc(item.out_time);
-      var now = moment.utc();
-
-      console.log(outTime + " + " + now + " + " + outTime.isAfter(now));
-      if (outTime.isAfter(now)) {
-        return false;
-      } else {
-        return true;
-      }
     },
 
     buttontext(item) {
@@ -653,13 +583,6 @@ export default {
       await this.$store.dispatch("getRcStationRecords");
     },
 
-    campaignStart(item) {
-      this.showCountDown(item);
-      this.showDoneButton(item);
-    },
-    countDownStartTime(item) {
-      return moment.utc(item.out_time).unix();
-    },
     pillColor(item) {
       if (item.station_status_id == 13) {
         return "red darken-4";

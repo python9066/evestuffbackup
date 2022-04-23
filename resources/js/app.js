@@ -400,6 +400,7 @@ Vue.component(
     "SettingPannel",
     require("./components/stationSheet/SettingPannel.vue").default
 );
+Vue.component("RcTimer", require("./components/rcsheet/RcTimer.vue").default);
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(Clipboard);

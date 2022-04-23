@@ -6,6 +6,7 @@
       persistent
       v-model="showDoneOverlay"
       @click:outside="close()"
+      v-if="showDoneButton(item)"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -54,6 +55,10 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
+    <v-chip v-else pill small :color="pillColor(item)">
+      {{ buttontext(item) }}
+    </v-chip>
   </div>
 </template>
 
@@ -236,7 +241,19 @@ export default {
     },
   },
 
-  computed: {},
+  computed: {
+    showDoneButton() {
+      var outTime = moment.utc(this.item.out_time);
+      var now = moment.utc();
+
+      console.log(outTime + " + " + now + " + " + outTime.isAfter(now));
+      if (outTime.isAfter(now)) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+  },
 
   beforeDestroy() {},
 };
