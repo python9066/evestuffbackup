@@ -132,7 +132,7 @@ class StationController extends Controller
             // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
             'x-gsf-user' => env('RECON_USER', ($variables && array_key_exists('RECON_USER', $variables)) ? $variables['RECON_USER'] : 'DANCE2'),
             // 'token' =>  env('RECON_TOKEN', "DANCE")
-            'token' => env('RECON_TOKEN', ($variables && array_key_exists('RECON_TOKEN', $variables)) ? $variables['RECON_TOKEN'] : 'DANCE2'),
+            'token' => env('RECON_TASK_TOKEN', ($variables && array_key_exists('RECON_TASK_TOKEN', $variables)) ? $variables['RECON_TASK_TOKEN'] : 'DANCE2'),
 
         ];
 
