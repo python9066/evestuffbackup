@@ -10,7 +10,6 @@
     <div>
       <v-btn
         v-show="!showRcFCButton()"
-        :key="'gunnerbutton' + station.gunner_id"
         class=""
         color="blue"
         x-small

@@ -13719,7 +13719,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -53036,7 +53035,6 @@ var render = function () {
                   expression: "!showRcFCButton()",
                 },
               ],
-              key: "gunnerbutton" + _vm.station.gunner_id,
               attrs: { color: "blue", "x-small": "", outlined: "" },
               on: {
                 click: function ($event) {
