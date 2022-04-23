@@ -6,7 +6,7 @@
       :end-text="'OUT'"
       :interval="1000"
       :day-text="'Days'"
-      @campaignStart="setdone()"
+      @campaignStart="updateDone()"
     >
       <template slot="countdown" slot-scope="scope">
         <span v-if="scope.props.days == 0"
@@ -66,10 +66,14 @@ export default {
       var outTime = moment.utc(this.station.out_time);
       var now = moment.utc();
       if (outTime.isAfter(now)) {
-        this.done = false;
-      } else {
         this.done = true;
+      } else {
+        this.done = false;
       }
+    },
+
+    updateDone() {
+      this.done = false;
     },
   },
 

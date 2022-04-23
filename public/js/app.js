@@ -15401,10 +15401,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var now = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
 
       if (outTime.isAfter(now)) {
-        this.done = false;
-      } else {
         this.done = true;
+      } else {
+        this.done = false;
       }
+    },
+    updateDone: function updateDone() {
+      this.done = false;
     }
   },
   computed: {
@@ -54497,7 +54500,7 @@ var render = function () {
             },
             on: {
               campaignStart: function ($event) {
-                return _vm.setdone()
+                return _vm.updateDone()
               },
             },
             scopedSlots: _vm._u(
