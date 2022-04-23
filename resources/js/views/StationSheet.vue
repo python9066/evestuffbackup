@@ -7,7 +7,7 @@
             <v-card-title class="primary"
               ><v-row no-gutters justify="space-between"
                 ><v-col cols="5"> Stations </v-col
-                ><v-col cols="1" class="d-flex-justify-content-end"
+                ><v-col cols="1" class="d-flex justify-content-end"
                   ><SettingPannel></SettingPannel></v-col></v-row
             ></v-card-title>
             <v-card-text>
@@ -84,9 +84,10 @@
                 </template>
 
                 <template v-slot:[`item.status.name`]="{ item }">
-                  <v-chip pill :color="pillColor(item)">
+                  <StatusButton></StatusButton>
+                  <!-- <v-chip pill :color="pillColor(item)">
                     {{ buttontext(item) }}
-                  </v-chip>
+                  </v-chip> -->
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
                   <div class="d-inline-flex">

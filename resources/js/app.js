@@ -393,6 +393,11 @@ Vue.component(
 );
 
 Vue.component(
+    "StatusButton",
+    require("./components/stationSheet/StatusButton.vue").default
+);
+
+Vue.component(
     "AddTimerFromStationSheet",
     require("./components/stationSheet/AddTimerFromStationSheet.vue").default
 );
