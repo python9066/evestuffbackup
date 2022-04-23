@@ -32564,6 +32564,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -32734,102 +32740,105 @@ function sleep(ms) {
       });
     },
     showCountDown: function showCountDown(item) {
-      if (item.out == 0) {
-        return true;
-      }
+      var outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.out_time);
+      var now = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
 
-      return false;
+      if (outTime.isAfter(now)) {
+        return ture;
+      } else {
+        return false;
+      }
     },
     buttontext: function buttontext(item) {
-      var ret = item.status_name.replace("Upcoming - ", "");
+      var ret = item.status.name.replace("Upcoming - ", "");
       return ret;
     },
     link: function link(item) {
-      if (item.region_name == "Black Rise") {
-        return "https://evemaps.dotlan.net/map/Black_Rise/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Black Rise") {
+        return "https://evemaps.dotlan.net/map/Black_Rise/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "The Bleak Lands") {
-        return "https://evemaps.dotlan.net/map/The_Bleak_Lands/" + item.system_name + "#const";
+      if (item.system.region.region_name == "The Bleak Lands") {
+        return "https://evemaps.dotlan.net/map/The_Bleak_Lands/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "The Citadel") {
-        return "https://evemaps.dotlan.net/map/The_Citadel/" + item.system_name + "#const";
+      if (item.system.region.region_name == "The Citadel") {
+        return "https://evemaps.dotlan.net/map/The_Citadel/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "Cloud Ring") {
-        return "https://evemaps.dotlan.net/map/Cloud_Ring/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Cloud Ring") {
+        return "https://evemaps.dotlan.net/map/Cloud_Ring/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "Cobalt Edge") {
-        return "https://evemaps.dotlan.net/map/Cobalt_Edge/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Cobalt Edge") {
+        return "https://evemaps.dotlan.net/map/Cobalt_Edge/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "Etherium Reach") {
-        return "https://evemaps.dotlan.net/map/Etherium_Reach/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Etherium Reach") {
+        return "https://evemaps.dotlan.net/map/Etherium_Reach/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "The Forge") {
-        return "https://evemaps.dotlan.net/map/The_Forge/" + item.system_name + "#const";
+      if (item.system.region.region_name == "The Forge") {
+        return "https://evemaps.dotlan.net/map/The_Forge/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "The Kalevala Expanse") {
-        return "https://evemaps.dotlan.net/map/The_Kalevala_Expanse/" + item.system_name + "#const";
+      if (item.system.region.region_name == "The Kalevala Expanse") {
+        return "https://evemaps.dotlan.net/map/The_Kalevala_Expanse/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "Molden Heath") {
-        return "https://evemaps.dotlan.net/map/Molden_Heath/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Molden Heath") {
+        return "https://evemaps.dotlan.net/map/Molden_Heath/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "Outer Passage") {
-        return "https://evemaps.dotlan.net/map/Outer_Passage/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Outer Passage") {
+        return "https://evemaps.dotlan.net/map/Outer_Passage/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "Outer Ring") {
-        return "https://evemaps.dotlan.net/map/Outer_Ring/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Outer Ring") {
+        return "https://evemaps.dotlan.net/map/Outer_Ring/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "Paragon Soul") {
-        return "https://evemaps.dotlan.net/map/Paragon_Soul/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Paragon Soul") {
+        return "https://evemaps.dotlan.net/map/Paragon_Soul/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "Period Basis") {
-        return "https://evemaps.dotlan.net/map/Period_Basis/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Period Basis") {
+        return "https://evemaps.dotlan.net/map/Period_Basis/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "Perrigen Falls") {
-        return "https://evemaps.dotlan.net/map/Perrigen_Falls/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Perrigen Falls") {
+        return "https://evemaps.dotlan.net/map/Perrigen_Falls/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "Pure Blind") {
-        return "https://evemaps.dotlan.net/map/Pure_Blind/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Pure Blind") {
+        return "https://evemaps.dotlan.net/map/Pure_Blind/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "Scalding Pass") {
-        return "https://evemaps.dotlan.net/map/Scalding_Pass/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Scalding Pass") {
+        return "https://evemaps.dotlan.net/map/Scalding_Pass/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "Sinq Laison") {
-        return "https://evemaps.dotlan.net/map/Sinq_Laison/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Sinq Laison") {
+        return "https://evemaps.dotlan.net/map/Sinq_Laison/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "The Spire") {
-        return "https://evemaps.dotlan.net/map/The_Spire/" + item.system_name + "#const";
+      if (item.system.region.region_name == "The Spire") {
+        return "https://evemaps.dotlan.net/map/The_Spire/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "Vale of the Silent") {
-        return "https://evemaps.dotlan.net/map/Vale_of_the_Silent/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Vale of the Silent") {
+        return "https://evemaps.dotlan.net/map/Vale_of_the_Silent/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "Verge Vendor") {
-        return "https://evemaps.dotlan.net/map/Verge_Vendor/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Verge Vendor") {
+        return "https://evemaps.dotlan.net/map/Verge_Vendor/" + item.system.system_name + "#const";
       }
 
-      if (item.region_name == "Wicked Creek") {
-        return "https://evemaps.dotlan.net/map/Wicked_Creek/" + item.system_name + "#const";
+      if (item.system.region.region_name == "Wicked Creek") {
+        return "https://evemaps.dotlan.net/map/Wicked_Creek/" + item.system.system_name + "#const";
       }
 
-      return "https://evemaps.dotlan.net/map/" + item.region_name + "/" + item.system_name + "#const";
+      return "https://evemaps.dotlan.net/map/" + item.system.region.region_name + "/" + item.system.system_name + "#const";
     },
     onResize: function onResize() {
       this.windowSize = {
@@ -32918,7 +32927,7 @@ function sleep(ms) {
       this.$store.dispatch("updateRcStation", data);
     },
     countDownStartTime: function countDownStartTime(item) {
-      return moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.end_time).unix();
+      return moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.out_time).unix();
     },
     pillColor: function pillColor(item) {
       if (item.status_id == 13) {
@@ -71284,7 +71293,7 @@ var render = function () {
                               var item = ref.item
                               return [
                                 _c("div", { staticClass: "d-inline-flex" }, [
-                                  item.url
+                                  item.corp.alliance.url
                                     ? _c(
                                         "span",
                                         [
@@ -71293,7 +71302,9 @@ var render = function () {
                                             { attrs: { size: "35" } },
                                             [
                                               _c("img", {
-                                                attrs: { src: item.url },
+                                                attrs: {
+                                                  src: item.corp.alliance.url,
+                                                },
                                               }),
                                             ]
                                           ),
@@ -71303,8 +71314,9 @@ var render = function () {
                                             { class: _vm.tickerColor() },
                                             [
                                               _vm._v(
-                                                _vm._s(item.alliance_ticker) +
-                                                  "\n                "
+                                                _vm._s(
+                                                  item.corp.alliance.ticker
+                                                ) + "\n                "
                                               ),
                                             ]
                                           ),
@@ -71312,18 +71324,7 @@ var render = function () {
                                         1
                                       )
                                     : _vm.$can("super")
-                                    ? _c(
-                                        "span",
-                                        [
-                                          _c("AddCorpTicker", {
-                                            attrs: { station: item },
-                                          }),
-                                          _c("AddAllianceTicker", {
-                                            attrs: { station: item },
-                                          }),
-                                        ],
-                                        1
-                                      )
+                                    ? _c("span")
                                     : _vm._e(),
                                 ]),
                               ]
@@ -71339,18 +71340,18 @@ var render = function () {
                             },
                           },
                           {
-                            key: "item.end_time",
+                            key: "item.out_time",
                             fn: function (ref) {
                               var item = ref.item
                               return [
                                 _c("span", [
-                                  _vm._v(" " + _vm._s(item.end_time)),
+                                  _vm._v(" " + _vm._s(item.out_time)),
                                 ]),
                               ]
                             },
                           },
                           {
-                            key: "item.system_name",
+                            key: "item.system.system_name",
                             fn: function (ref) {
                               var item = ref.item
                               return [
@@ -71387,8 +71388,9 @@ var render = function () {
                                           {
                                             name: "clipboard",
                                             rawName: "v-clipboard",
-                                            value: item.system_name,
-                                            expression: "item.system_name",
+                                            value: item.system.system_name,
+                                            expression:
+                                              "item.system.system_name",
                                           },
                                           {
                                             name: "clipboard",
@@ -71405,7 +71407,8 @@ var render = function () {
                                           { staticClass: "pt-2 caption" },
                                           [
                                             _vm._v(
-                                              " " + _vm._s(item.system_name)
+                                              "\n                  " +
+                                                _vm._s(item.system.system_name)
                                             ),
                                           ]
                                         ),
@@ -71566,7 +71569,7 @@ var render = function () {
                             },
                           },
                           {
-                            key: "item.fc_name",
+                            key: "item.fc.name",
                             fn: function (ref) {
                               var item = ref.item
                               return [
@@ -71577,7 +71580,7 @@ var render = function () {
                                     })
                                   : _vm._e(),
                                 _vm._v(" "),
-                                !item.fc_user_id &&
+                                !item.rc_fc_id &&
                                 _vm.$can("view_killsheet_add_fc")
                                   ? _c("RcFCAdd", {
                                       staticClass: "pl-6",
@@ -71588,29 +71591,37 @@ var render = function () {
                             },
                           },
                           {
-                            key: "item.region_name",
+                            key: "item.system.region.region_name",
                             fn: function (ref) {
                               var item = ref.item
                               return [
                                 _c("span", [
-                                  _vm._v(" " + _vm._s(item.region_name)),
+                                  _vm._v(
+                                    " " + _vm._s(item.system.region.region_name)
+                                  ),
                                 ]),
                               ]
                             },
                           },
                           {
-                            key: "item.constellation_name",
+                            key: "item.system.constellation.constellation_name",
                             fn: function (ref) {
                               var item = ref.item
                               return [
                                 _c("span", [
-                                  _vm._v(" " + _vm._s(item.constellation_name)),
+                                  _vm._v(
+                                    " " +
+                                      _vm._s(
+                                        item.system.constellation
+                                          .constellation_name
+                                      )
+                                  ),
                                 ]),
                               ]
                             },
                           },
                           {
-                            key: "item.recon_name",
+                            key: "item.recon.name",
                             fn: function (ref) {
                               var item = ref.item
                               return [
@@ -71622,7 +71633,7 @@ var render = function () {
                             },
                           },
                           {
-                            key: "item.status_name",
+                            key: "item.status.name",
                             fn: function (ref) {
                               var item = ref.item
                               return [
@@ -71651,7 +71662,7 @@ var render = function () {
                             },
                           },
                           {
-                            key: "item.gsol_name",
+                            key: "item.gsol.name",
                             fn: function (ref) {
                               var item = ref.item
                               return [

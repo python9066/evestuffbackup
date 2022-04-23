@@ -124,30 +124,42 @@
             class="elevation-5"
           >
             <template
-              v-slot:[`item.alliance_ticker`]="{ item }"
+              v-slot:[`item.corp.alliance.ticker`]="{ item }"
               class="d-inline-flex align-center"
             >
               <div class="d-inline-flex">
-                <span v-if="item.url">
-                  <v-avatar size="35"><img :src="item.url" /></v-avatar>
-                  <span :class="tickerColor()"
-                    >{{ item.alliance_ticker }}
+                <span v-if="item.corp.alliance.url">
+                  <v-avatar size="35"
+                    ><img :src="item.corp.alliance.url"
+                  /></v-avatar>
+                  <span :class="tickerColor(item.corp.alliance.standing)"
+                    >{{ item.corp.alliance.ticker }}
                   </span>
                 </span>
-                <span v-else-if="$can('super')">
-                  <AddCorpTicker :station="item"></AddCorpTicker
-                  ><AddAllianceTicker :station="item"></AddAllianceTicker>
+              </div>
+            </template>
+
+            <template
+              v-slot:[`item.corp.ticker`]="{ item }"
+              class="d-inline-flex align-center"
+            >
+              <div class="d-inline-flex">
+                <span v-if="item.corp.url">
+                  <v-avatar size="35"><img :src="item.corp.url" /></v-avatar>
+                  <span :class="tickerColor(item.corp.standing)"
+                    >{{ item.corp.ticker }}
+                  </span>
                 </span>
               </div>
             </template>
             <template v-slot:[`item.name`]="{ item }">
               <span> {{ item.name }}</span>
             </template>
-            <template v-slot:[`item.end_time`]="{ item }">
-              <span> {{ item.end_time }}</span>
+            <template v-slot:[`item.out_time`]="{ item }">
+              <span> {{ item.out_time }}</span>
             </template>
             <template
-              v-slot:[`item.system_name`]="{ item }"
+              v-slot:[`item.system.system_name`]="{ item }"
               class="d-inline-flex align-center"
             >
               <div class="d-inline-flex">
@@ -156,10 +168,12 @@
                 </v-btn>
                 <CampaginWebWay :item="item"></CampaginWebWay>
                 <button
-                  v-clipboard="item.system_name"
+                  v-clipboard="item.system.system_name"
                   v-clipboard:success="Systemcopied"
                 >
-                  <span class="pt-2 caption"> {{ item.system_name }}</span>
+                  <span class="pt-2 caption">
+                    {{ item.system.system_name }}</span
+                  >
                 </button>
               </div>
             </template>
@@ -207,7 +221,7 @@
                 </template>
               </VueCountUptimer>
             </template>
-            <template v-slot:[`item.fc_name`]="{ item }">
+            <template v-slot:[`item.fc.name`]="{ item }">
               <RcFCButton
                 class="mr-2"
                 :station="item"
@@ -215,22 +229,24 @@
                 :type="1"
               ></RcFCButton>
               <RcFCAdd
-                v-if="!item.fc_user_id && $can('view_killsheet_add_fc')"
+                v-if="!item.rc_fc_id && $can('view_killsheet_add_fc')"
                 :station="item"
                 class="pl-6"
                 :type="1"
               ></RcFCAdd>
             </template>
 
-            <template v-slot:[`item.region_name`]="{ item }">
-              <span> {{ item.region_name }}</span>
+            <template v-slot:[`item.system.region.region_name`]="{ item }">
+              <span> {{ item.system.region.region_name }}</span>
             </template>
 
-            <template v-slot:[`item.constellation_name`]="{ item }">
-              <span> {{ item.constellation_name }}</span>
+            <template
+              v-slot:[`item.system.constellation.constellation_name`]="{ item }"
+            >
+              <span> {{ item.system.constellation.constellation_name }}</span>
             </template>
 
-            <template v-slot:[`item.recon_name`]="{ item }">
+            <template v-slot:[`item.recon.name`]="{ item }">
               <RcReconButton
                 class="mr-2"
                 :station="item"
@@ -238,7 +254,7 @@
               ></RcReconButton>
             </template>
 
-            <template v-slot:[`item.status_name`]="{ item }">
+            <template v-slot:[`item.status.name`]="{ item }">
               <DoneButton
                 v-if="item.out == 1"
                 :item="item"
@@ -250,7 +266,7 @@
               </v-chip>
             </template>
 
-            <template v-slot:[`item.gsol_name`]="{ item }">
+            <template v-slot:[`item.gsol.name`]="{ item }">
               <RcGsolButton
                 class="mr-2"
                 :station="item"
@@ -426,171 +442,173 @@ export default {
       });
     },
     showCountDown(item) {
-      if (item.out == 0) {
+      var outTime = moment.utc(item.out_time);
+      var now = moment.utc();
+      if (outTime.isAfter(now)) {
         return true;
+      } else {
+        return false;
       }
-
-      return false;
     },
 
     buttontext(item) {
-      var ret = item.status_name.replace("Upcoming - ", "");
+      var ret = item.status.name.replace("Upcoming - ", "");
       return ret;
     },
 
     link(item) {
-      if (item.region_name == "Black Rise") {
+      if (item.system.region.region_name == "Black Rise") {
         return (
           "https://evemaps.dotlan.net/map/Black_Rise/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "The Bleak Lands") {
+      if (item.system.region.region_name == "The Bleak Lands") {
         return (
           "https://evemaps.dotlan.net/map/The_Bleak_Lands/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "The Citadel") {
+      if (item.system.region.region_name == "The Citadel") {
         return (
           "https://evemaps.dotlan.net/map/The_Citadel/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "Cloud Ring") {
+      if (item.system.region.region_name == "Cloud Ring") {
         return (
           "https://evemaps.dotlan.net/map/Cloud_Ring/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "Cobalt Edge") {
+      if (item.system.region.region_name == "Cobalt Edge") {
         return (
           "https://evemaps.dotlan.net/map/Cobalt_Edge/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "Etherium Reach") {
+      if (item.system.region.region_name == "Etherium Reach") {
         return (
           "https://evemaps.dotlan.net/map/Etherium_Reach/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "The Forge") {
+      if (item.system.region.region_name == "The Forge") {
         return (
           "https://evemaps.dotlan.net/map/The_Forge/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "The Kalevala Expanse") {
+      if (item.system.region.region_name == "The Kalevala Expanse") {
         return (
           "https://evemaps.dotlan.net/map/The_Kalevala_Expanse/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "Molden Heath") {
+      if (item.system.region.region_name == "Molden Heath") {
         return (
           "https://evemaps.dotlan.net/map/Molden_Heath/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "Outer Passage") {
+      if (item.system.region.region_name == "Outer Passage") {
         return (
           "https://evemaps.dotlan.net/map/Outer_Passage/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "Outer Ring") {
+      if (item.system.region.region_name == "Outer Ring") {
         return (
           "https://evemaps.dotlan.net/map/Outer_Ring/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "Paragon Soul") {
+      if (item.system.region.region_name == "Paragon Soul") {
         return (
           "https://evemaps.dotlan.net/map/Paragon_Soul/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "Period Basis") {
+      if (item.system.region.region_name == "Period Basis") {
         return (
           "https://evemaps.dotlan.net/map/Period_Basis/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "Perrigen Falls") {
+      if (item.system.region.region_name == "Perrigen Falls") {
         return (
           "https://evemaps.dotlan.net/map/Perrigen_Falls/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "Pure Blind") {
+      if (item.system.region.region_name == "Pure Blind") {
         return (
           "https://evemaps.dotlan.net/map/Pure_Blind/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "Scalding Pass") {
+      if (item.system.region.region_name == "Scalding Pass") {
         return (
           "https://evemaps.dotlan.net/map/Scalding_Pass/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "Sinq Laison") {
+      if (item.system.region.region_name == "Sinq Laison") {
         return (
           "https://evemaps.dotlan.net/map/Sinq_Laison/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "The Spire") {
+      if (item.system.region.region_name == "The Spire") {
         return (
           "https://evemaps.dotlan.net/map/The_Spire/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "Vale of the Silent") {
+      if (item.system.region.region_name == "Vale of the Silent") {
         return (
           "https://evemaps.dotlan.net/map/Vale_of_the_Silent/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "Verge Vendor") {
+      if (item.system.region.region_name == "Verge Vendor") {
         return (
           "https://evemaps.dotlan.net/map/Verge_Vendor/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
-      if (item.region_name == "Wicked Creek") {
+      if (item.system.region.region_name == "Wicked Creek") {
         return (
           "https://evemaps.dotlan.net/map/Wicked_Creek/" +
-          item.system_name +
+          item.system.system_name +
           "#const"
         );
       }
       return (
         "https://evemaps.dotlan.net/map/" +
-        item.region_name +
+        item.system.region.region_name +
         "/" +
-        item.system_name +
+        item.system.system_name +
         "#const"
       );
     },
@@ -623,19 +641,19 @@ export default {
       this.$store.dispatch("updateRcStation", data);
     },
     countDownStartTime(item) {
-      return moment.utc(item.end_time).unix();
+      return moment.utc(item.out_time).unix();
     },
     pillColor(item) {
-      if (item.status_id == 13) {
+      if (item.station_status_id == 13) {
         return "red darken-4";
       }
-      if (item.status_id == 5) {
+      if (item.station_status_id == 5) {
         return "lime darken-4";
       }
-      if (item.status_id == 14) {
+      if (item.station_status_id == 14) {
         return "green accent-4";
       }
-      if (item.status_id == 17) {
+      if (item.station_status_id == 17) {
         return "#FF5EEA";
       }
     },
@@ -662,7 +680,7 @@ export default {
     },
 
     showFC(item) {
-      if (item.status_id == 540) {
+      if (item.station_status_id == 540) {
         return false;
       }
       return true;
@@ -677,7 +695,7 @@ export default {
         ) {
           return false;
         }
-        if (item.fitted == "Fitted") {
+        if (item.fit) {
           return true;
         } else {
           return false;
@@ -687,13 +705,13 @@ export default {
       }
     },
 
-    // tickerColor(){
-    //     if(){
-    //         return "red--text pl-3"
-    //     }else{
-    //         return "blue--text pl-3"
-    //     }
-    // }
+    tickerColor(num) {
+      if (num > 0) {
+        return "blue--text pl-3";
+      } else {
+        return "red--text pl-3";
+      }
+    },
   },
 
   computed: {
@@ -727,7 +745,7 @@ export default {
       let data = [];
       if (this.statusPicked.length != 0) {
         this.statusPicked.forEach((p) => {
-          let pick = this.filter_fc.filter((f) => f.status_id == p);
+          let pick = this.filter_fc.filter((f) => f.station_status_id == p);
           if (pick != null) {
             pick.forEach((pk) => {
               data.push(pk);
@@ -759,7 +777,7 @@ export default {
       let data = [];
       if (this.regionPicked.length != 0) {
         this.regionPicked.forEach((p) => {
-          let pick = this.filter_mid.filter((f) => f.region_id == p);
+          let pick = this.filter_mid.filter((f) => f.system.region.id == p);
           if (pick != null) {
             pick.forEach((pk) => {
               data.push(pk);
@@ -786,33 +804,33 @@ export default {
     _headers() {
       if (this.$can("view_gsol_killsheet")) {
         var Headers = [
-          { text: "System", value: "system_name" },
-          { text: "Const", value: "constellation_name" },
-          { text: "Region", value: "region_name" },
+          { text: "System", value: "system.system_name" },
+          { text: "Const", value: "system.constellation.constellation_name" },
+          { text: "Region", value: "system.region.region_name" },
           { text: "Name", value: "name" },
-          { text: "Type", value: "item_name" },
-          { text: "Status", value: "status_name", align: "center" },
-          { text: "Ticker", value: "alliance_ticker" },
+          { text: "Type", value: "item.item_name" },
+          { text: "Status", value: "status.status_name", align: "center" },
+          { text: "Ticker", value: "corp.alliance.ticker" },
           { text: "Expires", value: "end_time" },
           { text: "CountDown", value: "count", sortable: false },
-          { text: "FC", value: "fc_name", align: "center" },
-          { text: "Cyno", value: "recon_name" },
-          { text: "GSOL", value: "gsol_name" },
+          { text: "FC", value: "fc.name", align: "center" },
+          { text: "Cyno", value: "recon.name" },
+          { text: "GSOL", value: "gsol.name" },
           { text: "", value: "actions" },
         ];
       } else {
         var Headers = [
-          { text: "System", value: "system_name" },
-          { text: "Const", value: "constellation_name" },
-          { text: "Region", value: "region_name" },
+          { text: "System", value: "system.system_name" },
+          { text: "Const", value: "system.constellation.constellation_name" },
+          { text: "Region", value: "system.region.region_name" },
           { text: "Name", value: "name" },
-          { text: "Type", value: "item_name" },
-          { text: "Status", value: "status_name", align: "center" },
-          { text: "Ticker", value: "alliance_ticker" },
+          { text: "Type", value: "item.item_name" },
+          { text: "Status", value: "status.status_name", align: "center" },
+          { text: "Ticker", value: "corp.alliance.ticker" },
           { text: "Expires", value: "end_time" },
           { text: "CountDown", value: "count", sortable: false },
-          { text: "FC", value: "fc_name", align: "center" },
-          { text: "Cyno", value: "recon_name" },
+          { text: "FC", value: "fc.name", align: "center" },
+          { text: "Cyno", value: "recon.name" },
           { text: "", value: "actions" },
         ];
       }
