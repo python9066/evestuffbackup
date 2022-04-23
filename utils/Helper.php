@@ -391,10 +391,7 @@ class Helper
         $user = FacadesAuth::user();
         $type = $type;
         $station_query = Station::query();
-        if ($user->can('view_coord_sheet')) {
-        } else {
-            $station_query->whereIn('system_id', $systemIDs);
-        }
+
         if ($type == 1) {
             $station_query->where('show_on_main', 1);
         }
