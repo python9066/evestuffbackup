@@ -147,6 +147,12 @@ export default {
       };
       this.$store.dispatch("updateWelpStationCurrent", data);
 
+      var data = {
+        id: this.item.id,
+        show_on_rc: 0,
+      };
+      this.$store.dispatch("updateRcStationCurrent", data);
+
       var request = null;
 
       request = {
@@ -199,7 +205,6 @@ export default {
           "Content-Type": "application/json",
         },
       });
-      this.close();
     },
 
     async softDestroyed() {

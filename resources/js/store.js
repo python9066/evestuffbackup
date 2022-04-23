@@ -369,6 +369,16 @@ export default new Vuex.Store({
             }
         },
 
+        UPDATE_RC_STATION_CURRENT(state, data) {
+            const item = state.rcstations.find((item) => item.id === data.id);
+            const count = state.rcstations.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            }
+        },
+
         UPDATE_RC_FC(state, data) {
             const item = state.rcfcs.find((item) => item.id === data.id);
             const count = state.rcfcs.filter(
@@ -1425,6 +1435,10 @@ export default new Vuex.Store({
 
         updateWelpStationCurrent({ commit }, data) {
             commit("UPDATE_WELP_STATION_CURRENT", data);
+        },
+
+        updateRctationCurrent({ commit }, data) {
+            commit("UPDATE_RC_STATION_CURRENT", data);
         },
 
         updateRcFC({ commit }, data) {
