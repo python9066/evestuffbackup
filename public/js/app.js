@@ -52030,11 +52030,11 @@ var render = function () {
                               label: "System Name",
                             },
                             model: {
-                              value: _vm.item.system.name,
+                              value: _vm.item.system.system_name,
                               callback: function ($$v) {
-                                _vm.$set(_vm.item.system, "name", $$v)
+                                _vm.$set(_vm.item.system, "system_name", $$v)
                               },
-                              expression: "item.system.name",
+                              expression: "item.system.system_name",
                             },
                           }),
                           _vm._v(" "),

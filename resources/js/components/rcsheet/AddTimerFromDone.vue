@@ -44,7 +44,7 @@
               </div>
               <div class="d-inline-flex justify-content-around">
                 <v-text-field
-                  v-model="item.system.name"
+                  v-model="item.system.system_name"
                   readonly
                   outlined
                   label="System Name"
