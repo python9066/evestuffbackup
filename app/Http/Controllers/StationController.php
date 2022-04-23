@@ -488,6 +488,25 @@ class StationController extends Controller
             $id = $id + 1;
         }
         $new = Station::Create($request->all());
+        $corp = Corp::where('id', $new->corp_id)->first();
+        $corpStanding = $corp->standing;
+        $allianceStanding = null;
+        if (Alliance::where('id', $new->alliance_id)->first()) {
+            $alliance = Alliance::where('id', $new->alliance_id)->first();
+            $allianceStanding = $alliance->standing;
+        }
+
+        if ($allianceStanding) {
+            if ($corpStanding > $allianceStanding) {
+                $standing  = $corpStanding;
+            } else {
+                $standing = $allianceStanding;
+            }
+        } else {
+            $standing = $corpStanding;
+        }
+
+        $new->update(['standing' => $standing]);
         $now = now();
         $new->update(['id' => $id, 'added_by_user_id' => Auth::id()]);
         $message = StationRecords::where('id', $new->id)->first();
