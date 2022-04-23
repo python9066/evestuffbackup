@@ -355,6 +355,7 @@ export default {
     this.loadingt = false;
     Echo.private("rcsheet").listen("RcSheetUpdate", (e) => {
       if (e.flag.message != null) {
+        console.log("update");
         this.$store.dispatch("updateRcStation", e.flag.message);
       }
 

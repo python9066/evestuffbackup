@@ -32771,6 +32771,8 @@ function sleep(ms) {
               _this.loadingt = false;
               Echo["private"]("rcsheet").listen("RcSheetUpdate", function (e) {
                 if (e.flag.message != null) {
+                  console.log("update");
+
                   _this.$store.dispatch("updateRcStation", e.flag.message);
                 }
 
