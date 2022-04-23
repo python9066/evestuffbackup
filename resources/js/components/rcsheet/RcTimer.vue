@@ -66,9 +66,9 @@ export default {
       var outTime = moment.utc(this.station.out_time);
       var now = moment.utc();
       if (outTime.isAfter(now)) {
-        this.done = true;
-      } else {
         this.done = false;
+      } else {
+        this.done = true;
       }
     },
   },

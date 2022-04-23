@@ -15401,9 +15401,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var now = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
 
       if (outTime.isAfter(now)) {
-        this.done = true;
-      } else {
         this.done = false;
+      } else {
+        this.done = true;
       }
     }
   },
