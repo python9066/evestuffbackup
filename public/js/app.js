@@ -64535,7 +64535,7 @@ var render = function () {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _vm.$can("view_coord_sheet")
+                          _vm.$can("view_killsheet")
                             ? _c(
                                 "v-list-item",
                                 { attrs: { link: "", to: "/stations" } },
@@ -84700,7 +84700,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: "stations",
     component: _views_StationSheet_vue__WEBPACK_IMPORTED_MODULE_29__["default"],
     beforeEnter: function beforeEnter(to, from, next) {
-      if (Permissions.indexOf("view_coord_sheet") !== -1) {
+      if (Permissions.indexOf("view_killsheet") !== -1) {
         next();
       } else {
         next("/notifications");

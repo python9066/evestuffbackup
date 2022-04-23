@@ -51,7 +51,7 @@
               >
                 ADD TIMER
               </v-list-item>
-              <v-list-item v-if="$can('view_coord_sheet')" link to="/stations">
+              <v-list-item v-if="$can('view_killsheet')" link to="/stations">
                 Station List
               </v-list-item>
             </v-list>
