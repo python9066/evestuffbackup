@@ -67,14 +67,15 @@ import { mapState, mapGetters } from "vuex";
 import { EventBus } from "../../app";
 import moment from "moment";
 
-EventBus.$on("timerDone", test());
 export default {
   props: {
     item: Object,
     type: Number,
   },
 
-  async created() {},
+  async created() {
+    EventBus.$on("timerDone", test());
+  },
   data() {
     return {
       showDoneOverlay: false,

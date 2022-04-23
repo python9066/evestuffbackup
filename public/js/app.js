@@ -13084,7 +13084,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-_app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$on("timerDone", test());
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: Object,
@@ -13096,6 +13095,9 @@ _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$on("timerDone", test());
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$on("timerDone", test());
+
+            case 1:
             case "end":
               return _context.stop();
           }
