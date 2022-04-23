@@ -13259,9 +13259,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 16:
-                _this2.close();
-
-              case 17:
               case "end":
                 return _context3.stop();
             }
@@ -34217,6 +34214,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -72891,7 +72891,31 @@ var render = function () {
                       _c(
                         "v-card-title",
                         { staticClass: "primary" },
-                        [_vm._v("Stations "), _c("SettingPannel")],
+                        [
+                          _c(
+                            "v-row",
+                            {
+                              attrs: {
+                                "no-gutters": "",
+                                "align-content": "space-around",
+                              },
+                            },
+                            [
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "5", "align-self": "start" } },
+                                [_vm._v(" Stations ")]
+                              ),
+                              _c(
+                                "v-col",
+                                { attrs: { cols: "1", "align-self": "end" } },
+                                [_c("SettingPannel")],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                        ],
                         1
                       ),
                       _vm._v(" "),
