@@ -32763,6 +32763,16 @@ function sleep(ms) {
         return false;
       }
     },
+    showDoneButton: function showDoneButton(item) {
+      var outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.out_time);
+      var now = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
+
+      if (outTime.isAfter(now)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     buttontext: function buttontext(item) {
       var ret = item.status.name.replace("Upcoming - ", "");
       return ret;
@@ -71699,7 +71709,7 @@ var render = function () {
                             fn: function (ref) {
                               var item = ref.item
                               return [
-                                item.out == 1
+                                _vm.showDoneButton(item)
                                   ? _c("DoneButton", {
                                       attrs: { item: item, type: 1 },
                                     })

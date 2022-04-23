@@ -260,7 +260,7 @@
 
             <template v-slot:[`item.status.name`]="{ item }">
               <DoneButton
-                v-if="item.out == 1"
+                v-if="showDoneButton(item)"
                 :item="item"
                 :type="1"
               ></DoneButton>
@@ -446,6 +446,16 @@ export default {
       });
     },
     showCountDown(item) {
+      var outTime = moment.utc(item.out_time);
+      var now = moment.utc();
+      if (outTime.isAfter(now)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    showDoneButton(item) {
       var outTime = moment.utc(item.out_time);
       var now = moment.utc();
       if (outTime.isAfter(now)) {
