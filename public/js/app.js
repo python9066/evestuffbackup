@@ -13097,9 +13097,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$on("timerDone", _this.test());
+              _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$on("timerDone", _this.test);
 
-            case 1:
+              _this.setdone();
+
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -13116,6 +13118,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     test: function test() {
       console.log("YAY");
+    },
+    setdone: function setdone() {
+      var outTime = moment__WEBPACK_IMPORTED_MODULE_3___default.a.utc(this.item.out_time);
+      var now = moment__WEBPACK_IMPORTED_MODULE_3___default.a.utc();
+      console.log(outTime + " + " + now + " + " + outTime.isAfter(now));
+
+      if (outTime.isAfter(now)) {
+        return false;
+      } else {
+        return true;
+      }
     },
     pillColor: function pillColor() {
       if (this.item.station_status_id == 13) {
@@ -13323,19 +13336,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
-  computed: {
-    showDoneButton: function showDoneButton() {
-      var outTime = moment__WEBPACK_IMPORTED_MODULE_3___default.a.utc(this.item.out_time);
-      var now = moment__WEBPACK_IMPORTED_MODULE_3___default.a.utc();
-      console.log(outTime + " + " + now + " + " + outTime.isAfter(now));
-
-      if (outTime.isAfter(now)) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-  },
+  computed: {},
   beforeDestroy: function beforeDestroy() {}
 });
 
@@ -15420,7 +15421,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     updateDone: function updateDone() {
       this.done = false;
-      _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("timerDone");
+      _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("timerDone", null);
     }
   },
   computed: {
@@ -52481,7 +52482,7 @@ var render = function () {
   return _c(
     "div",
     [
-      _vm.showDoneButton
+      _vm.showDoneButton()
         ? _c(
             "v-dialog",
             {

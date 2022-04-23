@@ -6,7 +6,7 @@
       persistent
       v-model="showDoneOverlay"
       @click:outside="close()"
-      v-if="showDoneButton"
+      v-if="showDoneButton()"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -74,7 +74,8 @@ export default {
   },
 
   async created() {
-    EventBus.$on("timerDone", this.test());
+    EventBus.$on("timerDone", this.test);
+    this.setdone();
   },
   data() {
     return {
@@ -88,6 +89,19 @@ export default {
     test() {
       console.log("YAY");
     },
+
+    setdone() {
+      var outTime = moment.utc(this.item.out_time);
+      var now = moment.utc();
+
+      console.log(outTime + " + " + now + " + " + outTime.isAfter(now));
+      if (outTime.isAfter(now)) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+
     pillColor() {
       if (this.item.station_status_id == 13) {
         return "red darken-4";
@@ -247,19 +261,7 @@ export default {
     },
   },
 
-  computed: {
-    showDoneButton() {
-      var outTime = moment.utc(this.item.out_time);
-      var now = moment.utc();
-
-      console.log(outTime + " + " + now + " + " + outTime.isAfter(now));
-      if (outTime.isAfter(now)) {
-        return false;
-      } else {
-        return true;
-      }
-    },
-  },
+  computed: {},
 
   beforeDestroy() {},
 };
