@@ -84,7 +84,7 @@
                 </template>
 
                 <template v-slot:[`item.status.name`]="{ item }">
-                  <StatusButton></StatusButton>
+                  <StatusButton :item="item"></StatusButton>
                   <!-- <v-chip pill :color="pillColor(item)">
                     {{ buttontext(item) }}
                   </v-chip> -->
@@ -249,21 +249,6 @@ export default {
       this.windowSize = { x: window.innerWidth, y: window.innerHeight };
     },
 
-    pillColor(item) {
-      if (item.status.id == 4) {
-        return "orange darken-1";
-      }
-      if (item.status.id == 18) {
-        return "brown lighten-2";
-      }
-      if (item.status.id == 16) {
-        return "green";
-      }
-      if (item.status.id == 7) {
-        return "red";
-      }
-    },
-
     icons(item) {
       if (item.status.id == 4) {
         return "faSvg fa-check-circle";
@@ -277,10 +262,6 @@ export default {
       if (item.status.id == 7) {
         return "faSvg fa-skull-crossbones";
       }
-    },
-    buttontext(item) {
-      var ret = item.status.name.replace("Upcoming - ", "");
-      return ret;
     },
 
     Systemcopied() {

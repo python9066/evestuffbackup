@@ -34592,23 +34592,6 @@ function sleep(ms) {
         y: window.innerHeight
       };
     },
-    pillColor: function pillColor(item) {
-      if (item.status.id == 4) {
-        return "orange darken-1";
-      }
-
-      if (item.status.id == 18) {
-        return "brown lighten-2";
-      }
-
-      if (item.status.id == 16) {
-        return "green";
-      }
-
-      if (item.status.id == 7) {
-        return "red";
-      }
-    },
     icons: function icons(item) {
       if (item.status.id == 4) {
         return "faSvg fa-check-circle";
@@ -34625,10 +34608,6 @@ function sleep(ms) {
       if (item.status.id == 7) {
         return "faSvg fa-skull-crossbones";
       }
-    },
-    buttontext: function buttontext(item) {
-      var ret = item.status.name.replace("Upcoming - ", "");
-      return ret;
     },
     Systemcopied: function Systemcopied() {
       this.snack = true;
@@ -73364,7 +73343,11 @@ var render = function () {
                                     key: "item.status.name",
                                     fn: function (ref) {
                                       var item = ref.item
-                                      return [_c("StatusButton")]
+                                      return [
+                                        _c("StatusButton", {
+                                          attrs: { item: item },
+                                        }),
+                                      ]
                                     },
                                   },
                                   {
