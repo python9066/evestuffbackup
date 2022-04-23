@@ -92,7 +92,7 @@ export default {
       }
     },
     buttontext() {
-      var ret = this.item.status_name.replace("Upcoming - ", "");
+      var ret = this.item.status.name.replace("Upcoming - ", "");
       return ret;
     },
 
