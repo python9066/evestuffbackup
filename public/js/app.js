@@ -32812,10 +32812,6 @@ function sleep(ms) {
         }
       });
     },
-    buttontext: function buttontext(item) {
-      var ret = item.status.name.replace("Upcoming - ", "");
-      return ret;
-    },
     link: function link(item) {
       if (item.system.region.region_name == "Black Rise") {
         return "https://evemaps.dotlan.net/map/Black_Rise/" + item.system.system_name + "#const";
@@ -32981,23 +32977,6 @@ function sleep(ms) {
           }
         }, _callee5);
       }))();
-    },
-    pillColor: function pillColor(item) {
-      if (item.station_status_id == 13) {
-        return "red darken-4";
-      }
-
-      if (item.station_status_id == 5) {
-        return "lime darken-4";
-      }
-
-      if (item.station_status_id == 14) {
-        return "green accent-4";
-      }
-
-      if (item.station_status_id == 17) {
-        return "#FF5EEA";
-      }
     },
     numberDay: function numberDay(day) {
       return parseInt(day, 10) + "d";
@@ -52473,7 +52452,7 @@ var render = function () {
   return _c(
     "div",
     [
-      _vm.showDoneButton(_vm.item)
+      _vm.showDoneButton
         ? _c(
             "v-dialog",
             {
@@ -52644,8 +52623,8 @@ var render = function () {
           )
         : _c(
             "v-chip",
-            { attrs: { pill: "", small: "", color: _vm.pillColor(_vm.item) } },
-            [_vm._v("\n    " + _vm._s(_vm.buttontext(_vm.item)) + "\n  ")]
+            { attrs: { pill: "", small: "", color: _vm.pillColor() } },
+            [_vm._v("\n    " + _vm._s(_vm.buttontext()) + "\n  ")]
           ),
     ],
     1
@@ -54500,18 +54479,13 @@ var render = function () {
   return _c(
     "div",
     [
-      _vm.showCountDown(_vm.item)
+      _vm.showCountDown
         ? _c("CountDowntimer", {
             attrs: {
-              "start-time": _vm.countDownStartTime(_vm.item),
+              "start-time": _vm.countDownStartTime,
               "end-text": "OUT",
               interval: 1000,
               "day-text": "Days",
-            },
-            on: {
-              campaignStart: function ($event) {
-                return _vm.campaignStart(_vm.item)
-              },
             },
             scopedSlots: _vm._u(
               [
@@ -54555,7 +54529,7 @@ var render = function () {
           })
         : _c("VueCountUptimer", {
             attrs: {
-              "start-time": _vm.countDownStartTime(_vm.item),
+              "start-time": _vm.countDownStartTime,
               "end-text": "Window Closed",
               interval: 1000,
             },

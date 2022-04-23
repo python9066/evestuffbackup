@@ -401,11 +401,6 @@ export default {
       });
     },
 
-    buttontext(item) {
-      var ret = item.status.name.replace("Upcoming - ", "");
-      return ret;
-    },
-
     link(item) {
       if (item.system.region.region_name == "Black Rise") {
         return (
@@ -583,20 +578,6 @@ export default {
       await this.$store.dispatch("getRcStationRecords");
     },
 
-    pillColor(item) {
-      if (item.station_status_id == 13) {
-        return "red darken-4";
-      }
-      if (item.station_status_id == 5) {
-        return "lime darken-4";
-      }
-      if (item.station_status_id == 14) {
-        return "green accent-4";
-      }
-      if (item.station_status_id == 17) {
-        return "#FF5EEA";
-      }
-    },
     numberDay(day) {
       return parseInt(day, 10) + "d";
     },

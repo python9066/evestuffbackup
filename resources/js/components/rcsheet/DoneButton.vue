@@ -6,7 +6,7 @@
       persistent
       v-model="showDoneOverlay"
       @click:outside="close()"
-      v-if="showDoneButton(item)"
+      v-if="showDoneButton"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -56,8 +56,8 @@
       </v-card>
     </v-dialog>
 
-    <v-chip v-else pill small :color="pillColor(item)">
-      {{ buttontext(item) }}
+    <v-chip v-else pill small :color="pillColor()">
+      {{ buttontext() }}
     </v-chip>
   </div>
 </template>

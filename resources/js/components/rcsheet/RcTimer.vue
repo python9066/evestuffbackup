@@ -1,12 +1,12 @@
 <template>
   <div>
+    <!-- @campaignStart="campaignStart(item)" -->
     <CountDowntimer
-      v-if="showCountDown(item)"
-      :start-time="countDownStartTime(item)"
+      v-if="showCountDown"
+      :start-time="countDownStartTime"
       :end-text="'OUT'"
       :interval="1000"
       :day-text="'Days'"
-      @campaignStart="campaignStart(item)"
     >
       <template slot="countdown" slot-scope="scope">
         <span v-if="scope.props.days == 0"
@@ -23,7 +23,7 @@
     </CountDowntimer>
     <VueCountUptimer
       v-else
-      :start-time="countDownStartTime(item)"
+      :start-time="countDownStartTime"
       :end-text="'Window Closed'"
       :interval="1000"
       ><template slot="countup" slot-scope="scope"
