@@ -21937,6 +21937,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -61652,57 +61658,78 @@ var render = function () {
               _c(
                 "v-card-text",
                 [
-                  _c("v-autocomplete", {
-                    attrs: {
-                      items: _vm.regionList,
-                      label: "Select",
-                      chips: "",
-                      clearable: "",
-                      "deletable-chips": "",
-                      dense: "",
-                      hint: "Which Campaigns do you want",
-                      "hide-selected": "",
-                      multiple: "",
-                      "persistent-hint": "",
-                      rounded: "",
-                      "small-chips": "",
-                      "solo-inverted": "",
-                      "return-object": "",
-                    },
-                    model: {
-                      value: _vm.pullPicked,
-                      callback: function ($$v) {
-                        _vm.pullPicked = $$v
-                      },
-                      expression: "pullPicked",
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("v-autocomplete", {
-                    attrs: {
-                      items: _vm.pullPicked,
-                      label: "Select",
-                      chips: "",
-                      clearable: "",
-                      "deletable-chips": "",
-                      dense: "",
-                      hint: "Which Campaigns do you want",
-                      "hide-selected": "",
-                      multiple: "",
-                      "persistent-hint": "",
-                      rounded: "",
-                      "small-chips": "",
-                      "solo-inverted": "",
-                      stationListPullRegions: "",
-                    },
-                    model: {
-                      value: _vm.fcPicked,
-                      callback: function ($$v) {
-                        _vm.fcPicked = $$v
-                      },
-                      expression: "fcPicked",
-                    },
-                  }),
+                  _c(
+                    "v-row",
+                    { attrs: { "no-gutters": "", justify: "space-between" } },
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "5" } },
+                        [
+                          _c("v-autocomplete", {
+                            attrs: {
+                              items: _vm.regionList,
+                              label: "Select",
+                              chips: "",
+                              clearable: "",
+                              "deletable-chips": "",
+                              dense: "",
+                              hint: "Which Regions would you like updated",
+                              "hide-selected": "",
+                              multiple: "",
+                              "persistent-hint": "",
+                              rounded: "",
+                              "small-chips": "",
+                              "solo-inverted": "",
+                              "return-object": "",
+                            },
+                            model: {
+                              value: _vm.pullPicked,
+                              callback: function ($$v) {
+                                _vm.pullPicked = $$v
+                              },
+                              expression: "pullPicked",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "5" } },
+                        [
+                          _c("v-autocomplete", {
+                            attrs: {
+                              items: _vm.pullPicked,
+                              label: "Select",
+                              chips: "",
+                              clearable: "",
+                              "deletable-chips": "",
+                              dense: "",
+                              hint: "Which Regions would you like FCs to see",
+                              "hide-selected": "",
+                              multiple: "",
+                              "persistent-hint": "",
+                              rounded: "",
+                              "small-chips": "",
+                              "solo-inverted": "",
+                              stationListPullRegions: "",
+                            },
+                            model: {
+                              value: _vm.fcPicked,
+                              callback: function ($$v) {
+                                _vm.fcPicked = $$v
+                              },
+                              expression: "fcPicked",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
                 ],
                 1
               ),

@@ -20,40 +20,46 @@
       >
         <v-card-title>Setting for Station Page</v-card-title>
         <v-card-text>
-          <v-autocomplete
-            v-model="pullPicked"
-            :items="regionList"
-            label="Select"
-            chips
-            clearable
-            deletable-chips
-            dense
-            hint="Which Campaigns do you want"
-            hide-selected
-            multiple
-            persistent-hint
-            rounded
-            small-chips
-            solo-inverted
-            return-object
-          ></v-autocomplete>
-          <v-autocomplete
-            v-model="fcPicked"
-            :items="pullPicked"
-            label="Select"
-            chips
-            clearable
-            deletable-chips
-            dense
-            hint="Which Campaigns do you want"
-            hide-selected
-            multiple
-            persistent-hint
-            rounded
-            small-chips
-            solo-inverted
-            stationListPullRegions
-          ></v-autocomplete>
+          <v-row no-gutters justify="space-between">
+            <v-col cols="5">
+              <v-autocomplete
+                v-model="pullPicked"
+                :items="regionList"
+                label="Select"
+                chips
+                clearable
+                deletable-chips
+                dense
+                hint="Which Regions would you like updated"
+                hide-selected
+                multiple
+                persistent-hint
+                rounded
+                small-chips
+                solo-inverted
+                return-object
+              ></v-autocomplete>
+            </v-col>
+            <v-col cols="5">
+              <v-autocomplete
+                v-model="fcPicked"
+                :items="pullPicked"
+                label="Select"
+                chips
+                clearable
+                deletable-chips
+                dense
+                hint="Which Regions would you like FCs to see"
+                hide-selected
+                multiple
+                persistent-hint
+                rounded
+                small-chips
+                solo-inverted
+                stationListPullRegions
+              ></v-autocomplete>
+            </v-col>
+          </v-row>
         </v-card-text>
         <v-spacer></v-spacer
         ><v-card-actions>
