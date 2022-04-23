@@ -13734,7 +13734,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     showRcFCButton: function showRcFCButton() {
-      if (this.station.rc_fc_id > 0) {
+      if (this.station.fc > 0) {
         return true;
       } else {
         return false;
