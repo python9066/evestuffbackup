@@ -1437,7 +1437,7 @@ export default new Vuex.Store({
             commit("UPDATE_WELP_STATION_CURRENT", data);
         },
 
-        updateRctationCurrent({ commit }, data) {
+        updateRcStationCurrent({ commit }, data) {
             commit("UPDATE_RC_STATION_CURRENT", data);
         },
 

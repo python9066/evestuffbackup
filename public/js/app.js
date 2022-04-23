@@ -72897,18 +72897,19 @@ var render = function () {
                             {
                               attrs: {
                                 "no-gutters": "",
-                                "align-content": "space-around",
+                                "align-content": "space-between",
                               },
                             },
                             [
+                              _c("v-col", { attrs: { cols: "5" } }, [
+                                _vm._v(" Stations "),
+                              ]),
                               _c(
                                 "v-col",
-                                { attrs: { cols: "5", "align-self": "start" } },
-                                [_vm._v(" Stations ")]
-                              ),
-                              _c(
-                                "v-col",
-                                { attrs: { cols: "1", "align-self": "end" } },
+                                {
+                                  staticClass: "d-flex justify-content-end",
+                                  attrs: { cols: "1" },
+                                },
                                 [_c("SettingPannel")],
                                 1
                               ),
@@ -86670,7 +86671,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
   }), _defineProperty(_actions, "updateWelpStationCurrent", function updateWelpStationCurrent(_ref61, data) {
     var commit = _ref61.commit;
     commit("UPDATE_WELP_STATION_CURRENT", data);
-  }), _defineProperty(_actions, "updateRctationCurrent", function updateRctationCurrent(_ref62, data) {
+  }), _defineProperty(_actions, "updateRcStationCurrent", function updateRcStationCurrent(_ref62, data) {
     var commit = _ref62.commit;
     commit("UPDATE_RC_STATION_CURRENT", data);
   }), _defineProperty(_actions, "updateRcFC", function updateRcFC(_ref63, data) {
