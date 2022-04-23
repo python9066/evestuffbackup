@@ -655,7 +655,7 @@ class StationController extends Controller
         // dd($id);
         $now = now();
 
-        $RCmessage = RcStationRecords::where('id', $id)->first();
+        $RCmessage = Helper::StationRecordsSolo(4, $id);
         if ($RCmessage) {
             $RCmessageSend = [
                 'id' => $RCmessage->id,
@@ -730,6 +730,13 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new StationSheetUpdate($flag));
+
+
+        $message = Helper::StationRecordsSolo(4, $id);
+        $flag = collect([
+            'message' => $message
+        ]);
+        broadcast(new RcSheetUpdate($flag));
 
 
 
