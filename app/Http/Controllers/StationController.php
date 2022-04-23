@@ -637,10 +637,11 @@ class StationController extends Controller
             ]);
         } else {
 
-            $RCmessageSend = [
+            $RCmessageSend = collect([
+
                 'id' => $id,
                 'show_on_rc' => 0
-            ];
+            ]);
 
             $flag = collect([
                 'message' => $RCmessageSend,
