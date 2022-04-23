@@ -32761,9 +32761,9 @@ function sleep(ms) {
       var now = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
 
       if (outTime.isAfter(now)) {
-        return true;
-      } else {
         return false;
+      } else {
+        return true;
       }
     },
     showDoneButton: function showDoneButton(item) {
@@ -32772,9 +32772,9 @@ function sleep(ms) {
       console.log(outTime + " + " + now + " + " + outTime.isAfter(now));
 
       if (outTime.isAfter(now)) {
-        return true;
-      } else {
         return false;
+      } else {
+        return true;
       }
     },
     buttontext: function buttontext(item) {
@@ -71278,7 +71278,7 @@ var render = function () {
                         "fixed-header": "",
                         id: "table",
                         "item-key": "id",
-                        "sort-by": ["end_time"],
+                        "sort-by": ["out_time"],
                         "sort-desc": [false, true],
                         "multi-sort": "",
                         "items-per-page": 50,

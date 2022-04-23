@@ -114,7 +114,7 @@
             fixed-header
             id="table"
             item-key="id"
-            :sort-by="['end_time']"
+            :sort-by="['out_time']"
             :sort-desc="[false, true]"
             multi-sort
             :items-per-page="50"
@@ -453,9 +453,9 @@ export default {
       var outTime = moment.utc(item.out_time);
       var now = moment.utc();
       if (outTime.isAfter(now)) {
-        return true;
-      } else {
         return false;
+      } else {
+        return true;
       }
     },
 
@@ -465,9 +465,9 @@ export default {
 
       console.log(outTime + " + " + now + " + " + outTime.isAfter(now));
       if (outTime.isAfter(now)) {
-        return true;
-      } else {
         return false;
+      } else {
+        return true;
       }
     },
 
