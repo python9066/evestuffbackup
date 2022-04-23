@@ -76,7 +76,6 @@ export default {
   async created() {
     this.setdone();
     EventBus.$on("timerDone", (data) => {
-      console.log(data);
       if (this.item.id == data) {
         this.done = true;
       }
@@ -89,13 +88,7 @@ export default {
     };
   },
 
-  watch: {},
-
   methods: {
-    test() {
-      console.log("YAY");
-    },
-
     setdone() {
       var outTime = moment.utc(this.item.out_time);
       var now = moment.utc();
@@ -206,6 +199,7 @@ export default {
           "Content-Type": "application/json",
         },
       });
+      this.close();
     },
 
     async softDestroyed() {

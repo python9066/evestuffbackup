@@ -13100,8 +13100,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _this.setdone();
 
               _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$on("timerDone", function (data) {
-                console.log(data);
-
                 if (_this.item.id == data) {
                   _this.done = true;
                 }
@@ -13121,11 +13119,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       done: 0
     };
   },
-  watch: {},
   methods: {
-    test: function test() {
-      console.log("YAY");
-    },
     setdone: function setdone() {
       var outTime = moment__WEBPACK_IMPORTED_MODULE_3___default.a.utc(this.item.out_time);
       var now = moment__WEBPACK_IMPORTED_MODULE_3___default.a.utc();
@@ -13258,6 +13252,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 14:
+                _this2.close();
+
+              case 15:
               case "end":
                 return _context3.stop();
             }
