@@ -13103,7 +13103,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 console.log("party");
 
                 if (_this.item == data) {
-                  _this.done = false;
+                  _this.done = true;
                 }
               });
 
@@ -13131,9 +13131,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var now = moment__WEBPACK_IMPORTED_MODULE_3___default.a.utc();
 
       if (outTime.isAfter(now)) {
-        this.done = true;
-      } else {
         this.done = false;
+      } else {
+        this.done = true;
       }
     },
     pillColor: function pillColor() {

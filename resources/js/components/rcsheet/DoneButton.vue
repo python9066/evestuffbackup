@@ -78,7 +78,7 @@ export default {
     EventBus.$on("timerDone", (data) => {
       console.log("party");
       if (this.item == data) {
-        this.done = false;
+        this.done = true;
       }
     });
   },
@@ -100,9 +100,9 @@ export default {
       var outTime = moment.utc(this.item.out_time);
       var now = moment.utc();
       if (outTime.isAfter(now)) {
-        this.done = true;
-      } else {
         this.done = false;
+      } else {
+        this.done = true;
       }
     },
 
