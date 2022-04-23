@@ -33161,14 +33161,14 @@ function sleep(ms) {
           sortable: false
         }, {
           text: "FC",
-          value: "fc.name",
+          value: "fc.user.name",
           align: "center"
         }, {
           text: "Cyno",
-          value: "recon.name"
+          value: "recon.user.name"
         }, {
           text: "GSOL",
-          value: "gsol.name"
+          value: "gsol.user.name"
         }, {
           text: "",
           value: "actions"
@@ -33205,11 +33205,11 @@ function sleep(ms) {
           sortable: false
         }, {
           text: "FC",
-          value: "fc.name",
+          value: "fc.user.name",
           align: "center"
         }, {
           text: "Cyno",
-          value: "recon.name"
+          value: "recon.user.name"
         }, {
           text: "",
           value: "actions"
@@ -53024,7 +53024,11 @@ var render = function () {
                 ],
                 staticClass: "pl-2",
               },
-              [_vm._v("\n        " + _vm._s(_vm.station.fc.name) + "\n      ")]
+              [
+                _vm._v(
+                  "\n        " + _vm._s(_vm.station.fc.user.name) + "\n      "
+                ),
+              ]
             ),
           ]
         ),
@@ -53071,9 +53075,9 @@ var render = function () {
                   value:
                     _vm.showRcFCButton() &&
                     (_vm.$can("edit_killsheet_remove_char") ||
-                      this.station.fc.id == this.$store.state.user_id),
+                      this.station.fc.user.id == this.$store.state.user_id),
                   expression:
-                    "\n        showRcFCButton() &&\n        ($can('edit_killsheet_remove_char') ||\n          this.station.fc.id == this.$store.state.user_id)\n      ",
+                    "\n        showRcFCButton() &&\n        ($can('edit_killsheet_remove_char') ||\n          this.station.fc.user.id == this.$store.state.user_id)\n      ",
                 },
               ],
               attrs: { color: "orange darken-3", small: "" },
@@ -71641,7 +71645,7 @@ var render = function () {
                             },
                           },
                           {
-                            key: "item.fc.name",
+                            key: "item.fc.user.name",
                             fn: function (ref) {
                               var item = ref.item
                               return [
@@ -71693,7 +71697,7 @@ var render = function () {
                             },
                           },
                           {
-                            key: "item.recon.name",
+                            key: "item.recon.user.name",
                             fn: function (ref) {
                               var item = ref.item
                               return [
@@ -71734,7 +71738,7 @@ var render = function () {
                             },
                           },
                           {
-                            key: "item.gsol.name",
+                            key: "item.gsol.user.name",
                             fn: function (ref) {
                               var item = ref.item
                               return [

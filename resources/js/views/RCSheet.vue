@@ -225,7 +225,7 @@
                 </template>
               </VueCountUptimer>
             </template>
-            <template v-slot:[`item.fc.name`]="{ item }">
+            <template v-slot:[`item.fc.user.name`]="{ item }">
               <RcFCButton
                 class="mr-2"
                 :station="item"
@@ -250,7 +250,7 @@
               <span> {{ item.system.constellation.constellation_name }}</span>
             </template>
 
-            <template v-slot:[`item.recon.name`]="{ item }">
+            <template v-slot:[`item.recon.user.name`]="{ item }">
               <RcReconButton
                 class="mr-2"
                 :station="item"
@@ -270,7 +270,7 @@
               </v-chip>
             </template>
 
-            <template v-slot:[`item.gsol.name`]="{ item }">
+            <template v-slot:[`item.gsol.user.name`]="{ item }">
               <RcGsolButton
                 class="mr-2"
                 :station="item"
@@ -827,9 +827,9 @@ export default {
           { text: "Ticker", value: "corp.alliance.ticker" },
           { text: "Expires", value: "end_time" },
           { text: "CountDown", value: "count", sortable: false },
-          { text: "FC", value: "fc.name", align: "center" },
-          { text: "Cyno", value: "recon.name" },
-          { text: "GSOL", value: "gsol.name" },
+          { text: "FC", value: "fc.user.name", align: "center" },
+          { text: "Cyno", value: "recon.user.name" },
+          { text: "GSOL", value: "gsol.user.name" },
           { text: "", value: "actions" },
         ];
       } else {
@@ -843,8 +843,8 @@ export default {
           { text: "Ticker", value: "corp.alliance.ticker" },
           { text: "Expires", value: "end_time" },
           { text: "CountDown", value: "count", sortable: false },
-          { text: "FC", value: "fc.name", align: "center" },
-          { text: "Cyno", value: "recon.name" },
+          { text: "FC", value: "fc.user.name", align: "center" },
+          { text: "Cyno", value: "recon.user.name" },
           { text: "", value: "actions" },
         ];
       }
