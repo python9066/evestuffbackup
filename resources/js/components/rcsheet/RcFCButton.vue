@@ -54,7 +54,7 @@ export default {
 
   methods: {
     showRcFCButton() {
-      if (this.station.fc) {
+      if (this.station.rc_fc_id) {
         return true;
       } else {
         return false;
