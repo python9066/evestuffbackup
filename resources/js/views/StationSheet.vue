@@ -482,7 +482,9 @@ export default {
     ...mapState(["stationList"]),
 
     filter_end() {
-      return this.stationList.filter((f) => f.show_on_coord == 1);
+      return this.stationList.filter(
+        (f) => f.show_on_coord == 1 && f.standing <= 0
+      );
     },
 
     height() {

@@ -34826,7 +34826,7 @@ function sleep(ms) {
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stationList"])), {}, {
     filter_end: function filter_end() {
       return this.stationList.filter(function (f) {
-        return f.show_on_coord == 1;
+        return f.show_on_coord == 1 && f.standing <= 0;
       });
     },
     height: function height() {
