@@ -1,8 +1,8 @@
 <template>
   <div class="d-inline-flex align-items-md-center pl-4">
-    <div>
+    <div v-if="showRcFCButton()">
       <span class="d-inline-flex align-items-md-center pr-2">
-        <span class="pl-2" v-if="showRcFCButton()">
+        <span class="pl-2">
           {{ station.fc.user.name }}
         </span>
       </span>
@@ -53,7 +53,7 @@ export default {
 
   methods: {
     showRcFCButton() {
-      if (this.station.fc > 0) {
+      if (this.station.fc) {
         return true;
       } else {
         return false;

@@ -13734,7 +13734,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     showRcFCButton: function showRcFCButton() {
-      if (this.station.fc > 0) {
+      if (this.station.fc) {
         return true;
       } else {
         return false;
@@ -53005,21 +53005,21 @@ var render = function () {
     "div",
     { staticClass: "d-inline-flex align-items-md-center pl-4" },
     [
-      _c("div", [
-        _c(
-          "span",
-          { staticClass: "d-inline-flex align-items-md-center pr-2" },
-          [
-            _vm.showRcFCButton()
-              ? _c("span", { staticClass: "pl-2" }, [
+      _vm.showRcFCButton()
+        ? _c("div", [
+            _c(
+              "span",
+              { staticClass: "d-inline-flex align-items-md-center pr-2" },
+              [
+                _c("span", { staticClass: "pl-2" }, [
                   _vm._v(
                     "\n        " + _vm._s(_vm.station.fc.user.name) + "\n      "
                   ),
-                ])
-              : _vm._e(),
-          ]
-        ),
-      ]),
+                ]),
+              ]
+            ),
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "div",
