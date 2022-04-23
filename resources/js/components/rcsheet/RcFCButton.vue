@@ -93,7 +93,6 @@ export default {
         fc_user_id: null,
         fc_name: null,
       };
-      this.$store.dispatch("updateRcStationCurrent", data);
       this.$store.dispatch("updateChillStationCurrent", data);
       this.$store.dispatch("updateWelpStationCurrent", data);
 

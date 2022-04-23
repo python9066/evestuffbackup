@@ -13798,13 +13798,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   fc_name: null
                 };
 
-                _this2.$store.dispatch("updateRcStationCurrent", data);
-
                 _this2.$store.dispatch("updateChillStationCurrent", data);
 
                 _this2.$store.dispatch("updateWelpStationCurrent", data);
 
-                _context2.next = 6;
+                _context2.next = 5;
                 return axios({
                   method: "put",
                   url: "/api/rcfcuserremove/" + _this2.station.id,
@@ -13815,7 +13813,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 6:
+              case 5:
               case "end":
                 return _context2.stop();
             }

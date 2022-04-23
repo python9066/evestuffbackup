@@ -176,7 +176,7 @@ class RcFcUsersController extends Controller
         $userid = RcFcUsers::where('id', $fcid)->value('user_id');
         $userName = User::where('id', $userid)->value('name');
         Station::where('id', $id)->update(['rc_fc_id' => null]);
-        $message = RcStationRecords::where('id', $id)->first();
+        $message = Helper::StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,
