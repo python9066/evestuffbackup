@@ -259,7 +259,7 @@
             </template>
 
             <template v-slot:[`item.status.name`]="{ item }">
-              <DoneButton
+              <!-- <DoneButton
                 v-if="showDoneButton(item)"
                 :item="item"
                 :type="1"
@@ -267,11 +267,11 @@
 
               <v-chip v-else pill small :color="pillColor(item)">
                 {{ buttontext(item) }}
-              </v-chip>
-
-              <!-- <v-chip pill small :color="pillColor(item)">
-                {{ buttontext(item) }}
               </v-chip> -->
+
+              <v-chip pill small :color="pillColor(item)">
+                {{ buttontext(item) }}
+              </v-chip>
             </template>
 
             <template v-slot:[`item.gsol.user.name`]="{ item }">

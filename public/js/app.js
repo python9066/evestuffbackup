@@ -71691,27 +71691,23 @@ var render = function () {
                             fn: function (ref) {
                               var item = ref.item
                               return [
-                                _vm.showDoneButton(item)
-                                  ? _c("DoneButton", {
-                                      attrs: { item: item, type: 1 },
-                                    })
-                                  : _c(
-                                      "v-chip",
-                                      {
-                                        attrs: {
-                                          pill: "",
-                                          small: "",
-                                          color: _vm.pillColor(item),
-                                        },
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n              " +
-                                            _vm._s(_vm.buttontext(item)) +
-                                            "\n            "
-                                        ),
-                                      ]
+                                _c(
+                                  "v-chip",
+                                  {
+                                    attrs: {
+                                      pill: "",
+                                      small: "",
+                                      color: _vm.pillColor(item),
+                                    },
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n              " +
+                                        _vm._s(_vm.buttontext(item)) +
+                                        "\n            "
                                     ),
+                                  ]
+                                ),
                               ]
                             },
                           },
