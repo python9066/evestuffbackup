@@ -14,7 +14,7 @@ use Illuminate\Queue\SerializesModels;
 class StationDeadStationSheet implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    public $flag;
     /**
      * Create a new event instance.
      *
