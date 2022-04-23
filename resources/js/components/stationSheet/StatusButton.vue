@@ -7,18 +7,12 @@
         </v-btn>
       </template>
       <v-list>
+        <v-list-item><v-chip pill @click="test(1)"> One </v-chip></v-list-item>
+        <v-list-item><v-chip pill @click="test(2)"> Two </v-chip></v-list-item>
         <v-list-item
-          ><v-chip pill @click="console.log(1)"> One </v-chip></v-list-item
+          ><v-chip pill @click="test(3)"> Three </v-chip></v-list-item
         >
-        <v-list-item
-          ><v-chip pill @click="console.log(2)"> Two </v-chip></v-list-item
-        >
-        <v-list-item
-          ><v-chip pill @click="console.log(3)"> Three </v-chip></v-list-item
-        >
-        <v-list-item
-          ><v-chip pill @click="console.log(4)"> Four </v-chip></v-list-item
-        >
+        <v-list-item><v-chip pill @click="test(4)"> Four </v-chip></v-list-item>
       </v-list>
     </v-menu>
   </div>
@@ -37,7 +31,11 @@ export default {
   async created() {},
   data() {},
 
-  methods: {},
+  methods: {
+    test(n) {
+      console.log(n);
+    },
+  },
 
   computed: {},
 

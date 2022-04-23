@@ -22645,12 +22645,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -22672,7 +22666,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }))();
   },
   data: function data() {},
-  methods: {},
+  methods: {
+    test: function test(n) {
+      console.log(n);
+    }
+  },
   computed: {},
   beforeDestroy: function beforeDestroy() {}
 });
@@ -62350,7 +62348,7 @@ var render = function () {
                       attrs: { pill: "" },
                       on: {
                         click: function ($event) {
-                          return _vm.console.log(1)
+                          return _vm.test(1)
                         },
                       },
                     },
@@ -62369,7 +62367,7 @@ var render = function () {
                       attrs: { pill: "" },
                       on: {
                         click: function ($event) {
-                          return _vm.console.log(2)
+                          return _vm.test(2)
                         },
                       },
                     },
@@ -62388,7 +62386,7 @@ var render = function () {
                       attrs: { pill: "" },
                       on: {
                         click: function ($event) {
-                          return _vm.console.log(3)
+                          return _vm.test(3)
                         },
                       },
                     },
@@ -62407,7 +62405,7 @@ var render = function () {
                       attrs: { pill: "" },
                       on: {
                         click: function ($event) {
-                          return _vm.console.log(4)
+                          return _vm.test(4)
                         },
                       },
                     },
