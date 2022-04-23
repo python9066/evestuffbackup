@@ -132,7 +132,7 @@
                   <v-avatar size="35"
                     ><img :src="item.corp.alliance.url"
                   /></v-avatar>
-                  <span :class="tickerColor(item.corp.alliance.standing)"
+                  <span :class="tickColor(item.corp.alliance.standing)"
                     >{{ item.corp.alliance.ticker }}
                   </span>
                 </span>
@@ -146,7 +146,7 @@
               <div class="d-inline-flex">
                 <span v-if="item.corp.url">
                   <v-avatar size="35"><img :src="item.corp.url" /></v-avatar>
-                  <span :class="tickerColor(item.corp.standing)"
+                  <span :class="tickColor(item.corp.standing)"
                     >{{ item.corp.ticker }}
                   </span>
                 </span>
@@ -709,7 +709,7 @@ export default {
       }
     },
 
-    tickerColor(num) {
+    tickColor(num) {
       if (num > 0) {
         return "blue--text pl-3";
       } else {

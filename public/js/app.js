@@ -13735,7 +13735,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     showRcFCButton: function showRcFCButton() {
-      if (this.station.fc_user_id) {
+      if (this.station.fc.id) {
         return true;
       } else {
         return false;
@@ -32570,6 +32570,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -32744,7 +32758,7 @@ function sleep(ms) {
       var now = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
 
       if (outTime.isAfter(now)) {
-        return ture;
+        return true;
       } else {
         return false;
       }
@@ -32919,30 +32933,29 @@ function sleep(ms) {
         }, _callee5);
       }))();
     },
-    campaignStart: function campaignStart(item) {
-      var data = {
-        id: item.id,
-        out: 1
-      };
-      this.$store.dispatch("updateRcStation", data);
+    campaignStart: function campaignStart(item) {//   var data = {
+      //     id: item.id,
+      //     out: 1,
+      //   };
+      //   this.$store.dispatch("updateRcStation", data);
     },
     countDownStartTime: function countDownStartTime(item) {
       return moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.out_time).unix();
     },
     pillColor: function pillColor(item) {
-      if (item.status_id == 13) {
+      if (item.station_status_id == 13) {
         return "red darken-4";
       }
 
-      if (item.status_id == 5) {
+      if (item.station_status_id == 5) {
         return "lime darken-4";
       }
 
-      if (item.status_id == 14) {
+      if (item.station_status_id == 14) {
         return "green accent-4";
       }
 
-      if (item.status_id == 17) {
+      if (item.station_status_id == 17) {
         return "#FF5EEA";
       }
     },
@@ -32980,7 +32993,7 @@ function sleep(ms) {
       this.snackText = "System Copied";
     },
     showFC: function showFC(item) {
-      if (item.status_id == 540) {
+      if (item.station_status_id == 540) {
         return false;
       }
 
@@ -32993,7 +33006,7 @@ function sleep(ms) {
           return false;
         }
 
-        if (item.fitted == "Fitted") {
+        if (item.fit) {
           return true;
         } else {
           return false;
@@ -33001,14 +33014,14 @@ function sleep(ms) {
       } else {
         return false;
       }
-    } // tickerColor(){
-    //     if(){
-    //         return "red--text pl-3"
-    //     }else{
-    //         return "blue--text pl-3"
-    //     }
-    // }
-
+    },
+    tickColor: function tickColor(num) {
+      if (num > 0) {
+        return "blue--text pl-3";
+      } else {
+        return "red--text pl-3";
+      }
+    }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["rcstations", "rcsheetRegion", "rcsheetItem", "rcsheetStatus"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getActiveRcStations"])), {}, {
     filteredItems: function filteredItems() {
@@ -33036,7 +33049,7 @@ function sleep(ms) {
       if (this.statusPicked.length != 0) {
         this.statusPicked.forEach(function (p) {
           var pick = _this6.filter_fc.filter(function (f) {
-            return f.status_id == p;
+            return f.station_status_id == p;
           });
 
           if (pick != null) {
@@ -33080,7 +33093,7 @@ function sleep(ms) {
       if (this.regionPicked.length != 0) {
         this.regionPicked.forEach(function (p) {
           var pick = _this8.filter_mid.filter(function (f) {
-            return f.region_id == p;
+            return f.system.region.id == p;
           });
 
           if (pick != null) {
@@ -33109,26 +33122,26 @@ function sleep(ms) {
       if (this.$can("view_gsol_killsheet")) {
         var Headers = [{
           text: "System",
-          value: "system_name"
+          value: "system.system_name"
         }, {
           text: "Const",
-          value: "constellation_name"
+          value: "system.constellation.constellation_name"
         }, {
           text: "Region",
-          value: "region_name"
+          value: "system.region.region_name"
         }, {
           text: "Name",
           value: "name"
         }, {
           text: "Type",
-          value: "item_name"
+          value: "item.item_name"
         }, {
           text: "Status",
-          value: "status_name",
+          value: "status.status_name",
           align: "center"
         }, {
           text: "Ticker",
-          value: "alliance_ticker"
+          value: "corp.alliance.ticker"
         }, {
           text: "Expires",
           value: "end_time"
@@ -33138,14 +33151,14 @@ function sleep(ms) {
           sortable: false
         }, {
           text: "FC",
-          value: "fc_name",
+          value: "fc.name",
           align: "center"
         }, {
           text: "Cyno",
-          value: "recon_name"
+          value: "recon.name"
         }, {
           text: "GSOL",
-          value: "gsol_name"
+          value: "gsol.name"
         }, {
           text: "",
           value: "actions"
@@ -33153,26 +33166,26 @@ function sleep(ms) {
       } else {
         var Headers = [{
           text: "System",
-          value: "system_name"
+          value: "system.system_name"
         }, {
           text: "Const",
-          value: "constellation_name"
+          value: "system.constellation.constellation_name"
         }, {
           text: "Region",
-          value: "region_name"
+          value: "system.region.region_name"
         }, {
           text: "Name",
           value: "name"
         }, {
           text: "Type",
-          value: "item_name"
+          value: "item.item_name"
         }, {
           text: "Status",
-          value: "status_name",
+          value: "status.status_name",
           align: "center"
         }, {
           text: "Ticker",
-          value: "alliance_ticker"
+          value: "corp.alliance.ticker"
         }, {
           text: "Expires",
           value: "end_time"
@@ -33182,11 +33195,11 @@ function sleep(ms) {
           sortable: false
         }, {
           text: "FC",
-          value: "fc_name",
+          value: "fc.name",
           align: "center"
         }, {
           text: "Cyno",
-          value: "recon_name"
+          value: "recon.name"
         }, {
           text: "",
           value: "actions"
@@ -53001,7 +53014,7 @@ var render = function () {
                 ],
                 staticClass: "pl-2",
               },
-              [_vm._v("\n        " + _vm._s(_vm.station.fc_name) + "\n      ")]
+              [_vm._v("\n        " + _vm._s(_vm.station.fc.name) + "\n      ")]
             ),
           ]
         ),
@@ -53048,9 +53061,9 @@ var render = function () {
                   value:
                     _vm.showRcFCButton() &&
                     (_vm.$can("edit_killsheet_remove_char") ||
-                      this.station.fc_user_id == this.$store.state.user_id),
+                      this.station.fc.id == this.$store.state.user_id),
                   expression:
-                    "\n        showRcFCButton() &&\n        ($can('edit_killsheet_remove_char') ||\n          this.station.fc_user_id == this.$store.state.user_id)\n      ",
+                    "\n        showRcFCButton() &&\n        ($can('edit_killsheet_remove_char') ||\n          this.station.fc.id == this.$store.state.user_id)\n      ",
                 },
               ],
               attrs: { color: "orange darken-3", small: "" },
@@ -71288,7 +71301,7 @@ var render = function () {
                       scopedSlots: _vm._u(
                         [
                           {
-                            key: "item.alliance_ticker",
+                            key: "item.corp.alliance.ticker",
                             fn: function (ref) {
                               var item = ref.item
                               return [
@@ -71311,7 +71324,11 @@ var render = function () {
                                           _vm._v(" "),
                                           _c(
                                             "span",
-                                            { class: _vm.tickerColor() },
+                                            {
+                                              class: _vm.tickColor(
+                                                item.corp.alliance.standing
+                                              ),
+                                            },
                                             [
                                               _vm._v(
                                                 _vm._s(
@@ -71323,8 +71340,48 @@ var render = function () {
                                         ],
                                         1
                                       )
-                                    : _vm.$can("super")
-                                    ? _c("span")
+                                    : _vm._e(),
+                                ]),
+                              ]
+                            },
+                          },
+                          {
+                            key: "item.corp.ticker",
+                            fn: function (ref) {
+                              var item = ref.item
+                              return [
+                                _c("div", { staticClass: "d-inline-flex" }, [
+                                  item.corp.url
+                                    ? _c(
+                                        "span",
+                                        [
+                                          _c(
+                                            "v-avatar",
+                                            { attrs: { size: "35" } },
+                                            [
+                                              _c("img", {
+                                                attrs: { src: item.corp.url },
+                                              }),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "span",
+                                            {
+                                              class: _vm.tickColor(
+                                                item.corp.standing
+                                              ),
+                                            },
+                                            [
+                                              _vm._v(
+                                                _vm._s(item.corp.ticker) +
+                                                  "\n                "
+                                              ),
+                                            ]
+                                          ),
+                                        ],
+                                        1
+                                      )
                                     : _vm._e(),
                                 ]),
                               ]
@@ -71377,9 +71434,14 @@ var render = function () {
                                       1
                                     ),
                                     _vm._v(" "),
-                                    _c("CampaginWebWay", {
-                                      attrs: { item: item },
-                                    }),
+                                    item.system.webway[0]
+                                      ? _c("SoloCampaginWebWay", {
+                                          attrs: {
+                                            jumps: item.system.webway[0].jumps,
+                                            web: item.system.webway[0].webway,
+                                          },
+                                        })
+                                      : _vm._e(),
                                     _vm._v(" "),
                                     _c(
                                       "button",
@@ -71813,6 +71875,7 @@ var render = function () {
                       ),
                     },
                     [
+                      _vm._v(" "),
                       _vm._v(" "),
                       _vm._v(" "),
                       _vm._v(" "),
