@@ -73,6 +73,10 @@ export default {
       }
     },
 
+    numberDay(day) {
+      return parseInt(day, 10) + "d";
+    },
+
     updateDone() {
       this.done = false;
       EventBus.$emit("timerDone", this.station.id);

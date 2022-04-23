@@ -584,9 +584,7 @@ export default {
       await this.$store.dispatch("getRcStationRecords");
     },
 
-    numberDay(day) {
-      return parseInt(day, 10) + "d";
-    },
+   ,
 
     async stationdone(item) {
       await axios({
