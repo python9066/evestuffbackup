@@ -268,10 +268,11 @@
               <v-chip v-else pill small :color="pillColor(item)">
                 {{ buttontext(item) }}
               </v-chip> -->
+              dance
 
-              <v-chip pill small :color="pillColor(item)">
+              <!-- <v-chip pill small :color="pillColor(item)">
                 {{ buttontext(item) }}
-              </v-chip>
+              </v-chip> -->
             </template>
 
             <template v-slot:[`item.gsol.user.name`]="{ item }">
@@ -462,6 +463,8 @@ export default {
     showDoneButton(item) {
       var outTime = moment.utc(item.out_time);
       var now = moment.utc();
+
+      console.log(outTime + " + " + now + " + " + outTime.isAfter(now));
       if (outTime.isAfter(now)) {
         return true;
       } else {

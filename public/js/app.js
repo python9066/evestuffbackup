@@ -32587,6 +32587,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -32769,6 +32770,7 @@ function sleep(ms) {
     showDoneButton: function showDoneButton(item) {
       var outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(item.out_time);
       var now = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
+      console.log(outTime + " + " + now + " + " + outTime.isAfter(now));
 
       if (outTime.isAfter(now)) {
         return true;
@@ -71691,23 +71693,7 @@ var render = function () {
                             fn: function (ref) {
                               var item = ref.item
                               return [
-                                _c(
-                                  "v-chip",
-                                  {
-                                    attrs: {
-                                      pill: "",
-                                      small: "",
-                                      color: _vm.pillColor(item),
-                                    },
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n              " +
-                                        _vm._s(_vm.buttontext(item)) +
-                                        "\n            "
-                                    ),
-                                  ]
-                                ),
+                                _vm._v("\n            dance\n\n            "),
                               ]
                             },
                           },
