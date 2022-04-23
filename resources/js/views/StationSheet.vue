@@ -8,7 +8,9 @@
               ><v-row no-gutters justify="space-between"
                 ><v-col cols="5"> Stations </v-col
                 ><v-col cols="1" class="d-flex justify-content-end"
-                  ><SettingPannel></SettingPannel></v-col></v-row
+                  ><SettingPannel
+                    v-if="$can('view_coord_sheet')"
+                  ></SettingPannel></v-col></v-row
             ></v-card-title>
             <v-card-text>
               <v-data-table

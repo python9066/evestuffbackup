@@ -34543,6 +34543,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -73203,7 +73205,11 @@ var render = function () {
                                   staticClass: "d-flex justify-content-end",
                                   attrs: { cols: "1" },
                                 },
-                                [_c("SettingPannel")],
+                                [
+                                  _vm.$can("view_coord_sheet")
+                                    ? _c("SettingPannel")
+                                    : _vm._e(),
+                                ],
                                 1
                               ),
                             ],
