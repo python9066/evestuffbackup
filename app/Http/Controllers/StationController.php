@@ -574,9 +574,16 @@ class StationController extends Controller
         $flag = collect([
             'message' => $message,
         ]);
-        broadcast(new RcSheetUpdate($flag));
         broadcast(new ChillSheetUpdate($flag));
         broadcast(new WelpSheetUpdate($flag));
+
+
+        $message = Helper::StationRecordsSolo(4, $id);
+        $flag = collect([
+            'message' => $message,
+        ]);
+
+        broadcast(new RcSheetUpdate($flag));
     }
 
 
@@ -620,7 +627,7 @@ class StationController extends Controller
         $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName;
         $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
         Helper::stationlogs($logNew->id);
-        $RCmessage = RcStationRecords::where('id', $id)->first();
+        $RCmessage = Helper::StationRecordsSolo(4, $id);
         if ($RCmessage) {
 
             $flag = collect([
@@ -781,7 +788,7 @@ class StationController extends Controller
         $now = now();
         // $stationName = Station::find($id)->value('name');
 
-        $RCmessage = RcStationRecords::where('id', $id)->first();
+        $RCmessage = Helper::StationRecordsSolo(4, $id);
         if ($RCmessage) {
             $RCmessageSend = [
                 'id' => $RCmessage->id,

@@ -118,11 +118,6 @@ export default {
         id: this.item.id,
         show_on_rc: 0,
       };
-      this.$store.dispatch("updateRcStationCurrent", data);
-      var data = {
-        id: this.item.id,
-        show_on_chill: 0,
-      };
       this.$store.dispatch("updateChillStationCurrent", data);
       var data = {
         id: this.item.id,
@@ -188,12 +183,6 @@ export default {
       var data = {
         id: this.item.id,
         show_on_rc: 0,
-        show_on_coord: 1,
-      };
-      this.$store.dispatch("updateRcStationCurrent", data);
-      var data = {
-        id: this.item.id,
-        show_on_chill: 0,
         show_on_coord: 1,
       };
       this.$store.dispatch("updateChillStationCurrent", data);

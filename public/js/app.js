@@ -13160,13 +13160,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   show_on_rc: 0
                 };
 
-                _this.$store.dispatch("updateRcStationCurrent", data);
-
-                data = {
-                  id: _this.item.id,
-                  show_on_chill: 0
-                };
-
                 _this.$store.dispatch("updateChillStationCurrent", data);
 
                 data = {
@@ -13182,7 +13175,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   show_on_rc: 0,
                   show_on_coord: 1
                 };
-                _context3.next = 10;
+                _context3.next = 8;
                 return axios({
                   method: "put",
                   url: "/api/updatestationnotification/" + _this.item.id,
@@ -13194,13 +13187,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 10:
+              case 8:
                 request = {
                   station_status_id: statusID,
                   show_on_chill: 0,
                   show_on_coord: 1
                 };
-                _context3.next = 13;
+                _context3.next = 11;
                 return axios({
                   method: "put",
                   url: "/api/chillupdatestationnotification/" + _this.item.id,
@@ -13212,13 +13205,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 13:
+              case 11:
                 request = {
                   station_status_id: statusID,
                   show_on_welp: 0,
                   show_on_coord: 1
                 };
-                _context3.next = 16;
+                _context3.next = 14;
                 return axios({
                   method: "put",
                   url: "/api/welpupdatestationnotification/" + _this.item.id,
@@ -13230,7 +13223,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 16:
+              case 14:
               case "end":
                 return _context3.stop();
             }
@@ -13253,14 +13246,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   show_on_coord: 1
                 };
 
-                _this2.$store.dispatch("updateRcStationCurrent", data);
-
-                data = {
-                  id: _this2.item.id,
-                  show_on_chill: 0,
-                  show_on_coord: 1
-                };
-
                 _this2.$store.dispatch("updateChillStationCurrent", data);
 
                 data = {
@@ -13271,7 +13256,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this2.$store.dispatch("updateWelpStationCurrent", data);
 
-                _context4.next = 8;
+                _context4.next = 6;
                 return axios({
                   method: "put",
                   url: "/api/softdestory/" + _this2.item.id,
@@ -13282,12 +13267,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 8:
+              case 6:
                 data = {
                   id: _this2.item.id,
                   show_on_chill: 0
                 };
-                _context4.next = 11;
+                _context4.next = 9;
                 return axios({
                   method: "delete",
                   url: "/api/chilldelete/" + _this2.item.id,
@@ -13298,12 +13283,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 11:
+              case 9:
                 data = {
                   id: _this2.item.id,
                   show_on_welp: 0
                 };
-                _context4.next = 14;
+                _context4.next = 12;
                 return axios({
                   method: "delete",
                   url: "/api/welpdelete/" + _this2.item.id,
@@ -13314,7 +13299,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 14:
+              case 12:
               case "end":
                 return _context4.stop();
             }
