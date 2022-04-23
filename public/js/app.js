@@ -72902,7 +72902,7 @@ var render = function () {
                             {
                               attrs: {
                                 "no-gutters": "",
-                                "align-content": "space-between",
+                                justify: "space-between",
                               },
                             },
                             [
@@ -72912,7 +72912,7 @@ var render = function () {
                               _c(
                                 "v-col",
                                 {
-                                  staticClass: "d-flex justify-content-end",
+                                  staticClass: "d-flex-justify-content-end",
                                   attrs: { cols: "1" },
                                 },
                                 [_c("SettingPannel")],

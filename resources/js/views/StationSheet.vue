@@ -5,9 +5,9 @@
         <v-col cols="12">
           <v-card elevation="10" rounded="xl">
             <v-card-title class="primary"
-              ><v-row no-gutters align-content="space-between"
+              ><v-row no-gutters justify="space-between"
                 ><v-col cols="5"> Stations </v-col
-                ><v-col cols="1" class="d-flex justify-content-end"
+                ><v-col cols="1" class="d-flex-justify-content-end"
                   ><SettingPannel></SettingPannel></v-col></v-row
             ></v-card-title>
             <v-card-text>
