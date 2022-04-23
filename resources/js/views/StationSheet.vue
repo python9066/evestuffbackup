@@ -252,6 +252,26 @@ export default {
       this.windowSize = { x: window.innerWidth, y: window.innerHeight };
     },
 
+    buttontext(item) {
+      var ret = item.status.name.replace("Upcoming - ", "");
+      return ret;
+    },
+
+    pillColor(item) {
+      if (item.status.id == 4) {
+        return "orange darken-1";
+      }
+      if (item.status.id == 18) {
+        return "brown lighten-2";
+      }
+      if (item.status.id == 16) {
+        return "green";
+      }
+      if (item.status.id == 7) {
+        return "red";
+      }
+    },
+
     icons(item) {
       if (item.status.id == 4) {
         return "faSvg fa-check-circle";
