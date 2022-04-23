@@ -78,16 +78,16 @@ export default {
 
   methods: {
     pillColor() {
-      if (this.item.status_id == 13) {
+      if (this.item.station_status_id == 13) {
         return "red darken-4";
       }
-      if (this.item.status_id == 5) {
+      if (this.item.station_status_id == 5) {
         return "lime darken-4";
       }
-      if (this.item.status_id == 14) {
+      if (this.item.station_status_id == 14) {
         return "green accent-4";
       }
-      if (this.item.status_id == 17) {
+      if (this.item.station_status_id == 17) {
         return "#FF5EEA";
       }
     },
@@ -103,7 +103,10 @@ export default {
     },
 
     showAddTimer() {
-      if (this.item.status_id == 5 || this.item.status_id == 8) {
+      if (
+        this.item.station_status_id == 5 ||
+        this.item.station_status_id == 8
+      ) {
         return true;
       } else {
         return false;
