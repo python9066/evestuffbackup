@@ -33158,7 +33158,7 @@ function sleep(ms) {
           value: "corp.alliance.ticker"
         }, {
           text: "Expires",
-          value: "end_time"
+          value: "out_time"
         }, {
           text: "CountDown",
           value: "count",
@@ -33202,7 +33202,7 @@ function sleep(ms) {
           value: "corp.alliance.ticker"
         }, {
           text: "Expires",
-          value: "end_time"
+          value: "out_time"
         }, {
           text: "CountDown",
           value: "count",
