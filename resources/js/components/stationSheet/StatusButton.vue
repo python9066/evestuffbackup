@@ -10,8 +10,7 @@
         <v-list-item
           ><v-chip
             pill
-            v-if(item.status.id
-            !="16)"
+            v-if="item.status.id != 16"
             color="green"
             @click="statusUpdate(16)"
           >

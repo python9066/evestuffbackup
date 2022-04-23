@@ -22655,7 +22655,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -62423,25 +62422,20 @@ var render = function () {
               _c(
                 "v-list-item",
                 [
-                  _c(
-                    "v-chip",
-                    {
-                      directives: [
+                  _vm.item.status.id != 16
+                    ? _c(
+                        "v-chip",
                         {
-                          name: "if(item",
-                          rawName: "v-if(item.status.id",
-                          modifiers: { status: true, id: true },
+                          attrs: { pill: "", color: "green" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.statusUpdate(16)
+                            },
+                          },
                         },
-                      ],
-                      attrs: { pill: "", "!": "16)", color: "green" },
-                      on: {
-                        click: function ($event) {
-                          return _vm.statusUpdate(16)
-                        },
-                      },
-                    },
-                    [_vm._v("\n          Online\n        ")]
-                  ),
+                        [_vm._v("\n          Online\n        ")]
+                      )
+                    : _vm._e(),
                 ],
                 1
               ),
