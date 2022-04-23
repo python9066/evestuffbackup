@@ -22665,10 +22665,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
-  data: function data() {},
+  data: function data() {
+    return {};
+  },
   methods: {
     test: function test(n) {
       console.log(n);
+    },
+    buttontext: function buttontext() {
+      var ret = this.item.status.name.replace("Upcoming - ", "");
+      return ret;
+    },
+    pillColor: function pillColor() {
+      if (this.item.status.id == 4) {
+        return "orange darken-1";
+      }
+
+      if (this.item.status.id == 18) {
+        return "brown lighten-2";
+      }
+
+      if (this.item.status.id == 16) {
+        return "green";
+      }
+
+      if (this.item.status.id == 7) {
+        return "red";
+      }
     }
   },
   computed: {},
@@ -62314,20 +62337,23 @@ var render = function () {
                 var attrs = ref.attrs
                 return [
                   _c(
-                    "v-btn",
+                    "v-chip",
                     _vm._g(
                       _vm._b(
-                        {
-                          staticClass: "purple",
-                          attrs: { color: "primary", dark: "" },
-                        },
-                        "v-btn",
+                        { attrs: { pill: "", color: _vm.pillColor(_vm.item) } },
+                        "v-chip",
                         attrs,
                         false
                       ),
                       on
                     ),
-                    [_vm._v("\n        Slide Y Transition\n      ")]
+                    [
+                      _vm._v(
+                        "\n        " +
+                          _vm._s(_vm.buttontext(_vm.item)) +
+                          "\n      "
+                      ),
+                    ]
                   ),
                 ]
               },
