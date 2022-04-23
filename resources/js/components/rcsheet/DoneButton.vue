@@ -64,8 +64,10 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
+import { EventBus } from "../../app";
 import moment from "moment";
 
+EventBus.$on("timerDone", test());
 export default {
   props: {
     item: Object,
@@ -82,6 +84,9 @@ export default {
   watch: {},
 
   methods: {
+    test() {
+      console.log("YAY");
+    },
     pillColor() {
       if (this.item.station_status_id == 13) {
         return "red darken-4";
@@ -260,3 +265,5 @@ export default {
 </script>
 
 <style></style>
+
+

@@ -182,7 +182,7 @@
               </div>
             </template>
             <template v-slot:[`item.count`]="{ item }">
-              <RcTimer :station="item"></RcTimer>
+              <RcTimer :station="item" @timerdone="timerDone()"></RcTimer>
             </template>
             <template v-slot:[`item.fc.user.name`]="{ item }">
               <RcFCButton
@@ -297,7 +297,9 @@
 <script>
 import Axios from "axios";
 import moment, { now, utc } from "moment";
+import { EventBus } from "../app";
 import { stringify } from "querystring";
+
 import { mapGetters, mapState } from "vuex";
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -384,6 +386,9 @@ export default {
   },
 
   methods: {
+    timerDone() {
+      bus.$emit("customEventName", optionalParameter);
+    },
     log() {
       var request = {
         url: this.$route.path,

@@ -46,6 +46,7 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
+import { EventBus } from "../../app";
 import moment from "moment";
 export default {
   props: {
@@ -74,6 +75,7 @@ export default {
 
     updateDone() {
       this.done = false;
+      EventBus.$emit("timerDone");
     },
   },
 

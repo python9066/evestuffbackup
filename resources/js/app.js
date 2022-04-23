@@ -10,6 +10,7 @@ import Vue from "vue";
 import Vuetify from "vuetify";
 import router from "./router";
 import store from "./store";
+
 import App from "./views/App";
 import colors from "vuetify/lib/util/colors";
 import "@fortawesome/fontawesome-free/css/all.css";
@@ -449,7 +450,7 @@ export default new Vuetify({
         iconfont: "fa",
     },
 });
-
+export const EventBus = new Vue();
 const app = new Vue({
     components: {
         App,
