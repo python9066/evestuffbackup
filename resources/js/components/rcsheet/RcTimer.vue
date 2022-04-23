@@ -75,7 +75,7 @@ export default {
 
     updateDone() {
       this.done = false;
-      EventBus.$emit("timerDone", null);
+      EventBus.$emit("timerDone", this.station.id);
     },
   },
 

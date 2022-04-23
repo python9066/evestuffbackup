@@ -13097,7 +13097,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$on("timerDone", _this.test);
+              _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$on("timerDone", function (data) {
+                console.log("party");
+
+                if (_this.item == data) {
+                  _this.done = false;
+                }
+              });
 
               _this.setdone();
 
@@ -13111,7 +13117,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      showDoneOverlay: false
+      showDoneOverlay: false,
+      done: 0
     };
   },
   watch: {},
@@ -13120,14 +13127,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       console.log("YAY");
     },
     setdone: function setdone() {
-      var outTime = moment__WEBPACK_IMPORTED_MODULE_3___default.a.utc(this.item.out_time);
+      var outTime = moment__WEBPACK_IMPORTED_MODULE_3___default.a.utc(this.station.out_time);
       var now = moment__WEBPACK_IMPORTED_MODULE_3___default.a.utc();
-      console.log(outTime + " + " + now + " + " + outTime.isAfter(now));
 
       if (outTime.isAfter(now)) {
-        return false;
+        this.done = true;
       } else {
-        return true;
+        this.done = false;
       }
     },
     pillColor: function pillColor() {
@@ -15421,7 +15427,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     updateDone: function updateDone() {
       this.done = false;
-      _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("timerDone", null);
+      _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("timerDone", this.station.id);
     }
   },
   computed: {
@@ -52482,7 +52488,7 @@ var render = function () {
   return _c(
     "div",
     [
-      _vm.showDoneButton()
+      _vm.done
         ? _c(
             "v-dialog",
             {

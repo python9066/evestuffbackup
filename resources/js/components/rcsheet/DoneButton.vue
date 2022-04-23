@@ -6,7 +6,7 @@
       persistent
       v-model="showDoneOverlay"
       @click:outside="close()"
-      v-if="showDoneButton()"
+      v-if="done"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -74,12 +74,18 @@ export default {
   },
 
   async created() {
-    EventBus.$on("timerDone", this.test);
+    EventBus.$on("timerDone", (data) => {
+      console.log("party");
+      if (this.item == data) {
+        this.done = false;
+      }
+    });
     this.setdone();
   },
   data() {
     return {
       showDoneOverlay: false,
+      done: 0,
     };
   },
 
@@ -91,14 +97,12 @@ export default {
     },
 
     setdone() {
-      var outTime = moment.utc(this.item.out_time);
+      var outTime = moment.utc(this.station.out_time);
       var now = moment.utc();
-
-      console.log(outTime + " + " + now + " + " + outTime.isAfter(now));
       if (outTime.isAfter(now)) {
-        return false;
+        this.done = true;
       } else {
-        return true;
+        this.done = false;
       }
     },
 
