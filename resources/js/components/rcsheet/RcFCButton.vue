@@ -9,7 +9,7 @@
     </div>
     <div>
       <v-btn
-        v-show="!showRcFCButton()"
+        v-if="!showRcFCButton()"
         class=""
         color="blue"
         x-small
@@ -20,7 +20,7 @@
         FC</v-btn
       >
       <v-icon
-        v-show="
+        v-if="
           showRcFCButton() &&
           ($can('edit_killsheet_remove_char') ||
             this.station.fc.user.id == this.$store.state.user_id)

@@ -53024,57 +53024,45 @@ var render = function () {
       _c(
         "div",
         [
-          _c(
-            "v-btn",
-            {
-              directives: [
+          !_vm.showRcFCButton()
+            ? _c(
+                "v-btn",
                 {
-                  name: "show",
-                  rawName: "v-show",
-                  value: !_vm.showRcFCButton(),
-                  expression: "!showRcFCButton()",
+                  attrs: { color: "blue", "x-small": "", outlined: "" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.fcAdd()
+                    },
+                  },
                 },
-              ],
-              attrs: { color: "blue", "x-small": "", outlined: "" },
-              on: {
-                click: function ($event) {
-                  return _vm.fcAdd()
-                },
-              },
-            },
-            [
-              _c("v-icon", { attrs: { "x-small": "", dark: "", left: "" } }, [
-                _vm._v(" fas fa-plus "),
-              ]),
-              _vm._v("\n      FC"),
-            ],
-            1
-          ),
+                [
+                  _c(
+                    "v-icon",
+                    { attrs: { "x-small": "", dark: "", left: "" } },
+                    [_vm._v(" fas fa-plus ")]
+                  ),
+                  _vm._v("\n      FC"),
+                ],
+                1
+              )
+            : _vm._e(),
           _vm._v(" "),
-          _c(
-            "v-icon",
-            {
-              directives: [
+          _vm.showRcFCButton() &&
+          (_vm.$can("edit_killsheet_remove_char") ||
+            this.station.fc.user.id == this.$store.state.user_id)
+            ? _c(
+                "v-icon",
                 {
-                  name: "show",
-                  rawName: "v-show",
-                  value:
-                    _vm.showRcFCButton() &&
-                    (_vm.$can("edit_killsheet_remove_char") ||
-                      this.station.fc.user.id == this.$store.state.user_id),
-                  expression:
-                    "\n        showRcFCButton() &&\n        ($can('edit_killsheet_remove_char') ||\n          this.station.fc.user.id == this.$store.state.user_id)\n      ",
+                  attrs: { color: "orange darken-3", small: "" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.fcRemove()
+                    },
+                  },
                 },
-              ],
-              attrs: { color: "orange darken-3", small: "" },
-              on: {
-                click: function ($event) {
-                  return _vm.fcRemove()
-                },
-              },
-            },
-            [_vm._v("\n      fas fa-trash-alt\n    ")]
-          ),
+                [_vm._v("\n      fas fa-trash-alt\n    ")]
+              )
+            : _vm._e(),
         ],
         1
       ),
