@@ -636,10 +636,10 @@ class StationController extends Controller
                 'message' => $RCmessage,
             ]);
         } else {
-
+            $stationID = intval($id);
             $RCmessageSend = collect([
 
-                'id' => $id,
+                'id' => $stationID,
                 'show_on_rc' => 0
             ]);
 
