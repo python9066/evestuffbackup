@@ -163,7 +163,6 @@ export default {
         fc_user_id: item.id,
         fc_user_name: item.name,
       };
-      this.$store.dispatch("updateRcStationCurrent", data);
       this.$store.dispatch("updateChillStationCurrent", data);
       this.$store.dispatch("updateWelpStationCurrent", data);
 

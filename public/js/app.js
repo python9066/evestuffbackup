@@ -13525,8 +13525,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   fc_user_name: item.name
                 };
 
-                _this.$store.dispatch("updateRcStationCurrent", data);
-
                 _this.$store.dispatch("updateChillStationCurrent", data);
 
                 _this.$store.dispatch("updateWelpStationCurrent", data);
@@ -13534,7 +13532,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 request = {
                   rc_fc_id: item.id
                 };
-                _context.next = 7;
+                _context.next = 6;
                 return axios({
                   method: "post",
                   url: "/api/rcfcadd/" + _this.station.id,
@@ -13546,7 +13544,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 7:
+              case 6:
               case "end":
                 return _context.stop();
             }
