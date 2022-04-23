@@ -100,7 +100,7 @@ class RcFcUsersController extends Controller
 
         $fcname = User::where('id', $userid)->value('name');
 
-        $message = RcStationRecords::where('id', $id)->first();
+        $message = Helper::StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,
