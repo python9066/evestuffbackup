@@ -638,11 +638,11 @@ export default {
     },
 
     campaignStart(item) {
-      var data = {
-        id: item.id,
-        out: 1,
-      };
-      this.$store.dispatch("updateRcStation", data);
+      //   var data = {
+      //     id: item.id,
+      //     out: 1,
+      //   };
+      //   this.$store.dispatch("updateRcStation", data);
     },
     countDownStartTime(item) {
       return moment.utc(item.out_time).unix();

@@ -3,7 +3,7 @@
     <div>
       <span class="d-inline-flex align-items-md-center pr-2">
         <span class="pl-2" v-show="showRcFCButton()">
-          {{ station.fc_name }}
+          {{ station.fc.name }}
         </span>
       </span>
     </div>
@@ -24,7 +24,7 @@
         v-show="
           showRcFCButton() &&
           ($can('edit_killsheet_remove_char') ||
-            this.station.fc_user_id == this.$store.state.user_id)
+            this.station.fc.id == this.$store.state.user_id)
         "
         color="orange darken-3"
         small
@@ -54,7 +54,7 @@ export default {
 
   methods: {
     showRcFCButton() {
-      if (this.station.fc_user_id) {
+      if (this.station.fc.id) {
         return true;
       } else {
         return false;
