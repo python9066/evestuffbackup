@@ -66,7 +66,7 @@ export default {
         fc_user_id: this.$store.state.user_id,
         fc_name: this.$store.state.user_name,
       };
-      this.$store.dispatch("updateRcStationCurrent", data);
+
       this.$store.dispatch("updateChillStationCurrent", data);
       this.$store.dispatch("updateWelpStationCurrent", data);
 

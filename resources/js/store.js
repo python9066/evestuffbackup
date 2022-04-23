@@ -347,16 +347,6 @@ export default new Vuex.Store({
             }
         },
 
-        UPDATE_RC_STATION_CURRENT(state, data) {
-            const item = state.rcstations.find((item) => item.id === data.id);
-            const count = state.rcstations.filter(
-                (item) => item.id === data.id
-            ).length;
-            if (count > 0) {
-                Object.assign(item, data);
-            }
-        },
-
         UPDATE_CHILL_STATION_CURRENT(state, data) {
             const item = state.chillstations.find(
                 (item) => item.id === data.id
@@ -1427,10 +1417,6 @@ export default new Vuex.Store({
 
         updateStationList({ commit }, data) {
             commit("UPDATE_STATION_LIST", data);
-        },
-
-        updateRcStationCurrent({ commit }, data) {
-            commit("UPDATE_RC_STATION_CURRENT", data);
         },
 
         updateChillStationCurrent({ commit }, data) {
