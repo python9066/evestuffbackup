@@ -183,7 +183,7 @@ export default {
         }
       })
       .listen("StationDeadStationSheet", (e) => {
-        this.$store.dispatch("deleteStationNotification", e.flag.id);
+        this.$store.dispatch("deleteStationSheetNotification", e.flag.id);
       });
   },
   async mounted() {

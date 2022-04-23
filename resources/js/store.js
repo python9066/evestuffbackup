@@ -656,6 +656,13 @@ export default new Vuex.Store({
             }
         },
 
+        DELETE_STATION_SHEET_NOTIFICATION(state, id) {
+            let index = state.stationList.findIndex((s) => s.id == id);
+            if (index >= 0) {
+                state.stationList.splice(index, 1);
+            }
+        },
+
         SET_RECON_TASK_SYSTEMS(state, systems) {
             state.recontasksystems = systems;
         },
@@ -1551,6 +1558,10 @@ export default new Vuex.Store({
 
         deleteStationNotification({ commit }, id) {
             commit("DELETE_STATION_NOTIFICATION", id);
+        },
+
+        deleteStationSheetNotification({ commit }, id) {
+            commit("DELETE_STATION_SHEET_NOTIFICATION", id);
         },
 
         deleteUsersChars({ commit }, id) {
