@@ -21943,6 +21943,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -61647,24 +61652,26 @@ var render = function () {
               staticClass: "d-flex flex-column",
               attrs: {
                 tile: "",
-                "max-width": "700px",
+                "max-width": "1000px",
                 "min-height": "200px",
                 "max-height": "700px",
+                rounded: "xl",
               },
             },
             [
-              _c("v-card-title", [_vm._v("Setting for Station Page")]),
+              _c("v-card-title", { staticClass: "justify-center primary" }, [
+                _vm._v("Setting for Station Page"),
+              ]),
               _vm._v(" "),
               _c(
                 "v-card-text",
                 [
                   _c(
                     "v-row",
-                    { attrs: { "no-gutters": "", justify: "space-between" } },
+                    { attrs: { "no-gutters": "", justify: "start" } },
                     [
                       _c(
                         "v-col",
-                        { attrs: { cols: "5" } },
                         [
                           _c("v-autocomplete", {
                             attrs: {
@@ -61694,7 +61701,14 @@ var render = function () {
                         ],
                         1
                       ),
-                      _vm._v(" "),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    { attrs: { "no-gutters": "", justify: "start" } },
+                    [
                       _c(
                         "v-col",
                         { attrs: { cols: "5" } },

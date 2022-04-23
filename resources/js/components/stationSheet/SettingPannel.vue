@@ -13,15 +13,18 @@
       </template>
       <v-card
         tile
-        max-width="700px"
+        max-width="1000px"
         min-height="200px"
         max-height="700px"
         class="d-flex flex-column"
+        rounded="xl"
       >
-        <v-card-title>Setting for Station Page</v-card-title>
+        <v-card-title class="justify-center primary"
+          >Setting for Station Page</v-card-title
+        >
         <v-card-text>
-          <v-row no-gutters justify="space-between">
-            <v-col cols="5">
+          <v-row no-gutters justify="start">
+            <v-col>
               <v-autocomplete
                 v-model="pullPicked"
                 :items="regionList"
@@ -40,6 +43,8 @@
                 return-object
               ></v-autocomplete>
             </v-col>
+          </v-row>
+          <v-row no-gutters justify="start">
             <v-col cols="5">
               <v-autocomplete
                 v-model="fcPicked"
