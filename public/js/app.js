@@ -22645,6 +22645,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -22671,6 +22682,68 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     test: function test(n) {
       console.log(n);
+    },
+    destroyed: function destroyed() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios({
+                  method: "delete",
+                  url: "/api/rcmovedonebad/" + _this.item.id,
+                  withCredentials: true,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    statusUpdate: function statusUpdate(statusID) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                request = null;
+                request = {
+                  station_status_id: statusID,
+                  show_on_rc: 0,
+                  show_on_coord: 1
+                };
+                _context3.next = 4;
+                return axios({
+                  method: "put",
+                  url: "/api/updatestationnotification/" + _this2.item.id,
+                  data: request,
+                  withCredentials: true,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
     },
     buttontext: function buttontext() {
       var ret = this.item.status.name.replace("Upcoming - ", "");
@@ -34315,6 +34388,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -62350,14 +62426,21 @@ var render = function () {
                   _c(
                     "v-chip",
                     {
-                      attrs: { pill: "" },
+                      directives: [
+                        {
+                          name: "if(item",
+                          rawName: "v-if(item.status.id",
+                          modifiers: { status: true, id: true },
+                        },
+                      ],
+                      attrs: { pill: "", "!": "16)", color: "green" },
                       on: {
                         click: function ($event) {
-                          return _vm.test(1)
+                          return _vm.statusUpdate(16)
                         },
                       },
                     },
-                    [_vm._v(" One ")]
+                    [_vm._v("\n          Online\n        ")]
                   ),
                 ],
                 1
@@ -62369,52 +62452,14 @@ var render = function () {
                   _c(
                     "v-chip",
                     {
-                      attrs: { pill: "" },
+                      attrs: { pill: "", color: "red" },
                       on: {
                         click: function ($event) {
-                          return _vm.test(2)
+                          return _vm.destroyed()
                         },
                       },
                     },
-                    [_vm._v(" Two ")]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item",
-                [
-                  _c(
-                    "v-chip",
-                    {
-                      attrs: { pill: "" },
-                      on: {
-                        click: function ($event) {
-                          return _vm.test(3)
-                        },
-                      },
-                    },
-                    [_vm._v(" Three ")]
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item",
-                [
-                  _c(
-                    "v-chip",
-                    {
-                      attrs: { pill: "" },
-                      on: {
-                        click: function ($event) {
-                          return _vm.test(4)
-                        },
-                      },
-                    },
-                    [_vm._v(" Four ")]
+                    [_vm._v("\n          DEAD\n        ")]
                   ),
                 ],
                 1
@@ -73344,9 +73389,28 @@ var render = function () {
                                     fn: function (ref) {
                                       var item = ref.item
                                       return [
-                                        _c("StatusButton", {
-                                          attrs: { item: item },
-                                        }),
+                                        _vm.$can("add_timer")
+                                          ? _c("StatusButton", {
+                                              attrs: { item: item },
+                                            })
+                                          : _c(
+                                              "v-chip",
+                                              {
+                                                attrs: {
+                                                  pill: "",
+                                                  color: _vm.pillColor(item),
+                                                },
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                  " +
+                                                    _vm._s(
+                                                      _vm.buttontext(item)
+                                                    ) +
+                                                    "\n                "
+                                                ),
+                                              ]
+                                            ),
                                       ]
                                     },
                                   },

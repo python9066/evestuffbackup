@@ -84,10 +84,13 @@
                 </template>
 
                 <template v-slot:[`item.status.name`]="{ item }">
-                  <StatusButton :item="item"></StatusButton>
-                  <!-- <v-chip pill :color="pillColor(item)">
+                  <StatusButton
+                    v-if="$can('add_timer')"
+                    :item="item"
+                  ></StatusButton>
+                  <v-chip v-else pill :color="pillColor(item)">
                     {{ buttontext(item) }}
-                  </v-chip> -->
+                  </v-chip>
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
                   <div class="d-inline-flex">
