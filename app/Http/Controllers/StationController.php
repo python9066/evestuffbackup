@@ -10,6 +10,7 @@ use App\Events\RcSheetUpdate;
 use App\Events\StationAttackMessageUpdate;
 use App\Events\StationCoreUpdate;
 use App\Events\StationDeadCoord;
+use App\Events\StationDeadStationSheet;
 use App\Events\StationLogUpdate;
 use App\Events\StationMessageUpdate;
 use App\Events\StationNotificationDelete;
@@ -841,6 +842,7 @@ class StationController extends Controller
         broadcast(new RcMoveDelete($flag));
         broadcast(new StationNotificationDelete($flag));
         broadcast(new StationDeadCoord($flag));
+        broadcast(new StationDeadStationSheet($flag));
     }
 
     public function softDestroy($id)

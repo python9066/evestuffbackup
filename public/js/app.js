@@ -34582,6 +34582,8 @@ function sleep(ms) {
                 _this.$store.dispatch("getStationList");
 
                 if (e.flag.flag == 3) {}
+              }).listen("StationDeadStationSheet", function (e) {
+                _this.$store.dispatch("deleteStationNotification", e.flag.id);
               });
 
             case 3:

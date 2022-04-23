@@ -166,21 +166,25 @@ function sleep(ms) {
 export default {
   async created() {
     await this.$store.dispatch("getStationList").then((this.loadingt = false));
-    Echo.private("stationsheet").listen("StationSheetUpdate", (e) => {
-      if (e.flag.message != null) {
-        this.$store.dispatch("updateStationList", e.flag.message);
-      }
+    Echo.private("stationsheet")
+      .listen("StationSheetUpdate", (e) => {
+        if (e.flag.message != null) {
+          this.$store.dispatch("updateStationList", e.flag.message);
+        }
 
-      if (e.flag.flag == 1) {
-        this.$store.dispatch("getStationRegionLists");
-      }
+        if (e.flag.flag == 1) {
+          this.$store.dispatch("getStationRegionLists");
+        }
 
-      if (e.flag.flag == 2) {
-      }
-      this.$store.dispatch("getStationList");
-      if (e.flag.flag == 3) {
-      }
-    });
+        if (e.flag.flag == 2) {
+        }
+        this.$store.dispatch("getStationList");
+        if (e.flag.flag == 3) {
+        }
+      })
+      .listen("StationDeadStationSheet", (e) => {
+        this.$store.dispatch("deleteStationNotification", e.flag.id);
+      });
   },
   async mounted() {
     this.onResize();
