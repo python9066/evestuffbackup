@@ -53011,25 +53011,13 @@ var render = function () {
           "span",
           { staticClass: "d-inline-flex align-items-md-center pr-2" },
           [
-            _c(
-              "span",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.showRcFCButton(),
-                    expression: "showRcFCButton()",
-                  },
-                ],
-                staticClass: "pl-2",
-              },
-              [
-                _vm._v(
-                  "\n        " + _vm._s(_vm.station.fc.user.name) + "\n      "
-                ),
-              ]
-            ),
+            _vm.showRcFCButton()
+              ? _c("span", { staticClass: "pl-2" }, [
+                  _vm._v(
+                    "\n        " + _vm._s(_vm.station.fc.user.name) + "\n      "
+                  ),
+                ])
+              : _vm._e(),
           ]
         ),
       ]),

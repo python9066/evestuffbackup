@@ -2,7 +2,7 @@
   <div class="d-inline-flex align-items-md-center pl-4">
     <div>
       <span class="d-inline-flex align-items-md-center pr-2">
-        <span class="pl-2" v-show="showRcFCButton()">
+        <span class="pl-2" v-if="showRcFCButton()">
           {{ station.fc.user.name }}
         </span>
       </span>
