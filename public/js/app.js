@@ -13090,12 +13090,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     type: Number
   },
   created: function created() {
+    var _this = this;
+
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$on("timerDone", test());
+              _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$on("timerDone", _this.test());
 
             case 1:
             case "end":
@@ -13160,7 +13162,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     statusUpdate: function statusUpdate(statusID) {
-      var _this = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var data, request;
@@ -13169,18 +13171,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context3.prev = _context3.next) {
               case 0:
                 data = {
-                  id: _this.item.id,
+                  id: _this2.item.id,
                   show_on_rc: 0
                 };
 
-                _this.$store.dispatch("updateChillStationCurrent", data);
+                _this2.$store.dispatch("updateChillStationCurrent", data);
 
                 data = {
-                  id: _this.item.id,
+                  id: _this2.item.id,
                   show_on_welp: 0
                 };
 
-                _this.$store.dispatch("updateWelpStationCurrent", data);
+                _this2.$store.dispatch("updateWelpStationCurrent", data);
 
                 request = null;
                 request = {
@@ -13191,7 +13193,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 8;
                 return axios({
                   method: "put",
-                  url: "/api/updatestationnotification/" + _this.item.id,
+                  url: "/api/updatestationnotification/" + _this2.item.id,
                   withCredentials: true,
                   data: request,
                   headers: {
@@ -13209,7 +13211,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 11;
                 return axios({
                   method: "put",
-                  url: "/api/chillupdatestationnotification/" + _this.item.id,
+                  url: "/api/chillupdatestationnotification/" + _this2.item.id,
                   withCredentials: true,
                   data: request,
                   headers: {
@@ -13227,7 +13229,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 14;
                 return axios({
                   method: "put",
-                  url: "/api/welpupdatestationnotification/" + _this.item.id,
+                  url: "/api/welpupdatestationnotification/" + _this2.item.id,
                   withCredentials: true,
                   data: request,
                   headers: {
@@ -13245,7 +13247,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     softDestroyed: function softDestroyed() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var data;
@@ -13254,25 +13256,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context4.prev = _context4.next) {
               case 0:
                 data = {
-                  id: _this2.item.id,
+                  id: _this3.item.id,
                   show_on_rc: 0,
                   show_on_coord: 1
                 };
 
-                _this2.$store.dispatch("updateChillStationCurrent", data);
+                _this3.$store.dispatch("updateChillStationCurrent", data);
 
                 data = {
-                  id: _this2.item.id,
+                  id: _this3.item.id,
                   show_on_welp: 0,
                   show_on_coord: 1
                 };
 
-                _this2.$store.dispatch("updateWelpStationCurrent", data);
+                _this3.$store.dispatch("updateWelpStationCurrent", data);
 
                 _context4.next = 6;
                 return axios({
                   method: "put",
-                  url: "/api/softdestory/" + _this2.item.id,
+                  url: "/api/softdestory/" + _this3.item.id,
                   withCredentials: true,
                   headers: {
                     Accept: "application/json",
@@ -13282,13 +13284,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 6:
                 data = {
-                  id: _this2.item.id,
+                  id: _this3.item.id,
                   show_on_chill: 0
                 };
                 _context4.next = 9;
                 return axios({
                   method: "delete",
-                  url: "/api/chilldelete/" + _this2.item.id,
+                  url: "/api/chilldelete/" + _this3.item.id,
                   withCredentials: true,
                   headers: {
                     Accept: "application/json",
@@ -13298,13 +13300,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 9:
                 data = {
-                  id: _this2.item.id,
+                  id: _this3.item.id,
                   show_on_welp: 0
                 };
                 _context4.next = 12;
                 return axios({
                   method: "delete",
-                  url: "/api/welpdelete/" + _this2.item.id,
+                  url: "/api/welpdelete/" + _this3.item.id,
                   withCredentials: true,
                   headers: {
                     Accept: "application/json",

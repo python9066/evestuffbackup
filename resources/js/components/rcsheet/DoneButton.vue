@@ -74,7 +74,7 @@ export default {
   },
 
   async created() {
-    EventBus.$on("timerDone", test());
+    EventBus.$on("timerDone", this.test());
   },
   data() {
     return {
