@@ -32587,7 +32587,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -33152,7 +33151,7 @@ function sleep(ms) {
           value: "item.item_name"
         }, {
           text: "Status",
-          value: "item.status.name",
+          value: "status.name",
           align: "center"
         }, {
           text: "Ticker",
@@ -33196,7 +33195,7 @@ function sleep(ms) {
           value: "item.item_name"
         }, {
           text: "Status",
-          value: "item.status.name",
+          value: "status.name",
           align: "center"
         }, {
           text: "Ticker",
@@ -71693,7 +71692,27 @@ var render = function () {
                             fn: function (ref) {
                               var item = ref.item
                               return [
-                                _vm._v("\n            dance\n\n            "),
+                                _vm.showDoneButton(item)
+                                  ? _c("DoneButton", {
+                                      attrs: { item: item, type: 1 },
+                                    })
+                                  : _c(
+                                      "v-chip",
+                                      {
+                                        attrs: {
+                                          pill: "",
+                                          small: "",
+                                          color: _vm.pillColor(item),
+                                        },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n              " +
+                                            _vm._s(_vm.buttontext(item)) +
+                                            "\n            "
+                                        ),
+                                      ]
+                                    ),
                               ]
                             },
                           },
