@@ -376,7 +376,7 @@ export default new Router({
             name: "stations",
             component: Station,
             beforeEnter(to, from, next) {
-                if (Permissions.indexOf("view_killsheet") !== -1) {
+                if (Permissions.indexOf("view_station_list") !== -1) {
                     next();
                 } else {
                     next("/notifications");

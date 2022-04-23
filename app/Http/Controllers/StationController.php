@@ -56,7 +56,7 @@ class StationController extends Controller
     public function stationSheet()
     {
         $user = Auth::user();
-        if ($user->can('super')) {
+        if ($user->can('view_station_list')) {
 
             $data = Helper::StationRecords(6);
             return ['stations' => $data];
