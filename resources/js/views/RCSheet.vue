@@ -130,7 +130,7 @@
               <div class="d-inline-flex">
                 <span v-if="item.url">
                   <v-avatar size="35"><img :src="item.url" /></v-avatar>
-                  <span class="red--text pl-3"
+                  <span :class="tickerColor()"
                     >{{ item.alliance_ticker }}
                   </span>
                 </span>
@@ -686,6 +686,14 @@ export default {
         return false;
       }
     },
+
+    // tickerColor(){
+    //     if(){
+    //         return "red--text pl-3"
+    //     }else{
+    //         return "blue--text pl-3"
+    //     }
+    // }
   },
 
   computed: {

@@ -333,6 +333,17 @@ class Helper
 
         if ($type == 4) {
             $station_query->where('show_on_rc', 1);
+            if (Auth::user()->can("use_reserved_connection")) {
+                $station_query->with(['system.webway'
+                => function ($t) {
+                    $t->where('permissions', 1);
+                },]);
+            } else {
+                $station_query->with(['system.webway'
+                => function ($t) {
+                    $t->where('permissions', 0);
+                },]);
+            }
         }
 
         if ($type == 5) {
@@ -340,7 +351,10 @@ class Helper
         }
 
         if ($type == 6) {
-            $station_query->where('show_on_coord', 1);
+            $station_query->where('show_on_coord', 1)->with(['system.webway'
+            => function ($t) {
+                $t->where('permissions', 1);
+            },]);
         }
 
         $station_query->where('standing', '=<', 0);
@@ -361,11 +375,8 @@ class Helper
             'logs:id,station_id,user_id,logging_type_id,text,created_at',
             'logs.type:id,name',
             'logs.user:id,name',
-            'addedBy:id,name',
-            'system.webway'
-            => function ($t) {
-                $t->where('permissions', 1);
-            },
+            'addedBy:id,name'
+
         ]);
 
         $stationRecords = $station_query->get();
@@ -398,6 +409,17 @@ class Helper
 
         if ($type == 4) {
             $station_query->where('show_on_rc', 1);
+            if (Auth::user()->can("use_reserved_connection")) {
+                $station_query->with(['system.webway'
+                => function ($t) {
+                    $t->where('permissions', 1);
+                },]);
+            } else {
+                $station_query->with(['system.webway'
+                => function ($t) {
+                    $t->where('permissions', 0);
+                },]);
+            }
         }
 
         if ($type == 5) {
@@ -405,7 +427,10 @@ class Helper
         }
 
         if ($type == 6) {
-            $station_query->where('show_on_coord', 1);
+            $station_query->where('show_on_coord', 1)->with(['system.webway'
+            => function ($t) {
+                $t->where('permissions', 1);
+            },]);
         }
 
         $station_query->where('standing', '=<', 0);
@@ -426,10 +451,6 @@ class Helper
             'logs.type:id,name',
             'logs.user:id,name',
             'addedBy:id,name',
-            'system.webway'
-            => function ($t) {
-                $t->where('permissions', 1);
-            },
         ]);
 
         $stationRecords = $station_query->first();
