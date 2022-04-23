@@ -32761,9 +32761,9 @@ function sleep(ms) {
       var now = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
 
       if (outTime.isAfter(now)) {
-        return false;
-      } else {
         return true;
+      } else {
+        return false;
       }
     },
     showDoneButton: function showDoneButton(item) {

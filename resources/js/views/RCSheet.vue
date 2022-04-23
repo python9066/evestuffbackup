@@ -453,9 +453,9 @@ export default {
       var outTime = moment.utc(item.out_time);
       var now = moment.utc();
       if (outTime.isAfter(now)) {
-        return false;
-      } else {
         return true;
+      } else {
+        return false;
       }
     },
 
