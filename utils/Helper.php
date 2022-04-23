@@ -329,7 +329,7 @@ class Helper
 
         if ($type == 4) {
             $station_query->where('show_on_rc', 1);
-            if (Auth::user()->can("use_reserved_connection")) {
+            if ($user->can("use_reserved_connection")) {
                 $station_query->with(['system.webway'
                 => function ($t) {
                     $t->where('permissions', 1);
@@ -409,7 +409,7 @@ class Helper
 
         if ($type == 4) {
             $station_query->where('show_on_rc', 1);
-            if (Auth::user()->can("use_reserved_connection")) {
+            if ($user->can("use_reserved_connection")) {
                 $station_query->with(['system.webway'
                 => function ($t) {
                     $t->where('permissions', 1);
