@@ -13100,9 +13100,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _this.setdone();
 
               _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$on("timerDone", function (data) {
-                console.log("party");
+                console.log(data);
 
-                if (_this.item == data) {
+                if (_this.item.id == data) {
                   _this.done = true;
                 }
               });

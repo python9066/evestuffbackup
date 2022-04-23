@@ -76,8 +76,8 @@ export default {
   async created() {
     this.setdone();
     EventBus.$on("timerDone", (data) => {
-      console.log("party");
-      if (this.item == data) {
+      console.log(data);
+      if (this.item.id == data) {
         this.done = true;
       }
     });
