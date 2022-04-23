@@ -2186,9 +2186,7 @@ export default new Vuex.Store({
         },
 
         getActiveRcStations: (state) => {
-            return state.rcstations.filter(
-                (station) => station.show_on_rc == 1
-            );
+            return state.stations.filter((station) => station.show_on_rc == 1);
         },
 
         getActiveChillStations: (state) => {

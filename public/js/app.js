@@ -87662,7 +87662,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       };
     },
     getActiveRcStations: function getActiveRcStations(state) {
-      return state.rcstations.filter(function (station) {
+      return state.stations.filter(function (station) {
         return station.show_on_rc == 1;
       });
     },
