@@ -32,19 +32,21 @@ class RcSheetController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->can("use_reserved_connection")) {
-            return ['stations' => RcStationRecords::where('show_on_rc', 1)->with([
-                'webway' => function ($t) {
-                    $t->where('permissions', 1);
-                }
-            ])->get()];
-        } else {
-            return ['stations' => RcStationRecords::where('show_on_rc', 1)->with([
-                'webway' => function ($t) {
-                    $t->where('permissions', 0);
-                }
-            ])->get()];
-        }
+        // if (Auth::user()->can("use_reserved_connection")) {
+        //     return ['stations' => RcStationRecords::where('show_on_rc', 1)->with([
+        //         'webway' => function ($t) {
+        //             $t->where('permissions', 1);
+        //         }
+        //     ])->get()];
+        // } else {
+        //     return ['stations' => RcStationRecords::where('show_on_rc', 1)->with([
+        //         'webway' => function ($t) {
+        //             $t->where('permissions', 0);
+        //         }
+        //     ])->get()];
+        // }
+
+        return ['stations' => Helper::StationRecords(4)];
     }
 
     /**

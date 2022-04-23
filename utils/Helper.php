@@ -315,10 +315,6 @@ class Helper
         $user = FacadesAuth::user();
         $type = $type;
         $station_query = Station::query();
-        if ($user->can('view_coord_sheet')) {
-        } else {
-            $station_query->whereIn('system_id', $systemIDs);
-        }
         if ($type == 1) {
             $station_query->where('show_on_main', 1);
         }
@@ -355,6 +351,10 @@ class Helper
             => function ($t) {
                 $t->where('permissions', 1);
             },]);
+            if ($user->can('view_coord_sheet')) {
+            } else {
+                $station_query->where('show_on_coord', 1)->whereIn('system_id', $systemIDs);
+            }
         }
 
         $station_query->where('standing', '=<', 0);
@@ -431,6 +431,10 @@ class Helper
             => function ($t) {
                 $t->where('permissions', 1);
             },]);
+            if ($user->can('view_coord_sheet')) {
+            } else {
+                $station_query->where('show_on_coord', 1)->whereIn('system_id', $systemIDs);
+            }
         }
 
         $station_query->where('standing', '=<', 0);
