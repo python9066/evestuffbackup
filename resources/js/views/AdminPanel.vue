@@ -268,20 +268,11 @@ export default {
       if (this.$can("edit_chill_users")) {
         chill = filter.filter((f) => f.name == "Chilled");
       }
-      if (this.$can("edit_fc_users")) {
-        fc = filter.filter((f) => f.name == "FC");
-      }
       if (this.$can("edit_gsfoe_fc")) {
         gsfoeFC = filter.filter((f) => f.name == "GSFOE FC");
       }
       if (this.$can("edit_gunner_users")) {
         gunner = filter.filter((f) => f.name == "Gunner");
-      }
-      if (this.$can("edit_recon_users")) {
-        recon = filter.filter((f) => f.name == "Recon");
-      }
-      if (this.$can("edit_scout_users")) {
-        scout = filter.filter((f) => f.name == "Scout");
       }
       if (this.$can("edit_super_chilled_users")) {
         superChilled = filter.filter((f) => f.name == "Super Chilled");
