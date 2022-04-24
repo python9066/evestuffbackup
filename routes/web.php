@@ -45,6 +45,8 @@ Route::get('/campaignlisttest', 'testController@campaginListTest');
 Route::get('/hithere', 'testController@prequal');
 Route::get('/hitherealso', 'testController@horizon');
 Route::get('/testsolooperstions', 'testController@getSoloOperations');
+Route::get('removefc', 'testController@removeFC');
+
 
 
 

@@ -34,6 +34,17 @@ class testController extends Controller
         return view('test2');
     }
 
+    public function removeFC()
+    {
+        $check = Auth::user();
+        if ($check->can('super')) {
+            $users = User::all();
+            foreach ($users as $user) {
+                $user->removeRole(12);
+            }
+        }
+    }
+
     public function key()
     {
 
