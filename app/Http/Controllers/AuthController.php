@@ -160,14 +160,16 @@ class AuthController extends Controller
     /*
     title -> gice_id -> site_id
 
+    Recon Leader -> 1094 -> 14
     DIrector -> 8 -> 13
-    gsfoe -> 1048 ->
-    skirmish fc -> 28 -> 12
+    sFC -> 28 -> 31
     gsol -> 47 -> 17
     scout -> 195 -> 7
     ops -> 231 -> 6
     recon -> 184 -> 5
     coord -> 494 -> 4
+    TC ->  979 -> 30
+    FC -> 731 -> 12
 
     */
 
@@ -181,7 +183,10 @@ class AuthController extends Controller
         $user->removeRole(14); // Recon Leader
         $user->removeRole(16); // GSFOE Leader
         $user->removeRole(17); // GSOL
-        $user->removeRole(12); // SC
+        $user->removeRole(31); // sFC
+        $user->removeRole(7); // Scout
+        $user->removeRole(12); // FC
+        $user->removeRole(30); // TC
     }
 
     public function addRoles($user, $role_id)
@@ -230,7 +235,25 @@ class AuthController extends Controller
 
         if ($role_id == 28) {
 
-            // function to assign FC role
+            // function to assign sFC role
+            $user->assignRole(31);
+        }
+
+        if ($role_id == 195) {
+
+            // function to assign Scout role
+            $user->assignRole(7);
+        }
+
+        if ($role_id == 979) {
+
+            // function to assign Scout role
+            $user->assignRole(30);
+        }
+
+        if ($role_id == 731) {
+
+            // function to assign Scout role
             $user->assignRole(12);
         }
     }
