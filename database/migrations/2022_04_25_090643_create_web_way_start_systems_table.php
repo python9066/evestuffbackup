@@ -15,7 +15,7 @@ class CreateWebWayStartSystemsTable extends Migration
     {
         Schema::create('web_way_start_systems', function (Blueprint $table) {
             $table->id();
-            $table->foreign('system_id');
+            $table->foreignId('system_id');
             $table->timestamps();
         });
     }

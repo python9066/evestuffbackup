@@ -34597,6 +34597,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -38123,7 +38125,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.myFont {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 12px;\n  text-transform: none;\n  font-weight: 700;\n  letter-spacing: 0.1px;\n  line-height: 18px;\n  -moz-tab-size: 4;\n    -o-tab-size: 4;\n       tab-size: 4;\n  color: rgba(255, 255, 255, 0.7);\n}\n", ""]);
+exports.push([module.i, "\n.myFont {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 12px;\n  text-transform: none;\n  font-weight: 700;\n  letter-spacing: 0.1px;\n  line-height: 18px;\n  -moz-tab-size: 4;\n    -o-tab-size: 4;\n       tab-size: 4;\n  color: rgba(255, 255, 255, 0.7);\n}\n.myFontSmall {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 9px;\n  text-transform: none;\n  font-weight: 700;\n  letter-spacing: 0.1px;\n  line-height: 18px;\n  -moz-tab-size: 4;\n    -o-tab-size: 4;\n       tab-size: 4;\n  color: rgba(255, 255, 255, 0.7);\n}\n", ""]);
 
 // exports
 
@@ -73441,7 +73443,7 @@ var render = function () {
                                                             },
                                                             [
                                                               _vm._v(
-                                                                " This is a test "
+                                                                " Webway - "
                                                               ),
                                                             ]
                                                           ),
@@ -73450,9 +73452,17 @@ var render = function () {
                                                             "span",
                                                             {
                                                               staticClass:
-                                                                "text-lg-caption",
+                                                                "myFontSmall",
                                                             },
-                                                            [_vm._v(" yoyo")]
+                                                            [
+                                                              _vm._v(
+                                                                _vm._s(
+                                                                  _vm
+                                                                    .webwaySelect
+                                                                    .value
+                                                                )
+                                                              ),
+                                                            ]
                                                           ),
                                                         ]
                                                       ),
