@@ -64,6 +64,27 @@
               ></v-autocomplete>
             </v-col>
           </v-row>
+          <v-row no-gutters justify="start">
+            <v-col>
+              <v-autocomplete
+                v-model="webwayPicked"
+                :items="systemlist"
+                label="Select"
+                chips
+                clearable
+                deletable-chips
+                dense
+                hint="Which Regions would you like FCs to see"
+                hide-selected
+                multiple
+                persistent-hint
+                rounded
+                small-chips
+                solo-inverted
+                stationListPullRegions
+              ></v-autocomplete>
+            </v-col>
+          </v-row>
         </v-card-text>
         <v-spacer></v-spacer
         ><v-card-actions>
@@ -95,6 +116,7 @@ export default {
       openInfo: false,
       pullPicked: [],
       fcPicked: [],
+      webwayPicked: [],
     };
   },
 
@@ -106,6 +128,10 @@ export default {
     },
 
     submit() {
+      var request = {
+        system_id: this.webwayPicked,
+      };
+
       var request = {
         pull: this.pullPicked,
         fc: this.fcPicked,
@@ -131,6 +157,7 @@ export default {
     setPicked() {
       this.pullPicked = this.pullPickedComp;
       this.fcPicked = this.fcPickedComp;
+      this.webwayPicked = this.webwayPickedComp;
     },
   },
 
@@ -139,6 +166,8 @@ export default {
       "stationListPullRegions",
       "stationListFCRegions",
       "stationListRegionList",
+      "systemlist",
+      "webwayStartSystems",
     ]),
 
     regionList() {
@@ -151,6 +180,10 @@ export default {
 
     pullPickedComp() {
       return this.stationListPullRegions;
+    },
+
+    webwayPickedComp() {
+      return this.webwayStartSystems;
     },
 
     showStationSettingPannel() {

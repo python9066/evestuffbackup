@@ -359,7 +359,7 @@ export default {
         (f) => f.start_system_id == this.webwaySelect.value
       );
       var jumps = filter.jump;
-      return jumps;
+      return filter;
     },
 
     webwayLink(item) {
@@ -561,7 +561,7 @@ export default {
   },
 
   computed: {
-    ...mapState(["stationList", "systemlist", "webwayStartSystems"]),
+    ...mapState(["stationList", "webwayStartSystems"]),
 
     filter_end() {
       return this.stationList.filter(

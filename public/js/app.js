@@ -21987,6 +21987,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -21995,7 +22016,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       openInfo: false,
       pullPicked: [],
-      fcPicked: []
+      fcPicked: [],
+      webwayPicked: []
     };
   },
   created: function created() {
@@ -22016,6 +22038,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.openInfo = false;
     },
     submit: function submit() {
+      var request = {
+        system_id: this.webwayPicked
+      };
       var request = {
         pull: this.pullPicked,
         fc: this.fcPicked
@@ -22039,9 +22064,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     setPicked: function setPicked() {
       this.pullPicked = this.pullPickedComp;
       this.fcPicked = this.fcPickedComp;
+      this.webwayPicked = this.webwayPickedComp;
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["stationListPullRegions", "stationListFCRegions", "stationListRegionList"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["stationListPullRegions", "stationListFCRegions", "stationListRegionList", "systemlist", "webwayStartSystems"])), {}, {
     regionList: function regionList() {
       return this.stationListRegionList;
     },
@@ -22050,6 +22076,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     pullPickedComp: function pullPickedComp() {
       return this.stationListPullRegions;
+    },
+    webwayPickedComp: function webwayPickedComp() {
+      return this.webwayStartSystems;
     },
     showStationSettingPannel: function showStationSettingPannel() {
       if (this.openInfo) {
@@ -34812,7 +34841,7 @@ function sleep(ms) {
         return f.start_system_id == _this3.webwaySelect.value;
       });
       var jumps = filter.jump;
-      return jumps;
+      return filter;
     },
     webwayLink: function webwayLink(item) {
       var _this4 = this;
@@ -34940,7 +34969,7 @@ function sleep(ms) {
       return "https://evemaps.dotlan.net/map/" + item.system.region.region_name + "/" + item.system.system_name + "#const";
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stationList", "systemlist", "webwayStartSystems"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stationList", "webwayStartSystems"])), {}, {
     filter_end: function filter_end() {
       return this.stationList.filter(function (f) {
         return f.show_on_coord == 1 && f.standing <= 0;
@@ -61871,6 +61900,45 @@ var render = function () {
                                 _vm.fcPicked = $$v
                               },
                               expression: "fcPicked",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    { attrs: { "no-gutters": "", justify: "start" } },
+                    [
+                      _c(
+                        "v-col",
+                        [
+                          _c("v-autocomplete", {
+                            attrs: {
+                              items: _vm.systemlist,
+                              label: "Select",
+                              chips: "",
+                              clearable: "",
+                              "deletable-chips": "",
+                              dense: "",
+                              hint: "Which Regions would you like FCs to see",
+                              "hide-selected": "",
+                              multiple: "",
+                              "persistent-hint": "",
+                              rounded: "",
+                              "small-chips": "",
+                              "solo-inverted": "",
+                              stationListPullRegions: "",
+                            },
+                            model: {
+                              value: _vm.webwayPicked,
+                              callback: function ($$v) {
+                                _vm.webwayPicked = $$v
+                              },
+                              expression: "webwayPicked",
                             },
                           }),
                         ],
