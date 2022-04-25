@@ -73384,9 +73384,19 @@ var render = function () {
                                                           on
                                                         ),
                                                         [
-                                                          _vm._v(
-                                                            "\n                      this is a test\n                      "
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "text-sm-subtitle",
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                " this is a test"
+                                                              ),
+                                                            ]
                                                           ),
+                                                          _vm._v(" "),
                                                           _c(
                                                             "span",
                                                             {

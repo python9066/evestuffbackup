@@ -43,7 +43,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-btn text v-bind="attrs" v-on="on">
-                        this is a test
+                        <span class="text-sm-subtitle"> this is a test</span>
                         <span class="text-lg-caption"> yoyo</span>
                       </v-btn>
                     </template>
