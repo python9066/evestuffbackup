@@ -13,14 +13,15 @@ use Illuminate\Queue\SerializesModels;
 class getWebwayJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    protected $system_id, $link, $jumps, $link_p, $jumps_p;
+    protected $system_id, $link, $jumps, $link_p, $jumps_p, $start_system_id;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($system_id, $link, $jumps, $link_p, $jumps_p)
+    public function __construct($start_system_id, $system_id, $link, $jumps, $link_p, $jumps_p)
     {
+        $this->start_system_id = $start_system_id;
         $this->system_id = $system_id;
         $this->link = $link;
         $this->link_p = $link_p;
@@ -38,6 +39,7 @@ class getWebwayJob implements ShouldQueue
     {
         WebWay::updateOrCreate(
             [
+                'start_system_id' => $this->start_system_id,
                 'system_id' => $this->system_id,
                 'permissions' => 0
             ],
@@ -49,6 +51,7 @@ class getWebwayJob implements ShouldQueue
 
         WebWay::updateOrCreate(
             [
+                'start_system_id' => $this->start_system_id,
                 'system_id' => $this->system_id,
                 'permissions' => 1
             ],
