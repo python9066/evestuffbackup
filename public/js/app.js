@@ -34984,7 +34984,7 @@ function sleep(ms) {
       });
     },
     webwayButton: function webwayButton() {
-      if (this.webwayStartSystems) {
+      if (this.webwayStartSystems.length > 0) {
         return true;
       } else {
         return false;
