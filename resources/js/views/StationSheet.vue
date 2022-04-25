@@ -34,16 +34,17 @@
                 <template slot="no-data">
                   All Hostile Stations our reffed!!!!!!
                 </template>
-                <template v-slot: [header.test]="{ props }">
+                <template #header.test="props">
                   <v-menu
                     v-model="menu"
                     :close-on-content-click="false"
                     offset-y
                     :transition="false"
                   >
-                    <template #activator="{ on, attrs }">
-                      <v-btn icon v-bind="attrs" v-on="on">
-                        Webway - <span class="text-caption"> 1DQ1-A</span>
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn text v-bind="attrs" v-on="on">
+                        this is a test
+                        <span class="text-lg-caption"> yoyo</span>
                       </v-btn>
                     </template>
 

@@ -34597,6 +34597,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -73350,8 +73351,8 @@ var render = function () {
                               scopedSlots: _vm._u(
                                 [
                                   {
-                                    key: "default",
-                                    fn: function () {
+                                    key: "header.test",
+                                    fn: function (props) {
                                       return [
                                         _c(
                                           "v-menu",
@@ -73361,44 +73362,50 @@ var render = function () {
                                               "offset-y": "",
                                               transition: false,
                                             },
-                                            scopedSlots: _vm._u([
-                                              {
-                                                key: "activator",
-                                                fn: function (ref) {
-                                                  var on = ref.on
-                                                  var attrs = ref.attrs
-                                                  return [
-                                                    _c(
-                                                      "v-btn",
-                                                      _vm._g(
-                                                        _vm._b(
-                                                          {
-                                                            attrs: { icon: "" },
-                                                          },
-                                                          "v-btn",
-                                                          attrs,
-                                                          false
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "activator",
+                                                  fn: function (ref) {
+                                                    var on = ref.on
+                                                    var attrs = ref.attrs
+                                                    return [
+                                                      _c(
+                                                        "v-btn",
+                                                        _vm._g(
+                                                          _vm._b(
+                                                            {
+                                                              attrs: {
+                                                                text: "",
+                                                              },
+                                                            },
+                                                            "v-btn",
+                                                            attrs,
+                                                            false
+                                                          ),
+                                                          on
                                                         ),
-                                                        on
+                                                        [
+                                                          _vm._v(
+                                                            "\n                      this is a test\n                      "
+                                                          ),
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "text-lg-caption",
+                                                            },
+                                                            [_vm._v(" yoyo")]
+                                                          ),
+                                                        ]
                                                       ),
-                                                      [
-                                                        _vm._v(
-                                                          "\n                      Webway - "
-                                                        ),
-                                                        _c(
-                                                          "span",
-                                                          {
-                                                            staticClass:
-                                                              "text-caption",
-                                                          },
-                                                          [_vm._v(" 1DQ1-A")]
-                                                        ),
-                                                      ]
-                                                    ),
-                                                  ]
+                                                    ]
+                                                  },
                                                 },
-                                              },
-                                            ]),
+                                              ],
+                                              null,
+                                              true
+                                            ),
                                             model: {
                                               value: _vm.menu,
                                               callback: function ($$v) {
@@ -73417,7 +73424,6 @@ var render = function () {
                                         ),
                                       ]
                                     },
-                                    proxy: true,
                                   },
                                   {
                                     key: "item.system.webway[0].jumps",
