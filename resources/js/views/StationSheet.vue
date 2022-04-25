@@ -64,10 +64,7 @@
                                 webwaySelectedStartSystem.value
                               )"
                               :key="index"
-                              @click="
-                                updateWebwaySelectedStartSystem(list),
-                                  webwayButton != webwayButton
-                              "
+                              @click="updateWebwaySelectedStartSystem(list)"
                             >
                               <v-list-item-title>{{
                                 list.text
@@ -394,6 +391,8 @@ export default {
         value: item.value,
         text: item.text,
       };
+
+      this.menu = false;
 
       this.$store.dispatch("updateWebwaySelectedStartSystem", data);
     },

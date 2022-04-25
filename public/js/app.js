@@ -34667,9 +34667,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -34889,6 +34886,7 @@ function sleep(ms) {
         value: item.value,
         text: item.text
       };
+      this.menu = false;
       this.$store.dispatch("updateWebwaySelectedStartSystem", data);
     },
     standingCheckCorp: function standingCheckCorp(item) {
@@ -73677,11 +73675,9 @@ var render = function () {
                                                                           function (
                                                                             $event
                                                                           ) {
-                                                                            _vm.updateWebwaySelectedStartSystem(
+                                                                            return _vm.updateWebwaySelectedStartSystem(
                                                                               list
-                                                                            ),
-                                                                              _vm.webwayButton !=
-                                                                                _vm.webwayButton
+                                                                            )
                                                                           },
                                                                       },
                                                                     },
