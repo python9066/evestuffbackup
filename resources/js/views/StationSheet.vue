@@ -50,13 +50,13 @@
                     <v-card> this is a test </v-card>
                   </v-menu>
                 </template>
-                <template v-slot:[`item.webway[0].jumps`]="{ item }">
+                <!-- <template v-slot:[`item.webway[0].jumps`]="{ item }">
                   <SoloCampaginWebWay
                     v-if="item.system.webway[0]"
                     :jumps="item.system.webway[0].jumps"
                     :web="item.system.webway[0].webway"
                   ></SoloCampaginWebWay>
-                </template>
+                </template> -->
                 <template
                   v-slot:[`item.corp.ticker`]="{ item }"
                   class="d-inline-flex align-center"
@@ -228,6 +228,7 @@ export default {
         {
           text: "",
           value: "webway[0].jumps",
+          sortable: false,
         },
         {
           text: "",

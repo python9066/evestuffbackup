@@ -34685,7 +34685,8 @@ function sleep(ms) {
       menu: false,
       headers: [{
         text: "",
-        value: "webway[0].jumps"
+        value: "webway[0].jumps",
+        sortable: false
       }, {
         text: "",
         value: "test"
@@ -73412,24 +73413,6 @@ var render = function () {
                                           ],
                                           1
                                         ),
-                                      ]
-                                    },
-                                  },
-                                  {
-                                    key: "item.webway[0].jumps",
-                                    fn: function (ref) {
-                                      var item = ref.item
-                                      return [
-                                        item.system.webway[0]
-                                          ? _c("SoloCampaginWebWay", {
-                                              attrs: {
-                                                jumps:
-                                                  item.system.webway[0].jumps,
-                                                web: item.system.webway[0]
-                                                  .webway,
-                                              },
-                                            })
-                                          : _vm._e(),
                                       ]
                                     },
                                   },
