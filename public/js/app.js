@@ -73409,117 +73409,106 @@ var render = function () {
                                       var props = ref.props
                                       return [
                                         _c(
-                                          "v-menu",
-                                          {
-                                            attrs: {
-                                              "close-on-content-click": false,
-                                              "offset-y": "",
-                                              transition: false,
-                                            },
-                                            scopedSlots: _vm._u(
-                                              [
-                                                {
-                                                  key: "activator",
-                                                  fn: function (ref) {
-                                                    var on = ref.on
-                                                    var attrs = ref.attrs
-                                                    return [
-                                                      _c(
-                                                        "v-btn",
-                                                        _vm._g(
-                                                          _vm._b(
-                                                            {
-                                                              attrs: {
-                                                                text: "",
-                                                              },
-                                                            },
-                                                            "v-btn",
-                                                            attrs,
-                                                            false
-                                                          ),
-                                                          on
-                                                        ),
-                                                        [
-                                                          _c(
-                                                            "v-row",
-                                                            {
-                                                              attrs: {
-                                                                "no-gutters":
-                                                                  "",
-                                                              },
-                                                            },
-                                                            [
-                                                              _c("v-col", [
-                                                                _c(
-                                                                  "span",
-                                                                  {
-                                                                    staticClass:
-                                                                      "myFont",
-                                                                  },
-                                                                  [
-                                                                    _vm._v(
-                                                                      "Webway"
-                                                                    ),
-                                                                  ]
-                                                                ),
-                                                              ]),
-                                                            ],
-                                                            1
-                                                          ),
-                                                          _vm._v(" "),
-                                                          _c(
-                                                            "v-row",
-                                                            {
-                                                              attrs: {
-                                                                "no-gutters":
-                                                                  "",
-                                                              },
-                                                            },
-                                                            [
-                                                              _c("v-col", [
-                                                                _c(
-                                                                  "span",
-                                                                  {
-                                                                    staticClass:
-                                                                      "myFontSmall",
-                                                                  },
-                                                                  [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        _vm
-                                                                          .webwaySelect
-                                                                          .text
-                                                                      )
-                                                                    ),
-                                                                  ]
-                                                                ),
-                                                              ]),
-                                                            ],
-                                                            1
-                                                          ),
-                                                        ],
-                                                        1
-                                                      ),
-                                                    ]
-                                                  },
-                                                },
-                                              ],
-                                              null,
-                                              true
-                                            ),
-                                            model: {
-                                              value: _vm.menu,
-                                              callback: function ($$v) {
-                                                _vm.menu = $$v
-                                              },
-                                              expression: "menu",
-                                            },
-                                          },
+                                          "v-row",
+                                          { attrs: { "no-gutters": "" } },
                                           [
-                                            _vm._v(" "),
-                                            _c("v-card", [
-                                              _vm._v(" this is a test "),
+                                            _c("v-col", [
+                                              _c(
+                                                "span",
+                                                { staticClass: "myFont" },
+                                                [_vm._v("Webway")]
+                                              ),
                                             ]),
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-row",
+                                          { attrs: { "no-gutters": "" } },
+                                          [
+                                            _c(
+                                              "v-col",
+                                              [
+                                                _c(
+                                                  "v-menu",
+                                                  {
+                                                    attrs: {
+                                                      "close-on-content-click": false,
+                                                      "offset-y": "",
+                                                      transition: false,
+                                                    },
+                                                    scopedSlots: _vm._u(
+                                                      [
+                                                        {
+                                                          key: "activator",
+                                                          fn: function (ref) {
+                                                            var on = ref.on
+                                                            var attrs =
+                                                              ref.attrs
+                                                            return [
+                                                              _c(
+                                                                "v-btn",
+                                                                _vm._g(
+                                                                  _vm._b(
+                                                                    {
+                                                                      attrs: {
+                                                                        text: "",
+                                                                      },
+                                                                    },
+                                                                    "v-btn",
+                                                                    attrs,
+                                                                    false
+                                                                  ),
+                                                                  on
+                                                                ),
+                                                                [
+                                                                  _c(
+                                                                    "span",
+                                                                    {
+                                                                      staticClass:
+                                                                        "myFontSmall",
+                                                                    },
+                                                                    [
+                                                                      _vm._v(
+                                                                        _vm._s(
+                                                                          _vm
+                                                                            .webwaySelect
+                                                                            .text
+                                                                        )
+                                                                      ),
+                                                                    ]
+                                                                  ),
+                                                                ]
+                                                              ),
+                                                            ]
+                                                          },
+                                                        },
+                                                      ],
+                                                      null,
+                                                      true
+                                                    ),
+                                                    model: {
+                                                      value: _vm.menu,
+                                                      callback: function ($$v) {
+                                                        _vm.menu = $$v
+                                                      },
+                                                      expression: "menu",
+                                                    },
+                                                  },
+                                                  [
+                                                    _vm._v(" "),
+                                                    _c("v-card", [
+                                                      _vm._v(
+                                                        " this is a test "
+                                                      ),
+                                                    ]),
+                                                  ],
+                                                  1
+                                                ),
+                                              ],
+                                              1
+                                            ),
                                           ],
                                           1
                                         ),

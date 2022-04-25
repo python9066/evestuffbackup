@@ -35,31 +35,31 @@
                   All Hostile Stations our reffed!!!!!!
                 </template>
                 <template v-slot:[`header.system.webway[0].jumps`]="{ props }">
-                  <v-menu
-                    v-model="menu"
-                    :close-on-content-click="false"
-                    offset-y
-                    :transition="false"
+                  <v-row no-gutters>
+                    <v-col>
+                      <span class="myFont">Webway</span>
+                    </v-col></v-row
                   >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-btn text v-bind="attrs" v-on="on">
-                        <v-row no-gutters>
-                          <v-col>
-                            <span class="myFont">Webway</span>
-                          </v-col></v-row
-                        >
-                        <v-row no-gutters>
-                          <v-col>
+                  <v-row no-gutters>
+                    <v-col>
+                      <v-menu
+                        v-model="menu"
+                        :close-on-content-click="false"
+                        offset-y
+                        :transition="false"
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn text v-bind="attrs" v-on="on">
                             <span class="myFontSmall">{{
                               webwaySelect.text
                             }}</span>
-                          </v-col></v-row
-                        >
-                      </v-btn>
-                    </template>
+                          </v-btn>
+                        </template>
 
-                    <v-card> this is a test </v-card>
-                  </v-menu>
+                        <v-card> this is a test </v-card>
+                      </v-menu>
+                    </v-col>
+                  </v-row>
                 </template>
                 <template v-slot:[`item.system.webway[0].jumps`]="{ item }">
                   <SoloCampaginWebWay
