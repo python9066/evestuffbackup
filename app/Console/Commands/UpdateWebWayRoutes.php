@@ -6,6 +6,7 @@ use App\Jobs\updateWebwayJob;
 use App\Models\Campaign;
 use App\Models\Station;
 use App\Models\WebWay;
+use App\Models\WebWayStartSystem;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -60,6 +61,13 @@ class UpdateWebWayRoutes extends Command
 
         foreach ($systemIDs as $end_system_id) {
             updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');
+        }
+
+        $start_system_ids = WebWayStartSystem::whereNotNull('id')->pluck('system_id');
+        foreach ($start_system_ids as $start_system_id) {
+            foreach ($systemIDs as $end_system_id) {
+                updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');
+            }
         }
     }
 }

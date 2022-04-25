@@ -118,6 +118,13 @@ class HotRegionController extends Controller
             updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');
         }
 
+        $start_system_ids = WebWayStartSystem::whereNotNull('id')->pluck('system_id');
+        foreach ($start_system_ids as $start_system_id) {
+            foreach ($systemIDs as $end_system_id) {
+                updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');
+            }
+        }
+
 
 
         $flag = collect([
