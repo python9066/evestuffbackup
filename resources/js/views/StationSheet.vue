@@ -60,7 +60,9 @@
                         <v-card>
                           <v-list>
                             <v-list-item
-                              v-for="(list, index) in webwayButtonList"
+                              v-for="(list, index) in webwayDropdownList(
+                                webwaySelectedStartSystem.value
+                              )"
                               :key="index"
                               @click="updateWebwaySelectedStartSystem(list)"
                             >
@@ -337,6 +339,10 @@ export default {
       if (item.status.id == 7) {
         return "faSvg fa-skull-crossbones";
       }
+    },
+
+    webwayDropdownList(value) {
+      this.webwayButtonList.filter((f) => f.value != value);
     },
 
     Systemcopied() {

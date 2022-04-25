@@ -34665,6 +34665,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -34830,6 +34832,11 @@ function sleep(ms) {
       if (item.status.id == 7) {
         return "faSvg fa-skull-crossbones";
       }
+    },
+    webwayDropdownList: function webwayDropdownList(value) {
+      this.webwayButtonList.filter(function (f) {
+        return f.value != value;
+      });
     },
     Systemcopied: function Systemcopied() {
       this.snack = true;
@@ -73648,7 +73655,11 @@ var render = function () {
                                                             _c(
                                                               "v-list",
                                                               _vm._l(
-                                                                _vm.webwayButtonList,
+                                                                _vm.webwayDropdownList(
+                                                                  _vm
+                                                                    .webwaySelectedStartSystem
+                                                                    .value
+                                                                ),
                                                                 function (
                                                                   list,
                                                                   index
