@@ -14,15 +14,17 @@ use Illuminate\Support\Facades\Http;
 class updateWebwayJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    protected $system_id;
+    protected $end_system_id;
+    protected $start_system_id;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($system_id)
+    public function __construct($start_system_id, $end_system_id)
     {
-        $this->system_id = $system_id;
+        $this->end_system_id = $end_system_id;
+        $this->start_system_id = $start_system_id;
     }
 
     /**
@@ -32,16 +34,16 @@ class updateWebwayJob implements ShouldQueue
      */
     public function handle()
     {
-        $this->updateWebway($this->system_id);
+        $this->updateWebway($this->start_system_id, $this->end_system_id);
     }
 
-    public function updateWebway($system_id)
+    public function updateWebway($start_system_id, $end_system_id)
     {
         $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
         /*
         send = [
             startSystem => start system get from env (1dq)
-            endStstem => $system_id
+            endStstem => $end_system_id
         ]
        return =  api code to request too webway repos $response will be:
             [
@@ -52,13 +54,12 @@ class updateWebwayJob implements ShouldQueue
             ]
         */
 
-        $startSystem = env('HOME_SYSTEM_ID', ($variables && array_key_exists('HOME_SYSTEM_ID', $variables)) ? $variables['HOME_SYSTEM_ID'] : null);
         $webwayURL = env('WEBWAY_URL', ($variables && array_key_exists('WEBWAY_URL', $variables)) ? $variables['WEBWAY_URL'] : null);
         $webwayToken = env('WEBWAY_TOKEN', ($variables && array_key_exists('WEBWAY_TOKEN', $variables)) ? $variables['WEBWAY_TOKEN'] : null);
 
         $data = [
-            'startSystem' => $startSystem,
-            'endSystem' => $system_id
+            'startSystem' => $start_system_id,
+            'endSystem' => $end_system_id
         ];
 
         Http::withToken($webwayToken)

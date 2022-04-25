@@ -42,6 +42,10 @@ class UpdateWebWayRoutes extends Command
      */
     public function handle()
     {
+        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+
+        $start_system_id = env('HOME_SYSTEM_ID', ($variables && array_key_exists('HOME_SYSTEM_ID', $variables)) ? $variables['HOME_SYSTEM_ID'] : null);
+
         WebWay::where('id', '>', 0)->update(['active' => 0]);
         $stations = Station::get();
         $stationSystems = $stations->pluck('system_id');
@@ -54,8 +58,8 @@ class UpdateWebWayRoutes extends Command
         WebWay::whereIn('system_id', $systemIDs)->update(['active' => 1]);
         WebWay::where('active', 0)->delete();
 
-        foreach ($systemIDs as $system_id) {
-            updateWebwayJob::dispatch($system_id)->onQueue('webway');
+        foreach ($systemIDs as $end_system_id) {
+            updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');
         }
     }
 }
