@@ -34603,6 +34603,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -73445,19 +73449,22 @@ var render = function () {
                                                               },
                                                             },
                                                             [
-                                                              _c(
-                                                                "span",
-                                                                {
-                                                                  staticClass:
-                                                                    "myFont",
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    " Webway - "
-                                                                  ),
-                                                                ]
-                                                              ),
-                                                            ]
+                                                              _c("v-col", [
+                                                                _c(
+                                                                  "span",
+                                                                  {
+                                                                    staticClass:
+                                                                      "myFont",
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "Webway"
+                                                                    ),
+                                                                  ]
+                                                                ),
+                                                              ]),
+                                                            ],
+                                                            1
                                                           ),
                                                           _vm._v(" "),
                                                           _c(
@@ -73469,23 +73476,26 @@ var render = function () {
                                                               },
                                                             },
                                                             [
-                                                              _c(
-                                                                "span",
-                                                                {
-                                                                  staticClass:
-                                                                    "myFontSmall",
-                                                                },
-                                                                [
-                                                                  _vm._v(
-                                                                    _vm._s(
-                                                                      _vm
-                                                                        .webwaySelect
-                                                                        .text
-                                                                    )
-                                                                  ),
-                                                                ]
-                                                              ),
-                                                            ]
+                                                              _c("v-col", [
+                                                                _c(
+                                                                  "span",
+                                                                  {
+                                                                    staticClass:
+                                                                      "myFontSmall",
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        _vm
+                                                                          .webwaySelect
+                                                                          .text
+                                                                      )
+                                                                    ),
+                                                                  ]
+                                                                ),
+                                                              ]),
+                                                            ],
+                                                            1
                                                           ),
                                                         ],
                                                         1
