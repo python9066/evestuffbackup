@@ -49,7 +49,7 @@
                         :transition="false"
                       >
                         <template v-slot:activator="{ on, attrs }">
-                          <v-btn text v-bind="attrs" v-on="on">
+                          <v-btn text v-bind="attrs" v-on="on" x-small>
                             <span class="myFontSmall">{{
                               webwaySelect.text
                             }}</span>

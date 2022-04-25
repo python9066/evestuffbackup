@@ -73454,6 +73454,8 @@ var render = function () {
                                                                     {
                                                                       attrs: {
                                                                         text: "",
+                                                                        "x-small":
+                                                                          "",
                                                                       },
                                                                     },
                                                                     "v-btn",
