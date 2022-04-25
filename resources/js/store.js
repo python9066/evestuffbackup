@@ -89,8 +89,8 @@ export default new Vuex.Store({
         stationListRegionList: [],
 
         webwaySelectedStartSystem: {
-            text: "1DQ1-A",
             value: 30004759,
+            text: "1DQ1-A",
         },
     },
     mutations: {

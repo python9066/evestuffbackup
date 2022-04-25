@@ -85670,8 +85670,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     stationListFCRegions: [],
     stationListRegionList: [],
     webwaySelectedStartSystem: {
-      text: "1DQ1-A",
-      value: 30004759
+      value: 30004759,
+      text: "1DQ1-A"
     }
   },
   mutations: {
