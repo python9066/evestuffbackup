@@ -34,7 +34,7 @@
                 <template slot="no-data">
                   All Hostile Stations our reffed!!!!!!
                 </template>
-                <template #header.test="props">
+                <template #header.webway="props">
                   <v-menu
                     v-model="menu"
                     :close-on-content-click="false"
@@ -43,7 +43,7 @@
                   >
                     <template #activator="{ on, attrs }">
                       <v-btn icon v-bind="attrs" v-on="on">
-                        <v-icon>mdi-dots-vertical</v-icon>
+                        Webway - <span class="text-caption"> 1-DQ1-A</span>
                       </v-btn>
                     </template>
 
@@ -226,7 +226,7 @@ export default {
 
       headers: [
         {
-          text: "WebWay",
+          text: "",
           value: "webway[0].jumps",
         },
         {

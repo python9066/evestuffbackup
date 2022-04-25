@@ -34684,7 +34684,7 @@ function sleep(ms) {
       search: "",
       menu: false,
       headers: [{
-        text: "WebWay",
+        text: "",
         value: "webway[0].jumps"
       }, {
         text: "",
@@ -73341,7 +73341,7 @@ var render = function () {
                               scopedSlots: _vm._u(
                                 [
                                   {
-                                    key: "header.test",
+                                    key: "header.webway",
                                     fn: function (props) {
                                       return [
                                         _c(
@@ -73376,13 +73376,18 @@ var render = function () {
                                                           on
                                                         ),
                                                         [
-                                                          _c("v-icon", [
-                                                            _vm._v(
-                                                              "mdi-dots-vertical"
-                                                            ),
-                                                          ]),
-                                                        ],
-                                                        1
+                                                          _vm._v(
+                                                            "\n                      Webway - "
+                                                          ),
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "text-caption",
+                                                            },
+                                                            [_vm._v(" 1-DQ1-A")]
+                                                          ),
+                                                        ]
                                                       ),
                                                     ]
                                                   },
