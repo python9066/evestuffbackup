@@ -354,7 +354,7 @@ export default {
       var filter = base.filter(
         (f) => f.start_system_id == this.webwaySelectedStartSystem.value
       );
-      var jumps = filter.jumps;
+      var jumps = filter[0].jumps;
       return jumps;
     },
 

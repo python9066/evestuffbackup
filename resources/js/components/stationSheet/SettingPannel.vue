@@ -74,7 +74,7 @@
                 clearable
                 deletable-chips
                 dense
-                hint="Which Regions would you like FCs to see"
+                hint="Set Staging Systems for Webway (1DQ is defaulted)"
                 hide-selected
                 multiple
                 persistent-hint

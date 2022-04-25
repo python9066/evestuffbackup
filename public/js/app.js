@@ -34836,7 +34836,7 @@ function sleep(ms) {
       var filter = base.filter(function (f) {
         return f.start_system_id == _this3.webwaySelectedStartSystem.value;
       });
-      var jumps = filter.jumps;
+      var jumps = filter[0].jumps;
       return jumps;
     },
     webwayLink: function webwayLink(item) {
@@ -61920,7 +61920,7 @@ var render = function () {
                               clearable: "",
                               "deletable-chips": "",
                               dense: "",
-                              hint: "Which Regions would you like FCs to see",
+                              hint: "Set Staging Systems for Webway (1DQ is defaulted)",
                               "hide-selected": "",
                               multiple: "",
                               "persistent-hint": "",
