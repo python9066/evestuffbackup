@@ -34683,6 +34683,10 @@ function sleep(ms) {
       loadingt: true,
       search: "",
       menu: false,
+      webwaySelect: {
+        text: "1DQ1-A",
+        value: 30004759
+      },
       headers: [{
         text: "",
         value: "webway[0].jumps",
@@ -73386,7 +73390,7 @@ var render = function () {
                                                               staticClass:
                                                                 "text-caption",
                                                             },
-                                                            [_vm._v(" 1-DQ1-A")]
+                                                            [_vm._v(" 1DQ1-A")]
                                                           ),
                                                         ]
                                                       ),
@@ -73413,24 +73417,6 @@ var render = function () {
                                           ],
                                           1
                                         ),
-                                      ]
-                                    },
-                                  },
-                                  {
-                                    key: "item.webway[0].jumps",
-                                    fn: function (ref) {
-                                      var item = ref.item
-                                      return [
-                                        item.system.webway[0]
-                                          ? _c("SoloCampaginWebWay", {
-                                              attrs: {
-                                                jumps:
-                                                  item.system.webway[0].jumps,
-                                                web: item.system.webway[0]
-                                                  .webway,
-                                              },
-                                            })
-                                          : _vm._e(),
                                       ]
                                     },
                                   },

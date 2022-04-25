@@ -43,20 +43,20 @@
                   >
                     <template #activator="{ on, attrs }">
                       <v-btn icon v-bind="attrs" v-on="on">
-                        Webway - <span class="text-caption"> 1-DQ1-A</span>
+                        Webway - <span class="text-caption"> 1DQ1-A</span>
                       </v-btn>
                     </template>
 
                     <v-card> this is a test </v-card>
                   </v-menu>
                 </template>
-                <template v-slot:[`item.webway[0].jumps`]="{ item }">
+                <!-- <template v-slot:[`item.webway[0].jumps`]="{ item }">
                   <SoloCampaginWebWay
                     v-if="item.system.webway[0]"
                     :jumps="item.system.webway[0].jumps"
                     :web="item.system.webway[0].webway"
                   ></SoloCampaginWebWay>
-                </template>
+                </template> -->
                 <template
                   v-slot:[`item.corp.ticker`]="{ item }"
                   class="d-inline-flex align-center"
@@ -223,6 +223,10 @@ export default {
       loadingt: true,
       search: "",
       menu: false,
+      webwaySelect: {
+        text: "1DQ1-A",
+        value: 30004759,
+      },
 
       headers: [
         {
