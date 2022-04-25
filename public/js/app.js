@@ -73342,7 +73342,7 @@ var render = function () {
                               scopedSlots: _vm._u(
                                 [
                                   {
-                                    key: "header.webway",
+                                    key: "header.item.webway[0].jumps",
                                     fn: function (props) {
                                       return [
                                         _c(
@@ -73413,6 +73413,24 @@ var render = function () {
                                           ],
                                           1
                                         ),
+                                      ]
+                                    },
+                                  },
+                                  {
+                                    key: "item.webway[0].jumps",
+                                    fn: function (ref) {
+                                      var item = ref.item
+                                      return [
+                                        item.system.webway[0]
+                                          ? _c("SoloCampaginWebWay", {
+                                              attrs: {
+                                                jumps:
+                                                  item.system.webway[0].jumps,
+                                                web: item.system.webway[0]
+                                                  .webway,
+                                              },
+                                            })
+                                          : _vm._e(),
                                       ]
                                     },
                                   },
