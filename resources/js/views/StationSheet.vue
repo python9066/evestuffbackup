@@ -66,11 +66,11 @@
                   </v-row>
                 </template>
                 <template v-slot:[`item.system.webway[0].jumps`]="{ item }">
-                  {{ webwayFilter(item) }}
+                  {{ webwayJumps(item) }}
                   <SoloCampaginWebWay
                     v-if="item.system.webway[0]"
-                    :jumps="item.system.webway[0].jumps"
-                    :web="item.system.webway[0].webway"
+                    :jumps="webwayJumps(item)"
+                    :web="webwayLink(item)"
                   ></SoloCampaginWebWay>
                 </template>
                 <template
@@ -353,13 +353,21 @@ export default {
       }
     },
 
-    webwayFilter(item) {
+    webwayJumps(item) {
       var base = item.system.webway;
       var filter = base.filter(
         (f) => f.start_system_id == this.webwaySelect.value
       );
-      var jumps = filter.jump;
-      var link = filter.link;
+      var jumps = filter[0].jump;
+      return jumps;
+    },
+
+    webwayLinks(item) {
+      var base = item.system.webway;
+      var filter = base.filter(
+        (f) => f.start_system_id == this.webwaySelect.value
+      );
+      var jumps = filter[0].links;
       return jumps;
     },
 

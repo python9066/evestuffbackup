@@ -34804,15 +34804,24 @@ function sleep(ms) {
         return "white--text pl-3";
       }
     },
-    webwayFilter: function webwayFilter(item) {
+    webwayJumps: function webwayJumps(item) {
       var _this3 = this;
 
       var base = item.system.webway;
       var filter = base.filter(function (f) {
         return f.start_system_id == _this3.webwaySelect.value;
       });
-      var jumps = filter.jump;
-      var link = filter.link;
+      var jumps = filter[0].jump;
+      return jumps;
+    },
+    webwayLinks: function webwayLinks(item) {
+      var _this4 = this;
+
+      var base = item.system.webway;
+      var filter = base.filter(function (f) {
+        return f.start_system_id == _this4.webwaySelect.value;
+      });
+      var jumps = filter[0].links;
       return jumps;
     },
     standingCheckCorp: function standingCheckCorp(item) {
@@ -73564,16 +73573,14 @@ var render = function () {
                                       return [
                                         _vm._v(
                                           "\n                " +
-                                            _vm._s(_vm.webwayFilter(item)) +
+                                            _vm._s(_vm.webwayJumps(item)) +
                                             "\n                "
                                         ),
                                         item.system.webway[0]
                                           ? _c("SoloCampaginWebWay", {
                                               attrs: {
-                                                jumps:
-                                                  item.system.webway[0].jumps,
-                                                web: item.system.webway[0]
-                                                  .webway,
+                                                jumps: _vm.webwayJumps(item),
+                                                web: _vm.webwayLink(item),
                                               },
                                             })
                                           : _vm._e(),
