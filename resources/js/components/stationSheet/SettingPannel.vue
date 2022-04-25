@@ -81,6 +81,7 @@
                 rounded
                 small-chips
                 solo-inverted
+                return-object
               ></v-autocomplete>
             </v-col>
           </v-row>

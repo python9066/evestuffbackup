@@ -570,7 +570,7 @@ export default {
     },
 
     webwayButton() {
-      if (this.webwayStartSystems.length > 1) {
+      if (this.webwayStartSystems) {
         return true;
       } else {
         return false;

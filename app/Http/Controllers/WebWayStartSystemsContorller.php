@@ -61,9 +61,13 @@ class WebWayStartSystemsContorller extends Controller
      */
     public function update(Request $request)
     {
+        $ids = [];
         $system_ids = $request->system_ids;
+        foreach ($system_ids as $pull) {
+            array_push($ids, $pull['value']);
+        }
         WebWayStartSystem::whereNotIn('system_id', $system_ids)->delete();
-        foreach ($system_ids as $system_id) {
+        foreach ($ids as $system_id) {
             WebWayStartSystem::updateOrCreate(
                 ['system_id' => $system_id],
                 []

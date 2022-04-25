@@ -22007,6 +22007,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -34982,7 +34983,7 @@ function sleep(ms) {
       });
     },
     webwayButton: function webwayButton() {
-      if (this.webwayStartSystems.length > 1) {
+      if (this.webwayStartSystems) {
         return true;
       } else {
         return false;
@@ -61937,6 +61938,7 @@ var render = function () {
                               rounded: "",
                               "small-chips": "",
                               "solo-inverted": "",
+                              "return-object": "",
                             },
                             model: {
                               value: _vm.webwayPicked,
