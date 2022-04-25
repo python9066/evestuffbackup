@@ -38,7 +38,6 @@
                   <v-row no-gutters>
                     <v-col>
                       <span class="myFont">Webway</span>
-                      {{ this.webwayFilter(item) }}
                     </v-col></v-row
                   >
                   <v-row no-gutters>
@@ -67,6 +66,7 @@
                   </v-row>
                 </template>
                 <template v-slot:[`item.system.webway[0].jumps`]="{ item }">
+                  {{ this.webwayFilter(item) }}
                   <SoloCampaginWebWay
                     v-if="item.system.webway[0]"
                     :jumps="item.system.webway[0].jumps"

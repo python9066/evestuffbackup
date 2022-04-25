@@ -73433,13 +73433,6 @@ var render = function () {
                                                 { staticClass: "myFont" },
                                                 [_vm._v("Webway")]
                                               ),
-                                              _vm._v(
-                                                "\n                    " +
-                                                  _vm._s(
-                                                    this.webwayFilter(_vm.item)
-                                                  ) +
-                                                  "\n                  "
-                                              ),
                                             ]),
                                           ],
                                           1
@@ -73565,6 +73558,11 @@ var render = function () {
                                     fn: function (ref) {
                                       var item = ref.item
                                       return [
+                                        _vm._v(
+                                          "\n                " +
+                                            _vm._s(this.webwayFilter(item)) +
+                                            "\n                "
+                                        ),
                                         item.system.webway[0]
                                           ? _c("SoloCampaginWebWay", {
                                               attrs: {
