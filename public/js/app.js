@@ -34667,6 +34667,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -73674,9 +73677,11 @@ var render = function () {
                                                                           function (
                                                                             $event
                                                                           ) {
-                                                                            return _vm.updateWebwaySelectedStartSystem(
+                                                                            _vm.updateWebwaySelectedStartSystem(
                                                                               list
-                                                                            )
+                                                                            ),
+                                                                              _vm.webwayButton !=
+                                                                                _vm.webwayButton
                                                                           },
                                                                       },
                                                                     },

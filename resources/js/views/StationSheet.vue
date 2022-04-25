@@ -64,7 +64,10 @@
                                 webwaySelectedStartSystem.value
                               )"
                               :key="index"
-                              @click="updateWebwaySelectedStartSystem(list)"
+                              @click="
+                                updateWebwaySelectedStartSystem(list),
+                                  webwayButton != webwayButton
+                              "
                             >
                               <v-list-item-title>{{
                                 list.text
