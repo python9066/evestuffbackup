@@ -3,7 +3,7 @@
     <div>
       <span class="d-inline-flex align-items-md-center pr-2">
         <span class="pl-2" v-show="showRcReconButton()">
-          {{ station.recon_name }}
+          {{ station.recon.user.name }}
         </span>
       </span>
     </div>
@@ -24,7 +24,7 @@
         v-show="
           showRcReconButton() &&
           ($can('edit_killsheet_remove_char') ||
-            this.station.recon_user_id == this.$store.state.user_id)
+            this.station.recon.user.id == this.$store.state.user_id)
         "
         color="orange darken-3 "
         small
@@ -54,7 +54,7 @@ export default {
 
   methods: {
     showRcReconButton() {
-      if (this.station.recon_user_id) {
+      if (this.station.recon) {
         return true;
       } else {
         return false;
@@ -67,9 +67,18 @@ export default {
         recon_user_id: this.$store.state.user_id,
         recon_name: this.$store.state.user_name,
       };
-      this.$store.dispatch("updateRcStationCurrent", data);
       this.$store.dispatch("updateChillStationCurrent", data);
       this.$store.dispatch("updateWelpStationCurrent", data);
+
+      var data = {
+        id: this.station.id,
+        recon: user_id,
+        user: {
+          id: this.$store.state.user_id,
+          name: this.$store.state.user_name,
+        },
+      };
+      this.$store.dispatch("updateRcStationCurrent", data);
 
       var request = null;
       request = {
@@ -94,9 +103,19 @@ export default {
         recon_user_id: null,
         recon_name: null,
       };
-      this.$store.dispatch("updateRcStationCurrent", data);
       this.$store.dispatch("updateChillStationCurrent", data);
       this.$store.dispatch("updateWelpStationCurrent", data);
+
+      var data = {
+        id: this.station.id,
+        recon: user_id,
+        user: {
+          id: this.$store.state.user_id,
+          name: this.$store.state.user_name,
+        },
+      };
+
+      this.$store.dispatch("updateRcStationCurrent", data);
 
       await axios({
         method: "put",

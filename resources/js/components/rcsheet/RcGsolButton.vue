@@ -3,7 +3,7 @@
     <div>
       <span class="d-inline-flex align-items-md-center pr-2">
         <span class="pl-2" v-show="showRcGsolButton()">
-          {{ station.gsol_name }}
+          {{ station.gsol.user.name }}
         </span>
       </span>
     </div>
@@ -50,7 +50,7 @@ export default {
 
   methods: {
     showRcGsolButton() {
-      if (this.station.gsol_user_id) {
+      if (this.station.gsol) {
         return true;
       } else {
         return false;
@@ -63,10 +63,20 @@ export default {
         gsol_user_id: this.$store.state.user_id,
         gsol_name: this.$store.state.user_name,
       };
-      this.$store.dispatch("updateRcStationCurrent", data);
       this.$store.dispatch("updateChillStationCurrent", data);
       this.$store.dispatch("updateWelpStationCurrent", data);
+      var data = {
+        id: this.station.id,
+        gsol: {
+          user_id: this.$store.state.user_id,
+          user: {
+            id: this.$store.state.user_id,
+            name: this.$store.state.user_name,
+          },
+        },
+      };
 
+      this.$store.dispatch("updateRcStationCurrent", data);
       var request = null;
       request = {
         user_id: this.$store.state.user_id,
@@ -90,10 +100,21 @@ export default {
         gsol_user_id: null,
         gsol_name: null,
       };
-      this.$store.dispatch("updateRcStationCurrent", data);
       this.$store.dispatch("updateChillStationCurrent", data);
       this.$store.dispatch("updateWelpStationCurrent", data);
 
+      var data = {
+        id: this.station.id,
+        gsol: {
+          user_id: this.$store.state.user_id,
+          user: {
+            id: this.$store.state.user_id,
+            name: this.$store.state.user_name,
+          },
+        },
+      };
+
+      this.$store.dispatch("updateRcStationCurrent", data);
       await axios({
         method: "put",
         url: "/api/rcgsoluserremove/" + this.station.id,

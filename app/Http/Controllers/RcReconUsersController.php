@@ -41,7 +41,7 @@ class RcReconUsersController extends Controller
 
         $reconid = RcReconUsers::where('user_id', $request->user_id)->value('id');
         Station::where('id', $id)->update(['rc_recon_id' => $reconid]);
-        $message = RcStationRecords::where('id', $id)->first();
+        $message = Helper::StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,
@@ -78,7 +78,7 @@ class RcReconUsersController extends Controller
         $userid = RcReconUsers::where('id', $reconrcid)->value('user_id');
         $username = User::where('id', $userid)->value('name');
         Station::where('id', $id)->update(['rc_recon_id' => null]);
-        $message = RcStationRecords::where('id', $id)->first();
+        $message = Helper::StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,
