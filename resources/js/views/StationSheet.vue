@@ -243,10 +243,6 @@ export default {
           sortable: false,
         },
         {
-          text: "",
-          value: "test",
-        },
-        {
           text: "System",
           value: "system.system_name",
         },

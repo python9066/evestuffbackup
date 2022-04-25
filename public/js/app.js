@@ -34702,9 +34702,6 @@ function sleep(ms) {
         value: "system.webway[0].jumps",
         sortable: false
       }, {
-        text: "",
-        value: "test"
-      }, {
         text: "System",
         value: "system.system_name"
       }, {
