@@ -34834,9 +34834,10 @@ function sleep(ms) {
       }
     },
     webwayDropdownList: function webwayDropdownList(value) {
-      this.webwayButtonList.filter(function (f) {
+      var list = this.webwayButtonList.filter(function (f) {
         return f.value != value;
       });
+      return list;
     },
     Systemcopied: function Systemcopied() {
       this.snack = true;

@@ -342,7 +342,8 @@ export default {
     },
 
     webwayDropdownList(value) {
-      this.webwayButtonList.filter((f) => f.value != value);
+      var list = this.webwayButtonList.filter((f) => f.value != value);
+      return list;
     },
 
     Systemcopied() {
