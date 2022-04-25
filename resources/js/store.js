@@ -78,7 +78,7 @@ export default new Vuex.Store({
         welpsheetRegion: [],
         welpsheetItem: [],
         welpsheetStatus: [],
-
+        webwayStartSystems: [],
         newSoloOperations: [],
         newSoloOperationsRegionList: [],
 
@@ -91,6 +91,10 @@ export default new Vuex.Store({
     mutations: {
         SET_STATION_LIST(state, stations) {
             state.stationList = stations;
+        },
+
+        SET_WEBWAY_START_SYSTEMS(state, systems) {
+            state.webwayStartSystems = systems;
         },
 
         SET_STATION_REGION_LIST(state, regionlist) {
@@ -735,6 +739,18 @@ export default new Vuex.Store({
                 },
             });
             commit("SET_STATION_LIST", res.data.stations);
+        },
+        async getWebwayStartSystems({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/getwebwaystartsystems",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_WEBWAY_START_SYSTEMS", res.data.systems);
         },
 
         async getStationRegionLists({ commit }) {

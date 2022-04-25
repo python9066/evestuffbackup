@@ -50,13 +50,13 @@
                     <v-card> this is a test </v-card>
                   </v-menu>
                 </template>
-                <template v-slot:[`item.webway`]="{ item }">
+                <!-- <template v-slot:[`item.webway`]="{ item }">
                   <SoloCampaginWebWay
                     v-if="item.system.webway[0]"
                     :jumps="item.system.webway[0].jumps"
                     :web="item.system.webway[0].webway"
                   ></SoloCampaginWebWay>
-                </template>
+                </template> -->
                 <template
                   v-slot:[`item.corp.ticker`]="{ item }"
                   class="d-inline-flex align-center"
@@ -183,6 +183,7 @@ function sleep(ms) {
 }
 export default {
   async created() {
+    await this.$store.dispatch("getWebwayStartSystems");
     await this.$store.dispatch("getStationList").then((this.loadingt = false));
     Echo.private("stationsheet")
       .listen("StationSheetUpdate", (e) => {
