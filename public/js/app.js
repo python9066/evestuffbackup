@@ -34873,23 +34873,13 @@ function sleep(ms) {
       var link = filter[0].webway;
       return link;
     },
-    updateWebwaySelectedStartSystem: function (_updateWebwaySelectedStartSystem) {
-      function updateWebwaySelectedStartSystem(_x) {
-        return _updateWebwaySelectedStartSystem.apply(this, arguments);
-      }
-
-      updateWebwaySelectedStartSystem.toString = function () {
-        return _updateWebwaySelectedStartSystem.toString();
-      };
-
-      return updateWebwaySelectedStartSystem;
-    }(function (item) {
+    updateWebwaySelectedStartSystem: function updateWebwaySelectedStartSystem(item) {
       var data = {
         value: item.value,
         text: item.text
       };
-      this.$store.dispatch(updateWebwaySelectedStartSystem(data));
-    }),
+      this.$store.dispatch("updateWebwaySelectedStartSystem", data);
+    },
     standingCheckCorp: function standingCheckCorp(item) {
       var standing = 0;
 

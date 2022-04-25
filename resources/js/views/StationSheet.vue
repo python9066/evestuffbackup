@@ -385,7 +385,7 @@ export default {
         text: item.text,
       };
 
-      this.$store.dispatch(updateWebwaySelectedStartSystem(data));
+      this.$store.dispatch("updateWebwaySelectedStartSystem", data);
     },
 
     standingCheckCorp(item) {
