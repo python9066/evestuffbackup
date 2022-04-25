@@ -72,6 +72,7 @@ class HotRegionController extends Controller
 
     public function updateSetting(Request $request)
     {
+        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
         $ids = [];
         $fc = $request->fc;
         $pull = $request->pull;
@@ -111,8 +112,10 @@ class HotRegionController extends Controller
         WebWay::whereIn('system_id', $systemIDs)->update(['active' => 1]);
         WebWay::where('active', 0)->delete();
 
-        foreach ($systemIDs as $system_id) {
-            updateWebwayJob::dispatch($system_id)->onQueue('webway');
+        $start_system_id = env('HOME_SYSTEM_ID', ($variables && array_key_exists('HOME_SYSTEM_ID', $variables)) ? $variables['HOME_SYSTEM_ID'] : null);
+
+        foreach ($systemIDs as $end_system_id) {
+            updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');
         }
 
 
