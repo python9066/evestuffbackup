@@ -222,8 +222,55 @@
           </p>
         </span>
       </template>
+      <template v-slot:[`header.webway`]="{ props }">
+        <v-row no-gutters>
+          <v-col>
+            <span class="myFont">Webway</span>
+          </v-col></v-row
+        >
+        <v-row no-gutters>
+          <v-col>
+            <v-menu
+              v-if="webwayButton"
+              v-model="menu"
+              :close-on-content-click="false"
+              offset-y
+              :transition="false"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn text v-bind="attrs" v-on="on" x-small>
+                  <span class="myFontSmall">{{
+                    webwaySelectedStartSystem.text
+                  }}</span>
+                </v-btn>
+              </template>
+
+              <v-card>
+                <v-list>
+                  <v-list-item
+                    v-for="(list, index) in webwayDropdownList(
+                      webwaySelectedStartSystem.value
+                    )"
+                    :key="index"
+                    @click="updateWebwaySelectedStartSystem(list)"
+                  >
+                    <v-list-item-title>{{ list.text }}</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-card>
+            </v-menu>
+            <span v-else class="myFontSmall">{{
+              webwaySelectedStartSystem.text
+            }}</span>
+          </v-col>
+        </v-row>
+      </template>
       <template v-slot:[`item.webway`]="{ item }">
-        <CampaginWebWay :item="item"></CampaginWebWay>
+        <SoloCampaginWebWay
+          v-if="item.webway"
+          :jumps="webwayJumps(item)"
+          :web="webwayLink(item)"
+        ></SoloCampaginWebWay>
       </template>
       <template v-slot:[`item.count`]="{ item }">
         <div class="d-inline-flex align-center">
@@ -343,6 +390,7 @@ export default {
       colorflag: 4,
       itemFlag: 2,
       name: "Timer",
+      menu: false,
       typePicked: [],
       windowSize: {
         x: 0,
@@ -369,7 +417,8 @@ export default {
     };
   },
 
-  created() {
+  async created() {
+    await this.$store.dispatch("getWebwayStartSystems");
     Echo.private("campaigns").listen("CampaignChanged", (e) => {
       this.loadcampaigns();
     }),
@@ -404,6 +453,17 @@ export default {
           "Content-Type": "application/json",
         },
       });
+    },
+
+    updateWebwaySelectedStartSystem(item) {
+      var data = {
+        value: item.value,
+        text: item.text,
+      };
+
+      this.menu = false;
+
+      this.$store.dispatch("updateWebwaySelectedStartSystem", data);
     },
 
     async loadcampaigns() {
@@ -488,6 +548,24 @@ export default {
       return true;
     },
 
+    webwayJumps(item) {
+      var base = item.system.webway;
+      var filter = base.filter(
+        (f) => f.start_system_id == this.webwaySelectedStartSystem.value
+      );
+      var jumps = filter[0].jumps;
+      return jumps;
+    },
+
+    webwayLink(item) {
+      var base = item.system.webway;
+      var filter = base.filter(
+        (f) => f.start_system_id == this.webwaySelectedStartSystem.value
+      );
+      var link = filter[0].webway;
+      return link;
+    },
+
     barActive(item) {
       if (item.status_id > 1) {
         return true;
@@ -510,6 +588,11 @@ export default {
       return "green darken-3";
     },
 
+    webwayDropdownList(value) {
+      var list = this.webwayButtonList.filter((f) => f.value != value);
+      return list;
+    },
+
     transform(props) {
       Object.entries(props).forEach(([key, value]) => {
         // Adds leading zero
@@ -524,7 +607,12 @@ export default {
     },
   },
   computed: {
-    ...mapState(["campaigns", "campaignsRegion"]),
+    ...mapState([
+      "campaigns",
+      "campaignsRegion",
+      "webwayStartSystems",
+      "webwaySelectedStartSystem",
+    ]),
 
     dropdown_search_list() {
       return this.campaignsRegion;
@@ -535,6 +623,27 @@ export default {
       return num;
     },
 
+    webwayButton() {
+      if (this.webwayStartSystems.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    webwayButtonList() {
+      var list = this.webwayStartSystems;
+      var data = {
+        value: 30004759,
+        text: "1DQ1-A",
+      };
+      list.push(data);
+      list.sort(function (a, b) {
+        return a.value - b.value || a.text.localeCompare(b.text);
+      });
+
+      return list;
+    },
     filteredItems_start() {
       // var timers = this.$store.state.timers;
       if (this.colorflag == 1) {
