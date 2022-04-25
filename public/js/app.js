@@ -73560,7 +73560,7 @@ var render = function () {
                                       return [
                                         _vm._v(
                                           "\n                " +
-                                            _vm._s(this.webwayFilter(item)) +
+                                            _vm._s(_vm.webwayFilter(item)) +
                                             "\n                "
                                         ),
                                         item.system.webway[0]
