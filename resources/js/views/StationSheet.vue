@@ -355,11 +355,11 @@ export default {
 
     webwayFilter(item) {
       var base = item.system.webway;
-      var filter = base.filter(
-        (f) => f.start_system_id == this.webwaySelect.value
-      );
+      //   var filter = base.filter(
+      //     (f) => f.start_system_id == this.webwaySelect.value
+      //   );
 
-      console.log(filter);
+      console.log(base);
     },
 
     standingCheckCorp(item) {
