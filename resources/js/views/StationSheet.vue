@@ -60,11 +60,14 @@
                         <v-card>
                           <v-list>
                             <v-list-item
-                              v-for="(list, index) in webwayStartSystems"
+                              v-for="(list, index) in webwayButtonList"
                               :key="index"
+                              :v-if="
+                                list.value != webwaySelectedStartSystem.value
+                              "
                             >
                               <v-list-item-title>{{
-                                list.value
+                                list.text
                               }}</v-list-item-title>
                             </v-list-item>
                           </v-list>
@@ -580,6 +583,19 @@ export default {
       );
     },
 
+    webwayButtonList() {
+      var list = this.webwayStartSystems;
+      var data = {
+        value: 30004759,
+        text: "1DQ1-A",
+      };
+      list.push(data);
+      list.sort(function (a, b) {
+        return a.id - b.id || a.name.localeCompare(b.name);
+      });
+
+      return list;
+    },
     webwayButton() {
       if (this.webwayStartSystems.length > 0) {
         return true;

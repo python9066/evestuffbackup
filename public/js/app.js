@@ -34664,6 +34664,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -34993,6 +34996,18 @@ function sleep(ms) {
       return this.stationList.filter(function (f) {
         return f.show_on_coord == 1 && f.standing <= 0;
       });
+    },
+    webwayButtonList: function webwayButtonList() {
+      var list = this.webwayStartSystems;
+      var data = {
+        value: 30004759,
+        text: "1DQ1-A"
+      };
+      list.push(data);
+      list.sort(function (a, b) {
+        return a.id - b.id || a.name.localeCompare(b.name);
+      });
+      return list;
     },
     webwayButton: function webwayButton() {
       if (this.webwayStartSystems.length > 0) {
@@ -73628,7 +73643,7 @@ var render = function () {
                                                             _c(
                                                               "v-list",
                                                               _vm._l(
-                                                                _vm.webwayStartSystems,
+                                                                _vm.webwayButtonList,
                                                                 function (
                                                                   list,
                                                                   index
@@ -73637,6 +73652,13 @@ var render = function () {
                                                                     "v-list-item",
                                                                     {
                                                                       key: index,
+                                                                      attrs: {
+                                                                        "v-if":
+                                                                          list.value !=
+                                                                          _vm
+                                                                            .webwaySelectedStartSystem
+                                                                            .value,
+                                                                      },
                                                                     },
                                                                     [
                                                                       _c(
@@ -73644,7 +73666,7 @@ var render = function () {
                                                                         [
                                                                           _vm._v(
                                                                             _vm._s(
-                                                                              list.value
+                                                                              list.text
                                                                             )
                                                                           ),
                                                                         ]
