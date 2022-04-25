@@ -549,7 +549,7 @@ export default {
     },
 
     webwayJumps(item) {
-      var base = item.system.webway;
+      var base = item.webway;
       var filter = base.filter(
         (f) => f.start_system_id == this.webwaySelectedStartSystem.value
       );
@@ -558,7 +558,7 @@ export default {
     },
 
     webwayLink(item) {
-      var base = item.system.webway;
+      var base = item.webway;
       var filter = base.filter(
         (f) => f.start_system_id == this.webwaySelectedStartSystem.value
       );
