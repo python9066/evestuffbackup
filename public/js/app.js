@@ -34611,6 +34611,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -34633,13 +34634,9 @@ function sleep(ms) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this.$store.dispatch("getWebwayStartSystems");
-
-            case 2:
-              _context.next = 4;
               return _this.$store.dispatch("getStationList").then(_this.loadingt = false);
 
-            case 4:
+            case 2:
               Echo["private"]("stationsheet").listen("StationSheetUpdate", function (e) {
                 if (e.flag.message != null) {
                   _this.$store.dispatch("updateStationList", e.flag.message);
@@ -34658,7 +34655,7 @@ function sleep(ms) {
                 _this.$store.dispatch("deleteStationSheetNotification", e.flag.id);
               });
 
-            case 5:
+            case 3:
             case "end":
               return _context.stop();
           }
@@ -34806,6 +34803,15 @@ function sleep(ms) {
       } else {
         return "white--text pl-3";
       }
+    },
+    webwayFilter: function webwayFilter(item) {
+      var _this3 = this;
+
+      var base = item.system.webway;
+      var filter = base.filter(function (f) {
+        return f.start_system_id == _this3.webwaySelect.value;
+      });
+      console.log(filter);
     },
     standingCheckCorp: function standingCheckCorp(item) {
       var standing = 0;
@@ -73428,6 +73434,13 @@ var render = function () {
                                                 "span",
                                                 { staticClass: "myFont" },
                                                 [_vm._v("Webway")]
+                                              ),
+                                              _vm._v(
+                                                "\n                    " +
+                                                  _vm._s(
+                                                    this.webwayFilter(_vm.item)
+                                                  ) +
+                                                  "\n                  "
                                               ),
                                             ]),
                                           ],

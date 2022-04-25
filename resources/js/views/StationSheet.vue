@@ -38,6 +38,7 @@
                   <v-row no-gutters>
                     <v-col>
                       <span class="myFont">Webway</span>
+                      {{ this.webwayFilter(item) }}
                     </v-col></v-row
                   >
                   <v-row no-gutters>
@@ -198,7 +199,6 @@ function sleep(ms) {
 }
 export default {
   async created() {
-    await this.$store.dispatch("getWebwayStartSystems");
     await this.$store.dispatch("getStationList").then((this.loadingt = false));
     Echo.private("stationsheet")
       .listen("StationSheetUpdate", (e) => {
@@ -351,6 +351,15 @@ export default {
       } else {
         return "white--text pl-3";
       }
+    },
+
+    webwayFilter(item) {
+      var base = item.system.webway;
+      var filter = base.filter(
+        (f) => f.start_system_id == this.webwaySelect.value
+      );
+
+      console.log(filter);
     },
 
     standingCheckCorp(item) {
