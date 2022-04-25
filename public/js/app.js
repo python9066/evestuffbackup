@@ -34689,7 +34689,7 @@ function sleep(ms) {
       },
       headers: [{
         text: "",
-        value: "webway[0].jumps",
+        value: "webway",
         sortable: false
       }, {
         text: "",
@@ -73416,7 +73416,7 @@ var render = function () {
                                     proxy: true,
                                   },
                                   {
-                                    key: "item.webway[0].jumps",
+                                    key: "item.webway",
                                     fn: function (ref) {
                                       var item = ref.item
                                       return [
