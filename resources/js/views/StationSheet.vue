@@ -67,11 +67,11 @@
                 </template>
                 <template v-slot:[`item.system.webway[0].jumps`]="{ item }">
                   {{ webwayJumps(item) }}
-                  <SoloCampaginWebWay
+                  <!-- <SoloCampaginWebWay
                     v-if="item.system.webway[0]"
                     :jumps="webwayJumps(item)"
                     :web="webwayLink(item)"
-                  ></SoloCampaginWebWay>
+                  ></SoloCampaginWebWay> -->
                 </template>
                 <template
                   v-slot:[`item.corp.ticker`]="{ item }"
@@ -358,7 +358,7 @@ export default {
       var filter = base.filter(
         (f) => f.start_system_id == this.webwaySelect.value
       );
-      var jumps = filter[0].jump;
+      var jumps = filter.jump;
       return jumps;
     },
 

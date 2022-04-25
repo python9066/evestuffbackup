@@ -34811,7 +34811,7 @@ function sleep(ms) {
       var filter = base.filter(function (f) {
         return f.start_system_id == _this3.webwaySelect.value;
       });
-      var jumps = filter[0].jump;
+      var jumps = filter.jump;
       return jumps;
     },
     webwayLink: function webwayLink(item) {
@@ -73576,14 +73576,6 @@ var render = function () {
                                             _vm._s(_vm.webwayJumps(item)) +
                                             "\n                "
                                         ),
-                                        item.system.webway[0]
-                                          ? _c("SoloCampaginWebWay", {
-                                              attrs: {
-                                                jumps: _vm.webwayJumps(item),
-                                                web: _vm.webwayLink(item),
-                                              },
-                                            })
-                                          : _vm._e(),
                                       ]
                                     },
                                   },
