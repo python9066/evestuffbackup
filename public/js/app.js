@@ -34665,9 +34665,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -35024,6 +35021,9 @@ function sleep(ms) {
       list.push(data);
       list.sort(function (a, b) {
         return a.value - b.value || a.text.localeCompare(b.text);
+      });
+      list.filter(function (f) {
+        return f.value != webwaySelectedStartSystem.value;
       });
       return list;
     },
@@ -73670,13 +73670,6 @@ var render = function () {
                                                                     "v-list-item",
                                                                     {
                                                                       key: index,
-                                                                      attrs: {
-                                                                        "v-if":
-                                                                          list.value !=
-                                                                          _vm
-                                                                            .webwaySelectedStartSystem
-                                                                            .value,
-                                                                      },
                                                                       on: {
                                                                         click:
                                                                           function (

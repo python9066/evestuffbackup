@@ -62,9 +62,6 @@
                             <v-list-item
                               v-for="(list, index) in webwayButtonList"
                               :key="index"
-                              :v-if="
-                                list.value != webwaySelectedStartSystem.value
-                              "
                               @click="updateWebwaySelectedStartSystem(list)"
                             >
                               <v-list-item-title>{{
@@ -603,6 +600,8 @@ export default {
       list.sort(function (a, b) {
         return a.value - b.value || a.text.localeCompare(b.text);
       });
+
+      list.filter((f) => f.value != webwaySelectedStartSystem.value);
 
       return list;
     },
