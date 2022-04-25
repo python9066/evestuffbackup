@@ -34666,7 +34666,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -73735,11 +73734,6 @@ var render = function () {
                                     fn: function (ref) {
                                       var item = ref.item
                                       return [
-                                        _vm._v(
-                                          "\n                " +
-                                            _vm._s(_vm.webwayJumps(item)) +
-                                            "\n                "
-                                        ),
                                         item.system.webway[0]
                                           ? _c("SoloCampaginWebWay", {
                                               attrs: {
