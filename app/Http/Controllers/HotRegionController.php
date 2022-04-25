@@ -8,7 +8,9 @@ use App\Models\HotRegion;
 use utils\Notificationhelper\Notifications;
 use App\Models\Region;
 use App\Models\Station;
+use App\Models\System;
 use App\Models\WebWay;
+use App\Models\WebWayStartSystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,13 +27,23 @@ class HotRegionController extends Controller
         if ($user->can('edit_hot_region')) {
             $pullStart = HotRegion::where('update', 1)->pluck('region_id');
             $pull = Region::whereIn('id', $pullStart)->select(['region_name as text', 'id as value'])->get();
+
             $fcsStart = HotRegion::where('show_fcs', 1)->pluck('region_id');
             $fcs = Region::whereIn('id', $fcsStart)->select(['region_name as text', 'id as value'])->get();
+
+            $webwayStart = WebWayStartSystem::whereNotNull('id')->pluck('system_id');
+            $webway = System::whereIn('id', $webwayStart)->select(['system_name as text', 'id as value'])->get();
+
             $regionList = Region::whereNotNull('id')->select(['region_name as text', 'id as value'])->get();
+            $systemList = System::whereNotNull('id')->select(['system_name as text', 'id as value'])->get();
+
             return [
                 'pull' => $pull,
                 'fcs' => $fcs,
+                'webwayStartSystems' => $webway,
                 'regionlist' => $regionList,
+                'systemList' => $systemList,
+
             ];
         }
     }

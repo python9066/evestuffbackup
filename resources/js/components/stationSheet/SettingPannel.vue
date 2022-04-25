@@ -16,7 +16,6 @@
         max-width="1000px"
         min-height="200px"
         max-height="700px"
-        class="d-flex flex-column"
         rounded="xl"
       >
         <v-card-title class="justify-center primary"
@@ -45,7 +44,7 @@
             </v-col>
           </v-row>
           <v-row no-gutters justify="start">
-            <v-col cols="5">
+            <v-col>
               <v-autocomplete
                 v-model="fcPicked"
                 :items="pullPicked"

@@ -21987,7 +21987,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -61703,7 +61702,6 @@ var render = function () {
           _c(
             "v-card",
             {
-              staticClass: "d-flex flex-column",
               attrs: {
                 tile: "",
                 "max-width": "1000px",
@@ -61765,7 +61763,6 @@ var render = function () {
                     [
                       _c(
                         "v-col",
-                        { attrs: { cols: "5" } },
                         [
                           _c("v-autocomplete", {
                             attrs: {
@@ -73352,7 +73349,8 @@ var render = function () {
                                 [
                                   {
                                     key: "header.test",
-                                    fn: function (props) {
+                                    fn: function (ref) {
+                                      var props = ref.props
                                       return [
                                         _c(
                                           "v-menu",
