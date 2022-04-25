@@ -34653,6 +34653,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -73611,11 +73622,43 @@ var render = function () {
                                                       },
                                                       [
                                                         _vm._v(" "),
-                                                        _c("v-card", [
-                                                          _vm._v(
-                                                            " this is a test "
-                                                          ),
-                                                        ]),
+                                                        _c(
+                                                          "v-card",
+                                                          [
+                                                            _c(
+                                                              "v-list",
+                                                              _vm._l(
+                                                                _vm.webwayStartSystems,
+                                                                function (
+                                                                  list,
+                                                                  index
+                                                                ) {
+                                                                  return _c(
+                                                                    "v-list-item",
+                                                                    {
+                                                                      key: index,
+                                                                    },
+                                                                    [
+                                                                      _c(
+                                                                        "v-list-item-title",
+                                                                        [
+                                                                          _vm._v(
+                                                                            _vm._s(
+                                                                              list.value
+                                                                            )
+                                                                          ),
+                                                                        ]
+                                                                      ),
+                                                                    ],
+                                                                    1
+                                                                  )
+                                                                }
+                                                              ),
+                                                              1
+                                                            ),
+                                                          ],
+                                                          1
+                                                        ),
                                                       ],
                                                       1
                                                     )
