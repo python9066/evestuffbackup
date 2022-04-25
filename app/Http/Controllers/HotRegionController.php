@@ -74,10 +74,15 @@ class HotRegionController extends Controller
     {
         $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
         $ids = [];
+        $fcIds = [];
         $fc = $request->fc;
         $pull = $request->pull;
         foreach ($pull as $pull) {
             array_push($ids, $pull['value']);
+        }
+
+        foreach ($fc as $fc) {
+            array_push($fcIds, $fc['value']);
         }
 
 
@@ -86,7 +91,7 @@ class HotRegionController extends Controller
 
         HotRegion::whereNotNull('id')->update(['update' => 0, 'show_fcs' => 0]);
         HotRegion::whereIn('region_id', $ids)->update(['update' => 1]);
-        HotRegion::whereIn('region_id', $fc)->update(['show_fcs' => 1]);
+        HotRegion::whereIn('region_id', $fcIds)->update(['show_fcs' => 1]);
 
         $flag = collect([
             'flag' => 1

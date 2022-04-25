@@ -60,6 +60,7 @@
                 rounded
                 small-chips
                 solo-inverted
+                return-object
                 stationListPullRegions
               ></v-autocomplete>
             </v-col>
