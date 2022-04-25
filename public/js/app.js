@@ -34814,7 +34814,7 @@ function sleep(ms) {
       var jumps = filter[0].jump;
       return jumps;
     },
-    webwayLinks: function webwayLinks(item) {
+    webwayLink: function webwayLink(item) {
       var _this4 = this;
 
       var base = item.system.webway;

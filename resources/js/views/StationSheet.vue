@@ -362,7 +362,7 @@ export default {
       return jumps;
     },
 
-    webwayLinks(item) {
+    webwayLink(item) {
       var base = item.system.webway;
       var filter = base.filter(
         (f) => f.start_system_id == this.webwaySelect.value
