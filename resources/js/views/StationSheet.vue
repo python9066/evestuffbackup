@@ -67,11 +67,11 @@
                 </template>
                 <template v-slot:[`item.system.webway[0].jumps`]="{ item }">
                   {{ webwayJumps(item) }}
-                  <!-- <SoloCampaginWebWay
+                  <SoloCampaginWebWay
                     v-if="item.system.webway[0]"
                     :jumps="webwayJumps(item)"
                     :web="webwayLink(item)"
-                  ></SoloCampaginWebWay> -->
+                  ></SoloCampaginWebWay>
                 </template>
                 <template
                   v-slot:[`item.corp.ticker`]="{ item }"

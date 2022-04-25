@@ -81,7 +81,6 @@
                 rounded
                 small-chips
                 solo-inverted
-                stationListPullRegions
               ></v-autocomplete>
             </v-col>
           </v-row>
@@ -129,8 +128,19 @@ export default {
 
     submit() {
       var request = {
-        system_id: this.webwayPicked,
+        system_ids: this.webwayPicked,
       };
+
+      axios({
+        method: "post", //you can set what request you want to be
+        url: "api/updatewebwaystartsystems",
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
 
       var request = {
         pull: this.pullPicked,

@@ -39,6 +39,8 @@ class WebWayStartSystemsContorller extends Controller
         WebWayStartSystem::create(['system_id' => $request->system_id]);
     }
 
+
+
     /**
      * Display the specified resource.
      *
@@ -57,9 +59,16 @@ class WebWayStartSystemsContorller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $system_ids = $request->system_ids;
+        WebWayStartSystem::whereNotIn('system_id', $system_ids)->delete();
+        foreach ($system_ids as $system_id) {
+            WebWayStartSystem::updateOrCreate(
+                ['system_id' => $system_id],
+                []
+            );
+        }
     }
 
     /**

@@ -22007,7 +22007,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -22039,8 +22038,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     submit: function submit() {
       var request = {
-        system_id: this.webwayPicked
+        system_ids: this.webwayPicked
       };
+      axios({
+        method: "post",
+        //you can set what request you want to be
+        url: "api/updatewebwaystartsystems",
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      });
       var request = {
         pull: this.pullPicked,
         fc: this.fcPicked
@@ -61927,7 +61937,6 @@ var render = function () {
                               rounded: "",
                               "small-chips": "",
                               "solo-inverted": "",
-                              stationListPullRegions: "",
                             },
                             model: {
                               value: _vm.webwayPicked,
@@ -73641,6 +73650,14 @@ var render = function () {
                                             _vm._s(_vm.webwayJumps(item)) +
                                             "\n                "
                                         ),
+                                        item.system.webway[0]
+                                          ? _c("SoloCampaginWebWay", {
+                                              attrs: {
+                                                jumps: _vm.webwayJumps(item),
+                                                web: _vm.webwayLink(item),
+                                              },
+                                            })
+                                          : _vm._e(),
                                       ]
                                     },
                                   },
