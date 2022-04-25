@@ -43,7 +43,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-btn text v-bind="attrs" v-on="on">
-                        <span class="text-sm-subtitle"> this is a test</span>
+                        <span class="myFont"> this is a test</span>
                         <span class="text-lg-caption"> yoyo</span>
                       </v-btn>
                     </template>
@@ -551,3 +551,8 @@ export default {
   },
 };
 </script>
+<style>
+.myFont {
+  font-family: "Mansalva", cursive;
+}
+</style>
