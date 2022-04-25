@@ -267,7 +267,7 @@
       </template>
       <template v-slot:[`item.webway`]="{ item }">
         <SoloCampaginWebWay
-          v-if="item.webway"
+          v-if="webwayJumps(item) && webwayLink(item)"
           :jumps="webwayJumps(item)"
           :web="webwayLink(item)"
         ></SoloCampaginWebWay>
@@ -549,21 +549,29 @@ export default {
     },
 
     webwayJumps(item) {
-      var base = item.webway;
-      var filter = base.filter(
-        (f) => f.start_system_id == this.webwaySelectedStartSystem.value
-      );
-      var jumps = filter[0].jumps;
-      return jumps;
+      if (item.webway) {
+        var base = item.webway;
+        var filter = base.filter(
+          (f) => f.start_system_id == this.webwaySelectedStartSystem.value
+        );
+        var jumps = filter[0].jumps;
+        return jumps;
+      } else {
+        return null;
+      }
     },
 
     webwayLink(item) {
-      var base = item.webway;
-      var filter = base.filter(
-        (f) => f.start_system_id == this.webwaySelectedStartSystem.value
-      );
-      var link = filter[0].webway;
-      return link;
+      if (item.webway) {
+        var base = item.webway;
+        var filter = base.filter(
+          (f) => f.start_system_id == this.webwaySelectedStartSystem.value
+        );
+        var link = filter[0].webway;
+        return link;
+      } else {
+        return null;
+      }
     },
 
     barActive(item) {
