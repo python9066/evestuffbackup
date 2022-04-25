@@ -73346,8 +73346,8 @@ var render = function () {
                               scopedSlots: _vm._u(
                                 [
                                   {
-                                    key: "header.item.webway[0].jumps",
-                                    fn: function (props) {
+                                    key: "default",
+                                    fn: function () {
                                       return [
                                         _c(
                                           "v-menu",
@@ -73357,50 +73357,44 @@ var render = function () {
                                               "offset-y": "",
                                               transition: false,
                                             },
-                                            scopedSlots: _vm._u(
-                                              [
-                                                {
-                                                  key: "activator",
-                                                  fn: function (ref) {
-                                                    var on = ref.on
-                                                    var attrs = ref.attrs
-                                                    return [
-                                                      _c(
-                                                        "v-btn",
-                                                        _vm._g(
-                                                          _vm._b(
-                                                            {
-                                                              attrs: {
-                                                                icon: "",
-                                                              },
-                                                            },
-                                                            "v-btn",
-                                                            attrs,
-                                                            false
-                                                          ),
-                                                          on
+                                            scopedSlots: _vm._u([
+                                              {
+                                                key: "activator",
+                                                fn: function (ref) {
+                                                  var on = ref.on
+                                                  var attrs = ref.attrs
+                                                  return [
+                                                    _c(
+                                                      "v-btn",
+                                                      _vm._g(
+                                                        _vm._b(
+                                                          {
+                                                            attrs: { icon: "" },
+                                                          },
+                                                          "v-btn",
+                                                          attrs,
+                                                          false
                                                         ),
-                                                        [
-                                                          _vm._v(
-                                                            "\n                      Webway - "
-                                                          ),
-                                                          _c(
-                                                            "span",
-                                                            {
-                                                              staticClass:
-                                                                "text-caption",
-                                                            },
-                                                            [_vm._v(" 1DQ1-A")]
-                                                          ),
-                                                        ]
+                                                        on
                                                       ),
-                                                    ]
-                                                  },
+                                                      [
+                                                        _vm._v(
+                                                          "\n                      Webway - "
+                                                        ),
+                                                        _c(
+                                                          "span",
+                                                          {
+                                                            staticClass:
+                                                              "text-caption",
+                                                          },
+                                                          [_vm._v(" 1DQ1-A")]
+                                                        ),
+                                                      ]
+                                                    ),
+                                                  ]
                                                 },
-                                              ],
-                                              null,
-                                              true
-                                            ),
+                                              },
+                                            ]),
                                             model: {
                                               value: _vm.menu,
                                               callback: function ($$v) {
@@ -73417,6 +73411,25 @@ var render = function () {
                                           ],
                                           1
                                         ),
+                                      ]
+                                    },
+                                    proxy: true,
+                                  },
+                                  {
+                                    key: "item.webway[0].jumps",
+                                    fn: function (ref) {
+                                      var item = ref.item
+                                      return [
+                                        item.system.webway[0]
+                                          ? _c("SoloCampaginWebWay", {
+                                              attrs: {
+                                                jumps:
+                                                  item.system.webway[0].jumps,
+                                                web: item.system.webway[0]
+                                                  .webway,
+                                              },
+                                            })
+                                          : _vm._e(),
                                       ]
                                     },
                                   },
