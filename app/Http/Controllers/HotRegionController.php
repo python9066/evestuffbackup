@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\StationSheetUpdate;
 use App\Jobs\updateWebwayJob;
+use App\Models\Campaign;
 use App\Models\HotRegion;
 use utils\Notificationhelper\Notifications;
 use App\Models\Region;
@@ -110,8 +111,10 @@ class HotRegionController extends Controller
         WebWay::where('id', '>', 0)->update(['active' => 0]);
         $stations = Station::get();
         $stationSystems = $stations->pluck('system_id');
+        $campaigns = Campaign::get();
+        $campaginSystems = $campaigns->pluck('system_id');
 
-        $systemIDs = $stationSystems;
+        $systemIDs = $stationSystems->merge($campaginSystems);
         $systemIDs = $systemIDs->unique();
         $systemIDs = $systemIDs->values();
         WebWay::whereIn('system_id', $systemIDs)->update(['active' => 1]);
