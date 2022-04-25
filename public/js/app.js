@@ -34599,6 +34599,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -73436,35 +73440,58 @@ var render = function () {
                                                         ),
                                                         [
                                                           _c(
-                                                            "span",
+                                                            "v-row",
                                                             {
-                                                              staticClass:
-                                                                "myFont",
+                                                              attrs: {
+                                                                "no-gutters":
+                                                                  "",
+                                                              },
                                                             },
                                                             [
-                                                              _vm._v(
-                                                                " Webway - "
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "myFont",
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    " Webway - "
+                                                                  ),
+                                                                ]
                                                               ),
                                                             ]
                                                           ),
                                                           _vm._v(" "),
                                                           _c(
-                                                            "span",
+                                                            "v-row",
                                                             {
-                                                              staticClass:
-                                                                "myFontSmall",
+                                                              attrs: {
+                                                                "no-gutters":
+                                                                  "",
+                                                              },
                                                             },
                                                             [
-                                                              _vm._v(
-                                                                _vm._s(
-                                                                  _vm
-                                                                    .webwaySelect
-                                                                    .value
-                                                                )
+                                                              _c(
+                                                                "span",
+                                                                {
+                                                                  staticClass:
+                                                                    "myFontSmall",
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    _vm._s(
+                                                                      _vm
+                                                                        .webwaySelect
+                                                                        .text
+                                                                    )
+                                                                  ),
+                                                                ]
                                                               ),
                                                             ]
                                                           ),
-                                                        ]
+                                                        ],
+                                                        1
                                                       ),
                                                     ]
                                                   },

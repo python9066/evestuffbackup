@@ -43,10 +43,14 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-btn text v-bind="attrs" v-on="on">
-                        <span class="myFont"> Webway - </span>
-                        <span class="myFontSmall">{{
-                          webwaySelect.value
-                        }}</span>
+                        <v-row no-gutters>
+                          <span class="myFont"> Webway - </span>
+                        </v-row>
+                        <v-row no-gutters>
+                          <span class="myFontSmall">{{
+                            webwaySelect.text
+                          }}</span>
+                        </v-row>
                       </v-btn>
                     </template>
 
