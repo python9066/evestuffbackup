@@ -601,8 +601,6 @@ export default {
         return a.value - b.value || a.text.localeCompare(b.text);
       });
 
-      list.filter((f) => f.value != this.webwaySelectedStartSystem.value);
-
       return list;
     },
     webwayButton() {

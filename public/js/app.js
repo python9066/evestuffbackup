@@ -35003,8 +35003,6 @@ function sleep(ms) {
       });
     },
     webwayButtonList: function webwayButtonList() {
-      var _this5 = this;
-
       var list = this.webwayStartSystems;
       var data = {
         value: 30004759,
@@ -35013,9 +35011,6 @@ function sleep(ms) {
       list.push(data);
       list.sort(function (a, b) {
         return a.value - b.value || a.text.localeCompare(b.text);
-      });
-      list.filter(function (f) {
-        return f.value != _this5.webwaySelectedStartSystem.value;
       });
       return list;
     },
