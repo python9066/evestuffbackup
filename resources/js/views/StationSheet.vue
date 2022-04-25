@@ -354,8 +354,8 @@ export default {
       var filter = base.filter(
         (f) => f.start_system_id == this.webwaySelectedStartSystem.value
       );
-      var jumps = filter.jump;
-      return filter;
+      var jumps = filter.jumps;
+      return jumps;
     },
 
     webwayLink(item) {
@@ -363,8 +363,8 @@ export default {
       var filter = base.filter(
         (f) => f.start_system_id == this.webwaySelectedStartSystem.value
       );
-      var jumps = filter[0].links;
-      return jumps;
+      var link = filter[0].webway;
+      return link;
     },
 
     standingCheckCorp(item) {

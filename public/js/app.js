@@ -34836,8 +34836,8 @@ function sleep(ms) {
       var filter = base.filter(function (f) {
         return f.start_system_id == _this3.webwaySelectedStartSystem.value;
       });
-      var jumps = filter.jump;
-      return filter;
+      var jumps = filter.jumps;
+      return jumps;
     },
     webwayLink: function webwayLink(item) {
       var _this4 = this;
@@ -34846,8 +34846,8 @@ function sleep(ms) {
       var filter = base.filter(function (f) {
         return f.start_system_id == _this4.webwaySelectedStartSystem.value;
       });
-      var jumps = filter[0].links;
-      return jumps;
+      var link = filter[0].webway;
+      return link;
     },
     standingCheckCorp: function standingCheckCorp(item) {
       var standing = 0;
