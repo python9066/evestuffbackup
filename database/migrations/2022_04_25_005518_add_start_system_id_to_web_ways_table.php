@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStartSystemIdToWebWayTable extends Migration
+class AddStartSystemIdToWebWaysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddStartSystemIdToWebWayTable extends Migration
      */
     public function up()
     {
-        Schema::table('web_way', function (Blueprint $table) {
+        Schema::table('web_ways', function (Blueprint $table) {
             $table->foreignId('start_system_id')->after('id');
         });
     }
@@ -25,7 +25,7 @@ class AddStartSystemIdToWebWayTable extends Migration
      */
     public function down()
     {
-        Schema::table('web_way', function (Blueprint $table) {
+        Schema::table('web_ways', function (Blueprint $table) {
             //
         });
     }
