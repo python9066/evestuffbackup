@@ -67,6 +67,7 @@ class WebWayStartSystemsContorller extends Controller
             array_push($ids, $pull['value']);
         }
         WebWayStartSystem::whereNotIn('system_id', $system_ids)->delete();
+        WebWay::whereNotIn('start_system_id', $system_ids)->delete();
         foreach ($ids as $system_id) {
             WebWayStartSystem::updateOrCreate(
                 ['system_id' => $system_id],
