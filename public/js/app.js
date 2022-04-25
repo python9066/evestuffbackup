@@ -73683,7 +73683,7 @@ var render = function () {
                                                                             $event
                                                                           ) {
                                                                             return _vm.updateWebwaySelectedStartSystem(
-                                                                              _vm.item
+                                                                              list
                                                                             )
                                                                           },
                                                                       },

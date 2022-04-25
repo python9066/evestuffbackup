@@ -65,7 +65,7 @@
                               :v-if="
                                 list.value != webwaySelectedStartSystem.value
                               "
-                              @click="updateWebwaySelectedStartSystem(item)"
+                              @click="updateWebwaySelectedStartSystem(list)"
                             >
                               <v-list-item-title>{{
                                 list.text
