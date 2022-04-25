@@ -34811,7 +34811,9 @@ function sleep(ms) {
       var filter = base.filter(function (f) {
         return f.start_system_id == _this3.webwaySelect.value;
       });
-      return filter;
+      var jumps = filter.jump;
+      var link = filter.link;
+      return jumps;
     },
     standingCheckCorp: function standingCheckCorp(item) {
       var standing = 0;

@@ -358,7 +358,9 @@ export default {
       var filter = base.filter(
         (f) => f.start_system_id == this.webwaySelect.value
       );
-      return filter;
+      var jumps = filter.jump;
+      var link = filter.link;
+      return jumps;
     },
 
     standingCheckCorp(item) {
