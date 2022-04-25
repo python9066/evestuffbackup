@@ -34581,6 +34581,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -34666,9 +34682,13 @@ function sleep(ms) {
       expanded_id: 0,
       loadingt: true,
       search: "",
+      menu: false,
       headers: [{
         text: "WebWay",
         value: "webway[0].jumps"
+      }, {
+        text: "",
+        value: "test"
       }, {
         text: "System",
         value: "system.system_name"
@@ -73320,6 +73340,76 @@ var render = function () {
                               },
                               scopedSlots: _vm._u(
                                 [
+                                  {
+                                    key: "header.test",
+                                    fn: function (props) {
+                                      return [
+                                        _c(
+                                          "v-menu",
+                                          {
+                                            attrs: {
+                                              "close-on-content-click": false,
+                                              "offset-y": "",
+                                              transition: false,
+                                            },
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "activator",
+                                                  fn: function (ref) {
+                                                    var on = ref.on
+                                                    var attrs = ref.attrs
+                                                    return [
+                                                      _c(
+                                                        "v-btn",
+                                                        _vm._g(
+                                                          _vm._b(
+                                                            {
+                                                              attrs: {
+                                                                icon: "",
+                                                              },
+                                                            },
+                                                            "v-btn",
+                                                            attrs,
+                                                            false
+                                                          ),
+                                                          on
+                                                        ),
+                                                        [
+                                                          _c("v-icon", [
+                                                            _vm._v(
+                                                              "mdi-dots-vertical"
+                                                            ),
+                                                          ]),
+                                                        ],
+                                                        1
+                                                      ),
+                                                    ]
+                                                  },
+                                                },
+                                              ],
+                                              null,
+                                              true
+                                            ),
+                                            model: {
+                                              value: _vm.menu,
+                                              callback: function ($$v) {
+                                                _vm.menu = $$v
+                                              },
+                                              expression: "menu",
+                                            },
+                                          },
+                                          [
+                                            _vm._v(" "),
+                                            _c("v-card", [
+                                              _vm._v(" this is a test "),
+                                            ]),
+                                          ],
+                                          1
+                                        ),
+                                      ]
+                                    },
+                                  },
                                   {
                                     key: "item.webway[0].jumps",
                                     fn: function (ref) {
