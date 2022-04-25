@@ -98,6 +98,10 @@ export default new Vuex.Store({
             state.stationList = stations;
         },
 
+        SET_WEBWAY_SELECTED_START_SYSTEM(state, data) {
+            state.webwaySelectedStartSystem = data;
+        },
+
         SET_WEBWAY_START_SYSTEMS(state, systems) {
             state.webwayStartSystems = systems;
         },
@@ -1429,6 +1433,10 @@ export default new Vuex.Store({
 
         markOver({ commit }, timer) {
             commit("MARK_TIMER_OVER", timer);
+        },
+
+        updateWebwaySelectedStartSystem({ commit }, data) {
+            commit("SET_WEBWAY_SELECTED_START_SYSTEM", data);
         },
 
         updateNotification({ commit }, data) {

@@ -65,6 +65,7 @@
                               :v-if="
                                 list.value != webwaySelectedStartSystem.value
                               "
+                              @click="updateWebwaySelectedStartSystem(item)"
                             >
                               <v-list-item-title>{{
                                 list.text
@@ -381,6 +382,15 @@ export default {
       return link;
     },
 
+    updateWebwaySelectedStartSystem(item) {
+      var data = {
+        value: item.value,
+        text: item.text,
+      };
+
+      this.$store.dispatch(updateWebwaySelectedStartSystem(data));
+    },
+
     standingCheckCorp(item) {
       var standing = 0;
       if (item.corp) {
@@ -591,7 +601,7 @@ export default {
       };
       list.push(data);
       list.sort(function (a, b) {
-        return a.id - b.id || a.name.localeCompare(b.name);
+        return a.value - b.value || a.text.localeCompare(b.text);
       });
 
       return list;
