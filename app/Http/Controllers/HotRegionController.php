@@ -42,7 +42,7 @@ class HotRegionController extends Controller
                 'fcs' => $fcs,
                 'webwayStartSystems' => $webway,
                 'regionlist' => $regionList,
-                'systemList' => $systemList,
+                'systemlist' => $systemList,
 
             ];
         }

@@ -73348,7 +73348,7 @@ var render = function () {
                               scopedSlots: _vm._u(
                                 [
                                   {
-                                    key: "header.test",
+                                    key: "header.system.webway[0].jumps",
                                     fn: function (ref) {
                                       var props = ref.props
                                       return [
@@ -85732,8 +85732,10 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
                 commit("SET_STATION_PULL_REGIONS", res.data.pull);
                 commit("SET_STATION_LIST_FC", res.data.fcs);
                 commit("SET_STATION_REGION_LIST", res.data.regionlist);
+                commit("SET_SYSTEM_LIST", res.data.systemlist);
+                commit("SET_WEBWAY_START_SYSTEMS", res.data.systems);
 
-              case 7:
+              case 9:
               case "end":
                 return _context3.stop();
             }

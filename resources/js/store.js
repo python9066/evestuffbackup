@@ -766,6 +766,8 @@ export default new Vuex.Store({
             commit("SET_STATION_PULL_REGIONS", res.data.pull);
             commit("SET_STATION_LIST_FC", res.data.fcs);
             commit("SET_STATION_REGION_LIST", res.data.regionlist);
+            commit("SET_SYSTEM_LIST", res.data.systemlist);
+            commit("SET_WEBWAY_START_SYSTEMS", res.data.systems);
         },
 
         async getSoloOperationList({ commit }) {
