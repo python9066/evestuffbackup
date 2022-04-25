@@ -38123,7 +38123,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.myFont {\n  font-family: \"Mansalva\", cursive;\n}\n", ""]);
+exports.push([module.i, "\n.myFont {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 12px;\n  text-transform: initial;\n}\n", ""]);
 
 // exports
 

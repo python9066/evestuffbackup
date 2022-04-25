@@ -553,6 +553,8 @@ export default {
 </script>
 <style>
 .myFont {
-  font-family: "Mansalva", cursive;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  text-transform: initial;
 }
 </style>
