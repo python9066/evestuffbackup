@@ -34692,8 +34692,8 @@ function sleep(ms) {
         value: 30004759
       },
       headers: [{
-        text: "",
-        value: "webway",
+        text: "Webway",
+        value: "system.webway[0].jumps",
         sortable: false
       }, {
         text: "",
@@ -73418,6 +73418,24 @@ var render = function () {
                                       ]
                                     },
                                     proxy: true,
+                                  },
+                                  {
+                                    key: "item.system.webway[0].jumps",
+                                    fn: function (ref) {
+                                      var item = ref.item
+                                      return [
+                                        item.system.webway[0]
+                                          ? _c("SoloCampaginWebWay", {
+                                              attrs: {
+                                                jumps:
+                                                  item.system.webway[0].jumps,
+                                                web: item.system.webway[0]
+                                                  .webway,
+                                              },
+                                            })
+                                          : _vm._e(),
+                                      ]
+                                    },
                                   },
                                   {
                                     key: "item.corp.ticker",

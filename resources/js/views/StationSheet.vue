@@ -34,7 +34,7 @@
                 <template slot="no-data">
                   All Hostile Stations our reffed!!!!!!
                 </template>
-                <template v-slot: [header.webway]="{ props }">
+                <template v-slot: [header.test]="{ props }">
                   <v-menu
                     v-model="menu"
                     :close-on-content-click="false"
@@ -50,13 +50,13 @@
                     <v-card> this is a test </v-card>
                   </v-menu>
                 </template>
-                <!-- <template v-slot:[`item.webway`]="{ item }">
+                <template v-slot:[`item.system.webway[0].jumps`]="{ item }">
                   <SoloCampaginWebWay
                     v-if="item.system.webway[0]"
                     :jumps="item.system.webway[0].jumps"
                     :web="item.system.webway[0].webway"
                   ></SoloCampaginWebWay>
-                </template> -->
+                </template>
                 <template
                   v-slot:[`item.corp.ticker`]="{ item }"
                   class="d-inline-flex align-center"
@@ -231,8 +231,8 @@ export default {
 
       headers: [
         {
-          text: "",
-          value: "webway",
+          text: "Webway",
+          value: "system.webway[0].jumps",
           sortable: false,
         },
         {
