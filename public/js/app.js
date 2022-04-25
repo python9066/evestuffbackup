@@ -34727,10 +34727,6 @@ function sleep(ms) {
       loadingt: true,
       search: "",
       menu: false,
-      webwaySelect: {
-        text: "1DQ1-A",
-        value: 30004759
-      },
       headers: [{
         text: "Webway",
         value: "system.webway[0].jumps",
@@ -34838,7 +34834,7 @@ function sleep(ms) {
 
       var base = item.system.webway;
       var filter = base.filter(function (f) {
-        return f.start_system_id == _this3.webwaySelect.value;
+        return f.start_system_id == _this3.webwaySelectedStartSystem.value;
       });
       var jumps = filter.jump;
       return filter;
@@ -34848,7 +34844,7 @@ function sleep(ms) {
 
       var base = item.system.webway;
       var filter = base.filter(function (f) {
-        return f.start_system_id == _this4.webwaySelect.value;
+        return f.start_system_id == _this4.webwaySelectedStartSystem.value;
       });
       var jumps = filter[0].links;
       return jumps;
@@ -34969,7 +34965,7 @@ function sleep(ms) {
       return "https://evemaps.dotlan.net/map/" + item.system.region.region_name + "/" + item.system.system_name + "#const";
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stationList", "webwayStartSystems"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stationList", "webwayStartSystems", "webwaySelectedStartSystem"])), {}, {
     filter_end: function filter_end() {
       return this.stationList.filter(function (f) {
         return f.show_on_coord == 1 && f.standing <= 0;
@@ -73575,7 +73571,7 @@ var render = function () {
                                                                           _vm._v(
                                                                             _vm._s(
                                                                               _vm
-                                                                                .webwaySelect
+                                                                                .webwaySelectedStartSystem
                                                                                 .text
                                                                             )
                                                                           ),
@@ -73619,7 +73615,8 @@ var render = function () {
                                                       [
                                                         _vm._v(
                                                           _vm._s(
-                                                            _vm.webwaySelect
+                                                            _vm
+                                                              .webwaySelectedStartSystem
                                                               .text
                                                           )
                                                         ),
@@ -85255,7 +85252,11 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     stationList: [],
     stationListPullRegions: [],
     stationListFCRegions: [],
-    stationListRegionList: []
+    stationListRegionList: [],
+    webwaySelectedStartSystem: {
+      text: "1DQ1-A",
+      value: 30004759
+    }
   },
   mutations: {
     SET_STATION_LIST: function SET_STATION_LIST(state, stations) {

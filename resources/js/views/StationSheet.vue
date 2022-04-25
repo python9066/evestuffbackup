@@ -52,7 +52,7 @@
                         <template v-slot:activator="{ on, attrs }">
                           <v-btn text v-bind="attrs" v-on="on" x-small>
                             <span class="myFontSmall">{{
-                              webwaySelect.text
+                              webwaySelectedStartSystem.text
                             }}</span>
                           </v-btn>
                         </template>
@@ -60,7 +60,7 @@
                         <v-card> this is a test </v-card>
                       </v-menu>
                       <span v-else class="myFontSmall">{{
-                        webwaySelect.text
+                        webwaySelectedStartSystem.text
                       }}</span>
                     </v-col>
                   </v-row>
@@ -239,10 +239,6 @@ export default {
       loadingt: true,
       search: "",
       menu: false,
-      webwaySelect: {
-        text: "1DQ1-A",
-        value: 30004759,
-      },
 
       headers: [
         {
@@ -356,7 +352,7 @@ export default {
     webwayJumps(item) {
       var base = item.system.webway;
       var filter = base.filter(
-        (f) => f.start_system_id == this.webwaySelect.value
+        (f) => f.start_system_id == this.webwaySelectedStartSystem.value
       );
       var jumps = filter.jump;
       return filter;
@@ -365,7 +361,7 @@ export default {
     webwayLink(item) {
       var base = item.system.webway;
       var filter = base.filter(
-        (f) => f.start_system_id == this.webwaySelect.value
+        (f) => f.start_system_id == this.webwaySelectedStartSystem.value
       );
       var jumps = filter[0].links;
       return jumps;
@@ -561,7 +557,11 @@ export default {
   },
 
   computed: {
-    ...mapState(["stationList", "webwayStartSystems"]),
+    ...mapState([
+      "stationList",
+      "webwayStartSystems",
+      "webwaySelectedStartSystem",
+    ]),
 
     filter_end() {
       return this.stationList.filter(
