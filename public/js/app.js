@@ -34607,6 +34607,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -34919,11 +34923,18 @@ function sleep(ms) {
       return "https://evemaps.dotlan.net/map/" + item.system.region.region_name + "/" + item.system.system_name + "#const";
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stationList"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["stationList", "systemlist", "webwayStartSystems"])), {}, {
     filter_end: function filter_end() {
       return this.stationList.filter(function (f) {
         return f.show_on_coord == 1 && f.standing <= 0;
       });
+    },
+    webwayButton: function webwayButton() {
+      if (this.webwayStartSystems) {
+        return true;
+      } else {
+        return false;
+      }
     },
     height: function height() {
       var num = this.windowSize.y - 370;
@@ -73430,84 +73441,105 @@ var render = function () {
                                             _c(
                                               "v-col",
                                               [
-                                                _c(
-                                                  "v-menu",
-                                                  {
-                                                    attrs: {
-                                                      "close-on-content-click": false,
-                                                      "offset-y": "",
-                                                      transition: false,
-                                                    },
-                                                    scopedSlots: _vm._u(
-                                                      [
-                                                        {
-                                                          key: "activator",
-                                                          fn: function (ref) {
-                                                            var on = ref.on
-                                                            var attrs =
-                                                              ref.attrs
-                                                            return [
-                                                              _c(
-                                                                "v-btn",
-                                                                _vm._g(
-                                                                  _vm._b(
-                                                                    {
-                                                                      attrs: {
-                                                                        text: "",
-                                                                        "x-small":
-                                                                          "",
-                                                                      },
-                                                                    },
-                                                                    "v-btn",
-                                                                    attrs,
-                                                                    false
-                                                                  ),
-                                                                  on
-                                                                ),
-                                                                [
+                                                _vm.webwayButton
+                                                  ? _c(
+                                                      "v-menu",
+                                                      {
+                                                        attrs: {
+                                                          "close-on-content-click": false,
+                                                          "offset-y": "",
+                                                          transition: false,
+                                                        },
+                                                        scopedSlots: _vm._u(
+                                                          [
+                                                            {
+                                                              key: "activator",
+                                                              fn: function (
+                                                                ref
+                                                              ) {
+                                                                var on = ref.on
+                                                                var attrs =
+                                                                  ref.attrs
+                                                                return [
                                                                   _c(
-                                                                    "span",
-                                                                    {
-                                                                      staticClass:
-                                                                        "myFontSmall",
-                                                                    },
+                                                                    "v-btn",
+                                                                    _vm._g(
+                                                                      _vm._b(
+                                                                        {
+                                                                          attrs:
+                                                                            {
+                                                                              text: "",
+                                                                              "x-small":
+                                                                                "",
+                                                                            },
+                                                                        },
+                                                                        "v-btn",
+                                                                        attrs,
+                                                                        false
+                                                                      ),
+                                                                      on
+                                                                    ),
                                                                     [
-                                                                      _vm._v(
-                                                                        _vm._s(
-                                                                          _vm
-                                                                            .webwaySelect
-                                                                            .text
-                                                                        )
+                                                                      _c(
+                                                                        "span",
+                                                                        {
+                                                                          staticClass:
+                                                                            "myFontSmall",
+                                                                        },
+                                                                        [
+                                                                          _vm._v(
+                                                                            _vm._s(
+                                                                              _vm
+                                                                                .webwaySelect
+                                                                                .text
+                                                                            )
+                                                                          ),
+                                                                        ]
                                                                       ),
                                                                     ]
                                                                   ),
                                                                 ]
-                                                              ),
-                                                            ]
+                                                              },
+                                                            },
+                                                          ],
+                                                          null,
+                                                          true
+                                                        ),
+                                                        model: {
+                                                          value: _vm.menu,
+                                                          callback: function (
+                                                            $$v
+                                                          ) {
+                                                            _vm.menu = $$v
                                                           },
+                                                          expression: "menu",
                                                         },
-                                                      ],
-                                                      null,
-                                                      true
-                                                    ),
-                                                    model: {
-                                                      value: _vm.menu,
-                                                      callback: function ($$v) {
-                                                        _vm.menu = $$v
                                                       },
-                                                      expression: "menu",
-                                                    },
-                                                  },
-                                                  [
-                                                    _vm._v(" "),
-                                                    _c("v-card", [
-                                                      _vm._v(
-                                                        " this is a test "
-                                                      ),
-                                                    ]),
-                                                  ],
-                                                  1
-                                                ),
+                                                      [
+                                                        _vm._v(" "),
+                                                        _c("v-card", [
+                                                          _vm._v(
+                                                            " this is a test "
+                                                          ),
+                                                        ]),
+                                                      ],
+                                                      1
+                                                    )
+                                                  : _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "myFontSmall",
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(
+                                                            _vm.webwaySelect
+                                                              .text
+                                                          )
+                                                        ),
+                                                      ]
+                                                    ),
                                               ],
                                               1
                                             ),

@@ -43,6 +43,7 @@
                   <v-row no-gutters>
                     <v-col>
                       <v-menu
+                        v-if="webwayButton"
                         v-model="menu"
                         :close-on-content-click="false"
                         offset-y
@@ -58,6 +59,9 @@
 
                         <v-card> this is a test </v-card>
                       </v-menu>
+                      <span v-else class="myFontSmall">{{
+                        webwaySelect.text
+                      }}</span>
                     </v-col>
                   </v-row>
                 </template>
@@ -539,12 +543,20 @@ export default {
   },
 
   computed: {
-    ...mapState(["stationList"]),
+    ...mapState(["stationList", "systemlist", "webwayStartSystems"]),
 
     filter_end() {
       return this.stationList.filter(
         (f) => f.show_on_coord == 1 && f.standing <= 0
       );
+    },
+
+    webwayButton() {
+      if (this.webwayStartSystems) {
+        return true;
+      } else {
+        return false;
+      }
     },
 
     height() {
