@@ -34,7 +34,7 @@
                 <template slot="no-data">
                   All Hostile Stations our reffed!!!!!!
                 </template>
-                <template v-slot: [header.webway]="props">
+                <template v-slot: [header.webway]="{ props }">
                   <v-menu
                     v-model="menu"
                     :close-on-content-click="false"
