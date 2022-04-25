@@ -31,7 +31,7 @@ class HotRegionController extends Controller
             $fcsStart = HotRegion::where('show_fcs', 1)->pluck('region_id');
             $fcs = Region::whereIn('id', $fcsStart)->select(['region_name as text', 'id as value'])->get();
 
-            $webwayStart = WebWayStartSystem::whereNotNull('id')->pluck('system_id');
+            $webwayStart = WebWayStartSystem::where('system_id', '!=', 30004759)->pluck('system_id');
             $webway = System::whereIn('id', $webwayStart)->select(['system_name as text', 'id as value'])->get();
 
             $regionList = Region::whereNotNull('id')->select(['region_name as text', 'id as value'])->get();
@@ -123,7 +123,7 @@ class HotRegionController extends Controller
             updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');
         }
 
-        $start_system_ids = WebWayStartSystem::whereNotNull('id')->pluck('system_id');
+        $start_system_ids = WebWayStartSystem::where('system_id', '!=', 30004759)->pluck('system_id');
         foreach ($start_system_ids as $start_system_id) {
             foreach ($systemIDs as $end_system_id) {
                 updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');

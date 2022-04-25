@@ -21,7 +21,7 @@ class WebWayStartSystemsContorller extends Controller
 
     public function getSystemList()
     {
-        $webwaySystemIDs = WebWayStartSystem::whereNotNull('id')->pluck('system_id');
+        $webwaySystemIDs = WebWayStartSystem::where('system_id', '!=', 30004759)->pluck('system_id');
         if ($webwaySystemIDs) {
             $systems = System::whereIn('id', $webwaySystemIDs)->select(['id as value', 'system_name as text'])->get();
             return ['systems' => $systems];
