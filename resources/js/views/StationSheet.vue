@@ -358,8 +358,7 @@ export default {
       //   var filter = base.filter(
       //     (f) => f.start_system_id == this.webwaySelect.value
       //   );
-
-      console.log(base);
+      return base;
     },
 
     standingCheckCorp(item) {

@@ -34809,7 +34809,7 @@ function sleep(ms) {
       //     (f) => f.start_system_id == this.webwaySelect.value
       //   );
 
-      console.log(base);
+      return base;
     },
     standingCheckCorp: function standingCheckCorp(item) {
       var standing = 0;
