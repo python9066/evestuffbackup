@@ -27022,11 +27022,13 @@ function sleep(ms) {
       var _this4 = this;
 
       if (item.webway) {
+        var _filter$0$jumps;
+
         var base = item.webway;
         var filter = base.filter(function (f) {
           return f.start_system_id == _this4.webwaySelectedStartSystem.value;
         });
-        var jumps = filter[0].jumps;
+        var jumps = (_filter$0$jumps = filter[0].jumps) !== null && _filter$0$jumps !== void 0 ? _filter$0$jumps : null;
         return jumps;
       } else {
         return null;
@@ -27036,11 +27038,13 @@ function sleep(ms) {
       var _this5 = this;
 
       if (item.webway) {
+        var _filter$0$webway;
+
         var base = item.webway;
         var filter = base.filter(function (f) {
           return f.start_system_id == _this5.webwaySelectedStartSystem.value;
         });
-        var link = filter[0].webway;
+        var link = (_filter$0$webway = filter[0].webway) !== null && _filter$0$webway !== void 0 ? _filter$0$webway : null;
         return link;
       } else {
         return null;
@@ -34991,11 +34995,13 @@ function sleep(ms) {
       var _this3 = this;
 
       if (item.system.webway) {
+        var _filter$0$jumps;
+
         var base = item.system.webway;
         var filter = base.filter(function (f) {
           return f.start_system_id == _this3.webwaySelectedStartSystem.value;
         });
-        var jumps = filter[0].jumps;
+        var jumps = (_filter$0$jumps = filter[0].jumps) !== null && _filter$0$jumps !== void 0 ? _filter$0$jumps : null;
         return jumps;
       } else {
         return null;
@@ -35005,11 +35011,13 @@ function sleep(ms) {
       var _this4 = this;
 
       if (item.system.webway) {
+        var _filter$0$webway;
+
         var base = item.system.webway;
         var filter = base.filter(function (f) {
           return f.start_system_id == _this4.webwaySelectedStartSystem.value;
         });
-        var link = filter[0].webway;
+        var link = (_filter$0$webway = filter[0].webway) !== null && _filter$0$webway !== void 0 ? _filter$0$webway : null;
         return link;
       } else {
         return null;

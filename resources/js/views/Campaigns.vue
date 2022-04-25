@@ -554,7 +554,7 @@ export default {
         var filter = base.filter(
           (f) => f.start_system_id == this.webwaySelectedStartSystem.value
         );
-        var jumps = filter[0].jumps;
+        var jumps = filter[0].jumps ?? null;
         return jumps;
       } else {
         return null;
@@ -567,7 +567,7 @@ export default {
         var filter = base.filter(
           (f) => f.start_system_id == this.webwaySelectedStartSystem.value
         );
-        var link = filter[0].webway;
+        var link = filter[0].webway ?? null;
         return link;
       } else {
         return null;
