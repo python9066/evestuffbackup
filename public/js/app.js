@@ -38123,7 +38123,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.myFont {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 12px;\n  text-transform: initial;\n}\n", ""]);
+exports.push([module.i, "\n.myFont {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 12px;\n  text-transform: none;\n  font-weight: 700;\n  letter-spacing: 0.1px;\n  line-height: 18px;\n  -moz-tab-size: 4;\n    -o-tab-size: 4;\n       tab-size: 4;\n  color: rgba(255, 255, 255, 0.7);\n}\n", ""]);
 
 // exports
 
@@ -73441,7 +73441,7 @@ var render = function () {
                                                             },
                                                             [
                                                               _vm._v(
-                                                                " this is a test"
+                                                                " This is a test "
                                                               ),
                                                             ]
                                                           ),

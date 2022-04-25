@@ -43,7 +43,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-btn text v-bind="attrs" v-on="on">
-                        <span class="myFont"> this is a test</span>
+                        <span class="myFont"> This is a test </span>
                         <span class="text-lg-caption"> yoyo</span>
                       </v-btn>
                     </template>
@@ -555,6 +555,11 @@ export default {
 .myFont {
   font-family: "Roboto", sans-serif;
   font-size: 12px;
-  text-transform: initial;
+  text-transform: none;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  line-height: 18px;
+  tab-size: 4;
+  color: rgba(255, 255, 255, 0.7);
 }
 </style>
