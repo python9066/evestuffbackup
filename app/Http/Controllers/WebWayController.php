@@ -91,12 +91,12 @@ class WebWayController extends Controller
         //     broadcast(new SendStationSheetUpdateWebway($flag));
         // }
 
-        $system = $system_id;
-        $flag = collect([
-            'id' => $system
-        ]);
+        // $system = $system_id;
+        // $flag = collect([
+        //     'id' => $system
+        // ]);
 
-        broadcast(new StationSheetUpdateWebway($flag));
+        // broadcast(new StationSheetUpdateWebway($flag));
     }
 
     /**
