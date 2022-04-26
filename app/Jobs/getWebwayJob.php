@@ -40,6 +40,19 @@ class getWebwayJob implements ShouldQueue
     public function handle()
     {
 
+        $send = false;
+
+        $old = WebWay::where([
+            'start_system_id' => $this->start_system_id,
+            'system_id' => $this->system_id,
+            'permissions' => 0
+        ])->first();
+
+        $oldp = WebWay::where([
+            'start_system_id' => $this->start_system_id,
+            'system_id' => $this->system_id,
+            'permissions' => 1
+        ])->first();
 
 
         WebWay::updateOrCreate(
@@ -68,11 +81,30 @@ class getWebwayJob implements ShouldQueue
             ]
         );
 
-        $system = $this->system_id;
-        $flag = collect([
-            'id' => $system
-        ]);
 
-        broadcast(new StationSheetUpdateWebway($flag));
+        if ($old) {
+            if ($old->webway != $this->link || $old->jumps != $this->jumps) {
+                $send = true;
+            }
+        } else {
+            $send = true;
+        };
+
+        if ($oldp) {
+            if ($oldp->webway != $this->link_p || $oldp->jumps != $this->jumps_p) {
+                $send = true;
+            }
+        } else {
+            $send = true;
+        };
+
+        if ($send) {
+            $system = $this->system_id;
+            $flag = collect([
+                'id' => $system
+            ]);
+
+            broadcast(new StationSheetUpdateWebway($flag));
+        }
     }
 }
