@@ -38,16 +38,6 @@ class WebWayController extends Controller
         $link_p = $request['link_p'];
         $jumps_p = $request['jumps_p'];
         $start_system_id = $request['start_system_id'];
-
-        getWebwayJob::dispatch(
-            $start_system_id,
-            $system_id,
-            $link,
-            $jumps,
-            $link_p,
-            $jumps_p
-        )->onQueue('webway');
-
         $send = false;
 
         $old = WebWay::where([
@@ -61,6 +51,19 @@ class WebWayController extends Controller
             'system_id' => $system_id,
             'permissions' => 1
         ])->first();
+
+        getWebwayJob::dispatch(
+            $start_system_id,
+            $system_id,
+            $link,
+            $jumps,
+            $link_p,
+            $jumps_p
+        )->onQueue('webway');
+
+
+
+
 
         if ($old) {
             if ($old->webway != $link || $old->jumps != $jumps) {
