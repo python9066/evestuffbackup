@@ -79,7 +79,7 @@ class WebWayController extends Controller
         };
 
         if ($send) {
-            $system = $this->system_id;
+            $system = $system_id;
             $flag = collect([
                 'id' => $system
             ]);
