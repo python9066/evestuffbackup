@@ -233,7 +233,7 @@ export default {
         this.$store.dispatch("deleteStationSheetNotification", e.flag.id);
       })
       .listen("StationSheetUpdateWebway", (e) => {
-        // this.updateWebwaySystem(e.flag.id);
+        this.updateWebwaySystem(e.flag.id);
       });
   },
   async mounted() {

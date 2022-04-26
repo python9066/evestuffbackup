@@ -34845,7 +34845,8 @@ function sleep(ms) {
                 if (e.flag.flag == 3) {}
               }).listen("StationDeadStationSheet", function (e) {
                 _this.$store.dispatch("deleteStationSheetNotification", e.flag.id);
-              }).listen("StationSheetUpdateWebway", function (e) {// this.updateWebwaySystem(e.flag.id);
+              }).listen("StationSheetUpdateWebway", function (e) {
+                _this.updateWebwaySystem(e.flag.id);
               });
 
             case 3:

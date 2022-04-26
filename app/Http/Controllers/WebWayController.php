@@ -39,19 +39,9 @@ class WebWayController extends Controller
         $link_p = $request['link_p'];
         $jumps_p = $request['jumps_p'];
         $start_system_id = $request['start_system_id'];
-        $send = false;
 
-        $old = WebWay::where([
-            'start_system_id' => $start_system_id,
-            'system_id' => $system_id,
-            'permissions' => 0
-        ])->first();
 
-        $oldp = WebWay::where([
-            'start_system_id' => $start_system_id,
-            'system_id' => $system_id,
-            'permissions' => 1
-        ])->first();
+
 
         getWebwayJob::dispatch(
             $start_system_id,
@@ -61,42 +51,6 @@ class WebWayController extends Controller
             $link_p,
             $jumps_p
         )->onQueue('webway');
-
-
-
-
-
-        if ($old) {
-            if ($old->webway != $link || $old->jumps != $jumps) {
-                $send = true;
-            }
-        } else {
-            $send = true;
-        };
-
-        if ($oldp) {
-            if ($oldp->webway != $link_p || $oldp->jumps != $jumps_p) {
-                $send = true;
-            }
-        } else {
-            $send = true;
-        };
-
-        // if ($send) {
-        //     $system = $system_id;
-        //     $flag = collect([
-        //         'id' => $system
-        //     ]);
-
-        //     broadcast(new SendStationSheetUpdateWebway($flag));
-        // }
-
-        // $system = $system_id;
-        // $flag = collect([
-        //     'id' => $system
-        // ]);
-
-        // broadcast(new StationSheetUpdateWebway($flag));
     }
 
     /**
