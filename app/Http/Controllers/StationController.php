@@ -54,6 +54,20 @@ class StationController extends Controller
     }
 
 
+    public function updateStationSheetWebway($id)
+    {
+        $station_ids = Station::where('system_id', $id)->pluck('id');
+
+        foreach ($station_ids as $id) {
+            $message = Helper::StationRecordsSolo(6, $id);
+            $flag = collect([
+                'message' => $message
+            ]);
+            broadcast(new StationSheetUpdate($flag));
+        }
+    }
+
+
     public function stationSheet()
     {
         $user = Auth::user();

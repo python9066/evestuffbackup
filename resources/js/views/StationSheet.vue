@@ -231,6 +231,9 @@ export default {
       })
       .listen("StationDeadStationSheet", (e) => {
         this.$store.dispatch("deleteStationSheetNotification", e.flag.id);
+      })
+      .listen("StationSheetUpdateWebway", (e) => {
+        this.updateWebwaySystem(e.flag.id);
       });
   },
   async mounted() {
@@ -399,6 +402,20 @@ export default {
       } else {
         return null;
       }
+    },
+
+    updateWebwaySystem(id) {
+      axios({
+        //adds user name of last checked
+        method: "put",
+        url: "/api/stationsheetupdatewebway/" + id,
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
     },
 
     updateWebwaySelectedStartSystem(item) {

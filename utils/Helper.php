@@ -405,6 +405,8 @@ class Helper
             $station_query->where('show_on_welp', 1);
         }
 
+
+        //rchsheet
         if ($type == 4) {
             $station_query->where('show_on_rc', 1);
             if ($user->can("use_reserved_connection")) {
@@ -424,11 +426,16 @@ class Helper
             $station_query->where('show_on_rc_move', 1);
         }
 
+
+        //station sheet
         if ($type == 6) {
             $station_query->where('show_on_coord', 1)->with(['system.webway'
             => function ($t) {
                 $t->where('permissions', 1);
             },]);
+
+
+
             if ($user->can('view_coord_sheet')) {
             } else {
                 $station_query->where('show_on_coord', 1)->whereIn('system_id', $systemIDs);

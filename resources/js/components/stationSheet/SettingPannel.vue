@@ -16,7 +16,8 @@
         max-width="1000px"
         min-height="200px"
         max-height="700px"
-        rounded="xl"
+        class="d-flex flex-column"
+        elevation="10"
       >
         <v-card-title class="justify-center primary"
           >Setting for Station Page</v-card-title
