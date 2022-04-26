@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\getWebwayJob;
+use App\Listeners\SendStationSheetUpdateWebway;
+use App\Models\WebWay;
 use Illuminate\Http\Request;
 
 class WebWayController extends Controller
@@ -45,6 +47,45 @@ class WebWayController extends Controller
             $link_p,
             $jumps_p
         )->onQueue('webway');
+
+        $send = false;
+
+        $old = WebWay::where([
+            'start_system_id' => $start_system_id,
+            'system_id' => $system_id,
+            'permissions' => 0
+        ])->first();
+
+        $oldp = WebWay::where([
+            'start_system_id' => $start_system_id,
+            'system_id' => $system_id,
+            'permissions' => 1
+        ])->first();
+
+        if ($old) {
+            if ($old->webway != $link || $old->jumps != $jumps) {
+                $send = true;
+            }
+        } else {
+            $send = true;
+        };
+
+        if ($oldp) {
+            if ($oldp->webway != $link_p || $oldp->jumps != $jumps_p) {
+                $send = true;
+            }
+        } else {
+            $send = true;
+        };
+
+        if ($send) {
+            $system = $this->system_id;
+            $flag = collect([
+                'id' => $system
+            ]);
+
+            broadcast(new SendStationSheetUpdateWebway($flag));
+        }
     }
 
     /**

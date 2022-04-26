@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Listeners\SendStationSheetUpdateWebway;
+
 use App\Models\WebWay;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -39,13 +39,9 @@ class getWebwayJob implements ShouldQueue
     public function handle()
     {
 
-        $old = WebWay::where([
-            'start_system_id' => $this->start_system_id,
-            'system_id' => $this->system_id,
-            'permissions' => 0
-        ])->first();
 
-        $updated = WebWay::updateOrCreate(
+
+        WebWay::updateOrCreate(
             [
                 'start_system_id' => $this->start_system_id,
                 'system_id' => $this->system_id,
@@ -57,13 +53,9 @@ class getWebwayJob implements ShouldQueue
             ]
         );
 
-        $oldp = WebWay::where([
-            'start_system_id' => $this->start_system_id,
-            'system_id' => $this->system_id,
-            'permissions' => 1
-        ])->first();
 
-        $updatedp =  WebWay::updateOrCreate(
+
+        WebWay::updateOrCreate(
             [
                 'start_system_id' => $this->start_system_id,
                 'system_id' => $this->system_id,
@@ -74,32 +66,5 @@ class getWebwayJob implements ShouldQueue
                 'jumps' => $this->jumps_p
             ]
         );
-
-        $send = false;
-
-        if ($old) {
-            if ($old->webway != $updated->webway || $old->jumps != $updated->jumps) {
-                $send = true;
-            }
-        } else {
-            $send = true;
-        };
-
-        if ($oldp) {
-            if ($oldp->webway != $updatedp->webway || $oldp->jumps != $updatedp->jumps) {
-                $send = true;
-            }
-        } else {
-            $send = true;
-        };
-
-        if ($send) {
-            $system = $this->system_id;
-            $flag = collect([
-                'id' => $system
-            ]);
-
-            broadcast(new SendStationSheetUpdateWebway($flag));
-        }
     }
 }
