@@ -66,12 +66,5 @@ class getWebwayJob implements ShouldQueue
                 'jumps' => $this->jumps_p
             ]
         );
-
-        $system = $this->start_system_id;
-        $flag = collect([
-            'id' => $system
-        ]);
-
-        broadcast(new SendStationSheetUpdateWebway($flag));
     }
 }

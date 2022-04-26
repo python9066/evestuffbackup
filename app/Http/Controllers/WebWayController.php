@@ -81,14 +81,21 @@ class WebWayController extends Controller
             $send = true;
         };
 
-        if ($send) {
-            $system = $system_id;
-            $flag = collect([
-                'id' => $system
-            ]);
+        // if ($send) {
+        //     $system = $system_id;
+        //     $flag = collect([
+        //         'id' => $system
+        //     ]);
 
-            broadcast(new SendStationSheetUpdateWebway($flag));
-        }
+        //     broadcast(new SendStationSheetUpdateWebway($flag));
+        // }
+
+        $system = $system_id;
+        $flag = collect([
+            'id' => $system
+        ]);
+
+        broadcast(new SendStationSheetUpdateWebway($flag));
     }
 
     /**
