@@ -35,7 +35,7 @@ class AuthController extends Controller
 
 
 
-        dd($userGice->grp);
+        // dd($userGice->grp);
 
 
         User::updateOrCreate(['id' => $userGice->sub], ['name' => $userGice->name]);
