@@ -35046,7 +35046,6 @@ function sleep(ms) {
         method: "put",
         url: "/api/stationsheetupdatewebway/" + id,
         withCredentials: true,
-        data: request,
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json"
