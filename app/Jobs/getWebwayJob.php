@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-
+use App\Listeners\SendStationSheetUpdateWebway;
 use App\Models\WebWay;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -66,5 +66,12 @@ class getWebwayJob implements ShouldQueue
                 'jumps' => $this->jumps_p
             ]
         );
+
+        $system = $this->start_system_id;
+        $flag = collect([
+            'id' => $system
+        ]);
+
+        broadcast(new SendStationSheetUpdateWebway($flag));
     }
 }
