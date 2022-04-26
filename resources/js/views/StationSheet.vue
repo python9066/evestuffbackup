@@ -224,8 +224,8 @@ export default {
         }
 
         if (e.flag.flag == 2) {
+          this.$store.dispatch("getStationList");
         }
-        this.$store.dispatch("getStationList");
         if (e.flag.flag == 3) {
         }
       })

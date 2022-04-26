@@ -34838,9 +34838,9 @@ function sleep(ms) {
                   _this.$store.dispatch("getStationRegionLists");
                 }
 
-                if (e.flag.flag == 2) {}
-
-                _this.$store.dispatch("getStationList");
+                if (e.flag.flag == 2) {
+                  _this.$store.dispatch("getStationList");
+                }
 
                 if (e.flag.flag == 3) {}
               }).listen("StationDeadStationSheet", function (e) {
