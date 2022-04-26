@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\StationSheetUpdateWebway;
 use App\Jobs\getWebwayJob;
 use App\Listeners\SendStationSheetUpdateWebway;
 use App\Models\WebWay;
@@ -95,7 +96,7 @@ class WebWayController extends Controller
             'id' => $system
         ]);
 
-        broadcast(new SendStationSheetUpdateWebway($flag));
+        broadcast(new StationSheetUpdateWebway($flag));
     }
 
     /**
