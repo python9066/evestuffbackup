@@ -284,4 +284,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/updatesetting', 'HotRegionController@updateSetting');
     Route::get('/getwebwaystartsystems', 'WebWayStartSystemsContorller@getSystemList');
     Route::post('/updatewebwaystartsystems', 'WebWayStartSystemsContorller@update');
+    Route::put('/stationsheetupdatewebway/{id}', 'StationController@updateStationSheetWebway');
 });
