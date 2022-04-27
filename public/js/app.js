@@ -34807,6 +34807,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -74069,22 +74073,53 @@ var render = function () {
                                       return [
                                         _c(
                                           "v-tooltip",
-                                          { attrs: { bottom: "" } },
-                                          [
-                                            _vm.webwayJumps(item) &&
-                                            _vm.webwayLink(item)
-                                              ? _c("SoloCampaginWebWay", {
-                                                  attrs: {
-                                                    jumps:
-                                                      _vm.webwayJumps(item),
-                                                    web: _vm.webwayLink(item),
+                                          {
+                                            attrs: { bottom: "" },
+                                            scopedSlots: _vm._u(
+                                              [
+                                                {
+                                                  key: "activator",
+                                                  fn: function (ref) {
+                                                    var on = ref.on
+                                                    var attrs = ref.attrs
+                                                    return [
+                                                      _vm.webwayJumps(item) &&
+                                                      _vm.webwayLink(item)
+                                                        ? _c(
+                                                            "SoloCampaginWebWay",
+                                                            _vm._g(
+                                                              _vm._b(
+                                                                {
+                                                                  attrs: {
+                                                                    jumps:
+                                                                      _vm.webwayJumps(
+                                                                        item
+                                                                      ),
+                                                                    web: _vm.webwayLink(
+                                                                      item
+                                                                    ),
+                                                                  },
+                                                                },
+                                                                "SoloCampaginWebWay",
+                                                                attrs,
+                                                                false
+                                                              ),
+                                                              on
+                                                            )
+                                                          )
+                                                        : _vm._e(),
+                                                    ]
                                                   },
-                                                })
-                                              : _vm._e(),
+                                                },
+                                              ],
+                                              null,
+                                              true
+                                            ),
+                                          },
+                                          [
                                             _vm._v(" "),
                                             _c("span", [_vm._v("Add Timer")]),
-                                          ],
-                                          1
+                                          ]
                                         ),
                                       ]
                                     },
