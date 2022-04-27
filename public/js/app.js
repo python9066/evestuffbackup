@@ -74272,7 +74272,10 @@ var render = function () {
                                             _c(
                                               "v-tooltip",
                                               {
-                                                attrs: { left: "" },
+                                                attrs: {
+                                                  bottom: "",
+                                                  "open-delay": 1000,
+                                                },
                                                 scopedSlots: _vm._u(
                                                   [
                                                     {
@@ -74325,7 +74328,10 @@ var render = function () {
                                             _c(
                                               "v-tooltip",
                                               {
-                                                attrs: { left: "" },
+                                                attrs: {
+                                                  bottom: "",
+                                                  "open-delay": 1000,
+                                                },
                                                 scopedSlots: _vm._u(
                                                   [
                                                     {
@@ -74380,7 +74386,10 @@ var render = function () {
                                             _c(
                                               "v-tooltip",
                                               {
-                                                attrs: { left: "" },
+                                                attrs: {
+                                                  bottom: "",
+                                                  "open-delay": 1000,
+                                                },
                                                 scopedSlots: _vm._u(
                                                   [
                                                     {
