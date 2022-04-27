@@ -80,11 +80,14 @@
                   </v-row>
                 </template>
                 <template v-slot:[`item.system.webway[0].jumps`]="{ item }">
-                  <SoloCampaginWebWay
-                    v-if="webwayJumps(item) && webwayLink(item)"
-                    :jumps="webwayJumps(item)"
-                    :web="webwayLink(item)"
-                  ></SoloCampaginWebWay>
+                  <v-tooltip bottom>
+                    <SoloCampaginWebWay
+                      v-if="webwayJumps(item) && webwayLink(item)"
+                      :jumps="webwayJumps(item)"
+                      :web="webwayLink(item)"
+                    ></SoloCampaginWebWay>
+                    <span>Add Timer</span>
+                  </v-tooltip>
                 </template>
                 <template
                   v-slot:[`item.corp.ticker`]="{ item }"
