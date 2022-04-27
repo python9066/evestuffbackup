@@ -34811,9 +34811,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 
@@ -74074,63 +74071,15 @@ var render = function () {
                                     fn: function (ref) {
                                       var item = ref.item
                                       return [
-                                        _c(
-                                          "v-tooltip",
-                                          {
-                                            attrs: { bottom: "" },
-                                            scopedSlots: _vm._u(
-                                              [
-                                                {
-                                                  key: "activator",
-                                                  fn: function (ref) {
-                                                    var on = ref.on
-                                                    var attrs = ref.attrs
-                                                    return [
-                                                      _vm.webwayJumps(item) &&
-                                                      _vm.webwayLink(item)
-                                                        ? _c(
-                                                            "div",
-                                                            _vm._g(
-                                                              _vm._b(
-                                                                {},
-                                                                "div",
-                                                                attrs,
-                                                                false
-                                                              ),
-                                                              on
-                                                            ),
-                                                            [
-                                                              _c(
-                                                                "SoloCampaginWebWay",
-                                                                {
-                                                                  attrs: {
-                                                                    jumps:
-                                                                      _vm.webwayJumps(
-                                                                        item
-                                                                      ),
-                                                                    web: _vm.webwayLink(
-                                                                      item
-                                                                    ),
-                                                                  },
-                                                                }
-                                                              ),
-                                                            ],
-                                                            1
-                                                          )
-                                                        : _vm._e(),
-                                                    ]
-                                                  },
-                                                },
-                                              ],
-                                              null,
-                                              true
-                                            ),
-                                          },
-                                          [
-                                            _vm._v(" "),
-                                            _c("span", [_vm._v("Add Timer")]),
-                                          ]
-                                        ),
+                                        _vm.webwayJumps(item) &&
+                                        _vm.webwayLink(item)
+                                          ? _c("SoloCampaginWebWay", {
+                                              attrs: {
+                                                jumps: _vm.webwayJumps(item),
+                                                web: _vm.webwayLink(item),
+                                              },
+                                            })
+                                          : _vm._e(),
                                       ]
                                     },
                                   },
@@ -74313,10 +74262,52 @@ var render = function () {
                                             _c(
                                               "div",
                                               [
-                                                _c("AddTimerFromStationSheet", {
-                                                  staticClass: "mr-2",
-                                                  attrs: { item: item },
-                                                }),
+                                                _c(
+                                                  "v-tooltip",
+                                                  {
+                                                    attrs: { bottom: "" },
+                                                    scopedSlots: _vm._u(
+                                                      [
+                                                        {
+                                                          key: "activator",
+                                                          fn: function (ref) {
+                                                            var on = ref.on
+                                                            var attrs =
+                                                              ref.attrs
+                                                            return [
+                                                              _c(
+                                                                "AddTimerFromStationSheet",
+                                                                _vm._g(
+                                                                  _vm._b(
+                                                                    {
+                                                                      staticClass:
+                                                                        "mr-2",
+                                                                      attrs: {
+                                                                        item: item,
+                                                                      },
+                                                                    },
+                                                                    "AddTimerFromStationSheet",
+                                                                    attrs,
+                                                                    false
+                                                                  ),
+                                                                  on
+                                                                )
+                                                              ),
+                                                            ]
+                                                          },
+                                                        },
+                                                      ],
+                                                      null,
+                                                      true
+                                                    ),
+                                                  },
+                                                  [
+                                                    _vm._v(" "),
+                                                    _c("span", [
+                                                      _vm._v("Add Timer"),
+                                                    ]),
+                                                  ]
+                                                ),
                                               ],
                                               1
                                             ),

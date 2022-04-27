@@ -80,21 +80,11 @@
                   </v-row>
                 </template>
                 <template v-slot:[`item.system.webway[0].jumps`]="{ item }">
-                  <v-tooltip bottom>
-                    <template v-slot:activator="{ on, attrs }">
-                      <div
-                        v-bind="attrs"
-                        v-on="on"
-                        v-if="webwayJumps(item) && webwayLink(item)"
-                      >
-                        <SoloCampaginWebWay
-                          :jumps="webwayJumps(item)"
-                          :web="webwayLink(item)"
-                        ></SoloCampaginWebWay>
-                      </div>
-                    </template>
-                    <span>Add Timer</span>
-                  </v-tooltip>
+                  <SoloCampaginWebWay
+                    v-if="webwayJumps(item) && webwayLink(item)"
+                    :jumps="webwayJumps(item)"
+                    :web="webwayLink(item)"
+                  ></SoloCampaginWebWay>
                 </template>
                 <template
                   v-slot:[`item.corp.ticker`]="{ item }"
@@ -152,10 +142,17 @@
                 <template v-slot:[`item.actions`]="{ item }">
                   <div class="d-inline-flex">
                     <div>
-                      <AddTimerFromStationSheet
-                        class="mr-2"
-                        :item="item"
-                      ></AddTimerFromStationSheet>
+                      <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">
+                          <AddTimerFromStationSheet
+                            v-bind="attrs"
+                            v-on="on"
+                            class="mr-2"
+                            :item="item"
+                          ></AddTimerFromStationSheet>
+                        </template>
+                        <span>Add Timer</span>
+                      </v-tooltip>
                     </div>
                     <div>
                       <RcStationMessage
