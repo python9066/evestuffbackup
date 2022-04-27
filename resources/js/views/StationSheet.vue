@@ -176,28 +176,39 @@
                       <span>Station Info</span>
                     </v-tooltip>
 
-                    <div v-if="$can('view_station_logs')">
-                      <div>
-                        <v-btn
-                          @click="(expanded = [item]), (expanded_id = item.id)"
-                          v-show="!expanded.includes(item)"
-                          icon
-                          class="pb-3"
-                          color="blue"
+                    <v-tooltip bottom :open-delay="1000">
+                      <template v-slot:activator="{ on, attrs }">
+                        <div
+                          v-if="$can('view_station_logs')"
+                          v-bind="attrs"
+                          v-on="on"
                         >
-                          <v-icon> faSvg fa-history</v-icon>
-                        </v-btn>
-                        <v-btn
-                          @click="(expanded = []), (expanded_id = 0)"
-                          v-show="expanded.includes(item)"
-                          icon
-                          class="pb-3"
-                          color="error"
-                        >
-                          <v-icon> faSvg fa-history</v-icon>
-                        </v-btn>
-                      </div>
-                    </div>
+                          <div>
+                            <v-btn
+                              @click="
+                                (expanded = [item]), (expanded_id = item.id)
+                              "
+                              v-show="!expanded.includes(item)"
+                              icon
+                              class="pb-3"
+                              color="blue"
+                            >
+                              <v-icon> faSvg fa-history</v-icon>
+                            </v-btn>
+                            <v-btn
+                              @click="(expanded = []), (expanded_id = 0)"
+                              v-show="expanded.includes(item)"
+                              icon
+                              class="pb-3"
+                              color="error"
+                            >
+                              <v-icon> faSvg fa-history</v-icon>
+                            </v-btn>
+                          </div>
+                        </div>
+                      </template>
+                      <span>Station Info</span>
+                    </v-tooltip>
                   </div>
                 </template>
                 <template
