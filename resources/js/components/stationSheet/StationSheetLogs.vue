@@ -63,7 +63,7 @@ export default {
     ...mapGetters(["getStationSheetLogsByID"]),
 
     filteredItems() {
-      return this.getStationSheetLogsByID(this.station.id);
+      return this.station.logs;
     },
   },
   beforeDestroy() {},
