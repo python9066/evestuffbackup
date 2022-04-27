@@ -207,7 +207,7 @@
                           </div>
                         </div>
                       </template>
-                      <span>Station Info</span>
+                      <span>Station Logs</span>
                     </v-tooltip>
                   </div>
                 </template>

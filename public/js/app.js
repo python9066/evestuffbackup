@@ -74603,7 +74603,7 @@ var render = function () {
                                               [
                                                 _vm._v(" "),
                                                 _c("span", [
-                                                  _vm._v("Station Info"),
+                                                  _vm._v("Station Logs"),
                                                 ]),
                                               ]
                                             ),
