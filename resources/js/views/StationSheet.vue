@@ -141,19 +141,17 @@
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
                   <div class="d-inline-flex">
-                    <div>
-                      <v-tooltip bottom>
-                        <template v-slot:activator="{ on, attrs }">
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{ on, attrs }">
+                        <div v-bind="attrs" v-on="on">
                           <AddTimerFromStationSheet
-                            v-bind="attrs"
-                            v-on="on"
                             class="mr-2"
                             :item="item"
                           ></AddTimerFromStationSheet>
-                        </template>
-                        <span>Add Timer</span>
-                      </v-tooltip>
-                    </div>
+                        </div>
+                      </template>
+                      <span>Add Timer</span>
+                    </v-tooltip>
                     <div>
                       <RcStationMessage
                         class="mr-2"

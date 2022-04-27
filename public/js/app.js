@@ -34809,8 +34809,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -74260,56 +74258,56 @@ var render = function () {
                                           { staticClass: "d-inline-flex" },
                                           [
                                             _c(
-                                              "div",
-                                              [
-                                                _c(
-                                                  "v-tooltip",
-                                                  {
-                                                    attrs: { bottom: "" },
-                                                    scopedSlots: _vm._u(
-                                                      [
-                                                        {
-                                                          key: "activator",
-                                                          fn: function (ref) {
-                                                            var on = ref.on
-                                                            var attrs =
-                                                              ref.attrs
-                                                            return [
+                                              "v-tooltip",
+                                              {
+                                                attrs: { bottom: "" },
+                                                scopedSlots: _vm._u(
+                                                  [
+                                                    {
+                                                      key: "activator",
+                                                      fn: function (ref) {
+                                                        var on = ref.on
+                                                        var attrs = ref.attrs
+                                                        return [
+                                                          _c(
+                                                            "div",
+                                                            _vm._g(
+                                                              _vm._b(
+                                                                {},
+                                                                "div",
+                                                                attrs,
+                                                                false
+                                                              ),
+                                                              on
+                                                            ),
+                                                            [
                                                               _c(
                                                                 "AddTimerFromStationSheet",
-                                                                _vm._g(
-                                                                  _vm._b(
-                                                                    {
-                                                                      staticClass:
-                                                                        "mr-2",
-                                                                      attrs: {
-                                                                        item: item,
-                                                                      },
-                                                                    },
-                                                                    "AddTimerFromStationSheet",
-                                                                    attrs,
-                                                                    false
-                                                                  ),
-                                                                  on
-                                                                )
+                                                                {
+                                                                  staticClass:
+                                                                    "mr-2",
+                                                                  attrs: {
+                                                                    item: item,
+                                                                  },
+                                                                }
                                                               ),
-                                                            ]
-                                                          },
-                                                        },
-                                                      ],
-                                                      null,
-                                                      true
-                                                    ),
-                                                  },
-                                                  [
-                                                    _vm._v(" "),
-                                                    _c("span", [
-                                                      _vm._v("Add Timer"),
-                                                    ]),
-                                                  ]
+                                                            ],
+                                                            1
+                                                          ),
+                                                        ]
+                                                      },
+                                                    },
+                                                  ],
+                                                  null,
+                                                  true
                                                 ),
-                                              ],
-                                              1
+                                              },
+                                              [
+                                                _vm._v(" "),
+                                                _c("span", [
+                                                  _vm._v("Add Timer"),
+                                                ]),
+                                              ]
                                             ),
                                             _vm._v(" "),
                                             _c(
@@ -74427,7 +74425,8 @@ var render = function () {
                                                   1
                                                 )
                                               : _vm._e(),
-                                          ]
+                                          ],
+                                          1
                                         ),
                                       ]
                                     },
