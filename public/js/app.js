@@ -34809,6 +34809,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -74260,7 +74272,7 @@ var render = function () {
                                             _c(
                                               "v-tooltip",
                                               {
-                                                attrs: { bottom: "" },
+                                                attrs: { left: "" },
                                                 scopedSlots: _vm._u(
                                                   [
                                                     {
@@ -74311,119 +74323,204 @@ var render = function () {
                                             ),
                                             _vm._v(" "),
                                             _c(
-                                              "div",
+                                              "v-tooltip",
+                                              {
+                                                attrs: { left: "" },
+                                                scopedSlots: _vm._u(
+                                                  [
+                                                    {
+                                                      key: "activator",
+                                                      fn: function (ref) {
+                                                        var on = ref.on
+                                                        var attrs = ref.attrs
+                                                        return [
+                                                          _c(
+                                                            "div",
+                                                            _vm._g(
+                                                              _vm._b(
+                                                                {},
+                                                                "div",
+                                                                attrs,
+                                                                false
+                                                              ),
+                                                              on
+                                                            ),
+                                                            [
+                                                              _c(
+                                                                "RcStationMessage",
+                                                                {
+                                                                  staticClass:
+                                                                    "mr-2",
+                                                                  attrs: {
+                                                                    station:
+                                                                      item,
+                                                                    type: 4,
+                                                                  },
+                                                                }
+                                                              ),
+                                                            ],
+                                                            1
+                                                          ),
+                                                        ]
+                                                      },
+                                                    },
+                                                  ],
+                                                  null,
+                                                  true
+                                                ),
+                                              },
                                               [
-                                                _c("RcStationMessage", {
-                                                  staticClass: "mr-2",
-                                                  attrs: {
-                                                    station: item,
-                                                    type: 4,
-                                                  },
-                                                }),
-                                              ],
-                                              1
+                                                _vm._v(" "),
+                                                _c("span", [
+                                                  _vm._v("Station Notes"),
+                                                ]),
+                                              ]
                                             ),
                                             _vm._v(" "),
                                             _c(
-                                              "div",
+                                              "v-tooltip",
+                                              {
+                                                attrs: { left: "" },
+                                                scopedSlots: _vm._u(
+                                                  [
+                                                    {
+                                                      key: "activator",
+                                                      fn: function (ref) {
+                                                        var on = ref.on
+                                                        var attrs = ref.attrs
+                                                        return [
+                                                          _c(
+                                                            "div",
+                                                            _vm._g(
+                                                              _vm._b(
+                                                                {},
+                                                                "div",
+                                                                attrs,
+                                                                false
+                                                              ),
+                                                              on
+                                                            ),
+                                                            [
+                                                              _vm.showInfo(item)
+                                                                ? _c(
+                                                                    "StationSheetInfo",
+                                                                    {
+                                                                      attrs: {
+                                                                        station:
+                                                                          item,
+                                                                      },
+                                                                    }
+                                                                  )
+                                                                : _vm._e(),
+                                                            ],
+                                                            1
+                                                          ),
+                                                        ]
+                                                      },
+                                                    },
+                                                  ],
+                                                  null,
+                                                  true
+                                                ),
+                                              },
                                               [
-                                                _vm.showInfo(item)
-                                                  ? _c("StationSheetInfo", {
-                                                      attrs: { station: item },
-                                                    })
-                                                  : _vm._e(),
-                                              ],
-                                              1
+                                                _vm._v(" "),
+                                                _c("span", [
+                                                  _vm._v("Station Info"),
+                                                ]),
+                                              ]
                                             ),
                                             _vm._v(" "),
                                             _vm.$can("view_station_logs")
-                                              ? _c(
-                                                  "div",
-                                                  [
-                                                    _c(
-                                                      "v-btn",
-                                                      {
-                                                        directives: [
-                                                          {
-                                                            name: "show",
-                                                            rawName: "v-show",
-                                                            value:
-                                                              !_vm.expanded.includes(
-                                                                item
-                                                              ),
-                                                            expression:
-                                                              "!expanded.includes(item)",
+                                              ? _c("div", [
+                                                  _c(
+                                                    "div",
+                                                    [
+                                                      _c(
+                                                        "v-btn",
+                                                        {
+                                                          directives: [
+                                                            {
+                                                              name: "show",
+                                                              rawName: "v-show",
+                                                              value:
+                                                                !_vm.expanded.includes(
+                                                                  item
+                                                                ),
+                                                              expression:
+                                                                "!expanded.includes(item)",
+                                                            },
+                                                          ],
+                                                          staticClass: "pb-3",
+                                                          attrs: {
+                                                            icon: "",
+                                                            color: "blue",
                                                           },
+                                                          on: {
+                                                            click: function (
+                                                              $event
+                                                            ) {
+                                                              ;(_vm.expanded = [
+                                                                item,
+                                                              ]),
+                                                                (_vm.expanded_id =
+                                                                  item.id)
+                                                            },
+                                                          },
+                                                        },
+                                                        [
+                                                          _c("v-icon", [
+                                                            _vm._v(
+                                                              " faSvg fa-history"
+                                                            ),
+                                                          ]),
                                                         ],
-                                                        staticClass: "pb-3",
-                                                        attrs: {
-                                                          icon: "",
-                                                          color: "blue",
-                                                        },
-                                                        on: {
-                                                          click: function (
-                                                            $event
-                                                          ) {
-                                                            ;(_vm.expanded = [
-                                                              item,
-                                                            ]),
-                                                              (_vm.expanded_id =
-                                                                item.id)
+                                                        1
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "v-btn",
+                                                        {
+                                                          directives: [
+                                                            {
+                                                              name: "show",
+                                                              rawName: "v-show",
+                                                              value:
+                                                                _vm.expanded.includes(
+                                                                  item
+                                                                ),
+                                                              expression:
+                                                                "expanded.includes(item)",
+                                                            },
+                                                          ],
+                                                          staticClass: "pb-3",
+                                                          attrs: {
+                                                            icon: "",
+                                                            color: "error",
+                                                          },
+                                                          on: {
+                                                            click: function (
+                                                              $event
+                                                            ) {
+                                                              ;(_vm.expanded =
+                                                                []),
+                                                                (_vm.expanded_id = 0)
+                                                            },
                                                           },
                                                         },
-                                                      },
-                                                      [
-                                                        _c("v-icon", [
-                                                          _vm._v(
-                                                            " faSvg fa-history"
-                                                          ),
-                                                        ]),
-                                                      ],
-                                                      1
-                                                    ),
-                                                    _vm._v(" "),
-                                                    _c(
-                                                      "v-btn",
-                                                      {
-                                                        directives: [
-                                                          {
-                                                            name: "show",
-                                                            rawName: "v-show",
-                                                            value:
-                                                              _vm.expanded.includes(
-                                                                item
-                                                              ),
-                                                            expression:
-                                                              "expanded.includes(item)",
-                                                          },
+                                                        [
+                                                          _c("v-icon", [
+                                                            _vm._v(
+                                                              " faSvg fa-history"
+                                                            ),
+                                                          ]),
                                                         ],
-                                                        staticClass: "pb-3",
-                                                        attrs: {
-                                                          icon: "",
-                                                          color: "error",
-                                                        },
-                                                        on: {
-                                                          click: function (
-                                                            $event
-                                                          ) {
-                                                            ;(_vm.expanded =
-                                                              []),
-                                                              (_vm.expanded_id = 0)
-                                                          },
-                                                        },
-                                                      },
-                                                      [
-                                                        _c("v-icon", [
-                                                          _vm._v(
-                                                            " faSvg fa-history"
-                                                          ),
-                                                        ]),
-                                                      ],
-                                                      1
-                                                    ),
-                                                  ],
-                                                  1
-                                                )
+                                                        1
+                                                      ),
+                                                    ],
+                                                    1
+                                                  ),
+                                                ])
                                               : _vm._e(),
                                           ],
                                           1

@@ -141,7 +141,7 @@
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
                   <div class="d-inline-flex">
-                    <v-tooltip bottom>
+                    <v-tooltip left>
                       <template v-slot:activator="{ on, attrs }">
                         <div v-bind="attrs" v-on="on">
                           <AddTimerFromStationSheet
@@ -152,39 +152,51 @@
                       </template>
                       <span>Add Timer</span>
                     </v-tooltip>
-                    <div>
-                      <RcStationMessage
-                        class="mr-2"
-                        :station="item"
-                        :type="4"
-                      ></RcStationMessage>
-                    </div>
-                    <div>
-                      <StationSheetInfo
-                        :station="item"
-                        v-if="showInfo(item)"
-                      ></StationSheetInfo>
-                    </div>
+                    <v-tooltip left>
+                      <template v-slot:activator="{ on, attrs }">
+                        <div v-bind="attrs" v-on="on">
+                          <RcStationMessage
+                            class="mr-2"
+                            :station="item"
+                            :type="4"
+                          ></RcStationMessage>
+                        </div>
+                      </template>
+                      <span>Station Notes</span>
+                    </v-tooltip>
+                    <v-tooltip left>
+                      <template v-slot:activator="{ on, attrs }">
+                        <div v-bind="attrs" v-on="on">
+                          <StationSheetInfo
+                            :station="item"
+                            v-if="showInfo(item)"
+                          ></StationSheetInfo>
+                        </div>
+                      </template>
+                      <span>Station Info</span>
+                    </v-tooltip>
 
                     <div v-if="$can('view_station_logs')">
-                      <v-btn
-                        @click="(expanded = [item]), (expanded_id = item.id)"
-                        v-show="!expanded.includes(item)"
-                        icon
-                        class="pb-3"
-                        color="blue"
-                      >
-                        <v-icon> faSvg fa-history</v-icon>
-                      </v-btn>
-                      <v-btn
-                        @click="(expanded = []), (expanded_id = 0)"
-                        v-show="expanded.includes(item)"
-                        icon
-                        class="pb-3"
-                        color="error"
-                      >
-                        <v-icon> faSvg fa-history</v-icon>
-                      </v-btn>
+                      <div>
+                        <v-btn
+                          @click="(expanded = [item]), (expanded_id = item.id)"
+                          v-show="!expanded.includes(item)"
+                          icon
+                          class="pb-3"
+                          color="blue"
+                        >
+                          <v-icon> faSvg fa-history</v-icon>
+                        </v-btn>
+                        <v-btn
+                          @click="(expanded = []), (expanded_id = 0)"
+                          v-show="expanded.includes(item)"
+                          icon
+                          class="pb-3"
+                          color="error"
+                        >
+                          <v-icon> faSvg fa-history</v-icon>
+                        </v-btn>
+                      </div>
                     </div>
                   </div>
                 </template>
