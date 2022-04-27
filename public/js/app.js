@@ -34811,6 +34811,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -74086,9 +74089,19 @@ var render = function () {
                                                       _vm.webwayJumps(item) &&
                                                       _vm.webwayLink(item)
                                                         ? _c(
-                                                            "SoloCampaginWebWay",
+                                                            "div",
                                                             _vm._g(
                                                               _vm._b(
+                                                                {},
+                                                                "div",
+                                                                attrs,
+                                                                false
+                                                              ),
+                                                              on
+                                                            ),
+                                                            [
+                                                              _c(
+                                                                "SoloCampaginWebWay",
                                                                 {
                                                                   attrs: {
                                                                     jumps:
@@ -74099,13 +74112,10 @@ var render = function () {
                                                                       item
                                                                     ),
                                                                   },
-                                                                },
-                                                                "SoloCampaginWebWay",
-                                                                attrs,
-                                                                false
+                                                                }
                                                               ),
-                                                              on
-                                                            )
+                                                            ],
+                                                            1
                                                           )
                                                         : _vm._e(),
                                                     ]
