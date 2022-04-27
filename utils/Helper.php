@@ -359,7 +359,13 @@ class Helper
             $station_query->where('standing', '=<', 0);
         }
 
-
+        if ($user->can('view_station_logs')) {
+            $station_query->with([
+                'logs:id,station_id,user_id,logging_type_id,text,created_at',
+                'logs.type:id,name',
+                'logs.user:id,name',
+            ]);
+        }
 
         $station_query->with([
             'system',
@@ -444,6 +450,13 @@ class Helper
 
         $station_query->where('standing', '=<', 0);
         $station_query->where('id', $id);
+        if ($user->can('view_station_logs')) {
+            $station_query->with([
+                'logs:id,station_id,user_id,logging_type_id,text,created_at',
+                'logs.type:id,name',
+                'logs.user:id,name',
+            ]);
+        }
         $station_query->with([
             'system',
             'system.constellation',
@@ -456,9 +469,7 @@ class Helper
             'corp.alliance:id,name,ticker,standing,url,color',
             'item',
             'fit:id,item_name',
-            'logs:id,station_id,user_id,logging_type_id,text,created_at',
-            'logs.type:id,name',
-            'logs.user:id,name',
+
             'addedBy:id,name',
         ]);
 
