@@ -58,10 +58,8 @@ class updateAlliancesJob implements ShouldQueue
                     [
                         'name' => $allianceInfo->get('name'),
                         'ticker' => $allianceInfo->get('ticker'),
-                        'standing' => 0,
                         'active' => 1,
                         'url' => "https://images.evetech.net/Alliance/" . $allianceID . "_64.png",
-                        'color' => 0
                     ]
                 );
                 Corp::where('alliance_id', $allianceID)->update(['alliance_id' => null]);
@@ -117,8 +115,6 @@ class updateAlliancesJob implements ShouldQueue
                         'alliance_id' => $allianceID,
                         'name' => $corpInfo->get('name'),
                         'ticker' => $corpInfo->get('ticker'),
-                        'color' => 0,
-                        'standing' => 0,
                         'active' => 1,
                         'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png",
 

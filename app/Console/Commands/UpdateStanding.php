@@ -94,6 +94,8 @@ class UpdateStanding extends Command
 
     public function updateStanding()
     {
+        Alliance::whereNotNull('id')->update(['standing' => 0, 'color' => 0]);
+        Corp::whereNotNull('id')->update(['standing' => 0, 'color' => 0]);
         $token = Auth::where('flag_standing', 0)->first();
         if ($token == null) {
             Auth::where('flag_standing', 1)->update(['flag_standing' => 0]);
@@ -137,10 +139,8 @@ class UpdateStanding extends Command
                 ]);
             }
         }
-        Alliance::where('color', '0')->update(['color' => 1]);
-        Alliance::whereNull('standing')->update(['standing' => 0]);
+
+
         Alliance::where('id', '1354830081')->update(['standing' => 10, 'color' => 3]);
-        Corp::whereNull('standing')->update(['standing' => 0]);
-        Corp::where('color', '0')->update(['color' => 1]);
     }
 }
