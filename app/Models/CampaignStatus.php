@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CampaignStatus extends Model
 {
-    protected $guarded =[];
+    protected $guarded = [];
+    public $timestamps = false;
 
     public function campagain()
     {
@@ -21,5 +22,4 @@ class CampaignStatus extends Model
     protected $casts = [
         'id' => 'integer',
     ];
-
 }
