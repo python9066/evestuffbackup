@@ -3,7 +3,7 @@
     <v-col>
       <v-expansion-panels v-model="showCharTable" readonly popout>
         <v-expansion-panel>
-          <v-expansion-panel-header>
+          <v-expansion-panel-header expand-icon="">
             <v-row no-gutters>
               <v-col cols="2">
                 <v-btn @click="btnShowCharTable"> Char Table </v-btn></v-col
@@ -27,7 +27,7 @@ function sleep(ms) {
 export default {
   title() {},
   props: {
-    item: Object,
+    item: Array,
   },
   data() {
     return {

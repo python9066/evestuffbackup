@@ -10874,7 +10874,7 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
-    item: Object
+    item: Array
   },
   data: function data() {
     return {
@@ -50381,6 +50381,7 @@ var render = function () {
                 [
                   _c(
                     "v-expansion-panel-header",
+                    { attrs: { "expand-icon": "" } },
                     [
                       _c(
                         "v-row",
