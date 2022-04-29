@@ -7,11 +7,11 @@
             <v-row no-gutters>
               <v-col cols="2">
                 <v-btn
+                  color="primary"
                   @click="btnShowCharTable"
                   outlined
                   rounded
                   small
-                  color="primary"
                 >
                   Char Table
                 </v-btn></v-col

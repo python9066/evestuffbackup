@@ -50403,10 +50403,10 @@ var render = function () {
                                 "v-btn",
                                 {
                                   attrs: {
+                                    color: "primary",
                                     outlined: "",
                                     rounded: "",
                                     small: "",
-                                    color: "primary",
                                   },
                                   on: { click: _vm.btnShowCharTable },
                                 },
