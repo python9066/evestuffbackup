@@ -9,7 +9,7 @@
                 <v-btn
                   color="primary"
                   @click="btnShowCharTable"
-                  outlined
+                  :outlined="charTableOutlined"
                   rounded
                   small
                 >
@@ -34,9 +34,7 @@ function sleep(ms) {
 }
 export default {
   title() {},
-  props: {
-    item: Array,
-  },
+  props: {},
   data() {
     return {
       showCharTable: null,
@@ -64,6 +62,14 @@ export default {
     ...mapGetters([]),
 
     ...mapState([]),
+
+    charTableOutlined() {
+      if (this.showCharTable == null) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   beforeDestroy() {},
 };

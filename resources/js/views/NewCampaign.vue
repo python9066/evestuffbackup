@@ -7,7 +7,7 @@
     </v-row>
     <v-row no-gutters justify="center" class="pb-5">
       <v-col cols="10">
-        <CampaignActiveBar :item="operation"></CampaignActiveBar>
+        <CampaignActiveBar></CampaignActiveBar>
       </v-col>
     </v-row>
     <v-row no-gutters justify="space-around">
@@ -51,10 +51,6 @@ export default {
   computed: {
     ...mapState(["newOperationInfo", "campaignSystems"]),
     ...mapGetters([]),
-
-    operation() {
-      return this.newOperationInfo;
-    },
 
     campaigns() {
       return this.newOperationInfo.campaign;

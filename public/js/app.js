@@ -10881,9 +10881,7 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
-  props: {
-    item: Array
-  },
+  props: {},
   data: function data() {
     return {
       showCharTable: null
@@ -10938,7 +10936,15 @@ function sleep(ms) {
       }
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])),
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])), {}, {
+    charTableOutlined: function charTableOutlined() {
+      if (this.showCharTable == null) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }),
   beforeDestroy: function beforeDestroy() {}
 });
 
@@ -31640,9 +31646,6 @@ function sleep(ms) {
   },
   methods: {},
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo", "campaignSystems"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), {}, {
-    operation: function operation() {
-      return this.newOperationInfo;
-    },
     campaigns: function campaigns() {
       return this.newOperationInfo.campaign;
     },
@@ -50404,7 +50407,7 @@ var render = function () {
                                 {
                                   attrs: {
                                     color: "primary",
-                                    outlined: "",
+                                    outlined: _vm.charTableOutlined,
                                     rounded: "",
                                     small: "",
                                   },
@@ -71082,14 +71085,7 @@ var render = function () {
       _c(
         "v-row",
         { staticClass: "pb-5", attrs: { "no-gutters": "", justify: "center" } },
-        [
-          _c(
-            "v-col",
-            { attrs: { cols: "10" } },
-            [_c("CampaignActiveBar", { attrs: { item: _vm.operation } })],
-            1
-          ),
-        ],
+        [_c("v-col", { attrs: { cols: "10" } }, [_c("CampaignActiveBar")], 1)],
         1
       ),
       _vm._v(" "),
