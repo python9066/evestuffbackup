@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NewCampaginOperation;
+use App\Models\NewCampaign;
 use App\Models\NewOperation;
 use App\Models\Region;
+use App\Models\System;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -84,7 +87,17 @@ class NewOperationsController extends Controller
             ])
             ->first();
 
-        return ['data' => $data];
+        $operationsID = NewOperation::where('link', $id)->pluck('');
+        $campaignIDs = NewCampaginOperation::where('operation_id', $operationsID)->pluck('campaign_id');
+        // $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->where('status_id', [2, 5])->pluck('20000646');
+        $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->pluck('constellation_id');
+        $contellationIDs =  $contellationIDs->unique();
+        $systems = System::whereIn('constellation_id', $contellationIDs)->select('id', 'system_name')->get();
+
+        return [
+            'data' => $data,
+            'systems' => $systems
+        ];
     }
 
     /**
