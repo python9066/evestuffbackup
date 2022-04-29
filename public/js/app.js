@@ -10922,7 +10922,13 @@ function sleep(ms) {
     }))();
   },
   methods: {
-    btnShowCharTable: function btnShowCharTable() {}
+    btnShowCharTable: function btnShowCharTable() {
+      if (showCharTable) {
+        this.showCharTable = [0];
+      } else {
+        tis.showCharTable = null;
+      }
+    }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])),
   beforeDestroy: function beforeDestroy() {}
@@ -50360,6 +50366,7 @@ var render = function () {
           _c(
             "v-expansion-panels",
             {
+              attrs: { readonly: "", popout: "" },
               model: {
                 value: _vm.showCharTable,
                 callback: function ($$v) {

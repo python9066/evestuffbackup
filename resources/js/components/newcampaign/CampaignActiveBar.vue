@@ -1,7 +1,7 @@
 <template>
   <v-row no-gutters>
     <v-col>
-      <v-expansion-panels v-model="showCharTable">
+      <v-expansion-panels v-model="showCharTable" readonly popout>
         <v-expansion-panel>
           <v-expansion-panel-header>
             <v-row no-gutters>
@@ -43,7 +43,13 @@ export default {
 
   async mounted() {},
   methods: {
-    btnShowCharTable() {},
+    btnShowCharTable() {
+      if (showCharTable) {
+        this.showCharTable = [0];
+      } else {
+        tis.showCharTable = null;
+      }
+    },
   },
 
   computed: {
