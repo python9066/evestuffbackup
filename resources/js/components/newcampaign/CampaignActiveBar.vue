@@ -1,16 +1,18 @@
 <template>
   <v-row no-gutters>
     <v-col>
-      <v-expansion-panel v-model="showCharTable">
-        <v-expansion-panel-header>
-          <v-row no-gutters>
-            <v-col cols="2">
-              <v-btn @click="btnShowCharTable"> Char Table </v-btn></v-col
-            >
-          </v-row>
-        </v-expansion-panel-header>
-        <v-expansion-panel-content> dance </v-expansion-panel-content>
-      </v-expansion-panel>
+      <v-expansion-panels v-model="showCharTable">
+        <v-expansion-panel>
+          <v-expansion-panel-header>
+            <v-row no-gutters>
+              <v-col cols="2">
+                <v-btn @click="btnShowCharTable"> Char Table </v-btn></v-col
+              >
+            </v-row>
+          </v-expansion-panel-header>
+          <v-expansion-panel-content> dance </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
     </v-col>
   </v-row>
 </template>

@@ -10858,6 +10858,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -50356,7 +50358,7 @@ var render = function () {
         "v-col",
         [
           _c(
-            "v-expansion-panel",
+            "v-expansion-panels",
             {
               model: {
                 value: _vm.showCharTable,
@@ -50368,30 +50370,38 @@ var render = function () {
             },
             [
               _c(
-                "v-expansion-panel-header",
+                "v-expansion-panel",
                 [
                   _c(
-                    "v-row",
-                    { attrs: { "no-gutters": "" } },
+                    "v-expansion-panel-header",
                     [
                       _c(
-                        "v-col",
-                        { attrs: { cols: "2" } },
+                        "v-row",
+                        { attrs: { "no-gutters": "" } },
                         [
-                          _c("v-btn", { on: { click: _vm.btnShowCharTable } }, [
-                            _vm._v(" Char Table "),
-                          ]),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "2" } },
+                            [
+                              _c(
+                                "v-btn",
+                                { on: { click: _vm.btnShowCharTable } },
+                                [_vm._v(" Char Table ")]
+                              ),
+                            ],
+                            1
+                          ),
                         ],
                         1
                       ),
                     ],
                     1
                   ),
+                  _vm._v(" "),
+                  _c("v-expansion-panel-content", [_vm._v(" dance ")]),
                 ],
                 1
               ),
-              _vm._v(" "),
-              _c("v-expansion-panel-content", [_vm._v(" dance ")]),
             ],
             1
           ),
