@@ -10858,6 +10858,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -50118,7 +50120,9 @@ var render = function () {
       _c(
         "v-card",
         [
-          _c("v-card-title", [_vm._v("Title")]),
+          _c("v-card-title", { staticClass: "justify-center primary pa-3" }, [
+            _vm._v("Operation Info"),
+          ]),
           _vm._v(" "),
           _c(
             "v-card-text",

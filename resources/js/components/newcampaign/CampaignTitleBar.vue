@@ -1,7 +1,9 @@
 <template>
   <div>
     <v-card>
-      <v-card-title>Title</v-card-title>
+      <v-card-title class="justify-center primary pa-3"
+        >Operation Info</v-card-title
+      >
       <v-card-text>
         <v-row no-gutters v-for="(item, index) in item" :key="index">
           <v-col cols="12">
