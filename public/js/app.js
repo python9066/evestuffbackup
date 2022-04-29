@@ -51212,7 +51212,7 @@ var render = function () {
                                     _c("UsersCharsEdit", {
                                       attrs: {
                                         char: item,
-                                        campaign_id: _vm.campaign_id,
+                                        operationID: _vm.operationID,
                                       },
                                     }),
                                     _vm._v(" "),

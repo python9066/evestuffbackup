@@ -130,7 +130,7 @@
             </template>
             <template v-slot:[`item.actions`]="{ item }">
               <span>
-                <UsersCharsEdit :char="item" :campaign_id="campaign_id">
+                <UsersCharsEdit :char="item" :operationID="operationID">
                 </UsersCharsEdit>
 
                 <v-icon color="orange darken-3" small @click="removeChar(item)">

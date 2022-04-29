@@ -98,7 +98,9 @@ class NewOperationsController extends Controller
         $opUsers = OperationUser::where('operation_id', $operationsID)
             ->with(['user:id,name'])
             ->get();
-        $ownChars = OperationUser::where('user_id', Auth::id())->get();
+        $ownChars = OperationUser::where('user_id', Auth::id())
+            ->with(['userrole'])
+            ->get();
 
         return [
             'data' => $data,
