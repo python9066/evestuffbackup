@@ -96,6 +96,7 @@ export default new Vuex.Store({
         newOperationInfo: [],
         campaignSystems: [],
         opUsers: [],
+        ownChars: {},
     },
     mutations: {
         SET_STATION_LIST(state, stations) {
@@ -106,6 +107,7 @@ export default new Vuex.Store({
             state.newOperationInfo = data.data;
             state.campaignSystems = data.systems;
             state.opUsers = data.opUsers;
+            state.ownChars = data.ownChars;
         },
 
         SET_WEBWAY_SELECTED_START_SYSTEM(state, data) {
