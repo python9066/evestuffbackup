@@ -17,6 +17,6 @@ class OperationUser extends Model
 
     public function userrole()
     {
-        return $this->belongsTo(CampaignUserRole::class, "id", "role_id");
+        return $this->belongsTo(CampaignUserRole::class, "role_id", "id");
     }
 }

@@ -78788,12 +78788,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_titleMixin__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./mixins/titleMixin */ "./resources/js/mixins/titleMixin.js");
 /* harmony import */ var v_clipboard__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! v-clipboard */ "./node_modules/v-clipboard/dist/index.min.js");
 /* harmony import */ var v_clipboard__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(v_clipboard__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_19__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window.Vue = require('vue');
+
 
 
 
@@ -78926,7 +78929,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IM
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_clipboard__WEBPACK_IMPORTED_MODULE_18___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countdown_index__WEBPACK_IMPORTED_MODULE_14__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuejs_countdown_timer__WEBPACK_IMPORTED_MODULE_12___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countup_index__WEBPACK_IMPORTED_MODULE_13__["default"]); // library.add(faUserSecret)
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countup_index__WEBPACK_IMPORTED_MODULE_13__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuedraggable__WEBPACK_IMPORTED_MODULE_19___default.a); // library.add(faUserSecret)
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.config.productionTip = false;
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(_chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_7___default.a.name, _chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_7___default.a);
