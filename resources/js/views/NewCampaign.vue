@@ -12,7 +12,7 @@
         v-for="(item, index) in systems"
         :key="index"
       >
-        <CampaignSystemTable :item="item"></CampaignSystemTable>
+        <CampaignSystemCard :item="item"></CampaignSystemCard>
       </v-col>
     </v-row>
   </div>

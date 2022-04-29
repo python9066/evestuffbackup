@@ -414,8 +414,8 @@ Vue.component(
 );
 
 Vue.component(
-    "CampaignSystemTable",
-    require("./components/newcampaign/CampaignSystemTable.vue").default
+    "CampaignSystemCard",
+    require("./components/newcampaign/CampaignSystemCard.vue").default
 );
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
