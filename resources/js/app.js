@@ -412,6 +412,11 @@ Vue.component(
     "CampaignTitleBar",
     require("./components/newcampaign/CampaignTitleBar.vue").default
 );
+
+Vue.component(
+    "CampaignSystemTable",
+    require("./components/newcampaign/CampaignSystemTable.vue").default
+);
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(Clipboard);
