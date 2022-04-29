@@ -44,8 +44,8 @@ export default {
   async mounted() {},
   methods: {
     btnShowCharTable() {
-      if (showCharTable) {
-        this.showCharTable = [0];
+      if (this.showCharTable) {
+        this.showCharTable = 0;
       } else {
         tis.showCharTable = null;
       }
