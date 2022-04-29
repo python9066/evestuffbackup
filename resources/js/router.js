@@ -72,10 +72,7 @@ export default new Router({
             name: "op",
             component: NewOperation,
             props: (route) => {
-                const id = Number.parseInt(route.params.id, 10);
-                if (Number.isNaN(id)) {
-                    return 0;
-                }
+                const id = route.params.id;
                 return { id };
             },
         },

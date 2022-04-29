@@ -85605,12 +85605,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     name: "op",
     component: _views_NewCampaign_vue__WEBPACK_IMPORTED_MODULE_30__["default"],
     props: function props(route) {
-      var id = Number.parseInt(route.params.id, 10);
-
-      if (Number.isNaN(id)) {
-        return 0;
-      }
-
+      var id = route.params.id;
       return {
         id: id
       };
