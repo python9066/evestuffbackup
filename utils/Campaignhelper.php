@@ -21,6 +21,7 @@ use App\Models\CampaignUser;
 use App\Models\CampaignUserRecords;
 use App\Models\NewCampaginOperation;
 use App\Models\NewCampaign;
+use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
 use App\Models\NodeJoin;
 use App\Models\System;
@@ -386,11 +387,26 @@ class Campaignhelper
 
     public static function newUpdate()
     {
-        $newToDelete = NewCampaign::where('status_id', 10)->get();
-        foreach ($newToDelete as $newToDelete) {
-            NewCampaign::where('id', $newToDelete->id)->delete();
+
+
+        $deathCampaign = NewCampaign::where('status_id', 10)->get();
+
+        foreach ($deathCampaign as $c) {
+            // TODO: Finish everything else that needs to be cleaned up when a campaign is over.
+            $campaginOperation = NewCampaginOperation::where('campaign_id', $c->id)->get();
+            foreach ($campaginOperation as $co) {
+
+                $op = NewOperation::where('id', $co->operation_id)->first();
+                if ($op->solo == 1) {
+                    $op->delete();
+                }
+                $co->delete();
+            }
+
+            $c->delete();
         }
 
+        // * Set check flag to 0
         NewCampaign::where('id', '>', 0)->update(['check' => 0]);
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
@@ -409,9 +425,11 @@ class Campaignhelper
                     $event_type = 32226;
                 }
 
+
                 $id = $campaign['campaign_id'];
                 $old = NewCampaign::where('id', $id)->first();
                 if ($old) {
+                    // * Checking if the score has changed
                     if ($campaign['attackers_score'] != $old->attackers_score) {
                         $attackers_score_old = $old->attackers_score;
                         $defenders_score_old = $old->defenders_score;
@@ -439,11 +457,8 @@ class Campaignhelper
                 );
 
                 NewCampaign::updateOrCreate(['id' => $id], $data);
-                // if (NewCampaign::where('id', $id)->whereNotNull('link')->count() == 0) {
-                //     $string = Str::uuid();
-                //     Campaign::where('id', $id)->update(['link' => $string]);
-                // }
 
+                // * Setting everything up for a new campaign
                 if (NewCampaginOperation::where('campaign_id', $id)->count() == 0) {
                     $uuid = Str::uuid();
                     $newOp = NewOperation::create([
@@ -456,24 +471,19 @@ class Campaignhelper
                         'campaign_id' => $id,
                         'operation_id' => $newOp->id
                     ]);
+
+                    $campaignSystemsIDs = System::where('constellation_id', $campaign['constellation_id'])->pluck('id');
+                    foreach ($campaignSystemsIDs as $systemid) {
+                        NewCampaignSystem::create([
+                            'system_id' => $systemid,
+                            'new_campaign_id' => $id
+                        ]);
+                    }
                 }
             }
         }
 
-        $deathCampaign = NewCampaign::where('status_id', 10)->get();
-        foreach ($deathCampaign as $c) {
-            $campaginOperation = NewCampaginOperation::where('campaign_id', $c->id)->get();
-            foreach ($campaginOperation as $co) {
 
-                $op = NewOperation::where('id', $co->operation_id)->first();
-                if ($op->solo == 1) {
-                    $op->delete();
-                }
-                $co->delete();
-            }
-
-            $c->delete();
-        }
 
         $noCampaigns = NewOperation::where('status', '!=', 0)->doesntHave('campaign')->get();
         foreach ($noCampaigns as $noCampaign) {
@@ -481,12 +491,27 @@ class Campaignhelper
             $noCampaign->delete();
         }
 
-        $startedCampaigns = NewCampaign::where('start_time', '<=', now())->where('status_id', 1)->get();
+        // * Change new upcoming status to warmup (done an hour before start time)
+        $warmupCampaigns = NewCampaign::where('start_time', '>', now())
+            ->where('start_time', '=<', now()->addHour())
+            ->where('status_id', 1)
+            ->where('check', 1)
+            ->get();
+        foreach ($warmupCampaigns as $start) {
+            $start->update(['status_id' => 5, 'check' => 1]);
+        };
+
+        // * Checks to see if a campaign has moved from warmup to active
+        $startedCampaigns = NewCampaign::where('start_time', '<=', now())
+            ->where('status_id', 5)
+            ->where('check', 1)
+            ->get();
         foreach ($startedCampaigns as $start) {
             $start->update(['status_id' => 2, 'check' => 1]);
         };
 
-
+        //! IF CHECK = 0, that means its not on the API which means the campaing is over.
+        // * Set Campaign to finished(3) but able to access still for 10mins
         NewCampaign::where('check', 0)
             ->whereNull('end_time')
             ->update([
@@ -495,6 +520,7 @@ class Campaignhelper
                 'check' => 1,
             ]);
 
+        // * Check if the campaign have been over more than 10mins, if true set it to finsiehd(3)
         NewCampaign::where('check', 0)
             ->where('status_id', 2)
             ->where('end_time', '>', now()->subMinutes(10))
@@ -503,6 +529,8 @@ class Campaignhelper
                 'check' => 1
             ]);
 
+
+        // * If campaign have been over for more than 10mins set it to finished(4), to show on the finished tab for 24 hours
         NewCampaign::where('check', 0)
             ->where('status_id', 3)
             ->where('end_time', '<', now()->subMinutes(10))->update([
@@ -510,6 +538,7 @@ class Campaignhelper
                 'check' => 1
             ]);
 
+        // * If campaign has been over for more than 24 hours.  Delete the campaign.
         NewCampaign::where('check', 0)
             ->where('status_id', 4)
             ->where('end_time', '<', now()->subDay())->update([

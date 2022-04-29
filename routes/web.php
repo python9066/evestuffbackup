@@ -47,6 +47,7 @@ Route::get('/hitherealso', 'testController@horizon');
 Route::get('/testsolooperstions', 'testController@getSoloOperations');
 Route::get('/removefc', 'testController@removeFC');
 Route::get('/monty', 'AuthController@monty');
+Route::get('/populatenewcampaignsystem', 'testController@popualteCampaignSystemTable');
 
 
 

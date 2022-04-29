@@ -6,9 +6,12 @@ use App\Jobs\updateWebway;
 use App\Jobs\updateWebwayJob;
 use App\Models\Campaign;
 use App\Models\Corp;
+use App\Models\NewCampaign;
+use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
 use App\Models\Region;
 use App\Models\Station;
+use App\Models\System;
 use App\Models\testNote;
 use App\Models\User;
 use App\Models\WebWay;
@@ -75,6 +78,26 @@ class testController extends Controller
 
         foreach ($systemIDs as $system_id) {
             updateWebwayJob::dispatch($system_id)->onQueue('slow');
+        }
+    }
+
+    public function popualteCampaignSystemTable()
+    {
+
+        $user = Auth::user();
+        if ($user->can('super')) {
+
+            $campaigns = NewCampaign::all();
+            foreach ($campaigns as $c) {
+                $systemsIDs = System::where('constellation_id', $c->contellation_id)
+                    ->pluck('id');
+                foreach ($systemsIDs as $sid) {
+                    NewCampaignSystem::create([
+                        'system_id' => $sid,
+                        'new_campaign_id' => $c->id
+                    ]);
+                }
+            }
         }
     }
 
