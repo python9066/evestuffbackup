@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row no-gutters justify="center">
+    <v-row no-gutters justify="center" class="pb-5">
       <v-col cols="10">
         <CampaignTitleBar :item="campaigns"></CampaignTitleBar>
       </v-col>
@@ -8,7 +8,7 @@
     <v-row no-gutters justify="space-around">
       <v-col
         cols="6"
-        class="px-05"
+        class="px-5"
         v-for="(item, index) in systems"
         :key="index"
       >

@@ -10866,7 +10866,7 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
-    item: Array
+    item: Object
   },
   data: function data() {
     return {};
@@ -70833,7 +70833,7 @@ var render = function () {
     [
       _c(
         "v-row",
-        { attrs: { "no-gutters": "", justify: "center" } },
+        { staticClass: "pb-5", attrs: { "no-gutters": "", justify: "center" } },
         [
           _c(
             "v-col",
@@ -70851,7 +70851,7 @@ var render = function () {
         _vm._l(_vm.systems, function (item, index) {
           return _c(
             "v-col",
-            { key: index, staticClass: "px-05", attrs: { cols: "6" } },
+            { key: index, staticClass: "px-5", attrs: { cols: "6" } },
             [_c("CampaignSystemTable", { attrs: { item: item } })],
             1
           )
