@@ -10854,6 +10854,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -10868,7 +10872,7 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
-    item: Object
+    item: Array
   },
   data: function data() {
     return {
@@ -50366,9 +50370,23 @@ var render = function () {
               _c(
                 "v-expansion-panel-header",
                 [
-                  _c("v-btn", { on: { click: _vm.btnShowCharTable } }, [
-                    _vm._v(" Char Table "),
-                  ]),
+                  _c(
+                    "v-row",
+                    { attrs: { "no-gutters": "" } },
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "2" } },
+                        [
+                          _c("v-btn", { on: { click: _vm.btnShowCharTable } }, [
+                            _vm._v(" Char Table "),
+                          ]),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
                 ],
                 1
               ),

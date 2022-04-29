@@ -3,7 +3,11 @@
     <v-col>
       <v-expansion-panel v-model="showCharTable">
         <v-expansion-panel-header>
-          <v-btn @click="btnShowCharTable"> Char Table </v-btn>
+          <v-row no-gutters>
+            <v-col cols="2">
+              <v-btn @click="btnShowCharTable"> Char Table </v-btn></v-col
+            >
+          </v-row>
         </v-expansion-panel-header>
         <v-expansion-panel-content> dance </v-expansion-panel-content>
       </v-expansion-panel>
@@ -21,7 +25,7 @@ function sleep(ms) {
 export default {
   title() {},
   props: {
-    item: Object,
+    item: Array,
   },
   data() {
     return {
