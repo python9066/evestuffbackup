@@ -28,6 +28,7 @@ import CoordSheet from "./views/CoordSheet.vue";
 import SoloOperations from "./views/SoloOperations.vue";
 import MultiOperations from "./views/CustomOperations.vue";
 import Station from "./views/StationSheet.vue";
+import NewOperation from "./views/NewCampaign.vue";
 
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -64,6 +65,19 @@ export default new Router({
             //     }
 
             //   }
+        },
+
+        {
+            path: "/op/:id",
+            name: "op",
+            component: NewOperation,
+            props: (route) => {
+                const id = Number.parseInt(route.params.id, 10);
+                if (Number.isNaN(id)) {
+                    return 0;
+                }
+                return { id };
+            },
         },
 
         {
