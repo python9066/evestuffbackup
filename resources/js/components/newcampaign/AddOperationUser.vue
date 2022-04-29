@@ -155,7 +155,7 @@ import { mapGetters } from "vuex";
 import { mapState } from "vuex";
 export default {
   props: {
-    operationID: Text,
+    operationID: String,
   },
   data() {
     return {

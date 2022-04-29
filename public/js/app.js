@@ -10996,7 +10996,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    operationID: Text
+    operationID: String
   },
   data: function data() {
     return {
@@ -11420,7 +11420,7 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
-    operationID: Text
+    operationID: String
   },
   data: function data() {
     return {
@@ -32151,9 +32151,9 @@ function sleep(ms) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _this.operationID = _this.$route.params.id;
+              _this.operationLink = _this.$route.params.id;
 
-              _this.$store.dispatch("getOperationInfo", _this.operationID);
+              _this.$store.dispatch("getOperationInfo", _this.operationLink);
 
             case 2:
             case "end":
@@ -32192,6 +32192,9 @@ function sleep(ms) {
   },
   methods: {},
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo", "campaignSystems"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), {}, {
+    operationID: function operationID() {
+      return this.newOperationInfo.id;
+    },
     campaigns: function campaigns() {
       return this.newOperationInfo.campaign;
     },

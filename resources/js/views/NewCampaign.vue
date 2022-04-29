@@ -43,8 +43,8 @@ export default {
   },
 
   async created() {
-    this.operationID = this.$route.params.id;
-    this.$store.dispatch("getOperationInfo", this.operationID);
+    this.operationLink = this.$route.params.id;
+    this.$store.dispatch("getOperationInfo", this.operationLink);
   },
 
   beforeMonunt() {},
@@ -57,6 +57,10 @@ export default {
   computed: {
     ...mapState(["newOperationInfo", "campaignSystems"]),
     ...mapGetters([]),
+
+    operationID() {
+      return this.newOperationInfo.id;
+    },
 
     campaigns() {
       return this.newOperationInfo.campaign;
