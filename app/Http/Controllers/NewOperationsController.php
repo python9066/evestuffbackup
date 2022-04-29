@@ -96,11 +96,13 @@ class NewOperationsController extends Controller
             ->get();
 
         $opUsers = OperationUser::where('operation_id', $operationsID)->get();
+        $ownChars = OperationUser::where('user_id', Auth::id())->get();
 
         return [
             'data' => $data,
             'systems' => $systems,
-            'opUsers' => $opUsers
+            'opUsers' => $opUsers,
+            'ownChars' => $ownChars
         ];
     }
 
