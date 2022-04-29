@@ -50406,7 +50406,7 @@ var render = function () {
                                     outlined: "",
                                     rounded: "",
                                     small: "",
-                                    color: "primery",
+                                    color: "primary",
                                   },
                                   on: { click: _vm.btnShowCharTable },
                                 },

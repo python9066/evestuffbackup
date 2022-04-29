@@ -11,7 +11,7 @@
                   outlined
                   rounded
                   small
-                  color="primery"
+                  color="primary"
                 >
                   Char Table
                 </v-btn></v-col
