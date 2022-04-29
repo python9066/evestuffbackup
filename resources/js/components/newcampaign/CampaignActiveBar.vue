@@ -3,7 +3,7 @@
     <v-col>
       <v-expansion-panel v-model="showCharTable">
         <v-expansion-panel-header>
-          <v-btn @click="all"> Char Table </v-btn>
+          <v-btn @click="btnShowCharTable"> Char Table </v-btn>
         </v-expansion-panel-header>
         <v-expansion-panel-content></v-expansion-panel-content>
       </v-expansion-panel>
@@ -36,7 +36,9 @@ export default {
   async beforeCreate() {},
 
   async mounted() {},
-  methods: {},
+  methods: {
+    btnShowCharTable() {},
+  },
 
   computed: {
     ...mapGetters([]),

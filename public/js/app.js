@@ -10915,7 +10915,9 @@ function sleep(ms) {
       }, _callee3);
     }))();
   },
-  methods: {},
+  methods: {
+    btnShowCharTable: function btnShowCharTable() {}
+  },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])),
   beforeDestroy: function beforeDestroy() {}
 });
@@ -50364,7 +50366,7 @@ var render = function () {
               _c(
                 "v-expansion-panel-header",
                 [
-                  _c("v-btn", { on: { click: _vm.all } }, [
+                  _c("v-btn", { on: { click: _vm.btnShowCharTable } }, [
                     _vm._v(" Char Table "),
                   ]),
                 ],
