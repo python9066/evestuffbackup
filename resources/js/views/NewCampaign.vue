@@ -5,6 +5,11 @@
         <CampaignTitleBar :item="campaigns"></CampaignTitleBar>
       </v-col>
     </v-row>
+    <v-row no-gutters justify="center" class="pb-5">
+      <v-col cols="10">
+        <CampaignActiveBar :item="operation"></CampaignActiveBar>
+      </v-col>
+    </v-row>
     <v-row no-gutters justify="space-around">
       <v-col
         cols="6"
@@ -46,6 +51,10 @@ export default {
   computed: {
     ...mapState(["newOperationInfo", "campaignSystems"]),
     ...mapGetters([]),
+
+    operation() {
+      return this.newOperationInfo;
+    },
 
     campaigns() {
       return this.newOperationInfo.campaign;
