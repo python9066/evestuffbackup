@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\NewCampaginOperation;
 use App\Models\NewCampaign;
 use App\Models\NewOperation;
+use App\Models\OperationUser;
 use App\Models\Region;
 use App\Models\System;
 use Illuminate\Http\Request;
@@ -94,9 +95,12 @@ class NewOperationsController extends Controller
             ])
             ->get();
 
+        $opUsers = OperationUser::where('operation_id', $id)->get();
+
         return [
             'data' => $data,
-            'systems' => $systems
+            'systems' => $systems,
+            'opUsers' => $opUsers
         ];
     }
 

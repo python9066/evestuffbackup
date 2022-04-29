@@ -86889,7 +86889,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       text: "1DQ1-A"
     },
     newOperationInfo: [],
-    campaignSystems: []
+    campaignSystems: [],
+    opUsers: []
   },
   mutations: {
     SET_STATION_LIST: function SET_STATION_LIST(state, stations) {
@@ -86898,6 +86899,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     SET_OPERATION_PAGE: function SET_OPERATION_PAGE(state, data) {
       state.newOperationInfo = data.data;
       state.campaignSystems = data.systems;
+      state.opUsers = data.opUsers;
     },
     SET_WEBWAY_SELECTED_START_SYSTEM: function SET_WEBWAY_SELECTED_START_SYSTEM(state, data) {
       state.webwaySelectedStartSystem = data;
