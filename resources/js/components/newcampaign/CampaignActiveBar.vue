@@ -16,6 +16,7 @@
                   Char Table
                 </v-btn></v-col
               >
+              <v-col cols="2"><AddOperationUser></AddOperationUser></v-col>
             </v-row>
           </v-expansion-panel-header>
           <v-expansion-panel-content> dance </v-expansion-panel-content>

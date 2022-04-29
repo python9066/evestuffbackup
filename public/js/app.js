@@ -10868,6 +10868,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -50420,6 +50421,13 @@ var render = function () {
                                 ]
                               ),
                             ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "2" } },
+                            [_c("AddOperationUser")],
                             1
                           ),
                         ],
