@@ -6,6 +6,11 @@
         <CampaignTitleBar :item="campaigns"></CampaignTitleBar>
       </v-col>
     </v-row>
+    <v-row no-gutters>
+      <v-col cols="6" v-for="(item, index) in systems" :key="index">
+        {{ item.system_name }}
+      </v-col>
+    </v-row>
   </div>
 </template>
 <script>
@@ -35,11 +40,15 @@ export default {
   methods: {},
 
   computed: {
-    ...mapState(["newOperationInfo"]),
+    ...mapState(["newOperationInfo", "campaignSystems"]),
     ...mapGetters([]),
 
     campaigns() {
       return this.newOperationInfo.campaign;
+    },
+
+    systems() {
+      return this.campaignSystems;
     },
   },
   beforeDestroy() {},

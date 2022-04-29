@@ -31331,6 +31331,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -31395,9 +31400,12 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo", "campaignSystems"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), {}, {
     campaigns: function campaigns() {
       return this.newOperationInfo.campaign;
+    },
+    systems: function systems() {
+      return this.campaignSystems;
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -70690,6 +70698,17 @@ var render = function () {
         ],
         1
       ),
+      _vm._v(" "),
+      _c(
+        "v-row",
+        { attrs: { "no-gutters": "" } },
+        _vm._l(_vm.systems, function (item, index) {
+          return _c("v-col", { key: index, attrs: { cols: "6" } }, [
+            _vm._v("\n      " + _vm._s(item.system_name) + "\n    "),
+          ])
+        }),
+        1
+      ),
     ],
     1
   )
@@ -86328,7 +86347,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     webwayStartSystems: [],
     newSoloOperations: [],
     newSoloOperationsRegionList: [],
-    newOperationInfo: [],
     stationList: [],
     stationListPullRegions: [],
     stationListFCRegions: [],
@@ -86336,14 +86354,17 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     webwaySelectedStartSystem: {
       value: 30004759,
       text: "1DQ1-A"
-    }
+    },
+    newOperationInfo: [],
+    campaignSystems: []
   },
   mutations: {
     SET_STATION_LIST: function SET_STATION_LIST(state, stations) {
       state.stationList = stations;
     },
     SET_OPERATION_PAGE: function SET_OPERATION_PAGE(state, data) {
-      state.newOperationInfo = data;
+      state.newOperationInfo = data.data;
+      state.campaignSystems = data.systems;
     },
     SET_WEBWAY_SELECTED_START_SYSTEM: function SET_WEBWAY_SELECTED_START_SYSTEM(state, data) {
       state.webwaySelectedStartSystem = data;
@@ -86991,7 +87012,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
 
               case 3:
                 res = _context2.sent;
-                commit("SET_OPERATION_PAGE", res.data.data);
+                commit("SET_OPERATION_PAGE", res.data);
 
               case 5:
               case "end":

@@ -81,7 +81,6 @@ export default new Vuex.Store({
         webwayStartSystems: [],
         newSoloOperations: [],
         newSoloOperationsRegionList: [],
-        newOperationInfo: [],
 
         stationList: [],
 
@@ -93,6 +92,9 @@ export default new Vuex.Store({
             value: 30004759,
             text: "1DQ1-A",
         },
+
+        newOperationInfo: [],
+        campaignSystems: [],
     },
     mutations: {
         SET_STATION_LIST(state, stations) {
@@ -100,7 +102,8 @@ export default new Vuex.Store({
         },
 
         SET_OPERATION_PAGE(state, data) {
-            state.newOperationInfo = data;
+            state.newOperationInfo = data.data;
+            state.campaignSystems = data.systems;
         },
 
         SET_WEBWAY_SELECTED_START_SYSTEM(state, data) {
@@ -765,7 +768,7 @@ export default new Vuex.Store({
                     "Content-Type": "application/json",
                 },
             });
-            commit("SET_OPERATION_PAGE", res.data.data);
+            commit("SET_OPERATION_PAGE", res.data);
         },
 
         async getWebwayStartSystems({ commit }) {
