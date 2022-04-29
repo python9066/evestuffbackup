@@ -70490,7 +70490,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [_vm._v("dance")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -85604,6 +85604,13 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     path: "/op/:id",
     name: "op",
     component: _views_NewCampaign_vue__WEBPACK_IMPORTED_MODULE_30__["default"],
+    beforeEnter: function beforeEnter(to, from, next) {
+      if (Permissions.indexOf("super") !== -1) {
+        next();
+      } else {
+        next("/notifications");
+      }
+    },
     props: function props(route) {
       var id = route.params.id;
       return {

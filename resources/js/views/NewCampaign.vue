@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>dance</div>
 </template>
 <!-- {{ $route.params.id }} - {{ test }} -  -->
 <script>
