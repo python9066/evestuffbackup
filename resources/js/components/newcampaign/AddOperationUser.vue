@@ -219,7 +219,7 @@ export default {
     },
 
     pillColor(item) {
-      if (item.campaign_id == this.operationID) {
+      if (item.operation_id == this.operationID) {
         return "red";
       } else {
         return "green";
@@ -227,7 +227,7 @@ export default {
     },
 
     pillText(item) {
-      if (item.campaign_id == this.operationID) {
+      if (item.operation_id == this.operationID) {
         return "Remove";
       } else {
         return "Add";
@@ -235,7 +235,7 @@ export default {
     },
 
     pillIcon(item) {
-      if (item.campaign_id == this.operationID) {
+      if (item.operation_id == this.operationID) {
         return "fas fa-minus";
       } else {
         return "fas fa-plus";
@@ -243,36 +243,7 @@ export default {
     },
 
     async pillClick(item) {
-      if (item.campaign_id == this.operationID) {
-        let data = item;
-        data.campaign_id = null;
-        data.campaign_system_id = null;
-        data.system_id = null;
-        data.status_id = 1;
-        data.node_id = null;
-        data.system_name = null;
-        data.user_status_name = "None";
-        this.$store.dispatch("deleteCampaignUser", data.id); //remove char from campaign
-        this.$store.dispatch("updateUsersChars", data); // update user char
-
-        data = null;
-
-        data = {
-          campaign_system_status_id: 1,
-          end_time: null,
-          main_name: null,
-          site_id: null,
-          user_id: null,
-          user_link: null,
-          user_name: null,
-          user_ship: null,
-        };
-        var payload = {
-          user_id: item.id,
-          data: data,
-        };
-        this.$store.dispatch("updateCampaignSystemByUserID", payload); // removes from old node for new campaign
-
+      if (item.operation_id == this.operationID) {
         var request = {
           operation_id: null,
           system_id: null,
@@ -315,34 +286,6 @@ export default {
         //------logging End-----//
       } else {
         //--add char to campaign--//
-        let data = item;
-        data.campaign_id = this.operationID;
-        data.campaign_system_id = null;
-        data.system_id = null;
-        data.status_id = 1;
-        data.node_id = null;
-        data.system_name = null;
-        data.user_status_name = "None";
-        this.$store.dispatch("addCampaignUserNew", data); //add char to campaign
-        this.$store.dispatch("updateUsersChars", data); // update user char
-
-        data = null;
-
-        data = {
-          campaign_system_status_id: 1,
-          end_time: null,
-          main_name: null,
-          site_id: null,
-          user_id: null,
-          user_link: null,
-          user_name: null,
-          user_ship: null,
-        };
-        var payload = {
-          user_id: item.id,
-          data: data,
-        };
-        this.$store.dispatch("updateCampaignSystemByUserID", payload); // removes from old node for new campaign
 
         var request = {
           operation_id: this.operationID,
@@ -441,8 +384,6 @@ export default {
     },
 
     async removeChar(item) {
-      this.$store.dispatch("deleteUsersChars", item.id);
-      this.$store.dispatch("deleteCampaignUser", item.id);
       await axios({
         method: "DELETE",
         url: "/api/campaignusers/" + item.id,
@@ -457,9 +398,9 @@ export default {
   },
 
   computed: {
-    ...mapState(["campaignusers", "userschars"]),
+    ...mapState(["campaignusers", "ownChars"]),
     filteredItems() {
-      return this.userschars;
+      return this.ownChars;
     },
   },
 };

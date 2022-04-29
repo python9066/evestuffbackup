@@ -11081,21 +11081,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.editrole = a;
     },
     pillColor: function pillColor(item) {
-      if (item.campaign_id == this.operationID) {
+      if (item.operation_id == this.operationID) {
         return "red";
       } else {
         return "green";
       }
     },
     pillText: function pillText(item) {
-      if (item.campaign_id == this.operationID) {
+      if (item.operation_id == this.operationID) {
         return "Remove";
       } else {
         return "Add";
       }
     },
     pillIcon: function pillIcon(item) {
-      if (item.campaign_id == this.operationID) {
+      if (item.operation_id == this.operationID) {
         return "fas fa-minus";
       } else {
         return "fas fa-plus";
@@ -11105,57 +11105,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var data, payload, request, _data;
-
+        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!(item.campaign_id == _this.operationID)) {
-                  _context.next = 20;
+                if (!(item.operation_id == _this.operationID)) {
+                  _context.next = 6;
                   break;
                 }
-
-                data = item;
-                data.campaign_id = null;
-                data.campaign_system_id = null;
-                data.system_id = null;
-                data.status_id = 1;
-                data.node_id = null;
-                data.system_name = null;
-                data.user_status_name = "None";
-
-                _this.$store.dispatch("deleteCampaignUser", data.id); //remove char from campaign
-
-
-                _this.$store.dispatch("updateUsersChars", data); // update user char
-
-
-                data = null;
-                data = {
-                  campaign_system_status_id: 1,
-                  end_time: null,
-                  main_name: null,
-                  site_id: null,
-                  user_id: null,
-                  user_link: null,
-                  user_name: null,
-                  user_ship: null
-                };
-                payload = {
-                  user_id: item.id,
-                  data: data
-                };
-
-                _this.$store.dispatch("updateCampaignSystemByUserID", payload); // removes from old node for new campaign
-
 
                 request = {
                   operation_id: null,
                   system_id: null,
                   user_status_id: 1
                 };
-                _context.next = 18;
+                _context.next = 4;
                 return axios({
                   //removes char from campaign
                   method: "PUT",
@@ -11168,53 +11133,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 18:
-                _context.next = 37;
+              case 4:
+                _context.next = 9;
                 break;
 
-              case 20:
+              case 6:
                 //--add char to campaign--//
-                _data = item;
-                _data.campaign_id = _this.operationID;
-                _data.campaign_system_id = null;
-                _data.system_id = null;
-                _data.status_id = 1;
-                _data.node_id = null;
-                _data.system_name = null;
-                _data.user_status_name = "None";
-
-                _this.$store.dispatch("addCampaignUserNew", _data); //add char to campaign
-
-
-                _this.$store.dispatch("updateUsersChars", _data); // update user char
-
-
-                _data = null;
-                _data = {
-                  campaign_system_status_id: 1,
-                  end_time: null,
-                  main_name: null,
-                  site_id: null,
-                  user_id: null,
-                  user_link: null,
-                  user_name: null,
-                  user_ship: null
-                };
-                payload = {
-                  user_id: item.id,
-                  data: _data
-                };
-
-                _this.$store.dispatch("updateCampaignSystemByUserID", payload); // removes from old node for new campaign
-
-
                 request = {
                   operation_id: _this.operationID,
                   system_id: null,
                   user_status_id: 1
                 }; // add char to campaign
 
-                _context.next = 37;
+                _context.next = 9;
                 return axios({
                   method: "PUT",
                   url: "/api/newcampaignusersadd/" + item.id + "/" + _this.operationID,
@@ -11226,7 +11157,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 37:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -11315,11 +11246,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _this3.$store.dispatch("deleteUsersChars", item.id);
-
-                _this3.$store.dispatch("deleteCampaignUser", item.id);
-
-                _context3.next = 4;
+                _context3.next = 2;
                 return axios({
                   method: "DELETE",
                   url: "/api/campaignusers/" + item.id,
@@ -11330,10 +11257,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 4:
+              case 2:
                 _this3.$store.dispatch("getCampaignSystemsRecords");
 
-              case 5:
+              case 3:
               case "end":
                 return _context3.stop();
             }
@@ -11342,9 +11269,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["campaignusers", "userschars"])), {}, {
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])(["campaignusers", "ownChars"])), {}, {
     filteredItems: function filteredItems() {
-      return this.userschars;
+      return this.ownChars;
     }
   })
 });
