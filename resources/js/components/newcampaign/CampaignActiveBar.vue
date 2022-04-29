@@ -27,7 +27,7 @@ function sleep(ms) {
 export default {
   title() {},
   props: {
-    item: Array,
+    item: Object,
   },
   data() {
     return {
@@ -44,7 +44,7 @@ export default {
   async mounted() {},
   methods: {
     btnShowCharTable() {
-      if (this.showCharTable) {
+      if (this.showCharTable == null) {
         this.showCharTable = 0;
       } else {
         this.showCharTable = null;

@@ -10874,7 +10874,7 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
-    item: Array
+    item: Object
   },
   data: function data() {
     return {
@@ -10923,7 +10923,7 @@ function sleep(ms) {
   },
   methods: {
     btnShowCharTable: function btnShowCharTable() {
-      if (this.showCharTable) {
+      if (this.showCharTable == null) {
         this.showCharTable = 0;
       } else {
         this.showCharTable = null;
