@@ -32012,6 +32012,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _event_bus__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../event-bus */ "./resources/js/event-bus.js");
 /* harmony import */ var _service_apil__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../service/apil */ "./resources/js/service/apil.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_5__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -32054,6 +32056,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+
 
 
 
@@ -72059,18 +72066,43 @@ var render = function () {
       _c(
         "v-row",
         { attrs: { "no-gutters": "", justify: "space-around" } },
-        _vm._l(_vm.systems, function (item, index) {
-          return _c(
-            "v-col",
-            { key: index, staticClass: "px-5", attrs: { cols: "6" } },
+        [
+          _c(
+            "draggable",
+            {
+              model: {
+                value: _vm.systems,
+                callback: function ($$v) {
+                  _vm.systems = $$v
+                },
+                expression: "systems",
+              },
+            },
             [
-              _c("CampaignSystemCard", {
-                attrs: { item: item, operationID: _vm.operationID },
-              }),
+              _c(
+                "transition-group",
+                _vm._l(_vm.systems, function (item, index) {
+                  return _c(
+                    "v-col",
+                    {
+                      key: index.id,
+                      staticClass: "px-5",
+                      attrs: { cols: "6" },
+                    },
+                    [
+                      _c("CampaignSystemCard", {
+                        attrs: { item: item, operationID: _vm.operationID },
+                      }),
+                    ],
+                    1
+                  )
+                }),
+                1
+              ),
             ],
             1
-          )
-        }),
+          ),
+        ],
         1
       ),
     ],

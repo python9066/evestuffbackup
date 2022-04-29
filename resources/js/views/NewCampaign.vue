@@ -14,17 +14,21 @@
       </v-col>
     </v-row>
     <v-row no-gutters justify="space-around">
-      <v-col
-        cols="6"
-        class="px-5"
-        v-for="(item, index) in systems"
-        :key="index"
-      >
-        <CampaignSystemCard
-          :item="item"
-          :operationID="operationID"
-        ></CampaignSystemCard>
-      </v-col>
+      <draggable v-model="systems">
+        <transition-group>
+          <v-col
+            cols="6"
+            class="px-5"
+            v-for="(item, index) in systems"
+            :key="index.id"
+          >
+            <CampaignSystemCard
+              :item="item"
+              :operationID="operationID"
+            ></CampaignSystemCard>
+          </v-col>
+        </transition-group>
+      </draggable>
     </v-row>
   </div>
 </template>
@@ -33,6 +37,7 @@ import Axios from "axios";
 import { EventBus } from "../event-bus";
 import ApiL from "../service/apil";
 import { mapGetters, mapState } from "vuex";
+import draggable from "vuedraggable";
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
