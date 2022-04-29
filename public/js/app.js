@@ -31335,7 +31335,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -70684,14 +70683,13 @@ var render = function () {
   return _c(
     "div",
     [
-      _vm._v("\n  dance\n  "),
       _c(
         "v-row",
-        { attrs: { "no-gutters": "" } },
+        { attrs: { "no-gutters": "", justify: "center" } },
         [
           _c(
             "v-col",
-            { attrs: { cols: "12" } },
+            { attrs: { cols: "10" } },
             [_c("CampaignTitleBar", { attrs: { item: _vm.campaigns } })],
             1
           ),
@@ -70701,11 +70699,14 @@ var render = function () {
       _vm._v(" "),
       _c(
         "v-row",
-        { attrs: { "no-gutters": "" } },
+        { attrs: { "no-gutters": "", justify: "space-between" } },
         _vm._l(_vm.systems, function (item, index) {
-          return _c("v-col", { key: index, attrs: { cols: "6" } }, [
-            _vm._v("\n      " + _vm._s(item.system_name) + "\n    "),
-          ])
+          return _c(
+            "v-col",
+            { key: index, attrs: { cols: "5" } },
+            [_c("CampaignSystemTable", { attrs: { item: item } })],
+            1
+          )
         }),
         1
       ),

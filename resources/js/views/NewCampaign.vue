@@ -1,14 +1,13 @@
 <template>
   <div>
-    dance
-    <v-row no-gutters>
-      <v-col cols="12">
+    <v-row no-gutters justify="center">
+      <v-col cols="10">
         <CampaignTitleBar :item="campaigns"></CampaignTitleBar>
       </v-col>
     </v-row>
-    <v-row no-gutters>
-      <v-col cols="6" v-for="(item, index) in systems" :key="index">
-        {{ item.system_name }}
+    <v-row no-gutters justify="space-between">
+      <v-col cols="5" v-for="(item, index) in systems" :key="index">
+        <CampaignSystemTable :item="item"></CampaignSystemTable>
       </v-col>
     </v-row>
   </div>
