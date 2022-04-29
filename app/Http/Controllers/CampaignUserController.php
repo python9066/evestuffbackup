@@ -47,7 +47,7 @@ class CampaignUserController extends Controller
         broadcast(new CampaignUserNew($flag))->toOthers();
     }
 
-    public function newstore(Request $request, $campid)
+    public function newstore(Request $request, $opID)
     {
 
         $new = OperationUser::create($request->all());
@@ -109,7 +109,7 @@ class CampaignUserController extends Controller
         broadcast(new CampaignUserNew($flag))->toOthers();
     }
 
-    public function newupdateadd(Request $request, $id, $campid)
+    public function newupdateadd(Request $request, $id, $opID)
     {
         $node = NewNodeCampaignUser::where('campaign_user_id', $id)->first();
 

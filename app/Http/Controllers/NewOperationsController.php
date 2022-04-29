@@ -95,7 +95,7 @@ class NewOperationsController extends Controller
             ])
             ->get();
 
-        $opUsers = OperationUser::where('operation_id', $id)->get();
+        $opUsers = OperationUser::where('operation_id', $operationsID)->get();
 
         return [
             'data' => $data,
