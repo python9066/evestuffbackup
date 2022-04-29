@@ -5,7 +5,7 @@
         <v-expansion-panel-header>
           <v-btn @click="btnShowCharTable"> Char Table </v-btn>
         </v-expansion-panel-header>
-        <v-expansion-panel-content></v-expansion-panel-content>
+        <v-expansion-panel-content> dance </v-expansion-panel-content>
       </v-expansion-panel>
     </v-col>
   </v-row>
@@ -21,7 +21,7 @@ function sleep(ms) {
 export default {
   title() {},
   props: {
-    item: Array,
+    item: Object,
   },
   data() {
     return {

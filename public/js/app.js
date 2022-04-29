@@ -10868,7 +10868,7 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
-    item: Array
+    item: Object
   },
   data: function data() {
     return {
@@ -50373,7 +50373,7 @@ var render = function () {
                 1
               ),
               _vm._v(" "),
-              _c("v-expansion-panel-content"),
+              _c("v-expansion-panel-content", [_vm._v(" dance ")]),
             ],
             1
           ),
