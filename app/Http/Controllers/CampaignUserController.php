@@ -11,6 +11,8 @@ use App\Models\CampaignSystemRecords;
 use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
 use App\Models\CampaignUserRecords;
+use App\Models\NewNodeCampaignUser;
+use App\Models\OperationUser;
 use Illuminate\Http\Request;
 
 class CampaignUserController extends Controller
@@ -43,6 +45,12 @@ class CampaignUserController extends Controller
             'id' => $campid
         ]);
         broadcast(new CampaignUserNew($flag))->toOthers();
+    }
+
+    public function newstore(Request $request, $campid)
+    {
+
+        $new = OperationUser::create($request->all());
     }
 
     /**
@@ -101,6 +109,21 @@ class CampaignUserController extends Controller
         broadcast(new CampaignUserNew($flag))->toOthers();
     }
 
+    public function newupdateadd(Request $request, $id, $campid)
+    {
+        $node = NewNodeCampaignUser::where('campaign_user_id', $id)->first();
+
+        if ($node != null) {
+            $node->update(['campaign_user_id' =>  null, 'status_id' => 1, 'end_time' => null]);
+            $node->save();
+            // TODO Add baordcsat to update stuff
+        }
+
+
+        OperationUser::where('id', $id)->update($request->all());
+        // TODO Add baordcsat to update stuff
+    }
+
     public function updateremove(Request $request, $id, $campid)
     {
 
@@ -131,6 +154,21 @@ class CampaignUserController extends Controller
         broadcast(new CampaignUserDelete($flag))->toOthers();
     }
 
+    public function newupdateremove(Request $request, $id)
+    {
+
+        $node = NewNodeCampaignUser::where('campaign_user_id', $id)->first();
+
+        if ($node != null) {
+            $node->update(['campaign_user_id' =>  null, 'status_id' => 1, 'end_time' => null]);
+            $node->save();
+            // TODO Add boradcast to update node
+        }
+
+        OperationUser::where('id', $id)->update($request->all());
+        // TODO Add boradcast to update info
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -147,5 +185,12 @@ class CampaignUserController extends Controller
         ]);
 
         broadcast(new CampaignUserDelete($flag))->toOthers();
+    }
+
+    public function newdestroy($id)
+    {
+
+        OperationUser::destroy($id);
+        // TODO Sort out boardcasting
     }
 }

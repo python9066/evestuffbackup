@@ -77917,6 +77917,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("RcTimer", __webpack_requir
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("CampaignTitleBar", __webpack_require__(/*! ./components/newcampaign/CampaignTitleBar.vue */ "./resources/js/components/newcampaign/CampaignTitleBar.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("CampaignSystemCard", __webpack_require__(/*! ./components/newcampaign/CampaignSystemCard.vue */ "./resources/js/components/newcampaign/CampaignSystemCard.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("CampaignActiveBar", __webpack_require__(/*! ./components/newcampaign/CampaignActiveBar.vue */ "./resources/js/components/newcampaign/CampaignActiveBar.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("AddOperationUser", __webpack_require__(/*! ./components/newcampaign/CampaignActiveBar.vue */ "./resources/js/components/newcampaign/CampaignActiveBar.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_clipboard__WEBPACK_IMPORTED_MODULE_18___default.a);

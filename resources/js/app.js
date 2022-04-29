@@ -422,6 +422,12 @@ Vue.component(
     "CampaignActiveBar",
     require("./components/newcampaign/CampaignActiveBar.vue").default
 );
+
+Vue.component(
+    "AddOperationUser",
+    require("./components/newcampaign/CampaignActiveBar.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(Clipboard);
