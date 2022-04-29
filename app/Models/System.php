@@ -58,6 +58,12 @@ class System extends Model
         return $this->hasMany(WebWay::class, "system_id", "id");
     }
 
+    public function newCampaigns()
+    {
+        return $this->hasManyThrough(NewCampaign::class, Constellation::class);
+    }
+
+
     protected $casts = [
         'region_id ' => 'integer',
         'constellation_id' => 'integer',

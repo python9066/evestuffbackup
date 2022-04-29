@@ -88,7 +88,11 @@ class NewOperationsController extends Controller
         // $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->where('status_id', [2, 5])->pluck('20000646');
         $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->pluck('constellation_id');
         $contellationIDs =  $contellationIDs->unique();
-        $systems = System::whereIn('constellation_id', $contellationIDs)->select('id', 'system_name')->get();
+        $systems = System::whereIn('constellation_id', $contellationIDs)
+            ->with([
+                'newCampaigns'
+            ])
+            ->get();
 
         return [
             'data' => $data,
