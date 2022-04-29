@@ -10860,6 +10860,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -50393,8 +50401,20 @@ var render = function () {
                             [
                               _c(
                                 "v-btn",
-                                { on: { click: _vm.btnShowCharTable } },
-                                [_vm._v(" Char Table ")]
+                                {
+                                  attrs: {
+                                    outlined: "",
+                                    rounded: "",
+                                    small: "",
+                                    color: "primery",
+                                  },
+                                  on: { click: _vm.btnShowCharTable },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                Char Table\n              "
+                                  ),
+                                ]
                               ),
                             ],
                             1

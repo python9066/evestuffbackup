@@ -6,7 +6,15 @@
           <v-expansion-panel-header expand-icon="">
             <v-row no-gutters>
               <v-col cols="2">
-                <v-btn @click="btnShowCharTable"> Char Table </v-btn></v-col
+                <v-btn
+                  @click="btnShowCharTable"
+                  outlined
+                  rounded
+                  small
+                  color="primery"
+                >
+                  Char Table
+                </v-btn></v-col
               >
             </v-row>
           </v-expansion-panel-header>
