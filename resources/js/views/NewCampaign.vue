@@ -1,7 +1,13 @@
 <template>
-  <div>dance</div>
+  <div>
+    dance
+    <v-row no-gutters>
+      <v-col cols="12">
+        <CampaignTitleBar :item="campaigns"></CampaignTitleBar>
+      </v-col>
+    </v-row>
+  </div>
 </template>
-<!-- {{ $route.params.id }} - {{ test }} -  -->
 <script>
 import Axios from "axios";
 import { EventBus } from "../event-bus";
@@ -29,9 +35,13 @@ export default {
   methods: {},
 
   computed: {
-    ...mapGetters([]),
+    ...mapGetters(["newOperationInfo"]),
 
     ...mapState([]),
+
+    campaigns() {
+      return this.newOperationInfo.campaign;
+    },
   },
   beforeDestroy() {},
 };
