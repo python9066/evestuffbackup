@@ -2,12 +2,15 @@
   <div>
     <v-row no-gutters justify="center" class="pb-5">
       <v-col cols="10">
-        <CampaignTitleBar :item="campaigns"></CampaignTitleBar>
+        <CampaignTitleBar
+          :item="campaigns"
+          :operationID="operationID"
+        ></CampaignTitleBar>
       </v-col>
     </v-row>
     <v-row no-gutters justify="center" class="pb-5">
       <v-col cols="10">
-        <CampaignActiveBar></CampaignActiveBar>
+        <CampaignActiveBar :operationID="operationID"></CampaignActiveBar>
       </v-col>
     </v-row>
     <v-row no-gutters justify="space-around">
@@ -17,7 +20,10 @@
         v-for="(item, index) in systems"
         :key="index"
       >
-        <CampaignSystemCard :item="item"></CampaignSystemCard>
+        <CampaignSystemCard
+          :item="item"
+          :operationID="operationID"
+        ></CampaignSystemCard>
       </v-col>
     </v-row>
   </div>

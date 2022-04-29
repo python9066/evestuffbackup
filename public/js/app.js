@@ -10995,7 +10995,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {},
+  props: {
+    operationID: Text
+  },
   data: function data() {
     return {
       headers: [{
@@ -11079,21 +11081,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.editrole = a;
     },
     pillColor: function pillColor(item) {
-      if (item.campaign_id == this.campaign_id) {
+      if (item.campaign_id == this.operationID) {
         return "red";
       } else {
         return "green";
       }
     },
     pillText: function pillText(item) {
-      if (item.campaign_id == this.campaign_id) {
+      if (item.campaign_id == this.operationID) {
         return "Remove";
       } else {
         return "Add";
       }
     },
     pillIcon: function pillIcon(item) {
-      if (item.campaign_id == this.campaign_id) {
+      if (item.campaign_id == this.operationID) {
         return "fas fa-minus";
       } else {
         return "fas fa-plus";
@@ -11109,7 +11111,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (!(item.campaign_id == _this.campaign_id)) {
+                if (!(item.campaign_id == _this.operationID)) {
                   _context.next = 20;
                   break;
                 }
@@ -11157,7 +11159,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios({
                   //removes char from campaign
                   method: "PUT",
-                  url: "/api/newcampaignusersremove/" + item.id + "/" + _this.campaign_id,
+                  url: "/api/newcampaignusersremove/" + item.id + "/" + _this.operationID,
                   withCredentials: true,
                   data: request,
                   headers: {
@@ -11173,7 +11175,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 20:
                 //--add char to campaign--//
                 _data = item;
-                _data.campaign_id = _this.campaign_id;
+                _data.campaign_id = _this.operationID;
                 _data.campaign_system_id = null;
                 _data.system_id = null;
                 _data.status_id = 1;
@@ -11207,7 +11209,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
                 request = {
-                  operation_id: _this.campaign_id,
+                  operation_id: _this.operationID,
                   system_id: null,
                   user_status_id: 1
                 }; // add char to campaign
@@ -11215,7 +11217,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 37;
                 return axios({
                   method: "PUT",
-                  url: "/api/newcampaignusersadd/" + item.id + "/" + _this.campaign_id,
+                  url: "/api/newcampaignusersadd/" + item.id + "/" + _this.operationID,
                   withCredentials: true,
                   data: request,
                   headers: {
@@ -11243,7 +11245,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 request = {
                   user_id: _this2.$store.state.user_id,
-                  operation_id: _this2.campaign_id,
+                  operation_id: _this2.operationID,
                   name: _this2.newCharName,
                   entosis: _this2.newLink,
                   ship: _this2.newShip,
@@ -11253,7 +11255,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.next = 3;
                 return axios({
                   method: "POST",
-                  url: "/api/newcampaignusers/" + _this2.campaign_id,
+                  url: "/api/newcampaignusers/" + _this2.operationID,
                   withCredentials: true,
                   data: request,
                   headers: {
@@ -11264,7 +11266,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 _context2.next = 5;
-                return _this2.$store.dispatch("getCampaignUsersRecords", _this2.campaign_id);
+                return _this2.$store.dispatch("getCampaignUsersRecords", _this2.operationID);
 
               case 5:
                 _context2.next = 7;
@@ -11281,7 +11283,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 //   };
                 //   await axios({
                 //     method: "put",
-                //     url: "/api/checkaddremovechar/" + this.campaign_id,
+                //     url: "/api/checkaddremovechar/" + this.operationID,
                 //     withCredentials: true,
                 //     data: request,
                 //     headers: {
@@ -11402,6 +11404,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -11415,7 +11419,9 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
-  props: {},
+  props: {
+    operationID: Text
+  },
   data: function data() {
     return {
       showCharTable: null
@@ -32115,6 +32121,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -51267,6 +51279,13 @@ var render = function () {
                                 _c(
                                   "span",
                                   [
+                                    _c("UsersCharsEdit", {
+                                      attrs: {
+                                        char: item,
+                                        campaign_id: _vm.campaign_id,
+                                      },
+                                    }),
+                                    _vm._v(" "),
                                     _c(
                                       "v-icon",
                                       {
@@ -51418,7 +51437,11 @@ var render = function () {
                           _c(
                             "v-col",
                             { attrs: { cols: "2" } },
-                            [_c("AddOperationUser")],
+                            [
+                              _c("AddOperationUser", {
+                                attrs: { operationID: _vm.operationID },
+                              }),
+                            ],
                             1
                           ),
                         ],
@@ -72074,7 +72097,11 @@ var render = function () {
           _c(
             "v-col",
             { attrs: { cols: "10" } },
-            [_c("CampaignTitleBar", { attrs: { item: _vm.campaigns } })],
+            [
+              _c("CampaignTitleBar", {
+                attrs: { item: _vm.campaigns, operationID: _vm.operationID },
+              }),
+            ],
             1
           ),
         ],
@@ -72084,7 +72111,18 @@ var render = function () {
       _c(
         "v-row",
         { staticClass: "pb-5", attrs: { "no-gutters": "", justify: "center" } },
-        [_c("v-col", { attrs: { cols: "10" } }, [_c("CampaignActiveBar")], 1)],
+        [
+          _c(
+            "v-col",
+            { attrs: { cols: "10" } },
+            [
+              _c("CampaignActiveBar", {
+                attrs: { operationID: _vm.operationID },
+              }),
+            ],
+            1
+          ),
+        ],
         1
       ),
       _vm._v(" "),
@@ -72095,7 +72133,11 @@ var render = function () {
           return _c(
             "v-col",
             { key: index, staticClass: "px-5", attrs: { cols: "6" } },
-            [_c("CampaignSystemCard", { attrs: { item: item } })],
+            [
+              _c("CampaignSystemCard", {
+                attrs: { item: item, operationID: _vm.operationID },
+              }),
+            ],
             1
           )
         }),

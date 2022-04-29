@@ -130,8 +130,8 @@
             </template>
             <template v-slot:[`item.actions`]="{ item }">
               <span>
-                <!-- <UsersCharsEdit :char="item" :campaign_id="campaign_id">
-                </UsersCharsEdit> -->
+                <UsersCharsEdit :char="item" :campaign_id="campaign_id">
+                </UsersCharsEdit>
 
                 <v-icon color="orange darken-3" small @click="removeChar(item)">
                   fas fa-trash-alt
@@ -154,7 +154,9 @@
 import { mapGetters } from "vuex";
 import { mapState } from "vuex";
 export default {
-  props: {},
+  props: {
+    operationID: Text,
+  },
   data() {
     return {
       headers: [
@@ -217,7 +219,7 @@ export default {
     },
 
     pillColor(item) {
-      if (item.campaign_id == this.campaign_id) {
+      if (item.campaign_id == this.operationID) {
         return "red";
       } else {
         return "green";
@@ -225,7 +227,7 @@ export default {
     },
 
     pillText(item) {
-      if (item.campaign_id == this.campaign_id) {
+      if (item.campaign_id == this.operationID) {
         return "Remove";
       } else {
         return "Add";
@@ -233,7 +235,7 @@ export default {
     },
 
     pillIcon(item) {
-      if (item.campaign_id == this.campaign_id) {
+      if (item.campaign_id == this.operationID) {
         return "fas fa-minus";
       } else {
         return "fas fa-plus";
@@ -241,7 +243,7 @@ export default {
     },
 
     async pillClick(item) {
-      if (item.campaign_id == this.campaign_id) {
+      if (item.campaign_id == this.operationID) {
         let data = item;
         data.campaign_id = null;
         data.campaign_system_id = null;
@@ -281,7 +283,7 @@ export default {
           //removes char from campaign
           method: "PUT",
           url:
-            "/api/newcampaignusersremove/" + item.id + "/" + this.campaign_id,
+            "/api/newcampaignusersremove/" + item.id + "/" + this.operationID,
           withCredentials: true,
           data: request,
           headers: {
@@ -301,7 +303,7 @@ export default {
 
         // await axios({
         //   method: "put",
-        //   url: "/api/newcheckaddremovechar/" + this.campaign_id,
+        //   url: "/api/newcheckaddremovechar/" + this.operationID,
         //   withCredentials: true,
         //   data: request,
         //   headers: {
@@ -314,7 +316,7 @@ export default {
       } else {
         //--add char to campaign--//
         let data = item;
-        data.campaign_id = this.campaign_id;
+        data.campaign_id = this.operationID;
         data.campaign_system_id = null;
         data.system_id = null;
         data.status_id = 1;
@@ -343,7 +345,7 @@ export default {
         this.$store.dispatch("updateCampaignSystemByUserID", payload); // removes from old node for new campaign
 
         var request = {
-          operation_id: this.campaign_id,
+          operation_id: this.operationID,
           system_id: null,
           user_status_id: 1,
         };
@@ -351,7 +353,7 @@ export default {
         // add char to campaign
         await axios({
           method: "PUT",
-          url: "/api/newcampaignusersadd/" + item.id + "/" + this.campaign_id,
+          url: "/api/newcampaignusersadd/" + item.id + "/" + this.operationID,
           withCredentials: true,
           data: request,
           headers: {
@@ -371,7 +373,7 @@ export default {
 
         // await axios({
         //   method: "put",
-        //   url: "/api/checkaddremovechar/" + this.campaign_id,
+        //   url: "/api/checkaddremovechar/" + this.operationID,
         //   withCredentials: true,
         //   data: request,
         //   headers: {
@@ -387,7 +389,7 @@ export default {
     async newCharForm() {
       var request = {
         user_id: this.$store.state.user_id,
-        operation_id: this.campaign_id,
+        operation_id: this.operationID,
         name: this.newCharName,
         entosis: this.newLink,
         ship: this.newShip,
@@ -397,7 +399,7 @@ export default {
 
       await axios({
         method: "POST",
-        url: "/api/newcampaignusers/" + this.campaign_id,
+        url: "/api/newcampaignusers/" + this.operationID,
         withCredentials: true,
         data: request,
         headers: {
@@ -405,7 +407,7 @@ export default {
           "Content-Type": "application/json",
         },
       });
-      await this.$store.dispatch("getCampaignUsersRecords", this.campaign_id);
+      await this.$store.dispatch("getCampaignUsersRecords", this.operationID);
       await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
 
       //------logging Start-----//
@@ -419,7 +421,7 @@ export default {
 
       //   await axios({
       //     method: "put",
-      //     url: "/api/checkaddremovechar/" + this.campaign_id,
+      //     url: "/api/checkaddremovechar/" + this.operationID,
       //     withCredentials: true,
       //     data: request,
       //     headers: {
