@@ -60,7 +60,7 @@ class System extends Model
 
     public function newCampaigns()
     {
-        return $this->hasManyThrough(NewCampaign::class, Constellation::class);
+        return $this->belongsToMany(NewCampaign::class, 'new_campaign_systems');
     }
 
 
