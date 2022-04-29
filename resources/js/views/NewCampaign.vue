@@ -5,8 +5,13 @@
         <CampaignTitleBar :item="campaigns"></CampaignTitleBar>
       </v-col>
     </v-row>
-    <v-row no-gutters justify="space-between">
-      <v-col cols="5" v-for="(item, index) in systems" :key="index">
+    <v-row no-gutters justify="space-around">
+      <v-col
+        cols="6"
+        class="px-05"
+        v-for="(item, index) in systems"
+        :key="index"
+      >
         <CampaignSystemTable :item="item"></CampaignSystemTable>
       </v-col>
     </v-row>

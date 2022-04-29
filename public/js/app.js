@@ -31437,6 +31437,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -50228,6 +50233,7 @@ var render = function () {
     [
       _c(
         "v-card",
+        { attrs: { rounded: "xl" } },
         [
           _c("v-card-title", { staticClass: "justify-center primary pa-3" }, [
             _vm._v(_vm._s(_vm.item.system_name)),
@@ -70841,11 +70847,11 @@ var render = function () {
       _vm._v(" "),
       _c(
         "v-row",
-        { attrs: { "no-gutters": "", justify: "space-between" } },
+        { attrs: { "no-gutters": "", justify: "space-around" } },
         _vm._l(_vm.systems, function (item, index) {
           return _c(
             "v-col",
-            { key: index, attrs: { cols: "5" } },
+            { key: index, staticClass: "px-05", attrs: { cols: "6" } },
             [_c("CampaignSystemTable", { attrs: { item: item } })],
             1
           )

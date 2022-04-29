@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card>
+    <v-card rounded="xl">
       <v-card-title class="justify-center primary pa-3">{{
         item.system_name
       }}</v-card-title>
