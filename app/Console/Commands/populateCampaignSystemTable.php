@@ -46,7 +46,7 @@ class populateCampaignSystemTable extends Command
         $campaigns = NewCampaign::whereNotNull('id')->get();
         $this->info($campaigns);
         foreach ($campaigns as $c) {
-            $systemsIDs = System::where('constellation_id', $c->contellation_id)
+            $systemsIDs = System::where('constellation_id', $c->constellation_id)
                 ->pluck('id');
             $this->info($systemsIDs);
             foreach ($systemsIDs as $sid) {
