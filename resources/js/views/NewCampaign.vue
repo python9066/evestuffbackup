@@ -35,9 +35,9 @@ export default {
   methods: {},
 
   computed: {
-    ...mapGetters(["newOperationInfo"]),
+    ...mapGetters([]),
 
-    ...mapState([]),
+    ...mapState(["newOperationInfo"]),
 
     campaigns() {
       return this.newOperationInfo.campaign;

@@ -31394,7 +31394,7 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["newOperationInfo"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])([])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo"])), {}, {
     campaigns: function campaigns() {
       return this.newOperationInfo.campaign;
     }
