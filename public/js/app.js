@@ -10858,7 +10858,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -10873,7 +10872,7 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
-    item: Object
+    item: Array
   },
   data: function data() {
     return {};
@@ -31394,7 +31393,7 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo"])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), {}, {
     campaigns: function campaigns() {
       return this.newOperationInfo.campaign;
     }
@@ -50116,7 +50115,6 @@ var render = function () {
   return _c(
     "div",
     [
-      _vm._v("\n  dance\n  "),
       _c(
         "v-card",
         [

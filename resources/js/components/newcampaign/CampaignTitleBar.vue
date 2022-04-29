@@ -1,6 +1,5 @@
 <template>
   <div>
-    dance
     <v-card>
       <v-card-title>Title</v-card-title>
       <v-card-text>
@@ -26,7 +25,7 @@ function sleep(ms) {
 export default {
   title() {},
   props: {
-    item: Object,
+    item: Array,
   },
   data() {
     return {};
