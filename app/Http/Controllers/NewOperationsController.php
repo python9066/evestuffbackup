@@ -80,14 +80,10 @@ class NewOperationsController extends Controller
                 'campaign.constellation.region:id,region_name',
                 'campaign.alliance:id,name,ticker,standing,url,color',
                 'campaign.system:id,system_name,adm',
-                'campaign.system.webway' => function ($t) {
-                    $t->where('permissions', 1);
-                },
-                'campaign.structure:id,item_id,age',
             ])
             ->first();
 
-        $operationsID = NewOperation::where('link', $id)->pluck('');
+        $operationsID = NewOperation::where('link', $id)->pluck('id');
         $campaignIDs = NewCampaginOperation::where('operation_id', $operationsID)->pluck('campaign_id');
         // $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->where('status_id', [2, 5])->pluck('20000646');
         $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->pluck('constellation_id');
