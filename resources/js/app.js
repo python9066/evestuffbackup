@@ -435,7 +435,7 @@ Vue.use(Clipboard);
 Vue.use(CountdownTimer);
 Vue.use(VueCountdownTimer);
 Vue.use(VueCountupTimer);
-Vue.component(draggable);
+Vue.component("draggable", draggable);
 // library.add(faUserSecret)
 Vue.config.productionTip = false;
 Vue.component(VueCountdown.name, VueCountdown);
