@@ -425,7 +425,7 @@ Vue.component(
 
 Vue.component(
     "AddOperationUser",
-    require("./components/newcampaign/CampaignActiveBar.vue").default
+    require("./components/newcampaign/AddOperationUser.vue").default
 );
 
 Vue.prototype.moment = moment;
