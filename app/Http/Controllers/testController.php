@@ -83,22 +83,6 @@ class testController extends Controller
 
     public function popualteCampaignSystemTable()
     {
-
-        $user = Auth::user();
-        if ($user->can('super')) {
-
-            $campaigns = NewCampaign::all();
-            foreach ($campaigns as $c) {
-                $systemsIDs = System::where('constellation_id', $c->contellation_id)
-                    ->pluck('id');
-                foreach ($systemsIDs as $sid) {
-                    NewCampaignSystem::create([
-                        'system_id' => $sid,
-                        'new_campaign_id' => $c->id
-                    ]);
-                }
-            }
-        }
     }
 
     public static function getCorpWithNoAlliance()
