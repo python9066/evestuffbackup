@@ -66,6 +66,27 @@ class NewOperationsController extends Controller
         ];
     }
 
+
+    public function getInfo($id)
+    {
+        $data = NewOperation::where('link', $id)
+            ->with([
+                'campaign',
+                'campaign.status',
+                'campaign.constellation:id,constellation_name,region_id',
+                'campaign.constellation.region:id,region_name',
+                'campaign.alliance:id,name,ticker,standing,url,color',
+                'campaign.system:id,system_name,adm',
+                'campaign.system.webway' => function ($t) {
+                    $t->where('permissions', 1);
+                },
+                'campaign.structure:id,item_id,age',
+            ])
+            ->first();
+
+        return ['data' => $data];
+    }
+
     /**
      * Store a newly created resource in storage.
      *

@@ -81,6 +81,7 @@ export default new Vuex.Store({
         webwayStartSystems: [],
         newSoloOperations: [],
         newSoloOperationsRegionList: [],
+        newOperationInfo: [],
 
         stationList: [],
 
@@ -96,6 +97,10 @@ export default new Vuex.Store({
     mutations: {
         SET_STATION_LIST(state, stations) {
             state.stationList = stations;
+        },
+
+        SET_OPERATION_PAGE(state, data) {
+            state.newOperationInfo = data;
         },
 
         SET_WEBWAY_SELECTED_START_SYSTEM(state, data) {
@@ -749,6 +754,20 @@ export default new Vuex.Store({
             });
             commit("SET_STATION_LIST", res.data.stations);
         },
+
+        async getOperationInfo({ commit }, id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfo/" + id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_OPERATION_PAGE", res.data.data);
+        },
+
         async getWebwayStartSystems({ commit }) {
             let res = await axios({
                 method: "get",

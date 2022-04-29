@@ -1,4 +1,4 @@
-window._ = require('lodash');
+window._ = require("lodash");
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -7,10 +7,10 @@ window._ = require('lodash');
  */
 
 try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
+    window.Popper = require("popper.js").default;
+    window.$ = window.jQuery = require("jquery");
 
-    require('bootstrap');
+    require("bootstrap");
 } catch (e) {}
 
 /**
@@ -19,7 +19,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios');
+window.axios = require("axios");
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -27,10 +27,9 @@ window.axios = require('axios');
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from 'laravel-echo';
+import Echo from "laravel-echo";
 
-window.Pusher = require('pusher-js');
-
+window.Pusher = require("pusher-js");
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',
@@ -42,15 +41,15 @@ window.Pusher = require('pusher-js');
 // });
 
 window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: '588e30b463a02a48ec1c',
-    // key: 'python9066',
-    cluster: 'eu',
-    wsHost: 'socket.evestuff.online',
+    broadcaster: "pusher",
+    // key: '588e30b463a02a48ec1c',
+    key: "python9066",
+    cluster: "eu",
+    wsHost: "socket.evestuff.online",
     wsPort: 443,
     wssPort: 443,
-	disableStats: true,
+    disableStats: true,
     encrypted: true,
-	forceTLS: true,
-	enabledTransports: ['ws', 'wss']
+    forceTLS: true,
+    enabledTransports: ["ws", "wss"],
 });
