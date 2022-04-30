@@ -11123,7 +11123,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios({
                   //removes char from campaign
                   method: "PUT",
-                  url: "/api/newcampaignusersremove/" + item.id + "/" + _this.operationID,
+                  url: "/api/newcampaignusersremove/" + item.id + "/" + _this.operationID + "/" + _this.$store.state.user_id,
                   withCredentials: true,
                   data: request,
                   headers: {

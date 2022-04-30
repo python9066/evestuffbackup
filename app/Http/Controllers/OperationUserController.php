@@ -108,7 +108,7 @@ class OperationUserController extends Controller
         // TODO Add baordcsat to update stuff
     }
 
-    public function updateremove(Request $request, $id)
+    public function updateremove(Request $request, $id, $opID, $userid)
     {
 
         $node = NewNodeCampaignUser::where('operation_user_id', $id)->first();
@@ -121,6 +121,28 @@ class OperationUserController extends Controller
 
         OperationUser::where('id', $id)->update($request->all());
         // TODO Add boradcast to update info
+        if (Auth::id() == $userid) {
+            $message = Campaignhelper::ownUsersolo($id);
+            $flag = collect([
+                'flag' => 3,
+                'userid' => $id,
+                'id' => $userid,
+                'message' => $message
+            ]);
+
+            broadcast(new OperationOwnUpdate($flag));
+        }
+
+        if (Auth::id() == $userid) {
+            $message = Campaignhelper::opUserSolo($opID, $id);
+            $flag = collect([
+                'flag' => 6,
+                'id' => $opID,
+                'message' => $message
+            ]);
+
+            broadcast(new OperationUpdate($flag));
+        }
     }
 
     /**

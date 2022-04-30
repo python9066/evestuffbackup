@@ -254,7 +254,12 @@ export default {
           //removes char from campaign
           method: "PUT",
           url:
-            "/api/newcampaignusersremove/" + item.id + "/" + this.operationID,
+            "/api/newcampaignusersremove/" +
+            item.id +
+            "/" +
+            this.operationID +
+            "/" +
+            this.$store.state.user_id,
           withCredentials: true,
           data: request,
           headers: {
