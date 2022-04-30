@@ -90707,7 +90707,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     commit("MARK_TIMER_OVER", timer);
   }), _defineProperty(_actions, "removeCharfromOpList", function removeCharfromOpList(_ref55, id) {
     var commit = _ref55.commit;
-    commit("DELETE_OP_CHAR_FROM_OWN_LIST", id);
     commit("DELETE_OP_CHAR_FROM_CHAR_LIST", id);
   }), _defineProperty(_actions, "removeCharfromOwnList", function removeCharfromOwnList(_ref56, id) {
     var commit = _ref56.commit;

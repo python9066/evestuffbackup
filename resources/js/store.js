@@ -1506,7 +1506,6 @@ export default new Vuex.Store({
         },
 
         removeCharfromOpList({ commit }, id) {
-            commit("DELETE_OP_CHAR_FROM_OWN_LIST", id);
             commit("DELETE_OP_CHAR_FROM_CHAR_LIST", id);
         },
 
