@@ -32,7 +32,7 @@
 </template>
 <script>
 import Axios from "axios";
-// import { EventBus } from "../event-bus";
+import { EventBus } from "../../app";
 // import ApiL from "../service/apil";
 import { mapGetters, mapState } from "vuex";
 function sleep(ms) {
@@ -49,7 +49,15 @@ export default {
     };
   },
 
-  async created() {},
+  async created() {
+    EventBus.$on("showSystemTable", (data) => {
+      if (data == 0) {
+        this.showSystemTable = null;
+      } else {
+        this.showSystemTable = 0;
+      }
+    });
+  },
 
   beforeMonunt() {},
 

@@ -11282,7 +11282,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -11331,8 +11332,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
- // import { EventBus } from "../event-bus";
-// import ApiL from "../service/apil";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+ // import ApiL from "../service/apil";
 
 
 
@@ -11349,7 +11361,8 @@ function sleep(ms) {
   },
   data: function data() {
     return {
-      showCharTable: null
+      showCharTable: null,
+      showSystems: false
     };
   },
   created: function created() {
@@ -11399,9 +11412,18 @@ function sleep(ms) {
       } else {
         this.showCharTable = null;
       }
+    },
+    toggleclick: function toggleclick() {
+      if (this.showSystems) {
+        bus.$emit("showSystemTable", 0);
+      } else {
+        bus.$emit("showSystemTable", 1);
+      }
+
+      this.showSystems != this.showSystems;
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     charTableOutlined: function charTableOutlined() {
       if (this.showCharTable == null) {
         return true;
@@ -11428,7 +11450,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -11473,8 +11496,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
- // import { EventBus } from "../event-bus";
-// import ApiL from "../service/apil";
+
+ // import ApiL from "../service/apil";
 
 
 
@@ -11495,11 +11518,22 @@ function sleep(ms) {
     };
   },
   created: function created() {
+    var _this = this;
+
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$on("showSystemTable", function (data) {
+                if (data == 0) {
+                  _this.showSystemTable = null;
+                } else {
+                  _this.showSystemTable = 0;
+                }
+              });
+
+            case 1:
             case "end":
               return _context.stop();
           }
@@ -11535,7 +11569,7 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     filterRound: function filterRound() {
       if (this.showSystemTable) {
         return "rounded-t-xl";
@@ -51665,6 +51699,31 @@ var render = function () {
                               _c("AddOperationUser", {
                                 attrs: { operationID: _vm.operationID },
                               }),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "2" } },
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: {
+                                    color: "primary",
+                                    outlined: _vm.charTableOutlined,
+                                    rounded: "",
+                                    small: "",
+                                  },
+                                  on: { click: _vm.toggleclick },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                test\n              "
+                                  ),
+                                ]
+                              ),
                             ],
                             1
                           ),

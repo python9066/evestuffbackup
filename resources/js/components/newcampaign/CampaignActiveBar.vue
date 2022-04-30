@@ -24,6 +24,17 @@
               <v-col cols="2"
                 ><AddOperationUser :operationID="operationID"></AddOperationUser
               ></v-col>
+              <v-col cols="2">
+                <v-btn
+                  color="primary"
+                  @click="toggleclick"
+                  :outlined="charTableOutlined"
+                  rounded
+                  small
+                >
+                  test
+                </v-btn></v-col
+              >
             </v-row>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -36,7 +47,7 @@
 </template>
 <script>
 import Axios from "axios";
-// import { EventBus } from "../event-bus";
+import { EventBus } from "../../app";
 // import ApiL from "../service/apil";
 import { mapGetters, mapState } from "vuex";
 function sleep(ms) {
@@ -50,6 +61,7 @@ export default {
   data() {
     return {
       showCharTable: null,
+      showSystems: false,
     };
   },
 
@@ -67,6 +79,16 @@ export default {
       } else {
         this.showCharTable = null;
       }
+    },
+
+    toggleclick() {
+      if (this.showSystems) {
+        bus.$emit("showSystemTable", 0);
+      } else {
+        bus.$emit("showSystemTable", 1);
+      }
+
+      this.showSystems != this.showSystems;
     },
   },
 
