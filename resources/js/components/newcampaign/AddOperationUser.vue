@@ -296,7 +296,13 @@ export default {
         // add char to campaign
         await axios({
           method: "PUT",
-          url: "/api/newcampaignusersadd/" + item.id + "/" + this.operationID,
+          url:
+            "/api/newcampaignusersadd/" +
+            item.id +
+            "/" +
+            this.operationID +
+            "/" +
+            this.$store.state.user_id,
           withCredentials: true,
           data: request,
           headers: {

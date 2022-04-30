@@ -11147,7 +11147,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 9;
                 return axios({
                   method: "PUT",
-                  url: "/api/newcampaignusersadd/" + item.id + "/" + _this.operationID,
+                  url: "/api/newcampaignusersadd/" + item.id + "/" + _this.operationID + "/" + _this.$store.state.user_id,
                   withCredentials: true,
                   data: request,
                   headers: {
@@ -32314,11 +32314,11 @@ function sleep(ms) {
 
                 if (e.flag.flag == 5) {
                   _this.$store.dispatch("removeCharfromOpList", e.flag.userid);
-                } // * 6 is to add newley made char to op list
+                } // * 6 update op char table
 
 
                 if (e.flag.flag == 6) {
-                  _this.$store.dispatch("addNewOpChar", e.flag.message);
+                  _this.$store.dispatch("updateOpChar", e.flag.message);
                 }
 
                 if (e.flag.flag == 7) {}
@@ -88472,6 +88472,20 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         state.ownChars.push(data);
       }
     },
+    UPDATE_OP_CHAR: function UPDATE_OP_CHAR(state, data) {
+      var item = state.opUsers.find(function (item) {
+        return item.id === data.id;
+      });
+      var count = state.opUsers.filter(function (item) {
+        return item.id === data.id;
+      }).length;
+
+      if (count > 0) {
+        Object.assign(item, data);
+      } else {
+        state.opUsers.push(data);
+      }
+    },
     ADD_NEW_OP_CHAR: function ADD_NEW_OP_CHAR(state, data) {
       state.opUsers.push(data);
     },
@@ -90802,9 +90816,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
   }), _defineProperty(_actions, "updateNewOwnChar", function updateNewOwnChar(_ref88, data) {
     var commit = _ref88.commit;
     commit("UPDATE_OWN_CHAR", data);
-  }), _defineProperty(_actions, "addNewOpChar", function addNewOpChar(_ref89, data) {
+  }), _defineProperty(_actions, "updateOpChar", function updateOpChar(_ref89, data) {
     var commit = _ref89.commit;
-    commit("ADD_NEW_OP_CHAR", data);
+    commit("UPDATE_OP_CHAR", data);
   }), _defineProperty(_actions, "addStationNotification", function addStationNotification(_ref90, data) {
     var commit = _ref90.commit;
     commit("ADD_STATION_NOTIFICATION", data);

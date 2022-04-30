@@ -67,9 +67,9 @@ export default {
           this.$store.dispatch("removeCharfromOpList", e.flag.userid);
         }
 
-        // * 6 is to add newley made char to op list
+        // * 6 update op char table
         if (e.flag.flag == 6) {
-          this.$store.dispatch("addNewOpChar", e.flag.message);
+          this.$store.dispatch("updateOpChar", e.flag.message);
         }
 
         if (e.flag.flag == 7) {

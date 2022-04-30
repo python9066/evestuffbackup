@@ -127,6 +127,18 @@ export default new Vuex.Store({
             }
         },
 
+        UPDATE_OP_CHAR(state, data) {
+            const item = state.opUsers.find((item) => item.id === data.id);
+            const count = state.opUsers.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                state.opUsers.push(data);
+            }
+        },
+
         ADD_NEW_OP_CHAR(state, data) {
             state.opUsers.push(data);
         },
@@ -1630,8 +1642,8 @@ export default new Vuex.Store({
             commit("UPDATE_OWN_CHAR", data);
         },
 
-        addNewOpChar({ commit }, data) {
-            commit("ADD_NEW_OP_CHAR", data);
+        updateOpChar({ commit }, data) {
+            commit("UPDATE_OP_CHAR", data);
         },
 
         addStationNotification({ commit }, data) {

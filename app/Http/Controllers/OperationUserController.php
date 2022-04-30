@@ -70,7 +70,7 @@ class OperationUserController extends Controller
         //
     }
 
-    public function updateadd(Request $request, $id, $opID)
+    public function updateadd(Request $request, $id, $opID, $userid)
     {
         $node = NewNodeCampaignUser::where('operation_user_id', $id)->first();
 
@@ -81,13 +81,24 @@ class OperationUserController extends Controller
         }
 
 
-        $char =   OperationUser::where('id', $id)->update($request->all());
+        OperationUser::where('id', $id)->update($request->all());
 
-        if (Auth::id() == $char->id) {
+        if (Auth::id() == $userid) {
             $message = Campaignhelper::ownUsersolo($id);
             $flag = collect([
                 'flag' => 3,
                 'userid' => $id,
+                'id' => $userid,
+                'message' => $message
+            ]);
+
+            broadcast(new OperationOwnUpdate($flag));
+        }
+
+        if (Auth::id() == $userid) {
+            $message = Campaignhelper::opUserSolo($opID, $id);
+            $flag = collect([
+                'flag' => 6,
                 'id' => $opID,
                 'message' => $message
             ]);
