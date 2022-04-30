@@ -35437,7 +35437,7 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newSoloOperations", "newSoloOperationsRegionList"])), {}, {
     filterRound: function filterRound() {
-      if (this.filterOpen) {
+      if (this.filterOpen == 0) {
         return "rounded-t-xl";
       } else {
         return "rounded-xl";
