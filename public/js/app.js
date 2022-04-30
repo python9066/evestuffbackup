@@ -87958,12 +87958,12 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
   },
   mutations: {
     DELETE_OP_CHAR_FROM_OWN_LIST: function DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
-      var index = state.opUsers.filter(function (e) {
+      var index = state.ownChars.filter(function (e) {
         return e.id == id;
       });
 
       if (index >= 0) {
-        index = index.filter(function (e) {
+        state.ownChars = state.ownChars.filter(function (e) {
           return e.id != id;
         });
       }
@@ -87974,7 +87974,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       });
 
       if (index >= 0) {
-        index = index.filter(function (e) {
+        state.opUsers = state.opUsers.filter(function (e) {
           return e.id != id;
         });
       }

@@ -100,16 +100,16 @@ export default new Vuex.Store({
     },
     mutations: {
         DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
-            let index = state.opUsers.filter((e) => e.id == id);
+            let index = state.ownChars.filter((e) => e.id == id);
             if (index >= 0) {
-                index = index.filter((e) => e.id != id);
+                state.ownChars = state.ownChars.filter((e) => e.id != id);
             }
         },
 
         DELETE_OP_CHAR_FROM_CHAR_LIST(state, id) {
             let index = state.opUsers.filter((e) => e.id == id);
             if (index >= 0) {
-                index = index.filter((e) => e.id != id);
+                state.opUsers = state.opUsers.filter((e) => e.id != id);
             }
         },
 
