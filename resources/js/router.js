@@ -71,13 +71,13 @@ export default new Router({
             path: "/op/:id",
             name: "op",
             component: NewOperation,
-            beforeEnter(to, from, next) {
-                if (Permissions.indexOf("super") !== -1) {
-                    next();
-                } else {
-                    next("/notifications");
-                }
-            },
+            // beforeEnter(to, from, next) {
+            //     if (Permissions.indexOf("super") !== -1) {
+            //         next();
+            //     } else {
+            //         next("/notifications");
+            //     }
+            // },
             props: (route) => {
                 const id = route.params.id;
                 return { id };
