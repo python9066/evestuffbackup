@@ -46,14 +46,14 @@ export default {
   data() {
     return {
       headers: [
-        { text: "Name", value: "char_name", width: "10%" },
-        { text: "Main", value: "main_name" },
-        { text: "Role", value: "role_name" },
+        { text: "Name", value: "name", width: "10%" },
+        { text: "Main", value: "user.name" },
+        { text: "Role", value: "userrolerole " },
         { text: "Ship", value: "ship" },
-        { text: "Entosis", value: "link" },
-        { text: "System", value: "system_name" },
+        { text: "Entosis", value: "entosis" },
+        { text: "System", value: "system_id" },
         { text: "Node", value: "node_id" },
-        { text: "Status", value: "user_status_name" },
+        { text: "Status", value: "user_status_id" },
 
         // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ],
