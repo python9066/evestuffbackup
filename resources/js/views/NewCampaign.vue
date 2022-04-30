@@ -14,18 +14,20 @@
       </v-col>
     </v-row>
     <v-row no-gutters justify="space-around">
-      <v-col
-        cols="6"
-        class="px-5"
-        v-for="(item, index) in systems"
-        :key="index.id"
-      >
-        <CampaignSystemCard
-          :key="`${index.id}-card`"
-          :item="item"
-          :operationID="operationID"
-        ></CampaignSystemCard>
-      </v-col>
+      <draggable tag="v-col" v-model="systems">
+        <v-col
+          cols="6"
+          class="px-5"
+          v-for="(item, index) in systems"
+          :key="index.id"
+        >
+          <CampaignSystemCard
+            :key="`${index.id}-card`"
+            :item="item"
+            :operationID="operationID"
+          ></CampaignSystemCard>
+        </v-col>
+      </draggable>
     </v-row>
   </div>
 </template>
@@ -86,7 +88,7 @@ export default {
 </script>
 
 <style>
-.button {
+/* .button {
   margin-top: 35px;
 }
 .flip-list-move {
@@ -107,5 +109,5 @@ export default {
 }
 .list-group-item i {
   cursor: pointer;
-}
+} */
 </style>
