@@ -10,6 +10,7 @@ use App\Models\Region;
 use App\Models\System;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use utils\Campaignhelper\Campaignhelper;
 
 class NewOperationsController extends Controller
 {
@@ -94,13 +95,8 @@ class NewOperationsController extends Controller
                 'newCampaigns'
             ])
             ->get();
-
-        $opUsers = OperationUser::where('operation_id', $operationsID)
-            ->with(['user:id,name'])
-            ->get();
-        $ownChars = OperationUser::where('user_id', Auth::id())
-            ->with(['userrole'])
-            ->get();
+        $opUsers = Campaignhelper::opUserAll($operationsID);
+        $ownChars = Campaignhelper::ownUserAll(Auth::id());
 
         return [
             'data' => $data,

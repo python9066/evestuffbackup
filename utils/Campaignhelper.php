@@ -646,7 +646,10 @@ class Campaignhelper
     public static function opUserAll($opID)
     {
         return  OperationUser::where('operation_id', $opID)
-            ->with(['user:id,name'])
+            ->with([
+                'user:id,name',
+                "userole"
+            ])
             ->get();
     }
 
@@ -654,7 +657,10 @@ class Campaignhelper
     {
         return OperationUser::where('operation_id', $opID)
             ->where('id', $id)
-            ->with(['user:id,name'])
+            ->with([
+                'user:id,name',
+                "userole"
+            ])
             ->first();
     }
 }
