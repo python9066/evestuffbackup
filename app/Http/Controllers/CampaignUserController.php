@@ -6,6 +6,7 @@ use App\Events\CampaignSystemUpdate;
 use App\Events\CampaignUserDelete;
 use App\Events\CampaignUserNew;
 use App\Events\CampaignUserUpdate;
+use App\Events\OperationUpdate;
 use App\Models\CampaignSystem;
 use App\Models\CampaignSystemRecords;
 use App\Models\CampaignSystemUsers;
@@ -187,10 +188,18 @@ class CampaignUserController extends Controller
         broadcast(new CampaignUserDelete($flag))->toOthers();
     }
 
-    public function newdestroy($id)
+    public function newdestroy($id, $opID)
     {
 
         OperationUser::destroy($id);
+
+        $flag = collect([
+            'userid' => $id,
+            'id' => $opID
+        ]);
+
+        broadcast(new OperationUpdate($flag));
+
         // TODO Sort out boardcasting
     }
 }

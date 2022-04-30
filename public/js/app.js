@@ -11249,7 +11249,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 2;
                 return axios({
                   method: "DELETE",
-                  url: "/api/newcampaignusers/" + item.id,
+                  url: "/api/newcampaignusers/" + item.id + "/" + _this3.operationID,
                   withCredentials: true,
                   headers: {
                     Accept: "application/json",
@@ -32084,7 +32084,7 @@ function sleep(ms) {
               return _this.$store.dispatch("getOperationInfo", _this.operationLink);
 
             case 3:
-              Echo["private"]("operations." + operationID).listen("OperationUpdate", function (e) {
+              Echo["private"]("operations." + _this.operationID).listen("OperationUpdate", function (e) {
                 if (e.flag.flag == 1) {}
 
                 if (e.flag.flag == 2) {}

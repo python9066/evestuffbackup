@@ -47,28 +47,31 @@ export default {
   async created() {
     this.operationLink = this.$route.params.id;
     await this.$store.dispatch("getOperationInfo", this.operationLink);
-    Echo.private("operations." + operationID).listen("OperationUpdate", (e) => {
-      if (e.flag.flag == 1) {
-      }
+    Echo.private("operations." + this.operationID).listen(
+      "OperationUpdate",
+      (e) => {
+        if (e.flag.flag == 1) {
+        }
 
-      if (e.flag.flag == 2) {
-      }
+        if (e.flag.flag == 2) {
+        }
 
-      if (e.flag.flag == 3) {
-      }
+        if (e.flag.flag == 3) {
+        }
 
-      if (e.flag.flag == 4) {
-      }
+        if (e.flag.flag == 4) {
+        }
 
-      if (e.flag.flag == 5) {
-      }
+        if (e.flag.flag == 5) {
+        }
 
-      if (e.flag.flag == 6) {
-      }
+        if (e.flag.flag == 6) {
+        }
 
-      if (e.flag.flag == 7) {
+        if (e.flag.flag == 7) {
+        }
       }
-    });
+    );
   },
 
   beforeMonunt() {},

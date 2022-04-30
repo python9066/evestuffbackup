@@ -290,5 +290,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/newcampaignusersremove/{id}/{opID}', 'CampaignUserController@newupdateremove');
     Route::put('/newcampaignusersadd/{id}/{opID}', 'CampaignUserController@newupdateadd');
     Route::post('/newcampaignusers/{opID}', 'CampaignUserController@newstore');
-    Route::delete('/newcampaignusers/{id}', 'CampaignUserController@newdestroy');
+    Route::delete('/newcampaignusers/{id}/{opID}', 'CampaignUserController@newdestroy');
 });
