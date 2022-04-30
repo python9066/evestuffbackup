@@ -32057,6 +32057,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -72134,11 +72140,18 @@ var render = function () {
             [
               _c(
                 "transition-group",
-                { attrs: { type: "transition", name: "flip-list" } },
+                {
+                  staticClass: "systems",
+                  attrs: { type: "transition", name: "flip-list", tag: "div" },
+                },
                 _vm._l(_vm.systems, function (item, index) {
                   return _c(
-                    "div",
-                    { key: index.id, staticClass: "px-5 col-6" },
+                    "v-col",
+                    {
+                      key: index.id,
+                      staticClass: "px-5",
+                      attrs: { cols: "6" },
+                    },
                     [
                       _c("CampaignSystemCard", {
                         attrs: { item: item, operationID: _vm.operationID },
@@ -72147,7 +72160,7 @@ var render = function () {
                     1
                   )
                 }),
-                0
+                1
               ),
             ],
             1

@@ -15,9 +15,15 @@
     </v-row>
     <v-row no-gutters justify="space-around">
       <draggable v-model="systems">
-        <transition-group type="transition" name="flip-list">
-          <div
-            class="px-5 col-6"
+        <transition-group
+          type="transition"
+          name="flip-list"
+          tag="div"
+          class="systems"
+        >
+          <v-col
+            cols="6"
+            class="px-5"
             v-for="(item, index) in systems"
             :key="index.id"
           >
@@ -25,7 +31,7 @@
               :item="item"
               :operationID="operationID"
             ></CampaignSystemCard>
-          </div>
+          </v-col>
         </transition-group>
       </draggable>
     </v-row>
