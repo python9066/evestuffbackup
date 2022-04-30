@@ -72123,7 +72123,6 @@ var render = function () {
           _c(
             "draggable",
             {
-              attrs: { tag: "v-layout" },
               model: {
                 value: _vm.systems,
                 callback: function ($$v) {
