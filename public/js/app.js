@@ -11415,9 +11415,9 @@ function sleep(ms) {
     },
     toggleclick: function toggleclick() {
       if (this.showSystems) {
-        bus.$emit("showSystemTable", 0);
+        _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 0);
       } else {
-        bus.$emit("showSystemTable", 1);
+        _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 1);
       }
 
       this.showSystems != this.showSystems;

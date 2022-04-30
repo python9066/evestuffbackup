@@ -83,9 +83,9 @@ export default {
 
     toggleclick() {
       if (this.showSystems) {
-        bus.$emit("showSystemTable", 0);
+        EventBus.$emit("showSystemTable", 0);
       } else {
-        bus.$emit("showSystemTable", 1);
+        EventBus.$emit("showSystemTable", 1);
       }
 
       this.showSystems != this.showSystems;
