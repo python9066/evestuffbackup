@@ -32080,10 +32080,27 @@ function sleep(ms) {
           switch (_context.prev = _context.next) {
             case 0:
               _this.operationLink = _this.$route.params.id;
+              _context.next = 3;
+              return _this.$store.dispatch("getOperationInfo", _this.operationLink);
 
-              _this.$store.dispatch("getOperationInfo", _this.operationLink);
+            case 3:
+              Echo["private"]("operations." + operationID).listen("OperationUpdate", function (e) {
+                if (e.flag.flag == 1) {}
 
-            case 2:
+                if (e.flag.flag == 2) {}
+
+                if (e.flag.flag == 3) {}
+
+                if (e.flag.flag == 4) {}
+
+                if (e.flag.flag == 5) {}
+
+                if (e.flag.flag == 6) {}
+
+                if (e.flag.flag == 7) {}
+              });
+
+            case 4:
             case "end":
               return _context.stop();
           }
@@ -32091,23 +32108,7 @@ function sleep(ms) {
       }, _callee);
     }))();
   },
-  beforeMonunt: function beforeMonunt() {
-    Echo["private"]("operations." + operationID).listen("OperationUpdate", function (e) {
-      if (e.flag.flag == 1) {}
-
-      if (e.flag.flag == 2) {}
-
-      if (e.flag.flag == 3) {}
-
-      if (e.flag.flag == 4) {}
-
-      if (e.flag.flag == 5) {}
-
-      if (e.flag.flag == 6) {}
-
-      if (e.flag.flag == 7) {}
-    });
-  },
+  beforeMonunt: function beforeMonunt() {},
   beforeCreate: function beforeCreate() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {

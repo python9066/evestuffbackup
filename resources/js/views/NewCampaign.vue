@@ -46,10 +46,7 @@ export default {
 
   async created() {
     this.operationLink = this.$route.params.id;
-    this.$store.dispatch("getOperationInfo", this.operationLink);
-  },
-
-  beforeMonunt() {
+    await this.$store.dispatch("getOperationInfo", this.operationLink);
     Echo.private("operations." + operationID).listen("OperationUpdate", (e) => {
       if (e.flag.flag == 1) {
       }
@@ -73,6 +70,8 @@ export default {
       }
     });
   },
+
+  beforeMonunt() {},
 
   async beforeCreate() {},
 
