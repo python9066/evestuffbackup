@@ -19,4 +19,15 @@ class OperationUser extends Model
     {
         return $this->belongsTo(CampaignUserRole::class, "role_id", "id");
     }
+
+    protected $casts = [
+        'id' => 'integer',
+        'user_id' => 'integer',
+        'entosis' => 'integer',
+        'operation_id' => 'integer',
+        'user_status_id' => 'integer',
+        'system_id' => 'integer',
+        'role_id' => 'integer',
+
+    ];
 }
