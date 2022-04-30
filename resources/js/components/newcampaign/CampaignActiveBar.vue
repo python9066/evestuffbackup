@@ -1,7 +1,12 @@
 <template>
   <v-row no-gutters>
     <v-col>
-      <v-expansion-panels v-model="showCharTable" readonly popout>
+      <v-expansion-panels
+        v-model="showCharTable"
+        readonly
+        popout
+        style="cursor: context-menu"
+      >
         <v-expansion-panel>
           <v-expansion-panel-header expand-icon="">
             <v-row no-gutters>
