@@ -133,16 +133,15 @@ class OperationUserController extends Controller
             broadcast(new OperationOwnUpdate($flag));
         }
 
-        if (Auth::id() == $userid) {
-            $message = Campaignhelper::opUserSolo($opID, $id);
-            $flag = collect([
-                'flag' => 6,
-                'id' => $opID,
-                'message' => $message
-            ]);
 
-            broadcast(new OperationUpdate($flag));
-        }
+        $message = Campaignhelper::opUserSolo($opID, $id);
+        $flag = collect([
+            'flag' => 6,
+            'id' => $opID,
+            'message' => $message
+        ]);
+
+        broadcast(new OperationUpdate($flag));
     }
 
     /**
