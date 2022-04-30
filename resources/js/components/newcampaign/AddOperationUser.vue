@@ -160,10 +160,10 @@ export default {
   data() {
     return {
       headers: [
-        { text: "Name", value: "char_name" },
-        { text: "Role", value: "role_name" },
+        { text: "Name", value: "name" },
+        { text: "Role", value: "userrole.role" },
         { text: "Ship", value: "ship" },
-        { text: "Entosis", value: "link" },
+        { text: "Entosis", value: "entosis" },
         { text: "", value: "addRemove", align: "center" },
         { text: "", value: "actions", align: "end" },
 

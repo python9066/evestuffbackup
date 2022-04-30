@@ -11002,16 +11002,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       headers: [{
         text: "Name",
-        value: "char_name"
+        value: "name"
       }, {
         text: "Role",
-        value: "role_name"
+        value: "userrole.role"
       }, {
         text: "Ship",
         value: "ship"
       }, {
         text: "Entosis",
-        value: "link"
+        value: "entosis"
       }, {
         text: "",
         value: "addRemove",
