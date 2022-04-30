@@ -87958,21 +87958,25 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
   },
   mutations: {
     DELETE_OP_CHAR_FROM_OWN_LIST: function DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
-      var index = state.opUsers.findIndex(function (e) {
+      var index = state.opUsers.filter(function (e) {
         return e.id == id;
       });
 
       if (index >= 0) {
-        state.nodeJoin.splice(index, 1);
+        index = index.filter(function (e) {
+          return e.id != id;
+        });
       }
     },
     DELETE_OP_CHAR_FROM_CHAR_LIST: function DELETE_OP_CHAR_FROM_CHAR_LIST(state, id) {
-      var index = state.opUsers.findIndex(function (e) {
+      var index = state.opUsers.filter(function (e) {
         return e.id == id;
       });
 
       if (index >= 0) {
-        state.nodeJoin.splice(index, 1);
+        index = index.filter(function (e) {
+          return e.id != id;
+        });
       }
     },
     SET_STATION_LIST: function SET_STATION_LIST(state, stations) {
