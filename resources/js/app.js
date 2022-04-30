@@ -428,6 +428,11 @@ Vue.component(
     require("./components/newcampaign/AddOperationUser.vue").default
 );
 
+Vue.component(
+    "OperationUserTable",
+    require("./components/newcampaign/OperationUserTable.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(Clipboard);
