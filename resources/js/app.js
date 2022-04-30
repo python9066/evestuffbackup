@@ -26,7 +26,6 @@ import VueMask from "v-mask";
 import Permissions from "./mixins/Permissions.vue";
 import titleMixin from "./mixins/titleMixin";
 import Clipboard from "v-clipboard";
-import draggable from "vuedraggable";
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 library.add(fas); // Include needed icons
@@ -435,7 +434,6 @@ Vue.use(Clipboard);
 Vue.use(CountdownTimer);
 Vue.use(VueCountdownTimer);
 Vue.use(VueCountupTimer);
-Vue.component("draggable", draggable);
 // library.add(faUserSecret)
 Vue.config.productionTip = false;
 Vue.component(VueCountdown.name, VueCountdown);

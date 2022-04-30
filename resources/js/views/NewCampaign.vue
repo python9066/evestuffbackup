@@ -14,20 +14,18 @@
       </v-col>
     </v-row>
     <v-row no-gutters justify="space-around">
-      <draggable v-model="systems">
-        <v-col
-          cols="6"
-          class="px-5"
-          v-for="(item, index) in systems"
-          :key="index.id"
-        >
-          <CampaignSystemCard
-            :key="`${index.id}-card`"
-            :item="item"
-            :operationID="operationID"
-          ></CampaignSystemCard>
-        </v-col>
-      </draggable>
+      <v-col
+        cols="6"
+        class="px-5"
+        v-for="(item, index) in systems"
+        :key="index.id"
+      >
+        <CampaignSystemCard
+          :key="`${index.id}-card`"
+          :item="item"
+          :operationID="operationID"
+        ></CampaignSystemCard>
+      </v-col>
     </v-row>
   </div>
 </template>
