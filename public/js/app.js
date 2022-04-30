@@ -11713,7 +11713,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "node_id"
       }, {
         text: "Status",
-        value: "user_status_id"
+        value: "userstatus.name"
       } // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ],
       statusflag: 0,

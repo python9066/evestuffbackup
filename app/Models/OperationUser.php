@@ -20,6 +20,16 @@ class OperationUser extends Model
         return $this->belongsTo(CampaignUserRole::class, "role_id", "id");
     }
 
+    public function userstatus()
+    {
+        return $this->belongsTo(CampaignUserStatus::class, "user_status_id", "id");
+    }
+
+    public function system()
+    {
+        return $this->belongsTo(System::class, "system_id", "id");
+    }
+
     protected $casts = [
         'id' => 'integer',
         'user_id' => 'integer',

@@ -648,7 +648,9 @@ class Campaignhelper
         return  OperationUser::where('operation_id', $opID)
             ->with([
                 'user:id,name',
-                "userrole"
+                "userrole",
+                "userstatus",
+                "system"
             ])
             ->get();
     }
@@ -659,7 +661,9 @@ class Campaignhelper
             ->where('id', $id)
             ->with([
                 'user:id,name',
-                "userrole"
+                "userrole",
+                "userstatus",
+                "system"
             ])
             ->first();
     }

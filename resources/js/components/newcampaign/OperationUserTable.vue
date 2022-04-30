@@ -53,7 +53,7 @@ export default {
         { text: "Entosis", value: "entosis" },
         { text: "System", value: "system_id" },
         { text: "Node", value: "node_id" },
-        { text: "Status", value: "user_status_id" },
+        { text: "Status", value: "userstatus.name" },
 
         // { text: "Vulernable End Time", value: "vulnerable_end_time" }
       ],
