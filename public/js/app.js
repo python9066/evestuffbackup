@@ -32055,8 +32055,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 
@@ -39377,7 +39375,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .button {\n  margin-top: 35px;\n}\n.flip-list-move {\n  transition: transform 0.5s;\n}\n.no-move {\n  transition: transform 0s;\n}\n.ghost {\n  opacity: 0.5;\n  background: #c8ebfb;\n}\n.list-group {\n  min-height: 20px;\n}\n.list-group-item {\n  cursor: move;\n}\n.list-group-item i {\n  cursor: pointer;\n} */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .button {\n  margin-top: 35px;\n}\n.flip-list-move {\n  transition: transform 0.5s;\n}\n.no-move {\n  transition: transform 0s;\n}\n.ghost {\n  opacity: 0.5;\n  background: #c8ebfb;\n}\n.list-group {\n  min-height: 20px;\n}\n.list-group-item {\n  cursor: move;\n}\n.list-group-item i {\n  cursor: pointer;\n} */\n", ""]);
 
 // exports
 
@@ -72119,34 +72117,19 @@ var render = function () {
       _c(
         "v-row",
         { attrs: { "no-gutters": "", justify: "space-around" } },
-        [
-          _c(
-            "draggable",
-            {
-              model: {
-                value: _vm.systems,
-                callback: function ($$v) {
-                  _vm.systems = $$v
-                },
-                expression: "systems",
-              },
-            },
-            _vm._l(_vm.systems, function (item, index) {
-              return _c(
-                "v-col",
-                { key: index.id, staticClass: "px-5", attrs: { cols: "6" } },
-                [
-                  _c("CampaignSystemCard", {
-                    key: index.id + "-card",
-                    attrs: { item: item, operationID: _vm.operationID },
-                  }),
-                ],
-                1
-              )
-            }),
+        _vm._l(_vm.systems, function (item, index) {
+          return _c(
+            "v-col",
+            { key: index.id, staticClass: "px-5", attrs: { cols: "6" } },
+            [
+              _c("CampaignSystemCard", {
+                key: index.id + "-card",
+                attrs: { item: item, operationID: _vm.operationID },
+              }),
+            ],
             1
-          ),
-        ],
+          )
+        }),
         1
       ),
     ],
@@ -78832,8 +78815,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_titleMixin__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./mixins/titleMixin */ "./resources/js/mixins/titleMixin.js");
 /* harmony import */ var v_clipboard__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! v-clipboard */ "./node_modules/v-clipboard/dist/index.min.js");
 /* harmony import */ var v_clipboard__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(v_clipboard__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
-/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_19__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -78861,8 +78842,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window
 
 
 
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("draggable", vuedraggable__WEBPACK_IMPORTED_MODULE_19___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("font-awesome-icon", _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_10__["FontAwesomeIcon"]);
 _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_8__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__["fas"]); // Include needed icons
 

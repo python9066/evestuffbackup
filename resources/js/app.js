@@ -26,9 +26,7 @@ import VueMask from "v-mask";
 import Permissions from "./mixins/Permissions.vue";
 import titleMixin from "./mixins/titleMixin";
 import Clipboard from "v-clipboard";
-import draggable from "vuedraggable";
 
-Vue.component("draggable", draggable);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 library.add(fas); // Include needed icons
 Vue.component(
