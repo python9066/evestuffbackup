@@ -45,6 +45,11 @@ export default {
   },
 
   async created() {
+    this.operationLink = this.$route.params.id;
+    this.$store.dispatch("getOperationInfo", this.operationLink);
+  },
+
+  beforeMonunt() {
     Echo.private("operations." + operationID).listen(
       "StationLogUpdate",
       (e) => {
@@ -55,12 +60,7 @@ export default {
     );
   },
 
-  beforeMonunt() {},
-
-  async beforeCreate() {
-    this.operationLink = this.$route.params.id;
-    this.$store.dispatch("getOperationInfo", this.operationLink);
-  },
+  async beforeCreate() {},
 
   async mounted() {},
   methods: {},

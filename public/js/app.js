@@ -32079,13 +32079,11 @@ function sleep(ms) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              Echo["private"]("operations." + operationID).listen("StationLogUpdate", function (e) {
-                if (e.flag.message != null) {
-                  _this.$store.dispatch("addLoggingStation", e.flag.message);
-                }
-              });
+              _this.operationLink = _this.$route.params.id;
 
-            case 1:
+              _this.$store.dispatch("getOperationInfo", _this.operationLink);
+
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -32093,20 +32091,21 @@ function sleep(ms) {
       }, _callee);
     }))();
   },
-  beforeMonunt: function beforeMonunt() {},
-  beforeCreate: function beforeCreate() {
+  beforeMonunt: function beforeMonunt() {
     var _this2 = this;
 
+    Echo["private"]("operations." + operationID).listen("StationLogUpdate", function (e) {
+      if (e.flag.message != null) {
+        _this2.$store.dispatch("addLoggingStation", e.flag.message);
+      }
+    });
+  },
+  beforeCreate: function beforeCreate() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _this2.operationLink = _this2.$route.params.id;
-
-              _this2.$store.dispatch("getOperationInfo", _this2.operationLink);
-
-            case 2:
             case "end":
               return _context2.stop();
           }
