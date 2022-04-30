@@ -11415,12 +11415,12 @@ function sleep(ms) {
     },
     toggleclick: function toggleclick() {
       if (this.showSystems) {
+        this.showSystems != this.showSystems;
         _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 0);
       } else {
+        this.showSystems != this.showSystems;
         _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 1);
       }
-
-      this.showSystems != this.showSystems;
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
