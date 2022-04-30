@@ -99,6 +99,20 @@ export default new Vuex.Store({
         ownChars: {},
     },
     mutations: {
+        DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
+            let index = state.opUsers.findIndex((e) => e.id == id);
+            if (index >= 0) {
+                state.nodeJoin.splice(index, 1);
+            }
+        },
+
+        DELETE_OP_CHAR_FROM_CHAR_LIST(state, id) {
+            let index = state.opUsers.findIndex((e) => e.id == id);
+            if (index >= 0) {
+                state.nodeJoin.splice(index, 1);
+            }
+        },
+
         SET_STATION_LIST(state, stations) {
             state.stationList = stations;
         },
@@ -1459,6 +1473,11 @@ export default new Vuex.Store({
 
         markOver({ commit }, timer) {
             commit("MARK_TIMER_OVER", timer);
+        },
+
+        removeCharfromOwnandList({ commit }, id) {
+            commit("DELETE_OP_CHAR_FROM_OWN_LIST", id);
+            commit("DELETE_OP_CHAR_FROM_CHAR_LIST", id);
         },
 
         updateWebwaySelectedStartSystem({ commit }, data) {

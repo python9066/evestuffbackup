@@ -62,7 +62,9 @@ export default {
         if (e.flag.flag == 4) {
         }
 
+        // * 5 is to remove op char from own list and chartable
         if (e.flag.flag == 5) {
+          this.$store.dispatch("removeCharfromOwnandList", e.flag.userid);
         }
 
         if (e.flag.flag == 6) {

@@ -194,6 +194,7 @@ class CampaignUserController extends Controller
         OperationUser::destroy($id);
 
         $flag = collect([
+            'flag' => 5,
             'userid' => $id,
             'id' => $opID
         ]);
