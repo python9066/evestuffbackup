@@ -118,6 +118,7 @@ class OperationUserController extends Controller
             $node->save();
             // TODO Add boradcast to update node
         }
+        $message2 = Campaignhelper::opUserSolo($opID, $id);
 
         OperationUser::where('id', $id)->update($request->all());
         // TODO Add boradcast to update info
@@ -134,11 +135,10 @@ class OperationUserController extends Controller
         }
 
 
-        $message = Campaignhelper::opUserSolo($opID, $id);
         $flag = collect([
             'flag' => 6,
             'id' => $opID,
-            'message' => $message
+            'message' => $message2
         ]);
 
         broadcast(new OperationUpdate($flag));
