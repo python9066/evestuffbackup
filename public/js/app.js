@@ -51350,10 +51350,14 @@ var render = function () {
             [
               _c(
                 "v-expansion-panel",
+                { staticStyle: { cursor: "context-menu" } },
                 [
                   _c(
                     "v-expansion-panel-header",
-                    { attrs: { "expand-icon": "" } },
+                    {
+                      staticStyle: { cursor: "context-menu" },
+                      attrs: { "expand-icon": "" },
+                    },
                     [
                       _c(
                         "v-row",
