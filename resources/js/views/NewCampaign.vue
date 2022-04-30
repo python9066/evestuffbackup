@@ -81,7 +81,7 @@ export default {
     );
 
     Echo.private("operationsown." + this.$store.state.user_id).listen(
-      "OperationUpdate",
+      "OperationOwnUpdate",
       (e) => {
         if (e.flag.flag == 1) {
         }

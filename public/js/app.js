@@ -32325,7 +32325,7 @@ function sleep(ms) {
 
                 if (e.flag.flag == 8) {}
               });
-              Echo["private"]("operationsown." + _this.$store.state.user_id).listen("OperationUpdate", function (e) {
+              Echo["private"]("operationsown." + _this.$store.state.user_id).listen("OperationOwnUpdate", function (e) {
                 if (e.flag.flag == 1) {}
 
                 if (e.flag.flag == 2) {} // * 3 add/update char to char table
