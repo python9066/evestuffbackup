@@ -11469,6 +11469,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -11531,7 +11535,15 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])),
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])), {}, {
+    filterRound: function filterRound() {
+      if (this.showSystemTable) {
+        return "rounded-t-xl";
+      } else {
+        return "rounded-xl";
+      }
+    }
+  }),
   beforeDestroy: function beforeDestroy() {}
 });
 
@@ -51725,6 +51737,7 @@ var render = function () {
           _c(
             "v-expansion-panel-header",
             {
+              class: _vm.filterRound,
               staticStyle: { cursor: "context-menu" },
               attrs: { color: "primary" },
             },

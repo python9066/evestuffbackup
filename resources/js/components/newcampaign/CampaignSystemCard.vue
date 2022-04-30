@@ -15,7 +15,11 @@
     style="cursor: context-menu"
   >
     <v-expansion-panel class="rounded-xl" style="cursor: context-menu">
-      <v-expansion-panel-header style="cursor: context-menu" color="primary">
+      <v-expansion-panel-header
+        style="cursor: context-menu"
+        color="primary"
+        :class="filterRound"
+      >
         <v-row no-gutters>
           <v-col cols="2">
             {{ item.system_name }}
@@ -58,6 +62,14 @@ export default {
     ...mapGetters([]),
 
     ...mapState([]),
+
+    filterRound() {
+      if (this.showSystemTable) {
+        return "rounded-t-xl";
+      } else {
+        return "rounded-xl";
+      }
+    },
   },
   beforeDestroy() {},
 };
