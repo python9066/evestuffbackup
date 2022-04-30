@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OperationOwnUpdate;
 use App\Events\OperationUpdate;
 use App\Models\NewNodeCampaignUser;
 use App\Models\OperationUser;
@@ -80,7 +81,19 @@ class OperationUserController extends Controller
         }
 
 
-        OperationUser::where('id', $id)->update($request->all());
+        $char =   OperationUser::where('id', $id)->update($request->all());
+
+        if (Auth::id() == $char->id) {
+            $message = Campaignhelper::ownUsersolo($id);
+            $flag = collect([
+                'flag' => 3,
+                'userid' => $id,
+                'id' => $opID,
+                'message' => $message
+            ]);
+
+            broadcast(new OperationUpdate($flag));
+        }
         // TODO Add baordcsat to update stuff
     }
 
@@ -119,7 +132,7 @@ class OperationUserController extends Controller
      */
     public function destroy($id, $opID)
     {
-
+        $userid = OperationUser::where('id', $id)->select('user_id');
         OperationUser::destroy($id);
 
         $flag = collect([
@@ -129,6 +142,17 @@ class OperationUserController extends Controller
         ]);
 
         broadcast(new OperationUpdate($flag));
+
+        if (Auth::id() == $userid) {
+
+            $flag = collect([
+                'flag' => 5,
+                'userid' => $id,
+                'id' => $userid
+            ]);
+
+            broadcast(new OperationOwnUpdate($flag));
+        }
 
         // TODO Sort out boardcasting
     }

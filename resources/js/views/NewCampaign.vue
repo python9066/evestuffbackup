@@ -55,9 +55,8 @@ export default {
 
         if (e.flag.flag == 2) {
         }
-        // * 3 add char to char table
+        // * 3 add/update char to char table
         if (e.flag.flag == 3) {
-          this.$store.dispatch("addNewOwnChar", e.flag.message);
         }
         // * 4 update own char list
         if (e.flag.flag == 4) {
@@ -65,7 +64,7 @@ export default {
 
         // * 5 is to remove op char from own list and chartable
         if (e.flag.flag == 5) {
-          this.$store.dispatch("removeCharfromOwnandList", e.flag.userid);
+          this.$store.dispatch("removeCharfromOpList", e.flag.userid);
         }
 
         // * 6 is to add newley made char to op list
@@ -74,6 +73,39 @@ export default {
         }
 
         if (e.flag.flag == 7) {
+        }
+
+        if (e.flag.flag == 8) {
+        }
+      }
+    );
+
+    Echo.private("operationsown." + this.$store.state.user_id).listen(
+      "OperationUpdate",
+      (e) => {
+        if (e.flag.flag == 1) {
+        }
+
+        if (e.flag.flag == 2) {
+        }
+        // * 3 add/update char to char table
+        if (e.flag.flag == 3) {
+          this.$store.dispatch("updateNewOwnChar", e.flag.message);
+        }
+        if (e.flag.flag == 4) {
+        }
+
+        if (e.flag.flag == 5) {
+          this.$store.dispatch("removeCharfromOwnList", e.flag.userid);
+        }
+
+        if (e.flag.flag == 6) {
+        }
+
+        if (e.flag.flag == 7) {
+        }
+
+        if (e.flag.flag == 8) {
         }
       }
     );
@@ -102,6 +134,9 @@ export default {
       return this.campaignSystems;
     },
   },
-  beforeDestroy() {},
+  beforeDestroy() {
+    Echo.leave("operations." + this.operationID);
+    Echo.leave("operationsown." + this.$store.state.user_id);
+  },
 };
 </script>

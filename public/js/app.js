@@ -32083,11 +32083,11 @@ function sleep(ms) {
               Echo["private"]("operations." + _this.operationID).listen("OperationUpdate", function (e) {
                 if (e.flag.flag == 1) {}
 
-                if (e.flag.flag == 2) {} // * 3 add char to char table
+                if (e.flag.flag == 2) {} // * 3 add/update char to char table
 
 
                 if (e.flag.flag == 3) {
-                  _this.$store.dispatch("addNewOwnChar", e.flag.message);
+                  _this.$store.dispatch("updateNewOwnChar", e.flag.message);
                 } // * 4 update own char list
 
 
@@ -32104,9 +32104,38 @@ function sleep(ms) {
                 }
 
                 if (e.flag.flag == 7) {}
+
+                if (e.flag.flag == 8) {}
+              });
+              Echo["private"]("operationsown." + _this.$store.state.user_id).listen("OperationUpdate", function (e) {
+                if (e.flag.flag == 1) {}
+
+                if (e.flag.flag == 2) {} // * 3 add/update char to char table
+
+
+                if (e.flag.flag == 3) {
+                  _this.$store.dispatch("updateNewOwnChar", e.flag.message);
+                } // * 4 update own char list
+
+
+                if (e.flag.flag == 4) {} // * 5 is to remove op char from own list and chartable
+
+
+                if (e.flag.flag == 5) {
+                  _this.$store.dispatch("removeCharfromOwnandList", e.flag.userid);
+                } // * 6 is to add newley made char to op list
+
+
+                if (e.flag.flag == 6) {
+                  _this.$store.dispatch("addNewOpChar", e.flag.message);
+                }
+
+                if (e.flag.flag == 7) {}
+
+                if (e.flag.flag == 8) {}
               });
 
-            case 4:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -87982,8 +88011,19 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         });
       }
     },
-    ADD_CHAR: function ADD_CHAR(state, data) {
-      state.ownChars.push(data);
+    UPDATE_OWN_CHAR: function UPDATE_OWN_CHAR(state, data) {
+      var item = state.ownChars.find(function (item) {
+        return item.id === data.id;
+      });
+      var count = state.ownChars.filter(function (item) {
+        return item.id === data.id;
+      }).length;
+
+      if (count > 0) {
+        Object.assign(item, data);
+      } else {
+        state.ownChars.push(data);
+      }
     },
     ADD_NEW_OP_CHAR: function ADD_NEW_OP_CHAR(state, data) {
       state.opUsers.push(data);
@@ -90309,9 +90349,9 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
   }), _defineProperty(_actions, "addAmmoRequest", function addAmmoRequest(_ref86, data) {
     var commit = _ref86.commit;
     commit("ADD_AMMO_REQUEST", data);
-  }), _defineProperty(_actions, "addNewOwnChar", function addNewOwnChar(_ref87, data) {
+  }), _defineProperty(_actions, "updateNewOwnChar", function updateNewOwnChar(_ref87, data) {
     var commit = _ref87.commit;
-    commit("ADD_CHAR", data);
+    commit("UPDATE_OWN_CHAR", data);
   }), _defineProperty(_actions, "addNewOpChar", function addNewOpChar(_ref88, data) {
     var commit = _ref88.commit;
     commit("ADD_NEW_OP_CHAR", data);

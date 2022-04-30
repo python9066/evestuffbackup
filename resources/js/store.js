@@ -115,8 +115,16 @@ export default new Vuex.Store({
             }
         },
 
-        ADD_CHAR(state, data) {
-            state.ownChars.push(data);
+        UPDATE_OWN_CHAR(state, data) {
+            const item = state.ownChars.find((item) => item.id === data.id);
+            const count = state.ownChars.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                state.ownChars.push(data);
+            }
         },
 
         ADD_NEW_OP_CHAR(state, data) {
@@ -1485,9 +1493,13 @@ export default new Vuex.Store({
             commit("MARK_TIMER_OVER", timer);
         },
 
-        removeCharfromOwnandList({ commit }, id) {
+        removeCharfromOpList({ commit }, id) {
             commit("DELETE_OP_CHAR_FROM_OWN_LIST", id);
             commit("DELETE_OP_CHAR_FROM_CHAR_LIST", id);
+        },
+
+        removeCharfromOwnList({ commit }, id) {
+            commit("DELETE_OP_CHAR_FROM_OWN_LIST", id);
         },
 
         updateWebwaySelectedStartSystem({ commit }, data) {
@@ -1614,8 +1626,8 @@ export default new Vuex.Store({
             commit("ADD_AMMO_REQUEST", data);
         },
 
-        addNewOwnChar({ commit }, data) {
-            commit("ADD_CHAR", data);
+        updateNewOwnChar({ commit }, data) {
+            commit("UPDATE_OWN_CHAR", data);
         },
 
         addNewOpChar({ commit }, data) {
