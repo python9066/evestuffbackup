@@ -48,7 +48,7 @@ export default {
       headers: [
         { text: "Name", value: "name", width: "10%" },
         { text: "Main", value: "user.name" },
-        { text: "Role", value: "userrole.role " },
+        { text: "Role", value: "userrole.role" },
         { text: "Ship", value: "ship" },
         { text: "Entosis", value: "entosis" },
         { text: "System", value: "system.name" },
