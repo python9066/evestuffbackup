@@ -45,7 +45,7 @@ export default {
 
   methods: {
     test(n) {
-      console.log(n);
+      //   console.log(n);
     },
 
     async destroyed() {

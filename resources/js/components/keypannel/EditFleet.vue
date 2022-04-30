@@ -157,7 +157,7 @@ export default {
         name: this.newFleetName,
       };
 
-      console.log(this.newFleetName);
+      //   console.log(this.newFleetName);
 
       await axios({
         method: "PUT",

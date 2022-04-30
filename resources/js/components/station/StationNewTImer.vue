@@ -163,7 +163,7 @@ export default {
         .add(sec, "seconds")
         .format("YYYY-MM-DD HH:mm:ss");
 
-      console.log(outTime);
+      //   console.log(outTime);
 
       var request = {
         station_status_id: this.refType,

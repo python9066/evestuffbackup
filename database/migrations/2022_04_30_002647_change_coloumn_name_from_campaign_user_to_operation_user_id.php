@@ -13,8 +13,9 @@ class ChangeColoumnNameFromCampaignUserToOperationUserId extends Migration
      */
     public function up()
     {
-        Schema::table('new_node_campaign_users', function (Blueprint $table) {
-            $table->renameColumn('campaign_user', 'operation_user_id');
+        Schema::table('operation_users', function (Blueprint $table) {
+            $table->string('ship')->nullable()->change();
+            $table->tinyInteger('entosis')->nullable()->change();
         });
     }
 
@@ -25,8 +26,9 @@ class ChangeColoumnNameFromCampaignUserToOperationUserId extends Migration
      */
     public function down()
     {
-        Schema::table('new_node_campaign_users', function (Blueprint $table) {
-            $table->renameColumn('operation_user_id', 'campaign_user');
+        Schema::table('operation_users', function (Blueprint $table) {
+            $table->string('ship')->change();
+            $table->tinyInteger('entosis')->change();
         });
     }
 }

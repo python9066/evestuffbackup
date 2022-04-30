@@ -358,7 +358,7 @@ export default {
           this.$store.dispatch("loadStationInfo");
         })
         .listen("StationCoreUpdate", (e) => {
-          console.log(e);
+          //   console.log(e);
           this.$store.dispatch("updateCores", e.flag.message);
         });
 
@@ -664,7 +664,7 @@ export default {
       let data = [];
       if (this.typePicked.length != 0) {
         this.typePicked.forEach((p) => {
-          console.log(p);
+          //   console.log(p);
           let pick = this.filteredItems.filter((f) => f.item_name == p);
           if (pick != null) {
             pick.forEach((pk) => {

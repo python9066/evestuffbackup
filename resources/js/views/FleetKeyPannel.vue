@@ -247,7 +247,7 @@ export default {
     },
 
     fliterFleets(fleets) {
-      console.log(fleets);
+      //   console.log(fleets);
 
       return fleets;
     },

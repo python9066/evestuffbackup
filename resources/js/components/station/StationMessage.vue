@@ -107,7 +107,7 @@ export default {
     close() {
       this.editText = null;
       this.showStationNotes = false;
-      console.log("close");
+      //   console.log("close");
     },
 
     open() {

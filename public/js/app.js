@@ -2658,8 +2658,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     close: function close() {
       this.editText = null;
-      this.showNodeNotes = false;
-      console.log("close");
+      this.showNodeNotes = false; //   console.log("close");
     },
     open: function open() {
       this.showNumber = false, this.messageCount = 0;
@@ -6723,9 +6722,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 request = {
                   name: _this.newFleetName
-                };
-                console.log(_this.newFleetName);
-                _context2.next = 4;
+                }; //   console.log(this.newFleetName);
+
+                _context2.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default()({
                   method: "PUT",
                   url: "/api/fleetnew",
@@ -6737,11 +6736,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 4:
+              case 3:
                 _this.addShown = false;
                 _this.newFleetName = null;
 
-              case 6:
+              case 5:
               case "end":
                 return _context2.stop();
             }
@@ -16094,14 +16093,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               }
 
               if (_this.type == 4) {
-                console.log("chanSSSnel 4");
+                //   console.log("chanSSSnel 4");
                 Echo["private"]("stationsheet").listen("StationSheetMessageUpdate", function (e) {
-                  console.log(e);
-
+                  // console.log(e);
                   if (e.flag.id == _this.station.id) {
-                    console.log("£true");
-                    console.log(e.flag.message);
-
+                    //   console.log("£true");
+                    //   console.log(e.flag.message);
                     _this.$store.dispatch("updateStationList", e.flag.message);
 
                     if (_this.showStationNotes == false) {
@@ -17666,9 +17663,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 addChar = _this2.chars.find(function (user) {
                   return user.id == _this2.charAddNode;
-                });
-                console.log(item);
-                console.log(addChar);
+                }); //   console.log(item);
+                //   console.log(addChar);
+
                 data = {
                   id: item.id,
                   user_id: addChar.id,
@@ -17685,7 +17682,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this2.$store.dispatch("updateStartCampaignSystem", data);
 
-                _context3.next = 8;
+                _context3.next = 6;
                 return axios({
                   method: "put",
                   url: "/api/startcampaignsystemupdate/" + item.id + "/" + _this2.data.start_campaign_id,
@@ -17697,7 +17694,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
 
-              case 8:
+              case 6:
               case "end":
                 return _context3.stop();
             }
@@ -20373,7 +20370,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: {
     showGunnerButton: function showGunnerButton() {
       if (this.station.gunner_id == null) {
-        console.log("true");
+        // console.log("true");
         return true;
       } else {
         return false;
@@ -20651,8 +20648,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     close: function close() {
       this.editText = null;
-      this.showStationNotes = false;
-      console.log("close");
+      this.showStationNotes = false; //   console.log("close");
     },
     open: function open() {
       this.showNumber = false, this.messageCount = 0;
@@ -20895,15 +20891,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 hs = h * 60 * 60;
                 ms = m * 60;
                 sec = ds + hs + ms + s;
-                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
-                console.log(outTime);
+                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss"); //   console.log(outTime);
+
                 request = {
                   station_status_id: _this.refType,
                   out_time: outTime,
                   show_on_coord: 0,
                   status_update: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss")
                 };
-                _context.next = 13;
+                _context.next = 12;
                 return axios({
                   method: "put",
                   //you can set what request you want to be
@@ -20916,7 +20912,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 }).then(_this.refType = null, _this.refTime = null, _this.showStationTimer = false);
 
-              case 13:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -21836,8 +21832,7 @@ function sleep(ms) {
               Echo["private"]("stationinfo").listen("StationInfoGet", function (e) {
                 _this.$store.dispatch("loadStationInfo");
               }).listen("StationCoreUpdate", function (e) {
-                console.log(e);
-
+                //   console.log(e);
                 _this.$store.dispatch("updateCores", e.flag.message);
               });
               _context.next = 5;
@@ -22138,8 +22133,7 @@ function sleep(ms) {
 
       if (this.typePicked.length != 0) {
         this.typePicked.forEach(function (p) {
-          console.log(p);
-
+          //   console.log(p);
           var pick = _this3.filteredItems.filter(function (f) {
             return f.item_name == p;
           });
@@ -23348,8 +23342,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     monthOld: function monthOld() {
       var a = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(this.station.r_updated_at);
       var b = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
-      var diff = b.diff(a, "months");
-      console.log(diff);
+      var diff = b.diff(a, "months"); //   console.log(diff);
 
       if (diff > 0) {
         return true;
@@ -23587,8 +23580,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {};
   },
   methods: {
-    test: function test(n) {
-      console.log(n);
+    test: function test(n) {//   console.log(n);
     },
     destroyed: function destroyed() {
       var _this = this;
@@ -24236,8 +24228,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     close: function close() {
       this.editText = null;
-      this.showTowerNotes = false;
-      console.log("close");
+      this.showTowerNotes = false; //   console.log("close");
     },
     open: function open() {
       this.showNumber = false, this.messageCount = 0;
@@ -30631,7 +30622,7 @@ function sleep(ms) {
       }
     },
     fliterFleets: function fliterFleets(fleets) {
-      console.log(fleets);
+      //   console.log(fleets);
       return fleets;
     },
     userAddKey: function userAddKey(item) {
@@ -33421,11 +33412,9 @@ function sleep(ms) {
               } else {
                 Echo["private"]("rcmovesheet").listen("RcMoveUpdate", function (e) {
                   if (e.flag.message != null) {
-                    console.log("got ping");
-
+                    // console.log("got ping");
                     if (e.flag.message.added_by_user_id == _this.user_id) {
-                      console.log("belongs to me");
-
+                      //   console.log("belongs to me");
                       _this.$store.dispatch("updateStationNotification", e.flag.message);
                     }
                   }
@@ -34141,8 +34130,7 @@ function sleep(ms) {
               _this.loadingt = false;
               Echo["private"]("rcsheet").listen("RcSheetUpdate", function (e) {
                 if (e.flag.message != null) {
-                  console.log("update");
-
+                  // console.log("update");
                   _this.$store.dispatch("updateRcStation", e.flag.message);
                 }
 
@@ -34163,8 +34151,7 @@ function sleep(ms) {
                 _this.$store.dispatch("getLoggingRcSheet");
 
                 Echo["private"]("rcsheetadminlogs").listen("RcSheetAddLogging", function (e) {
-                  console.log("ytoyoyo");
-
+                  // console.log("ytoyoyo");
                   _this.$store.dispatch("addLoggingRcSheet", e.flag.message);
                 });
               }
@@ -36645,8 +36632,7 @@ function sleep(ms) {
 
       if (this.typePicked.length != 0) {
         this.typePicked.forEach(function (p) {
-          console.log(p);
-
+          //   console.log(p);
           var pick = _this3.filteredItems.filter(function (f) {
             return f.region_id == p;
           });
@@ -87967,8 +87953,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     DELETE_OP_CHAR_FROM_OWN_LIST: function DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
       var check = state.ownChars.filter(function (e) {
         return e.id == id;
-      }).length;
-      console.log(check);
+      }).length; // console.log(check);
 
       if (check > 0) {
         state.ownChars = state.ownChars.filter(function (e) {
@@ -87979,8 +87964,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     DELETE_OP_CHAR_FROM_CHAR_LIST: function DELETE_OP_CHAR_FROM_CHAR_LIST(state, id) {
       var check = state.opUsers.filter(function (e) {
         return e.id == id;
-      }).length;
-      console.log(check);
+      }).length; // console.log(check);
 
       if (check > 0) {
         state.opUsers = state.opUsers.filter(function (e) {

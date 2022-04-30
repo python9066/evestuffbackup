@@ -112,7 +112,7 @@ export default {
     close() {
       this.editText = null;
       this.showNodeNotes = false;
-      console.log("close");
+      //   console.log("close");
     },
 
     open() {

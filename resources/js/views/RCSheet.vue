@@ -355,7 +355,7 @@ export default {
     this.loadingt = false;
     Echo.private("rcsheet").listen("RcSheetUpdate", (e) => {
       if (e.flag.message != null) {
-        console.log("update");
+        // console.log("update");
         this.$store.dispatch("updateRcStation", e.flag.message);
       }
 
@@ -375,7 +375,7 @@ export default {
     if (this.$can("view_admin_logs")) {
       this.$store.dispatch("getLoggingRcSheet");
       Echo.private("rcsheetadminlogs").listen("RcSheetAddLogging", (e) => {
-        console.log("ytoyoyo");
+        // console.log("ytoyoyo");
         this.$store.dispatch("addLoggingRcSheet", e.flag.message);
       });
     }

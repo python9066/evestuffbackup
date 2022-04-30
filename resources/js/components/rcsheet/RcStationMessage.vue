@@ -129,12 +129,12 @@ export default {
     }
 
     if (this.type == 4) {
-      console.log("chanSSSnel 4");
+      //   console.log("chanSSSnel 4");
       Echo.private("stationsheet").listen("StationSheetMessageUpdate", (e) => {
-        console.log(e);
+        // console.log(e);
         if (e.flag.id == this.station.id) {
-          console.log("£true");
-          console.log(e.flag.message);
+          //   console.log("£true");
+          //   console.log(e.flag.message);
           this.$store.dispatch("updateStationList", e.flag.message);
           if (this.showStationNotes == false) {
             this.showNumber = true;
