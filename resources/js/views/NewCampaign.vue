@@ -15,12 +15,7 @@
     </v-row>
     <v-row no-gutters justify="space-around">
       <draggable v-model="systems">
-        <transition-group
-          type="transition"
-          name="flip-list"
-          tag="div"
-          class="systems"
-        >
+        <transition-group type="transition" name="flip-list">
           <v-col
             cols="6"
             class="px-5"
@@ -28,6 +23,7 @@
             :key="index.id"
           >
             <CampaignSystemCard
+              :key="`${index.id}-card`"
               :item="item"
               :operationID="operationID"
             ></CampaignSystemCard>
