@@ -11468,6 +11468,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -51705,6 +51706,7 @@ var render = function () {
   return _c(
     "v-expansion-panels",
     {
+      staticClass: "pb-5",
       staticStyle: { cursor: "context-menu" },
       attrs: { popout: "" },
       model: {
@@ -51718,11 +51720,14 @@ var render = function () {
     [
       _c(
         "v-expansion-panel",
-        { staticStyle: { cursor: "context-menu" } },
+        { staticClass: "rounded-xl", staticStyle: { cursor: "context-menu" } },
         [
           _c(
             "v-expansion-panel-header",
-            { staticStyle: { cursor: "context-menu" } },
+            {
+              staticStyle: { cursor: "context-menu" },
+              attrs: { color: "primary" },
+            },
             [
               _c(
                 "v-row",

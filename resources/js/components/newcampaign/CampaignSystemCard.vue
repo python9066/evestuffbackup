@@ -9,12 +9,13 @@
   </div> -->
 
   <v-expansion-panels
+    class="pb-5"
     v-model="showSystemTable"
     popout
     style="cursor: context-menu"
   >
-    <v-expansion-panel style="cursor: context-menu">
-      <v-expansion-panel-header style="cursor: context-menu">
+    <v-expansion-panel class="rounded-xl" style="cursor: context-menu">
+      <v-expansion-panel-header style="cursor: context-menu" color="primary">
         <v-row no-gutters>
           <v-col cols="2">
             {{ item.system_name }}
