@@ -32057,7 +32057,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -32125,6 +32124,14 @@ function sleep(ms) {
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo", "campaignSystems"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), {}, {
     operationID: function operationID() {
       return this.newOperationInfo.id;
+    },
+    dragOptions: function dragOptions() {
+      return {
+        animation: 0,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost"
+      };
     },
     campaigns: function campaigns() {
       return this.newOperationInfo.campaign;
@@ -72130,12 +72137,8 @@ var render = function () {
                 { attrs: { type: "transition", name: "flip-list" } },
                 _vm._l(_vm.systems, function (item, index) {
                   return _c(
-                    "v-col",
-                    {
-                      key: index.id,
-                      staticClass: "px-5",
-                      attrs: { cols: "6" },
-                    },
+                    "div",
+                    { key: index.id, staticClass: "px-5 col-6" },
                     [
                       _c("CampaignSystemCard", {
                         attrs: { item: item, operationID: _vm.operationID },
@@ -72144,7 +72147,7 @@ var render = function () {
                     1
                   )
                 }),
-                1
+                0
               ),
             ],
             1

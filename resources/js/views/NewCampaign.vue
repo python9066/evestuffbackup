@@ -16,9 +16,8 @@
     <v-row no-gutters justify="space-around">
       <draggable v-model="systems">
         <transition-group type="transition" name="flip-list">
-          <v-col
-            cols="6"
-            class="px-5"
+          <div
+            class="px-5 col-6"
             v-for="(item, index) in systems"
             :key="index.id"
           >
@@ -26,7 +25,7 @@
               :item="item"
               :operationID="operationID"
             ></CampaignSystemCard>
-          </v-col>
+          </div>
         </transition-group>
       </draggable>
     </v-row>
@@ -65,6 +64,15 @@ export default {
 
     operationID() {
       return this.newOperationInfo.id;
+    },
+
+    dragOptions() {
+      return {
+        animation: 0,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost",
+      };
     },
 
     campaigns() {
