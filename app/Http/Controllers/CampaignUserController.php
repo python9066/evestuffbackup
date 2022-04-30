@@ -157,10 +157,10 @@ class CampaignUserController extends Controller
     public function newupdateremove(Request $request, $id)
     {
 
-        $node = NewNodeCampaignUser::where('campaign_user_id', $id)->first();
+        $node = NewNodeCampaignUser::where('operation_user_id', $id)->first();
 
         if ($node != null) {
-            $node->update(['campaign_user_id' =>  null, 'status_id' => 1, 'end_time' => null]);
+            $node->update(['operation_user_id' =>  null, 'status_id' => 1, 'end_time' => null]);
             $node->save();
             // TODO Add boradcast to update node
         }
