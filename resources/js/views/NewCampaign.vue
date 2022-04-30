@@ -50,14 +50,28 @@ export default {
   },
 
   beforeMonunt() {
-    Echo.private("operations." + operationID).listen(
-      "StationLogUpdate",
-      (e) => {
-        if (e.flag.message != null) {
-          this.$store.dispatch("addLoggingStation", e.flag.message);
-        }
+    Echo.private("operations." + operationID).listen("OperationUpdate", (e) => {
+      if (e.flag.flag == 1) {
       }
-    );
+
+      if (e.flag.flag == 2) {
+      }
+
+      if (e.flag.flag == 3) {
+      }
+
+      if (e.flag.flag == 4) {
+      }
+
+      if (e.flag.flag == 5) {
+      }
+
+      if (e.flag.flag == 6) {
+      }
+
+      if (e.flag.flag == 7) {
+      }
+    });
   },
 
   async beforeCreate() {},
@@ -93,28 +107,3 @@ export default {
   beforeDestroy() {},
 };
 </script>
-
-<style>
-/* .button {
-  margin-top: 35px;
-}
-.flip-list-move {
-  transition: transform 0.5s;
-}
-.no-move {
-  transition: transform 0s;
-}
-.ghost {
-  opacity: 0.5;
-  background: #c8ebfb;
-}
-.list-group {
-  min-height: 20px;
-}
-.list-group-item {
-  cursor: move;
-}
-.list-group-item i {
-  cursor: pointer;
-} */
-</style>
