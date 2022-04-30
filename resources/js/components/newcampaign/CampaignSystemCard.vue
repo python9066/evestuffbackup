@@ -1,12 +1,29 @@
 <template>
-  <div>
+  <!-- <div>
     <v-card rounded="xl">
       <v-card-title class="justify-center primary pa-3">{{
         item.system_name
       }}</v-card-title>
       <v-card-text> </v-card-text>
     </v-card>
-  </div>
+  </div> -->
+
+  <v-expansion-panels
+    v-model="showSystemTable"
+    popout
+    style="cursor: context-menu"
+  >
+    <v-expansion-panel style="cursor: context-menu">
+      <v-expansion-panel-header style="cursor: context-menu">
+        <v-row no-gutters>
+          <v-col cols="2">
+            {{ item.system_name }}
+          </v-col>
+        </v-row>
+      </v-expansion-panel-header>
+      <v-expansion-panel-content>DANCE DANCE DANCE </v-expansion-panel-content>
+    </v-expansion-panel>
+  </v-expansion-panels>
 </template>
 <script>
 import Axios from "axios";
@@ -22,7 +39,9 @@ export default {
     item: Object,
   },
   data() {
-    return {};
+    return {
+      showSystemTable: 0,
+    };
   },
 
   async created() {},

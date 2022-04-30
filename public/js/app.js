@@ -11451,6 +11451,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -11468,7 +11485,9 @@ function sleep(ms) {
     item: Object
   },
   data: function data() {
-    return {};
+    return {
+      showSystemTable: 0
+    };
   },
   created: function created() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -51684,17 +51703,46 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "v-expansion-panels",
+    {
+      staticStyle: { cursor: "context-menu" },
+      attrs: { popout: "" },
+      model: {
+        value: _vm.showSystemTable,
+        callback: function ($$v) {
+          _vm.showSystemTable = $$v
+        },
+        expression: "showSystemTable",
+      },
+    },
     [
       _c(
-        "v-card",
-        { attrs: { rounded: "xl" } },
+        "v-expansion-panel",
+        { staticStyle: { cursor: "context-menu" } },
         [
-          _c("v-card-title", { staticClass: "justify-center primary pa-3" }, [
-            _vm._v(_vm._s(_vm.item.system_name)),
-          ]),
+          _c(
+            "v-expansion-panel-header",
+            { staticStyle: { cursor: "context-menu" } },
+            [
+              _c(
+                "v-row",
+                { attrs: { "no-gutters": "" } },
+                [
+                  _c("v-col", { attrs: { cols: "2" } }, [
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(_vm.item.system_name) +
+                        "\n        "
+                    ),
+                  ]),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("v-card-text"),
+          _c("v-expansion-panel-content", [_vm._v("DANCE DANCE DANCE ")]),
         ],
         1
       ),
