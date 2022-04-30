@@ -14,7 +14,7 @@
       </v-col>
     </v-row>
     <v-row no-gutters justify="space-around">
-      <draggable tag="v-col" v-model="systems">
+      <draggable tag="v-layout" v-model="systems">
         <v-col
           cols="6"
           class="px-5"
