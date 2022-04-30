@@ -386,7 +386,7 @@ export default {
     async removeChar(item) {
       await axios({
         method: "DELETE",
-        url: "/api/campaignusers/" + item.id,
+        url: "/api/newcampaignusers/" + item.id,
         withCredentials: true,
         headers: {
           Accept: "application/json",

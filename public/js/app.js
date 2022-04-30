@@ -11249,7 +11249,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 2;
                 return axios({
                   method: "DELETE",
-                  url: "/api/campaignusers/" + item.id,
+                  url: "/api/newcampaignusers/" + item.id,
                   withCredentials: true,
                   headers: {
                     Accept: "application/json",
