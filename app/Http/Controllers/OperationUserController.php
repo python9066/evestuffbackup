@@ -43,7 +43,7 @@ class OperationUserController extends Controller
                 'id' => $userid
             ]);
 
-            broadcast(new OperationUpdate($flag));
+            broadcast(new OperationOwnUpdate($flag));
         }
 
         $message = Campaignhelper::opUserSolo($opID, $new->id);

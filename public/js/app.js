@@ -11195,14 +11195,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 3:
-                _context2.next = 5;
-                return _this2.$store.dispatch("getCampaignUsersRecords", _this2.operationID);
-
-              case 5:
-                _context2.next = 7;
-                return _this2.$store.dispatch("getUsersChars", _this2.$store.state.user_id);
-
-              case 7:
                 //------logging Start-----//
                 // TODO sort out logging
                 //   request = null;
@@ -11229,7 +11221,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this2.newRole = null;
                 _this2.addShown = false;
 
-              case 13:
+              case 9:
               case "end":
                 return _context2.stop();
             }

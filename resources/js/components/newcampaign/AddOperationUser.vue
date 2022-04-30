@@ -360,8 +360,6 @@ export default {
           "Content-Type": "application/json",
         },
       });
-      await this.$store.dispatch("getCampaignUsersRecords", this.operationID);
-      await this.$store.dispatch("getUsersChars", this.$store.state.user_id);
 
       //------logging Start-----//
       // TODO sort out logging
