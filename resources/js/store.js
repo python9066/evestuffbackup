@@ -115,6 +115,14 @@ export default new Vuex.Store({
             }
         },
 
+        ADD_CHAR(state, data) {
+            state.ownChars.push(data);
+        },
+
+        ADD_NEW_OP_CHAR(state, data) {
+            state.opUsers.push(data);
+        },
+
         SET_STATION_LIST(state, stations) {
             state.stationList = stations;
         },
@@ -1604,6 +1612,14 @@ export default new Vuex.Store({
 
         addAmmoRequest({ commit }, data) {
             commit("ADD_AMMO_REQUEST", data);
+        },
+
+        addNewOwnChar({ commit }, data) {
+            commit("ADD_CHAR", data);
+        },
+
+        addNewOpChar({ commit }, data) {
+            commit("ADD_NEW_OP_CHAR", data);
         },
 
         addStationNotification({ commit }, data) {

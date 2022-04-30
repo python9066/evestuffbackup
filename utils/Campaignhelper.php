@@ -24,12 +24,14 @@ use App\Models\NewCampaign;
 use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
 use App\Models\NodeJoin;
+use App\Models\OperationUser;
 use App\Models\System;
 use App\Models\User;
 use App\Models\Userlogging;
 use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use utils\Helper\Helper;
@@ -625,5 +627,34 @@ class Campaignhelper
         // echo "8";
         broadcast(new CampaignUpdate($flag));
         return;
+    }
+
+    public static function ownUserAll()
+    {
+        return OperationUser::where('user_id', Auth::id())
+            ->with(['userrole'])
+            ->get();
+    }
+
+    public static function ownUsersolo($id)
+    {
+        return OperationUser::where('id', $id)
+            ->with(['userrole'])
+            ->first();
+    }
+
+    public static function opUserAll($opID)
+    {
+        $opUsers = OperationUser::where('operation_id', $opID)
+            ->with(['user:id,name'])
+            ->get();
+    }
+
+    public static function opUserSolo($opID, $id)
+    {
+        $opUsers = OperationUser::where('operation_id', $opID)
+            ->where('id', $id)
+            ->with(['user:id,name'])
+            ->first();
     }
 }

@@ -287,8 +287,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/stationsheetupdatewebway/{id}', 'StationController@updateStationSheetWebway');
 
     Route::get('/operationinfo/{id}', 'NewOperationsController@getInfo');
-    Route::put('/newcampaignusersremove/{id}/{opID}', 'CampaignUserController@newupdateremove');
-    Route::put('/newcampaignusersadd/{id}/{opID}', 'CampaignUserController@newupdateadd');
-    Route::post('/newcampaignusers/{opID}', 'CampaignUserController@newstore');
-    Route::delete('/newcampaignusers/{id}/{opID}', 'CampaignUserController@newdestroy');
+    Route::put('/newcampaignusersremove/{id}/{opID}', 'OperationUserController@updateremove');
+    Route::put('/newcampaignusersadd/{id}/{opID}', 'OperationUserController@updateadd');
+    Route::post('/newcampaignusers/{opID}', 'OperationUserController@store');
+    Route::delete('/newcampaignusers/{id}/{opID}', 'OperationUserController@destroy');
 });

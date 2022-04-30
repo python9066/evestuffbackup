@@ -55,10 +55,11 @@ export default {
 
         if (e.flag.flag == 2) {
         }
-
+        // * 3 add char to char table
         if (e.flag.flag == 3) {
+          this.$store.dispatch("addNewOwnChar", e.flag.message);
         }
-
+        // * 4 update own char list
         if (e.flag.flag == 4) {
         }
 
@@ -67,7 +68,9 @@ export default {
           this.$store.dispatch("removeCharfromOwnandList", e.flag.userid);
         }
 
+        // * 6 is to add newley made char to op list
         if (e.flag.flag == 6) {
+          this.$store.dispatch("addNewOpChar", e.flag.message);
         }
 
         if (e.flag.flag == 7) {

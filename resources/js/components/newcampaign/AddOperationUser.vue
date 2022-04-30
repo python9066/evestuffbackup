@@ -185,7 +185,7 @@ export default {
       newRoleRules: [(v) => !!v || "You need to pick a role"],
       newShip: null,
       newShipRules: [(v) => !!v || "Ship is required"],
-      newLink: null,
+      newLink: 0,
       newLinkRules: [(v) => !!v || "T1 or T2?"],
 
       role: 0,
@@ -207,7 +207,7 @@ export default {
       this.newCharName = null;
       this.newRole = null;
       this.newShip = null;
-      this.newLink = null;
+      this.newLink = 0;
     },
 
     roleForm(a) {
@@ -377,7 +377,7 @@ export default {
 
       this.role = null;
       this.newCharName = null;
-      this.newLink = null;
+      this.newLink = 0;
       this.newShip = null;
       this.newRole = null;
       this.addShown = false;
