@@ -48,10 +48,10 @@ export default {
       headers: [
         { text: "Name", value: "name", width: "10%" },
         { text: "Main", value: "user.name" },
-        { text: "Role", value: "userrolerole " },
+        { text: "Role", value: "userrole.role " },
         { text: "Ship", value: "ship" },
         { text: "Entosis", value: "entosis" },
-        { text: "System", value: "system_id" },
+        { text: "System", value: "system.name" },
         { text: "Node", value: "node_id" },
         { text: "Status", value: "userstatus.name" },
 

@@ -11698,7 +11698,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "user.name"
       }, {
         text: "Role",
-        value: "userrolerole "
+        value: "userrole.role "
       }, {
         text: "Ship",
         value: "ship"
@@ -11707,7 +11707,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "entosis"
       }, {
         text: "System",
-        value: "system_id"
+        value: "system.name"
       }, {
         text: "Node",
         value: "node_id"
