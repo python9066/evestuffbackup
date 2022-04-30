@@ -28,7 +28,7 @@ class OperationUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $opID)
+    public function store(Request $request, $opID, $userid)
     {
 
         $new = OperationUser::create($request->all());
@@ -40,7 +40,7 @@ class OperationUserController extends Controller
                 // * 3 add char to char table
                 'flag' => 3,
                 'message' => $message,
-                'id' => $opID
+                'id' => $userid
             ]);
 
             broadcast(new OperationUpdate($flag));
@@ -130,9 +130,9 @@ class OperationUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, $opID)
+    public function destroy($id, $opID, $userid)
     {
-        $userid = OperationUser::where('id', $id)->select('user_id');
+
         OperationUser::destroy($id);
 
         $flag = collect([

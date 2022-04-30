@@ -342,7 +342,11 @@ export default {
 
       await axios({
         method: "POST",
-        url: "/api/newcampaignusers/" + this.operationID,
+        url:
+          "/api/newcampaignusers/" +
+          this.operationID +
+          "/" +
+          this.$store.state.user_id,
         withCredentials: true,
         data: request,
         headers: {
@@ -386,7 +390,13 @@ export default {
     async removeChar(item) {
       await axios({
         method: "DELETE",
-        url: "/api/newcampaignusers/" + item.id + "/" + this.operationID,
+        url:
+          "/api/newcampaignusers/" +
+          item.id +
+          "/" +
+          this.operationID +
+          "/" +
+          this.$store.state.user_id,
         withCredentials: true,
         headers: {
           Accept: "application/json",
