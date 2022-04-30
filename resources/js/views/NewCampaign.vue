@@ -45,13 +45,22 @@ export default {
   },
 
   async created() {
-    this.operationLink = this.$route.params.id;
-    this.$store.dispatch("getOperationInfo", this.operationLink);
+    Echo.private("operations." + operationID).listen(
+      "StationLogUpdate",
+      (e) => {
+        if (e.flag.message != null) {
+          this.$store.dispatch("addLoggingStation", e.flag.message);
+        }
+      }
+    );
   },
 
   beforeMonunt() {},
 
-  async beforeCreate() {},
+  async beforeCreate() {
+    this.operationLink = this.$route.params.id;
+    this.$store.dispatch("getOperationInfo", this.operationLink);
+  },
 
   async mounted() {},
   methods: {},

@@ -146,6 +146,10 @@ Broadcast::channel('stationsheet', function () {
     return Auth::check();
 });
 
+Broadcast::channel('operations.{id}', function () {
+    return Auth::check();
+});
+
 
 
 

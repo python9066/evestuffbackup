@@ -32079,11 +32079,13 @@ function sleep(ms) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _this.operationLink = _this.$route.params.id;
+              Echo["private"]("operations." + operationID).listen("StationLogUpdate", function (e) {
+                if (e.flag.message != null) {
+                  _this.$store.dispatch("addLoggingStation", e.flag.message);
+                }
+              });
 
-              _this.$store.dispatch("getOperationInfo", _this.operationLink);
-
-            case 2:
+            case 1:
             case "end":
               return _context.stop();
           }
@@ -32093,11 +32095,18 @@ function sleep(ms) {
   },
   beforeMonunt: function beforeMonunt() {},
   beforeCreate: function beforeCreate() {
+    var _this2 = this;
+
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              _this2.operationLink = _this2.$route.params.id;
+
+              _this2.$store.dispatch("getOperationInfo", _this2.operationLink);
+
+            case 2:
             case "end":
               return _context2.stop();
           }
@@ -39375,7 +39384,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .button {\n  margin-top: 35px;\n}\n.flip-list-move {\n  transition: transform 0.5s;\n}\n.no-move {\n  transition: transform 0s;\n}\n.ghost {\n  opacity: 0.5;\n  background: #c8ebfb;\n}\n.list-group {\n  min-height: 20px;\n}\n.list-group-item {\n  cursor: move;\n}\n.list-group-item i {\n  cursor: pointer;\n} */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* .button {\n  margin-top: 35px;\n}\n.flip-list-move {\n  transition: transform 0.5s;\n}\n.no-move {\n  transition: transform 0s;\n}\n.ghost {\n  opacity: 0.5;\n  background: #c8ebfb;\n}\n.list-group {\n  min-height: 20px;\n}\n.list-group-item {\n  cursor: move;\n}\n.list-group-item i {\n  cursor: pointer;\n} */\n", ""]);
 
 // exports
 
