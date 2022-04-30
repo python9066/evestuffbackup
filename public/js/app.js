@@ -32140,14 +32140,6 @@ function sleep(ms) {
     operationID: function operationID() {
       return this.newOperationInfo.id;
     },
-    dragOptions: function dragOptions() {
-      return {
-        animation: 0,
-        group: "description",
-        disabled: false,
-        ghostClass: "ghost"
-      };
-    },
     campaigns: function campaigns() {
       return this.newOperationInfo.campaign;
     },

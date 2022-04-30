@@ -86,15 +86,6 @@ export default {
       return this.newOperationInfo.id;
     },
 
-    dragOptions() {
-      return {
-        animation: 0,
-        group: "description",
-        disabled: false,
-        ghostClass: "ghost",
-      };
-    },
-
     campaigns() {
       return this.newOperationInfo.campaign;
     },
