@@ -11362,7 +11362,7 @@ function sleep(ms) {
   data: function data() {
     return {
       showCharTable: null,
-      showSystems: false
+      showSystems: true
     };
   },
   created: function created() {

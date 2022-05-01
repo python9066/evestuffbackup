@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       showCharTable: null,
-      showSystems: false,
+      showSystems: true,
     };
   },
 
