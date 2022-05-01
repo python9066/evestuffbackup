@@ -51712,7 +51712,7 @@ var render = function () {
                                 {
                                   attrs: {
                                     color: "primary",
-                                    outlined: _vm.charTableOutlined,
+                                    outlined: !_vm.toggleclick,
                                     rounded: "",
                                     small: "",
                                   },

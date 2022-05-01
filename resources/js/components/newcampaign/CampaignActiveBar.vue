@@ -28,7 +28,7 @@
                 <v-btn
                   color="primary"
                   @click="toggleclick"
-                  :outlined="charTableOutlined"
+                  :outlined="!toggleclick"
                   rounded
                   small
                 >
