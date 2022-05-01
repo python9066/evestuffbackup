@@ -11414,7 +11414,7 @@ function sleep(ms) {
       }
     },
     toggleclick: function toggleclick() {
-      if (this.showSystems) {
+      if (this.showSystems == true) {
         this.showSystems = true;
         _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 0);
       } else {

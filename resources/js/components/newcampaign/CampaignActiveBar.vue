@@ -82,7 +82,7 @@ export default {
     },
 
     toggleclick() {
-      if (this.showSystems) {
+      if (this.showSystems == true) {
         this.showSystems = true;
         EventBus.$emit("showSystemTable", 0);
       } else {
