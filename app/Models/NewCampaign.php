@@ -43,6 +43,6 @@ class NewCampaign extends Model
 
     public function operations()
     {
-        return $this->belongsToMany(NewOperation::class, 'new_campaign_operations');
+        return $this->belongsToMany(NewOperation::class, 'new_campagin_operations');
     }
 }
