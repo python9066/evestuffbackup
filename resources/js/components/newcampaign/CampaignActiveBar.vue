@@ -25,7 +25,7 @@
                 ><AddOperationUser :operationID="operationID"></AddOperationUser
               ></v-col>
               <v-col cols="2">
-                <v-btn-toggle rounded>
+                <v-btn-toggle rounded active-class="no-active">
                   <v-btn
                     color="primary"
                     class="rounded-l-xl"
@@ -116,3 +116,9 @@ export default {
   beforeDestroy() {},
 };
 </script>
+
+<style>
+.v-btn--active.no-active::before {
+  opacity: 0 !important;
+}
+</style>
