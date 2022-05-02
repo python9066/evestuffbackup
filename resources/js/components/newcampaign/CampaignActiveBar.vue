@@ -117,8 +117,8 @@ export default {
 };
 </script>
 
-<style>
-.v-btn--active.no-active::before {
+<style scoped>
+.v-btn-toggle--active.no-active::before {
   opacity: 0 !important;
 }
 </style>
