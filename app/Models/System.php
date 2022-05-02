@@ -63,6 +63,11 @@ class System extends Model
         return $this->belongsToMany(NewCampaign::class, 'new_campaign_systems');
     }
 
+    public function newNodes()
+    {
+        return $this->hasMany(NewSystemNode::class, 'system_id', 'id');
+    }
+
 
     protected $casts = [
         'region_id ' => 'integer',

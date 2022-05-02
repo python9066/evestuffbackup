@@ -92,7 +92,8 @@ class NewOperationsController extends Controller
         $contellationIDs =  $contellationIDs->unique();
         $systems = System::whereIn('constellation_id', $contellationIDs)
             ->with([
-                'newCampaigns'
+                'newCampaigns',
+                'newNodes'
             ])
             ->get();
         $opUsers = Campaignhelper::opUserAll($operationsID);
