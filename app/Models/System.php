@@ -69,6 +69,8 @@ class System extends Model
     }
 
 
+
+
     protected $casts = [
         'region_id ' => 'integer',
         'constellation_id' => 'integer',

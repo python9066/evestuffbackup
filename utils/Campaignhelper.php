@@ -667,4 +667,24 @@ class Campaignhelper
             ])
             ->first();
     }
+
+    public static function systemsAll($contellationIDs)
+    {
+        return System::whereIn('constellation_id', $contellationIDs)
+            ->with([
+                'newCampaigns',
+                'newNodes'
+            ])
+            ->get();
+    }
+
+    public static function systemSolo($systemID)
+    {
+        return System::where('id', $systemID)
+            ->with([
+                'newCampaigns',
+                'newNodes'
+            ])
+            ->first();
+    }
 }

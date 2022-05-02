@@ -40,4 +40,9 @@ class NewCampaign extends Model
     {
         return $this->belongsTo(Structure::class);
     }
+
+    public function operations()
+    {
+        return $this->belongsToMany(NewOperation::class, 'new_campaign_operations');
+    }
 }
