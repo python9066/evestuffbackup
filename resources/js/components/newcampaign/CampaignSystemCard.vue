@@ -27,7 +27,7 @@
         </v-row>
       </v-expansion-panel-header>
       <v-expansion-panel-content
-        ><CampaginSystemCardContent :item="item"></CampaginSystemCardContent>
+        ><CampaignSystemCardContent :item="item"></CampaignSystemCardContent>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
