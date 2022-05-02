@@ -29,9 +29,9 @@ class NewSystemNodeController extends Controller
     public function store(Request $request)
     {
         NewSystemNode::create($request->all());
-        $campaignIDs = NewCampaignSystem::where('system_id', $request->system_id)->select('campaign_id');
-        $obIDS = NewCampaginOperation::whereIn('campaign_id', $campaignIDs)->select('operation_id');
-        dd($obIDS);
+        $campaignIDs = NewCampaignSystem::where('system_id', $request->system_id)->pluck('campaign_id');
+        $obIDS = NewCampaginOperation::whereIn('campaign_id', $campaignIDs)->plcuk('operation_id');
+        return $obIDS;
     }
 
     /**
