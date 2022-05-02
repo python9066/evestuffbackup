@@ -11425,11 +11425,11 @@ function sleep(ms) {
       }
     },
     toggleopen: function toggleopen() {
-      this.openclose = null;
+      this.openclose = -1;
       _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 1);
     },
     toggleclose: function toggleclose() {
-      this.openclose = null;
+      this.openclose = -1;
       _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 0);
     }
   },

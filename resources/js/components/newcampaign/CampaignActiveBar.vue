@@ -93,12 +93,12 @@ export default {
     },
 
     toggleopen() {
-      this.openclose = null;
+      this.openclose = -1;
       EventBus.$emit("showSystemTable", 1);
     },
 
     toggleclose() {
-      this.openclose = null;
+      this.openclose = -1;
       EventBus.$emit("showSystemTable", 0);
     },
   },
