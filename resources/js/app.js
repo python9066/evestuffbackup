@@ -438,6 +438,11 @@ Vue.component(
     require("./components/newcampaign/CampaignSystemCardContent.vue").default
 );
 
+Vue.component(
+    "NewSystemTable",
+    require("./components/newcampaign/NewSystemTable.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(Clipboard);
