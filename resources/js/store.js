@@ -154,6 +154,20 @@ export default new Vuex.Store({
             state.ownChars = data.ownChars;
         },
 
+        UPDATE_CAMPAIGN_SYSTEMS(state, data) {
+            const item = state.campaignsystems.find(
+                (item) => item.id === data.id
+            );
+            const count = state.campaignsystems.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                state.campaignsystems.push(data);
+            }
+        },
+
         SET_WEBWAY_SELECTED_START_SYSTEM(state, data) {
             state.webwaySelectedStartSystem = data;
         },
@@ -1699,6 +1713,10 @@ export default new Vuex.Store({
 
         deleteCampaignSystem({ commit }, id) {
             commit("DELETE_CAMPAIGN_SYSTEM", id);
+        },
+
+        updateCampaignSystem({ commit }, data) {
+            commit("UPDATE_CAMPAIGN_SYSTEMS", data);
         },
 
         async getNotifications({ commit }) {

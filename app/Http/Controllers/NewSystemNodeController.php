@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OperationUpdate;
 use App\Models\NewCampaginOperation;
 use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
 use App\Models\NewSystemNode;
 use Illuminate\Http\Request;
+use utils\Campaignhelper\Campaignhelper;
 
 class NewSystemNodeController extends Controller
 {
@@ -31,7 +33,17 @@ class NewSystemNodeController extends Controller
         NewSystemNode::create($request->all());
         $campaignIDs = NewCampaignSystem::where('system_id', $request->system_id)->pluck('new_campaign_id');
         $obIDS = NewCampaginOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
-        return $obIDS;
+        $message = Campaignhelper::systemSolo($request->system_id);
+
+        foreach ($obIDS as $op) {
+
+            $flag = collect([
+                'flag' => 4,
+                'message' => $message,
+                'id' => $op
+            ]);
+            broadcast(new OperationUpdate($flag));
+        }
     }
 
     /**
