@@ -11354,6 +11354,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -11427,10 +11429,12 @@ function sleep(ms) {
     toggleopen: function toggleopen() {
       this.openclose = -1;
       _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 1);
+      this.openclose = -1;
     },
     toggleclose: function toggleclose() {
       this.openclose = -1;
       _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 0);
+      this.openclose = -1;
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
@@ -51720,7 +51724,7 @@ var render = function () {
                               _c(
                                 "v-btn-toggle",
                                 {
-                                  attrs: { rounded: "" },
+                                  attrs: { rounded: "", exact: true },
                                   model: {
                                     value: _vm.openclose,
                                     callback: function ($$v) {
@@ -51735,6 +51739,7 @@ var render = function () {
                                     {
                                       staticClass: "rounded-l-xl",
                                       attrs: {
+                                        exact: true,
                                         color: "primary",
                                         rounded: "",
                                         small: "",
@@ -51753,6 +51758,7 @@ var render = function () {
                                     {
                                       staticClass: "rounded-r-xl",
                                       attrs: {
+                                        exact: true,
                                         color: "primary",
                                         rounded: "",
                                         small: "",
