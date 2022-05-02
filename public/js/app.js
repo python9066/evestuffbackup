@@ -51721,6 +51721,7 @@ var render = function () {
                                     exact: true,
                                     color: "primary",
                                     small: "",
+                                    "rounded-l-xl": "",
                                   },
                                   on: { click: _vm.toggleopen },
                                 },
@@ -51748,7 +51749,6 @@ var render = function () {
                                   ),
                                 ]
                               ),
-                              _vm._v("\n              >"),
                             ],
                             1
                           ),

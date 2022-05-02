@@ -31,6 +31,7 @@
                   class="rounded-l-xl"
                   @click="toggleopen"
                   small
+                  rounded-l-xl
                 >
                   Open
                 </v-btn>
@@ -43,8 +44,7 @@
                 >
                   Close
                 </v-btn>
-                ></v-col
-              >
+              </v-col>
             </v-row>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
