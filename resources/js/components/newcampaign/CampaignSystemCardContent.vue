@@ -7,30 +7,18 @@
       <v-card-text> </v-card-text>
     </v-card>
   </div> -->
-
-  <v-expansion-panels
-    class="pb-5"
-    v-model="showSystemTable"
-    popout
-    style="cursor: context-menu"
-  >
-    <v-expansion-panel class="rounded-xl" style="cursor: context-menu">
-      <v-expansion-panel-header
-        style="cursor: context-menu"
-        color="primary"
-        :class="filterRound"
-      >
-        <v-row no-gutters>
-          <v-col cols="2">
-            {{ item.system_name }}
-          </v-col>
-        </v-row>
-      </v-expansion-panel-header>
-      <v-expansion-panel-content
-        ><CampaginSystemCardContent :item="item"></CampaginSystemCardContent>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-  </v-expansion-panels>
+  <v-row no-gutters>
+    <v-col cols="12">
+      <v-row>
+        <v-col cols="12"> DAnce DAnce </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12">
+          <NewSystemTable :item="item"></NewSystemTable>
+        </v-col>
+      </v-row>
+    </v-col>
+  </v-row>
 </template>
 <script>
 import Axios from "axios";
