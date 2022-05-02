@@ -11772,7 +11772,7 @@ function sleep(ms) {
                   system_id: _this2.item.id,
                   campaign_id: 96898,
                   //TODO need to code this so hardcode it
-                  name: nodeText
+                  name: _this2.nodeText
                 };
                 _this2.nodeText = "";
                 _this2.addShown = false;
