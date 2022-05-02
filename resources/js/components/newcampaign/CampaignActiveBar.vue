@@ -25,7 +25,7 @@
                 ><AddOperationUser :operationID="operationID"></AddOperationUser
               ></v-col>
               <v-col cols="2">
-                <v-btn-toggle rounded active-class="no-active">
+                <v-btn-toggle rounded v-model="openclose">
                   <v-btn
                     color="primary"
                     class="rounded-l-xl"
@@ -72,6 +72,7 @@ export default {
   data() {
     return {
       showCharTable: null,
+      openclose: null,
     };
   },
 
@@ -92,10 +93,12 @@ export default {
     },
 
     toggleopen() {
+      this.openclose = null;
       EventBus.$emit("showSystemTable", 1);
     },
 
     toggleclose() {
+      this.openclose = null;
       EventBus.$emit("showSystemTable", 0);
     },
   },
@@ -116,9 +119,3 @@ export default {
   beforeDestroy() {},
 };
 </script>
-
-<style scoped>
-.v-btn-toggle--active.no-active::before {
-  opacity: 0 !important;
-}
-</style>
