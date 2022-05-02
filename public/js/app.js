@@ -11352,11 +11352,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
  // import ApiL from "../service/apil";
 
@@ -51718,53 +51713,39 @@ var render = function () {
                             { attrs: { cols: "2" } },
                             [
                               _c(
-                                "v-card",
+                                "v-btn",
+                                {
+                                  staticClass: "rounded-l-xl",
+                                  attrs: {
+                                    color: "primary",
+                                    rounded: "",
+                                    small: "",
+                                  },
+                                  on: { click: _vm.toggleopen },
+                                },
                                 [
-                                  _c("v-card-subtitle", [_vm._v("Systems")]),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-card-actions",
-                                    [
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          staticClass: "rounded-l-xl",
-                                          attrs: {
-                                            color: "primary",
-                                            rounded: "",
-                                            small: "",
-                                          },
-                                          on: { click: _vm.toggleopen },
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                    Open\n                  "
-                                          ),
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "v-btn",
-                                        {
-                                          staticClass: "rounded-r-xl",
-                                          attrs: {
-                                            color: "primary",
-                                            rounded: "",
-                                            small: "",
-                                          },
-                                          on: { click: _vm.toggleclose },
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                    Close\n                  "
-                                          ),
-                                        ]
-                                      ),
-                                    ],
-                                    1
+                                  _vm._v(
+                                    "\n                Open\n              "
                                   ),
-                                ],
-                                1
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass: "rounded-r-xl",
+                                  attrs: {
+                                    color: "primary",
+                                    rounded: "",
+                                    small: "",
+                                  },
+                                  on: { click: _vm.toggleclose },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                Close\n              "
+                                  ),
+                                ]
                               ),
                             ],
                             1
