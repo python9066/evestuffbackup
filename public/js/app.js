@@ -11769,7 +11769,7 @@ function sleep(ms) {
               case 0:
                 node = _this2.nodeText.toUpperCase();
                 request = {
-                  system_id: item.id,
+                  system_id: _this2.item.id,
                   campaign_id: 96898,
                   //TODO need to code this so hardcode it
                   name: nodeText

@@ -103,7 +103,7 @@ export default {
     async addNode() {
       let node = this.nodeText.toUpperCase();
       var request = {
-        system_id: item.id,
+        system_id: this.item.id,
         campaign_id: 96898, //TODO need to code this so hardcode it
         name: nodeText,
       };
