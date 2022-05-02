@@ -11640,6 +11640,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -11652,13 +11693,16 @@ function sleep(ms) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  // TODO ADD ALL THE THINGS FOR MULTI CAMPAIGNS
   title: function title() {},
   props: {
     item: Object
   },
   data: function data() {
     return {
-      showSystemTable: 0
+      showSystemTable: 0,
+      addShown: false,
+      nodeText: ""
     };
   },
   created: function created() {
@@ -11712,7 +11756,47 @@ function sleep(ms) {
       }, _callee3);
     }))();
   },
-  methods: {},
+  methods: {
+    // TODO Workout for multi campagins
+    addNode: function addNode() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var node, request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                node = _this2.nodeText.toUpperCase();
+                request = {
+                  system_id: item.id,
+                  campaign_id: 96898,
+                  //TODO need to code this so hardcode it
+                  name: nodeText
+                };
+                _this2.nodeText = "";
+                _this2.addShown = false;
+                _context4.next = 6;
+                return axios({
+                  method: "POST",
+                  url: "/api/addnode",
+                  withCredentials: true,
+                  data: request,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    }
+  },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     filterRound: function filterRound() {
       if (this.showSystemTable) {
@@ -53452,7 +53536,186 @@ var render = function () {
         [
           _c(
             "v-row",
-            [_c("v-col", { attrs: { cols: "12" } }, [_vm._v(" DAnce DAnce ")])],
+            [
+              _c(
+                "v-col",
+                { attrs: { cols: "12" } },
+                [
+                  _c(
+                    "v-menu",
+                    {
+                      attrs: {
+                        "close-on-content-click": false,
+                        value: _vm.addShown,
+                      },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "activator",
+                          fn: function (ref) {
+                            var on = ref.on
+                            var attrs = ref.attrs
+                            return [
+                              _c(
+                                "v-btn",
+                                _vm._g(
+                                  _vm._b(
+                                    {
+                                      attrs: { text: "", color: "success" },
+                                      on: {
+                                        click: function ($event) {
+                                          _vm.addShown = true
+                                        },
+                                      },
+                                    },
+                                    "v-btn",
+                                    attrs,
+                                    false
+                                  ),
+                                  on
+                                ),
+                                [
+                                  _c(
+                                    "v-icon",
+                                    { attrs: { left: "", small: "" } },
+                                    [_vm._v("fas fa-plus")]
+                                  ),
+                                  _vm._v(" Node"),
+                                ],
+                                1
+                              ),
+                            ]
+                          },
+                        },
+                      ]),
+                    },
+                    [
+                      _vm._v(" "),
+                      _c(
+                        "v-card",
+                        { attrs: { tile: "", "min-height": "250px" } },
+                        [
+                          _c("v-card-title", { staticClass: "pb-0" }),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-text",
+                            [
+                              _c("v-text-field", {
+                                directives: [
+                                  {
+                                    name: "mask",
+                                    rawName: "v-mask",
+                                    value: "AA##",
+                                    expression: "'AA##'",
+                                  },
+                                ],
+                                staticClass: "mt-2",
+                                attrs: {
+                                  label: "Node",
+                                  placeholder: "Enter Node",
+                                  flat: "",
+                                },
+                                on: {
+                                  keyup: [
+                                    function ($event) {
+                                      if (
+                                        !$event.type.indexOf("key") &&
+                                        _vm._k(
+                                          $event.keyCode,
+                                          "enter",
+                                          13,
+                                          $event.key,
+                                          "Enter"
+                                        )
+                                      ) {
+                                        return null
+                                      }
+                                      return _vm.addNode()
+                                    },
+                                    function ($event) {
+                                      if (
+                                        !$event.type.indexOf("key") &&
+                                        _vm._k(
+                                          $event.keyCode,
+                                          "esc",
+                                          27,
+                                          $event.key,
+                                          ["Esc", "Escape"]
+                                        )
+                                      ) {
+                                        return null
+                                      }
+                                      ;(_vm.addShown = false),
+                                        (_vm.nodeText = "")
+                                    },
+                                  ],
+                                },
+                                model: {
+                                  value: _vm.nodeText,
+                                  callback: function ($$v) {
+                                    _vm.nodeText = $$v
+                                  },
+                                  expression: "nodeText",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-card-actions",
+                            [
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: {
+                                    icon: "",
+                                    fixed: "",
+                                    left: "",
+                                    disabled: _vm.showNodeButton,
+                                    color: "success",
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.addNode()
+                                    },
+                                  },
+                                },
+                                [_c("v-icon", [_vm._v("fas fa-check")])],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  attrs: {
+                                    fixed: "",
+                                    right: "",
+                                    icon: "",
+                                    color: "warning",
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      ;(_vm.addShown = false),
+                                        (_vm.nodeText = "")
+                                    },
+                                  },
+                                },
+                                [_c("v-icon", [_vm._v("fas fa-times")])],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
             1
           ),
           _vm._v(" "),
