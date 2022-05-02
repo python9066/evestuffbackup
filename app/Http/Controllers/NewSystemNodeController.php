@@ -31,14 +31,18 @@ class NewSystemNodeController extends Controller
     public function store(Request $request)
     {
         NewSystemNode::create($request->all());
+        // TODO Change this so it only gets Campaigns what are active.
         $campaignIDs = NewCampaignSystem::where('system_id', $request->system_id)->pluck('new_campaign_id');
         $obIDS = NewCampaginOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
         $message = Campaignhelper::systemSolo($request->system_id);
 
+
+
+
         foreach ($obIDS as $op) {
 
             $flag = collect([
-                'flag' => 4,
+                'flag' => 7,
                 'message' => $message,
                 'id' => $op
             ]);
@@ -55,6 +59,11 @@ class NewSystemNodeController extends Controller
     public function show($id)
     {
         //
+
+        //  What the hell is this
+        //  I have to add more
+        //  DO NOT CHANGE THIS
+        //  This makes all the things work
     }
 
     /**
