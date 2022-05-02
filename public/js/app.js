@@ -11071,7 +11071,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.newCharName = null;
       this.newRole = null;
       this.newShip = null;
-      this.newLink = 0;
+      this.newLink = null;
     },
     roleForm: function roleForm(a) {
       this.role = a;
@@ -11216,7 +11216,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 //------logging End-----//
                 _this2.role = null;
                 _this2.newCharName = null;
-                _this2.newLink = 0;
+                _this2.newLink = null;
                 _this2.newShip = null;
                 _this2.newRole = null;
                 _this2.addShown = false;
@@ -11343,6 +11343,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -11361,8 +11375,7 @@ function sleep(ms) {
   },
   data: function data() {
     return {
-      showCharTable: null,
-      showSystems: true
+      showCharTable: null
     };
   },
   created: function created() {
@@ -11413,14 +11426,11 @@ function sleep(ms) {
         this.showCharTable = null;
       }
     },
-    toggleclick: function toggleclick() {
-      if (this.showSystems == true) {
-        this.showSystems = false;
-        _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 0);
-      } else {
-        this.showSystems = true;
-        _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 1);
-      }
+    toggleopen: function toggleopen() {
+      _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 1);
+    },
+    toggleclose: function toggleclose() {
+      _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 0);
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
@@ -51708,21 +51718,53 @@ var render = function () {
                             { attrs: { cols: "2" } },
                             [
                               _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    color: "primary",
-                                    outlined: !_vm.toggleclick,
-                                    rounded: "",
-                                    small: "",
-                                  },
-                                  on: { click: _vm.toggleclick },
-                                },
+                                "v-card",
                                 [
-                                  _vm._v(
-                                    "\n                test\n              "
+                                  _c("v-card-subtitle", [_vm._v("Systems")]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-card-actions",
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "rounded-l-xl",
+                                          attrs: {
+                                            color: "primary",
+                                            rounded: "",
+                                            small: "",
+                                          },
+                                          on: { click: _vm.toggleopen },
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                    Open\n                  "
+                                          ),
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass: "rounded-r-xl",
+                                          attrs: {
+                                            color: "primary",
+                                            rounded: "",
+                                            small: "",
+                                          },
+                                          on: { click: _vm.toggleclose },
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                    Close\n                  "
+                                          ),
+                                        ]
+                                      ),
+                                    ],
+                                    1
                                   ),
-                                ]
+                                ],
+                                1
                               ),
                             ],
                             1

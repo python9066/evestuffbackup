@@ -207,7 +207,7 @@ export default {
       this.newCharName = null;
       this.newRole = null;
       this.newShip = null;
-      this.newLink = 0;
+      this.newLink = null;
     },
 
     roleForm(a) {
@@ -390,7 +390,7 @@ export default {
 
       this.role = null;
       this.newCharName = null;
-      this.newLink = 0;
+      this.newLink = null;
       this.newShip = null;
       this.newRole = null;
       this.addShown = false;

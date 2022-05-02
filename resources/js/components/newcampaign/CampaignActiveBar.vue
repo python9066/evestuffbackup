@@ -25,15 +25,29 @@
                 ><AddOperationUser :operationID="operationID"></AddOperationUser
               ></v-col>
               <v-col cols="2">
-                <v-btn
-                  color="primary"
-                  @click="toggleclick"
-                  :outlined="!toggleclick"
-                  rounded
-                  small
-                >
-                  test
-                </v-btn></v-col
+                <v-card>
+                  <v-card-subtitle>Systems</v-card-subtitle>
+                  <v-card-actions>
+                    <v-btn
+                      color="primary"
+                      class="rounded-l-xl"
+                      @click="toggleopen"
+                      rounded
+                      small
+                    >
+                      Open
+                    </v-btn>
+                    <v-btn
+                      color="primary"
+                      class="rounded-r-xl"
+                      @click="toggleclose"
+                      rounded
+                      small
+                    >
+                      Close
+                    </v-btn></v-card-actions
+                  ></v-card
+                ></v-col
               >
             </v-row>
           </v-expansion-panel-header>
@@ -61,7 +75,6 @@ export default {
   data() {
     return {
       showCharTable: null,
-      showSystems: true,
     };
   },
 
@@ -81,14 +94,12 @@ export default {
       }
     },
 
-    toggleclick() {
-      if (this.showSystems == true) {
-        this.showSystems = false;
-        EventBus.$emit("showSystemTable", 0);
-      } else {
-        this.showSystems = true;
-        EventBus.$emit("showSystemTable", 1);
-      }
+    toggleopen() {
+      EventBus.$emit("showSystemTable", 1);
+    },
+
+    toggleclose() {
+      EventBus.$emit("showSystemTable", 0);
     },
   },
 
