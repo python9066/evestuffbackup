@@ -11353,9 +11353,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
  // import ApiL from "../service/apil";
 
@@ -11374,8 +11371,7 @@ function sleep(ms) {
   },
   data: function data() {
     return {
-      showCharTable: null,
-      openclose: null
+      showCharTable: null
     };
   },
   created: function created() {
@@ -11427,14 +11423,10 @@ function sleep(ms) {
       }
     },
     toggleopen: function toggleopen() {
-      this.openclose = -1;
       _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 1);
-      this.openclose = -1;
     },
     toggleclose: function toggleclose() {
-      this.openclose = -1;
       _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 0);
-      this.openclose = -1;
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
@@ -51722,58 +51714,41 @@ var render = function () {
                             { attrs: { cols: "2" } },
                             [
                               _c(
-                                "v-btn-toggle",
+                                "v-btn",
                                 {
-                                  attrs: { rounded: "", exact: true },
-                                  model: {
-                                    value: _vm.openclose,
-                                    callback: function ($$v) {
-                                      _vm.openclose = $$v
-                                    },
-                                    expression: "openclose",
+                                  staticClass: "rounded-l-xl",
+                                  attrs: {
+                                    exact: true,
+                                    color: "primary",
+                                    small: "",
                                   },
+                                  on: { click: _vm.toggleopen },
                                 },
                                 [
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      staticClass: "rounded-l-xl",
-                                      attrs: {
-                                        exact: true,
-                                        color: "primary",
-                                        rounded: "",
-                                        small: "",
-                                      },
-                                      on: { click: _vm.toggleopen },
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                  Open\n                "
-                                      ),
-                                    ]
+                                  _vm._v(
+                                    "\n                Open\n              "
                                   ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      staticClass: "rounded-r-xl",
-                                      attrs: {
-                                        exact: true,
-                                        color: "primary",
-                                        rounded: "",
-                                        small: "",
-                                      },
-                                      on: { click: _vm.toggleclose },
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                  Close\n                "
-                                      ),
-                                    ]
-                                  ),
-                                ],
-                                1
+                                ]
                               ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass: "rounded-r-xl",
+                                  attrs: {
+                                    exact: true,
+                                    color: "primary",
+                                    small: "",
+                                  },
+                                  on: { click: _vm.toggleclose },
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                Close\n              "
+                                  ),
+                                ]
+                              ),
+                              _vm._v("\n              >"),
                             ],
                             1
                           ),

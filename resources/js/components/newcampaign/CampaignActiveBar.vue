@@ -25,27 +25,24 @@
                 ><AddOperationUser :operationID="operationID"></AddOperationUser
               ></v-col>
               <v-col cols="2">
-                <v-btn-toggle rounded v-model="openclose" :exact="true">
-                  <v-btn
-                    :exact="true"
-                    color="primary"
-                    class="rounded-l-xl"
-                    @click="toggleopen"
-                    rounded
-                    small
-                  >
-                    Open
-                  </v-btn>
-                  <v-btn
-                    :exact="true"
-                    color="primary"
-                    class="rounded-r-xl"
-                    @click="toggleclose"
-                    rounded
-                    small
-                  >
-                    Close
-                  </v-btn></v-btn-toggle
+                <v-btn
+                  :exact="true"
+                  color="primary"
+                  class="rounded-l-xl"
+                  @click="toggleopen"
+                  small
+                >
+                  Open
+                </v-btn>
+                <v-btn
+                  :exact="true"
+                  color="primary"
+                  class="rounded-r-xl"
+                  @click="toggleclose"
+                  small
+                >
+                  Close
+                </v-btn>
                 ></v-col
               >
             </v-row>
@@ -74,7 +71,6 @@ export default {
   data() {
     return {
       showCharTable: null,
-      openclose: null,
     };
   },
 
@@ -95,15 +91,11 @@ export default {
     },
 
     toggleopen() {
-      this.openclose = -1;
       EventBus.$emit("showSystemTable", 1);
-      this.openclose = -1;
     },
 
     toggleclose() {
-      this.openclose = -1;
       EventBus.$emit("showSystemTable", 0);
-      this.openclose = -1;
     },
   },
 
