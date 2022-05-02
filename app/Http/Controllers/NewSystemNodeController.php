@@ -30,7 +30,7 @@ class NewSystemNodeController extends Controller
     {
         NewSystemNode::create($request->all());
         $campaignIDs = NewCampaignSystem::where('system_id', $request->system_id)->pluck('campaign_id');
-        $obIDS = NewCampaginOperation::whereIn('campaign_id', $campaignIDs)->plcuk('operation_id');
+        $obIDS = NewCampaginOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
         return $obIDS;
     }
 
