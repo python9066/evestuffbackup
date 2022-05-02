@@ -25,24 +25,26 @@
                 ><AddOperationUser :operationID="operationID"></AddOperationUser
               ></v-col>
               <v-col cols="2">
-                <v-btn
-                  color="primary"
-                  class="rounded-l-xl"
-                  @click="toggleopen"
-                  rounded
-                  small
-                >
-                  Open
-                </v-btn>
-                <v-btn
-                  color="primary"
-                  class="rounded-r-xl"
-                  @click="toggleclose"
-                  rounded
-                  small
-                >
-                  Close
-                </v-btn></v-col
+                <v-btn-toggle rounded>
+                  <v-btn
+                    color="primary"
+                    class="rounded-l-xl"
+                    @click="toggleopen"
+                    rounded
+                    small
+                  >
+                    Open
+                  </v-btn>
+                  <v-btn
+                    color="primary"
+                    class="rounded-r-xl"
+                    @click="toggleclose"
+                    rounded
+                    small
+                  >
+                    Close
+                  </v-btn></v-btn-toggle
+                ></v-col
               >
             </v-row>
           </v-expansion-panel-header>

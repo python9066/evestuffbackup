@@ -11352,6 +11352,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -51713,39 +51715,46 @@ var render = function () {
                             { attrs: { cols: "2" } },
                             [
                               _c(
-                                "v-btn",
-                                {
-                                  staticClass: "rounded-l-xl",
-                                  attrs: {
-                                    color: "primary",
-                                    rounded: "",
-                                    small: "",
-                                  },
-                                  on: { click: _vm.toggleopen },
-                                },
+                                "v-btn-toggle",
+                                { attrs: { rounded: "" } },
                                 [
-                                  _vm._v(
-                                    "\n                Open\n              "
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "rounded-l-xl",
+                                      attrs: {
+                                        color: "primary",
+                                        rounded: "",
+                                        small: "",
+                                      },
+                                      on: { click: _vm.toggleopen },
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                  Open\n                "
+                                      ),
+                                    ]
                                   ),
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  staticClass: "rounded-r-xl",
-                                  attrs: {
-                                    color: "primary",
-                                    rounded: "",
-                                    small: "",
-                                  },
-                                  on: { click: _vm.toggleclose },
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                Close\n              "
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "rounded-r-xl",
+                                      attrs: {
+                                        color: "primary",
+                                        rounded: "",
+                                        small: "",
+                                      },
+                                      on: { click: _vm.toggleclose },
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                  Close\n                "
+                                      ),
+                                    ]
                                   ),
-                                ]
+                                ],
+                                1
                               ),
                             ],
                             1
