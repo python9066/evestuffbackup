@@ -29,7 +29,7 @@ class NewSystemNodeController extends Controller
     public function store(Request $request)
     {
         NewSystemNode::create($request->all());
-        $campaignIDs = NewCampaignSystem::where('system_id', $request->system_id)->pluck('campaign_id');
+        $campaignIDs = NewCampaignSystem::where('system_id', $request->system_id)->pluck('new_campaign_id');
         $obIDS = NewCampaginOperation::whereIn('new_campaign_id', $campaignIDs)->pluck('operation_id');
         return $obIDS;
     }
