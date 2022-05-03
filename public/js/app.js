@@ -11343,7 +11343,8 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
-    node: Object
+    node: Object,
+    operationID: Number
   },
   data: function data() {
     return {};
@@ -11389,12 +11390,12 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])(["ownHackingCharOnOp"])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     freecharCount: function freecharCount() {
-      return this.ownHackingCharOnOp.length;
+      return this.getOwnHackingCharOnOp(this.operationID).length;
     },
     charsFree: function charsFree() {
-      return this.ownHackingCharOnOp;
+      return this.getOwnHackingCharOnOp(this.operationID);
     },
     checkShowAdd: function checkShowAdd() {
       if (this.node.name == null && this.freecharCount != 0 && this.node.status_id != 4 && this.node.status_id != 5 && this.node.status_id != 7 && this.node.status_id != 8) {
@@ -12089,6 +12090,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -52271,7 +52275,7 @@ var render = function () {
                 ],
                 1
               )
-            : _c("span", [_vm._v(_vm._s(_vm.opUser.name))]),
+            : _c("span", [_vm._v(_vm._s(_vm.item.name))]),
         ],
         1
       ),
@@ -52911,7 +52915,12 @@ var render = function () {
                               var item = ref.item
                               return [
                                 _vm._v("\n            456\n            "),
-                                _c("AddPilot", { attrs: { node: item } }),
+                                _c("AddPilot", {
+                                  attrs: {
+                                    node: item,
+                                    operationID: _vm.operationID,
+                                  },
+                                }),
                               ]
                             },
                           },

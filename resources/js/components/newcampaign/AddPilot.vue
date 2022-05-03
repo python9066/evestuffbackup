@@ -27,7 +27,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <span v-else>{{ opUser.name }}</span>
+      <span v-else>{{ item.name }}</span>
     </v-col>
   </v-row>
 </template>
@@ -43,6 +43,7 @@ export default {
   title() {},
   props: {
     node: Object,
+    operationID: Number,
   },
   data() {
     return {};
@@ -58,16 +59,16 @@ export default {
   methods: {},
 
   computed: {
-    ...mapGetters([]),
+    ...mapGetters(["getOwnHackingCharOnOp"]),
 
-    ...mapState(["ownHackingCharOnOp"]),
+    ...mapState([]),
 
     freecharCount() {
-      return this.ownHackingCharOnOp.length;
+      return this.getOwnHackingCharOnOp(this.operationID).length;
     },
 
     charsFree() {
-      return this.ownHackingCharOnOp;
+      return this.getOwnHackingCharOnOp(this.operationID);
     },
 
     checkShowAdd() {

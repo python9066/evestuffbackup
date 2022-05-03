@@ -26,7 +26,10 @@
             </template>
             <template v-slot:[`item.op_users`]="{ item }">
               456
-              <AddPilot :node="item"></AddPilot> </template
+              <AddPilot
+                :node="item"
+                :operationID="operationID"
+              ></AddPilot> </template
           ></v-data-table>
         </v-col>
       </v-row>
