@@ -11682,12 +11682,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
  // import ApiL from "../service/apil";
 
@@ -11994,7 +11988,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   method: "DELETE",
                   url: "/api/deletenode/" + id,
                   withCredentials: true,
-                  data: request,
                   headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json"
@@ -52394,7 +52387,6 @@ var render = function () {
                                     icon: "",
                                     fixed: "",
                                     left: "",
-                                    disabled: _vm.showNodeButton,
                                     color: "success",
                                   },
                                   on: {

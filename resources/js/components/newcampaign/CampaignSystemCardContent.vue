@@ -30,13 +30,7 @@
                 ></v-text-field>
               </v-card-text>
               <v-card-actions>
-                <v-btn
-                  icon
-                  fixed
-                  left
-                  :disabled="showNodeButton"
-                  color="success"
-                  @click="addNode()"
+                <v-btn icon fixed left color="success" @click="addNode()"
                   ><v-icon>fas fa-check</v-icon></v-btn
                 >
 

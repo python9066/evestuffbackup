@@ -33,7 +33,6 @@ export default {
         method: "DELETE",
         url: "/api/deletenode/" + id,
         withCredentials: true,
-        data: request,
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
