@@ -11398,7 +11398,7 @@ function sleep(ms) {
       return this.getOwnHackingCharOnOp(this.operationID);
     },
     checkShowAdd: function checkShowAdd() {
-      if (this.node.name == null && this.freecharCount != 0 && this.node.status_id != 4 && this.node.status_id != 5 && this.node.status_id != 7 && this.node.status_id != 8) {
+      if (this.node.op_users == null && this.freecharCount != 0 && this.node.node_status != 4 && this.node.node_status != 5 && this.node.node_status != 7 && this.node.node_status != 8) {
         return true;
       } else {
         return false;
