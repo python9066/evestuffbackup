@@ -13,6 +13,7 @@
             }"
             class="elevation-24 rounded-xl full-width"
           >
+            <template slot="no-data"> No Nodes in this system </template>
             <template v-slot:[`item.actions`]="{ item }">
               <v-icon
                 color="orange darken-3"
@@ -23,10 +24,10 @@
                 fas fa-trash-alt
               </v-icon>
             </template>
-            <template slot="no-data">
-              No nodes have shown up here..... yet!!!!
-            </template>
-          </v-data-table>
+            <template v-slot:[`item.op_users`]="{ item }">
+              456
+              <AddPilot :node="item"></AddPilot> </template
+          ></v-data-table>
         </v-col>
       </v-row>
     </v-col>
@@ -49,34 +50,34 @@ export default {
           value: "name",
           sortable: false,
         },
-        // {
-        //   text: "Pilot",
-        //   value: "opUsers",
-        //   sortable: true,
-        // },
+        {
+          text: "Pilot",
+          value: "op_users",
+          sortable: true,
+        },
 
-        // {
-        //   text: "Main",
-        //   value: "TODOMain",
-        //   sortable: true,
-        // },
+        {
+          text: "Main",
+          value: "TODOMain",
+          sortable: true,
+        },
 
-        // {
-        //   text: "Ship",
-        //   value: "TODOShip",
-        //   sortable: true,
-        // },
-        // {
-        //   text: "Status",
-        //   value: "TODOStatus",
-        //   sortable: true,
-        // },
+        {
+          text: "Ship",
+          value: "TODOShip",
+          sortable: true,
+        },
+        {
+          text: "Status",
+          value: "TODOStatus",
+          sortable: true,
+        },
 
-        // {
-        //   text: "Age/Hack",
-        //   value: "created_at",
-        //   sortable: true,
-        // },
+        {
+          text: "Age/Hack",
+          value: "created_at",
+          sortable: true,
+        },
         {
           text: "",
           value: "actions",

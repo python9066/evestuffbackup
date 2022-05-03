@@ -12124,6 +12124,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12137,32 +12138,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         text: "NodeID",
         value: "name",
         sortable: false
-      }, // {
-      //   text: "Pilot",
-      //   value: "opUsers",
-      //   sortable: true,
-      // },
-      // {
-      //   text: "Main",
-      //   value: "TODOMain",
-      //   sortable: true,
-      // },
-      // {
-      //   text: "Ship",
-      //   value: "TODOShip",
-      //   sortable: true,
-      // },
-      // {
-      //   text: "Status",
-      //   value: "TODOStatus",
-      //   sortable: true,
-      // },
-      // {
-      //   text: "Age/Hack",
-      //   value: "created_at",
-      //   sortable: true,
-      // },
-      {
+      }, {
+        text: "Pilot",
+        value: "op_users",
+        sortable: true
+      }, {
+        text: "Main",
+        value: "TODOMain",
+        sortable: true
+      }, {
+        text: "Ship",
+        value: "TODOShip",
+        sortable: true
+      }, {
+        text: "Status",
+        value: "TODOStatus",
+        sortable: true
+      }, {
+        text: "Age/Hack",
+        value: "created_at",
+        sortable: true
+      }, {
         text: "",
         value: "actions",
         sortable: true
@@ -52909,17 +52905,24 @@ var render = function () {
                               ]
                             },
                           },
+                          {
+                            key: "item.op_users",
+                            fn: function (ref) {
+                              var item = ref.item
+                              return [
+                                _vm._v("\n            456\n            "),
+                                _c("AddPilot", { attrs: { node: item } }),
+                              ]
+                            },
+                          },
                         ],
                         null,
                         true
                       ),
                     },
                     [
-                      _vm._v(" "),
                       _c("template", { slot: "no-data" }, [
-                        _vm._v(
-                          "\n            No nodes have shown up here..... yet!!!!\n          "
-                        ),
+                        _vm._v(" No Nodes in this system "),
                       ]),
                     ],
                     2
