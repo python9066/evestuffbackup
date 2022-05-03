@@ -11397,8 +11397,11 @@ function sleep(ms) {
     charsFree: function charsFree() {
       return this.getOwnHackingCharOnOp(this.operationID);
     },
+    nodefree: function nodefree() {
+      return this.node.op_users.length;
+    },
     checkShowAdd: function checkShowAdd() {
-      if (this.node.op_users.length > 0 && this.freecharCount != 0 && this.node.node_status != 4 && this.node.node_status != 5 && this.node.node_status != 7 && this.node.node_status != 8) {
+      if (this.nodefree > 0 && this.freecharCount != 0 && this.node.node_status != 4 && this.node.node_status != 5 && this.node.node_status != 7 && this.node.node_status != 8) {
         return true;
       } else {
         return false;
