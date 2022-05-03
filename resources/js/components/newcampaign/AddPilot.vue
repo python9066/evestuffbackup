@@ -84,11 +84,21 @@ export default {
     ...mapState([]),
 
     freecharCount() {
-      return this.getOwnHackingCharOnOp(this.operationID).length;
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+      if (data) {
+        return this.getOwnHackingCharOnOp(this.operationID).length;
+      } else {
+        return 0;
+      }
     },
 
     charsFree() {
-      return this.getOwnHackingCharOnOp(this.operationID);
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+      if (data) {
+        return this.getOwnHackingCharOnOp(this.operationID);
+      } else {
+        return [];
+      }
     },
 
     nodefree() {

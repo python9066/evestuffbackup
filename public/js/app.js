@@ -11427,10 +11427,22 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     freecharCount: function freecharCount() {
-      return this.getOwnHackingCharOnOp(this.operationID).length;
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+
+      if (data) {
+        return this.getOwnHackingCharOnOp(this.operationID).length;
+      } else {
+        return 0;
+      }
     },
     charsFree: function charsFree() {
-      return this.getOwnHackingCharOnOp(this.operationID);
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+
+      if (data) {
+        return this.getOwnHackingCharOnOp(this.operationID);
+      } else {
+        return [];
+      }
     },
     nodefree: function nodefree() {
       return this.node.op_users.length;
