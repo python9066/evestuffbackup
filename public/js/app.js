@@ -89408,7 +89408,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     campaignSystems: [],
     opUsers: [],
     ownChars: {},
-    newCampaignsystems: []
+    newCampaignSystems: []
   },
   mutations: {
     DELETE_OP_CHAR_FROM_OWN_LIST: function DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
@@ -89469,22 +89469,22 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     SET_OPERATION_PAGE: function SET_OPERATION_PAGE(state, data) {
       state.newOperationInfo = data.data;
-      state.newCampaignsystems = data.systems;
+      state.newCampaignSystems = data.systems;
       state.opUsers = data.opUsers;
       state.ownChars = data.ownChars;
     },
     UPDATE_CAMPAIGN_SYSTEMS: function UPDATE_CAMPAIGN_SYSTEMS(state, data) {
-      var item = state.newCampaignsystems.find(function (item) {
+      var item = state.newCampaignSystems.find(function (item) {
         return item.id === data.id;
       });
-      var count = state.newCampaignsystems.filter(function (item) {
+      var count = state.newCampaignSystems.filter(function (item) {
         return item.id === data.id;
       }).length;
 
       if (count > 0) {
         Object.assign(item, data);
       } else {
-        state.newCampaignsystems.push(data);
+        state.newCampaignSystems.push(data);
       }
     },
     SET_WEBWAY_SELECTED_START_SYSTEM: function SET_WEBWAY_SELECTED_START_SYSTEM(state, data) {
