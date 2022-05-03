@@ -32768,7 +32768,7 @@ function sleep(ms) {
       return this.newOperationInfo.campaign;
     },
     systems: function systems() {
-      return this.campaignSystems;
+      return this.newCampaignSystems;
     }
   }),
   beforeDestroy: function beforeDestroy() {
