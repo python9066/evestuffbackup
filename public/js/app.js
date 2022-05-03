@@ -12140,7 +12140,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         sortable: false
       }, {
         text: "Pilot",
-        value: "op_users.name",
+        value: "op_users",
         sortable: true
       }, {
         text: "Main",
@@ -52906,7 +52906,7 @@ var render = function () {
                             },
                           },
                           {
-                            key: "op_users.name",
+                            key: "op_users",
                             fn: function (ref) {
                               var item = ref.item
                               return [

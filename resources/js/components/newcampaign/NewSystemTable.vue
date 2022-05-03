@@ -24,7 +24,7 @@
                 fas fa-trash-alt
               </v-icon>
             </template>
-            <template v-slot:[`op_users.name`]="{ item }">
+            <template v-slot:[`op_users`]="{ item }">
               456
               <AddPilot :node="item"></AddPilot> </template
           ></v-data-table>
@@ -52,7 +52,7 @@ export default {
         },
         {
           text: "Pilot",
-          value: "op_users.name",
+          value: "op_users",
           sortable: true,
         },
 
