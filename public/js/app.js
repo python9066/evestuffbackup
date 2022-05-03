@@ -32760,7 +32760,7 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo", "campaignSystems"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo", "newCampaignSystems"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), {}, {
     operationID: function operationID() {
       return this.newOperationInfo.id;
     },

@@ -120,7 +120,7 @@ export default {
   methods: {},
 
   computed: {
-    ...mapState(["newOperationInfo", "campaignSystems"]),
+    ...mapState(["newOperationInfo", "newCampaignSystems"]),
     ...mapGetters([]),
 
     operationID() {
