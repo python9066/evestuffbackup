@@ -13,8 +13,7 @@
             }"
             class="elevation-24 rounded-xl full-width"
           >
-            <template slot="no-data"> No Nodes in this system </template>
-            <template v-slot:[`actions`]="{ item }">
+            <template v-slot:[`item.actions`]="{ item }">
               <v-icon
                 color="orange darken-3"
                 small
@@ -23,8 +22,11 @@
               >
                 fas fa-trash-alt
               </v-icon>
-            </template></v-data-table
-          >
+            </template>
+            <template slot="no-data">
+              No nodes have shown up here..... yet!!!!
+            </template>
+          </v-data-table>
         </v-col>
       </v-row>
     </v-col>

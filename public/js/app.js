@@ -12122,6 +12122,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -52880,7 +52882,7 @@ var render = function () {
                       scopedSlots: _vm._u(
                         [
                           {
-                            key: "actions",
+                            key: "item.actions",
                             fn: function (ref) {
                               var item = ref.item
                               return [
@@ -52913,8 +52915,11 @@ var render = function () {
                       ),
                     },
                     [
+                      _vm._v(" "),
                       _c("template", { slot: "no-data" }, [
-                        _vm._v(" No Nodes in this system "),
+                        _vm._v(
+                          "\n            No nodes have shown up here..... yet!!!!\n          "
+                        ),
                       ]),
                     ],
                     2
