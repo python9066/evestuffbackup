@@ -60,10 +60,7 @@ class NewSystemNodeController extends Controller
     {
         //
 
-        //  What the hell is this
-        //  I have to add more
-        //  DO NOT CHANGE THIS
-        //  This makes all the things work
+
     }
 
     /**
@@ -86,6 +83,20 @@ class NewSystemNodeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $system_id = NewSystemNode::where('id', $id)->pluck('system_id');
+        NewSystemNode::where('id', $id)->delete();
+        // TODO Change this so it only gets Campaigns what are active.
+        $campaignIDs = NewCampaignSystem::where('system_id', $system_id)->pluck('new_campaign_id');
+        $obIDS = NewCampaginOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
+        $message = Campaignhelper::systemSolo($system_id);
+        foreach ($obIDS as $op) {
+
+            $flag = collect([
+                'flag' => 7,
+                'message' => $message,
+                'id' => $op
+            ]);
+            broadcast(new OperationUpdate($flag));
+        }
     }
 }

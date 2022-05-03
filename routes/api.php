@@ -286,10 +286,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/updatewebwaystartsystems', 'WebWayStartSystemsContorller@update');
     Route::put('/stationsheetupdatewebway/{id}', 'StationController@updateStationSheetWebway');
 
+    // TODO  Add checks to make sure that people should be doing this when they press the link
+
     Route::get('/operationinfo/{id}', 'NewOperationsController@getInfo');
     Route::put('/newcampaignusersremove/{id}/{opID}/{userid}', 'OperationUserController@updateremove');
     Route::put('/newcampaignusersadd/{id}/{opID}/{userid}', 'OperationUserController@updateadd');
     Route::post('/newcampaignusers/{opID}/{userid}', 'OperationUserController@store');
     Route::delete('/newcampaignusers/{id}/{opID}/{userid}', 'OperationUserController@destroy');
     Route::post('/addnode', 'NewSystemNodeController@store');
+    Route::delete('/deletenode/{id}', 'NewSystemNodeController@destory');
 });

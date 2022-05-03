@@ -27,7 +27,10 @@
         </v-row>
       </v-expansion-panel-header>
       <v-expansion-panel-content
-        ><CampaignSystemCardContent :item="item"></CampaignSystemCardContent>
+        ><CampaignSystemCardContent
+          :item="item"
+          :operationID="operationID"
+        ></CampaignSystemCardContent>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
@@ -44,6 +47,7 @@ export default {
   title() {},
   props: {
     item: Object,
+    operationID: Number,
   },
   data() {
     return {

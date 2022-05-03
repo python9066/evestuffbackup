@@ -55,7 +55,10 @@
       </v-row>
       <v-row>
         <v-col cols="12">
-          <NewSystemTable :item="item"></NewSystemTable>
+          <NewSystemTable
+            :item="item"
+            :operationID="operationID"
+          ></NewSystemTable>
         </v-col>
       </v-row>
     </v-col>
@@ -74,6 +77,7 @@ export default {
   title() {},
   props: {
     item: Object,
+    operationID: Number,
   },
   data() {
     return {
