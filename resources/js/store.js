@@ -97,6 +97,7 @@ export default new Vuex.Store({
         campaignSystems: [],
         opUsers: [],
         ownChars: {},
+        newCampaignsystems: [],
     },
     mutations: {
         DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
@@ -149,22 +150,22 @@ export default new Vuex.Store({
 
         SET_OPERATION_PAGE(state, data) {
             state.newOperationInfo = data.data;
-            state.campaignSystems = data.systems;
+            state.newCampaignsystems = data.systems;
             state.opUsers = data.opUsers;
             state.ownChars = data.ownChars;
         },
 
         UPDATE_CAMPAIGN_SYSTEMS(state, data) {
-            const item = state.campaignsystems.find(
+            const item = state.newCampaignsystems.find(
                 (item) => item.id === data.id
             );
-            const count = state.campaignsystems.filter(
+            const count = state.newCampaignsystems.filter(
                 (item) => item.id === data.id
             ).length;
             if (count > 0) {
                 Object.assign(item, data);
             } else {
-                state.campaignsystems.push(data);
+                state.newCampaignsystems.push(data);
             }
         },
 
@@ -1715,7 +1716,7 @@ export default new Vuex.Store({
             commit("DELETE_CAMPAIGN_SYSTEM", id);
         },
 
-        updateCampaignSystem({ commit }, data) {
+        updateNewCampaignSystem({ commit }, data) {
             commit("UPDATE_CAMPAIGN_SYSTEMS", data);
         },
 

@@ -73,7 +73,7 @@ export default {
         }
 
         if (e.flag.flag == 7) {
-          this.$store.dispatch("updateCampaignSystem", e.flag.message);
+          this.$store.dispatch("updateNewCampaignSystem", e.flag.message);
         }
 
         if (e.flag.flag == 8) {

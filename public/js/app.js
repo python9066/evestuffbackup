@@ -32695,7 +32695,7 @@ function sleep(ms) {
                 }
 
                 if (e.flag.flag == 7) {
-                  _this.$store.dispatch("updateCampaignSystem", e.flag.message);
+                  _this.$store.dispatch("updateNewCampaignSystem", e.flag.message);
                 }
 
                 if (e.flag.flag == 8) {}
@@ -89407,7 +89407,8 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     newOperationInfo: [],
     campaignSystems: [],
     opUsers: [],
-    ownChars: {}
+    ownChars: {},
+    newCampaignsystems: []
   },
   mutations: {
     DELETE_OP_CHAR_FROM_OWN_LIST: function DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
@@ -89468,22 +89469,22 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     SET_OPERATION_PAGE: function SET_OPERATION_PAGE(state, data) {
       state.newOperationInfo = data.data;
-      state.campaignSystems = data.systems;
+      state.newCampaignsystems = data.systems;
       state.opUsers = data.opUsers;
       state.ownChars = data.ownChars;
     },
     UPDATE_CAMPAIGN_SYSTEMS: function UPDATE_CAMPAIGN_SYSTEMS(state, data) {
-      var item = state.campaignsystems.find(function (item) {
+      var item = state.newCampaignsystems.find(function (item) {
         return item.id === data.id;
       });
-      var count = state.campaignsystems.filter(function (item) {
+      var count = state.newCampaignsystems.filter(function (item) {
         return item.id === data.id;
       }).length;
 
       if (count > 0) {
         Object.assign(item, data);
       } else {
-        state.campaignsystems.push(data);
+        state.newCampaignsystems.push(data);
       }
     },
     SET_WEBWAY_SELECTED_START_SYSTEM: function SET_WEBWAY_SELECTED_START_SYSTEM(state, data) {
@@ -91848,7 +91849,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
   }), _defineProperty(_actions, "deleteCampaignSystem", function deleteCampaignSystem(_ref103, id) {
     var commit = _ref103.commit;
     commit("DELETE_CAMPAIGN_SYSTEM", id);
-  }), _defineProperty(_actions, "updateCampaignSystem", function updateCampaignSystem(_ref104, data) {
+  }), _defineProperty(_actions, "updateNewCampaignSystem", function updateNewCampaignSystem(_ref104, data) {
     var commit = _ref104.commit;
     commit("UPDATE_CAMPAIGN_SYSTEMS", data);
   }), _defineProperty(_actions, "getNotifications", function getNotifications(_ref105) {
