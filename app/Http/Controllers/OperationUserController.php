@@ -72,13 +72,7 @@ class OperationUserController extends Controller
 
     public function updateadd(Request $request, $id, $opID, $userid)
     {
-        $node = NewNodeCampaignUser::where('operation_user_id', $id)->first();
-
-        if ($node != null) {
-            $node->update(['operation_user_id' =>  null, 'status_id' => 1, 'end_time' => null]);
-            $node->save();
-            // TODO Add baordcsat to update stuff
-        }
+        //TODO remove from other operations and nodes in there to a new operations
 
 
         OperationUser::where('id', $id)->update($request->all());
@@ -111,13 +105,7 @@ class OperationUserController extends Controller
     public function updateremove(Request $request, $id, $opID, $userid)
     {
 
-        $node = NewNodeCampaignUser::where('operation_user_id', $id)->first();
-
-        if ($node != null) {
-            $node->update(['operation_user_id' =>  null, 'status_id' => 1, 'end_time' => null]);
-            $node->save();
-            // TODO Add boradcast to update node
-        }
+        //TODO remove from other operations and nodes in there to a new operations
 
         OperationUser::where('id', $id)->update($request->all());
         // TODO Add boradcast to update info
