@@ -1,14 +1,32 @@
 <template>
   <v-row no-gutters>
     <v-col cols="12">
-      <v-list>
-        <v-list-item v-for="(node, index) in item.new_nodes" :key="index">
-          <v-list-item-title>{{ node.name }}</v-list-item-title>
-          <v-list-item-action>
-            <v-btn @click="removenode(node)">Delete</v-btn>
-          </v-list-item-action>
-        </v-list-item>
-      </v-list>
+      <v-row no-gutters>
+        <v-col cols="12">
+          <v-data-table
+            :headers="headers"
+            :items="nodes"
+            item-key="id"
+            :items-per-page="50"
+            :footer-props="{
+              'items-per-page-options': [10, 20, 30, 50, 100, -1],
+            }"
+            class="elevation-24 rounded-xl full-width"
+          >
+            <template slot="no-data"> No Nodes in this system </template>
+            <template v-slot:[`actions`]="{ item }">
+              <v-icon
+                color="orange darken-3"
+                small
+                class="pl-5"
+                @click="removenode(item)"
+              >
+                fas fa-trash-alt
+              </v-icon>
+            </template></v-data-table
+          >
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>
@@ -22,7 +40,48 @@ export default {
     operationID: Number,
   },
   data() {
-    return {};
+    return {
+      headers: [
+        {
+          text: "NodeID",
+          value: "name",
+          sortable: false,
+        },
+        {
+          text: "Pilot",
+          value: "TODOPilot",
+          sortable: true,
+        },
+
+        {
+          text: "Main",
+          value: "TODOMain",
+          sortable: true,
+        },
+
+        {
+          text: "Ship",
+          value: "TODOShip",
+          sortable: true,
+        },
+        {
+          text: "Status",
+          value: "TODOStatus",
+          sortable: true,
+        },
+
+        {
+          text: "Age/Hack",
+          value: "TODOAge/Hack",
+          sortable: true,
+        },
+        {
+          text: "",
+          value: "actions",
+          sortable: true,
+        },
+      ],
+    };
   },
 
   methods: {
@@ -45,6 +104,10 @@ export default {
     ...mapState([]),
 
     ...mapGetters([]),
+
+    nodes() {
+      return this.item.new_nodes;
+    },
   },
 };
 </script>

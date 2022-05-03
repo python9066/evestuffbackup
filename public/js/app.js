@@ -11964,6 +11964,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -11972,7 +11990,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     operationID: Number
   },
   data: function data() {
-    return {};
+    return {
+      headers: [{
+        text: "NodeID",
+        value: "name",
+        sortable: false
+      }, {
+        text: "Pilot",
+        value: "TODOPilot",
+        sortable: true
+      }, {
+        text: "Main",
+        value: "TODOMain",
+        sortable: true
+      }, {
+        text: "Ship",
+        value: "TODOShip",
+        sortable: true
+      }, {
+        text: "Status",
+        value: "TODOStatus",
+        sortable: true
+      }, {
+        text: "Age/Hack",
+        value: "TODOAge/Hack",
+        sortable: true
+      }, {
+        text: "",
+        value: "actions",
+        sortable: true
+      }]
+    };
   },
   methods: {
     removenode: function removenode(item) {
@@ -12003,7 +12051,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([]))
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), {}, {
+    nodes: function nodes() {
+      return this.item.new_nodes;
+    }
+  })
 });
 
 /***/ }),
@@ -52551,35 +52603,72 @@ var render = function () {
         { attrs: { cols: "12" } },
         [
           _c(
-            "v-list",
-            _vm._l(_vm.item.new_nodes, function (node, index) {
-              return _c(
-                "v-list-item",
-                { key: index },
+            "v-row",
+            { attrs: { "no-gutters": "" } },
+            [
+              _c(
+                "v-col",
+                { attrs: { cols: "12" } },
                 [
-                  _c("v-list-item-title", [_vm._v(_vm._s(node.name))]),
-                  _vm._v(" "),
                   _c(
-                    "v-list-item-action",
-                    [
-                      _c(
-                        "v-btn",
-                        {
-                          on: {
-                            click: function ($event) {
-                              return _vm.removenode(node)
+                    "v-data-table",
+                    {
+                      staticClass: "elevation-24 rounded-xl full-width",
+                      attrs: {
+                        headers: _vm.headers,
+                        items: _vm.nodes,
+                        "item-key": "id",
+                        "items-per-page": 50,
+                        "footer-props": {
+                          "items-per-page-options": [10, 20, 30, 50, 100, -1],
+                        },
+                      },
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "actions",
+                            fn: function (ref) {
+                              var item = ref.item
+                              return [
+                                _c(
+                                  "v-icon",
+                                  {
+                                    staticClass: "pl-5",
+                                    attrs: {
+                                      color: "orange darken-3",
+                                      small: "",
+                                    },
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.removenode(item)
+                                      },
+                                    },
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n              fas fa-trash-alt\n            "
+                                    ),
+                                  ]
+                                ),
+                              ]
                             },
                           },
-                        },
-                        [_vm._v("Delete")]
+                        ],
+                        null,
+                        true
                       ),
+                    },
+                    [
+                      _c("template", { slot: "no-data" }, [
+                        _vm._v(" No Nodes in this system "),
+                      ]),
                     ],
-                    1
+                    2
                   ),
                 ],
                 1
-              )
-            }),
+              ),
+            ],
             1
           ),
         ],
