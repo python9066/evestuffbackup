@@ -52905,14 +52905,10 @@ var render = function () {
                             },
                           },
                           {
-                            key: "op_users",
+                            key: "op_users.name",
                             fn: function (ref) {
                               var item = ref.item
-                              return [
-                                _c("AddPilot", {
-                                  attrs: { opUser: item.op_users },
-                                }),
-                              ]
+                              return [_c("AddPilot", { attrs: { node: item } })]
                             },
                           },
                         ],

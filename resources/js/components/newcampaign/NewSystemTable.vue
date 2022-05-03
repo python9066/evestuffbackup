@@ -24,8 +24,8 @@
                 fas fa-trash-alt
               </v-icon>
             </template>
-            <template v-slot:[`op_users`]="{ item }">
-              <AddPilot :opUser="item.op_users"></AddPilot> </template
+            <template v-slot:[`op_users.name`]="{ item }">
+              <AddPilot :node="item"></AddPilot> </template
           ></v-data-table>
         </v-col>
       </v-row>
