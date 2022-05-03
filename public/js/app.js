@@ -12135,27 +12135,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         text: "NodeID",
         value: "name",
         sortable: false
-      }, {
-        text: "Pilot",
-        value: "opUsers",
-        sortable: true
-      }, {
-        text: "Main",
-        value: "TODOMain",
-        sortable: true
-      }, {
-        text: "Ship",
-        value: "TODOShip",
-        sortable: true
-      }, {
-        text: "Status",
-        value: "TODOStatus",
-        sortable: true
-      }, {
-        text: "Age/Hack",
-        value: "created_at",
-        sortable: true
-      }, {
+      }, // {
+      //   text: "Pilot",
+      //   value: "opUsers",
+      //   sortable: true,
+      // },
+      // {
+      //   text: "Main",
+      //   value: "TODOMain",
+      //   sortable: true,
+      // },
+      // {
+      //   text: "Ship",
+      //   value: "TODOShip",
+      //   sortable: true,
+      // },
+      // {
+      //   text: "Status",
+      //   value: "TODOStatus",
+      //   sortable: true,
+      // },
+      // {
+      //   text: "Age/Hack",
+      //   value: "created_at",
+      //   sortable: true,
+      // },
+      {
         text: "",
         value: "actions",
         sortable: true
