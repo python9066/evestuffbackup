@@ -11389,7 +11389,42 @@ function sleep(ms) {
       }, _callee3);
     }))();
   },
-  methods: {},
+  methods: {
+    addOpUser: function addOpUser(op_user_id) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                request = {
+                  node_id: _this.node.id,
+                  op_user_id: op_user_id,
+                  system_id: _this.node.system_id
+                };
+                _context4.next = 3;
+                return axios({
+                  method: "POST",
+                  url: "/api/addusertonode",
+                  withCredentials: true,
+                  data: request,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    }
+  },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     freecharCount: function freecharCount() {
       return this.getOwnHackingCharOnOp(this.operationID).length;
@@ -12093,7 +12128,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
 //
 //
 //
@@ -52265,7 +52299,7 @@ var render = function () {
                           key: index,
                           on: {
                             click: function ($event) {
-                              return _vm.addOpUser()
+                              return _vm.addOpUser(list.id)
                             },
                           },
                         },
@@ -52917,7 +52951,6 @@ var render = function () {
                             fn: function (ref) {
                               var item = ref.item
                               return [
-                                _vm._v("\n            456\n            "),
                                 _c("AddPilot", {
                                   attrs: {
                                     node: item,

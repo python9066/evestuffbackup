@@ -21,7 +21,7 @@
           <v-list-item
             v-for="(list, index) in charsFree"
             :key="index"
-            @click="addOpUser()"
+            @click="addOpUser(list.id)"
           >
             <v-list-item-title>{{ list.name }}</v-list-item-title>
           </v-list-item>
@@ -56,7 +56,27 @@ export default {
   async beforeCreate() {},
 
   async mounted() {},
-  methods: {},
+  methods: {
+    async addOpUser(op_user_id) {
+      var request = {
+        node_id: this.node.id,
+        op_user_id: op_user_id,
+        system_id: this.node.system_id,
+      };
+      await axios({
+        method: "POST",
+        url: "/api/addusertonode",
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+
+      // TODO Add logging
+    },
+  },
 
   computed: {
     ...mapGetters(["getOwnHackingCharOnOp"]),

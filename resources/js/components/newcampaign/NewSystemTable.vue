@@ -25,7 +25,6 @@
               </v-icon>
             </template>
             <template v-slot:[`item.op_users`]="{ item }">
-              456
               <AddPilot
                 :node="item"
                 :operationID="operationID"
