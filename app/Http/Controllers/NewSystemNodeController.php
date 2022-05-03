@@ -83,7 +83,7 @@ class NewSystemNodeController extends Controller
         OperationUser::where('id', $request->op_user_id)
             ->update([
                 'primery' => $prime,
-                'new_system_node_id'
+                'new_system_node_id' => $request->node_id
             ]);
 
         $campaignIDs = NewCampaignSystem::where('system_id', $request->system_id)->pluck('new_campaign_id');
