@@ -93392,11 +93392,12 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         var pull = state.ownChars.filter(function (u) {
           return u.role_id != 4 && u.operation_id == operationid;
         });
+        var count = pull.length;
 
         if (count != 0) {
           return pull;
         } else {
-          return [];
+          return null;
         }
       };
     }

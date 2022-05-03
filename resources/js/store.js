@@ -2500,10 +2500,11 @@ export default new Vuex.Store({
             let pull = state.ownChars.filter(
                 (u) => u.role_id != 4 && u.operation_id == operationid
             );
+            let count = pull.length;
             if (count != 0) {
                 return pull;
             } else {
-                return [];
+                return null;
             }
         },
     },
