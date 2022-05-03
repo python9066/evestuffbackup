@@ -12122,9 +12122,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12140,7 +12137,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         sortable: false
       }, {
         text: "Pilot",
-        value: "op_users",
+        value: "opUsers",
         sortable: true
       }, {
         text: "Main",
@@ -52902,16 +52899,6 @@ var render = function () {
                                     ),
                                   ]
                                 ),
-                              ]
-                            },
-                          },
-                          {
-                            key: "op_users",
-                            fn: function (ref) {
-                              var item = ref.item
-                              return [
-                                _vm._v("\n            456\n            "),
-                                _c("AddPilot", { attrs: { node: item } }),
                               ]
                             },
                           },
