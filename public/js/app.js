@@ -12013,7 +12013,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         sortable: true
       }, {
         text: "Age/Hack",
-        value: "TODOAge/Hack",
+        value: "created_at",
         sortable: true
       }, {
         text: "",
@@ -93043,6 +93043,19 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
           return pull;
         } else {
           return "NO";
+        }
+      };
+    },
+    ownHackingCharOnOp: function ownHackingCharOnOp(state) {
+      return function (operationid) {
+        var pull = state.ownChars.filter(function (u) {
+          return u.role_id != 4 & u.operation_id == operationid;
+        });
+
+        if (count != 0) {
+          return pull;
+        } else {
+          return [];
         }
       };
     }

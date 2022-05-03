@@ -9,4 +9,9 @@ class NewSystemNode extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function opUsers()
+    {
+        return $this->hasMany(OperationUser::class);
+    }
 }

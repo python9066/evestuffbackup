@@ -72,7 +72,7 @@ export default {
 
         {
           text: "Age/Hack",
-          value: "TODOAge/Hack",
+          value: "created_at",
           sortable: true,
         },
         {

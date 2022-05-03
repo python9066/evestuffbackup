@@ -673,7 +673,7 @@ class Campaignhelper
         return System::whereIn('constellation_id', $contellationIDs)
             ->with([
                 'newCampaigns',
-                'newNodes'
+                'newNodes.opUsers'
             ])
             ->get();
     }
@@ -683,7 +683,7 @@ class Campaignhelper
         return System::where('id', $systemID)
             ->with([
                 'newCampaigns',
-                'newNodes'
+                'newNodes.opUsers'
             ])
             ->first();
     }
