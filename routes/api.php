@@ -294,5 +294,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/newcampaignusers/{opID}/{userid}', 'OperationUserController@store');
     Route::delete('/newcampaignusers/{id}/{opID}/{userid}', 'OperationUserController@destroy');
     Route::post('/addnode', 'NewSystemNodeController@store');
-    Route::delete('/deletenode/{id}', 'NewSystemNodeController@destory');
+    Route::delete('/deletenode/{id}', 'NewSystemNodeController@destroy');
 });
