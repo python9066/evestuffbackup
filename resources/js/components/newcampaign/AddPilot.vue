@@ -72,12 +72,12 @@ export default {
 
     checkShowAdd() {
       if (
-        node.name == null &&
+        this.node.name == null &&
         this.freecharCount != 0 &&
-        node.status_id != 4 &&
-        node.status_id != 5 &&
-        node.status_id != 7 &&
-        node.status_id != 8
+        this.node.status_id != 4 &&
+        this.node.status_id != 5 &&
+        this.node.status_id != 7 &&
+        this.node.status_id != 8
       ) {
         return true;
       } else {
