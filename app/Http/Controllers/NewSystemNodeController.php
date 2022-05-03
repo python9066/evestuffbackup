@@ -75,9 +75,8 @@ class NewSystemNodeController extends Controller
             $prime = 0;
         }
 
-        $check = NewSystemNode::where('id', $request->node_id)
-            ->pluck('node_status');
-        if ($check == 8) {
+        $check = NewSystemNode::where('id', $request->node_id)->first();
+        if ($check->node_status == 8) {
             $prime = 0;
         }
 
