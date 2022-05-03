@@ -28,7 +28,7 @@
           <v-tabs-slider></v-tabs-slider>
           <v-tab link to="/notifications"> Notifications </v-tab>
 
-          <v-menu offset-y>
+          <v-menu offset-y v-if="$can('view_killsheet')">
             <template v-slot:activator="{ on, attrs }">
               <v-tab v-bind="attrs" v-on="on"> Stations </v-tab>
             </template>

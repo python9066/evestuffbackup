@@ -11401,7 +11401,7 @@ function sleep(ms) {
       return this.node.op_users.length;
     },
     checkShowAdd: function checkShowAdd() {
-      if (this.nodefree > 0 && this.freecharCount != 0 && this.node.node_status != 4 && this.node.node_status != 5 && this.node.node_status != 7 && this.node.node_status != 8) {
+      if (this.nodefree == 0 && this.freecharCount != 0 && this.node.node_status != 4 && this.node.node_status != 5 && this.node.node_status != 7 && this.node.node_status != 8) {
         return true;
       } else {
         return false;
@@ -68232,79 +68232,95 @@ var render = function () {
                     _vm._v(" Notifications "),
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "v-menu",
-                    {
-                      attrs: { "offset-y": "" },
-                      scopedSlots: _vm._u([
+                  _vm.$can("view_killsheet")
+                    ? _c(
+                        "v-menu",
                         {
-                          key: "activator",
-                          fn: function (ref) {
-                            var on = ref.on
-                            var attrs = ref.attrs
-                            return [
-                              _c(
-                                "v-tab",
-                                _vm._g(_vm._b({}, "v-tab", attrs, false), on),
-                                [_vm._v(" Stations ")]
-                              ),
-                            ]
-                          },
+                          attrs: { "offset-y": "" },
+                          scopedSlots: _vm._u(
+                            [
+                              {
+                                key: "activator",
+                                fn: function (ref) {
+                                  var on = ref.on
+                                  var attrs = ref.attrs
+                                  return [
+                                    _c(
+                                      "v-tab",
+                                      _vm._g(
+                                        _vm._b({}, "v-tab", attrs, false),
+                                        on
+                                      ),
+                                      [_vm._v(" Stations ")]
+                                    ),
+                                  ]
+                                },
+                              },
+                            ],
+                            null,
+                            false,
+                            1734589782
+                          ),
                         },
-                      ]),
-                    },
-                    [
-                      _vm._v(" "),
-                      _c(
-                        "v-list",
                         [
-                          _vm.$can("view_killsheet")
-                            ? _c(
-                                "v-list-item",
-                                { attrs: { link: "", to: "/stationtimers" } },
-                                [_vm._v("\n              Timers\n            ")]
-                              )
-                            : _vm._e(),
                           _vm._v(" "),
-                          _vm.$can("finish_move_timer")
-                            ? _c(
-                                "v-list-item",
-                                { attrs: { link: "", to: "/addtimer" } },
-                                [
-                                  _vm._v(
-                                    "\n              To Check\n            "
-                                  ),
-                                ]
-                              )
-                            : _vm.$can("view_move_timers")
-                            ? _c(
-                                "v-list-item",
-                                { attrs: { link: "", to: "/addtimer" } },
-                                [
-                                  _vm._v(
-                                    "\n              ADD TIMER\n            "
-                                  ),
-                                ]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.$can("view_station_list")
-                            ? _c(
-                                "v-list-item",
-                                { attrs: { link: "", to: "/stations" } },
-                                [
-                                  _vm._v(
-                                    "\n              Station List\n            "
-                                  ),
-                                ]
-                              )
-                            : _vm._e(),
+                          _c(
+                            "v-list",
+                            [
+                              _vm.$can("view_killsheet")
+                                ? _c(
+                                    "v-list-item",
+                                    {
+                                      attrs: { link: "", to: "/stationtimers" },
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n              Timers\n            "
+                                      ),
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.$can("finish_move_timer")
+                                ? _c(
+                                    "v-list-item",
+                                    { attrs: { link: "", to: "/addtimer" } },
+                                    [
+                                      _vm._v(
+                                        "\n              To Check\n            "
+                                      ),
+                                    ]
+                                  )
+                                : _vm.$can("view_move_timers")
+                                ? _c(
+                                    "v-list-item",
+                                    { attrs: { link: "", to: "/addtimer" } },
+                                    [
+                                      _vm._v(
+                                        "\n              ADD TIMER\n            "
+                                      ),
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.$can("view_station_list")
+                                ? _c(
+                                    "v-list-item",
+                                    { attrs: { link: "", to: "/stations" } },
+                                    [
+                                      _vm._v(
+                                        "\n              Station List\n            "
+                                      ),
+                                    ]
+                                  )
+                                : _vm._e(),
+                            ],
+                            1
+                          ),
                         ],
                         1
-                      ),
-                    ],
-                    1
-                  ),
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _vm.$can("view_welp_timers")
                     ? _c(

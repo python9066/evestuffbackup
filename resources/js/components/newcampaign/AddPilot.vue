@@ -77,7 +77,7 @@ export default {
 
     checkShowAdd() {
       if (
-        this.nodefree > 0 &&
+        this.nodefree == 0 &&
         this.freecharCount != 0 &&
         this.node.node_status != 4 &&
         this.node.node_status != 5 &&
