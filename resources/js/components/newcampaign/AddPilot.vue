@@ -27,7 +27,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <span v-else>{{ item.name }}</span>
+      <span v-else>name</span>
     </v-col>
   </v-row>
 </template>

@@ -52275,7 +52275,7 @@ var render = function () {
                 ],
                 1
               )
-            : _c("span", [_vm._v(_vm._s(_vm.item.name))]),
+            : _c("span", [_vm._v("name")]),
         ],
         1
       ),
@@ -93387,10 +93387,10 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       };
     },
-    ownHackingCharOnOp: function ownHackingCharOnOp(state) {
+    getOwnHackingCharOnOp: function getOwnHackingCharOnOp(state) {
       return function (operationid) {
         var pull = state.ownChars.filter(function (u) {
-          return u.role_id != 4 & u.operation_id == operationid;
+          return u.role_id != 4 && u.operation_id == operationid;
         });
 
         if (count != 0) {
