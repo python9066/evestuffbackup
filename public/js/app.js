@@ -93454,7 +93454,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     getOwnHackingCharOnOp: function getOwnHackingCharOnOp(state) {
       return function (operationid) {
         var pull = state.ownChars.filter(function (u) {
-          return u.role_id == 1 && u.operation_id == operationid;
+          return u.role_id == 4 && u.operation_id == operationid;
         });
         var count = pull.length;
 
