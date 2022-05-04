@@ -12476,6 +12476,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -53508,7 +53512,7 @@ var render = function () {
                             [
                               _vm._v(
                                 "\n            " +
-                                  _vm._s(this.node.node_status.name) +
+                                  _vm._s(_vm.node.node_status.name) +
                                   "\n          "
                               ),
                             ]
@@ -53536,7 +53540,13 @@ var render = function () {
                         },
                       },
                     },
-                    [_c("v-list-item-title", [_vm._v(_vm._s(list.title))])],
+                    [
+                      _c("v-list-item-title", [
+                        _c("span", { staticClass: "text--#801916" }, [
+                          _vm._v(_vm._s(list.title)),
+                        ]),
+                      ]),
+                    ],
                     1
                   )
                 }),

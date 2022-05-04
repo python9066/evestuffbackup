@@ -12,7 +12,7 @@
               small
               :color="pillColor"
             >
-              {{ this.node.node_status.name }}
+              {{ node.node_status.name }}
             </v-chip>
           </div>
         </template>
@@ -23,7 +23,11 @@
             :key="index"
             @click="statusClick(list)"
           >
-            <v-list-item-title>{{ list.title }}</v-list-item-title>
+            <v-list-item-title>
+              <span class="text--#801916">{{
+                list.title
+              }}</span></v-list-item-title
+            >
           </v-list-item>
         </v-list>
       </v-menu>
