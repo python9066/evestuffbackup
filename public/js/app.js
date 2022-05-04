@@ -11979,7 +11979,7 @@ function sleep(ms) {
                   system_id: _this2.item.id,
                   campaign_id: 96898,
                   //TODO need to code this so hardcode it
-                  name: _this2.nodeText
+                  name: node
                 };
                 _this2.nodeText = "";
                 _this2.addShown = false;
@@ -12154,6 +12154,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -52984,6 +52985,13 @@ var render = function () {
                                   },
                                 }),
                               ]
+                            },
+                          },
+                          {
+                            key: "item.TODOMain",
+                            fn: function (ref) {
+                              var item = ref.item
+                              return [_vm._v("\n            dance\n          ")]
                             },
                           },
                         ],

@@ -103,7 +103,7 @@ export default {
       var request = {
         system_id: this.item.id,
         campaign_id: 96898, //TODO need to code this so hardcode it
-        name: this.nodeText,
+        name: node,
       };
       this.nodeText = "";
       this.addShown = false;

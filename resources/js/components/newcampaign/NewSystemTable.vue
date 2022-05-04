@@ -25,11 +25,12 @@
               </v-icon>
             </template>
             <template v-slot:[`item.op_users`]="{ item }">
-              <AddPilot
-                :node="item"
-                :operationID="operationID"
-              ></AddPilot> </template
-          ></v-data-table>
+              <AddPilot :node="item" :operationID="operationID"></AddPilot>
+            </template>
+            <template v-slot:[`item.TODOMain`]="{ item }">
+              dance
+            </template></v-data-table
+          >
         </v-col>
       </v-row>
     </v-col>
