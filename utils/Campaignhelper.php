@@ -673,6 +673,9 @@ class Campaignhelper
         return System::whereIn('constellation_id', $contellationIDs)
             ->with([
                 'newCampaigns',
+                'newNodes.opUsers' => function ($q) {
+                    $q->where('primery', 1);
+                },
                 'newNodes.opUsers.user',
                 'newNodes.opUsers.userrole',
                 'newNodes.opUsers.userstatus'
@@ -685,6 +688,9 @@ class Campaignhelper
         return System::where('id', $systemID)
             ->with([
                 'newCampaigns',
+                'newNodes.opUsers' => function ($q) {
+                    $q->where('primery', 1);
+                },
                 'newNodes.opUsers.user',
                 'newNodes.opUsers.userrole',
                 'newNodes.opUsers.userstatus'
