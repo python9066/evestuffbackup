@@ -12202,6 +12202,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12229,7 +12232,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         sortable: true
       }, {
         text: "Status",
-        value: "TODOStatus",
+        value: "node_status.name",
         sortable: true
       }, {
         text: "Age/Hack",
@@ -53146,6 +53149,19 @@ var render = function () {
                                 _c("NewSystemTableSimpleText", {
                                   attrs: { node: item, type: 2 },
                                 }),
+                              ]
+                            },
+                          },
+                          {
+                            key: "item.node_status.name",
+                            fn: function (ref) {
+                              var item = ref.item
+                              return [
+                                _vm._v(
+                                  "\n            " +
+                                    _vm._s(item.node_status.name) +
+                                    "\n          "
+                                ),
                               ]
                             },
                           },

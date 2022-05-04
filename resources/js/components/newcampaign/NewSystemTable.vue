@@ -39,6 +39,9 @@
                 :type="2"
               ></NewSystemTableSimpleText>
             </template>
+            <template v-slot:[`item.node_status.name`]="{ item }">
+              {{ item.node_status.name }}
+            </template>
           </v-data-table>
         </v-col>
       </v-row>
@@ -81,7 +84,7 @@ export default {
         },
         {
           text: "Status",
-          value: "TODOStatus",
+          value: "node_status.name",
           sortable: true,
         },
 
