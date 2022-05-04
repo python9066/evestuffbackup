@@ -40,7 +40,10 @@
               ></NewSystemTableSimpleText>
             </template>
             <template v-slot:[`item.node_status.name`]="{ item }">
-              {{ item.node_status.name }}
+              <NewSystemTableStatusButton
+                :node="item"
+                :operationID="operationID"
+              ></NewSystemTableStatusButton>
             </template>
           </v-data-table>
         </v-col>
