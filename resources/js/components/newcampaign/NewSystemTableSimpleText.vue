@@ -55,7 +55,7 @@ export default {
 
         switch (this.type) {
           case 1: // * return main name
-            this.activePilot.user.name;
+            return this.activePilot.user.name;
 
           case 2: // * return {{ship_name}} + T-{{entosi}}
             var entosis = " T-" + this.activePilot.entosis;
