@@ -12591,6 +12591,14 @@ function sleep(ms) {
         return true;
       }
     },
+    filterDropDown: function filterDropDown() {
+      var _this = this;
+
+      var list = this.dropdown_edit.filter(function (f) {
+        return f.value != _this.node.node_status.id;
+      });
+      return list;
+    },
     pillColor: function pillColor(item) {
       if (this.node.node_status.id == 1) {
         return "deep-orange lighten-1";
@@ -53486,9 +53494,9 @@ var render = function () {
                                 {
                                   attrs: {
                                     pill: "",
-                                    outlined: _vm.pillOutlined(),
+                                    outlined: _vm.pillOutlined,
                                     small: "",
-                                    color: _vm.pillColor(),
+                                    color: _vm.pillColor,
                                   },
                                 },
                                 "v-chip",

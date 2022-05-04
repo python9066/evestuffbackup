@@ -8,9 +8,9 @@
               v-bind="attrs"
               v-on="on"
               pill
-              :outlined="pillOutlined()"
+              :outlined="pillOutlined"
               small
-              :color="pillColor()"
+              :color="pillColor"
             >
               {{ this.node.node_status.name }}
             </v-chip>
@@ -84,6 +84,14 @@ export default {
       } else {
         return true;
       }
+    },
+
+    filterDropDown() {
+      var list = this.dropdown_edit.filter(
+        (f) => f.value != this.node.node_status.id
+      );
+
+      return list;
     },
 
     pillColor(item) {
