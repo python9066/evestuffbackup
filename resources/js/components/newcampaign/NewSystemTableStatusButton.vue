@@ -69,7 +69,7 @@ export default {
   async mounted() {},
   methods: {
     async statusClick(list) {
-      request = {
+      var request = {
         status_id: list.value,
       };
 
