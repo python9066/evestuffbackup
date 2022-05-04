@@ -19,14 +19,12 @@
 
         <v-list>
           <v-list-item
-            v-for="(list, index) in dropdown_edit"
+            v-for="(list, index) in filterDropDown"
             :key="index"
             @click="statusClick(list)"
           >
             <v-list-item-title>
-              <span class="text--#801916">{{
-                list.title
-              }}</span></v-list-item-title
+              <span class="text--red">{{ list.title }}</span></v-list-item-title
             >
           </v-list-item>
         </v-list>
@@ -98,7 +96,7 @@ export default {
       return list;
     },
 
-    pillColor(item) {
+    pillColor() {
       if (this.node.node_status.id == 1) {
         return "deep-orange lighten-1";
       }

@@ -12478,8 +12478,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
  // import ApiL from "../service/apil";
 
@@ -12603,7 +12601,7 @@ function sleep(ms) {
       });
       return list;
     },
-    pillColor: function pillColor(item) {
+    pillColor: function pillColor() {
       if (this.node.node_status.id == 1) {
         return "deep-orange lighten-1";
       }
@@ -53529,7 +53527,7 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-list",
-                _vm._l(_vm.dropdown_edit, function (list, index) {
+                _vm._l(_vm.filterDropDown, function (list, index) {
                   return _c(
                     "v-list-item",
                     {
@@ -53542,7 +53540,7 @@ var render = function () {
                     },
                     [
                       _c("v-list-item-title", [
-                        _c("span", { staticClass: "text--#801916" }, [
+                        _c("span", { staticClass: "text--red" }, [
                           _vm._v(_vm._s(list.title)),
                         ]),
                       ]),
