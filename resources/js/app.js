@@ -448,6 +448,11 @@ Vue.component(
     require("./components/newcampaign/AddPilot.vue").default
 );
 
+Vue.component(
+    "NewSystemTableSimpleText",
+    require("./components/newcampaign/NewSystemTableSimpleText.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(Clipboard);

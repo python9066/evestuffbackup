@@ -27,8 +27,18 @@
             <template v-slot:[`item.op_users`]="{ item }">
               <AddPilot :node="item" :operationID="operationID"></AddPilot>
             </template>
-            <template v-slot:[`item.TODOMain`]="{ item }"> dance </template>
-            <template v-slot:[`item.TODOShip`]="{ item }"> TODOShip </template>
+            <template v-slot:[`item.TODOMain`]="{ item }">
+              <NewSystemTableSimpleText
+                :node="item"
+                :type="1"
+              ></NewSystemTableSimpleText>
+            </template>
+            <template v-slot:[`item.TODOShip`]="{ item }">
+              <NewSystemTableSimpleText
+                :node="item"
+                :type="2"
+              ></NewSystemTableSimpleText>
+            </template>
           </v-data-table>
         </v-col>
       </v-row>
