@@ -69,7 +69,20 @@ export default {
   async mounted() {},
   methods: {
     async statusClick(list) {
-      // TODO LOTS TODO HERE STILL
+      request = {
+        status_id: list.value,
+      };
+
+      await axios({
+        method: "post",
+        url: "/api/campaignsolasystems/" + this.node.id,
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
     },
   },
 

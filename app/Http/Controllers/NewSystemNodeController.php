@@ -102,7 +102,6 @@ class NewSystemNodeController extends Controller
     public function updateStatus(Request $request, $id)
     {
         NewSystemNode::where('id', $id)->update(['node_status' => $request->status_id]);
-
         Broadcasthelper::broadcastsystemSolo($request->system_id);
     }
 

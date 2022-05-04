@@ -296,4 +296,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/addnode', 'NewSystemNodeController@store');
     Route::delete('/deletenode/{id}', 'NewSystemNodeController@destroy');
     Route::post('/addusertonode', 'NewSystemNodeController@addCharToNode');
+    Route::post('/updatenodestats/{id}', 'NewSystemNodeController@updateStatus');
 });

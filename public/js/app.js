@@ -12566,13 +12566,30 @@ function sleep(ms) {
     }))();
   },
   methods: {
-    statusClick: function statusClick(list) {// TODO LOTS TODO HERE STILL
+    statusClick: function statusClick(list) {
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
+                request = {
+                  status_id: list.value
+                };
+                _context4.next = 3;
+                return axios({
+                  method: "post",
+                  url: "/api/campaignsolasystems/" + _this.node.id,
+                  withCredentials: true,
+                  data: request,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
               case "end":
                 return _context4.stop();
             }
@@ -12590,10 +12607,10 @@ function sleep(ms) {
       }
     },
     filterDropDown: function filterDropDown() {
-      var _this = this;
+      var _this2 = this;
 
       var list = this.dropdown_edit.filter(function (f) {
-        return f.value != _this.node.node_status.id;
+        return f.value != _this2.node.node_status.id;
       });
       return list;
     },
