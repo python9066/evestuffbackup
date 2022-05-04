@@ -12476,8 +12476,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
  // import ApiL from "../service/apil";
 
@@ -12568,15 +12566,13 @@ function sleep(ms) {
     }))();
   },
   methods: {
-    statusClick: function statusClick(list) {
+    statusClick: function statusClick(list) {// TODO LOTS TODO HERE STILL
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                console.log(list);
-
-              case 1:
               case "end":
                 return _context4.stop();
             }
@@ -53540,9 +53536,7 @@ var render = function () {
                     },
                     [
                       _c("v-list-item-title", [
-                        _c("span", { staticClass: "text--red" }, [
-                          _vm._v(_vm._s(list.title)),
-                        ]),
+                        _vm._v(" " + _vm._s(list.title)),
                       ]),
                     ],
                     1

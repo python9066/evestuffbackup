@@ -10,7 +10,9 @@ use App\Models\NewSystemNode;
 use App\Models\OperationUser;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\Constraint\Operator;
+use utils\Broadcasthelper\Broadcasthelper;
 use utils\Campaignhelper\Campaignhelper;
+use utils\NewCampaignhelper\NewCampaignhelper;
 
 class NewSystemNodeController extends Controller
 {
@@ -34,22 +36,7 @@ class NewSystemNodeController extends Controller
     {
         NewSystemNode::create($request->all());
         // TODO Change this so it only gets Campaigns what are active.
-        $campaignIDs = NewCampaignSystem::where('system_id', $request->system_id)->pluck('new_campaign_id');
-        $obIDS = NewCampaginOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
-        $message = Campaignhelper::systemSolo($request->system_id);
-
-
-
-
-        foreach ($obIDS as $op) {
-
-            $flag = collect([
-                'flag' => 7,
-                'message' => $message,
-                'id' => $op
-            ]);
-            broadcast(new OperationUpdate($flag));
-        }
+        Broadcasthelper::broadcastsystemSolo($request->system_id);
     }
 
     /**
@@ -87,24 +74,9 @@ class NewSystemNodeController extends Controller
                 'user_status_id' => 4
             ]);
 
-        $campaignIDs = NewCampaignSystem::where('system_id', $request->system_id)->pluck('new_campaign_id');
-        $obIDS = NewCampaginOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
-        $message = Campaignhelper::systemSolo($request->system_id);
+        Broadcasthelper::broadcastsystemSolo($request->system_id);
 
-
-
-
-        foreach ($obIDS as $op) {
-
-            $flag = collect([
-                'flag' => 7,
-                'message' => $message,
-                'id' => $op
-            ]);
-            broadcast(new OperationUpdate($flag));
-        }
-
-        $message = Campaignhelper::opUserSolo($request->opID, $request->op_user_id);
+        $message = NewCampaignhelper::opUserSolo($request->opID, $request->op_user_id);
         $flag = collect([
             // * 6 is to add newley made char to op list
             'flag' => 6,
@@ -125,6 +97,13 @@ class NewSystemNodeController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        NewSystemNode::where('id', $id)->update(['node_status' => $request->status_id]);
+
+        Broadcasthelper::broadcastsystemSolo($request->system_id);
     }
 
     /**
@@ -150,7 +129,7 @@ class NewSystemNodeController extends Controller
         // TODO Change this so it only gets Campaigns what are active.
         $campaignIDs = NewCampaignSystem::where('system_id', $system_id)->pluck('new_campaign_id');
         $obIDS = NewCampaginOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
-        $message = Campaignhelper::systemSolo($system_id);
+        $message = NewCampaignhelper::systemSolo($system_id);
         foreach ($obIDS as $op) {
 
             $flag = collect([

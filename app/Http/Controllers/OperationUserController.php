@@ -9,6 +9,7 @@ use App\Models\OperationUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use utils\Campaignhelper\Campaignhelper;
+use utils\NewCampaignhelper\NewCampaignhelper;
 
 class OperationUserController extends Controller
 {
@@ -32,7 +33,7 @@ class OperationUserController extends Controller
     {
 
         $new = OperationUser::create($request->all());
-        $message = Campaignhelper::ownUsersolo($new->id);
+        $message = NewCampaignhelper::ownUsersolo($new->id);
 
         if (Auth::id() == $new->user_id) {
 
@@ -46,7 +47,7 @@ class OperationUserController extends Controller
             broadcast(new OperationOwnUpdate($flag));
         }
 
-        $message = Campaignhelper::opUserSolo($opID, $new->id);
+        $message = NewCampaignhelper::opUserSolo($opID, $new->id);
         $flag = collect([
             // * 6 is to add newley made char to op list
             'flag' => 6,
@@ -78,7 +79,7 @@ class OperationUserController extends Controller
         OperationUser::where('id', $id)->update($request->all());
 
         if (Auth::id() == $userid) {
-            $message = Campaignhelper::ownUsersolo($id);
+            $message = NewCampaignhelper::ownUsersolo($id);
             $flag = collect([
                 'flag' => 3,
                 'userid' => $id,
@@ -90,7 +91,7 @@ class OperationUserController extends Controller
         }
 
         if (Auth::id() == $userid) {
-            $message = Campaignhelper::opUserSolo($opID, $id);
+            $message = NewCampaignhelper::opUserSolo($opID, $id);
             $flag = collect([
                 'flag' => 6,
                 'id' => $opID,
@@ -110,7 +111,7 @@ class OperationUserController extends Controller
         OperationUser::where('id', $id)->update($request->all());
         // TODO Add boradcast to update info
         if (Auth::id() == $userid) {
-            $message = Campaignhelper::ownUsersolo($id);
+            $message = NewCampaignhelper::ownUsersolo($id);
             $flag = collect([
                 'flag' => 3,
                 'userid' => $id,

@@ -23,9 +23,7 @@
             :key="index"
             @click="statusClick(list)"
           >
-            <v-list-item-title>
-              <span class="text--red">{{ list.title }}</span></v-list-item-title
-            >
+            <v-list-item-title> {{ list.title }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -71,7 +69,7 @@ export default {
   async mounted() {},
   methods: {
     async statusClick(list) {
-      console.log(list);
+      // TODO LOTS TODO HERE STILL
     },
   },
 
