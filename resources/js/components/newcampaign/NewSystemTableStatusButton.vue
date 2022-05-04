@@ -75,7 +75,7 @@ export default {
 
       await axios({
         method: "post",
-        url: "/api/campaignsolasystems/" + this.node.id,
+        url: "/api/updatenodestats/" + this.node.id,
         withCredentials: true,
         data: request,
         headers: {

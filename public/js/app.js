@@ -12581,7 +12581,7 @@ function sleep(ms) {
                 _context4.next = 3;
                 return axios({
                   method: "post",
-                  url: "/api/campaignsolasystems/" + _this.node.id,
+                  url: "/api/updatenodestats/" + _this.node.id,
                   withCredentials: true,
                   data: request,
                   headers: {
