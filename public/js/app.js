@@ -12192,7 +12192,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -52991,7 +52990,14 @@ var render = function () {
                             key: "item.TODOMain",
                             fn: function (ref) {
                               var item = ref.item
-                              return [_vm._v("\n            dance\n          ")]
+                              return [_vm._v(" dance ")]
+                            },
+                          },
+                          {
+                            key: "item.TODOShip",
+                            fn: function (ref) {
+                              var item = ref.item
+                              return [_vm._v(" TODOShip ")]
                             },
                           },
                         ],

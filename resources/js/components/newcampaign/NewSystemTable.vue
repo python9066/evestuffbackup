@@ -27,10 +27,9 @@
             <template v-slot:[`item.op_users`]="{ item }">
               <AddPilot :node="item" :operationID="operationID"></AddPilot>
             </template>
-            <template v-slot:[`item.TODOMain`]="{ item }">
-              dance
-            </template></v-data-table
-          >
+            <template v-slot:[`item.TODOMain`]="{ item }"> dance </template>
+            <template v-slot:[`item.TODOShip`]="{ item }"> TODOShip </template>
+          </v-data-table>
         </v-col>
       </v-row>
     </v-col>
