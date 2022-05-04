@@ -27,7 +27,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <span v-else>name</span>
+      <span v-else>{{ activePilotName }}</span>
     </v-col>
   </v-row>
 </template>
@@ -103,6 +103,22 @@ export default {
 
     nodefree() {
       return this.node.op_users.length;
+    },
+
+    activePilot() {
+      if (this.nodefree > 0) {
+        return this.node.op_users[0];
+      } else {
+        null;
+      }
+    },
+
+    activePilotName() {
+      if (this.activePilot) {
+        return this.activePilot.name;
+      } else {
+        return null;
+      }
     },
 
     checkShowAdd() {

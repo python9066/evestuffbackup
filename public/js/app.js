@@ -11447,6 +11447,20 @@ function sleep(ms) {
     nodefree: function nodefree() {
       return this.node.op_users.length;
     },
+    activePilot: function activePilot() {
+      if (this.nodefree > 0) {
+        return this.node.op_users[0];
+      } else {
+        null;
+      }
+    },
+    activePilotName: function activePilotName() {
+      if (this.activePilot) {
+        return this.activePilot.name;
+      } else {
+        return null;
+      }
+    },
     checkShowAdd: function checkShowAdd() {
       if (this.nodefree == 0 && this.freecharCount != 0 && this.node.node_status != 4 && this.node.node_status != 5 && this.node.node_status != 7 && this.node.node_status != 8) {
         return true;
@@ -52324,7 +52338,7 @@ var render = function () {
                 ],
                 1
               )
-            : _c("span", [_vm._v("name")]),
+            : _c("span", [_vm._v(_vm._s(_vm.activePilotName))]),
         ],
         1
       ),
