@@ -83,7 +83,8 @@ class NewSystemNodeController extends Controller
         OperationUser::where('id', $request->op_user_id)
             ->update([
                 'primery' => $prime,
-                'new_system_node_id' => $request->node_id
+                'new_system_node_id' => $request->node_id,
+                'user_status_id' => 4
             ]);
 
         $campaignIDs = NewCampaignSystem::where('system_id', $request->system_id)->pluck('new_campaign_id');
@@ -134,8 +135,18 @@ class NewSystemNodeController extends Controller
      */
     public function destroy($id)
     {
-        $system_id = NewSystemNode::where('id', $id)->pluck('system_id');
-        NewSystemNode::where('id', $id)->delete();
+        $system_id = NewSystemNode::where('id', $id)
+            ->pluck('system_id');
+
+        NewSystemNode::where('id', $id)
+            ->delete();
+
+        OperationUser::where('new_system_node_id', $id)
+            ->update([
+                'new_system_node_id' => null,
+                'user_status_id' => 3
+            ]);
+
         // TODO Change this so it only gets Campaigns what are active.
         $campaignIDs = NewCampaignSystem::where('system_id', $system_id)->pluck('new_campaign_id');
         $obIDS = NewCampaginOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
