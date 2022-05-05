@@ -12782,13 +12782,13 @@ function sleep(ms) {
   methods: {},
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     timeMoment: function timeMoment() {
-      return moment__WEBPACK_IMPORTED_MODULE_4___default()(this.node.created_at).utc().format("YYYY-MM-DD HH:mm:ss");
+      return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
     },
     countUptimerColor: function countUptimerColor() {
-      var fiveMins = moment__WEBPACK_IMPORTED_MODULE_4___default()(this.timeMoment).utc().subtract(5, "minutes");
+      var fiveMins = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.timeMoment).subtract(5, "minutes");
       console.log(fiveMins);
 
-      if (moment__WEBPACK_IMPORTED_MODULE_4___default()(this.timeMoment).utc().isSameOrBefore(fiveMins)) {
+      if (moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.timeMoment).isSameOrBefore(fiveMins)) {
         return "red--text pl-3";
       } else {
         return "green--text pl-3";
@@ -53763,7 +53763,7 @@ var render = function () {
         [
           _c("VueCountUptimer", {
             attrs: {
-              "start-time": _vm.moment(_vm.timeMoment).unix(),
+              "start-time": _vm.moment.utc(_vm.timeMoment).unix(),
               "end-text": "Window Closed",
               interval: 1000,
             },
