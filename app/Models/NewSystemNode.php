@@ -10,9 +10,14 @@ class NewSystemNode extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function opUsers()
+    public function nonePrimeUser()
     {
-        return $this->hasMany(OperationUser::class);
+        return $this->hasMany(NewUserNode::class, 'node_id')->ofMany('primery', 0);
+    }
+
+    public function primeNodeUser()
+    {
+        return $this->hasOne(NewUserNode::class, 'node_id')->ofMany('primery', 1);
     }
 
     public function nodeStatus()

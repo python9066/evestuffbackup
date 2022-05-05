@@ -65,8 +65,8 @@ class NewCampaignhelper
                     $q->where('primery', 1);
                 },
                 'newNodes.opUsers.user:id,name',
-                'newNodes.opUsers.userrole',
-                'newNodes.opUsers.userstatus',
+                'newNodes.nonePrimeNodeUser',
+                'newNodes.primeNodeUser',
                 'newNodes.system'
             ])
             ->get();
@@ -82,8 +82,8 @@ class NewCampaignhelper
                     $q->where('primery', 1);
                 },
                 'newNodes.opUsers.user:id,name',
-                'newNodes.opUsers.userrole',
-                'newNodes.opUsers.userstatus',
+                'newNodes.nonePrimeNodeUser',
+                'newNodes.primeNodeUser',
                 'newNodes.system'
             ])
             ->first();

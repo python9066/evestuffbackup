@@ -128,7 +128,7 @@ export default {
       var sec = parseInt(this.hackTime.substr(3, 2));
       var base = min * 60 + sec;
       var sec = min * 60 + sec;
-      //   var sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
+      var sec = sec / (this.node.system.tidi / 100);
       var finishTime = moment
         .utc()
         .add(sec, "seconds")
@@ -140,16 +140,16 @@ export default {
         base_time: base,
       };
 
-      //   await axios({
-      //     method: "put",
-      //     url: "/api/campaignsystems/" + item.id,
-      //     withCredentials: true,
-      //     data: request,
-      //     headers: {
-      //       Accept: "application/json",
-      //       "Content-Type": "application/json",
-      //     },
-      //   });
+      await axios({
+        method: "put",
+        url: "/api/campaignsystems/" + item.id,
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
     },
   },
 

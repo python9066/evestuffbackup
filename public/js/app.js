@@ -12871,25 +12871,27 @@ function sleep(ms) {
                 min = parseInt(_this.hackTime.substr(0, 2));
                 sec = parseInt(_this.hackTime.substr(3, 2));
                 base = min * 60 + sec;
-                sec = min * 60 + sec; //   var sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
-
+                sec = min * 60 + sec;
+                sec = sec / (_this.node.system.tidi / 100);
                 finishTime = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
                 request = {
                   end_time: finishTime,
                   input_time: moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
                   base_time: base
-                }; //   await axios({
-                //     method: "put",
-                //     url: "/api/campaignsystems/" + item.id,
-                //     withCredentials: true,
-                //     data: request,
-                //     headers: {
-                //       Accept: "application/json",
-                //       "Content-Type": "application/json",
-                //     },
-                //   });
+                };
+                _context4.next = 9;
+                return axios({
+                  method: "put",
+                  url: "/api/campaignsystems/" + item.id,
+                  withCredentials: true,
+                  data: request,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
 
-              case 6:
+              case 9:
               case "end":
                 return _context4.stop();
             }
