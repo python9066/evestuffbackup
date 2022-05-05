@@ -72,6 +72,7 @@ export default {
       var request = {
         status_id: list.value,
         system_id: this.node.system_id,
+        opID: this.operationID,
       };
 
       await axios({
