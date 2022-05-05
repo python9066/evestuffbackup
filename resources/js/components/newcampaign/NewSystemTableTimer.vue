@@ -170,7 +170,17 @@ export default {
           return false;
         }
       } else {
-        return true;
+        if (this.node.node_status.id == 3) {
+          return true;
+        } else if (
+          this.node.node_status.id == 7 ||
+          this.node.node_status.id == 8 ||
+          this.node.node_status.id == 9
+        ) {
+          return true;
+        } else {
+          return false;
+        }
       }
     },
 
