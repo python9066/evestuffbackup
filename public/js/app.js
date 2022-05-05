@@ -11334,7 +11334,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
  // import ApiL from "../service/apil";
 
@@ -52944,8 +52943,6 @@ var render = function () {
                 mode: "out-in",
                 "enter-active-class":
                   "animate__animated animate__flash animate__faster",
-                "leave-active-class":
-                  "animate__animated animate__flash animate__faster",
               },
             },
             [
@@ -53951,14 +53948,14 @@ var render = function () {
                               attrs: {
                                 name: "custom-classes",
                                 "enter-active-class":
-                                  "animate__animated animate__heartBeat animate__repeat-3",
+                                  "animate__animated animate__heartBeat animate__repeat-2",
                                 "leave-active-class":
                                   "animate__animated animate__flash animate__faster",
                                 mode: "out-in",
                               },
                             },
                             [
-                              scope.props.seconds < 10 || scope.props.hours > 0
+                              scope.props.minutes < 5 || scope.props.hours > 0
                                 ? _c(
                                     "div",
                                     {
@@ -54003,7 +54000,7 @@ var render = function () {
                   ],
                   null,
                   false,
-                  4143335672
+                  2987706451
                 ),
               })
             : _vm.checkHackUser

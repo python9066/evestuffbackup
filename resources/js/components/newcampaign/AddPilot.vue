@@ -4,7 +4,6 @@
       <transition
         mode="out-in"
         enter-active-class="animate__animated animate__flash animate__faster"
-        leave-active-class="animate__animated animate__flash animate__faster"
       >
         <v-menu :key="`${node.id}-1-addpilot`" offset-y v-if="checkShowAdd">
           <template v-slot:activator="{ on, attrs }">

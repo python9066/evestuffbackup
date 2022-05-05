@@ -11,13 +11,13 @@
         <template slot="countup" slot-scope="scope">
           <transition
             name="custom-classes"
-            enter-active-class="animate__animated animate__heartBeat animate__repeat-3"
+            enter-active-class="animate__animated animate__heartBeat animate__repeat-2"
             leave-active-class="animate__animated animate__flash animate__faster"
             mode="out-in"
           >
             <div
               :key="`${node.id}-1-timer-age`"
-              v-if="scope.props.seconds < 10 || scope.props.hours > 0"
+              v-if="scope.props.minutes < 5 || scope.props.hours > 0"
               class="green--text pl-3"
             >
               {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
