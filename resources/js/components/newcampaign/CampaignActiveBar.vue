@@ -48,7 +48,7 @@
             </v-row>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <OperationUserTable></OperationUserTable>
+            <OperationUserTable :operationID="operationID"></OperationUserTable>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>

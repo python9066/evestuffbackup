@@ -11402,7 +11402,8 @@ function sleep(ms) {
                 request = {
                   node_id: _this.node.id,
                   op_user_id: op_user_id,
-                  system_id: _this.node.system_id
+                  system_id: _this.node.system_id,
+                  opID: _this.operationID
                 };
                 _context4.next = 3;
                 return axios({
@@ -33583,11 +33584,9 @@ function sleep(ms) {
               Echo["private"]("operations." + _this.operationID).listen("OperationUpdate", function (e) {
                 if (e.flag.flag == 1) {}
 
-                if (e.flag.flag == 2) {} // * 3 add/update char to char table
+                if (e.flag.flag == 2) {}
 
-
-                if (e.flag.flag == 3) {} // * 4 update own char list
-
+                if (e.flag.flag == 3) {}
 
                 if (e.flag.flag == 4) {} // * 5 is to remove op char from  chartable
 
@@ -53137,7 +53136,11 @@ var render = function () {
                   _vm._v(" "),
                   _c(
                     "v-expansion-panel-content",
-                    [_c("OperationUserTable")],
+                    [
+                      _c("OperationUserTable", {
+                        attrs: { operationID: _vm.operationID },
+                      }),
+                    ],
                     1
                   ),
                 ],
