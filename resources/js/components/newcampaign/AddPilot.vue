@@ -1,12 +1,12 @@
 <template>
   <v-row no-gutters>
-    <transition
-      mode="out-in"
-      enter-active-class="animate__animated animate__flash animate__faster"
-      leave-active-class="animate__animated animate__flash animate__faster"
-    >
-      <v-col v-if="checkShowAdd">
-        <v-menu offset-y>
+    <v-col>
+      <transition
+        mode="out-in"
+        enter-active-class="animate__animated animate__flash animate__faster"
+        leave-active-class="animate__animated animate__flash animate__faster"
+      >
+        <v-menu :key="`${node.id}-1-addpilot`" offset-y v-if="checkShowAdd">
           <template v-slot:activator="{ on, attrs }">
             <div>
               <v-chip
@@ -32,17 +32,9 @@
             </v-list-item>
           </v-list>
         </v-menu>
-      </v-col>
-    </transition>
-    <transition
-      mode="out-in"
-      enter-active-class="animate__animated animate__flash animate__faster"
-      leave-active-class="animate__animated animate__flash animate__faster"
-    >
-      <v-col v-if="!checkShowAdd">
-        <span>{{ activePilotName }}</span>
-      </v-col>
-    </transition>
+        <span :key="`${node.id}-2-addpilot`" v-else>{{ activePilotName }}</span>
+      </transition>
+    </v-col>
   </v-row>
 </template>
 <script>

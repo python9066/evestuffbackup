@@ -10,7 +10,8 @@
       >
         <template slot="countup" slot-scope="scope">
           <transition
-            name="animate__animated animate__flash animate__faster"
+            enter-active-class="animate__animated animate__heartBeat animate__infinite"
+            leave-active-class="animate__animated animate__flash animate__faster"
             mode="out-in"
           >
             <span

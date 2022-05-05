@@ -11335,14 +11335,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
  // import ApiL from "../service/apil";
 
@@ -12707,6 +12699,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
 //
 //
 //
@@ -52939,24 +52932,25 @@ var render = function () {
     { attrs: { "no-gutters": "" } },
     [
       _c(
-        "transition",
-        {
-          attrs: {
-            mode: "out-in",
-            "enter-active-class":
-              "animate__animated animate__flash animate__faster",
-            "leave-active-class":
-              "animate__animated animate__flash animate__faster",
-          },
-        },
+        "v-col",
         [
-          _vm.checkShowAdd
-            ? _c(
-                "v-col",
-                [
-                  _c(
+          _c(
+            "transition",
+            {
+              attrs: {
+                mode: "out-in",
+                "enter-active-class":
+                  "animate__animated animate__flash animate__faster",
+                "leave-active-class":
+                  "animate__animated animate__flash animate__faster",
+              },
+            },
+            [
+              _vm.checkShowAdd
+                ? _c(
                     "v-menu",
                     {
+                      key: _vm.node.id + "-1-addpilot",
                       attrs: { "offset-y": "" },
                       scopedSlots: _vm._u(
                         [
@@ -53032,30 +53026,13 @@ var render = function () {
                       ),
                     ],
                     1
-                  ),
-                ],
-                1
-              )
-            : _vm._e(),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "transition",
-        {
-          attrs: {
-            mode: "out-in",
-            "enter-active-class":
-              "animate__animated animate__flash animate__faster",
-            "leave-active-class":
-              "animate__animated animate__flash animate__faster",
-          },
-        },
-        [
-          !_vm.checkShowAdd
-            ? _c("v-col", [_c("span", [_vm._v(_vm._s(_vm.activePilotName))])])
-            : _vm._e(),
+                  )
+                : _c("span", { key: _vm.node.id + "-2-addpilot" }, [
+                    _vm._v(_vm._s(_vm.activePilotName)),
+                  ]),
+            ],
+            1
+          ),
         ],
         1
       ),
@@ -53969,7 +53946,10 @@ var render = function () {
                             "transition",
                             {
                               attrs: {
-                                name: "animate__animated animate__flash animate__faster",
+                                "enter-active-class":
+                                  "animate__animated animate__heartBeat animate__infinite",
+                                "leave-active-class":
+                                  "animate__animated animate__flash animate__faster",
                                 mode: "out-in",
                               },
                             },
@@ -54015,7 +53995,7 @@ var render = function () {
                   ],
                   null,
                   false,
-                  3646730454
+                  1384390070
                 ),
               })
             : _vm.checkHackUser
