@@ -64,10 +64,10 @@ export default {
 
     countUptimerColor() {
       var fiveMins = moment
-        .utc(this.node.created_at)
+        .utc(this.timeMoment)
         .subtract(5, "minutes")
         .format("YYYY-MM-DD HH:mm:ss");
-      console.log(fiveMins);
+      console.log(fiveMins, this.timeMoment);
       if (moment.utc(this.timeMoment).isSameOrBefore(fiveMins)) {
         return "red--text pl-3";
       } else {
