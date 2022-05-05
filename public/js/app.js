@@ -12788,7 +12788,7 @@ function sleep(ms) {
       var fiveMins = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.timeMoment).subtract(5, "minutes").format("YYYY-MM-DD HH:mm:ss");
       console.log("five: " + fiveMins, " - ", "now: " + this.timeMoment);
 
-      if (moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.timeMoment).isSameOrBefore(fiveMins)) {
+      if (moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().isSameOrBefore(fiveMins)) {
         return "red--text pl-3";
       } else {
         return "green--text pl-3";

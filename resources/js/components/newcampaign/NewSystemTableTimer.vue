@@ -68,7 +68,7 @@ export default {
         .subtract(5, "minutes")
         .format("YYYY-MM-DD HH:mm:ss");
       console.log("five: " + fiveMins, " - ", "now: " + this.timeMoment);
-      if (moment.utc(this.timeMoment).isSameOrBefore(fiveMins)) {
+      if (moment.utc().isSameOrBefore(fiveMins)) {
         return "red--text pl-3";
       } else {
         return "green--text pl-3";
