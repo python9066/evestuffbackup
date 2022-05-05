@@ -12785,9 +12785,9 @@ function sleep(ms) {
       return moment__WEBPACK_IMPORTED_MODULE_4___default()(this.node.created_at).utc().format("YYYY-MM-DD HH:mm:ss");
     },
     countUptimerColor: function countUptimerColor() {
-      var fiveMins = moment__WEBPACK_IMPORTED_MODULE_4___default()(this.node.created_at).utc().subtract(5, "minutes");
+      var fiveMins = timeMoment.subtract(5, "minutes");
 
-      if (moment__WEBPACK_IMPORTED_MODULE_4___default()(this.node.created_at).utc().isSameOrBefore(fiveMins)) {
+      if (timeMoment.utc().isSameOrBefore(fiveMins)) {
         return "red--text pl-3";
       } else {
         return "green--text pl-3";
@@ -53762,7 +53762,7 @@ var render = function () {
         [
           _c("VueCountUptimer", {
             attrs: {
-              "start-time": _vm.moment.utc(_vm.node.created_at).unix(),
+              "start-time": _vm.timeMoment.unix(),
               "end-text": "Window Closed",
               interval: 1000,
             },
