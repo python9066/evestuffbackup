@@ -47,23 +47,7 @@ class CampaignUserController extends Controller
         broadcast(new CampaignUserNew($flag))->toOthers();
     }
 
-    public function newstore(Request $request, $opID)
-    {
 
-        $new = OperationUser::create($request->all());
-        $message = $new;
-
-        if (Auth::id() == $new->user_id) {
-
-            $flag = collect([
-                'flag' => 3,
-                'message' => $message,
-                'id' => $opID
-            ]);
-
-            broadcast(new OperationUpdate($flag));
-        }
-    }
 
     /**
      * Display the specified resource.

@@ -36,7 +36,7 @@ class NewSystemNodeController extends Controller
     {
         NewSystemNode::create($request->all());
         // TODO Change this so it only gets Campaigns what are active.
-        Broadcasthelper::broadcastsystemSolo($request->system_id);
+        Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
     }
 
     /**
@@ -74,17 +74,8 @@ class NewSystemNodeController extends Controller
                 'user_status_id' => 4
             ]);
 
-        Broadcasthelper::broadcastsystemSolo($request->system_id);
-
-        $message = NewCampaignhelper::opUserSolo($request->opID, $request->op_user_id);
-        $flag = collect([
-            // * 6 is to add newley made char to op list
-            'flag' => 6,
-            'message' => $message,
-            'id' => $request->opID
-        ]);
-
-        broadcast(new OperationUpdate($flag));
+        Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
+        Broadcasthelper::broadcastuserSolo($request->opID, $request->op_user_id);
     }
 
     /**
@@ -129,7 +120,8 @@ class NewSystemNodeController extends Controller
                 break;
         }
         NewSystemNode::where('id', $id)->update(['node_status' => $request->status_id]);
-        Broadcasthelper::broadcastsystemSolo($request->system_id);
+        Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
+        Broadcasthelper::broadcastuserSolo();
     }
 
     /**
@@ -153,17 +145,6 @@ class NewSystemNodeController extends Controller
             ]);
 
         // TODO Change this so it only gets Campaigns what are active.
-        $campaignIDs = NewCampaignSystem::where('system_id', $system_id)->pluck('new_campaign_id');
-        $obIDS = NewCampaginOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
-        $message = NewCampaignhelper::systemSolo($system_id);
-        foreach ($obIDS as $op) {
-
-            $flag = collect([
-                'flag' => 7,
-                'message' => $message,
-                'id' => $op
-            ]);
-            broadcast(new OperationUpdate($flag));
-        }
+        Broadcasthelper::broadcastsystemSolo($system_id, 7);
     }
 }

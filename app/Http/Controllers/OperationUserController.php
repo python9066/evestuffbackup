@@ -8,6 +8,7 @@ use App\Models\NewNodeCampaignUser;
 use App\Models\OperationUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use utils\Broadcasthelper\Broadcasthelper;
 use utils\Campaignhelper\Campaignhelper;
 use utils\NewCampaignhelper\NewCampaignhelper;
 
@@ -36,26 +37,8 @@ class OperationUserController extends Controller
         $message = NewCampaignhelper::ownUsersolo($new->id);
 
         if (Auth::id() == $new->user_id) {
-
-            $flag = collect([
-                // * 3 add char to char table
-                'flag' => 3,
-                'message' => $message,
-                'id' => $userid
-            ]);
-
-            broadcast(new OperationOwnUpdate($flag));
+            Broadcasthelper::broadcastuserSolo($opID, $userid, 3);
         }
-
-        $message = NewCampaignhelper::opUserSolo($opID, $new->id);
-        $flag = collect([
-            // * 6 is to add newley made char to op list
-            'flag' => 6,
-            'message' => $message,
-            'id' => $opID
-        ]);
-
-        broadcast(new OperationUpdate($flag));
     }
 
 
@@ -79,26 +62,10 @@ class OperationUserController extends Controller
         OperationUser::where('id', $id)->update($request->all());
 
         if (Auth::id() == $userid) {
-            $message = NewCampaignhelper::ownUsersolo($id);
-            $flag = collect([
-                'flag' => 3,
-                'userid' => $id,
-                'id' => $userid,
-                'message' => $message
-            ]);
-
-            broadcast(new OperationOwnUpdate($flag));
+            Broadcasthelper::broadcastuserOwnSolo($id, $userid, 3);
         }
-
         if (Auth::id() == $userid) {
-            $message = NewCampaignhelper::opUserSolo($opID, $id);
-            $flag = collect([
-                'flag' => 6,
-                'id' => $opID,
-                'message' => $message
-            ]);
-
-            broadcast(new OperationUpdate($flag));
+            Broadcasthelper::broadcastuserSolo($opID, $id, 6);
         }
         // TODO Add baordcsat to update stuff
     }
@@ -111,15 +78,7 @@ class OperationUserController extends Controller
         OperationUser::where('id', $id)->update($request->all());
         // TODO Add boradcast to update info
         if (Auth::id() == $userid) {
-            $message = NewCampaignhelper::ownUsersolo($id);
-            $flag = collect([
-                'flag' => 3,
-                'userid' => $id,
-                'id' => $userid,
-                'message' => $message
-            ]);
-
-            broadcast(new OperationOwnUpdate($flag));
+            Broadcasthelper::broadcastuserOwnSolo($id, $userid, 3);
         }
 
 
@@ -164,14 +123,7 @@ class OperationUserController extends Controller
         broadcast(new OperationUpdate($flag));
 
         if (Auth::id() == $userid) {
-
-            $flag = collect([
-                'flag' => 5,
-                'userid' => $id,
-                'id' => $userid
-            ]);
-
-            broadcast(new OperationOwnUpdate($flag));
+            Broadcasthelper::broadcastuserOwnSolo($id, $userid, 5);
         }
 
         // TODO Sort out boardcasting
