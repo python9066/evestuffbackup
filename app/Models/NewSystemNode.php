@@ -19,4 +19,9 @@ class NewSystemNode extends Model
     {
         return $this->belongsTo(CampaignSystemStatus::class, 'node_status', 'id');
     }
+
+    public function system()
+    {
+        return $this->belongsTo(System::class);
+    }
 }

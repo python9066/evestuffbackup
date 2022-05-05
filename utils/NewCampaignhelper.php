@@ -64,7 +64,8 @@ class NewCampaignhelper
                 },
                 'newNodes.opUsers.user:id,name',
                 'newNodes.opUsers.userrole',
-                'newNodes.opUsers.userstatus'
+                'newNodes.opUsers.userstatus',
+                'newNodes.system'
             ])
             ->get();
     }
@@ -80,7 +81,8 @@ class NewCampaignhelper
                 },
                 'newNodes.opUsers.user:id,name',
                 'newNodes.opUsers.userrole',
-                'newNodes.opUsers.userstatus'
+                'newNodes.opUsers.userstatus',
+                'newNodes.system'
             ])
             ->first();
     }
