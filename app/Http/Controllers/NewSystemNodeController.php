@@ -72,7 +72,8 @@ class NewSystemNodeController extends Controller
             ->update([
                 'primery' => $prime,
                 'new_system_node_id' => $request->node_id,
-                'user_status_id' => 4
+                'user_status_id' => 4,
+                'system_id' => $request->system_id
             ]);
 
         Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
