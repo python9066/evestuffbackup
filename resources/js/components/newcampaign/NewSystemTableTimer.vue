@@ -16,7 +16,7 @@
               scope.props.seconds
             }}</span
           >
-          <span v-else class="red--text pl-3"
+          <span v-else class="red--text pl-3 animate__animated animate__bounce"
             >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
               scope.props.seconds
             }}</span

@@ -52932,22 +52932,22 @@ var render = function () {
     { attrs: { "no-gutters": "" } },
     [
       _c(
-        "v-col",
+        "transition",
+        {
+          attrs: {
+            mode: "out-in",
+            "enter-active-class":
+              "animate__animated animate__flash animate__faster",
+            "leave-active-class":
+              "animate__animated animate__flash animate__faster",
+          },
+        },
         [
-          _c(
-            "transition",
-            {
-              attrs: {
-                mode: "out-in",
-                "enter-active-class":
-                  "animate__animated animate__flash animate__faster",
-                "leave-active-class":
-                  "animate__animated animate__flash animate__faster",
-              },
-            },
-            [
-              _vm.checkShowAdd
-                ? _c(
+          _vm.checkShowAdd
+            ? _c(
+                "v-col",
+                [
+                  _c(
                     "v-menu",
                     {
                       attrs: { "offset-y": "" },
@@ -53025,11 +53025,11 @@ var render = function () {
                       ),
                     ],
                     1
-                  )
-                : _vm._e(),
-            ],
-            1
-          ),
+                  ),
+                ],
+                1
+              )
+            : _vm._e(),
         ],
         1
       ),
@@ -53968,22 +53968,29 @@ var render = function () {
                                     _vm._s(scope.props.seconds)
                                 ),
                               ])
-                            : _c("span", { staticClass: "red--text pl-3" }, [
-                                _vm._v(
-                                  _vm._s(scope.props.hours) +
-                                    ":" +
-                                    _vm._s(scope.props.minutes) +
-                                    ":" +
-                                    _vm._s(scope.props.seconds)
-                                ),
-                              ]),
+                            : _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "red--text pl-3 animate__animated animate__bounce",
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._s(scope.props.hours) +
+                                      ":" +
+                                      _vm._s(scope.props.minutes) +
+                                      ":" +
+                                      _vm._s(scope.props.seconds)
+                                  ),
+                                ]
+                              ),
                         ]
                       },
                     },
                   ],
                   null,
                   false,
-                  1081140368
+                  2033799391
                 ),
               })
             : _vm.checkHackUser

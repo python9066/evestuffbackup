@@ -1,12 +1,12 @@
 <template>
   <v-row no-gutters>
-    <v-col>
-      <transition
-        mode="out-in"
-        enter-active-class="animate__animated animate__flash animate__faster"
-        leave-active-class="animate__animated animate__flash animate__faster"
-      >
-        <v-menu offset-y v-if="checkShowAdd">
+    <transition
+      mode="out-in"
+      enter-active-class="animate__animated animate__flash animate__faster"
+      leave-active-class="animate__animated animate__flash animate__faster"
+    >
+      <v-col v-if="checkShowAdd">
+        <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <div>
               <v-chip
@@ -32,8 +32,8 @@
             </v-list-item>
           </v-list>
         </v-menu>
-      </transition>
-    </v-col>
+      </v-col>
+    </transition>
     <transition
       mode="out-in"
       enter-active-class="animate__animated animate__flash animate__faster"
