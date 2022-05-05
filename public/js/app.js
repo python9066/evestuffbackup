@@ -12785,7 +12785,7 @@ function sleep(ms) {
       return moment__WEBPACK_IMPORTED_MODULE_4___default()(this.node.created_at).utc().format("YYYY-MM-DD HH:mm:ss");
     },
     countUptimerColor: function countUptimerColor() {
-      var fiveMins = this.timeMoment.subtract(5, "minutes");
+      var fiveMins = moment__WEBPACK_IMPORTED_MODULE_4___default()(this.timeMoment).subtract(5, "minutes");
 
       if (moment__WEBPACK_IMPORTED_MODULE_4___default()(this.timeMoment).utc().isSameOrBefore(fiveMins)) {
         return "red--text pl-3";
