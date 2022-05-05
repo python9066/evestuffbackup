@@ -9,18 +9,22 @@
         :interval="1000"
       >
         <template slot="countup" slot-scope="scope">
-          <span
-            v-if="scope.props.minutes < 5 || scope.props.hours > 0"
-            class="green--text pl-3"
-            >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-              scope.props.seconds
-            }}</span
-          >
-          <span v-else class="red--text pl-3 animate__animated animate__bounce"
-            >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-              scope.props.seconds
-            }}</span
-          >
+          <transition name="animate__animated animate__flash animate__faster">
+            <span
+              :key="`${node.id}-1`"
+              v-if="scope.props.minutes < 5 || scope.props.hours > 0"
+              class="green--text pl-3"
+              >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                scope.props.seconds
+              }}</span
+            >
+
+            <span :key="`${node.id}-2`" v-else class="red--text pl-3"
+              >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                scope.props.seconds
+              }}</span
+            >
+          </transition>
         </template>
       </VueCountUptimer>
       <v-menu

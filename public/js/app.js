@@ -12789,6 +12789,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -53958,39 +53962,56 @@ var render = function () {
                       key: "countup",
                       fn: function (scope) {
                         return [
-                          scope.props.minutes < 5 || scope.props.hours > 0
-                            ? _c("span", { staticClass: "green--text pl-3" }, [
-                                _vm._v(
-                                  _vm._s(scope.props.hours) +
-                                    ":" +
-                                    _vm._s(scope.props.minutes) +
-                                    ":" +
-                                    _vm._s(scope.props.seconds)
-                                ),
-                              ])
-                            : _c(
-                                "span",
-                                {
-                                  staticClass:
-                                    "red--text pl-3 animate__animated animate__bounce",
-                                },
-                                [
-                                  _vm._v(
-                                    _vm._s(scope.props.hours) +
-                                      ":" +
-                                      _vm._s(scope.props.minutes) +
-                                      ":" +
-                                      _vm._s(scope.props.seconds)
+                          _c(
+                            "transition",
+                            {
+                              attrs: {
+                                name: "animate__animated animate__flash animate__faster",
+                              },
+                            },
+                            [
+                              scope.props.minutes < 5 || scope.props.hours > 0
+                                ? _c(
+                                    "span",
+                                    {
+                                      key: _vm.node.id + "-1",
+                                      staticClass: "green--text pl-3",
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(scope.props.hours) +
+                                          ":" +
+                                          _vm._s(scope.props.minutes) +
+                                          ":" +
+                                          _vm._s(scope.props.seconds)
+                                      ),
+                                    ]
+                                  )
+                                : _c(
+                                    "span",
+                                    {
+                                      key: _vm.node.id + "-2",
+                                      staticClass: "red--text pl-3",
+                                    },
+                                    [
+                                      _vm._v(
+                                        _vm._s(scope.props.hours) +
+                                          ":" +
+                                          _vm._s(scope.props.minutes) +
+                                          ":" +
+                                          _vm._s(scope.props.seconds)
+                                      ),
+                                    ]
                                   ),
-                                ]
-                              ),
+                            ]
+                          ),
                         ]
                       },
                     },
                   ],
                   null,
                   false,
-                  2033799391
+                  4205305059
                 ),
               })
             : _vm.checkHackUser
