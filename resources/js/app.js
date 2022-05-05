@@ -458,6 +458,11 @@ Vue.component(
     require("./components/newcampaign/NewSystemTableStatusButton.vue").default
 );
 
+Vue.component(
+    "NewSystemTableTimer",
+    require("./components/newcampaign/NewSystemTableTimer.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(Clipboard);

@@ -45,6 +45,13 @@
                 :operationID="operationID"
               ></NewSystemTableStatusButton>
             </template>
+
+            <template v-slot:[`item.node_status.created_at`]="{ item }">
+              <NewSystemTableTimer
+                :node="item"
+                :operationID="operationID"
+              ></NewSystemTableTimer>
+            </template>
           </v-data-table>
         </v-col>
       </v-row>

@@ -119,8 +119,10 @@ class NewSystemNodeController extends Controller
                 OperationUser::where('new_system_node_id', $id)->update(['new_system_node_id' => null, 'user_status_id' => 1]);
                 break;
             case 7: // * Hostile Hacking
+                OperationUser::where('new_system_node_id', $id)->update(['new_system_node_id' => null, 'user_status_id' => 1]);
                 break;
             case 8: // * Friendly Hacking
+                OperationUser::where('new_system_node_id', $id)->update(['new_system_node_id' => null, 'user_status_id' => 1]);
                 break;
             case 9: // * Passive
                 OperationUser::where('new_system_node_id', $id)->update(['new_system_node_id' => null, 'user_status_id' => 1]);
