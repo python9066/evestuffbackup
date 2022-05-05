@@ -12,7 +12,7 @@ class NewSystemNode extends Model
 
     public function nonePrimeNodeUser()
     {
-        return $this->hasMany(NewUserNode::class, 'node_id')->ofMany('primery', 0);
+        return $this->hasMany(NewUserNode::class, 'node_id');
     }
 
     public function primeNodeUser()
