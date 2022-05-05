@@ -46,7 +46,7 @@
               ></NewSystemTableStatusButton>
             </template>
 
-            <template v-slot:[`item.node_status.created_at`]="{ item }">
+            <template v-slot:[`item.created_at`]="{ item }">
               <NewSystemTableTimer
                 :node="item"
                 :operationID="operationID"

@@ -8,12 +8,12 @@
         :interval="1000"
       >
         <template slot="countup" slot-scope="scope">
-          <span v-if="scope.props.minutes < 5" class="green--text pl-3"
+          <span v-if="scope.props.minutes < 5" :class="countUptimerColor"
             >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
               scope.props.seconds
             }}</span
           >
-          <span v-else class="red--text pl-3"
+          <span v-else :class="countUptimerColor"
             >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
               scope.props.seconds
             }}</span
@@ -28,6 +28,7 @@ import Axios from "axios";
 import { EventBus } from "../../app";
 // import ApiL from "../service/apil";
 import { mapGetters, mapState } from "vuex";
+import moment from "moment";
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -54,6 +55,15 @@ export default {
     ...mapGetters([]),
 
     ...mapState([]),
+
+    countUptimerColor() {
+      var fiveMins = moment(this.node.created_at).utc().subtract(5, "minutes");
+      if (moment(this.node.created_at).utc().isSameOrBefore(fiveMins)) {
+        return "red--text pl-3";
+      } else {
+        return "green--text pl-3";
+      }
+    },
   },
   beforeDestroy() {},
 };

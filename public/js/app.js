@@ -12677,6 +12677,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -12716,6 +12718,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
  // import ApiL from "../service/apil";
+
 
 
 
@@ -12775,7 +12778,17 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])),
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
+    countUptimerColor: function countUptimerColor() {
+      var fiveMins = moment__WEBPACK_IMPORTED_MODULE_4___default()(this.node.created_at).utc().subtract(5, "minutes");
+
+      if (moment__WEBPACK_IMPORTED_MODULE_4___default()(this.node.created_at).utc().isSameOrBefore(fiveMins)) {
+        return "red--text pl-3";
+      } else {
+        return "green--text pl-3";
+      }
+    }
+  }),
   beforeDestroy: function beforeDestroy() {}
 });
 
@@ -53534,7 +53547,7 @@ var render = function () {
                             },
                           },
                           {
-                            key: "item.node_status.created_at",
+                            key: "item.created_at",
                             fn: function (ref) {
                               var item = ref.item
                               return [
@@ -53754,7 +53767,7 @@ var render = function () {
                 fn: function (scope) {
                   return [
                     scope.props.minutes < 5
-                      ? _c("span", { staticClass: "green--text pl-3" }, [
+                      ? _c("span", { class: _vm.countUptimerColor }, [
                           _vm._v(
                             _vm._s(scope.props.hours) +
                               ":" +
@@ -53763,7 +53776,7 @@ var render = function () {
                               _vm._s(scope.props.seconds)
                           ),
                         ])
-                      : _c("span", { staticClass: "red--text pl-3" }, [
+                      : _c("span", { class: _vm.countUptimerColor }, [
                           _vm._v(
                             _vm._s(scope.props.hours) +
                               ":" +
