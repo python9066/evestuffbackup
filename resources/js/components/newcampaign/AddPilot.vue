@@ -125,10 +125,10 @@ export default {
       if (
         this.nodefree == 0 &&
         this.freecharCount != 0 &&
-        this.node.node_status != 4 &&
-        this.node.node_status != 5 &&
-        this.node.node_status != 7 &&
-        this.node.node_status != 8
+        this.node.node_status.id != 4 &&
+        this.node.node_status.id != 5 &&
+        this.node.node_status.id != 7 &&
+        this.node.node_status.id != 8
       ) {
         return true;
       } else {
