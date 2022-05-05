@@ -12784,16 +12784,7 @@ function sleep(ms) {
     timeMoment: function timeMoment() {
       return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
     },
-    countUptimerColor: function countUptimerColor() {
-      var addFiveMins = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.timeMoment).add(5, "minutes");
-      var now = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc();
-
-      if (moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(now).isBefore(addFiveMins)) {
-        return "red--text pl-3";
-      } else {
-        return "green--text pl-3";
-      }
-    }
+    countUptimerColor: function countUptimerColor() {}
   }),
   beforeDestroy: function beforeDestroy() {}
 });
@@ -53772,15 +53763,25 @@ var render = function () {
                 key: "countup",
                 fn: function (scope) {
                   return [
-                    _c("span", { class: _vm.countUptimerColor }, [
-                      _vm._v(
-                        _vm._s(scope.props.hours) +
-                          ":" +
-                          _vm._s(scope.props.minutes) +
-                          ":" +
-                          _vm._s(scope.props.seconds)
-                      ),
-                    ]),
+                    scope.props.minutes < 5 || scope.props.hours > 0
+                      ? _c("span", { staticClass: "green--text pl-3" }, [
+                          _vm._v(
+                            _vm._s(scope.props.hours) +
+                              ":" +
+                              _vm._s(scope.props.minutes) +
+                              ":" +
+                              _vm._s(scope.props.seconds)
+                          ),
+                        ])
+                      : _c("span", { staticClass: "red--text pl-3" }, [
+                          _vm._v(
+                            _vm._s(scope.props.hours) +
+                              ":" +
+                              _vm._s(scope.props.minutes) +
+                              ":" +
+                              _vm._s(scope.props.seconds)
+                          ),
+                        ]),
                   ]
                 },
               },

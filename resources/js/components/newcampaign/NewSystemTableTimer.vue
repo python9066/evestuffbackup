@@ -7,15 +7,15 @@
         :end-text="'Window Closed'"
         :interval="1000"
       >
-        <!-- <template slot="countup" slot-scope="scope">
-          <span :class="countUptimerColor"
+        <template slot="countup" slot-scope="scope">
+          <span
+            v-if="scope.props.minutes < 5 || scope.props.hours > 0"
+            class="green--text pl-3"
             >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
               scope.props.seconds
             }}</span
           >
-        </template> -->
-        <template slot="countup" slot-scope="scope">
-          <span :class="countUptimerColor"
+          <span v-else class="red--text pl-3"
             >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
               scope.props.seconds
             }}</span
@@ -62,15 +62,7 @@ export default {
       return moment.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
     },
 
-    countUptimerColor() {
-      var addFiveMins = moment.utc(this.timeMoment).add(5, "minutes");
-      var now = moment.utc();
-      if (moment.utc(now).isBefore(addFiveMins)) {
-        return "red--text pl-3";
-      } else {
-        return "green--text pl-3";
-      }
-    },
+    countUptimerColor() {},
   },
   beforeDestroy() {},
 };
