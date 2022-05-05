@@ -113,7 +113,7 @@ class NewSystemNodeController extends Controller
                         Broadcasthelper::broadcastuserOwnSolo($opuserID, $opuserUserID, 3);
                     }
 
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserUserID, 6);
+                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserID, 6);
                 }
 
 
@@ -139,7 +139,7 @@ class NewSystemNodeController extends Controller
                         Broadcasthelper::broadcastuserOwnSolo($opuserID, $opuserUserID, 3);
                     }
 
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserUserID, 6);
+                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserID, 6);
                 }
                 break;
             case 5: // * Faild
@@ -159,7 +159,7 @@ class NewSystemNodeController extends Controller
                         Broadcasthelper::broadcastuserOwnSolo($opuserID, $opuserUserID, 3);
                     }
 
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserUserID, 6);
+                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserID, 6);
                 }
                 break;
             case 6: // * Pushed off
@@ -179,7 +179,7 @@ class NewSystemNodeController extends Controller
                         Broadcasthelper::broadcastuserOwnSolo($opuserID, $opuserUserID, 3);
                     }
 
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserUserID, 6);
+                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserID, 6);
                 }
                 break;
             case 7: // * Hostile Hacking
@@ -199,7 +199,7 @@ class NewSystemNodeController extends Controller
                         Broadcasthelper::broadcastuserOwnSolo($opuserID, $opuserUserID, 3);
                     }
 
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserUserID, 6);
+                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserID, 6);
                 }
                 break;
             case 8: // * Friendly Hacking
@@ -219,7 +219,7 @@ class NewSystemNodeController extends Controller
                         Broadcasthelper::broadcastuserOwnSolo($opuserID, $opuserUserID, 3);
                     }
 
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserUserID, 6);
+                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserID, 6);
                 }
                 break;
             case 9: // * Passive
@@ -239,7 +239,7 @@ class NewSystemNodeController extends Controller
                         Broadcasthelper::broadcastuserOwnSolo($opuserID, $opuserUserID, 3);
                     }
 
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserUserID, 6);
+                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserID, 6);
                 }
                 break;
         }
