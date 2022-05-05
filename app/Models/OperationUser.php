@@ -30,6 +30,11 @@ class OperationUser extends Model
         return $this->belongsTo(System::class, "system_id", "id");
     }
 
+    public function node()
+    {
+        return $this->belongsTo(NewSystemNode::class, 'new_system_node_id', 'id');
+    }
+
     protected $casts = [
         'id' => 'integer',
         'user_id' => 'integer',

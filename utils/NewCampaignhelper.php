@@ -35,7 +35,8 @@ class NewCampaignhelper
                 'user:id,name',
                 "userrole",
                 "userstatus",
-                "system"
+                "system",
+                "node"
             ])
             ->get();
     }
@@ -48,7 +49,8 @@ class NewCampaignhelper
                 'user:id,name',
                 "userrole",
                 "userstatus",
-                "system"
+                "system",
+                "node"
             ])
             ->first();
     }
