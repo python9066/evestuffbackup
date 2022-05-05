@@ -12711,11 +12711,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
 
  // import ApiL from "../service/apil";
 
@@ -53766,25 +53761,15 @@ var render = function () {
                 key: "countup",
                 fn: function (scope) {
                   return [
-                    scope.props.minutes < 5
-                      ? _c("span", { class: _vm.countUptimerColor }, [
-                          _vm._v(
-                            _vm._s(scope.props.hours) +
-                              ":" +
-                              _vm._s(scope.props.minutes) +
-                              ":" +
-                              _vm._s(scope.props.seconds)
-                          ),
-                        ])
-                      : _c("span", { class: _vm.countUptimerColor }, [
-                          _vm._v(
-                            _vm._s(scope.props.hours) +
-                              ":" +
-                              _vm._s(scope.props.minutes) +
-                              ":" +
-                              _vm._s(scope.props.seconds)
-                          ),
-                        ]),
+                    _c("span", { class: _vm.countUptimerColor }, [
+                      _vm._v(
+                        _vm._s(scope.props.hours) +
+                          ":" +
+                          _vm._s(scope.props.minutes) +
+                          ":" +
+                          _vm._s(scope.props.seconds)
+                      ),
+                    ]),
                   ]
                 },
               },

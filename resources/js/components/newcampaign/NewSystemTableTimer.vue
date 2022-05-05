@@ -8,12 +8,7 @@
         :interval="1000"
       >
         <template slot="countup" slot-scope="scope">
-          <span v-if="scope.props.minutes < 5" :class="countUptimerColor"
-            >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-              scope.props.seconds
-            }}</span
-          >
-          <span v-else :class="countUptimerColor"
+          <span :class="countUptimerColor"
             >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
               scope.props.seconds
             }}</span
