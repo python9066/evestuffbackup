@@ -14,7 +14,7 @@ class AddTidiColoumnToSystemsTable extends Migration
     public function up()
     {
         Schema::table('systems', function (Blueprint $table) {
-            $table->integer('tidi')->after('adm')->default(100);
+            $table->integer('tidi')->default(100);
         });
     }
 

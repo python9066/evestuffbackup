@@ -14,9 +14,9 @@ class AddEndTimeColoumnToOperationUsersTable extends Migration
     public function up()
     {
         Schema::table('operation_users', function (Blueprint $table) {
-            $table->dateTime('end_time')->nullable()->after('notes');
-            $table->dateTime('input_time')->after('end_time')->nullable();
-            $table->integer('base_time')->after('input_time')->nullable();
+            $table->dateTime('end_time')->nullable();
+            $table->dateTime('input_time')->nullable();
+            $table->integer('base_time')->nullable();
         });
     }
 
