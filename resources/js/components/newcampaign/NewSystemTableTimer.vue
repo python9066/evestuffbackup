@@ -67,13 +67,14 @@ export default {
         .utc(this.timeMoment)
         .add(5, "minutes")
         .format("YYYY-MM-DD HH:mm:ss");
-      var test = moment.utc().isBefore(addFiveMins);
+      var now = moment.utc().format("YYYY-MM-DD HH:mm:ss");
+      var test = moment.utc(now).isBefore(addFiveMins);
       console.log(
         "five: " + addFiveMins,
         " - ",
-        "now: " + moment.utc().format("YYYY-MM-DD HH:mm:ss") + "   " + test
+        "now: " + moment.utc(now) + "   " + test
       );
-      if (moment.utc().format("YYYY-MM-DD HH:mm:ss").isBefore(addFiveMins)) {
+      if (moment.utc(now).isBefore(addFiveMins)) {
         return "red--text pl-3";
       } else {
         return "green--text pl-3";

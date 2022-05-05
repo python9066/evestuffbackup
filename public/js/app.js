@@ -12786,10 +12786,11 @@ function sleep(ms) {
     },
     countUptimerColor: function countUptimerColor() {
       var addFiveMins = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.timeMoment).add(5, "minutes").format("YYYY-MM-DD HH:mm:ss");
-      var test = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().isBefore(addFiveMins);
-      console.log("five: " + addFiveMins, " - ", "now: " + moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().format("YYYY-MM-DD HH:mm:ss") + "   " + test);
+      var now = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().format("YYYY-MM-DD HH:mm:ss");
+      var test = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(now).isBefore(addFiveMins);
+      console.log("five: " + addFiveMins, " - ", "now: " + moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(now) + "   " + test);
 
-      if (moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().format("YYYY-MM-DD HH:mm:ss").isBefore(addFiveMins)) {
+      if (moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(now).isBefore(addFiveMins)) {
         return "red--text pl-3";
       } else {
         return "green--text pl-3";
