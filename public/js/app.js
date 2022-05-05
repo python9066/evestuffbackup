@@ -53947,7 +53947,7 @@ var render = function () {
                             {
                               attrs: {
                                 "enter-active-class":
-                                  "animate__animated animate__tada animate__faster animate__repeat-3",
+                                  "animate__animated animate__bounceIn animate__faster animate__repeat-3",
                                 "leave-active-class":
                                   "animate__animated animate__flash animate__faster",
                                 mode: "out-in",
@@ -53995,7 +53995,7 @@ var render = function () {
                   ],
                   null,
                   false,
-                  2495597355
+                  401089068
                 ),
               })
             : _vm.checkHackUser
