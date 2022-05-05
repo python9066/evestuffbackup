@@ -3,7 +3,7 @@
     <v-col>
       <!-- v-if="item.status_id < 3 && item.end_time == null" -->
       <VueCountUptimer
-        :start-time="moment(timeMoment).unix()"
+        :start-time="moment(timeMoment).utc().unix()"
         :end-text="'Window Closed'"
         :interval="1000"
       >
@@ -63,7 +63,7 @@ export default {
     },
 
     countUptimerColor() {
-      var fiveMins = moment(this.timeMoment).subtract(5, "minutes");
+      var fiveMins = moment(this.timeMoment).utc().subtract(5, "minutes");
       console.log(fiveMins);
       if (moment(this.timeMoment).utc().isSameOrBefore(fiveMins)) {
         return "red--text pl-3";
