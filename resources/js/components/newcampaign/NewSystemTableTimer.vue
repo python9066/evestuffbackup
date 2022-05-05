@@ -64,6 +64,7 @@ export default {
 
     countUptimerColor() {
       var fiveMins = moment(this.timeMoment).subtract(5, "minutes");
+      console.log(fiveMins);
       if (moment(this.timeMoment).utc().isSameOrBefore(fiveMins)) {
         return "red--text pl-3";
       } else {

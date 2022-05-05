@@ -12786,6 +12786,7 @@ function sleep(ms) {
     },
     countUptimerColor: function countUptimerColor() {
       var fiveMins = moment__WEBPACK_IMPORTED_MODULE_4___default()(this.timeMoment).subtract(5, "minutes");
+      console.log(fiveMins);
 
       if (moment__WEBPACK_IMPORTED_MODULE_4___default()(this.timeMoment).utc().isSameOrBefore(fiveMins)) {
         return "red--text pl-3";
