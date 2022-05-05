@@ -12718,6 +12718,61 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -12737,7 +12792,13 @@ function sleep(ms) {
     operationID: Number
   },
   data: function data() {
-    return {};
+    return {
+      timerShown: false,
+      hackTime: {
+        mm: "",
+        ss: ""
+      }
+    };
   },
   created: function created() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -12779,8 +12840,63 @@ function sleep(ms) {
       }, _callee3);
     }))();
   },
-  methods: {},
+  methods: {
+    addHacktime: function addHacktime() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var min, sec, base, finishTime, request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                min = parseInt(_this.hackTime.substr(0, 2));
+                sec = parseInt(_this.hackTime.substr(3, 2));
+                base = min * 60 + sec;
+                sec = min * 60 + sec; //   var sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
+
+                finishTime = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
+                request = {
+                  end_time: finishTime,
+                  input_time: moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  base_time: base
+                }; //   await axios({
+                //     method: "put",
+                //     url: "/api/campaignsystems/" + item.id,
+                //     withCredentials: true,
+                //     data: request,
+                //     headers: {
+                //       Accept: "application/json",
+                //       "Content-Type": "application/json",
+                //     },
+                //   });
+
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    }
+  },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
+    checkHackUser: function checkHackUser() {
+      if (item.end == null && this.node.node_status.id == 3) {
+        return true;
+      } else if (item.end == null && (this.node.node_status.id == 7 || this.node.node_status.id == 8 || this.node.node_status.id == 9)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    pillOutlined: function pillOutlined() {
+      if (this.node.node_status.id == 7) {
+        return false;
+      } else {
+        return true;
+      }
+    },
     timeMoment: function timeMoment() {
       return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
     },
@@ -53752,41 +53868,216 @@ var render = function () {
       _c(
         "v-col",
         [
-          _c("VueCountUptimer", {
-            attrs: {
-              "start-time": _vm.moment.utc(_vm.timeMoment).unix(),
-              "end-text": "Window Closed",
-              interval: 1000,
-            },
-            scopedSlots: _vm._u([
-              {
-                key: "countup",
-                fn: function (scope) {
-                  return [
-                    scope.props.minutes < 5 || scope.props.hours > 0
-                      ? _c("span", { staticClass: "green--text pl-3" }, [
-                          _vm._v(
-                            _vm._s(scope.props.hours) +
-                              ":" +
-                              _vm._s(scope.props.minutes) +
-                              ":" +
-                              _vm._s(scope.props.seconds)
-                          ),
-                        ])
-                      : _c("span", { staticClass: "red--text pl-3" }, [
-                          _vm._v(
-                            _vm._s(scope.props.hours) +
-                              ":" +
-                              _vm._s(scope.props.minutes) +
-                              ":" +
-                              _vm._s(scope.props.seconds)
-                          ),
-                        ]),
-                  ]
+          _vm.node.node_status.id < 3
+            ? _c("VueCountUptimer", {
+                attrs: {
+                  "start-time": _vm.moment.utc(_vm.timeMoment).unix(),
+                  "end-text": "Window Closed",
+                  interval: 1000,
                 },
-              },
-            ]),
-          }),
+                scopedSlots: _vm._u(
+                  [
+                    {
+                      key: "countup",
+                      fn: function (scope) {
+                        return [
+                          scope.props.minutes < 5 || scope.props.hours > 0
+                            ? _c("span", { staticClass: "green--text pl-3" }, [
+                                _vm._v(
+                                  _vm._s(scope.props.hours) +
+                                    ":" +
+                                    _vm._s(scope.props.minutes) +
+                                    ":" +
+                                    _vm._s(scope.props.seconds)
+                                ),
+                              ])
+                            : _c("span", { staticClass: "red--text pl-3" }, [
+                                _vm._v(
+                                  _vm._s(scope.props.hours) +
+                                    ":" +
+                                    _vm._s(scope.props.minutes) +
+                                    ":" +
+                                    _vm._s(scope.props.seconds)
+                                ),
+                              ]),
+                        ]
+                      },
+                    },
+                  ],
+                  null,
+                  false,
+                  1081140368
+                ),
+              })
+            : _vm.checkHackUser
+            ? _c(
+                "v-menu",
+                {
+                  attrs: {
+                    "close-on-content-click": false,
+                    value: _vm.timerShown,
+                  },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "activator",
+                      fn: function (ref) {
+                        var on = ref.on
+                        var attrs = ref.attrs
+                        return [
+                          _c(
+                            "v-chip",
+                            _vm._g(
+                              _vm._b(
+                                {
+                                  attrs: {
+                                    pill: "",
+                                    outlined: _vm.pillOutlined,
+                                    small: "",
+                                    color: "warning",
+                                  },
+                                  on: {
+                                    click: function ($event) {
+                                      _vm.timerShown = true
+                                    },
+                                  },
+                                },
+                                "v-chip",
+                                attrs,
+                                false
+                              ),
+                              on
+                            ),
+                            [_vm._v("\n          Add Time\n        ")]
+                          ),
+                        ]
+                      },
+                    },
+                  ]),
+                },
+                [
+                  _vm._v(" "),
+                  [
+                    _c(
+                      "v-card",
+                      { attrs: { tile: "", "min-height": "150px" } },
+                      [
+                        _c(
+                          "v-card-title",
+                          { staticClass: "pb-0" },
+                          [
+                            _c("v-text-field", {
+                              directives: [
+                                {
+                                  name: "mask",
+                                  rawName: "v-mask",
+                                  value: "##:##",
+                                  expression: "'##:##'",
+                                },
+                              ],
+                              attrs: {
+                                label: "Hack Time mm:ss",
+                                autofocus: "",
+                                placeholder: "mm:ss",
+                              },
+                              on: {
+                                keyup: [
+                                  function ($event) {
+                                    if (
+                                      !$event.type.indexOf("key") &&
+                                      _vm._k(
+                                        $event.keyCode,
+                                        "enter",
+                                        13,
+                                        $event.key,
+                                        "Enter"
+                                      )
+                                    ) {
+                                      return null
+                                    }
+                                    ;(_vm.timerShown = false), _vm.addHacktime()
+                                  },
+                                  function ($event) {
+                                    if (
+                                      !$event.type.indexOf("key") &&
+                                      _vm._k(
+                                        $event.keyCode,
+                                        "esc",
+                                        27,
+                                        $event.key,
+                                        ["Esc", "Escape"]
+                                      )
+                                    ) {
+                                      return null
+                                    }
+                                    ;(_vm.timerShown = false),
+                                      (_vm.hackTime = null)
+                                  },
+                                ],
+                              },
+                              model: {
+                                value: _vm.hackTime,
+                                callback: function ($$v) {
+                                  _vm.hackTime = $$v
+                                },
+                                expression: "hackTime",
+                              },
+                            }),
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-text",
+                          [
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  icon: "",
+                                  fixed: "",
+                                  left: "",
+                                  color: "success",
+                                },
+                                on: {
+                                  click: function ($event) {
+                                    ;(_vm.timerShown = false), _vm.addHacktime()
+                                  },
+                                },
+                              },
+                              [_c("v-icon", [_vm._v("fas fa-check")])],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "v-btn",
+                              {
+                                attrs: {
+                                  fixed: "",
+                                  right: "",
+                                  icon: "",
+                                  color: "warning",
+                                },
+                                on: {
+                                  click: function ($event) {
+                                    ;(_vm.timerShown = false),
+                                      (_vm.hackTime = null)
+                                  },
+                                },
+                              },
+                              [_c("v-icon", [_vm._v("fas fa-times")])],
+                              1
+                            ),
+                          ],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                  ],
+                ],
+                2
+              )
+            : _vm._e(),
         ],
         1
       ),
