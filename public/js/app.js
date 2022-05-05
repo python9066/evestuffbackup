@@ -12793,6 +12793,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -53967,10 +53970,11 @@ var render = function () {
                             {
                               attrs: {
                                 name: "animate__animated animate__flash animate__faster",
+                                mode: "out-in",
                               },
                             },
                             [
-                              scope.props.minutes < 5 || scope.props.hours > 0
+                              scope.props.minutes < 1 || scope.props.hours > 0
                                 ? _c(
                                     "span",
                                     {
@@ -54011,7 +54015,7 @@ var render = function () {
                   ],
                   null,
                   false,
-                  4205305059
+                  3646730454
                 ),
               })
             : _vm.checkHackUser

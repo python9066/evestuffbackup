@@ -9,10 +9,13 @@
         :interval="1000"
       >
         <template slot="countup" slot-scope="scope">
-          <transition name="animate__animated animate__flash animate__faster">
+          <transition
+            name="animate__animated animate__flash animate__faster"
+            mode="out-in"
+          >
             <span
               :key="`${node.id}-1`"
-              v-if="scope.props.minutes < 5 || scope.props.hours > 0"
+              v-if="scope.props.minutes < 1 || scope.props.hours > 0"
               class="green--text pl-3"
               >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
                 scope.props.seconds
