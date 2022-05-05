@@ -53947,14 +53947,14 @@ var render = function () {
                             {
                               attrs: {
                                 "enter-active-class":
-                                  "animate__animated animate__heartBeat animate__infinite",
+                                  "animate__animated animate__heartBeat",
                                 "leave-active-class":
                                   "animate__animated animate__flash animate__faster",
                                 mode: "out-in",
                               },
                             },
                             [
-                              scope.props.minutes < 1 || scope.props.hours > 0
+                              scope.props.seconds < 10 || scope.props.hours > 0
                                 ? _c(
                                     "span",
                                     {
@@ -53995,7 +53995,7 @@ var render = function () {
                   ],
                   null,
                   false,
-                  1384390070
+                  1514119549
                 ),
               })
             : _vm.checkHackUser
