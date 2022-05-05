@@ -32,9 +32,17 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <span v-else>{{ activePilotName }}</span>
       </transition>
     </v-col>
+    <transition
+      mode="out-in"
+      enter-active-class="animate__animated animate__flash animate__faster"
+      leave-active-class="animate__animated animate__flash animate__faster"
+    >
+      <v-col v-if="!checkShowAdd">
+        <span>{{ activePilotName }}</span>
+      </v-col>
+    </transition>
   </v-row>
 </template>
 <script>
