@@ -12789,6 +12789,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
  // import ApiL from "../service/apil";
 
@@ -53946,8 +53947,9 @@ var render = function () {
                             "transition",
                             {
                               attrs: {
+                                name: "custom-classes",
                                 "enter-active-class":
-                                  "animate__animated animate__bounceIn animate__faster animate__repeat-3",
+                                  "animate__animated animate__tada animate__repeat-3",
                                 "leave-active-class":
                                   "animate__animated animate__flash animate__faster",
                                 mode: "out-in",
@@ -53958,7 +53960,7 @@ var render = function () {
                                 ? _c(
                                     "span",
                                     {
-                                      key: _vm.node.id + "-1",
+                                      key: _vm.node.id + "-1-timer-age",
                                       staticClass: "green--text pl-3",
                                     },
                                     [
@@ -53974,7 +53976,7 @@ var render = function () {
                                 : _c(
                                     "span",
                                     {
-                                      key: _vm.node.id + "-2",
+                                      key: _vm.node.id + "-2-timer-age",
                                       staticClass: "red--text pl-3",
                                     },
                                     [
@@ -53995,7 +53997,7 @@ var render = function () {
                   ],
                   null,
                   false,
-                  401089068
+                  1456717136
                 ),
               })
             : _vm.checkHackUser

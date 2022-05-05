@@ -10,12 +10,13 @@
       >
         <template slot="countup" slot-scope="scope">
           <transition
-            enter-active-class="animate__animated animate__bounceIn animate__faster animate__repeat-3"
+            name="custom-classes"
+            enter-active-class="animate__animated animate__tada animate__repeat-3"
             leave-active-class="animate__animated animate__flash animate__faster"
             mode="out-in"
           >
             <span
-              :key="`${node.id}-1`"
+              :key="`${node.id}-1-timer-age`"
               v-if="scope.props.seconds < 10 || scope.props.hours > 0"
               class="green--text pl-3"
               >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
@@ -23,7 +24,7 @@
               }}</span
             >
 
-            <span :key="`${node.id}-2`" v-else class="red--text pl-3"
+            <span :key="`${node.id}-2-timer-age`" v-else class="red--text pl-3"
               >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
                 scope.props.seconds
               }}</span
