@@ -156,7 +156,7 @@ export default {
       }
     },
     checkHackUser() {
-      if (ithis.opUserInfo) {
+      if (this.opUserInfo) {
         if (this.opUserInfo.end_time == null && this.node.node_status.id == 3) {
           return true;
         } else if (

@@ -12891,7 +12891,7 @@ function sleep(ms) {
       }
     },
     checkHackUser: function checkHackUser() {
-      if (ithis.opUserInfo) {
+      if (this.opUserInfo) {
         if (this.opUserInfo.end_time == null && this.node.node_status.id == 3) {
           return true;
         } else if (this.opUserInfo.end_time == null && (this.node.node_status.id == 7 || this.node.node_status.id == 8 || this.node.node_status.id == 9)) {
