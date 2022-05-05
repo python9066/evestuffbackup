@@ -71,6 +71,7 @@ export default {
     async statusClick(list) {
       var request = {
         status_id: list.value,
+        system_id: this.node.system_id,
       };
 
       await axios({
