@@ -3,7 +3,7 @@
     <v-col>
       <!-- v-if="item.status_id < 3 && item.end_time == null" -->
       <VueCountUptimer
-        :start-time="moment(timeMoment).utc().unix()"
+        :start-time="moment(timeMoment).unix()"
         :end-text="'Window Closed'"
         :interval="1000"
       >
