@@ -34,11 +34,12 @@ class OperationUserController extends Controller
     {
 
         $new = OperationUser::create($request->all());
-        $message = NewCampaignhelper::ownUsersolo($new->id);
 
         if (Auth::id() == $new->user_id) {
-            Broadcasthelper::broadcastuserSolo($opID, $userid, 3);
+            Broadcasthelper::broadcastuserOwnSolo($new->id, $userid, 3);
         }
+
+        Broadcasthelper::broadcastuserSolo($opID, $userid, 6);
     }
 
 

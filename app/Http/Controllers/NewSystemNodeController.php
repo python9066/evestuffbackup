@@ -76,7 +76,7 @@ class NewSystemNodeController extends Controller
             ]);
 
         Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
-        Broadcasthelper::broadcastuserSolo($request->opID, $request->op_user_id);
+        Broadcasthelper::broadcastuserSolo($request->opID, $request->op_user_id, 6);
     }
 
     /**

@@ -55,10 +55,8 @@ export default {
 
         if (e.flag.flag == 2) {
         }
-        // * 3 add/update char to char table
         if (e.flag.flag == 3) {
         }
-        // * 4 update own char list
         if (e.flag.flag == 4) {
         }
 
