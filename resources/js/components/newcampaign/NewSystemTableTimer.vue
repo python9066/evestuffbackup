@@ -7,6 +7,13 @@
         :end-text="'Window Closed'"
         :interval="1000"
       >
+        <!-- <template slot="countup" slot-scope="scope">
+          <span :class="countUptimerColor"
+            >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+              scope.props.seconds
+            }}</span
+          >
+        </template> -->
         <template slot="countup" slot-scope="scope">
           <span :class="countUptimerColor"
             >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
@@ -50,6 +57,10 @@ export default {
     ...mapGetters([]),
 
     ...mapState([]),
+
+    timeMoment() {
+      return moment(this.node.created_at).utc().format("YYYY-MM-DD HH:mm:ss");
+    },
 
     countUptimerColor() {
       var fiveMins = moment(this.node.created_at).utc().subtract(5, "minutes");
