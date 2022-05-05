@@ -12999,7 +12999,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "system.system_name"
       }, {
         text: "Node",
-        value: "node_id"
+        value: "node.name"
       }, {
         text: "Status",
         value: "userstatus.name"
