@@ -12790,6 +12790,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
  // import ApiL from "../service/apil";
 
@@ -53958,34 +53959,38 @@ var render = function () {
                             [
                               scope.props.seconds < 10 || scope.props.hours > 0
                                 ? _c(
-                                    "span",
+                                    "div",
                                     {
                                       key: _vm.node.id + "-1-timer-age",
                                       staticClass: "green--text pl-3",
                                     },
                                     [
                                       _vm._v(
-                                        _vm._s(scope.props.hours) +
+                                        "\n            " +
+                                          _vm._s(scope.props.hours) +
                                           ":" +
                                           _vm._s(scope.props.minutes) +
                                           ":" +
-                                          _vm._s(scope.props.seconds)
+                                          _vm._s(scope.props.seconds) +
+                                          "\n          "
                                       ),
                                     ]
                                   )
                                 : _c(
-                                    "span",
+                                    "div",
                                     {
                                       key: _vm.node.id + "-2-timer-age",
                                       staticClass: "red--text pl-3",
                                     },
                                     [
                                       _vm._v(
-                                        _vm._s(scope.props.hours) +
+                                        "\n            " +
+                                          _vm._s(scope.props.hours) +
                                           ":" +
                                           _vm._s(scope.props.minutes) +
                                           ":" +
-                                          _vm._s(scope.props.seconds)
+                                          _vm._s(scope.props.seconds) +
+                                          "\n          "
                                       ),
                                     ]
                                   ),
@@ -53997,7 +54002,7 @@ var render = function () {
                   ],
                   null,
                   false,
-                  3240669323
+                  2773391403
                 ),
               })
             : _vm.checkHackUser
