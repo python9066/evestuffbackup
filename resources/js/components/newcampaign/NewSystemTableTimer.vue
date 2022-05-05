@@ -63,16 +63,14 @@ export default {
     },
 
     countUptimerColor() {
-      var addFiveMins = moment
-        .utc(this.timeMoment)
-        .add(5, "minutes")
-        .format("YYYY-MM-DD HH:mm:ss");
-      var now = moment.utc().format("YYYY-MM-DD HH:mm:ss");
+      var addFiveMins = moment.utc(this.timeMoment).add(5, "minutes").unix();
+      var now = moment.utc();
       var test = moment.utc(now).isBefore(addFiveMins);
       console.log(
         "five: " + addFiveMins,
         " - ",
-        "now: " + moment.utc(now) + "   " + test
+        "now: " + now,
+        " test: " + test
       );
       if (moment.utc(now).isBefore(addFiveMins)) {
         return "red--text pl-3";

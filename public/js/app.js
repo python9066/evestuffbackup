@@ -12785,10 +12785,10 @@ function sleep(ms) {
       return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
     },
     countUptimerColor: function countUptimerColor() {
-      var addFiveMins = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.timeMoment).add(5, "minutes").format("YYYY-MM-DD HH:mm:ss");
-      var now = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().format("YYYY-MM-DD HH:mm:ss");
+      var addFiveMins = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.timeMoment).add(5, "minutes").unix();
+      var now = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc();
       var test = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(now).isBefore(addFiveMins);
-      console.log("five: " + addFiveMins, " - ", "now: " + moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(now) + "   " + test);
+      console.log("five: " + addFiveMins, " - ", "now: " + now, " test: " + test);
 
       if (moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(now).isBefore(addFiveMins)) {
         return "red--text pl-3";
