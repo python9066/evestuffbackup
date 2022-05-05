@@ -148,11 +148,18 @@ export default {
 
     ...mapState([]),
 
+    opUserInfo() {
+      if (this.node.op_users) {
+        return this.node.op_users[0];
+      } else {
+        return null;
+      }
+    },
     checkHackUser() {
-      if (item.end == null && this.node.node_status.id == 3) {
+      if (this.opUserInfo.end_time == null && this.node.node_status.id == 3) {
         return true;
       } else if (
-        item.end == null &&
+        this.opUserInfo.end_time == null &&
         (this.node.node_status.id == 7 ||
           this.node.node_status.id == 8 ||
           this.node.node_status.id == 9)

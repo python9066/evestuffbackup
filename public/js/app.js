@@ -12881,10 +12881,17 @@ function sleep(ms) {
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
+    opUserInfo: function opUserInfo() {
+      if (this.node.op_users) {
+        return this.node.op_users[0];
+      } else {
+        return null;
+      }
+    },
     checkHackUser: function checkHackUser() {
-      if (item.end == null && this.node.node_status.id == 3) {
+      if (this.opUserInfo.end_time == null && this.node.node_status.id == 3) {
         return true;
-      } else if (item.end == null && (this.node.node_status.id == 7 || this.node.node_status.id == 8 || this.node.node_status.id == 9)) {
+      } else if (this.opUserInfo.end_time == null && (this.node.node_status.id == 7 || this.node.node_status.id == 8 || this.node.node_status.id == 9)) {
         return true;
       } else {
         return false;
