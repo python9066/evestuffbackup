@@ -61,7 +61,6 @@ class NewCampaignhelper
             ->with([
                 'newCampaigns',
                 'newNodes.nodeStatus',
-                'newNodes.opUsers.user:id,name',
                 'newNodes.nonePrimeNodeUser',
                 'newNodes.primeNodeUser',
                 'newNodes.system'
@@ -75,7 +74,6 @@ class NewCampaignhelper
             ->with([
                 'newCampaigns',
                 'newNodes.nodeStatus',
-                'newNodes.opUsers.user:id,name',
                 'newNodes.nonePrimeNodeUser',
                 'newNodes.primeNodeUser',
                 'newNodes.system'
