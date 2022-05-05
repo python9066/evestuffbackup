@@ -11,7 +11,7 @@ use utils\NewCampaignhelper\NewCampaignhelper;
 class Broadcasthelper
 {
 
-    public static function broadcastsystemSolo($systemID, $flag)
+    public static function broadcastsystemSolo($systemID, $flagNumber)
     {
         $campaignIDs = NewCampaignSystem::where('system_id', $systemID)->pluck('new_campaign_id');
         $obIDS = NewCampaginOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
@@ -20,7 +20,7 @@ class Broadcasthelper
         foreach ($obIDS as $op) {
 
             $flag = collect([
-                'flag' => $flag,
+                'flag' => $flagNumber,
                 'message' => $message,
                 'id' => $op
             ]);
@@ -28,12 +28,12 @@ class Broadcasthelper
         }
     }
 
-    public static function broadcastuserSolo($opID, $opUserID, $flag)
+    public static function broadcastuserSolo($opID, $opUserID, $flagNumber)
     {
         $message = NewCampaignhelper::opUserSolo($opID, $opUserID);
         $flag = collect([
             // * 6 is to add newley made char to op list
-            'flag' => $flag,
+            'flag' => $flagNumber,
             'message' => $message,
             'id' => $opID
         ]);
@@ -41,11 +41,11 @@ class Broadcasthelper
         broadcast(new OperationUpdate($flag));
     }
 
-    public static function broadcastuserOwnSolo($opUserID, $userID, $flag)
+    public static function broadcastuserOwnSolo($opUserID, $userID, $flagNumber)
     {
         $message = NewCampaignhelper::ownUsersolo($opUserID);
         $flag = collect([
-            'flag' => $flag,
+            'flag' => $flagNumber,
             'userid' => $opUserID,
             'id' => $userID,
             'message' => $message
