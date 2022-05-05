@@ -103,27 +103,27 @@ class NewSystemNodeController extends Controller
     {
         switch ($request->status_id) {
             case 1: // * new
-                OperationUser::where(['new_system_node_id' => null, 'user_status_id' => 1]);
+                OperationUser::where('new_system_node_id', $id)->update(['new_system_node_id' => null, 'user_status_id' => 1]);
                 break;
             case 2: // * warm up
                 break;
             case 3: // * Hacking
                 break;
             case 4: // * Success
-                OperationUser::where(['new_system_node_id' => null, 'user_status_id' => 1]);
+                OperationUser::where('new_system_node_id', $id)->update(['new_system_node_id' => null, 'user_status_id' => 1]);
                 break;
             case 5: // * Faild
-                OperationUser::where(['new_system_node_id' => null, 'user_status_id' => 1]);
+                OperationUser::where('new_system_node_id', $id)->update(['new_system_node_id' => null, 'user_status_id' => 1]);
                 break;
             case 6: // * Pushed off
-                OperationUser::where(['new_system_node_id' => null, 'user_status_id' => 1]);
+                OperationUser::where('new_system_node_id', $id)->update(['new_system_node_id' => null, 'user_status_id' => 1]);
                 break;
             case 7: // * Hostile Hacking
                 break;
             case 8: // * Friendly Hacking
                 break;
             case 9: // * Passive
-                OperationUser::where(['new_system_node_id' => null, 'user_status_id' => 1]);
+                OperationUser::where('new_system_node_id', $id)->update(['new_system_node_id' => null, 'user_status_id' => 1]);
                 break;
         }
         NewSystemNode::where('id', $id)->update(['node_status' => $request->status_id]);
