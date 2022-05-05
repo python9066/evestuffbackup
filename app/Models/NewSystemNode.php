@@ -24,9 +24,7 @@ class NewSystemNode extends Model
 
     public function primeNodeUser()
     {
-        return $this->hasOne(NewUserNode::class, 'node_id')->ofMany(function ($q) {
-            $q->where('primery', 1);
-        });
+        return $this->allUsers()->where('primery', 1);
     }
 
     public function nodeStatus()
