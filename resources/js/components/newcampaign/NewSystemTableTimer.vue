@@ -11,7 +11,7 @@
         <template slot="countup" slot-scope="scope">
           <transition
             name="custom-classes"
-            enter-active-class="animate__animated animate__rubberBand"
+            enter-active-class="animate__animated animate__heartBeat animate__repeat-3"
             leave-active-class="animate__animated animate__flash animate__faster"
             mode="out-in"
           >
