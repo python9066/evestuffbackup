@@ -12891,12 +12891,16 @@ function sleep(ms) {
       }
     },
     checkHackUser: function checkHackUser() {
-      if (this.opUserInfo.end_time == null && this.node.node_status.id == 3) {
-        return true;
-      } else if (this.opUserInfo.end_time == null && (this.node.node_status.id == 7 || this.node.node_status.id == 8 || this.node.node_status.id == 9)) {
-        return true;
+      if (ithis.opUserInfo) {
+        if (this.opUserInfo.end_time == null && this.node.node_status.id == 3) {
+          return true;
+        } else if (this.opUserInfo.end_time == null && (this.node.node_status.id == 7 || this.node.node_status.id == 8 || this.node.node_status.id == 9)) {
+          return true;
+        } else {
+          return false;
+        }
       } else {
-        return false;
+        return true;
       }
     },
     pillOutlined: function pillOutlined() {
