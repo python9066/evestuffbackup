@@ -71,9 +71,9 @@ export default {
       console.log(
         "five: " + addFiveMins,
         " - ",
-        "now: " + moment.utc() + "   " + test
+        "now: " + moment.utc.format("YYYY-MM-DD HH:mm:ss") + "   " + test
       );
-      if (moment.utc().isBefore(addFiveMins)) {
+      if (moment.utc.format("YYYY-MM-DD HH:mm:ss").isBefore(addFiveMins)) {
         return "red--text pl-3";
       } else {
         return "green--text pl-3";
