@@ -67,7 +67,12 @@ export default {
         .utc(this.timeMoment)
         .add(5, "minutes")
         .format("YYYY-MM-DD HH:mm:ss");
-      console.log("five: " + addFiveMins, " - ", "now: " + this.timeMoment);
+      var test = moment.utc().isBefore(addFiveMins);
+      console.log(
+        "five: " + addFiveMins,
+        " - ",
+        "now: " + this.timeMoment + "   " + test
+      );
       if (moment.utc().isBefore(addFiveMins)) {
         return "red--text pl-3";
       } else {

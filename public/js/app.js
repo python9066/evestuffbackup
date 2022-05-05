@@ -12786,7 +12786,8 @@ function sleep(ms) {
     },
     countUptimerColor: function countUptimerColor() {
       var addFiveMins = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.timeMoment).add(5, "minutes").format("YYYY-MM-DD HH:mm:ss");
-      console.log("five: " + addFiveMins, " - ", "now: " + this.timeMoment);
+      var test = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().isBefore(addFiveMins);
+      console.log("five: " + addFiveMins, " - ", "now: " + this.timeMoment + "   " + test);
 
       if (moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().isBefore(addFiveMins)) {
         return "red--text pl-3";
