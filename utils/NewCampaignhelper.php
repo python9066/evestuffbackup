@@ -61,9 +61,7 @@ class NewCampaignhelper
             ->with([
                 'newCampaigns',
                 'newNodes.nodeStatus',
-                'newNodes.nonePrimeNodeUser' => function ($q) {
-                    $q->where('primery', 0);
-                },
+                'newNodes.nonePrimeNodeUser',
                 'newNodes.primeNodeUser',
                 'newNodes.system'
             ])
@@ -76,9 +74,7 @@ class NewCampaignhelper
             ->with([
                 'newCampaigns',
                 'newNodes.nodeStatus',
-                'newNodes.nonePrimeNodeUser' => function ($q) {
-                    $q->where('primery', 0);
-                },
+                'newNodes.nonePrimeNodeUser',
                 'newNodes.primeNodeUser',
                 'newNodes.system'
             ])
