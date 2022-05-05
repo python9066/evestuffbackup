@@ -2498,7 +2498,7 @@ export default new Vuex.Store({
 
         getOwnHackingCharOnOp: (state) => (operationid) => {
             let pull = state.ownChars.filter(
-                (u) => u.role_id == 4 && u.operation_id == operationid
+                (u) => u.role_id != 4 && u.operation_id == operationid
             );
             let count = pull.length;
             if (count != 0) {
