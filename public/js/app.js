@@ -12254,7 +12254,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         text: "Age/Hack",
         value: "created_at",
-        sortable: true
+        sortable: true,
+        align: "center"
       }, {
         text: "",
         value: "actions",

@@ -102,6 +102,7 @@ export default {
           text: "Age/Hack",
           value: "created_at",
           sortable: true,
+          align: "center",
         },
         {
           text: "",
