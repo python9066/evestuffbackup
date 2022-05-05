@@ -32,7 +32,6 @@ class Broadcasthelper
     {
         $message = NewCampaignhelper::opUserSolo($opID, $opUserID);
         $flag = collect([
-            // * 6 is to add newley made char to op list
             'flag' => $flagNumber,
             'message' => $message,
             'id' => $opID

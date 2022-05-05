@@ -35,11 +35,11 @@ class OperationUserController extends Controller
 
         $new = OperationUser::create($request->all());
 
-        if (Auth::id() == $new->user_id) {
+        if (Auth::id() == $userid) {
             Broadcasthelper::broadcastuserOwnSolo($new->id, $userid, 3);
         }
 
-        Broadcasthelper::broadcastuserSolo($opID, $userid, 6);
+        Broadcasthelper::broadcastuserSolo($opID, $new->id, 6);
     }
 
 
