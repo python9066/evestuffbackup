@@ -71,7 +71,7 @@ export default {
       console.log(
         "five: " + addFiveMins,
         " - ",
-        "now: " + this.timeMoment + "   " + test
+        "now: " + moment.utc() + "   " + test
       );
       if (moment.utc().isBefore(addFiveMins)) {
         return "red--text pl-3";
