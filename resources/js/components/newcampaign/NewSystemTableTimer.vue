@@ -149,7 +149,7 @@ export default {
     ...mapState([]),
 
     opUserInfo() {
-      if (this.node.op_users) {
+      if (this.node.op_users.length > 0) {
         return this.node.op_users[0];
       } else {
         return null;
