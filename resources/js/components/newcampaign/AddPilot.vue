@@ -1,33 +1,39 @@
 <template>
   <v-row no-gutters>
     <v-col>
-      <v-menu offset-y v-if="checkShowAdd">
-        <template v-slot:activator="{ on, attrs }">
-          <div>
-            <v-chip
-              v-bind="attrs"
-              v-on="on"
-              pill
-              outlined
-              small
-              color="light-green accent-3"
-            >
-              Add
-            </v-chip>
-          </div>
-        </template>
+      <transition
+        mode="out-in"
+        enter-active-class="animate__animated animate__flash animate__faster"
+        leave-active-class="animate__animated animate__flash animate__faster"
+      >
+        <v-menu offset-y v-if="checkShowAdd">
+          <template v-slot:activator="{ on, attrs }">
+            <div>
+              <v-chip
+                v-bind="attrs"
+                v-on="on"
+                pill
+                outlined
+                small
+                color="light-green accent-3"
+              >
+                Add
+              </v-chip>
+            </div>
+          </template>
 
-        <v-list>
-          <v-list-item
-            v-for="(list, index) in charsFree"
-            :key="index"
-            @click="addOpUser(list.id)"
-          >
-            <v-list-item-title>{{ list.name }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-      <span v-else>{{ activePilotName }}</span>
+          <v-list>
+            <v-list-item
+              v-for="(list, index) in charsFree"
+              :key="index"
+              @click="addOpUser(list.id)"
+            >
+              <v-list-item-title>{{ list.name }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <span v-else>{{ activePilotName }}</span>
+      </transition>
     </v-col>
   </v-row>
 </template>

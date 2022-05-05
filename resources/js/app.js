@@ -10,8 +10,8 @@ import Vue from "vue";
 import Vuetify from "vuetify";
 import router from "./router";
 import store from "./store";
-
 import App from "./views/App";
+import "animate.css";
 import colors from "vuetify/lib/util/colors";
 import "@fortawesome/fontawesome-free/css/all.css";
 import VueCountdown from "@chenfengyuan/vue-countdown";

@@ -11329,6 +11329,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -52920,79 +52926,102 @@ var render = function () {
       _c(
         "v-col",
         [
-          _vm.checkShowAdd
-            ? _c(
-                "v-menu",
-                {
-                  attrs: { "offset-y": "" },
-                  scopedSlots: _vm._u(
-                    [
-                      {
-                        key: "activator",
-                        fn: function (ref) {
-                          var on = ref.on
-                          var attrs = ref.attrs
-                          return [
-                            _c(
-                              "div",
-                              [
+          _c(
+            "transition",
+            {
+              attrs: {
+                mode: "out-in",
+                "enter-active-class":
+                  "animate__animated animate__flash animate__faster",
+                "leave-active-class":
+                  "animate__animated animate__flash animate__faster",
+              },
+            },
+            [
+              _vm.checkShowAdd
+                ? _c(
+                    "v-menu",
+                    {
+                      attrs: { "offset-y": "" },
+                      scopedSlots: _vm._u(
+                        [
+                          {
+                            key: "activator",
+                            fn: function (ref) {
+                              var on = ref.on
+                              var attrs = ref.attrs
+                              return [
                                 _c(
-                                  "v-chip",
-                                  _vm._g(
-                                    _vm._b(
-                                      {
-                                        attrs: {
-                                          pill: "",
-                                          outlined: "",
-                                          small: "",
-                                          color: "light-green accent-3",
-                                        },
-                                      },
+                                  "div",
+                                  [
+                                    _c(
                                       "v-chip",
-                                      attrs,
-                                      false
+                                      _vm._g(
+                                        _vm._b(
+                                          {
+                                            attrs: {
+                                              pill: "",
+                                              outlined: "",
+                                              small: "",
+                                              color: "light-green accent-3",
+                                            },
+                                          },
+                                          "v-chip",
+                                          attrs,
+                                          false
+                                        ),
+                                        on
+                                      ),
+                                      [
+                                        _vm._v(
+                                          "\n              Add\n            "
+                                        ),
+                                      ]
                                     ),
-                                    on
-                                  ),
-                                  [_vm._v("\n            Add\n          ")]
+                                  ],
+                                  1
                                 ),
-                              ],
-                              1
-                            ),
-                          ]
-                        },
-                      },
-                    ],
-                    null,
-                    false,
-                    3834551592
-                  ),
-                },
-                [
-                  _vm._v(" "),
-                  _c(
-                    "v-list",
-                    _vm._l(_vm.charsFree, function (list, index) {
-                      return _c(
-                        "v-list-item",
-                        {
-                          key: index,
-                          on: {
-                            click: function ($event) {
-                              return _vm.addOpUser(list.id)
+                              ]
                             },
                           },
-                        },
-                        [_c("v-list-item-title", [_vm._v(_vm._s(list.name))])],
+                        ],
+                        null,
+                        false,
+                        857461672
+                      ),
+                    },
+                    [
+                      _vm._v(" "),
+                      _c(
+                        "v-list",
+                        _vm._l(_vm.charsFree, function (list, index) {
+                          return _c(
+                            "v-list-item",
+                            {
+                              key: index,
+                              on: {
+                                click: function ($event) {
+                                  return _vm.addOpUser(list.id)
+                                },
+                              },
+                            },
+                            [
+                              _c("v-list-item-title", [
+                                _vm._v(_vm._s(list.name)),
+                              ]),
+                            ],
+                            1
+                          )
+                        }),
                         1
-                      )
-                    }),
+                      ),
+                    ],
                     1
-                  ),
-                ],
-                1
-              )
-            : _c("span", [_vm._v(_vm._s(_vm.activePilotName))]),
+                  )
+                : _c("span", [_vm._v(_vm._s(_vm.activePilotName))]),
+            ],
+            1
+          ),
         ],
         1
       ),
@@ -81517,25 +81546,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router */ "./resources/js/router.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
 /* harmony import */ var _views_App__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/App */ "./resources/js/views/App.vue");
-/* harmony import */ var vuetify_lib_util_colors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/util/colors */ "./node_modules/vuetify/lib/util/colors.js");
-/* harmony import */ var _fortawesome_fontawesome_free_css_all_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/fontawesome-free/css/all.css */ "./node_modules/@fortawesome/fontawesome-free/css/all.css");
-/* harmony import */ var _fortawesome_fontawesome_free_css_all_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_css_all_css__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @chenfengyuan/vue-countdown */ "./node_modules/@chenfengyuan/vue-countdown/dist/vue-countdown.js");
-/* harmony import */ var _chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @fortawesome/vue-fontawesome */ "./node_modules/@fortawesome/vue-fontawesome/index.es.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var vuejs_countdown_timer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuejs-countdown-timer */ "./node_modules/vuejs-countdown-timer/dist/vuejs-countdown-timer.min.js");
-/* harmony import */ var vuejs_countdown_timer__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(vuejs_countdown_timer__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _components_countup_index__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/countup/index */ "./resources/js/components/countup/index.js");
-/* harmony import */ var _components_countdown_index__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/countdown/index */ "./resources/js/components/countdown/index.js");
-/* harmony import */ var v_mask__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! v-mask */ "./node_modules/v-mask/dist/v-mask.esm.js");
-/* harmony import */ var _mixins_Permissions_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./mixins/Permissions.vue */ "./resources/js/mixins/Permissions.vue");
-/* harmony import */ var _mixins_titleMixin__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./mixins/titleMixin */ "./resources/js/mixins/titleMixin.js");
-/* harmony import */ var v_clipboard__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! v-clipboard */ "./node_modules/v-clipboard/dist/index.min.js");
-/* harmony import */ var v_clipboard__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(v_clipboard__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var animate_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! animate.css */ "./node_modules/animate.css/animate.css");
+/* harmony import */ var animate_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(animate_css__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vuetify_lib_util_colors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/util/colors */ "./node_modules/vuetify/lib/util/colors.js");
+/* harmony import */ var _fortawesome_fontawesome_free_css_all_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @fortawesome/fontawesome-free/css/all.css */ "./node_modules/@fortawesome/fontawesome-free/css/all.css");
+/* harmony import */ var _fortawesome_fontawesome_free_css_all_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_css_all_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @chenfengyuan/vue-countdown */ "./node_modules/@chenfengyuan/vue-countdown/dist/vue-countdown.js");
+/* harmony import */ var _chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @fortawesome/vue-fontawesome */ "./node_modules/@fortawesome/vue-fontawesome/index.es.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var vuejs_countdown_timer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuejs-countdown-timer */ "./node_modules/vuejs-countdown-timer/dist/vuejs-countdown-timer.min.js");
+/* harmony import */ var vuejs_countdown_timer__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(vuejs_countdown_timer__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _components_countup_index__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/countup/index */ "./resources/js/components/countup/index.js");
+/* harmony import */ var _components_countdown_index__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/countdown/index */ "./resources/js/components/countdown/index.js");
+/* harmony import */ var v_mask__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! v-mask */ "./node_modules/v-mask/dist/v-mask.esm.js");
+/* harmony import */ var _mixins_Permissions_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./mixins/Permissions.vue */ "./resources/js/mixins/Permissions.vue");
+/* harmony import */ var _mixins_titleMixin__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./mixins/titleMixin */ "./resources/js/mixins/titleMixin.js");
+/* harmony import */ var v_clipboard__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! v-clipboard */ "./node_modules/v-clipboard/dist/index.min.js");
+/* harmony import */ var v_clipboard__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(v_clipboard__WEBPACK_IMPORTED_MODULE_19__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -81563,8 +81594,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("font-awesome-icon", _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_10__["FontAwesomeIcon"]);
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_8__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__["fas"]); // Include needed icons
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("font-awesome-icon", _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_11__["FontAwesomeIcon"]);
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_9__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__["fas"]); // Include needed icons
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("messageComponent", __webpack_require__(/*! ./components/random/messageComponent.vue */ "./resources/js/components/random/messageComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("CampaginWebWay", __webpack_require__(/*! ./components/campaign/CampaginWebWay.vue */ "./resources/js/components/campaign/CampaginWebWay.vue")["default"]);
@@ -81676,18 +81708,18 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("AddPilot", __webpack_requi
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("NewSystemTableSimpleText", __webpack_require__(/*! ./components/newcampaign/NewSystemTableSimpleText.vue */ "./resources/js/components/newcampaign/NewSystemTableSimpleText.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("NewSystemTableStatusButton", __webpack_require__(/*! ./components/newcampaign/NewSystemTableStatusButton.vue */ "./resources/js/components/newcampaign/NewSystemTableStatusButton.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("NewSystemTableTimer", __webpack_require__(/*! ./components/newcampaign/NewSystemTableTimer.vue */ "./resources/js/components/newcampaign/NewSystemTableTimer.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_11___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_12___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_clipboard__WEBPACK_IMPORTED_MODULE_18___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countdown_index__WEBPACK_IMPORTED_MODULE_14__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuejs_countdown_timer__WEBPACK_IMPORTED_MODULE_12___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countup_index__WEBPACK_IMPORTED_MODULE_13__["default"]); // library.add(faUserSecret)
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_clipboard__WEBPACK_IMPORTED_MODULE_19___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countdown_index__WEBPACK_IMPORTED_MODULE_15__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuejs_countdown_timer__WEBPACK_IMPORTED_MODULE_13___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_components_countup_index__WEBPACK_IMPORTED_MODULE_14__["default"]); // library.add(faUserSecret)
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.config.productionTip = false;
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(_chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_7___default.a.name, _chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_7___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_mask__WEBPACK_IMPORTED_MODULE_15__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin(_mixins_Permissions_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin(_mixins_titleMixin__WEBPACK_IMPORTED_MODULE_17__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(_chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_8___default.a.name, _chenfengyuan_vue_countdown__WEBPACK_IMPORTED_MODULE_8___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_mask__WEBPACK_IMPORTED_MODULE_16__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin(_mixins_Permissions_vue__WEBPACK_IMPORTED_MODULE_17__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin(_mixins_titleMixin__WEBPACK_IMPORTED_MODULE_18__["default"]);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -81709,7 +81741,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_
 /* harmony default export */ __webpack_exports__["default"] = (new vuetify__WEBPACK_IMPORTED_MODULE_1___default.a({
   theme: {
     light: {
-      a: vuetify_lib_util_colors__WEBPACK_IMPORTED_MODULE_5__["default"].teal,
+      a: vuetify_lib_util_colors__WEBPACK_IMPORTED_MODULE_6__["default"].teal,
       warning: "#F57C00",
       secondary: "#65F5FC",
       "dark-orange": "#F57C00"
