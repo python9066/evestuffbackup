@@ -11462,7 +11462,7 @@ function sleep(ms) {
     },
     activePilotName: function activePilotName() {
       if (this.activePilot) {
-        return this.activePilot.name;
+        return this.activePilot.op_user.name;
       } else {
         return null;
       }
