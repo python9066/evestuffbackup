@@ -80,7 +80,7 @@ class NewSystemNodeController extends Controller
 
         OperationUser::where('id', $request->op_user_id)
             ->update([
-                'new_system_node_id' => $new->id,
+                'new_user_node_id' => $new->id,
                 'user_status_id' => 4,
                 'system_id' => $request->system_id
             ]);
@@ -306,25 +306,22 @@ class NewSystemNodeController extends Controller
      */
     public function destroy($id)
     {
-        $system_id = NewSystemNode::where('id', $id)
-            ->pluck('system_id');
+        $systemNode = NewSystemNode::where('id', $id)->first();
+        $system_id = $systemNode->system_id;
+        NewUserNode::where('node_id', $systemNode->id)->delete();
+        $opUsers = OperationUser::where('new_user_node_id', $systemNode->id)->get();
 
-        NewSystemNode::where('id', $id)
-            ->delete();
+        foreach ($opUsers as $opUser) {
 
-        $opusers =  OperationUser::where('new_system_node_id', $id)->get();
-
-        foreach ($opusers as $opuser) {
-
-            $opuser->update([
-                'new_system_node_id' => null,
+            $opUser->update([
+                'new_user_node_id' => null,
                 'user_status_id' => 3
             ]);
 
-            Broadcasthelper::broadcastuserOwnSolo($opuser->id, Auth::id(), 3);
-            Broadcasthelper::broadcastuserSolo($opuser->operation_id, $opuser->id, 6);
+            Broadcasthelper::broadcastuserOwnSolo($opUser->id, Auth::id(), 3);
+            Broadcasthelper::broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
         }
-
+        $systemNode->delete();
 
 
         // TODO Change this so it only gets Campaigns what are active.
