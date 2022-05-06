@@ -36,4 +36,9 @@ class NewSystemNode extends Model
     {
         return $this->belongsTo(System::class);
     }
+
+    public function opUser()
+    {
+        return $this->belongsTo(OperationUser::class, 'operation_user_id', 'id');
+    }
 }
