@@ -119,7 +119,7 @@ class NewSystemNodeController extends Controller
                     $userID = $user->id;
                     $opUser->update([
                         'new_user_node_id' => null,
-                        'user_status_id' => 1
+                        'user_status_id' => 3
                     ]);
 
 
@@ -150,7 +150,7 @@ class NewSystemNodeController extends Controller
                     $userID = $user->id;
                     $opUser->update([
                         'new_user_node_id' => null,
-                        'user_status_id' => 1
+                        'user_status_id' => 3
                     ]);
 
 
@@ -175,7 +175,7 @@ class NewSystemNodeController extends Controller
                     $userID = $user->id;
                     $opUser->update([
                         'new_user_node_id' => null,
-                        'user_status_id' => 1
+                        'user_status_id' => 3
                     ]);
 
 
@@ -200,7 +200,7 @@ class NewSystemNodeController extends Controller
                     $userID = $user->id;
                     $opUser->update([
                         'new_user_node_id' => null,
-                        'user_status_id' => 1
+                        'user_status_id' => 3
                     ]);
 
 
@@ -225,7 +225,7 @@ class NewSystemNodeController extends Controller
                     $userID = $user->id;
                     $opUser->update([
                         'new_user_node_id' => null,
-                        'user_status_id' => 1
+                        'user_status_id' => 3
                     ]);
 
 
@@ -253,7 +253,7 @@ class NewSystemNodeController extends Controller
                     $userID = $user->id;
                     $opUser->update([
                         'new_user_node_id' => null,
-                        'user_status_id' => 1
+                        'user_status_id' => 3
                     ]);
 
 
@@ -278,7 +278,7 @@ class NewSystemNodeController extends Controller
                     $userID = $user->id;
                     $opUser->update([
                         'new_user_node_id' => null,
-                        'user_status_id' => 1
+                        'user_status_id' => 3
                     ]);
 
 

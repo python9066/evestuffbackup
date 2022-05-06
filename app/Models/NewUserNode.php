@@ -14,4 +14,9 @@ class NewUserNode extends Model
     {
         return $this->belongsTo(OperationUser::class, 'operation_user_id', 'id');
     }
+
+    public function node()
+    {
+        return $this->belongsTo(NewSystemNode::class, 'node_id', 'id');
+    }
 }

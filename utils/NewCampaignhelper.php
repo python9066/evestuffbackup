@@ -36,7 +36,7 @@ class NewCampaignhelper
                 "userrole",
                 "userstatus",
                 "system",
-                "node"
+                "userNode.node"
             ])
             ->get();
     }
@@ -50,7 +50,7 @@ class NewCampaignhelper
                 "userrole",
                 "userstatus",
                 "system",
-                "node"
+                "userNode.node"
             ])
             ->first();
     }
