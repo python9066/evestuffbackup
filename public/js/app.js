@@ -33583,6 +33583,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -74930,14 +74931,19 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _vm._l(_vm.systems, function (item, index) {
-        return _c("CampaignSystemCard", {
-          key: index.id,
-          attrs: { item: item, operationID: _vm.operationID },
-        })
-      }),
+      _c(
+        "v-row",
+        { attrs: { "no-gutters": "", justify: "space-around" } },
+        _vm._l(_vm.systems, function (item, index) {
+          return _c("CampaignSystemCard", {
+            key: index.id,
+            attrs: { item: item, operationID: _vm.operationID },
+          })
+        }),
+        1
+      ),
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []

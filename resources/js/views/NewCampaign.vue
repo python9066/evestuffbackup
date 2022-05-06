@@ -13,13 +13,14 @@
         <CampaignActiveBar :operationID="operationID"></CampaignActiveBar>
       </v-col>
     </v-row>
-
-    <CampaignSystemCard
-      v-for="(item, index) in systems"
-      :key="index.id"
-      :item="item"
-      :operationID="operationID"
-    ></CampaignSystemCard>
+    <v-row no-gutters justify="space-around">
+      <CampaignSystemCard
+        v-for="(item, index) in systems"
+        :key="index.id"
+        :item="item"
+        :operationID="operationID"
+      ></CampaignSystemCard>
+    </v-row>
   </div>
 </template>
 <script>
