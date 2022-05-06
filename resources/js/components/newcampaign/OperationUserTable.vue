@@ -51,8 +51,8 @@ export default {
         { text: "Role", value: "userrole.role" },
         { text: "Ship", value: "ship" },
         { text: "Entosis", value: "entosis" },
-        { text: "System", value: "system_name" },
-        { text: "Node", value: "node.name" },
+        { text: "System", value: "system.system_name" },
+        { text: "Node", value: "user_node.user_node.name" },
         { text: "Status", value: "userstatus.name" },
 
         // { text: "Vulernable End Time", value: "vulnerable_end_time" }

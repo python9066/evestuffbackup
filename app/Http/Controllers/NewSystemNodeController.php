@@ -68,11 +68,11 @@ class NewSystemNodeController extends Controller
         $check = NewSystemNode::where('id', $request->node_id)->first();
         if ($check->node_status == 8) {
             $prime = 0;
-
-            $check->update(['node_status' => 2]);
         }
 
-
+        if ($prime == 1) {
+            $check->update(['node_status' => 2]);
+        }
 
         $new =  NewUserNode::create([
             'primery' => $prime,
