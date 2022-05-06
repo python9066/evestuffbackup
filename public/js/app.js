@@ -11718,6 +11718,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -11793,6 +11796,13 @@ function sleep(ms) {
   },
   methods: {},
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
+    colNum: function colNum() {
+      if (this.showSystemTable == 0) {
+        return 6;
+      } else {
+        return 1;
+      }
+    },
     filterRound: function filterRound() {
       if (this.showSystemTable) {
         return "rounded-t-xl";
@@ -33573,13 +33583,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -53231,56 +53234,73 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-expansion-panels",
-    {
-      staticClass: "pb-5",
-      staticStyle: { cursor: "context-menu" },
-      attrs: { popout: "" },
-      model: {
-        value: _vm.showSystemTable,
-        callback: function ($$v) {
-          _vm.showSystemTable = $$v
-        },
-        expression: "showSystemTable",
-      },
-    },
+    "v-row",
+    { attrs: { "no-gutters": "", justify: "space-around" } },
     [
       _c(
-        "v-expansion-panel",
-        { staticClass: "rounded-xl", staticStyle: { cursor: "context-menu" } },
+        "v-col",
+        { staticClass: "px-5", attrs: { cols: _vm.colNum } },
         [
           _c(
-            "v-expansion-panel-header",
+            "v-expansion-panels",
             {
-              class: _vm.filterRound,
+              staticClass: "pb-5",
               staticStyle: { cursor: "context-menu" },
-              attrs: { color: "primary" },
+              attrs: { popout: "" },
+              model: {
+                value: _vm.showSystemTable,
+                callback: function ($$v) {
+                  _vm.showSystemTable = $$v
+                },
+                expression: "showSystemTable",
+              },
             },
             [
               _c(
-                "v-row",
-                { attrs: { "no-gutters": "" } },
+                "v-expansion-panel",
+                {
+                  staticClass: "rounded-xl",
+                  staticStyle: { cursor: "context-menu" },
+                },
                 [
-                  _c("v-col", { attrs: { cols: "2" } }, [
-                    _vm._v(
-                      "\n          " +
-                        _vm._s(_vm.item.system_name) +
-                        "\n        "
-                    ),
-                  ]),
+                  _c(
+                    "v-expansion-panel-header",
+                    {
+                      class: _vm.filterRound,
+                      staticStyle: { cursor: "context-menu" },
+                      attrs: { color: "primary" },
+                    },
+                    [
+                      _c(
+                        "v-row",
+                        { attrs: { "no-gutters": "" } },
+                        [
+                          _c("v-col", { attrs: { cols: "2" } }, [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(_vm.item.system_name) +
+                                "\n            "
+                            ),
+                          ]),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-expansion-panel-content",
+                    [
+                      _c("CampaignSystemCardContent", {
+                        attrs: { item: _vm.item, operationID: _vm.operationID },
+                      }),
+                    ],
+                    1
+                  ),
                 ],
                 1
               ),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-expansion-panel-content",
-            [
-              _c("CampaignSystemCardContent", {
-                attrs: { item: _vm.item, operationID: _vm.operationID },
-              }),
             ],
             1
           ),
@@ -74910,26 +74930,14 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _c(
-        "v-row",
-        { attrs: { "no-gutters": "", justify: "space-around" } },
-        _vm._l(_vm.systems, function (item, index) {
-          return _c(
-            "v-col",
-            { key: index.id, staticClass: "px-5", attrs: { cols: "6" } },
-            [
-              _c("CampaignSystemCard", {
-                key: index.id + "-card",
-                attrs: { item: item, operationID: _vm.operationID },
-              }),
-            ],
-            1
-          )
-        }),
-        1
-      ),
+      _vm._l(_vm.systems, function (item, index) {
+        return _c("CampaignSystemCard", {
+          key: index.id,
+          attrs: { item: item, operationID: _vm.operationID },
+        })
+      }),
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
