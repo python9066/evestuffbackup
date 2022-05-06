@@ -8,7 +8,7 @@
     </v-card>
   </div> -->
 
-  <v-col :cols="colNum" class="px-5">
+  <v-col :cols="colNum" :class="classText">
     <v-expansion-panels
       class="pb-5"
       v-model="showSystemTable"
@@ -83,7 +83,15 @@ export default {
       if (this.showSystemTable == 0) {
         return 6;
       } else {
-        return 1;
+        return 2;
+      }
+    },
+
+    classText() {
+      if (this.showSystemTable == 0) {
+        return "px-5";
+      } else {
+        return "px-0";
       }
     },
 

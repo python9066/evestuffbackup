@@ -11799,7 +11799,14 @@ function sleep(ms) {
       if (this.showSystemTable == 0) {
         return 6;
       } else {
-        return 1;
+        return 2;
+      }
+    },
+    classText: function classText() {
+      if (this.showSystemTable == 0) {
+        return "px-5";
+      } else {
+        return "px-0";
       }
     },
     filterRound: function filterRound() {
@@ -53235,7 +53242,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "v-col",
-    { staticClass: "px-5", attrs: { cols: _vm.colNum } },
+    { class: _vm.classText, attrs: { cols: _vm.colNum } },
     [
       _c(
         "v-expansion-panels",
