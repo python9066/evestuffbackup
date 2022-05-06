@@ -61,8 +61,8 @@ class NewCampaignhelper
             ->with([
                 'newCampaigns',
                 'newNodes.nodeStatus',
-                'newNodes.nonePrimeNodeUser.opUser',
-                'newNodes.primeNodeUser.opUser',
+                'newNodes.nonePrimeNodeUser.opUser.user',
+                'newNodes.primeNodeUser.opUser.user',
                 'newNodes.system'
             ])
             ->get();
@@ -74,8 +74,8 @@ class NewCampaignhelper
             ->with([
                 'newCampaigns',
                 'newNodes.nodeStatus',
-                'newNodes.nonePrimeNodeUser.opUser',
-                'newNodes.primeNodeUser.opUser',
+                'newNodes.nonePrimeNodeUser.opUser.user',
+                'newNodes.primeNodeUser.opUser.user',
                 'newNodes.system'
             ])
             ->first();
