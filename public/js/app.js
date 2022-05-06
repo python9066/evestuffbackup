@@ -12412,12 +12412,12 @@ function sleep(ms) {
         switch (this.type) {
           case 1:
             // * return main name
-            return this.activePilot.user.name;
+            return this.activePilot.op_user.user.name;
 
           case 2:
             // * return {{ship_name}} + T-{{entosi}}
-            var entosis = " T-" + this.activePilot.entosis;
-            var ship = this.activePilot.ship;
+            var entosis = " T-" + this.activePilot.op_user.entosis;
+            var ship = this.activePilot.op_user.ship;
             var text = ship + entosis;
             return text;
         }
