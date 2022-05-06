@@ -38,12 +38,12 @@ export default {
     ...mapState([]),
 
     nodefree() {
-      return this.node.op_users.length;
+      return this.node.prime_node_user.length;
     },
 
     activePilot() {
       if (this.nodefree > 0) {
-        return this.node.op_users[0];
+        return this.node.prime_node_user[0];
       } else {
         null;
       }
