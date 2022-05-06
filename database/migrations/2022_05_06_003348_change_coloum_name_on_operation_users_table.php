@@ -13,7 +13,7 @@ class ChangeColoumNameOnOperationUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('new_node_campaign_users', function (Blueprint $table) {
+        Schema::table('operation_users', function (Blueprint $table) {
             $table->renameColumn('new_system_node_id', 'new_user_node_id');
         });
     }
@@ -25,7 +25,7 @@ class ChangeColoumNameOnOperationUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('new_node_campaign_users', function (Blueprint $table) {
+        Schema::table('operation_users', function (Blueprint $table) {
             $table->renameColumn('new_user_node_id', 'new_system_node_id');
         });
     }
