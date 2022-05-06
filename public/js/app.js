@@ -12902,8 +12902,8 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     opUserInfo: function opUserInfo() {
-      if (this.node.op_users.length > 0) {
-        return this.node.op_users[0];
+      if (this.node.prime_node_user > 0) {
+        return this.prime_node_user[0];
       } else {
         return null;
       }

@@ -159,8 +159,8 @@ export default {
     ...mapState([]),
 
     opUserInfo() {
-      if (this.node.op_users.length > 0) {
-        return this.node.op_users[0];
+      if (this.node.prime_node_user > 0) {
+        return this.prime_node_user[0];
       } else {
         return null;
       }
