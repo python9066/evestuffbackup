@@ -2,7 +2,7 @@
   <div>
     <v-card>
       <v-card-title class="justify-center primary pa-3"
-        >Operation Info</v-card-title
+        >Operation Info did this update</v-card-title
       >
       <v-card-text>
         <v-row no-gutters v-for="(item, index) in item" :key="index">

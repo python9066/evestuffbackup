@@ -53557,7 +53557,7 @@ var render = function () {
         "v-card",
         [
           _c("v-card-title", { staticClass: "justify-center primary pa-3" }, [
-            _vm._v("Operation Info"),
+            _vm._v("Operation Info did this update"),
           ]),
           _vm._v(" "),
           _c(
