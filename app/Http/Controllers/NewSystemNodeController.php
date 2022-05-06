@@ -7,7 +7,9 @@ use App\Models\NewCampaginOperation;
 use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
 use App\Models\NewSystemNode;
+use App\Models\NewUserNode;
 use App\Models\OperationUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PHPUnit\Framework\Constraint\Operator;
@@ -56,7 +58,7 @@ class NewSystemNodeController extends Controller
 
     public function addCharToNode(Request $request)
     {
-        $check = OperationUser::where('new_system_node_id', $request->node_id)
+        $check = NewUserNode::where('node_id', $request->node_id)
             ->count();
         $prime = 1;
         if ($check > 0) {
@@ -68,13 +70,22 @@ class NewSystemNodeController extends Controller
             $prime = 0;
         }
 
+        $new =  NewUserNode::create([
+            'primery' => $prime,
+            'node_id' => $request->node_id,
+            'operation_user_id' => $request->op_user_id,
+            'node_status_id' => 1
+
+        ]);
+
         OperationUser::where('id', $request->op_user_id)
             ->update([
-                'primery' => $prime,
-                'new_system_node_id' => $request->node_id,
+                'new_system_node_id' => $new->id,
                 'user_status_id' => 4,
                 'system_id' => $request->system_id
             ]);
+
+
 
         Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
         Broadcasthelper::broadcastuserSolo($request->opID, $request->op_user_id, 6);
@@ -95,25 +106,32 @@ class NewSystemNodeController extends Controller
 
     public function updateStatus(Request $request, $id)
     {
+
+
         switch ($request->status_id) {
             case 1: // * new
-                $opuser = OperationUser::where('new_system_node_id', $id)
+                $userNode = NewUserNode::where('node_id', $id)
                     ->where('primery', 1)->first();
-                if ($opuser) {
-                    $opuserID = $opuser->id;
-                    $opuserUserID = $opuser->user_id;
-                    OperationUser::where('new_system_node_id', $id)
-                        ->where('primery', 1)
-                        ->update([
-                            'new_system_node_id' => null,
-                            'user_status_id' => 1
-                        ]);
+                if ($userNode) {
+                    $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
+                    $opUserID = $opUser->id;
+                    $user = User::where('id', $opUser->user_id)->first();
+                    $userID = $user->id;
+                    $opUser->update([
+                        'new_user_node_id' => null,
+                        'user_status_id' => 1
+                    ]);
 
-                    if ($opuserUserID == Auth::id()) {
-                        Broadcasthelper::broadcastuserOwnSolo($opuserID, $opuserUserID, 3);
+
+                    $userNode->delete();
+
+                    $oldCheck = NewUserNode::where('node_id', $id)->oldest()->first();
+                    if ($oldCheck) {
+                        $oldCheck->update('primery', 1);
                     }
 
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserID, 6);
+                    Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
+                    Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
                 }
 
 
@@ -123,123 +141,156 @@ class NewSystemNodeController extends Controller
             case 3: // * Hacking
                 break;
             case 4: // * Success
-                $opuser = OperationUser::where('new_system_node_id', $id)
+                $userNode = NewUserNode::where('node_id', $id)
                     ->where('primery', 1)->first();
-                if ($opuser) {
-                    $opuserID = $opuser->id;
-                    $opuserUserID = $opuser->user_id;
-                    OperationUser::where('new_system_node_id', $id)
-                        ->where('primery', 1)
-                        ->update([
-                            'new_system_node_id' => null,
-                            'user_status_id' => 1
-                        ]);
+                if ($userNode) {
+                    $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
+                    $opUserID = $opUser->id;
+                    $user = User::where('id', $opUser->user_id)->first();
+                    $userID = $user->id;
+                    $opUser->update([
+                        'new_user_node_id' => null,
+                        'user_status_id' => 1
+                    ]);
 
-                    if ($opuserUserID == Auth::id()) {
-                        Broadcasthelper::broadcastuserOwnSolo($opuserID, $opuserUserID, 3);
+
+                    $userNode->delete();
+
+                    $oldCheck = NewUserNode::where('node_id', $id)->oldest()->first();
+                    if ($oldCheck) {
+                        $oldCheck->update('primery', 1);
                     }
 
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserID, 6);
+                    Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
+                    Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
                 }
                 break;
             case 5: // * Faild
-                $opuser = OperationUser::where('new_system_node_id', $id)
+                $userNode = NewUserNode::where('node_id', $id)
                     ->where('primery', 1)->first();
-                if ($opuser) {
-                    $opuserID = $opuser->id;
-                    $opuserUserID = $opuser->user_id;
-                    OperationUser::where('new_system_node_id', $id)
-                        ->where('primery', 1)
-                        ->update([
-                            'new_system_node_id' => null,
-                            'user_status_id' => 1
-                        ]);
+                if ($userNode) {
+                    $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
+                    $opUserID = $opUser->id;
+                    $user = User::where('id', $opUser->user_id)->first();
+                    $userID = $user->id;
+                    $opUser->update([
+                        'new_user_node_id' => null,
+                        'user_status_id' => 1
+                    ]);
 
-                    if ($opuserUserID == Auth::id()) {
-                        Broadcasthelper::broadcastuserOwnSolo($opuserID, $opuserUserID, 3);
+
+                    $userNode->delete();
+
+                    $oldCheck = NewUserNode::where('node_id', $id)->oldest()->first();
+                    if ($oldCheck) {
+                        $oldCheck->update('primery', 1);
                     }
 
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserID, 6);
+                    Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
+                    Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
                 }
                 break;
             case 6: // * Pushed off
-                $opuser = OperationUser::where('new_system_node_id', $id)
+                $userNode = NewUserNode::where('node_id', $id)
                     ->where('primery', 1)->first();
-                if ($opuser) {
-                    $opuserID = $opuser->id;
-                    $opuserUserID = $opuser->user_id;
-                    OperationUser::where('new_system_node_id', $id)
-                        ->where('primery', 1)
-                        ->update([
-                            'new_system_node_id' => null,
-                            'user_status_id' => 1
-                        ]);
+                if ($userNode) {
+                    $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
+                    $opUserID = $opUser->id;
+                    $user = User::where('id', $opUser->user_id)->first();
+                    $userID = $user->id;
+                    $opUser->update([
+                        'new_user_node_id' => null,
+                        'user_status_id' => 1
+                    ]);
 
-                    if ($opuserUserID == Auth::id()) {
-                        Broadcasthelper::broadcastuserOwnSolo($opuserID, $opuserUserID, 3);
+
+                    $userNode->delete();
+
+                    $oldCheck = NewUserNode::where('node_id', $id)->oldest()->first();
+                    if ($oldCheck) {
+                        $oldCheck->update('primery', 1);
                     }
 
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserID, 6);
+                    Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
+                    Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
                 }
                 break;
             case 7: // * Hostile Hacking
-                $opuser = OperationUser::where('new_system_node_id', $id)
+                $userNode = NewUserNode::where('node_id', $id)
                     ->where('primery', 1)->first();
-                if ($opuser) {
-                    $opuserID = $opuser->id;
-                    $opuserUserID = $opuser->user_id;
-                    OperationUser::where('new_system_node_id', $id)
-                        ->where('primery', 1)
-                        ->update([
-                            'new_system_node_id' => null,
-                            'user_status_id' => 1
-                        ]);
+                if ($userNode) {
+                    $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
+                    $opUserID = $opUser->id;
+                    $user = User::where('id', $opUser->user_id)->first();
+                    $userID = $user->id;
+                    $opUser->update([
+                        'new_user_node_id' => null,
+                        'user_status_id' => 1
+                    ]);
 
-                    if ($opuserUserID == Auth::id()) {
-                        Broadcasthelper::broadcastuserOwnSolo($opuserID, $opuserUserID, 3);
+
+                    $userNode->delete();
+
+                    $oldCheck = NewUserNode::where('node_id', $id)->oldest()->first();
+                    if ($oldCheck) {
+                        $oldCheck->update('primery', 1);
                     }
 
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserID, 6);
+                    Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
+                    Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
                 }
                 break;
             case 8: // * Friendly Hacking
-                $opuser = OperationUser::where('new_system_node_id', $id)
-                    ->where('primery', 1)->first();
-                if ($opuser) {
-                    $opuserID = $opuser->id;
-                    $opuserUserID = $opuser->user_id;
-                    OperationUser::where('new_system_node_id', $id)
-                        ->where('primery', 1)
-                        ->update([
-                            'new_system_node_id' => null,
-                            'user_status_id' => 1
-                        ]);
+                $userNode = NewUserNode::where('node_id', $id)
+                    ->where(
+                        'primery',
+                        1
+                    )->first();
+                if ($userNode) {
+                    $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
+                    $opUserID = $opUser->id;
+                    $user = User::where('id', $opUser->user_id)->first();
+                    $userID = $user->id;
+                    $opUser->update([
+                        'new_user_node_id' => null,
+                        'user_status_id' => 1
+                    ]);
 
-                    if ($opuserUserID == Auth::id()) {
-                        Broadcasthelper::broadcastuserOwnSolo($opuserID, $opuserUserID, 3);
+
+                    $userNode->delete();
+
+                    $oldCheck = NewUserNode::where('node_id', $id)->oldest()->first();
+                    if ($oldCheck) {
+                        $oldCheck->update('primery', 1);
                     }
 
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserID, 6);
+                    Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
+                    Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
                 }
                 break;
             case 9: // * Passive
-                $opuser = OperationUser::where('new_system_node_id', $id)
+                $userNode = NewUserNode::where('node_id', $id)
                     ->where('primery', 1)->first();
-                if ($opuser) {
-                    $opuserID = $opuser->id;
-                    $opuserUserID = $opuser->user_id;
-                    OperationUser::where('new_system_node_id', $id)
-                        ->where('primery', 1)
-                        ->update([
-                            'new_system_node_id' => null,
-                            'user_status_id' => 1
-                        ]);
+                if ($userNode) {
+                    $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
+                    $opUserID = $opUser->id;
+                    $user = User::where('id', $opUser->user_id)->first();
+                    $userID = $user->id;
+                    $opUser->update([
+                        'new_user_node_id' => null,
+                        'user_status_id' => 1
+                    ]);
 
-                    if ($opuserUserID == Auth::id()) {
-                        Broadcasthelper::broadcastuserOwnSolo($opuserID, $opuserUserID, 3);
+
+                    $userNode->delete();
+
+                    $oldCheck = NewUserNode::where('node_id', $id)->oldest()->first();
+                    if ($oldCheck) {
+                        $oldCheck->update('primery', 1);
                     }
 
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opuserID, 6);
+                    Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
+                    Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
                 }
                 break;
         }

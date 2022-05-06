@@ -32,7 +32,7 @@ class OperationUser extends Model
 
     public function node()
     {
-        return $this->belongsTo(NewSystemNode::class, 'new_system_node_id', 'id');
+        return $this->belongsTo(NewUserNode::class, 'new_user_node_id', 'id');
     }
 
     protected $casts = [
