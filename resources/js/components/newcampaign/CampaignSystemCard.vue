@@ -8,34 +8,32 @@
     </v-card>
   </div> -->
 
-  <v-col :cols="colNum" :class="classText">
-    <v-expansion-panels
-      class="pb-5"
-      v-model="showSystemTable"
-      popout
-      style="cursor: context-menu"
-    >
-      <v-expansion-panel class="rounded-xl" style="cursor: context-menu">
-        <v-expansion-panel-header
-          style="cursor: context-menu"
-          color="primary"
-          :class="filterRound"
-        >
-          <v-row no-gutters>
-            <v-col cols="2">
-              {{ item.system_name }}
-            </v-col>
-          </v-row>
-        </v-expansion-panel-header>
-        <v-expansion-panel-content
-          ><CampaignSystemCardContent
-            :item="item"
-            :operationID="operationID"
-          ></CampaignSystemCardContent>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
-  </v-col>
+  <v-expansion-panels
+    class="pb-5"
+    v-model="showSystemTable"
+    popout
+    style="cursor: context-menu"
+  >
+    <v-expansion-panel class="rounded-xl" style="cursor: context-menu">
+      <v-expansion-panel-header
+        style="cursor: context-menu"
+        color="primary"
+        :class="filterRound"
+      >
+        <v-row no-gutters>
+          <v-col cols="2">
+            {{ item.system_name }}
+          </v-col>
+        </v-row>
+      </v-expansion-panel-header>
+      <v-expansion-panel-content
+        ><CampaignSystemCardContent
+          :item="item"
+          :operationID="operationID"
+        ></CampaignSystemCardContent>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+  </v-expansion-panels>
 </template>
 <script>
 import Axios from "axios";
@@ -78,22 +76,6 @@ export default {
     ...mapGetters([]),
 
     ...mapState([]),
-
-    colNum() {
-      if (this.showSystemTable == 0) {
-        return 6;
-      } else {
-        return 2;
-      }
-    },
-
-    classText() {
-      if (this.showSystemTable == 0) {
-        return "px-5";
-      } else {
-        return "px-0";
-      }
-    },
 
     filterRound() {
       if (this.showSystemTable) {
