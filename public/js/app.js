@@ -11720,7 +11720,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
  // import ApiL from "../service/apil";
 
@@ -53235,70 +53234,63 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-row",
-    { attrs: { "no-gutters": "", justify: "space-around" } },
+    "v-col",
+    { staticClass: "px-5", attrs: { cols: _vm.colNum } },
     [
       _c(
-        "v-col",
-        { staticClass: "px-5", attrs: { cols: _vm.colNum } },
+        "v-expansion-panels",
+        {
+          staticClass: "pb-5",
+          staticStyle: { cursor: "context-menu" },
+          attrs: { popout: "" },
+          model: {
+            value: _vm.showSystemTable,
+            callback: function ($$v) {
+              _vm.showSystemTable = $$v
+            },
+            expression: "showSystemTable",
+          },
+        },
         [
           _c(
-            "v-expansion-panels",
+            "v-expansion-panel",
             {
-              staticClass: "pb-5",
+              staticClass: "rounded-xl",
               staticStyle: { cursor: "context-menu" },
-              attrs: { popout: "" },
-              model: {
-                value: _vm.showSystemTable,
-                callback: function ($$v) {
-                  _vm.showSystemTable = $$v
-                },
-                expression: "showSystemTable",
-              },
             },
             [
               _c(
-                "v-expansion-panel",
+                "v-expansion-panel-header",
                 {
-                  staticClass: "rounded-xl",
+                  class: _vm.filterRound,
                   staticStyle: { cursor: "context-menu" },
+                  attrs: { color: "primary" },
                 },
                 [
                   _c(
-                    "v-expansion-panel-header",
-                    {
-                      class: _vm.filterRound,
-                      staticStyle: { cursor: "context-menu" },
-                      attrs: { color: "primary" },
-                    },
+                    "v-row",
+                    { attrs: { "no-gutters": "" } },
                     [
-                      _c(
-                        "v-row",
-                        { attrs: { "no-gutters": "" } },
-                        [
-                          _c("v-col", { attrs: { cols: "2" } }, [
-                            _vm._v(
-                              "\n              " +
-                                _vm._s(_vm.item.system_name) +
-                                "\n            "
-                            ),
-                          ]),
-                        ],
-                        1
-                      ),
+                      _c("v-col", { attrs: { cols: "2" } }, [
+                        _vm._v(
+                          "\n            " +
+                            _vm._s(_vm.item.system_name) +
+                            "\n          "
+                        ),
+                      ]),
                     ],
                     1
                   ),
-                  _vm._v(" "),
-                  _c(
-                    "v-expansion-panel-content",
-                    [
-                      _c("CampaignSystemCardContent", {
-                        attrs: { item: _vm.item, operationID: _vm.operationID },
-                      }),
-                    ],
-                    1
-                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-expansion-panel-content",
+                [
+                  _c("CampaignSystemCardContent", {
+                    attrs: { item: _vm.item, operationID: _vm.operationID },
+                  }),
                 ],
                 1
               ),

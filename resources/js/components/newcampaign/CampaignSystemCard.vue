@@ -7,36 +7,35 @@
       <v-card-text> </v-card-text>
     </v-card>
   </div> -->
-  <v-row no-gutters justify="space-around">
-    <v-col :cols="colNum" class="px-5">
-      <v-expansion-panels
-        class="pb-5"
-        v-model="showSystemTable"
-        popout
-        style="cursor: context-menu"
-      >
-        <v-expansion-panel class="rounded-xl" style="cursor: context-menu">
-          <v-expansion-panel-header
-            style="cursor: context-menu"
-            color="primary"
-            :class="filterRound"
-          >
-            <v-row no-gutters>
-              <v-col cols="2">
-                {{ item.system_name }}
-              </v-col>
-            </v-row>
-          </v-expansion-panel-header>
-          <v-expansion-panel-content
-            ><CampaignSystemCardContent
-              :item="item"
-              :operationID="operationID"
-            ></CampaignSystemCardContent>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
-    </v-col>
-  </v-row>
+
+  <v-col :cols="colNum" class="px-5">
+    <v-expansion-panels
+      class="pb-5"
+      v-model="showSystemTable"
+      popout
+      style="cursor: context-menu"
+    >
+      <v-expansion-panel class="rounded-xl" style="cursor: context-menu">
+        <v-expansion-panel-header
+          style="cursor: context-menu"
+          color="primary"
+          :class="filterRound"
+        >
+          <v-row no-gutters>
+            <v-col cols="2">
+              {{ item.system_name }}
+            </v-col>
+          </v-row>
+        </v-expansion-panel-header>
+        <v-expansion-panel-content
+          ><CampaignSystemCardContent
+            :item="item"
+            :operationID="operationID"
+          ></CampaignSystemCardContent>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
+  </v-col>
 </template>
 <script>
 import Axios from "axios";
