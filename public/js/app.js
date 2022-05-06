@@ -11451,11 +11451,11 @@ function sleep(ms) {
       }
     },
     nodefree: function nodefree() {
-      return this.node.op_users.length;
+      return this.node.prime_node_user.length;
     },
     activePilot: function activePilot() {
       if (this.nodefree > 0) {
-        return this.node.op_users[0];
+        return this.node.prime_node_user[0];
       } else {
         null;
       }
