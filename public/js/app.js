@@ -13024,7 +13024,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "entosis"
       }, {
         text: "System",
-        value: "system.system_name"
+        value: "system_name"
       }, {
         text: "Node",
         value: "node.name"

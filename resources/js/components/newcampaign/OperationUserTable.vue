@@ -51,7 +51,7 @@ export default {
         { text: "Role", value: "userrole.role" },
         { text: "Ship", value: "ship" },
         { text: "Entosis", value: "entosis" },
-        { text: "System", value: "system.system_name" },
+        { text: "System", value: "system_name" },
         { text: "Node", value: "node.name" },
         { text: "Status", value: "userstatus.name" },
 
