@@ -13002,6 +13002,11 @@ function sleep(ms) {
         return null;
       }
     },
+    testStartTime: function testStartTime() {
+      console.log(this.node.prime_node_user.end_time + " - ");
+      console.log(moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.prime_node_user.end_time).unix());
+      return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.prime_node_user.end_time).unix();
+    },
     hackTextColor: function hackTextColor() {
       if (this.node.node_status.id == 7) {
         return "color: while";
@@ -54332,9 +54337,7 @@ var render = function () {
               )
             : _c("CountDowntimer", {
                 attrs: {
-                  "start-time": _vm.moment
-                    .utc(_vm.node.prime_node_user.end_time)
-                    .unix(),
+                  "start-time": _vm.testStartTime,
                   "end-text": _vm.endText,
                   interval: 1000,
                 },

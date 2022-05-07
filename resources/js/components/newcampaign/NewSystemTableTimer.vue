@@ -89,7 +89,7 @@
       </v-menu>
       <CountDowntimer
         v-else
-        :start-time="moment.utc(node.prime_node_user.end_time).unix()"
+        :start-time="testStartTime"
         :end-text="endText"
         :interval="1000"
       >
@@ -266,6 +266,12 @@ export default {
       } else {
         return null;
       }
+    },
+
+    testStartTime() {
+      console.log(this.node.prime_node_user.end_time + " - ");
+      console.log(moment.utc(this.node.prime_node_user.end_time).unix());
+      return moment.utc(this.node.prime_node_user.end_time).unix();
     },
 
     hackTextColor() {
