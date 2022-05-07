@@ -12967,11 +12967,53 @@ function sleep(ms) {
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
+    checkHackUserEdit: function checkHackUserEdit() {
+      // if (
+      //     item.site_id == this.$store.state.user_id &&
+      //     item.status_id == 3
+      // ) {
+      //     return true;
+      // } else if (item.status_id == 7 || item.status_id == 8) {
+      //     return true;
+      // } else {
+      //     return false;
+      // }
+      if (this.node.node_status.id == 7 || this.node.node_status.id == 8 || this.node.node_status.id == 3 || this.node.node_status.id == 9) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    endText: function endText() {
+      if (this.node.node_status.id == 7 || this.node.node_status.id == 8) {
+        return "Did they Finish?";
+      } else if (this.node.node_status.id == 3) {
+        return "Did you Finish?";
+      } else if (this.node.node_status.id == 9) {
+        return "Did it Finish?";
+      } else {
+        return "Finished!!! ";
+      }
+    },
     opUserInfo: function opUserInfo() {
       if (this.node.prime_node_user.length > 0) {
         return this.node.prime_node_user[0];
       } else {
         return null;
+      }
+    },
+    hackTextColor: function hackTextColor() {
+      if (this.node.node_status.id == 7) {
+        return "color: while";
+      } else {
+        return "color: green";
+      }
+    },
+    hackCountDownTextColor: function hackCountDownTextColor() {
+      if (this.node.node_status.id == 7) {
+        return "white--text pl-3";
+      } else {
+        return "blue--text pl-3";
       }
     },
     checkHackUser: function checkHackUser() {
@@ -40671,6 +40713,25 @@ exports.push([module.i, "\n.style-4 {\n  background-color: rgba(255, 153, 0, 0.1
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/NewSystemTableTimer.vue?vue&type=style&index=0&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/newcampaign/NewSystemTableTimer.vue?vue&type=style&index=0&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.style-2 {\n  background-color: rgb(30, 30, 30, 1);\n}\n.style-1 {\n  background-color: rgb(184, 22, 35);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/notification/NotificationTimer.vue?vue&type=style&index=0&lang=css&":
 /*!************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/notification/NotificationTimer.vue?vue&type=style&index=0&lang=css& ***!
@@ -41270,6 +41331,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./NewSystemTable.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/NewSystemTable.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/NewSystemTableTimer.vue?vue&type=style&index=0&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/newcampaign/NewSystemTableTimer.vue?vue&type=style&index=0&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./NewSystemTableTimer.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/NewSystemTableTimer.vue?vue&type=style&index=0&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -54241,8 +54332,10 @@ var render = function () {
               )
             : _c("CountDowntimer", {
                 attrs: {
-                  "start-time": _vm.moment.utc(_vm.item.end).unix(),
-                  "end-text": _vm.endText(_vm.item),
+                  "start-time": _vm.moment
+                    .utc(_vm.node.prime_node_user.end_time)
+                    .unix(),
+                  "end-text": _vm.endText,
                   interval: 1000,
                 },
                 scopedSlots: _vm._u([
@@ -54250,22 +54343,18 @@ var render = function () {
                     key: "countdown",
                     fn: function (scope) {
                       return [
-                        _c(
-                          "span",
-                          { class: _vm.hackCountDownTextColor(_vm.item) },
-                          [
-                            scope.props.hours > 0
-                              ? _c("span", [
-                                  _vm._v(_vm._s(scope.props.hours) + ":"),
-                                ])
-                              : _vm._e(),
-                            _vm._v(
-                              _vm._s(scope.props.minutes) +
-                                ":" +
-                                _vm._s(scope.props.seconds)
-                            ),
-                          ]
-                        ),
+                        _c("span", { class: _vm.hackCountDownTextColor }, [
+                          scope.props.hours > 0
+                            ? _c("span", [
+                                _vm._v(_vm._s(scope.props.hours) + ":"),
+                              ])
+                            : _vm._e(),
+                          _vm._v(
+                            _vm._s(scope.props.minutes) +
+                              ":" +
+                              _vm._s(scope.props.seconds)
+                          ),
+                        ]),
                         _vm._v(" "),
                         _c(
                           "v-menu",
@@ -54282,7 +54371,7 @@ var render = function () {
                                     var on = ref.on
                                     var attrs = ref.attrs
                                     return [
-                                      _vm.checkHackUserEdit(_vm.item)
+                                      _vm.checkHackUserEdit
                                         ? _c(
                                             "v-btn",
                                             _vm._g(
@@ -54463,7 +54552,7 @@ var render = function () {
                     key: "end-text",
                     fn: function (scope) {
                       return [
-                        _c("span", { style: _vm.hackTextColor(_vm.item) }, [
+                        _c("span", { style: _vm.hackTextColor }, [
                           _vm._v(_vm._s(scope.props.endText)),
                         ]),
                       ]
@@ -86450,7 +86539,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NewSystemTableTimer_vue_vue_type_template_id_3225e328___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NewSystemTableTimer.vue?vue&type=template&id=3225e328& */ "./resources/js/components/newcampaign/NewSystemTableTimer.vue?vue&type=template&id=3225e328&");
 /* harmony import */ var _NewSystemTableTimer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewSystemTableTimer.vue?vue&type=script&lang=js& */ "./resources/js/components/newcampaign/NewSystemTableTimer.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _NewSystemTableTimer_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NewSystemTableTimer.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/newcampaign/NewSystemTableTimer.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -86458,7 +86549,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _NewSystemTableTimer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _NewSystemTableTimer_vue_vue_type_template_id_3225e328___WEBPACK_IMPORTED_MODULE_0__["render"],
   _NewSystemTableTimer_vue_vue_type_template_id_3225e328___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -86487,6 +86578,22 @@ component.options.__file = "resources/js/components/newcampaign/NewSystemTableTi
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewSystemTableTimer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./NewSystemTableTimer.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/NewSystemTableTimer.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewSystemTableTimer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/newcampaign/NewSystemTableTimer.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/newcampaign/NewSystemTableTimer.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewSystemTableTimer_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./NewSystemTableTimer.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/NewSystemTableTimer.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewSystemTableTimer_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewSystemTableTimer_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewSystemTableTimer_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NewSystemTableTimer_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
 
 /***/ }),
 

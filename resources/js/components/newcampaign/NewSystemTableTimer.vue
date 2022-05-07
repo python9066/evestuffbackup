@@ -89,19 +89,19 @@
       </v-menu>
       <CountDowntimer
         v-else
-        :start-time="moment.utc(item.end).unix()"
-        :end-text="endText(item)"
+        :start-time="moment.utc(node.prime_node_user.end_time).unix()"
+        :end-text="endText"
         :interval="1000"
       >
         <template slot="countdown" slot-scope="scope">
-          <span :class="hackCountDownTextColor(item)"
+          <span :class="hackCountDownTextColor"
             ><span v-if="scope.props.hours > 0">{{ scope.props.hours }}:</span
             >{{ scope.props.minutes }}:{{ scope.props.seconds }}</span
           >
           <v-menu :close-on-content-click="false" :value="timerShown">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
-                v-if="checkHackUserEdit(item)"
+                v-if="checkHackUserEdit"
                 v-bind="attrs"
                 v-on="on"
                 @click="(timerShown = true), (hackTime = null)"
@@ -149,7 +149,7 @@
           </v-menu>
         </template>
         <template slot="end-text" slot-scope="scope">
-          <span :style="hackTextColor(item)">{{ scope.props.endText }}</span>
+          <span :style="hackTextColor">{{ scope.props.endText }}</span>
         </template>
       </CountDowntimer>
     </v-col>
@@ -224,6 +224,42 @@ export default {
 
     ...mapState([]),
 
+    checkHackUserEdit() {
+      // if (
+      //     item.site_id == this.$store.state.user_id &&
+      //     item.status_id == 3
+      // ) {
+      //     return true;
+      // } else if (item.status_id == 7 || item.status_id == 8) {
+      //     return true;
+      // } else {
+      //     return false;
+      // }
+
+      if (
+        this.node.node_status.id == 7 ||
+        this.node.node_status.id == 8 ||
+        this.node.node_status.id == 3 ||
+        this.node.node_status.id == 9
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    endText() {
+      if (this.node.node_status.id == 7 || this.node.node_status.id == 8) {
+        return "Did they Finish?";
+      } else if (this.node.node_status.id == 3) {
+        return "Did you Finish?";
+      } else if (this.node.node_status.id == 9) {
+        return "Did it Finish?";
+      } else {
+        return "Finished!!! ";
+      }
+    },
+
     opUserInfo() {
       if (this.node.prime_node_user.length > 0) {
         return this.node.prime_node_user[0];
@@ -231,6 +267,23 @@ export default {
         return null;
       }
     },
+
+    hackTextColor() {
+      if (this.node.node_status.id == 7) {
+        return "color: while";
+      } else {
+        return "color: green";
+      }
+    },
+
+    hackCountDownTextColor() {
+      if (this.node.node_status.id == 7) {
+        return "white--text pl-3";
+      } else {
+        return "blue--text pl-3";
+      }
+    },
+
     checkHackUser() {
       if (this.opUserInfo) {
         if (this.opUserInfo.end_time == null && this.node.node_status.id == 3) {
@@ -277,3 +330,12 @@ export default {
   beforeDestroy() {},
 };
 </script>
+
+<style>
+.style-2 {
+  background-color: rgb(30, 30, 30, 1);
+}
+.style-1 {
+  background-color: rgb(184, 22, 35);
+}
+</style>
