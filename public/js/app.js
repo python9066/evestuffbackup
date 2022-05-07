@@ -13003,9 +13003,9 @@ function sleep(ms) {
       }
     },
     testStartTime: function testStartTime() {
-      console.log(this.node.prime_node_user.end_time + " - ");
-      console.log(moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.prime_node_user.end_time).unix());
-      return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.prime_node_user.end_time).unix();
+      console.log(this.opUserInfo.end_time + " - ");
+      console.log(moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.end_time).unix());
+      return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.end_time).unix();
     },
     hackTextColor: function hackTextColor() {
       if (this.node.node_status.id == 7) {

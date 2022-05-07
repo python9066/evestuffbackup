@@ -269,9 +269,9 @@ export default {
     },
 
     testStartTime() {
-      console.log(this.node.prime_node_user.end_time + " - ");
-      console.log(moment.utc(this.node.prime_node_user.end_time).unix());
-      return moment.utc(this.node.prime_node_user.end_time).unix();
+      console.log(this.opUserInfo.end_time + " - ");
+      console.log(moment.utc(this.opUserInfo.end_time).unix());
+      return moment.utc(this.opUserInfo.end_time).unix();
     },
 
     hackTextColor() {
