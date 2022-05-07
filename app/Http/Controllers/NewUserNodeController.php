@@ -34,7 +34,7 @@ class NewUserNodeController extends Controller
         NewUserNode::where('id', $id)->update([
             "end_time" => $request->end_time,
             "input_time" => now(),
-            "base_time" => $request->base
+            "base_time" => $request->base_time
         ]);
 
         Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
