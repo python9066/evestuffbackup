@@ -297,4 +297,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/deletenode/{id}', 'NewSystemNodeController@destroy');
     Route::post('/addusertonode', 'NewSystemNodeController@addCharToNode');
     Route::post('/updatenodestats/{id}', 'NewSystemNodeController@updateStatus');
+    Route::put('/addprimetimer/{id}', 'NewUserNodeController@addTimer');
 });
