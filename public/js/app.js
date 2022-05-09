@@ -12856,6 +12856,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
  // import ApiL from "../service/apil";
 
@@ -13002,9 +13003,40 @@ function sleep(ms) {
         return null;
       }
     },
-    testStartTime: function testStartTime() {
-      console.log(this.opUserInfo.end_time + " - ");
-      console.log(moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.end_time).unix());
+    showAgeCountUp: function showAgeCountUp() {
+      switch (this.node.node_status.id) {
+        case 1:
+          return true;
+
+        case 2:
+          return false;
+
+        case 3:
+          return true;
+
+        case 4:
+          return false;
+
+        case 5:
+          return false;
+
+        case 6:
+          return true;
+
+        case 7:
+          return false;
+
+        case 8:
+          return false;
+
+        case 9:
+          return false;
+
+        case 10:
+          return false;
+      }
+    },
+    startTime: function startTime() {
       return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.end_time).unix();
     },
     hackTextColor: function hackTextColor() {
@@ -54093,7 +54125,7 @@ var render = function () {
       _c(
         "v-col",
         [
-          _vm.node.node_status.id < 3
+          _vm.showAgeCountUp
             ? _c("VueCountUptimer", {
                 attrs: {
                   "start-time": _vm.moment.utc(_vm.timeMoment).unix(),
@@ -54337,7 +54369,7 @@ var render = function () {
               )
             : _c("CountDowntimer", {
                 attrs: {
-                  "start-time": _vm.testStartTime,
+                  "start-time": _vm.startTime,
                   "end-text": _vm.endText,
                   interval: 1000,
                 },

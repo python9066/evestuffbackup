@@ -2,8 +2,9 @@
   <v-row no-gutters>
     <v-col>
       <!-- v-if="this.node.node_status.id < 3 && item.end_time == null" -->
+
       <VueCountUptimer
-        v-if="node.node_status.id < 3"
+        v-if="showAgeCountUp"
         :start-time="moment.utc(timeMoment).unix()"
         :end-text="'Window Closed'"
         :interval="1000"
@@ -89,7 +90,7 @@
       </v-menu>
       <CountDowntimer
         v-else
-        :start-time="testStartTime"
+        :start-time="startTime"
         :end-text="endText"
         :interval="1000"
       >
@@ -268,9 +269,41 @@ export default {
       }
     },
 
-    testStartTime() {
-      console.log(this.opUserInfo.end_time + " - ");
-      console.log(moment.utc(this.opUserInfo.end_time).unix());
+    showAgeCountUp() {
+      switch (this.node.node_status.id) {
+        case 1:
+          return true;
+
+        case 2:
+          return false;
+
+        case 3:
+          return true;
+
+        case 4:
+          return false;
+
+        case 5:
+          return false;
+
+        case 6:
+          return true;
+
+        case 7:
+          return false;
+
+        case 8:
+          return false;
+
+        case 9:
+          return false;
+
+        case 10:
+          return false;
+      }
+    },
+
+    startTime() {
       return moment.utc(this.opUserInfo.end_time).unix();
     },
 
