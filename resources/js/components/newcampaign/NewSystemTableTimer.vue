@@ -342,6 +342,8 @@ export default {
     startTime() {
       if (this.opUserInfo) {
         return moment.utc(this.opUserInfo.end_time).unix();
+      } else if (this.node.node_status.id == 8) {
+        return moment.utc(this.node.end_time).unix();
       } else {
         return null;
       }
