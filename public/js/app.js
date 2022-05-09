@@ -13006,34 +13006,44 @@ function sleep(ms) {
     showAgeCountUp: function showAgeCountUp() {
       switch (this.node.node_status.id) {
         case 1:
+          // * New
           return true;
 
         case 2:
+          // * Warm up
           return false;
 
         case 3:
-          return true;
+          // * Hacking
+          return false;
 
         case 4:
+          // * Success
           return false;
 
         case 5:
+          // * Failed
           return false;
 
         case 6:
+          // * Pushed off
           return true;
 
         case 7:
+          // * Hostile Hacking
           return false;
 
         case 8:
+          // * Friendly Hacking
           return false;
 
         case 9:
+          // * Passive
           return false;
 
         case 10:
-          return false;
+          // * Other
+          return true;
       }
     },
     startTime: function startTime() {
