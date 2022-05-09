@@ -13089,7 +13089,7 @@ function sleep(ms) {
     startTime: function startTime() {
       if (this.opUserInfo) {
         return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.end_time).unix();
-      } else if (this.node.node_status.id == 8) {
+      } else if (this.node.node_status.id == 7 || this.node.node_status.id == 8) {
         return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.end_time).unix();
       } else {
         return null;
