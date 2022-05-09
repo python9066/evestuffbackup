@@ -304,7 +304,7 @@ export default {
     },
 
     startTime() {
-      if (this.node_status.id == 2) {
+      if (this.node.node_status.id == 2) {
         return moment.utc(this.opUserInfo.updated_at).unix();
       }
       if (this.opUserInfo) {
