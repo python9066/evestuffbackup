@@ -12951,13 +12951,19 @@ function sleep(ms) {
                 sec = min * 60 + sec;
                 sec = sec / (_this.node.system.tidi / 100);
                 finishTime = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
+
+                if (!(_this.node.node_status.id == 1)) {
+                  _context4.next = 12;
+                  break;
+                }
+
                 request = {
                   end_time: finishTime,
                   input_time: moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
                   base_time: base,
                   system_id: _this.node.system_id
                 };
-                _context4.next = 9;
+                _context4.next = 10;
                 return axios({
                   method: "put",
                   url: "/api/addprimetimer/" + _this.opUserInfo.id,
@@ -12969,7 +12975,30 @@ function sleep(ms) {
                   }
                 });
 
-              case 9:
+              case 10:
+                _context4.next = 15;
+                break;
+
+              case 12:
+                request = {
+                  end_time: finishTime,
+                  input_time: moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
+                  base_time: base,
+                  system_id: _this.node.system_id
+                };
+                _context4.next = 15;
+                return axios({
+                  method: "put",
+                  url: "/api/addprimetimernonuser/" + _this.node.id,
+                  withCredentials: true,
+                  data: request,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 15:
               case "end":
                 return _context4.stop();
             }

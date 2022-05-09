@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NewSystemNode;
 use App\Models\NewUserNode;
 use Illuminate\Http\Request;
 use utils\Broadcasthelper\Broadcasthelper;
@@ -31,6 +32,7 @@ class NewUserNodeController extends Controller
 
     public function addTimer(Request $request, $id)
     {
+
         NewUserNode::where('id', $id)->update([
             "end_time" => $request->end_time,
             "input_time" => now(),
@@ -39,6 +41,20 @@ class NewUserNodeController extends Controller
 
         Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
     }
+
+    public function addTimerNonUsuer(Request $request, $id)
+    {
+        NewSystemNode::where('id', $id)->update([
+            "end_time" => $request->end_time,
+            "input_time" => now(),
+            "base_time" => $request->base_time
+        ]);
+
+        Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
+    }
+
+
+
 
     /**
      * Display the specified resource.
