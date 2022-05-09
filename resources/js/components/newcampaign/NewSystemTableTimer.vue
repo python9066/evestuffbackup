@@ -304,6 +304,9 @@ export default {
     },
 
     startTime() {
+      if (this.node_status.id == 2) {
+        return moment.utc(this.opUserInfo.updated_at);
+      }
       if (this.opUserInfo) {
         return moment.utc(this.opUserInfo.end_time).unix();
       } else {
