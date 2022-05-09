@@ -275,7 +275,7 @@ export default {
           return true;
 
         case 2: // * Warm up
-          return false;
+          return true;
 
         case 3: // * Hacking
           return false;
@@ -304,9 +304,6 @@ export default {
     },
 
     startTime() {
-      if (this.node.node_status.id == 2) {
-        return moment.utc(this.opUserInfo.updated_at).unix();
-      }
       if (this.opUserInfo) {
         return moment.utc(this.opUserInfo.end_time).unix();
       } else {
@@ -368,7 +365,11 @@ export default {
     },
 
     timeMoment() {
-      return moment.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
+      if (this.node.node_status.id == 2) {
+        return moment.utc(this.opUserInfo.updated_at).unix();
+      } else {
+        return moment.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
+      }
     },
 
     countUptimerColor() {},

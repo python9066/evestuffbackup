@@ -13011,7 +13011,7 @@ function sleep(ms) {
 
         case 2:
           // * Warm up
-          return false;
+          return true;
 
         case 3:
           // * Hacking
@@ -13047,10 +13047,6 @@ function sleep(ms) {
       }
     },
     startTime: function startTime() {
-      if (this.node.node_status.id == 2) {
-        return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.updated_at).unix();
-      }
-
       if (this.opUserInfo) {
         return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.end_time).unix();
       } else {
@@ -13098,7 +13094,11 @@ function sleep(ms) {
       }
     },
     timeMoment: function timeMoment() {
-      return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
+      if (this.node.node_status.id == 2) {
+        return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.updated_at).unix();
+      } else {
+        return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
+      }
     },
     countUptimerColor: function countUptimerColor() {}
   }),
