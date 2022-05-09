@@ -12926,6 +12926,8 @@ function sleep(ms) {
   },
   methods: {
     clockRedText: function clockRedText(props) {
+      console.log(props);
+
       if ((props.minutes < 5 || props.hours > 0) && this.node.node_status == 1) {
         return true;
       } else if ((props.minutes < 10 || props.hours > 0) && this.node.node_status == 2) {
