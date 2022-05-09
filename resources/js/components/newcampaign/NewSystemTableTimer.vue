@@ -18,7 +18,7 @@
           >
             <div
               :key="`${node.id}-1-timer-age`"
-              v-if="scope.props.minutes < 5 || scope.props.hours > 0"
+              v-if="clockRedText(scope.props)"
               class="green--text pl-3"
             >
               {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
@@ -189,6 +189,21 @@ export default {
 
   async mounted() {},
   methods: {
+    clockRedText(props) {
+      if (
+        (props.minutes < 5 || props.hours > 0) &&
+        this.node.node_status == 1
+      ) {
+        return true;
+      } else if (
+        (props.minutes < 10 || props.hours > 0) &&
+        this.node.node_status == 2
+      ) {
+        return true;
+      }
+
+      return false;
+    },
     async addHacktime() {
       var min = parseInt(this.hackTime.substr(0, 2));
       var sec = parseInt(this.hackTime.substr(3, 2));

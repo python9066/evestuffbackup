@@ -12925,6 +12925,15 @@ function sleep(ms) {
     }))();
   },
   methods: {
+    clockRedText: function clockRedText(props) {
+      if ((props.minutes < 5 || props.hours > 0) && this.node.node_status == 1) {
+        return true;
+      } else if ((props.minutes < 10 || props.hours > 0) && this.node.node_status == 2) {
+        return true;
+      }
+
+      return false;
+    },
     addHacktime: function addHacktime() {
       var _this = this;
 
@@ -54169,7 +54178,7 @@ var render = function () {
                               },
                             },
                             [
-                              scope.props.minutes < 5 || scope.props.hours > 0
+                              _vm.clockRedText(scope.props)
                                 ? _c(
                                     "div",
                                     {
@@ -54214,7 +54223,7 @@ var render = function () {
                   ],
                   null,
                   false,
-                  2987706451
+                  601668695
                 ),
               })
             : _vm.checkHackUser
