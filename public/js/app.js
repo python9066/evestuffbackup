@@ -13095,7 +13095,7 @@ function sleep(ms) {
     },
     timeMoment: function timeMoment() {
       if (this.node.node_status.id == 2) {
-        return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.updated_at).unix();
+        return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.updated_at).format("YYYY-MM-DD HH:mm:ss");
       } else {
         return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
       }

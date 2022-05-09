@@ -366,7 +366,9 @@ export default {
 
     timeMoment() {
       if (this.node.node_status.id == 2) {
-        return moment.utc(this.opUserInfo.updated_at).unix();
+        return moment
+          .utc(this.opUserInfo.updated_at)
+          .format("YYYY-MM-DD HH:mm:ss");
       } else {
         return moment.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
       }
