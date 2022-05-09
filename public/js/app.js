@@ -13037,7 +13037,11 @@ function sleep(ms) {
       }
     },
     startTime: function startTime() {
-      return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.end_time).unix();
+      if (this.opUserInfo) {
+        return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.end_time).unix();
+      } else {
+        return null;
+      }
     },
     hackTextColor: function hackTextColor() {
       if (this.node.node_status.id == 7) {

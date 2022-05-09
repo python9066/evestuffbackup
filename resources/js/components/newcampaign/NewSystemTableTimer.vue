@@ -304,7 +304,11 @@ export default {
     },
 
     startTime() {
-      return moment.utc(this.opUserInfo.end_time).unix();
+      if (this.opUserInfo) {
+        return moment.utc(this.opUserInfo.end_time).unix();
+      } else {
+        return null;
+      }
     },
 
     hackTextColor() {
