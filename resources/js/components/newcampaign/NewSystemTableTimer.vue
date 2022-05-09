@@ -378,12 +378,13 @@ export default {
           return false;
         }
       } else {
-        if (this.node.node_status.id == 3) {
+        if (this.node.node_status.id == 3 && this.node.end_time == null) {
           return true;
         } else if (
-          this.node.node_status.id == 7 ||
-          this.node.node_status.id == 8 ||
-          this.node.node_status.id == 9
+          (this.node.node_status.id == 7 ||
+            this.node.node_status.id == 8 ||
+            this.node.node_status.id == 9) &&
+          this.node.end_time == null
         ) {
           return true;
         } else {
