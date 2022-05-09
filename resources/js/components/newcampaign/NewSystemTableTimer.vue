@@ -193,12 +193,12 @@ export default {
       console.log(props.minutes);
       if (
         (props.minutes < 5 || props.hours > 0) &&
-        this.node.node_status == 1
+        this.node.node_status.id == 1
       ) {
         return true;
       } else if (
         (props.minutes < 10 || props.hours > 0) &&
-        this.node.node_status == 2
+        this.node.node_status.id == 2
       ) {
         return true;
       }
