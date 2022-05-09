@@ -314,7 +314,7 @@ class NewSystemNodeController extends Controller
         $system_id = $systemNode->system_id;
         $nodes = NewUserNode::where('node_id', $id)->get();
         foreach ($nodes as $node) {
-            $OpUser = OperationUser::where('new_user_node_id', $nodes->operation_user_id)->first();
+            $OpUser = OperationUser::where('new_user_node_id', $node->operation_user_id)->first();
             $OpUser->update([
                 'new_user_node_id' => null,
                 'user_status_id' => 3
