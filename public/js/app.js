@@ -12684,7 +12684,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         value: "actions",
         sortable: true
       }],
-      singleExpand: false
+      singleExpand: false,
+      expanded: []
     };
   },
   methods: {
@@ -12729,18 +12730,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), {}, {
     nodes: function nodes() {
       return this.item.new_nodes;
-    },
-    expanded: function expanded() {
-      var data = this.nodes.filter(function (n) {
-        return n.none_pprime_node_user.length > 0;
-      });
+    } // expanded() {
+    //   var data = this.nodes.filter((n) => n.none_pprime_node_user.length > 0);
+    //   if (data) {
+    //     return data;
+    //   } else {
+    //     return [];
+    //   }
+    // },
 
-      if (data) {
-        return data;
-      } else {
-        return [];
-      }
-    }
   })
 });
 

@@ -126,6 +126,7 @@ export default {
         },
       ],
       singleExpand: false,
+      expanded: [],
     };
   },
 
@@ -165,14 +166,14 @@ export default {
       return this.item.new_nodes;
     },
 
-    expanded() {
-      var data = this.nodes.filter((n) => n.none_pprime_node_user.length > 0);
-      if (data) {
-        return data;
-      } else {
-        return [];
-      }
-    },
+    // expanded() {
+    //   var data = this.nodes.filter((n) => n.none_pprime_node_user.length > 0);
+    //   if (data) {
+    //     return data;
+    //   } else {
+    //     return [];
+    //   }
+    // },
   },
 };
 </script>
