@@ -12738,7 +12738,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     expanded: function expanded() {
       var data = [];
       this.nodes.forEach(function (p) {
-        console.log(p.none_prime_node_user);
+        var pick = p.filter(function (f) {
+          return f.none_prime_node_user.length > 0;
+        });
+
+        if (pick != null) {
+          data.push(pk);
+        }
       });
 
       if (data) {

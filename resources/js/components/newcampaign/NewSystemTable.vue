@@ -172,7 +172,10 @@ export default {
     expanded() {
       var data = [];
       this.nodes.forEach((p) => {
-        console.log(p.none_prime_node_user);
+        let pick = p.filter((f) => f.none_prime_node_user.length > 0);
+        if (pick != null) {
+          data.push(pk);
+        }
       });
       if (data) {
         return data;
