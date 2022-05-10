@@ -463,6 +463,11 @@ Vue.component(
     require("./components/newcampaign/NewSystemTableTimer.vue").default
 );
 
+Vue.component(
+    "NewNodeExtraChar",
+    require("./components/newcampaign/NewNodeExtraChar.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(Clipboard);
