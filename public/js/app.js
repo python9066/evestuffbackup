@@ -12736,21 +12736,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.item.new_nodes;
     },
     expanded: function expanded() {
-      var data = [];
-      this.nodes.forEach(function (p) {
-        var pick = p.filter(function (f) {
-          return f.none_prime_node_user.length > 0;
+      if (this.nodes) {
+        var data = this.nodes.filter(function (f) {
+          return f.non_prime_node_user.length > 0;
         });
-
-        if (pick != null) {
-          data.push(pk);
-        }
-      });
-
-      if (data) {
         return data;
-      } else {
-        return [];
       }
     }
   })

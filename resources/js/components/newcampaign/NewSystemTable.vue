@@ -170,17 +170,9 @@ export default {
     },
 
     expanded() {
-      var data = [];
-      this.nodes.forEach((p) => {
-        let pick = p.filter((f) => f.none_prime_node_user.length > 0);
-        if (pick != null) {
-          data.push(pk);
-        }
-      });
-      if (data) {
+      if (this.nodes) {
+        var data = this.nodes.filter((f) => f.non_prime_node_user.length > 0);
         return data;
-      } else {
-        return [];
       }
     },
   },
