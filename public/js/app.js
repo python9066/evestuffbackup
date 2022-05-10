@@ -12259,7 +12259,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         align: "start"
       }, {
         text: "",
-        value: "statusName",
+        value: "status.name",
         align: "start"
       } // { text: "", value: "actions", width: "5%", align: "center" },
       // {
@@ -54350,7 +54350,7 @@ var render = function () {
                   },
                 },
                 {
-                  key: "item.statusName",
+                  key: "item.status.name",
                   fn: function (ref) {
                     var item = ref.item
                     return [
@@ -54395,7 +54395,7 @@ var render = function () {
                                               [
                                                 _vm._v(
                                                   "\n                " +
-                                                    _vm._s(item.statusName) +
+                                                    _vm._s(item.status.name) +
                                                     "\n              "
                                                 ),
                                               ]
@@ -54426,7 +54426,7 @@ var render = function () {
                                           click: function ($event) {
                                             ;(item.campaign_system_status_id =
                                               list.value),
-                                              (item.statusName = list.title),
+                                              (item.status.name = list.title),
                                               _vm.statusClick(item)
                                           },
                                         },

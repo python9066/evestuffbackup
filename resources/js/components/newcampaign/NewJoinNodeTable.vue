@@ -19,7 +19,7 @@
           </div>
         </div>
       </template>
-      <template v-slot:[`item.statusName`]="{ item }">
+      <template v-slot:[`item.status.name`]="{ item }">
         <div class="d-inline-flex align-items-center">
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
@@ -32,7 +32,7 @@
                   small
                   :color="pillColor(item)"
                 >
-                  {{ item.statusName }}
+                  {{ item.status.name }}
                 </v-chip>
               </div>
             </template>
@@ -43,7 +43,7 @@
                 :key="index"
                 @click="
                   (item.campaign_system_status_id = list.value),
-                    (item.statusName = list.title),
+                    (item.status.name = list.title),
                     statusClick(item)
                 "
               >
@@ -106,7 +106,7 @@ export default {
         },
         {
           text: "",
-          value: "statusName",
+          value: "status.name",
           align: "start",
         },
         // { text: "", value: "actions", width: "5%", align: "center" },
