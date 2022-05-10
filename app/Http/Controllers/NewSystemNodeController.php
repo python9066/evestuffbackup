@@ -138,8 +138,14 @@ class NewSystemNodeController extends Controller
 
                 break;
             case 2: // * warm up
+                $userNode = NewUserNode::where('node_id', $id)->first();
+                $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
+                $opUserID = $opUser->id;
                 break;
             case 3: // * Hacking
+                $userNode = NewUserNode::where('node_id', $id)->first();
+                $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
+                $opUserID = $opUser->id;
                 break;
             case 4: // * Success
                 $userNode = NewUserNode::where('node_id', $id)
@@ -299,6 +305,8 @@ class NewSystemNodeController extends Controller
         } else {
             NewSystemNode::where('id', $id)->update(['node_status' => $request->status_id]);
         }
+
+
         Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
         Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
         Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
