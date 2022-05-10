@@ -9,7 +9,7 @@
             :items="nodes"
             disable-sort
             :item-class="itemRowBackground"
-            :expanded="expanded"
+            :expanded.sync="expanded"
             hide-default-footer
             disable-pagination
             class="elevation-24 rounded-xl full-width"

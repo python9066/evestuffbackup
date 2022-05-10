@@ -54660,6 +54660,11 @@ var render = function () {
                         "hide-default-footer": "",
                         "disable-pagination": "",
                       },
+                      on: {
+                        "update:expanded": function ($event) {
+                          _vm.expanded = $event
+                        },
+                      },
                       scopedSlots: _vm._u(
                         [
                           {
