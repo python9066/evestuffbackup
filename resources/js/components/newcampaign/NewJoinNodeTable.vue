@@ -57,6 +57,7 @@
         <NewSystemTableTimer
           :node="item"
           :operationID="operationID"
+          :extra="2"
         ></NewSystemTableTimer>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
