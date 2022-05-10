@@ -12281,9 +12281,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         title: "Pushed off",
         value: 6
-      }],
-      expanded: [],
-      singleExpand: false
+      }]
     };
   },
   methods: {
@@ -12383,10 +12381,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), {}, {
     filteredItems: function filteredItems() {
-      return this.node.none_primery_node_user;
+      return this.node.none_prime_node_user;
     },
     showTable: function showTable() {
-      if (this.node.none_primery_node_user.length > 0) {
+      var count = this.filteredItems.length;
+
+      if (count > 0) {
         return true;
       } else {
         return false;

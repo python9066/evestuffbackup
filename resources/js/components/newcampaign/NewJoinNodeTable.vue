@@ -124,8 +124,6 @@ export default {
         { title: "Hacking", value: 3 },
         { title: "Pushed off", value: 6 },
       ],
-      expanded: [],
-      singleExpand: false,
     };
   },
 
@@ -189,11 +187,12 @@ export default {
     ...mapGetters([]),
 
     filteredItems() {
-      return this.node.none_primery_node_user;
+      return this.node.none_prime_node_user;
     },
 
     showTable() {
-      if (this.node.none_primery_node_user.length > 0) {
+      var count = this.filteredItems.length;
+      if (count > 0) {
         return true;
       } else {
         return false;
