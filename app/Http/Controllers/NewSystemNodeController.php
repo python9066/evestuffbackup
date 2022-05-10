@@ -139,9 +139,9 @@ class NewSystemNodeController extends Controller
                 break;
             case 2: // * warm up
                 if ($request->extra == false) {
-                    $userNode = NewUserNode::where('id', $id)->first();
-                } else {
                     $userNode = NewUserNode::where('node_id', $id)->first();
+                } else {
+                    $userNode = NewUserNode::where('id', $id)->first();
                 }
                 $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
                 $opUserID = $opUser->id;
@@ -151,9 +151,9 @@ class NewSystemNodeController extends Controller
 
             case 3: // * Hacking
                 if ($request->extra == false) {
-                    $userNode = NewUserNode::where('id', $id)->first();
-                } else {
                     $userNode = NewUserNode::where('node_id', $id)->first();
+                } else {
+                    $userNode = NewUserNode::where('id', $id)->first();
                 }
                 $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
                 $opUserID = $opUser->id;
