@@ -7,6 +7,7 @@
             :headers="headers"
             :items="nodes"
             item-key="id"
+            :expanded="expanded"
             :items-per-page="50"
             :footer-props="{
               'items-per-page-options': [10, 20, 30, 50, 100, -1],
@@ -149,6 +150,15 @@ export default {
 
     nodes() {
       return this.item.new_nodes;
+    },
+
+    expanded() {
+      var data = this.nodes.filter((n) => n.none_pprime_node_user.length > 0);
+      if (data) {
+        return data;
+      } else {
+        return [];
+      }
     },
   },
 };
