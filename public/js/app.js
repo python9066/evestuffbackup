@@ -12689,8 +12689,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         text: "",
         value: "data-table-expand"
       }],
-      singleExpand: false,
-      expanded: []
+      singleExpand: false
     };
   },
   methods: {
@@ -12736,20 +12735,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     nodes: function nodes() {
       return this.item.new_nodes;
     },
-    nonPrimeryNodes: function nonPrimeryNodes() {
+    expanded: function expanded() {
       console.log("davce - " + this.nodes.none_prime_node_user.length);
-      return this.nodes.filter(function (n) {
+      var data = this.nodes.filter(function (n) {
         return n.none_prime_node_user.length > 0;
       });
-    } // expanded() {
-    //   var data = this.nodes.filter((n) => n.none_pprime_node_user.length > 0);
-    //   if (data) {
-    //     return data;
-    //   } else {
-    //     return [];
-    //   }
-    // },
 
+      if (data) {
+        return data;
+      } else {
+        return [];
+      }
+    }
   })
 });
 
@@ -54665,11 +54662,6 @@ var render = function () {
                         expanded: _vm.expanded,
                         "hide-default-footer": "",
                         "disable-pagination": "",
-                      },
-                      on: {
-                        "update:expanded": function ($event) {
-                          _vm.expanded = $event
-                        },
                       },
                       scopedSlots: _vm._u(
                         [

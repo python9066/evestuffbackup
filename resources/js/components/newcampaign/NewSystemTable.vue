@@ -9,7 +9,7 @@
             :items="nodes"
             disable-sort
             :item-class="itemRowBackground"
-            :expanded.sync="expanded"
+            :expanded="expanded"
             hide-default-footer
             disable-pagination
             class="elevation-24 rounded-xl full-width"
@@ -130,7 +130,6 @@ export default {
         { text: "", value: "data-table-expand" },
       ],
       singleExpand: false,
-      expanded: [],
     };
   },
 
@@ -170,19 +169,15 @@ export default {
       return this.item.new_nodes;
     },
 
-    nonPrimeryNodes() {
+    expanded() {
       console.log("davce - " + this.nodes.none_prime_node_user.length);
-      return this.nodes.filter((n) => n.none_prime_node_user.length > 0);
+      var data = this.nodes.filter((n) => n.none_prime_node_user.length > 0);
+      if (data) {
+        return data;
+      } else {
+        return [];
+      }
     },
-
-    // expanded() {
-    //   var data = this.nodes.filter((n) => n.none_pprime_node_user.length > 0);
-    //   if (data) {
-    //     return data;
-    //   } else {
-    //     return [];
-    //   }
-    // },
   },
 };
 </script>
