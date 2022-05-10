@@ -91,6 +91,15 @@ export default {
       }
     },
 
+    charsFree() {
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+      if (data) {
+        return this.getOwnHackingCharOnOp(this.operationID);
+      } else {
+        return [];
+      }
+    },
+
     checkShowAdd() {
       if (this.freecharCount != 0) {
         if (

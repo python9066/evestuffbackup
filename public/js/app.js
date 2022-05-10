@@ -12255,6 +12255,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return 0;
       }
     },
+    charsFree: function charsFree() {
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+
+      if (data) {
+        return this.getOwnHackingCharOnOp(this.operationID);
+      } else {
+        return [];
+      }
+    },
     checkShowAdd: function checkShowAdd() {
       if (this.freecharCount != 0) {
         if (this.nonePrimeNodeUserCount > 0 || this.primeNodeUserCount > 0 || this.node.node_status.id == 8 // || (this.node.node_status.id != 4 &&
