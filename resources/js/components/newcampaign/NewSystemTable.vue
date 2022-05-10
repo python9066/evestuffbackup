@@ -171,7 +171,8 @@ export default {
 
     expanded() {
       console.log("davce - " + this.nodes.none_prime_node_user.length);
-      var data = this.nodes.filter((n) => n.none_prime_node_user.length > 0);
+      var data = [];
+      //   var data = this.nodes.filter((n) => n.none_prime_node_user.length > 0);
       if (data) {
         return data;
       } else {
