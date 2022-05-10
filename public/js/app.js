@@ -12736,8 +12736,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.item.new_nodes;
     },
     expanded: function expanded() {
-      console.log("davce - " + this.nodes.none_prime_node_user.length);
-      var data = []; //   var data = this.nodes.filter((n) => n.none_prime_node_user.length > 0);
+      var data = [];
+      this.nodes.forEach(function (p) {
+        console.log(p.none_prime_node_user);
+      });
 
       if (data) {
         return data;
