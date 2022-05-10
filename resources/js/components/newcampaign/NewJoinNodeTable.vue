@@ -10,7 +10,7 @@
       dense
       hide-default-footer
       disable-pagination
-      class=""
+      class="elevation-24 rounded-xl full-width"
     >
       <template v-slot:[`item.op_user.name`]="{ item }">
         <div class="d-inline-flex align-items-center">
@@ -63,7 +63,7 @@
       </template>
       <template v-slot:[`item.op_user.ship`]="{ item }" class="pl-0">
         <span v-if="item.charname != null">
-          {{ item.ship }} - T{{ item.link }}
+          {{ item.op_user.ship }} - T{{ item.op_user.entosis }}
         </span>
       </template>
     </v-data-table>

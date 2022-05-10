@@ -54312,6 +54312,7 @@ var render = function () {
     [
       _vm.showTable
         ? _c("v-data-table", {
+            staticClass: "elevation-24 rounded-xl full-width",
             attrs: {
               headers: _vm.headers,
               items: _vm.filteredItems,
@@ -54472,9 +54473,9 @@ var render = function () {
                         ? _c("span", [
                             _vm._v(
                               "\n        " +
-                                _vm._s(item.ship) +
+                                _vm._s(item.op_user.ship) +
                                 " - T" +
-                                _vm._s(item.link) +
+                                _vm._s(item.op_user.entosis) +
                                 "\n      "
                             ),
                           ])
