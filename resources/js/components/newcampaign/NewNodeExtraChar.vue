@@ -13,7 +13,7 @@
         <v-list-item
           v-for="(list, index) in charsFree"
           :key="index"
-          @click="(charAddNode = list.id), clickCharAddNode()"
+          @click="clickCharAddNode(list.id)"
         >
           <v-list-item-title>{{ list.name }}</v-list-item-title>
         </v-list-item>
@@ -35,39 +35,23 @@ export default {
   },
 
   methods: {
-    async clickCharAddNode() {
-      //   var addChar = this.chars.find((user) => user.id == this.charAddNode);
-      //   var request = {
-      //     campaign_id: item.campaign_id,
-      //     campaign_system_id: item.id,
-      //     campaign_user_id: addChar.id,
-      //   };
-      //   await axios({
-      //     method: "post",
-      //     url: "/api/nodejoin/" + item.campaign_id,
-      //     withCredentials: true,
-      //     data: request,
-      //     headers: {
-      //       Accept: "application/json",
-      //       "Content-Type": "application/json",
-      //     },
-      //   });
-      //   request = null;
-      //   request = {
-      //     campaign_system_id: item.id,
-      //     status_id: 4,
-      //     system_id: item.system_id,
-      //   };
-      //   await axios({
-      //     method: "put",
-      //     url: "/api/campaignusers/" + addChar.id + "/" + item.campaign_id,
-      //     withCredentials: true,
-      //     data: request,
-      //     headers: {
-      //       Accept: "application/json",
-      //       "Content-Type": "application/json",
-      //     },
-      //   });
+    async clickCharAddNode(op_user_id) {
+      var request = {
+        node_id: this.node.id,
+        op_user_id: op_user_id,
+        system_id: this.node.system_id,
+        opID: this.operationID,
+      };
+      await axios({
+        method: "POST",
+        url: "/api/addusertonode",
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
     },
   },
 

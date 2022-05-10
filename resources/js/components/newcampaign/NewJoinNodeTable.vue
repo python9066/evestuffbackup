@@ -12,10 +12,10 @@
       hide-default-header
       class=""
     >
-      <template v-slot:[`item.charname`]="{ item }">
+      <template v-slot:[`item.op_user.name`]="{ item }">
         <div class="d-inline-flex align-items-center">
           <div class="d-inline-flex align-items-center">
-            {{ item.charname }}
+            {{ item.op_user.name }}
           </div>
         </div>
       </template>
@@ -61,7 +61,7 @@
           </v-icon>
         </div>
       </template>
-      <template v-slot:[`item.ship`]="{ item }" class="pl-0">
+      <template v-slot:[`item.op_user.ship`]="{ item }" class="pl-0">
         <span v-if="item.charname != null">
           {{ item.ship }} - T{{ item.link }}
         </span>

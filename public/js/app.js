@@ -12463,44 +12463,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {};
   },
   methods: {
-    clickCharAddNode: function clickCharAddNode() {//   var addChar = this.chars.find((user) => user.id == this.charAddNode);
-      //   var request = {
-      //     campaign_id: item.campaign_id,
-      //     campaign_system_id: item.id,
-      //     campaign_user_id: addChar.id,
-      //   };
-      //   await axios({
-      //     method: "post",
-      //     url: "/api/nodejoin/" + item.campaign_id,
-      //     withCredentials: true,
-      //     data: request,
-      //     headers: {
-      //       Accept: "application/json",
-      //       "Content-Type": "application/json",
-      //     },
-      //   });
-      //   request = null;
-      //   request = {
-      //     campaign_system_id: item.id,
-      //     status_id: 4,
-      //     system_id: item.system_id,
-      //   };
-      //   await axios({
-      //     method: "put",
-      //     url: "/api/campaignusers/" + addChar.id + "/" + item.campaign_id,
-      //     withCredentials: true,
-      //     data: request,
-      //     headers: {
-      //       Accept: "application/json",
-      //       "Content-Type": "application/json",
-      //     },
-      //   });
+    clickCharAddNode: function clickCharAddNode(op_user_id) {
+      var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                request = {
+                  node_id: _this.node.id,
+                  op_user_id: op_user_id,
+                  system_id: _this.node.system_id,
+                  opID: _this.operationID
+                };
+                _context.next = 3;
+                return axios({
+                  method: "POST",
+                  url: "/api/addusertonode",
+                  withCredentials: true,
+                  data: request,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -54317,7 +54307,7 @@ var render = function () {
             scopedSlots: _vm._u(
               [
                 {
-                  key: "item.charname",
+                  key: "item.op_user.name",
                   fn: function (ref) {
                     var item = ref.item
                     return [
@@ -54331,7 +54321,7 @@ var render = function () {
                             [
                               _vm._v(
                                 "\n          " +
-                                  _vm._s(item.charname) +
+                                  _vm._s(item.op_user.name) +
                                   "\n        "
                               ),
                             ]
@@ -54458,7 +54448,7 @@ var render = function () {
                   },
                 },
                 {
-                  key: "item.ship",
+                  key: "item.op_user.ship",
                   fn: function (ref) {
                     var item = ref.item
                     return [
@@ -54573,7 +54563,7 @@ var render = function () {
                       key: index,
                       on: {
                         click: function ($event) {
-                          ;(_vm.charAddNode = list.id), _vm.clickCharAddNode()
+                          return _vm.clickCharAddNode(list.id)
                         },
                       },
                     },
