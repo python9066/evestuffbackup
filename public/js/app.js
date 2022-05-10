@@ -12738,7 +12738,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     expanded: function expanded() {
       if (this.nodes) {
         var data = this.nodes.filter(function (f) {
-          return f.non_prime_node_user.length > 0;
+          return f.none_prime_node_user.length > 0;
         });
         return data;
       }

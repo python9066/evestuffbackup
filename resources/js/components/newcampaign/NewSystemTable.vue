@@ -171,7 +171,7 @@ export default {
 
     expanded() {
       if (this.nodes) {
-        var data = this.nodes.filter((f) => f.non_prime_node_user.length > 0);
+        var data = this.nodes.filter((f) => f.none_prime_node_user.length > 0);
         return data;
       }
     },
