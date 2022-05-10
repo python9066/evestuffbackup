@@ -43,10 +43,26 @@ export default {
   props: {
     node: Object,
     operationID: Number,
+    extra: {
+      type: Number,
+      default: 1,
+    },
   },
   data() {
     return {
       dropdown_edit: [
+        { title: "New", value: 1 },
+        { title: "Warm up", value: 2 },
+        { title: "Hacking", value: 3 },
+        { title: "Friendly Hacking", value: 8 },
+        { title: "Passive", value: 9 },
+        { title: "Success", value: 4 },
+        { title: "Pushed off", value: 6 },
+        { title: "Hostile Hacking", value: 7 },
+        { title: "Failed", value: 5 },
+      ],
+
+      dropdown_edit_extra: [
         { title: "New", value: 1 },
         { title: "Warm up", value: 2 },
         { title: "Hacking", value: 3 },
@@ -102,9 +118,15 @@ export default {
     },
 
     filterDropDown() {
-      var list = this.dropdown_edit.filter(
-        (f) => f.value != this.node.node_status.id
-      );
+      if (this.extra == 1) {
+        var list = this.dropdown_edit.filter(
+          (f) => f.value != this.node.node_status.id
+        );
+      } else {
+        var list = this.dropdown_edit_extra.filter(
+          (f) => f.value != this.node.node_status.id
+        );
+      }
 
       return list;
     },

@@ -12198,33 +12198,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12272,40 +12245,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       //     width: "5%",
       //     align: "start"
       // }
-      ],
-      dropdown_edit: [{
-        title: "New",
-        value: 1
-      }, {
-        title: "Warm up",
-        value: 2
-      }, {
-        title: "Hacking",
-        value: 3
-      }, {
-        title: "Pushed off",
-        value: 6
-      }]
+      ]
     };
   },
   methods: {
-    pillColor: function pillColor(item) {
-      if (item.node_status.id == 1) {
-        return "deep-orange lighten-1";
-      }
-
-      if (item.node_status.id == 2) {
-        return "lime darken-4";
-      }
-
-      if (item.node_status.id == 3) {
-        return "green darken-3";
-      }
-
-      if (item.node_status.id == 6) {
-        return "FF5EEA";
-      }
-    },
     deleteNode: function deleteNode(item) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -12330,56 +12273,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee);
-      }))();
-    },
-    statusClick: function statusClick(item) {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                request = [];
-
-                if (item.node_status.id == 1 || item.node_status.id == 2 || item.node_status.id == 3) {
-                  request = {
-                    dance: item.node_status.id
-                  };
-                }
-
-                if (!(item.node_status.id == 6)) {
-                  _context2.next = 6;
-                  break;
-                }
-
-                _context2.next = 5;
-                return _this.deleteNode(item);
-
-              case 5:
-                return _context2.abrupt("return");
-
-              case 6:
-                _context2.next = 8;
-                return axios({
-                  method: "put",
-                  //you can set what request you want to be
-                  url: "/api/nodejoinupdate/" + item.id + "/" + item.campaign_id,
-                  withCredentials: true,
-                  data: request,
-                  headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 8:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
       }))();
     }
   },
@@ -12946,11 +12839,43 @@ function sleep(ms) {
   title: function title() {},
   props: {
     node: Object,
-    operationID: Number
+    operationID: Number,
+    extra: {
+      type: Number,
+      "default": 1
+    }
   },
   data: function data() {
     return {
       dropdown_edit: [{
+        title: "New",
+        value: 1
+      }, {
+        title: "Warm up",
+        value: 2
+      }, {
+        title: "Hacking",
+        value: 3
+      }, {
+        title: "Friendly Hacking",
+        value: 8
+      }, {
+        title: "Passive",
+        value: 9
+      }, {
+        title: "Success",
+        value: 4
+      }, {
+        title: "Pushed off",
+        value: 6
+      }, {
+        title: "Hostile Hacking",
+        value: 7
+      }, {
+        title: "Failed",
+        value: 5
+      }],
+      dropdown_edit_extra: [{
         title: "New",
         value: 1
       }, {
@@ -13067,9 +12992,16 @@ function sleep(ms) {
     filterDropDown: function filterDropDown() {
       var _this2 = this;
 
-      var list = this.dropdown_edit.filter(function (f) {
-        return f.value != _this2.node.node_status.id;
-      });
+      if (this.extra == 1) {
+        var list = this.dropdown_edit.filter(function (f) {
+          return f.value != _this2.node.node_status.id;
+        });
+      } else {
+        var list = this.dropdown_edit_extra.filter(function (f) {
+          return f.value != _this2.node.node_status.id;
+        });
+      }
+
       return list;
     },
     pillColor: function pillColor() {
@@ -54302,102 +54234,13 @@ var render = function () {
                   fn: function (ref) {
                     var item = ref.item
                     return [
-                      _c(
-                        "div",
-                        { staticClass: "d-inline-flex align-items-center" },
-                        [
-                          _c(
-                            "v-menu",
-                            {
-                              attrs: { "offset-y": "" },
-                              scopedSlots: _vm._u(
-                                [
-                                  {
-                                    key: "activator",
-                                    fn: function (ref) {
-                                      var on = ref.on
-                                      var attrs = ref.attrs
-                                      return [
-                                        _c(
-                                          "div",
-                                          [
-                                            _c(
-                                              "v-chip",
-                                              _vm._g(
-                                                _vm._b(
-                                                  {
-                                                    attrs: {
-                                                      pill: "",
-                                                      outlined: "",
-                                                      small: "",
-                                                      color:
-                                                        _vm.pillColor(item),
-                                                    },
-                                                  },
-                                                  "v-chip",
-                                                  attrs,
-                                                  false
-                                                ),
-                                                on
-                                              ),
-                                              [
-                                                _vm._v(
-                                                  "\n                " +
-                                                    _vm._s(
-                                                      item.node_status.name
-                                                    ) +
-                                                    "\n              "
-                                                ),
-                                              ]
-                                            ),
-                                          ],
-                                          1
-                                        ),
-                                      ]
-                                    },
-                                  },
-                                ],
-                                null,
-                                true
-                              ),
-                            },
-                            [
-                              _vm._v(" "),
-                              _c(
-                                "v-list",
-                                _vm._l(
-                                  _vm.dropdown_edit,
-                                  function (list, index) {
-                                    return _c(
-                                      "v-list-item",
-                                      {
-                                        key: index,
-                                        on: {
-                                          click: function ($event) {
-                                            ;(item.node_status.id = list.value),
-                                              (item.node_status.name =
-                                                list.title),
-                                              _vm.statusClick(item)
-                                          },
-                                        },
-                                      },
-                                      [
-                                        _c("v-list-item-title", [
-                                          _vm._v(_vm._s(list.title)),
-                                        ]),
-                                      ],
-                                      1
-                                    )
-                                  }
-                                ),
-                                1
-                              ),
-                            ],
-                            1
-                          ),
-                        ],
-                        1
-                      ),
+                      _c("NewSystemTableStatusButton", {
+                        attrs: {
+                          node: item,
+                          operationID: _vm.operationID,
+                          extra: 2,
+                        },
+                      }),
                     ]
                   },
                 },
