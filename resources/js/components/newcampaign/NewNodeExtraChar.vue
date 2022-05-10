@@ -15,7 +15,7 @@
           :key="index"
           @click="(charAddNode = list.id), clickCharAddNode()"
         >
-          <v-list-item-title>{{ list.char_name }}</v-list-item-title>
+          <v-list-item-title>{{ list.name }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>

@@ -216,7 +216,11 @@ export default {
         .add(sec, "seconds")
         .format("YYYY-MM-DD HH:mm:ss");
 
-      if (this.node.node_status.id == 1) {
+      if (
+        this.node.node_status.id == 7 ||
+        this.node.node_status.id == 8 ||
+        this.node.node_status.id == 9
+      ) {
         var request = {
           end_time: finishTime,
           input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
@@ -226,7 +230,7 @@ export default {
 
         await axios({
           method: "put",
-          url: "/api/addprimetimer/" + this.opUserInfo.id,
+          url: "/api/addprimetimernonuser/" + this.node.id,
           withCredentials: true,
           data: request,
           headers: {
@@ -244,7 +248,7 @@ export default {
 
         await axios({
           method: "put",
-          url: "/api/addprimetimernonuser/" + this.node.id,
+          url: "/api/addprimetimer/" + this.opUserInfo.id,
           withCredentials: true,
           data: request,
           headers: {

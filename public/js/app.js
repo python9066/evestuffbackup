@@ -13105,7 +13105,7 @@ function sleep(ms) {
                 sec = sec / (_this.node.system.tidi / 100);
                 finishTime = moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
 
-                if (!(_this.node.node_status.id == 1)) {
+                if (!(_this.node.node_status.id == 7 || _this.node.node_status.id == 8 || _this.node.node_status.id == 9)) {
                   _context4.next = 12;
                   break;
                 }
@@ -13119,7 +13119,7 @@ function sleep(ms) {
                 _context4.next = 10;
                 return axios({
                   method: "put",
-                  url: "/api/addprimetimer/" + _this.opUserInfo.id,
+                  url: "/api/addprimetimernonuser/" + _this.node.id,
                   withCredentials: true,
                   data: request,
                   headers: {
@@ -13142,7 +13142,7 @@ function sleep(ms) {
                 _context4.next = 15;
                 return axios({
                   method: "put",
-                  url: "/api/addprimetimernonuser/" + _this.node.id,
+                  url: "/api/addprimetimer/" + _this.opUserInfo.id,
                   withCredentials: true,
                   data: request,
                   headers: {
@@ -54089,7 +54089,7 @@ var render = function () {
                         },
                       },
                     },
-                    [_c("v-list-item-title", [_vm._v(_vm._s(list.char_name))])],
+                    [_c("v-list-item-title", [_vm._v(_vm._s(list.name))])],
                     1
                   )
                 }),
