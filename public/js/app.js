@@ -12286,19 +12286,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     pillColor: function pillColor(item) {
-      if (item.campaign_system_status_id == 1) {
+      if (item.status.id == 1) {
         return "deep-orange lighten-1";
       }
 
-      if (item.campaign_system_status_id == 2) {
+      if (item.status.id == 2) {
         return "lime darken-4";
       }
 
-      if (item.campaign_system_status_id == 3) {
+      if (item.status.id == 3) {
         return "green darken-3";
       }
 
-      if (item.campaign_system_status_id == 6) {
+      if (item.status.id == 6) {
         return "FF5EEA";
       }
     },
@@ -12339,13 +12339,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 request = [];
 
-                if (item.campaign_system_status_id == 1 || item.campaign_system_status_id == 2 || item.campaign_system_status_id == 3) {
+                if (item.status.id == 1 || item.status.id == 2 || item.status.id == 3) {
                   request = {
-                    campaign_system_status_id: item.campaign_system_status_id
+                    dance: item.status.id
                   };
                 }
 
-                if (!(item.campaign_system_status_id == 6)) {
+                if (!(item.status.id == 6)) {
                   _context2.next = 6;
                   break;
                 }
@@ -54320,7 +54320,6 @@ var render = function () {
               dense: "",
               "hide-default-footer": "",
               "disable-pagination": "",
-              "hide-default-header": "",
             },
             scopedSlots: _vm._u(
               [
@@ -54424,8 +54423,7 @@ var render = function () {
                                         key: index,
                                         on: {
                                           click: function ($event) {
-                                            ;(item.campaign_system_status_id =
-                                              list.value),
+                                            ;(item.status.id = list.value),
                                               (item.status.name = list.title),
                                               _vm.statusClick(item)
                                           },

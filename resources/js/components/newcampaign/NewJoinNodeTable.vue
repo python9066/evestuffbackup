@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- ?? //! hide-default-header -->
     <v-data-table
       v-if="showTable"
       :headers="headers"
@@ -9,7 +10,6 @@
       dense
       hide-default-footer
       disable-pagination
-      hide-default-header
       class=""
     >
       <template v-slot:[`item.op_user.name`]="{ item }">
@@ -42,7 +42,7 @@
                 v-for="(list, index) in dropdown_edit"
                 :key="index"
                 @click="
-                  (item.campaign_system_status_id = list.value),
+                  (item.status.id = list.value),
                     (item.status.name = list.title),
                     statusClick(item)
                 "
@@ -129,16 +129,16 @@ export default {
 
   methods: {
     pillColor(item) {
-      if (item.campaign_system_status_id == 1) {
+      if (item.status.id == 1) {
         return "deep-orange lighten-1";
       }
-      if (item.campaign_system_status_id == 2) {
+      if (item.status.id == 2) {
         return "lime darken-4";
       }
-      if (item.campaign_system_status_id == 3) {
+      if (item.status.id == 3) {
         return "green darken-3";
       }
-      if (item.campaign_system_status_id == 6) {
+      if (item.status.id == 6) {
         return "FF5EEA";
       }
     },
@@ -157,16 +157,12 @@ export default {
 
     async statusClick(item) {
       var request = [];
-      if (
-        item.campaign_system_status_id == 1 ||
-        item.campaign_system_status_id == 2 ||
-        item.campaign_system_status_id == 3
-      ) {
+      if (item.status.id == 1 || item.status.id == 2 || item.status.id == 3) {
         request = {
-          campaign_system_status_id: item.campaign_system_status_id,
+          dance: item.status.id,
         };
       }
-      if (item.campaign_system_status_id == 6) {
+      if (item.status.id == 6) {
         await this.deleteNode(item);
         return;
       }
