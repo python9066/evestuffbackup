@@ -12257,7 +12257,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     checkShowAdd: function checkShowAdd() {
       if (this.freecharCount != 0) {
-        if (this.nonePrimeNodeUserCount > 0 || this.primeNodeUserCount > 0 || this.node.node_status.id == 8 || this.node.node_status.id != 4 && this.node.node_status.id != 5 && this.node.node_status.id != 7) {
+        if (this.nonePrimeNodeUserCount > 0 || this.primeNodeUserCount > 0 || this.node.node_status.id == 8 // || (this.node.node_status.id != 4 &&
+        //   this.node.node_status.id != 5 &&
+        //   this.node.node_status.id != 7)
+        ) {
           return true;
         } else {
           return false;

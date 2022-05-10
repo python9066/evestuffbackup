@@ -96,10 +96,10 @@ export default {
         if (
           this.nonePrimeNodeUserCount > 0 ||
           this.primeNodeUserCount > 0 ||
-          this.node.node_status.id == 8 ||
-          (this.node.node_status.id != 4 &&
-            this.node.node_status.id != 5 &&
-            this.node.node_status.id != 7)
+          this.node.node_status.id == 8
+          // || (this.node.node_status.id != 4 &&
+          //   this.node.node_status.id != 5 &&
+          //   this.node.node_status.id != 7)
         ) {
           return true;
         } else {
