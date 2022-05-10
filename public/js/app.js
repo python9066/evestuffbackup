@@ -12737,9 +12737,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return this.item.new_nodes;
     },
     nonPrimeryNodes: function nonPrimeryNodes() {
-      console.log("davce - " + this.nodes.non_prime_node_user.length);
+      console.log("davce - " + this.nodes.none_prime_node_user.length);
       return this.nodes.filter(function (n) {
-        return n.non_prime_node_user.length > 0;
+        return n.none_prime_node_user.length > 0;
       });
     } // expanded() {
     //   var data = this.nodes.filter((n) => n.none_pprime_node_user.length > 0);
