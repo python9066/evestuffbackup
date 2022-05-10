@@ -54011,7 +54011,7 @@ var render = function () {
   return _c(
     "div",
     [
-      _vm.checkShowAdd()
+      _vm.checkShowAdd
         ? _c(
             "v-menu",
             {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-menu offset-y v-if="checkShowAdd()">
+    <v-menu offset-y v-if="checkShowAdd">
       <template v-slot:activator="{ on, attrs }">
         <div>
           <v-btn v-bind="attrs" v-on="on" icon color="green darken-3">
