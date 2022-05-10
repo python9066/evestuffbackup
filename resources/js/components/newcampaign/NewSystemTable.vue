@@ -171,6 +171,7 @@ export default {
     },
 
     nonPrimeryNodes() {
+      console.log("davce - " + this.nodes.non_prime_node_user.length);
       return this.nodes.filter((n) => n.non_prime_node_user.length > 0);
     },
 
