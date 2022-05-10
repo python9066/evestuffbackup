@@ -12644,6 +12644,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12682,7 +12683,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         text: "",
         value: "actions",
         sortable: true
-      }]
+      }],
+      singleExpand: false
     };
   },
   methods: {
@@ -12712,6 +12714,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    itemRowBackground: function itemRowBackground(item) {
+      if (item.node_status.id == 7) {
+        return "style-1";
+      } else if (item.node_status.id == 8) {
+        return "style-2";
+      } //   else if (item.under_attack == 1) {
+      //     return "style-4";
+      //   }
+
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), {}, {
@@ -54637,13 +54649,14 @@ var render = function () {
                       staticClass: "elevation-24 rounded-xl full-width",
                       attrs: {
                         headers: _vm.headers,
+                        "single-expand": _vm.singleExpand,
                         items: _vm.nodes,
+                        "disable-sort": "",
+                        "item-class": _vm.itemRowBackground,
                         "item-key": "id",
                         expanded: _vm.expanded,
-                        "items-per-page": 50,
-                        "footer-props": {
-                          "items-per-page-options": [10, 20, 30, 50, 100, -1],
-                        },
+                        "hide-default-footer": "",
+                        "disable-pagination": "",
                       },
                       scopedSlots: _vm._u(
                         [

@@ -5,13 +5,14 @@
         <v-col cols="12">
           <v-data-table
             :headers="headers"
+            :single-expand="singleExpand"
             :items="nodes"
+            disable-sort
+            :item-class="itemRowBackground"
             item-key="id"
             :expanded="expanded"
-            :items-per-page="50"
-            :footer-props="{
-              'items-per-page-options': [10, 20, 30, 50, 100, -1],
-            }"
+            hide-default-footer
+            disable-pagination
             class="elevation-24 rounded-xl full-width"
           >
             <template slot="no-data"> No Nodes in this system </template>
@@ -124,6 +125,7 @@ export default {
           sortable: true,
         },
       ],
+      singleExpand: false,
     };
   },
 
@@ -140,6 +142,17 @@ export default {
           "Content-Type": "application/json",
         },
       });
+    },
+
+    itemRowBackground: function (item) {
+      if (item.node_status.id == 7) {
+        return "style-1";
+      } else if (item.node_status.id == 8) {
+        return "style-2";
+      }
+      //   else if (item.under_attack == 1) {
+      //     return "style-4";
+      //   }
     },
   },
 
