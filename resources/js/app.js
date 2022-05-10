@@ -468,6 +468,11 @@ Vue.component(
     require("./components/newcampaign/NewNodeExtraChar.vue").default
 );
 
+Vue.component(
+    "NewJoinNodeTable",
+    require("./components/newcampaign/NewJoinNodeTable.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(Clipboard);

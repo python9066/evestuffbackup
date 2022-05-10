@@ -56,6 +56,15 @@
                 :operationID="operationID"
               ></NewSystemTableTimer>
             </template>
+
+            <template v-slot:expanded-item="{ headers, item }">
+              <td :colspan="headers.length" align="center">
+                <NewJoinNodeTable
+                  :node="item"
+                  :operationID="operationID"
+                ></NewJoinNodeTable>
+              </td>
+            </template>
           </v-data-table>
         </v-col>
       </v-row>
