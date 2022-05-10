@@ -174,6 +174,8 @@ export default {
       type: Number,
       default: 1,
     },
+    tidiProp: Number,
+    systemIDProp: Number,
   },
   data() {
     return {
@@ -213,7 +215,11 @@ export default {
       var sec = parseInt(this.hackTime.substr(3, 2));
       var base = min * 60 + sec;
       var sec = min * 60 + sec;
-      var sec = sec / (this.node.system.tidi / 100);
+      if (this.extra == 2) {
+        var sec = sec / (this.tidiProp / 100);
+      } else {
+        var sec = sec / (this.node.system.tidi / 100);
+      }
       var finishTime = moment
         .utc()
         .add(sec, "seconds")
@@ -224,12 +230,21 @@ export default {
         this.node.node_status.id == 8 ||
         this.node.node_status.id == 9
       ) {
-        var request = {
-          end_time: finishTime,
-          input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-          base_time: base,
-          system_id: this.node.system_id,
-        };
+        if (this.extra == 1) {
+          var request = {
+            end_time: finishTime,
+            input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
+            base_time: base,
+            system_id: this.node.system_id,
+          };
+        } else {
+          var request = {
+            end_time: finishTime,
+            input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
+            base_time: base,
+            system_id: this.systemIDProp,
+          };
+        }
 
         await axios({
           method: "put",
@@ -242,23 +257,41 @@ export default {
           },
         });
       } else {
-        var request = {
-          end_time: finishTime,
-          input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-          base_time: base,
-          system_id: this.node.system_id,
-        };
-
-        await axios({
-          method: "put",
-          url: "/api/addprimetimer/" + this.opUserInfo.id,
-          withCredentials: true,
-          data: request,
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        });
+        if (this.extra == 1) {
+          var request = {
+            end_time: finishTime,
+            input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
+            base_time: base,
+            system_id: this.node.system_id,
+          };
+          await axios({
+            method: "put",
+            url: "/api/addprimetimer/" + this.opUserInfo.id,
+            withCredentials: true,
+            data: request,
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          });
+        } else {
+          var request = {
+            end_time: finishTime,
+            input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
+            base_time: base,
+            system_id: this.systemIDProp,
+          };
+          await axios({
+            method: "put",
+            url: "/api/addprimetimernonuser/" + this.node.id,
+            withCredentials: true,
+            data: request,
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          });
+        }
       }
     },
   },

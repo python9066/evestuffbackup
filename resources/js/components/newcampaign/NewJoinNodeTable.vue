@@ -31,6 +31,7 @@
           :node="item"
           :operationID="operationID"
           :extra="2"
+          :nodeProp="node.system.tidi"
         ></NewSystemTableTimer>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
