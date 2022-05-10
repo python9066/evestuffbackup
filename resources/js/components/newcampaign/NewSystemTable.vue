@@ -171,9 +171,7 @@ export default {
     },
 
     nonPrimeryNodes() {
-      return this.item.new_nodes.filter(
-        (node) => node.non_prime_node_user.length > 0
-      );
+      return this.nodes.filter((n) => n.non_prime_node_user.length > 0);
     },
 
     // expanded() {
