@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-menu offset-y v-if="checkShowAdd(item)">
+    <v-menu offset-y v-if="checkShowAdd()">
       <template v-slot:activator="{ on, attrs }">
         <div>
           <v-btn v-bind="attrs" v-on="on" icon color="green darken-3">
@@ -13,7 +13,7 @@
         <v-list-item
           v-for="(list, index) in charsFree"
           :key="index"
-          @click="(charAddNode = list.id), clickCharAddNode(item)"
+          @click="(charAddNode = list.id), clickCharAddNode()"
         >
           <v-list-item-title>{{ list.char_name }}</v-list-item-title>
         </v-list-item>
@@ -35,46 +35,39 @@ export default {
   },
 
   methods: {
-    showAdd() {
-      this.$emit("openAdd", this.item);
-    },
-
-    async clickCharAddNode(item) {
-      var addChar = this.chars.find((user) => user.id == this.charAddNode);
-      var request = {
-        campaign_id: item.campaign_id,
-        campaign_system_id: item.id,
-        campaign_user_id: addChar.id,
-      };
-
-      await axios({
-        method: "post",
-        url: "/api/nodejoin/" + item.campaign_id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-
-      request = null;
-      request = {
-        campaign_system_id: item.id,
-        status_id: 4,
-        system_id: item.system_id,
-      };
-
-      await axios({
-        method: "put",
-        url: "/api/campaignusers/" + addChar.id + "/" + item.campaign_id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+    async clickCharAddNode() {
+      //   var addChar = this.chars.find((user) => user.id == this.charAddNode);
+      //   var request = {
+      //     campaign_id: item.campaign_id,
+      //     campaign_system_id: item.id,
+      //     campaign_user_id: addChar.id,
+      //   };
+      //   await axios({
+      //     method: "post",
+      //     url: "/api/nodejoin/" + item.campaign_id,
+      //     withCredentials: true,
+      //     data: request,
+      //     headers: {
+      //       Accept: "application/json",
+      //       "Content-Type": "application/json",
+      //     },
+      //   });
+      //   request = null;
+      //   request = {
+      //     campaign_system_id: item.id,
+      //     status_id: 4,
+      //     system_id: item.system_id,
+      //   };
+      //   await axios({
+      //     method: "put",
+      //     url: "/api/campaignusers/" + addChar.id + "/" + item.campaign_id,
+      //     withCredentials: true,
+      //     data: request,
+      //     headers: {
+      //       Accept: "application/json",
+      //       "Content-Type": "application/json",
+      //     },
+      //   });
     },
   },
 

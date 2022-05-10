@@ -12193,58 +12193,44 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {};
   },
   methods: {
-    showAdd: function showAdd() {
-      this.$emit("openAdd", this.item);
-    },
-    clickCharAddNode: function clickCharAddNode(item) {
-      var _this = this;
+    clickCharAddNode: function clickCharAddNode() {//   var addChar = this.chars.find((user) => user.id == this.charAddNode);
+      //   var request = {
+      //     campaign_id: item.campaign_id,
+      //     campaign_system_id: item.id,
+      //     campaign_user_id: addChar.id,
+      //   };
+      //   await axios({
+      //     method: "post",
+      //     url: "/api/nodejoin/" + item.campaign_id,
+      //     withCredentials: true,
+      //     data: request,
+      //     headers: {
+      //       Accept: "application/json",
+      //       "Content-Type": "application/json",
+      //     },
+      //   });
+      //   request = null;
+      //   request = {
+      //     campaign_system_id: item.id,
+      //     status_id: 4,
+      //     system_id: item.system_id,
+      //   };
+      //   await axios({
+      //     method: "put",
+      //     url: "/api/campaignusers/" + addChar.id + "/" + item.campaign_id,
+      //     withCredentials: true,
+      //     data: request,
+      //     headers: {
+      //       Accept: "application/json",
+      //       "Content-Type": "application/json",
+      //     },
+      //   });
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var addChar, request;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                addChar = _this.chars.find(function (user) {
-                  return user.id == _this.charAddNode;
-                });
-                request = {
-                  campaign_id: item.campaign_id,
-                  campaign_system_id: item.id,
-                  campaign_user_id: addChar.id
-                };
-                _context.next = 4;
-                return axios({
-                  method: "post",
-                  url: "/api/nodejoin/" + item.campaign_id,
-                  withCredentials: true,
-                  data: request,
-                  headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 4:
-                request = null;
-                request = {
-                  campaign_system_id: item.id,
-                  status_id: 4,
-                  system_id: item.system_id
-                };
-                _context.next = 8;
-                return axios({
-                  method: "put",
-                  url: "/api/campaignusers/" + addChar.id + "/" + item.campaign_id,
-                  withCredentials: true,
-                  data: request,
-                  headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 8:
               case "end":
                 return _context.stop();
             }
@@ -54025,7 +54011,7 @@ var render = function () {
   return _c(
     "div",
     [
-      _vm.checkShowAdd(_vm.item)
+      _vm.checkShowAdd()
         ? _c(
             "v-menu",
             {
@@ -54087,8 +54073,7 @@ var render = function () {
                       key: index,
                       on: {
                         click: function ($event) {
-                          ;(_vm.charAddNode = list.id),
-                            _vm.clickCharAddNode(_vm.item)
+                          ;(_vm.charAddNode = list.id), _vm.clickCharAddNode()
                         },
                       },
                     },
