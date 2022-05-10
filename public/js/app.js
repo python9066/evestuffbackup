@@ -54469,7 +54469,7 @@ var render = function () {
                   fn: function (ref) {
                     var item = ref.item
                     return [
-                      item.charname != null
+                      item.op_user.name != null
                         ? _c("span", [
                             _vm._v(
                               "\n        " +

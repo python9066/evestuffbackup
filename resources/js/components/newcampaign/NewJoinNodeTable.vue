@@ -62,7 +62,7 @@
         </div>
       </template>
       <template v-slot:[`item.op_user.ship`]="{ item }" class="pl-0">
-        <span v-if="item.charname != null">
+        <span v-if="item.op_user.name != null">
           {{ item.op_user.ship }} - T{{ item.op_user.entosis }}
         </span>
       </template>
