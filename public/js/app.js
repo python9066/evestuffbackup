@@ -12876,32 +12876,14 @@ function sleep(ms) {
         value: 5
       }],
       dropdown_edit_extra: [{
-        title: "New",
-        value: 1
-      }, {
         title: "Warm up",
         value: 2
       }, {
         title: "Hacking",
         value: 3
       }, {
-        title: "Friendly Hacking",
-        value: 8
-      }, {
-        title: "Passive",
-        value: 9
-      }, {
-        title: "Success",
-        value: 4
-      }, {
         title: "Pushed off",
         value: 6
-      }, {
-        title: "Hostile Hacking",
-        value: 7
-      }, {
-        title: "Failed",
-        value: 5
       }]
     };
   },
