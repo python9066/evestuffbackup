@@ -145,6 +145,7 @@ class NewSystemNodeController extends Controller
                 }
                 $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
                 $opUserID = $opUser->id;
+                dd($opUser, $opUserID);
                 break;
 
 
@@ -157,6 +158,7 @@ class NewSystemNodeController extends Controller
                 }
                 $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
                 $opUserID = $opUser->id;
+                dd($opUser, $opUserID);
                 break;
 
 
