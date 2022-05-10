@@ -62,9 +62,9 @@ class NewCampaignhelper
                 'newCampaigns',
                 'newNodes.nodeStatus',
                 'newNodes.nonePrimeNodeUser.opUser.user',
-                'newNodes.nonePrimeNodeUser.status',
+                'newNodes.nonePrimeNodeUser.nodeStatus',
                 'newNodes.primeNodeUser.opUser.user',
-                'newNodes.primeNodeUser.status',
+                'newNodes.primeNodeUser.nodeStatus',
                 'newNodes.system'
             ])
             ->get();
@@ -77,9 +77,9 @@ class NewCampaignhelper
                 'newCampaigns',
                 'newNodes.nodeStatus',
                 'newNodes.nonePrimeNodeUser.opUser.user',
-                'newNodes.nonePrimeNodeUser.status',
+                'newNodes.nonePrimeNodeUser.nodeStatus',
                 'newNodes.primeNodeUser.opUser.user',
-                'newNodes.primeNodeUser.status',
+                'newNodes.primeNodeUser.nodeStatus',
                 'newNodes.system'
             ])
             ->first();
