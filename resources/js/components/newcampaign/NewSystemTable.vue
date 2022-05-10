@@ -170,6 +170,12 @@ export default {
       return this.item.new_nodes;
     },
 
+    nonPrimeryNodes() {
+      return this.item.new_nodes.filter(
+        (node) => node.non_prime_node_user.length > 0
+      );
+    },
+
     // expanded() {
     //   var data = this.nodes.filter((n) => n.none_pprime_node_user.length > 0);
     //   if (data) {

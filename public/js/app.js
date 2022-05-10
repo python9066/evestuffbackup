@@ -12735,6 +12735,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), {}, {
     nodes: function nodes() {
       return this.item.new_nodes;
+    },
+    nonPrimeryNodes: function nonPrimeryNodes() {
+      return this.item.new_nodes.filter(function (node) {
+        return node.non_prime_node_user.length > 0;
+      });
     } // expanded() {
     //   var data = this.nodes.filter((n) => n.none_pprime_node_user.length > 0);
     //   if (data) {
