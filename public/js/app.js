@@ -12230,6 +12230,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12257,6 +12263,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         text: "Ship",
         value: "op_user.ship",
         align: "start"
+      }, {
+        text: "Age/Hack",
+        value: "created_at",
+        sortable: true,
+        align: "center"
       }, {
         text: "",
         value: "status.name",
@@ -12677,9 +12688,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         text: "",
         value: "actions",
         sortable: true
-      }, {
-        text: "",
-        value: "data-table-expand"
       }],
       singleExpand: false
     };
@@ -54461,6 +54469,17 @@ var render = function () {
                         ],
                         1
                       ),
+                    ]
+                  },
+                },
+                {
+                  key: "item.created_at",
+                  fn: function (ref) {
+                    var item = ref.item
+                    return [
+                      _c("NewSystemTableTimer", {
+                        attrs: { node: item, operationID: _vm.operationID },
+                      }),
                     ]
                   },
                 },

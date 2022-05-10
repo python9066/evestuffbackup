@@ -42,7 +42,7 @@ class NewUserNodeController extends Controller
         Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
     }
 
-    public function addTimerNonUsuer(Request $request, $id)
+    public function addTimertoNode(Request $request, $id)
     {
         NewSystemNode::where('id', $id)->update([
             "end_time" => $request->end_time,

@@ -61,6 +61,12 @@
           </v-icon>
         </div>
       </template>
+      <template v-slot:[`item.created_at`]="{ item }">
+        <NewSystemTableTimer
+          :node="item"
+          :operationID="operationID"
+        ></NewSystemTableTimer>
+      </template>
       <template v-slot:[`item.op_user.ship`]="{ item }" class="pl-0">
         <span v-if="item.op_user.name != null">
           {{ item.op_user.ship }} - T{{ item.op_user.entosis }}
@@ -103,6 +109,12 @@ export default {
           text: "Ship",
           value: "op_user.ship",
           align: "start",
+        },
+        {
+          text: "Age/Hack",
+          value: "created_at",
+          sortable: true,
+          align: "center",
         },
         {
           text: "",

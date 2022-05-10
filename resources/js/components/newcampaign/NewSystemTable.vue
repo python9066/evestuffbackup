@@ -125,8 +125,6 @@ export default {
           value: "actions",
           sortable: true,
         },
-
-        { text: "", value: "data-table-expand" },
       ],
       singleExpand: false,
     };
