@@ -12264,14 +12264,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         value: "op_user.ship",
         align: "start"
       }, {
+        text: "",
+        value: "status.name",
+        align: "start"
+      }, {
         text: "Age/Hack",
         value: "created_at",
         sortable: true,
         align: "center"
-      }, {
-        text: "",
-        value: "status.name",
-        align: "start"
       } // { text: "", value: "actions", width: "5%", align: "center" },
       // {
       //     text: "",

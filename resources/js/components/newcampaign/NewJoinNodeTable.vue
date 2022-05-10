@@ -111,15 +111,15 @@ export default {
           align: "start",
         },
         {
+          text: "",
+          value: "status.name",
+          align: "start",
+        },
+        {
           text: "Age/Hack",
           value: "created_at",
           sortable: true,
           align: "center",
-        },
-        {
-          text: "",
-          value: "status.name",
-          align: "start",
         },
         // { text: "", value: "actions", width: "5%", align: "center" },
         // {
