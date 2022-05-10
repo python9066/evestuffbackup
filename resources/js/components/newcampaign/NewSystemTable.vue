@@ -26,10 +26,10 @@
             </template>
             <template v-slot:[`item.op_users`]="{ item }">
               <AddPilot :node="item" :operationID="operationID"></AddPilot>
-              <NodeExtraChar
+              <NewNodeExtraChar
                 :node="item"
                 :operationID="operationID"
-              ></NodeExtraChar>
+              ></NewNodeExtraChar>
             </template>
             <template v-slot:[`item.TODOMain`]="{ item }">
               <NewSystemTableSimpleText

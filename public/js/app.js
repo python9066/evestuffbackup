@@ -43680,7 +43680,7 @@ var render = function () {
                                             )
                                           : _vm._e(),
                                         _vm._v(" "),
-                                        _c("NewNodeExtraChar", {
+                                        _c("NodeExtraChar", {
                                           attrs: { item: item },
                                         }),
                                       ],
@@ -54199,7 +54199,7 @@ var render = function () {
                                   },
                                 }),
                                 _vm._v(" "),
-                                _c("NodeExtraChar", {
+                                _c("NewNodeExtraChar", {
                                   attrs: {
                                     node: item,
                                     operationID: _vm.operationID,

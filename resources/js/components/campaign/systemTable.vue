@@ -306,7 +306,7 @@
                 >
                   <v-icon small>fas fa-trash-alt</v-icon></v-btn
                 >
-                <NewNodeExtraChar :item="item"></NewNodeExtraChar>
+                <NodeExtraChar :item="item"></NodeExtraChar>
               </div>
               <AdminHackUserTable
                 v-if="$can('campaigns_admin_access')"
