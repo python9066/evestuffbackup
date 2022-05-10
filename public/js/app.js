@@ -12645,6 +12645,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -54796,7 +54798,9 @@ var render = function () {
                     },
                     [
                       _c("template", { slot: "no-data" }, [
-                        _vm._v(" No Nodes in this system "),
+                        _vm._v(
+                          "\n            No Nodes in this system statemtmem\n          "
+                        ),
                       ]),
                     ],
                     2

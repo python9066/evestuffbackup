@@ -14,7 +14,9 @@
             disable-pagination
             class="elevation-24 rounded-xl full-width"
           >
-            <template slot="no-data"> No Nodes in this system </template>
+            <template slot="no-data">
+              No Nodes in this system statemtmem
+            </template>
             <template v-slot:[`item.actions`]="{ item }">
               <v-icon
                 color="orange darken-3"
