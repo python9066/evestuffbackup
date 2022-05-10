@@ -19,4 +19,10 @@ class NewUserNode extends Model
     {
         return $this->belongsTo(NewSystemNode::class, 'node_id', 'id');
     }
+
+
+    public function status()
+    {
+        return $this->belongsTo(CampaignSystemStatus::class, 'node_status_id', 'id');
+    }
 }

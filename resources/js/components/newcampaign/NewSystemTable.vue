@@ -62,7 +62,6 @@
 
             <template v-slot:expanded-item="{ headers, item }">
               <td :colspan="headers.length" align="center">
-                dance
                 <NewJoinNodeTable
                   :node="item"
                   :operationID="operationID"
