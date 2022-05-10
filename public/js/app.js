@@ -12382,18 +12382,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])([])), {}, {
-    nonPrimeryNodeUserCount: function nonPrimeryNodeUserCount() {
-      return this.node.none_primery_node_user.lenght;
-    },
     filteredItems: function filteredItems() {
-      if (this.nonPrimeryNodeUserCount > 0) {
-        return this.node.none_primery_node_user;
-      } else {
-        return [];
-      }
+      return this.node.none_primery_node_user;
     },
     showTable: function showTable() {
-      if (this.nonPrimeryNodeUserCount > 0) {
+      if (this.node.none_primery_node_user.length > 0) {
         return true;
       } else {
         return false;

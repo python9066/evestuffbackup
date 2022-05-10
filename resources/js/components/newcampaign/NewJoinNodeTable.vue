@@ -188,20 +188,12 @@ export default {
   computed: {
     ...mapGetters([]),
 
-    nonPrimeryNodeUserCount() {
-      return this.node.none_primery_node_user.lenght;
-    },
-
     filteredItems() {
-      if (this.nonPrimeryNodeUserCount > 0) {
-        return this.node.none_primery_node_user;
-      } else {
-        return [];
-      }
+      return this.node.none_primery_node_user;
     },
 
     showTable() {
-      if (this.nonPrimeryNodeUserCount > 0) {
+      if (this.node.none_primery_node_user.length > 0) {
         return true;
       } else {
         return false;
