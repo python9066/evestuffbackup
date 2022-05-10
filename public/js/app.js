@@ -12683,6 +12683,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         text: "",
         value: "actions",
         sortable: true
+      }, {
+        text: "",
+        value: "data-table-expand"
       }],
       singleExpand: false,
       expanded: []
