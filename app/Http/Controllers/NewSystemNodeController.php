@@ -217,6 +217,25 @@ class NewSystemNodeController extends Controller
 
                     Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
                     Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
+                } else {
+                    $userNode = NewUserNode::where('node_id', $id)->first();
+                    if ($userNode) {
+
+                        $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
+                        $opUserID = $opUser->id;
+                        $user = User::where('id', $opUser->user_id)->first();
+                        $userID = $user->id;
+                        $opUser->update([
+                            'new_user_node_id' => null,
+                            'user_status_id' => 3
+                        ]);
+
+
+                        $userNode->delete();
+
+                        Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
+                        Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
+                    }
                 }
                 break;
             case 7: // * Hostile Hacking
