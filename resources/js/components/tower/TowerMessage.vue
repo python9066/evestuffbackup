@@ -107,7 +107,6 @@ export default {
     close() {
       this.editText = null;
       this.showTowerNotes = false;
-      //   console.log("close");
     },
 
     open() {

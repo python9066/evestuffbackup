@@ -104,10 +104,7 @@ export default {
     };
   },
 
-  async mounted() {
-    // console.log(this.$route.params.id)
-    // await setEditCharname();
-  },
+  async mounted() {},
 
   methods: {
     setEditCharname() {
@@ -181,7 +178,6 @@ export default {
         ship = null;
         link = null;
       }
-      // console.log(role_name);
       var request = {
         char_name: char_name,
         link: link,

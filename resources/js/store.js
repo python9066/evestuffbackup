@@ -102,7 +102,6 @@ export default new Vuex.Store({
     mutations: {
         DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
             let check = state.ownChars.filter((e) => e.id == id).length;
-            // console.log(check);
             if (check > 0) {
                 state.ownChars = state.ownChars.filter((e) => e.id != id);
             }
@@ -110,7 +109,6 @@ export default new Vuex.Store({
 
         DELETE_OP_CHAR_FROM_CHAR_LIST(state, id) {
             let check = state.opUsers.filter((e) => e.id == id).length;
-            // console.log(check);
             if (check > 0) {
                 state.opUsers = state.opUsers.filter((e) => e.id != id);
             }

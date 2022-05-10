@@ -278,8 +278,6 @@ export default {
   },
 
   beforeDestroy() {
-    // clearInterval(this.poll);
-    // console.log('KILL THEM ALL');
     Echo.leave("evestuff");
   },
 };

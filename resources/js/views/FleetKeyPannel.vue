@@ -217,7 +217,6 @@ export default {
       });
     },
     filterKeys(keys) {
-      // console.log(roles);
       return keys;
     },
 
@@ -247,8 +246,6 @@ export default {
     },
 
     fliterFleets(fleets) {
-      //   console.log(fleets);
-
       return fleets;
     },
 

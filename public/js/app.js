@@ -1935,8 +1935,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       tidiEdit: null
     };
   },
-  mounted: function mounted() {// console.log(this.CampaignSolaSystem);
-  },
+  mounted: function mounted() {},
   methods: {
     colorTidi: function colorTidi() {
       if (this.CampaignSolaSystem[0]["tidi"] > 59) {
@@ -1964,8 +1963,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   tidi: _this.tidiEdit
                 };
 
-                _this.$store.dispatch("updateCampaignSolaSystem", data); // console.log(this.tidiEdit);
-
+                _this.$store.dispatch("updateCampaignSolaSystem", data);
 
                 request = {
                   newTidi: _this.tidiEdit,
@@ -2658,7 +2656,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     close: function close() {
       this.editText = null;
-      this.showNodeNotes = false; //   console.log("close");
+      this.showNodeNotes = false;
     },
     open: function open() {
       this.showNumber = false, this.messageCount = 0;
@@ -3564,9 +3562,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 sec = parseInt(_this.hackTime.substr(3, 2));
                 base = min * 60 + sec;
                 sec = min * 60 + sec;
-                sec = sec / (_this.CampaignSolaSystem[0]["tidi"] / 100); // var sec = sec / (10 / 100);
-                // console.log(sec);
-
+                sec = sec / (_this.CampaignSolaSystem[0]["tidi"] / 100);
                 finishTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
                 item.end = finishTime;
 
@@ -3576,7 +3572,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   end_time: finishTime,
                   input_time: moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
                   base_time: base
-                }; // console.log(base);
+                };
 
                 if (_this.item.custom_campaign_id != null) {
                   campid = _this.$route.params.id;
@@ -3920,12 +3916,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.newLink = null;
     },
     roleForm: function roleForm(a) {
-      this.role = a; // console.log("LALAL");
-      // console.log(a);
+      this.role = a;
     },
     roleEditForm: function roleEditForm(a) {
-      this.editrole = a; // console.log("LALAL");
-      // console.log(a);
+      this.editrole = a;
     },
     pillColor: function pillColor(item) {
       if (item.campaign_id == this.campaign_id) {
@@ -4388,9 +4382,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       editrole: 1
     };
   },
-  mounted: function mounted() {// console.log(this.$route.params.id)
-    // await setEditCharname();
-
+  mounted: function mounted() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
@@ -4481,8 +4473,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 if (role != 1) {
                   ship = null;
                   link = null;
-                } // console.log(role_name);
-
+                }
 
                 request = {
                   char_name: char_name,
@@ -4717,7 +4708,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                // console.log(item.user_id)
                 request = {
                   user_id: item.user_id
                 };
@@ -6722,8 +6712,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 request = {
                   name: _this.newFleetName
-                }; //   console.log(this.newFleetName);
-
+                };
                 _context2.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default()({
                   method: "PUT",
@@ -7008,7 +6997,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     fliterFleets: function fliterFleets(fleets) {
-      // console.log(roles);
       return fleets;
     },
     close: function close() {
@@ -10318,8 +10306,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       tidiEdit: null
     };
   },
-  mounted: function mounted() {// console.log(this.CampaignSolaSystem);
-  },
+  mounted: function mounted() {},
   methods: {
     colorTidi: function colorTidi() {
       if (this.CampaignSolaSystem[0]["tidi"] > 59) {
@@ -10354,8 +10341,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   oldTidi: _this.CampaignSolaSystem[0]["tidi"],
                   solaID: _this.CampaignSolaSystem[0]["id"],
                   baseTime: _this.CampaignSolaSystem[0]["base_time"]
-                }; // console.log(this.CampaignSolaSystem);
-
+                };
                 _context.next = 5;
                 return axios({
                   method: "put",
@@ -12236,6 +12222,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12264,7 +12252,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         value: "op_user.ship",
         align: "start"
       }, {
-        text: "",
+        text: "Status",
         value: "status.name",
         align: "start"
       }, {
@@ -12272,6 +12260,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         value: "created_at",
         sortable: true,
         align: "center"
+      }, {
+        text: "",
+        value: "actions",
+        sortable: true
       } // { text: "", value: "actions", width: "5%", align: "center" },
       // {
       //     text: "",
@@ -13374,8 +13366,6 @@ function sleep(ms) {
   },
   methods: {
     clockRedText: function clockRedText(props) {
-      console.log(props.minutes);
-
       if ((props.minutes < 5 || props.hours > 0) && this.node.node_status.id == 1) {
         return true;
       } else if ((props.minutes < 10 || props.hours > 0) && this.node.node_status.id == 2) {
@@ -18280,12 +18270,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               }
 
               if (_this.type == 4) {
-                //   console.log("chanSSSnel 4");
                 Echo["private"]("stationsheet").listen("StationSheetMessageUpdate", function (e) {
-                  // console.log(e);
                   if (e.flag.id == _this.station.id) {
-                    //   console.log("£true");
-                    //   console.log(e.flag.message);
                     _this.$store.dispatch("updateStationList", e.flag.message);
 
                     if (_this.showStationNotes == false) {
@@ -19850,9 +19836,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 addChar = _this2.chars.find(function (user) {
                   return user.id == _this2.charAddNode;
-                }); //   console.log(item);
-                //   console.log(addChar);
-
+                });
                 data = {
                   id: item.id,
                   user_id: addChar.id,
@@ -20186,10 +20170,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 sec = parseInt(_this.hackTime.substr(3, 2));
                 base = min * 60 + sec;
                 sec = min * 60 + sec;
-                sec = sec / (100 / 100); // var sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
-                // var sec = sec / (10 / 100);
-                // console.log(sec);
-
+                sec = sec / (100 / 100);
                 finishTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
                 item.end_time = finishTime;
 
@@ -22557,7 +22538,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   computed: {
     showGunnerButton: function showGunnerButton() {
       if (this.station.gunner_id == null) {
-        // console.log("true");
         return true;
       } else {
         return false;
@@ -22835,7 +22815,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     close: function close() {
       this.editText = null;
-      this.showStationNotes = false; //   console.log("close");
+      this.showStationNotes = false;
     },
     open: function open() {
       this.showNumber = false, this.messageCount = 0;
@@ -23078,8 +23058,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 hs = h * 60 * 60;
                 ms = m * 60;
                 sec = ds + hs + ms + s;
-                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss"); //   console.log(outTime);
-
+                outTime = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc().add(sec, "seconds").format("YYYY-MM-DD HH:mm:ss");
                 request = {
                   station_status_id: _this.refType,
                   out_time: outTime,
@@ -24019,7 +23998,6 @@ function sleep(ms) {
               Echo["private"]("stationinfo").listen("StationInfoGet", function (e) {
                 _this.$store.dispatch("loadStationInfo");
               }).listen("StationCoreUpdate", function (e) {
-                //   console.log(e);
                 _this.$store.dispatch("updateCores", e.flag.message);
               });
               _context.next = 5;
@@ -24055,7 +24033,6 @@ function sleep(ms) {
   },
   methods: {
     updatetext: function updatetext(payload, item) {
-      // console.log(item);
       if (item.text != payload) {
         item.text = payload;
         var request = {
@@ -24124,7 +24101,7 @@ function sleep(ms) {
       this.loadingr = true;
       this.$store.dispatch("getStationData").then(function () {
         _this2.loadingr = false;
-      }); // console.log("30secs");
+      });
     },
     pillIcon: function pillIcon(statusId) {
       if (statusId == 1) {
@@ -24320,7 +24297,6 @@ function sleep(ms) {
 
       if (this.typePicked.length != 0) {
         this.typePicked.forEach(function (p) {
-          //   console.log(p);
           var pick = _this3.filteredItems.filter(function (f) {
             return f.item_name == p;
           });
@@ -25529,7 +25505,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     monthOld: function monthOld() {
       var a = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc(this.station.r_updated_at);
       var b = moment__WEBPACK_IMPORTED_MODULE_2___default.a.utc();
-      var diff = b.diff(a, "months"); //   console.log(diff);
+      var diff = b.diff(a, "months");
 
       if (diff > 0) {
         return true;
@@ -25767,8 +25743,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {};
   },
   methods: {
-    test: function test(n) {//   console.log(n);
-    },
+    test: function test(n) {},
     destroyed: function destroyed() {
       var _this = this;
 
@@ -26415,7 +26390,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     close: function close() {
       this.editText = null;
-      this.showTowerNotes = false; //   console.log("close");
+      this.showTowerNotes = false;
     },
     open: function open() {
       this.showNumber = false, this.messageCount = 0;
@@ -27262,7 +27237,6 @@ function sleep(ms) {
       });
     },
     filterRoles: function filterRoles(roles) {
-      // console.log(roles);
       return roles.filter(function (r) {
         return r.name != "Super Admin";
       });
@@ -27949,8 +27923,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   }),
   beforeDestroy: function beforeDestroy() {
-    // clearInterval(this.poll);
-    // console.log('KILL THEM ALL');
     Echo.leave("evestuff");
   }
 });
@@ -29073,8 +29045,7 @@ function sleep(ms) {
       }))();
     },
     roleForm: function roleForm(a) {
-      this.role = a; // console.log("LALAL");
-      // console.log(a);
+      this.role = a;
     },
     newCharFormClose: function newCharFormClose() {
       this.addShown = false;
@@ -29084,8 +29055,7 @@ function sleep(ms) {
       this.newLink = null;
     },
     roleEditForm: function roleEditForm(a) {
-      this.editrole = a; // console.log("LALAL");
-      // console.log(a);
+      this.editrole = a;
     },
     charEditForm: function charEditForm($event) {
       this.oldChar = this.userCharsDrop.find(function (user) {
@@ -29179,8 +29149,7 @@ function sleep(ms) {
 
       if (this.oldChar.link != this.editLink) {
         var link = this.editLink;
-      } // console.log(role_name);
-
+      }
 
       var request = {
         link: link,
@@ -30657,16 +30626,7 @@ function sleep(ms) {
                 if (e.flag.flag == 4) {
                   _this.sheetupdate();
                 }
-              }); // if (this.$can("view_admin_logs")) {
-              //     this.$store.dispatch("getLoggingRcSheet");
-              //     Echo.private("rcsheetadminlogs").listen(
-              //         "RcSheetAddLogging",
-              //         (e) => {
-              //             console.log("ytoyoyo");
-              //             this.$store.dispatch("addLoggingRcSheet", e.flag.message);
-              //         }
-              //     );
-              // }
+              });
 
             case 16:
             case "end":
@@ -32438,23 +32398,14 @@ function sleep(ms) {
       var b = moment__WEBPACK_IMPORTED_MODULE_2___default()(item.timestamp);
       this.diff = a.diff(b);
       return this.diff;
-    } // handleCountdownEnd() {
-    //     console.log("hi");
-    // }
-    // handleCountdownEnd(item) {
-    //     console.log('hi')
-    //     this.$store.dispatch('markOver',item);
-    // },
-
+    }
   },
   computed: {
     user_name: function user_name() {
       return this.$store.state.user_name;
     }
   },
-  beforeDestroy: function beforeDestroy() {// clearInterval(this.poll);
-    // console.log('KILL THEM ALL');
-  }
+  beforeDestroy: function beforeDestroy() {}
 });
 
 /***/ }),
@@ -32752,7 +32703,6 @@ function sleep(ms) {
       });
     },
     filterKeys: function filterKeys(keys) {
-      // console.log(roles);
       return keys;
     },
     refresh: function refresh() {
@@ -32809,7 +32759,6 @@ function sleep(ms) {
       }
     },
     fliterFleets: function fliterFleets(fleets) {
-      //   console.log(fleets);
       return fleets;
     },
     userAddKey: function userAddKey(item) {
@@ -35098,7 +35047,6 @@ function sleep(ms) {
       }
     },
     checkexpanded: function checkexpanded(notifications) {
-      // console.log(notifications);
       if (notifications.status_id != 5) {
         if (notifications.id == this.expanded_id) {
           this.expanded = [];
@@ -35107,7 +35055,6 @@ function sleep(ms) {
       }
     },
     updatetext: function updatetext(payload, item) {
-      // console.log(item);
       if (item.text != payload) {
         item.text = payload;
         var request = {
@@ -35136,7 +35083,7 @@ function sleep(ms) {
       });
       this.$store.dispatch("getqueriousLink");
       this.$store.dispatch("getdelveLink");
-      this.$store.dispatch("getperiodbasisLink"); // console.log("30secs");
+      this.$store.dispatch("getperiodbasisLink");
     },
     save: function save() {
       this.snack = true;
@@ -35192,8 +35139,7 @@ function sleep(ms) {
 
       if (item.status_id != 3) {
         item.end_time = null;
-      } // console.log(item.end_time)
-
+      }
 
       var request = {
         status_id: item.status_id,
@@ -35217,14 +35163,7 @@ function sleep(ms) {
       var b = moment__WEBPACK_IMPORTED_MODULE_2___default()(item.timestamp);
       this.diff = a.diff(b);
       return this.diff;
-    } // handleCountdownEnd() {
-    //     console.log("hi");
-    // }
-    // handleCountdownEnd(item) {
-    //     console.log('hi')
-    //     this.$store.dispatch('markOver',item);
-    // },
-
+    }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["notifications", "delveLink", "queriousLink", "periodbasisLink"])), {}, {
     filteredItems: function filteredItems() {
@@ -35289,8 +35228,6 @@ function sleep(ms) {
     }
   }),
   beforeDestroy: function beforeDestroy() {
-    // clearInterval(this.poll);
-    // console.log('KILL THEM ALL');
     Echo.leave("notes");
   }
 });
@@ -35625,9 +35562,7 @@ function sleep(ms) {
               } else {
                 Echo["private"]("rcmovesheet").listen("RcMoveUpdate", function (e) {
                   if (e.flag.message != null) {
-                    // console.log("got ping");
                     if (e.flag.message.added_by_user_id == _this.user_id) {
-                      //   console.log("belongs to me");
                       _this.$store.dispatch("updateStationNotification", e.flag.message);
                     }
                   }
@@ -36343,7 +36278,6 @@ function sleep(ms) {
               _this.loadingt = false;
               Echo["private"]("rcsheet").listen("RcSheetUpdate", function (e) {
                 if (e.flag.message != null) {
-                  // console.log("update");
                   _this.$store.dispatch("updateRcStation", e.flag.message);
                 }
 
@@ -36364,7 +36298,6 @@ function sleep(ms) {
                 _this.$store.dispatch("getLoggingRcSheet");
 
                 Echo["private"]("rcsheetadminlogs").listen("RcSheetAddLogging", function (e) {
-                  // console.log("ytoyoyo");
                   _this.$store.dispatch("addLoggingRcSheet", e.flag.message);
                 });
               }
@@ -36930,8 +36863,6 @@ function sleep(ms) {
           switch (_context.prev = _context.next) {
             case 0:
               Echo["private"]("recon").listen("ReconTaskNew", function (e) {
-                console.log("New task");
-
                 _this.getTasks();
 
                 _this.$store.dispatch("getReconTaskSystemsRecords");
@@ -38845,7 +38776,6 @@ function sleep(ms) {
 
       if (this.typePicked.length != 0) {
         this.typePicked.forEach(function (p) {
-          //   console.log(p);
           var pick = _this3.filteredItems.filter(function (f) {
             return f.region_id == p;
           });
@@ -39447,7 +39377,7 @@ function sleep(ms) {
       this.$store.dispatch("getTowerData").then(function () {
         _this3.loadingr = false;
         _this3.loading3 = false;
-      }); // console.log("30secs");
+      });
     },
     pillColor: function pillColor(statusId) {
       if (statusId == 1) {
@@ -40100,16 +40030,7 @@ function sleep(ms) {
                 if (e.flag.flag == 4) {
                   _this.sheetupdate();
                 }
-              }); // if (this.$can("view_admin_logs")) {
-              //     this.$store.dispatch("getLoggingRcSheet");
-              //     Echo.private("rcsheetadminlogs").listen(
-              //         "RcSheetAddLogging",
-              //         (e) => {
-              //             console.log("ytoyoyo");
-              //             this.$store.dispatch("addLoggingRcSheet", e.flag.message);
-              //         }
-              //     );
-              // }
+              });
 
             case 16:
             case "end":
@@ -54452,20 +54373,6 @@ var render = function () {
                             ],
                             1
                           ),
-                          _vm._v(" "),
-                          _c(
-                            "v-icon",
-                            {
-                              staticClass: "pl-4",
-                              attrs: { color: "orange darken-3", small: "" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.deleteNode(item)
-                                },
-                              },
-                            },
-                            [_vm._v("\n          fas fa-trash-alt\n        ")]
-                          ),
                         ],
                         1
                       ),
@@ -54480,6 +54387,27 @@ var render = function () {
                       _c("NewSystemTableTimer", {
                         attrs: { node: item, operationID: _vm.operationID },
                       }),
+                    ]
+                  },
+                },
+                {
+                  key: "item.actions",
+                  fn: function (ref) {
+                    var item = ref.item
+                    return [
+                      _c(
+                        "v-icon",
+                        {
+                          staticClass: "pl-4",
+                          attrs: { color: "orange darken-3", small: "" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.deleteNode(item)
+                            },
+                          },
+                        },
+                        [_vm._v("\n        fas fa-trash-alt\n      ")]
+                      ),
                     ]
                   },
                 },
@@ -92753,7 +92681,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     DELETE_OP_CHAR_FROM_OWN_LIST: function DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
       var check = state.ownChars.filter(function (e) {
         return e.id == id;
-      }).length; // console.log(check);
+      }).length;
 
       if (check > 0) {
         state.ownChars = state.ownChars.filter(function (e) {
@@ -92764,7 +92692,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     DELETE_OP_CHAR_FROM_CHAR_LIST: function DELETE_OP_CHAR_FROM_CHAR_LIST(state, id) {
       var check = state.opUsers.filter(function (e) {
         return e.id == id;
-      }).length; // console.log(check);
+      }).length;
 
       if (check > 0) {
         state.opUsers = state.opUsers.filter(function (e) {

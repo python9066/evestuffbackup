@@ -727,7 +727,6 @@ export default {
     },
 
     async getSystems() {
-      // console.log(id, this.$store.state.token);
       let res = await axios({
         method: "get",
         url: "/api/systemsinconstellation/" + this.$route.params.id,
@@ -826,8 +825,6 @@ export default {
 
     roleForm(a) {
       this.role = a;
-      // console.log("LALAL");
-      // console.log(a);
     },
 
     newCharFormClose() {
@@ -840,8 +837,6 @@ export default {
 
     roleEditForm(a) {
       this.editrole = a;
-      // console.log("LALAL");
-      // console.log(a);
     },
 
     charEditForm($event) {
@@ -917,7 +912,6 @@ export default {
       if (this.oldChar.link != this.editLink) {
         var link = this.editLink;
       }
-      // console.log(role_name);
       var request = {
         link: link,
         ship: ship,

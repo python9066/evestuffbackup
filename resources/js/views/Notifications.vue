@@ -659,7 +659,6 @@ export default {
     },
 
     checkexpanded(notifications) {
-      // console.log(notifications);
       if (notifications.status_id != 5) {
         if (notifications.id == this.expanded_id) {
           this.expanded = [];
@@ -669,7 +668,6 @@ export default {
     },
 
     updatetext(payload, item) {
-      // console.log(item);
       if (item.text != payload) {
         item.text = payload;
         var request = {
@@ -697,7 +695,6 @@ export default {
       this.$store.dispatch("getqueriousLink");
       this.$store.dispatch("getdelveLink");
       this.$store.dispatch("getperiodbasisLink");
-      // console.log("30secs");
     },
 
     save() {
@@ -758,7 +755,6 @@ export default {
       if (item.status_id != 3) {
         item.end_time = null;
       }
-      // console.log(item.end_time)
       var request = {
         status_id: item.status_id,
         user_id: this.$store.state.user_id,
@@ -782,14 +778,6 @@ export default {
       this.diff = a.diff(b);
       return this.diff;
     },
-
-    // handleCountdownEnd() {
-    //     console.log("hi");
-    // }
-    // handleCountdownEnd(item) {
-    //     console.log('hi')
-    //     this.$store.dispatch('markOver',item);
-    // },
   },
 
   computed: {
@@ -863,8 +851,6 @@ export default {
     },
   },
   beforeDestroy() {
-    // clearInterval(this.poll);
-    // console.log('KILL THEM ALL');
     Echo.leave("notes");
   },
 };

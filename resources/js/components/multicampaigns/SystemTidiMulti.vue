@@ -70,9 +70,7 @@ export default {
     };
   },
 
-  mounted() {
-    // console.log(this.CampaignSolaSystem);
-  },
+  mounted() {},
   methods: {
     colorTidi() {
       if (this.CampaignSolaSystem[0]["tidi"] > 59) {
@@ -101,7 +99,6 @@ export default {
         solaID: this.CampaignSolaSystem[0]["id"],
         baseTime: this.CampaignSolaSystem[0]["base_time"],
       };
-      // console.log(this.CampaignSolaSystem);
 
       await axios({
         method: "put", //you can set what request you want to be

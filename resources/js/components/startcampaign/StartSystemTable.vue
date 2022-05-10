@@ -135,8 +135,6 @@ export default {
   methods: {
     async clickaddchar(item) {
       var addChar = this.chars.find((user) => user.id == this.charAddNode);
-      //   console.log(item);
-      //   console.log(addChar);
       var data = {
         id: item.id,
         user_id: addChar.id,

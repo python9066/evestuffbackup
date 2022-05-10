@@ -103,10 +103,6 @@ export default {
           "Content-Type": "application/json",
         },
       });
-
-      //--------logging end------//
-
-      // console.log(timeStamp);
     },
   },
 

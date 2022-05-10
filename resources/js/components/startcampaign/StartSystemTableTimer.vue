@@ -195,9 +195,6 @@ export default {
       var base = min * 60 + sec;
       var sec = min * 60 + sec;
       var sec = sec / (100 / 100);
-      // var sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
-      // var sec = sec / (10 / 100);
-      // console.log(sec);
       var finishTime = moment
         .utc()
         .add(sec, "seconds")

@@ -358,7 +358,6 @@ export default {
           this.$store.dispatch("loadStationInfo");
         })
         .listen("StationCoreUpdate", (e) => {
-          //   console.log(e);
           this.$store.dispatch("updateCores", e.flag.message);
         });
 
@@ -375,7 +374,6 @@ export default {
   async mounted() {},
   methods: {
     updatetext(payload, item) {
-      // console.log(item);
       if (item.text != payload) {
         item.text = payload;
         var request = {
@@ -460,7 +458,6 @@ export default {
       this.$store.dispatch("getStationData").then(() => {
         this.loadingr = false;
       });
-      // console.log("30secs");
     },
 
     pillIcon(statusId) {
@@ -664,7 +661,6 @@ export default {
       let data = [];
       if (this.typePicked.length != 0) {
         this.typePicked.forEach((p) => {
-          //   console.log(p);
           let pick = this.filteredItems.filter((f) => f.item_name == p);
           if (pick != null) {
             pick.forEach((pk) => {

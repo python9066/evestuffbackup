@@ -403,17 +403,6 @@ export default {
         this.sheetupdate();
       }
     });
-
-    // if (this.$can("view_admin_logs")) {
-    //     this.$store.dispatch("getLoggingRcSheet");
-    //     Echo.private("rcsheetadminlogs").listen(
-    //         "RcSheetAddLogging",
-    //         (e) => {
-    //             console.log("ytoyoyo");
-    //             this.$store.dispatch("addLoggingRcSheet", e.flag.message);
-    //         }
-    //     );
-    // }
   },
 
   async mounted() {

@@ -400,7 +400,6 @@ export default {
       var a = moment.utc(this.station.r_updated_at);
       var b = moment.utc();
       var diff = b.diff(a, "months");
-      //   console.log(diff);
 
       if (diff > 0) {
         return true;

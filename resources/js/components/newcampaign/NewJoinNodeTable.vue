@@ -51,14 +51,6 @@
               </v-list-item>
             </v-list>
           </v-menu>
-          <v-icon
-            class="pl-4"
-            color="orange darken-3"
-            small
-            @click="deleteNode(item)"
-          >
-            fas fa-trash-alt
-          </v-icon>
         </div>
       </template>
       <template v-slot:[`item.created_at`]="{ item }">
@@ -66,6 +58,16 @@
           :node="item"
           :operationID="operationID"
         ></NewSystemTableTimer>
+      </template>
+      <template v-slot:[`item.actions`]="{ item }">
+        <v-icon
+          class="pl-4"
+          color="orange darken-3"
+          small
+          @click="deleteNode(item)"
+        >
+          fas fa-trash-alt
+        </v-icon>
       </template>
       <template v-slot:[`item.op_user.ship`]="{ item }" class="pl-0">
         <span v-if="item.op_user.name != null">
@@ -111,7 +113,7 @@ export default {
           align: "start",
         },
         {
-          text: "",
+          text: "Status",
           value: "status.name",
           align: "start",
         },
@@ -120,6 +122,11 @@ export default {
           value: "created_at",
           sortable: true,
           align: "center",
+        },
+        {
+          text: "",
+          value: "actions",
+          sortable: true,
         },
         // { text: "", value: "actions", width: "5%", align: "center" },
         // {

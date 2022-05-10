@@ -195,7 +195,6 @@ export default {
     },
 
     fliterFleets(fleets) {
-      // console.log(roles);
       return fleets;
     },
     close() {

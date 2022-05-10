@@ -499,7 +499,6 @@ export default {
         this.loadingr = false;
         this.loading3 = false;
       });
-      // console.log("30secs");
     },
 
     pillColor(statusId) {

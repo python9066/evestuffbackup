@@ -311,7 +311,6 @@ export default {
       let data = [];
       if (this.typePicked.length != 0) {
         this.typePicked.forEach((p) => {
-          //   console.log(p);
           let pick = this.filteredItems.filter((f) => f.region_id == p);
           if (pick != null) {
             pick.forEach((pk) => {

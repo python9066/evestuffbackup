@@ -230,7 +230,6 @@ export default {
     },
 
     filterRoles(roles) {
-      // console.log(roles);
       return roles.filter((r) => r.name != "Super Admin");
     },
 

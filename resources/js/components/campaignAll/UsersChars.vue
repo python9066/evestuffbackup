@@ -199,14 +199,10 @@ export default {
 
     roleForm(a) {
       this.role = a;
-      // console.log("LALAL");
-      // console.log(a);
     },
 
     roleEditForm(a) {
       this.editrole = a;
-      // console.log("LALAL");
-      // console.log(a);
     },
 
     pillColor(item) {

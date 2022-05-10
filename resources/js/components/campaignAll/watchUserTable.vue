@@ -126,7 +126,6 @@ export default {
     },
 
     async kickUser(item) {
-      // console.log(item.user_id)
       var request = {
         user_id: item.user_id,
       };

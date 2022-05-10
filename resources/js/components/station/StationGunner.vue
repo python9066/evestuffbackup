@@ -120,7 +120,6 @@ export default {
   computed: {
     showGunnerButton() {
       if (this.station.gunner_id == null) {
-        // console.log("true");
         return true;
       } else {
         return false;

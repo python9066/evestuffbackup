@@ -254,14 +254,6 @@ export default {
       this.diff = a.diff(b);
       return this.diff;
     },
-
-    // handleCountdownEnd() {
-    //     console.log("hi");
-    // }
-    // handleCountdownEnd(item) {
-    //     console.log('hi')
-    //     this.$store.dispatch('markOver',item);
-    // },
   },
 
   computed: {
@@ -269,9 +261,6 @@ export default {
       return this.$store.state.user_name;
     },
   },
-  beforeDestroy() {
-    // clearInterval(this.poll);
-    // console.log('KILL THEM ALL');
-  },
+  beforeDestroy() {},
 };
 </script>

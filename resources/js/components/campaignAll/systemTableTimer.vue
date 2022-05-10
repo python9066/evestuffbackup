@@ -166,8 +166,6 @@ export default {
       var base = min * 60 + sec;
       var sec = min * 60 + sec;
       var sec = sec / (this.CampaignSolaSystem[0]["tidi"] / 100);
-      // var sec = sec / (10 / 100);
-      // console.log(sec);
       var finishTime = moment
         .utc()
         .add(sec, "seconds")
@@ -179,7 +177,6 @@ export default {
         input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
         base_time: base,
       };
-      // console.log(base);
       if (this.item.custom_campaign_id != null) {
         var campid = this.$route.params.id;
       } else {

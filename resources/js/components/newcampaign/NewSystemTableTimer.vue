@@ -190,7 +190,6 @@ export default {
   async mounted() {},
   methods: {
     clockRedText(props) {
-      console.log(props.minutes);
       if (
         (props.minutes < 5 || props.hours > 0) &&
         this.node.node_status.id == 1

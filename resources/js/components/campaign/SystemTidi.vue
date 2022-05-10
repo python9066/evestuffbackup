@@ -70,9 +70,7 @@ export default {
     };
   },
 
-  mounted() {
-    // console.log(this.CampaignSolaSystem);
-  },
+  mounted() {},
   methods: {
     colorTidi() {
       if (this.CampaignSolaSystem[0]["tidi"] > 59) {
@@ -95,7 +93,6 @@ export default {
       };
       this.$store.dispatch("updateCampaignSolaSystem", data);
 
-      // console.log(this.tidiEdit);
       var request = {
         newTidi: this.tidiEdit,
         oldTidi: this.CampaignSolaSystem[0]["tidi"],

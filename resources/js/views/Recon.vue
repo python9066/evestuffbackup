@@ -55,7 +55,6 @@ export default {
 
   async created() {
     Echo.private("recon").listen("ReconTaskNew", (e) => {
-      console.log("New task");
       this.getTasks();
       this.$store.dispatch("getReconTaskSystemsRecords");
     });
@@ -89,7 +88,6 @@ export default {
       });
     },
     async getTasks() {
-      // console.log(id, this.$store.state.token);  dddddd
       let res = await axios({
         method: "get",
         url: "/api/recontask",

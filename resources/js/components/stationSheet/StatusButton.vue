@@ -44,9 +44,7 @@ export default {
   },
 
   methods: {
-    test(n) {
-      //   console.log(n);
-    },
+    test(n) {},
 
     async destroyed() {
       await axios({
