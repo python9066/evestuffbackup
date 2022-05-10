@@ -133,9 +133,6 @@ class NewSystemNodeController extends Controller
                     if ($oldCheck) {
                         $oldCheck->update('primery', 1);
                     }
-
-                    Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
                 }
 
 
@@ -164,9 +161,6 @@ class NewSystemNodeController extends Controller
                     if ($oldCheck) {
                         $oldCheck->update('primery', 1);
                     }
-
-                    Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
                 }
                 break;
             case 5: // * Faild
@@ -189,9 +183,6 @@ class NewSystemNodeController extends Controller
                     if ($oldCheck) {
                         $oldCheck->update('primery', 1);
                     }
-
-                    Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
                 }
                 break;
             case 6: // * Pushed off
@@ -214,9 +205,6 @@ class NewSystemNodeController extends Controller
                     if ($oldCheck) {
                         $oldCheck->update('primery', 1);
                     }
-
-                    Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
                 } else {
                     $userNode = NewUserNode::where('node_id', $id)->first();
                     if ($userNode) {
@@ -232,9 +220,6 @@ class NewSystemNodeController extends Controller
 
 
                         $userNode->delete();
-
-                        Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
-                        Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
                     }
                 }
                 break;
@@ -258,9 +243,6 @@ class NewSystemNodeController extends Controller
                     if ($oldCheck) {
                         $oldCheck->update('primery', 1);
                     }
-
-                    Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
                 }
                 break;
             case 8: // * Friendly Hacking
@@ -286,9 +268,6 @@ class NewSystemNodeController extends Controller
                     if ($oldCheck) {
                         $oldCheck->update('primery', 1);
                     }
-
-                    Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
                 }
                 break;
             case 9: // * Passive
@@ -311,14 +290,18 @@ class NewSystemNodeController extends Controller
                     if ($oldCheck) {
                         $oldCheck->update('primery', 1);
                     }
-
-                    Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
-                    Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
                 }
                 break;
         }
-        NewSystemNode::where('id', $id)->update(['node_status' => $request->status_id]);
+
+        if ($request->extra == true) {
+            NewUserNode::where('id', $id)->update(['node_status' => $request->status_id]);
+        } else {
+            NewSystemNode::where('id', $id)->update(['node_status' => $request->status_id]);
+        }
         Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
+        Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
+        Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
     }
 
     /**

@@ -12937,11 +12937,22 @@ function sleep(ms) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                request = {
-                  status_id: list.value,
-                  system_id: _this.node.system_id,
-                  opID: _this.operationID
-                };
+                if (_this.extra == 1) {
+                  request = {
+                    status_id: list.value,
+                    system_id: _this.node.system_id,
+                    opID: _this.operationID,
+                    extra: false
+                  };
+                } else {
+                  request = {
+                    status_id: list.value,
+                    system_id: _this.node.op_user.system_id,
+                    opID: _this.operationID,
+                    extra: true
+                  };
+                }
+
                 _context4.next = 3;
                 return axios({
                   method: "post",
