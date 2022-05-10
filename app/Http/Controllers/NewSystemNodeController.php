@@ -145,7 +145,8 @@ class NewSystemNodeController extends Controller
                 }
                 $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
                 $opUserID = $opUser->id;
-                dd($opUser, $opUserID);
+                $user = User::where('id', $opUser->user_id)->first();
+                $userID = $user->id;
                 break;
 
 
@@ -158,7 +159,8 @@ class NewSystemNodeController extends Controller
                 }
                 $opUser = OperationUser::where('id', $userNode->operation_user_id)->first();
                 $opUserID = $opUser->id;
-                dd($opUser, $opUserID);
+                $user = User::where('id', $opUser->user_id)->first();
+                $userID = $user->id;
                 break;
 
 
