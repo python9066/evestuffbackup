@@ -295,7 +295,7 @@ class NewSystemNodeController extends Controller
         }
 
         if ($request->extra == true) {
-            NewUserNode::where('id', $id)->update(['node_status' => $request->status_id]);
+            NewUserNode::where('id', $id)->update(['node_status_id' => $request->status_id]);
         } else {
             NewSystemNode::where('id', $id)->update(['node_status' => $request->status_id]);
         }
