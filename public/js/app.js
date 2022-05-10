@@ -13313,7 +13313,11 @@ function sleep(ms) {
   title: function title() {},
   props: {
     node: Object,
-    operationID: Number
+    operationID: Number,
+    extra: {
+      type: Number,
+      "default": 1
+    }
   },
   data: function data() {
     return {
@@ -13475,8 +13479,12 @@ function sleep(ms) {
       }
     },
     opUserInfo: function opUserInfo() {
-      if (this.node.prime_node_user.length > 0) {
-        return this.node.prime_node_user[0];
+      if (this.extra == 1) {
+        if (this.node.prime_node_user.length > 0) {
+          return this.node.prime_node_user[0];
+        } else {
+          return null;
+        }
       } else {
         return null;
       }
@@ -13525,12 +13533,18 @@ function sleep(ms) {
       }
     },
     startTime: function startTime() {
-      if (this.opUserInfo) {
-        return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.end_time).unix();
-      } else if (this.node.node_status.id == 7 || this.node.node_status.id == 8) {
-        return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.end_time).unix();
+      if (this.extra == 1) {
+        if (this.opUserInfo) {
+          return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.end_time).unix();
+        } else if (this.node.node_status.id == 7 || this.node.node_status.id == 8) {
+          return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.end_time).unix();
+        } else {
+          return null;
+        }
       } else {
-        return null;
+        if (this.node.end_time) {
+          return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.end_time).unix();
+        }
       }
     },
     hackTextColor: function hackTextColor() {
@@ -13574,10 +13588,14 @@ function sleep(ms) {
       }
     },
     timeMoment: function timeMoment() {
-      if (this.node.node_status.id == 2) {
-        return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.updated_at).format("YYYY-MM-DD HH:mm:ss");
+      if (this.extra == 1) {
+        if (this.node.node_status.id == 2) {
+          return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.opUserInfo.updated_at).format("YYYY-MM-DD HH:mm:ss");
+        } else {
+          return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
+        }
       } else {
-        return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
+        return moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc(this.node.created_at);
       }
     },
     countUptimerColor: function countUptimerColor() {}

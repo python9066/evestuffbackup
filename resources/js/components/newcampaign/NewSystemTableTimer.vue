@@ -170,6 +170,10 @@ export default {
   props: {
     node: Object,
     operationID: Number,
+    extra: {
+      type: Number,
+      default: 1,
+    },
   },
   data() {
     return {
@@ -301,8 +305,12 @@ export default {
     },
 
     opUserInfo() {
-      if (this.node.prime_node_user.length > 0) {
-        return this.node.prime_node_user[0];
+      if (this.extra == 1) {
+        if (this.node.prime_node_user.length > 0) {
+          return this.node.prime_node_user[0];
+        } else {
+          return null;
+        }
       } else {
         return null;
       }
@@ -343,15 +351,21 @@ export default {
     },
 
     startTime() {
-      if (this.opUserInfo) {
-        return moment.utc(this.opUserInfo.end_time).unix();
-      } else if (
-        this.node.node_status.id == 7 ||
-        this.node.node_status.id == 8
-      ) {
-        return moment.utc(this.node.end_time).unix();
+      if (this.extra == 1) {
+        if (this.opUserInfo) {
+          return moment.utc(this.opUserInfo.end_time).unix();
+        } else if (
+          this.node.node_status.id == 7 ||
+          this.node.node_status.id == 8
+        ) {
+          return moment.utc(this.node.end_time).unix();
+        } else {
+          return null;
+        }
       } else {
-        return null;
+        if (this.node.end_time) {
+          return moment.utc(this.node.end_time).unix();
+        }
       }
     },
 
@@ -410,12 +424,16 @@ export default {
     },
 
     timeMoment() {
-      if (this.node.node_status.id == 2) {
-        return moment
-          .utc(this.opUserInfo.updated_at)
-          .format("YYYY-MM-DD HH:mm:ss");
+      if (this.extra == 1) {
+        if (this.node.node_status.id == 2) {
+          return moment
+            .utc(this.opUserInfo.updated_at)
+            .format("YYYY-MM-DD HH:mm:ss");
+        } else {
+          return moment.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
+        }
       } else {
-        return moment.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
+        return moment.utc(this.node.created_at);
       }
     },
 
