@@ -12253,7 +12253,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         align: "start"
       }, {
         text: "Status",
-        value: "nodeStatus.name",
+        value: "node_status.name",
         align: "start"
       }, {
         text: "Age/Hack",
@@ -12289,19 +12289,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   methods: {
     pillColor: function pillColor(item) {
-      if (item.nodeStatus.id == 1) {
+      if (item.node_status.id == 1) {
         return "deep-orange lighten-1";
       }
 
-      if (item.nodeStatus.id == 2) {
+      if (item.node_status.id == 2) {
         return "lime darken-4";
       }
 
-      if (item.nodeStatus.id == 3) {
+      if (item.node_status.id == 3) {
         return "green darken-3";
       }
 
-      if (item.nodeStatus.id == 6) {
+      if (item.node_status.id == 6) {
         return "FF5EEA";
       }
     },
@@ -12342,13 +12342,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 request = [];
 
-                if (item.nodeStatus.id == 1 || item.nodeStatus.id == 2 || item.nodeStatus.id == 3) {
+                if (item.node_status.id == 1 || item.node_status.id == 2 || item.node_status.id == 3) {
                   request = {
-                    dance: item.nodeStatus.id
+                    dance: item.node_status.id
                   };
                 }
 
-                if (!(item.nodeStatus.id == 6)) {
+                if (!(item.node_status.id == 6)) {
                   _context2.next = 6;
                   break;
                 }
@@ -54279,7 +54279,7 @@ var render = function () {
                   },
                 },
                 {
-                  key: "item.nodeStatus.name",
+                  key: "item.node_status.name",
                   fn: function (ref) {
                     var item = ref.item
                     return [
@@ -54325,7 +54325,7 @@ var render = function () {
                                                 _vm._v(
                                                   "\n                " +
                                                     _vm._s(
-                                                      item.nodeStatus.name
+                                                      item.node_status.name
                                                     ) +
                                                     "\n              "
                                                 ),
@@ -54355,8 +54355,8 @@ var render = function () {
                                         key: index,
                                         on: {
                                           click: function ($event) {
-                                            ;(item.nodeStatus.id = list.value),
-                                              (item.nodeStatus.name =
+                                            ;(item.node_status.id = list.value),
+                                              (item.node_status.name =
                                                 list.title),
                                               _vm.statusClick(item)
                                           },

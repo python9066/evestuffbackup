@@ -19,7 +19,7 @@
           </div>
         </div>
       </template>
-      <template v-slot:[`item.nodeStatus.name`]="{ item }">
+      <template v-slot:[`item.node_status.name`]="{ item }">
         <div class="d-inline-flex align-items-center">
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
@@ -32,7 +32,7 @@
                   small
                   :color="pillColor(item)"
                 >
-                  {{ item.nodeStatus.name }}
+                  {{ item.node_status.name }}
                 </v-chip>
               </div>
             </template>
@@ -42,8 +42,8 @@
                 v-for="(list, index) in dropdown_edit"
                 :key="index"
                 @click="
-                  (item.nodeStatus.id = list.value),
-                    (item.nodeStatus.name = list.title),
+                  (item.node_status.id = list.value),
+                    (item.node_status.name = list.title),
                     statusClick(item)
                 "
               >
@@ -114,7 +114,7 @@ export default {
         },
         {
           text: "Status",
-          value: "nodeStatus.name",
+          value: "node_status.name",
           align: "start",
         },
         {
@@ -148,16 +148,16 @@ export default {
 
   methods: {
     pillColor(item) {
-      if (item.nodeStatus.id == 1) {
+      if (item.node_status.id == 1) {
         return "deep-orange lighten-1";
       }
-      if (item.nodeStatus.id == 2) {
+      if (item.node_status.id == 2) {
         return "lime darken-4";
       }
-      if (item.nodeStatus.id == 3) {
+      if (item.node_status.id == 3) {
         return "green darken-3";
       }
-      if (item.nodeStatus.id == 6) {
+      if (item.node_status.id == 6) {
         return "FF5EEA";
       }
     },
@@ -177,15 +177,15 @@ export default {
     async statusClick(item) {
       var request = [];
       if (
-        item.nodeStatus.id == 1 ||
-        item.nodeStatus.id == 2 ||
-        item.nodeStatus.id == 3
+        item.node_status.id == 1 ||
+        item.node_status.id == 2 ||
+        item.node_status.id == 3
       ) {
         request = {
-          dance: item.nodeStatus.id,
+          dance: item.node_status.id,
         };
       }
-      if (item.nodeStatus.id == 6) {
+      if (item.node_status.id == 6) {
         await this.deleteNode(item);
         return;
       }
