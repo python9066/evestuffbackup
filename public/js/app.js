@@ -12645,7 +12645,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -54652,7 +54651,6 @@ var render = function () {
                         items: _vm.nodes,
                         "disable-sort": "",
                         "item-class": _vm.itemRowBackground,
-                        "item-key": "id",
                         expanded: _vm.expanded,
                         "hide-default-footer": "",
                         "disable-pagination": "",

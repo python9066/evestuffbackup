@@ -9,7 +9,6 @@
             :items="nodes"
             disable-sort
             :item-class="itemRowBackground"
-            item-key="id"
             :expanded="expanded"
             hide-default-footer
             disable-pagination
