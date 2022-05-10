@@ -21,7 +21,7 @@ class NewUserNode extends Model
     }
 
 
-    public function status()
+    public function nodeStatus()
     {
         return $this->belongsTo(CampaignSystemStatus::class, 'node_status_id', 'id');
     }

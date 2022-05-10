@@ -19,7 +19,7 @@
           </div>
         </div>
       </template>
-      <template v-slot:[`item.status.name`]="{ item }">
+      <template v-slot:[`item.nodeStatus.name`]="{ item }">
         <div class="d-inline-flex align-items-center">
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
@@ -32,7 +32,7 @@
                   small
                   :color="pillColor(item)"
                 >
-                  {{ item.status.name }}
+                  {{ item.nodeStatus.name }}
                 </v-chip>
               </div>
             </template>
@@ -42,8 +42,8 @@
                 v-for="(list, index) in dropdown_edit"
                 :key="index"
                 @click="
-                  (item.status.id = list.value),
-                    (item.status.name = list.title),
+                  (item.nodeStatus.id = list.value),
+                    (item.nodeStatus.name = list.title),
                     statusClick(item)
                 "
               >
@@ -114,7 +114,7 @@ export default {
         },
         {
           text: "Status",
-          value: "status.name",
+          value: "nodeStatus.name",
           align: "start",
         },
         {
@@ -148,16 +148,16 @@ export default {
 
   methods: {
     pillColor(item) {
-      if (item.status.id == 1) {
+      if (item.nodeStatus.id == 1) {
         return "deep-orange lighten-1";
       }
-      if (item.status.id == 2) {
+      if (item.nodeStatus.id == 2) {
         return "lime darken-4";
       }
-      if (item.status.id == 3) {
+      if (item.nodeStatus.id == 3) {
         return "green darken-3";
       }
-      if (item.status.id == 6) {
+      if (item.nodeStatus.id == 6) {
         return "FF5EEA";
       }
     },
@@ -176,12 +176,16 @@ export default {
 
     async statusClick(item) {
       var request = [];
-      if (item.status.id == 1 || item.status.id == 2 || item.status.id == 3) {
+      if (
+        item.nodeStatus.id == 1 ||
+        item.nodeStatus.id == 2 ||
+        item.nodeStatus.id == 3
+      ) {
         request = {
-          dance: item.status.id,
+          dance: item.nodeStatus.id,
         };
       }
-      if (item.status.id == 6) {
+      if (item.nodeStatus.id == 6) {
         await this.deleteNode(item);
         return;
       }
