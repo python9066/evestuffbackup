@@ -299,4 +299,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/updatenodestats/{id}', 'NewSystemNodeController@updateStatus');
     Route::put('/addprimetimer/{id}', 'NewUserNodeController@addTimer');
     Route::put('/addtimertonode/{id}', 'NewUserNodeController@addTimertoNode');
+    Route::put('/onthewayreadytogo/{opID}/{opUserID}', 'OperationUserController@updateOnTheWayReadyToGO');
 });

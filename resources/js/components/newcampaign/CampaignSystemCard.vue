@@ -17,11 +17,10 @@
     <v-expansion-panel class="rounded-xl" style="cursor: context-menu">
       <v-expansion-panel-header
         style="cursor: context-menu"
-        color="primary"
         class="py-0"
         :class="filterRound"
       >
-        <v-card flat max-width elevation="0" color="primary">
+        <v-card flat max-width elevation="0">
           <v-card-title
             max-width
             class="d-flex justify-space-between align-center py-0"
@@ -40,7 +39,7 @@
                 :cols="colNumber"
                 class="d-flex justify-center align-center"
               >
-                On The Way - 0
+                <OnTheWay :operationID="operationID"></OnTheWay>
               </v-col>
               <v-divider vertical></v-divider>
 
@@ -48,7 +47,7 @@
                 :cols="colNumber"
                 class="d-flex justify-center align-center"
               >
-                Ready to go - 0
+                Ready To GO - 0
               </v-col>
               <v-divider vertical></v-divider>
               <v-col

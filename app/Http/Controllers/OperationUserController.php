@@ -42,6 +42,22 @@ class OperationUserController extends Controller
         Broadcasthelper::broadcastuserSolo($opID, $new->id, 6);
     }
 
+    public function updateOnTheWayReadyToGO(Request $request, $opID, $opUserID)
+    {
+
+        $opUser = OperationUser::where('id', $opUserID)->first();
+        $oldSystemID = $opUser->system_id;
+        $opUser->update($request->all());
+
+        if ($oldSystemID) {
+            Broadcasthelper::broadcastsystemSolo($oldSystemID, 7);
+        }
+
+        Broadcasthelper::broadcastuserOwnSolo($opUserID, $opUser->user_id, 3);
+        Broadcasthelper::broadcastuserSolo($opID, $opUserID, 6);
+        Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
+    }
+
 
 
     /**
