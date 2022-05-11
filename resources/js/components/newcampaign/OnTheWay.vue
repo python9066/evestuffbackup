@@ -1,6 +1,6 @@
 <template>
   <div class="ml-auto">
-    <v-menu transition="fade-transition" v-if="freecharCount != 0">
+    <v-menu transition="fade-transition" v-if="showButton != 0">
       <template v-slot:activator="{ on, attrs }">
         <v-chip
           dark
@@ -118,10 +118,11 @@ export default {
 
     ...mapState([]),
 
-    freecharCount() {
+    showButton() {
       var data = this.getOwnHackingCharOnOp(this.operationID).filter(
-        (c) => c.user_status_id != 2 && c.system_id != this.item.id
+        (c) => c.system_id != this.item.id && c.user_status_id != 2
       );
+
       if (data) {
         return data.length;
       } else {

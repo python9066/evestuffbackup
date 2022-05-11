@@ -13876,11 +13876,11 @@ function sleep(ms) {
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp", "getOpUsersOnTheWayAll"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
-    freecharCount: function freecharCount() {
+    showButton: function showButton() {
       var _this2 = this;
 
       var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-        return c.user_status_id != 2 && c.system_id != _this2.item.id;
+        return c.system_id != _this2.item.id && c.user_status_id != 2;
       });
 
       if (data) {
@@ -55868,7 +55868,7 @@ var render = function () {
     "div",
     { staticClass: "ml-auto" },
     [
-      _vm.freecharCount != 0
+      _vm.showButton != 0
         ? _c(
             "v-menu",
             {
