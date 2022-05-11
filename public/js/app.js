@@ -13890,7 +13890,18 @@ function sleep(ms) {
       return this.getOpUsersOnTheWayAll;
     },
     OnTheWayCount: function OnTheWayCount() {
-      return this.charsOnTheWayAll.length;
+      if (this.charsOnTheWayAll) {
+        return this.charsOnTheWayAll.length;
+      } else {
+        return 0;
+      }
+    },
+    fabOnTheWayDisbale: function fabOnTheWayDisbale() {
+      if (this.OnTheWayCount == 0) {
+        return true;
+      } else {
+        return false;
+      }
     },
     filterCharsOnTheWay: function filterCharsOnTheWay() {
       var _this2 = this;

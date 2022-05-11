@@ -129,7 +129,19 @@ export default {
     },
 
     OnTheWayCount() {
-      return this.charsOnTheWayAll.length;
+      if (this.charsOnTheWayAll) {
+        return this.charsOnTheWayAll.length;
+      } else {
+        return 0;
+      }
+    },
+
+    fabOnTheWayDisbale() {
+      if (this.OnTheWayCount == 0) {
+        return true;
+      } else {
+        return false;
+      }
     },
 
     filterCharsOnTheWay() {
