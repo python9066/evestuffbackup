@@ -13912,15 +13912,9 @@ function sleep(ms) {
     showButton: function showButton() {
       var _this3 = this;
 
-      if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
-        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-          return c.system_id != _this3.item.id && c.user_status_id != 2;
-        });
-      } else {
-        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-          return c.system_id != _this3.item.id;
-        });
-      }
+      var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+        return c.system_id != _this3.item.id && c.user_status_id != 3;
+      });
 
       if (data) {
         return data.length;
@@ -13931,15 +13925,9 @@ function sleep(ms) {
     charsFree: function charsFree() {
       var _this4 = this;
 
-      if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
-        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-          return c.system_id != _this4.item.id && c.user_status_id != 2;
-        });
-      } else {
-        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-          return c.system_id != _this4.item.id;
-        });
-      }
+      var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+        return c.system_id != _this4.item.id && c.user_status_id != 3;
+      });
 
       if (data) {
         return data;
@@ -14430,15 +14418,9 @@ function sleep(ms) {
     showButton: function showButton() {
       var _this3 = this;
 
-      if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
-        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-          return c.system_id != _this3.item.id && c.user_status_id != 3;
-        });
-      } else {
-        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-          return c.system_id != _this3.item.id;
-        });
-      }
+      var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+        return c.system_id != _this3.item.id && c.user_status_id != 3;
+      });
 
       if (data) {
         return data.length;
@@ -14449,15 +14431,9 @@ function sleep(ms) {
     charsFree: function charsFree() {
       var _this4 = this;
 
-      if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
-        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-          return c.system_id != _this4.item.id && c.user_status_id != 3;
-        });
-      } else {
-        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-          return c.system_id != _this4.item.id;
-        });
-      }
+      var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+        return c.system_id != _this4.item.id && c.user_status_id != 3;
+      });
 
       if (data) {
         return data;

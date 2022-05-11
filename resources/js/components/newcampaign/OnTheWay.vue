@@ -137,15 +137,9 @@ export default {
     ...mapState([]),
 
     showButton() {
-      if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
-        var data = this.getOwnHackingCharOnOp(this.operationID).filter(
-          (c) => c.system_id != this.item.id && c.user_status_id != 2
-        );
-      } else {
-        var data = this.getOwnHackingCharOnOp(this.operationID).filter(
-          (c) => c.system_id != this.item.id
-        );
-      }
+      var data = this.getOwnHackingCharOnOp(this.operationID).filter(
+        (c) => c.system_id != this.item.id && c.user_status_id != 3
+      );
 
       if (data) {
         return data.length;
@@ -155,15 +149,10 @@ export default {
     },
 
     charsFree() {
-      if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
-        var data = this.getOwnHackingCharOnOp(this.operationID).filter(
-          (c) => c.system_id != this.item.id && c.user_status_id != 2
-        );
-      } else {
-        var data = this.getOwnHackingCharOnOp(this.operationID).filter(
-          (c) => c.system_id != this.item.id
-        );
-      }
+      var data = this.getOwnHackingCharOnOp(this.operationID).filter(
+        (c) => c.system_id != this.item.id && c.user_status_id != 3
+      );
+
       if (data) {
         return data;
       } else {
