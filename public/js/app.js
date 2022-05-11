@@ -54502,10 +54502,19 @@ var render = function () {
                           _vm._v(" "),
                           _c("v-divider", { attrs: { vertical: "" } }),
                           _vm._v(" "),
-                          _c("v-col", {
-                            staticClass: "d-flex justify-center align-center",
-                            attrs: { cols: _vm.colNumber },
-                          }),
+                          _c(
+                            "v-col",
+                            {
+                              staticClass: "d-flex justify-center align-center",
+                              attrs: { cols: _vm.colNumber },
+                            },
+                            [
+                              _c("OnTheWay", {
+                                attrs: { operationID: _vm.operationID },
+                              }),
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
                           _c("v-divider", { attrs: { vertical: "" } }),
                           _vm._v(" "),
