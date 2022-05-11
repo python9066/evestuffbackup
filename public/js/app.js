@@ -56538,7 +56538,7 @@ var render = function () {
             ],
             1
           )
-        : _c("span", [_vm._v(" On the way - ")]),
+        : _c("span", [_vm._v(" Ready To GO - ")]),
       _vm._v(" "),
       _c(
         "v-menu",

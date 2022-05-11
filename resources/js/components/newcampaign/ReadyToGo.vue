@@ -22,7 +22,7 @@
         </v-list-item>
       </v-list>
     </v-menu>
-    <span v-else> On the way - </span>
+    <span v-else> Ready To GO - </span>
     <v-menu transition="fade-transition">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
