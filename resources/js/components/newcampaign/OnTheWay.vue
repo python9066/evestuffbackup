@@ -102,7 +102,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getOwnHackingCharOnOp"]),
+    ...mapGetters(["getOwnHackingCharOnOp", "getOpUsersOnTheWayAll"]),
 
     ...mapState([]),
 
@@ -122,6 +122,14 @@ export default {
       } else {
         return [];
       }
+    },
+
+    charsOnTheWayAll() {
+      return this.getOpUsersOnTheWayAll;
+    },
+
+    OnTheWayCount() {
+      return this.charsOnTheWayAll.length;
     },
 
     filterCharsOnTheWay() {

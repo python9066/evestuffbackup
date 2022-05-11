@@ -13867,7 +13867,7 @@ function sleep(ms) {
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp", "getOpUsersOnTheWayAll"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     freecharCount: function freecharCount() {
       var data = this.getOwnHackingCharOnOp(this.operationID);
 
@@ -13885,6 +13885,12 @@ function sleep(ms) {
       } else {
         return [];
       }
+    },
+    charsOnTheWayAll: function charsOnTheWayAll() {
+      return this.getOpUsersOnTheWayAll;
+    },
+    OnTheWayCount: function OnTheWayCount() {
+      return this.charsOnTheWayAll.length;
     },
     filterCharsOnTheWay: function filterCharsOnTheWay() {
       var _this2 = this;
@@ -14209,7 +14215,7 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])()), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])),
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])),
   beforeDestroy: function beforeDestroy() {}
 });
 
@@ -97066,6 +97072,18 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
           return null;
         }
       };
+    },
+    getOpUsersOnTheWayAll: function getOpUsersOnTheWayAll(state) {
+      var pull = state.opUsers.filter(function (u) {
+        return u.role_id == 1 && u.user_status_id == 2;
+      });
+      var count = pull.length;
+
+      if (count != 0) {
+        return pull;
+      } else {
+        return null;
+      }
     }
   }
 }));
