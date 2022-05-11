@@ -21,24 +21,30 @@
         :class="filterRound"
       >
         <v-row no-gutters>
-          <v-col cols="2">
+          <v-col cols="2" class="d-flex justify-start align-center">
             {{ item.system_name }}
-            <v-divider vertical></v-divider>
           </v-col>
-          <v-col cols="4">
+          <v-divider vertical></v-divider>
+          <v-col cols="4" class="d-flex justify-start align-center">
             Nodes - 2/3 1/3
-            <v-divider vertical></v-divider>
           </v-col>
-          <v-col cols="2">
+          <v-divider vertical></v-divider>
+          <v-col cols="2" class="d-flex justify-center align-center">
             On The Way - 0
-            <v-divider vertical></v-divider>
           </v-col>
+          <v-divider vertical></v-divider>
 
-          <v-col cols="2">
+          <v-col cols="2" class="d-flex justify-center align-center">
             Ready to go - 0
-            <v-divider vertical></v-divider>
           </v-col>
-          <v-col cols="2" v-if="showSystemTable == 0"> + NODE </v-col>
+          <v-divider vertical></v-divider>
+          <v-col
+            cols="2"
+            class="d-flex justify-end align-center"
+            v-if="showSystemTable == 0"
+          >
+            + NODE
+          </v-col>
         </v-row>
       </v-expansion-panel-header>
       <v-expansion-panel-content
