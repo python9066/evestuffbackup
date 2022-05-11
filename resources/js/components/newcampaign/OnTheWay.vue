@@ -119,9 +119,15 @@ export default {
     ...mapState([]),
 
     showButton() {
-      var data = this.getOwnHackingCharOnOp(this.operationID).filter(
-        (c) => c.system_id != this.item.id && c.user_status_id != 2
-      );
+      if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
+        var data = this.getOwnHackingCharOnOp(this.operationID).filter(
+          (c) => c.system_id != this.item.id && c.user_status_id != 2
+        );
+      } else {
+        var data = this.getOwnHackingCharOnOp(this.operationID).filter(
+          (c) => c.user_status_id != 2
+        );
+      }
 
       if (data) {
         return data.length;
