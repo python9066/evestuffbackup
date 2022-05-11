@@ -13877,7 +13877,11 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp", "getOpUsersOnTheWayAll"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     freecharCount: function freecharCount() {
-      var data = this.getOwnHackingCharOnOp(this.operationID);
+      var _this2 = this;
+
+      var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+        return c.user_status_id != 2 && c.system_id != _this2.item.id;
+      });
 
       if (data) {
         return this.getOwnHackingCharOnOp(this.operationID).length;
@@ -13886,10 +13890,10 @@ function sleep(ms) {
       }
     },
     charsFree: function charsFree() {
-      var _this2 = this;
+      var _this3 = this;
 
       var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-        return c.user_status_id != 2 && c.system_id != _this2.item.id;
+        return c.user_status_id != 2 && c.system_id != _this3.item.id;
       });
 
       if (data) {
@@ -13899,10 +13903,10 @@ function sleep(ms) {
       }
     },
     charsOnTheWayAll: function charsOnTheWayAll() {
-      var _this3 = this;
+      var _this4 = this;
 
       return this.getOpUsersOnTheWayAll.filter(function (q) {
-        return q.system_id == _this3.item.id;
+        return q.system_id == _this4.item.id;
       });
     },
     OnTheWayCount: function OnTheWayCount() {
@@ -13920,10 +13924,10 @@ function sleep(ms) {
       }
     },
     filterCharsOnTheWay: function filterCharsOnTheWay() {
-      var _this4 = this;
+      var _this5 = this;
 
       var count = this.charsFree.filter(function (_char) {
-        return _char.status_id == 2 && _char.system_id == _this4.system_id;
+        return _char.status_id == 2 && _char.system_id == _this5.system_id;
       }).length;
 
       if (count > 0) {

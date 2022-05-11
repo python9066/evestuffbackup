@@ -119,7 +119,9 @@ export default {
     ...mapState([]),
 
     freecharCount() {
-      var data = this.getOwnHackingCharOnOp(this.operationID);
+      var data = this.getOwnHackingCharOnOp(this.operationID).filter(
+        (c) => c.user_status_id != 2 && c.system_id != this.item.id
+      );
       if (data) {
         return this.getOwnHackingCharOnOp(this.operationID).length;
       } else {
