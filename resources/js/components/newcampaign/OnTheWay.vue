@@ -68,6 +68,7 @@ function sleep(ms) {
 export default {
   title() {},
   props: {
+    item: Object,
     operationID: Number,
   },
   data() {
@@ -136,7 +137,9 @@ export default {
     },
 
     charsOnTheWayAll() {
-      return this.getOpUsersOnTheWayAll;
+      return this.getOpUsersOnTheWayAll.filter(
+        (q) => q.system_id == this.item.id
+      );
     },
 
     OnTheWayCount() {

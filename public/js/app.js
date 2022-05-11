@@ -13787,6 +13787,7 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
+    item: Object,
     operationID: Number
   },
   data: function data() {
@@ -13894,7 +13895,11 @@ function sleep(ms) {
       }
     },
     charsOnTheWayAll: function charsOnTheWayAll() {
-      return this.getOpUsersOnTheWayAll;
+      var _this2 = this;
+
+      return this.getOpUsersOnTheWayAll.filter(function (q) {
+        return q.system_id == _this2.item.id;
+      });
     },
     OnTheWayCount: function OnTheWayCount() {
       if (this.charsOnTheWayAll) {
@@ -13911,10 +13916,10 @@ function sleep(ms) {
       }
     },
     filterCharsOnTheWay: function filterCharsOnTheWay() {
-      var _this2 = this;
+      var _this3 = this;
 
       var count = this.charsFree.filter(function (_char) {
-        return _char.status_id == 2 && _char.system_id == _this2.system_id;
+        return _char.status_id == 2 && _char.system_id == _this3.system_id;
       }).length;
 
       if (count > 0) {
@@ -54534,7 +54539,10 @@ var render = function () {
                             },
                             [
                               _c("OnTheWay", {
-                                attrs: { operationID: _vm.operationID },
+                                attrs: {
+                                  operationID: _vm.operationID,
+                                  item: _vm.item,
+                                },
                               }),
                             ],
                             1
