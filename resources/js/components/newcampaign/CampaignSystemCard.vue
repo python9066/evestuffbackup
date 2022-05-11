@@ -24,20 +24,20 @@
           <v-col cols="2" class="d-flex justify-start align-center">
             {{ item.system_name }}
           </v-col>
-          <v-divider vertical></v-divider>
+          <v-divider class="mx-4 my-0" vertical></v-divider>
           <v-col cols="4" class="d-flex justify-start align-center">
             Nodes - 2/3 1/3
           </v-col>
-          <v-divider vertical></v-divider>
+          <v-divider class="mx-4 my-0" vertical></v-divider>
           <v-col cols="2" class="d-flex justify-center align-center">
             On The Way - 0
           </v-col>
-          <v-divider vertical></v-divider>
+          <v-divider class="mx-4 my-0" vertical></v-divider>
 
           <v-col cols="2" class="d-flex justify-center align-center">
             Ready to go - 0
           </v-col>
-          <v-divider vertical></v-divider>
+          <v-divider class="mx-4 my-0" vertical></v-divider>
           <v-col
             cols="2"
             class="d-flex justify-end align-center"

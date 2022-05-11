@@ -53886,7 +53886,10 @@ var render = function () {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("v-divider", { attrs: { vertical: "" } }),
+                  _c("v-divider", {
+                    staticClass: "mx-4 my-0",
+                    attrs: { vertical: "" },
+                  }),
                   _vm._v(" "),
                   _c(
                     "v-col",
@@ -53897,7 +53900,10 @@ var render = function () {
                     [_vm._v("\n          Nodes - 2/3 1/3\n        ")]
                   ),
                   _vm._v(" "),
-                  _c("v-divider", { attrs: { vertical: "" } }),
+                  _c("v-divider", {
+                    staticClass: "mx-4 my-0",
+                    attrs: { vertical: "" },
+                  }),
                   _vm._v(" "),
                   _c(
                     "v-col",
@@ -53908,7 +53914,10 @@ var render = function () {
                     [_vm._v("\n          On The Way - 0\n        ")]
                   ),
                   _vm._v(" "),
-                  _c("v-divider", { attrs: { vertical: "" } }),
+                  _c("v-divider", {
+                    staticClass: "mx-4 my-0",
+                    attrs: { vertical: "" },
+                  }),
                   _vm._v(" "),
                   _c(
                     "v-col",
@@ -53919,7 +53928,10 @@ var render = function () {
                     [_vm._v("\n          Ready to go - 0\n        ")]
                   ),
                   _vm._v(" "),
-                  _c("v-divider", { attrs: { vertical: "" } }),
+                  _c("v-divider", {
+                    staticClass: "mx-4 my-0",
+                    attrs: { vertical: "" },
+                  }),
                   _vm._v(" "),
                   _vm.showSystemTable == 0
                     ? _c(
