@@ -18,10 +18,15 @@
       <v-expansion-panel-header
         style="cursor: context-menu"
         color="primary"
+        class="py-0"
         :class="filterRound"
       >
-        <v-card color="primary" tile elevation="0">
-          <v-card-text class="py-0">
+        <v-card flat max-width elevation="24" color="grey darken-4">
+          <v-card-title
+            max-width
+            class="d-flex justify-space-between align-center py-0"
+            style="width: 100%"
+          >
             <v-row no-gutters>
               <v-col cols="2" class="d-flex justify-start align-center">
                 {{ item.system_name }}
@@ -48,7 +53,7 @@
                 + NODE
               </v-col>
             </v-row>
-          </v-card-text>
+          </v-card-title>
         </v-card>
       </v-expansion-panel-header>
       <v-expansion-panel-content

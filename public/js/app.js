@@ -11729,6 +11729,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -53866,6 +53871,7 @@ var render = function () {
           _c(
             "v-expansion-panel-header",
             {
+              staticClass: "py-0",
               class: _vm.filterRound,
               staticStyle: { cursor: "context-menu" },
               attrs: { color: "primary" },
@@ -53873,11 +53879,23 @@ var render = function () {
             [
               _c(
                 "v-card",
-                { attrs: { color: "primary", tile: "", elevation: "0" } },
+                {
+                  attrs: {
+                    flat: "",
+                    "max-width": "",
+                    elevation: "24",
+                    color: "grey darken-4",
+                  },
+                },
                 [
                   _c(
-                    "v-card-text",
-                    { staticClass: "py-0" },
+                    "v-card-title",
+                    {
+                      staticClass:
+                        "d-flex justify-space-between align-center py-0",
+                      staticStyle: { width: "100%" },
+                      attrs: { "max-width": "" },
+                    },
                     [
                       _c(
                         "v-row",
