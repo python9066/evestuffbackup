@@ -139,11 +139,19 @@ export default {
     showButton() {
       var data = this.getOwnHackingCharOnOp(this.operationID);
       if (data) {
-        data = data.filter((d) => {
-          if (d.system_id == this.item.id) {
-            c.system_id != this.item.id && c.user_status_id != 2;
+        data = data.filter((c) => {
+          if (c.system_id == this.item.id) {
+            if (c.system_id != this.item.id && c.user_status_id != 2) {
+              return true;
+            } else {
+              return false;
+            }
           } else {
-            c.user_status_id != 2;
+            if (c.user_status_id != 2) {
+              return true;
+            } else {
+              return false;
+            }
           }
         });
       }
