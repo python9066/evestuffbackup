@@ -13886,19 +13886,25 @@ function sleep(ms) {
       }
     },
     charsFree: function charsFree() {
-      var data = this.getOwnHackingCharOnOp(this.operationID);
+      var _this2 = this;
+
+      var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+        return c.system_id != _this2.item.id && c.user_status_id != 2;
+      });
 
       if (data) {
-        return this.getOwnHackingCharOnOp(this.operationID);
+        return this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+          return c.system_id != _this2.item.id && c.user_status_id != 2;
+        });
       } else {
         return [];
       }
     },
     charsOnTheWayAll: function charsOnTheWayAll() {
-      var _this2 = this;
+      var _this3 = this;
 
       return this.getOpUsersOnTheWayAll.filter(function (q) {
-        return q.system_id == _this2.item.id;
+        return q.system_id == _this3.item.id;
       });
     },
     OnTheWayCount: function OnTheWayCount() {
@@ -13916,10 +13922,10 @@ function sleep(ms) {
       }
     },
     filterCharsOnTheWay: function filterCharsOnTheWay() {
-      var _this3 = this;
+      var _this4 = this;
 
       var count = this.charsFree.filter(function (_char) {
-        return _char.status_id == 2 && _char.system_id == _this3.system_id;
+        return _char.status_id == 2 && _char.system_id == _this4.system_id;
       }).length;
 
       if (count > 0) {

@@ -128,9 +128,13 @@ export default {
     },
 
     charsFree() {
-      var data = this.getOwnHackingCharOnOp(this.operationID);
+      var data = this.getOwnHackingCharOnOp(this.operationID).filter(
+        (c) => c.system_id != this.item.id && c.user_status_id != 2
+      );
       if (data) {
-        return this.getOwnHackingCharOnOp(this.operationID);
+        return this.getOwnHackingCharOnOp(this.operationID).filter(
+          (c) => c.system_id != this.item.id && c.user_status_id != 2
+        );
       } else {
         return [];
       }
