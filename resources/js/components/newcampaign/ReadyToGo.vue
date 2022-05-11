@@ -137,9 +137,12 @@ export default {
     ...mapState([]),
 
     showButton() {
-      var data = this.getOwnHackingCharOnOp(this.operationID).filter(
-        (c) => c.system_id != this.item.id && c.user_status_id != 3
-      );
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+      if (data) {
+        data = data.filter(
+          (c) => c.system_id != this.item.id && c.user_status_id != 3
+        );
+      }
 
       if (data) {
         return data.length;
@@ -149,9 +152,12 @@ export default {
     },
 
     charsFree() {
-      var data = this.getOwnHackingCharOnOp(this.operationID).filter(
-        (c) => c.system_id != this.item.id && c.user_status_id != 3
-      );
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+      if (data) {
+        data = this.getOwnHackingCharOnOp(this.operationID).filter(
+          (c) => c.system_id != this.item.id && c.user_status_id != 3
+        );
+      }
 
       if (data) {
         return data;

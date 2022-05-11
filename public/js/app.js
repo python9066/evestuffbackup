@@ -13912,9 +13912,13 @@ function sleep(ms) {
     showButton: function showButton() {
       var _this3 = this;
 
-      var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-        return c.system_id != _this3.item.id && c.user_status_id != 2;
-      });
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+
+      if (data) {
+        data = data.filter(function (c) {
+          return c.system_id != _this3.item.id && c.user_status_id != 2;
+        });
+      }
 
       if (data) {
         return data.length;
@@ -13925,9 +13929,13 @@ function sleep(ms) {
     charsFree: function charsFree() {
       var _this4 = this;
 
-      var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-        return c.system_id != _this4.item.id && c.user_status_id != 2;
-      });
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+
+      if (data) {
+        data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+          return c.system_id != _this4.item.id && c.user_status_id != 2;
+        });
+      }
 
       if (data) {
         return data;
@@ -14418,9 +14426,13 @@ function sleep(ms) {
     showButton: function showButton() {
       var _this3 = this;
 
-      var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-        return c.system_id != _this3.item.id && c.user_status_id != 3;
-      });
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+
+      if (data) {
+        data = data.filter(function (c) {
+          return c.system_id != _this3.item.id && c.user_status_id != 3;
+        });
+      }
 
       if (data) {
         return data.length;
@@ -14431,9 +14443,13 @@ function sleep(ms) {
     charsFree: function charsFree() {
       var _this4 = this;
 
-      var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-        return c.system_id != _this4.item.id && c.user_status_id != 3;
-      });
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+
+      if (data) {
+        data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+          return c.system_id != _this4.item.id && c.user_status_id != 3;
+        });
+      }
 
       if (data) {
         return data;
