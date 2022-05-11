@@ -21,7 +21,7 @@
         class="py-0"
         :class="filterRound"
       >
-        <v-card flat max-width elevation="0" color="primery">
+        <v-card flat max-width elevation="0" color="primary">
           <v-card-title
             max-width
             class="d-flex justify-space-between align-center py-0"
@@ -36,12 +36,18 @@
                 Nodes - 2/3 1/3
               </v-col>
               <v-divider vertical></v-divider>
-              <v-col cols="2" class="d-flex justify-center align-center">
+              <v-col
+                :cols="colNumber"
+                class="d-flex justify-center align-center"
+              >
                 On The Way - 0
               </v-col>
               <v-divider vertical></v-divider>
 
-              <v-col cols="2" class="d-flex justify-center align-center">
+              <v-col
+                :cols="colNumber"
+                class="d-flex justify-center align-center"
+              >
                 Ready to go - 0
               </v-col>
               <v-divider vertical></v-divider>
@@ -112,6 +118,14 @@ export default {
         return "rounded-t-xl";
       } else {
         return "rounded-xl";
+      }
+    },
+
+    colNumber() {
+      if (this.showSystemTable == 0) {
+        return 2;
+      } else {
+        return 3;
       }
     },
   },

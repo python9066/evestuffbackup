@@ -11913,6 +11913,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -11993,6 +11999,13 @@ function sleep(ms) {
         return "rounded-t-xl";
       } else {
         return "rounded-xl";
+      }
+    },
+    colNumber: function colNumber() {
+      if (this.showSystemTable == 0) {
+        return 2;
+      } else {
+        return 3;
       }
     }
   }),
@@ -54139,7 +54152,7 @@ var render = function () {
                     flat: "",
                     "max-width": "",
                     elevation: "0",
-                    color: "primery",
+                    color: "primary",
                   },
                 },
                 [
@@ -54192,7 +54205,7 @@ var render = function () {
                             "v-col",
                             {
                               staticClass: "d-flex justify-center align-center",
-                              attrs: { cols: "2" },
+                              attrs: { cols: _vm.colNumber },
                             },
                             [
                               _vm._v(
@@ -54207,7 +54220,7 @@ var render = function () {
                             "v-col",
                             {
                               staticClass: "d-flex justify-center align-center",
-                              attrs: { cols: "2" },
+                              attrs: { cols: _vm.colNumber },
                             },
                             [
                               _vm._v(
