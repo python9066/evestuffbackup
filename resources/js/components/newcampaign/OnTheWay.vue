@@ -139,9 +139,13 @@ export default {
     showButton() {
       var data = this.getOwnHackingCharOnOp(this.operationID);
       if (data) {
-        data = data.filter(
-          (c) => c.system_id != this.item.id && c.user_status_id != 3
-        );
+        data = data.filter((d) => {
+          if (d.system_id == this.item.id) {
+            c.system_id != this.item.id && c.user_status_id != 2;
+          } else {
+            c.user_status_id != 2;
+          }
+        });
       }
       console.log(data);
       if (data) {

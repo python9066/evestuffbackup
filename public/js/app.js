@@ -13915,8 +13915,12 @@ function sleep(ms) {
       var data = this.getOwnHackingCharOnOp(this.operationID);
 
       if (data) {
-        data = data.filter(function (c) {
-          return c.system_id != _this3.item.id && c.user_status_id != 3;
+        data = data.filter(function (d) {
+          if (d.system_id == _this3.item.id) {
+            c.system_id != _this3.item.id && c.user_status_id != 2;
+          } else {
+            c.user_status_id != 2;
+          }
         });
       }
 
