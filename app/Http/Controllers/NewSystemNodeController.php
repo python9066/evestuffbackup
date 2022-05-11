@@ -324,6 +324,10 @@ class NewSystemNodeController extends Controller
             NewSystemNode::where('id', $id)->update(['node_status' => $request->status_id]);
         }
 
+        if ($oldCheck) {
+            NewSystemNode::where('id', $id)->update(['node_status' => $oldCheck->node_status_id]);
+        }
+
 
         Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
         if ($opUserID) {

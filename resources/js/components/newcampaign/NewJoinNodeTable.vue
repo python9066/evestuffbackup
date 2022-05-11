@@ -10,7 +10,7 @@
       dense
       hide-default-footer
       disable-pagination
-      class="elevation-24 rounded-xl full-width"
+      class="elevation-0 rounded-xl full-width"
     >
       <template v-slot:[`item.op_user.name`]="{ item }">
         <div class="d-inline-flex align-items-center">
