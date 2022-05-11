@@ -10801,6 +10801,185 @@ function sleep(ms) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/AddNode.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/newcampaign/AddNode.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../app */ "./resources/js/app.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+ // import ApiL from "../service/apil";
+
+
+
+function sleep(ms) {
+  return new Promise(function (resolve) {
+    return setTimeout(resolve, ms);
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  title: function title() {},
+  props: {
+    item: Object,
+    operationID: Number
+  },
+  data: function data() {
+    return {
+      addShown: false,
+      nodeText: ""
+    };
+  },
+  created: function created() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  beforeMonunt: function beforeMonunt() {},
+  beforeCreate: function beforeCreate() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  mounted: function mounted() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }))();
+  },
+  methods: {
+    addNode: function addNode() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var node, request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                node = _this.nodeText.toUpperCase();
+                request = {
+                  system_id: _this.item.id,
+                  campaign_id: 96898,
+                  //TODO need to code this so hardcode it
+                  name: node
+                };
+                _this.nodeText = "";
+                _this.addShown = false;
+                _context4.next = 6;
+                return axios({
+                  method: "POST",
+                  url: "/api/addnode",
+                  withCredentials: true,
+                  data: request,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])()), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])),
+  beforeDestroy: function beforeDestroy() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/AddOperationUser.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/newcampaign/AddOperationUser.vue?vue&type=script&lang=js& ***!
@@ -11863,52 +12042,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
  // import ApiL from "../service/apil";
 
@@ -11929,9 +12062,7 @@ function sleep(ms) {
   },
   data: function data() {
     return {
-      showSystemTable: 0,
-      addShown: false,
-      nodeText: ""
+      showSystemTable: 0
     };
   },
   created: function created() {
@@ -11985,46 +12116,7 @@ function sleep(ms) {
       }, _callee3);
     }))();
   },
-  methods: {
-    // TODO Workout for multi campagins
-    addNode: function addNode() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var node, request;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                node = _this2.nodeText.toUpperCase();
-                request = {
-                  system_id: _this2.item.id,
-                  campaign_id: 96898,
-                  //TODO need to code this so hardcode it
-                  name: node
-                };
-                _this2.nodeText = "";
-                _this2.addShown = false;
-                _context4.next = 6;
-                return axios({
-                  method: "POST",
-                  url: "/api/addnode",
-                  withCredentials: true,
-                  data: request,
-                  headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 6:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }))();
-    }
+  methods: {// TODO Workout for multi campagins
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     filterRound: function filterRound() {
@@ -53070,6 +53162,169 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/AddNode.vue?vue&type=template&id=6f0d95c9&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/newcampaign/AddNode.vue?vue&type=template&id=6f0d95c9& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-menu",
+    {
+      attrs: { "close-on-content-click": false, value: _vm.addShown },
+      scopedSlots: _vm._u([
+        {
+          key: "activator",
+          fn: function (ref) {
+            var on = ref.on
+            var attrs = ref.attrs
+            return [
+              _c(
+                "v-btn",
+                _vm._g(
+                  _vm._b(
+                    {
+                      attrs: { text: "", color: "success" },
+                      on: {
+                        click: function ($event) {
+                          _vm.addShown = true
+                        },
+                      },
+                    },
+                    "v-btn",
+                    attrs,
+                    false
+                  ),
+                  on
+                ),
+                [
+                  _c("v-icon", { attrs: { left: "", small: "" } }, [
+                    _vm._v("fas fa-plus"),
+                  ]),
+                  _vm._v(" Node"),
+                ],
+                1
+              ),
+            ]
+          },
+        },
+      ]),
+    },
+    [
+      _vm._v(" "),
+      _c(
+        "v-card",
+        { attrs: { tile: "", "min-height": "250px" } },
+        [
+          _c("v-card-title", { staticClass: "pb-0" }),
+          _vm._v(" "),
+          _c(
+            "v-card-text",
+            [
+              _c("v-text-field", {
+                directives: [
+                  {
+                    name: "mask",
+                    rawName: "v-mask",
+                    value: "AA##",
+                    expression: "'AA##'",
+                  },
+                ],
+                staticClass: "mt-2",
+                attrs: { label: "Node", placeholder: "Enter Node", flat: "" },
+                on: {
+                  keyup: [
+                    function ($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      return _vm.addNode()
+                    },
+                    function ($event) {
+                      if (
+                        !$event.type.indexOf("key") &&
+                        _vm._k($event.keyCode, "esc", 27, $event.key, [
+                          "Esc",
+                          "Escape",
+                        ])
+                      ) {
+                        return null
+                      }
+                      ;(_vm.addShown = false), (_vm.nodeText = "")
+                    },
+                  ],
+                },
+                model: {
+                  value: _vm.nodeText,
+                  callback: function ($$v) {
+                    _vm.nodeText = $$v
+                  },
+                  expression: "nodeText",
+                },
+              }),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c(
+                "v-btn",
+                {
+                  attrs: { icon: "", fixed: "", left: "", color: "success" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.addNode()
+                    },
+                  },
+                },
+                [_c("v-icon", [_vm._v("fas fa-check")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { fixed: "", right: "", icon: "", color: "warning" },
+                  on: {
+                    click: function ($event) {
+                      ;(_vm.addShown = false), (_vm.nodeText = "")
+                    },
+                  },
+                },
+                [_c("v-icon", [_vm._v("fas fa-times")])],
+                1
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/AddOperationUser.vue?vue&type=template&id=6e9a221b&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/newcampaign/AddOperationUser.vue?vue&type=template&id=6e9a221b& ***!
@@ -53883,8 +54138,8 @@ var render = function () {
                   attrs: {
                     flat: "",
                     "max-width": "",
-                    elevation: "24",
-                    color: "grey darken-4",
+                    elevation: "0",
+                    color: "primery",
                   },
                 },
                 [
@@ -53971,7 +54226,15 @@ var render = function () {
                                     "d-flex justify-end align-center",
                                   attrs: { cols: "2" },
                                 },
-                                [_vm._v("\n              + NODE\n            ")]
+                                [
+                                  _c("AddNode", {
+                                    attrs: {
+                                      item: _vm.item,
+                                      operationID: _vm.operationID,
+                                    },
+                                  }),
+                                ],
+                                1
                               )
                             : _vm._e(),
                         ],
@@ -54033,190 +54296,6 @@ var render = function () {
         "v-col",
         { attrs: { cols: "12" } },
         [
-          _c(
-            "v-row",
-            [
-              _c(
-                "v-col",
-                { attrs: { cols: "12" } },
-                [
-                  _c(
-                    "v-menu",
-                    {
-                      attrs: {
-                        "close-on-content-click": false,
-                        value: _vm.addShown,
-                      },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "activator",
-                          fn: function (ref) {
-                            var on = ref.on
-                            var attrs = ref.attrs
-                            return [
-                              _c(
-                                "v-btn",
-                                _vm._g(
-                                  _vm._b(
-                                    {
-                                      attrs: { text: "", color: "success" },
-                                      on: {
-                                        click: function ($event) {
-                                          _vm.addShown = true
-                                        },
-                                      },
-                                    },
-                                    "v-btn",
-                                    attrs,
-                                    false
-                                  ),
-                                  on
-                                ),
-                                [
-                                  _c(
-                                    "v-icon",
-                                    { attrs: { left: "", small: "" } },
-                                    [_vm._v("fas fa-plus")]
-                                  ),
-                                  _vm._v(" Node"),
-                                ],
-                                1
-                              ),
-                            ]
-                          },
-                        },
-                      ]),
-                    },
-                    [
-                      _vm._v(" "),
-                      _c(
-                        "v-card",
-                        { attrs: { tile: "", "min-height": "250px" } },
-                        [
-                          _c("v-card-title", { staticClass: "pb-0" }),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-text",
-                            [
-                              _c("v-text-field", {
-                                directives: [
-                                  {
-                                    name: "mask",
-                                    rawName: "v-mask",
-                                    value: "AA##",
-                                    expression: "'AA##'",
-                                  },
-                                ],
-                                staticClass: "mt-2",
-                                attrs: {
-                                  label: "Node",
-                                  placeholder: "Enter Node",
-                                  flat: "",
-                                },
-                                on: {
-                                  keyup: [
-                                    function ($event) {
-                                      if (
-                                        !$event.type.indexOf("key") &&
-                                        _vm._k(
-                                          $event.keyCode,
-                                          "enter",
-                                          13,
-                                          $event.key,
-                                          "Enter"
-                                        )
-                                      ) {
-                                        return null
-                                      }
-                                      return _vm.addNode()
-                                    },
-                                    function ($event) {
-                                      if (
-                                        !$event.type.indexOf("key") &&
-                                        _vm._k(
-                                          $event.keyCode,
-                                          "esc",
-                                          27,
-                                          $event.key,
-                                          ["Esc", "Escape"]
-                                        )
-                                      ) {
-                                        return null
-                                      }
-                                      ;(_vm.addShown = false),
-                                        (_vm.nodeText = "")
-                                    },
-                                  ],
-                                },
-                                model: {
-                                  value: _vm.nodeText,
-                                  callback: function ($$v) {
-                                    _vm.nodeText = $$v
-                                  },
-                                  expression: "nodeText",
-                                },
-                              }),
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-card-actions",
-                            [
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    icon: "",
-                                    fixed: "",
-                                    left: "",
-                                    color: "success",
-                                  },
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.addNode()
-                                    },
-                                  },
-                                },
-                                [_c("v-icon", [_vm._v("fas fa-check")])],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    fixed: "",
-                                    right: "",
-                                    icon: "",
-                                    color: "warning",
-                                  },
-                                  on: {
-                                    click: function ($event) {
-                                      ;(_vm.addShown = false),
-                                        (_vm.nodeText = "")
-                                    },
-                                  },
-                                },
-                                [_c("v-icon", [_vm._v("fas fa-times")])],
-                                1
-                              ),
-                            ],
-                            1
-                          ),
-                        ],
-                        1
-                      ),
-                    ],
-                    1
-                  ),
-                ],
-                1
-              ),
-            ],
-            1
-          ),
-          _vm._v(" "),
           _c(
             "v-row",
             [
@@ -82983,6 +83062,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("NewSystemTableStatusButton
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("NewSystemTableTimer", __webpack_require__(/*! ./components/newcampaign/NewSystemTableTimer.vue */ "./resources/js/components/newcampaign/NewSystemTableTimer.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("NewNodeExtraChar", __webpack_require__(/*! ./components/newcampaign/NewNodeExtraChar.vue */ "./resources/js/components/newcampaign/NewNodeExtraChar.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("NewJoinNodeTable", __webpack_require__(/*! ./components/newcampaign/NewJoinNodeTable.vue */ "./resources/js/components/newcampaign/NewJoinNodeTable.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("AddNode", __webpack_require__(/*! ./components/newcampaign/AddNode.vue */ "./resources/js/components/newcampaign/AddNode.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_12___default.a; // import '@fortawesome/fontawesome-f      ree/css/all.css'
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_clipboard__WEBPACK_IMPORTED_MODULE_19___default.a);
@@ -86727,6 +86807,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TitleBar_vue_vue_type_template_id_645c1665___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TitleBar_vue_vue_type_template_id_645c1665___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/newcampaign/AddNode.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/newcampaign/AddNode.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AddNode_vue_vue_type_template_id_6f0d95c9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddNode.vue?vue&type=template&id=6f0d95c9& */ "./resources/js/components/newcampaign/AddNode.vue?vue&type=template&id=6f0d95c9&");
+/* harmony import */ var _AddNode_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddNode.vue?vue&type=script&lang=js& */ "./resources/js/components/newcampaign/AddNode.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AddNode_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddNode_vue_vue_type_template_id_6f0d95c9___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddNode_vue_vue_type_template_id_6f0d95c9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/newcampaign/AddNode.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/newcampaign/AddNode.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/newcampaign/AddNode.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNode_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddNode.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/AddNode.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNode_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/newcampaign/AddNode.vue?vue&type=template&id=6f0d95c9&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/newcampaign/AddNode.vue?vue&type=template&id=6f0d95c9& ***!
+  \****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNode_vue_vue_type_template_id_6f0d95c9___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AddNode.vue?vue&type=template&id=6f0d95c9& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/AddNode.vue?vue&type=template&id=6f0d95c9&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNode_vue_vue_type_template_id_6f0d95c9___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddNode_vue_vue_type_template_id_6f0d95c9___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

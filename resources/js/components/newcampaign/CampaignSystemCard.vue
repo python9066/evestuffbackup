@@ -21,7 +21,7 @@
         class="py-0"
         :class="filterRound"
       >
-        <v-card flat max-width elevation="24" color="grey darken-4">
+        <v-card flat max-width elevation="0" color="primery">
           <v-card-title
             max-width
             class="d-flex justify-space-between align-center py-0"
@@ -50,7 +50,7 @@
                 class="d-flex justify-end align-center"
                 v-if="showSystemTable == 0"
               >
-                + NODE
+                <AddNode :item="item" :operationID="operationID"></AddNode>
               </v-col>
             </v-row>
           </v-card-title>
