@@ -13865,6 +13865,13 @@ function sleep(ms) {
           }
         }, _callee4);
       }))();
+    },
+    seeReadyToGoOnTheWay: function seeReadyToGoOnTheWay(item) {
+      if (this.$can("campaigns_admin_access") || this.$store.state.user_id == item.user_id) {
+        return true;
+      } else {
+        false;
+      }
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp", "getOpUsersOnTheWayAll"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
@@ -55966,11 +55973,11 @@ var render = function () {
                   _c("v-list-item-title", [
                     _vm._v(
                       "\n          " +
-                        _vm._s(list.char_name) +
+                        _vm._s(list.name) +
                         " - " +
                         _vm._s(list.ship) +
                         " - T" +
-                        _vm._s(list.link)
+                        _vm._s(list.entosis)
                     ),
                     _vm.seeReadyToGoOnTheWay(list)
                       ? _c(

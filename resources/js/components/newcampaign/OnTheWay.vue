@@ -41,7 +41,7 @@
       <v-list>
         <v-list-item v-for="(list, index) in charsOnTheWayAll" :key="index">
           <v-list-item-title>
-            {{ list.char_name }} - {{ list.ship }} - T{{ list.link
+            {{ list.name }} - {{ list.ship }} - T{{ list.entosis
             }}<span class="pl-3" v-if="seeReadyToGoOnTheWay(list)">
               <v-icon
                 color="orange darken-3"
@@ -98,6 +98,17 @@ export default {
           "Content-Type": "application/json",
         },
       });
+    },
+
+    seeReadyToGoOnTheWay(item) {
+      if (
+        this.$can("campaigns_admin_access") ||
+        this.$store.state.user_id == item.user_id
+      ) {
+        return true;
+      } else {
+        false;
+      }
     },
   },
 
