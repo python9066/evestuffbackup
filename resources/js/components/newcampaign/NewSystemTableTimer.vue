@@ -249,6 +249,7 @@ export default {
         });
       } else {
         if (this.extra == 1) {
+          var url = this.opUserInfo.id;
           var request = {
             end_time: finishTime,
             input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
@@ -256,6 +257,7 @@ export default {
             system_id: this.node.system_id,
           };
         } else {
+          var url = this.node.id;
           var request = {
             end_time: finishTime,
             input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
@@ -266,7 +268,7 @@ export default {
 
         await axios({
           method: "put",
-          url: "/api/addprimetimer/" + this.opUserInfo.id,
+          url: "/api/addprimetimer/" + url,
           withCredentials: true,
           data: request,
           headers: {

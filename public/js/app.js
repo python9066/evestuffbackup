@@ -13312,7 +13312,7 @@ function sleep(ms) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var min, sec, base, finishTime, request;
+        var min, sec, base, finishTime, request, url;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
@@ -13359,6 +13359,7 @@ function sleep(ms) {
 
               case 12:
                 if (_this.extra == 1) {
+                  url = _this.opUserInfo.id;
                   request = {
                     end_time: finishTime,
                     input_time: moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
@@ -13366,6 +13367,7 @@ function sleep(ms) {
                     system_id: _this.node.system_id
                   };
                 } else {
+                  url = _this.node.id;
                   request = {
                     end_time: finishTime,
                     input_time: moment__WEBPACK_IMPORTED_MODULE_4___default.a.utc().format("YYYY-MM-DD HH:mm:ss"),
@@ -13377,7 +13379,7 @@ function sleep(ms) {
                 _context4.next = 15;
                 return axios({
                   method: "put",
-                  url: "/api/addprimetimer/" + _this.opUserInfo.id,
+                  url: "/api/addprimetimer/" + url,
                   withCredentials: true,
                   data: request,
                   headers: {
