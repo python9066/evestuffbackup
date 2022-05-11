@@ -84,7 +84,7 @@ export default {
   methods: {
     async clickOnTheWay(opUserID) {
       var request = {
-        status_id: 2,
+        user_status_id: 2,
         system_id: this.system_id,
       };
 
