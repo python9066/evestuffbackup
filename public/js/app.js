@@ -13898,9 +13898,15 @@ function sleep(ms) {
     charsFree: function charsFree() {
       var _this3 = this;
 
-      var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-        return c.user_status_id != 2 && c.system_id != _this3.item.id;
-      });
+      if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
+        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+          return c.system_id != _this3.item.id && c.user_status_id != 2;
+        });
+      } else {
+        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+          return c.system_id != _this3.item.id;
+        });
+      }
 
       if (data) {
         return data;
