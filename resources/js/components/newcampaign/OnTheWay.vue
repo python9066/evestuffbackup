@@ -132,9 +132,7 @@ export default {
         (c) => c.system_id != this.item.id && c.user_status_id != 2
       );
       if (data) {
-        return this.getOwnHackingCharOnOp(this.operationID).filter(
-          (c) => c.system_id != this.item.id && c.user_status_id != 2
-        );
+        return data;
       } else {
         return [];
       }
