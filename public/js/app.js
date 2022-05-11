@@ -13910,11 +13910,13 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp", "getOpUsersOnTheWayAll"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     showButton: function showButton() {
+      var _this3 = this;
+
       var data = this.getOwnHackingCharOnOp(this.operationID);
 
       if (data) {
         data = data.filter(function (c) {
-          return c.user_status_id != 2;
+          return c.system_id != _this3.item.id && c.user_status_id != 2;
         });
       }
 
@@ -13925,13 +13927,13 @@ function sleep(ms) {
       }
     },
     charsFree: function charsFree() {
-      var _this3 = this;
+      var _this4 = this;
 
       var data = this.getOwnHackingCharOnOp(this.operationID);
 
       if (data) {
         data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-          return c.system_id != _this3.item.id && c.user_status_id != 2;
+          return c.system_id != _this4.item.id && c.user_status_id != 2;
         });
       }
 
@@ -13942,10 +13944,10 @@ function sleep(ms) {
       }
     },
     charsOnTheWayAll: function charsOnTheWayAll() {
-      var _this4 = this;
+      var _this5 = this;
 
       return this.getOpUsersOnTheWayAll.filter(function (q) {
-        return q.system_id == _this4.item.id;
+        return q.system_id == _this5.item.id;
       });
     },
     OnTheWayCount: function OnTheWayCount() {
@@ -13963,10 +13965,10 @@ function sleep(ms) {
       }
     },
     filterCharsOnTheWay: function filterCharsOnTheWay() {
-      var _this5 = this;
+      var _this6 = this;
 
       var count = this.charsFree.filter(function (_char) {
-        return _char.status_id == 2 && _char.system_id == _this5.system_id;
+        return _char.status_id == 2 && _char.system_id == _this6.system_id;
       }).length;
 
       if (count > 0) {
@@ -14422,11 +14424,13 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp", "getOpUsersReadyToGo"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     showButton: function showButton() {
+      var _this3 = this;
+
       var data = this.getOwnHackingCharOnOp(this.operationID);
 
       if (data) {
         data = data.filter(function (c) {
-          return c.user_status_id != 3;
+          return c.system_id != _this3.item.id && c.user_status_id != 3;
         });
       }
 
@@ -14437,13 +14441,13 @@ function sleep(ms) {
       }
     },
     charsFree: function charsFree() {
-      var _this3 = this;
+      var _this4 = this;
 
       var data = this.getOwnHackingCharOnOp(this.operationID);
 
       if (data) {
         data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-          return c.system_id != _this3.item.id && c.user_status_id != 3;
+          return c.system_id != _this4.item.id && c.user_status_id != 3;
         });
       }
 
@@ -14454,10 +14458,10 @@ function sleep(ms) {
       }
     },
     charsReadyToGoAll: function charsReadyToGoAll() {
-      var _this4 = this;
+      var _this5 = this;
 
       return this.getOpUsersReadyToGo.filter(function (q) {
-        return q.system_id == _this4.item.id;
+        return q.system_id == _this5.item.id;
       });
     },
     OnTheWayCount: function OnTheWayCount() {
@@ -14475,10 +14479,10 @@ function sleep(ms) {
       }
     },
     filterCharsOnTheWay: function filterCharsOnTheWay() {
-      var _this5 = this;
+      var _this6 = this;
 
       var count = this.charsFree.filter(function (_char) {
-        return _char.status_id == 3 && _char.system_id == _this5.system_id;
+        return _char.status_id == 3 && _char.system_id == _this6.system_id;
       }).length;
 
       if (count > 0) {
