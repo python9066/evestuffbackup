@@ -230,6 +230,24 @@ export default {
         this.node.node_status.id == 8 ||
         this.node.node_status.id == 9
       ) {
+        var request = {
+          end_time: finishTime,
+          input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
+          base_time: base,
+          system_id: this.node.system_id,
+        };
+
+        await axios({
+          method: "put",
+          url: "/api/addtimertonode/" + this.node.id,
+          withCredentials: true,
+          data: request,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+      } else {
         if (this.extra == 1) {
           var request = {
             end_time: finishTime,
@@ -248,7 +266,7 @@ export default {
 
         await axios({
           method: "put",
-          url: "/api/addprimetimernonuser/" + this.node.id,
+          url: "/api/addprimetimer/" + this.opUserInfo.id,
           withCredentials: true,
           data: request,
           headers: {
@@ -256,42 +274,6 @@ export default {
             "Content-Type": "application/json",
           },
         });
-      } else {
-        if (this.extra == 1) {
-          var request = {
-            end_time: finishTime,
-            input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-            base_time: base,
-            system_id: this.node.system_id,
-          };
-          await axios({
-            method: "put",
-            url: "/api/addprimetimer/" + this.opUserInfo.id,
-            withCredentials: true,
-            data: request,
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-          });
-        } else {
-          var request = {
-            end_time: finishTime,
-            input_time: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-            base_time: base,
-            system_id: this.systemIDProp,
-          };
-          await axios({
-            method: "put",
-            url: "/api/addprimetimernonuser/" + this.node.id,
-            withCredentials: true,
-            data: request,
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-          });
-        }
       }
     },
   },
