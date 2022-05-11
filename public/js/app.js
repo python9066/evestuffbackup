@@ -12199,6 +12199,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -54294,7 +54295,8 @@ var render = function () {
                           node: item,
                           operationID: _vm.operationID,
                           extra: 2,
-                          nodeProp: _vm.node.system.tidi,
+                          tidiProp: _vm.node.system.tidi,
+                          systemIDProp: _vm.node.system_id,
                         },
                       }),
                     ]
