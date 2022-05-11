@@ -139,7 +139,9 @@ export default {
     showButton() {
       var data = this.getOwnHackingCharOnOp(this.operationID);
       if (data) {
-        data = data.filter((c) => c.system_id != this.item.id);
+        data = data.filter(
+          (c) => c.system_id != this.item.id && c.user_status_id != 3
+        );
       }
       console.log(data);
       if (data) {
