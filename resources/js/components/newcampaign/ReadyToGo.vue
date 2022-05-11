@@ -39,7 +39,7 @@
         </v-btn>
       </template>
       <v-list>
-        <v-list-item v-for="(list, index) in charsOnTheWayAll" :key="index">
+        <v-list-item v-for="(list, index) in charsReadyToGoAll" :key="index">
           <v-list-item-title>
             {{ list.name }} - {{ list.ship }} - T{{ list.entosis
             }}<span class="pl-3" v-if="seeReadyToGoOnTheWay(list)">
@@ -132,7 +132,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getOwnHackingCharOnOp", "getOpUsersOnTheWayAll"]),
+    ...mapGetters(["getOwnHackingCharOnOp", "getOpUsersReadyToGo"]),
 
     ...mapState([]),
 
@@ -166,15 +166,15 @@ export default {
       }
     },
 
-    charsOnTheWayAll() {
-      return this.getOpUsersOnTheWayAll.filter(
+    charsReadyToGoAll() {
+      return this.getOpUsersReadyToGo.filter(
         (q) => q.system_id == this.item.id
       );
     },
 
     OnTheWayCount() {
-      if (this.charsOnTheWayAll) {
-        return this.charsOnTheWayAll.length;
+      if (this.charsReadyToGoAll) {
+        return this.charsReadyToGoAll.length;
       } else {
         return 0;
       }

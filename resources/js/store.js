@@ -2520,5 +2520,17 @@ export default new Vuex.Store({
                 return [];
             }
         },
+
+        getOpUsersReadyToGo: (state) => {
+            let pull = state.opUsers.filter(
+                (u) => u.role_id == 1 && u.user_status_id == 3
+            );
+            let count = pull.length;
+            if (count != 0) {
+                return pull;
+            } else {
+                return [];
+            }
+        },
     },
 });

@@ -14422,7 +14422,7 @@ function sleep(ms) {
       }
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp", "getOpUsersOnTheWayAll"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp", "getOpUsersReadyToGo"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     showButton: function showButton() {
       var _this3 = this;
 
@@ -14457,16 +14457,16 @@ function sleep(ms) {
         return [];
       }
     },
-    charsOnTheWayAll: function charsOnTheWayAll() {
+    charsReadyToGoAll: function charsReadyToGoAll() {
       var _this5 = this;
 
-      return this.getOpUsersOnTheWayAll.filter(function (q) {
+      return this.getOpUsersReadyToGo.filter(function (q) {
         return q.system_id == _this5.item.id;
       });
     },
     OnTheWayCount: function OnTheWayCount() {
-      if (this.charsOnTheWayAll) {
-        return this.charsOnTheWayAll.length;
+      if (this.charsReadyToGoAll) {
+        return this.charsReadyToGoAll.length;
       } else {
         return 0;
       }
@@ -56578,7 +56578,7 @@ var render = function () {
           _vm._v(" "),
           _c(
             "v-list",
-            _vm._l(_vm.charsOnTheWayAll, function (list, index) {
+            _vm._l(_vm.charsReadyToGoAll, function (list, index) {
               return _c(
                 "v-list-item",
                 { key: index },
@@ -97527,6 +97527,18 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     getOpUsersOnTheWayAll: function getOpUsersOnTheWayAll(state) {
       var pull = state.opUsers.filter(function (u) {
         return u.role_id == 1 && u.user_status_id == 2;
+      });
+      var count = pull.length;
+
+      if (count != 0) {
+        return pull;
+      } else {
+        return [];
+      }
+    },
+    getOpUsersReadyToGo: function getOpUsersReadyToGo(state) {
+      var pull = state.opUsers.filter(function (u) {
+        return u.role_id == 1 && u.user_status_id == 3;
       });
       var count = pull.length;
 
