@@ -111,7 +111,7 @@ class NewSystemNodeController extends Controller
     public function updateStatus(Request $request, $id)
     {
 
-
+        $opUserID = null;
         switch ($request->status_id) {
             case 1: // * new
                 $userNode = NewUserNode::where('node_id', $id)
