@@ -122,7 +122,7 @@
                     autofocus
                     v-mask="'##:##'"
                     placeholder="mm:ss"
-                    @keyup.enter="(timerShown = false), addHacktime(item)"
+                    @keyup.enter="(timerShown = false), addHacktime()"
                     @keyup.esc="(timerShown = false), (hackTime = null)"
                   ></v-text-field>
                 </v-card-title>
@@ -132,7 +132,7 @@
                     fixed
                     left
                     color="success"
-                    @click="(timerShown = false), addHacktime(item)"
+                    @click="(timerShown = false), addHacktime()"
                     ><v-icon>fas fa-check</v-icon></v-btn
                   >
 

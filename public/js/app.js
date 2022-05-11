@@ -55171,7 +55171,7 @@ var render = function () {
                                                 return null
                                               }
                                               ;(_vm.timerShown = false),
-                                                _vm.addHacktime(_vm.item)
+                                                _vm.addHacktime()
                                             },
                                             function ($event) {
                                               if (
@@ -55218,7 +55218,7 @@ var render = function () {
                                           on: {
                                             click: function ($event) {
                                               ;(_vm.timerShown = false),
-                                                _vm.addHacktime(_vm.item)
+                                                _vm.addHacktime()
                                             },
                                           },
                                         },

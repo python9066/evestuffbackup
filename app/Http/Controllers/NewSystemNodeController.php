@@ -131,7 +131,7 @@ class NewSystemNodeController extends Controller
 
                     $oldCheck = NewUserNode::where('node_id', $id)->oldest()->first();
                     if ($oldCheck) {
-                        $oldCheck->update('primery', 1);
+                        $oldCheck->update(['primery' => 1]);
                     }
                 }
 
@@ -183,7 +183,7 @@ class NewSystemNodeController extends Controller
 
                     $oldCheck = NewUserNode::where('node_id', $id)->oldest()->first();
                     if ($oldCheck) {
-                        $oldCheck->update('primery', 1);
+                        $oldCheck->update(['primery' => 1]);
                     }
                 }
                 break;
@@ -205,7 +205,7 @@ class NewSystemNodeController extends Controller
 
                     $oldCheck = NewUserNode::where('node_id', $id)->oldest()->first();
                     if ($oldCheck) {
-                        $oldCheck->update('primery', 1);
+                        $oldCheck->update(['primery' => 1]);
                     }
                 }
                 break;
@@ -227,7 +227,7 @@ class NewSystemNodeController extends Controller
 
                     $oldCheck = NewUserNode::where('node_id', $id)->oldest()->first();
                     if ($oldCheck) {
-                        $oldCheck->update('primery', 1);
+                        $oldCheck->update(['primery' => 1]);
                     }
                 } else {
                     $userNode = NewUserNode::where('node_id', $id)->first();
@@ -265,7 +265,7 @@ class NewSystemNodeController extends Controller
 
                     $oldCheck = NewUserNode::where('node_id', $id)->oldest()->first();
                     if ($oldCheck) {
-                        $oldCheck->update('primery', 1);
+                        $oldCheck->update(['primery' => 1]);
                     }
                 }
                 break;
@@ -290,7 +290,7 @@ class NewSystemNodeController extends Controller
 
                     $oldCheck = NewUserNode::where('node_id', $id)->oldest()->first();
                     if ($oldCheck) {
-                        $oldCheck->update('primery', 1);
+                        $oldCheck->update(['primery' => 1]);
                     }
                 }
                 break;
@@ -312,7 +312,7 @@ class NewSystemNodeController extends Controller
 
                     $oldCheck = NewUserNode::where('node_id', $id)->oldest()->first();
                     if ($oldCheck) {
-                        $oldCheck->update('primery', 1);
+                        $oldCheck->update(['primery' => 1]);
                     }
                 }
                 break;
@@ -326,8 +326,10 @@ class NewSystemNodeController extends Controller
 
 
         Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
-        Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
-        Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
+        if ($opUserID) {
+            Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3);
+            Broadcasthelper::broadcastuserSolo($request->opID, $opUserID, 6);
+        }
     }
 
     /**
