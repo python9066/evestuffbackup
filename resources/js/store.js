@@ -2517,7 +2517,7 @@ export default new Vuex.Store({
             if (count != 0) {
                 return pull;
             } else {
-                return null;
+                return [];
             }
         },
     },

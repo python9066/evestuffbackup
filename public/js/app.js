@@ -97082,7 +97082,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       if (count != 0) {
         return pull;
       } else {
-        return null;
+        return [];
       }
     }
   }
