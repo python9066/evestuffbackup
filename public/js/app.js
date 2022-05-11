@@ -13913,7 +13913,7 @@ function sleep(ms) {
       var _this3 = this;
 
       var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-        return c.system_id != _this3.item.id && c.user_status_id != 3;
+        return c.system_id != _this3.item.id && c.user_status_id != 2;
       });
 
       if (data) {
@@ -13926,7 +13926,7 @@ function sleep(ms) {
       var _this4 = this;
 
       var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-        return c.system_id != _this4.item.id && c.user_status_id != 3;
+        return c.system_id != _this4.item.id && c.user_status_id != 2;
       });
 
       if (data) {

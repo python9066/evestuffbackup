@@ -138,7 +138,7 @@ export default {
 
     showButton() {
       var data = this.getOwnHackingCharOnOp(this.operationID).filter(
-        (c) => c.system_id != this.item.id && c.user_status_id != 3
+        (c) => c.system_id != this.item.id && c.user_status_id != 2
       );
 
       if (data) {
@@ -150,7 +150,7 @@ export default {
 
     charsFree() {
       var data = this.getOwnHackingCharOnOp(this.operationID).filter(
-        (c) => c.system_id != this.item.id && c.user_status_id != 3
+        (c) => c.system_id != this.item.id && c.user_status_id != 2
       );
 
       if (data) {
