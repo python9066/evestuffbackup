@@ -55901,7 +55901,7 @@ var render = function () {
                         },
                       },
                     },
-                    [_c("v-list-item-title", [_vm._v(_vm._s(list.char_name))])],
+                    [_c("v-list-item-title", [_vm._v(_vm._s(list.name))])],
                     1
                   )
                 }),
