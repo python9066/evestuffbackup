@@ -20,32 +20,36 @@
         color="primary"
         :class="filterRound"
       >
-        <v-row no-gutters>
-          <v-col cols="2" class="d-flex justify-start align-center">
-            {{ item.system_name }}
-          </v-col>
-          <v-divider vertical></v-divider>
-          <v-col cols="4" class="d-flex justify-start align-center">
-            Nodes - 2/3 1/3
-          </v-col>
-          <v-divider vertical></v-divider>
-          <v-col cols="2" class="d-flex justify-center align-center">
-            On The Way - 0
-          </v-col>
-          <v-divider vertical></v-divider>
+        <v-card color="primary" tile elevation="0">
+          <v-card-text class="py-0">
+            <v-row no-gutters>
+              <v-col cols="2" class="d-flex justify-start align-center">
+                {{ item.system_name }}
+              </v-col>
+              <v-divider vertical></v-divider>
+              <v-col cols="4" class="d-flex justify-start align-center">
+                Nodes - 2/3 1/3
+              </v-col>
+              <v-divider vertical></v-divider>
+              <v-col cols="2" class="d-flex justify-center align-center">
+                On The Way - 0
+              </v-col>
+              <v-divider vertical></v-divider>
 
-          <v-col cols="2" class="d-flex justify-center align-center">
-            Ready to go - 0
-          </v-col>
-          <v-divider vertical></v-divider>
-          <v-col
-            cols="2"
-            class="d-flex justify-end align-center"
-            v-if="showSystemTable == 0"
-          >
-            + NODE
-          </v-col>
-        </v-row>
+              <v-col cols="2" class="d-flex justify-center align-center">
+                Ready to go - 0
+              </v-col>
+              <v-divider vertical></v-divider>
+              <v-col
+                cols="2"
+                class="d-flex justify-end align-center"
+                v-if="showSystemTable == 0"
+              >
+                + NODE
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
       </v-expansion-panel-header>
       <v-expansion-panel-content
         ><CampaignSystemCardContent
