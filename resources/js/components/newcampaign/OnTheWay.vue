@@ -86,7 +86,7 @@ export default {
     async clickOnTheWay(opUserID) {
       var request = {
         user_status_id: 2,
-        system_id: this.system_id,
+        system_id: this.item.id,
       };
 
       await axios({

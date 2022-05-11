@@ -13845,7 +13845,7 @@ function sleep(ms) {
               case 0:
                 request = {
                   user_status_id: 2,
-                  system_id: _this.system_id
+                  system_id: _this.item.id
                 };
                 _context4.next = 3;
                 return axios({
