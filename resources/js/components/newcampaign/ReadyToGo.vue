@@ -1,4 +1,62 @@
-<template></template>
+<template>
+  <div class="ml-auto">
+    <v-menu transition="fade-transition" v-if="showButton != 0">
+      <template v-slot:activator="{ on, attrs }">
+        <v-chip
+          dark
+          :color="filterCharsOnTheWay"
+          v-bind="attrs"
+          v-on="on"
+          small
+        >
+          On the Way
+        </v-chip>
+      </template>
+      <v-list>
+        <v-list-item
+          v-for="(list, index) in charsFree"
+          :key="index"
+          @click="clickOnTheWay(list.id)"
+        >
+          <v-list-item-title>{{ list.name }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+    <span v-else> On the way - </span>
+    <v-menu transition="fade-transition">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          class="mx-2"
+          v-bind="attrs"
+          :disabled="fabOnTheWayDisbale"
+          v-on="on"
+          fab
+          color="green darken-4"
+          dark
+          x-small
+        >
+          {{ OnTheWayCount }}
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-item v-for="(list, index) in charsOnTheWayAll" :key="index">
+          <v-list-item-title>
+            {{ list.name }} - {{ list.ship }} - T{{ list.entosis
+            }}<span class="pl-3" v-if="seeReadyToGoOnTheWay(list)">
+              <v-icon
+                color="orange darken-3"
+                small
+                @click="removeReadyToGoOnTheWay(list.id)"
+              >
+                fas fa-trash-alt
+              </v-icon></span
+            ></v-list-item-title
+          >
+        </v-list-item>
+      </v-list>
+    </v-menu>
+  </div>
+</template>
 <script>
 import Axios from "axios";
 import { EventBus } from "../../app";
@@ -9,7 +67,10 @@ function sleep(ms) {
 }
 export default {
   title() {},
-  props: {},
+  props: {
+    item: Object,
+    operationID: Number,
+  },
   data() {
     return {};
   },
@@ -21,12 +82,128 @@ export default {
   async beforeCreate() {},
 
   async mounted() {},
-  methods: {},
+  methods: {
+    async clickOnTheWay(opUserID) {
+      var request = {
+        user_status_id: 3,
+        system_id: this.item.id,
+      };
+
+      await axios({
+        method: "put",
+        url: "/api/onthewayreadytogo/" + this.operationID + "/" + opUserID,
+        data: request,
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+    },
+
+    async removeReadyToGoOnTheWay(opUserID) {
+      var request = {
+        user_status_id: 1,
+        system_id: null,
+      };
+
+      await axios({
+        method: "put",
+        url: "/api/onthewayreadytogo/" + this.operationID + "/" + opUserID,
+        data: request,
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+    },
+
+    seeReadyToGoOnTheWay(item) {
+      if (
+        this.$can("campaigns_admin_access") ||
+        this.$store.state.user_id == item.user_id
+      ) {
+        return true;
+      } else {
+        false;
+      }
+    },
+  },
 
   computed: {
-    ...mapGetters([]),
+    ...mapGetters(["getOwnHackingCharOnOp", "getOpUsersOnTheWayAll"]),
 
     ...mapState([]),
+
+    showButton() {
+      if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
+        var data = this.getOwnHackingCharOnOp(this.operationID).filter(
+          (c) => c.system_id != this.item.id && c.user_status_id != 3
+        );
+      } else {
+        var data = this.getOwnHackingCharOnOp(this.operationID).filter(
+          (c) => c.system_id != this.item.id
+        );
+      }
+
+      if (data) {
+        return data.length;
+      } else {
+        return 0;
+      }
+    },
+
+    charsFree() {
+      if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
+        var data = this.getOwnHackingCharOnOp(this.operationID).filter(
+          (c) => c.system_id != this.item.id && c.user_status_id != 3
+        );
+      } else {
+        var data = this.getOwnHackingCharOnOp(this.operationID).filter(
+          (c) => c.system_id != this.item.id
+        );
+      }
+      if (data) {
+        return data;
+      } else {
+        return [];
+      }
+    },
+
+    charsOnTheWayAll() {
+      return this.getOpUsersOnTheWayAll.filter(
+        (q) => q.system_id == this.item.id
+      );
+    },
+
+    OnTheWayCount() {
+      if (this.charsOnTheWayAll) {
+        return this.charsOnTheWayAll.length;
+      } else {
+        return 0;
+      }
+    },
+
+    fabOnTheWayDisbale() {
+      if (this.OnTheWayCount == 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    filterCharsOnTheWay() {
+      var count = this.charsFree.filter(
+        (char) => char.status_id == 3 && char.system_id == this.system_id
+      ).length;
+
+      if (count > 0) {
+        return "green";
+      } else {
+        return "red";
+      }
+    },
   },
   beforeDestroy() {},
 };

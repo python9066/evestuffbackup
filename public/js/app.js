@@ -14233,6 +14233,64 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -14246,7 +14304,10 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
-  props: {},
+  props: {
+    item: Object,
+    operationID: Number
+  },
   data: function data() {
     return {};
   },
@@ -14290,8 +14351,155 @@ function sleep(ms) {
       }, _callee3);
     }))();
   },
-  methods: {},
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])),
+  methods: {
+    clickOnTheWay: function clickOnTheWay(opUserID) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                request = {
+                  user_status_id: 3,
+                  system_id: _this.item.id
+                };
+                _context4.next = 3;
+                return axios({
+                  method: "put",
+                  url: "/api/onthewayreadytogo/" + _this.operationID + "/" + opUserID,
+                  data: request,
+                  withCredentials: true,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    removeReadyToGoOnTheWay: function removeReadyToGoOnTheWay(opUserID) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                request = {
+                  user_status_id: 1,
+                  system_id: null
+                };
+                _context5.next = 3;
+                return axios({
+                  method: "put",
+                  url: "/api/onthewayreadytogo/" + _this2.operationID + "/" + opUserID,
+                  data: request,
+                  withCredentials: true,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    seeReadyToGoOnTheWay: function seeReadyToGoOnTheWay(item) {
+      if (this.$can("campaigns_admin_access") || this.$store.state.user_id == item.user_id) {
+        return true;
+      } else {
+        false;
+      }
+    }
+  },
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp", "getOpUsersOnTheWayAll"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
+    showButton: function showButton() {
+      var _this3 = this;
+
+      if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
+        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+          return c.system_id != _this3.item.id && c.user_status_id != 3;
+        });
+      } else {
+        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+          return c.system_id != _this3.item.id;
+        });
+      }
+
+      if (data) {
+        return data.length;
+      } else {
+        return 0;
+      }
+    },
+    charsFree: function charsFree() {
+      var _this4 = this;
+
+      if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
+        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+          return c.system_id != _this4.item.id && c.user_status_id != 3;
+        });
+      } else {
+        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+          return c.system_id != _this4.item.id;
+        });
+      }
+
+      if (data) {
+        return data;
+      } else {
+        return [];
+      }
+    },
+    charsOnTheWayAll: function charsOnTheWayAll() {
+      var _this5 = this;
+
+      return this.getOpUsersOnTheWayAll.filter(function (q) {
+        return q.system_id == _this5.item.id;
+      });
+    },
+    OnTheWayCount: function OnTheWayCount() {
+      if (this.charsOnTheWayAll) {
+        return this.charsOnTheWayAll.length;
+      } else {
+        return 0;
+      }
+    },
+    fabOnTheWayDisbale: function fabOnTheWayDisbale() {
+      if (this.OnTheWayCount == 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    filterCharsOnTheWay: function filterCharsOnTheWay() {
+      var _this6 = this;
+
+      var count = this.charsFree.filter(function (_char) {
+        return _char.status_id == 3 && _char.system_id == _this6.system_id;
+      }).length;
+
+      if (count > 0) {
+        return "green";
+      } else {
+        return "red";
+      }
+    }
+  }),
   beforeDestroy: function beforeDestroy() {}
 });
 
@@ -56257,7 +56465,175 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    { staticClass: "ml-auto" },
+    [
+      _vm.showButton != 0
+        ? _c(
+            "v-menu",
+            {
+              attrs: { transition: "fade-transition" },
+              scopedSlots: _vm._u(
+                [
+                  {
+                    key: "activator",
+                    fn: function (ref) {
+                      var on = ref.on
+                      var attrs = ref.attrs
+                      return [
+                        _c(
+                          "v-chip",
+                          _vm._g(
+                            _vm._b(
+                              {
+                                attrs: {
+                                  dark: "",
+                                  color: _vm.filterCharsOnTheWay,
+                                  small: "",
+                                },
+                              },
+                              "v-chip",
+                              attrs,
+                              false
+                            ),
+                            on
+                          ),
+                          [_vm._v("\n        On the Way\n      ")]
+                        ),
+                      ]
+                    },
+                  },
+                ],
+                null,
+                false,
+                738257612
+              ),
+            },
+            [
+              _vm._v(" "),
+              _c(
+                "v-list",
+                _vm._l(_vm.charsFree, function (list, index) {
+                  return _c(
+                    "v-list-item",
+                    {
+                      key: index,
+                      on: {
+                        click: function ($event) {
+                          return _vm.clickOnTheWay(list.id)
+                        },
+                      },
+                    },
+                    [_c("v-list-item-title", [_vm._v(_vm._s(list.name))])],
+                    1
+                  )
+                }),
+                1
+              ),
+            ],
+            1
+          )
+        : _c("span", [_vm._v(" On the way - ")]),
+      _vm._v(" "),
+      _c(
+        "v-menu",
+        {
+          attrs: { transition: "fade-transition" },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function (ref) {
+                var on = ref.on
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._g(
+                      _vm._b(
+                        {
+                          staticClass: "mx-2",
+                          attrs: {
+                            disabled: _vm.fabOnTheWayDisbale,
+                            fab: "",
+                            color: "green darken-4",
+                            dark: "",
+                            "x-small": "",
+                          },
+                        },
+                        "v-btn",
+                        attrs,
+                        false
+                      ),
+                      on
+                    ),
+                    [
+                      _vm._v(
+                        "\n        " + _vm._s(_vm.OnTheWayCount) + "\n      "
+                      ),
+                    ]
+                  ),
+                ]
+              },
+            },
+          ]),
+        },
+        [
+          _vm._v(" "),
+          _c(
+            "v-list",
+            _vm._l(_vm.charsOnTheWayAll, function (list, index) {
+              return _c(
+                "v-list-item",
+                { key: index },
+                [
+                  _c("v-list-item-title", [
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(list.name) +
+                        " - " +
+                        _vm._s(list.ship) +
+                        " - T" +
+                        _vm._s(list.entosis)
+                    ),
+                    _vm.seeReadyToGoOnTheWay(list)
+                      ? _c(
+                          "span",
+                          { staticClass: "pl-3" },
+                          [
+                            _c(
+                              "v-icon",
+                              {
+                                attrs: { color: "orange darken-3", small: "" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.removeReadyToGoOnTheWay(list.id)
+                                  },
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  "\n              fas fa-trash-alt\n            "
+                                ),
+                              ]
+                            ),
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                  ]),
+                ],
+                1
+              )
+            }),
+            1
+          ),
+        ],
+        1
+      ),
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
