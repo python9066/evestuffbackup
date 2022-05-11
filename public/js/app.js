@@ -13885,7 +13885,7 @@ function sleep(ms) {
         });
       } else {
         var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-          return c.user_status_id != 2;
+          return c.system_id != _this2.item.id;
         });
       }
 
