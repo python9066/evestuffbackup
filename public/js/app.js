@@ -13884,7 +13884,7 @@ function sleep(ms) {
       });
 
       if (data) {
-        return this.getOwnHackingCharOnOp(this.operationID).length;
+        return data.length;
       } else {
         return 0;
       }

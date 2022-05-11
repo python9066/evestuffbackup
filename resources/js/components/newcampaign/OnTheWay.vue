@@ -123,7 +123,7 @@ export default {
         (c) => c.user_status_id != 2 && c.system_id != this.item.id
       );
       if (data) {
-        return this.getOwnHackingCharOnOp(this.operationID).length;
+        return data.length;
       } else {
         return 0;
       }
