@@ -13916,7 +13916,7 @@ function sleep(ms) {
 
       if (data) {
         data = data.filter(function (c) {
-          return c.system_id != _this3.item.id && c.user_status_id != 2;
+          return c.system_id != _this3.item.id;
         });
       }
 
