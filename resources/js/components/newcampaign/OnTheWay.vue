@@ -129,7 +129,7 @@ export default {
 
     charsFree() {
       var data = this.getOwnHackingCharOnOp(this.operationID).filter(
-        (c) => c.system_id != this.item.id && c.user_status_id != 2
+        (c) => c.user_status_id != 2
       );
       if (data) {
         return data;
