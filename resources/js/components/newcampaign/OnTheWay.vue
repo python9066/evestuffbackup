@@ -143,7 +143,7 @@ export default {
           (c) => c.system_id != this.item.id && c.user_status_id != 2
         );
       }
-
+      console.log(data);
       if (data) {
         return data.length;
       } else {

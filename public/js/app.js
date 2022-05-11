@@ -13920,6 +13920,8 @@ function sleep(ms) {
         });
       }
 
+      console.log(data);
+
       if (data) {
         return data.length;
       } else {
