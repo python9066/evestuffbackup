@@ -9,7 +9,7 @@
           v-on="on"
           small
         >
-          On the Way
+          Ready To Go
         </v-chip>
       </template>
       <v-list>
@@ -22,7 +22,7 @@
         </v-list-item>
       </v-list>
     </v-menu>
-    <span v-else> Ready To GO - </span>
+    <span v-else> Ready To Go - </span>
     <v-menu transition="fade-transition">
       <template v-slot:activator="{ on, attrs }">
         <v-btn

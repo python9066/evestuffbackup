@@ -56479,7 +56479,7 @@ var render = function () {
                             ),
                             on
                           ),
-                          [_vm._v("\n        On the Way\n      ")]
+                          [_vm._v("\n        Ready To Go\n      ")]
                         ),
                       ]
                     },
@@ -56487,7 +56487,7 @@ var render = function () {
                 ],
                 null,
                 false,
-                738257612
+                1136302947
               ),
             },
             [
@@ -56514,7 +56514,7 @@ var render = function () {
             ],
             1
           )
-        : _c("span", [_vm._v(" Ready To GO - ")]),
+        : _c("span", [_vm._v(" Ready To Go - ")]),
       _vm._v(" "),
       _c(
         "v-menu",
