@@ -11704,6 +11704,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -53850,13 +53865,65 @@ var render = function () {
                 "v-row",
                 { attrs: { "no-gutters": "" } },
                 [
-                  _c("v-col", { attrs: { cols: "2" } }, [
-                    _vm._v(
-                      "\n          " +
-                        _vm._s(_vm.item.system_name) +
-                        "\n        "
-                    ),
-                  ]),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "2" } },
+                    [
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(_vm.item.system_name) +
+                          "\n          "
+                      ),
+                      _c("v-divider", {
+                        staticClass: "mx-4 my-0",
+                        attrs: { vertical: "" },
+                      }),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "4" } },
+                    [
+                      _vm._v("\n          Nodes - 2/3 1/3\n          "),
+                      _c("v-divider", {
+                        staticClass: "mx-4 my-0",
+                        attrs: { vertical: "" },
+                      }),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "2" } },
+                    [
+                      _vm._v("\n          On The Way - 0\n          "),
+                      _c("v-divider", {
+                        staticClass: "mx-4 my-0",
+                        attrs: { vertical: "" },
+                      }),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm.showSystemTable == 0
+                    ? _c(
+                        "v-col",
+                        { attrs: { cols: "2" } },
+                        [
+                          _vm._v("\n          Ready to go - 0\n          "),
+                          _c("v-divider", {
+                            staticClass: "mx-4 my-0",
+                            attrs: { vertical: "" },
+                          }),
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("v-col", { attrs: { cols: "2" } }, [_vm._v(" + NODE ")]),
                 ],
                 1
               ),

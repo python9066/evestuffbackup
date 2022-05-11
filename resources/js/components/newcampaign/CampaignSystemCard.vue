@@ -23,7 +23,22 @@
         <v-row no-gutters>
           <v-col cols="2">
             {{ item.system_name }}
+            <v-divider class="mx-4 my-0" vertical></v-divider>
           </v-col>
+          <v-col cols="4">
+            Nodes - 2/3 1/3
+            <v-divider class="mx-4 my-0" vertical></v-divider>
+          </v-col>
+          <v-col cols="2">
+            On The Way - 0
+            <v-divider class="mx-4 my-0" vertical></v-divider>
+          </v-col>
+
+          <v-col cols="2" v-if="showSystemTable == 0">
+            Ready to go - 0
+            <v-divider class="mx-4 my-0" vertical></v-divider>
+          </v-col>
+          <v-col cols="2"> + NODE </v-col>
         </v-row>
       </v-expansion-panel-header>
       <v-expansion-panel-content
