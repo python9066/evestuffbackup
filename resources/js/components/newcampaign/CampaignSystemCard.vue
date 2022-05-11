@@ -47,7 +47,7 @@
                 :cols="colNumber"
                 class="d-flex justify-center align-center"
               >
-                Ready To GO - 0
+                <ReadyToGo :operationID="operationID" :item="item"></ReadyToGo>
               </v-col>
               <v-divider vertical></v-divider>
               <v-col

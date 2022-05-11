@@ -54818,10 +54818,14 @@ var render = function () {
                               attrs: { cols: _vm.colNumber },
                             },
                             [
-                              _vm._v(
-                                "\n              Ready To GO - 0\n            "
-                              ),
-                            ]
+                              _c("ReadyToGo", {
+                                attrs: {
+                                  operationID: _vm.operationID,
+                                  item: _vm.item,
+                                },
+                              }),
+                            ],
+                            1
                           ),
                           _vm._v(" "),
                           _c("v-divider", { attrs: { vertical: "" } }),
