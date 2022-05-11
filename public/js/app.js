@@ -10974,7 +10974,7 @@ function sleep(ms) {
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])()), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])),
+  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])),
   beforeDestroy: function beforeDestroy() {}
 });
 
