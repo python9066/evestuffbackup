@@ -13867,6 +13867,39 @@ function sleep(ms) {
         }, _callee4);
       }))();
     },
+    removeReadyToGoOnTheWay: function removeReadyToGoOnTheWay(opUserID) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                request = {
+                  user_status_id: 1,
+                  system_id: null
+                };
+                _context5.next = 3;
+                return axios({
+                  method: "put",
+                  url: "/api/onthewayreadytogo/" + _this2.operationID + "/" + opUserID,
+                  data: request,
+                  withCredentials: true,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
     seeReadyToGoOnTheWay: function seeReadyToGoOnTheWay(item) {
       if (this.$can("campaigns_admin_access") || this.$store.state.user_id == item.user_id) {
         return true;
@@ -13877,25 +13910,6 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp", "getOpUsersOnTheWayAll"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     showButton: function showButton() {
-      var _this2 = this;
-
-      if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
-        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-          return c.system_id != _this2.item.id && c.user_status_id != 2;
-        });
-      } else {
-        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-          return c.system_id != _this2.item.id;
-        });
-      }
-
-      if (data) {
-        return data.length;
-      } else {
-        return 0;
-      }
-    },
-    charsFree: function charsFree() {
       var _this3 = this;
 
       if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
@@ -13909,16 +13923,35 @@ function sleep(ms) {
       }
 
       if (data) {
+        return data.length;
+      } else {
+        return 0;
+      }
+    },
+    charsFree: function charsFree() {
+      var _this4 = this;
+
+      if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
+        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+          return c.system_id != _this4.item.id && c.user_status_id != 2;
+        });
+      } else {
+        var data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
+          return c.system_id != _this4.item.id;
+        });
+      }
+
+      if (data) {
         return data;
       } else {
         return [];
       }
     },
     charsOnTheWayAll: function charsOnTheWayAll() {
-      var _this4 = this;
+      var _this5 = this;
 
       return this.getOpUsersOnTheWayAll.filter(function (q) {
-        return q.system_id == _this4.item.id;
+        return q.system_id == _this5.item.id;
       });
     },
     OnTheWayCount: function OnTheWayCount() {
@@ -13936,10 +13969,10 @@ function sleep(ms) {
       }
     },
     filterCharsOnTheWay: function filterCharsOnTheWay() {
-      var _this5 = this;
+      var _this6 = this;
 
       var count = this.charsFree.filter(function (_char) {
-        return _char.status_id == 2 && _char.system_id == _this5.system_id;
+        return _char.status_id == 2 && _char.system_id == _this6.system_id;
       }).length;
 
       if (count > 0) {
@@ -56018,7 +56051,7 @@ var render = function () {
                                 attrs: { color: "orange darken-3", small: "" },
                                 on: {
                                   click: function ($event) {
-                                    return _vm.removeReadyToGoOnTheWay(list)
+                                    return _vm.removeReadyToGoOnTheWay(list.id)
                                   },
                                 },
                               },

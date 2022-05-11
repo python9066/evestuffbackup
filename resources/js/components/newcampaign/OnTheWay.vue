@@ -46,7 +46,7 @@
               <v-icon
                 color="orange darken-3"
                 small
-                @click="removeReadyToGoOnTheWay(list)"
+                @click="removeReadyToGoOnTheWay(list.id)"
               >
                 fas fa-trash-alt
               </v-icon></span
@@ -87,6 +87,24 @@ export default {
       var request = {
         user_status_id: 2,
         system_id: this.item.id,
+      };
+
+      await axios({
+        method: "put",
+        url: "/api/onthewayreadytogo/" + this.operationID + "/" + opUserID,
+        data: request,
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+    },
+
+    async removeReadyToGoOnTheWay(opUserID) {
+      var request = {
+        user_status_id: 1,
+        system_id: null,
       };
 
       await axios({
