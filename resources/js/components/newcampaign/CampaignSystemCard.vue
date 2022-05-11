@@ -39,7 +39,7 @@
                 :cols="colNumber"
                 class="d-flex justify-center align-center"
               >
-                <OnTheWay :operationID="operationID"></OnTheWay>
+                <!-- <OnTheWay :operationID="operationID"></OnTheWay> -->
               </v-col>
               <v-divider vertical></v-divider>
 
