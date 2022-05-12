@@ -99,7 +99,7 @@ export default {
       if (this.item) {
         count = this.item.filter(
           (n) => n.node_status.id == 5 || n.node_status.id == 7
-        );
+        ).length;
       } else {
         count = 0;
       }

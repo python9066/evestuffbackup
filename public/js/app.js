@@ -14762,7 +14762,7 @@ function sleep(ms) {
       if (this.item) {
         count = this.item.filter(function (n) {
           return n.node_status.id == 5 || n.node_status.id == 7;
-        });
+        }).length;
       } else {
         count = 0;
       }
