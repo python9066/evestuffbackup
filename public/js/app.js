@@ -13783,8 +13783,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
  // import ApiL from "../service/apil";
 
@@ -14341,7 +14339,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
  // import ApiL from "../service/apil";
 
@@ -14468,6 +14465,9 @@ function sleep(ms) {
           }
         }, _callee5);
       }))();
+    },
+    toggleopen: function toggleopen() {
+      _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 1);
     },
     seeReadyToGoOnTheWay: function seeReadyToGoOnTheWay(item) {
       if (this.$can("campaigns_admin_access") || this.$store.state.user_id == item.user_id) {
@@ -56320,23 +56320,15 @@ var render = function () {
         : _vm.showButton == 2
         ? _c(
             "v-btn",
-            _vm._g(
-              _vm._b(
-                {
-                  staticClass: "no-uppercase",
-                  attrs: {
-                    dark: "",
-                    color: _vm.filterCharsOnTheWay,
-                    small: "",
-                    rounded: "",
-                  },
-                },
-                "v-btn",
-                _vm.attrs,
-                false
-              ),
-              _vm.on
-            ),
+            {
+              staticClass: "no-uppercase",
+              attrs: {
+                dark: "",
+                color: _vm.filterCharsOnTheWay,
+                "x-small": "",
+                rounded: "",
+              },
+            },
             [_vm._v("\n    On the Way\n  ")]
           )
         : _c("span", [_vm._v(" On the way - ")]),
@@ -56690,23 +56682,20 @@ var render = function () {
         : _vm.showButton == 2
         ? _c(
             "v-btn",
-            _vm._g(
-              _vm._b(
-                {
-                  staticClass: "no-uppercase",
-                  attrs: {
-                    dark: "",
-                    color: _vm.filterCharsOnTheWay,
-                    small: "",
-                    rounded: "",
-                  },
+            {
+              staticClass: "no-uppercase",
+              attrs: {
+                dark: "",
+                color: _vm.filterCharsOnTheWay,
+                "x-small": "",
+                rounded: "",
+              },
+              on: {
+                click: function ($event) {
+                  return _vm.click()
                 },
-                "v-btn",
-                _vm.attrs,
-                false
-              ),
-              _vm.on
-            ),
+              },
+            },
             [_vm._v("\n    On the Way\n  ")]
           )
         : _c("span", [_vm._v(" Ready To Go - ")]),

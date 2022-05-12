@@ -26,9 +26,8 @@
       v-else-if="showButton == 2"
       dark
       :color="filterCharsOnTheWay"
-      v-bind="attrs"
-      v-on="on"
-      small
+      @click="click()"
+      x-small
       rounded
       class="no-uppercase"
     >
@@ -129,6 +128,10 @@ export default {
           "Content-Type": "application/json",
         },
       });
+    },
+
+    toggleopen() {
+      EventBus.$emit("showSystemTable", 1);
     },
 
     seeReadyToGoOnTheWay(item) {

@@ -26,9 +26,7 @@
       v-else-if="showButton == 2"
       dark
       :color="filterCharsOnTheWay"
-      v-bind="attrs"
-      v-on="on"
-      small
+      x-small
       rounded
       class="no-uppercase"
     >
