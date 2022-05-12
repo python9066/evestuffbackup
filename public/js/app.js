@@ -13909,6 +13909,15 @@ function sleep(ms) {
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp", "getOpUsersOnTheWayAll"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
+    //  if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
+    //     var data = this.getOwnHackingCharOnOp(this.operationID).filter(
+    //       (c) => c.system_id != this.item.id && c.user_status_id != 2
+    //     );
+    //   } else {
+    //     var data = this.getOwnHackingCharOnOp(this.operationID).filter(
+    //       (c) => c.system_id != this.item.id
+    //     );
+    //   }
     showButton: function showButton() {
       var _this3 = this;
 
@@ -13917,13 +13926,13 @@ function sleep(ms) {
       if (data) {
         data = data.filter(function (c) {
           if (c.system_id == _this3.item.id) {
-            if (c.system_id != _this3.item.id && c.user_status_id != 2) {
+            if (c.system_id == _this3.item.id && c.user_status_id != 2) {
               return true;
             } else {
               return false;
             }
           } else {
-            if (c.user_status_id != 2) {
+            if (c.system_id != _this3.item.id) {
               return true;
             } else {
               return false;
