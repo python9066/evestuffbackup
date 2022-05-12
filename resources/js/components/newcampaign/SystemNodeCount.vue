@@ -112,7 +112,7 @@ export default {
 
     blueNode() {
       if (this.nodes) {
-        var count = this.nodes.filter(
+        var filter = this.nodes.filter(
           (c) =>
             c.node_status.id == 2 ||
             c.node_status.id == 3 ||
@@ -120,7 +120,7 @@ export default {
             c.node_status.id == 8
         );
 
-        console.log(count);
+        var count = filter.legnth;
       } else {
         var count = 0;
       }
@@ -129,9 +129,11 @@ export default {
 
     redNode() {
       if (this.nodes) {
-        var count = this.nodes.filter(
+        var filter = this.nodes.filter(
           (n) => n.node_status.id == 5 || n.node_status.id == 7
         ).legnth;
+
+        var count = filter.legnth;
       } else {
         var count = 0;
       }
