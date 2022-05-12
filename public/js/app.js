@@ -55174,7 +55174,7 @@ var render = function () {
                             },
                             [
                               _c("SystemNodeCount", {
-                                attrs: { nodes: _vm.item.new_nodes },
+                                attrs: { item: _vm.item.new_nodes },
                               }),
                             ],
                             1
