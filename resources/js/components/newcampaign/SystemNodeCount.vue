@@ -32,7 +32,7 @@
     <v-col>
       <Vep :progress="progress" :size="size">
         <template v-slot:legend-value>
-          <span slot="legend-value"> /200</span>
+          <span slot="legend-value"> /{{ totalNode }}</span>
         </template>
         <template v-slot:legend-caption>
           <p slot="legend-caption">Friendly</p>

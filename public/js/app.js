@@ -57149,7 +57149,7 @@ var render = function () {
                     _c(
                       "span",
                       { attrs: { slot: "legend-value" }, slot: "legend-value" },
-                      [_vm._v(" /200")]
+                      [_vm._v(" /" + _vm._s(_vm.totalNode))]
                     ),
                   ]
                 },
