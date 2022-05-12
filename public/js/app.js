@@ -14466,7 +14466,7 @@ function sleep(ms) {
         }, _callee5);
       }))();
     },
-    toggleopen: function toggleopen() {
+    click: function click() {
       _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 1);
     },
     seeReadyToGoOnTheWay: function seeReadyToGoOnTheWay(item) {

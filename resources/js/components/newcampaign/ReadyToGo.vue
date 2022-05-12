@@ -130,7 +130,7 @@ export default {
       });
     },
 
-    toggleopen() {
+    click() {
       EventBus.$emit("showSystemTable", 1);
     },
 
