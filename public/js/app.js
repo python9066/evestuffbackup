@@ -14736,6 +14736,7 @@ function sleep(ms) {
 
       if (this.item) {
         count = this.item.legnth;
+        console.log(count);
       } else {
         count = 0;
       }
@@ -14749,7 +14750,6 @@ function sleep(ms) {
         count = this.item.filter(function (c) {
           return c.node_status.id == 2 || c.node_status.id == 3 || c.node_status.id == 4 || c.node_status.id == 8;
         }).length;
-        console.log(count);
       } else {
         count = 0;
       }

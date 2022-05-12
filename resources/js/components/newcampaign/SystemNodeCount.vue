@@ -69,6 +69,7 @@ export default {
       var count = null;
       if (this.item) {
         count = this.item.legnth;
+        console.log(count);
       } else {
         count = 0;
       }
@@ -86,8 +87,6 @@ export default {
             c.node_status.id == 4 ||
             c.node_status.id == 8
         ).length;
-
-        console.log(count);
       } else {
         count = 0;
       }
