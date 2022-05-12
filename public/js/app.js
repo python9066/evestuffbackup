@@ -11911,8 +11911,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
  // import ApiL from "../service/apil";
 
@@ -55149,7 +55147,7 @@ var render = function () {
                           ),
                           _vm._v(" "),
                           _c("v-divider", {
-                            staticClass: "mx-4",
+                            staticClass: "mx-2",
                             attrs: { vertical: "" },
                           }),
                           _vm._v(" "),
@@ -55167,10 +55165,8 @@ var render = function () {
                             1
                           ),
                           _vm._v(" "),
-                          _c("v-spacer"),
-                          _vm._v(" "),
                           _c("v-divider", {
-                            staticClass: "mx-4",
+                            staticClass: "mx-2",
                             attrs: { vertical: "" },
                           }),
                           _vm._v(" "),
@@ -55192,7 +55188,7 @@ var render = function () {
                           ),
                           _vm._v(" "),
                           _c("v-divider", {
-                            staticClass: "mx-4",
+                            staticClass: "mx-2",
                             attrs: { vertical: "" },
                           }),
                           _vm._v(" "),
@@ -55214,11 +55210,9 @@ var render = function () {
                           ),
                           _vm._v(" "),
                           _c("v-divider", {
-                            staticClass: "mx-4",
+                            staticClass: "mx-2",
                             attrs: { vertical: "" },
                           }),
-                          _vm._v(" "),
-                          _c("v-spacer"),
                           _vm._v(" "),
                           _c(
                             "v-col",

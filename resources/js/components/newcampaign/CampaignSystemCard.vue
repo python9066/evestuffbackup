@@ -31,22 +31,20 @@
               <v-col cols="1" class="d-flex justify-start align-center mr-2">
                 {{ item.system_name }}
               </v-col>
-              <v-divider class="mx-4" vertical></v-divider>
+              <v-divider class="mx-2" vertical></v-divider>
               <v-col cols="3" class="d-flex justify-start align-center">
                 <SystemNodeCount :item="item.new_nodes" />
               </v-col>
-              <v-spacer></v-spacer>
-              <v-divider class="mx-4" vertical></v-divider>
+              <v-divider class="mx-2" vertical></v-divider>
               <v-col cols="3" class="d-flex justify-center align-center">
                 <OnTheWay :operationID="operationID" :item="item"></OnTheWay>
               </v-col>
-              <v-divider class="mx-4" vertical></v-divider>
+              <v-divider class="mx-2" vertical></v-divider>
 
               <v-col cols="3" class="d-flex justify-center align-center">
                 <ReadyToGo :operationID="operationID" :item="item"></ReadyToGo>
               </v-col>
-              <v-divider class="mx-4" vertical></v-divider>
-              <v-spacer></v-spacer>
+              <v-divider class="mx-2" vertical></v-divider>
               <v-col cols="1" class="d-flex justify-end align-center">
                 <v-btn icon @click="clickIcon()">
                   <v-icon :class="iconRotate">fas fa-angle-up</v-icon></v-btn
