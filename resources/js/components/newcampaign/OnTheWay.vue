@@ -9,7 +9,7 @@
           v-on="on"
           small
         >
-          On the Way
+          On The Way
         </v-chip>
       </template>
       <v-list>
@@ -30,9 +30,9 @@
       rounded
       class="no-uppercase"
     >
-      On the Way
+      On The Way
     </v-btn>
-    <span v-else> On the way - </span>
+    <span v-else> On The Way - </span>
     <v-menu transition="fade-transition">
       <template v-slot:activator="{ on, attrs }">
         <v-btn

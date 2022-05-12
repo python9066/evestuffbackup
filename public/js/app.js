@@ -56549,7 +56549,7 @@ var render = function () {
                             ),
                             on
                           ),
-                          [_vm._v("\n        On the Way\n      ")]
+                          [_vm._v("\n        On The Way\n      ")]
                         ),
                       ]
                     },
@@ -56557,7 +56557,7 @@ var render = function () {
                 ],
                 null,
                 false,
-                738257612
+                1933225900
               ),
             },
             [
@@ -56596,9 +56596,9 @@ var render = function () {
                 rounded: "",
               },
             },
-            [_vm._v("\n    On the Way\n  ")]
+            [_vm._v("\n    On The Way\n  ")]
           )
-        : _c("span", [_vm._v(" On the way - ")]),
+        : _c("span", [_vm._v(" On The Way - ")]),
       _vm._v(" "),
       _c(
         "v-menu",
