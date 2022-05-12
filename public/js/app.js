@@ -14747,6 +14747,7 @@ function sleep(ms) {
           return c.node_status.id == 2 || c.node_status.id == 3 || c.node_status.id == 4 || c.node_status.id == 8;
         });
         var count = filter.legnth;
+        console.log(count);
       } else {
         var count = 0;
       }

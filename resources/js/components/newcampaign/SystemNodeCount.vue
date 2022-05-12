@@ -88,6 +88,7 @@ export default {
         );
 
         var count = filter.legnth;
+        console.log(count);
       } else {
         var count = 0;
       }
