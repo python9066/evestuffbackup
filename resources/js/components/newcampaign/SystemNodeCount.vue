@@ -1,7 +1,7 @@
 <template>
   <v-row no-gutters>
-    <v-col align-self="baseline">
-      Nodes -
+    <v-col class="d-flex justify-start align-center">
+      <span> Nodes -</span>
       <Vep
         :progress="blueProgress"
         :size="50"

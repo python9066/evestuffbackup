@@ -57089,9 +57089,10 @@ var render = function () {
     [
       _c(
         "v-col",
-        { attrs: { "align-self": "baseline" } },
+        { staticClass: "d-flex justify-start align-center" },
         [
-          _vm._v("\n    Nodes -\n    "),
+          _c("span", [_vm._v(" Nodes -")]),
+          _vm._v(" "),
           _c("Vep", {
             attrs: {
               progress: _vm.blueProgress,
