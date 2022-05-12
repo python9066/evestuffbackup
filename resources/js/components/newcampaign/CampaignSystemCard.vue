@@ -61,7 +61,7 @@
 
               <v-col cols="2" class="d-flex justify-end align-center">
                 <v-btn icon>
-                  <v-icon class="iconRotate">fas fa-angle-up</v-icon></v-btn
+                  <v-icon :class="iconRotate">fas fa-angle-up</v-icon></v-btn
                 >
               </v-col>
             </v-row>

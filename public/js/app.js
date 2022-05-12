@@ -55048,7 +55048,7 @@ var render = function () {
                                 "v-btn",
                                 { attrs: { icon: "" } },
                                 [
-                                  _c("v-icon", { staticClass: "iconRotate" }, [
+                                  _c("v-icon", { class: _vm.iconRotate }, [
                                     _vm._v("fas fa-angle-up"),
                                   ]),
                                 ],
