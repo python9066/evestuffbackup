@@ -13926,7 +13926,7 @@ function sleep(ms) {
       if (data) {
         data = data.filter(function (c) {
           if (c.system_id == _this3.item.id) {
-            if (c.system_id == _this3.item.id && c.user_status_id != 2) {
+            if (c.system_id != _this3.item.id && c.user_status_id != 2) {
               return true;
             } else {
               return false;
