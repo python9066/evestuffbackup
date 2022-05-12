@@ -14684,6 +14684,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -14705,7 +14707,8 @@ function sleep(ms) {
       redNode: 5,
       size: 50,
       fontSizeNumber: "0.80",
-      thickness: 4
+      thickness: 4,
+      emptyThickness: 2
     };
   },
   created: function created() {
@@ -57089,8 +57092,10 @@ var render = function () {
               size: _vm.size,
               "legend-value": _vm.blueNode,
               fontSize: _vm.fontsize,
-              color: "green",
+              color: "#00ff00",
               thickness: _vm.thickness,
+              emptyThickness: _vm.emptyThickness,
+              emptyColorFill: "#86f786",
             },
             scopedSlots: _vm._u([
               {
