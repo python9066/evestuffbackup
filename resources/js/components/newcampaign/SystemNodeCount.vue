@@ -57,7 +57,7 @@ export default {
       totalNode: 10,
       blueNode: 5,
       redNode: 5,
-      size: 150,
+      size: 100,
     };
   },
 
@@ -76,8 +76,7 @@ export default {
     ...mapState([]),
 
     progress() {
-      var num = (this.blueNode / this.totalNode) * 100;
-      return num;
+      return this.blueNode;
     },
   },
   beforeDestroy() {},

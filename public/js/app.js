@@ -14696,7 +14696,7 @@ function sleep(ms) {
       totalNode: 10,
       blueNode: 5,
       redNode: 5,
-      size: 150
+      size: 100
     };
   },
   created: function created() {
@@ -14742,8 +14742,7 @@ function sleep(ms) {
   methods: {},
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     progress: function progress() {
-      var num = this.blueNode / this.totalNode * 100;
-      return num;
+      return this.blueNode;
     }
   }),
   beforeDestroy: function beforeDestroy() {}
