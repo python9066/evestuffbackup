@@ -57095,7 +57095,7 @@ var render = function () {
               color: "#00ff00",
               thickness: _vm.thickness,
               emptyThickness: _vm.emptyThickness,
-              emptyColorFill: "#86f786",
+              emptyColor: "#86f786",
             },
             scopedSlots: _vm._u([
               {
