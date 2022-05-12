@@ -1,6 +1,6 @@
 <template>
   <div class="ml-auto">
-    <v-menu transition="fade-transition" v-if="showButton != 0">
+    <v-menu transition="fade-transition" v-if="showButton == 1">
       <template v-slot:activator="{ on, attrs }">
         <v-chip
           dark
@@ -22,6 +22,18 @@
         </v-list-item>
       </v-list>
     </v-menu>
+    <v-btn
+      v-else-if="showButton == 2"
+      dark
+      :color="filterCharsOnTheWay"
+      v-bind="attrs"
+      v-on="on"
+      small
+      rounded
+      class="no-uppercase"
+    >
+      On the Way
+    </v-btn>
     <span v-else> Ready To Go - </span>
     <v-menu transition="fade-transition">
       <template v-slot:activator="{ on, attrs }">
@@ -132,39 +144,28 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getOwnHackingCharOnOp", "getOpUsersReadyToGoAll"]),
+    ...mapGetters([
+      "getOwnHackingCharOnOp",
+      "getOpUsersReadyToGoAll",
+      "getOwnHackingCharOnOpAllHackers",
+    ]),
 
     ...mapState([]),
 
     showButton() {
-      var data = this.charsFree;
-      if (data) {
-        return data.length;
+      if (this.allOwnHackingCharsCount > 0) {
+        if (this.freeCharsCount > 0) {
+          return 1;
+        } else {
+          return 2;
+        }
       } else {
         return 0;
       }
     },
 
-    charsFree() {
-      var data = this.getOwnHackingCharOnOp(this.operationID);
-      if (data) {
-        data = data.filter((c) => {
-          if (c.system_id == this.item.id) {
-            if (c.system_id != this.item.id && c.user_status_id != 3) {
-              return true;
-            } else {
-              return false;
-            }
-          } else {
-            if (c.system_id != this.item.id) {
-              return true;
-            } else {
-              return false;
-            }
-          }
-        });
-      }
-
+    allOwnHackingChars() {
+      var data = this.getOwnHackingCharOnOpAllHackers(this.operationID);
       if (data) {
         return data;
       } else {
@@ -172,15 +173,53 @@ export default {
       }
     },
 
-    charsReadyToGoAll() {
+    allOwnHackingCharsCount() {
+      if (this.allOwnHackingChars) {
+        return this.allOwnHackingChars.length;
+      } else {
+        return 0;
+      }
+    },
+
+    freeChars() {
+      var data = this.getOwnHackingCharOnOpAllHackers(this.operationID);
+      if (data) {
+        data = data.filter((c) => {
+          if (c.system_id == this.item.id) {
+            if (c.user_status_id != 3) {
+              return true;
+            } else {
+              return false;
+            }
+          } else {
+            return true;
+          }
+        });
+      }
+      if (data) {
+        return data;
+      } else {
+        return [];
+      }
+    },
+
+    freeCharsCount() {
+      if (this.freeChars) {
+        return this.freeChars.length;
+      } else {
+        return 0;
+      }
+    },
+
+    charsOnTheWayAll() {
       return this.getOpUsersReadyToGoAll.filter(
         (q) => q.system_id == this.item.id
       );
     },
 
     OnTheWayCount() {
-      if (this.charsReadyToGoAll) {
-        return this.charsReadyToGoAll.length;
+      if (this.charsOnTheWayAll) {
+        return this.charsOnTheWayAll.length;
       } else {
         return 0;
       }
@@ -195,9 +234,14 @@ export default {
     },
 
     filterCharsOnTheWay() {
-      var count = this.charsFree.filter(
-        (char) => char.status_id == 3 && char.system_id == this.system_id
-      ).length;
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+      if (data) {
+        var count = data.filter(
+          (c) => c.system_id == this.item.id && c.user_status_id == 3
+        ).length;
+      } else {
+        var count = 0;
+      }
 
       if (count > 0) {
         return "green";
