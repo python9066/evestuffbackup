@@ -11918,13 +11918,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
  // import ApiL from "../service/apil";
 
@@ -12617,6 +12610,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -55220,26 +55215,6 @@ var render = function () {
                           _vm._v(" "),
                           _c("v-divider", { attrs: { vertical: "" } }),
                           _vm._v(" "),
-                          _vm.showSystemTable == 0
-                            ? _c(
-                                "v-col",
-                                {
-                                  staticClass:
-                                    "d-flex justify-end align-center",
-                                  attrs: { cols: "2" },
-                                },
-                                [
-                                  _c("AddNode", {
-                                    attrs: {
-                                      item: _vm.item,
-                                      operationID: _vm.operationID,
-                                    },
-                                  }),
-                                ],
-                                1
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
                           _c(
                             "v-col",
                             {
@@ -55847,7 +55822,14 @@ var render = function () {
                             key: "header.actions",
                             fn: function (ref) {
                               var headers = ref.headers
-                              return [_vm._v(" dance ")]
+                              return [
+                                _c("AddNode", {
+                                  attrs: {
+                                    item: _vm.item,
+                                    operationID: _vm.operationID,
+                                  },
+                                }),
+                              ]
                             },
                           },
                         ],

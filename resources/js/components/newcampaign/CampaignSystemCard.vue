@@ -51,13 +51,6 @@
                 <ReadyToGo :operationID="operationID" :item="item"></ReadyToGo>
               </v-col>
               <v-divider vertical></v-divider>
-              <v-col
-                cols="2"
-                class="d-flex justify-end align-center"
-                v-if="showSystemTable == 0"
-              >
-                <AddNode :item="item" :operationID="operationID"></AddNode>
-              </v-col>
 
               <v-col cols="1" class="d-flex justify-end align-center">
                 <v-btn icon @click="clickIcon()">

@@ -69,7 +69,9 @@
               </td>
             </template>
 
-            <template v-slot:[`header.actions`]="{ headers }"> dance </template>
+            <template v-slot:[`header.actions`]="{ headers }">
+              <AddNode :item="item" :operationID="operationID"></AddNode>
+            </template>
           </v-data-table>
         </v-col>
       </v-row>
