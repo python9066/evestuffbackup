@@ -54919,12 +54919,16 @@ var render = function () {
     [
       _c(
         "v-expansion-panel",
-        { staticClass: "rounded-xl", staticStyle: { cursor: "context-menu" } },
+        {
+          staticClass: "rounded-xl",
+          staticStyle: { cursor: "context-menu" },
+          attrs: { readonly: "" },
+        },
         [
           _c(
             "v-expansion-panel-header",
             {
-              staticClass: "py-0",
+              staticClass: "py-0 pr-2",
               class: _vm.filterRound,
               staticStyle: { cursor: "context-menu" },
               attrs: { "hide-actions": "" },
@@ -54938,7 +54942,7 @@ var render = function () {
                     "v-card-title",
                     {
                       staticClass:
-                        "d-flex justify-space-between align-center py-0",
+                        "d-flex justify-space-between align-center py-0 pr-0",
                       staticStyle: { width: "100%" },
                       attrs: { "max-width": "" },
                     },

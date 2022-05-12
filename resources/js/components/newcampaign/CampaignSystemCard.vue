@@ -14,17 +14,17 @@
     popout
     style="cursor: context-menu"
   >
-    <v-expansion-panel class="rounded-xl" style="cursor: context-menu">
+    <v-expansion-panel class="rounded-xl" style="cursor: context-menu" readonly>
       <v-expansion-panel-header
         style="cursor: context-menu"
-        class="py-0"
+        class="py-0 pr-2"
         :class="filterRound"
         hide-actions
       >
         <v-card flat max-width elevation="0">
           <v-card-title
             max-width
-            class="d-flex justify-space-between align-center py-0"
+            class="d-flex justify-space-between align-center py-0 pr-0"
             style="width: 100%"
           >
             <v-row no-gutters>
