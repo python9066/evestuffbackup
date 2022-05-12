@@ -14735,8 +14735,7 @@ function sleep(ms) {
       var count = null;
 
       if (this.item) {
-        count = this.item.legnth;
-        console.log(count);
+        count = this.item.length;
       } else {
         count = 0;
       }
