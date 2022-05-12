@@ -35,7 +35,7 @@
         :size="size"
         :legend-value="blueNode"
         :fontSize="fontsize"
-        :color="green"
+        color="green"
         :thickness="thickness"
       >
         <template v-slot:legend-value>

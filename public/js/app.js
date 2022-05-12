@@ -57089,7 +57089,7 @@ var render = function () {
               size: _vm.size,
               "legend-value": _vm.blueNode,
               fontSize: _vm.fontsize,
-              color: _vm.green,
+              color: "green",
               thickness: _vm.thickness,
             },
             scopedSlots: _vm._u([
