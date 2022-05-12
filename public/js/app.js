@@ -54983,7 +54983,14 @@ var render = function () {
                               staticClass: "d-flex justify-end align-center",
                               attrs: { cols: "2" },
                             },
-                            [_c("v-icon", [_vm._v("fas fa-angle-up")])],
+                            [
+                              _c(
+                                "v-btn",
+                                { attrs: { icon: "" } },
+                                [_c("v-icon", [_vm._v("fas fa-angle-up")])],
+                                1
+                              ),
+                            ],
                             1
                           ),
                         ],
