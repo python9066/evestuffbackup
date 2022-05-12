@@ -1,6 +1,6 @@
 <template>
   <v-row no-gutters>
-    <v-col>
+    <v-col align-self="baseline">
       Nodes -
       <Vep
         :progress="blueProgress"

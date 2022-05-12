@@ -36,18 +36,12 @@
                 <SystemNodeCount :item="item.new_nodes" />
               </v-col>
               <v-divider vertical></v-divider>
-              <v-col
-                :cols="colNumber"
-                class="d-flex justify-center align-center"
-              >
+              <v-col cols="3" class="d-flex justify-center align-center">
                 <OnTheWay :operationID="operationID" :item="item"></OnTheWay>
               </v-col>
               <v-divider vertical></v-divider>
 
-              <v-col
-                :cols="colNumber"
-                class="d-flex justify-center align-center"
-              >
+              <v-col cols="3" class="d-flex justify-center align-center">
                 <ReadyToGo :operationID="operationID" :item="item"></ReadyToGo>
               </v-col>
               <v-divider vertical></v-divider>
@@ -133,14 +127,6 @@ export default {
         return "rounded-t-xl";
       } else {
         return "rounded-xl";
-      }
-    },
-
-    colNumber() {
-      if (this.showSystemTable == 0) {
-        return 2;
-      } else {
-        return 3;
       }
     },
   },
