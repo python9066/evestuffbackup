@@ -33,7 +33,7 @@
               </v-col>
               <v-divider vertical></v-divider>
               <v-col cols="3" class="d-flex justify-start align-center">
-                Nodes - 2/3 1/3
+                <SystemNodeCount />
               </v-col>
               <v-divider vertical></v-divider>
               <v-col

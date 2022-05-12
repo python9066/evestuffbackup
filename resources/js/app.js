@@ -26,6 +26,7 @@ import VueMask from "v-mask";
 import Permissions from "./mixins/Permissions.vue";
 import titleMixin from "./mixins/titleMixin";
 import Clipboard from "v-clipboard";
+import VueEllipseProgress from "vue-ellipse-progress";
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 library.add(fas); // Include needed icons
@@ -487,8 +488,15 @@ Vue.component(
     "ReadyToGo",
     require("./components/newcampaign/ReadyToGo.vue").default
 );
+
+Vue.component(
+    "SystemNodeCount",
+    require("./components/newcampaign/SystemNodeCount.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
+Vue.use(VueEllipseProgress, "Vep");
 Vue.use(Clipboard);
 Vue.use(CountdownTimer);
 Vue.use(VueCountdownTimer);

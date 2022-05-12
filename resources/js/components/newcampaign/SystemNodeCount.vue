@@ -1,0 +1,68 @@
+<template>
+  <v-row no-gutters>
+    <v-col cols="6">
+      <v-progress-circular
+        v-if="nodeCount > 0"
+        :transitionDuration="5000"
+        :radius="20"
+        :strokeWidth="4"
+        :value="(nodeCountHackingCount / nodeCount) * 100 || 0.000001"
+      >
+        <div class="caption">
+          {{ nodeCountHackingCount }} /
+          {{ nodeCount }}
+        </div></v-progress-circular
+      >
+    </v-col>
+    <v-col cols="6">
+      <v-progress-circular
+        v-if="nodeCount > 0"
+        :transitionDuration="5000"
+        :radius="20"
+        :strokeWidth="4"
+        strokeColor="#FF3D00"
+        :value="(nodeRedCountHackingCount / nodeCount) * 100 || 0.000001"
+      >
+        <div class="caption">
+          {{ nodeRedCountHackingCount }} /
+          {{ nodeCount }}
+        </div></v-progress-circular
+      >
+    </v-col>
+    <v-col>
+      <Vep :progress="50" />
+    </v-col>
+  </v-row>
+</template>
+<script>
+import Axios from "axios";
+import { EventBus } from "../../app";
+// import ApiL from "../service/apil";
+import { mapGetters, mapState } from "vuex";
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+export default {
+  title() {},
+  props: {},
+  data() {
+    return {};
+  },
+
+  async created() {},
+
+  beforeMonunt() {},
+
+  async beforeCreate() {},
+
+  async mounted() {},
+  methods: {},
+
+  computed: {
+    ...mapGetters([]),
+
+    ...mapState([]),
+  },
+  beforeDestroy() {},
+};
+</script>
