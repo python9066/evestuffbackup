@@ -33,7 +33,7 @@
               </v-col>
               <v-divider vertical></v-divider>
               <v-col cols="3" class="d-flex justify-start align-center">
-                <SystemNodeCount />
+                <SystemNodeCount :nodes="item.new_nodes" />
               </v-col>
               <v-divider vertical></v-divider>
               <v-col

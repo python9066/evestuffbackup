@@ -79,7 +79,9 @@ function sleep(ms) {
 }
 export default {
   title() {},
-  props: {},
+  props: {
+    nodes: Object,
+  },
   data() {
     return {
       totalNode: 10,

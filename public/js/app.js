@@ -14718,7 +14718,9 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
-  props: {},
+  props: {
+    nodes: Object
+  },
   data: function data() {
     return {
       totalNode: 10,
@@ -55159,7 +55161,11 @@ var render = function () {
                               staticClass: "d-flex justify-start align-center",
                               attrs: { cols: "3" },
                             },
-                            [_c("SystemNodeCount")],
+                            [
+                              _c("SystemNodeCount", {
+                                attrs: { nodes: _vm.item.new_nodes },
+                              }),
+                            ],
                             1
                           ),
                           _vm._v(" "),
