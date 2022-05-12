@@ -11908,9 +11908,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
  // import ApiL from "../service/apil";
 
@@ -55173,8 +55170,8 @@ var render = function () {
                           _c(
                             "v-col",
                             {
-                              staticClass: "d-flex justify-center align-center",
-                              attrs: { cols: "3" },
+                              staticClass: "d-flex justify-end align-center",
+                              attrs: { cols: "6" },
                             },
                             [
                               _c("OnTheWay", {
@@ -55183,22 +55180,12 @@ var render = function () {
                                   item: _vm.item,
                                 },
                               }),
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-divider", {
-                            staticClass: "mx-2",
-                            attrs: { vertical: "" },
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            {
-                              staticClass: "d-flex justify-center align-center",
-                              attrs: { cols: "3" },
-                            },
-                            [
+                              _vm._v(" "),
+                              _c("v-divider", {
+                                staticClass: "mx-2",
+                                attrs: { vertical: "" },
+                              }),
+                              _vm._v(" "),
                               _c("ReadyToGo", {
                                 attrs: {
                                   operationID: _vm.operationID,
@@ -56529,7 +56516,6 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "ml-auto" },
     [
       _vm.showButton == 1
         ? _c(
@@ -56891,7 +56877,6 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "ml-auto" },
     [
       _vm.showButton == 1
         ? _c(
@@ -57113,7 +57098,7 @@ var render = function () {
               fontSize: "0.80rem",
               color: "#00ff00",
               thickness: 4,
-              emptyThickness: 0.5,
+              emptyThickness: 1,
               emptyColor: "#a4fca4",
             },
             scopedSlots: _vm._u([
@@ -57141,7 +57126,7 @@ var render = function () {
               fontSize: "0.80rem",
               color: "#ff0000",
               thickness: 4,
-              emptyThickness: 0.5,
+              emptyThickness: 1,
               emptyColor: "#f08d8d",
             },
             scopedSlots: _vm._u([

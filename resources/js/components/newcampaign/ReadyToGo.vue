@@ -1,5 +1,5 @@
 <template>
-  <div class="ml-auto">
+  <div>
     <v-menu transition="fade-transition" v-if="showButton == 1">
       <template v-slot:activator="{ on, attrs }">
         <v-chip

@@ -9,7 +9,7 @@
         fontSize="0.80rem"
         color="#00ff00"
         :thickness="4"
-        :emptyThickness="0.5"
+        :emptyThickness="1"
         emptyColor="#a4fca4"
       >
         <template v-slot:legend-value>
@@ -23,7 +23,7 @@
         fontSize="0.80rem"
         color="#ff0000"
         :thickness="4"
-        :emptyThickness="0.5"
+        :emptyThickness="1"
         emptyColor="#f08d8d"
       >
         <template v-slot:legend-value>

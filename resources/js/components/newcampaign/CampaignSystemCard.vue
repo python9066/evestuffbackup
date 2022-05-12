@@ -36,12 +36,9 @@
                 <SystemNodeCount :item="item.new_nodes" />
               </v-col>
               <v-divider class="mx-2" vertical></v-divider>
-              <v-col cols="3" class="d-flex justify-center align-center">
+              <v-col cols="6" class="d-flex justify-end align-center">
                 <OnTheWay :operationID="operationID" :item="item"></OnTheWay>
-              </v-col>
-              <v-divider class="mx-2" vertical></v-divider>
-
-              <v-col cols="3" class="d-flex justify-center align-center">
+                <v-divider class="mx-2" vertical></v-divider>
                 <ReadyToGo :operationID="operationID" :item="item"></ReadyToGo>
               </v-col>
               <v-divider class="mx-2" vertical></v-divider>
