@@ -14719,14 +14719,10 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
-    nodes: Object
+    nodes: Array
   },
   data: function data() {
-    return {
-      totalNode: 10,
-      blueNode: 5,
-      redNode: 5
-    };
+    return {};
   },
   created: function created() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -14770,7 +14766,42 @@ function sleep(ms) {
   },
   methods: {},
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
-    progress: function progress() {
+    totalNode: function totalNode() {
+      if (this.nodes) {
+        var count = this.nodes.legnth;
+      } else {
+        var count = 0;
+      }
+
+      return count;
+    },
+    blueNode: function blueNode() {
+      if (this.nodes) {
+        var count = this.nodes.filter(function (n) {
+          return n.node_status.id == 2 || n.node_status.id == 3 || n.node_status.id == 4 || n.node_status.id == 8;
+        }).legnth;
+      } else {
+        var count = 0;
+      }
+
+      return count;
+    },
+    redNode: function redNode() {
+      if (this.nodes) {
+        var count = this.nodes.filter(function (n) {
+          return n.node_status.id == 5 || n.node_status.id == 7;
+        }).legnth;
+      } else {
+        var count = 0;
+      }
+
+      return count;
+    },
+    blueProgress: function blueProgress() {
+      var num = this.blueNode / this.totalNode * 100;
+      return num;
+    },
+    redProgress: function redProgress() {
       var num = this.blueNode / this.totalNode * 100;
       return num;
     }
@@ -57105,7 +57136,7 @@ var render = function () {
         [
           _c("Vep", {
             attrs: {
-              progress: _vm.progress,
+              progress: _vm.blueProgress,
               size: 50,
               "legend-value": _vm.blueNode,
               fontSize: "0.80rem",
@@ -57139,9 +57170,9 @@ var render = function () {
         [
           _c("Vep", {
             attrs: {
-              progress: _vm.progress,
+              progress: _vm.redProgress,
               size: 50,
-              "legend-value": _vm.blueNode,
+              "legend-value": _vm.rlueNode,
               fontSize: "0.80rem",
               color: "#ff0000",
               thickness: 4,

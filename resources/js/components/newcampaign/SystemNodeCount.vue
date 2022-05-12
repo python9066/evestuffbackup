@@ -31,7 +31,7 @@
     </v-col> -->
     <v-col>
       <Vep
-        :progress="progress"
+        :progress="blueProgress"
         :size="50"
         :legend-value="blueNode"
         fontSize="0.80rem"
@@ -50,9 +50,9 @@
     </v-col>
     <v-col>
       <Vep
-        :progress="progress"
+        :progress="redProgress"
         :size="50"
-        :legend-value="blueNode"
+        :legend-value="rlueNode"
         fontSize="0.80rem"
         color="#ff0000"
         :thickness="4"
@@ -80,14 +80,10 @@ function sleep(ms) {
 export default {
   title() {},
   props: {
-    nodes: Object,
+    nodes: Array,
   },
   data() {
-    return {
-      totalNode: 10,
-      blueNode: 5,
-      redNode: 5,
-    };
+    return {};
   },
 
   async created() {},
@@ -104,7 +100,48 @@ export default {
 
     ...mapState([]),
 
-    progress() {
+    totalNode() {
+      if (this.nodes) {
+        var count = this.nodes.legnth;
+      } else {
+        var count = 0;
+      }
+
+      return count;
+    },
+
+    blueNode() {
+      if (this.nodes) {
+        var count = this.nodes.filter(
+          (n) =>
+            n.node_status.id == 2 ||
+            n.node_status.id == 3 ||
+            n.node_status.id == 4 ||
+            n.node_status.id == 8
+        ).legnth;
+      } else {
+        var count = 0;
+      }
+      return count;
+    },
+
+    redNode() {
+      if (this.nodes) {
+        var count = this.nodes.filter(
+          (n) => n.node_status.id == 5 || n.node_status.id == 7
+        ).legnth;
+      } else {
+        var count = 0;
+      }
+      return count;
+    },
+
+    blueProgress() {
+      var num = (this.blueNode / this.totalNode) * 100;
+      return num;
+    },
+
+    redProgress() {
       var num = (this.blueNode / this.totalNode) * 100;
       return num;
     },
