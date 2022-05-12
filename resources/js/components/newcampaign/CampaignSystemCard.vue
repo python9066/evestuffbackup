@@ -19,6 +19,7 @@
         style="cursor: context-menu"
         class="py-0"
         :class="filterRound"
+        hide-actions
       >
         <v-card flat max-width elevation="0">
           <v-card-title
@@ -59,7 +60,9 @@
               </v-col>
 
               <v-col cols="2" class="d-flex justify-end align-center">
-                <v-btn icon> <v-icon>fas fa-angle-up</v-icon></v-btn>
+                <v-btn icon>
+                  <v-icon class="iconRotate">fas fa-angle-up</v-icon></v-btn
+                >
               </v-col>
             </v-row>
           </v-card-title>
@@ -116,6 +119,14 @@ export default {
 
     ...mapState([]),
 
+    iconRotate() {
+      if (this.showSystemTable == 0) {
+        return "toggleUpDown";
+      } else {
+        return "toggleUpDown rotate";
+      }
+    },
+
     filterRound() {
       if (this.showSystemTable) {
         return "rounded-t-xl";
@@ -135,5 +146,15 @@ export default {
   beforeDestroy() {},
 };
 </script>
+
+<style scoped>
+.toggleUpDown {
+  transition: transform 0.3s ease-in-out !important;
+}
+
+.toggleUpDown.rotate {
+  transform: rotate(180deg);
+}
+</style>
 
 
