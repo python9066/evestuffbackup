@@ -115,7 +115,7 @@ export default {
 
     redProgress() {
       if (this.totalNode) {
-        var num = (this.blueNode / this.totalNode) * 100;
+        var num = (this.redNode / this.totalNode) * 100;
         return num;
       } else {
         return 0;
