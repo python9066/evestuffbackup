@@ -35,6 +35,8 @@
         :size="size"
         :legend-value="blueNode"
         :fontSize="fontsize"
+        :color="green"
+        :thickness="thickness"
       >
         <template v-slot:legend-value>
           <span slot="legend-value"> /{{ totalNode }}</span>
@@ -63,7 +65,8 @@ export default {
       blueNode: 5,
       redNode: 5,
       size: 50,
-      fontSizeNumber: "0.65",
+      fontSizeNumber: "0.80",
+      thickness: 4,
     };
   },
 
