@@ -1,6 +1,6 @@
 <template>
   <div class="ml-auto">
-    <v-menu transition="fade-transition" v-if="showButton != 0">
+    <v-menu transition="fade-transition" v-if="showButton == 1">
       <template v-slot:activator="{ on, attrs }">
         <v-chip
           dark
@@ -22,6 +22,16 @@
         </v-list-item>
       </v-list>
     </v-menu>
+    <v-chip
+      v-else-if="showButton == 2"
+      dark
+      :color="filterCharsOnTheWay"
+      v-bind="attrs"
+      v-on="on"
+      small
+    >
+      On the Way
+    </v-chip>
     <span v-else> On the way - </span>
     <v-menu transition="fade-transition">
       <template v-slot:activator="{ on, attrs }">
@@ -132,7 +142,11 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getOwnHackingCharOnOp", "getOpUsersOnTheWayAll"]),
+    ...mapGetters([
+      "getOwnHackingCharOnOp",
+      "getOpUsersOnTheWayAll",
+      "getOwnHackingCharOnOpAllHackers",
+    ]),
 
     ...mapState([]),
 
@@ -146,39 +160,88 @@ export default {
     //     );
     //   }
 
+    // showButton() {
+    //   var data = this.charsFree;
+    //   if (data) {
+    //     return data.length;
+    //   } else {
+    //     return 0;
+    //   }
+    // },
+
+    // charsFree() {
+    //   var data = this.getOwnHackingCharOnOp(this.operationID);
+    //   if (data) {
+    //     data = data.filter((c) => {
+    //       if (c.system_id == this.item.id) {
+    //         if (c.system_id != this.item.id && c.user_status_id != 2) {
+    //           return true;
+    //         } else {
+    //           return false;
+    //         }
+    //       } else {
+    //         if (c.system_id != this.item.id) {
+    //           return true;
+    //         } else {
+    //           return false;
+    //         }
+    //       }
+    //     });
+    //   }
+
+    //   if (data) {
+    //     return data;
+    //   } else {
+    //     return [];
+    //   }
+    // },
+
     showButton() {
-      var data = this.charsFree;
-      if (data) {
-        return data.length;
+      if (this.allOwnHackingCharsCount > 0) {
+        if (this.freeCharsCount > 0) {
+          return 1;
+        } else {
+          return 2;
+        }
       } else {
         return 0;
       }
     },
 
-    charsFree() {
-      var data = this.getOwnHackingCharOnOp(this.operationID);
-      if (data) {
-        data = data.filter((c) => {
-          if (c.system_id == this.item.id) {
-            if (c.system_id != this.item.id && c.user_status_id != 2) {
-              return true;
-            } else {
-              return false;
-            }
-          } else {
-            if (c.system_id != this.item.id) {
-              return true;
-            } else {
-              return false;
-            }
-          }
-        });
-      }
-
+    allOwnHackingChars() {
+      var data = this.getOwnHackingCharOnOpAllHackers(this.operationID);
       if (data) {
         return data;
       } else {
         return [];
+      }
+    },
+
+    allOwnHackingCharsCount() {
+      if (this.allOwnHackingChars) {
+        return this.allOwnHackingChars.length;
+      } else {
+        return 0;
+      }
+    },
+
+    freeChars() {
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+      data = data.filter(
+        (c) => c.system_id != this.item.id && c.user_status_id != 2
+      );
+      if (data) {
+        return data;
+      } else {
+        return [];
+      }
+    },
+
+    freeCharsCount() {
+      if (this.freeChars) {
+        return this.freeChars.length;
+      } else {
+        return 0;
       }
     },
 

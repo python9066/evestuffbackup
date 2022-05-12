@@ -13773,6 +13773,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -13908,7 +13918,7 @@ function sleep(ms) {
       }
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp", "getOpUsersOnTheWayAll"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp", "getOpUsersOnTheWayAll", "getOwnHackingCharOnOpAllHackers"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     //  if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
     //     var data = this.getOwnHackingCharOnOp(this.operationID).filter(
     //       (c) => c.system_id != this.item.id && c.user_status_id != 2
@@ -13918,42 +13928,85 @@ function sleep(ms) {
     //       (c) => c.system_id != this.item.id
     //     );
     //   }
+    // showButton() {
+    //   var data = this.charsFree;
+    //   if (data) {
+    //     return data.length;
+    //   } else {
+    //     return 0;
+    //   }
+    // },
+    // charsFree() {
+    //   var data = this.getOwnHackingCharOnOp(this.operationID);
+    //   if (data) {
+    //     data = data.filter((c) => {
+    //       if (c.system_id == this.item.id) {
+    //         if (c.system_id != this.item.id && c.user_status_id != 2) {
+    //           return true;
+    //         } else {
+    //           return false;
+    //         }
+    //       } else {
+    //         if (c.system_id != this.item.id) {
+    //           return true;
+    //         } else {
+    //           return false;
+    //         }
+    //       }
+    //     });
+    //   }
+    //   if (data) {
+    //     return data;
+    //   } else {
+    //     return [];
+    //   }
+    // },
     showButton: function showButton() {
-      var data = this.charsFree;
-
-      if (data) {
-        return data.length;
+      if (this.allOwnHackingCharsCount > 0) {
+        if (this.freeCharsCount > 0) {
+          return 1;
+        } else {
+          return 2;
+        }
       } else {
         return 0;
       }
     },
-    charsFree: function charsFree() {
-      var _this3 = this;
-
-      var data = this.getOwnHackingCharOnOp(this.operationID);
-
-      if (data) {
-        data = data.filter(function (c) {
-          if (c.system_id == _this3.item.id) {
-            if (c.system_id != _this3.item.id && c.user_status_id != 2) {
-              return true;
-            } else {
-              return false;
-            }
-          } else {
-            if (c.system_id != _this3.item.id) {
-              return true;
-            } else {
-              return false;
-            }
-          }
-        });
-      }
+    allOwnHackingChars: function allOwnHackingChars() {
+      var data = this.getOwnHackingCharOnOpAllHackers(this.operationID);
 
       if (data) {
         return data;
       } else {
         return [];
+      }
+    },
+    allOwnHackingCharsCount: function allOwnHackingCharsCount() {
+      if (this.allOwnHackingChars) {
+        return this.allOwnHackingChars.length;
+      } else {
+        return 0;
+      }
+    },
+    freeChars: function freeChars() {
+      var _this3 = this;
+
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+      data = data.filter(function (c) {
+        return c.system_id != _this3.item.id && c.user_status_id != 2;
+      });
+
+      if (data) {
+        return data;
+      } else {
+        return [];
+      }
+    },
+    freeCharsCount: function freeCharsCount() {
+      if (this.freeChars) {
+        return this.freeChars.length;
+      } else {
+        return 0;
       }
     },
     charsOnTheWayAll: function charsOnTheWayAll() {
@@ -14435,7 +14488,7 @@ function sleep(ms) {
       }
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp", "getOpUsersReadyToGo"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])(["getOwnHackingCharOnOp", "getOpUsersReadyToGoAll"])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     showButton: function showButton() {
       var data = this.charsFree;
 
@@ -14477,7 +14530,7 @@ function sleep(ms) {
     charsReadyToGoAll: function charsReadyToGoAll() {
       var _this4 = this;
 
-      return this.getOpUsersReadyToGo.filter(function (q) {
+      return this.getOpUsersReadyToGoAll.filter(function (q) {
         return q.system_id == _this4.item.id;
       });
     },
@@ -56134,7 +56187,7 @@ var render = function () {
     "div",
     { staticClass: "ml-auto" },
     [
-      _vm.showButton != 0
+      _vm.showButton == 1
         ? _c(
             "v-menu",
             {
@@ -56198,6 +56251,26 @@ var render = function () {
               ),
             ],
             1
+          )
+        : _vm.showButton == 2
+        ? _c(
+            "v-chip",
+            _vm._g(
+              _vm._b(
+                {
+                  attrs: {
+                    dark: "",
+                    color: _vm.filterCharsOnTheWay,
+                    small: "",
+                  },
+                },
+                "v-chip",
+                _vm.attrs,
+                false
+              ),
+              _vm.on
+            ),
+            [_vm._v("\n    On the Way\n  ")]
           )
         : _c("span", [_vm._v(" On the way - ")]),
       _vm._v(" "),
@@ -97541,6 +97614,20 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         }
       };
     },
+    getOwnHackingCharOnOpAllHackers: function getOwnHackingCharOnOpAllHackers(state) {
+      return function (operationid) {
+        var pull = state.ownChars.filter(function (u) {
+          return u.role_id == 1 && u.operation_id == operationid;
+        });
+        var count = pull.length;
+
+        if (count != 0) {
+          return pull;
+        } else {
+          return null;
+        }
+      };
+    },
     getOpUsersOnTheWayAll: function getOpUsersOnTheWayAll(state) {
       var pull = state.opUsers.filter(function (u) {
         return u.role_id == 1 && u.user_status_id == 2;
@@ -97553,7 +97640,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         return [];
       }
     },
-    getOpUsersReadyToGo: function getOpUsersReadyToGo(state) {
+    getOpUsersReadyToGoAll: function getOpUsersReadyToGoAll(state) {
       var pull = state.opUsers.filter(function (u) {
         return u.role_id == 1 && u.user_status_id == 3;
       });

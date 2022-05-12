@@ -132,7 +132,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getOwnHackingCharOnOp", "getOpUsersReadyToGo"]),
+    ...mapGetters(["getOwnHackingCharOnOp", "getOpUsersReadyToGoAll"]),
 
     ...mapState([]),
 
@@ -173,7 +173,7 @@ export default {
     },
 
     charsReadyToGoAll() {
-      return this.getOpUsersReadyToGo.filter(
+      return this.getOpUsersReadyToGoAll.filter(
         (q) => q.system_id == this.item.id
       );
     },
