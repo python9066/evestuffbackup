@@ -11901,14 +11901,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
  // import ApiL from "../service/apil";
 
@@ -55113,123 +55105,97 @@ var render = function () {
             },
             [
               _c(
-                "v-card",
-                { attrs: { flat: "", "max-width": "", elevation: "0" } },
+                "v-row",
+                { attrs: { "no-gutters": "" } },
                 [
                   _c(
-                    "v-card-title",
+                    "v-col",
                     {
-                      staticClass:
-                        "d-flex justify-space-between align-center py-0 px-0",
-                      staticStyle: { width: "100%" },
-                      attrs: { "max-width": "" },
+                      staticClass: "d-flex justify-start align-center mr-2",
+                      attrs: { cols: "1" },
+                    },
+                    [
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(_vm.item.system_name) +
+                          "\n        "
+                      ),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("v-divider", {
+                    staticClass: "mx-2",
+                    attrs: { vertical: "" },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    {
+                      staticClass: "d-flex justify-start align-center",
+                      attrs: { cols: "3" },
+                    },
+                    [
+                      _c("SystemNodeCount", {
+                        attrs: { item: _vm.item.new_nodes },
+                      }),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    {
+                      staticClass: "d-flex justify-end align-center",
+                      attrs: { cols: "6" },
+                    },
+                    [
+                      _c("v-divider", {
+                        staticClass: "mx-2",
+                        attrs: { vertical: "" },
+                      }),
+                      _vm._v(" "),
+                      _c("OnTheWay", {
+                        attrs: { operationID: _vm.operationID, item: _vm.item },
+                      }),
+                      _vm._v(" "),
+                      _c("v-divider", {
+                        staticClass: "mx-2",
+                        attrs: { vertical: "" },
+                      }),
+                      _vm._v(" "),
+                      _c("ReadyToGo", {
+                        attrs: { operationID: _vm.operationID, item: _vm.item },
+                      }),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-divider", {
+                    staticClass: "mx-2",
+                    attrs: { vertical: "" },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    {
+                      staticClass: "d-flex justify-end align-center",
+                      attrs: { cols: "1" },
                     },
                     [
                       _c(
-                        "v-row",
-                        { attrs: { "no-gutters": "" } },
+                        "v-btn",
+                        {
+                          attrs: { icon: "" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.clickIcon()
+                            },
+                          },
+                        },
                         [
-                          _c(
-                            "v-col",
-                            {
-                              staticClass:
-                                "d-flex justify-start align-center mr-2",
-                              attrs: { cols: "1" },
-                            },
-                            [
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(_vm.item.system_name) +
-                                  "\n            "
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("v-divider", {
-                            staticClass: "mx-2",
-                            attrs: { vertical: "" },
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            {
-                              staticClass: "d-flex justify-start align-center",
-                              attrs: { cols: "3" },
-                            },
-                            [
-                              _c("SystemNodeCount", {
-                                attrs: { item: _vm.item.new_nodes },
-                              }),
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            {
-                              staticClass: "d-flex justify-end align-center",
-                              attrs: { cols: "6" },
-                            },
-                            [
-                              _c("v-divider", {
-                                staticClass: "mx-2",
-                                attrs: { vertical: "" },
-                              }),
-                              _vm._v(" "),
-                              _c("OnTheWay", {
-                                attrs: {
-                                  operationID: _vm.operationID,
-                                  item: _vm.item,
-                                },
-                              }),
-                              _vm._v(" "),
-                              _c("v-divider", {
-                                staticClass: "mx-2",
-                                attrs: { vertical: "" },
-                              }),
-                              _vm._v(" "),
-                              _c("ReadyToGo", {
-                                attrs: {
-                                  operationID: _vm.operationID,
-                                  item: _vm.item,
-                                },
-                              }),
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-divider", {
-                            staticClass: "mx-2",
-                            attrs: { vertical: "" },
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "v-col",
-                            {
-                              staticClass: "d-flex justify-end align-center",
-                              attrs: { cols: "1" },
-                            },
-                            [
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: { icon: "" },
-                                  on: {
-                                    click: function ($event) {
-                                      return _vm.clickIcon()
-                                    },
-                                  },
-                                },
-                                [
-                                  _c("v-icon", { class: _vm.iconRotate }, [
-                                    _vm._v("fas fa-angle-up"),
-                                  ]),
-                                ],
-                                1
-                              ),
-                            ],
-                            1
-                          ),
+                          _c("v-icon", { class: _vm.iconRotate }, [
+                            _vm._v("fas fa-angle-up"),
+                          ]),
                         ],
                         1
                       ),

@@ -21,36 +21,28 @@
         :class="filterRound"
         hide-actions
       >
-        <v-card flat max-width elevation="0">
-          <v-card-title
-            max-width
-            class="d-flex justify-space-between align-center py-0 px-0"
-            style="width: 100%"
-          >
-            <v-row no-gutters>
-              <v-col cols="1" class="d-flex justify-start align-center mr-2">
-                {{ item.system_name }}
-              </v-col>
-              <v-divider class="mx-2" vertical></v-divider>
-              <v-col cols="3" class="d-flex justify-start align-center">
-                <SystemNodeCount :item="item.new_nodes" />
-              </v-col>
+        <v-row no-gutters>
+          <v-col cols="1" class="d-flex justify-start align-center mr-2">
+            {{ item.system_name }}
+          </v-col>
+          <v-divider class="mx-2" vertical></v-divider>
+          <v-col cols="3" class="d-flex justify-start align-center">
+            <SystemNodeCount :item="item.new_nodes" />
+          </v-col>
 
-              <v-col cols="6" class="d-flex justify-end align-center">
-                <v-divider class="mx-2" vertical></v-divider>
-                <OnTheWay :operationID="operationID" :item="item"></OnTheWay>
-                <v-divider class="mx-2" vertical></v-divider>
-                <ReadyToGo :operationID="operationID" :item="item"></ReadyToGo>
-              </v-col>
-              <v-divider class="mx-2" vertical></v-divider>
-              <v-col cols="1" class="d-flex justify-end align-center">
-                <v-btn icon @click="clickIcon()">
-                  <v-icon :class="iconRotate">fas fa-angle-up</v-icon></v-btn
-                >
-              </v-col>
-            </v-row>
-          </v-card-title>
-        </v-card>
+          <v-col cols="6" class="d-flex justify-end align-center">
+            <v-divider class="mx-2" vertical></v-divider>
+            <OnTheWay :operationID="operationID" :item="item"></OnTheWay>
+            <v-divider class="mx-2" vertical></v-divider>
+            <ReadyToGo :operationID="operationID" :item="item"></ReadyToGo>
+          </v-col>
+          <v-divider class="mx-2" vertical></v-divider>
+          <v-col cols="1" class="d-flex justify-end align-center">
+            <v-btn icon @click="clickIcon()">
+              <v-icon :class="iconRotate">fas fa-angle-up</v-icon></v-btn
+            >
+          </v-col>
+        </v-row>
       </v-expansion-panel-header>
       <v-expansion-panel-content
         ><CampaignSystemCardContent
