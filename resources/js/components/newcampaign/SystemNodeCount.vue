@@ -45,7 +45,7 @@ function sleep(ms) {
 export default {
   title() {},
   props: {
-    nodes: Array,
+    item: Array,
   },
   data() {
     return {};
@@ -66,51 +66,46 @@ export default {
     ...mapState([]),
 
     totalNode() {
-      if (this.nodes) {
-        var filter = this.nodes;
-
-        var count = filter.legnth;
+      if (this.item) {
+        let count = this.item.legnth;
       } else {
-        var count = 0;
+        let count = 0;
       }
 
       return count;
     },
 
     blueNode() {
-      if (this.nodes) {
-        var filter = this.nodes.filter(
+      if (this.item) {
+        let count = this.item.filter(
           (c) =>
             c.node_status.id == 2 ||
             c.node_status.id == 3 ||
             c.node_status.id == 4 ||
             c.node_status.id == 8
-        );
+        ).length;
 
-        var count = filter.legnth;
         console.log(count);
       } else {
-        var count = 0;
+        let count = 0;
       }
       return count;
     },
 
     redNode() {
-      if (this.nodes) {
-        var filter = this.nodes.filter(
+      if (this.item) {
+        let count = this.item.filter(
           (n) => n.node_status.id == 5 || n.node_status.id == 7
         );
-
-        var count = filter.legnth;
       } else {
-        var count = 0;
+        let count = 0;
       }
       return count;
     },
 
     blueProgress() {
       if (this.totalNode) {
-        var num = (this.blueNode / this.totalNode) * 100;
+        let num = (this.blueNode / this.totalNode) * 100;
         return num;
       } else {
         return 0;
@@ -119,7 +114,7 @@ export default {
 
     redProgress() {
       if (this.totalNode) {
-        var num = (this.blueNode / this.totalNode) * 100;
+        let num = (this.blueNode / this.totalNode) * 100;
         return num;
       } else {
         return 0;

@@ -14684,7 +14684,7 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
-    nodes: Array
+    item: Array
   },
   data: function data() {
     return {};
@@ -14732,36 +14732,33 @@ function sleep(ms) {
   methods: {},
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     totalNode: function totalNode() {
-      if (this.nodes) {
-        var filter = this.nodes;
-        var count = filter.legnth;
+      if (this.item) {
+        var _count = this.item.legnth;
       } else {
-        var count = 0;
+        var _count2 = 0;
       }
 
       return count;
     },
     blueNode: function blueNode() {
-      if (this.nodes) {
-        var filter = this.nodes.filter(function (c) {
+      if (this.item) {
+        var _count3 = this.item.filter(function (c) {
           return c.node_status.id == 2 || c.node_status.id == 3 || c.node_status.id == 4 || c.node_status.id == 8;
-        });
-        var count = filter.legnth;
-        console.log(count);
+        }).length;
+        console.log(_count3);
       } else {
-        var count = 0;
+        var _count4 = 0;
       }
 
       return count;
     },
     redNode: function redNode() {
-      if (this.nodes) {
-        var filter = this.nodes.filter(function (n) {
+      if (this.item) {
+        var _count5 = this.item.filter(function (n) {
           return n.node_status.id == 5 || n.node_status.id == 7;
         });
-        var count = filter.legnth;
       } else {
-        var count = 0;
+        var _count6 = 0;
       }
 
       return count;
