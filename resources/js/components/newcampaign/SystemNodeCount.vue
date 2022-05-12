@@ -1,6 +1,6 @@
 <template>
   <v-row no-gutters>
-    <v-col cols="6">
+    <!-- <v-col cols="6">
       <v-progress-circular
         v-if="nodeCount > 0"
         :transitionDuration="5000"
@@ -28,7 +28,7 @@
           {{ nodeCount }}
         </div></v-progress-circular
       >
-    </v-col>
+    </v-col> -->
     <v-col>
       <Vep :progress="progress" :size="size">
         <template v-slot:legend-value>
@@ -76,7 +76,7 @@ export default {
     ...mapState([]),
 
     progress() {
-      var num = (blueNode / totalNode) * 100;
+      var num = (this.blueNode / this.totalNode) * 100;
       return num;
     },
   },

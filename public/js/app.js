@@ -14742,7 +14742,7 @@ function sleep(ms) {
   methods: {},
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     progress: function progress() {
-      var num = blueNode / totalNode * 100;
+      var num = this.blueNode / this.totalNode * 100;
       return num;
     }
   }),
@@ -57067,75 +57067,6 @@ var render = function () {
     "v-row",
     { attrs: { "no-gutters": "" } },
     [
-      _c(
-        "v-col",
-        { attrs: { cols: "6" } },
-        [
-          _vm.nodeCount > 0
-            ? _c(
-                "v-progress-circular",
-                {
-                  attrs: {
-                    transitionDuration: 5000,
-                    radius: 20,
-                    strokeWidth: 4,
-                    value:
-                      (_vm.nodeCountHackingCount / _vm.nodeCount) * 100 ||
-                      0.000001,
-                  },
-                },
-                [
-                  _c("div", { staticClass: "caption" }, [
-                    _vm._v(
-                      "\n        " +
-                        _vm._s(_vm.nodeCountHackingCount) +
-                        " /\n        " +
-                        _vm._s(_vm.nodeCount) +
-                        "\n      "
-                    ),
-                  ]),
-                ]
-              )
-            : _vm._e(),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-col",
-        { attrs: { cols: "6" } },
-        [
-          _vm.nodeCount > 0
-            ? _c(
-                "v-progress-circular",
-                {
-                  attrs: {
-                    transitionDuration: 5000,
-                    radius: 20,
-                    strokeWidth: 4,
-                    strokeColor: "#FF3D00",
-                    value:
-                      (_vm.nodeRedCountHackingCount / _vm.nodeCount) * 100 ||
-                      0.000001,
-                  },
-                },
-                [
-                  _c("div", { staticClass: "caption" }, [
-                    _vm._v(
-                      "\n        " +
-                        _vm._s(_vm.nodeRedCountHackingCount) +
-                        " /\n        " +
-                        _vm._s(_vm.nodeCount) +
-                        "\n      "
-                    ),
-                  ]),
-                ]
-              )
-            : _vm._e(),
-        ],
-        1
-      ),
-      _vm._v(" "),
       _c(
         "v-col",
         [
