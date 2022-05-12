@@ -68,6 +68,8 @@
                 ></NewJoinNodeTable>
               </td>
             </template>
+
+            <template v-slot:[`header.actions`]="{ headers }"> dance </template>
           </v-data-table>
         </v-col>
       </v-row>
@@ -123,7 +125,7 @@ export default {
         {
           text: "",
           value: "actions",
-          sortable: true,
+          sortable: false,
         },
       ],
       singleExpand: false,

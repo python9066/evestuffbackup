@@ -12694,6 +12694,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -12731,7 +12733,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         text: "",
         value: "actions",
-        sortable: true
+        sortable: false
       }],
       singleExpand: false
     };
@@ -55839,6 +55841,13 @@ var render = function () {
                                   1
                                 ),
                               ]
+                            },
+                          },
+                          {
+                            key: "header.actions",
+                            fn: function (ref) {
+                              var headers = ref.headers
+                              return [_vm._v(" dance ")]
                             },
                           },
                         ],
