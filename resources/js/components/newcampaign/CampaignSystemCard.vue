@@ -20,6 +20,9 @@
         class="py-0"
         :class="filterRound"
       >
+        <template #actions>
+          <v-icon> far fa-arrow-alt-up </v-icon>
+        </template>
         <v-card flat max-width elevation="0">
           <v-card-title
             max-width
@@ -131,3 +134,12 @@ export default {
   beforeDestroy() {},
 };
 </script>
+
+<style>
+.v-expansion-panel-header {
+  pointer-events: none;
+}
+.v-expansion-panel-header__icon {
+  pointer-events: All;
+}
+</style>

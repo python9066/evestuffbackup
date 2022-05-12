@@ -27,7 +27,6 @@
       dark
       :color="filterCharsOnTheWay"
       small
-      @click="clickButton()"
       rounded
       class="no-uppercase"
     >
@@ -110,10 +109,6 @@ export default {
           "Content-Type": "application/json",
         },
       });
-    },
-
-    clickButton() {
-      EventBus.$emit("showSystemTable", 0);
     },
 
     async removeReadyToGoOnTheWay(opUserID) {
