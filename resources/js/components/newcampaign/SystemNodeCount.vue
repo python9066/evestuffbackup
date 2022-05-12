@@ -66,18 +66,20 @@ export default {
     ...mapState([]),
 
     totalNode() {
+      var count = null;
       if (this.item) {
-        let count = this.item.legnth;
+        count = this.item.legnth;
       } else {
-        let count = 0;
+        count = 0;
       }
 
       return count;
     },
 
     blueNode() {
+      var count = null;
       if (this.item) {
-        let count = this.item.filter(
+        count = this.item.filter(
           (c) =>
             c.node_status.id == 2 ||
             c.node_status.id == 3 ||
@@ -87,25 +89,26 @@ export default {
 
         console.log(count);
       } else {
-        let count = 0;
+        count = 0;
       }
       return count;
     },
 
     redNode() {
+      var count = null;
       if (this.item) {
-        let count = this.item.filter(
+        count = this.item.filter(
           (n) => n.node_status.id == 5 || n.node_status.id == 7
         );
       } else {
-        let count = 0;
+        count = 0;
       }
       return count;
     },
 
     blueProgress() {
       if (this.totalNode) {
-        let num = (this.blueNode / this.totalNode) * 100;
+        var num = (this.blueNode / this.totalNode) * 100;
         return num;
       } else {
         return 0;
@@ -114,7 +117,7 @@ export default {
 
     redProgress() {
       if (this.totalNode) {
-        let num = (this.blueNode / this.totalNode) * 100;
+        var num = (this.blueNode / this.totalNode) * 100;
         return num;
       } else {
         return 0;

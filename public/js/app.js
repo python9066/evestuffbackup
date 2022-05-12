@@ -14732,33 +14732,39 @@ function sleep(ms) {
   methods: {},
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     totalNode: function totalNode() {
+      var count = null;
+
       if (this.item) {
-        var _count = this.item.legnth;
+        count = this.item.legnth;
       } else {
-        var _count2 = 0;
+        count = 0;
       }
 
       return count;
     },
     blueNode: function blueNode() {
+      var count = null;
+
       if (this.item) {
-        var _count3 = this.item.filter(function (c) {
+        count = this.item.filter(function (c) {
           return c.node_status.id == 2 || c.node_status.id == 3 || c.node_status.id == 4 || c.node_status.id == 8;
         }).length;
-        console.log(_count3);
+        console.log(count);
       } else {
-        var _count4 = 0;
+        count = 0;
       }
 
       return count;
     },
     redNode: function redNode() {
+      var count = null;
+
       if (this.item) {
-        var _count5 = this.item.filter(function (n) {
+        count = this.item.filter(function (n) {
           return n.node_status.id == 5 || n.node_status.id == 7;
         });
       } else {
-        var _count6 = 0;
+        count = 0;
       }
 
       return count;
