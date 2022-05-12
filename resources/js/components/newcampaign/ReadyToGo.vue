@@ -131,7 +131,7 @@ export default {
     },
 
     clickButton() {
-      EventBus.$emit("showSystemTable", 1);
+      EventBus.$emit("showSystemTable", 0);
     },
 
     seeReadyToGoOnTheWay(item) {

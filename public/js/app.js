@@ -13783,6 +13783,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
  // import ApiL from "../service/apil";
 
@@ -13876,6 +13877,9 @@ function sleep(ms) {
           }
         }, _callee4);
       }))();
+    },
+    clickButton: function clickButton() {
+      _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 0);
     },
     removeReadyToGoOnTheWay: function removeReadyToGoOnTheWay(opUserID) {
       var _this2 = this;
@@ -14467,7 +14471,7 @@ function sleep(ms) {
       }))();
     },
     clickButton: function clickButton() {
-      _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 1);
+      _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 0);
     },
     seeReadyToGoOnTheWay: function seeReadyToGoOnTheWay(item) {
       if (this.$can("campaigns_admin_access") || this.$store.state.user_id == item.user_id) {
@@ -56325,8 +56329,13 @@ var render = function () {
               attrs: {
                 dark: "",
                 color: _vm.filterCharsOnTheWay,
-                "x-small": "",
+                small: "",
                 rounded: "",
+              },
+              on: {
+                click: function ($event) {
+                  return _vm.clickButton()
+                },
               },
             },
             [_vm._v("\n    On the Way\n  ")]

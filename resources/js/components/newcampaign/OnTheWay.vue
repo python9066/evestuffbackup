@@ -26,7 +26,8 @@
       v-else-if="showButton == 2"
       dark
       :color="filterCharsOnTheWay"
-      x-small
+      small
+      @click="clickButton()"
       rounded
       class="no-uppercase"
     >
@@ -109,6 +110,10 @@ export default {
           "Content-Type": "application/json",
         },
       });
+    },
+
+    clickButton() {
+      EventBus.$emit("showSystemTable", 0);
     },
 
     async removeReadyToGoOnTheWay(opUserID) {
