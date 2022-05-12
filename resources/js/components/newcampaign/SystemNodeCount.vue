@@ -1,6 +1,7 @@
 <template>
   <v-row no-gutters>
     <v-col>
+      Nodes -
       <Vep
         :progress="blueProgress"
         :size="50"
@@ -15,8 +16,6 @@
           <span slot="legend-value"> /{{ totalNode }}</span>
         </template>
       </Vep>
-    </v-col>
-    <v-col>
       <Vep
         :progress="redProgress"
         :size="50"

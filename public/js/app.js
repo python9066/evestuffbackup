@@ -14669,7 +14669,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
  // import ApiL from "../service/apil";
 
@@ -57113,6 +57112,7 @@ var render = function () {
       _c(
         "v-col",
         [
+          _vm._v("\n    Nodes -\n    "),
           _c("Vep", {
             attrs: {
               progress: _vm.blueProgress,
@@ -57140,13 +57140,7 @@ var render = function () {
               },
             ]),
           }),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-col",
-        [
+          _vm._v(" "),
           _c("Vep", {
             attrs: {
               progress: _vm.redProgress,
