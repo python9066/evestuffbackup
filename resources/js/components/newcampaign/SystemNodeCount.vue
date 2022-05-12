@@ -30,12 +30,12 @@
       >
     </v-col>
     <v-col>
-      <Vep :progress="50">
+      <Vep :progress="progress" :size="size">
         <template v-slot:legend-value>
           <span slot="legend-value"> /200</span>
         </template>
         <template v-slot:legend-caption>
-          <p slot="legend-caption">TASK DONE</p>
+          <p slot="legend-caption">Friendly</p>
         </template>
       </Vep>
     </v-col>
@@ -53,7 +53,12 @@ export default {
   title() {},
   props: {},
   data() {
-    return {};
+    return {
+      totalNode: 10,
+      blueNode: 5,
+      redNode: 5,
+      size: 150,
+    };
   },
 
   async created() {},
@@ -69,6 +74,11 @@ export default {
     ...mapGetters([]),
 
     ...mapState([]),
+
+    progress() {
+      var num = (blueNode / totalNode) * 100;
+      return num;
+    },
   },
   beforeDestroy() {},
 };

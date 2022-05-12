@@ -14692,7 +14692,12 @@ function sleep(ms) {
   title: function title() {},
   props: {},
   data: function data() {
-    return {};
+    return {
+      totalNode: 10,
+      blueNode: 5,
+      redNode: 5,
+      size: 150
+    };
   },
   created: function created() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -14735,7 +14740,12 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])),
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
+    progress: function progress() {
+      var num = blueNode / totalNode * 100;
+      return num;
+    }
+  }),
   beforeDestroy: function beforeDestroy() {}
 });
 
@@ -57130,7 +57140,7 @@ var render = function () {
         "v-col",
         [
           _c("Vep", {
-            attrs: { progress: 50 },
+            attrs: { progress: _vm.progress, size: _vm.size },
             scopedSlots: _vm._u([
               {
                 key: "legend-value",
@@ -57155,7 +57165,7 @@ var render = function () {
                         attrs: { slot: "legend-caption" },
                         slot: "legend-caption",
                       },
-                      [_vm._v("TASK DONE")]
+                      [_vm._v("Friendly")]
                     ),
                   ]
                 },
