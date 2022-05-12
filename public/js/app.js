@@ -14686,6 +14686,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -14704,11 +14723,7 @@ function sleep(ms) {
     return {
       totalNode: 10,
       blueNode: 5,
-      redNode: 5,
-      size: 50,
-      fontSizeNumber: "0.80",
-      thickness: 4,
-      emptyThickness: 2
+      redNode: 5
     };
   },
   created: function created() {
@@ -14756,10 +14771,6 @@ function sleep(ms) {
     progress: function progress() {
       var num = this.blueNode / this.totalNode * 100;
       return num;
-    },
-    fontsize: function fontsize() {
-      var text = this.fontSizeNumber + "rem";
-      return text;
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -57089,13 +57100,47 @@ var render = function () {
           _c("Vep", {
             attrs: {
               progress: _vm.progress,
-              size: _vm.size,
+              size: 50,
               "legend-value": _vm.blueNode,
-              fontSize: _vm.fontsize,
+              fontSize: "0.80rem",
               color: "#00ff00",
-              thickness: _vm.thickness,
-              emptyThickness: _vm.emptyThickness,
+              thickness: 4,
+              emptyThickness: 0.5,
               emptyColor: "#a4fca4",
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "legend-value",
+                fn: function () {
+                  return [
+                    _c(
+                      "span",
+                      { attrs: { slot: "legend-value" }, slot: "legend-value" },
+                      [_vm._v(" /" + _vm._s(_vm.totalNode))]
+                    ),
+                  ]
+                },
+                proxy: true,
+              },
+            ]),
+          }),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-col",
+        [
+          _c("Vep", {
+            attrs: {
+              progress: _vm.progress,
+              size: 50,
+              "legend-value": _vm.blueNode,
+              fontSize: "0.80rem",
+              color: "#ff0000",
+              thickness: 4,
+              emptyThickness: 0.5,
+              emptyColor: "#f08d8d",
             },
             scopedSlots: _vm._u([
               {

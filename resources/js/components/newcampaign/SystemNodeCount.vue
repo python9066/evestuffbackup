@@ -32,13 +32,32 @@
     <v-col>
       <Vep
         :progress="progress"
-        :size="size"
+        :size="50"
         :legend-value="blueNode"
-        :fontSize="fontsize"
+        fontSize="0.80rem"
         color="#00ff00"
-        :thickness="thickness"
-        :emptyThickness="emptyThickness"
+        :thickness="4"
+        :emptyThickness="0.5"
         emptyColor="#a4fca4"
+      >
+        <template v-slot:legend-value>
+          <span slot="legend-value"> /{{ totalNode }}</span>
+        </template>
+        <!-- <template v-slot:legend-caption>
+          <p slot="legend-caption">Friendly</p>
+        </template> -->
+      </Vep>
+    </v-col>
+    <v-col>
+      <Vep
+        :progress="progress"
+        :size="50"
+        :legend-value="blueNode"
+        fontSize="0.80rem"
+        color="#ff0000"
+        :thickness="4"
+        :emptyThickness="0.5"
+        emptyColor="#f08d8d"
       >
         <template v-slot:legend-value>
           <span slot="legend-value"> /{{ totalNode }}</span>
@@ -66,10 +85,6 @@ export default {
       totalNode: 10,
       blueNode: 5,
       redNode: 5,
-      size: 50,
-      fontSizeNumber: "0.80",
-      thickness: 4,
-      emptyThickness: 2,
     };
   },
 
@@ -90,11 +105,6 @@ export default {
     progress() {
       var num = (this.blueNode / this.totalNode) * 100;
       return num;
-    },
-
-    fontsize() {
-      var text = this.fontSizeNumber + "rem";
-      return text;
     },
   },
   beforeDestroy() {},
