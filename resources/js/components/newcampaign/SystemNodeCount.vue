@@ -30,7 +30,7 @@
       >
     </v-col> -->
     <v-col>
-      <Vep :progress="progress" :size="size">
+      <Vep :progress="progress" :size="size" :legend-value="blue">
         <template v-slot:legend-value>
           <span slot="legend-value"> /{{ totalNode }}</span>
         </template>
@@ -76,7 +76,8 @@ export default {
     ...mapState([]),
 
     progress() {
-      return this.blueNode;
+      var num = (this.blueNode / this.totalNode) * 100;
+      return num;
     },
   },
   beforeDestroy() {},

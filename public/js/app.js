@@ -14742,7 +14742,8 @@ function sleep(ms) {
   methods: {},
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     progress: function progress() {
-      return this.blueNode;
+      var num = this.blueNode / this.totalNode * 100;
+      return num;
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -57070,7 +57071,11 @@ var render = function () {
         "v-col",
         [
           _c("Vep", {
-            attrs: { progress: _vm.progress, size: _vm.size },
+            attrs: {
+              progress: _vm.progress,
+              size: _vm.size,
+              "legend-value": _vm.blue,
+            },
             scopedSlots: _vm._u([
               {
                 key: "legend-value",
