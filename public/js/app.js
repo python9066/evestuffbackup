@@ -13919,6 +13919,15 @@ function sleep(ms) {
     //     );
     //   }
     showButton: function showButton() {
+      var data = this.charsFree;
+
+      if (data) {
+        return data.length;
+      } else {
+        return 0;
+      }
+    },
+    charsFree: function charsFree() {
       var _this3 = this;
 
       var data = this.getOwnHackingCharOnOp(this.operationID);
@@ -13941,25 +13950,6 @@ function sleep(ms) {
         });
       }
 
-      console.log(data);
-
-      if (data) {
-        return data.length;
-      } else {
-        return 0;
-      }
-    },
-    charsFree: function charsFree() {
-      var _this4 = this;
-
-      var data = this.getOwnHackingCharOnOp(this.operationID);
-
-      if (data) {
-        data = this.getOwnHackingCharOnOp(this.operationID).filter(function (c) {
-          return c.system_id != _this4.item.id && c.user_status_id != 2;
-        });
-      }
-
       if (data) {
         return data;
       } else {
@@ -13967,10 +13957,10 @@ function sleep(ms) {
       }
     },
     charsOnTheWayAll: function charsOnTheWayAll() {
-      var _this5 = this;
+      var _this4 = this;
 
       return this.getOpUsersOnTheWayAll.filter(function (q) {
-        return q.system_id == _this5.item.id;
+        return q.system_id == _this4.item.id;
       });
     },
     OnTheWayCount: function OnTheWayCount() {
@@ -13988,10 +13978,10 @@ function sleep(ms) {
       }
     },
     filterCharsOnTheWay: function filterCharsOnTheWay() {
-      var _this6 = this;
+      var _this5 = this;
 
       var count = this.charsFree.filter(function (_char) {
-        return _char.status_id == 2 && _char.system_id == _this6.system_id;
+        return _char.status_id == 2 && _char.system_id == _this5.system_id;
       }).length;
 
       if (count > 0) {

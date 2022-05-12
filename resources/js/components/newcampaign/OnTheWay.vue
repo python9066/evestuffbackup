@@ -147,6 +147,15 @@ export default {
     //   }
 
     showButton() {
+      var data = this.charsFree;
+      if (data) {
+        return data.length;
+      } else {
+        return 0;
+      }
+    },
+
+    charsFree() {
       var data = this.getOwnHackingCharOnOp(this.operationID);
       if (data) {
         data = data.filter((c) => {
@@ -164,21 +173,6 @@ export default {
             }
           }
         });
-      }
-      console.log(data);
-      if (data) {
-        return data.length;
-      } else {
-        return 0;
-      }
-    },
-
-    charsFree() {
-      var data = this.getOwnHackingCharOnOp(this.operationID);
-      if (data) {
-        data = this.getOwnHackingCharOnOp(this.operationID).filter(
-          (c) => c.system_id != this.item.id && c.user_status_id != 2
-        );
       }
 
       if (data) {
