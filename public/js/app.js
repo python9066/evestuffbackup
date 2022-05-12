@@ -13992,7 +13992,7 @@ function sleep(ms) {
     freeChars: function freeChars() {
       var _this3 = this;
 
-      var data = this.getOwnHackingCharOnOp(this.operationID);
+      var data = this.getOwnHackingCharOnOpAllHackers(this.operationID);
 
       if (data) {
         data = data.filter(function (c) {

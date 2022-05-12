@@ -227,7 +227,7 @@ export default {
     },
 
     freeChars() {
-      var data = this.getOwnHackingCharOnOp(this.operationID);
+      var data = this.getOwnHackingCharOnOpAllHackers(this.operationID);
       if (data) {
         data = data.filter((c) => {
           if (c.system_id == this.item.id) {
