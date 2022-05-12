@@ -38,7 +38,7 @@
         color="#00ff00"
         :thickness="thickness"
         :emptyThickness="emptyThickness"
-        emptyColor="#86f786"
+        emptyColor="#a4fca4"
       >
         <template v-slot:legend-value>
           <span slot="legend-value"> /{{ totalNode }}</span>
