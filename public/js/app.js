@@ -14670,41 +14670,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
  // import ApiL from "../service/apil";
 
@@ -14768,7 +14733,8 @@ function sleep(ms) {
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     totalNode: function totalNode() {
       if (this.nodes) {
-        var count = this.nodes.legnth;
+        var filter = this.nodes;
+        var count = filter.legnth;
       } else {
         var count = 0;
       }
@@ -14791,7 +14757,7 @@ function sleep(ms) {
       if (this.nodes) {
         var filter = this.nodes.filter(function (n) {
           return n.node_status.id == 5 || n.node_status.id == 7;
-        }).legnth;
+        });
         var count = filter.legnth;
       } else {
         var count = 0;
