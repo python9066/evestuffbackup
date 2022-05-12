@@ -52,7 +52,7 @@
       <Vep
         :progress="redProgress"
         :size="50"
-        :legend-value="rlueNode"
+        :legend-value="redNode"
         fontSize="0.80rem"
         color="#ff0000"
         :thickness="4"

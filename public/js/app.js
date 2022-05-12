@@ -57172,7 +57172,7 @@ var render = function () {
             attrs: {
               progress: _vm.redProgress,
               size: 50,
-              "legend-value": _vm.rlueNode,
+              "legend-value": _vm.redNode,
               fontSize: "0.80rem",
               color: "#ff0000",
               thickness: 4,
