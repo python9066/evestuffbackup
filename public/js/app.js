@@ -11918,6 +11918,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -54972,6 +54976,16 @@ var render = function () {
                                 1
                               )
                             : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              staticClass: "d-flex justify-end align-center",
+                              attrs: { cols: "2" },
+                            },
+                            [_c("v-icon", [_vm._v("fas fa-angle-up")])],
+                            1
+                          ),
                         ],
                         1
                       ),

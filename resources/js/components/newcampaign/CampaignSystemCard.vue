@@ -57,6 +57,10 @@
               >
                 <AddNode :item="item" :operationID="operationID"></AddNode>
               </v-col>
+
+              <v-col cols="2" class="d-flex justify-end align-center">
+                <v-icon>fas fa-angle-up</v-icon>
+              </v-col>
             </v-row>
           </v-card-title>
         </v-card>
