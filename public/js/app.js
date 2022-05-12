@@ -14537,7 +14537,7 @@ function sleep(ms) {
         return 0;
       }
     },
-    charsOnTheWayAll: function charsOnTheWayAll() {
+    charsReadyToGOAll: function charsReadyToGOAll() {
       var _this4 = this;
 
       return this.getOpUsersReadyToGoAll.filter(function (q) {
@@ -14545,8 +14545,8 @@ function sleep(ms) {
       });
     },
     OnTheWayCount: function OnTheWayCount() {
-      if (this.charsOnTheWayAll) {
-        return this.charsOnTheWayAll.length;
+      if (this.charsReadyToGOAll) {
+        return this.charsReadyToGOAll.length;
       } else {
         return 0;
       }
@@ -56667,7 +56667,7 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-list",
-                _vm._l(_vm.charsFree, function (list, index) {
+                _vm._l(_vm.freeChars, function (list, index) {
                   return _c(
                     "v-list-item",
                     {
