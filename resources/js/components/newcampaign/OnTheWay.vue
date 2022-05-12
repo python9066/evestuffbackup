@@ -22,16 +22,17 @@
         </v-list-item>
       </v-list>
     </v-menu>
-    <v-chip
+    <v-btn
       v-else-if="showButton == 2"
       dark
       :color="filterCharsOnTheWay"
       v-bind="attrs"
       v-on="on"
       small
+      rounded
     >
       On the Way
-    </v-chip>
+    </v-btn>
     <span v-else> On the way - </span>
     <v-menu transition="fade-transition">
       <template v-slot:activator="{ on, attrs }">
@@ -227,9 +228,19 @@ export default {
 
     freeChars() {
       var data = this.getOwnHackingCharOnOp(this.operationID);
-      data = data.filter(
-        (c) => c.system_id != this.item.id && c.user_status_id != 2
-      );
+      if (data) {
+        data = data.filter((c) => {
+          if (c.system_id == this.item.id) {
+            if (c.user_status_id != 2) {
+              return true;
+            } else {
+              return false;
+            }
+          } else {
+            return true;
+          }
+        });
+      }
       if (data) {
         return data;
       } else {

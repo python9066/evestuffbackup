@@ -13783,6 +13783,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
  // import ApiL from "../service/apil";
 
@@ -13992,9 +13993,20 @@ function sleep(ms) {
       var _this3 = this;
 
       var data = this.getOwnHackingCharOnOp(this.operationID);
-      data = data.filter(function (c) {
-        return c.system_id != _this3.item.id && c.user_status_id != 2;
-      });
+
+      if (data) {
+        data = data.filter(function (c) {
+          if (c.system_id == _this3.item.id) {
+            if (c.user_status_id != 2) {
+              return true;
+            } else {
+              return false;
+            }
+          } else {
+            return true;
+          }
+        });
+      }
 
       if (data) {
         return data;
@@ -56254,7 +56266,7 @@ var render = function () {
           )
         : _vm.showButton == 2
         ? _c(
-            "v-chip",
+            "v-btn",
             _vm._g(
               _vm._b(
                 {
@@ -56262,9 +56274,10 @@ var render = function () {
                     dark: "",
                     color: _vm.filterCharsOnTheWay,
                     small: "",
+                    rounded: "",
                   },
                 },
-                "v-chip",
+                "v-btn",
                 _vm.attrs,
                 false
               ),
