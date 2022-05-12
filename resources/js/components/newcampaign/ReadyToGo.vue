@@ -137,13 +137,7 @@ export default {
     ...mapState([]),
 
     showButton() {
-      var data = this.getOwnHackingCharOnOp(this.operationID);
-      if (data) {
-        data = data.filter(
-          (c) => c.system_id != this.item.id && c.user_status_id != 2
-        );
-      }
-
+      var data = this.charsFree;
       if (data) {
         return data.length;
       } else {
@@ -154,9 +148,21 @@ export default {
     charsFree() {
       var data = this.getOwnHackingCharOnOp(this.operationID);
       if (data) {
-        data = this.getOwnHackingCharOnOp(this.operationID).filter(
-          (c) => c.system_id != this.item.id && c.user_status_id != 3
-        );
+        data = data.filter((c) => {
+          if (c.system_id == this.item.id) {
+            if (c.system_id != this.item.id && c.user_status_id != 3) {
+              return true;
+            } else {
+              return false;
+            }
+          } else {
+            if (c.system_id != this.item.id) {
+              return true;
+            } else {
+              return false;
+            }
+          }
+        });
       }
 
       if (data) {
