@@ -60,7 +60,7 @@
               </v-col>
 
               <v-col cols="1" class="d-flex justify-end align-center">
-                <v-btn icon @click="showSystemTable != showSystemTable">
+                <v-btn icon @click="clickIcon()">
                   <v-icon :class="iconRotate">fas fa-angle-up</v-icon></v-btn
                 >
               </v-col>
@@ -112,7 +112,15 @@ export default {
   async beforeCreate() {},
 
   async mounted() {},
-  methods: {},
+  methods: {
+    clickIcon() {
+      if (this.showSystemTable == 0) {
+        this.showSystemTable = null;
+      } else {
+        this.showSystemTable = 0;
+      }
+    },
+  },
 
   computed: {
     ...mapGetters([]),

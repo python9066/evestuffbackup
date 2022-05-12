@@ -11998,7 +11998,15 @@ function sleep(ms) {
       }, _callee3);
     }))();
   },
-  methods: {},
+  methods: {
+    clickIcon: function clickIcon() {
+      if (this.showSystemTable == 0) {
+        this.showSystemTable = null;
+      } else {
+        this.showSystemTable = 0;
+      }
+    }
+  },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])), {}, {
     iconRotate: function iconRotate() {
       if (this.showSystemTable == 0) {
@@ -55054,7 +55062,7 @@ var render = function () {
                                   attrs: { icon: "" },
                                   on: {
                                     click: function ($event) {
-                                      _vm.showSystemTable != _vm.showSystemTable
+                                      return _vm.clickIcon()
                                     },
                                   },
                                 },
