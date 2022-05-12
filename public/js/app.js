@@ -14777,9 +14777,10 @@ function sleep(ms) {
     },
     blueNode: function blueNode() {
       if (this.nodes) {
-        var count = this.nodes.filter(function (n) {
-          return n.node_status.id == 2 || n.node_status.id == 3 || n.node_status.id == 4 || n.node_status.id == 8;
-        }).legnth;
+        var count = this.nodes.filter(function (c) {
+          return c.node_status.id == 2 || c.node_status.id == 3 || c.node_status.id == 4 || c.node_status.id == 8;
+        });
+        console.log(count);
       } else {
         var count = 0;
       }
@@ -14788,7 +14789,6 @@ function sleep(ms) {
     },
     redNode: function redNode() {
       if (this.nodes) {
-        console.log(this.nodes);
         var count = this.nodes.filter(function (n) {
           return n.node_status.id == 5 || n.node_status.id == 7;
         }).legnth;

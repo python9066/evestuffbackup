@@ -113,12 +113,14 @@ export default {
     blueNode() {
       if (this.nodes) {
         var count = this.nodes.filter(
-          (n) =>
-            n.node_status.id == 2 ||
-            n.node_status.id == 3 ||
-            n.node_status.id == 4 ||
-            n.node_status.id == 8
-        ).legnth;
+          (c) =>
+            c.node_status.id == 2 ||
+            c.node_status.id == 3 ||
+            c.node_status.id == 4 ||
+            c.node_status.id == 8
+        );
+
+        console.log(count);
       } else {
         var count = 0;
       }
@@ -127,7 +129,6 @@ export default {
 
     redNode() {
       if (this.nodes) {
-        console.log(this.nodes);
         var count = this.nodes.filter(
           (n) => n.node_status.id == 5 || n.node_status.id == 7
         ).legnth;
