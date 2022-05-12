@@ -182,6 +182,7 @@ export default {
     freeChars() {
       var data = this.getOwnHackingCharOnOpAllHackers(this.operationID);
       if (data) {
+        data = data.filter((c) => c.user_status_id != 4);
         data = data.filter((c) => {
           if (c.system_id == this.item.id) {
             if (c.user_status_id != 3) {

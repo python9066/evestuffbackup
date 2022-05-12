@@ -13975,6 +13975,9 @@ function sleep(ms) {
 
       if (data) {
         data = data.filter(function (c) {
+          return c.user_status_id != 4;
+        });
+        data = data.filter(function (c) {
           if (c.system_id == _this3.item.id) {
             if (c.user_status_id != 2) {
               return true;
@@ -14529,6 +14532,9 @@ function sleep(ms) {
       var data = this.getOwnHackingCharOnOpAllHackers(this.operationID);
 
       if (data) {
+        data = data.filter(function (c) {
+          return c.user_status_id != 4;
+        });
         data = data.filter(function (c) {
           if (c.system_id == _this3.item.id) {
             if (c.user_status_id != 3) {
