@@ -14033,7 +14033,7 @@ function sleep(ms) {
     filterCharsOnTheWay: function filterCharsOnTheWay() {
       var _this5 = this;
 
-      var count = this.charsFree.filter(function (_char) {
+      var count = this.freeChars.filter(function (_char) {
         return _char.status_id == 2 && _char.system_id == _this5.system_id;
       }).length;
 
@@ -56232,7 +56232,7 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-list",
-                _vm._l(_vm.charsFree, function (list, index) {
+                _vm._l(_vm.freeChars, function (list, index) {
                   return _c(
                     "v-list-item",
                     {

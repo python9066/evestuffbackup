@@ -14,7 +14,7 @@
       </template>
       <v-list>
         <v-list-item
-          v-for="(list, index) in charsFree"
+          v-for="(list, index) in freeChars"
           :key="index"
           @click="clickOnTheWay(list.id)"
         >
@@ -268,7 +268,7 @@ export default {
     },
 
     filterCharsOnTheWay() {
-      var count = this.charsFree.filter(
+      var count = this.freeChars.filter(
         (char) => char.status_id == 2 && char.system_id == this.system_id
       ).length;
 
