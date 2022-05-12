@@ -11908,6 +11908,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
  // import ApiL from "../service/apil";
 
@@ -12711,6 +12712,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, {
         text: "",
         value: "actions",
+        align: "end",
         sortable: false
       }],
       singleExpand: false
@@ -55162,11 +55164,6 @@ var render = function () {
                             1
                           ),
                           _vm._v(" "),
-                          _c("v-divider", {
-                            staticClass: "mx-2",
-                            attrs: { vertical: "" },
-                          }),
-                          _vm._v(" "),
                           _c(
                             "v-col",
                             {
@@ -55174,6 +55171,11 @@ var render = function () {
                               attrs: { cols: "6" },
                             },
                             [
+                              _c("v-divider", {
+                                staticClass: "mx-2",
+                                attrs: { vertical: "" },
+                              }),
+                              _vm._v(" "),
                               _c("OnTheWay", {
                                 attrs: {
                                   operationID: _vm.operationID,

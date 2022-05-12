@@ -127,6 +127,7 @@ export default {
         {
           text: "",
           value: "actions",
+          align: "end",
           sortable: false,
         },
       ],
