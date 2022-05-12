@@ -26,8 +26,8 @@
       v-else-if="showButton == 2"
       dark
       :color="filterCharsOnTheWay"
-      @click="click()"
-      x-small
+      @click="clickButton()"
+      small
       rounded
       class="no-uppercase"
     >
@@ -130,7 +130,7 @@ export default {
       });
     },
 
-    click() {
+    clickButton() {
       EventBus.$emit("showSystemTable", 1);
     },
 

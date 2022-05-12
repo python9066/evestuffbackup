@@ -14466,7 +14466,7 @@ function sleep(ms) {
         }, _callee5);
       }))();
     },
-    click: function click() {
+    clickButton: function clickButton() {
       _app__WEBPACK_IMPORTED_MODULE_2__["EventBus"].$emit("showSystemTable", 1);
     },
     seeReadyToGoOnTheWay: function seeReadyToGoOnTheWay(item) {
@@ -56687,12 +56687,12 @@ var render = function () {
               attrs: {
                 dark: "",
                 color: _vm.filterCharsOnTheWay,
-                "x-small": "",
+                small: "",
                 rounded: "",
               },
               on: {
                 click: function ($event) {
-                  return _vm.click()
+                  return _vm.clickButton()
                 },
               },
             },
