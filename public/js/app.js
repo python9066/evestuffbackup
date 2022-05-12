@@ -14677,6 +14677,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -14696,7 +14701,8 @@ function sleep(ms) {
       totalNode: 10,
       blueNode: 5,
       redNode: 5,
-      size: 100
+      size: 100,
+      fontSizeNumber: "1"
     };
   },
   created: function created() {
@@ -14744,6 +14750,10 @@ function sleep(ms) {
     progress: function progress() {
       var num = this.blueNode / this.totalNode * 100;
       return num;
+    },
+    fontsize: function fontsize() {
+      var text = this.fontSizeNumber + "rem";
+      return text;
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -57074,7 +57084,8 @@ var render = function () {
             attrs: {
               progress: _vm.progress,
               size: _vm.size,
-              "legend-value": _vm.blue,
+              "legend-value": _vm.blueNode,
+              fontSize: _vm.fontsize,
             },
             scopedSlots: _vm._u([
               {

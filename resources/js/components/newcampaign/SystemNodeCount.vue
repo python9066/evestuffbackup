@@ -30,7 +30,12 @@
       >
     </v-col> -->
     <v-col>
-      <Vep :progress="progress" :size="size" :legend-value="blue">
+      <Vep
+        :progress="progress"
+        :size="size"
+        :legend-value="blueNode"
+        :fontSize="fontsize"
+      >
         <template v-slot:legend-value>
           <span slot="legend-value"> /{{ totalNode }}</span>
         </template>
@@ -58,6 +63,7 @@ export default {
       blueNode: 5,
       redNode: 5,
       size: 100,
+      fontSizeNumber: "1",
     };
   },
 
@@ -78,6 +84,11 @@ export default {
     progress() {
       var num = (this.blueNode / this.totalNode) * 100;
       return num;
+    },
+
+    fontsize() {
+      var text = this.fontSizeNumber + "rem";
+      return text;
     },
   },
   beforeDestroy() {},
