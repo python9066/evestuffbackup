@@ -137,13 +137,21 @@ export default {
     },
 
     blueProgress() {
-      var num = (this.blueNode / this.totalNode) * 100;
-      return num;
+      if (this.totalNode) {
+        var num = (this.blueNode / this.totalNode) * 100;
+        return num;
+      } else {
+        return 0;
+      }
     },
 
     redProgress() {
-      var num = (this.blueNode / this.totalNode) * 100;
-      return num;
+      if (this.totalNode) {
+        var num = (this.blueNode / this.totalNode) * 100;
+        return num;
+      } else {
+        return 0;
+      }
     },
   },
   beforeDestroy() {},

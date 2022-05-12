@@ -14798,12 +14798,20 @@ function sleep(ms) {
       return count;
     },
     blueProgress: function blueProgress() {
-      var num = this.blueNode / this.totalNode * 100;
-      return num;
+      if (this.totalNode) {
+        var num = this.blueNode / this.totalNode * 100;
+        return num;
+      } else {
+        return 0;
+      }
     },
     redProgress: function redProgress() {
-      var num = this.blueNode / this.totalNode * 100;
-      return num;
+      if (this.totalNode) {
+        var num = this.blueNode / this.totalNode * 100;
+        return num;
+      } else {
+        return 0;
+      }
     }
   }),
   beforeDestroy: function beforeDestroy() {}
