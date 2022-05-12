@@ -14788,6 +14788,7 @@ function sleep(ms) {
     },
     redNode: function redNode() {
       if (this.nodes) {
+        console.log(this.nodes);
         var count = this.nodes.filter(function (n) {
           return n.node_status.id == 5 || n.node_status.id == 7;
         }).legnth;

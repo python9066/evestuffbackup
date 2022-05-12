@@ -127,6 +127,7 @@ export default {
 
     redNode() {
       if (this.nodes) {
+        console.log(this.nodes);
         var count = this.nodes.filter(
           (n) => n.node_status.id == 5 || n.node_status.id == 7
         ).legnth;
