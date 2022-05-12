@@ -11912,6 +11912,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
  // import ApiL from "../service/apil";
 
@@ -55122,7 +55123,7 @@ var render = function () {
                     "v-card-title",
                     {
                       staticClass:
-                        "d-flex justify-space-between align-center py-0 pr-0",
+                        "d-flex justify-space-between align-center py-0 px-0",
                       staticStyle: { width: "100%" },
                       attrs: { "max-width": "" },
                     },
@@ -55134,8 +55135,9 @@ var render = function () {
                           _c(
                             "v-col",
                             {
-                              staticClass: "d-flex justify-start align-center",
-                              attrs: { cols: "2" },
+                              staticClass:
+                                "d-flex justify-start align-center mr-2",
+                              attrs: { cols: "1" },
                             },
                             [
                               _vm._v(
@@ -55146,7 +55148,10 @@ var render = function () {
                             ]
                           ),
                           _vm._v(" "),
-                          _c("v-divider", { attrs: { vertical: "" } }),
+                          _c("v-divider", {
+                            staticClass: "mx-4",
+                            attrs: { vertical: "" },
+                          }),
                           _vm._v(" "),
                           _c(
                             "v-col",
@@ -55162,7 +55167,12 @@ var render = function () {
                             1
                           ),
                           _vm._v(" "),
-                          _c("v-divider", { attrs: { vertical: "" } }),
+                          _c("v-spacer"),
+                          _vm._v(" "),
+                          _c("v-divider", {
+                            staticClass: "mx-4",
+                            attrs: { vertical: "" },
+                          }),
                           _vm._v(" "),
                           _c(
                             "v-col",
@@ -55181,7 +55191,10 @@ var render = function () {
                             1
                           ),
                           _vm._v(" "),
-                          _c("v-divider", { attrs: { vertical: "" } }),
+                          _c("v-divider", {
+                            staticClass: "mx-4",
+                            attrs: { vertical: "" },
+                          }),
                           _vm._v(" "),
                           _c(
                             "v-col",
@@ -55200,7 +55213,12 @@ var render = function () {
                             1
                           ),
                           _vm._v(" "),
-                          _c("v-divider", { attrs: { vertical: "" } }),
+                          _c("v-divider", {
+                            staticClass: "mx-4",
+                            attrs: { vertical: "" },
+                          }),
+                          _vm._v(" "),
+                          _c("v-spacer"),
                           _vm._v(" "),
                           _c(
                             "v-col",

@@ -24,28 +24,29 @@
         <v-card flat max-width elevation="0">
           <v-card-title
             max-width
-            class="d-flex justify-space-between align-center py-0 pr-0"
+            class="d-flex justify-space-between align-center py-0 px-0"
             style="width: 100%"
           >
             <v-row no-gutters>
-              <v-col cols="2" class="d-flex justify-start align-center">
+              <v-col cols="1" class="d-flex justify-start align-center mr-2">
                 {{ item.system_name }}
               </v-col>
-              <v-divider vertical></v-divider>
+              <v-divider class="mx-4" vertical></v-divider>
               <v-col cols="3" class="d-flex justify-start align-center">
                 <SystemNodeCount :item="item.new_nodes" />
               </v-col>
-              <v-divider vertical></v-divider>
+              <v-spacer></v-spacer>
+              <v-divider class="mx-4" vertical></v-divider>
               <v-col cols="3" class="d-flex justify-center align-center">
                 <OnTheWay :operationID="operationID" :item="item"></OnTheWay>
               </v-col>
-              <v-divider vertical></v-divider>
+              <v-divider class="mx-4" vertical></v-divider>
 
               <v-col cols="3" class="d-flex justify-center align-center">
                 <ReadyToGo :operationID="operationID" :item="item"></ReadyToGo>
               </v-col>
-              <v-divider vertical></v-divider>
-
+              <v-divider class="mx-4" vertical></v-divider>
+              <v-spacer></v-spacer>
               <v-col cols="1" class="d-flex justify-end align-center">
                 <v-btn icon @click="clickIcon()">
                   <v-icon :class="iconRotate">fas fa-angle-up</v-icon></v-btn
