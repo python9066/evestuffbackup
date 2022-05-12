@@ -14049,11 +14049,11 @@ function sleep(ms) {
       var data = this.getOwnHackingCharOnOp(this.operationID);
 
       if (data) {
-        count = data.filter(function (c) {
+        var count = data.filter(function (c) {
           return c.system_id == _this5.item.id && c.user_status_id == 2;
         }).length;
       } else {
-        return 0;
+        var count = 0;
       }
 
       if (count > 0) {

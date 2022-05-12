@@ -282,11 +282,11 @@ export default {
     filterCharsOnTheWay() {
       var data = this.getOwnHackingCharOnOp(this.operationID);
       if (data) {
-        count = data.filter(
+        var count = data.filter(
           (c) => c.system_id == this.item.id && c.user_status_id == 2
         ).length;
       } else {
-        return 0;
+        var count = 0;
       }
 
       if (count > 0) {
