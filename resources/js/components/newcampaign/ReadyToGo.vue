@@ -211,15 +211,15 @@ export default {
       }
     },
 
-    charsReadyToGOAll() {
+    charsReadyToGoAll() {
       return this.getOpUsersReadyToGoAll.filter(
         (q) => q.system_id == this.item.id
       );
     },
 
     OnTheWayCount() {
-      if (this.charsReadyToGOAll) {
-        return this.charsReadyToGOAll.length;
+      if (this.charsReadyToGoAll) {
+        return this.charsReadyToGoAll.length;
       } else {
         return 0;
       }

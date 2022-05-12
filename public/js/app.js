@@ -14537,7 +14537,7 @@ function sleep(ms) {
         return 0;
       }
     },
-    charsReadyToGOAll: function charsReadyToGOAll() {
+    charsReadyToGoAll: function charsReadyToGoAll() {
       var _this4 = this;
 
       return this.getOpUsersReadyToGoAll.filter(function (q) {
@@ -14545,8 +14545,8 @@ function sleep(ms) {
       });
     },
     OnTheWayCount: function OnTheWayCount() {
-      if (this.charsReadyToGOAll) {
-        return this.charsReadyToGOAll.length;
+      if (this.charsReadyToGoAll) {
+        return this.charsReadyToGoAll.length;
       } else {
         return 0;
       }
