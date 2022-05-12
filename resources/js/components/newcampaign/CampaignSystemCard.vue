@@ -32,7 +32,7 @@
                 {{ item.system_name }}
               </v-col>
               <v-divider vertical></v-divider>
-              <v-col cols="4" class="d-flex justify-start align-center">
+              <v-col cols="3" class="d-flex justify-start align-center">
                 Nodes - 2/3 1/3
               </v-col>
               <v-divider vertical></v-divider>
@@ -59,8 +59,8 @@
                 <AddNode :item="item" :operationID="operationID"></AddNode>
               </v-col>
 
-              <v-col cols="2" class="d-flex justify-end align-center">
-                <v-btn icon>
+              <v-col cols="1" class="d-flex justify-end align-center">
+                <v-btn icon @click="showSystemTable != showSystemTable">
                   <v-icon :class="iconRotate">fas fa-angle-up</v-icon></v-btn
                 >
               </v-col>

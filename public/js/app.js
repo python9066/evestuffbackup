@@ -54968,7 +54968,7 @@ var render = function () {
                             "v-col",
                             {
                               staticClass: "d-flex justify-start align-center",
-                              attrs: { cols: "4" },
+                              attrs: { cols: "3" },
                             },
                             [
                               _vm._v(
@@ -55041,12 +55041,19 @@ var render = function () {
                             "v-col",
                             {
                               staticClass: "d-flex justify-end align-center",
-                              attrs: { cols: "2" },
+                              attrs: { cols: "1" },
                             },
                             [
                               _c(
                                 "v-btn",
-                                { attrs: { icon: "" } },
+                                {
+                                  attrs: { icon: "" },
+                                  on: {
+                                    click: function ($event) {
+                                      _vm.showSystemTable != _vm.showSystemTable
+                                    },
+                                  },
+                                },
                                 [
                                   _c("v-icon", { class: _vm.iconRotate }, [
                                     _vm._v("fas fa-angle-up"),
