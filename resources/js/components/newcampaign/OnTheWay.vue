@@ -30,6 +30,7 @@
       v-on="on"
       small
       rounded
+      class="no-uppercase"
     >
       On the Way
     </v-btn>
@@ -279,9 +280,14 @@ export default {
     },
 
     filterCharsOnTheWay() {
-      var count = this.freeChars.filter(
-        (char) => char.status_id == 2 && char.system_id == this.system_id
-      ).length;
+      var data = this.getOwnHackingCharOnOp(this.operationID);
+      if (data) {
+        count = data.filter(
+          (c) => c.system_id == this.item.id && c.user_status_id == 2
+        ).length;
+      } else {
+        return 0;
+      }
 
       if (count > 0) {
         return "green";
@@ -293,3 +299,9 @@ export default {
   beforeDestroy() {},
 };
 </script>
+
+<style scoped>
+.no-uppercase {
+  text-transform: unset !important;
+}
+</style>
