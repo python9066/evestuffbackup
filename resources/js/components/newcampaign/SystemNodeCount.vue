@@ -39,9 +39,9 @@
         <template v-slot:legend-value>
           <span slot="legend-value"> /{{ totalNode }}</span>
         </template>
-        <template v-slot:legend-caption>
+        <!-- <template v-slot:legend-caption>
           <p slot="legend-caption">Friendly</p>
-        </template>
+        </template> -->
       </Vep>
     </v-col>
   </v-row>
@@ -62,8 +62,8 @@ export default {
       totalNode: 10,
       blueNode: 5,
       redNode: 5,
-      size: 100,
-      fontSizeNumber: "1",
+      size: 50,
+      fontSizeNumber: "0.65",
     };
   },
 

@@ -14701,8 +14701,8 @@ function sleep(ms) {
       totalNode: 10,
       blueNode: 5,
       redNode: 5,
-      size: 100,
-      fontSizeNumber: "1"
+      size: 50,
+      fontSizeNumber: "0.65"
     };
   },
   created: function created() {
@@ -57096,22 +57096,6 @@ var render = function () {
                       "span",
                       { attrs: { slot: "legend-value" }, slot: "legend-value" },
                       [_vm._v(" /" + _vm._s(_vm.totalNode))]
-                    ),
-                  ]
-                },
-                proxy: true,
-              },
-              {
-                key: "legend-caption",
-                fn: function () {
-                  return [
-                    _c(
-                      "p",
-                      {
-                        attrs: { slot: "legend-caption" },
-                        slot: "legend-caption",
-                      },
-                      [_vm._v("Friendly")]
                     ),
                   ]
                 },
