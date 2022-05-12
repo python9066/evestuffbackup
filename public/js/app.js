@@ -14670,6 +14670,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -57119,7 +57126,46 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _c("v-col", [_c("Vep", { attrs: { progress: 50 } })], 1),
+      _c(
+        "v-col",
+        [
+          _c("Vep", {
+            attrs: { progress: 50 },
+            scopedSlots: _vm._u([
+              {
+                key: "legend-value",
+                fn: function () {
+                  return [
+                    _c(
+                      "span",
+                      { attrs: { slot: "legend-value" }, slot: "legend-value" },
+                      [_vm._v(" /200")]
+                    ),
+                  ]
+                },
+                proxy: true,
+              },
+              {
+                key: "legend-caption",
+                fn: function () {
+                  return [
+                    _c(
+                      "p",
+                      {
+                        attrs: { slot: "legend-caption" },
+                        slot: "legend-caption",
+                      },
+                      [_vm._v("TASK DONE")]
+                    ),
+                  ]
+                },
+                proxy: true,
+              },
+            ]),
+          }),
+        ],
+        1
+      ),
     ],
     1
   )

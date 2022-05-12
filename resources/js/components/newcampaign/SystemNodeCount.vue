@@ -30,7 +30,14 @@
       >
     </v-col>
     <v-col>
-      <Vep :progress="50" />
+      <Vep :progress="50">
+        <template v-slot:legend-value>
+          <span slot="legend-value"> /200</span>
+        </template>
+        <template v-slot:legend-caption>
+          <p slot="legend-caption">TASK DONE</p>
+        </template>
+      </Vep>
     </v-col>
   </v-row>
 </template>
