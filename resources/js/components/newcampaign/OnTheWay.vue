@@ -152,52 +152,6 @@ export default {
 
     ...mapState([]),
 
-    //  if (this.getOwnHackingCharOnOp.system_id == this.item.id) {
-    //     var data = this.getOwnHackingCharOnOp(this.operationID).filter(
-    //       (c) => c.system_id != this.item.id && c.user_status_id != 2
-    //     );
-    //   } else {
-    //     var data = this.getOwnHackingCharOnOp(this.operationID).filter(
-    //       (c) => c.system_id != this.item.id
-    //     );
-    //   }
-
-    // showButton() {
-    //   var data = this.charsFree;
-    //   if (data) {
-    //     return data.length;
-    //   } else {
-    //     return 0;
-    //   }
-    // },
-
-    // charsFree() {
-    //   var data = this.getOwnHackingCharOnOp(this.operationID);
-    //   if (data) {
-    //     data = data.filter((c) => {
-    //       if (c.system_id == this.item.id) {
-    //         if (c.system_id != this.item.id && c.user_status_id != 2) {
-    //           return true;
-    //         } else {
-    //           return false;
-    //         }
-    //       } else {
-    //         if (c.system_id != this.item.id) {
-    //           return true;
-    //         } else {
-    //           return false;
-    //         }
-    //       }
-    //     });
-    //   }
-
-    //   if (data) {
-    //     return data;
-    //   } else {
-    //     return [];
-    //   }
-    // },
-
     showButton() {
       if (this.allOwnHackingCharsCount > 0) {
         if (this.freeCharsCount > 0) {
