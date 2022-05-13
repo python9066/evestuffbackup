@@ -26,7 +26,7 @@
       </v-progress-linear>
     </v-col>
     <v-col>
-      <v-text-field v-model="newscore"></v-text-field>
+      <v-text-field v-model="newscore" type="number"></v-text-field>
       <v-btn @click="updateScore()"> update</v-btn>
       <v-btn @click="update()"> artisan</v-btn>
     </v-col>
@@ -65,11 +65,11 @@ export default {
   async mounted() {},
   methods: {
     async updateScore() {
-      var a = this.newscore / 100;
+      var d = this.newscore / 100;
 
-      var ascore = 1 - a;
+      var ascore = 1 - d;
       var request = {
-        defenders_score: this.newscore,
+        defenders_score: a,
         attackers_score: ascore,
       };
 
