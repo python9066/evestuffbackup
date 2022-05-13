@@ -55792,28 +55792,21 @@ var render = function () {
                             ")\n          "
                         ),
                       ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-icon",
-                        {
-                          class: _vm.IconAClass,
-                          attrs: {
-                            small: "",
-                            left: "",
-                            dark: "",
-                            color: _vm.IconAColor,
-                          },
-                        },
-                        [
-                          _vm._v(
-                            "\n            " +
-                              _vm._s(_vm.IconD) +
-                              "\n          "
-                          ),
-                        ]
-                      ),
-                    ],
-                    1
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-icon",
+                    {
+                      class: _vm.IconAClass,
+                      attrs: {
+                        small: "",
+                        left: "",
+                        dark: "",
+                        color: _vm.IconAColor,
+                      },
+                    },
+                    [_vm._v("\n          " + _vm._s(_vm.IconD) + "\n        ")]
                   ),
                 ],
                 1

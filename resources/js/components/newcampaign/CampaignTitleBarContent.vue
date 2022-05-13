@@ -24,10 +24,10 @@
               {{ item.defenders_score * 100 }} ({{ nodesToLose }}) /
               {{ item.attackers_score * 100 }} ({{ nodesToWin }})
             </strong>
-            <v-icon small left dark :color="IconAColor" :class="IconAClass">
-              {{ IconD }}
-            </v-icon>
           </v-progress-linear>
+          <v-icon small left dark :color="IconAColor" :class="IconAClass">
+            {{ IconD }}
+          </v-icon>
         </v-col>
       </v-row>
       <v-row no-gutters>
