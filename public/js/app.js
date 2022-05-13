@@ -12319,6 +12319,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -12417,6 +12418,32 @@ function sleep(ms) {
             }
           }
         }, _callee4);
+      }))();
+    },
+    update: function update() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return axios({
+                  method: "POST",
+                  //you can set what request you want to be
+                  url: "/api/testscorerun",
+                  withCredentials: true,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
       }))();
     }
   },
@@ -55769,6 +55796,18 @@ var render = function () {
               },
             },
             [_vm._v(" update")]
+          ),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              on: {
+                click: function ($event) {
+                  return _vm.update()
+                },
+              },
+            },
+            [_vm._v(" artisan")]
           ),
         ],
         1

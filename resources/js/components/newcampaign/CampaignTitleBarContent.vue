@@ -28,6 +28,7 @@
     <v-col>
       <v-text-field v-model="newscore"></v-text-field>
       <v-btn @click="updateScore()"> update</v-btn>
+      <v-btn @click="update()"> artisan</v-btn>
     </v-col>
   </v-row>
 </template>
@@ -77,6 +78,18 @@ export default {
         url: "/api/testscoreupdate/" + this.item.id,
         withCredentials: true,
         data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+    },
+
+    async update() {
+      await axios({
+        method: "POST", //you can set what request you want to be
+        url: "/api/testscorerun",
+        withCredentials: true,
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",

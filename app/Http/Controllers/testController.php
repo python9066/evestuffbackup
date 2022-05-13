@@ -72,6 +72,17 @@ class testController extends Controller
         }
     }
 
+    public function testRunScore()
+    {
+        $user = Auth::user();
+        if ($user->can('super')) {
+            Artisan::call('update:newCampaigns');
+        }
+    }
+
+
+
+
 
     public function corptest()
     {
