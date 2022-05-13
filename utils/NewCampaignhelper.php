@@ -140,6 +140,7 @@ class NewCampaignhelper
                     }
 
                     $campaign->update(['b_node' => $bNode, 'r_node' => $rNode]);
+                    Broadcasthelper::broadcastCampaignSolo($campaign->id, 4);
                 }
 
                 // * Setting everything up for a new campaign
