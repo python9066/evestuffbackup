@@ -108,9 +108,11 @@ class NewCampaignhelper
                     foreach ($campaignNodes as $campaignNode) {
                         $system_id = $campaignNode->system_id;
                         if ($campaignNode->node_status == 4) {
-                            $bNode = $bNode++;
+                            $bNode = $bNode + 1;
+                            echo "yay add 1 to blue";
                         } else {
-                            $rNode = $rNode++;
+                            $rNode = $rNode + 1;
+                            echo "yay add 1 to red";
                         }
                         $campaignNode->delete();
                         Broadcasthelper::broadcastsystemSolo($system_id, 7);

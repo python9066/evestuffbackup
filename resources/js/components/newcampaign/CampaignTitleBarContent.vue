@@ -2,7 +2,7 @@
   <v-row no-gutters>
     <v-col cols="12">
       <v-row no-gutters>
-        <v-col cols="2">
+        <v-col cols="1">
           {{ item.system.system_name }} - {{ eventType }}
         </v-col>
         <v-col
@@ -223,7 +223,7 @@ export default {
       ) {
         return "rotate";
       } else {
-        return "rotate down";
+        return "rotate down ml-2";
       }
     },
   },

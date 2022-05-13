@@ -12545,7 +12545,7 @@ function sleep(ms) {
       if (this.item.attackers_score > this.item.attackers_score_old && this.item.attackers_score_old > 0) {
         return "rotate";
       } else {
-        return "rotate down";
+        return "rotate down ml-2";
       }
     }
   }),
@@ -55739,7 +55739,7 @@ var render = function () {
             "v-row",
             { attrs: { "no-gutters": "" } },
             [
-              _c("v-col", { attrs: { cols: "2" } }, [
+              _c("v-col", { attrs: { cols: "1" } }, [
                 _vm._v(
                   "\n        " +
                     _vm._s(_vm.item.system.system_name) +
