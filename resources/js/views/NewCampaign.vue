@@ -3,7 +3,6 @@
     <v-row no-gutters justify="center" class="pb-5">
       <v-col cols="10">
         <CampaignTitleBar
-          :item="campaigns"
           :operationID="operationID"
           :title="newOperationInfo.title"
         ></CampaignTitleBar>

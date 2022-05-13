@@ -35361,7 +35361,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -78033,7 +78032,6 @@ var render = function () {
             [
               _c("CampaignTitleBar", {
                 attrs: {
-                  item: _vm.campaigns,
                   operationID: _vm.operationID,
                   title: _vm.newOperationInfo.title,
                 },
