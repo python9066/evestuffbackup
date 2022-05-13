@@ -108,7 +108,7 @@ class NewCampaignhelper
                             $q->where('node_status', 4)
                                 ->orWhere('node_status', 5);
                         })->get();
-
+                    dd($campaignNodes);
                     foreach ($campaignNodes as $campaignNode) {
                         $system_id = $campaignNode->system_id;
                         if ($campaignNode->node_status == 4) {
