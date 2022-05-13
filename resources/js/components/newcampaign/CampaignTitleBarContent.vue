@@ -69,7 +69,7 @@ export default {
 
       var ascore = 1 - d;
       var request = {
-        defenders_score: a,
+        defenders_score: d,
         attackers_score: ascore,
       };
 

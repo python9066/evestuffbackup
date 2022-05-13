@@ -12396,7 +12396,7 @@ function sleep(ms) {
                 d = _this.newscore / 100;
                 ascore = 1 - d;
                 request = {
-                  defenders_score: a,
+                  defenders_score: d,
                   attackers_score: ascore
                 };
                 _context4.next = 5;
