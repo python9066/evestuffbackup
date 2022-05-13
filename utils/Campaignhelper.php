@@ -464,10 +464,19 @@ class Campaignhelper
                 // * Setting everything up for a new campaign
                 if (NewCampaginOperation::where('campaign_id', $id)->count() == 0) {
                     $uuid = Str::uuid();
+                    $system = System::where('id', $campaign['solar_system_id'])->first();
+                    $systemName = $system->system_name;
+                    if ($event_type == 32458) {
+                        $type = "Ihub";
+                    } else {
+                        $type = "TCU";
+                    }
+                    $title = $systemName . " - " . $type;
                     $newOp = NewOperation::create([
                         'link' => $uuid,
                         'solo' => 1,
-                        'status' => 1
+                        'status' => 1,
+                        'title' => $title,
                     ]);
 
                     NewCampaginOperation::create([
