@@ -494,6 +494,11 @@ Vue.component(
     require("./components/newcampaign/SystemNodeCount.vue").default
 );
 
+Vue.component(
+    "CampaignTitleBarContent",
+    require("./components/newcampaign/CampaignTitleBarContent.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(VueEllipseProgress, "Vep");

@@ -8,26 +8,11 @@
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <v-row no-gutters v-for="(item, index) in item" :key="index">
-              <v-col cols="12">
-                {{ item.system.system_name }} - {{ eventType }} :
-                {{ item.defenders_score }} / {{ item.attackers_score }}
-                <!-- // TODO Active (only show if campaign is active) -->
-                <v-progress-linear
-                  :color="barColor"
-                  :value="barScoure"
-                  height="20"
-                  rounded
-                  :active="true"
-                  :reverse="barReverse"
-                  :background-color="barBgcolor"
-                  background-opacity="0.2"
-                >
-                  <strong>
-                    {{ item.defenders_score * 100 }} ({{ nodesToLose }}) /
-                    {{ item.attackers_score * 100 }} ({{ nodesToWin }})
-                  </strong>
-                </v-progress-linear>
-              </v-col>
+              <CampaignTitleBarContent
+                :item="item"
+                :title="title"
+                :operationID="operationID"
+              ></CampaignTitleBarContent>
             </v-row>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -70,65 +55,6 @@ export default {
     ...mapGetters([]),
 
     ...mapState([]),
-
-    eventType() {
-      if (this.event_type == "32458") {
-        return "Ihub";
-      } else {
-        return "TCU";
-      }
-    },
-
-    barColor() {
-      var d = this.item.defenders_score * 100;
-      if (d > 0.5) {
-        return "blue darken-4";
-      }
-
-      return "red darken-4";
-    },
-
-    barScoure() {
-      var d = this.item.defenders_score * 100;
-      var a = this.item.attackers_score * 100;
-
-      if (d > 50) {
-        return d;
-      }
-
-      return a;
-    },
-
-    barReverse() {
-      var d = this.item.defenders_score * 100;
-      if (d > 50) {
-        return false;
-      }
-
-      return true;
-    },
-
-    barBgcolor() {
-      var d = this.item.defenders_score * 100;
-
-      if (d > 50) {
-        return "red darken-4";
-      }
-
-      return "blue darken-4";
-    },
-
-    nodesToLose() {
-      var needed = 1 - this.item.defenders_score.defenders_score;
-      var need = needed / 0.07;
-      return Math.ceil(need);
-    },
-
-    nodesToWin() {
-      var needed = 1 - this.item.attackers_score;
-      var need = needed / 0.07;
-      return Math.ceil(need);
-    },
   },
   beforeDestroy() {},
 };
