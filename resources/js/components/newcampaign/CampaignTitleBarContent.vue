@@ -104,7 +104,7 @@ export default {
     },
 
     nodesToLose() {
-      var needed = 1 - this.item.defenders_score.defenders_score;
+      var needed = 1 - this.item.defenders_score;
       var need = needed / 0.07;
       return Math.ceil(need);
     },
