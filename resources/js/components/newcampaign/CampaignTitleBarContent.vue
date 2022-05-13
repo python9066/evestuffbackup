@@ -5,6 +5,9 @@
       {{ item.defenders_score }} / {{ item.attackers_score }}
     </v-col>
     <v-col>
+      <v-icon small left dark :color="IconDColor" :class="IconDClass">
+        {{ IconD }}
+      </v-icon>
       <!-- // TODO Active (only show if campaign is active) -->
       <v-progress-linear
         :color="barColor"
@@ -118,7 +121,65 @@ export default {
       var need = needed / 0.07;
       return Math.ceil(need);
     },
+
+    IconDColor() {
+      if (
+        this.item.defenders_score == this.item.defenders_score_old ||
+        this.item.defenders_score_old === null
+      ) {
+        return "grey darken-3";
+      } else {
+        return "blue darken-4";
+      }
+    },
+
+    IconAColor() {
+      if (
+        this.item.attackers_score == this.item.attackers_score_old ||
+        this.item.attackers_score_old === null
+      ) {
+        return "grey darken-3";
+      } else {
+        return "red darken-4";
+      }
+    },
+
+    IconD() {
+      if (
+        this.item.attackers_score == this.item.attackers_score_old ||
+        this.item.attackers_score_old === null
+      ) {
+        return "fas fa-minus-circle";
+      } else {
+        return "fas fa-arrow-alt-circle-up";
+      }
+    },
+
+    IconDClass() {
+      if (
+        this.item.defenders_score > this.item.defenders_score_old &&
+        this.item.defenders_score_old > 0
+      ) {
+        return "rotate";
+      } else {
+        return "rotate down";
+      }
+    },
   },
   beforeDestroy() {},
 };
 </script>
+<style scoped>
+.rotate {
+  -moz-transition: all 1s linear;
+  -webkit-transition: all 1s linear;
+  transition: all 1s linear;
+}
+
+.rotate.down {
+  -ms-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+</style>

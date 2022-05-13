@@ -12309,6 +12309,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -12425,6 +12428,34 @@ function sleep(ms) {
       var needed = 1 - this.item.attackers_score;
       var need = needed / 0.07;
       return Math.ceil(need);
+    },
+    IconDColor: function IconDColor() {
+      if (this.item.defenders_score == this.item.defenders_score_old || this.item.defenders_score_old === null) {
+        return "grey darken-3";
+      } else {
+        return "blue darken-4";
+      }
+    },
+    IconAColor: function IconAColor() {
+      if (this.item.attackers_score == this.item.attackers_score_old || this.item.attackers_score_old === null) {
+        return "grey darken-3";
+      } else {
+        return "red darken-4";
+      }
+    },
+    IconD: function IconD() {
+      if (this.item.attackers_score == this.item.attackers_score_old || this.item.attackers_score_old === null) {
+        return "fas fa-minus-circle";
+      } else {
+        return "fas fa-arrow-alt-circle-up";
+      }
+    },
+    IconDClass: function IconDClass() {
+      if (this.item.defenders_score > this.item.defenders_score_old && this.item.defenders_score_old > 0) {
+        return "rotate";
+      } else {
+        return "rotate down";
+      }
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -42325,6 +42356,25 @@ exports.push([module.i, "\n.toggleUpDown[data-v-9c20fa0e] {\n  transition: trans
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=style&index=0&id=2adb3434&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=style&index=0&id=2adb3434&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.rotate[data-v-2adb3434] {\n  transition: all 1s linear;\n}\n.rotate.down[data-v-2adb3434] {\n  transform: rotate(180deg);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/NewSystemTable.vue?vue&type=style&index=0&lang=css&":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/newcampaign/NewSystemTable.vue?vue&type=style&index=0&lang=css& ***!
@@ -42981,6 +43031,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./CampaignSystemCard.vue?vue&type=style&index=0&id=9c20fa0e&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/CampaignSystemCard.vue?vue&type=style&index=0&id=9c20fa0e&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=style&index=0&id=2adb3434&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=style&index=0&id=2adb3434&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./CampaignTitleBarContent.vue?vue&type=style&index=0&id=2adb3434&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=style&index=0&id=2adb3434&scoped=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -55542,10 +55622,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=template&id=2adb3434&":
-/*!**************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=template&id=2adb3434& ***!
-  \**************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=template&id=2adb3434&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=template&id=2adb3434&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -55578,6 +55658,15 @@ var render = function () {
       _c(
         "v-col",
         [
+          _c(
+            "v-icon",
+            {
+              class: _vm.IconDClass,
+              attrs: { small: "", left: "", dark: "", color: _vm.IconDColor },
+            },
+            [_vm._v("\n      " + _vm._s(_vm.IconD) + "\n    ")]
+          ),
+          _vm._v(" "),
           _c(
             "v-progress-linear",
             {
@@ -89085,9 +89174,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CampaignTitleBarContent_vue_vue_type_template_id_2adb3434___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CampaignTitleBarContent.vue?vue&type=template&id=2adb3434& */ "./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=template&id=2adb3434&");
+/* harmony import */ var _CampaignTitleBarContent_vue_vue_type_template_id_2adb3434_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CampaignTitleBarContent.vue?vue&type=template&id=2adb3434&scoped=true& */ "./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=template&id=2adb3434&scoped=true&");
 /* harmony import */ var _CampaignTitleBarContent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CampaignTitleBarContent.vue?vue&type=script&lang=js& */ "./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _CampaignTitleBarContent_vue_vue_type_style_index_0_id_2adb3434_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CampaignTitleBarContent.vue?vue&type=style&index=0&id=2adb3434&scoped=true&lang=css& */ "./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=style&index=0&id=2adb3434&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -89095,13 +89186,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _CampaignTitleBarContent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CampaignTitleBarContent_vue_vue_type_template_id_2adb3434___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CampaignTitleBarContent_vue_vue_type_template_id_2adb3434___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _CampaignTitleBarContent_vue_vue_type_template_id_2adb3434_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CampaignTitleBarContent_vue_vue_type_template_id_2adb3434_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "2adb3434",
   null
   
 )
@@ -89127,19 +89218,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=template&id=2adb3434&":
-/*!********************************************************************************************************!*\
-  !*** ./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=template&id=2adb3434& ***!
-  \********************************************************************************************************/
+/***/ "./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=style&index=0&id=2adb3434&scoped=true&lang=css&":
+/*!**********************************************************************************************************************************!*\
+  !*** ./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=style&index=0&id=2adb3434&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignTitleBarContent_vue_vue_type_style_index_0_id_2adb3434_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./CampaignTitleBarContent.vue?vue&type=style&index=0&id=2adb3434&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=style&index=0&id=2adb3434&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignTitleBarContent_vue_vue_type_style_index_0_id_2adb3434_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignTitleBarContent_vue_vue_type_style_index_0_id_2adb3434_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignTitleBarContent_vue_vue_type_style_index_0_id_2adb3434_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignTitleBarContent_vue_vue_type_style_index_0_id_2adb3434_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=template&id=2adb3434&scoped=true&":
+/*!********************************************************************************************************************!*\
+  !*** ./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=template&id=2adb3434&scoped=true& ***!
+  \********************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignTitleBarContent_vue_vue_type_template_id_2adb3434___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CampaignTitleBarContent.vue?vue&type=template&id=2adb3434& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=template&id=2adb3434&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignTitleBarContent_vue_vue_type_template_id_2adb3434___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignTitleBarContent_vue_vue_type_template_id_2adb3434_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./CampaignTitleBarContent.vue?vue&type=template&id=2adb3434&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/newcampaign/CampaignTitleBarContent.vue?vue&type=template&id=2adb3434&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignTitleBarContent_vue_vue_type_template_id_2adb3434_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignTitleBarContent_vue_vue_type_template_id_2adb3434___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CampaignTitleBarContent_vue_vue_type_template_id_2adb3434_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
