@@ -4,7 +4,7 @@
       <v-expansion-panels popout>
         <v-expansion-panel>
           <v-expansion-panel-header>
-            <span class="text-h1">{{ title }}</span>
+            <span class="text-h2">{{ title }}</span>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <v-row no-gutters v-for="(item, index) in item" :key="index">
@@ -34,7 +34,7 @@ function sleep(ms) {
 export default {
   title() {},
   props: {
-    item: Array,
+    item: Object,
     title: String,
     operationID: Number,
   },

@@ -12200,7 +12200,7 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
-    item: Array,
+    item: Object,
     title: String,
     operationID: Number
   },
@@ -12319,7 +12319,7 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
-    item: Array,
+    item: Object,
     title: String,
     operationID: Number
   },
@@ -55499,7 +55499,7 @@ var render = function () {
                 "v-expansion-panel",
                 [
                   _c("v-expansion-panel-header", [
-                    _c("span", { staticClass: "text-h1" }, [
+                    _c("span", { staticClass: "text-h2" }, [
                       _vm._v(_vm._s(_vm.title)),
                     ]),
                   ]),

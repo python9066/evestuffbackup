@@ -34,7 +34,7 @@ function sleep(ms) {
 export default {
   title() {},
   props: {
-    item: Array,
+    item: Object,
     title: String,
     operationID: Number,
   },
