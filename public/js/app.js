@@ -12179,6 +12179,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -12193,7 +12204,9 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
-    item: Array
+    item: Array,
+    title: Text,
+    operationID: Number
   },
   data: function data() {
     return {};
@@ -35140,6 +35153,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -55301,37 +55315,69 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "v-row",
+    { attrs: { "no-gutters": "" } },
     [
       _c(
-        "v-card",
+        "v-col",
         [
-          _c("v-card-title", { staticClass: "justify-center primary pa-3" }, [
-            _vm._v("Operation Info did this update"),
-          ]),
-          _vm._v(" "),
           _c(
-            "v-card-text",
-            _vm._l(_vm.item, function (item, index) {
-              return _c(
-                "v-row",
-                { key: index, attrs: { "no-gutters": "" } },
+            "v-expansion-panels",
+            {
+              staticStyle: { cursor: "context-menu" },
+              attrs: { readonly: "", popout: "" },
+              model: {
+                value: _vm.showCharTable,
+                callback: function ($$v) {
+                  _vm.showCharTable = $$v
+                },
+                expression: "showCharTable",
+              },
+            },
+            [
+              _c(
+                "v-expansion-panel",
+                { staticStyle: { cursor: "context-menu" } },
                 [
-                  _c("v-col", { attrs: { cols: "12" } }, [
-                    _vm._v(
-                      "\n          " +
-                        _vm._s(item.system.system_name) +
-                        " - " +
-                        _vm._s(item.defenders_score) +
-                        "/" +
-                        _vm._s(item.attackers_score) +
-                        "\n        "
-                    ),
-                  ]),
+                  _c(
+                    "v-expansion-panel-header",
+                    {
+                      staticStyle: { cursor: "context-menu" },
+                      attrs: { "expand-icon": "" },
+                    },
+                    [_c("span", [_vm._v(_vm._s(_vm.title))])]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-expansion-panel-content",
+                    _vm._l(_vm.item, function (item, index) {
+                      return _c(
+                        "v-row",
+                        { key: index, attrs: { "no-gutters": "" } },
+                        [
+                          _c("v-col", { attrs: { cols: "12" } }, [
+                            _vm._v(
+                              "\n              " +
+                                _vm._s(item.system.system_name) +
+                                " - " +
+                                _vm._s(_vm.eventType) +
+                                " :\n              " +
+                                _vm._s(_vm.defenders_score) +
+                                " / " +
+                                _vm._s(_vm.attackers_score) +
+                                "\n            "
+                            ),
+                          ]),
+                        ],
+                        1
+                      )
+                    }),
+                    1
+                  ),
                 ],
                 1
-              )
-            }),
+              ),
+            ],
             1
           ),
         ],
@@ -77666,7 +77712,11 @@ var render = function () {
             { attrs: { cols: "10" } },
             [
               _c("CampaignTitleBar", {
-                attrs: { item: _vm.campaigns, operationID: _vm.operationID },
+                attrs: {
+                  item: _vm.campaigns,
+                  operationID: _vm.operationID,
+                  title: _vm.newOperationInfo.title,
+                },
               }),
             ],
             1

@@ -5,6 +5,7 @@
         <CampaignTitleBar
           :item="campaigns"
           :operationID="operationID"
+          :title="newOperationInfo.title"
         ></CampaignTitleBar>
       </v-col>
     </v-row>
