@@ -1,34 +1,42 @@
 <template>
   <v-row no-gutters>
-    <v-col>
-      {{ item.system.system_name }} - {{ eventType }} :
-      {{ item.defenders_score }} / {{ item.attackers_score }}
-    </v-col>
-    <v-col>
-      <v-icon small left dark :color="IconDColor" :class="IconDClass">
-        {{ IconD }}
-      </v-icon>
-      <!-- // TODO Active (only show if campaign is active) -->
-      <v-progress-linear
-        :color="barColor"
-        :value="barScoure"
-        height="20"
-        rounded
-        :active="true"
-        :reverse="barReverse"
-        :background-color="barBgcolor"
-        background-opacity="0.2"
-      >
-        <strong>
-          {{ item.defenders_score * 100 }} ({{ nodesToLose }}) /
-          {{ item.attackers_score * 100 }} ({{ nodesToWin }})
-        </strong>
-      </v-progress-linear>
-    </v-col>
-    <v-col>
-      <v-text-field v-model="newscore" type="number"></v-text-field>
-      <v-btn @click="updateScore()"> update</v-btn>
-      <v-btn @click="update()"> artisan</v-btn>
+    <v-col cols="12">
+      <v-row no-gutters>
+        <v-col cols="2">
+          {{ item.system.system_name }} - {{ eventType }}
+        </v-col>
+        <v-col cols="8">
+          <v-icon small left dark :color="IconDColor" :class="IconDClass">
+            {{ IconD }}
+          </v-icon>
+          <!-- // TODO Active (only show if campaign is active) -->
+          <v-progress-linear
+            :color="barColor"
+            :value="barScoure"
+            height="20"
+            rounded
+            :active="true"
+            :reverse="barReverse"
+            :background-color="barBgcolor"
+            background-opacity="0.2"
+          >
+            <strong>
+              {{ item.defenders_score * 100 }} ({{ nodesToLose }}) /
+              {{ item.attackers_score * 100 }} ({{ nodesToWin }})
+            </strong>
+            <v-icon small left dark :color="IconAColor" :class="IconAClass">
+              {{ IconD }}
+            </v-icon>
+          </v-progress-linear>
+        </v-col>
+      </v-row>
+      <v-row no-gutters>
+        <v-col>
+          <v-text-field v-model="newscore" type="number"></v-text-field>
+          <v-btn @click="updateScore()"> update</v-btn>
+          <v-btn @click="update()"> artisan</v-btn>
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>
@@ -198,6 +206,17 @@ export default {
       if (
         this.item.defenders_score > this.item.defenders_score_old &&
         this.item.defenders_score_old > 0
+      ) {
+        return "rotate";
+      } else {
+        return "rotate down";
+      }
+    },
+
+    IconAClass() {
+      if (
+        this.item.attackers_score > this.item.attackers_score_old &&
+        this.item.attackers_score_old > 0
       ) {
         return "rotate";
       } else {

@@ -12320,6 +12320,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -12525,6 +12533,13 @@ function sleep(ms) {
     },
     IconDClass: function IconDClass() {
       if (this.item.defenders_score > this.item.defenders_score_old && this.item.defenders_score_old > 0) {
+        return "rotate";
+      } else {
+        return "rotate down";
+      }
+    },
+    IconAClass: function IconAClass() {
+      if (this.item.attackers_score > this.item.attackers_score_old && this.item.attackers_score_old > 0) {
         return "rotate";
       } else {
         return "rotate down";
@@ -55713,102 +55728,146 @@ var render = function () {
     "v-row",
     { attrs: { "no-gutters": "" } },
     [
-      _c("v-col", [
-        _vm._v(
-          "\n    " +
-            _vm._s(_vm.item.system.system_name) +
-            " - " +
-            _vm._s(_vm.eventType) +
-            " :\n    " +
-            _vm._s(_vm.item.defenders_score) +
-            " / " +
-            _vm._s(_vm.item.attackers_score) +
-            "\n  "
-        ),
-      ]),
-      _vm._v(" "),
       _c(
         "v-col",
+        { attrs: { cols: "12" } },
         [
           _c(
-            "v-icon",
-            {
-              class: _vm.IconDClass,
-              attrs: { small: "", left: "", dark: "", color: _vm.IconDColor },
-            },
-            [_vm._v("\n      " + _vm._s(_vm.IconD) + "\n    ")]
-          ),
-          _vm._v(" "),
-          _c(
-            "v-progress-linear",
-            {
-              attrs: {
-                color: _vm.barColor,
-                value: _vm.barScoure,
-                height: "20",
-                rounded: "",
-                active: true,
-                reverse: _vm.barReverse,
-                "background-color": _vm.barBgcolor,
-                "background-opacity": "0.2",
-              },
-            },
+            "v-row",
+            { attrs: { "no-gutters": "" } },
             [
-              _c("strong", [
+              _c("v-col", { attrs: { cols: "2" } }, [
                 _vm._v(
                   "\n        " +
-                    _vm._s(_vm.item.defenders_score * 100) +
-                    " (" +
-                    _vm._s(_vm.nodesToLose) +
-                    ") /\n        " +
-                    _vm._s(_vm.item.attackers_score * 100) +
-                    " (" +
-                    _vm._s(_vm.nodesToWin) +
-                    ")\n      "
+                    _vm._s(_vm.item.system.system_name) +
+                    " - " +
+                    _vm._s(_vm.eventType) +
+                    "\n      "
                 ),
               ]),
-            ]
+              _vm._v(" "),
+              _c(
+                "v-col",
+                { attrs: { cols: "8" } },
+                [
+                  _c(
+                    "v-icon",
+                    {
+                      class: _vm.IconDClass,
+                      attrs: {
+                        small: "",
+                        left: "",
+                        dark: "",
+                        color: _vm.IconDColor,
+                      },
+                    },
+                    [_vm._v("\n          " + _vm._s(_vm.IconD) + "\n        ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-progress-linear",
+                    {
+                      attrs: {
+                        color: _vm.barColor,
+                        value: _vm.barScoure,
+                        height: "20",
+                        rounded: "",
+                        active: true,
+                        reverse: _vm.barReverse,
+                        "background-color": _vm.barBgcolor,
+                        "background-opacity": "0.2",
+                      },
+                    },
+                    [
+                      _c("strong", [
+                        _vm._v(
+                          "\n            " +
+                            _vm._s(_vm.item.defenders_score * 100) +
+                            " (" +
+                            _vm._s(_vm.nodesToLose) +
+                            ") /\n            " +
+                            _vm._s(_vm.item.attackers_score * 100) +
+                            " (" +
+                            _vm._s(_vm.nodesToWin) +
+                            ")\n          "
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-icon",
+                        {
+                          class: _vm.IconAClass,
+                          attrs: {
+                            small: "",
+                            left: "",
+                            dark: "",
+                            color: _vm.IconAColor,
+                          },
+                        },
+                        [
+                          _vm._v(
+                            "\n            " +
+                              _vm._s(_vm.IconD) +
+                              "\n          "
+                          ),
+                        ]
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
           ),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-col",
-        [
-          _c("v-text-field", {
-            attrs: { type: "number" },
-            model: {
-              value: _vm.newscore,
-              callback: function ($$v) {
-                _vm.newscore = $$v
-              },
-              expression: "newscore",
-            },
-          }),
           _vm._v(" "),
           _c(
-            "v-btn",
-            {
-              on: {
-                click: function ($event) {
-                  return _vm.updateScore()
-                },
-              },
-            },
-            [_vm._v(" update")]
-          ),
-          _vm._v(" "),
-          _c(
-            "v-btn",
-            {
-              on: {
-                click: function ($event) {
-                  return _vm.update()
-                },
-              },
-            },
-            [_vm._v(" artisan")]
+            "v-row",
+            { attrs: { "no-gutters": "" } },
+            [
+              _c(
+                "v-col",
+                [
+                  _c("v-text-field", {
+                    attrs: { type: "number" },
+                    model: {
+                      value: _vm.newscore,
+                      callback: function ($$v) {
+                        _vm.newscore = $$v
+                      },
+                      expression: "newscore",
+                    },
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      on: {
+                        click: function ($event) {
+                          return _vm.updateScore()
+                        },
+                      },
+                    },
+                    [_vm._v(" update")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      on: {
+                        click: function ($event) {
+                          return _vm.update()
+                        },
+                      },
+                    },
+                    [_vm._v(" artisan")]
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
           ),
         ],
         1
