@@ -12,6 +12,6 @@ class NewOperation extends Model
 
     public function campaign()
     {
-        return $this->belongsToMany(NewCampaign::class, 'new_campagin_operations', 'operation_id', 'campaign_id');
+        return $this->belongsToMany(NewCampaign::class, 'new_campaign_operations', 'operation_id', 'campaign_id');
     }
 }
