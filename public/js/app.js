@@ -12201,9 +12201,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -12310,6 +12307,16 @@ function sleep(ms) {
       }
 
       return "blue darken-4";
+    },
+    nodesToLose: function nodesToLose() {
+      var needed = 1 - this.item.defenders_score.defenders_score;
+      var need = needed / 0.07;
+      return Math.ceil(need);
+    },
+    nodesToWin: function nodesToWin() {
+      var needed = 1 - this.item.attackers_score;
+      var need = needed / 0.07;
+      return Math.ceil(need);
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -55435,13 +55442,13 @@ var render = function () {
                                     _vm._v(
                                       "\n                  " +
                                         _vm._s(
-                                          this.campaign.defenders_score * 100
+                                          this.item.defenders_score * 100
                                         ) +
                                         " (" +
                                         _vm._s(_vm.nodesToLose) +
-                                        ") / " +
+                                        ") /\n                  " +
                                         _vm._s(
-                                          this.campaign.attackers_score * 100
+                                          this.item.attackers_score * 100
                                         ) +
                                         " (" +
                                         _vm._s(_vm.nodesToWin) +

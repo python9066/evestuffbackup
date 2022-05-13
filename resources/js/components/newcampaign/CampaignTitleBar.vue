@@ -23,11 +23,8 @@
                   background-opacity="0.2"
                 >
                   <strong>
-                    {{ this.campaign.defenders_score * 100 }} ({{
-                      nodesToLose
-                    }}) / {{ this.campaign.attackers_score * 100 }} ({{
-                      nodesToWin
-                    }})
+                    {{ this.item.defenders_score * 100 }} ({{ nodesToLose }}) /
+                    {{ this.item.attackers_score * 100 }} ({{ nodesToWin }})
                   </strong>
                 </v-progress-linear>
               </v-col>
@@ -119,6 +116,18 @@ export default {
       }
 
       return "blue darken-4";
+    },
+
+    nodesToLose() {
+      var needed = 1 - this.item.defenders_score.defenders_score;
+      var need = needed / 0.07;
+      return Math.ceil(need);
+    },
+
+    nodesToWin() {
+      var needed = 1 - this.item.attackers_score;
+      var need = needed / 0.07;
+      return Math.ceil(need);
     },
   },
   beforeDestroy() {},
