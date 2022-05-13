@@ -94,7 +94,7 @@ class NewCampaignhelper
                 );
 
                 NewCampaign::updateOrCreate(['id' => $id], $data);
-
+                echo $score_changed;
                 // * If Score has changed
 
                 if ($score_changed) {
