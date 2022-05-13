@@ -12200,7 +12200,7 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
-    item: Object,
+    item: item,
     title: String,
     operationID: Number
   },
