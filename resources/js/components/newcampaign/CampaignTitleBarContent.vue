@@ -111,15 +111,6 @@ export default {
       }
     },
 
-    barColor() {
-      var d = this.item.defenders_score * 100;
-      if (d > 0.5) {
-        return "blue darken-4";
-      }
-
-      return "red darken-4";
-    },
-
     barScoure() {
       var d = this.item.defenders_score * 100;
       var a = this.item.attackers_score * 100;
@@ -140,13 +131,22 @@ export default {
       return true;
     },
 
+    barColor() {
+      var d = this.item.defenders_score * 100;
+      if (d > 0.5) {
+        return "blue darken-4";
+      }
+
+      return "red darken-4";
+    },
+
     barBgcolor() {
       var d = this.item.defenders_score * 100;
 
       if (d > 50) {
-        return "blue darken-4";
+        return "red darken-4";
       }
-      return "red darken-4";
+      return "blue darken-4";
     },
 
     nodesToLose() {

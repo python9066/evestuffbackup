@@ -105,7 +105,6 @@ class NewCampaignhelper
                     $rNode = $campaign->r_node;
                     echo $id;
                     $campaignNodes = NewSystemNode::where('campaign_id', $id)->whereIn('node_status', [4, 5])->get();
-                    dd($campaignNodes);
                     foreach ($campaignNodes as $campaignNode) {
                         $system_id = $campaignNode->system_id;
                         if ($campaignNode->node_status == 4) {

@@ -206,17 +206,19 @@ export default {
       var a = item.attackers_score * 100;
 
       if (d > 50) {
-        return "blue darken-4";
+        return "red darken-4";
       }
-      return "red darken-4";
+
+      return "blue darken-4";
     },
 
     barColor(item) {
       var d = item.defenders_score * 100;
       if (d > 50) {
-        return "red darken-4";
+        return "blue darken-4";
       }
-      return "blue darken-4";
+
+      return "red darken-4";
     },
 
     barReverse(item) {

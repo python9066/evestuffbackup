@@ -12455,15 +12455,6 @@ function sleep(ms) {
         return "TCU";
       }
     },
-    barColor: function barColor() {
-      var d = this.item.defenders_score * 100;
-
-      if (d > 0.5) {
-        return "blue darken-4";
-      }
-
-      return "red darken-4";
-    },
     barScoure: function barScoure() {
       var d = this.item.defenders_score * 100;
       var a = this.item.attackers_score * 100;
@@ -12483,14 +12474,23 @@ function sleep(ms) {
 
       return true;
     },
-    barBgcolor: function barBgcolor() {
+    barColor: function barColor() {
       var d = this.item.defenders_score * 100;
 
-      if (d > 50) {
+      if (d > 0.5) {
         return "blue darken-4";
       }
 
       return "red darken-4";
+    },
+    barBgcolor: function barBgcolor() {
+      var d = this.item.defenders_score * 100;
+
+      if (d > 50) {
+        return "red darken-4";
+      }
+
+      return "blue darken-4";
     },
     nodesToLose: function nodesToLose() {
       var needed = 1 - this.item.defenders_score;
