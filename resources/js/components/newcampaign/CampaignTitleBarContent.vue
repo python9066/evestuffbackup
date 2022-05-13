@@ -1,24 +1,28 @@
 <template>
-  <v-col cols="12">
-    {{ item.system.system_name }} - {{ eventType }} :
-    {{ item.defenders_score }} / {{ item.attackers_score }}
-    <!-- // TODO Active (only show if campaign is active) -->
-    <v-progress-linear
-      :color="barColor"
-      :value="barScoure"
-      height="20"
-      rounded
-      :active="true"
-      :reverse="barReverse"
-      :background-color="barBgcolor"
-      background-opacity="0.2"
-    >
-      <strong>
-        {{ item.defenders_score * 100 }} ({{ nodesToLose }}) /
-        {{ item.attackers_score * 100 }} ({{ nodesToWin }})
-      </strong>
-    </v-progress-linear>
-  </v-col>
+  <v-row no-gutters>
+    <v-col>
+      {{ item.system.system_name }} - {{ eventType }} :
+      {{ item.defenders_score }} / {{ item.attackers_score }}
+    </v-col>
+    <v-col>
+      <!-- // TODO Active (only show if campaign is active) -->
+      <v-progress-linear
+        :color="barColor"
+        :value="barScoure"
+        height="20"
+        rounded
+        :active="true"
+        :reverse="barReverse"
+        :background-color="barBgcolor"
+        background-opacity="0.2"
+      >
+        <strong>
+          {{ item.defenders_score * 100 }} ({{ nodesToLose }}) /
+          {{ item.attackers_score * 100 }} ({{ nodesToWin }})
+        </strong>
+      </v-progress-linear>
+    </v-col>
+  </v-row>
 </template>
 
 

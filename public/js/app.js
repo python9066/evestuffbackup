@@ -12305,6 +12305,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -55507,20 +55511,14 @@ var render = function () {
                   _c(
                     "v-expansion-panel-content",
                     _vm._l(_vm.item, function (item, index) {
-                      return _c(
-                        "v-row",
-                        { key: index, attrs: { "no-gutters": "" } },
-                        [
-                          _c("CampaignTitleBarContent", {
-                            attrs: {
-                              item: item,
-                              title: _vm.title,
-                              operationID: _vm.operationID,
-                            },
-                          }),
-                        ],
-                        1
-                      )
+                      return _c("CampaignTitleBarContent", {
+                        key: index,
+                        attrs: {
+                          item: item,
+                          title: _vm.title,
+                          operationID: _vm.operationID,
+                        },
+                      })
                     }),
                     1
                   ),
@@ -55560,50 +55558,58 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-col",
-    { attrs: { cols: "12" } },
+    "v-row",
+    { attrs: { "no-gutters": "" } },
     [
-      _vm._v(
-        "\n  " +
-          _vm._s(_vm.item.system.system_name) +
-          " - " +
-          _vm._s(_vm.eventType) +
-          " :\n  " +
-          _vm._s(_vm.item.defenders_score) +
-          " / " +
-          _vm._s(_vm.item.attackers_score) +
-          "\n  "
-      ),
+      _c("v-col", [
+        _vm._v(
+          "\n    " +
+            _vm._s(_vm.item.system.system_name) +
+            " - " +
+            _vm._s(_vm.eventType) +
+            " :\n    " +
+            _vm._s(_vm.item.defenders_score) +
+            " / " +
+            _vm._s(_vm.item.attackers_score) +
+            "\n  "
+        ),
+      ]),
       _vm._v(" "),
       _c(
-        "v-progress-linear",
-        {
-          attrs: {
-            color: _vm.barColor,
-            value: _vm.barScoure,
-            height: "20",
-            rounded: "",
-            active: true,
-            reverse: _vm.barReverse,
-            "background-color": _vm.barBgcolor,
-            "background-opacity": "0.2",
-          },
-        },
+        "v-col",
         [
-          _c("strong", [
-            _vm._v(
-              "\n      " +
-                _vm._s(_vm.item.defenders_score * 100) +
-                " (" +
-                _vm._s(_vm.nodesToLose) +
-                ") /\n      " +
-                _vm._s(_vm.item.attackers_score * 100) +
-                " (" +
-                _vm._s(_vm.nodesToWin) +
-                ")\n    "
-            ),
-          ]),
-        ]
+          _c(
+            "v-progress-linear",
+            {
+              attrs: {
+                color: _vm.barColor,
+                value: _vm.barScoure,
+                height: "20",
+                rounded: "",
+                active: true,
+                reverse: _vm.barReverse,
+                "background-color": _vm.barBgcolor,
+                "background-opacity": "0.2",
+              },
+            },
+            [
+              _c("strong", [
+                _vm._v(
+                  "\n        " +
+                    _vm._s(_vm.item.defenders_score * 100) +
+                    " (" +
+                    _vm._s(_vm.nodesToLose) +
+                    ") /\n        " +
+                    _vm._s(_vm.item.attackers_score * 100) +
+                    " (" +
+                    _vm._s(_vm.nodesToWin) +
+                    ")\n      "
+                ),
+              ]),
+            ]
+          ),
+        ],
+        1
       ),
     ],
     1

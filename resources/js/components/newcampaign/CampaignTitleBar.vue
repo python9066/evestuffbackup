@@ -7,13 +7,13 @@
             <span class="text-h2">{{ title }}</span>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <v-row no-gutters v-for="(item, index) in item" :key="index">
-              <CampaignTitleBarContent
-                :item="item"
-                :title="title"
-                :operationID="operationID"
-              ></CampaignTitleBarContent>
-            </v-row>
+            <CampaignTitleBarContent
+              v-for="(item, index) in item"
+              :key="index"
+              :item="item"
+              :title="title"
+              :operationID="operationID"
+            ></CampaignTitleBarContent>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
