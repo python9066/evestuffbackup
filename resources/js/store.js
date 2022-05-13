@@ -94,6 +94,7 @@ export default new Vuex.Store({
         },
 
         newOperationInfo: [],
+        newCampaigns: [],
         campaignSystems: [],
         opUsers: [],
         ownChars: {},
@@ -151,6 +152,7 @@ export default new Vuex.Store({
             state.newCampaignSystems = data.systems;
             state.opUsers = data.opUsers;
             state.ownChars = data.ownChars;
+            state.newCampaigns = data.data.campaign;
         },
 
         UPDATE_CAMPAIGN_SYSTEMS(state, data) {

@@ -95012,6 +95012,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       text: "1DQ1-A"
     },
     newOperationInfo: [],
+    newCampaigns: [],
     campaignSystems: [],
     opUsers: [],
     ownChars: {},
@@ -95079,6 +95080,7 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       state.newCampaignSystems = data.systems;
       state.opUsers = data.opUsers;
       state.ownChars = data.ownChars;
+      state.newCampaigns = data.data.campaign;
     },
     UPDATE_CAMPAIGN_SYSTEMS: function UPDATE_CAMPAIGN_SYSTEMS(state, data) {
       var item = state.newCampaignSystems.find(function (item) {
