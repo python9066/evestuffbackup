@@ -68,7 +68,6 @@ class testController extends Controller
         $user = Auth::user();
         if ($user->can('super')) {
             NewCampaign::where('id', $id)->update($request->all());
-            Artisan::call('update:newCampaigns');
         }
     }
 
