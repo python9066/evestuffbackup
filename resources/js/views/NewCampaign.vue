@@ -129,10 +129,6 @@ export default {
       return this.newOperationInfo.id;
     },
 
-    campaigns() {
-      return this.newOperationInfo.campaign;
-    },
-
     systems() {
       return this.newCampaignSystems;
     },

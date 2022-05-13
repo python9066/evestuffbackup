@@ -12200,7 +12200,6 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   props: {
-    item: [Object, Array],
     title: String,
     operationID: Number
   },
@@ -12248,7 +12247,11 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])),
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(["newCampaigns"])), {}, {
+    campaigns: function campaigns() {
+      return this.newCampaigns;
+    }
+  }),
   beforeDestroy: function beforeDestroy() {}
 });
 
@@ -35480,9 +35483,6 @@ function sleep(ms) {
     operationID: function operationID() {
       return this.newOperationInfo.id;
     },
-    campaigns: function campaigns() {
-      return this.newOperationInfo.campaign;
-    },
     systems: function systems() {
       return this.newCampaignSystems;
     }
@@ -55593,7 +55593,7 @@ var render = function () {
                   _vm._v(" "),
                   _c(
                     "v-expansion-panel-content",
-                    _vm._l(_vm.item, function (item, index) {
+                    _vm._l(_vm.campaigns, function (item, index) {
                       return _c("CampaignTitleBarContent", {
                         key: index,
                         attrs: {

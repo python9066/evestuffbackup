@@ -8,7 +8,7 @@
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <CampaignTitleBarContent
-              v-for="(item, index) in item"
+              v-for="(item, index) in campaigns"
               :key="index"
               :item="item"
               :title="title"
@@ -34,7 +34,6 @@ function sleep(ms) {
 export default {
   title() {},
   props: {
-    item: [Object, Array],
     title: String,
     operationID: Number,
   },
@@ -54,7 +53,11 @@ export default {
   computed: {
     ...mapGetters([]),
 
-    ...mapState([]),
+    ...mapState(["newCampaigns"]),
+
+    campaigns() {
+      return this.newCampaigns;
+    },
   },
   beforeDestroy() {},
 };
