@@ -12315,6 +12315,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -12334,7 +12338,9 @@ function sleep(ms) {
     operationID: Number
   },
   data: function data() {
-    return {};
+    return {
+      newscore: 0
+    };
   },
   created: function created() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -12376,7 +12382,44 @@ function sleep(ms) {
       }, _callee3);
     }))();
   },
-  methods: {},
+  methods: {
+    updateScore: function updateScore() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var a, ascore, request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                a = _this.newscore / 100;
+                ascore = 1 - a;
+                request = {
+                  defenders_score: _this.newscore,
+                  attackers_score: ascore
+                };
+                _context4.next = 5;
+                return axios({
+                  method: "POST",
+                  //you can set what request you want to be
+                  url: "/api/testscoreupdate/" + _this.item.id,
+                  withCredentials: true,
+                  data: request,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 5:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    }
+  },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])), {}, {
     eventType: function eventType() {
       if (this.event_type == "32458") {
@@ -55698,6 +55741,34 @@ var render = function () {
                 ),
               ]),
             ]
+          ),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-col",
+        [
+          _c("v-text-field", {
+            model: {
+              value: _vm.newscore,
+              callback: function ($$v) {
+                _vm.newscore = $$v
+              },
+              expression: "newscore",
+            },
+          }),
+          _vm._v(" "),
+          _c(
+            "v-btn",
+            {
+              on: {
+                click: function ($event) {
+                  return _vm.updateScore()
+                },
+              },
+            },
+            [_vm._v(" update")]
           ),
         ],
         1

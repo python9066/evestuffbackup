@@ -22,6 +22,7 @@ use utils\Notificationhelper\Notifications;
 use Symfony\Component\Yaml\Yaml;
 use GuzzleHttp\Utils;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use utils\Alliancehelper\Alliancehelper;
@@ -60,6 +61,17 @@ class testController extends Controller
         //     }
         // }
     }
+
+
+    public function testUpdateScore(Request $request, $id)
+    {
+        $user = Auth::user();
+        if ($user->can('super')) {
+            NewCampaign::where('id', $id)->update($request->all());
+            Artisan::call('update:newCampaigns');
+        }
+    }
+
 
     public function corptest()
     {

@@ -32,6 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/webway', 'WebWayController@getWebWay');
     Route::post('/brois', 'testController@notifications');
     Route::get('/test', 'testController@key');
+    Route::post('/testscoreupdate/{id}', 'testController@testUpdateScore');
     Route::post('/url', 'AppController@url');
     Route::get('/eveusercount', 'EveController@playerCount');
 

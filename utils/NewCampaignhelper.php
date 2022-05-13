@@ -318,13 +318,12 @@ class NewCampaignhelper
 
     public static function campaignSolo($campaignID)
     {
-        return Campaign::where('id', $campaignID)->with([
-            'newNodes.nodeStatus',
-            'newNodes.nonePrimeNodeUser.opUser.user',
-            'newNodes.nonePrimeNodeUser.nodeStatus',
-            'newNodes.primeNodeUser.opUser.user',
-            'newNodes.primeNodeUser.nodeStatus',
-            'newNodes.system'
+        return NewCampaign::where('id', 97050)->with([
+            'status',
+            'constellation:id,constellation_name,region_id',
+            'constellation.region:id,region_name',
+            'alliance:id,name,ticker,standing,url,color',
+            'system:id,system_name,adm',
         ])->first();
     }
 }

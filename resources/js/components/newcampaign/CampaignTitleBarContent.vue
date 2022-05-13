@@ -25,6 +25,10 @@
         </strong>
       </v-progress-linear>
     </v-col>
+    <v-col>
+      <v-text-field v-model="newscore"></v-text-field>
+      <v-btn @click="updateScore()"> update</v-btn>
+    </v-col>
   </v-row>
 </template>
 
@@ -46,7 +50,9 @@ export default {
     operationID: Number,
   },
   data() {
-    return {};
+    return {
+      newscore: 0,
+    };
   },
 
   async created() {},
@@ -56,7 +62,28 @@ export default {
   async beforeCreate() {},
 
   async mounted() {},
-  methods: {},
+  methods: {
+    async updateScore() {
+      var a = this.newscore / 100;
+
+      var ascore = 1 - a;
+      var request = {
+        defenders_score: this.newscore,
+        attackers_score: ascore,
+      };
+
+      await axios({
+        method: "POST", //you can set what request you want to be
+        url: "/api/testscoreupdate/" + this.item.id,
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+    },
+  },
 
   computed: {
     ...mapGetters([]),
