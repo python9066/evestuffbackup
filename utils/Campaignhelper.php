@@ -9,7 +9,6 @@ use App\Events\CampaignUpdate;
 use App\Events\CampaignUserUpdate;
 use App\Events\MultiCampaignUpdate;
 use App\Events\NodeJoinDelete;
-use App\Events\OperationUpdate;
 use App\Models\Campaign;
 use App\Models\CampaignJoin;
 use App\Models\CampaignRecords;
@@ -20,21 +19,12 @@ use App\Models\CampaignSystemStatus;
 use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
 use App\Models\CampaignUserRecords;
-use App\Models\NewCampaginOperation;
-use App\Models\NewCampaign;
-use App\Models\NewCampaignSystem;
-use App\Models\NewOperation;
 use App\Models\NodeJoin;
-use App\Models\OperationUser;
 use App\Models\System;
 use App\Models\User;
-use App\Models\Userlogging;
 use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 use utils\Helper\Helper;
 use Illuminate\Support\Str;
 
@@ -388,176 +378,7 @@ class Campaignhelper
 
     }
 
-    public static function newUpdate()
-    {
 
-
-        $deathCampaign = NewCampaign::where('status_id', 10)->get();
-
-        foreach ($deathCampaign as $c) {
-            // TODO: Finish everything else that needs to be cleaned up when a campaign is over.
-            $campaginOperation = NewCampaginOperation::where('campaign_id', $c->id)->get();
-            foreach ($campaginOperation as $co) {
-
-                $op = NewOperation::where('id', $co->operation_id)->first();
-                if ($op->solo == 1) {
-                    $op->delete();
-                }
-                $co->delete();
-            }
-
-            $c->delete();
-        }
-
-        // * Set check flag to 0
-        NewCampaign::where('id', '>', 0)->update(['check' => 0]);
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            "Accept" => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
-        ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
-
-        $campaigns = $response->collect();
-        foreach ($campaigns as $campaign) {
-            $event_type = $campaign['event_type'];
-            if ($event_type == 'ihub_defense' || $event_type == 'tcu_defense') {
-                $score_changed = false;
-                if ($event_type == 'ihub_defense') {
-                    $event_type = 32458;
-                } else {
-                    $event_type = 32226;
-                }
-
-
-                $id = $campaign['campaign_id'];
-                $old = NewCampaign::where('id', $id)->first();
-                if ($old) {
-                    // * Checking if the score has changed
-                    if ($campaign['attackers_score'] != $old->attackers_score) {
-                        $attackers_score_old = $old->attackers_score;
-                        $defenders_score_old = $old->defenders_score;
-                        $old->update([
-                            'attackers_score_old' => $attackers_score_old,
-                            'defenders_score_old' => $defenders_score_old
-                        ]);
-                        $score_changed = true;
-                    }
-                }
-
-                $time = $campaign['start_time'];
-                $start_time = Helper::fixtime($time);
-                $data = array();
-                $data = array(
-                    'attackers_score' => $campaign['attackers_score'],
-                    'constellation_id' => $campaign['constellation_id'],
-                    'alliance_id' => $campaign['defender_id'],
-                    'defenders_score' => $campaign['defender_score'],
-                    'event_type' => $event_type,
-                    'system_id' => $campaign['solar_system_id'],
-                    'start_time' => $start_time,
-                    'structure_id' => $campaign['structure_id'],
-                    'check' => 1,
-                );
-
-                NewCampaign::updateOrCreate(['id' => $id], $data);
-
-                // * Setting everything up for a new campaign
-                if (NewCampaginOperation::where('campaign_id', $id)->count() == 0) {
-                    $uuid = Str::uuid();
-                    $system = System::where('id', $campaign['solar_system_id'])->first();
-                    $systemName = $system->system_name;
-                    if ($event_type == 32458) {
-                        $type = "Ihub";
-                    } else {
-                        $type = "TCU";
-                    }
-                    $title = $systemName . " - " . $type;
-                    $newOp = NewOperation::create([
-                        'link' => $uuid,
-                        'solo' => 1,
-                        'status' => 1,
-                        'title' => $title,
-                    ]);
-
-                    NewCampaginOperation::create([
-                        'campaign_id' => $id,
-                        'operation_id' => $newOp->id
-                    ]);
-
-                    $campaignSystemsIDs = System::where('constellation_id', $campaign['constellation_id'])->pluck('id');
-                    foreach ($campaignSystemsIDs as $systemid) {
-                        NewCampaignSystem::create([
-                            'system_id' => $systemid,
-                            'new_campaign_id' => $id
-                        ]);
-                    }
-                }
-            }
-        }
-
-
-
-        $noCampaigns = NewOperation::where('status', '!=', 0)->doesntHave('campaign')->get();
-        foreach ($noCampaigns as $noCampaign) {
-            NewCampaginOperation::where('operation_id', $noCampaign->id)->delete();
-            $noCampaign->delete();
-        }
-
-        // * Change new upcoming status to warmup (done an hour before start time)
-        $warmupCampaigns = NewCampaign::where('start_time', '>', now())
-            ->where('start_time', '=<', now()->addHour())
-            ->where('status_id', 1)
-            ->where('check', 1)
-            ->get();
-        foreach ($warmupCampaigns as $start) {
-            $start->update(['status_id' => 5, 'check' => 1]);
-        };
-
-        // * Checks to see if a campaign has moved from warmup to active
-        $startedCampaigns = NewCampaign::where('start_time', '<=', now())
-            ->where('status_id', 5)
-            ->where('check', 1)
-            ->get();
-        foreach ($startedCampaigns as $start) {
-            $start->update(['status_id' => 2, 'check' => 1]);
-        };
-
-        //! IF CHECK = 0, that means its not on the API which means the campaing is over.
-        // * Set Campaign to finished(3) but able to access still for 10mins
-        NewCampaign::where('check', 0)
-            ->whereNull('end_time')
-            ->update([
-                'end_time' => now(),
-                'status_id' => 3,
-                'check' => 1,
-            ]);
-
-        // * Check if the campaign have been over more than 10mins, if true set it to finsiehd(3)
-        NewCampaign::where('check', 0)
-            ->where('status_id', 2)
-            ->where('end_time', '>', now()->subMinutes(10))
-            ->update([
-                'status_id' => 3,
-                'check' => 1
-            ]);
-
-
-        // * If campaign have been over for more than 10mins set it to finished(4), to show on the finished tab for 24 hours
-        NewCampaign::where('check', 0)
-            ->where('status_id', 3)
-            ->where('end_time', '<', now()->subMinutes(10))->update([
-                'status_id' => 4,
-                'check' => 1
-            ]);
-
-        // * If campaign has been over for more than 24 hours.  Delete the campaign.
-        NewCampaign::where('check', 0)
-            ->where('status_id', 4)
-            ->where('end_time', '<', now()->subDay())->update([
-                'status_id' => 10,
-                'check' => 1
-            ]);
-    }
 
     public static function removeNode($check)
     {

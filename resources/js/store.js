@@ -127,6 +127,18 @@ export default new Vuex.Store({
             }
         },
 
+        UPDATE_NEW_CAMPAIGNS(state, data) {
+            const item = state.newCampaigns.find((item) => item.id === data.id);
+            const count = state.newCampaigns.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                state.newCampaigns.push(data);
+            }
+        },
+
         UPDATE_OP_CHAR(state, data) {
             const item = state.opUsers.find((item) => item.id === data.id);
             const count = state.opUsers.filter(
@@ -1602,6 +1614,10 @@ export default new Vuex.Store({
 
         updateTooltipToggle({ commit }, data) {
             commit("UPDATE_TOOLTIP_TOGGLE", data);
+        },
+
+        updateNewCampaigns({ commit }, data) {
+            commit("UPDATE_NEW_CAMPAIGNS", data);
         },
 
         updateCampaignSystemByUserID({ commit }, payload) {

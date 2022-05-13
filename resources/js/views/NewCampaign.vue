@@ -58,7 +58,10 @@ export default {
         }
         if (e.flag.flag == 3) {
         }
+
+        // * solo system update
         if (e.flag.flag == 4) {
+          this.$store.dispatch("updateNewCampaigns", e.flag.message);
         }
 
         // * 5 is to remove op char from  chartable
