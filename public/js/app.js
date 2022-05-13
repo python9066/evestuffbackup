@@ -12200,7 +12200,7 @@ function sleep(ms) {
   title: function title() {},
   props: {
     item: Array,
-    title: Text,
+    title: String,
     operationID: Number
   },
   data: function data() {
@@ -12247,7 +12247,15 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])),
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])), {}, {
+    eventType: function eventType() {
+      if (this.event_type == "32458") {
+        return "Ihub";
+      } else {
+        return "TCU";
+      }
+    }
+  }),
   beforeDestroy: function beforeDestroy() {}
 });
 
@@ -55347,9 +55355,9 @@ var render = function () {
                                 " - " +
                                 _vm._s(_vm.eventType) +
                                 " :\n              " +
-                                _vm._s(_vm.defenders_score) +
+                                _vm._s(item.defenders_score) +
                                 " / " +
-                                _vm._s(_vm.attackers_score) +
+                                _vm._s(item.attackers_score) +
                                 "\n            "
                             ),
                           ]),

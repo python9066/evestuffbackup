@@ -10,7 +10,7 @@
             <v-row no-gutters v-for="(item, index) in item" :key="index">
               <v-col cols="12">
                 {{ item.system.system_name }} - {{ eventType }} :
-                {{ defenders_score }} / {{ attackers_score }}
+                {{ item.defenders_score }} / {{ item.attackers_score }}
               </v-col>
             </v-row>
           </v-expansion-panel-content>
@@ -34,7 +34,7 @@ export default {
   title() {},
   props: {
     item: Array,
-    title: Text,
+    title: String,
     operationID: Number,
   },
   data() {
@@ -54,6 +54,14 @@ export default {
     ...mapGetters([]),
 
     ...mapState([]),
+
+    eventType() {
+      if (this.event_type == "32458") {
+        return "Ihub";
+      } else {
+        return "TCU";
+      }
+    },
   },
   beforeDestroy() {},
 };
