@@ -4,7 +4,6 @@ namespace utils\NewCampaignhelper;
 
 use App\Events\OperationUpdate;
 use App\Models\Campaign;
-use App\Models\NewCampaginOperation;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
@@ -31,7 +30,7 @@ class NewCampaignhelper
 
         foreach ($deathCampaign as $c) {
             // TODO: Finish everything else that needs to be cleaned up when a campaign is over.
-            $campaginOperation = NewCampaginOperation::where('campaign_id', $c->id)->get();
+            $campaginOperation = NewCampaignOperation::where('campaign_id', $c->id)->get();
             foreach ($campaginOperation as $co) {
 
                 $op = NewOperation::where('id', $co->operation_id)->first();
@@ -144,7 +143,7 @@ class NewCampaignhelper
                 }
 
                 // * Setting everything up for a new campaign
-                if (NewCampaginOperation::where('campaign_id', $id)->count() == 0) {
+                if (NewCampaignOperation::where('campaign_id', $id)->count() == 0) {
                     $uuid = Str::uuid();
                     $system = System::where('id', $campaign['solar_system_id'])->first();
                     $systemName = $system->system_name;
@@ -161,7 +160,7 @@ class NewCampaignhelper
                         'title' => $title,
                     ]);
 
-                    NewCampaginOperation::create([
+                    NewCampaignOperation::create([
                         'campaign_id' => $id,
                         'operation_id' => $newOp->id
                     ]);
@@ -181,7 +180,7 @@ class NewCampaignhelper
 
         $noCampaigns = NewOperation::where('status', '!=', 0)->doesntHave('campaign')->get();
         foreach ($noCampaigns as $noCampaign) {
-            NewCampaginOperation::where('operation_id', $noCampaign->id)->delete();
+            NewCampaignOperation::where('operation_id', $noCampaign->id)->delete();
             $noCampaign->delete();
         }
 

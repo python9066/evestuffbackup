@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\NewCampaginOperation;
+
 use App\Models\NewCampaign;
+use App\Models\NewCampaignOperation;
 use App\Models\NewOperation;
 use App\Models\Region;
 use Illuminate\Http\Request;
@@ -84,7 +85,7 @@ class NewOperationsController extends Controller
             ->first();
 
         $operationsID = NewOperation::where('link', $id)->pluck('id');
-        $campaignIDs = NewCampaginOperation::where('operation_id', $operationsID)->pluck('campaign_id');
+        $campaignIDs = NewCampaignOperation::where('operation_id', $operationsID)->pluck('campaign_id');
         // $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->where('status_id', [2, 5])->pluck('20000646');
         $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->pluck('constellation_id');
         $contellationIDs =  $contellationIDs->unique();

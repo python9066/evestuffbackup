@@ -4,7 +4,7 @@ namespace utils\Broadcasthelper;
 
 use App\Events\OperationOwnUpdate;
 use App\Events\OperationUpdate;
-use App\Models\NewCampaginOperation;
+use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
 use utils\NewCampaignhelper\NewCampaignhelper;
 
@@ -14,7 +14,7 @@ class Broadcasthelper
     public static function broadcastsystemSolo($systemID, $flagNumber)
     {
         $campaignIDs = NewCampaignSystem::where('system_id', $systemID)->pluck('new_campaign_id');
-        $obIDS = NewCampaginOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
+        $obIDS = NewCampaignOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
         $message = NewCampaignhelper::systemSolo($systemID);
 
         foreach ($obIDS as $op) {
