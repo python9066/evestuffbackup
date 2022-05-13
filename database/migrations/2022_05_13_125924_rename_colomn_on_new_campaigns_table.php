@@ -13,7 +13,7 @@ class RenameColomnOnNewCampaignsTable extends Migration
      */
     public function up()
     {
-        Schema::table('new_operations', function (Blueprint $table) {
+        Schema::table('new_campaigns', function (Blueprint $table) {
             $table->renameColumn('attacker_node', 'b_node');
             $table->renameColumn('defender_node', 'r_node');
         });
@@ -26,7 +26,7 @@ class RenameColomnOnNewCampaignsTable extends Migration
      */
     public function down()
     {
-        Schema::table('new_operations', function (Blueprint $table) {
+        Schema::table('new_campaigns', function (Blueprint $table) {
             $table->renameColumn('b_node', 'attacker_node');
             $table->renameColumn('r_node', 'defender_node');
         });
