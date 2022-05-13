@@ -103,7 +103,7 @@ class NewCampaignhelper
                     $campaignOperations = NewCampaignOperation::where('campaign_id', $id)->get();
                     $bNode = $campaign->b_node;
                     $rNode = $campaign->r_node;
-                    $campaignNodes = NewSystemNode::where('campaign_id', $id)->whereIn(['node_status', [4, 5]])->get();
+                    $campaignNodes = NewSystemNode::where('campaign_id', $id)->whereIn('node_status', [4, 5])->get();
                     dd($campaignNodes);
                     foreach ($campaignNodes as $campaignNode) {
                         $system_id = $campaignNode->system_id;
