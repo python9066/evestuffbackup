@@ -217,7 +217,6 @@ export default {
       if (d > 50) {
         return "blue darken-4";
       }
-
       return "red darken-4";
     },
 

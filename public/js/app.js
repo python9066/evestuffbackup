@@ -12487,10 +12487,10 @@ function sleep(ms) {
       var d = this.item.defenders_score * 100;
 
       if (d > 50) {
-        return "red darken-4";
+        return "blue darken-4";
       }
 
-      return "blue darken-4";
+      return "red darken-4";
     },
     nodesToLose: function nodesToLose() {
       var needed = 1 - this.item.defenders_score;
