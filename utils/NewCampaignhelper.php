@@ -112,25 +112,6 @@ class NewCampaignhelper
                         } else {
                             $rNode = $rNode++;
                         }
-
-                        $opUserNodes = NewUserNode::where('node_id', $campaignNode->id)->get();
-                        if ($opUserNodes) {
-                            $opUserNodes->update([
-                                'new_user_node_id' => null,
-                                'user_status_id' => 3
-                            ]);
-
-                            foreach ($opUserNodes as $opUserNode) {
-                                $opUser = OperationUser::where('id', $opUserNode->operation_user_id)->first();
-                                $user = User::where('id', $opUser->user_id)->first();
-                                Broadcasthelper::broadcastuserOwnSolo($opUserNode->operation_user_id, $user->id, 3);
-                                foreach ($campaignOperations as $campaignOperation) {
-
-                                    Broadcasthelper::broadcastuserSolo($campaignOperation->operation_id, $opUser->id, 6);
-                                }
-                            }
-                            $opUserNodes->delete();
-                        }
                         $campaignNode->delete();
                         Broadcasthelper::broadcastsystemSolo($system_id, 7);
                     }

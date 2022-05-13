@@ -133,7 +133,7 @@ export default {
 
     barColor() {
       var d = this.item.defenders_score * 100;
-      if (d > 0.5) {
+      if (d > 50) {
         return "blue darken-4";
       }
 
