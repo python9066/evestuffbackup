@@ -1,12 +1,7 @@
 <template>
   <v-row no-gutters>
     <v-col>
-      <v-expansion-panels
-        v-model="showCharTable"
-        readonly
-        popout
-        style="cursor: context-menu"
-      >
+      <v-expansion-panels popout style="cursor: context-menu">
         <v-expansion-panel style="cursor: context-menu">
           <v-expansion-panel-header expand-icon="" style="cursor: context-menu">
             <span>{{ title }}</span>

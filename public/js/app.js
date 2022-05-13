@@ -12185,11 +12185,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -55323,17 +55318,7 @@ var render = function () {
         [
           _c(
             "v-expansion-panels",
-            {
-              staticStyle: { cursor: "context-menu" },
-              attrs: { readonly: "", popout: "" },
-              model: {
-                value: _vm.showCharTable,
-                callback: function ($$v) {
-                  _vm.showCharTable = $$v
-                },
-                expression: "showCharTable",
-              },
-            },
+            { staticStyle: { cursor: "context-menu" }, attrs: { popout: "" } },
             [
               _c(
                 "v-expansion-panel",
