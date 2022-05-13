@@ -74,7 +74,7 @@ export default {
       let node = this.nodeText.toUpperCase();
       var request = {
         system_id: this.item.id,
-        campaign_id: 96898, //TODO need to code this so hardcode it
+        campaign_id: 97050, //TODO need to code this so hardcode it
         name: node,
       };
       this.nodeText = "";
