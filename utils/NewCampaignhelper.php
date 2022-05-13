@@ -98,6 +98,7 @@ class NewCampaignhelper
                 // * If Score has changed
 
                 if ($score_changed) {
+                    echo "I AM IN";
                     $campaign = NewCampaign::where('id', $id)->first();
                     $campaignOperations = NewCampaignOperation::where('campaign_id', $id)->get();
                     $bNode = $campaign->b_node;
