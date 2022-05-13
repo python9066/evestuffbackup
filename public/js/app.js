@@ -12185,6 +12185,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -12254,6 +12273,43 @@ function sleep(ms) {
       } else {
         return "TCU";
       }
+    },
+    barColor: function barColor() {
+      var d = this.item.defenders_score * 100;
+
+      if (d > 0.5) {
+        return "blue darken-4";
+      }
+
+      return "red darken-4";
+    },
+    barScoure: function barScoure() {
+      var d = this.item.defenders_score * 100;
+      var a = this.item.attackers_score * 100;
+
+      if (d > 50) {
+        return d;
+      }
+
+      return a;
+    },
+    barReverse: function barReverse() {
+      var d = this.item.defenders_score * 100;
+
+      if (d > 50) {
+        return false;
+      }
+
+      return true;
+    },
+    barBgcolor: function barBgcolor() {
+      var d = this.item.defenders_score * 100;
+
+      if (d > 50) {
+        return "red darken-4";
+      }
+
+      return "blue darken-4";
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -55326,20 +55382,16 @@ var render = function () {
         [
           _c(
             "v-expansion-panels",
-            { staticStyle: { cursor: "context-menu" }, attrs: { popout: "" } },
+            { attrs: { popout: "" } },
             [
               _c(
                 "v-expansion-panel",
-                { staticStyle: { cursor: "context-menu" } },
                 [
-                  _c(
-                    "v-expansion-panel-header",
-                    {
-                      staticStyle: { cursor: "context-menu" },
-                      attrs: { "expand-icon": "" },
-                    },
-                    [_c("span", [_vm._v(_vm._s(_vm.title))])]
-                  ),
+                  _c("v-expansion-panel-header", [
+                    _c("span", { staticClass: "text-h1" }, [
+                      _vm._v(_vm._s(_vm.title)),
+                    ]),
+                  ]),
                   _vm._v(" "),
                   _c(
                     "v-expansion-panel-content",
@@ -55348,19 +55400,59 @@ var render = function () {
                         "v-row",
                         { key: index, attrs: { "no-gutters": "" } },
                         [
-                          _c("v-col", { attrs: { cols: "12" } }, [
-                            _vm._v(
-                              "\n              " +
-                                _vm._s(item.system.system_name) +
-                                " - " +
-                                _vm._s(_vm.eventType) +
-                                " :\n              " +
-                                _vm._s(item.defenders_score) +
-                                " / " +
-                                _vm._s(item.attackers_score) +
-                                "\n            "
-                            ),
-                          ]),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12" } },
+                            [
+                              _vm._v(
+                                "\n              " +
+                                  _vm._s(item.system.system_name) +
+                                  " - " +
+                                  _vm._s(_vm.eventType) +
+                                  " :\n              " +
+                                  _vm._s(item.defenders_score) +
+                                  " / " +
+                                  _vm._s(item.attackers_score) +
+                                  "\n              "
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-progress-linear",
+                                {
+                                  attrs: {
+                                    color: _vm.barColor,
+                                    value: _vm.barScoure,
+                                    height: "20",
+                                    rounded: "",
+                                    active: true,
+                                    reverse: _vm.barReverse,
+                                    "background-color": _vm.barBgcolor,
+                                    "background-opacity": "0.2",
+                                  },
+                                },
+                                [
+                                  _c("strong", [
+                                    _vm._v(
+                                      "\n                  " +
+                                        _vm._s(
+                                          this.campaign.defenders_score * 100
+                                        ) +
+                                        " (" +
+                                        _vm._s(_vm.nodesToLose) +
+                                        ") / " +
+                                        _vm._s(
+                                          this.campaign.attackers_score * 100
+                                        ) +
+                                        " (" +
+                                        _vm._s(_vm.nodesToWin) +
+                                        ")\n                "
+                                    ),
+                                  ]),
+                                ]
+                              ),
+                            ],
+                            1
+                          ),
                         ],
                         1
                       )
