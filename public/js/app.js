@@ -55441,15 +55441,11 @@ var render = function () {
                                   _c("strong", [
                                     _vm._v(
                                       "\n                  " +
-                                        _vm._s(
-                                          this.item.defenders_score * 100
-                                        ) +
+                                        _vm._s(item.defenders_score * 100) +
                                         " (" +
                                         _vm._s(_vm.nodesToLose) +
                                         ") /\n                  " +
-                                        _vm._s(
-                                          this.item.attackers_score * 100
-                                        ) +
+                                        _vm._s(item.attackers_score * 100) +
                                         " (" +
                                         _vm._s(_vm.nodesToWin) +
                                         ")\n                "

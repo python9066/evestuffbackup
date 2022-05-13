@@ -23,8 +23,8 @@
                   background-opacity="0.2"
                 >
                   <strong>
-                    {{ this.item.defenders_score * 100 }} ({{ nodesToLose }}) /
-                    {{ this.item.attackers_score * 100 }} ({{ nodesToWin }})
+                    {{ item.defenders_score * 100 }} ({{ nodesToLose }}) /
+                    {{ item.attackers_score * 100 }} ({{ nodesToWin }})
                   </strong>
                 </v-progress-linear>
               </v-col>
