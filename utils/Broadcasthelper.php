@@ -28,16 +28,16 @@ class Broadcasthelper
         }
     }
 
-    public static function broadcastCampaignSolo($campaignID, $flagNumber)
+    public static function broadcastCampaignSolo($campaignID, $opID, $flagNumber)
     {
         $message = NewCampaignhelper::campaignSolo($campaignID);
         $flag = collect([
             'flag' => $flagNumber,
-            'id' => $campaignID,
+            'id' => $opID,
             'message' => $message
         ]);
 
-        broadcast(new OperationOwnUpdate($flag));
+        broadcast(new OperationUpdate($flag));
     }
 
     public static function broadcastuserSolo($opID, $opUserID, $flagNumber)
