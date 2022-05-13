@@ -5,7 +5,10 @@
         <v-col cols="2">
           {{ item.system.system_name }} - {{ eventType }}
         </v-col>
-        <v-col cols="8">
+        <v-col
+          cols="8"
+          class="d-flex justify-content-center align-content-center"
+        >
           <v-icon small left dark :color="IconDColor" :class="IconDClass">
             {{ IconD }}
           </v-icon>
