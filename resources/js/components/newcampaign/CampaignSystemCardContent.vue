@@ -3,13 +3,12 @@
     <v-col cols="12">
       <v-row no-gutters>
         <v-col cols="12">
-          <NewSystemTable
-            :item="item"
-            :operationID="operationID"
-          ></NewSystemTable>
+          <NewSystemTable :item="item" :operationID="operationID" />
         </v-col>
       </v-row>
-      <v-row no-gutters> dwdwd </v-row>
+      <v-row no-gutters>
+        <v-col cols="8"><SystemCheckButton /></v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>
