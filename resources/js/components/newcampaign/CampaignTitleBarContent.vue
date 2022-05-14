@@ -3,7 +3,7 @@
     <v-col cols="12">
       <v-row no-gutters align="center">
         <v-col cols="2">
-          <span>
+          <span :class="textColor">
             {{ item.system.system_name }} - {{ eventType }}:
             {{ this.item.alliance.ticker }}
             <v-avatar size="50"><img :src="this.item.alliance.url" /></v-avatar

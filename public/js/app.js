@@ -55865,6 +55865,7 @@ var render = function () {
               _c("v-col", { attrs: { cols: "2" } }, [
                 _c(
                   "span",
+                  { class: _vm.textColor },
                   [
                     _vm._v(
                       "\n          " +
