@@ -12391,6 +12391,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -55783,7 +55786,7 @@ var render = function () {
                 "v-expansion-panel",
                 [
                   _c("v-expansion-panel-header", [
-                    _c("span", { staticClass: "text-h2" }, [
+                    _c("span", { staticClass: "text-h3 text-center" }, [
                       _vm._v(_vm._s(_vm.title)),
                     ]),
                   ]),
@@ -55849,15 +55852,28 @@ var render = function () {
             "v-row",
             { attrs: { "no-gutters": "", align: "center" } },
             [
-              _c("v-col", { attrs: { cols: "1" } }, [
-                _vm._v(
-                  "\n        " +
-                    _vm._s(_vm.item.system.system_name) +
-                    " - " +
-                    _vm._s(_vm.eventType) +
-                    "\n      "
-                ),
-              ]),
+              _c(
+                "v-col",
+                { attrs: { cols: "1" } },
+                [
+                  _vm._v(
+                    "\n        " +
+                      _vm._s(_vm.item.system.system_name) +
+                      " - " +
+                      _vm._s(_vm.eventType) +
+                      "\n        "
+                  ),
+                  _c("v-avatar", { attrs: { size: "35" } }, [
+                    _c("img", { attrs: { src: this.item.alliance.url } }),
+                  ]),
+                  _vm._v(
+                    "\n        -\n        " +
+                      _vm._s(this.item.alliance.ticker) +
+                      " :\n      "
+                  ),
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "v-col",
@@ -56002,7 +56018,7 @@ var render = function () {
                     ]),
                   }),
                   _vm._v(" "),
-                  _c("span", [_vm._v(" Nodes -")]),
+                  _c("span", [_vm._v(" Completed Nodes -")]),
                   _vm._v(" "),
                   _c("Vep", {
                     attrs: {

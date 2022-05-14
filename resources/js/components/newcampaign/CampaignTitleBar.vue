@@ -4,7 +4,7 @@
       <v-expansion-panels popout>
         <v-expansion-panel>
           <v-expansion-panel-header>
-            <span class="text-h2">{{ title }}</span>
+            <span class="text-h3 text-center">{{ title }}</span>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <CampaignTitleBarContent

@@ -4,6 +4,9 @@
       <v-row no-gutters align="center">
         <v-col cols="1">
           {{ item.system.system_name }} - {{ eventType }}
+          <v-avatar size="35"><img :src="this.item.alliance.url" /></v-avatar>
+          -
+          {{ this.item.alliance.ticker }} :
         </v-col>
         <v-col
           cols="7"
@@ -62,7 +65,7 @@
               <span slot="legend-value"> /{{ totalNode }}</span>
             </template>
           </Vep>
-          <span> Nodes -</span>
+          <span> Completed Nodes -</span>
           <Vep
             :progress="totalBlueProgress"
             :size="50"
