@@ -24,7 +24,7 @@
           :node="item"
           :operationID="operationID"
           :extra="2"
-        ></NewSystemTableStatusButton>
+        />
       </template>
       <template v-slot:[`item.created_at`]="{ item }">
         <NewSystemTableTimer
@@ -33,7 +33,7 @@
           :extra="2"
           :tidiProp="node.system.tidi"
           :systemIDProp="node.system_id"
-        ></NewSystemTableTimer>
+        />
       </template>
       <template v-slot:[`item.actions`]="{ item }">
         <v-icon

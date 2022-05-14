@@ -28,49 +28,34 @@
               </v-icon>
             </template>
             <template v-slot:[`item.op_users`]="{ item }">
-              <AddPilot :node="item" :operationID="operationID"></AddPilot>
-              <NewNodeExtraChar
-                :node="item"
-                :operationID="operationID"
-              ></NewNodeExtraChar>
+              <AddPilot :node="item" :operationID="operationID" />
+              <NewNodeExtraChar :node="item" :operationID="operationID" />
             </template>
             <template v-slot:[`item.TODOMain`]="{ item }">
-              <NewSystemTableSimpleText
-                :node="item"
-                :type="1"
-              ></NewSystemTableSimpleText>
+              <NewSystemTableSimpleText :node="item" :type="1" />
             </template>
             <template v-slot:[`item.TODOShip`]="{ item }">
-              <NewSystemTableSimpleText
-                :node="item"
-                :type="2"
-              ></NewSystemTableSimpleText>
+              <NewSystemTableSimpleText :node="item" :type="2" />
             </template>
             <template v-slot:[`item.node_status.name`]="{ item }">
               <NewSystemTableStatusButton
                 :node="item"
                 :operationID="operationID"
-              ></NewSystemTableStatusButton>
+              />
             </template>
 
             <template v-slot:[`item.created_at`]="{ item }">
-              <NewSystemTableTimer
-                :node="item"
-                :operationID="operationID"
-              ></NewSystemTableTimer>
+              <NewSystemTableTimer :node="item" :operationID="operationID" />
             </template>
 
             <template v-slot:expanded-item="{ headers, item }">
               <td :colspan="headers.length" align="center">
-                <NewJoinNodeTable
-                  :node="item"
-                  :operationID="operationID"
-                ></NewJoinNodeTable>
+                <NewJoinNodeTable :node="item" :operationID="operationID" />
               </td>
             </template>
 
             <template v-slot:[`header.actions`]="{ headers }">
-              <AddNode :item="item" :operationID="operationID"></AddNode>
+              <AddNode :item="item" :operationID="operationID" />
             </template>
           </v-data-table>
         </v-col>

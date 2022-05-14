@@ -13,7 +13,7 @@
               :item="item"
               :title="title"
               :operationID="operationID"
-            ></CampaignTitleBarContent>
+            />
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>

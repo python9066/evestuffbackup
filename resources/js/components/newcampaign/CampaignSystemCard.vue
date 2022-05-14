@@ -32,9 +32,9 @@
 
           <v-col cols="6" class="d-flex justify-end align-center">
             <v-divider class="mx-2" vertical></v-divider>
-            <OnTheWay :operationID="operationID" :item="item"></OnTheWay>
+            <OnTheWay :operationID="operationID" :item="item" />
             <v-divider class="mx-2" vertical></v-divider>
-            <ReadyToGo :operationID="operationID" :item="item"></ReadyToGo>
+            <ReadyToGo :operationID="operationID" :item="item" />
           </v-col>
           <v-divider class="mx-2" vertical></v-divider>
           <v-col cols="1" class="d-flex justify-end align-center">
@@ -45,10 +45,7 @@
         </v-row>
       </v-expansion-panel-header>
       <v-expansion-panel-content
-        ><CampaignSystemCardContent
-          :item="item"
-          :operationID="operationID"
-        ></CampaignSystemCardContent>
+        ><CampaignSystemCardContent :item="item" :operationID="operationID" />
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>

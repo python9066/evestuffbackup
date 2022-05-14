@@ -130,8 +130,7 @@
             </template>
             <template v-slot:[`item.actions`]="{ item }">
               <span>
-                <UsersCharsEdit :char="item" :operationID="operationID">
-                </UsersCharsEdit>
+                <UsersCharsEdit :char="item" :operationID="operationID" />
 
                 <v-icon color="orange darken-3" small @click="removeChar(item)">
                   fas fa-trash-alt

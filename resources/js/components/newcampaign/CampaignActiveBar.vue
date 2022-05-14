@@ -22,8 +22,8 @@
                 </v-btn></v-col
               >
               <v-col cols="2"
-                ><AddOperationUser :operationID="operationID"></AddOperationUser
-              ></v-col>
+                ><AddOperationUser :operationID="operationID"
+              /></v-col>
               <v-col cols="2">
                 <v-btn
                   :exact="true"
@@ -48,7 +48,7 @@
             </v-row>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <OperationUserTable :operationID="operationID"></OperationUserTable>
+            <OperationUserTable :operationID="operationID" />
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
