@@ -328,11 +328,11 @@ export default {
     },
 
     totalRedNodeDone() {
-      return this.r_node;
+      return this.item.r_node;
     },
 
     totalBlueNodeDone() {
-      return this.b_blue;
+      return this.item.b_blue;
     },
 
     totalBlueProgress() {

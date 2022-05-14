@@ -12639,10 +12639,10 @@ function sleep(ms) {
       return this.totalRedNodeDone + this.totalBlueNodeDone;
     },
     totalRedNodeDone: function totalRedNodeDone() {
-      return this.r_node;
+      return this.item.r_node;
     },
     totalBlueNodeDone: function totalBlueNodeDone() {
-      return this.b_blue;
+      return this.item.b_blue;
     },
     totalBlueProgress: function totalBlueProgress() {
       if (this.totalNodeDone) {
