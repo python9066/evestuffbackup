@@ -6,8 +6,8 @@
           <NewSystemTable :item="item" :operationID="operationID" />
         </v-col>
       </v-row>
-      <v-row no-gutters>
-        <v-col cols="8"><SystemCheckButton /></v-col>
+      <v-row no-gutters class="pt-5">
+        <v-col cols="8"><SystemCheckButton :item="item" /></v-col>
       </v-row>
     </v-col>
   </v-row>

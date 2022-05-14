@@ -15045,7 +15045,9 @@ function sleep(ms) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
-  props: {},
+  props: {
+    item: Object
+  },
   data: function data() {
     return {};
   },
@@ -15090,7 +15092,38 @@ function sleep(ms) {
     }))();
   },
   methods: {
-    checkClick: function checkClick() {}
+    checkClick: function checkClick() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                request = {
+                  user_id: _this.$store.state.user_id
+                };
+                _context4.next = 3;
+                return axios({
+                  method: "POST",
+                  url: "/api/scoutadd/" + _this.item.id,
+                  data: request,
+                  withCredentials: true,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    }
   },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])),
   beforeDestroy: function beforeDestroy() {}
@@ -55844,12 +55877,12 @@ var render = function () {
           _vm._v(" "),
           _c(
             "v-row",
-            { attrs: { "no-gutters": "" } },
+            { staticClass: "pt-5", attrs: { "no-gutters": "" } },
             [
               _c(
                 "v-col",
                 { attrs: { cols: "8" } },
-                [_c("SystemCheckButton")],
+                [_c("SystemCheckButton", { attrs: { item: _vm.item } })],
                 1
               ),
             ],

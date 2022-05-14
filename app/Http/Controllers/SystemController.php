@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Campaign;
 use App\Models\System;
 use Illuminate\Http\Request;
+use utils\Broadcasthelper\Broadcasthelper;
 
 class SystemController extends Controller
 {
@@ -29,6 +30,14 @@ class SystemController extends Controller
 
         return ['systemlist' => $systemlist];
     }
+
+    public function addScout(Request $request, $systemID)
+    {
+        System::where('id', $systemID)->update(['scout_id' => $request->user_id]);
+        Broadcasthelper::broadcastsystemSolo($systemID, 7);
+    }
+
+
 
     /**
      * Store a newly created resource in storage.

@@ -19,7 +19,9 @@ function sleep(ms) {
 }
 export default {
   title() {},
-  props: {},
+  props: {
+    item: Object,
+  },
   data() {
     return {};
   },
@@ -32,7 +34,22 @@ export default {
 
   async mounted() {},
   methods: {
-    checkClick() {},
+    async checkClick() {
+      var request = {
+        user_id: this.$store.state.user_id,
+      };
+
+      await axios({
+        method: "POST",
+        url: "/api/scoutadd/" + this.item.id,
+        data: request,
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+    },
   },
 
   computed: {
