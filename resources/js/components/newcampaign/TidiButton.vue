@@ -1,6 +1,58 @@
 <template>
   <v-row no-gutters align="baseline">
-    <v-col cols="12"> dance </v-col>
+    <v-col cols="12" class="d-flex justify-content-end">
+      System TiDi:
+      <span :class="colorTidi()">{{ item.tidi }}%</span>
+      <v-menu :close-on-content-click="false" :value="tidiShow">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            class="pb-1"
+            v-bind="attrs"
+            v-on="on"
+            @click="(tidiShow = true), (tidiEdit = null)"
+            icon
+            color="warning"
+          >
+            <v-icon>fas fa-edit</v-icon>
+          </v-btn>
+        </template>
+
+        <template>
+          <v-card tile min-height="150px">
+            <v-card-title class="pb-0">
+              <v-text-field
+                v-model="tidiEdit"
+                label="Tidi %"
+                autofocus
+                v-mask="'###'"
+                :placeholder="placeHolder()"
+                @keyup.enter="(tidiShow = false), editTidi()"
+                @keyup.esc="(tidiShow = false), (tidiEdit = null)"
+              ></v-text-field>
+            </v-card-title>
+            <v-card-text>
+              <v-btn
+                icon
+                fixed
+                left
+                color="success"
+                @click="(tidiShow = false), editTidi()"
+                ><v-icon>fas fa-check</v-icon></v-btn
+              >
+
+              <v-btn
+                fixed
+                right
+                icon
+                color="warning"
+                @click="(tidiShow = false), (tidiEdit = null)"
+                ><v-icon>fas fa-times</v-icon></v-btn
+              >
+            </v-card-text>
+          </v-card>
+        </template>
+      </v-menu>
+    </v-col>
   </v-row>
 </template>
 <script>
@@ -17,7 +69,10 @@ export default {
     item: Object,
   },
   data() {
-    return {};
+    return {
+      tidiShow: false,
+      tidiEdit: null,
+    };
   },
 
   async created() {},
@@ -27,7 +82,38 @@ export default {
   async beforeCreate() {},
 
   async mounted() {},
-  methods: {},
+  methods: {
+    placeHolder() {
+      return "" + this.item.tidi;
+    },
+
+    colorTidi() {
+      if (this.item.tidi > 59) {
+        return "green--text font-weight-bold";
+      } else if (this.item.tidi > 34) {
+        return "orange--text font-weight-bold";
+      } else {
+        return "red--text font-weight-bold";
+      }
+    },
+
+    async editTidi() {
+      var request = {
+        tidi: this.tidiEdit,
+      };
+
+      await axios({
+        method: "put", //you can set what request you want to be
+        url: "/api/edittidi/" + this.item.id,
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+    },
+  },
 
   computed: {
     ...mapGetters([]),

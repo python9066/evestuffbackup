@@ -38,6 +38,13 @@ class SystemController extends Controller
     }
 
 
+    public function editTidi(Request $request, $systemID)
+    {
+        System::where('id', $systemID)->update(['tidi' => $request->tidi]);
+        Broadcasthelper::broadcastsystemSolo($systemID, 7);
+    }
+
+
 
     /**
      * Store a newly created resource in storage.

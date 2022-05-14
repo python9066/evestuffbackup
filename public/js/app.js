@@ -15378,6 +15378,58 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -15395,7 +15447,10 @@ function sleep(ms) {
     item: Object
   },
   data: function data() {
-    return {};
+    return {
+      tidiShow: false,
+      tidiEdit: null
+    };
   },
   created: function created() {
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -15437,7 +15492,53 @@ function sleep(ms) {
       }, _callee3);
     }))();
   },
-  methods: {},
+  methods: {
+    placeHolder: function placeHolder() {
+      return "" + this.item.tidi;
+    },
+    colorTidi: function colorTidi() {
+      if (this.item.tidi > 59) {
+        return "green--text font-weight-bold";
+      } else if (this.item.tidi > 34) {
+        return "orange--text font-weight-bold";
+      } else {
+        return "red--text font-weight-bold";
+      }
+    },
+    editTidi: function editTidi() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var request;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                request = {
+                  tidi: _this.tidiEdit
+                };
+                _context4.next = 3;
+                return axios({
+                  method: "put",
+                  //you can set what request you want to be
+                  url: "/api/edittidi/" + _this.item.id,
+                  withCredentials: true,
+                  data: request,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    }
+  },
   computed: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])([])),
   beforeDestroy: function beforeDestroy() {}
 });
@@ -58370,7 +58471,179 @@ var render = function () {
   return _c(
     "v-row",
     { attrs: { "no-gutters": "", align: "baseline" } },
-    [_c("v-col", { attrs: { cols: "12" } }, [_vm._v(" dance ")])],
+    [
+      _c(
+        "v-col",
+        { staticClass: "d-flex justify-content-end", attrs: { cols: "12" } },
+        [
+          _vm._v("\n    System TiDi:\n    "),
+          _c("span", { class: _vm.colorTidi() }, [
+            _vm._v(_vm._s(_vm.item.tidi) + "%"),
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-menu",
+            {
+              attrs: { "close-on-content-click": false, value: _vm.tidiShow },
+              scopedSlots: _vm._u([
+                {
+                  key: "activator",
+                  fn: function (ref) {
+                    var on = ref.on
+                    var attrs = ref.attrs
+                    return [
+                      _c(
+                        "v-btn",
+                        _vm._g(
+                          _vm._b(
+                            {
+                              staticClass: "pb-1",
+                              attrs: { icon: "", color: "warning" },
+                              on: {
+                                click: function ($event) {
+                                  ;(_vm.tidiShow = true), (_vm.tidiEdit = null)
+                                },
+                              },
+                            },
+                            "v-btn",
+                            attrs,
+                            false
+                          ),
+                          on
+                        ),
+                        [_c("v-icon", [_vm._v("fas fa-edit")])],
+                        1
+                      ),
+                    ]
+                  },
+                },
+              ]),
+            },
+            [
+              _vm._v(" "),
+              [
+                _c(
+                  "v-card",
+                  { attrs: { tile: "", "min-height": "150px" } },
+                  [
+                    _c(
+                      "v-card-title",
+                      { staticClass: "pb-0" },
+                      [
+                        _c("v-text-field", {
+                          directives: [
+                            {
+                              name: "mask",
+                              rawName: "v-mask",
+                              value: "###",
+                              expression: "'###'",
+                            },
+                          ],
+                          attrs: {
+                            label: "Tidi %",
+                            autofocus: "",
+                            placeholder: _vm.placeHolder(),
+                          },
+                          on: {
+                            keyup: [
+                              function ($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "enter",
+                                    13,
+                                    $event.key,
+                                    "Enter"
+                                  )
+                                ) {
+                                  return null
+                                }
+                                ;(_vm.tidiShow = false), _vm.editTidi()
+                              },
+                              function ($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "esc",
+                                    27,
+                                    $event.key,
+                                    ["Esc", "Escape"]
+                                  )
+                                ) {
+                                  return null
+                                }
+                                ;(_vm.tidiShow = false), (_vm.tidiEdit = null)
+                              },
+                            ],
+                          },
+                          model: {
+                            value: _vm.tidiEdit,
+                            callback: function ($$v) {
+                              _vm.tidiEdit = $$v
+                            },
+                            expression: "tidiEdit",
+                          },
+                        }),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-card-text",
+                      [
+                        _c(
+                          "v-btn",
+                          {
+                            attrs: {
+                              icon: "",
+                              fixed: "",
+                              left: "",
+                              color: "success",
+                            },
+                            on: {
+                              click: function ($event) {
+                                ;(_vm.tidiShow = false), _vm.editTidi()
+                              },
+                            },
+                          },
+                          [_c("v-icon", [_vm._v("fas fa-check")])],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          {
+                            attrs: {
+                              fixed: "",
+                              right: "",
+                              icon: "",
+                              color: "warning",
+                            },
+                            on: {
+                              click: function ($event) {
+                                ;(_vm.tidiShow = false), (_vm.tidiEdit = null)
+                              },
+                            },
+                          },
+                          [_c("v-icon", [_vm._v("fas fa-times")])],
+                          1
+                        ),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                ),
+              ],
+            ],
+            2
+          ),
+        ],
+        1
+      ),
+    ],
     1
   )
 }
