@@ -13502,7 +13502,7 @@ function sleep(ms) {
                 _context4.next = 3;
                 return axios({
                   method: "post",
-                  url: "/api/updatenodestats/" + _this.node.id,
+                  url: "/api/updatenodestats/" + _this.nodeID,
                   withCredentials: true,
                   data: request,
                   headers: {
@@ -13537,6 +13537,15 @@ function sleep(ms) {
         return this.node.prime_node_user[0].node_status.name;
       } else {
         return this.node.node_status.name;
+      }
+    },
+    nodeID: function nodeID() {
+      if (this.extra == 2) {
+        return this.node.id;
+      } else if (this.node.prime_node_user.length > 0) {
+        return this.node.prime_node_user[0].id;
+      } else {
+        return this.node.id;
       }
     },
     pillOutlined: function pillOutlined() {

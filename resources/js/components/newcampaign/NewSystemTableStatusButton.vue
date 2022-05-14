@@ -97,7 +97,7 @@ export default {
 
       await axios({
         method: "post",
-        url: "/api/updatenodestats/" + this.node.id,
+        url: "/api/updatenodestats/" + this.nodeID,
         withCredentials: true,
         data: request,
         headers: {
@@ -130,6 +130,16 @@ export default {
         return this.node.prime_node_user[0].node_status.name;
       } else {
         return this.node.node_status.name;
+      }
+    },
+
+    nodeID() {
+      if (this.extra == 2) {
+        return this.node.id;
+      } else if (this.node.prime_node_user.length > 0) {
+        return this.node.prime_node_user[0].id;
+      } else {
+        return this.node.id;
       }
     },
 
