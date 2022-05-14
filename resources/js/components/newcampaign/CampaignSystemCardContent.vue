@@ -8,6 +8,7 @@
       </v-row>
       <v-row no-gutters class="pt-5">
         <v-col cols="8"><SystemCheckButton :item="item" /></v-col>
+        <v-col cols="4"><TidiButton :item="item" /></v-col>
       </v-row>
     </v-col>
   </v-row>

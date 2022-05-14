@@ -12,17 +12,29 @@
         :start-time="moment.utc(item.scouted_at).unix()"
         :end-text="'Window Closed'"
         :interval="1000"
-        ><template slot="countup" slot-scope="scope"
-          ><span v-if="scope.props.minutes < 5" class="green--text pl-2 pr-2"
-            >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-              scope.props.seconds
-            }}</span
-          >
-          <span v-else class="red--text pl-2 pr-2"
-            >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-              scope.props.seconds
-            }}</span
-          >
+        ><template slot="countup" slot-scope="scope">
+          <transition
+            name="custom-classes"
+            enter-active-class="animate__animated animate__heartBeat animate__repeat-2"
+            leave-active-class="animate__animated animate__flash animate__faster"
+            mode="out-in"
+            ><span
+              :key="`${item.id}-1-timer-age`"
+              v-if="scope.props.minutes < 5"
+              class="green--text pl-2 pr-2"
+              >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                scope.props.seconds
+              }}</span
+            >
+            <span
+              :key="`${item.id}-2-timer-age`"
+              v-else
+              class="red--text pl-2 pr-2"
+              >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                scope.props.seconds
+              }}</span
+            >
+          </transition>
         </template>
       </VueCountUptimer>
       ago.
