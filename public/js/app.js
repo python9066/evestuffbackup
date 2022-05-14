@@ -12045,6 +12045,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
  // import ApiL from "../service/apil";
 
@@ -55741,6 +55742,7 @@ var render = function () {
         [
           _c(
             "v-row",
+            { attrs: { "no-gutters": "" } },
             [
               _c(
                 "v-col",
@@ -55755,6 +55757,8 @@ var render = function () {
             ],
             1
           ),
+          _vm._v(" "),
+          _c("v-row", { attrs: { "no-gutters": "" } }, [_vm._v(" dwdwd ")]),
         ],
         1
       ),

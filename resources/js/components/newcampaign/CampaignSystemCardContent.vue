@@ -1,7 +1,7 @@
 <template>
   <v-row no-gutters>
     <v-col cols="12">
-      <v-row>
+      <v-row no-gutters>
         <v-col cols="12">
           <NewSystemTable
             :item="item"
@@ -9,6 +9,7 @@
           ></NewSystemTable>
         </v-col>
       </v-row>
+      <v-row no-gutters> dwdwd </v-row>
     </v-col>
   </v-row>
 </template>
