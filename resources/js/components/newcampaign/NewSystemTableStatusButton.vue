@@ -12,7 +12,7 @@
               small
               :color="pillColor"
             >
-              {{ node.node_status.name }}
+              {{ nodeStatusName }}
             </v-chip>
           </div>
         </template>
@@ -113,8 +113,28 @@ export default {
 
     ...mapState([]),
 
+    nodeStatusID() {
+      if (this.extra == 2) {
+        return this.node.node_status.id;
+      } else if (this.node.prime_node_user.length > 0) {
+        return this.node.prime_node_user[0].node_status.id;
+      } else {
+        return this.node.node_status.id;
+      }
+    },
+
+    nodeStatusName() {
+      if (this.extra == 2) {
+        return this.node.node_status.name;
+      } else if (this.node.prime_node_user.length > 0) {
+        return this.node.prime_node_user[0].node_status.name;
+      } else {
+        return this.node.node_status.name;
+      }
+    },
+
     pillOutlined() {
-      if (this.node.node_status.id == 7 || this.node.node_status.id == 9) {
+      if (this.nodeStatusID == 7 || this.nodeStatusID == 9) {
         return false;
       } else {
         return true;
@@ -124,11 +144,11 @@ export default {
     filterDropDown() {
       if (this.extra == 1) {
         var list = this.dropdown_edit.filter(
-          (f) => f.value != this.node.node_status.id
+          (f) => f.value != this.nodeStatusID
         );
       } else {
         var list = this.dropdown_edit_extra.filter(
-          (f) => f.value != this.node.node_status.id
+          (f) => f.value != this.nodeStatusID
         );
       }
 
@@ -136,28 +156,28 @@ export default {
     },
 
     pillColor() {
-      if (this.node.node_status.id == 1) {
+      if (this.nodeStatusID == 1) {
         return "deep-orange lighten-1";
       }
-      if (this.node.node_status.id == 2) {
+      if (this.nodeStatusID == 2) {
         return "lime darken-4";
       }
-      if (this.node.node_status.id == 3 || this.node.node_status.id == 8) {
+      if (this.nodeStatusID == 3 || this.nodeStatusID == 8) {
         return "green darken-3";
       }
-      if (this.node.node_status.id == 4) {
+      if (this.nodeStatusID == 4) {
         return "green accent-4";
       }
-      if (this.node.node_status.id == 5) {
+      if (this.nodeStatusID == 5) {
         return "red darken-4";
       }
-      if (this.node.node_status.id == 6) {
+      if (this.nodeStatusID == 6) {
         return "#FF5EEA";
       }
-      if (this.node.node_status.id == 7) {
+      if (this.nodeStatusID == 7) {
         return "#801916";
       }
-      if (this.node.node_status.id == 9) {
+      if (this.nodeStatusID == 9) {
         return "#9C9C9C";
       }
     },
