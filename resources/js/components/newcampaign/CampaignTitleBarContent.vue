@@ -32,6 +32,68 @@
             {{ IconD }}
           </v-icon>
         </v-col>
+        <v-col>
+          <span class="text-caption"> Active Nodes -</span>
+          <Vep
+            :progress="blueProgress"
+            :size="50"
+            :legend-value="blueNode"
+            fontSize="0.80rem"
+            color="#00ff00"
+            :thickness="4"
+            :emptyThickness="1"
+            emptyColor="#a4fca4"
+          >
+            <template v-slot:legend-value>
+              <span slot="legend-value"> /{{ totalNode }}</span>
+            </template>
+          </Vep>
+          <Vep
+            :progress="redProgress"
+            :size="50"
+            :legend-value="redNode"
+            fontSize="0.80rem"
+            color="#ff0000"
+            :thickness="4"
+            :emptyThickness="1"
+            emptyColor="#f08d8d"
+          >
+            <template v-slot:legend-value>
+              <span slot="legend-value"> /{{ totalNode }}</span>
+            </template>
+          </Vep>
+        </v-col>
+        <v-col>
+          <span> Nodes -</span>
+          <Vep
+            :progress="blueProgress"
+            :size="50"
+            :legend-value="blueNode"
+            fontSize="0.80rem"
+            color="#00ff00"
+            :thickness="4"
+            :emptyThickness="1"
+            emptyColor="#a4fca4"
+          >
+            <template v-slot:legend-value>
+              <span slot="legend-value"> /{{ totalNode }}</span>
+            </template>
+          </Vep>
+          <Vep
+            :progress="redProgress"
+            :size="50"
+            :legend-value="redNode"
+            fontSize="0.80rem"
+            color="#ff0000"
+            :thickness="4"
+            :emptyThickness="1"
+            emptyColor="#f08d8d"
+          >
+            <template v-slot:legend-value>
+              <span slot="legend-value"> /{{ totalNode }}</span>
+            </template>
+          </Vep>
+        </v-col>
       </v-row>
       <v-row no-gutters>
         <v-col>
@@ -135,6 +197,24 @@ export default {
         return "Ihub";
       } else {
         return "TCU";
+      }
+    },
+
+    blueProgress() {
+      if (this.totalNode) {
+        var num = (this.blueNode / this.totalNode) * 100;
+        return num;
+      } else {
+        return 0;
+      }
+    },
+
+    redProgress() {
+      if (this.totalNode) {
+        var num = (this.redNode / this.totalNode) * 100;
+        return num;
+      } else {
+        return 0;
       }
     },
 

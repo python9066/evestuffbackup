@@ -12331,6 +12331,68 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -12473,6 +12535,22 @@ function sleep(ms) {
         return "Ihub";
       } else {
         return "TCU";
+      }
+    },
+    blueProgress: function blueProgress() {
+      if (this.totalNode) {
+        var num = this.blueNode / this.totalNode * 100;
+        return num;
+      } else {
+        return 0;
+      }
+    },
+    redProgress: function redProgress() {
+      if (this.totalNode) {
+        var num = this.redNode / this.totalNode * 100;
+        return num;
+      } else {
+        return 0;
       }
     },
     barScoure: function barScoure() {
@@ -55824,6 +55902,148 @@ var render = function () {
                     },
                     [_vm._v("\n          " + _vm._s(_vm.IconD) + "\n        ")]
                   ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-col",
+                [
+                  _c("span", { staticClass: "text-caption" }, [
+                    _vm._v(" Active Nodes -"),
+                  ]),
+                  _vm._v(" "),
+                  _c("Vep", {
+                    attrs: {
+                      progress: _vm.blueProgress,
+                      size: 50,
+                      "legend-value": _vm.blueNode,
+                      fontSize: "0.80rem",
+                      color: "#00ff00",
+                      thickness: 4,
+                      emptyThickness: 1,
+                      emptyColor: "#a4fca4",
+                    },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "legend-value",
+                        fn: function () {
+                          return [
+                            _c(
+                              "span",
+                              {
+                                attrs: { slot: "legend-value" },
+                                slot: "legend-value",
+                              },
+                              [_vm._v(" /" + _vm._s(_vm.totalNode))]
+                            ),
+                          ]
+                        },
+                        proxy: true,
+                      },
+                    ]),
+                  }),
+                  _vm._v(" "),
+                  _c("Vep", {
+                    attrs: {
+                      progress: _vm.redProgress,
+                      size: 50,
+                      "legend-value": _vm.redNode,
+                      fontSize: "0.80rem",
+                      color: "#ff0000",
+                      thickness: 4,
+                      emptyThickness: 1,
+                      emptyColor: "#f08d8d",
+                    },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "legend-value",
+                        fn: function () {
+                          return [
+                            _c(
+                              "span",
+                              {
+                                attrs: { slot: "legend-value" },
+                                slot: "legend-value",
+                              },
+                              [_vm._v(" /" + _vm._s(_vm.totalNode))]
+                            ),
+                          ]
+                        },
+                        proxy: true,
+                      },
+                    ]),
+                  }),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-col",
+                [
+                  _c("span", [_vm._v(" Nodes -")]),
+                  _vm._v(" "),
+                  _c("Vep", {
+                    attrs: {
+                      progress: _vm.blueProgress,
+                      size: 50,
+                      "legend-value": _vm.blueNode,
+                      fontSize: "0.80rem",
+                      color: "#00ff00",
+                      thickness: 4,
+                      emptyThickness: 1,
+                      emptyColor: "#a4fca4",
+                    },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "legend-value",
+                        fn: function () {
+                          return [
+                            _c(
+                              "span",
+                              {
+                                attrs: { slot: "legend-value" },
+                                slot: "legend-value",
+                              },
+                              [_vm._v(" /" + _vm._s(_vm.totalNode))]
+                            ),
+                          ]
+                        },
+                        proxy: true,
+                      },
+                    ]),
+                  }),
+                  _vm._v(" "),
+                  _c("Vep", {
+                    attrs: {
+                      progress: _vm.redProgress,
+                      size: 50,
+                      "legend-value": _vm.redNode,
+                      fontSize: "0.80rem",
+                      color: "#ff0000",
+                      thickness: 4,
+                      emptyThickness: 1,
+                      emptyColor: "#f08d8d",
+                    },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "legend-value",
+                        fn: function () {
+                          return [
+                            _c(
+                              "span",
+                              {
+                                attrs: { slot: "legend-value" },
+                                slot: "legend-value",
+                              },
+                              [_vm._v(" /" + _vm._s(_vm.totalNode))]
+                            ),
+                          ]
+                        },
+                        proxy: true,
+                      },
+                    ]),
+                  }),
                 ],
                 1
               ),
