@@ -71,12 +71,12 @@ class System extends Model
 
     public function scoutUser()
     {
-        return $this->belongsTo(System::class, 'scout_id');
+        return $this->hasOne(System::class, 'scout_id', 'id');
     }
 
     public function checkUser()
     {
-        return $this->belongsTo(System::class, 'checked_id');
+        return $this->hasOne(System::class, 'checked_id', 'id');
     }
 
 
