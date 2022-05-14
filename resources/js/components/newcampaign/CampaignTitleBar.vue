@@ -2,7 +2,7 @@
   <v-row no-gutters>
     <v-col>
       <v-expansion-panels popout>
-        <v-expansion-panel>
+        <v-expansion-panel class="rounded-xl">
           <v-expansion-panel-header>
             <span class="text-h3 text-center">{{ title }}</span>
           </v-expansion-panel-header>

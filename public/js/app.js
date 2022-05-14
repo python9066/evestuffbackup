@@ -55410,7 +55410,10 @@ var render = function () {
             [
               _c(
                 "v-expansion-panel",
-                { staticStyle: { cursor: "context-menu" } },
+                {
+                  staticClass: "rounded-xl",
+                  staticStyle: { cursor: "context-menu" },
+                },
                 [
                   _c(
                     "v-expansion-panel-header",
@@ -55794,6 +55797,7 @@ var render = function () {
             [
               _c(
                 "v-expansion-panel",
+                { staticClass: "rounded-xl" },
                 [
                   _c("v-expansion-panel-header", [
                     _c("span", { staticClass: "text-h3 text-center" }, [

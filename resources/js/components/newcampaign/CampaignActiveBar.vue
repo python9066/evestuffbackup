@@ -7,7 +7,7 @@
         popout
         style="cursor: context-menu"
       >
-        <v-expansion-panel style="cursor: context-menu">
+        <v-expansion-panel class="rounded-xl" style="cursor: context-menu">
           <v-expansion-panel-header expand-icon="" style="cursor: context-menu">
             <v-row no-gutters>
               <v-col cols="2">
