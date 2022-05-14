@@ -1,7 +1,7 @@
 <template>
-  <v-row no-gutters align="center">
+  <v-row no-gutters>
     <v-col cols="12">
-      <v-row no-gutters>
+      <v-row no-gutters align="center">
         <v-col cols="1">
           {{ item.system.system_name }} - {{ eventType }}
         </v-col>
@@ -32,7 +32,7 @@
             {{ IconD }}
           </v-icon>
         </v-col>
-        <v-col cols="2" class="d-flex justify-content-end align-items-center">
+        <v-col cols="4" class="d-flex justify-content-end">
           <span class="text-caption"> Active Nodes -</span>
           <Vep
             :progress="blueProgress"
@@ -62,8 +62,6 @@
               <span slot="legend-value"> /{{ totalNode }}</span>
             </template>
           </Vep>
-        </v-col>
-        <v-col cols="2" class="d-flex justify-content-end align-items-center">
           <span> Nodes -</span>
           <Vep
             :progress="totalBlueProgress"

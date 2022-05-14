@@ -12391,8 +12391,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -55841,7 +55839,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "v-row",
-    { attrs: { "no-gutters": "", align: "center" } },
+    { attrs: { "no-gutters": "" } },
     [
       _c(
         "v-col",
@@ -55849,7 +55847,7 @@ var render = function () {
         [
           _c(
             "v-row",
-            { attrs: { "no-gutters": "" } },
+            { attrs: { "no-gutters": "", align: "center" } },
             [
               _c("v-col", { attrs: { cols: "1" } }, [
                 _vm._v(
@@ -55934,8 +55932,8 @@ var render = function () {
               _c(
                 "v-col",
                 {
-                  staticClass: "d-flex justify-content-end align-items-center",
-                  attrs: { cols: "2" },
+                  staticClass: "d-flex justify-content-end",
+                  attrs: { cols: "4" },
                 },
                 [
                   _c("span", { staticClass: "text-caption" }, [
@@ -56003,17 +56001,7 @@ var render = function () {
                       },
                     ]),
                   }),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                {
-                  staticClass: "d-flex justify-content-end align-items-center",
-                  attrs: { cols: "2" },
-                },
-                [
+                  _vm._v(" "),
                   _c("span", [_vm._v(" Nodes -")]),
                   _vm._v(" "),
                   _c("Vep", {
