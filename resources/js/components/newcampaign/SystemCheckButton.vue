@@ -41,7 +41,7 @@ export default {
 
       await axios({
         method: "POST",
-        url: "/api/scoutadd/" + this.item.id,
+        url: "/api/checkedat/" + this.item.id,
         data: request,
         withCredentials: true,
         headers: {

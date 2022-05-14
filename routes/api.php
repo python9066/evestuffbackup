@@ -302,5 +302,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/addprimetimer/{id}', 'NewUserNodeController@addTimer');
     Route::put('/addtimertonode/{id}', 'NewUserNodeController@addTimertoNode');
     Route::put('/onthewayreadytogo/{opID}/{opUserID}', 'OperationUserController@updateOnTheWayReadyToGO');
-    Route::post('/scoutadd/{systemID}', 'SystemController@addScout');
+    Route::post('/checkedat/{systemID}', 'SystemController@checkedAt');
 });

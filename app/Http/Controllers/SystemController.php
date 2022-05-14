@@ -31,9 +31,9 @@ class SystemController extends Controller
         return ['systemlist' => $systemlist];
     }
 
-    public function addScout(Request $request, $systemID)
+    public function checkedAt(Request $request, $systemID)
     {
-        System::where('id', $systemID)->update(['scout_id' => $request->user_id]);
+        System::where('id', $systemID)->update(['checked_id' => $request->user_id]);
         Broadcasthelper::broadcastsystemSolo($systemID, 7);
     }
 

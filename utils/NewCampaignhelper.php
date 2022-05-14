@@ -274,7 +274,9 @@ class NewCampaignhelper
                 'newNodes.nonePrimeNodeUser.nodeStatus',
                 'newNodes.primeNodeUser.opUser.user',
                 'newNodes.primeNodeUser.nodeStatus',
-                'newNodes.system'
+                'newNodes.system',
+                'scoutUser',
+                'checkUser'
             ])
             ->get();
     }
@@ -289,7 +291,9 @@ class NewCampaignhelper
                 'newNodes.nonePrimeNodeUser.nodeStatus',
                 'newNodes.primeNodeUser.opUser.user',
                 'newNodes.primeNodeUser.nodeStatus',
-                'newNodes.system'
+                'newNodes.system',
+                'scoutUser',
+                'checkUser'
             ])
             ->first();
     }
