@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campaign;
+use App\Models\NewSystemNode;
+use App\Models\NewUserNode;
 use App\Models\System;
 use Illuminate\Http\Request;
 use utils\Broadcasthelper\Broadcasthelper;
@@ -41,6 +43,47 @@ class SystemController extends Controller
     public function editTidi(Request $request, $systemID)
     {
         System::where('id', $systemID)->update(['tidi' => $request->tidi]);
+
+        $systemNodes = NewSystemNode::where('system_id', $systemID)
+            ->whereIn('node_status', [7, 8, 9])
+            ->get();
+
+        foreach ($systemNodes as $systemNode) {
+            $time_passed = strtotime(now()) - strtotime($systemNode->input_time);
+            $base_time = $systemNode->base_time - $time_passed;
+            $time_left = $base_time / ($request->tidi / 100);
+            if ($time_left <= 0) {
+                $time_left = $time_left * -1;
+            }
+            $end_time = now()->modify("+ " . round($time_left) . " seconds");
+            $systemNode->update([
+                'end_time' => $end_time,
+                'input_time' => now(),
+                'base_time' => $base_time
+            ]);
+        }
+
+        $systemNodes = NewSystemNode::where('system_id', $systemID)->get();
+        foreach ($systemNodes as $systemNode) {
+            $userNodes = NewUserNode::where('node_id', $systemNode->id)
+                ->where('node_status_id', 3)->get();
+
+            foreach ($userNodes as $userNode) {
+                $time_passed = strtotime(now()) - strtotime($userNode->input_time);
+                $base_time = $userNode->base_time - $time_passed;
+                $time_left = $base_time / ($request->tidi / 100);
+                if ($time_left <= 0) {
+                    $time_left = $time_left * -1;
+                }
+                $end_time = now()->modify("+ " . round($time_left) . " seconds");
+                $userNode->update([
+                    'end_time' => $end_time,
+                    'input_time' => now(),
+                    'base_time' => $base_time
+                ]);
+            }
+        }
+
         Broadcasthelper::broadcastsystemSolo($systemID, 7);
     }
 
