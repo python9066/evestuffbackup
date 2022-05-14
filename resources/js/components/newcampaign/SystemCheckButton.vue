@@ -1,12 +1,12 @@
 <template>
-  <v-row no-gutters>
-    <v-col cols="2">
+  <v-row no-gutters align="baseline">
+    <v-col cols="3">
       <v-btn color="green" small @click="checkClick()">
         <v-icon small left dark> fas fa-search-location </v-icon>
         System Checked</v-btn
       ></v-col
     >
-    <v-col cols="10">This is where the text will go when button pressed </v-col>
+    <v-col cols="9">This is where the text will go when button pressed </v-col>
   </v-row>
 </template>
 <script>

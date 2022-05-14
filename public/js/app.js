@@ -57966,11 +57966,11 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "v-row",
-    { attrs: { "no-gutters": "" } },
+    { attrs: { "no-gutters": "", align: "baseline" } },
     [
       _c(
         "v-col",
-        { attrs: { cols: "2" } },
+        { attrs: { cols: "3" } },
         [
           _c(
             "v-btn",
@@ -57994,7 +57994,7 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _c("v-col", { attrs: { cols: "10" } }, [
+      _c("v-col", { attrs: { cols: "9" } }, [
         _vm._v("This is where the text will go when button pressed "),
       ]),
     ],

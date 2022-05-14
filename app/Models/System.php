@@ -69,6 +69,11 @@ class System extends Model
     }
 
 
+    public function scoutUser()
+    {
+        return $this->belongsTo(System::class, 'scout_id');
+    }
+
 
 
     protected $casts = [
