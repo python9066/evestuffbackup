@@ -12458,7 +12458,16 @@ function sleep(ms) {
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(["getBRedCampaignNodes", "getBlueCampaignNodes", "getTotalCampaignNodes"])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(["getRedCampaignNodes", "getBlueCampaignNodes", "getTotalCampaignNodes"])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])), {}, {
+    totalNode: function totalNode() {
+      return this.getTotalCampaignNodes(this.operationID);
+    },
+    redNode: function redNode() {
+      return this.getRedCampaignNodes(this.operationID);
+    },
+    blueNode: function blueNode() {
+      return this.getBlueCampaignNodes(this.operationID);
+    },
     eventType: function eventType() {
       if (this.event_type == "32458") {
         return "Ihub";

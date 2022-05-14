@@ -111,12 +111,24 @@ export default {
 
   computed: {
     ...mapGetters([
-      "getBRedCampaignNodes",
+      "getRedCampaignNodes",
       "getBlueCampaignNodes",
       "getTotalCampaignNodes",
     ]),
 
     ...mapState([]),
+
+    totalNode() {
+      return this.getTotalCampaignNodes(this.operationID);
+    },
+
+    redNode() {
+      return this.getRedCampaignNodes(this.operationID);
+    },
+
+    blueNode() {
+      return this.getBlueCampaignNodes(this.operationID);
+    },
 
     eventType() {
       if (this.event_type == "32458") {
