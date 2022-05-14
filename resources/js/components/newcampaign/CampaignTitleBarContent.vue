@@ -1,5 +1,5 @@
 <template>
-  <v-row no-gutters>
+  <v-row no-gutters align="center">
     <v-col cols="12">
       <v-row no-gutters>
         <v-col cols="1">
@@ -32,7 +32,7 @@
             {{ IconD }}
           </v-icon>
         </v-col>
-        <v-col cols="2">
+        <v-col cols="2" class="d-flex justify-content-end align-items-center">
           <span class="text-caption"> Active Nodes -</span>
           <Vep
             :progress="blueProgress"
@@ -63,7 +63,7 @@
             </template>
           </Vep>
         </v-col>
-        <v-col cols="2">
+        <v-col cols="2" class="d-flex justify-content-end align-items-center">
           <span> Nodes -</span>
           <Vep
             :progress="totalBlueProgress"
@@ -332,7 +332,7 @@ export default {
     },
 
     totalBlueNodeDone() {
-      return this.item.b_blue;
+      return this.item.b_node;
     },
 
     totalBlueProgress() {

@@ -12642,7 +12642,7 @@ function sleep(ms) {
       return this.item.r_node;
     },
     totalBlueNodeDone: function totalBlueNodeDone() {
-      return this.item.b_blue;
+      return this.item.b_node;
     },
     totalBlueProgress: function totalBlueProgress() {
       if (this.totalNodeDone) {
@@ -55841,7 +55841,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "v-row",
-    { attrs: { "no-gutters": "" } },
+    { attrs: { "no-gutters": "", align: "center" } },
     [
       _c(
         "v-col",
@@ -55933,7 +55933,10 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-col",
-                { attrs: { cols: "2" } },
+                {
+                  staticClass: "d-flex justify-content-end align-items-center",
+                  attrs: { cols: "2" },
+                },
                 [
                   _c("span", { staticClass: "text-caption" }, [
                     _vm._v(" Active Nodes -"),
@@ -56006,7 +56009,10 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-col",
-                { attrs: { cols: "2" } },
+                {
+                  staticClass: "d-flex justify-content-end align-items-center",
+                  attrs: { cols: "2" },
+                },
                 [
                   _c("span", [_vm._v(" Nodes -")]),
                   _vm._v(" "),
