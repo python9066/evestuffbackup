@@ -58050,7 +58050,7 @@ var render = function () {
       _vm.item.check_user
         ? _c(
             "v-col",
-            { attrs: { cols: "9" } },
+            { staticClass: "d-flex", attrs: { cols: "9" } },
             [
               _vm._v(
                 "Checked By " + _vm._s(_vm.item.check_user.name) + "\n    "

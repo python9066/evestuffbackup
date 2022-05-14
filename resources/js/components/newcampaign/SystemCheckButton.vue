@@ -6,7 +6,7 @@
         System Checked</v-btn
       ></v-col
     >
-    <v-col cols="9" v-if="item.check_user"
+    <v-col cols="9" class="d-flex" v-if="item.check_user"
       >Checked By {{ item.check_user.name }}
       <VueCountUptimer
         :start-time="moment.utc(item.scouted_at).unix()"
