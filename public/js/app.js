@@ -15519,7 +15519,7 @@ function sleep(ms) {
                 };
                 _context4.next = 3;
                 return axios({
-                  method: "put",
+                  method: "post",
                   //you can set what request you want to be
                   url: "/api/edittidi/" + _this.item.id,
                   withCredentials: true,
@@ -58474,7 +58474,10 @@ var render = function () {
     [
       _c(
         "v-col",
-        { staticClass: "d-flex justify-content-end", attrs: { cols: "12" } },
+        {
+          staticClass: "d-flex justify-content-end align-items-center h4",
+          attrs: { cols: "12" },
+        },
         [
           _vm._v("\n    System TiDi:\n    "),
           _c("span", { class: _vm.colorTidi() }, [

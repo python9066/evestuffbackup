@@ -1,6 +1,6 @@
 <template>
   <v-row no-gutters align="baseline">
-    <v-col cols="12" class="d-flex justify-content-end">
+    <v-col cols="12" class="d-flex justify-content-end align-items-center h4">
       System TiDi:
       <span :class="colorTidi()">{{ item.tidi }}%</span>
       <v-menu :close-on-content-click="false" :value="tidiShow">
@@ -103,7 +103,7 @@ export default {
       };
 
       await axios({
-        method: "put", //you can set what request you want to be
+        method: "post", //you can set what request you want to be
         url: "/api/edittidi/" + this.item.id,
         withCredentials: true,
         data: request,
