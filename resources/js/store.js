@@ -95,7 +95,6 @@ export default new Vuex.Store({
 
         newOperationInfo: [],
         newCampaigns: [],
-        campaignSystems: [],
         opUsers: [],
         ownChars: {},
         newCampaignSystems: [],
@@ -2561,6 +2560,61 @@ export default new Vuex.Store({
             } else {
                 return [];
             }
+        },
+
+        getTotalCampaignNodes: (state) => (operationid) => {
+            var total = 0;
+            newCampaignSystems.forEach((c) => {
+                let count = c.new_nodes.filter(
+                    (n) => n.campaign_id === operationid
+                ).length;
+                total = total + count;
+            });
+
+            return total;
+        },
+
+        getBlueCampaignNodes: (state) => (operationid) => {
+            var blue = 0;
+
+            state.newCampaignSystems.forEach((a) => {
+                let nodes = a.new_nodes;
+
+                nodes.forEach((b) => {
+                    if (
+                        b.prime_node_user.length > 0 &&
+                        b.campaign_id === operationid
+                    ) {
+                        blue = blue + 1;
+                    } else if (
+                        (b.node_status.id == 8 || b.node_status.id == 4) &&
+                        b.campaign_id === operationid
+                    ) {
+                        blue = blue + 1;
+                    }
+                });
+            });
+
+            return blue;
+        },
+
+        getBRedCampaignNodes: (state) => (operationid) => {
+            var red = 0;
+
+            state.newCampaignSystems.forEach((a) => {
+                let nodes = a.new_nodes;
+
+                nodes.forEach((b) => {
+                    if (
+                        (b.node_status.id == 7 || b.node_status.id == 5) &&
+                        b.campaign_id === 97050
+                    ) {
+                        red = red + 1;
+                    }
+                });
+            });
+
+            return blue;
         },
     },
 });

@@ -110,7 +110,11 @@ export default {
   },
 
   computed: {
-    ...mapGetters([]),
+    ...mapGetters([
+      "getBRedCampaignNodes",
+      "getBlueCampaignNodes",
+      "getTotalCampaignNodes",
+    ]),
 
     ...mapState([]),
 

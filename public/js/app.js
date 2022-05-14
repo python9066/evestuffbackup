@@ -12458,7 +12458,7 @@ function sleep(ms) {
       }))();
     }
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])([])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(["getBRedCampaignNodes", "getBlueCampaignNodes", "getTotalCampaignNodes"])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])), {}, {
     eventType: function eventType() {
       if (this.event_type == "32458") {
         return "Ihub";
@@ -95184,7 +95184,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
     },
     newOperationInfo: [],
     newCampaigns: [],
-    campaignSystems: [],
     opUsers: [],
     ownChars: {},
     newCampaignSystems: []
@@ -98805,6 +98804,48 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       } else {
         return [];
       }
+    },
+    getTotalCampaignNodes: function getTotalCampaignNodes(state) {
+      return function (operationid) {
+        var total = 0;
+        newCampaignSystems.forEach(function (c) {
+          var count = c.new_nodes.filter(function (n) {
+            return n.campaign_id === operationid;
+          }).length;
+          total = total + count;
+        });
+        return total;
+      };
+    },
+    getBlueCampaignNodes: function getBlueCampaignNodes(state) {
+      return function (operationid) {
+        var blue = 0;
+        state.newCampaignSystems.forEach(function (a) {
+          var nodes = a.new_nodes;
+          nodes.forEach(function (b) {
+            if (b.prime_node_user.length > 0 && b.campaign_id === operationid) {
+              blue = blue + 1;
+            } else if ((b.node_status.id == 8 || b.node_status.id == 4) && b.campaign_id === operationid) {
+              blue = blue + 1;
+            }
+          });
+        });
+        return blue;
+      };
+    },
+    getBRedCampaignNodes: function getBRedCampaignNodes(state) {
+      return function (operationid) {
+        var red = 0;
+        state.newCampaignSystems.forEach(function (a) {
+          var nodes = a.new_nodes;
+          nodes.forEach(function (b) {
+            if ((b.node_status.id == 7 || b.node_status.id == 5) && b.campaign_id === 97050) {
+              red = red + 1;
+            }
+          });
+        });
+        return blue;
+      };
     }
   }
 }));
