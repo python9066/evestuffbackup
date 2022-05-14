@@ -80,18 +80,30 @@ export default {
   methods: {
     async statusClick(list) {
       if (this.extra == 1) {
-        var request = {
-          status_id: list.value,
-          system_id: this.node.system_id,
-          opID: this.operationID,
-          extra: false,
-        };
+        if (this.node.prime_node_user.length > 0) {
+          var request = {
+            status_id: list.value,
+            system_id: this.node.system_id,
+            opID: this.operationID,
+            extra: false,
+            prime: true,
+          };
+        } else {
+          var request = {
+            status_id: list.value,
+            system_id: this.node.system_id,
+            opID: this.operationID,
+            extra: false,
+            prime: false,
+          };
+        }
       } else {
         var request = {
           status_id: list.value,
           system_id: this.node.op_user.system_id,
           opID: this.operationID,
           extra: true,
+          prime: false,
         };
       }
 

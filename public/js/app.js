@@ -13484,18 +13484,30 @@ function sleep(ms) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 if (_this.extra == 1) {
-                  request = {
-                    status_id: list.value,
-                    system_id: _this.node.system_id,
-                    opID: _this.operationID,
-                    extra: false
-                  };
+                  if (_this.node.prime_node_user.length > 0) {
+                    request = {
+                      status_id: list.value,
+                      system_id: _this.node.system_id,
+                      opID: _this.operationID,
+                      extra: false,
+                      prime: true
+                    };
+                  } else {
+                    request = {
+                      status_id: list.value,
+                      system_id: _this.node.system_id,
+                      opID: _this.operationID,
+                      extra: false,
+                      prime: false
+                    };
+                  }
                 } else {
                   request = {
                     status_id: list.value,
                     system_id: _this.node.op_user.system_id,
                     opID: _this.operationID,
-                    extra: true
+                    extra: true,
+                    prime: false
                   };
                 }
 

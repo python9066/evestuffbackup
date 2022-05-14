@@ -139,7 +139,9 @@ class NewSystemNodeController extends Controller
 
                 break;
             case 2: // * warm up
-                if ($request->extra == false) {
+                if ($request->prime) {
+                    $userNode = NewUserNode::where('id', $id)->first();
+                } elseif ($request->extra == false) {
                     $userNode = NewUserNode::where('node_id', $id)->first();
                 } else {
                     $userNode = NewUserNode::where('id', $id)->first();
@@ -153,7 +155,9 @@ class NewSystemNodeController extends Controller
 
 
             case 3: // * Hacking
-                if ($request->extra == false) {
+                if ($request->prime) {
+                    $userNode = NewUserNode::where('id', $id)->first();
+                } elseif ($request->extra == false) {
                     $userNode = NewUserNode::where('node_id', $id)->first();
                 } else {
                     $userNode = NewUserNode::where('id', $id)->first();
@@ -319,7 +323,7 @@ class NewSystemNodeController extends Controller
                 break;
         }
 
-        if ($request->extra == true) {
+        if ($request->extra == true || $request->prime == true) {
             NewUserNode::where('id', $id)->update(['node_status_id' => $request->status_id]);
         } else {
             NewSystemNode::where('id', $id)->update(['node_status' => $request->status_id]);
