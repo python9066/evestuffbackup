@@ -12460,13 +12460,13 @@ function sleep(ms) {
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(["getRedCampaignNodes", "getBlueCampaignNodes", "getTotalCampaignNodes"])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])), {}, {
     totalNode: function totalNode() {
-      return this.getTotalCampaignNodes(this.operationID);
+      return this.getTotalCampaignNodes(this.item.id);
     },
     redNode: function redNode() {
-      return this.getRedCampaignNodes(this.operationID);
+      return this.getRedCampaignNodes(this.item.id);
     },
     blueNode: function blueNode() {
-      return this.getBlueCampaignNodes(this.operationID);
+      return this.getBlueCampaignNodes(this.item.id);
     },
     eventType: function eventType() {
       if (this.event_type == "32458") {
@@ -98815,11 +98815,11 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       }
     },
     getTotalCampaignNodes: function getTotalCampaignNodes(state) {
-      return function (operationid) {
+      return function (campaignID) {
         var total = 0;
-        newCampaignSystems.forEach(function (c) {
+        state.newCampaignSystems.forEach(function (c) {
           var count = c.new_nodes.filter(function (n) {
-            return n.campaign_id === operationid;
+            return n.campaign_id === campaignID;
           }).length;
           total = total + count;
         });
@@ -98827,14 +98827,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       };
     },
     getBlueCampaignNodes: function getBlueCampaignNodes(state) {
-      return function (operationid) {
+      return function (campaignID) {
         var blue = 0;
         state.newCampaignSystems.forEach(function (a) {
           var nodes = a.new_nodes;
           nodes.forEach(function (b) {
-            if (b.prime_node_user.length > 0 && b.campaign_id === operationid) {
+            if (b.prime_node_user.length > 0 && b.campaign_id === campaignID) {
               blue = blue + 1;
-            } else if ((b.node_status.id == 8 || b.node_status.id == 4) && b.campaign_id === operationid) {
+            } else if ((b.node_status.id == 8 || b.node_status.id == 4) && b.campaign_id === campaignID) {
               blue = blue + 1;
             }
           });
@@ -98842,18 +98842,18 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         return blue;
       };
     },
-    getBRedCampaignNodes: function getBRedCampaignNodes(state) {
-      return function (operationid) {
+    getRedCampaignNodes: function getRedCampaignNodes(state) {
+      return function (campaignID) {
         var red = 0;
         state.newCampaignSystems.forEach(function (a) {
           var nodes = a.new_nodes;
           nodes.forEach(function (b) {
-            if ((b.node_status.id == 7 || b.node_status.id == 5) && b.campaign_id === 97050) {
+            if ((b.node_status.id == 7 || b.node_status.id == 5) && b.campaign_id === campaignID) {
               red = red + 1;
             }
           });
         });
-        return blue;
+        return red;
       };
     }
   }

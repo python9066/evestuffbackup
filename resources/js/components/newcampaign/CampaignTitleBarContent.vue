@@ -119,15 +119,15 @@ export default {
     ...mapState([]),
 
     totalNode() {
-      return this.getTotalCampaignNodes(this.operationID);
+      return this.getTotalCampaignNodes(this.item.id);
     },
 
     redNode() {
-      return this.getRedCampaignNodes(this.operationID);
+      return this.getRedCampaignNodes(this.item.id);
     },
 
     blueNode() {
-      return this.getBlueCampaignNodes(this.operationID);
+      return this.getBlueCampaignNodes(this.item.id);
     },
 
     eventType() {

@@ -2562,11 +2562,11 @@ export default new Vuex.Store({
             }
         },
 
-        getTotalCampaignNodes: (state) => (operationid) => {
+        getTotalCampaignNodes: (state) => (campaignID) => {
             var total = 0;
-            newCampaignSystems.forEach((c) => {
+            state.newCampaignSystems.forEach((c) => {
                 let count = c.new_nodes.filter(
-                    (n) => n.campaign_id === operationid
+                    (n) => n.campaign_id === campaignID
                 ).length;
                 total = total + count;
             });
@@ -2574,7 +2574,7 @@ export default new Vuex.Store({
             return total;
         },
 
-        getBlueCampaignNodes: (state) => (operationid) => {
+        getBlueCampaignNodes: (state) => (campaignID) => {
             var blue = 0;
 
             state.newCampaignSystems.forEach((a) => {
@@ -2583,12 +2583,12 @@ export default new Vuex.Store({
                 nodes.forEach((b) => {
                     if (
                         b.prime_node_user.length > 0 &&
-                        b.campaign_id === operationid
+                        b.campaign_id === campaignID
                     ) {
                         blue = blue + 1;
                     } else if (
                         (b.node_status.id == 8 || b.node_status.id == 4) &&
-                        b.campaign_id === operationid
+                        b.campaign_id === campaignID
                     ) {
                         blue = blue + 1;
                     }
@@ -2598,7 +2598,7 @@ export default new Vuex.Store({
             return blue;
         },
 
-        getBRedCampaignNodes: (state) => (operationid) => {
+        getRedCampaignNodes: (state) => (campaignID) => {
             var red = 0;
 
             state.newCampaignSystems.forEach((a) => {
@@ -2607,14 +2607,14 @@ export default new Vuex.Store({
                 nodes.forEach((b) => {
                     if (
                         (b.node_status.id == 7 || b.node_status.id == 5) &&
-                        b.campaign_id === 97050
+                        b.campaign_id === campaignID
                     ) {
                         red = red + 1;
                     }
                 });
             });
 
-            return blue;
+            return red;
         },
     },
 });
