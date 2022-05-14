@@ -2,14 +2,15 @@
   <v-row no-gutters>
     <v-col cols="12">
       <v-row no-gutters align="center">
-        <v-col cols="1">
-          {{ item.system.system_name }} - {{ eventType }}
-          <v-avatar size="35"><img :src="this.item.alliance.url" /></v-avatar>
-          -
-          {{ this.item.alliance.ticker }} :
+        <v-col cols="2">
+          <span>
+            {{ item.system.system_name }} - {{ eventType }}:
+            {{ this.item.alliance.ticker }}
+            <v-avatar size="50"><img :src="this.item.alliance.url" /></v-avatar
+          ></span>
         </v-col>
         <v-col
-          cols="7"
+          cols="6"
           class="d-flex justify-content-center align-content-center"
         >
           <v-icon small left dark :color="IconDColor" :class="IconDClass">
@@ -35,7 +36,7 @@
             {{ IconD }}
           </v-icon>
         </v-col>
-        <v-col cols="4" class="d-flex justify-content-end">
+        <v-col cols="4" class="d-flex justify-content-end align-items-center">
           <span class="text-caption"> Active Nodes -</span>
           <Vep
             :progress="blueProgress"
@@ -65,7 +66,7 @@
               <span slot="legend-value"> /{{ totalNode }}</span>
             </template>
           </Vep>
-          <span> Completed Nodes -</span>
+          <span class="ml-2"> Completed Nodes -</span>
           <Vep
             :progress="totalBlueProgress"
             :size="50"
@@ -351,6 +352,16 @@ export default {
         return num;
       } else {
         return 0;
+      }
+    },
+
+    textColor() {
+      if (this.item.alliance.color >= 2) {
+        return "blue--text";
+      }
+
+      if (this.item.alliance.color < 0) {
+        return "red--text";
       }
     },
   },

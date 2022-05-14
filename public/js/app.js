@@ -12394,6 +12394,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -12659,6 +12660,15 @@ function sleep(ms) {
         return num;
       } else {
         return 0;
+      }
+    },
+    textColor: function textColor() {
+      if (this.item.alliance.color >= 2) {
+        return "blue--text";
+      }
+
+      if (this.item.alliance.color < 0) {
+        return "red--text";
       }
     }
   }),
@@ -55852,35 +55862,33 @@ var render = function () {
             "v-row",
             { attrs: { "no-gutters": "", align: "center" } },
             [
-              _c(
-                "v-col",
-                { attrs: { cols: "1" } },
-                [
-                  _vm._v(
-                    "\n        " +
-                      _vm._s(_vm.item.system.system_name) +
-                      " - " +
-                      _vm._s(_vm.eventType) +
-                      "\n        "
-                  ),
-                  _c("v-avatar", { attrs: { size: "35" } }, [
-                    _c("img", { attrs: { src: this.item.alliance.url } }),
-                  ]),
-                  _vm._v(
-                    "\n        -\n        " +
-                      _vm._s(this.item.alliance.ticker) +
-                      " :\n      "
-                  ),
-                ],
-                1
-              ),
+              _c("v-col", { attrs: { cols: "2" } }, [
+                _c(
+                  "span",
+                  [
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(_vm.item.system.system_name) +
+                        " - " +
+                        _vm._s(_vm.eventType) +
+                        ":\n          " +
+                        _vm._s(this.item.alliance.ticker) +
+                        "\n          "
+                    ),
+                    _c("v-avatar", { attrs: { size: "50" } }, [
+                      _c("img", { attrs: { src: this.item.alliance.url } }),
+                    ]),
+                  ],
+                  1
+                ),
+              ]),
               _vm._v(" "),
               _c(
                 "v-col",
                 {
                   staticClass:
                     "d-flex justify-content-center align-content-center",
-                  attrs: { cols: "7" },
+                  attrs: { cols: "6" },
                 },
                 [
                   _c(
@@ -55948,7 +55956,7 @@ var render = function () {
               _c(
                 "v-col",
                 {
-                  staticClass: "d-flex justify-content-end",
+                  staticClass: "d-flex justify-content-end align-items-center",
                   attrs: { cols: "4" },
                 },
                 [
@@ -56018,7 +56026,9 @@ var render = function () {
                     ]),
                   }),
                   _vm._v(" "),
-                  _c("span", [_vm._v(" Completed Nodes -")]),
+                  _c("span", { staticClass: "ml-2" }, [
+                    _vm._v(" Completed Nodes -"),
+                  ]),
                   _vm._v(" "),
                   _c("Vep", {
                     attrs: {
