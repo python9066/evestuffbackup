@@ -6,7 +6,27 @@
         System Checked</v-btn
       ></v-col
     >
-    <v-col cols="9">This is where the text will go when button pressed </v-col>
+    <v-col cols="9" v-if="item.check_user"
+      >Checked By {{ item.check_user.name }}
+      <VueCountUptimer
+        :start-time="moment.utc(item.scouted_at).unix()"
+        :end-text="'Window Closed'"
+        :interval="1000"
+        ><template slot="countup" slot-scope="scope"
+          ><span v-if="scope.props.minutes < 5" class="green--text pl-2 pr-2"
+            >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+              scope.props.seconds
+            }}</span
+          >
+          <span v-else class="red--text pl-2 pr-2"
+            >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+              scope.props.seconds
+            }}</span
+          >
+        </template>
+      </VueCountUptimer>
+      ago.
+    </v-col>
   </v-row>
 </template>
 <script>

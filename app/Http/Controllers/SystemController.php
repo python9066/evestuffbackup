@@ -33,7 +33,7 @@ class SystemController extends Controller
 
     public function checkedAt(Request $request, $systemID)
     {
-        System::where('id', $systemID)->update(['checked_id' => $request->user_id]);
+        System::where('id', $systemID)->update(['checked_id' => $request->user_id, 'scouted_at' => now()]);
         Broadcasthelper::broadcastsystemSolo($systemID, 7);
     }
 

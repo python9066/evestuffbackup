@@ -15032,6 +15032,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
  // import ApiL from "../service/apil";
 
@@ -58027,9 +58047,67 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _c("v-col", { attrs: { cols: "9" } }, [
-        _vm._v("This is where the text will go when button pressed "),
-      ]),
+      _vm.item.check_user
+        ? _c(
+            "v-col",
+            { attrs: { cols: "9" } },
+            [
+              _vm._v(
+                "Checked By " + _vm._s(_vm.item.check_user.name) + "\n    "
+              ),
+              _c("VueCountUptimer", {
+                attrs: {
+                  "start-time": _vm.moment.utc(_vm.item.scouted_at).unix(),
+                  "end-text": "Window Closed",
+                  interval: 1000,
+                },
+                scopedSlots: _vm._u(
+                  [
+                    {
+                      key: "countup",
+                      fn: function (scope) {
+                        return [
+                          scope.props.minutes < 5
+                            ? _c(
+                                "span",
+                                { staticClass: "green--text pl-2 pr-2" },
+                                [
+                                  _vm._v(
+                                    _vm._s(scope.props.hours) +
+                                      ":" +
+                                      _vm._s(scope.props.minutes) +
+                                      ":" +
+                                      _vm._s(scope.props.seconds)
+                                  ),
+                                ]
+                              )
+                            : _c(
+                                "span",
+                                { staticClass: "red--text pl-2 pr-2" },
+                                [
+                                  _vm._v(
+                                    _vm._s(scope.props.hours) +
+                                      ":" +
+                                      _vm._s(scope.props.minutes) +
+                                      ":" +
+                                      _vm._s(scope.props.seconds)
+                                  ),
+                                ]
+                              ),
+                        ]
+                      },
+                    },
+                  ],
+                  null,
+                  false,
+                  3023558729
+                ),
+              }),
+              _vm._v("\n    ago.\n  "),
+            ],
+            1
+          )
+        : _vm._e(),
     ],
     1
   )
