@@ -12634,6 +12634,31 @@ function sleep(ms) {
       } else {
         return "rotate down ml-2";
       }
+    },
+    totalNodeDone: function totalNodeDone() {
+      return this.totalRedNodeDone + this.totalBlueNodeDone;
+    },
+    totalRedNodeDone: function totalRedNodeDone() {
+      return this.r_node;
+    },
+    totalBlueNodeDone: function totalBlueNodeDone() {
+      return this.b_blue;
+    },
+    totalBlueProgress: function totalBlueProgress() {
+      if (this.totalNodeDone) {
+        var num = this.totalBlueNodeDone / this.totalNodeDone * 100;
+        return num;
+      } else {
+        return 0;
+      }
+    },
+    totalRedProgress: function totalRedProgress() {
+      if (this.totalNodeDone) {
+        var num = this.totalRedNodeDone / this.totalNodeDone * 100;
+        return num;
+      } else {
+        return 0;
+      }
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -55841,7 +55866,7 @@ var render = function () {
                 {
                   staticClass:
                     "d-flex justify-content-center align-content-center",
-                  attrs: { cols: "8" },
+                  attrs: { cols: "7" },
                 },
                 [
                   _c(
@@ -55908,6 +55933,7 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-col",
+                { attrs: { cols: "2" } },
                 [
                   _c("span", { staticClass: "text-caption" }, [
                     _vm._v(" Active Nodes -"),
@@ -55980,14 +56006,15 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-col",
+                { attrs: { cols: "2" } },
                 [
                   _c("span", [_vm._v(" Nodes -")]),
                   _vm._v(" "),
                   _c("Vep", {
                     attrs: {
-                      progress: _vm.blueProgress,
+                      progress: _vm.totalBlueProgress,
                       size: 50,
-                      "legend-value": _vm.blueNode,
+                      "legend-value": _vm.totalBlueNodeDone,
                       fontSize: "0.80rem",
                       color: "#00ff00",
                       thickness: 4,
@@ -56005,7 +56032,7 @@ var render = function () {
                                 attrs: { slot: "legend-value" },
                                 slot: "legend-value",
                               },
-                              [_vm._v(" /" + _vm._s(_vm.totalNode))]
+                              [_vm._v(" /" + _vm._s(_vm.totalNodeDone))]
                             ),
                           ]
                         },
@@ -56016,9 +56043,9 @@ var render = function () {
                   _vm._v(" "),
                   _c("Vep", {
                     attrs: {
-                      progress: _vm.redProgress,
+                      progress: _vm.totalRedProgress,
                       size: 50,
-                      "legend-value": _vm.redNode,
+                      "legend-value": _vm.totalRedNodeDone,
                       fontSize: "0.80rem",
                       color: "#ff0000",
                       thickness: 4,
@@ -56036,7 +56063,7 @@ var render = function () {
                                 attrs: { slot: "legend-value" },
                                 slot: "legend-value",
                               },
-                              [_vm._v(" /" + _vm._s(_vm.totalNode))]
+                              [_vm._v(" /" + _vm._s(_vm.totalNodeDone))]
                             ),
                           ]
                         },

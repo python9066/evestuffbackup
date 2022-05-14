@@ -6,7 +6,7 @@
           {{ item.system.system_name }} - {{ eventType }}
         </v-col>
         <v-col
-          cols="8"
+          cols="7"
           class="d-flex justify-content-center align-content-center"
         >
           <v-icon small left dark :color="IconDColor" :class="IconDClass">
@@ -32,7 +32,7 @@
             {{ IconD }}
           </v-icon>
         </v-col>
-        <v-col>
+        <v-col cols="2">
           <span class="text-caption"> Active Nodes -</span>
           <Vep
             :progress="blueProgress"
@@ -63,12 +63,12 @@
             </template>
           </Vep>
         </v-col>
-        <v-col>
+        <v-col cols="2">
           <span> Nodes -</span>
           <Vep
-            :progress="blueProgress"
+            :progress="totalBlueProgress"
             :size="50"
-            :legend-value="blueNode"
+            :legend-value="totalBlueNodeDone"
             fontSize="0.80rem"
             color="#00ff00"
             :thickness="4"
@@ -76,13 +76,13 @@
             emptyColor="#a4fca4"
           >
             <template v-slot:legend-value>
-              <span slot="legend-value"> /{{ totalNode }}</span>
+              <span slot="legend-value"> /{{ totalNodeDone }}</span>
             </template>
           </Vep>
           <Vep
-            :progress="redProgress"
+            :progress="totalRedProgress"
             :size="50"
-            :legend-value="redNode"
+            :legend-value="totalRedNodeDone"
             fontSize="0.80rem"
             color="#ff0000"
             :thickness="4"
@@ -90,7 +90,7 @@
             emptyColor="#f08d8d"
           >
             <template v-slot:legend-value>
-              <span slot="legend-value"> /{{ totalNode }}</span>
+              <span slot="legend-value"> /{{ totalNodeDone }}</span>
             </template>
           </Vep>
         </v-col>
@@ -320,6 +320,36 @@ export default {
         return "rotate";
       } else {
         return "rotate down ml-2";
+      }
+    },
+
+    totalNodeDone() {
+      return this.totalRedNodeDone + this.totalBlueNodeDone;
+    },
+
+    totalRedNodeDone() {
+      return this.r_node;
+    },
+
+    totalBlueNodeDone() {
+      return this.b_blue;
+    },
+
+    totalBlueProgress() {
+      if (this.totalNodeDone) {
+        var num = (this.totalBlueNodeDone / this.totalNodeDone) * 100;
+        return num;
+      } else {
+        return 0;
+      }
+    },
+
+    totalRedProgress() {
+      if (this.totalNodeDone) {
+        var num = (this.totalRedNodeDone / this.totalNodeDone) * 100;
+        return num;
+      } else {
+        return 0;
       }
     },
   },
