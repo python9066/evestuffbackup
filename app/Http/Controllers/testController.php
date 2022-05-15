@@ -82,6 +82,112 @@ class testController extends Controller
             ])->get("https://628189349fac04c6540639f6.mockapi.io/timers");
             $campaigns = $response->collect();
             return $campaigns;
+
+            foreach ($campaigns as $campaign) {
+                $event_type = $campaign['event_type'];
+                if ($event_type == 'ihub_defense' || $event_type == 'tcu_defense') {
+                    $score_changed = false;
+                    if ($event_type == 'ihub_defense') {
+                        $event_type = 32458;
+                    } else {
+                        $event_type = 32226;
+                    }
+
+
+                    $id = $campaign['campaign_id'];
+                    $old = NewCampaign::where('id', $id)->first();
+                    if ($old) {
+                        // * Checking if the score has changed
+                        if ($campaign['attackers_score'] != $old->attackers_score) {
+                            $attackers_score_old = $old->attackers_score;
+                            $defenders_score_old = $old->defenders_score;
+                            $old->update([
+                                'attackers_score_old' => $attackers_score_old,
+                                'defenders_score_old' => $defenders_score_old
+                            ]);
+                            $score_changed = true;
+                        }
+                    }
+
+                    $time = $campaign['start_time'];
+                    $start_time = Helper::fixtime($time);
+                    $data = array();
+                    $data = array(
+                        'attackers_score' => $campaign['attackers_score'],
+                        'constellation_id' => $campaign['constellation_id'],
+                        'alliance_id' => $campaign['defender_id'],
+                        'defenders_score' => $campaign['defender_score'],
+                        'event_type' => $event_type,
+                        'system_id' => $campaign['solar_system_id'],
+                        'start_time' => $start_time,
+                        'structure_id' => $campaign['structure_id'],
+                        'check' => 1,
+                    );
+
+                    NewCampaign::updateOrCreate(['id' => $id], $data);
+                    echo $score_changed;
+                    // * If Score has changed
+
+                    if ($score_changed) {
+                        echo " -  I AM IN   -";
+                        $campaign = NewCampaign::where('id', $id)->first();
+                        $campaignOperations = NewCampaignOperation::where('campaign_id', $id)->get();
+                        $bNode = $campaign->b_node;
+                        $rNode = $campaign->r_node;
+                        echo $id;
+                        $campaignNodes = NewSystemNode::where('campaign_id', $id)->whereIn('node_status', [4, 5])->get();
+                        foreach ($campaignNodes as $campaignNode) {
+                            $system_id = $campaignNode->system_id;
+                            if ($campaignNode->node_status == 4) {
+                                $bNode = $bNode + 1;
+                                echo "yay add 1 to blue";
+                            } else {
+                                $rNode = $rNode + 1;
+                                echo "yay add 1 to red";
+                            }
+                            $campaignNode->delete();
+                            Broadcasthelper::broadcastsystemSolo($system_id, 7);
+                        }
+
+                        $campaign->update(['b_node' => $bNode, 'r_node' => $rNode]);
+                        foreach ($campaignOperations as $campaignOperation) {
+                            Broadcasthelper::broadcastCampaignSolo($campaign->id, $campaignOperation->operation_id, 4);
+                        }
+                    }
+
+                    // * Setting everything up for a new campaign
+                    if (NewCampaignOperation::where('campaign_id', $id)->count() == 0) {
+                        $uuid = Str::uuid();
+                        $system = System::where('id', $campaign['solar_system_id'])->first();
+                        $systemName = $system->system_name;
+                        if ($event_type == 32458) {
+                            $type = "Ihub";
+                        } else {
+                            $type = "TCU";
+                        }
+                        $title = $systemName . " - " . $type;
+                        $newOp = NewOperation::create([
+                            'link' => $uuid,
+                            'solo' => 1,
+                            'status' => 1,
+                            'title' => $title,
+                        ]);
+
+                        NewCampaignOperation::create([
+                            'campaign_id' => $id,
+                            'operation_id' => $newOp->id
+                        ]);
+
+                        $campaignSystemsIDs = System::where('constellation_id', $campaign['constellation_id'])->pluck('id');
+                        foreach ($campaignSystemsIDs as $systemid) {
+                            NewCampaignSystem::create([
+                                'system_id' => $systemid,
+                                'new_campaign_id' => $id
+                            ]);
+                        }
+                    }
+                }
+            }
         }
     }
 
