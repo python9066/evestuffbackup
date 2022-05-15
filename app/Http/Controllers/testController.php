@@ -81,7 +81,7 @@ class testController extends Controller
                 'User-Agent' => 'evestuff.online python9066@gmail.com'
             ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
             $campaigns = $response->collect();
-            return $campaigns;
+            return $response;
         }
     }
 
