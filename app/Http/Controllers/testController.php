@@ -75,8 +75,13 @@ class testController extends Controller
     {
         $user = Auth::user();
         if ($user->can('super')) {
-            $return = Artisan::call('update:newCampaigns');
-            return $return;
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json',
+                "Accept" => "application/json",
+                'User-Agent' => 'evestuff.online python9066@gmail.com'
+            ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
+            $campaigns = $response->collect();
+            return $campaigns;
         }
     }
 
