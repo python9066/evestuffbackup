@@ -75,7 +75,8 @@ class testController extends Controller
     {
         $user = Auth::user();
         if ($user->can('super')) {
-            Artisan::call('update:newCampaigns');
+            $return = Artisan::call('update:newCampaigns');
+            return $return;
         }
     }
 
