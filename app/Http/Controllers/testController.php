@@ -75,13 +75,17 @@ class testController extends Controller
     {
         $user = Auth::user();
         if ($user->can('super')) {
-            $response = Http::withHeaders([
-                'Content-Type' => 'application/json',
-                "Accept" => "application/json",
-                'User-Agent' => 'evestuff.online python9066@gmail.com'
-            ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
-            $campaigns = $response->collect();
-            return $response;
+            // $response = Http::withHeaders([
+            //     'Content-Type' => 'application/json',
+            //     "Accept" => "application/json",
+            //     'User-Agent' => 'evestuff.online python9066@gmail.com'
+            // ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
+            // $campaigns = $response->collect();
+            // return $response;
+
+            $path = storage_path("testing/json/test-data.json");
+            $json = file_get_contents($path);
+            return $json;
         }
     }
 
