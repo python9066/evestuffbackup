@@ -302,7 +302,7 @@ class NewCampaignhelper
 
     public static function campaignSolo($campaignID)
     {
-        return NewCampaign::where('id', 97050)->with([
+        return NewCampaign::where('id', $campaignID)->with([
             'status',
             'constellation:id,constellation_name,region_id',
             'constellation.region:id,region_name',
