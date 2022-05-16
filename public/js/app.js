@@ -12518,6 +12518,32 @@ function sleep(ms) {
           }
         }, _callee5);
       }))();
+    },
+    clear: function clear() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return axios({
+                  method: "POST",
+                  //you can set what request you want to be
+                  url: "/api/testclearalldata",
+                  withCredentials: true,
+                  headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }))();
     }
   },
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])(["getRedCampaignNodes", "getBlueCampaignNodes", "getTotalCampaignNodes"])), Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])([])), {}, {
