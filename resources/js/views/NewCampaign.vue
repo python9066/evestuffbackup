@@ -17,7 +17,7 @@
       <v-col
         cols="6"
         class="px-5"
-        v-for="(item, index) in systems"
+        v-for="(item, index) in openSystems"
         :key="index.id"
       >
         <CampaignSystemCard
@@ -140,6 +140,10 @@ export default {
       } else {
         return [];
       }
+    },
+
+    currentTime() {
+      return moment.utc();
     },
 
     activeCampaings() {
