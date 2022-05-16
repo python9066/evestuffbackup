@@ -227,6 +227,10 @@ class testController extends Controller
                 ->get();
             foreach ($warmupCampaigns as $start) {
                 $start->update(['status_id' => 5, 'check' => 1]);
+                $opIDs = NewCampaignOperation::where('campaign_id', $start->id)->get();
+                foreach ($opIDs as $opID) {
+                    Broadcasthelper::broadcastCampaignSolo($start->id, $opID->operation_id, 4);
+                }
             };
 
             // * Checks to see if a campaign has moved from warmup to active
@@ -236,6 +240,10 @@ class testController extends Controller
                 ->get();
             foreach ($startedCampaigns as $start) {
                 $start->update(['status_id' => 2, 'check' => 1]);
+                $opIDs = NewCampaignOperation::where('campaign_id', $start->id)->get();
+                foreach ($opIDs as $opID) {
+                    Broadcasthelper::broadcastCampaignSolo($start->id, $opID->operation_id, 4);
+                }
             };
 
             //! IF CHECK = 0, that means its not on the API which means the campaing is over.
