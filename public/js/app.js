@@ -100080,10 +100080,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       return activeCampaigns;
     },
     getActiveCampaingsIDs: function getActiveCampaingsIDs(getters) {
-      var activeCampaingsIDs = getters.getActiveCampaignsNew.map(function (c) {
-        return c.id;
-      });
-      return activeCampaingsIDs;
+      if (getters.getActiveCampaignsNew.length > 0) {
+        var activeCampaingsIDs = getters.getActiveCampaignsNew.map(function (c) {
+          return c.id;
+        });
+        return activeCampaingsIDs;
+      } else {
+        return [];
+      }
     },
     getWarmUpCampaigns: function getWarmUpCampaigns(state) {
       var warmUpCampaigns = state.newCampaigns.filter(function (c) {
@@ -100098,13 +100102,17 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       return warmUpCampaigns;
     },
     getWarmUpCampaignIDs: function getWarmUpCampaignIDs(getters) {
-      var warmUpCampaignIDs = getters.getWarmUpCampaigns.map(function (c) {
-        return c.id;
-      });
-      return warmUpCampaignIDs;
+      if (getters.getWarmUpCampaigns.length > 0) {
+        var warmUpCampaignIDs = getters.getWarmUpCampaigns.map(function (c) {
+          return c.id;
+        });
+        return warmUpCampaignIDs;
+      } else {
+        return [];
+      }
     },
     getOpenCampaigns: function getOpenCampaigns(state) {
-      var openCampaings = state.newCampaigns.filter(function (C) {
+      var openCampaings = state.newCampaigns.filter(function (c) {
         if ((c.status_id == 5 || c.status_id == 2) && c.status_id != 3) {
           return true;
         } else if (moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc(c.start_time).subtract(1, "h") <= moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc() && moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc(c.start_time) > moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc() || moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc(c.start_time) <= moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc() && c.end_time == null) {
@@ -100116,10 +100124,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       return openCampaings;
     },
     getOpenCampaignIDs: function getOpenCampaignIDs(getters) {
-      var openCampaignIDs = getters.getOpenCampaigns.map(function (c) {
-        return c.id;
-      });
-      return openCampaignIDs;
+      if (getters.getOpenCampaigns.length > 0) {
+        var openCampaignIDs = getters.getOpenCampaigns.map(function (c) {
+          return c.id;
+        });
+        return openCampaignIDs;
+      } else {
+        return [];
+      }
     },
     getUpComingCampaigns: function getUpComingCampaigns(state) {
       var upComingCampaigns = state.newCampaigns.filter(function (c) {
@@ -100128,10 +100140,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       return upComingCampaigns;
     },
     getUpComingCampaignIDs: function getUpComingCampaignIDs(getters) {
-      var campaignUpcomingIDs = getters.getUpComingCampaigns.map(function (c) {
-        return c.id;
-      });
-      return campaignUpcomingIDs;
+      if (getters.getUpComingCampaigns.length > 0) {
+        var campaignUpcomingIDs = getters.getUpComingCampaigns.map(function (c) {
+          return c.id;
+        });
+        return campaignUpcomingIDs;
+      } else {
+        return [];
+      }
     },
     getOverCampaigns: function getOverCampaigns(state) {
       var overCampaign = state.newCampaigns.filter(function (c) {
@@ -100140,10 +100156,14 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
       return overCampaign;
     },
     getOverCampaignIDs: function getOverCampaignIDs(getters) {
-      var overCampaignIds = getters.getOverCampaigns.map(function (c) {
-        return c.id;
-      });
-      return overCampaignIds;
+      if (getters.getOverCampaigns.length > 0) {
+        var overCampaignIds = getters.getOverCampaigns.map(function (c) {
+          return c.id;
+        });
+        return overCampaignIds;
+      } else {
+        return [];
+      }
     },
     getOpenSystems: function getOpenSystems(state, getters) {
       var openSystems = state.newCampaignSystems.filter(function (s) {

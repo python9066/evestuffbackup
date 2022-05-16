@@ -2646,10 +2646,14 @@ export default new Vuex.Store({
         },
 
         getActiveCampaingsIDs: (getters) => {
-            var activeCampaingsIDs = getters.getActiveCampaignsNew.map(
-                (c) => c.id
-            );
-            return activeCampaingsIDs;
+            if (getters.getActiveCampaignsNew.length > 0) {
+                var activeCampaingsIDs = getters.getActiveCampaignsNew.map(
+                    (c) => c.id
+                );
+                return activeCampaingsIDs;
+            } else {
+                return [];
+            }
         },
 
         getWarmUpCampaigns: (state) => {
@@ -2670,12 +2674,18 @@ export default new Vuex.Store({
         },
 
         getWarmUpCampaignIDs: (getters) => {
-            var warmUpCampaignIDs = getters.getWarmUpCampaigns.map((c) => c.id);
-            return warmUpCampaignIDs;
+            if (getters.getWarmUpCampaigns.length > 0) {
+                var warmUpCampaignIDs = getters.getWarmUpCampaigns.map(
+                    (c) => c.id
+                );
+                return warmUpCampaignIDs;
+            } else {
+                return [];
+            }
         },
 
         getOpenCampaigns: (state) => {
-            var openCampaings = state.newCampaigns.filter((C) => {
+            var openCampaings = state.newCampaigns.filter((c) => {
                 if (
                     (c.status_id == 5 || c.status_id == 2) &&
                     c.status_id != 3
@@ -2698,8 +2708,12 @@ export default new Vuex.Store({
         },
 
         getOpenCampaignIDs: (getters) => {
-            var openCampaignIDs = getters.getOpenCampaigns.map((c) => c.id);
-            return openCampaignIDs;
+            if (getters.getOpenCampaigns.length > 0) {
+                var openCampaignIDs = getters.getOpenCampaigns.map((c) => c.id);
+                return openCampaignIDs;
+            } else {
+                return [];
+            }
         },
 
         getUpComingCampaigns: (state) => {
@@ -2710,10 +2724,14 @@ export default new Vuex.Store({
         },
 
         getUpComingCampaignIDs: (getters) => {
-            var campaignUpcomingIDs = getters.getUpComingCampaigns.map(
-                (c) => c.id
-            );
-            return campaignUpcomingIDs;
+            if (getters.getUpComingCampaigns.length > 0) {
+                var campaignUpcomingIDs = getters.getUpComingCampaigns.map(
+                    (c) => c.id
+                );
+                return campaignUpcomingIDs;
+            } else {
+                return [];
+            }
         },
 
         getOverCampaigns: (state) => {
@@ -2724,8 +2742,12 @@ export default new Vuex.Store({
         },
 
         getOverCampaignIDs: (getters) => {
-            var overCampaignIds = getters.getOverCampaigns.map((c) => c.id);
-            return overCampaignIds;
+            if (getters.getOverCampaigns.length > 0) {
+                var overCampaignIds = getters.getOverCampaigns.map((c) => c.id);
+                return overCampaignIds;
+            } else {
+                return [];
+            }
         },
 
         getOpenSystems: (state, getters) => {
