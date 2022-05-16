@@ -7,8 +7,10 @@ use App\Jobs\updateWebwayJob;
 use App\Models\Campaign;
 use App\Models\Corp;
 use App\Models\NewCampaign;
+use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
+use App\Models\NewSystemNode;
 use App\Models\Region;
 use App\Models\Station;
 use App\Models\System;
@@ -28,6 +30,8 @@ use Illuminate\Support\Facades\Http;
 use utils\Alliancehelper\Alliancehelper;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
+use utils\Broadcasthelper\Broadcasthelper;
+use Illuminate\Support\Str;
 
 class testController extends Controller
 {
