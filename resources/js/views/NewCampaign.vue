@@ -122,7 +122,22 @@ export default {
 
   computed: {
     ...mapState(["newOperationInfo", "newCampaignSystems"]),
-    ...mapGetters([]),
+    ...mapGetters([
+      "getCampaignAllIDs",
+      "getOperationID",
+      "getActiveCampaigns",
+      "getActiveCampaingsIDs",
+      "getWarmUpCampaigns",
+      "getWarmUpCampaignIDs",
+      "getOpenCampaigns",
+      "getOpenCampaignIDs",
+      "getUpComingCampaigns",
+      "getUpComingCampaignIDs",
+      "getOverCampaigns",
+      "getOverCampaignIDs",
+      "getOpenSystems",
+      "getActiveSystems",
+    ]),
 
     operationID() {
       return this.newOperationInfo.id;
