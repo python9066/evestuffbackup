@@ -80,7 +80,7 @@ class testController extends Controller
 
     public function testClearCampaigns()
     {
-        NewCampaignOperation::truncate();
+        NewCampaignOperation::trucate();
         NewCampaignSystem::trucate();
         NewCampaign::trucate();
         NewOperation::trucate();
@@ -90,7 +90,7 @@ class testController extends Controller
             ->update([
                 'operation_id' => null,
                 'user_status_id' => 1,
-                'system_id' => 1
+                'system_id' => null
             ]);
     }
 
