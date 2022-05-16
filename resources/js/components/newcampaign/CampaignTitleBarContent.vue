@@ -102,6 +102,7 @@
           <v-text-field v-model="newscore" type="number"></v-text-field>
           <v-btn @click="updateScore()"> update</v-btn>
           <v-btn @click="update()"> artisan</v-btn>
+          <v-btn @click="clear()" color="warning"> CLER ALL DATA</v-btn>
         </v-col>
       </v-row>
     </v-col>

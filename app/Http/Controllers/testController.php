@@ -11,6 +11,8 @@ use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
 use App\Models\NewSystemNode;
+use App\Models\NewUserNode;
+use App\Models\OperationUser;
 use App\Models\Region;
 use App\Models\Station;
 use App\Models\System;
@@ -73,6 +75,23 @@ class testController extends Controller
         if ($user->can('super')) {
             NewCampaign::where('id', $id)->update($request->all());
         }
+    }
+
+
+    public function testClearCampaigns()
+    {
+        NewCampaignOperation::truncate();
+        NewCampaignSystem::trucate();
+        NewCampaign::trucate();
+        NewOperation::trucate();
+        NewSystemNode::trucate();
+        NewUserNode::trucate();
+        OperationUser::whereNotNull('id')
+            ->update([
+                'operation_id' => null,
+                'user_status_id' => 1,
+                'system_id' => 1
+            ]);
     }
 
     public function testRunScore()

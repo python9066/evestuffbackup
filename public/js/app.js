@@ -12392,6 +12392,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -56568,6 +56569,19 @@ var render = function () {
                       },
                     },
                     [_vm._v(" artisan")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "warning" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.clear()
+                        },
+                      },
+                    },
+                    [_vm._v(" CLER ALL DATA")]
                   ),
                 ],
                 1

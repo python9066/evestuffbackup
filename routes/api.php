@@ -34,6 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/test', 'testController@key');
     Route::post('/testscoreupdate/{id}', 'testController@testUpdateScore');
     Route::post('/testscorerun', 'testController@testRunScore');
+    Route::post('/testclearalldata', 'testController@testClearCampaigns');
     Route::post('/url', 'AppController@url');
     Route::get('/eveusercount', 'EveController@playerCount');
 

@@ -269,7 +269,7 @@ class NewCampaignhelper
     {
         return System::whereIn('constellation_id', $contellationIDs)
             ->with([
-                'newCampaigns',
+                'newCampaigns.operations',
                 'newNodes.nodeStatus',
                 'newNodes.nonePrimeNodeUser.opUser.user',
                 'newNodes.nonePrimeNodeUser.nodeStatus',
@@ -286,7 +286,7 @@ class NewCampaignhelper
     {
         return System::where('id', $systemID)
             ->with([
-                'newCampaigns',
+                'newCampaigns.operations',
                 'newNodes.nodeStatus',
                 'newNodes.nonePrimeNodeUser.opUser.user',
                 'newNodes.nonePrimeNodeUser.nodeStatus',
