@@ -16314,6 +16314,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -16376,6 +16377,19 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return "red darken-4";
+    },
+    rowClick: function rowClick(item) {
+      //   if (this.$can("access_campaigns")) {
+      //     var left = moment.utc(item.start).unix() - moment.utc().unix();
+      //     if (left < 3600 && item.status_id < 3) {
+      //       this.$router.push({ path: `/op/${item.link}` }); // -> /user/123
+      //     }
+      //   }
+      if (this.$can("access_campaigns")) {
+        this.$router.push({
+          path: "/op/".concat(item.link)
+        }); // -> /user/123
+      }
     },
     campaignStart: function campaignStart(item) {
       item.campaign[0].status.status_name = "Active";
@@ -59353,6 +59367,11 @@ var render = function () {
                     "items-per-page": 50,
                     "footer-props": {
                       "items-per-page-options": [10, 20, 30, 50, 100, -1],
+                    },
+                  },
+                  on: {
+                    "click:row": function ($event) {
+                      return _vm.rowClick($event)
                     },
                   },
                   scopedSlots: _vm._u(
