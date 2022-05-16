@@ -6,6 +6,8 @@
         <CampaignTitleBar
           :operationID="operationID"
           :title="newOperationInfo.title"
+          :activeCampaigns="activeCampaigns"
+          :warmUpCampaigns="warmUpCampaigns"
         ></CampaignTitleBar>
       </v-col>
     </v-row>
@@ -154,7 +156,7 @@ export default {
     },
 
     // * active = able to hack
-    activeCampaings() {
+    activeCampaigns() {
       var check = this.newCampaigns.length;
       if (check > 0) {
         var campaigns = this.newCampaigns.filter((c) => {
@@ -176,9 +178,9 @@ export default {
       }
     },
 
-    activeCampaingIDs() {
-      if (this.activeCampaings.length > 0) {
-        var ids = this.activeCampaings.map((c) => c.id);
+    activeCampaigns() {
+      if (this.activeCampaigns.length > 0) {
+        var ids = this.activeCampaigns.map((c) => c.id);
         return ids;
       } else {
         return [];
@@ -217,13 +219,13 @@ export default {
 
     // * warmup and active
     openCampaings() {
-      if (this.activeCampaings.length > 0 && this.warmUpCampaigns.length > 0) {
-        let open = this.activeCampaings.concat(this.warmUpCampaigns);
+      if (this.activeCampaigns.length > 0 && this.warmUpCampaigns.length > 0) {
+        let open = this.activeCampaigns.concat(this.warmUpCampaigns);
         open = open.filter((item, index) => {
           return open.indexOf(item) == index;
         });
-      } else if (this.activeCampaings.length > 0) {
-        return this.activeCampaings;
+      } else if (this.activeCampaigns.length > 0) {
+        return this.activeCampaigns;
       } else if (this.warmUpCampaigns.length > 0) {
         return this.warmUpCampaigns;
       } else {
@@ -291,7 +293,7 @@ export default {
     activeSystem() {
       var systems = this.newCampaignSystems.filter((s) => {
         let systems = s.new_campaigns.filter((c) =>
-          this.activeCampaingIDs.includes(c.id)
+          this.activeCampaigns.includes(c.id)
         );
         if (systems.length > 0) {
           return true;

@@ -1,7 +1,7 @@
 <template>
   <v-row no-gutters>
     <v-col cols="12">
-      <v-row no-gutters align="center">
+      <v-row no-gutters align="center" v-if="showScore">
         <v-col cols="2">
           <span :class="textColor">
             {{ item.system.system_name }} - {{ eventType }}:
@@ -125,6 +125,8 @@ export default {
     item: [Object, Array],
     title: String,
     operationID: Number,
+    activeCampaigns: Array,
+    warmUpCampaigns: Array,
   },
   data() {
     return {
@@ -376,6 +378,17 @@ export default {
       if (this.item.alliance.color < 0) {
         return "red--text";
       }
+    },
+
+    showScore() {
+      var show = false;
+      activeCampaigns.forEach((n) => {
+        if (n.id == this.item.id) {
+          show = true;
+        }
+      });
+
+      return show;
     },
   },
   beforeDestroy() {},

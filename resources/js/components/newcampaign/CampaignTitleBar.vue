@@ -13,6 +13,8 @@
               :item="item"
               :title="title"
               :operationID="operationID"
+              :activeCampaigns="activeCampaings"
+              :warmUpCampaigns="warmUpCampaigns"
             />
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -36,6 +38,8 @@ export default {
   props: {
     title: String,
     operationID: Number,
+    activeCampaigns: Array,
+    warmUpCampaigns: Array,
   },
   data() {
     return {};

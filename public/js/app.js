@@ -12183,6 +12183,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -12198,7 +12200,9 @@ function sleep(ms) {
   title: function title() {},
   props: {
     title: String,
-    operationID: Number
+    operationID: Number,
+    activeCampaigns: Array,
+    warmUpCampaigns: Array
   },
   data: function data() {
     return {};
@@ -12409,7 +12413,9 @@ function sleep(ms) {
   props: {
     item: [Object, Array],
     title: String,
-    operationID: Number
+    operationID: Number,
+    activeCampaigns: Array,
+    warmUpCampaigns: Array
   },
   data: function data() {
     return {
@@ -12694,6 +12700,17 @@ function sleep(ms) {
       if (this.item.alliance.color < 0) {
         return "red--text";
       }
+    },
+    showScore: function showScore() {
+      var _this2 = this;
+
+      var show = false;
+      activeCampaigns.forEach(function (n) {
+        if (n.id == _this2.item.id) {
+          show = true;
+        }
+      });
+      return show;
     }
   }),
   beforeDestroy: function beforeDestroy() {}
@@ -35961,6 +35978,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
+var _objectSpread2;
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -35973,6 +35992,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -36130,7 +36151,7 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo", "newCampaignSystems", "newCampaigns"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo", "newCampaignSystems", "newCampaigns"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), {}, (_objectSpread2 = {
     currentTime: function currentTime() {
       return this.now;
     },
@@ -36152,7 +36173,7 @@ function sleep(ms) {
       }
     },
     // * active = able to hack
-    activeCampaings: function activeCampaings() {
+    activeCampaigns: function activeCampaigns() {
       var _this2 = this;
 
       var check = this.newCampaigns.length;
@@ -36171,141 +36192,129 @@ function sleep(ms) {
       } else {
         return [];
       }
-    },
-    activeCampaingIDs: function activeCampaingIDs() {
-      if (this.activeCampaings.length > 0) {
-        var ids = this.activeCampaings.map(function (c) {
-          return c.id;
-        });
-        return ids;
-      } else {
-        return [];
-      }
-    },
-    warmUpCampaigns: function warmUpCampaigns() {
-      var _this3 = this;
+    }
+  }, _defineProperty(_objectSpread2, "activeCampaigns", function activeCampaigns() {
+    if (this.activeCampaigns.length > 0) {
+      var ids = this.activeCampaigns.map(function (c) {
+        return c.id;
+      });
+      return ids;
+    } else {
+      return [];
+    }
+  }), _defineProperty(_objectSpread2, "warmUpCampaigns", function warmUpCampaigns() {
+    var _this3 = this;
 
-      var check = this.newCampaigns.length;
+    var check = this.newCampaigns.length;
 
-      if (check > 0) {
-        var campaigns = this.newCampaigns.filter(function (c) {
-          if (c.status_id == 5) {
-            return true;
-          } else if (moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time).subtract(1, "h") <= _this3.currentTime && moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time) > _this3.currentTime) {
-            return true;
-          } else {
-            return false;
-          }
-        });
-        return campaigns;
-      } else {
-        return [];
-      }
-    },
-    warmUpIDs: function warmUpIDs() {
-      if (this.warmUpCampaigns.length > 0) {
-        var ids = this.warmUpCampaigns.map(function (c) {
-          return c.id;
-        });
-        return ids;
-      } else {
-        return [];
-      }
-    },
-    // * warmup and active
-    openCampaings: function openCampaings() {
-      if (this.activeCampaings.length > 0 && this.warmUpCampaigns.length > 0) {
-        var open = this.activeCampaings.concat(this.warmUpCampaigns);
-        open = open.filter(function (item, index) {
-          return open.indexOf(item) == index;
-        });
-      } else if (this.activeCampaings.length > 0) {
-        return this.activeCampaings;
-      } else if (this.warmUpCampaigns.length > 0) {
-        return this.warmUpCampaigns;
-      } else {
-        return [];
-      }
-    },
-    openCampaignIDs: function openCampaignIDs() {
-      if (this.openCampaings.length > 0) {
-        var ids = this.openCampaings.map(function (c) {
-          return c.id;
-        });
-        return ids;
-      } else {
-        return [];
-      }
-    },
-    upComingCampaigns: function upComingCampaigns() {
+    if (check > 0) {
       var campaigns = this.newCampaigns.filter(function (c) {
-        return c.status_id == 1;
+        if (c.status_id == 5) {
+          return true;
+        } else if (moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time).subtract(1, "h") <= _this3.currentTime && moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time) > _this3.currentTime) {
+          return true;
+        } else {
+          return false;
+        }
       });
       return campaigns;
-    },
-    upComingCampaignIDs: function upComingCampaignIDs() {
-      if (this.upComingCampaigns.length > 0) {
-        var ids = this.upComingCampaigns.map(function (c) {
-          return c.id;
-        });
-        return ids;
-      } else {
-        return [];
-      }
-    },
-    overCampaigns: function overCampaigns() {
-      if (this.newCampaigns.length > 0) {
-        var campaigns = this.newCampaigns.filter(function (c) {
-          return c.status_id == 3 || c.status_id == 4;
-        });
-        return campaigns;
-      } else {
-        return [];
-      }
-    },
-    overCampaignsIDs: function overCampaignsIDs() {
-      if (this.overCampaigns.length > 0) {
-        var ids = this.overCampaigns.map(function (c) {
-          return c.id;
-        });
-        return ids;
-      } else {
-        return [];
-      }
-    },
-    openSystems: function openSystems() {
-      var _this4 = this;
-
-      var systems = this.newCampaignSystems.filter(function (s) {
-        var systems = s.new_campaigns.filter(function (c) {
-          return _this4.openCampaignIDs.includes(c.id);
-        });
-
-        if (systems.length > 0) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-      return systems;
-    },
-    activeSystem: function activeSystem() {
-      var _this5 = this;
-
-      var systems = this.newCampaignSystems.filter(function (s) {
-        var systems = s.new_campaigns.filter(function (c) {
-          return _this5.activeCampaingIDs.includes(c.id);
-        });
-
-        if (systems.length > 0) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-      return systems;
+    } else {
+      return [];
     }
-  }),
+  }), _defineProperty(_objectSpread2, "warmUpIDs", function warmUpIDs() {
+    if (this.warmUpCampaigns.length > 0) {
+      var ids = this.warmUpCampaigns.map(function (c) {
+        return c.id;
+      });
+      return ids;
+    } else {
+      return [];
+    }
+  }), _defineProperty(_objectSpread2, "openCampaings", function openCampaings() {
+    if (this.activeCampaigns.length > 0 && this.warmUpCampaigns.length > 0) {
+      var open = this.activeCampaigns.concat(this.warmUpCampaigns);
+      open = open.filter(function (item, index) {
+        return open.indexOf(item) == index;
+      });
+    } else if (this.activeCampaigns.length > 0) {
+      return this.activeCampaigns;
+    } else if (this.warmUpCampaigns.length > 0) {
+      return this.warmUpCampaigns;
+    } else {
+      return [];
+    }
+  }), _defineProperty(_objectSpread2, "openCampaignIDs", function openCampaignIDs() {
+    if (this.openCampaings.length > 0) {
+      var ids = this.openCampaings.map(function (c) {
+        return c.id;
+      });
+      return ids;
+    } else {
+      return [];
+    }
+  }), _defineProperty(_objectSpread2, "upComingCampaigns", function upComingCampaigns() {
+    var campaigns = this.newCampaigns.filter(function (c) {
+      return c.status_id == 1;
+    });
+    return campaigns;
+  }), _defineProperty(_objectSpread2, "upComingCampaignIDs", function upComingCampaignIDs() {
+    if (this.upComingCampaigns.length > 0) {
+      var ids = this.upComingCampaigns.map(function (c) {
+        return c.id;
+      });
+      return ids;
+    } else {
+      return [];
+    }
+  }), _defineProperty(_objectSpread2, "overCampaigns", function overCampaigns() {
+    if (this.newCampaigns.length > 0) {
+      var campaigns = this.newCampaigns.filter(function (c) {
+        return c.status_id == 3 || c.status_id == 4;
+      });
+      return campaigns;
+    } else {
+      return [];
+    }
+  }), _defineProperty(_objectSpread2, "overCampaignsIDs", function overCampaignsIDs() {
+    if (this.overCampaigns.length > 0) {
+      var ids = this.overCampaigns.map(function (c) {
+        return c.id;
+      });
+      return ids;
+    } else {
+      return [];
+    }
+  }), _defineProperty(_objectSpread2, "openSystems", function openSystems() {
+    var _this4 = this;
+
+    var systems = this.newCampaignSystems.filter(function (s) {
+      var systems = s.new_campaigns.filter(function (c) {
+        return _this4.openCampaignIDs.includes(c.id);
+      });
+
+      if (systems.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return systems;
+  }), _defineProperty(_objectSpread2, "activeSystem", function activeSystem() {
+    var _this5 = this;
+
+    var systems = this.newCampaignSystems.filter(function (s) {
+      var systems = s.new_campaigns.filter(function (c) {
+        return _this5.activeCampaigns.includes(c.id);
+      });
+
+      if (systems.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return systems;
+  }), _objectSpread2)),
   beforeDestroy: function beforeDestroy() {
     Echo.leave("operations." + this.operationID);
     Echo.leave("operationsown." + this.$store.state.user_id);
@@ -56445,6 +56454,8 @@ var render = function () {
                           item: item,
                           title: _vm.title,
                           operationID: _vm.operationID,
+                          activeCampaigns: _vm.activeCampaings,
+                          warmUpCampaigns: _vm.warmUpCampaigns,
                         },
                       })
                     }),
@@ -56493,246 +56504,277 @@ var render = function () {
         "v-col",
         { attrs: { cols: "12" } },
         [
-          _c(
-            "v-row",
-            { attrs: { "no-gutters": "", align: "center" } },
-            [
-              _c("v-col", { attrs: { cols: "2" } }, [
-                _c(
-                  "span",
-                  { class: _vm.textColor },
-                  [
-                    _vm._v(
-                      "\n          " +
-                        _vm._s(_vm.item.system.system_name) +
-                        " - " +
-                        _vm._s(_vm.eventType) +
-                        ":\n          " +
-                        _vm._s(this.item.alliance.ticker) +
-                        "\n          "
-                    ),
-                    _c("v-avatar", { attrs: { size: "50" } }, [
-                      _c("img", { attrs: { src: this.item.alliance.url } }),
-                    ]),
-                  ],
-                  1
-                ),
-              ]),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                {
-                  staticClass:
-                    "d-flex justify-content-center align-content-center",
-                  attrs: { cols: "6" },
-                },
+          _vm.showScore
+            ? _c(
+                "v-row",
+                { attrs: { "no-gutters": "", align: "center" } },
                 [
-                  _c(
-                    "v-icon",
-                    {
-                      class: _vm.IconDClass,
-                      attrs: {
-                        small: "",
-                        left: "",
-                        dark: "",
-                        color: _vm.IconDColor,
-                      },
-                    },
-                    [_vm._v("\n          " + _vm._s(_vm.IconD) + "\n        ")]
-                  ),
+                  _c("v-col", { attrs: { cols: "2" } }, [
+                    _c(
+                      "span",
+                      { class: _vm.textColor },
+                      [
+                        _vm._v(
+                          "\n          " +
+                            _vm._s(_vm.item.system.system_name) +
+                            " - " +
+                            _vm._s(_vm.eventType) +
+                            ":\n          " +
+                            _vm._s(this.item.alliance.ticker) +
+                            "\n          "
+                        ),
+                        _c("v-avatar", { attrs: { size: "50" } }, [
+                          _c("img", { attrs: { src: this.item.alliance.url } }),
+                        ]),
+                      ],
+                      1
+                    ),
+                  ]),
                   _vm._v(" "),
                   _c(
-                    "v-progress-linear",
+                    "v-col",
                     {
-                      attrs: {
-                        color: _vm.barColor,
-                        value: _vm.barScoure,
-                        height: "20",
-                        rounded: "",
-                        active: true,
-                        reverse: _vm.barReverse,
-                        "background-color": _vm.barBgcolor,
-                        "background-opacity": "0.2",
-                      },
+                      staticClass:
+                        "d-flex justify-content-center align-content-center",
+                      attrs: { cols: "6" },
                     },
                     [
-                      _c("strong", [
-                        _vm._v(
-                          "\n            " +
-                            _vm._s(_vm.item.defenders_score * 100) +
-                            " (" +
-                            _vm._s(_vm.nodesToLose) +
-                            ") /\n            " +
-                            _vm._s(_vm.item.attackers_score * 100) +
-                            " (" +
-                            _vm._s(_vm.nodesToWin) +
-                            ")\n          "
-                        ),
-                      ]),
-                    ]
+                      _c(
+                        "v-icon",
+                        {
+                          class: _vm.IconDClass,
+                          attrs: {
+                            small: "",
+                            left: "",
+                            dark: "",
+                            color: _vm.IconDColor,
+                          },
+                        },
+                        [
+                          _vm._v(
+                            "\n          " + _vm._s(_vm.IconD) + "\n        "
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-progress-linear",
+                        {
+                          attrs: {
+                            color: _vm.barColor,
+                            value: _vm.barScoure,
+                            height: "20",
+                            rounded: "",
+                            active: true,
+                            reverse: _vm.barReverse,
+                            "background-color": _vm.barBgcolor,
+                            "background-opacity": "0.2",
+                          },
+                        },
+                        [
+                          _c("strong", [
+                            _vm._v(
+                              "\n            " +
+                                _vm._s(_vm.item.defenders_score * 100) +
+                                " (" +
+                                _vm._s(_vm.nodesToLose) +
+                                ") /\n            " +
+                                _vm._s(_vm.item.attackers_score * 100) +
+                                " (" +
+                                _vm._s(_vm.nodesToWin) +
+                                ")\n          "
+                            ),
+                          ]),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-icon",
+                        {
+                          class: _vm.IconAClass,
+                          attrs: {
+                            small: "",
+                            left: "",
+                            dark: "",
+                            color: _vm.IconAColor,
+                          },
+                        },
+                        [
+                          _vm._v(
+                            "\n          " + _vm._s(_vm.IconD) + "\n        "
+                          ),
+                        ]
+                      ),
+                    ],
+                    1
                   ),
                   _vm._v(" "),
                   _c(
-                    "v-icon",
+                    "v-col",
                     {
-                      class: _vm.IconAClass,
-                      attrs: {
-                        small: "",
-                        left: "",
-                        dark: "",
-                        color: _vm.IconAColor,
-                      },
+                      staticClass:
+                        "d-flex justify-content-end align-items-center",
+                      attrs: { cols: "4" },
                     },
-                    [_vm._v("\n          " + _vm._s(_vm.IconD) + "\n        ")]
+                    [
+                      _c("span", { staticClass: "text-caption" }, [
+                        _vm._v(" Active Nodes -"),
+                      ]),
+                      _vm._v(" "),
+                      _c("Vep", {
+                        attrs: {
+                          progress: _vm.blueProgress,
+                          size: 50,
+                          "legend-value": _vm.blueNode,
+                          fontSize: "0.80rem",
+                          color: "#00ff00",
+                          thickness: 4,
+                          emptyThickness: 1,
+                          emptyColor: "#a4fca4",
+                        },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "legend-value",
+                              fn: function () {
+                                return [
+                                  _c(
+                                    "span",
+                                    {
+                                      attrs: { slot: "legend-value" },
+                                      slot: "legend-value",
+                                    },
+                                    [_vm._v(" /" + _vm._s(_vm.totalNode))]
+                                  ),
+                                ]
+                              },
+                              proxy: true,
+                            },
+                          ],
+                          null,
+                          false,
+                          3377745648
+                        ),
+                      }),
+                      _vm._v(" "),
+                      _c("Vep", {
+                        attrs: {
+                          progress: _vm.redProgress,
+                          size: 50,
+                          "legend-value": _vm.redNode,
+                          fontSize: "0.80rem",
+                          color: "#ff0000",
+                          thickness: 4,
+                          emptyThickness: 1,
+                          emptyColor: "#f08d8d",
+                        },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "legend-value",
+                              fn: function () {
+                                return [
+                                  _c(
+                                    "span",
+                                    {
+                                      attrs: { slot: "legend-value" },
+                                      slot: "legend-value",
+                                    },
+                                    [_vm._v(" /" + _vm._s(_vm.totalNode))]
+                                  ),
+                                ]
+                              },
+                              proxy: true,
+                            },
+                          ],
+                          null,
+                          false,
+                          3377745648
+                        ),
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "ml-2" }, [
+                        _vm._v(" Completed Nodes -"),
+                      ]),
+                      _vm._v(" "),
+                      _c("Vep", {
+                        attrs: {
+                          progress: _vm.totalBlueProgress,
+                          size: 50,
+                          "legend-value": _vm.totalBlueNodeDone,
+                          fontSize: "0.80rem",
+                          color: "#00ff00",
+                          thickness: 4,
+                          emptyThickness: 1,
+                          emptyColor: "#a4fca4",
+                        },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "legend-value",
+                              fn: function () {
+                                return [
+                                  _c(
+                                    "span",
+                                    {
+                                      attrs: { slot: "legend-value" },
+                                      slot: "legend-value",
+                                    },
+                                    [_vm._v(" /" + _vm._s(_vm.totalNodeDone))]
+                                  ),
+                                ]
+                              },
+                              proxy: true,
+                            },
+                          ],
+                          null,
+                          false,
+                          3121110224
+                        ),
+                      }),
+                      _vm._v(" "),
+                      _c("Vep", {
+                        attrs: {
+                          progress: _vm.totalRedProgress,
+                          size: 50,
+                          "legend-value": _vm.totalRedNodeDone,
+                          fontSize: "0.80rem",
+                          color: "#ff0000",
+                          thickness: 4,
+                          emptyThickness: 1,
+                          emptyColor: "#f08d8d",
+                        },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "legend-value",
+                              fn: function () {
+                                return [
+                                  _c(
+                                    "span",
+                                    {
+                                      attrs: { slot: "legend-value" },
+                                      slot: "legend-value",
+                                    },
+                                    [_vm._v(" /" + _vm._s(_vm.totalNodeDone))]
+                                  ),
+                                ]
+                              },
+                              proxy: true,
+                            },
+                          ],
+                          null,
+                          false,
+                          3121110224
+                        ),
+                      }),
+                    ],
+                    1
                   ),
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-col",
-                {
-                  staticClass: "d-flex justify-content-end align-items-center",
-                  attrs: { cols: "4" },
-                },
-                [
-                  _c("span", { staticClass: "text-caption" }, [
-                    _vm._v(" Active Nodes -"),
-                  ]),
-                  _vm._v(" "),
-                  _c("Vep", {
-                    attrs: {
-                      progress: _vm.blueProgress,
-                      size: 50,
-                      "legend-value": _vm.blueNode,
-                      fontSize: "0.80rem",
-                      color: "#00ff00",
-                      thickness: 4,
-                      emptyThickness: 1,
-                      emptyColor: "#a4fca4",
-                    },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "legend-value",
-                        fn: function () {
-                          return [
-                            _c(
-                              "span",
-                              {
-                                attrs: { slot: "legend-value" },
-                                slot: "legend-value",
-                              },
-                              [_vm._v(" /" + _vm._s(_vm.totalNode))]
-                            ),
-                          ]
-                        },
-                        proxy: true,
-                      },
-                    ]),
-                  }),
-                  _vm._v(" "),
-                  _c("Vep", {
-                    attrs: {
-                      progress: _vm.redProgress,
-                      size: 50,
-                      "legend-value": _vm.redNode,
-                      fontSize: "0.80rem",
-                      color: "#ff0000",
-                      thickness: 4,
-                      emptyThickness: 1,
-                      emptyColor: "#f08d8d",
-                    },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "legend-value",
-                        fn: function () {
-                          return [
-                            _c(
-                              "span",
-                              {
-                                attrs: { slot: "legend-value" },
-                                slot: "legend-value",
-                              },
-                              [_vm._v(" /" + _vm._s(_vm.totalNode))]
-                            ),
-                          ]
-                        },
-                        proxy: true,
-                      },
-                    ]),
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "ml-2" }, [
-                    _vm._v(" Completed Nodes -"),
-                  ]),
-                  _vm._v(" "),
-                  _c("Vep", {
-                    attrs: {
-                      progress: _vm.totalBlueProgress,
-                      size: 50,
-                      "legend-value": _vm.totalBlueNodeDone,
-                      fontSize: "0.80rem",
-                      color: "#00ff00",
-                      thickness: 4,
-                      emptyThickness: 1,
-                      emptyColor: "#a4fca4",
-                    },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "legend-value",
-                        fn: function () {
-                          return [
-                            _c(
-                              "span",
-                              {
-                                attrs: { slot: "legend-value" },
-                                slot: "legend-value",
-                              },
-                              [_vm._v(" /" + _vm._s(_vm.totalNodeDone))]
-                            ),
-                          ]
-                        },
-                        proxy: true,
-                      },
-                    ]),
-                  }),
-                  _vm._v(" "),
-                  _c("Vep", {
-                    attrs: {
-                      progress: _vm.totalRedProgress,
-                      size: 50,
-                      "legend-value": _vm.totalRedNodeDone,
-                      fontSize: "0.80rem",
-                      color: "#ff0000",
-                      thickness: 4,
-                      emptyThickness: 1,
-                      emptyColor: "#f08d8d",
-                    },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "legend-value",
-                        fn: function () {
-                          return [
-                            _c(
-                              "span",
-                              {
-                                attrs: { slot: "legend-value" },
-                                slot: "legend-value",
-                              },
-                              [_vm._v(" /" + _vm._s(_vm.totalNodeDone))]
-                            ),
-                          ]
-                        },
-                        proxy: true,
-                      },
-                    ]),
-                  }),
-                ],
-                1
-              ),
-            ],
-            1
-          ),
+              )
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "v-row",
@@ -79477,6 +79519,8 @@ var render = function () {
                 attrs: {
                   operationID: _vm.operationID,
                   title: _vm.newOperationInfo.title,
+                  activeCampaigns: _vm.activeCampaigns,
+                  warmUpCampaigns: _vm.warmUpCampaigns,
                 },
               }),
             ],
