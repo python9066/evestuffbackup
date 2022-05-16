@@ -211,6 +211,68 @@ class testController extends Controller
                     }
                 }
             }
+
+
+            $noCampaigns = NewOperation::where('status', '!=', 0)->doesntHave('campaign')->get();
+            foreach ($noCampaigns as $noCampaign) {
+                NewCampaignOperation::where('operation_id', $noCampaign->id)->delete();
+                $noCampaign->delete();
+            }
+
+            // * Change new upcoming status to warmup (done an hour before start time)
+            $warmupCampaigns = NewCampaign::where('start_time', '>', now())
+                ->where('start_time', '<=', now()->addHour())
+                ->where('status_id', 1)
+                ->where('check', 1)
+                ->get();
+            foreach ($warmupCampaigns as $start) {
+                $start->update(['status_id' => 5, 'check' => 1]);
+            };
+
+            // * Checks to see if a campaign has moved from warmup to active
+            $startedCampaigns = NewCampaign::where('start_time', '<=', now())
+                ->where('status_id', 5)
+                ->where('check', 1)
+                ->get();
+            foreach ($startedCampaigns as $start) {
+                $start->update(['status_id' => 2, 'check' => 1]);
+            };
+
+            //! IF CHECK = 0, that means its not on the API which means the campaing is over.
+            // * Set Campaign to finished(3) but able to access still for 10mins
+            NewCampaign::where('check', 0)
+                ->whereNull('end_time')
+                ->update([
+                    'end_time' => now(),
+                    'status_id' => 3,
+                    'check' => 1,
+                ]);
+
+            // * Check if the campaign have been over more than 10mins, if true set it to finsiehd(3)
+            NewCampaign::where('check', 0)
+                ->where('status_id', 2)
+                ->where('end_time', '>', now()->subMinutes(10))
+                ->update([
+                    'status_id' => 3,
+                    'check' => 1
+                ]);
+
+
+            // * If campaign have been over for more than 10mins set it to finished(4), to show on the finished tab for 24 hours
+            NewCampaign::where('check', 0)
+                ->where('status_id', 3)
+                ->where('end_time', '<', now()->subMinutes(10))->update([
+                    'status_id' => 4,
+                    'check' => 1
+                ]);
+
+            // * If campaign has been over for more than 24 hours.  Delete the campaign.
+            NewCampaign::where('check', 0)
+                ->where('status_id', 4)
+                ->where('end_time', '<', now()->subDay())->update([
+                    'status_id' => 10,
+                    'check' => 1
+                ]);
         }
     }
 
