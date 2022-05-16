@@ -36020,21 +36020,28 @@ function sleep(ms) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   title: function title() {},
   data: function data() {
-    return {};
+    return {
+      now: moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc()
+    };
   },
   created: function created() {
     var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var self;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              self = _this;
+              setInterval(function () {
+                self.now = moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc();
+              }, 1000);
               _this.operationLink = _this.$route.params.id;
-              _context.next = 3;
+              _context.next = 5;
               return _this.$store.dispatch("getOperationInfo", _this.operationLink);
 
-            case 3:
+            case 5:
               Echo["private"]("operations." + _this.operationID).listen("OperationUpdate", function (e) {
                 if (e.flag.flag == 1) {}
 
@@ -36087,7 +36094,7 @@ function sleep(ms) {
                 if (e.flag.flag == 8) {}
               });
 
-            case 5:
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -36142,7 +36149,7 @@ function sleep(ms) {
       }
     },
     currentTime: function currentTime() {
-      return moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc();
+      return this.now;
     },
     activeCampaings: function activeCampaings() {
       var check = this.newCampaigns.length;

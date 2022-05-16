@@ -43,10 +43,16 @@ function sleep(ms) {
 export default {
   title() {},
   data() {
-    return {};
+    return {
+      now: moment.utc(),
+    };
   },
 
   async created() {
+    var self = this;
+    setInterval(function () {
+      self.now = moment.utc();
+    }, 1000);
     this.operationLink = this.$route.params.id;
     await this.$store.dispatch("getOperationInfo", this.operationLink);
     Echo.private("operations." + this.operationID).listen(
@@ -144,7 +150,7 @@ export default {
     },
 
     currentTime() {
-      return moment.utc();
+      return this.now;
     },
 
     activeCampaings() {
