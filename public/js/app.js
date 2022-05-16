@@ -36004,6 +36004,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -79458,6 +79459,7 @@ var render = function () {
             "v-col",
             { attrs: { cols: "10" } },
             [
+              _vm._v("\n      " + _vm._s(_vm.currentTime) + "\n      "),
               _c("CampaignTitleBar", {
                 attrs: {
                   operationID: _vm.operationID,

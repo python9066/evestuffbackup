@@ -2,6 +2,7 @@
   <div>
     <v-row no-gutters justify="center" class="pb-5">
       <v-col cols="10">
+        {{ currentTime }}
         <CampaignTitleBar
           :operationID="operationID"
           :title="newOperationInfo.title"
