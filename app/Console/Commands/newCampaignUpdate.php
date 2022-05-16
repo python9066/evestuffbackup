@@ -40,10 +40,11 @@ class newCampaignUpdate extends Command
      */
     public function handle()
     {
-        Userlogging::create(['url' => 'demon newCampaign', 'user_id' => 9999999999]);
-        $status = Helper::checkeve();
-        if ($status == 1) {
-            NewCampaignhelper::newUpdate();
-        };
+        // Userlogging::create(['url' => 'demon newCampaign', 'user_id' => 9999999999]);
+        // $status = Helper::checkeve();
+        // if ($status == 1) {
+        //     NewCampaignhelper::newUpdate();
+        // };
+        NewCampaignhelper::newUpdate();
     }
 }
