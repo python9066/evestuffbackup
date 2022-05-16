@@ -217,10 +217,18 @@ export default {
 
     // * warmup and active
     openCampaings() {
-      let open = this.activeCampaings.concat(this.warmUpCampaigns);
-      open = open.filter((item, index) => {
-        return open.indexOf(item) == index;
-      });
+      if (this.activeCampaings.length > 0 && this.warmUpCampaigns.length > 0) {
+        let open = this.activeCampaings.concat(this.warmUpCampaigns);
+        open = open.filter((item, index) => {
+          return open.indexOf(item) == index;
+        });
+      } else if (this.activeCampaings.length > 0) {
+        return this.activeCampaings;
+      } else if (this.warmUpCampaigns.length > 0) {
+        return this.warmUpCampaigns;
+      } else {
+        return [];
+      }
     },
 
     openCampaignIDs() {

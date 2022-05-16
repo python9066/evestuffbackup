@@ -36214,10 +36214,18 @@ function sleep(ms) {
     },
     // * warmup and active
     openCampaings: function openCampaings() {
-      var open = this.activeCampaings.concat(this.warmUpCampaigns);
-      open = open.filter(function (item, index) {
-        return open.indexOf(item) == index;
-      });
+      if (this.activeCampaings.length > 0 && this.warmUpCampaigns.length > 0) {
+        var open = this.activeCampaings.concat(this.warmUpCampaigns);
+        open = open.filter(function (item, index) {
+          return open.indexOf(item) == index;
+        });
+      } else if (this.activeCampaings.length > 0) {
+        return this.activeCampaings;
+      } else if (this.warmUpCampaigns.length > 0) {
+        return this.warmUpCampaigns;
+      } else {
+        return [];
+      }
     },
     openCampaignIDs: function openCampaignIDs() {
       if (this.openCampaings.length > 0) {
