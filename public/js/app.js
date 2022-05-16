@@ -36140,6 +36140,9 @@ function sleep(ms) {
         return [];
       }
     },
+    currentTime: function currentTime() {
+      return moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc();
+    },
     activeCampaings: function activeCampaings() {
       var check = this.newCampaigns.length;
 
@@ -79489,7 +79492,7 @@ var render = function () {
       _c(
         "v-row",
         { attrs: { "no-gutters": "", justify: "space-around" } },
-        _vm._l(_vm.systems, function (item, index) {
+        _vm._l(_vm.openSystems, function (item, index) {
           return _c(
             "v-col",
             { key: index.id, staticClass: "px-5", attrs: { cols: "6" } },
