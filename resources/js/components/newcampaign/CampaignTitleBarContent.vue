@@ -1,125 +1,139 @@
 <template>
   <v-row no-gutters>
     <v-col cols="12">
-      <v-row no-gutters align="center" v-if="showScore">
-        <v-col cols="2">
-          <span :class="textColor">
-            {{ item.system.system_name }} - {{ eventType }}:
-            {{ this.item.alliance.ticker }}
-            <v-avatar size="50"><img :src="this.item.alliance.url" /></v-avatar
-          ></span>
-        </v-col>
-        <v-col
-          cols="6"
-          class="d-flex justify-content-center align-content-center"
+      <transition
+        name="custom-classes"
+        enter-active-class="animate__animated animate__heartBeat animate__repeat-2"
+        leave-active-class="animate__animated animate__flash animate__faster"
+        mode="out-in"
+      >
+        <v-row
+          no-gutters
+          align="center"
+          v-if="showScore"
+          :key="`${item.id}-score`"
         >
-          <v-icon small left dark :color="IconDColor" :class="IconDClass">
-            {{ IconD }}
-          </v-icon>
-          <!-- // TODO Active (only show if campaign is active) -->
-          <v-progress-linear
-            :color="barColor"
-            :value="barScoure"
-            height="20"
-            rounded
-            :active="true"
-            :reverse="barReverse"
-            :background-color="barBgcolor"
-            background-opacity="0.2"
+          <v-col cols="2">
+            <span :class="textColor">
+              {{ item.system.system_name }} - {{ eventType }}:
+              {{ this.item.alliance.ticker }}
+              <v-avatar size="50"
+                ><img :src="this.item.alliance.url" /></v-avatar
+            ></span>
+          </v-col>
+          <v-col
+            cols="6"
+            class="d-flex justify-content-center align-content-center"
           >
-            <strong>
-              {{ item.defenders_score * 100 }} ({{ nodesToLose }}) /
-              {{ item.attackers_score * 100 }} ({{ nodesToWin }})
-            </strong>
-          </v-progress-linear>
-          <v-icon small left dark :color="IconAColor" :class="IconAClass">
-            {{ IconD }}
-          </v-icon>
-        </v-col>
-        <v-col cols="4" class="d-flex justify-content-end align-items-center">
-          <span class="text-caption"> Active Nodes -</span>
-          <Vep
-            :progress="blueProgress"
-            :size="50"
-            :legend-value="blueNode"
-            fontSize="0.80rem"
-            color="#00ff00"
-            :thickness="4"
-            :emptyThickness="1"
-            emptyColor="#a4fca4"
-          >
-            <template v-slot:legend-value>
-              <span slot="legend-value"> /{{ totalNode }}</span>
-            </template>
-          </Vep>
-          <Vep
-            :progress="redProgress"
-            :size="50"
-            :legend-value="redNode"
-            fontSize="0.80rem"
-            color="#ff0000"
-            :thickness="4"
-            :emptyThickness="1"
-            emptyColor="#f08d8d"
-          >
-            <template v-slot:legend-value>
-              <span slot="legend-value"> /{{ totalNode }}</span>
-            </template>
-          </Vep>
-          <span class="ml-2"> Completed Nodes -</span>
-          <Vep
-            :progress="totalBlueProgress"
-            :size="50"
-            :legend-value="totalBlueNodeDone"
-            fontSize="0.80rem"
-            color="#00ff00"
-            :thickness="4"
-            :emptyThickness="1"
-            emptyColor="#a4fca4"
-          >
-            <template v-slot:legend-value>
-              <span slot="legend-value"> /{{ totalNodeDone }}</span>
-            </template>
-          </Vep>
-          <Vep
-            :progress="totalRedProgress"
-            :size="50"
-            :legend-value="totalRedNodeDone"
-            fontSize="0.80rem"
-            color="#ff0000"
-            :thickness="4"
-            :emptyThickness="1"
-            emptyColor="#f08d8d"
-          >
-            <template v-slot:legend-value>
-              <span slot="legend-value"> /{{ totalNodeDone }}</span>
-            </template>
-          </Vep>
-        </v-col>
-      </v-row>
-      <v-row no-gutters v-else>
-        <v-col cols="2">
-          <span :class="textColor">
-            {{ item.system.system_name }} - {{ eventType }}:
-            {{ this.item.alliance.ticker }}
-            <v-avatar size="50"><img :src="this.item.alliance.url" /></v-avatar
-          ></span>
-        </v-col>
-        <v-col cols="3">
-          <CountDowntimer
-            :start-time="moment.utc(item.start_time).unix()"
-            :end-text="'Window Closed'"
-            :interval="1000"
-          >
-            <template slot="countdown" slot-scope="scope">
-              <span class="red--text pl-3">
-                <span v-if(scope.props.hours> 1)</span>
-                {{ scope.props.minutes }}:{{ scope.props.seconds }}
-              </span>
-            </template>
-          </CountDowntimer>
-        </v-col>
-      </v-row>
+            <v-icon small left dark :color="IconDColor" :class="IconDClass">
+              {{ IconD }}
+            </v-icon>
+            <!-- // TODO Active (only show if campaign is active) -->
+            <v-progress-linear
+              :color="barColor"
+              :value="barScoure"
+              height="20"
+              rounded
+              :active="true"
+              :reverse="barReverse"
+              :background-color="barBgcolor"
+              background-opacity="0.2"
+            >
+              <strong>
+                {{ item.defenders_score * 100 }} ({{ nodesToLose }}) /
+                {{ item.attackers_score * 100 }} ({{ nodesToWin }})
+              </strong>
+            </v-progress-linear>
+            <v-icon small left dark :color="IconAColor" :class="IconAClass">
+              {{ IconD }}
+            </v-icon>
+          </v-col>
+          <v-col cols="4" class="d-flex justify-content-end align-items-center">
+            <span class="text-caption"> Active Nodes -</span>
+            <Vep
+              :progress="blueProgress"
+              :size="50"
+              :legend-value="blueNode"
+              fontSize="0.80rem"
+              color="#00ff00"
+              :thickness="4"
+              :emptyThickness="1"
+              emptyColor="#a4fca4"
+            >
+              <template v-slot:legend-value>
+                <span slot="legend-value"> /{{ totalNode }}</span>
+              </template>
+            </Vep>
+            <Vep
+              :progress="redProgress"
+              :size="50"
+              :legend-value="redNode"
+              fontSize="0.80rem"
+              color="#ff0000"
+              :thickness="4"
+              :emptyThickness="1"
+              emptyColor="#f08d8d"
+            >
+              <template v-slot:legend-value>
+                <span slot="legend-value"> /{{ totalNode }}</span>
+              </template>
+            </Vep>
+            <span class="ml-2"> Completed Nodes -</span>
+            <Vep
+              :progress="totalBlueProgress"
+              :size="50"
+              :legend-value="totalBlueNodeDone"
+              fontSize="0.80rem"
+              color="#00ff00"
+              :thickness="4"
+              :emptyThickness="1"
+              emptyColor="#a4fca4"
+            >
+              <template v-slot:legend-value>
+                <span slot="legend-value"> /{{ totalNodeDone }}</span>
+              </template>
+            </Vep>
+            <Vep
+              :progress="totalRedProgress"
+              :size="50"
+              :legend-value="totalRedNodeDone"
+              fontSize="0.80rem"
+              color="#ff0000"
+              :thickness="4"
+              :emptyThickness="1"
+              emptyColor="#f08d8d"
+            >
+              <template v-slot:legend-value>
+                <span slot="legend-value"> /{{ totalNodeDone }}</span>
+              </template>
+            </Vep>
+          </v-col>
+        </v-row>
+        <v-row no-gutters v-else :key="`${item.id}-timer`">
+          <v-col cols="2">
+            <span :class="textColor">
+              {{ item.system.system_name }} - {{ eventType }}:
+              {{ this.item.alliance.ticker }}
+              <v-avatar size="50"
+                ><img :src="this.item.alliance.url" /></v-avatar
+            ></span>
+          </v-col>
+          <v-col cols="3">
+            <CountDowntimer
+              :start-time="moment.utc(item.start_time).unix()"
+              :end-text="'Window Closed'"
+              :interval="1000"
+            >
+              <template slot="countdown" slot-scope="scope">
+                <span class="red--text pl-3">
+                  <span v-if(scope.props.hours> 1)</span>
+                  {{ scope.props.minutes }}:{{ scope.props.seconds }}
+                </span>
+              </template>
+            </CountDowntimer>
+          </v-col>
+        </v-row>
+      </transition>
       <v-row no-gutters>
         <v-col>
           <v-text-field v-model="newscore" type="number"></v-text-field>
