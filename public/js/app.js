@@ -12705,7 +12705,7 @@ function sleep(ms) {
       var _this2 = this;
 
       var show = false;
-      activeCampaigns.forEach(function (n) {
+      this.activeCampaigns.forEach(function (n) {
         if (n.id == _this2.item.id) {
           show = true;
         }

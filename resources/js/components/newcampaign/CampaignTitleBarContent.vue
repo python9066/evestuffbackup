@@ -382,7 +382,7 @@ export default {
 
     showScore() {
       var show = false;
-      activeCampaigns.forEach((n) => {
+      this.activeCampaigns.forEach((n) => {
         if (n.id == this.item.id) {
           show = true;
         }
