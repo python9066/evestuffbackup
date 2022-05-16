@@ -44,12 +44,12 @@ class clearAll extends Command
      */
     public function handle()
     {
-        NewCampaignOperation::trucate();
-        NewCampaignSystem::trucate();
-        NewCampaign::trucate();
-        NewOperation::trucate();
-        NewSystemNode::trucate();
-        NewUserNode::trucate();
+        NewCampaignOperation::truncate();
+        NewCampaignSystem::truncate();
+        NewCampaign::truncate();
+        NewOperation::truncate();
+        NewSystemNode::truncate();
+        NewUserNode::truncate();
         OperationUser::whereNotNull('id')
             ->update([
                 'operation_id' => null,
