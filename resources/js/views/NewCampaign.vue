@@ -178,7 +178,7 @@ export default {
       }
     },
 
-    activeCampaigns() {
+    activeCampaignsIDs() {
       if (this.activeCampaigns.length > 0) {
         var ids = this.activeCampaigns.map((c) => c.id);
         return ids;

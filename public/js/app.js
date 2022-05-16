@@ -35978,8 +35978,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
-var _objectSpread2;
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -36151,7 +36149,7 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo", "newCampaignSystems", "newCampaigns"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), {}, (_objectSpread2 = {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo", "newCampaignSystems", "newCampaigns"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), {}, {
     currentTime: function currentTime() {
       return this.now;
     },
@@ -36192,129 +36190,141 @@ function sleep(ms) {
       } else {
         return [];
       }
-    }
-  }, _defineProperty(_objectSpread2, "activeCampaigns", function activeCampaigns() {
-    if (this.activeCampaigns.length > 0) {
-      var ids = this.activeCampaigns.map(function (c) {
-        return c.id;
-      });
-      return ids;
-    } else {
-      return [];
-    }
-  }), _defineProperty(_objectSpread2, "warmUpCampaigns", function warmUpCampaigns() {
-    var _this3 = this;
+    },
+    activeCampaignsIDs: function activeCampaignsIDs() {
+      if (this.activeCampaigns.length > 0) {
+        var ids = this.activeCampaigns.map(function (c) {
+          return c.id;
+        });
+        return ids;
+      } else {
+        return [];
+      }
+    },
+    warmUpCampaigns: function warmUpCampaigns() {
+      var _this3 = this;
 
-    var check = this.newCampaigns.length;
+      var check = this.newCampaigns.length;
 
-    if (check > 0) {
+      if (check > 0) {
+        var campaigns = this.newCampaigns.filter(function (c) {
+          if (c.status_id == 5) {
+            return true;
+          } else if (moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time).subtract(1, "h") <= _this3.currentTime && moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time) > _this3.currentTime) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+        return campaigns;
+      } else {
+        return [];
+      }
+    },
+    warmUpIDs: function warmUpIDs() {
+      if (this.warmUpCampaigns.length > 0) {
+        var ids = this.warmUpCampaigns.map(function (c) {
+          return c.id;
+        });
+        return ids;
+      } else {
+        return [];
+      }
+    },
+    // * warmup and active
+    openCampaings: function openCampaings() {
+      if (this.activeCampaigns.length > 0 && this.warmUpCampaigns.length > 0) {
+        var open = this.activeCampaigns.concat(this.warmUpCampaigns);
+        open = open.filter(function (item, index) {
+          return open.indexOf(item) == index;
+        });
+      } else if (this.activeCampaigns.length > 0) {
+        return this.activeCampaigns;
+      } else if (this.warmUpCampaigns.length > 0) {
+        return this.warmUpCampaigns;
+      } else {
+        return [];
+      }
+    },
+    openCampaignIDs: function openCampaignIDs() {
+      if (this.openCampaings.length > 0) {
+        var ids = this.openCampaings.map(function (c) {
+          return c.id;
+        });
+        return ids;
+      } else {
+        return [];
+      }
+    },
+    upComingCampaigns: function upComingCampaigns() {
       var campaigns = this.newCampaigns.filter(function (c) {
-        if (c.status_id == 5) {
-          return true;
-        } else if (moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time).subtract(1, "h") <= _this3.currentTime && moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time) > _this3.currentTime) {
+        return c.status_id == 1;
+      });
+      return campaigns;
+    },
+    upComingCampaignIDs: function upComingCampaignIDs() {
+      if (this.upComingCampaigns.length > 0) {
+        var ids = this.upComingCampaigns.map(function (c) {
+          return c.id;
+        });
+        return ids;
+      } else {
+        return [];
+      }
+    },
+    overCampaigns: function overCampaigns() {
+      if (this.newCampaigns.length > 0) {
+        var campaigns = this.newCampaigns.filter(function (c) {
+          return c.status_id == 3 || c.status_id == 4;
+        });
+        return campaigns;
+      } else {
+        return [];
+      }
+    },
+    overCampaignsIDs: function overCampaignsIDs() {
+      if (this.overCampaigns.length > 0) {
+        var ids = this.overCampaigns.map(function (c) {
+          return c.id;
+        });
+        return ids;
+      } else {
+        return [];
+      }
+    },
+    openSystems: function openSystems() {
+      var _this4 = this;
+
+      var systems = this.newCampaignSystems.filter(function (s) {
+        var systems = s.new_campaigns.filter(function (c) {
+          return _this4.openCampaignIDs.includes(c.id);
+        });
+
+        if (systems.length > 0) {
           return true;
         } else {
           return false;
         }
       });
-      return campaigns;
-    } else {
-      return [];
-    }
-  }), _defineProperty(_objectSpread2, "warmUpIDs", function warmUpIDs() {
-    if (this.warmUpCampaigns.length > 0) {
-      var ids = this.warmUpCampaigns.map(function (c) {
-        return c.id;
-      });
-      return ids;
-    } else {
-      return [];
-    }
-  }), _defineProperty(_objectSpread2, "openCampaings", function openCampaings() {
-    if (this.activeCampaigns.length > 0 && this.warmUpCampaigns.length > 0) {
-      var open = this.activeCampaigns.concat(this.warmUpCampaigns);
-      open = open.filter(function (item, index) {
-        return open.indexOf(item) == index;
-      });
-    } else if (this.activeCampaigns.length > 0) {
-      return this.activeCampaigns;
-    } else if (this.warmUpCampaigns.length > 0) {
-      return this.warmUpCampaigns;
-    } else {
-      return [];
-    }
-  }), _defineProperty(_objectSpread2, "openCampaignIDs", function openCampaignIDs() {
-    if (this.openCampaings.length > 0) {
-      var ids = this.openCampaings.map(function (c) {
-        return c.id;
-      });
-      return ids;
-    } else {
-      return [];
-    }
-  }), _defineProperty(_objectSpread2, "upComingCampaigns", function upComingCampaigns() {
-    var campaigns = this.newCampaigns.filter(function (c) {
-      return c.status_id == 1;
-    });
-    return campaigns;
-  }), _defineProperty(_objectSpread2, "upComingCampaignIDs", function upComingCampaignIDs() {
-    if (this.upComingCampaigns.length > 0) {
-      var ids = this.upComingCampaigns.map(function (c) {
-        return c.id;
-      });
-      return ids;
-    } else {
-      return [];
-    }
-  }), _defineProperty(_objectSpread2, "overCampaigns", function overCampaigns() {
-    if (this.newCampaigns.length > 0) {
-      var campaigns = this.newCampaigns.filter(function (c) {
-        return c.status_id == 3 || c.status_id == 4;
-      });
-      return campaigns;
-    } else {
-      return [];
-    }
-  }), _defineProperty(_objectSpread2, "overCampaignsIDs", function overCampaignsIDs() {
-    if (this.overCampaigns.length > 0) {
-      var ids = this.overCampaigns.map(function (c) {
-        return c.id;
-      });
-      return ids;
-    } else {
-      return [];
-    }
-  }), _defineProperty(_objectSpread2, "openSystems", function openSystems() {
-    var _this4 = this;
+      return systems;
+    },
+    activeSystem: function activeSystem() {
+      var _this5 = this;
 
-    var systems = this.newCampaignSystems.filter(function (s) {
-      var systems = s.new_campaigns.filter(function (c) {
-        return _this4.openCampaignIDs.includes(c.id);
+      var systems = this.newCampaignSystems.filter(function (s) {
+        var systems = s.new_campaigns.filter(function (c) {
+          return _this5.activeCampaigns.includes(c.id);
+        });
+
+        if (systems.length > 0) {
+          return true;
+        } else {
+          return false;
+        }
       });
-
-      if (systems.length > 0) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    return systems;
-  }), _defineProperty(_objectSpread2, "activeSystem", function activeSystem() {
-    var _this5 = this;
-
-    var systems = this.newCampaignSystems.filter(function (s) {
-      var systems = s.new_campaigns.filter(function (c) {
-        return _this5.activeCampaigns.includes(c.id);
-      });
-
-      if (systems.length > 0) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    return systems;
-  }), _objectSpread2)),
+      return systems;
+    }
+  }),
   beforeDestroy: function beforeDestroy() {
     Echo.leave("operations." + this.operationID);
     Echo.leave("operationsown." + this.$store.state.user_id);
