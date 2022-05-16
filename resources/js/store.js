@@ -3,6 +3,7 @@ import { pullAll } from "lodash";
 import Vue from "vue";
 import Vuex from "vuex";
 import ApiL from "./service/apil";
+import moment from "moment";
 
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -2627,7 +2628,7 @@ export default new Vuex.Store({
             return id;
         },
 
-        getActiveCampaigns: (state) => {
+        getActiveCampaignsNew: (state) => {
             var activeCampaigns = state.newCampaigns.filter((c) => {
                 if (c.status_id == 2) {
                     return true;
@@ -2645,7 +2646,7 @@ export default new Vuex.Store({
         },
 
         getActiveCampaingsIDs: (getters) => {
-            var activeCampaingsIDs = getters.getActiveCampaigns.map(
+            var activeCampaingsIDs = getters.getActiveCampaignsNew.map(
                 (c) => c.id
             );
             return activeCampaingsIDs;
@@ -2669,10 +2670,8 @@ export default new Vuex.Store({
         },
 
         getWarmUpCampaignIDs: (getters) => {
-            var getWarmUpCampaignIDs = getters.getWarmUpCampaigns.map(
-                (c) => c.id
-            );
-            return getWarmUpCampaignIDs;
+            var warmUpCampaignIDs = getters.getWarmUpCampaigns.map((c) => c.id);
+            return warmUpCampaignIDs;
         },
 
         getOpenCampaigns: (state) => {

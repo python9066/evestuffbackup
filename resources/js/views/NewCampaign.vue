@@ -125,7 +125,7 @@ export default {
     ...mapGetters([
       "getCampaignAllIDs",
       "getOperationID",
-      "getActiveCampaigns",
+      "getActiveCampaignsNew",
       "getActiveCampaingsIDs",
       "getWarmUpCampaigns",
       "getWarmUpCampaignIDs",
