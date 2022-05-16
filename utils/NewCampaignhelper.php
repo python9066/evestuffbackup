@@ -168,7 +168,7 @@ class NewCampaignhelper
 
         // * Change new upcoming status to warmup (done an hour before start time)
         $warmupCampaigns = NewCampaign::where('start_time', '>', now())
-            ->where('start_time', '=<', now()->addHour())
+            ->where('start_time', '<=', now()->addHour())
             ->where('status_id', 1)
             ->where('check', 1)
             ->get();
