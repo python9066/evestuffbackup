@@ -81,7 +81,7 @@ class testController extends Controller
                 'User-Agent' => 'evestuff.online python9066@gmail.com'
             ])->get("https://628189349fac04c6540639f6.mockapi.io/timers");
             $campaigns = $response->collect();
-            return $campaigns;
+
 
             foreach ($campaigns as $campaign) {
                 $event_type = $campaign['event_type'];
