@@ -12397,6 +12397,49 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  // import { EventBus } from "../event-bus";
 // import ApiL from "../service/apil";
 
@@ -56784,7 +56827,113 @@ var render = function () {
                 ],
                 1
               )
-            : _vm._e(),
+            : _c(
+                "v-row",
+                { attrs: { "no-gutters": "" } },
+                [
+                  _c("v-col", { attrs: { cols: "2" } }, [
+                    _c(
+                      "span",
+                      { class: _vm.textColor },
+                      [
+                        _vm._v(
+                          "\n          " +
+                            _vm._s(_vm.item.system.system_name) +
+                            " - " +
+                            _vm._s(_vm.eventType) +
+                            ":\n          " +
+                            _vm._s(this.item.alliance.ticker) +
+                            "\n          "
+                        ),
+                        _c("v-avatar", { attrs: { size: "50" } }, [
+                          _c("img", { attrs: { src: this.item.alliance.url } }),
+                        ]),
+                      ],
+                      1
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "3" } },
+                    [
+                      _c("CountDowntimer", {
+                        attrs: {
+                          "start-time": _vm.moment
+                            .utc(_vm.item.start_time)
+                            .unix(),
+                          "end-text": "Window Closed",
+                          interval: 1000,
+                        },
+                        on: {
+                          campaignStart: function ($event) {
+                            return _vm.campaignStart(_vm.item)
+                          },
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "countdown",
+                            fn: function (scope) {
+                              return [
+                                scope.props.hours == 0 &&
+                                scope.props.days == 0 &&
+                                _vm.$can("access_campaigns")
+                                  ? _c(
+                                      "span",
+                                      { staticClass: "red--text pl-3" },
+                                      [
+                                        _c(
+                                          "v-chip",
+                                          {
+                                            staticClass: "ma-2 ma",
+                                            attrs: {
+                                              filter: "",
+                                              pill: "",
+                                              disabled: _vm.pillDisabled(
+                                                _vm.item
+                                              ),
+                                              color: "light-blue lighten-1",
+                                            },
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                " +
+                                                _vm._s(scope.props.minutes) +
+                                                ":" +
+                                                _vm._s(scope.props.seconds) +
+                                                "\n              "
+                                            ),
+                                          ]
+                                        ),
+                                      ],
+                                      1
+                                    )
+                                  : _c(
+                                      "span",
+                                      { staticClass: "red--text pl-3" },
+                                      [
+                                        _vm._v(
+                                          _vm._s(scope.props.days) +
+                                            ":" +
+                                            _vm._s(scope.props.hours) +
+                                            ":" +
+                                            _vm._s(scope.props.minutes) +
+                                            ":" +
+                                            _vm._s(scope.props.seconds)
+                                        ),
+                                      ]
+                                    ),
+                              ]
+                            },
+                          },
+                        ]),
+                      }),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
           _vm._v(" "),
           _c(
             "v-row",

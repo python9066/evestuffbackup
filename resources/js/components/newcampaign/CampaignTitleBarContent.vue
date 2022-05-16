@@ -97,6 +97,29 @@
           </Vep>
         </v-col>
       </v-row>
+      <v-row no-gutters v-else>
+        <v-col cols="2">
+          <span :class="textColor">
+            {{ item.system.system_name }} - {{ eventType }}:
+            {{ this.item.alliance.ticker }}
+            <v-avatar size="50"><img :src="this.item.alliance.url" /></v-avatar
+          ></span>
+        </v-col>
+        <v-col cols="3">
+          <CountDowntimer
+            :start-time="moment.utc(item.start_time).unix()"
+            :end-text="'Window Closed'"
+            :interval="1000"
+          >
+            <template slot="countdown" slot-scope="scope">
+              <span class="red--text pl-3">
+                <span v-if(scope.props.hours> 1)</span>
+                {{ scope.props.minutes }}:{{ scope.props.seconds }}
+              </span>
+            </template>
+          </CountDowntimer>
+        </v-col>
+      </v-row>
       <v-row no-gutters>
         <v-col>
           <v-text-field v-model="newscore" type="number"></v-text-field>
