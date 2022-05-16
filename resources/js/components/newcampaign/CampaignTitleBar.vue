@@ -13,7 +13,7 @@
               :item="item"
               :title="title"
               :operationID="operationID"
-              :activeCampaigns="activeCampaings"
+              :activeCampaigns="activeCampaigns"
               :warmUpCampaigns="warmUpCampaigns"
             />
           </v-expansion-panel-content>

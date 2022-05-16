@@ -56464,7 +56464,7 @@ var render = function () {
                           item: item,
                           title: _vm.title,
                           operationID: _vm.operationID,
-                          activeCampaigns: _vm.activeCampaings,
+                          activeCampaigns: _vm.activeCampaigns,
                           warmUpCampaigns: _vm.warmUpCampaigns,
                         },
                       })
