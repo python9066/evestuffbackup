@@ -36151,6 +36151,7 @@ function sleep(ms) {
         return [];
       }
     },
+    // * active = able to hack
     activeCampaings: function activeCampaings() {
       var _this2 = this;
 
@@ -36211,19 +36212,12 @@ function sleep(ms) {
         return [];
       }
     },
+    // * warmup and active
     openCampaings: function openCampaings() {
-      if (this.newCampaigns.length > 0) {
-        var campaings = this.newCampaigns.filter(function (c) {
-          if ((c.status_id == 5 || c.status_id == 2) && c.status_id != 3) {
-            return true;
-          } else {
-            return false;
-          }
-        });
-        return campaings;
-      } else {
-        return [];
-      }
+      var open = this.activeCampaings.concat(this.warmUpCampaigns);
+      open = open.filter(function (item, index) {
+        return open.indexOf(item) == index;
+      });
     },
     openCampaignIDs: function openCampaignIDs() {
       if (this.openCampaings.length > 0) {

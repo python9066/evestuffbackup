@@ -153,6 +153,7 @@ export default {
       }
     },
 
+    // * active = able to hack
     activeCampaings() {
       var check = this.newCampaigns.length;
       if (check > 0) {
@@ -214,19 +215,12 @@ export default {
       }
     },
 
+    // * warmup and active
     openCampaings() {
-      if (this.newCampaigns.length > 0) {
-        var campaings = this.newCampaigns.filter((c) => {
-          if ((c.status_id == 5 || c.status_id == 2) && c.status_id != 3) {
-            return true;
-          } else {
-            return false;
-          }
-        });
-        return campaings;
-      } else {
-        return [];
-      }
+      let open = this.activeCampaings.concat(this.warmUpCampaigns);
+      open = open.filter((item, index) => {
+        return open.indexOf(item) == index;
+      });
     },
 
     openCampaignIDs() {
