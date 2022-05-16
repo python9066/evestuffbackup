@@ -10,6 +10,7 @@ use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use utils\NewCampaignhelper\NewCampaignhelper;
+use Illuminate\Support\Str;
 
 class NewOperationsController extends Controller
 {
@@ -70,6 +71,21 @@ class NewOperationsController extends Controller
         ];
     }
 
+    public function makeNewOperation(Request $request)
+    {
+        $user = Auth::user();
+        if ($user->can('access_multi_campaigns')) {
+            $uuid = Str::uuid();
+            NewOperation::create([
+                'title' => $request->title,
+                'link' => $uuid,
+                'solo' => 0,
+                'status' => 1
+            ]);
+        } else {
+            return null;
+        }
+    }
 
     public function getInfo($id)
     {

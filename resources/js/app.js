@@ -509,6 +509,16 @@ Vue.component(
     require("./components/newcampaign/TidiButton.vue").default
 );
 
+Vue.component(
+    "AddMultiCampaign",
+    require("./components/newcampaign/AddMultiCampaign.vue").default
+);
+
+Vue.component(
+    "NewMultiCampaigns",
+    require("./components/newcampaign/NewMultiCampaigns.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(VueEllipseProgress, "Vep");

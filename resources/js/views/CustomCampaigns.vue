@@ -3,6 +3,7 @@
     <messageComponent></messageComponent>
     <MultiCampaigns></MultiCampaigns>
     <StartCampaign></StartCampaign>
+    <NewMultiCampaigns></NewMultiCampaigns>
   </div>
 </template>
 <script>
