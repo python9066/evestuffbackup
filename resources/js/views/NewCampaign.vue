@@ -132,6 +132,10 @@ export default {
     ...mapState(["newOperationInfo", "newCampaignSystems", "newCampaigns"]),
     ...mapGetters([]),
 
+    currentTime() {
+      return this.now;
+    },
+
     operationID() {
       return this.newOperationInfo.id;
     },
@@ -149,10 +153,6 @@ export default {
       }
     },
 
-    currentTime() {
-      return this.now;
-    },
-
     activeCampaings() {
       var check = this.newCampaigns.length;
       if (check > 0) {
@@ -160,7 +160,7 @@ export default {
           if (c.status_id == 2) {
             return true;
           } else if (
-            moment.utc(c.start_time) <= moment.utc() &&
+            moment.utc(c.start_time) <= this.currentTime &&
             c.end_time == null
           ) {
             return true;
@@ -191,8 +191,8 @@ export default {
           if (c.status_id == 5) {
             return true;
           } else if (
-            moment.utc(c.start_time).subtract(1, "h") <= moment.utc() &&
-            moment.utc(c.start_time) > moment.utc()
+            moment.utc(c.start_time).subtract(1, "h") <= this.currentTime &&
+            moment.utc(c.start_time) > this.currentTime
           ) {
             return true;
           } else {

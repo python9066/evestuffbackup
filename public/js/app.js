@@ -36131,6 +36131,9 @@ function sleep(ms) {
   },
   methods: {},
   computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo", "newCampaignSystems", "newCampaigns"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), {}, {
+    currentTime: function currentTime() {
+      return this.now;
+    },
     operationID: function operationID() {
       return this.newOperationInfo.id;
     },
@@ -36148,17 +36151,16 @@ function sleep(ms) {
         return [];
       }
     },
-    currentTime: function currentTime() {
-      return this.now;
-    },
     activeCampaings: function activeCampaings() {
+      var _this2 = this;
+
       var check = this.newCampaigns.length;
 
       if (check > 0) {
         var campaigns = this.newCampaigns.filter(function (c) {
           if (c.status_id == 2) {
             return true;
-          } else if (moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time) <= moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc() && c.end_time == null) {
+          } else if (moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time) <= _this2.currentTime && c.end_time == null) {
             return true;
           } else {
             return false;
@@ -36180,13 +36182,15 @@ function sleep(ms) {
       }
     },
     warmUpCampaigns: function warmUpCampaigns() {
+      var _this3 = this;
+
       var check = this.newCampaigns.length;
 
       if (check > 0) {
         var campaigns = this.newCampaigns.filter(function (c) {
           if (c.status_id == 5) {
             return true;
-          } else if (moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time).subtract(1, "h") <= moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc() && moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time) > moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc()) {
+          } else if (moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time).subtract(1, "h") <= _this3.currentTime && moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time) > _this3.currentTime) {
             return true;
           } else {
             return false;
@@ -36268,11 +36272,11 @@ function sleep(ms) {
       }
     },
     openSystems: function openSystems() {
-      var _this2 = this;
+      var _this4 = this;
 
       var systems = this.newCampaignSystems.filter(function (s) {
         var systems = s.new_campaigns.filter(function (c) {
-          return _this2.openCampaignIDs.includes(c.id);
+          return _this4.openCampaignIDs.includes(c.id);
         });
 
         if (systems.length > 0) {
@@ -36284,11 +36288,11 @@ function sleep(ms) {
       return systems;
     },
     activeSystem: function activeSystem() {
-      var _this3 = this;
+      var _this5 = this;
 
       var systems = this.newCampaignSystems.filter(function (s) {
         var systems = s.new_campaigns.filter(function (c) {
-          return _this3.activeCampaingIDs.includes(c.id);
+          return _this5.activeCampaingIDs.includes(c.id);
         });
 
         if (systems.length > 0) {
