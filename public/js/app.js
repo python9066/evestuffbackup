@@ -35933,6 +35933,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _event_bus__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../event-bus */ "./resources/js/event-bus.js");
 /* harmony import */ var _service_apil__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../service/apil */ "./resources/js/service/apil.js");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -35976,6 +35978,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+
 
 
 
@@ -36093,12 +36096,171 @@ function sleep(ms) {
     }))();
   },
   methods: {},
-  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo", "newCampaignSystems"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["getCampaignAllIDs", "getOperationID", "getActiveCampaignsNew", "getActiveCampaingsIDs", "getWarmUpCampaigns", "getWarmUpCampaignIDs", "getOpenCampaigns", "getOpenCampaignIDs", "getUpComingCampaigns", "getUpComingCampaignIDs", "getOverCampaigns", "getOverCampaignIDs", "getOpenSystems", "getActiveSystems"])), {}, {
+  computed: _objectSpread(_objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["newOperationInfo", "newCampaignSystems", "newCampaigns"])), Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])([])), {}, {
     operationID: function operationID() {
       return this.newOperationInfo.id;
     },
     systems: function systems() {
       return this.newCampaignSystems;
+    },
+    CampaignAllIDs: function CampaignAllIDs() {
+      var check = this.newCampaigns.length;
+
+      if (check > 0) {
+        return this.newCampaigns.map(function (c) {
+          return c.id;
+        });
+      } else {
+        return [];
+      }
+    },
+    activeCampaings: function activeCampaings() {
+      var check = this.newCampaigns.length;
+
+      if (check > 0) {
+        var campaigns = this.newCampaigns.filter(function (c) {
+          if (c.status_id == 2) {
+            return true;
+          } else if (moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time) <= moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc() && c.end_time == null) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+        return campaigns;
+      } else {
+        return [];
+      }
+    },
+    activeCampaingIDs: function activeCampaingIDs() {
+      if (this.activeCampaings.length > 0) {
+        var ids = this.activeCampaings.map(function (c) {
+          return c.id;
+        });
+        return ids;
+      } else {
+        return [];
+      }
+    },
+    warmUpCampaigns: function warmUpCampaigns() {
+      var check = this.newCampaigns.length;
+
+      if (check > 0) {
+        var campaigns = this.newCampaigns.filter(function (c) {
+          if (c.status_id == 5) {
+            return true;
+          } else if (moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time).subtract(1, "h") <= moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc() && moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc(c.start_time) > moment__WEBPACK_IMPORTED_MODULE_5___default.a.utc()) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+        return campaigns;
+      } else {
+        return [];
+      }
+    },
+    warmUpIDs: function warmUpIDs() {
+      if (this.warmUpCampaigns.length > 0) {
+        var ids = this.warmUpCampaigns.map(function (c) {
+          return c.id;
+        });
+        return ids;
+      } else {
+        return [];
+      }
+    },
+    openCampaings: function openCampaings() {
+      if (this.newCampaigns.length > 0) {
+        var campaings = this.newCampaigns.filter(function (c) {
+          if ((c.status_id == 5 || c.status_id == 2) && c.status_id != 3) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+        return campaings;
+      } else {
+        return [];
+      }
+    },
+    openCampaignIDs: function openCampaignIDs() {
+      if (this.openCampaings.length > 0) {
+        var ids = this.openCampaings.map(function (c) {
+          return c.id;
+        });
+        return ids;
+      } else {
+        return [];
+      }
+    },
+    upComingCampaigns: function upComingCampaigns() {
+      var campaigns = this.newCampaigns.filter(function (c) {
+        return c.status_id == 1;
+      });
+      return campaigns;
+    },
+    upComingCampaignIDs: function upComingCampaignIDs() {
+      if (this.upComingCampaigns.length > 0) {
+        var ids = this.upComingCampaigns.map(function (c) {
+          return c.id;
+        });
+        return ids;
+      } else {
+        return [];
+      }
+    },
+    overCampaigns: function overCampaigns() {
+      if (this.newCampaigns.length > 0) {
+        var campaigns = this.newCampaigns.filter(function (c) {
+          return c.status_id == 3 || c.status_id == 4;
+        });
+        return campaigns;
+      } else {
+        return [];
+      }
+    },
+    overCampaignsIDs: function overCampaignsIDs() {
+      if (this.overCampaigns.length > 0) {
+        var ids = this.overCampaigns.map(function (c) {
+          return c.id;
+        });
+        return ids;
+      } else {
+        return [];
+      }
+    },
+    openSystems: function openSystems() {
+      var _this2 = this;
+
+      var systems = this.newCampaignSystems.filter(function (s) {
+        var systems = s.new_campaigns.filter(function (c) {
+          return _this2.openCampaignIDs.includes(c.id);
+        });
+
+        if (systems.length > 0) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      return systems;
+    },
+    activeSystem: function activeSystem() {
+      var _this3 = this;
+
+      var systems = this.newCampaignSystems.filter(function (s) {
+        var systems = s.new_campaigns.filter(function (c) {
+          return _this3.activeCampaingIDs.includes(c.id);
+        });
+
+        if (systems.length > 0) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      return systems;
     }
   }),
   beforeDestroy: function beforeDestroy() {
@@ -100056,142 +100218,6 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_4__
         });
         return red;
       };
-    },
-    getCampaignAllIDs: function getCampaignAllIDs(state) {
-      var ids = state.newCampaigns.map(function (c) {
-        return c.id;
-      });
-      return ids;
-    },
-    getOperationID: function getOperationID(state) {
-      var id = state.newOperationInfo.id;
-      return id;
-    },
-    getActiveCampaignsNew: function getActiveCampaignsNew(state) {
-      var activeCampaigns = state.newCampaigns.filter(function (c) {
-        if (c.status_id == 2) {
-          return true;
-        } else if (moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc(c.start_time) <= moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc() && c.end_time == null) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-      return activeCampaigns;
-    },
-    getActiveCampaingsIDs: function getActiveCampaingsIDs(getters) {
-      if (getters.getActiveCampaignsNew.length > 0) {
-        var activeCampaingsIDs = getters.getActiveCampaignsNew.map(function (c) {
-          return c.id;
-        });
-        return activeCampaingsIDs;
-      } else {
-        return [];
-      }
-    },
-    getWarmUpCampaigns: function getWarmUpCampaigns(state) {
-      var warmUpCampaigns = state.newCampaigns.filter(function (c) {
-        if (c.status_id == 5) {
-          return true;
-        } else if (moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc(c.start_time).subtract(1, "h") <= moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc() && moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc(c.start_time) > moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc()) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-      return warmUpCampaigns;
-    },
-    getWarmUpCampaignIDs: function getWarmUpCampaignIDs(getters) {
-      if (getters.getWarmUpCampaigns.length > 0) {
-        var warmUpCampaignIDs = getters.getWarmUpCampaigns.map(function (c) {
-          return c.id;
-        });
-        return warmUpCampaignIDs;
-      } else {
-        return [];
-      }
-    },
-    getOpenCampaigns: function getOpenCampaigns(state) {
-      var openCampaings = state.newCampaigns.filter(function (c) {
-        if ((c.status_id == 5 || c.status_id == 2) && c.status_id != 3) {
-          return true;
-        } else if (moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc(c.start_time).subtract(1, "h") <= moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc() && moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc(c.start_time) > moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc() || moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc(c.start_time) <= moment__WEBPACK_IMPORTED_MODULE_6___default.a.utc() && c.end_time == null) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-      return openCampaings;
-    },
-    getOpenCampaignIDs: function getOpenCampaignIDs(getters) {
-      if (getters.getOpenCampaigns.length > 0) {
-        var openCampaignIDs = getters.getOpenCampaigns.map(function (c) {
-          return c.id;
-        });
-        return openCampaignIDs;
-      } else {
-        return [];
-      }
-    },
-    getUpComingCampaigns: function getUpComingCampaigns(state) {
-      var upComingCampaigns = state.newCampaigns.filter(function (c) {
-        return c.status_id == 1;
-      });
-      return upComingCampaigns;
-    },
-    getUpComingCampaignIDs: function getUpComingCampaignIDs(getters) {
-      if (getters.getUpComingCampaigns.length > 0) {
-        var campaignUpcomingIDs = getters.getUpComingCampaigns.map(function (c) {
-          return c.id;
-        });
-        return campaignUpcomingIDs;
-      } else {
-        return [];
-      }
-    },
-    getOverCampaigns: function getOverCampaigns(state) {
-      var overCampaign = state.newCampaigns.filter(function (c) {
-        return c.status_id == 3 || c.status_id == 4;
-      });
-      return overCampaign;
-    },
-    getOverCampaignIDs: function getOverCampaignIDs(getters) {
-      if (getters.getOverCampaigns.length > 0) {
-        var overCampaignIds = getters.getOverCampaigns.map(function (c) {
-          return c.id;
-        });
-        return overCampaignIds;
-      } else {
-        return [];
-      }
-    },
-    getOpenSystems: function getOpenSystems(state, getters) {
-      var openSystems = state.newCampaignSystems.filter(function (s) {
-        var systems = s.new_campaigns.filter(function (c) {
-          return getters.getOpenCampaignIDs.includes(c.id);
-        });
-
-        if (systems.length > 0) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-      return openSystems;
-    },
-    getActiveSystems: function getActiveSystems(state, getters) {
-      var activeSystems = state.newCampaignSystems.filter(function (s) {
-        var systems = s.new_campaigns.filter(function (c) {
-          return getters.activeCampaingsIDs.includes(c.id);
-        });
-
-        if (systems.length > 0) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-      return activeSystems;
     }
   }
 }));

@@ -34,6 +34,7 @@ import Axios from "axios";
 import { EventBus } from "../event-bus";
 import ApiL from "../service/apil";
 import { mapGetters, mapState } from "vuex";
+import moment from "moment";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -121,23 +122,8 @@ export default {
   methods: {},
 
   computed: {
-    ...mapState(["newOperationInfo", "newCampaignSystems"]),
-    ...mapGetters([
-      "getCampaignAllIDs",
-      "getOperationID",
-      "getActiveCampaignsNew",
-      "getActiveCampaingsIDs",
-      "getWarmUpCampaigns",
-      "getWarmUpCampaignIDs",
-      "getOpenCampaigns",
-      "getOpenCampaignIDs",
-      "getUpComingCampaigns",
-      "getUpComingCampaignIDs",
-      "getOverCampaigns",
-      "getOverCampaignIDs",
-      "getOpenSystems",
-      "getActiveSystems",
-    ]),
+    ...mapState(["newOperationInfo", "newCampaignSystems", "newCampaigns"]),
+    ...mapGetters([]),
 
     operationID() {
       return this.newOperationInfo.id;
@@ -145,6 +131,162 @@ export default {
 
     systems() {
       return this.newCampaignSystems;
+    },
+
+    CampaignAllIDs() {
+      var check = this.newCampaigns.length;
+      if (check > 0) {
+        return this.newCampaigns.map((c) => c.id);
+      } else {
+        return [];
+      }
+    },
+
+    activeCampaings() {
+      var check = this.newCampaigns.length;
+      if (check > 0) {
+        var campaigns = this.newCampaigns.filter((c) => {
+          if (c.status_id == 2) {
+            return true;
+          } else if (
+            moment.utc(c.start_time) <= moment.utc() &&
+            c.end_time == null
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+
+        return campaigns;
+      } else {
+        return [];
+      }
+    },
+
+    activeCampaingIDs() {
+      if (this.activeCampaings.length > 0) {
+        var ids = this.activeCampaings.map((c) => c.id);
+        return ids;
+      } else {
+        return [];
+      }
+    },
+
+    warmUpCampaigns() {
+      var check = this.newCampaigns.length;
+      if (check > 0) {
+        var campaigns = this.newCampaigns.filter((c) => {
+          if (c.status_id == 5) {
+            return true;
+          } else if (
+            moment.utc(c.start_time).subtract(1, "h") <= moment.utc() &&
+            moment.utc(c.start_time) > moment.utc()
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+        return campaigns;
+      } else {
+        return [];
+      }
+    },
+
+    warmUpIDs() {
+      if (this.warmUpCampaigns.length > 0) {
+        var ids = this.warmUpCampaigns.map((c) => c.id);
+        return ids;
+      } else {
+        return [];
+      }
+    },
+
+    openCampaings() {
+      if (this.newCampaigns.length > 0) {
+        var campaings = this.newCampaigns.filter((c) => {
+          if ((c.status_id == 5 || c.status_id == 2) && c.status_id != 3) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+        return campaings;
+      } else {
+        return [];
+      }
+    },
+
+    openCampaignIDs() {
+      if (this.openCampaings.length > 0) {
+        var ids = this.openCampaings.map((c) => c.id);
+        return ids;
+      } else {
+        return [];
+      }
+    },
+
+    upComingCampaigns() {
+      var campaigns = this.newCampaigns.filter((c) => c.status_id == 1);
+      return campaigns;
+    },
+
+    upComingCampaignIDs() {
+      if (this.upComingCampaigns.length > 0) {
+        var ids = this.upComingCampaigns.map((c) => c.id);
+        return ids;
+      } else {
+        return [];
+      }
+    },
+
+    overCampaigns() {
+      if (this.newCampaigns.length > 0) {
+        var campaigns = this.newCampaigns.filter(
+          (c) => c.status_id == 3 || c.status_id == 4
+        );
+        return campaigns;
+      } else {
+        return [];
+      }
+    },
+
+    overCampaignsIDs() {
+      if (this.overCampaigns.length > 0) {
+        var ids = this.overCampaigns.map((c) => c.id);
+        return ids;
+      } else {
+        return [];
+      }
+    },
+
+    openSystems() {
+      var systems = this.newCampaignSystems.filter((s) => {
+        let systems = s.new_campaigns.filter((c) =>
+          this.openCampaignIDs.includes(c.id)
+        );
+        if (systems.length > 0) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      return systems;
+    },
+
+    activeSystem() {
+      var systems = this.newCampaignSystems.filter((s) => {
+        let systems = s.new_campaigns.filter((c) =>
+          this.activeCampaingIDs.includes(c.id)
+        );
+        if (systems.length > 0) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      return systems;
     },
   },
   beforeDestroy() {
