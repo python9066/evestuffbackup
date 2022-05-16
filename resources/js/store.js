@@ -2616,5 +2616,145 @@ export default new Vuex.Store({
 
             return red;
         },
+
+        getCampaignAllIDs: (state) => {
+            var ids = state.newCampaigns.map((c) => c.id);
+            return ids;
+        },
+
+        getOperationID: (state) => {
+            var id = state.newOperationInfo.id;
+            return id;
+        },
+
+        getActiveCampaigns: (state) => {
+            var activeCampaigns = state.newCampaigns.filter((c) => {
+                if (c.status_id == 2) {
+                    return true;
+                } else if (
+                    moment.utc(c.start_time) <= moment.utc() &&
+                    c.end_time == null
+                ) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+
+            return activeCampaigns;
+        },
+
+        getActiveCampaingsIDs: (getters) => {
+            var activeCampaingsIDs = getters.getActiveCampaigns.map(
+                (c) => c.id
+            );
+            return activeCampaingsIDs;
+        },
+
+        getWarmUpCampaigns: (state) => {
+            var warmUpCampaigns = state.newCampaigns.filter((c) => {
+                if (c.status_id == 5) {
+                    return true;
+                } else if (
+                    moment.utc(c.start_time).subtract(1, "h") <= moment.utc() &&
+                    moment.utc(c.start_time) > moment.utc()
+                ) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+
+            return warmUpCampaigns;
+        },
+
+        getWarmUpCampaignIDs: (getters) => {
+            var getWarmUpCampaignIDs = getters.getWarmUpCampaigns.map(
+                (c) => c.id
+            );
+            return getWarmUpCampaignIDs;
+        },
+
+        getOpenCampaigns: (state) => {
+            var openCampaings = state.newCampaigns.filter((C) => {
+                if (
+                    (c.status_id == 5 || c.status_id == 2) &&
+                    c.status_id != 3
+                ) {
+                    return true;
+                } else if (
+                    (moment.utc(c.start_time).subtract(1, "h") <=
+                        moment.utc() &&
+                        moment.utc(c.start_time) > moment.utc()) ||
+                    (moment.utc(c.start_time) <= moment.utc() &&
+                        c.end_time == null)
+                ) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+
+            return openCampaings;
+        },
+
+        getOpenCampaignIDs: (getters) => {
+            var openCampaignIDs = getters.getOpenCampaigns.map((c) => c.id);
+            return openCampaignIDs;
+        },
+
+        getUpComingCampaigns: (state) => {
+            var upComingCampaigns = state.newCampaigns.filter(
+                (c) => c.status_id == 1
+            );
+            return upComingCampaigns;
+        },
+
+        getUpComingCampaignIDs: (getters) => {
+            var campaignUpcomingIDs = getters.getUpComingCampaigns.map(
+                (c) => c.id
+            );
+            return campaignUpcomingIDs;
+        },
+
+        getOverCampaigns: (state) => {
+            var overCampaign = state.newCampaigns.filter(
+                (c) => c.status_id == 3 || c.status_id == 4
+            );
+            return overCampaign;
+        },
+
+        getOverCampaignIDs: (getters) => {
+            var overCampaignIds = getters.getOverCampaigns.map((c) => c.id);
+            return overCampaignIds;
+        },
+
+        getOpenSystems: (state, getters) => {
+            var openSystems = state.newCampaignSystems.filter((s) => {
+                let systems = s.new_campaigns.filter((c) =>
+                    getters.getOpenCampaignIDs.includes(c.id)
+                );
+                if (systems.length > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            return openSystems;
+        },
+
+        getActiveSystems: (state, getters) => {
+            var activeSystems = state.newCampaignSystems.filter((s) => {
+                let systems = s.new_campaigns.filter((c) =>
+                    getters.activeCampaingsIDs.includes(c.id)
+                );
+                if (systems.length > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            return activeSystems;
+        },
     },
 });
