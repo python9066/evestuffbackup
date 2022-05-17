@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-btn icon @click="click()">
-      <font-awesome-icon :icon="text" shake />
+      <font-awesome-icon :icon="text" shake size="lg" />
     </v-btn>
   </div>
 </template>
