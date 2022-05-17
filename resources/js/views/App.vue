@@ -132,9 +132,7 @@
         @click="overlay = !overlay"
       >
         <v-icon class="mr-2 grey--text lighten-1"
-          ><font-awesome-icon
-            icon="fa-solid fa-comment-question"
-            size="xl" /></v-icon
+          ><font-awesome-icon icon="fa-solid fa-comment" size="xl" /></v-icon
         >Feedback
       </v-btn>
       <v-btn
