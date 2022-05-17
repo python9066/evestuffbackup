@@ -38,6 +38,6 @@ class CampaignRecords extends Model
 
     public function priority()
     {
-        return $this->belongsTo(Campaign::class, 'id', 'id');
+        return $this->hasOne(Campaign::class, 'id', 'id');
     }
 }
