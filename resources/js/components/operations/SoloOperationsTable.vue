@@ -267,6 +267,7 @@
                   >
                 </template>
               </VueCountUptimer>
+              <NewPriorityButton v-if="$can('edit_hack_priority')" />
             </div>
           </template>
         </v-data-table>

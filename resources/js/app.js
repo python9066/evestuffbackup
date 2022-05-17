@@ -524,6 +524,11 @@ Vue.component(
     require("./components/campaign/CampaginPriorityButton.vue").default
 );
 
+Vue.component(
+    "SoloCampaignPriorityButton",
+    require("./components/operations/SoloCampaignPriorityButton.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(VueEllipseProgress, "Vep");
