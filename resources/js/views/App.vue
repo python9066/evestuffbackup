@@ -1,6 +1,6 @@
 <template>
   <v-app id="teamfcat">
-    <font-awesome-icon icon="user-secret" />
+    <font-awesome-icon icon="user-secret" size="xl" />
 
     <v-app-bar
       height="100px"
@@ -132,7 +132,9 @@
         @click="overlay = !overlay"
       >
         <v-icon class="mr-2 grey--text lighten-1"
-          ><font-awesome-icon icon="fa-solid fa-comment-question" /></v-icon
+          ><font-awesome-icon
+            icon="fa-solid fa-comment-question"
+            size="xl" /></v-icon
         >Feedback
       </v-btn>
       <v-btn
