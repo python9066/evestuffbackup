@@ -58,10 +58,10 @@
                 small
                 @click="removeReadyToGoOnTheWay(list.id)"
               >
-                fas fa-trash-alt
-              </v-icon></span
-            ></v-list-item-title
-          >
+                <font-awesome-icon
+                  icon="fa-solid fa-trash-can"
+                /> </v-icon></span
+          ></v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>

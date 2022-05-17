@@ -58,7 +58,7 @@
                   dark
                   color="blue darken-4"
                 >
-                  fas fa-arrow-alt-circle-up
+                  <font-awesome-icon icon="fa-solid fa-circle-up" />
                 </v-icon>
                 <v-icon
                   v-if="
@@ -71,7 +71,7 @@
                   dark
                   color="blue darken-4"
                 >
-                  fas fa-arrow-alt-circle-down
+                  <font-awesome-icon icon="fa-solid fa-circle-down" />
                 </v-icon>
                 <v-icon
                   v-if="
@@ -84,7 +84,7 @@
                   dark
                   color="grey darken-3"
                 >
-                  fas fa-minus-circle
+                  <font-awesome-icon icon="fa-solid fa-circle-minus" />
                 </v-icon>
               </span>
 
@@ -115,7 +115,7 @@
                   dark
                   color="red darken-4"
                 >
-                  fas fa-arrow-alt-circle-up
+                  <font-awesome-icon icon="fa-solid fa-circle-up" />
                 </v-icon>
                 <v-icon
                   v-if="
@@ -128,7 +128,7 @@
                   dark
                   color="red darken-4"
                 >
-                  fas fa-arrow-alt-circle-down
+                  <font-awesome-icon icon="fa-solid fa-circle-down" />
                 </v-icon>
                 <v-icon
                   v-if="
@@ -141,7 +141,7 @@
                   dark
                   color="grey darken-3"
                 >
-                  fas fa-minus-circle
+                  <font-awesome-icon icon="fa-solid fa-circle-minus" />
                 </v-icon>
               </span>
             </span>

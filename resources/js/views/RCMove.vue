@@ -131,7 +131,9 @@
             icon
             color="green"
           >
-            <v-icon> far fa-images</v-icon>
+            <v-icon
+              ><font-awesome-icon icon="fa-regular fa-image" size="xl"
+            /></v-icon>
           </v-btn>
         </div>
       </template>
@@ -152,11 +154,15 @@
             icon
             color="green"
           >
-            <v-icon> fas fa-check-circle</v-icon>
+            <v-icon>
+              <font-awesome-icon icon="fa-solid fa-circle-check"
+            /></v-icon>
           </v-btn>
 
           <v-btn @click="removeStationBad(item)" icon color="red">
-            <v-icon> fas fa-times-circle</v-icon>
+            <v-icon>
+              <font-awesome-icon icon="fa-solid fa-circle-xmark"
+            /></v-icon>
           </v-btn>
         </div>
       </template>

@@ -16,14 +16,18 @@
             v-on="on"
             @click="dialog1 = true"
           >
-            <v-icon right dark>fas fa-map fa-xs</v-icon>
+            <v-icon right dark>
+              <font-awesome-icon icon="fa-solid fa-map" size="xs"
+            /></v-icon>
           </v-btn>
         </template>
       </template>
       <v-card>
         <v-toolbar dark color="primary">
           <v-btn icon dark @click="dialog1 = false">
-            <v-icon>fas fa-times-circle</v-icon>
+            <v-icon>
+              <font-awesome-icon icon="fa-solid fa-circle-xmark" size="xl"
+            /></v-icon>
           </v-btn>
           <v-toolbar-title
             >{{ region_name }} - {{ system_name }}</v-toolbar-title

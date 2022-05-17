@@ -14,7 +14,7 @@
           :value="showAttackNumber"
         >
           <v-icon color="red" v-bind="attrs" v-on="on" @click="open()">
-            {{ icon }}
+            <font-awesome-icon icon="fa-solid fa-crosshairs" />
           </v-icon>
         </v-badge>
       </template>
@@ -256,7 +256,7 @@ export default {
 
   computed: {
     icon() {
-      return "fas fa-crosshairs";
+      return "fa-solid fa-crosshairs";
     },
 
     submitActive() {

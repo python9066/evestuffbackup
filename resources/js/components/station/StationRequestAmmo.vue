@@ -138,7 +138,6 @@ export default {
         withCredentials: true,
         data: request,
         headers: {
-
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -150,14 +149,6 @@ export default {
   },
 
   computed: {
-    icon() {
-      if (this.station.notes == null) {
-        return "far fa-comment-alt";
-      } else {
-        return "fas fa-comment-alt";
-      }
-    },
-
     submitActive() {
       if (this.editText != null && this.editLoadout != null) {
         return false;

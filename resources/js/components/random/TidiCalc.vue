@@ -49,8 +49,9 @@
                   left
                   color="success"
                   @click="(timerShown = false), addHacktime()"
-                  ><v-icon>fas fa-check</v-icon></v-btn
-                >
+                  ><v-icon
+                    ><font-awesome-icon icon="fa-solid fa-check" /></v-icon
+                ></v-btn>
 
                 <v-btn
                   fixed
@@ -58,8 +59,10 @@
                   icon
                   color="warning"
                   @click="(timerShown = false), (hackTime = null)"
-                  ><v-icon>fas fa-times</v-icon></v-btn
-                >
+                  ><v-icon
+                    ><font-awesome-icon
+                      icon="fa-solid fa-circle-xmark" /></v-icon
+                ></v-btn>
               </v-card-text>
             </v-card>
           </template>
@@ -83,7 +86,9 @@
                   icon
                   color="warning"
                 >
-                  <v-icon x-small>fas fa-edit</v-icon>
+                  <v-icon x-small
+                    ><font-awesome-icon icon="fa-solid fa-pen-to-square"
+                  /></v-icon>
                 </v-btn>
               </template>
 
@@ -107,8 +112,9 @@
                       left
                       color="success"
                       @click="(timerShown = false), addHacktime()"
-                      ><v-icon>fas fa-check</v-icon></v-btn
-                    >
+                      ><v-icon
+                        ><font-awesome-icon icon="fa-solid fa-check" /></v-icon
+                    ></v-btn>
 
                     <v-btn
                       fixed
@@ -116,8 +122,10 @@
                       icon
                       color="warning"
                       @click="(timerShown = false), (hackTime = null)"
-                      ><v-icon>fas fa-times</v-icon></v-btn
-                    >
+                      ><v-icon
+                        ><font-awesome-icon
+                          icon="fa-solid fa-circle-xmark" /></v-icon
+                    ></v-btn>
                   </v-card-text>
                 </v-card>
               </template>
@@ -141,7 +149,9 @@
               icon
               color="warning"
             >
-              <v-icon>fas fa-edit</v-icon>
+              <v-icon
+                ><font-awesome-icon icon="fa-solid fa-pen-to-square"
+              /></v-icon>
             </v-btn>
           </template>
 
@@ -165,8 +175,9 @@
                   left
                   color="success"
                   @click="(tidiShow = false), editTidi()"
-                  ><v-icon>fas fa-check</v-icon></v-btn
-                >
+                  ><v-icon
+                    ><font-awesome-icon icon="fa-solid fa-check" /></v-icon
+                ></v-btn>
 
                 <v-btn
                   fixed
@@ -174,8 +185,10 @@
                   icon
                   color="warning"
                   @click="(tidiShow = false), (tidiEdit = null)"
-                  ><v-icon>fas fa-times</v-icon></v-btn
-                >
+                  ><v-icon
+                    ><font-awesome-icon
+                      icon="fa-solid fa-circle-xmark" /></v-icon
+                ></v-btn>
               </v-card-text>
             </v-card>
           </template>

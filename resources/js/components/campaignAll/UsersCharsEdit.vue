@@ -13,7 +13,7 @@
         small
         @click="charEditForm(char), (editShown = true)"
       >
-        fas fa-edit
+        <font-awesome-icon icon="fa-solid fa-pen-to-square" />
       </v-icon>
     </template>
     <!---edit/delete form------>

@@ -11,7 +11,9 @@
           v-bind="attrs"
           v-on="on"
           @click="open()"
-          ><v-icon left> fas fa-trash </v-icon>
+          ><v-icon left>
+            <font-awesome-icon icon="fa-solid fa-trash" />
+          </v-icon>
         </v-btn>
       </template>
 

@@ -39,8 +39,9 @@
           <v-divider class="mx-2" vertical></v-divider>
           <v-col cols="1" class="d-flex justify-end align-center">
             <v-btn icon @click="clickIcon()">
-              <v-icon :class="iconRotate">fas fa-angle-up</v-icon></v-btn
-            >
+              <v-icon :class="iconRotate"
+                ><font-awesome-icon icon="fa-solid fa-angle-up" /></v-icon
+            ></v-btn>
           </v-col>
         </v-row>
       </v-expansion-panel-header>

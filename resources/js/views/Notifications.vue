@@ -298,7 +298,9 @@
                     outlined
                     :color="statusButtonColor(item)"
                   >
-                    <v-icon left>{{ statusButtonIcon(item) }}</v-icon>
+                    <v-icon left>
+                      <font-awesome-icon :icon="statusButtonIcon(item)" />
+                    </v-icon>
                     {{ item.status_name }}
                   </v-btn>
                 </div>
@@ -337,8 +339,8 @@
                 v-show="item.status_id == 5 && expanded.includes(item)"
                 color="error"
               >
-                <v-icon>fas fa-minus</v-icon></v-btn
-              >
+                <v-icon><font-awesome-icon icon="fa-solid fa-minus" /></v-icon
+              ></v-btn>
             </v-slide-x-transition>
             <v-slide-x-transition>
               <NotificationTimer
@@ -360,7 +362,9 @@
                   label
                   color="success"
                 >
-                  <v-icon left>fas fa-plus</v-icon>
+                  <v-icon left
+                    ><font-awesome-icon icon="fa-solid fa-plus"
+                  /></v-icon>
                   {{ item.status_name }}
                 </v-chip>
                 <v-chip
@@ -369,7 +373,9 @@
                   label
                   color="error"
                 >
-                  <v-icon left>fas fa-fire fa-sm</v-icon>
+                  <v-icon left
+                    ><font-awesome-icon icon="fa-solid fa-fire-flame" size="s"
+                  /></v-icon>
                   {{ item.status_name }}
                 </v-chip>
                 <v-chip
@@ -378,7 +384,9 @@
                   label
                   color="dark-orange"
                 >
-                  <v-icon left>fas fa-toolbox</v-icon>
+                  <v-icon left
+                    ><font-awesome-icon icon="fa-solid fa-toolbox"
+                  /></v-icon>
                   {{ item.status_name }}
                 </v-chip>
                 <v-chip
@@ -387,7 +395,9 @@
                   label
                   color="primary"
                 >
-                  <v-icon left>fas fa-thumbs-up</v-icon>
+                  <v-icon left
+                    ><font-awesome-icon icon="fa-solid fa-thumbs-up"
+                  /></v-icon>
                   {{ item.status_name }}
                 </v-chip>
                 <v-chip
@@ -396,7 +406,9 @@
                   label
                   color="warning"
                 >
-                  <v-icon left>fas fa-exclamation-circle</v-icon>
+                  <v-icon left
+                    ><font-awesome-icon icon="fa-solid fa-circle-exclamation"
+                  /></v-icon>
                   {{ item.status_name }}
                 </v-chip>
 
@@ -406,7 +418,9 @@
                   label
                   color="light-green darken-1"
                 >
-                  <v-icon left>fas fa-search</v-icon>
+                  <v-icon left
+                    ><font-awesome-icon icon="fa-solid fa-magnifying-glass"
+                  /></v-icon>
                   {{ item.status_name }}
                 </v-chip>
                 <CountDowntimer
@@ -732,17 +746,17 @@ export default {
 
     statusButtonIcon(item) {
       if (item.status_id == 1) {
-        return "fas fa-plus";
+        return "fa-solid fa-plus";
       } else if (item.status_id == 2) {
-        return "fas fa-fire fa-sm";
+        return "fa-solid fa-fire-flame";
       } else if (item.status_id == 3) {
-        return "fas fa-toolbox";
+        return "fa-solid fa-toolbox";
       } else if (item.status_id == 4) {
-        return "fas fa-thumbs-up";
+        return "fa-solid fa-thumbs-up";
       } else if (item.status_id == 5) {
-        return "fas fa-exclamation-circle";
+        return "fa-solid fa-circle-exclamation";
       } else if (item.status_id == 6) {
-        return "fas fa-search";
+        return "fa-solid fa-magnifying-glass";
       }
     },
 

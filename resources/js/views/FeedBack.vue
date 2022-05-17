@@ -12,7 +12,9 @@
         @click="loadFeedBack()"
       >
         Update
-        <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
+        <v-icon right dark
+          ><font-awesome-icon icon="fa-solid fa-rotate"
+        /></v-icon>
       </v-btn>
 
       <v-text-field
@@ -60,7 +62,7 @@
 
       <template v-slot:[`item.actions`]="{ item }">
         <v-icon color="orange darken-3" small @click="deleteFeedBack(item)">
-          fas fa-trash-alt
+          <font-awesome-icon icon="fa-solid fa-trash-can" />
         </v-icon>
       </template>
     </v-data-table>

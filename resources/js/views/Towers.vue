@@ -191,8 +191,8 @@
                 expanded.includes(item)
               "
               color="error"
-              ><v-icon>fas fa-minus</v-icon></v-btn
-            >
+              ><v-icon><font-awesome-icon icon="fa-solid fa-minus" /></v-icon
+            ></v-btn>
           </v-fab-transition>
           <v-tooltip
             color="#121212"

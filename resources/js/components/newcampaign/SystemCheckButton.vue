@@ -2,7 +2,9 @@
   <v-row no-gutters align="baseline">
     <v-col cols="3">
       <v-btn color="green" small @click="checkClick()">
-        <v-icon small left dark> fas fa-search-location </v-icon>
+        <v-icon small left dark
+          ><font-awesome-icon icon="fa-solid fa-magnifying-glass-location" />
+        </v-icon>
         System Checked</v-btn
       ></v-col
     >

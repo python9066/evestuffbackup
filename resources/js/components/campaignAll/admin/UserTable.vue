@@ -8,8 +8,8 @@
         color="light-blue darken-4"
         @click="showAdd"
       >
-        <v-icon small>fas fa-plus</v-icon></v-btn
-      >
+        <v-icon small><font-awesome-icon icon="fa-solid fa-plus" /></v-icon
+      ></v-btn>
     </template>
     <v-card
       tile
@@ -53,7 +53,9 @@
               color="green"
               @click="addChar(item)"
             >
-              <v-icon x-small left dark> fas fa-plus </v-icon>
+              <v-icon x-small left dark>
+                <font-awesome-icon icon="fa-solid fa-plus" />
+              </v-icon>
               Add
             </v-btn></template
           >

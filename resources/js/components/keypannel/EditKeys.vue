@@ -40,7 +40,10 @@
                   v-on="on"
                   @click="addShown = true"
                   color="success"
-                  ><v-icon left small>fas fa-plus</v-icon> Keys</v-btn
+                  ><v-icon left small
+                    ><font-awesome-icon icon="fa-solid fa-plus"
+                  /></v-icon>
+                  Keys</v-btn
                 >
               </template>
               <v-row no-gutters>
@@ -86,8 +89,9 @@
                   <template v-slot:activator="{ on, attrs }">
                     <div>
                       <v-btn icon v-bind="attrs" v-on="on" color="success"
-                        ><v-icon>fas fa-plus</v-icon></v-btn
-                      >
+                        ><v-icon
+                          ><font-awesome-icon icon="fa-solid fa-plus" /></v-icon
+                      ></v-btn>
                     </div>
                   </template>
 
@@ -130,7 +134,7 @@
                   x-small
                   @click="pillDelete(item)"
                 >
-                  fas fa-trash-alt
+                  <font-awesome-icon icon="fa-solid fa-trash-can" />
                 </v-icon>
               </span>
             </template>

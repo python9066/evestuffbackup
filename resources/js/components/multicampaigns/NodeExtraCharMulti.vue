@@ -4,7 +4,7 @@
       <template v-slot:activator="{ on, attrs }">
         <div>
           <v-btn v-bind="attrs" v-on="on" icon color="green darken-3">
-            <v-icon small>fas fa-plus</v-icon>
+            <v-icon small><font-awesome-icon icon="fa-solid fa-plus" /></v-icon>
           </v-btn>
         </div>
       </template>
@@ -52,7 +52,6 @@ export default {
         withCredentials: true,
         data: request,
         headers: {
-
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -71,7 +70,6 @@ export default {
         withCredentials: true,
         data: request,
         headers: {
-
           Accept: "application/json",
           "Content-Type": "application/json",
         },

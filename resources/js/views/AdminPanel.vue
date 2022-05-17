@@ -25,8 +25,10 @@
                     <template v-slot:activator="{ on, attrs }">
                       <div>
                         <v-btn icon v-bind="attrs" v-on="on" color="success"
-                          ><v-icon>fas fa-plus</v-icon></v-btn
-                        >
+                          ><v-icon
+                            ><font-awesome-icon
+                              icon="fa-solid fa-plus" /></v-icon
+                        ></v-btn>
                       </div>
                     </template>
 

@@ -3,7 +3,7 @@
     <v-menu bottom left offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
-          {{ icon }}
+          <font-awesome-icon :icon="icon" size="xl" />
         </v-icon>
       </template>
       <v-card>
@@ -97,7 +97,7 @@ export default {
 
   computed: {
     icon() {
-      return "far fa-images";
+      return "fa-regular fa-image";
     },
 
     submitActive() {

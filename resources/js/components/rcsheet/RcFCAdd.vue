@@ -45,7 +45,10 @@
                   v-on="on"
                   @click="addShown = true"
                   color="success"
-                  ><v-icon left small>fas fa-plus</v-icon> FC</v-btn
+                  ><v-icon left small
+                    ><font-awesome-icon icon="fa-solid fa-plus"
+                  /></v-icon>
+                  FC</v-btn
                 >
               </template>
               <v-row no-gutters>
@@ -107,7 +110,7 @@
                   x-small
                   @click="pillDelete(item)"
                 >
-                  fas fa-trash-alt
+                  <font-awesome-icon icon="fa-solid fa-trash-can" />
                 </v-icon>
               </span>
             </template>

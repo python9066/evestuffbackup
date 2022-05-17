@@ -164,7 +164,9 @@
             >
               <div class="d-inline-flex">
                 <v-btn :href="link(item)" target="_blank" icon color="green">
-                  <v-icon> fas fa-map fa-xs</v-icon>
+                  <v-icon>
+                    <font-awesome-icon icon="fa-solid fa-map" size="xs"
+                  /></v-icon>
                 </v-btn>
                 <SoloCampaginWebWay
                   v-if="item.system.webway[0]"

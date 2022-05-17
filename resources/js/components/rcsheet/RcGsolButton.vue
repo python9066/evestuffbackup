@@ -17,7 +17,9 @@
         outlined
         @click="gsolAdd()"
       >
-        <v-icon x-small dark left> fas fa-plus </v-icon>
+        <v-icon x-small dark left>
+          <font-awesome-icon icon="fa-solid fa-plus" />
+        </v-icon>
         GSOL</v-btn
       >
       <v-icon
@@ -26,7 +28,7 @@
         small
         @click="gsolRemove()"
       >
-        fas fa-trash-alt
+        <font-awesome-icon icon="fa-solid fa-trash-can" />
       </v-icon>
     </div>
   </div>

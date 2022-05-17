@@ -3,19 +3,6 @@
     <div class="d-flex align-items-center">
       <v-card-title>Vulnerability Windows</v-card-title>
 
-      <!-- <v-btn
-                :loading="loading3"
-                :disabled="loading3"
-                color="prfdefdfimary"
-                class="ma-2 white--text"
-                @click="
-                    loading3 = true;
-                    loadtimers();
-                "
-            >
-                Update
-                <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
-            </v-btn> -->
       <v-text-field
         v-model="search"
         append-icon="mdi-magnify"

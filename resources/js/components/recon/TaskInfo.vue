@@ -8,7 +8,7 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
-          {{ icon }}
+          <font-awesome-icon :icon="icon" />
         </v-icon>
       </template>
       <v-card
@@ -59,7 +59,7 @@ export default {
 
   computed: {
     icon() {
-      return "fas fa-info-circle";
+      return "fa-solid fa-circle-info";
     },
   },
 

@@ -42,7 +42,10 @@
                   v-on="on"
                   @click="addShown = true"
                   color="success"
-                  ><v-icon left small>fas fa-plus</v-icon> Char</v-btn
+                  ><v-icon left small
+                    ><font-awesome-icon icon="fa-solid fa-plus"
+                  /></v-icon>
+                  Char</v-btn
                 >
               </template>
               <v-row no-gutters>
@@ -122,7 +125,7 @@
                   @click="pillClick(item)"
                 >
                   <v-icon x-small left dark>
-                    {{ pillIcon(item) }}
+                    <font-awesome-icon :icon="pillIcon(item)" />
                   </v-icon>
                   {{ pillText(item) }}
                 </v-btn>
@@ -133,7 +136,7 @@
                 <UsersCharsEdit :char="item" :operationID="operationID" />
 
                 <v-icon color="orange darken-3" small @click="removeChar(item)">
-                  fas fa-trash-alt
+                  <font-awesome-icon icon="fa-solid fa-trash-can" />
                 </v-icon>
               </span>
             </template>
@@ -235,9 +238,9 @@ export default {
 
     pillIcon(item) {
       if (item.operation_id == this.operationID) {
-        return "fas fa-minus";
+        return "fa-solid fa-minus";
       } else {
-        return "fas fa-plus";
+        return "fa-solid fa-plus";
       }
     },
 

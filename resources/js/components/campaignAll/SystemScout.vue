@@ -21,7 +21,9 @@
         outlined
         @click="scoutAdd()"
       >
-        <v-icon x-small dark> fas fa-plus </v-icon>
+        <v-icon x-small dark>
+          <font-awesome-icon icon="fa-solid fa-plus"
+        /></v-icon>
         Add</v-btn
       >
       <v-icon
@@ -34,7 +36,7 @@
         small
         @click="scoutRemove()"
       >
-        fas fa-trash-alt
+        <font-awesome-icon icon="fa-solid fa-trash-can" />
       </v-icon>
     </div>
   </div>

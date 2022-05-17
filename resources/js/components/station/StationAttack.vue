@@ -20,7 +20,7 @@
             v-on="{ ...menu }"
             @click="open()"
           >
-            {{ icon }}
+            <font-awesome-icon :icon="icon" />
           </v-icon>
         </v-badge>
       </template>
@@ -257,7 +257,7 @@ export default {
 
   computed: {
     icon() {
-      return "fas fa-crosshairs";
+      return "fa-solid fa-crosshairs";
     },
 
     submitActive() {

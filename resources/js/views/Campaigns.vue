@@ -3,19 +3,6 @@
     <div class="d-flex align-items-center">
       <v-card-title>Campaigns</v-card-title>
 
-      <!-- <v-btn
-                :loading="loadingr"
-                :disabled="loadingr"
-                color="primary"
-                class="ma-2 white--text"
-                @click="
-                    loadingr = true;
-                    loadcampaigns();
-                "
-            >
-                Update
-                <v-icon right dark>fas fa-sync-alt fa-xs</v-icon>
-            </v-btn> -->
       <v-text-field
         v-model="search"
         append-icon="mdi-magnify"
@@ -97,7 +84,9 @@
     >
       <template slot="no-data"> No Active or Upcoming Campaigns </template>
       <template v-slot:[`item.alliance`]="{ item }">
-        <v-icon v-if="item.priority.priority == 1"> far fa-mitten </v-icon>
+        <v-icon v-if="item.priority.priority == 1">
+          <font-awesome-icon icon="fa-regular fa-mitten" size="xl" />
+        </v-icon>
         <v-avatar size="35"><img :src="item.url" /></v-avatar>
         <span v-if="item.standing > 0" class="blue--text pl-3"
           >{{ item.alliance }}
@@ -106,7 +95,9 @@
           >{{ item.alliance }}
         </span>
         <span v-else class="pl-3">{{ item.alliance }}</span>
-        <v-icon v-if="item.priority.priority == 1"> far fa-mitten </v-icon>
+        <v-icon v-if="item.priority.priority == 1">
+          <font-awesome-icon icon="fa-regular fa-mitten" size="xl" />
+        </v-icon>
       </template>
 
       <template v-slot:[`item.start`]="{ item }">
@@ -126,7 +117,7 @@
               dark
               color="blue darken-4"
             >
-              fas fa-arrow-alt-circle-up
+              <font-awesome-icon icon="fa-solid fa-circle-up" />
             </v-icon>
             <v-icon
               v-if="
@@ -138,7 +129,7 @@
               dark
               color="blue darken-4"
             >
-              fas fa-arrow-alt-circle-down
+              <font-awesome-icon icon="fa-solid fa-circle-down" />
             </v-icon>
             <v-icon
               v-if="
@@ -150,7 +141,7 @@
               dark
               color="grey darken-3"
             >
-              fas fa-minus-circle
+              <font-awesome-icon icon="fa-solid fa-circle-minus" />
             </v-icon>
           </span>
 
@@ -180,7 +171,7 @@
               dark
               color="red darken-4"
             >
-              fas fa-arrow-alt-circle-up
+              <font-awesome-icon icon="fa-solid fa-circle-up" />
             </v-icon>
             <v-icon
               v-if="
@@ -192,7 +183,7 @@
               dark
               color="red darken-4"
             >
-              fas fa-arrow-alt-circle-down
+              <font-awesome-icon icon="fa-solid fa-circle-down" />
             </v-icon>
             <v-icon
               v-if="
@@ -204,7 +195,7 @@
               dark
               color="grey darken-3"
             >
-              fas fa-minus-circle
+              <font-awesome-icon icon="fa-solid fa-circle-minus" />
             </v-icon>
           </span>
         </span>

@@ -16,7 +16,9 @@
         outlined
         @click="fcAdd()"
       >
-        <v-icon x-small dark left> fas fa-plus </v-icon>
+        <v-icon x-small dark left>
+          <font-awesome-icon icon="fa-solid fa-plus" />
+        </v-icon>
         FC</v-btn
       >
       <v-icon
@@ -29,7 +31,7 @@
         small
         @click="fcRemove()"
       >
-        fas fa-trash-alt
+        <font-awesome-icon icon="fa-solid fa-trash-can" />
       </v-icon>
     </div>
   </div>

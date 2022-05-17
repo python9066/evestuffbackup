@@ -69,8 +69,9 @@
                   "
                   color="orange darken-3"
                 >
-                  <v-icon small>fas fa-trash-alt</v-icon></v-btn
-                >
+                  <v-icon small
+                    ><font-awesome-icon icon="fa-solid fa-trash-can" /></v-icon
+                ></v-btn>
                 <!-- <NodeExtraChar :item="item"></NodeExtraChar> -->
               </div>
             </div>

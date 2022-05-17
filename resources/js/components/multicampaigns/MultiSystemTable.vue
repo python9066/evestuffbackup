@@ -102,10 +102,10 @@
                             small
                             @click="removeReadyToGoOnTheWay(list)"
                           >
-                            fas fa-trash-alt
-                          </v-icon></span
-                        ></v-list-item-title
-                      >
+                            <font-awesome-icon
+                              icon="fa-solid fa-trash-can"
+                            /> </v-icon></span
+                      ></v-list-item-title>
                     </v-list-item>
                   </v-list>
                 </v-menu>
@@ -165,10 +165,10 @@
                             small
                             @click="removeReadyToGoOnTheWay(list)"
                           >
-                            fas fa-trash-alt
-                          </v-icon></span
-                        ></v-list-item-title
-                      >
+                            <font-awesome-icon
+                              icon="fa-solid fa-trash-can"
+                            /> </v-icon></span
+                      ></v-list-item-title>
                     </v-list-item>
                   </v-list>
                 </v-menu>
@@ -187,7 +187,10 @@
                       v-on="on"
                       @click="addShown = true"
                       color="success"
-                      ><v-icon left small>fas fa-plus</v-icon> Node</v-btn
+                      ><v-icon left small
+                        ><font-awesome-icon icon="fa-solid fa-plus"
+                      /></v-icon>
+                      Node</v-btn
                     >
                   </template>
                   <v-card tile min-height="250px">
@@ -239,8 +242,10 @@
                         :disabled="showNodeButton"
                         color="success"
                         @click="addNode()"
-                        ><v-icon>fas fa-check</v-icon></v-btn
-                      >
+                        ><v-icon
+                          ><font-awesome-icon
+                            icon="fa-solid fa-check" /></v-icon
+                      ></v-btn>
 
                       <v-btn
                         fixed
@@ -252,8 +257,10 @@
                             (nodeText = ''),
                             (nodeCampaignID = '')
                         "
-                        ><v-icon>fas fa-times</v-icon></v-btn
-                      >
+                        ><v-icon
+                          ><font-awesome-icon
+                            icon="fa-solid fa-circle-xmark" /></v-icon
+                      ></v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-menu>
@@ -348,9 +355,10 @@
                   "
                   color="orange darken-3"
                 >
-                  <v-icon small>fas fa-trash-alt</v-icon></v-btn
-                ></span
-              >
+                  <v-icon small
+                    ><font-awesome-icon
+                      icon="fa-solid fa-trash-can" /></v-icon></v-btn
+              ></span>
               <NodeExtraCharMulti :item="item"></NodeExtraCharMulti>
               <AdminHackUserTable
                 v-if="$can('campaigns_admin_access')"
@@ -385,7 +393,7 @@
                 class="pl-5"
                 @click="deleteNode(item)"
               >
-                fas fa-trash-alt
+                <font-awesome-icon icon="fa-solid fa-trash-can" />
               </v-icon>
             </div>
           </template>

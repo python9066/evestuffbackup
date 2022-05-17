@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-btn icon>
-      <v-icon>{{ text }}</v-icon>
+      <font-awesome-icon :icon="text" shake size="xl" />
     </v-btn>
   </div>
 </template>
@@ -22,9 +22,9 @@ export default {
   computed: {
     text() {
       if (this.item) {
-        return "fas fa-bell";
+        return "fa-regular fa-bell";
       } else {
-        return "far fa-bell";
+        return "fa-solid fa-bell";
       }
     },
   },

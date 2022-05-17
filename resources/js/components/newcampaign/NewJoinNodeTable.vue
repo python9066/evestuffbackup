@@ -42,7 +42,7 @@
           small
           @click="deleteNode(item)"
         >
-          fas fa-trash-alt
+          <font-awesome-icon icon="fa-solid fa-trash-can" />
         </v-icon>
       </template>
       <template v-slot:[`item.op_user.ship`]="{ item }" class="pl-0">

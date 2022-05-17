@@ -143,7 +143,9 @@
         v-if="this.$vuetify.breakpoint.mdAndUp"
         @click="logout()"
       >
-        <v-icon>fas fa-sign-out-alt</v-icon>
+        <v-icon
+          ><font-awesome-icon icon="fa-solid fa-right-from-bracket"
+        /></v-icon>
       </v-btn>
     </v-app-bar>
 

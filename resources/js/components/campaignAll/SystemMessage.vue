@@ -14,7 +14,7 @@
           :value="showNumber"
         >
           <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
-            {{ icon }}
+            <font-awesome-icon :icon="icon" size="xl" />
           </v-icon>
         </v-badge>
       </template>
@@ -159,9 +159,9 @@ export default {
   computed: {
     icon() {
       if (this.item.notes == null) {
-        return "far fa-comment-alt";
+        return "fa-regular fa-message";
       } else {
-        return "fas fa-comment-alt";
+        return "fa-solid fa-message";
       }
     },
 

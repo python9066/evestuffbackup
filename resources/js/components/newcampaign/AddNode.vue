@@ -7,7 +7,10 @@
         v-on="on"
         @click="addShown = true"
         color="success"
-        ><v-icon left small>fas fa-plus</v-icon> Node</v-btn
+        ><v-icon left small
+          ><font-awesome-icon icon="fa-solid fa-plus"
+        /></v-icon>
+        Node</v-btn
       >
     </template>
     <v-card tile min-height="250px">
@@ -26,8 +29,8 @@
       </v-card-text>
       <v-card-actions>
         <v-btn icon fixed left color="success" @click="addNode()"
-          ><v-icon>fas fa-check</v-icon></v-btn
-        >
+          ><v-icon><font-awesome-icon icon="fa-solid fa-check" /></v-icon
+        ></v-btn>
 
         <v-btn
           fixed
@@ -35,8 +38,8 @@
           icon
           color="warning"
           @click="(addShown = false), (nodeText = '')"
-          ><v-icon>fas fa-times</v-icon></v-btn
-        >
+          ><v-icon><font-awesome-icon icon="fa-solid fa-circle-xmark" /></v-icon
+        ></v-btn>
       </v-card-actions>
     </v-card>
   </v-menu>

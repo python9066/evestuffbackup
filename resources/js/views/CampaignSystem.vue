@@ -33,7 +33,7 @@
               dark
               color="blue darken-4"
             >
-              fas fa-arrow-alt-circle-up
+              <font-awesome-icon icon="fa-solid fa-circle-up" />
             </v-icon>
             <v-icon
               v-if="
@@ -46,7 +46,7 @@
               dark
               color="blue darken-4"
             >
-              fas fa-arrow-alt-circle-down
+              <font-awesome-icon icon="fa-solid fa-circle-down" />
             </v-icon>
             <v-icon
               v-if="
@@ -59,7 +59,7 @@
               dark
               color="grey darken-3"
             >
-              fas fa-minus-circle
+              <font-awesome-icon icon="fa-solid fa-circle-minus" />
             </v-icon>
 
             <v-progress-linear
@@ -89,7 +89,7 @@
               dark
               color="red darken-4"
             >
-              fas fa-arrow-alt-circle-up
+              <font-awesome-icon icon="fa-solid fa-circle-up" />
             </v-icon>
             <v-icon
               v-if="
@@ -102,7 +102,7 @@
               dark
               color="red darken-4"
             >
-              fas fa-arrow-alt-circle-down
+              <font-awesome-icon icon="fa-solid fa-circle-down" />
             </v-icon>
             <v-icon
               v-if="
@@ -115,7 +115,7 @@
               dark
               color="grey darken-3"
             >
-              fas fa-minus-circle
+              <font-awesome-icon icon="fa-solid fa-circle-minus" />
             </v-icon>
           </div>
           <div
@@ -241,7 +241,9 @@
                   v-on="on"
                   @click="sendAddCharMessage()"
                 >
-                  <v-icon>fas fa-bullhorn</v-icon>
+                  <v-icon
+                    ><font-awesome-icon icon="fa-solid fa-bullhorn"
+                  /></v-icon>
                 </v-btn>
               </template>
               <span> Send a message to all Users without a Char added </span>

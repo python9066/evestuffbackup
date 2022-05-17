@@ -26,7 +26,7 @@
             class="d-flex justify-content-center align-content-center"
           >
             <v-icon small left dark :color="IconDColor" :class="IconDClass">
-              {{ IconD }}
+              <font-awesome-icon :icon="iconD" />
             </v-icon>
             <!-- // TODO Active (only show if campaign is active) -->
             <v-progress-linear
@@ -45,7 +45,7 @@
               </strong>
             </v-progress-linear>
             <v-icon small left dark :color="IconAColor" :class="IconAClass">
-              {{ IconD }}
+              <font-awesome-icon :icon="iconD" />
             </v-icon>
           </v-col>
           <v-col cols="4" class="d-flex justify-content-end align-items-center">
@@ -349,9 +349,9 @@ export default {
         this.item.attackers_score == this.item.attackers_score_old ||
         this.item.attackers_score_old === null
       ) {
-        return "fas fa-minus-circle";
+        return "fa-solid fa-circle-minus";
       } else {
-        return "fas fa-arrow-alt-circle-up";
+        return "fa-solid fa-circle-up";
       }
     },
 

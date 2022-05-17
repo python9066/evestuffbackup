@@ -27,7 +27,9 @@
             v-bind="attrs"
             v-on="on"
           >
-            <v-icon x-small dark> fas fa-plus </v-icon>
+            <v-icon x-small dark>
+              <font-awesome-icon icon="fa-solid fa-plus" />
+            </v-icon>
             Take Task</v-btn
           >
         </template>
@@ -39,7 +41,7 @@
         small
         @click="stockerRemove()"
       >
-        fas fa-trash-alt
+        <font-awesome-icon icon="fa-solid fa-trash-can" />
       </v-icon>
     </div>
   </div>
