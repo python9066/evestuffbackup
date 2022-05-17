@@ -17,6 +17,7 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import VueCountdown from "@chenfengyuan/vue-countdown";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import moment from "moment";
 import VueCountdownTimer from "vuejs-countdown-timer";
@@ -29,7 +30,8 @@ import Clipboard from "v-clipboard";
 import VueEllipseProgress from "vue-ellipse-progress";
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
-library.add(fas); // Include needed icons
+// library.add(faUserSecret);
+library.add(fas, far); // Include needed icons
 Vue.component(
     "messageComponent",
     require("./components/random/messageComponent.vue").default
@@ -536,7 +538,7 @@ Vue.use(Clipboard);
 Vue.use(CountdownTimer);
 Vue.use(VueCountdownTimer);
 Vue.use(VueCountupTimer);
-// library.add(faUserSecret)
+
 Vue.config.productionTip = false;
 Vue.component(VueCountdown.name, VueCountdown);
 Vue.use(VueMask);

@@ -78,7 +78,7 @@
       </v-btn-toggle>
     </div>
     <v-data-table
-      :headers="headers"
+      :headers="_headers"
       :items="filter_end"
       item-key="id"
       :loading="loading"
@@ -97,6 +97,7 @@
     >
       <template slot="no-data"> No Active or Upcoming Campaigns </template>
       <template v-slot:[`item.alliance`]="{ item }">
+        <v-icon v-if="this.item.priority.priority == 1"> far fa-mitten </v-icon>
         <v-avatar size="35"><img :src="item.url" /></v-avatar>
         <span v-if="item.standing > 0" class="blue--text pl-3"
           >{{ item.alliance }}
@@ -105,6 +106,7 @@
           >{{ item.alliance }}
         </span>
         <span v-else class="pl-3">{{ item.alliance }}</span>
+        <v-icon v-if="this.item.priority.priority == 1"> far fa-mitten </v-icon>
       </template>
 
       <template v-slot:[`item.start`]="{ item }">
@@ -404,25 +406,6 @@ export default {
         x: 0,
         y: 0,
       },
-
-      headers: [
-        { text: "WebWay", value: "webway", sortable: false },
-        { text: "Region", value: "region", width: "10%" },
-        { text: "Constellation", value: "constellation" },
-        { text: "System", value: "system" },
-        { text: "Alliance", value: "alliance" },
-        { text: "Ticker", value: "ticker", align: "start" },
-        { text: "ADM", value: "adm" },
-        { text: "Structure", value: "item_name" },
-        {
-          text: "Start/Progress",
-          value: "start",
-          width: "30%",
-          align: "center",
-        },
-        { text: "Countdown/Age", value: "count", sortable: false },
-        { text: "", value: "actions", align: "end", sortable: false },
-      ],
     };
   },
 
@@ -733,6 +716,49 @@ export default {
         return data;
       }
       return this.filteredItems;
+    },
+
+    _headers() {
+      if (this.$can("edit_hack_priority")) {
+        var Headers = [
+          { text: "WebWay", value: "webway", sortable: false },
+          { text: "Region", value: "region", width: "10%" },
+          { text: "Constellation", value: "constellation" },
+          { text: "System", value: "system" },
+          { text: "Alliance", value: "alliance" },
+          { text: "Ticker", value: "ticker", align: "start" },
+          { text: "ADM", value: "adm" },
+          { text: "Structure", value: "item_name" },
+          {
+            text: "Start/Progress",
+            value: "start",
+            width: "30%",
+            align: "center",
+          },
+          { text: "Countdown/Age", value: "count", sortable: false },
+          { text: "", value: "actions", align: "end", sortable: false },
+        ];
+      } else {
+        var Headers = [
+          { text: "WebWay", value: "webway", sortable: false },
+          { text: "Region", value: "region", width: "10%" },
+          { text: "Constellation", value: "constellation" },
+          { text: "System", value: "system" },
+          { text: "Alliance", value: "alliance" },
+          { text: "Ticker", value: "ticker", align: "start" },
+          { text: "ADM", value: "adm" },
+          { text: "Structure", value: "item_name" },
+          {
+            text: "Start/Progress",
+            value: "start",
+            width: "30%",
+            align: "center",
+          },
+          { text: "Countdown/Age", value: "count", sortable: false },
+        ];
+      }
+
+      return Headers;
     },
   },
   beforeDestroy() {
