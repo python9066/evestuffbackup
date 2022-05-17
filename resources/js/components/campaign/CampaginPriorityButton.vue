@@ -31,7 +31,7 @@ export default {
 
       axios({
         method: "post", //you can set what request you want to be
-        url: "api/campaignpriority",
+        url: "api/campaignpriority/" + this.item.id,
         withCredentials: true,
         data: request,
         headers: {
