@@ -45,9 +45,9 @@ export default {
   computed: {
     text() {
       if (this.item.priority == 0) {
-        return "fas fa-bell";
-      } else {
         return "far fa-bell";
+      } else {
+        return "fas fa-bell";
       }
     },
   },

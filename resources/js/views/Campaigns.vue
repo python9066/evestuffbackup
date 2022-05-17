@@ -357,9 +357,14 @@
               >
             </template>
           </VueCountUptimer>
-          <div v-if="$can('edit_hack_priority')">
-            <CampaginPriorityButton :item="item.priority" />
-          </div>
+        </div>
+      </template>
+      <template v-slot:[`item.actions`]="{ item }">
+        <div @click.stop="onSingleCellClick">
+          <CampaginPriorityButton
+            v-if="$can('edit_hack_priority')"
+            :item="item.priority"
+          />
         </div>
       </template>
     </v-data-table>
@@ -416,6 +421,7 @@ export default {
           align: "center",
         },
         { text: "Countdown/Age", value: "count", sortable: false },
+        { text: "", value: "actions", align: "end", sortable: false },
       ],
     };
   },
