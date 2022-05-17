@@ -3,7 +3,7 @@
     <messageComponent></messageComponent>
     <MultiCampaigns></MultiCampaigns>
     <StartCampaign></StartCampaign>
-    <NewMultiCampaigns></NewMultiCampaigns>
+    <NewMultiCampaigns v-if="$can('super')"></NewMultiCampaigns>
   </div>
 </template>
 <script>
