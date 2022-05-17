@@ -131,7 +131,9 @@
         v-if="this.$vuetify.breakpoint.mdAndUp"
         @click="overlay = !overlay"
       >
-        <v-icon class="mr-2 grey--text lighten-1">fa fa-comment</v-icon>Feedback
+        <v-icon class="mr-2 grey--text lighten-1"
+          ><font-awesome-icon icon="fa-solid fa-comment-question" /></v-icon
+        >Feedback
       </v-btn>
       <v-btn
         icon
