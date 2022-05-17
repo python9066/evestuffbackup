@@ -36,9 +36,8 @@
                 (overlayEdit = !overlayEdit)
             "
             color="warning"
-            ><v-icon small
-              ><font-awesome-icon icon="fa-solid fa-pen-to-square" /></v-icon
-          ></v-btn>
+            ><font-awesome-icon icon="fa-solid fa-pen-to-square" size="s"
+          /></v-btn>
           <DeleteButton :item="item"></DeleteButton>
           <v-btn @click="clickCampaign(item)" color="green">View</v-btn>
         </div>

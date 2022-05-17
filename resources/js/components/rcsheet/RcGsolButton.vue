@@ -17,19 +17,17 @@
         outlined
         @click="gsolAdd()"
       >
-        <v-icon x-small dark left>
-          <font-awesome-icon icon="fa-solid fa-plus" />
-        </v-icon>
+        <font-awesome-icon icon="fa-solid fa-plus" size="xs" pull="left" />
         GSOL</v-btn
       >
-      <v-icon
+
+      <font-awesome-icon
+        icon="fa-solid fa-trash-can"
         v-show="showRcGsolButton() && $can('edit_killsheet_remove_char')"
         color="orange darken-3"
-        small
+        size="s"
         @click="gsolRemove()"
-      >
-        <font-awesome-icon icon="fa-solid fa-trash-can" />
-      </v-icon>
+      />
     </div>
   </div>
 </template>

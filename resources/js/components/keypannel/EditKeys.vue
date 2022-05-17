@@ -40,9 +40,11 @@
                   v-on="on"
                   @click="addShown = true"
                   color="success"
-                  ><v-icon left small
-                    ><font-awesome-icon icon="fa-solid fa-plus"
-                  /></v-icon>
+                  ><font-awesome-icon
+                    icon="fa-solid fa-plus"
+                    size="s"
+                    pull="left"
+                  />
                   Keys</v-btn
                 >
               </template>
@@ -89,9 +91,8 @@
                   <template v-slot:activator="{ on, attrs }">
                     <div>
                       <v-btn icon v-bind="attrs" v-on="on" color="success"
-                        ><v-icon
-                          ><font-awesome-icon icon="fa-solid fa-plus" /></v-icon
-                      ></v-btn>
+                        ><font-awesome-icon icon="fa-solid fa-plus"
+                      /></v-btn>
                     </div>
                   </template>
 
@@ -128,14 +129,13 @@
             </template>
             <template v-slot:[`item.addRemove`]="{ item }">
               <span>
-                <v-icon
+                <font-awesome-icon
+                  icon="fa-solid fa-trash-can"
                   rounded
                   :outlined="true"
-                  x-small
+                  size="xs"
                   @click="pillDelete(item)"
-                >
-                  <font-awesome-icon icon="fa-solid fa-trash-can" />
-                </v-icon>
+                />
               </span>
             </template>
             <template slot="no-data"> Nothing matches your filters </template>

@@ -71,7 +71,10 @@
                 lable
                 :color="pillColor(item.station_status_id)"
               >
-                <v-icon left>{{ pillIcon(item.station_status_id) }}</v-icon>
+                <font-awesome-icon
+                  :icon="pillIcon(item.station_status_id)"
+                  pull="left"
+                />
                 <RcMoveCopyButton :item="item" type="status"></RcMoveCopyButton>
               </v-chip>
             </div>
@@ -131,9 +134,7 @@
             icon
             color="green"
           >
-            <v-icon
-              ><font-awesome-icon icon="fa-regular fa-image" size="xl"
-            /></v-icon>
+            <font-awesome-icon icon="fa-regular fa-image" size="xl" />
           </v-btn>
         </div>
       </template>
@@ -154,15 +155,11 @@
             icon
             color="green"
           >
-            <v-icon>
-              <font-awesome-icon icon="fa-solid fa-circle-check"
-            /></v-icon>
+            <font-awesome-icon icon="fa-solid fa-circle-check" />
           </v-btn>
 
           <v-btn @click="removeStationBad(item)" icon color="red">
-            <v-icon>
-              <font-awesome-icon icon="fa-solid fa-circle-xmark"
-            /></v-icon>
+            <font-awesome-icon icon="fa-solid fa-circle-xmark" />
           </v-btn>
         </div>
       </template>
@@ -370,37 +367,37 @@ export default {
 
     pillIcon(statusId) {
       if (statusId == 1) {
-        return "faSvg fa-plus";
+        return "fa-solid fa-plus";
       }
       if (statusId == 2) {
-        return "faSvg fa-route";
+        return "fa-solid fa-route";
       }
       if (statusId == 3) {
-        return "faSvg fa-fist-raised";
+        return "fa-solid fa-hand-fist";
       }
       if (statusId == 4) {
-        return "faSvg fa-thumbs-up";
+        return "fa-solid fa-thumbs-up";
       }
       if (statusId == 5 || statusId == 13) {
-        return "faSvg fa-clock";
+        return "fa-solid fa-clock";
       }
       if (statusId == 6) {
-        return "faSvg fa-life-ring";
+        return "fa-solid fa-life-ring";
       }
       if (statusId == 7) {
-        return "faSvg fa-dumpster-fire";
+        return "fa-solid fa-dumpster-fire";
       }
       if (statusId == 8) {
-        return "faSvg fa-shield-alt";
+        return "fa-solid fa-shield-halved";
       }
       if (statusId == 9) {
-        return "faSvg fa-house-damage";
+        return "fa-solid fa-house-chimney-crack";
       }
       if (statusId == 11) {
-        return "faSvg fa-toolbox";
+        return "fa-solid fa-toolbox";
       }
       if (statusId == 14) {
-        return "faSvg fa-anchor";
+        return "fa-solid fa-anchor";
       }
     },
 

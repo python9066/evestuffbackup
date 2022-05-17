@@ -8,9 +8,7 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="gray" v-bind="attrs" v-on="on" @click="open()" icon>
-          <v-icon>
-            <font-awesome-icon icon="fa-solid fa-gears" size="xs" />
-          </v-icon>
+          <font-awesome-icon icon="fa-solid fa-gears" size="xs" />
         </v-btn>
       </template>
       <v-card

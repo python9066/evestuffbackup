@@ -22,7 +22,7 @@
                 @click="filterClick()"
               >
                 <template v-slot:actions>
-                  <v-icon> fa-solid fa-filter </v-icon>
+                  <font-awesome-icon icon="fa-solid fa-filter" />
                 </template>
                 <template v-slot:default="{ open }">
                   <v-row no-gutters>

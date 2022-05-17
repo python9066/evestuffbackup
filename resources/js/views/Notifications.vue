@@ -15,7 +15,8 @@
           @click="loadtimers()"
         >
           Update
-          <v-icon right dark>faSvg fa-sync-alt fa-xs</v-icon>
+
+          <font-awesome-icon icon="fa-solid fa-rotate" pull="right" size="xs" />
         </v-btn>
         <div>
           <v-btn-toggle v-model="icon" borderless group>
@@ -36,14 +37,18 @@
                     @click="dialog1 = true"
                   >
                     Delve
-                    <v-icon right dark>faSvg fa-map fa-xs</v-icon>
+                    <font-awesome-icon
+                      icon="fa-solid fa-map"
+                      pull="right"
+                      size="xs"
+                    />
                   </v-btn>
                 </template>
               </template>
               <v-card>
                 <v-toolbar dark color="primary">
                   <v-btn icon dark @click="dialog1 = false">
-                    <v-icon>faSvg fa-times-circle</v-icon>
+                    <font-awesome-icon icon="fa-solid fa-circle-xmark" />
                   </v-btn>
                   <v-toolbar-title>Delve</v-toolbar-title>
                   <v-spacer></v-spacer>
@@ -93,13 +98,17 @@
                   @click="dialog2 = true"
                 >
                   Querious
-                  <v-icon right dark>faSvg fa-map fa-xs</v-icon>
+                  <font-awesome-icon
+                    icon="fa-solid fa-map"
+                    pull="right"
+                    size="xs"
+                  />
                 </v-btn>
               </template>
               <v-card>
                 <v-toolbar dark color="primary">
                   <v-btn icon dark @click="dialog2 = false">
-                    <v-icon>faSvg fa-times-circle</v-icon>
+                    <font-awesome-icon icon="fa-solid fa-circle-xmark" />
                   </v-btn>
                   <v-toolbar-title>Querious</v-toolbar-title>
                   <v-spacer></v-spacer>
@@ -148,13 +157,17 @@
                   @click="dialog3 = true"
                 >
                   Period Basis
-                  <v-icon right dark>faSvg fa-map fa-xs</v-icon>
+                  <font-awesome-icon
+                    icon="fa-solid fa-map"
+                    pull="right"
+                    size="xs"
+                  />
                 </v-btn>
               </template>
               <v-card>
                 <v-toolbar dark color="primary">
                   <v-btn icon dark @click="dialog3 = false">
-                    <v-icon>faSvg fa-times-circle</v-icon>
+                    <font-awesome-icon icon="fa-solid fa-circle-xmark" />
                   </v-btn>
                   <v-toolbar-title>Period Basis</v-toolbar-title>
                   <v-spacer></v-spacer>
@@ -298,9 +311,10 @@
                     outlined
                     :color="statusButtonColor(item)"
                   >
-                    <v-icon left>
-                      <font-awesome-icon :icon="statusButtonIcon(item)" />
-                    </v-icon>
+                    <font-awesome-icon
+                      :icon="statusButtonIcon(item)"
+                      pull="left"
+                    />
                     {{ item.status_name }}
                   </v-btn>
                 </div>
@@ -338,9 +352,8 @@
                 @click="(expanded = []), (expanded_id = 0)"
                 v-show="item.status_id == 5 && expanded.includes(item)"
                 color="error"
-              >
-                <v-icon><font-awesome-icon icon="fa-solid fa-minus" /></v-icon
-              ></v-btn>
+                ><font-awesome-icon icon="fa-solid fa-minus"
+              /></v-btn>
             </v-slide-x-transition>
             <v-slide-x-transition>
               <NotificationTimer
@@ -362,9 +375,7 @@
                   label
                   color="success"
                 >
-                  <v-icon left
-                    ><font-awesome-icon icon="fa-solid fa-plus"
-                  /></v-icon>
+                  <font-awesome-icon icon="fa-solid fa-plus" pull="left" />
                   {{ item.status_name }}
                 </v-chip>
                 <v-chip
@@ -373,9 +384,11 @@
                   label
                   color="error"
                 >
-                  <v-icon left
-                    ><font-awesome-icon icon="fa-solid fa-fire-flame" size="s"
-                  /></v-icon>
+                  <font-awesome-icon
+                    icon="fa-solid fa-fire-flame"
+                    size="s"
+                    pull="left"
+                  />
                   {{ item.status_name }}
                 </v-chip>
                 <v-chip
@@ -384,9 +397,7 @@
                   label
                   color="dark-orange"
                 >
-                  <v-icon left
-                    ><font-awesome-icon icon="fa-solid fa-toolbox"
-                  /></v-icon>
+                  <font-awesome-icon icon="fa-solid fa-toolbox" pull="left" />
                   {{ item.status_name }}
                 </v-chip>
                 <v-chip
@@ -395,9 +406,7 @@
                   label
                   color="primary"
                 >
-                  <v-icon left
-                    ><font-awesome-icon icon="fa-solid fa-thumbs-up"
-                  /></v-icon>
+                  <font-awesome-icon icon="fa-solid fa-thumbs-up" pull="left" />
                   {{ item.status_name }}
                 </v-chip>
                 <v-chip
@@ -406,9 +415,10 @@
                   label
                   color="warning"
                 >
-                  <v-icon left
-                    ><font-awesome-icon icon="fa-solid fa-circle-exclamation"
-                  /></v-icon>
+                  <font-awesome-icon
+                    icon="fa-solid fa-circle-exclamation"
+                    pull="left"
+                  />
                   {{ item.status_name }}
                 </v-chip>
 
@@ -418,9 +428,10 @@
                   label
                   color="light-green darken-1"
                 >
-                  <v-icon left
-                    ><font-awesome-icon icon="fa-solid fa-magnifying-glass"
-                  /></v-icon>
+                  <font-awesome-icon
+                    icon="fa-solid fa-magnifying-glass"
+                    pull="left"
+                  />
                   {{ item.status_name }}
                 </v-chip>
                 <CountDowntimer

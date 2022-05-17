@@ -13,7 +13,8 @@
           v-bind="attrs"
           v-on="on"
           @click="open()"
-          ><v-icon> faSvg fa-plus </v-icon>
+        >
+          <font-awesome-icon icon="fa-solid fa-plus" />
           Add Timer
         </v-btn>
       </template>
@@ -484,7 +485,6 @@ export default {
         withCredentials: true,
         data: request,
         headers: {
-
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -559,7 +559,6 @@ export default {
         withCredentials: true,
         data: request,
         headers: {
-
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -615,7 +614,6 @@ export default {
         withCredentials: true,
         data: request,
         headers: {
-
           Accept: "application/json",
           "Content-Type": "application/json",
         },

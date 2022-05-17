@@ -134,7 +134,10 @@
                 outlined
                 :color="pillColor(item.tower_status_id)"
               >
-                <v-icon left>{{ pillIcon(item.tower_status_id) }}</v-icon>
+                <font-awesome-icon
+                  :icon="pillIcon(item.tower_status_id)"
+                  pull="left"
+                />
                 {{ item.tower_status_name }}
               </v-btn>
             </template>
@@ -191,8 +194,8 @@
                 expanded.includes(item)
               "
               color="error"
-              ><v-icon><font-awesome-icon icon="fa-solid fa-minus" /></v-icon
-            ></v-btn>
+              ><font-awesome-icon icon="fa-solid fa-minus"
+            /></v-btn>
           </v-fab-transition>
           <v-tooltip
             color="#121212"

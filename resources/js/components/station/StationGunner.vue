@@ -27,22 +27,19 @@
             v-bind="attrs"
             v-on="on"
           >
-            <v-icon x-small dark>
-              <font-awesome-icon icon="fa-solid fa-plus" />
-            </v-icon>
+            <font-awesome-icon icon="fa-solid fa-plus" size="xs" />
             Gunner</v-btn
           >
         </template>
         <span> Gunners can assign themselfs here </span>
       </v-tooltip>
-      <v-icon
+      <font-awesome-icon
+        icon="fa-solid fa-trash-can"
         v-show="!showGunnerButton"
         color="orange darken-3"
-        small
+        size="s"
         @click="gunnerRemove()"
-      >
-        <font-awesome-icon icon="fa-solid fa-trash-can" />
-      </v-icon>
+      />
     </div>
   </div>
 </template>

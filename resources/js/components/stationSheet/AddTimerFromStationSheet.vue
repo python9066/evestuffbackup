@@ -8,9 +8,13 @@
       @click:outside="close()"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
-          fa-reqular fa-clock
-        </v-icon>
+        <font-awesome-icon
+          color="blue"
+          v-bind="attrs"
+          v-on="on"
+          @click="open()"
+          icon="fa-solid fa-clock"
+        />
       </template>
 
       <v-card

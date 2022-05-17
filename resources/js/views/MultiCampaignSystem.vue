@@ -75,9 +75,7 @@
                   v-on="on"
                   @click="sendAddCharMessage()"
                 >
-                  <v-icon
-                    ><font-awesome-icon icon="fa-solid fa-bullhorn"
-                  /></v-icon>
+                  <font-awesome-icon icon="fa-solid fa-bullhorn" />
                 </v-btn>
               </template>
               <span> Send a message to all Users without a Char added </span>

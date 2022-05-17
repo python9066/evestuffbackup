@@ -47,45 +47,42 @@
               class="d-flex full-width align-content-center"
             >
               <span>
-                <v-icon
+                <font-awesome-icon
+                  icon="fa-solid fa-circle-up"
                   v-if="
                     item.campaign[0].defenders_score >
                       item.campaign[0].defenders_score_old &&
                     item.campaign[0].defenders_score_old > 0
                   "
-                  small
-                  left
+                  size="s"
+                  pull="left"
                   dark
                   color="blue darken-4"
-                >
-                  <font-awesome-icon icon="fa-solid fa-circle-up" />
-                </v-icon>
-                <v-icon
+                />
+                <font-awesome-icon
+                  icon="fa-solid fa-circle-down"
                   v-if="
                     item.campaign[0].defenders_score <
                       item.campaign[0].defenders_score_old &&
                     item.campaign[0].defenders_score_old > 0
                   "
-                  small
-                  left
+                  size="s"
+                  pull="left"
                   dark
                   color="blue darken-4"
-                >
-                  <font-awesome-icon icon="fa-solid fa-circle-down" />
-                </v-icon>
-                <v-icon
+                />
+                <font-awesome-icon
+                  icon="fa-solid fa-circle-minus"
                   v-if="
                     item.campaign[0].defenders_score ==
                       item.campaign[0].defenders_score_old ||
                     item.campaign[0].defenders_score_old === null
                   "
-                  small
-                  left
+                  size="s"
+                  pull="left"
                   dark
                   color="grey darken-3"
-                >
-                  <font-awesome-icon icon="fa-solid fa-circle-minus" />
-                </v-icon>
+                />
               </span>
 
               <v-progress-linear
@@ -104,45 +101,42 @@
                 </strong>
               </v-progress-linear>
               <span>
-                <v-icon
+                <font-awesome-icon
+                  icon="fa-solid fa-circle-up"
                   v-if="
                     item.campaign[0].attackers_score >
                       item.campaign[0].attackers_score_old &&
                     item.campaign[0].attackers_score_old > 0
                   "
-                  small
-                  right
+                  size="small"
+                  pull="right"
                   dark
                   color="red darken-4"
-                >
-                  <font-awesome-icon icon="fa-solid fa-circle-up" />
-                </v-icon>
-                <v-icon
+                />
+                <font-awesome-icon
+                  icon="fa-solid fa-circle-down"
                   v-if="
                     item.campaign[0].attackers_score <
                       item.campaign[0].attackers_score_old &&
                     item.campaign[0].attackers_score_old > 0
                   "
-                  small
-                  right
+                  size="s"
+                  pull="right"
                   dark
                   color="red darken-4"
-                >
-                  <font-awesome-icon icon="fa-solid fa-circle-down" />
-                </v-icon>
-                <v-icon
+                />
+                <font-awesome-icon
+                  icon="fa-solid fa-circle-minus"
                   v-if="
                     item.campaign[0].attackers_score ==
                       item.campaign[0].attackers_score_old ||
                     item.campaign[0].attackers_score_old == null
                   "
-                  small
-                  right
+                  size="s"
+                  pull="right"
                   dark
                   color="grey darken-3"
-                >
-                  <font-awesome-icon icon="fa-solid fa-circle-minus" />
-                </v-icon>
+                />
               </span>
             </span>
             <span

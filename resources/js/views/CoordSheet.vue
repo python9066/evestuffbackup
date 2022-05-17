@@ -130,9 +130,7 @@
               class="d-inline-flex align-center"
             >
               <v-btn :href="link(item)" target="_blank" icon color="green">
-                <v-icon>
-                  <font-awesome-icon icon="fa-solid fa-map" size="xs"
-                /></v-icon>
+                <font-awesome-icon icon="fa-solid fa-map" size="xs" />
               </v-btn>
               <button
                 v-clipboard="item.system_name"
@@ -163,7 +161,7 @@
                     class="pb-3"
                     color="blue"
                   >
-                    <v-icon> faSvg fa-history</v-icon>
+                    <font-awesome-icon icon="fa-solid fa-clock-rotate-left" />
                   </v-btn>
                   <v-btn
                     @click="(expanded = []), (expanded_id = 0)"
@@ -172,7 +170,7 @@
                     class="pb-3"
                     color="error"
                   >
-                    <v-icon> faSvg fa-history</v-icon>
+                    <font-awesome-icon icon="fa-solid fa-clock-rotate-left" />
                   </v-btn>
                 </div>
               </div>

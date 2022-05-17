@@ -12,10 +12,7 @@
             @click="(tidiShow = true), (tidiEdit = null)"
             icon
             color="warning"
-          >
-            <v-icon
-              ><font-awesome-icon icon="fa-solid fa-pen-to-square"
-            /></v-icon>
+            ><font-awesome-icon icon="fa-solid fa-pen-to-square" />
           </v-btn>
         </template>
 
@@ -39,8 +36,8 @@
                 left
                 color="success"
                 @click="(tidiShow = false), editTidi()"
-                ><v-icon><font-awesome-icon icon="fa-solid fa-check" /></v-icon
-              ></v-btn>
+                ><font-awesome-icon icon="fa-solid fa-check"
+              /></v-btn>
 
               <v-btn
                 fixed
@@ -48,12 +45,8 @@
                 icon
                 color="warning"
                 @click="(tidiShow = false), (tidiEdit = null)"
-                ><v-icon
-                  ><font-awesome-icon
-                    icon="fa-solid fa-circle-xmark"
-                  />s</v-icon
-                ></v-btn
-              >
+                ><font-awesome-icon icon="fa-solid fa-circle-xmark"
+              /></v-btn>
             </v-card-text>
           </v-card>
         </template>

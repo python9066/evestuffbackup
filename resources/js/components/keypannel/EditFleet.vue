@@ -40,9 +40,11 @@
                   v-on="on"
                   @click="addShown = true"
                   color="success"
-                  ><v-icon left small
-                    ><font-awesome-icon icon="fa-solid fa-plus"
-                  /></v-icon>
+                  ><font-awesome-icon
+                    icon="fa-solid fa-plus"
+                    pull="left"
+                    size="s"
+                  />
                   Fleet</v-btn
                 >
               </template>
@@ -89,14 +91,13 @@
             <!-- :color="pillColor(item)" -->
             <template v-slot:[`item.addRemove`]="{ item }">
               <span>
-                <v-icon
+                <font-awesome-icon
+                  icon="fa-solid fa-trash-can"
                   rounded
                   :outlined="true"
-                  x-small
+                  size="sx"
                   @click="pillDelete(item)"
-                >
-                  <font-awesome-icon icon="fa-solid fa-trash-can" />
-                </v-icon>
+                />
               </span>
             </template>
           </v-data-table>

@@ -12,9 +12,7 @@
         @click="loadFeedBack()"
       >
         Update
-        <v-icon right dark
-          ><font-awesome-icon icon="fa-solid fa-rotate"
-        /></v-icon>
+        <font-awesome-icon icon="fa-solid fa-rotate" pull="right" />
       </v-btn>
 
       <v-text-field
@@ -61,9 +59,12 @@
       </template>
 
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon color="orange darken-3" small @click="deleteFeedBack(item)">
-          <font-awesome-icon icon="fa-solid fa-trash-can" />
-        </v-icon>
+        <font-awesome-icon
+          icon="fa-solid fa-trash-can"
+          color="orange darken-3"
+          size="s"
+          @click="deleteFeedBack(item)"
+        />
       </template>
     </v-data-table>
     <v-row no-gutters class="blue" justify="center">

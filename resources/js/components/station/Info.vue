@@ -6,10 +6,16 @@
       v-model="showInfo"
       @click:outside="close()"
     >
-      <template v-slot:activator="{ on, attrs }">
-        <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
-          faSvg fa-info-circle
-        </v-icon>
+      <template v-slot:activator="{ on, attrs }"
+        >>
+
+        <font-awesome-icon
+          icon="fa-solid fa-circle-info"
+          color="blue"
+          v-bind="attrs"
+          v-on="on"
+          @click="open()"
+        />
       </template>
 
       <v-card

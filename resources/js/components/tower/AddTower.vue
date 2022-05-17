@@ -2,8 +2,8 @@
   <div>
     <v-dialog max-width="700px" z-index="0" v-model="showAddTower" persistent>
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="green" dark v-bind="attrs" v-on="on" @click="open()"
-          ><v-icon left> faSvg fa-plus </v-icon>
+        <v-btn color="green" dark v-bind="attrs" v-on="on" @click="open()">
+          <font-awesome-icon icon="fa-solid fa-plus" pull="left" />
           Add Tower
         </v-btn>
       </template>

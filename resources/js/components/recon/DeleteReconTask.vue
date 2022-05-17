@@ -7,8 +7,8 @@
       v-model="showReconTaskDelete"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="red" dark v-bind="attrs" v-on="on"
-          ><v-icon left> faSvg fa-trash-alt </v-icon>
+        <v-btn color="red" dark v-bind="attrs" v-on="on">
+          <font-awesome-icon icon="fa-solid fa-trash-can" pull="left" />
           Delete
         </v-btn>
       </template>

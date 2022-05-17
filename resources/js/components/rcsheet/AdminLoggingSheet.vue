@@ -55,14 +55,14 @@
                 >
                   ADD
                 </v-btn>
-                <v-icon
+
+                <font-awesome-icon
+                  icon="fa-solid fa-trash-can"
                   rounded
                   :outlined="true"
-                  x-small
+                  size="xs"
                   @click="pillDelete(item)"
-                >
-                  <font-awesome-icon icon="fa-solid fa-trash-can" />
-                </v-icon>
+                />
               </span>
             </template>
           </v-data-table>

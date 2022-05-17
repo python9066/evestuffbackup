@@ -17,7 +17,7 @@
           :color="pillColor()"
         >
           {{ buttontext() }}
-          <v-icon right> faSvg fa-check-circle</v-icon>
+          <font-awesome-icon icon="fa-solid fa-circle-check" />
         </v-btn>
       </template>
 

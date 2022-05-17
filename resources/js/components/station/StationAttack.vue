@@ -13,15 +13,14 @@
           :content="messageAttackCount"
           :value="showAttackNumber"
         >
-          <v-icon
+          <font-awesome-icon
+            :icon="icon"
             color="red"
             :key="'crosshair' + station.id"
             v-bind="attrs"
             v-on="{ ...menu }"
             @click="open()"
-          >
-            <font-awesome-icon :icon="icon" />
-          </v-icon>
+          />
         </v-badge>
       </template>
 

@@ -7,9 +7,13 @@
       @click:outside="close()"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
-          <font-awesome-icon :icon="icon" />
-        </v-icon>
+        <font-awesome-icon
+          :icon="icon"
+          color="blue"
+          v-bind="attrs"
+          v-on="on"
+          @click="open()"
+        />
       </template>
       <v-card
         tile

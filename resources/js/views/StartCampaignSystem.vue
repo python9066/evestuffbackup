@@ -48,7 +48,7 @@
             </v-btn>
             <v-btn v-if="$can('super')"> test </v-btn>
             <v-btn v-if="$can('super')" fab dark class="mr-4" small>
-              <v-icon><font-awesome-icon icon="fa-solid fa-bullhorn" /></v-icon>
+              <font-awesome-icon icon="fa-solid fa-bullhorn" />
             </v-btn>
             <v-btn v-if="$can('super')" dark color="red" class="mr-4">
               Campaign Over

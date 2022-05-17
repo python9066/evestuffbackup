@@ -104,36 +104,18 @@
         </v-tabs>
       </div>
       <v-spacer></v-spacer>
-      <!-- <div
-                class=" d-inline-flex align-content-center"
-                v-if="$can('gunner')"
-            >
-                <v-switch
-                    v-model="tooltipToggle"
-                    color="primary"
-                    hide-details
-                    @change="changeTooltipToggle()"
-                ></v-switch>
-                <span class=" pt-1"> {{ tooltiponoff() }}</span>
-            </div> -->
-      <!-- <v-btn
-                text
-                class="mr-2"
-                v-if="this.$vuetify.breakpoint.mdAndUp"
-                @click="tidiCalc = !tidiCalc"
-            >
-                <v-icon class="mr-2 grey--text lighten-1">fa fa-clock</v-icon
-                >Tidi
-            </v-btn> -->
+
       <v-btn
         text
         class="mr-2"
         v-if="this.$vuetify.breakpoint.mdAndUp"
         @click="overlay = !overlay"
       >
-        <v-icon class="mr-2 grey--text lighten-1"
-          ><font-awesome-icon icon="fa-solid fa-comment" size="xl" /></v-icon
-        >Feedback
+        <font-awesome-icon
+          icon="fa-solid fa-comment"
+          size="xl"
+          class="mr-2 grey--text lighten-1"
+        />Feedback
       </v-btn>
       <v-btn
         icon
@@ -141,9 +123,7 @@
         v-if="this.$vuetify.breakpoint.mdAndUp"
         @click="logout()"
       >
-        <v-icon
-          ><font-awesome-icon icon="fa-solid fa-right-from-bracket"
-        /></v-icon>
+        <font-awesome-icon icon="fa-solid fa-right-from-bracket" />
       </v-btn>
     </v-app-bar>
 

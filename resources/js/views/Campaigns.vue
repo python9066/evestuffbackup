@@ -84,9 +84,11 @@
     >
       <template slot="no-data"> No Active or Upcoming Campaigns </template>
       <template v-slot:[`item.alliance`]="{ item }">
-        <v-icon v-if="item.priority.priority == 1">
-          <font-awesome-icon icon="fa-regular fa-mitten" size="xl" />
-        </v-icon>
+        <font-awesome-icon
+          icon="fa-regular fa-mitten"
+          size="xl"
+          v-if="item.priority.priority == 1"
+        />
         <v-avatar size="35"><img :src="item.url" /></v-avatar>
         <span v-if="item.standing > 0" class="blue--text pl-3"
           >{{ item.alliance }}
@@ -95,9 +97,11 @@
           >{{ item.alliance }}
         </span>
         <span v-else class="pl-3">{{ item.alliance }}</span>
-        <v-icon v-if="item.priority.priority == 1">
-          <font-awesome-icon icon="fa-regular fa-mitten" size="xl" />
-        </v-icon>
+        <font-awesome-icon
+          icon="fa-regular fa-mitten"
+          size="xl"
+          v-if="item.priority.priority == 1"
+        />
       </template>
 
       <template v-slot:[`item.start`]="{ item }">
@@ -107,42 +111,39 @@
           class="d-flex full-width align-content-center"
         >
           <span>
-            <v-icon
+            <font-awesome-icon
+              icon="fa-solid fa-circle-up"
               v-if="
                 item.defenders_score > item.defenders_score_old &&
                 item.defenders_score_old > 0
               "
-              small
-              left
+              size="s"
+              pull="left"
               dark
               color="blue darken-4"
-            >
-              <font-awesome-icon icon="fa-solid fa-circle-up" />
-            </v-icon>
-            <v-icon
+            />
+            <font-awesome-icon
+              icon="fa-solid fa-circle-down"
               v-if="
                 item.defenders_score < item.defenders_score_old &&
                 item.defenders_score_old > 0
               "
-              small
-              left
+              size="s"
+              pull="left"
               dark
               color="blue darken-4"
-            >
-              <font-awesome-icon icon="fa-solid fa-circle-down" />
-            </v-icon>
-            <v-icon
+            />
+            <font-awesome-icon
+              icon="fa-solid fa-circle-minus"
               v-if="
                 item.defenders_score == item.defenders_score_old ||
                 item.defenders_score_old === null
               "
-              small
-              left
+              size="s"
+              pull="left"
               dark
               color="grey darken-3"
-            >
-              <font-awesome-icon icon="fa-solid fa-circle-minus" />
-            </v-icon>
+            />
           </span>
 
           <v-progress-linear
@@ -161,42 +162,39 @@
             </strong>
           </v-progress-linear>
           <span>
-            <v-icon
+            <font-awesome-icon
+              icon="fa-solid fa-circle-up"
               v-if="
                 item.attackers_score > item.attackers_score_old &&
                 item.attackers_score_old > 0
               "
-              small
-              right
+              size="s"
+              pull="right"
               dark
               color="red darken-4"
-            >
-              <font-awesome-icon icon="fa-solid fa-circle-up" />
-            </v-icon>
-            <v-icon
+            />
+            <font-awesome-icon
+              icon="fa-solid fa-circle-down"
               v-if="
                 item.attackers_score < item.attackers_score_old &&
                 item.attackers_score_old > 0
               "
-              small
-              right
+              size="s"
+              pull="right"
               dark
               color="red darken-4"
-            >
-              <font-awesome-icon icon="fa-solid fa-circle-down" />
-            </v-icon>
-            <v-icon
+            />
+            <font-awesome-icon
+              icon="fa-solid fa-circle-minus"
               v-if="
                 item.attackers_score == item.attackers_score_old ||
                 item.attackers_score_old == null
               "
-              small
-              right
+              size="s"
+              pull="right"
               dark
               color="grey darken-3"
-            >
-              <font-awesome-icon icon="fa-solid fa-circle-minus" />
-            </v-icon>
+            />
           </span>
         </span>
         <span v-else-if="item.status_id == 3 || item.status_id == 4">

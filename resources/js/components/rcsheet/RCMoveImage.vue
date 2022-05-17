@@ -2,9 +2,14 @@
   <div>
     <v-menu bottom left offset-y>
       <template v-slot:activator="{ on, attrs }">
-        <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
-          <font-awesome-icon :icon="icon" size="xl" />
-        </v-icon>
+        <font-awesome-icon
+          :icon="icon"
+          size="xl"
+          color="blue"
+          v-bind="attrs"
+          v-on="on"
+          @click="open()"
+        />
       </template>
       <v-card>
         <v-card-title> </v-card-title>

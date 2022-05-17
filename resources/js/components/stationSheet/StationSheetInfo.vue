@@ -7,9 +7,13 @@
       @click:outside="close()"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-icon color="blue" v-bind="attrs" v-on="on" @click="open()">
-          faSvg fa-info-circle
-        </v-icon>
+        <font-awesome-icon
+          icon="fa-solid fa-circle-info"
+          color="blue"
+          v-bind="attrs"
+          v-on="on"
+          @click="open()"
+        />
       </template>
 
       <v-card

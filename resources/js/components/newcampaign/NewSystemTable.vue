@@ -18,14 +18,13 @@
               No Nodes in this system statemtmem
             </template>
             <template v-slot:[`item.actions`]="{ item }">
-              <v-icon
+              <font-awesome-icon
+                icon="fa-solid fa-trash-can"
                 color="orange darken-3"
-                small
+                size="s"
                 class="pl-5"
                 @click="removenode(item)"
-              >
-                <font-awesome-icon icon="fa-solid fa-trash-can" />
-              </v-icon>
+              />
             </template>
             <template v-slot:[`item.op_users`]="{ item }">
               <AddPilot :node="item" :operationID="operationID" />

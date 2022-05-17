@@ -18,9 +18,8 @@
         </VueCountUptimer>
       </span>
     </div>
-    <v-icon color="blue" @click="checkClick()">
-      {{ icon }}
-    </v-icon>
+
+    <font-awesome-icon :icon="icon" color="blue" @click="checkClick()" />
   </div>
 </template>
 
@@ -63,7 +62,6 @@ export default {
         withCredentials: true,
         data: request,
         headers: {
-
           Accept: "application/json",
           "Content-Type": "application/json",
         },
@@ -75,7 +73,7 @@ export default {
 
   computed: {
     icon() {
-      return "faSvg fa-undo";
+      return "fa-solid fa-rotate-left";
     },
   },
 };

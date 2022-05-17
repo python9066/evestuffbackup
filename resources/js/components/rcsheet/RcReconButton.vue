@@ -17,23 +17,20 @@
         outlined
         @click="reconAdd()"
       >
-        <v-icon x-small dark left>
-          <font-awesome-icon icon="fa-solid fa-plus" />
-        </v-icon>
+        <font-awesome-icon icon="fa-solid fa-plus" size="xs" pull="left" />
         CYNO</v-btn
       >
-      <v-icon
+      <font-awesome-icon
+        icon="fa-solid fa-trash-can"
         v-show="
           showRcReconButton() &&
           ($can('edit_killsheet_remove_char') ||
             this.station.recon.user.id == this.$store.state.user_id)
         "
         color="orange darken-3 "
-        small
+        size="s"
         @click="reconRemove()"
-      >
-        <font-awesome-icon icon="fa-solid fa-trash-can" />
-      </v-icon>
+      />
     </div>
   </div>
 </template>

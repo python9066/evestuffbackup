@@ -16,7 +16,8 @@
           :color="pillColor()"
         >
           {{ buttontext() }}
-          <v-icon right> {{ icons() }}</v-icon>
+
+          <font-awesome-icon :icon="icons" pull="right" />
         </v-btn>
       </template>
 
@@ -86,20 +87,6 @@ export default {
       }
     },
 
-    icons() {
-      if (this.item.station_status_id == 4) {
-        return "faSvg fa-check-circle";
-      }
-      if (this.item.station_status_id == 18) {
-        return "faSvg fa-question-circle";
-      }
-      if (this.item.station_status_id == 16) {
-        return "faSvg fa-exclamation-triangle";
-      }
-      if (this.item.station_status_id == 7) {
-        return "faSvg fa-skull-crossbones";
-      }
-    },
     buttontext() {
       var ret = this.item.station_status_name.replace("Upcoming - ", "");
       return ret;
@@ -156,7 +143,22 @@ export default {
     },
   },
 
-  computed: {},
+  computed: {
+    icons() {
+      if (this.item.station_status_id == 4) {
+        return "fa-solid fa-check-circle";
+      }
+      if (this.item.station_status_id == 18) {
+        return "fa-solid fa-circle-question";
+      }
+      if (this.item.station_status_id == 16) {
+        return "fa-solid fa-triangle-exclamation";
+      }
+      if (this.item.station_status_id == 7) {
+        return "fa-solid fa-skull-crossbones";
+      }
+    },
+  },
 
   beforeDestroy() {},
 };

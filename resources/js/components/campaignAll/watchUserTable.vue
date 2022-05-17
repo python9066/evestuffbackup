@@ -52,16 +52,12 @@
             <template v-slot:[`item.action`]="{ item }">
               <span class="d-inline-flex">
                 <v-btn class="ma-2" tile @click="kickUser(item)" icon>
-                  <v-icon small color="red">faSvg fa-user-minus</v-icon>
+                  <font-awesome-icon
+                    icon="fa-solid fa-user-minus"
+                    color="red"
+                    size="s"
+                  />
                 </v-btn>
-
-                <!-- <v-btn
-                    class=" ma-2"
-                    tile
-                    @click="banUser(item)"
-                    icon>
-                    <v-icon small color= "red">faSvg fa-user-alt-slash</v-icon>
-                </v-btn> -->
               </span>
             </template>
             <template slot="no-data"> No one is here </template>

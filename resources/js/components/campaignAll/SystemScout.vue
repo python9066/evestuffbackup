@@ -21,23 +21,20 @@
         outlined
         @click="scoutAdd()"
       >
-        <v-icon x-small dark>
-          <font-awesome-icon icon="fa-solid fa-plus"
-        /></v-icon>
+        <font-awesome-icon icon="fa-solid fa-plus" size="xs" />
         Add</v-btn
       >
-      <v-icon
+      <font-awesome-icon
+        icon="fa-solid fa-trash-can"
         v-if="
           CampaignSolaSystem[0]['supervisor_id'] != null &&
           ($can('edit_system_scout') ||
             this.$store.state.user_id == CampaignSolaSystem[0]['supervisor_id'])
         "
         color="orange darken-3"
-        small
+        size="xs"
         @click="scoutRemove()"
-      >
-        <font-awesome-icon icon="fa-solid fa-trash-can" />
-      </v-icon>
+      />
     </div>
   </div>
 </template>

@@ -25,10 +25,8 @@
                     <template v-slot:activator="{ on, attrs }">
                       <div>
                         <v-btn icon v-bind="attrs" v-on="on" color="success"
-                          ><v-icon
-                            ><font-awesome-icon
-                              icon="fa-solid fa-plus" /></v-icon
-                        ></v-btn>
+                          ><font-awesome-icon icon="fa-solid fa-plus"
+                        /></v-btn>
                       </div>
                     </template>
 
@@ -59,9 +57,12 @@
                         (userRemoveRoleText = role.id), userRemoveRole(item)
                       "
                     >
-                      <v-icon v-if="role.name == 'Wizard'" small left>
-                        faSvg fa-hat-wizard
-                      </v-icon>
+                      <font-awesome-icon
+                        icon="fa-solid fa-hat-wizard"
+                        v-if="role.name == 'Wizard'"
+                        size="s"
+                        pull="left"
+                      />
                       <span> {{ role.name }}</span>
                     </v-chip>
                   </div>

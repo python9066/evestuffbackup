@@ -27,22 +27,19 @@
             v-bind="attrs"
             v-on="on"
           >
-            <v-icon x-small dark>
-              <font-awesome-icon icon="fa-solid fa-plus" />
-            </v-icon>
+            <font-awesome-icon icon="fa-solid fa-plus" small="xs" />
             Take Task</v-btn
           >
         </template>
         <span> Stocker can assign themselfs here </span>
       </v-tooltip>
-      <v-icon
+      <font-awesome-icon
+        icon="fa-solid fa-trash-can"
         v-show="!showStockerButton"
         color="orange darken-3"
-        small
+        size="small"
         @click="stockerRemove()"
-      >
-        <font-awesome-icon icon="fa-solid fa-trash-can" />
-      </v-icon>
+      />
     </div>
   </div>
 </template>

@@ -4,7 +4,7 @@
       <template v-slot:activator="{ on, attrs }">
         <div>
           <v-btn v-bind="attrs" v-on="on" icon color="green darken-3">
-            <v-icon small><font-awesome-icon icon="fa-solid fa-plus" /></v-icon>
+            <font-awesome-icon icon="fa-solid fa-plus" size="s" />
           </v-btn>
         </div>
       </template>

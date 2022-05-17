@@ -22,45 +22,42 @@
             class="d-flex full-width align-content-center"
             v-if="this.campaign.status_id > 1"
           >
-            <v-icon
+            <font-awesome-icon
+              icon="fa-solid fa-circle-up"
               v-if="
                 this.campaign.defenders_score >
                   this.campaign.defenders_score_old &&
                 this.campaign.defenders_score_old > 0
               "
-              small
-              left
+              size="s"
+              pull="left"
               dark
               color="blue darken-4"
-            >
-              <font-awesome-icon icon="fa-solid fa-circle-up" />
-            </v-icon>
-            <v-icon
+            />
+            <font-awesome-icon
+              icon="fa-solid fa-circle-down"
               v-if="
                 this.campaign.defenders_score <
                   this.campaign.defenders_score_old &&
                 this.campaign.defenders_score_old > 0
               "
-              small
-              left
+              size="s"
+              pull="left"
               dark
               color="blue darken-4"
-            >
-              <font-awesome-icon icon="fa-solid fa-circle-down" />
-            </v-icon>
-            <v-icon
+            />
+            <font-awesome-icon
+              icon="fa-solid fa-circle-minus"
               v-if="
                 this.campaign.defenders_score ==
                   this.campaign.defenders_score_old ||
                 this.campaign.defenders_score_old === null
               "
-              small
-              left
+              size="s"
+              pull="left"
               dark
               color="grey darken-3"
-            >
-              <font-awesome-icon icon="fa-solid fa-circle-minus" />
-            </v-icon>
+            />
 
             <v-progress-linear
               :color="this.barColor"
@@ -78,45 +75,42 @@
               </strong>
             </v-progress-linear>
 
-            <v-icon
+            <font-awesome-icon
+              icon="fa-solid fa-circle-up"
               v-if="
                 this.campaign.attackers_score >
                   this.campaign.attackers_score_old &&
                 this.campaign.attackers_score_old > 0
               "
-              small
-              right
+              size="s"
+              pull="right"
               dark
               color="red darken-4"
-            >
-              <font-awesome-icon icon="fa-solid fa-circle-up" />
-            </v-icon>
-            <v-icon
+            />
+            <font-awesome-icon
+              icon="fa-solid fa-circle-down"
               v-if="
                 this.campaign.attackers_score <
                   this.campaign.attackers_score_old &&
                 this.campaign.attackers_score_old > 0
               "
-              small
-              right
+              size="s"
+              pull="right"
               dark
               color="red darken-4"
-            >
-              <font-awesome-icon icon="fa-solid fa-circle-down" />
-            </v-icon>
-            <v-icon
+            />
+            <font-awesome-icon
+              icon="fa-solid fa-circle-minus"
               v-if="
                 this.campaign.attackers_score ==
                   this.campaign.attackers_score_old ||
                 this.campaign.attackers_score_old == null
               "
-              small
-              right
+              size="s"
+              pull="right"
               dark
               color="grey darken-3"
-            >
-              <font-awesome-icon icon="fa-solid fa-circle-minus" />
-            </v-icon>
+            />
           </div>
           <div
             class="d-flex full-width align-content-center"
@@ -241,9 +235,7 @@
                   v-on="on"
                   @click="sendAddCharMessage()"
                 >
-                  <v-icon
-                    ><font-awesome-icon icon="fa-solid fa-bullhorn"
-                  /></v-icon>
+                  <font-awesome-icon icon="fa-solid fa-bullhorn" />
                 </v-btn>
               </template>
               <span> Send a message to all Users without a Char added </span>
