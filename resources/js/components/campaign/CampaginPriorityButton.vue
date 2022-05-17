@@ -24,6 +24,7 @@ export default {
       } else {
         var num = 0;
       }
+      this.item.priority = num;
       var request = {
         priority: num,
       };
