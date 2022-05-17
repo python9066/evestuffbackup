@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
 use App\Models\CampaignSystemRecords;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,12 @@ class CampaignSystemRecordsController extends Controller
     public function show($id)
     {
     }
+
+    public function updatePriority(Request $request, $id)
+    {
+        Campaign::where('id', $id)->update(['priority' => $request->priority]);
+    }
+
 
     /**
      * Update the specified resource in storage.

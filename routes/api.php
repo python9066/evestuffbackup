@@ -76,6 +76,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/campaignsystemsrecords/{id}/{campid}', 'CampaignSystemRecordsController@update');
     Route::post('/campaignsystemsrecords/{id}/{campid}', 'CampaignSystemRecordsController@store');
     Route::delete('/campaginsystemsrecords/{id}/{campid}', 'CampaignSystemRecordsController@destroy');
+    Route::post('/campaignpriority/{id}', 'CampaignController@updatePriority');
 
 
     Route::post('/campaignsystemload', 'CampaignSystemsController@load');

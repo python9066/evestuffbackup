@@ -358,7 +358,7 @@
             </template>
           </VueCountUptimer>
           <div v-if="$can('edit_hack_priority')">
-            <CampaginPriorityButton />
+            <CampaginPriorityButton :item="item.priority" />
           </div>
         </div>
       </template>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn icon>
+    <v-btn icon @click="click()">
       <v-icon>{{ text }}</v-icon>
     </v-btn>
   </div>
@@ -17,11 +17,33 @@ export default {
     return {};
   },
 
-  methods: {},
+  methods: {
+    click() {
+      if (this.item.priority == 0) {
+        var num = 1;
+      } else {
+        var num = 0;
+      }
+      var request = {
+        priority: num,
+      };
+
+      axios({
+        method: "post", //you can set what request you want to be
+        url: "api/campaignpriority",
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+    },
+  },
 
   computed: {
     text() {
-      if (this.item) {
+      if (this.item.priority == 0) {
         return "fas fa-bell";
       } else {
         return "far fa-bell";
