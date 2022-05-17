@@ -97,7 +97,7 @@
     >
       <template slot="no-data"> No Active or Upcoming Campaigns </template>
       <template v-slot:[`item.alliance`]="{ item }">
-        <!-- <v-icon v-if="this.item.priority.priority == 1"> far fa-mitten </v-icon> -->
+        <v-icon v-if="item.priority.priority == 1"> far fa-mitten </v-icon>
         <v-avatar size="35"><img :src="item.url" /></v-avatar>
         <span v-if="item.standing > 0" class="blue--text pl-3"
           >{{ item.alliance }}
@@ -106,7 +106,7 @@
           >{{ item.alliance }}
         </span>
         <span v-else class="pl-3">{{ item.alliance }}</span>
-        <!-- <v-icon v-if="this.item.priority.priority == 1"> far fa-mitten </v-icon> -->
+        <v-icon v-if="item.priority.priority == 1"> far fa-mitten </v-icon>
       </template>
 
       <template v-slot:[`item.start`]="{ item }">
