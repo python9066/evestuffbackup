@@ -24,13 +24,22 @@ class CampaignRecordsController extends Controller
     {
 
         if (Auth::user()->can("use_reserved_connection")) {
-            return ['campaigns' => CampaignRecords::with(['webway' => function ($t) {
-                $t->where('permissions', 1);
-            }])->get()];
+            return ['campaigns' => CampaignRecords::with(
+                [
+                    'webway' => function ($t) {
+                        $t->where('permissions', 1);
+                    },
+                    'priority'
+                ]
+            )->get()];
         } else {
-            return ['campaigns' => CampaignRecords::with(['webway' => function ($t) {
-                $t->where('permissions', 1);
-            }])->get()];
+            return ['campaigns' => CampaignRecords::with([
+                'webway' => function ($t) {
+                    $t->where('permissions', 1);
+                },
+                'priority'
+            ])
+                ->get()];
         }
     }
 
