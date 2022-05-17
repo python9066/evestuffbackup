@@ -13,14 +13,14 @@ import store from "./store";
 import App from "./views/App";
 import "animate.css";
 import colors from "vuetify/lib/util/colors";
-import "@fortawesome/fontawesome-free/css/all.css";
+// import "@fortawesome/fontawesome-free/css/all.css";
 import VueCountdown from "@chenfengyuan/vue-countdown";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
-import { faBell as fasBell } from "@fortawesome/free-solid-svg-icons";
-import { faBell as farBell } from "@fortawesome/free-regular-svg-icons";
+// import { faBell as fasBell } from "@fortawesome/free-solid-svg-icons";
+// import { faBell as farBell } from "@fortawesome/free-regular-svg-icons";
 import moment from "moment";
 import VueCountdownTimer from "vuejs-countdown-timer";
 import VueCountupTimer from "./components/countup/index";
@@ -33,7 +33,7 @@ import VueEllipseProgress from "vue-ellipse-progress";
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 // library.add(faUserSecret);
-library.add(fasBell, farBell); // Include needed icons
+library.add(fas, far); // Include needed icons
 Vue.component(
     "messageComponent",
     require("./components/random/messageComponent.vue").default
