@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-btn icon @click="click()">
-      <v-icon>{{ text }}</v-icon>
+      <font-awesome-icon :icon="text" />
     </v-btn>
   </div>
 </template>
@@ -41,13 +41,12 @@ export default {
       });
     },
   },
-
   computed: {
     text() {
       if (this.item.priority == 0) {
-        return "far fa-bell";
+        return "fa-regular fa-bell";
       } else {
-        return "fas fa-bell";
+        return "fa-solid fa-bell";
       }
     },
   },
