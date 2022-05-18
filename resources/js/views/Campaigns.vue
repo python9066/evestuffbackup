@@ -393,7 +393,6 @@
         </div>
       </template>
     </v-data-table>
-    <div class="style-1">fefefe</div>
   </div>
 </template>
 <script>
