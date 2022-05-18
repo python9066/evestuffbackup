@@ -376,6 +376,7 @@
         </div>
       </template>
     </v-data-table>
+    <div class="style-2">fefefe</div>
   </div>
 </template>
 <script>
@@ -811,11 +812,6 @@ export default {
 }
 
 .rainbow-2 {
-  text-align: center;
-  text-decoration: underline;
-  font-size: 32px;
-  font-family: monospace;
-  letter-spacing: 5px;
   animation: colorRotate 0.5s linear 0s infinite;
 }
 
