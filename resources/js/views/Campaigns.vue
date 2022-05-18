@@ -86,10 +86,10 @@
       <template slot="no-data"> No Active or Upcoming Campaigns </template>
       <template v-slot:[`item.alliance`]="{ item }">
         <font-awesome-icon
-          icon="fa-solid fa-mitten"
+          icon="fa-solid fa-wand-magic-sparkles"
           size="xl"
           transform="flip-h"
-          class="fa-bounce warning_amber"
+          class="fa-bounce rainbow-2"
           style="
             --fa-bounce-start-scale-x: 1;
             --fa-bounce-start-scale-y: 1;
@@ -109,9 +109,9 @@
         </span>
         <span v-else class="pl-3">{{ item.alliance }}</span>
         <font-awesome-icon
-          icon="fa-solid fa-mitten"
+          icon="fa-solid fa-wand-magic-sparkles"
           size="xl"
-          class="fa-bounce warning_amber"
+          class="fa-bounce rainbow-2"
           v-if="item.priority.priority == 1"
           bounce
           style="
@@ -452,9 +452,7 @@ export default {
     },
 
     itemRowBackground: function (item) {
-      if (item.priority == 1) {
-        return "style-1";
-      } else {
+      if (item.priority.priority == 1) {
         return "style-2";
       }
     },
@@ -802,5 +800,36 @@ export default {
   100% {
     background-position: 0% 50%;
   }
+}
+
+.rainbow-2 {
+  background-image: linear-gradient(
+    to right,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet,
+    red
+  );
+  animation: slidebg 2s linear infinite;
+}
+
+@keyframes slidebg {
+  to {
+    background-position: 20vw;
+  }
+}
+
+.follow {
+  margin-top: 40px;
+}
+
+.follow a {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
 }
 </style>
