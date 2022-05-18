@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Campaign;
 use App\Models\CampaignSystemRecords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CampaignSystemRecordsController extends Controller
 {
@@ -41,7 +42,10 @@ class CampaignSystemRecordsController extends Controller
 
     public function updatePriority(Request $request, $id)
     {
-        Campaign::where('id', $id)->update(['priority' => $request->priority]);
+        $user = Auth::user();
+        if ($user->can("edit_hack_priority")) {
+            Campaign::where('id', $id)->update(['priority' => $request->priority]);
+        }
     }
 
 
