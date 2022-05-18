@@ -117,7 +117,7 @@
                 </template>
                 <template
                   v-slot:[`item.system.system_name`]="{ item }"
-                  class="d-inline-flex align-center"
+                  class="d-inline-flex align-center align-items-center"
                 >
                   <v-btn :href="link(item)" target="_blank" icon color="green">
                     <font-awesome-icon icon="fa-solid fa-map" size="xl" />
@@ -190,7 +190,6 @@
                               "
                               v-show="!expanded.includes(item)"
                               icon
-                              class="pb-3"
                               color="blue"
                             >
                               <font-awesome-icon
@@ -202,7 +201,6 @@
                               @click="(expanded = []), (expanded_id = 0)"
                               v-show="expanded.includes(item)"
                               icon
-                              class="pb-3"
                               color="error"
                             >
                               <font-awesome-icon
