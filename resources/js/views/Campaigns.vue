@@ -19,7 +19,6 @@
             :items="dropdown_search_list"
             label="Filter by Region"
             multiple
-            :item-class="itemRowBackground"
             chips
             deletable-chips
             hide-details
@@ -73,6 +72,7 @@
       :height="height"
       fixed-header
       :items-per-page="50"
+      :item-class="itemRowBackground"
       :footer-props="{
         'items-per-page-options': [10, 20, 30, 50, 100, -1],
       }"
@@ -85,8 +85,8 @@
     >
       <template slot="no-data"> No Active or Upcoming Campaigns </template>
       <template v-slot:[`item.alliance`]="{ item }">
-        <v-row no-gutters>
-          <v-col cols="2" v-if="item.priority.priority == 1" class="rainbow-2">
+        <div>
+          <span v-if="item.priority.priority == 1" class="rainbow-2">
             <font-awesome-icon
               icon="fa-solid fa-wand-magic-sparkles"
               size="xl"
@@ -101,18 +101,17 @@
                 --fa-bounce-land-scale-y: 1;
               "
               v-if="item.priority.priority == 1"
-          /></v-col>
-          <v-col :cols="colNum(item.priority.priority)">
-            <v-avatar size="35"><img :src="item.url" /></v-avatar>
-            <span v-if="item.standing > 0" class="blue--text pl-3"
-              >{{ item.alliance }}
-            </span>
-            <span v-else-if="item.standing < 0" class="red--text pl-3"
-              >{{ item.alliance }}
-            </span>
-            <span v-else class="pl-3">{{ item.alliance }}</span>
-          </v-col>
-          <v-col cols="2" v-if="item.priority.priority == 1" class="rainbow-2">
+          /></span>
+
+          <v-avatar size="35"><img :src="item.url" /></v-avatar>
+          <span v-if="item.standing > 0" class="blue--text pl-3"
+            >{{ item.alliance }}
+          </span>
+          <span v-else-if="item.standing < 0" class="red--text pl-3"
+            >{{ item.alliance }}
+          </span>
+          <span v-else class="pl-3">{{ item.alliance }}</span>
+          <span v-if="item.priority.priority == 1" class="rainbow-2">
             <font-awesome-icon
               icon="fa-solid fa-wand-magic-sparkles"
               size="xl"
@@ -127,8 +126,8 @@
                 --fa-bounce-land-scale-y: 1;
               "
             />
-          </v-col>
-        </v-row>
+          </span>
+        </div>
       </template>
 
       <template v-slot:[`item.start`]="{ item }">
@@ -796,7 +795,7 @@ export default {
 
 <style>
 .style-2 {
-  background-color: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
 }
