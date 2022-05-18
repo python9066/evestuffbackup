@@ -87,7 +87,7 @@
         <font-awesome-icon
           icon="fa-solid fa-mitten"
           size="xl"
-          transform="flip-v"
+          transform="flip-h"
           class="fa-shake"
           v-if="item.priority.priority == 1"
         />
@@ -102,6 +102,7 @@
         <font-awesome-icon
           icon="fa-solid fa-mitten"
           size="xl"
+          class="fa-shake"
           v-if="item.priority.priority == 1"
           bounce
         />
