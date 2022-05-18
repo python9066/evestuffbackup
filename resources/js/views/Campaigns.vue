@@ -85,7 +85,7 @@
     >
       <template slot="no-data"> No Active or Upcoming Campaigns </template>
       <template v-slot:[`item.alliance`]="{ item }">
-        <div>
+        <div class="d-flex flex-nowrap">
           <span v-if="item.priority.priority == 1" class="rainbow-2">
             <font-awesome-icon
               icon="fa-solid fa-wand-magic-sparkles"
