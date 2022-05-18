@@ -454,6 +454,8 @@ export default {
     itemRowBackground: function (item) {
       if (item.priority == 1) {
         return "style-1";
+      } else {
+        return "style-2";
       }
     },
 
@@ -780,10 +782,14 @@ export default {
 </script>
 
 <style>
-.style-1 {
+.style-2 {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
+}
+
+.style-1 {
+  background-color: rgb(30, 30, 30, 1);
 }
 
 @keyframes gradient {
