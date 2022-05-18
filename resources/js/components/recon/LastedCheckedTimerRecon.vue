@@ -18,8 +18,9 @@
         </VueCountUptimer>
       </span>
     </div>
-
-    <font-awesome-icon :icon="icon" color="blue" @click="checkClick()" />
+    <v-btn icon color="blue" @click="checkClick()">
+      <font-awesome-icon :icon="icon" />
+    </v-btn>
   </div>
 </template>
 

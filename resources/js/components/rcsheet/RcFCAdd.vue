@@ -45,11 +45,7 @@
                   v-on="on"
                   @click="addShown = true"
                   color="success"
-                  ><font-awesome-icon
-                    icon="fa-solid fa-plus"
-                    small="s"
-                    pull="left"
-                  />
+                  ><font-awesome-icon icon="fa-solid fa-plus" pull="left" />
                   FC</v-btn
                 >
               </template>
@@ -106,13 +102,9 @@
                 >
                   ADD
                 </v-btn>
-                <font-awesome-icon
-                  icon="fa-solid fa-trash-can"
-                  rounded
-                  :outlined="true"
-                  size="s"
-                  @click="pillDelete(item)"
-                />
+                <v-btn icon @click="pillDelete(item)">
+                  <font-awesome-icon icon="fa-solid fa-trash-can"
+                /></v-btn>
               </span>
             </template>
           </v-data-table>

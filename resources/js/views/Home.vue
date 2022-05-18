@@ -4,7 +4,7 @@
       <font-awesome-icon
         class="mr-2 grey--text lighten-1"
         icon="fa-solid fa-rocket-launch"
-        size="xl"
+        size="2xl"
       />No idea what this is showing
     </v-container>
   </div>

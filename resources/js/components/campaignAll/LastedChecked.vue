@@ -4,7 +4,6 @@
       <v-btn class="mr-4 ml-4 mb-4" color="green" small @click="checkClick()">
         <font-awesome-icon
           icon="fa-solid fa-magnifying-glass-location"
-          size="s"
           pull="left"
         />
         System Checked</v-btn

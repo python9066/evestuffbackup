@@ -33,13 +33,14 @@
         </template>
         <span> Gunners can assign themselfs here </span>
       </v-tooltip>
-      <font-awesome-icon
-        icon="fa-solid fa-trash-can"
+      <v-btn
+        icon
+        @click="gunnerRemove()"
         v-show="!showGunnerButton"
         color="orange darken-3"
-        size="s"
-        @click="gunnerRemove()"
-      />
+      >
+        <font-awesome-icon icon="fa-solid fa-trash-can"
+      /></v-btn>
     </div>
   </div>
 </template>

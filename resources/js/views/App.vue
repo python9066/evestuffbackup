@@ -107,15 +107,11 @@
 
       <v-btn
         text
-        class="mr-2"
+        class="mr-2 grey--text lighten-1"
         v-if="this.$vuetify.breakpoint.mdAndUp"
         @click="overlay = !overlay"
       >
-        <font-awesome-icon
-          icon="fa-solid fa-comment"
-          size="xl"
-          class="mr-2 grey--text lighten-1"
-        />Feedback
+        <font-awesome-icon icon="fa-solid fa-comment" size="xl" />Feedback
       </v-btn>
       <v-btn
         icon

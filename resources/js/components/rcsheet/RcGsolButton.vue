@@ -20,14 +20,14 @@
         <font-awesome-icon icon="fa-solid fa-plus" size="2xl" pull="left" />
         GSOL</v-btn
       >
-
-      <font-awesome-icon
-        icon="fa-solid fa-trash-can"
+      <v-btn
+        icon
         v-show="showRcGsolButton() && $can('edit_killsheet_remove_char')"
         color="orange darken-3"
-        size="s"
         @click="gsolRemove()"
-      />
+      >
+        <font-awesome-icon icon="fa-solid fa-trash-can"
+      /></v-btn>
     </div>
   </div>
 </template>

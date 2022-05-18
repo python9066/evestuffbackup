@@ -82,10 +82,7 @@
                   @click="(timerShown = true), (hackTime = null)"
                   icon
                   color="warning"
-                  ><font-awesome-icon
-                    icon="fa-solid fa-pen-to-square"
-                    size="xs"
-                  />
+                  ><font-awesome-icon icon="fa-solid fa-pen-to-square" />
                 </v-btn>
               </template>
 

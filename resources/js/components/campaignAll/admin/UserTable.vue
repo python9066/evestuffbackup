@@ -53,11 +53,7 @@
               color="green"
               @click="addChar(item)"
             >
-              <font-awesome-icon
-                icon="fa-solid fa-plus"
-                pull="left"
-                size="small"
-              />
+              <font-awesome-icon icon="fa-solid fa-plus" pull="left" />
 
               Add
             </v-btn></template

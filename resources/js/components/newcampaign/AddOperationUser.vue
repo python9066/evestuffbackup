@@ -42,11 +42,7 @@
                   v-on="on"
                   @click="addShown = true"
                   color="success"
-                  ><font-awesome-icon
-                    icon="fa-solid fa-plus"
-                    size="s"
-                    pull="left"
-                  />
+                  ><font-awesome-icon icon="fa-solid fa-plus" pull="left" />
                   Char</v-btn
                 >
               </template>
@@ -126,11 +122,7 @@
                   :color="pillColor(item)"
                   @click="pillClick(item)"
                 >
-                  <font-awesome-icon
-                    :icon="pillIcon(item)"
-                    size="xs"
-                    pull="left"
-                  />
+                  <font-awesome-icon :icon="pillIcon(item)" pull="left" />
                   {{ pillText(item) }}
                 </v-btn>
               </span>
@@ -138,13 +130,12 @@
             <template v-slot:[`item.actions`]="{ item }">
               <span>
                 <UsersCharsEdit :char="item" :operationID="operationID" />
-
-                <font-awesome-icon
-                  icon="fa-solid fa-trash-can"
-                  color="orange darken-3"
-                  size="s"
-                  @click="removeChar(item)"
-                />
+                <v-btn icon @click="removeChar(item)">
+                  <font-awesome-icon
+                    icon="fa-solid fa-trash-can"
+                    color="orange darken-3"
+                  />
+                </v-btn>
               </span>
             </template>
           </v-data-table>

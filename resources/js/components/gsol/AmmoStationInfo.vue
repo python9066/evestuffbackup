@@ -16,11 +16,7 @@
           v-on="on"
           @click="open()"
         >
-          <font-awesome-icon
-            icon="fa-solid fa-circle-info"
-            pull="left"
-            size="s"
-          />
+          <font-awesome-icon icon="fa-solid fa-circle-info" pull="left" />
           Info
         </v-chip>
       </template>

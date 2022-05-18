@@ -47,42 +47,41 @@
               class="d-flex full-width align-content-center"
             >
               <span>
-                <font-awesome-icon
-                  icon="fa-solid fa-circle-up"
+                <span
+                  dark
+                  color="blue darken-4"
                   v-if="
                     item.campaign[0].defenders_score >
                       item.campaign[0].defenders_score_old &&
                     item.campaign[0].defenders_score_old > 0
                   "
-                  size="s"
-                  pull="left"
+                >
+                  <font-awesome-icon icon="fa-solid fa-circle-up" pull="left"
+                /></span>
+                <span
                   dark
                   color="blue darken-4"
-                />
-                <font-awesome-icon
-                  icon="fa-solid fa-circle-down"
                   v-if="
                     item.campaign[0].defenders_score <
                       item.campaign[0].defenders_score_old &&
                     item.campaign[0].defenders_score_old > 0
                   "
-                  size="s"
-                  pull="left"
+                >
+                  <font-awesome-icon icon="fa-solid fa-circle-down" pull="left"
+                /></span>
+                <span
                   dark
-                  color="blue darken-4"
-                />
-                <font-awesome-icon
-                  icon="fa-solid fa-circle-minus"
+                  color="grey darken-3"
                   v-if="
                     item.campaign[0].defenders_score ==
                       item.campaign[0].defenders_score_old ||
                     item.campaign[0].defenders_score_old === null
                   "
-                  size="s"
-                  pull="left"
-                  dark
-                  color="grey darken-3"
-                />
+                >
+                  <font-awesome-icon
+                    icon="fa-solid fa-circle-minus"
+                    pull="left"
+                /></span>
               </span>
 
               <v-progress-linear
@@ -101,42 +100,43 @@
                 </strong>
               </v-progress-linear>
               <span>
-                <font-awesome-icon
-                  icon="fa-solid fa-circle-up"
+                <span
+                  dark
+                  color="red darken-4"
                   v-if="
                     item.campaign[0].attackers_score >
                       item.campaign[0].attackers_score_old &&
                     item.campaign[0].attackers_score_old > 0
                   "
-                  size="small"
-                  pull="right"
+                >
+                  <font-awesome-icon icon="fa-solid fa-circle-up" pull="right"
+                /></span>
+                <span
                   dark
                   color="red darken-4"
-                />
-                <font-awesome-icon
-                  icon="fa-solid fa-circle-down"
                   v-if="
                     item.campaign[0].attackers_score <
                       item.campaign[0].attackers_score_old &&
                     item.campaign[0].attackers_score_old > 0
                   "
-                  size="s"
-                  pull="right"
+                >
+                  <font-awesome-icon
+                    icon="fa-solid fa-circle-down"
+                    pull="right"
+                /></span>
+                <span
                   dark
-                  color="red darken-4"
-                />
-                <font-awesome-icon
-                  icon="fa-solid fa-circle-minus"
+                  color="grey darken-3"
                   v-if="
                     item.campaign[0].attackers_score ==
                       item.campaign[0].attackers_score_old ||
                     item.campaign[0].attackers_score_old == null
                   "
-                  size="s"
-                  pull="right"
-                  dark
-                  color="grey darken-3"
-                />
+                >
+                  <font-awesome-icon
+                    icon="fa-solid fa-circle-minus"
+                    pull="right"
+                /></span>
               </span>
             </span>
             <span

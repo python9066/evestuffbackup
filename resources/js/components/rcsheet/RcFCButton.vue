@@ -19,18 +19,18 @@
         <font-awesome-icon icon="fa-solid fa-plus" size="2xl" pull="left" />
         FC</v-btn
       >
-
-      <font-awesome-icon
-        icon="fa-solid fa-trash-can"
+      <v-btn
+        @click="fcRemove()"
+        icon
         v-if="
           showRcFCButton() &&
           ($can('edit_killsheet_remove_char') ||
             this.station.fc.user.id == this.$store.state.user_id)
         "
         color="orange darken-3"
-        size="s"
-        @click="fcRemove()"
-      />
+      >
+        <font-awesome-icon icon="fa-solid fa-trash-can"
+      /></v-btn>
     </div>
   </div>
 </template>

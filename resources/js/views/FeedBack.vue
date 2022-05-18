@@ -59,12 +59,9 @@
       </template>
 
       <template v-slot:[`item.actions`]="{ item }">
-        <font-awesome-icon
-          icon="fa-solid fa-trash-can"
-          color="orange darken-3"
-          size="s"
-          @click="deleteFeedBack(item)"
-        />
+        <v-btn icon @click="deleteFeedBack(item)" color="orange darken-3">
+          <font-awesome-icon icon="fa-solid fa-trash-can"
+        /></v-btn>
       </template>
     </v-data-table>
     <v-row no-gutters class="blue" justify="center">

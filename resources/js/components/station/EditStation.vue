@@ -7,14 +7,16 @@
       v-model="showStationTimer"
     >
       <template v-slot:activator="{ on, attrs }">
-        <font-awesome-icon
-          icon="fa-solid fa-pen-to-square"
+        <v-btn
+          icon
           color="cyan darken-1"
           dark
           v-bind="attrs"
           v-on="on"
           @click="open()"
-        />
+        >
+          <font-awesome-icon icon="fa-solid fa-pen-to-square"
+        /></v-btn>
       </template>
 
       <v-card

@@ -4,7 +4,6 @@
       <v-btn color="green" small @click="checkClick()">
         <font-awesome-icon
           icon="fa-solid fa-magnifying-glass-location"
-          size="s"
           pull="left"
         />
 

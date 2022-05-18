@@ -20,17 +20,18 @@
         <font-awesome-icon icon="fa-solid fa-plus" size="2xl" pull="left" />
         CYNO</v-btn
       >
-      <font-awesome-icon
-        icon="fa-solid fa-trash-can"
+      <v-btn
+        icon
         v-show="
           showRcReconButton() &&
           ($can('edit_killsheet_remove_char') ||
             this.station.recon.user.id == this.$store.state.user_id)
         "
-        color="orange darken-3 "
-        size="s"
         @click="reconRemove()"
-      />
+        color="orange darken-3 "
+      >
+        <font-awesome-icon icon="fa-solid fa-trash-can"
+      /></v-btn>
     </div>
   </div>
 </template>

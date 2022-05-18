@@ -29,11 +29,7 @@
                   v-on="on"
                   @click="addShown = true"
                   color="success"
-                  ><font-awesome-icon
-                    icon="fa-solid fa-plus"
-                    pull="left"
-                    size="s"
-                  />
+                  ><font-awesome-icon icon="fa-solid fa-plus" pull="left" />
                   Char</v-btn
                 >
               </template>
@@ -113,11 +109,7 @@
                   :color="pillColor(item)"
                   @click="pillClick(item)"
                 >
-                  <font-awesome-icon
-                    :icon="pillIcon(item)"
-                    size="xs"
-                    pull="left"
-                  />
+                  <font-awesome-icon :icon="pillIcon(item)" pull="left" />
 
                   {{ pillText(item) }}
                 </v-btn>
@@ -127,13 +119,9 @@
               <span>
                 <UsersCharsEdit :char="item" :campaign_id="campaign_id">
                 </UsersCharsEdit>
-
-                <font-awesome-icon
-                  icon="fa-solid fa-trash-can"
-                  color="orange darken-3"
-                  size="s"
-                  @click="removeChar(item)"
-                />
+                <v-btn icon @click="removeChar(item)" color="orange darken-3">
+                  <font-awesome-icon icon="fa-solid fa-trash-can" />
+                </v-btn>
               </span>
             </template>
           </v-data-table>

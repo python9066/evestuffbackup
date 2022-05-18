@@ -25,14 +25,9 @@
             cols="6"
             class="d-flex justify-content-center align-content-center"
           >
-            <font-awesome-icon
-              :icon="iconD"
-              size="s"
-              pull="left"
-              dark
-              :color="IconDColor"
-              :class="IconDClass"
-            />
+            <div icon dark :color="IconDColor" :class="IconDClass">
+              <font-awesome-icon :icon="iconD" pull="left" />
+            </div>
             <!-- // TODO Active (only show if campaign is active) -->
             <v-progress-linear
               :color="barColor"
@@ -49,14 +44,9 @@
                 {{ item.attackers_score * 100 }} ({{ nodesToWin }})
               </strong>
             </v-progress-linear>
-            <font-awesome-icon
-              :icon="iconD"
-              size="s"
-              pull="left"
-              dark
-              :color="IconAColor"
-              :class="IconAClass"
-            />
+            <div dark :color="IconAColor" :class="IconAClass">
+              <font-awesome-icon :icon="iconD" size="s" pull="left" />
+            </div>
           </v-col>
           <v-col cols="4" class="d-flex justify-content-end align-items-center">
             <span class="text-caption"> Active Nodes -</span>

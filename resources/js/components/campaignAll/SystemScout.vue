@@ -24,17 +24,16 @@
         <font-awesome-icon icon="fa-solid fa-plus" size="2xl" />
         Add</v-btn
       >
-      <font-awesome-icon
-        icon="fa-solid fa-trash-can"
+      <v-btn
         v-if="
           CampaignSolaSystem[0]['supervisor_id'] != null &&
           ($can('edit_system_scout') ||
             this.$store.state.user_id == CampaignSolaSystem[0]['supervisor_id'])
         "
-        color="orange darken-3"
-        size="xs"
         @click="scoutRemove()"
-      />
+      >
+        <font-awesome-icon icon="fa-solid fa-trash-can" color="orange darken-3"
+      /></v-btn>
     </div>
   </div>
 </template>

@@ -53,11 +53,13 @@
           <v-list-item-title>
             {{ list.name }} - {{ list.ship }} - T{{ list.entosis
             }}<span class="pl-3" v-if="seeReadyToGoOnTheWay(list)">
-              <font-awesome-icon
-                icon="fa-solid fa-trash-can"
+              <span
+                @click="removeReadyToGoOnTheWay(list.id)"
                 color="orange darken-3"
-                size="s"
-                @click="removeReadyToGoOnTheWay(list.id)" /></span
+              >
+                <font-awesome-icon
+                  icon="fa-solid fa-trash-can"
+                  size="s" /></span></span
           ></v-list-item-title>
         </v-list-item>
       </v-list>

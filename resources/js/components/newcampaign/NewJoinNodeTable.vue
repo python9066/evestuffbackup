@@ -36,13 +36,9 @@
         />
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <font-awesome-icon
-          icon="fa-solid fa-trash-can"
-          class="pl-4"
-          color="orange darken-3"
-          size="s"
-          @click="deleteNode(item)"
-        />
+        <v-btn @click="deleteNode(item)" class="pl-4" color="orange darken-3">
+          <font-awesome-icon icon="fa-solid fa-trash-can"
+        /></v-btn>
       </template>
       <template v-slot:[`item.op_user.ship`]="{ item }" class="pl-0">
         <span v-if="item.op_user.name != null">

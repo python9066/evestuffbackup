@@ -22,42 +22,39 @@
             class="d-flex full-width align-content-center"
             v-if="this.campaign.status_id > 1"
           >
-            <font-awesome-icon
-              icon="fa-solid fa-circle-up"
+            <span
+              dark
+              color="blue darken-4"
               v-if="
                 this.campaign.defenders_score >
                   this.campaign.defenders_score_old &&
                 this.campaign.defenders_score_old > 0
               "
-              size="s"
-              pull="left"
+            >
+              <font-awesome-icon icon="fa-solid fa-circle-up" pull="left"
+            /></span>
+            <span
               dark
               color="blue darken-4"
-            />
-            <font-awesome-icon
-              icon="fa-solid fa-circle-down"
               v-if="
                 this.campaign.defenders_score <
                   this.campaign.defenders_score_old &&
                 this.campaign.defenders_score_old > 0
               "
-              size="s"
-              pull="left"
+            >
+              <font-awesome-icon icon="fa-solid fa-circle-down" pull="left"
+            /></span>
+            <span
               dark
-              color="blue darken-4"
-            />
-            <font-awesome-icon
-              icon="fa-solid fa-circle-minus"
+              color="grey darken-3"
               v-if="
                 this.campaign.defenders_score ==
                   this.campaign.defenders_score_old ||
                 this.campaign.defenders_score_old === null
               "
-              size="s"
-              pull="left"
-              dark
-              color="grey darken-3"
-            />
+            >
+              <font-awesome-icon icon="fa-solid fa-circle-minus" pull="left"
+            /></span>
 
             <v-progress-linear
               :color="this.barColor"
@@ -74,43 +71,39 @@
                 {{ this.campaign.attackers_score * 100 }} ({{ nodesToWin }})
               </strong>
             </v-progress-linear>
-
-            <font-awesome-icon
-              icon="fa-solid fa-circle-up"
+            <span
+              dark
+              color="red darken-4"
               v-if="
                 this.campaign.attackers_score >
                   this.campaign.attackers_score_old &&
                 this.campaign.attackers_score_old > 0
               "
-              size="s"
-              pull="right"
+            >
+              <font-awesome-icon icon="fa-solid fa-circle-up" pull="right"
+            /></span>
+            <span
               dark
               color="red darken-4"
-            />
-            <font-awesome-icon
-              icon="fa-solid fa-circle-down"
               v-if="
                 this.campaign.attackers_score <
                   this.campaign.attackers_score_old &&
                 this.campaign.attackers_score_old > 0
               "
-              size="s"
-              pull="right"
+            >
+              <font-awesome-icon icon="fa-solid fa-circle-down" pull="right"
+            /></span>
+            <span
               dark
-              color="red darken-4"
-            />
-            <font-awesome-icon
-              icon="fa-solid fa-circle-minus"
+              color="grey darken-3"
               v-if="
                 this.campaign.attackers_score ==
                   this.campaign.attackers_score_old ||
                 this.campaign.attackers_score_old == null
               "
-              size="s"
-              pull="right"
-              dark
-              color="grey darken-3"
-            />
+            >
+              <font-awesome-icon icon="fa-solid fa-circle-minus" pull="right"
+            /></span>
           </div>
           <div
             class="d-flex full-width align-content-center"

@@ -93,12 +93,14 @@
                       <v-list-item-title>
                         {{ list.char_name }} - {{ list.ship }} - T{{ list.link
                         }}<span class="pl-3" v-if="seeReadyToGoOnTheWay(list)">
-                          <font-awesome-icon
-                            color="orange darken-3"
-                            size="s"
+                          <v-btn
+                            icon
                             @click="removeReadyToGoOnTheWay(list)"
-                            icon="fa-solid fa-trash-can"
-                          /> </span
+                            color="orange darken-3"
+                          >
+                            <font-awesome-icon
+                              icon="fa-solid fa-trash-can"
+                            /> </v-btn></span
                       ></v-list-item-title>
                     </v-list-item>
                   </v-list>
@@ -154,12 +156,13 @@
                       <v-list-item-title>
                         {{ list.char_name }} - {{ list.ship }} - T{{ list.link
                         }}<span class="pl-3" v-if="seeReadyToGoOnTheWay(list)">
-                          <font-awesome-icon
+                          <v-btn
                             color="orange darken-3"
-                            size="s"
                             @click="removeReadyToGoOnTheWay(list)"
-                            icon="fa-solid fa-trash-can"
-                          /> </span
+                          >
+                            <font-awesome-icon
+                              icon="fa-solid fa-trash-can"
+                            /> </v-btn></span
                       ></v-list-item-title>
                     </v-list-item>
                   </v-list>
@@ -332,15 +335,14 @@
                 :item="item"
               ></SystemAttackMessage>
               <SystemMessage :item="item"> </SystemMessage>
-
-              <font-awesome-icon
-                icon="fa-solid fa-trash-can"
+              <v-btn
                 v-if="item.status_id != 4 && item.status_id != 5"
                 color="orange darken-3"
-                size="s"
                 class="pl-5"
                 @click="deleteNode(item)"
-              />
+              >
+                <font-awesome-icon icon="fa-solid fa-trash-can" />
+              </v-btn>
             </div>
           </template>
 

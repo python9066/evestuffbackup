@@ -40,11 +40,7 @@
                   v-on="on"
                   @click="addShown = true"
                   color="success"
-                  ><font-awesome-icon
-                    icon="fa-solid fa-plus"
-                    size="s"
-                    pull="left"
-                  />
+                  ><font-awesome-icon icon="fa-solid fa-plus" pull="left" />
                   Keys</v-btn
                 >
               </template>
@@ -129,13 +125,9 @@
             </template>
             <template v-slot:[`item.addRemove`]="{ item }">
               <span>
-                <font-awesome-icon
-                  icon="fa-solid fa-trash-can"
-                  rounded
-                  :outlined="true"
-                  size="xs"
-                  @click="pillDelete(item)"
-                />
+                <v-btn icon @click="pillDelete(item)">
+                  <font-awesome-icon icon="fa-solid fa-trash-can"
+                /></v-btn>
               </span>
             </template>
             <template slot="no-data"> Nothing matches your filters </template>

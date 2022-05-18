@@ -55,7 +55,6 @@
                   <font-awesome-icon
                     icon="fa-solid fa-user-minus"
                     color="red"
-                    size="s"
                   />
                 </v-btn>
               </span>

@@ -97,12 +97,14 @@
                       <v-list-item-title>
                         {{ list.char_name }} - {{ list.ship }} - T{{ list.link
                         }}<span class="pl-3" v-if="seeReadyToGoOnTheWay(list)">
-                          <font-awesome-icon
-                            icon="fa-solid fa-trash-can"
-                            color="orange darken-3"
-                            size="s"
+                          <v-btn
+                            icon
                             @click="removeReadyToGoOnTheWay(list)"
-                          /> </span
+                            color="orange darken-3"
+                          >
+                            <font-awesome-icon
+                              icon="fa-solid fa-trash-can"
+                            /> </v-btn></span
                       ></v-list-item-title>
                     </v-list-item>
                   </v-list>
@@ -158,12 +160,14 @@
                       <v-list-item-title>
                         {{ list.char_name }} - {{ list.ship }} - T{{ list.link
                         }}<span class="pl-3" v-if="seeReadyToGoOnTheWay(list)">
-                          <font-awesome-icon
-                            icon="fa-solid fa-trash-can"
-                            color="orange darken-3"
-                            size="small"
+                          <v-btn
+                            icon
                             @click="removeReadyToGoOnTheWay(list)"
-                          /> </span
+                            color="orange darken-3"
+                          >
+                            <font-awesome-icon
+                              icon="fa-solid fa-trash-can"
+                            /> </v-btn></span
                       ></v-list-item-title>
                     </v-list-item>
                   </v-list>
@@ -183,11 +187,7 @@
                       v-on="on"
                       @click="addShown = true"
                       color="success"
-                      ><font-awesome-icon
-                        icon="fa-solid fa-plus"
-                        pull="left"
-                        size="s"
-                      />
+                      ><font-awesome-icon icon="fa-solid fa-plus" pull="left" />
                       Node</v-btn
                     >
                   </template>
@@ -351,7 +351,7 @@
                 >
                   <font-awesome-icon
                     icon="fa-solid fa-trash-can"
-                    size="xl" /></v-btn
+                    size="2xl" /></v-btn
               ></span>
               <NodeExtraCharMulti :item="item"></NodeExtraCharMulti>
               <AdminHackUserTable
@@ -380,15 +380,15 @@
                 :item="item"
               ></SystemAttackMessage>
               <SystemMessage :item="item"> </SystemMessage>
-
-              <font-awesome-icon
-                icon="fa-solid fa-trash-can"
-                v-if="item.status_id != 4 && item.status_id != 5"
-                color="orange darken-3"
-                size="s"
+              <v-btn
+                icon
                 class="pl-5"
                 @click="deleteNode(item)"
-              />
+                v-if="item.status_id != 4 && item.status_id != 5"
+                color="orange darken-3"
+              >
+                <font-awesome-icon icon="fa-solid fa-trash-can"
+              /></v-btn>
             </div>
           </template>
 

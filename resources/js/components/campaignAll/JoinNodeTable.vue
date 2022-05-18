@@ -51,14 +51,9 @@
               </v-list-item>
             </v-list>
           </v-menu>
-
-          <font-awesome-icon
-            icon="fa-solid fa-trash-can"
-            class="pl-4"
-            color="orange darken-3"
-            size="s"
-            @click="deleteNode(item)"
-          />
+          <v-btn class="pl-4" color="orange darken-3" @click="deleteNode(item)">
+            <font-awesome-icon icon="fa-solid fa-trash-can"
+          /></v-btn>
         </div>
       </template>
       <template v-slot:[`item.ship`]="{ item }" class="pl-0">

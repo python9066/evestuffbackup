@@ -194,7 +194,7 @@
                             >
                               <font-awesome-icon
                                 icon="fa-solid fa-clock-rotate-left"
-                                size="xl"
+                                size="2xl"
                               />
                             </v-btn>
                             <v-btn
@@ -205,7 +205,7 @@
                             >
                               <font-awesome-icon
                                 icon="fa-solid fa-clock-rotate-left"
-                                size="xl"
+                                size="2xl"
                               />
                             </v-btn>
                           </div>

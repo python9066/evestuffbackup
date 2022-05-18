@@ -6,14 +6,15 @@
     origin="100% -30%"
   >
     <template v-slot:activator="{ on, attrs }">
-      <font-awesome-icon
-        icon="fa-solid fa-pen-to-square"
+      <v-btn
+        icon
+        @click="charEditForm(char), (editShown = true)"
         color="orange darken-3"
         v-bind="attrs"
         v-on="on"
-        size="small"
-        @click="charEditForm(char), (editShown = true)"
-      />
+      >
+        <font-awesome-icon icon="fa-solid fa-pen-to-square"
+      /></v-btn>
     </template>
     <!---edit/delete form------>
     <v-row no-gutters>

@@ -13,13 +13,15 @@
           :content="messageAttackCount"
           :value="showAttackNumber"
         >
-          <font-awesome-icon
-            icon="fa-solid fa-crosshairs"
-            color="red"
-            v-bind="attrs"
-            v-on="on"
-            @click="open()"
-          />
+          <v-btn icon>
+            <font-awesome-icon
+              color="red"
+              v-bind="attrs"
+              v-on="on"
+              @click="open()"
+              icon="fa-solid fa-crosshairs"
+            />
+          </v-btn>
         </v-badge>
       </template>
 
