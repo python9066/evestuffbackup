@@ -104,13 +104,27 @@
           /></span>
 
           <v-avatar size="35"><img :src="item.url" /></v-avatar>
-          <span v-if="item.standing > 0" class="blue--text pl-3"
-            >{{ item.alliance }}
-          </span>
-          <span v-else-if="item.standing < 0" class="red--text pl-3"
-            >{{ item.alliance }}
-          </span>
-          <span v-else class="pl-3">{{ item.alliance }}</span>
+          <span v-if="item.priority.priority == 0">
+            <span v-if="item.standing > 0" class="blue--text pl-3"
+              >{{ item.alliance }}
+            </span>
+            <span v-else-if="item.standing < 0" class="red--text pl-3"
+              >{{ item.alliance }}
+            </span>
+            <span v-else class="pl-3">{{ item.alliance }}</span></span
+          >
+          <span v-else>
+            <v-chip v-if="item.standing > 0" color="primary">{{
+              item.alliance
+            }}</v-chip>
+            <v-chip
+              v-else-if="item.standing < 0"
+              color="red"
+              text-color="white"
+              >{{ item.alliance }}</v-chip
+            >
+            <v-chip v-else>{{ item.alliance }}</v-chip></span
+          >
           <span v-if="item.priority.priority == 1" class="rainbow-2">
             <font-awesome-icon
               icon="fa-solid fa-wand-magic-sparkles"
@@ -795,7 +809,7 @@ export default {
 
 <style>
 .style-2 {
-  background: linear-gradient(-45deg, #52eebf, #7be73c, #d5d223, #d58223);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
 }
