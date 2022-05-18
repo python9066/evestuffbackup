@@ -16,14 +16,14 @@
             v-on="on"
             @click="dialog1 = true"
           >
-            ><font-awesome-icon icon="fa-solid fa-map" size="xl" />
+            ><font-awesome-icon icon="fa-solid fa-map" size="2xl" />
           </v-btn>
         </template>
       </template>
       <v-card>
         <v-toolbar dark color="primary">
           <v-btn icon dark @click="dialog1 = false">
-            <font-awesome-icon icon="fa-solid fa-circle-xmark" size="xl" />
+            <font-awesome-icon icon="fa-solid fa-circle-xmark" size="2xl" />
           </v-btn>
           <v-toolbar-title
             >{{ region_name }} {{ constellation }}</v-toolbar-title

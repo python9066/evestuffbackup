@@ -16,7 +16,7 @@
         outlined
         @click="fcAdd()"
       >
-        <font-awesome-icon icon="fa-solid fa-plus" size="xl" pull="left" />
+        <font-awesome-icon icon="fa-solid fa-plus" size="2xl" pull="left" />
         FC</v-btn
       >
 

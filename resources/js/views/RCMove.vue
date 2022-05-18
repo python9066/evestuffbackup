@@ -134,7 +134,7 @@
             icon
             color="green"
           >
-            <font-awesome-icon icon="fa-regular fa-image" size="xl" />
+            <font-awesome-icon icon="fa-regular fa-image" size="2xl" />
           </v-btn>
         </div>
       </template>

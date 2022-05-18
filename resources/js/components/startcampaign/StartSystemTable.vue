@@ -69,7 +69,7 @@
                   "
                   color="orange darken-3"
                 >
-                  <font-awesome-icon icon="fa-solid fa-trash-can" size="xl"
+                  <font-awesome-icon icon="fa-solid fa-trash-can" size="2xl"
                 /></v-btn>
                 <!-- <NodeExtraChar :item="item"></NodeExtraChar> -->
               </div>

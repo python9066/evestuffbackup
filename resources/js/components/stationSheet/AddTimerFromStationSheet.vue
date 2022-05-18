@@ -9,7 +9,7 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn icon color="blue" v-bind="attrs" v-on="on" @click="open()">
-          <font-awesome-icon icon="fa-solid fa-clock" size="xl" />
+          <font-awesome-icon icon="fa-solid fa-clock" size="2xl" />
         </v-btn>
       </template>
 

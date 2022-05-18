@@ -103,7 +103,7 @@ class testController extends Controller
                 'Content-Type' => 'application/json',
                 "Accept" => "application/json",
                 'User-Agent' => 'evestuff.online python9066@gmail.com'
-            ])->get("https://628189349fac04c6540639f6.mockapi.io/evestatus");
+            ])->get("https://esi.evetech.net/status.json?version=latest");
             $status = $response->collect();
 
             foreach ($status as $status) {

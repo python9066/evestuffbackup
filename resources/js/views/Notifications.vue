@@ -16,7 +16,11 @@
         >
           Update
 
-          <font-awesome-icon icon="fa-solid fa-rotate" pull="right" size="xl" />
+          <font-awesome-icon
+            icon="fa-solid fa-rotate"
+            pull="right"
+            size="2xl"
+          />
         </v-btn>
         <div>
           <v-btn-toggle v-model="icon" borderless group>

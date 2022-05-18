@@ -163,7 +163,7 @@
             >
               <div class="d-inline-flex">
                 <v-btn :href="link(item)" target="_blank" icon color="green">
-                  <font-awesome-icon icon="fa-solid fa-map" size="xl" />
+                  <font-awesome-icon icon="fa-solid fa-map" size="2xl" />
                 </v-btn>
                 <button
                   v-clipboard="item.system_name"

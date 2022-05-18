@@ -79,7 +79,7 @@
               icon
               color="warning"
             >
-              <font-awesome-icon icon="fa-solid fa-pen-to-square" size="xl" />
+              <font-awesome-icon icon="fa-solid fa-pen-to-square" size="2xl" />
             </v-btn>
           </template>
 

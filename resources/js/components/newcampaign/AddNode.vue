@@ -7,7 +7,7 @@
         v-on="on"
         @click="addShown = true"
         color="success"
-        ><font-awesome-icon icon="fa-solid fa-plus" size="xl" pull="left" />
+        ><font-awesome-icon icon="fa-solid fa-plus" size="2xl" pull="left" />
         Node</v-btn
       >
     </template>

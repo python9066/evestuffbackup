@@ -1,6 +1,6 @@
 <template>
   <v-app id="teamfcat">
-    <font-awesome-icon icon="user-secret" size="xl" />
+    <font-awesome-icon icon="user-secret" size="2xl" />
 
     <v-app-bar
       height="100px"
