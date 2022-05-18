@@ -94,6 +94,28 @@ class testController extends Controller
             ]);
     }
 
+    public function testEveStatus()
+    {
+        $user = Auth::user();
+        if ($user->can('super')) {
+
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json',
+                "Accept" => "application/json",
+                'User-Agent' => 'evestuff.online python9066@gmail.com'
+            ])->get("https://628189349fac04c6540639f6.mockapi.io/evestatus");
+            $status = $response->collect();
+
+            foreach ($status as $status) {
+                echo '<pre>';
+                print_r($status);
+                echo '</pre>';
+            }
+        } else {
+            return null;
+        }
+    }
+
     public function testRunScore()
     {
         $user = Auth::user();
