@@ -109,10 +109,10 @@ class testController extends Controller
             foreach ($status as $status) {
 
 
-                $endpoint = $status->endpoint;
-                $method = $status->methhood;
-                $stat = $status->status;
-                $tag = $status->tag[0];
+                $endpoint = $status['endpoint'];
+                $method = $status['methhood'];
+                $stat = $status['status'];
+                $tag = $status['tag'][0];
 
                 echo $endpoint;
                 echo $method;
