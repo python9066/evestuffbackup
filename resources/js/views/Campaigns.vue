@@ -88,7 +88,15 @@
           icon="fa-solid fa-mitten"
           size="xl"
           transform="flip-h"
-          class="fa-shake"
+          class="fa-bounce warning_amber"
+          style="
+            --fa-bounce-start-scale-x: 1;
+            --fa-bounce-start-scale-y: 1;
+            --fa-bounce-jump-scale-x: 1;
+            --fa-bounce-jump-scale-y: 1;
+            --fa-bounce-land-scale-x: 1;
+            --fa-bounce-land-scale-y: 1;
+          "
           v-if="item.priority.priority == 1"
         />
         <v-avatar size="35"><img :src="item.url" /></v-avatar>
@@ -102,9 +110,17 @@
         <font-awesome-icon
           icon="fa-solid fa-mitten"
           size="xl"
-          class="fa-shake"
+          class="fa-bounce warning_amber"
           v-if="item.priority.priority == 1"
           bounce
+          style="
+            --fa-bounce-start-scale-x: 1;
+            --fa-bounce-start-scale-y: 1;
+            --fa-bounce-jump-scale-x: 1;
+            --fa-bounce-jump-scale-y: 1;
+            --fa-bounce-land-scale-x: 1;
+            --fa-bounce-land-scale-y: 1;
+          "
         />
       </template>
 
