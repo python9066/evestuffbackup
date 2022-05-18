@@ -85,46 +85,50 @@
     >
       <template slot="no-data"> No Active or Upcoming Campaigns </template>
       <template v-slot:[`item.alliance`]="{ item }">
-        <font-awesome-icon
-          icon="fa-solid fa-wand-magic-sparkles"
-          size="xl"
-          transform="flip-h"
-          class="fa-bounce"
-          style="
-            --fa-bounce-start-scale-x: 1;
-            --fa-bounce-start-scale-y: 1;
-            --fa-bounce-jump-scale-x: 1;
-            --fa-bounce-jump-scale-y: 1;
-            --fa-bounce-land-scale-x: 1;
-            --fa-bounce-land-scale-y: 1;
-          "
-          v-if="item.priority.priority == 1"
-        />
-        <v-avatar size="35"><img :src="item.url" /></v-avatar>
-        <span v-if="item.standing > 0" class="blue--text pl-3"
-          >{{ item.alliance }}
-        </span>
-        <span v-else-if="item.standing < 0" class="red--text pl-3"
-          >{{ item.alliance }}
-        </span>
-        <span v-else class="pl-3">{{ item.alliance }}</span>
-        <div class="rainbow-2">
-          <font-awesome-icon
-            icon="fa-solid fa-wand-magic-sparkles"
-            size="xl"
-            class="fa-bounce"
-            v-if="item.priority.priority == 1"
-            bounce
-            style="
-              --fa-bounce-start-scale-x: 1;
-              --fa-bounce-start-scale-y: 1;
-              --fa-bounce-jump-scale-x: 1;
-              --fa-bounce-jump-scale-y: 1;
-              --fa-bounce-land-scale-x: 1;
-              --fa-bounce-land-scale-y: 1;
-            "
-          />
-        </div>
+        <v-row no-gutters>
+          <v-col cols="2" v-if="item.priority.priority == 1" class="rainbow-2">
+            <font-awesome-icon
+              icon="fa-solid fa-wand-magic-sparkles"
+              size="xl"
+              transform="flip-h"
+              class="fa-bounce"
+              style="
+                --fa-bounce-start-scale-x: 1;
+                --fa-bounce-start-scale-y: 1;
+                --fa-bounce-jump-scale-x: 1;
+                --fa-bounce-jump-scale-y: 1;
+                --fa-bounce-land-scale-x: 1;
+                --fa-bounce-land-scale-y: 1;
+              "
+              v-if="item.priority.priority == 1"
+          /></v-col>
+          <v-col :cols="colNum(item.priority.priority)">
+            <v-avatar size="35"><img :src="item.url" /></v-avatar>
+            <span v-if="item.standing > 0" class="blue--text pl-3"
+              >{{ item.alliance }}
+            </span>
+            <span v-else-if="item.standing < 0" class="red--text pl-3"
+              >{{ item.alliance }}
+            </span>
+            <span v-else class="pl-3">{{ item.alliance }}</span>
+          </v-col>
+          <v-col cols="2" v-if="item.priority.priority == 1" class="rainbow-2">
+            <font-awesome-icon
+              icon="fa-solid fa-wand-magic-sparkles"
+              size="xl"
+              class="fa-bounce"
+              bounce
+              style="
+                --fa-bounce-start-scale-x: 1;
+                --fa-bounce-start-scale-y: 1;
+                --fa-bounce-jump-scale-x: 1;
+                --fa-bounce-jump-scale-y: 1;
+                --fa-bounce-land-scale-x: 1;
+                --fa-bounce-land-scale-y: 1;
+              "
+            />
+          </v-col>
+        </v-row>
       </template>
 
       <template v-slot:[`item.start`]="{ item }">
@@ -376,7 +380,7 @@
         </div>
       </template>
     </v-data-table>
-    <div class="style-2">fefefe</div>
+    <div class="style-1">fefefe</div>
   </div>
 </template>
 <script>
@@ -452,6 +456,14 @@ export default {
           "Content-Type": "application/json",
         },
       });
+    },
+
+    colNum(num) {
+      if (num == 1) {
+        return "10";
+      } else {
+        return "12";
+      }
     },
 
     itemRowBackground: function (item) {
@@ -813,6 +825,10 @@ export default {
 
 .rainbow-2 {
   animation: colorRotate 0.5s linear 0s infinite;
+}
+
+.style-1 {
+  background-color: rgb(184, 22, 35);
 }
 
 @keyframes colorRotate {
