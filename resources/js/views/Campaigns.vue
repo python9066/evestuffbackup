@@ -87,6 +87,12 @@
       <template v-slot:[`item.system`]="{ item }">
         <div class="text-no-wrap">{{ item.system }}</div>
       </template>
+      <template v-slot:[`item.region`]="{ item }">
+        <div class="text-no-wrap">{{ item.region }}</div>
+      </template>
+      <template v-slot:[`item.constellation`]="{ item }">
+        <div class="text-no-wrap">{{ item.constellation }}</div>
+      </template>
       <template v-slot:[`item.alliance`]="{ item }">
         <div class="d-flex flex-nowrap">
           <span v-if="item.priority.priority == 1" class="rainbow-2">
@@ -764,26 +770,7 @@ export default {
       if (this.$can("edit_hack_priority")) {
         var Headers = [
           { text: "WebWay", value: "webway", sortable: false },
-          { text: "Region", value: "region", width: "10%" },
-          { text: "Constellation", value: "constellation" },
-          { text: "System", value: "system" },
-          { text: "Alliance", value: "alliance" },
-          { text: "Ticker", value: "ticker", align: "start" },
-          { text: "ADM", value: "adm" },
-          { text: "Structure", value: "item_name" },
-          {
-            text: "Start/Progress",
-            value: "start",
-            width: "30%",
-            align: "center",
-          },
-          { text: "Countdown/Age", value: "count", sortable: false },
-          { text: "", value: "actions", align: "end", sortable: false },
-        ];
-      } else {
-        var Headers = [
-          { text: "WebWay", value: "webway", sortable: false },
-          { text: "Region", value: "region", width: "10%" },
+          { text: "Region", value: "region", width: "7%" },
           { text: "Constellation", value: "constellation" },
           { text: "System", value: "system" },
           { text: "Alliance", value: "alliance" },
@@ -794,6 +781,25 @@ export default {
             text: "Start/Progress",
             value: "start",
             width: "25%",
+            align: "center",
+          },
+          { text: "Countdown/Age", value: "count", sortable: false },
+          { text: "", value: "actions", align: "end", sortable: false },
+        ];
+      } else {
+        var Headers = [
+          { text: "WebWay", value: "webway", sortable: false },
+          { text: "Region", value: "region", width: "7%" },
+          { text: "Constellation", value: "constellation" },
+          { text: "System", value: "system" },
+          { text: "Alliance", value: "alliance" },
+          { text: "Ticker", value: "ticker", align: "start" },
+          { text: "ADM", value: "adm" },
+          { text: "Structure", value: "item_name" },
+          {
+            text: "Start/Progress",
+            value: "start",
+            width: "20%",
             align: "center",
           },
           { text: "Countdown/Age", value: "count", sortable: false },
