@@ -89,7 +89,7 @@
           icon="fa-solid fa-wand-magic-sparkles"
           size="xl"
           transform="flip-h"
-          class="fa-bounce rainbow-2"
+          class="fa-bounce"
           style="
             --fa-bounce-start-scale-x: 1;
             --fa-bounce-start-scale-y: 1;
@@ -108,21 +108,23 @@
           >{{ item.alliance }}
         </span>
         <span v-else class="pl-3">{{ item.alliance }}</span>
-        <font-awesome-icon
-          icon="fa-solid fa-wand-magic-sparkles"
-          size="xl"
-          class="fa-bounce rainbow-2"
-          v-if="item.priority.priority == 1"
-          bounce
-          style="
-            --fa-bounce-start-scale-x: 1;
-            --fa-bounce-start-scale-y: 1;
-            --fa-bounce-jump-scale-x: 1;
-            --fa-bounce-jump-scale-y: 1;
-            --fa-bounce-land-scale-x: 1;
-            --fa-bounce-land-scale-y: 1;
-          "
-        />
+        <div class="rainbow-2">
+          <font-awesome-icon
+            icon="fa-solid fa-wand-magic-sparkles"
+            size="xl"
+            class="fa-bounce"
+            v-if="item.priority.priority == 1"
+            bounce
+            style="
+              --fa-bounce-start-scale-x: 1;
+              --fa-bounce-start-scale-y: 1;
+              --fa-bounce-jump-scale-x: 1;
+              --fa-bounce-jump-scale-y: 1;
+              --fa-bounce-land-scale-x: 1;
+              --fa-bounce-land-scale-y: 1;
+            "
+          />
+        </div>
       </template>
 
       <template v-slot:[`item.start`]="{ item }">
@@ -763,7 +765,7 @@ export default {
           {
             text: "Start/Progress",
             value: "start",
-            width: "30%",
+            width: "25%",
             align: "center",
           },
           { text: "Countdown/Age", value: "count", sortable: false },
@@ -781,13 +783,9 @@ export default {
 
 <style>
 .style-2 {
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-color: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
-}
-
-.style-1 {
-  background-color: rgb(30, 30, 30, 1);
 }
 
 @keyframes gradient {
@@ -802,27 +800,6 @@ export default {
   }
 }
 
-.rainbow-2 {
-  background-image: linear-gradient(
-    to right,
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    indigo,
-    violet,
-    red
-  );
-  animation: slidebg 2s linear infinite;
-}
-
-@keyframes slidebg {
-  to {
-    background-position: 20vw;
-  }
-}
-
 .follow {
   margin-top: 40px;
 }
@@ -831,5 +808,32 @@ export default {
   color: black;
   padding: 8px 16px;
   text-decoration: none;
+}
+
+.rainbow-2 {
+  text-align: center;
+  text-decoration: underline;
+  font-size: 32px;
+  font-family: monospace;
+  letter-spacing: 5px;
+  animation: colorRotate 0.5s linear 0s infinite;
+}
+
+@keyframes colorRotate {
+  from {
+    color: #6666ff;
+  }
+  10% {
+    color: #0099ff;
+  }
+  50% {
+    color: #00ff00;
+  }
+  75% {
+    color: #ff3399;
+  }
+  100% {
+    color: #6666ff;
+  }
 }
 </style>
