@@ -366,7 +366,7 @@
         </div>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <div @click.stop="onSingleCellClick">
+        <div @click.stop="onSingleCellClick()">
           <CampaginPriorityButton
             v-if="$can('edit_hack_priority')"
             :item="item.priority"
@@ -610,6 +610,8 @@ export default {
       var list = this.webwayButtonList.filter((f) => f.value != value);
       return list;
     },
+
+    onSingleCellClick() {},
 
     transform(props) {
       Object.entries(props).forEach(([key, value]) => {
