@@ -110,7 +110,7 @@ class testController extends Controller
 
 
                 $endpoint = $status['endpoint'];
-                $method = $status['methhood'];
+                $method = $status['methhod'];
                 $stat = $status['status'];
                 $tag = $status['tag'][0];
 
