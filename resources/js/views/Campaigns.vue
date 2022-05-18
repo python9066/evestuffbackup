@@ -84,6 +84,9 @@
       class="elevation-1"
     >
       <template slot="no-data"> No Active or Upcoming Campaigns </template>
+      <template v-slot:[`item.system`]="{ item }">
+        <div class="text-no-wrap">{{ item.system }}</div>
+      </template>
       <template v-slot:[`item.alliance`]="{ item }">
         <div class="d-flex flex-nowrap">
           <span v-if="item.priority.priority == 1" class="rainbow-2">
