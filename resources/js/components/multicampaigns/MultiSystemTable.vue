@@ -351,7 +351,7 @@
                 >
                   <font-awesome-icon
                     icon="fa-solid fa-trash-can"
-                    size="s" /></v-btn
+                    size="xl" /></v-btn
               ></span>
               <NodeExtraCharMulti :item="item"></NodeExtraCharMulti>
               <AdminHackUserTable

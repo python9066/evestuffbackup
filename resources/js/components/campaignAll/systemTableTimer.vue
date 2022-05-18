@@ -94,7 +94,7 @@
               icon
               color="warning"
             >
-              <font-awesome-icon icon="fa-solid fa-pen-to-square" size="xs" />
+              <font-awesome-icon icon="fa-solid fa-pen-to-square" size="xl" />
             </v-btn>
           </template>
 

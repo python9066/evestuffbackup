@@ -27,7 +27,7 @@
             v-bind="attrs"
             v-on="on"
           >
-            <font-awesome-icon icon="fa-solid fa-plus" size="xs" />
+            <font-awesome-icon icon="fa-solid fa-plus" size="xl" />
             Gunner</v-btn
           >
         </template>

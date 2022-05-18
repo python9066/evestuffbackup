@@ -17,7 +17,7 @@
         outlined
         @click="gsolAdd()"
       >
-        <font-awesome-icon icon="fa-solid fa-plus" size="xs" pull="left" />
+        <font-awesome-icon icon="fa-solid fa-plus" size="xl" pull="left" />
         GSOL</v-btn
       >
 

@@ -107,8 +107,19 @@ class testController extends Controller
             $status = $response->collect();
 
             foreach ($status as $status) {
+
+
+                $endpoint = $status->endpoint;
+                $method = $status->methhood;
+                $stat = $status->status;
+                $tag = $status->tag[0];
+
+                echo $endpoint;
+                echo $method;
+                echo $stat;
+                echo $tag;
                 echo '<pre>';
-                print_r($status);
+                echo "NEW";
                 echo '</pre>';
             }
         } else {

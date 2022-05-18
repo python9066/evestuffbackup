@@ -21,7 +21,7 @@
         outlined
         @click="scoutAdd()"
       >
-        <font-awesome-icon icon="fa-solid fa-plus" size="xs" />
+        <font-awesome-icon icon="fa-solid fa-plus" size="xl" />
         Add</v-btn
       >
       <font-awesome-icon

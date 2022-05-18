@@ -176,7 +176,7 @@
                       @click="addShown = true"
                       color="success"
                     >
-                      ><font-awesome-icon icon="fa-solid fa-plus" size="s" />
+                      ><font-awesome-icon icon="fa-solid fa-plus" size="xl" />
                       Node</v-btn
                     >
                   </template>

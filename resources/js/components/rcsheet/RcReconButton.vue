@@ -17,7 +17,7 @@
         outlined
         @click="reconAdd()"
       >
-        <font-awesome-icon icon="fa-solid fa-plus" size="xs" pull="left" />
+        <font-awesome-icon icon="fa-solid fa-plus" size="xl" pull="left" />
         CYNO</v-btn
       >
       <font-awesome-icon

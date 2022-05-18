@@ -46,10 +46,10 @@
                     (overlayEdit = !overlayEdit)
                 "
                 color="warning"
-                ><font-awesome-icon icon="fa-solid fa-pen-to-square" size="s"
+                ><font-awesome-icon icon="fa-solid fa-pen-to-square" size="xl"
               /></v-btn>
               <v-btn icon @click="deleteCampaign(item)" color="warning"
-                ><font-awesome-icon icon="fa-solid fa-trash" size="s"
+                ><font-awesome-icon icon="fa-solid fa-trash" size="xl"
               /></v-btn>
               <v-btn @click="clickCampaign(item)" color="green">View</v-btn>
             </template>

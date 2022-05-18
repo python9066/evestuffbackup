@@ -16,7 +16,7 @@
             v-on="on"
             @click="dialog1 = true"
           >
-            ><font-awesome-icon icon="fa-solid fa-map" size="xs" />
+            ><font-awesome-icon icon="fa-solid fa-map" size="xl" />
           </v-btn>
         </template>
       </template>
