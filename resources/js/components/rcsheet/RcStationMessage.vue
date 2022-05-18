@@ -13,14 +13,9 @@
           :content="messageCount"
           :value="showNumber"
         >
-          <font-awesome-icon
-            :icon="icon"
-            size="xl"
-            color="blue"
-            v-bind="attrs"
-            v-on="on"
-            @click="open()"
-          />
+          <v-btn color="blue" v-bind="attrs" v-on="on" @click="open()">
+            <font-awesome-icon :icon="icon" size="xl"
+          /></v-btn>
         </v-badge>
       </template>
 
