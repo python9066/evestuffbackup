@@ -95,7 +95,7 @@
       </template>
       <template v-slot:[`item.alliance`]="{ item }">
         <div class="d-flex flex-nowrap">
-          <span v-if="item.priority.priority == 1" class="rainbow-2">
+          <span v-if="item.priority.priority == 1" class="rainbow-2 pr-2">
             <font-awesome-icon
               icon="fa-solid fa-wand-magic-sparkles"
               size="xl"
@@ -134,7 +134,7 @@
             >
             <v-chip v-else>{{ item.alliance }}</v-chip></span
           >
-          <span v-if="item.priority.priority == 1" class="rainbow-2">
+          <span v-if="item.priority.priority == 1" class="rainbow-2 pl-2">
             <font-awesome-icon
               icon="fa-solid fa-wand-magic-sparkles"
               size="xl"
@@ -335,9 +335,17 @@
                 </v-chip>
               </span>
               <span v-else class="red--text pl-3"
-                >{{ scope.props.days }}:{{ scope.props.hours }}:{{
-                  scope.props.minutes
-                }}:{{ scope.props.seconds }}</span
+                ><span v-if="item.priority.priority == 0"
+                  >{{ scope.props.days }}:{{ scope.props.hours }}:{{
+                    scope.props.minutes
+                  }}:{{ scope.props.seconds }}</span
+                ><span v-else
+                  ><v-chip color="red"
+                    >{{ scope.props.days }}:{{ scope.props.hours }}:{{
+                      scope.props.minutes
+                    }}:{{ scope.props.seconds }}</v-chip
+                  ></span
+                ></span
               >
             </template>
           </CountDowntimer>
