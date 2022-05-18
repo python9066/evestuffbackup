@@ -26,7 +26,7 @@
             class="d-flex justify-content-center align-content-center"
           >
             <div icon dark :color="IconDColor" :class="IconDClass">
-              <font-awesome-icon :icon="iconD" pull="left" />
+              <font-awesome-icon :icon="IconD" pull="left" />
             </div>
             <!-- // TODO Active (only show if campaign is active) -->
             <v-progress-linear
@@ -45,7 +45,7 @@
               </strong>
             </v-progress-linear>
             <div dark :color="IconAColor" :class="IconAClass">
-              <font-awesome-icon :icon="iconD" size="s" pull="left" />
+              <font-awesome-icon :icon="IconD" size="s" pull="left" />
             </div>
           </v-col>
           <v-col cols="4" class="d-flex justify-content-end align-items-center">
