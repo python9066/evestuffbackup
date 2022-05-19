@@ -9,28 +9,49 @@
               <AddMultiCampaign></AddMultiCampaign>
             </v-card-title>
             <v-card-text>
-              <!-- <v-data-table
+              <v-data-table
                 :headers="headers"
-                :items="items"
+                :items="campaigns"
                 item-key="id"
+                :loading="loading"
                 :items-per-page="25"
                 :footer-props="{
                   'items-per-page-options': [15, 25, 50, 100, -1],
                 }"
                 class="elevation-1"
               >
+                <!-- @click:row="rowClick($event)" -->
                 <template slot="no-data">
                   No Multi Campaigns have been made
                 </template>
-                <template v-slot:[`item.system`]="{ item }"> </template>
+                <template v-slot:[`item.system`]="{ item }">
+                  <NewSystemItemList :campaignID="item.id"> </NewSystemItemList>
+                </template>
                 <template v-slot:[`item.actions`]="{ item }">
                   <div class="d-inline-flex">
+                    <v-btn
+                      icon
+                      @click="
+                        (overlayEditID = item.id),
+                          (overlayEditName = item.name),
+                          (overlayEdit = !overlayEdit)
+                      "
+                      color="warning"
+                      ><font-awesome-icon
+                        icon="fa-solid fa-pen-to-square"
+                        size="2xl"
+                    /></v-btn>
+                    <DeleteButton :item="item"></DeleteButton>
                     <v-btn @click="clickCampaign(item)" color="green"
                       >View</v-btn
                     >
                   </div>
                 </template>
-              </v-data-table> -->
+
+                <!-- <template v-slot:actions.="{ item }">
+                LALALALA
+            </template> -->
+              </v-data-table>
             </v-card-text></v-card
           ></v-col
         ></v-row
