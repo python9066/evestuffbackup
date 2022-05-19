@@ -13,7 +13,7 @@ import store from "./store";
 import App from "./views/App";
 import "animate.css";
 import colors from "vuetify/lib/util/colors";
-import "@fortawesome/fontawesome-free/css/all.css";
+// import "@fortawesome/fontawesome-free/css/all.css";
 import VueCountdown from "@chenfengyuan/vue-countdown";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -579,7 +579,7 @@ export default new Vuetify({
         dark: true,
     },
     icons: {
-        iconfont: "fa",
+        iconfont: ["fas", "far"],
     },
 });
 export const EventBus = new Vue();
