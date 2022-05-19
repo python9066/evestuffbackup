@@ -65,9 +65,7 @@ export default {
     return {};
   },
 
-  created() {
-    this.$store.dispatch("newCampaignslist");
-  },
+  created() {},
 
   async mounted() {},
   methods: {},
