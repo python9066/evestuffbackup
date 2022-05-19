@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\CampaignSystemUpdate;
 use App\Models\Campaign;
 use App\Models\CampaignRecords;
+use App\Models\NewCampaign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
@@ -51,6 +52,38 @@ class CampaignRecordsController extends Controller
             $data1 = [];
             $data1 = [
                 "text" => $pull['region'] . " - " . $pull['constellation'] . " - " . $pull['system'] . " - " . $pull['alliance'] . " - " . $pull['item_name'] . " - " . $pull['start'],
+                'value' => $pull['id']
+            ];
+
+            array_push($data, $data1);
+        }
+
+        // dd($data);
+
+        return ['campaignslist' => $data];
+    }
+
+    public function newCampaignsList()
+    {
+        $data = [];
+        $pull = NewCampaign::where('status_id', "<", 3)->with(['system.region', 'system.constellation', 'alliance'])->orderBy('start_time', 'asc')->get();
+        foreach ($pull as $pull) {
+            $data1 = [];
+            if ($pull->event_type == 32226) {
+                $eventType = "TCU";
+            } else {
+                $eventType = "Ihub";
+            }
+            $systemName = $pull->system->system_name;
+            $regionName = $pull->system->region->region_name;
+            $constellationName = $pull->system->constellation->constellation_name;
+            $allianceName = $pull->alliance->name;
+
+            $text = $regionName . " - " . $constellationName . " - " . $systemName . " - " . $allianceName . " - " . $eventType . " - " . $pull->start_time;
+
+
+            $data1 = [
+                "text" => $text,
                 'value' => $pull['id']
             ];
 

@@ -15,7 +15,6 @@
           v-on="on"
           rounded
           small
-          outlined
           >Add Campaign</v-btn
         >
       </template>
@@ -66,7 +65,9 @@ export default {
     return {};
   },
 
-  created() {},
+  created() {
+    this.$store.dispatch("getNewCampaignsList");
+  },
 
   async mounted() {},
   methods: {},
