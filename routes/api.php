@@ -306,4 +306,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/onthewayreadytogo/{opID}/{opUserID}', 'OperationUserController@updateOnTheWayReadyToGO');
     Route::post('/checkedat/{systemID}', 'SystemController@checkedAt');
     Route::post('/edittidi/{systemID}', 'SystemController@editTidi');
+    Route::get('/newcampaignslist', 'CampaignRecordsController@newCampaignsList');
 });
