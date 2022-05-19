@@ -1485,7 +1485,7 @@ export default new Vuex.Store({
             let res = await axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api//newcampaignslist",
+                url: "/api/newcampaignslist",
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
