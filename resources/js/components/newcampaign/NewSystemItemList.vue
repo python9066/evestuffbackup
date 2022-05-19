@@ -18,7 +18,7 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
   props: {
-    campaignID: Number,
+    systems: Array,
   },
   data() {
     return {
@@ -45,14 +45,10 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getCampaignJoinById"]),
-
-    systems() {
-      return this.getCampaignJoinById(this.campaignID);
-    },
+    ...mapGetters([]),
 
     systemcount() {
-      let count = this.getCampaignJoinById(this.campaignID).length;
+      let count = this.systems.length;
       if (count == 0) {
         return false;
       } else {

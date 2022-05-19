@@ -95,7 +95,7 @@ class NewOperationsController extends Controller
 
     public function getCustomOperationList()
     {
-        $ops = NewOperation::where('solo', 0)->with(['campaign.system'])->get();
+        $ops = NewOperation::where('solo', 0)->with(['campaign.system', 'campaign.alliance'])->get();
         return ['operations' => $ops];
     }
 

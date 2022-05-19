@@ -25,10 +25,11 @@
                   No Multi Campaigns have been made
                 </template>
                 <template v-slot:[`item.system`]="{ item }">
-                  <NewSystemItemList :campaignID="item.id"> </NewSystemItemList>
+                  <NewSystemItemList :systems="item.campaign">
+                  </NewSystemItemList>
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
-                  <div class="d-inline-flex">
+                  <!-- <div class="d-inline-flex">
                     <v-btn
                       icon
                       @click="
@@ -45,7 +46,7 @@
                     <v-btn @click="clickCampaign(item)" color="green"
                       >View</v-btn
                     >
-                  </div>
+                  </div> -->
                 </template>
 
                 <!-- <template v-slot:actions.="{ item }">
@@ -72,14 +73,14 @@ export default {
   data() {
     return {
       headers: [
-        { text: "Name", value: "name", width: "10%" },
+        { text: "Name", value: "title", width: "10%" },
         {
           text: "System - Target",
-          value: "system",
+          value: "campaign",
           width: "70%",
           align: "center",
         },
-        { text: "Status", value: "status_name", align: "end" },
+        { text: "Status", value: "status", align: "end" },
         { text: "", value: "actions", align: "end" },
         // { text: "", value: "actions" },
       ],
