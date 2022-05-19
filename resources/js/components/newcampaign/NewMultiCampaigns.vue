@@ -11,9 +11,8 @@
             <v-card-text>
               <v-data-table
                 :headers="headers"
-                :items="campaigns"
+                :items="newCampaignslist"
                 item-key="id"
-                :loading="loading"
                 :items-per-page="25"
                 :footer-props="{
                   'items-per-page-options': [15, 25, 50, 100, -1],
@@ -24,24 +23,9 @@
                 <template slot="no-data">
                   No Multi Campaigns have been made
                 </template>
-                <template v-slot:[`item.system`]="{ item }">
-                  <SystemItemList :campaignID="item.id"> </SystemItemList>
-                </template>
+                <template v-slot:[`item.system`]="{ item }"> </template>
                 <template v-slot:[`item.actions`]="{ item }">
                   <div class="d-inline-flex">
-                    <v-btn
-                      icon
-                      @click="
-                        (overlayEditID = item.id),
-                          (overlayEditName = item.name),
-                          (overlayEdit = !overlayEdit)
-                      "
-                      color="warning"
-                      ><font-awesome-icon
-                        icon="fa-solid fa-pen-to-square"
-                        size="s"
-                    /></v-btn>
-                    <DeleteButton :item="item"></DeleteButton>
                     <v-btn @click="clickCampaign(item)" color="green"
                       >View</v-btn
                     >
