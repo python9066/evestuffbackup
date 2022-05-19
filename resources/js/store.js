@@ -99,7 +99,7 @@ export default new Vuex.Store({
         opUsers: [],
         ownChars: {},
         newCampaignSystems: [],
-        newCampaignslist: [],
+        newCampaignsList: [],
     },
     mutations: {
         DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
@@ -624,7 +624,7 @@ export default new Vuex.Store({
         },
 
         SET_NEW_CAMPAIGNSLIST(state, campaignslist) {
-            state.newCampaignslist = campaignslist;
+            state.newCampaignsList = campaignslist;
         },
 
         SET_LOGGING_CAMPAIGN(state, logs) {
