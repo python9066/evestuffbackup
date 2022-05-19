@@ -5,7 +5,7 @@
       min-width="1200"
       max-width="1200"
       z-index="0"
-      @click:outside="close()"
+      @click:outside="addCampaignClose()"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -73,8 +73,26 @@ export default {
 
   async mounted() {},
   methods: {
-    close() {
+    addCampaignClose() {
       (this.name = null), (this.picked = null), (this.overlay = false);
+    },
+
+    addCampaignDone() {
+      var request = {
+        title: this.name,
+        picked: this.picked,
+      };
+
+      axios({
+        method: "post", //you can set what request you want to be
+        url: "/api/newoperation",
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }).then(this.addCampaignClose);
     },
   },
   computed: {

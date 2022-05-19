@@ -76,12 +76,18 @@ class NewOperationsController extends Controller
         $user = Auth::user();
         if ($user->can('access_multi_campaigns')) {
             $uuid = Str::uuid();
-            NewOperation::create([
+            $newOp = NewOperation::create([
                 'title' => $request->title,
                 'link' => $uuid,
                 'solo' => 0,
                 'status' => 1
             ]);
+
+
+            $campaignIDs = $request->picked;
+            foreach ($campaignIDs as $campaignID) {
+                NewCampaignOperation::create(['campaign_id' => $campaignID, 'operation_id' => $newOp->id]);
+            }
         } else {
             return null;
         }
