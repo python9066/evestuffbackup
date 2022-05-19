@@ -23,7 +23,7 @@
                 <template slot="no-data">
                   No Multi Campaigns have been made
                 </template>
-                <template v-slot:[`item.system`]="{ item }">
+                <template v-slot:[`item.campaign`]="{ item }">
                   <NewSystemItemList :campaigns="item.campaign">
                   </NewSystemItemList>
                 </template>
