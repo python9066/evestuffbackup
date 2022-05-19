@@ -9,9 +9,9 @@
               <AddMultiCampaign></AddMultiCampaign>
             </v-card-title>
             <v-card-text>
-              <v-data-table
+              <!-- <v-data-table
                 :headers="headers"
-                :items="newCampaignslist"
+                :items="items"
                 item-key="id"
                 :items-per-page="25"
                 :footer-props="{
@@ -19,7 +19,6 @@
                 }"
                 class="elevation-1"
               >
-                <!-- @click:row="rowClick($event)" -->
                 <template slot="no-data">
                   No Multi Campaigns have been made
                 </template>
@@ -31,12 +30,8 @@
                     >
                   </div>
                 </template>
-
-                <!-- <template v-slot:actions.="{ item }">
-                LALALALA
-            </template> -->
-              </v-data-table></v-card-text
-            ></v-card
+              </v-data-table> -->
+            </v-card-text></v-card
           ></v-col
         ></v-row
       >
