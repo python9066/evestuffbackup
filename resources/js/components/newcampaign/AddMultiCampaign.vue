@@ -70,7 +70,7 @@ export default {
   async mounted() {},
   methods: {},
   computed: {
-    ...mapState(["newCampaignslist"]),
+    ...mapState(["getNewCampaignsList"]),
   },
   beforeDestroy() {},
 };
