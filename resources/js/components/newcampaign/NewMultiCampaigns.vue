@@ -13,7 +13,6 @@
                 :headers="headers"
                 :items="campaigns"
                 item-key="id"
-                :loading="loading"
                 :items-per-page="25"
                 :footer-props="{
                   'items-per-page-options': [15, 25, 50, 100, -1],
@@ -95,7 +94,11 @@ export default {
   async mounted() {},
   methods: {},
   computed: {
-    ...mapState([]),
+    ...mapState(["newOperationList"]),
+
+    campaigns() {
+      return this.newOperationList;
+    },
   },
   beforeDestroy() {},
 };
