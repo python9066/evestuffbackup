@@ -307,5 +307,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/checkedat/{systemID}', 'SystemController@checkedAt');
     Route::post('/edittidi/{systemID}', 'SystemController@editTidi');
     Route::get('/newcampaignslist', 'NewCampaignsController@campaignsList');
-    Route::psot('/newoperation', 'NewOperationsController@makeNewOperation');
+    Route::post('/newoperation', 'NewOperationsController@makeNewOperation');
 });
