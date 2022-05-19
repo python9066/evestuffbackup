@@ -77,13 +77,13 @@ export default {
       (this.name = null), (this.picked = null), (this.overlay = false);
     },
 
-    addCampaignDone() {
+    async addCampaignDone() {
       var request = {
         title: this.name,
         picked: this.picked,
       };
 
-      axios({
+      await axios({
         method: "post", //you can set what request you want to be
         url: "/api/newoperation",
         withCredentials: true,
