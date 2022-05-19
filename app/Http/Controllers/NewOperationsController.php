@@ -93,6 +93,12 @@ class NewOperationsController extends Controller
         }
     }
 
+    public function getCustomOperationList()
+    {
+        $ops = NewOperation::where('solo', 0)->with(['campaign.system'])->get();
+        return ['operations' => $ops];
+    }
+
     public function getInfo($id)
     {
         $data = NewOperation::where('link', $id)

@@ -67,6 +67,7 @@ export default {
 
   created() {
     this.$store.dispatch("getNewCampaignsList");
+    this.$store.dispatch("getCustomOperationList");
   },
 
   async mounted() {},

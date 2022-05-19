@@ -100,6 +100,7 @@ export default new Vuex.Store({
         ownChars: {},
         newCampaignSystems: [],
         newCampaignsList: [],
+        newOperationList: [],
     },
     mutations: {
         DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
@@ -625,6 +626,10 @@ export default new Vuex.Store({
 
         SET_NEW_CAMPAIGNSLIST(state, campaignslist) {
             state.newCampaignsList = campaignslist;
+        },
+
+        SET_NEW_OPERATION_LIST(state, operations) {
+            state.newOperationList = operations;
         },
 
         SET_LOGGING_CAMPAIGN(state, logs) {
@@ -1492,6 +1497,19 @@ export default new Vuex.Store({
                 },
             });
             commit("SET_NEW_CAMPAIGNSLIST", res.data.campaignslist);
+        },
+
+        async getCustomOperationList({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationlist",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_NEW_OPERATION_LIST", res.data.operations);
         },
 
         async getLoggingCampaign({ commit }, campaign_id) {
