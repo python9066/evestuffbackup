@@ -62,15 +62,27 @@ function sleep(ms) {
 
 export default {
   data() {
-    return {};
+    return {
+      overlay: false,
+      name: null,
+      picked: null,
+    };
   },
 
   created() {},
 
   async mounted() {},
-  methods: {},
+  methods: {
+    close() {
+      (this.name = null), (this.picked = null), (this.overlay = false);
+    },
+  },
   computed: {
     ...mapState(["newCampaignsList"]),
+
+    list() {
+      return this.newCampaignsList;
+    },
   },
   beforeDestroy() {},
 };
