@@ -1,9 +1,9 @@
 <template>
   <div class="d-inline-flex">
     <span v-if="systemcount">
-      <span v-for="(system, index) in systems" :key="index" class="pr-2">
-        <v-chip pill :color="pillcolor(system)" dark>
-          <span> {{ system.text }}</span>
+      <span v-for="(campaign, index) in campaigns" :key="index" class="pr-2">
+        <v-chip pill :color="pillcolor(campaign)" dark>
+          <span> {{ text(campaign) }}</span>
         </v-chip>
       </span>
     </span>
@@ -18,7 +18,7 @@ import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
   props: {
-    systems: Array,
+    campaigns: Array,
   },
   data() {
     return {
@@ -35,9 +35,23 @@ export default {
       this.name = "";
     },
 
-    pillcolor(system) {
-      if (system.color == 1) {
+    text(campaign) {
+      var name = campaign.system.system_name;
+      if (campaign.event_type == "32458") {
+        var type = "Ihub";
+      } else {
+        var type = "TCU";
+      }
+
+      var text = name + " - " + type;
+      return text;
+    },
+
+    pillcolor(campaign) {
+      if (campaign.alliance.standing < 0) {
         return "red darken-4";
+      } else if (campaign.alliance.standing == 0) {
+        ("gray");
       } else {
         return "blue darken-4";
       }
@@ -48,7 +62,7 @@ export default {
     ...mapGetters([]),
 
     systemcount() {
-      let count = this.systems.length;
+      let count = this.campaigns.length;
       if (count == 0) {
         return false;
       } else {
