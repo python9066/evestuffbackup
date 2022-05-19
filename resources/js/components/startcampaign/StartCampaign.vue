@@ -118,8 +118,13 @@ export default {
     });
   },
 
-  async mounted() {},
+  async mounted() {
+    this.onResize();
+  },
   methods: {
+    onResize() {
+      this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+    },
     updatemultiCampaginAdd() {
       this.overlay = !this.overlay;
       this.$store.dispatch("getStartCampaigns");
