@@ -30,7 +30,7 @@
           </v-text-field>
           <v-select
             v-model="picked"
-            :items="newCampaignslist"
+            :items="newCampaignsList"
             label="Select"
             multiple
             chips
@@ -80,9 +80,9 @@ export default {
   computed: {
     ...mapState(["newCampaignsList"]),
 
-    list() {
-      return this.newCampaignsList;
-    },
+    // list() {
+    //   return this.newCampaignsList;
+    // },
   },
   beforeDestroy() {},
 };
