@@ -25,7 +25,7 @@
                   No Multi Campaigns have been made
                 </template>
                 <template v-slot:[`item.system`]="{ item }">
-                  <NewSystemItemList :systems="item.campaign">
+                  <NewSystemItemList :campaigns="item.campaign">
                   </NewSystemItemList>
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
