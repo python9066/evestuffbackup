@@ -86,7 +86,7 @@ export default {
 
     async addCampaignDone() {
       var request = {
-        OpID: this.campaign.id,
+        OpID: this.operation.id,
         title: this.name,
         picked: this.picked,
       };
