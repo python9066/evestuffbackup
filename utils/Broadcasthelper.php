@@ -2,6 +2,7 @@
 
 namespace utils\Broadcasthelper;
 
+use App\Events\CustomOperationPageUpdate;
 use App\Events\OperationOwnUpdate;
 use App\Events\OperationUpdate;
 use App\Models\NewCampaignOperation;
@@ -40,6 +41,19 @@ class Broadcasthelper
         broadcast(new OperationUpdate($flag));
     }
 
+    /**
+
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     * @param int $flagNumber
+     * 4 = updates system info
+     * 5 = remove char from ops table
+     * 6 = update op char table
+
+     */
+
+
+
     public static function broadcastuserSolo($opID, $opUserID, $flagNumber)
     {
         $message = NewCampaignhelper::opUserSolo($opID, $opUserID);
@@ -52,6 +66,16 @@ class Broadcasthelper
         broadcast(new OperationUpdate($flag));
     }
 
+    /**
+
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     * @param int $flagNumber
+     * 3 = Add/Update Own Char info -
+     * 5 = RemoveChar -
+
+     */
+
     public static function broadcastuserOwnSolo($opUserID, $userID, $flagNumber)
     {
         $message = NewCampaignhelper::ownUsersolo($opUserID);
@@ -63,5 +87,27 @@ class Broadcasthelper
         ]);
 
         broadcast(new OperationOwnUpdate($flag));
+    }
+
+
+    /**
+
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     * @param int $flagNumber
+     * 1 = Add Custom Operation To list -
+     * 2 = Update Custom Operation On List -
+     * 3 = Delete CUstom Operation from list -
+
+     */
+
+    public static function broadcastCustomOperationSolo($opID, $flagNumber)
+    {
+        $message = NewCampaignhelper::customOperationSolo($opID);
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message,
+        ]);
+        broadcast(new CustomOperationPageUpdate($flag));
     }
 }

@@ -32,7 +32,9 @@
                 <template v-slot:[`item.actions`]="{ item }">
                   <div class="d-inline-flex">
                     <EditOperation :operation="item" />
-                    <NewDeleteButton :item="item"></NewDeleteButton>
+                    <NewCustomCampaignDeleteButton
+                      :item="item"
+                    ></NewCustomCampaignDeleteButton>
                     <!-- <v-btn @click="clickCampaign(item)" color="green"
                       >View</v-btn> -->
                   </div>

@@ -309,4 +309,12 @@ class NewCampaignhelper
             'system:id,system_name,adm',
         ])->first();
     }
+
+
+    public static function CustomOperationSolo($opID)
+    {
+        return NewOperation::where('id', $$opID)
+            ->with(['campaign.system', 'campaign.alliance'])
+            ->first();
+    }
 }

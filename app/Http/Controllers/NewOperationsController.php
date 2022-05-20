@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use utils\NewCampaignhelper\NewCampaignhelper;
 use Illuminate\Support\Str;
+use utils\Broadcasthelper\Broadcasthelper;
 
 class NewOperationsController extends Controller
 {
@@ -90,15 +91,7 @@ class NewOperationsController extends Controller
                 NewCampaignOperation::create(['campaign_id' => $campaignID, 'operation_id' => $newOp->id]);
             }
 
-            $message = NewOperation::where('id', $newOp->id)
-                ->with(['campaign.system', 'campaign.alliance'])
-                ->first();
-
-            $flag = collect([
-                'flag' => 1,
-                'message' => $message,
-            ]);
-            broadcast(new CustomOperationPageUpdate($flag));
+            Broadcasthelper::broadcastCustomOperationSolo($newOp->id, 1);
         } else {
             return null;
         }
@@ -117,17 +110,7 @@ class NewOperationsController extends Controller
                 NewCampaignOperation::create(['campaign_id' => $campaignID, 'operation_id' => $request->OpID]);
             }
         }
-
-
-        $message = NewOperation::where('id', $request->OpID)
-            ->with(['campaign.system', 'campaign.alliance'])
-            ->first();
-
-        $flag = collect([
-            'flag' => 2,
-            'message' => $message,
-        ]);
-        broadcast(new CustomOperationPageUpdate($flag));
+        Broadcasthelper::broadcastCustomOperationSolo($request->OpID, 2);
     }
 
     public function getCustomOperationList()
@@ -208,6 +191,22 @@ class NewOperationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        NewOperation::where('id', $id)->delete();
+        NewCampaignOperation::where('operation_id', $id)->delete();
+
+        $operationUsers = OperationUser::where('operation_id', $id)->get();
+
+        foreach ($operationUsers as $opuser) {
+
+            $opuser->update([
+                'operation_id' => null,
+                'user_status_id' => 1,
+                'system_id' => null
+            ]);
+
+            Broadcasthelper::broadcastuserOwnSolo($opuser->id, $opuser->user_id, 3);
+        }
+
+        Broadcasthelper::broadcastCustomOperationSolo($id, 3);
     }
 }

@@ -310,4 +310,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/newoperation', 'NewOperationsController@makeNewOperation');
     Route::get('/operationlist', 'NewOperationsController@getCustomOperationList');
     Route::post('/editoperation', 'NewOperationsController@edit');
+    Route::delete('/newoperation/{id}', 'NewOperationsController@destroy');
 });
