@@ -11,15 +11,17 @@
             icon
             @click="open()"
             small
-          ></v-btn>
-          <font-awesome-icon icon="fa-solid fa-pen-to-square" size="2xl" />
+          >
+            <font-awesome-icon icon="fa-solid fa-pen-to-square" size="2xl"
+          /></v-btn>
         </template>
         <v-card min-width="1200" max-width="1200">
           <v-card-title> Edit your Mulit-Campaign Here </v-card-title>
           <v-card-text>
             <v-text-field
               label="Multi-Campaign Name"
-              v-model="name"
+              readonly
+              v-model="operation.title"
               hint="Enter The name of your Campaign here"
               filled
             >
