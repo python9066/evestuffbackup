@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Http\Controllers\Auth\GiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Protoqol\Prequel\PrequelServiceProvider;
+use Spatie\Activitylog\ActivitylogServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(PrequelServiceProvider::class);
             $this->app->register(\Laravel\Horizon\HorizonServiceProvider::class);
             $this->app->register(HorizonServiceProvider::class);
+            // $this->app->register(\Spatie\Activitylog\ActivitylogServiceProvider::class);
+            // $this->app->register(ActivitylogServiceProvider::class);
         }
     }
 
