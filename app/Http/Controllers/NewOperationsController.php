@@ -196,7 +196,9 @@ class NewOperationsController extends Controller
 
 
         $opToDelete->delete();
-        $campaignToDelete->delete();
+        foreach ($campaignToDelete as $a) {
+            $a->delete();
+        }
 
         $operationUsers = OperationUser::where('operation_id', $id)->get();
 
