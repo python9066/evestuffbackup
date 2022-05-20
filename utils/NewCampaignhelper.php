@@ -311,7 +311,7 @@ class NewCampaignhelper
     }
 
 
-    public static function CustomOperationSolo($opID)
+    public static function customOperationSolo($opID)
     {
         return NewOperation::where('id', $$opID)
             ->with(['campaign.system', 'campaign.alliance'])

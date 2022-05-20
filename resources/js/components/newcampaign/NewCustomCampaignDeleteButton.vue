@@ -12,12 +12,12 @@
           v-on="on"
           @click="open()"
         >
-          <font-awesome-icon icon="fa-solid fa-trash" pull="left" />
+          <font-awesome-icon icon="fa-solid fa-trash" pull="left" size="xl" />
         </v-btn>
       </template>
 
-      <v-card tile class="d-flex flex-column" color="primery" rounded="xl">
-        <v-card-title class="justify-center">
+      <v-card tile class="d-flex flex-column" rounded="xl">
+        <v-card-title class="justify-center" color="primery">
           <p>
             ARE YOU SURE<strong class="purple--text test--accent-3">
               EMILY!!!!!!!!!!!</strong
