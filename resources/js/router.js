@@ -26,7 +26,6 @@ import RCMOVETIMER from "./views/RCMove.vue";
 import FleetKeys from "./views/FleetKeyPannel.vue";
 import CoordSheet from "./views/CoordSheet.vue";
 import SoloOperations from "./views/SoloOperations.vue";
-import MultiOperations from "./views/CustomOperations.vue";
 import Station from "./views/StationSheet.vue";
 import NewOperation from "./views/NewCampaign.vue";
 
@@ -330,19 +329,6 @@ export default new Router({
             component: MultiCampagins,
             beforeEnter(to, from, next) {
                 if (Permissions.indexOf("access_multi_campaigns") !== -1) {
-                    next();
-                } else {
-                    next("/campaigns");
-                }
-            },
-        },
-
-        {
-            path: "/moperations",
-            name: "moperations",
-            component: MultiOperations,
-            beforeEnter(to, from, next) {
-                if (Permissions.indexOf("super") !== -1) {
                     next();
                 } else {
                     next("/campaigns");

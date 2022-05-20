@@ -632,6 +632,18 @@ export default new Vuex.Store({
             state.newOperationList = operations;
         },
 
+        UPDATE_NEW_OPERATION_LIST(state, data) {
+            const item = state.newOperationList.find(
+                (item) => item.id === data.id
+            );
+            const count = state.newOperationList.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            }
+        },
+
         SET_LOGGING_CAMPAIGN(state, logs) {
             state.loggingcampaign = logs;
         },
@@ -752,6 +764,17 @@ export default new Vuex.Store({
                 Object.assign(check, data);
             } else {
                 state.stations.push(data);
+            }
+        },
+
+        ADD_NEW_OPERATION_LIST(state, data) {
+            const check = state.newOperationList.find(
+                (station) => station.id == data.id
+            );
+            if (check != null) {
+                Object.assign(check, data);
+            } else {
+                state.newOperationList.push(data);
             }
         },
 
@@ -1710,6 +1733,14 @@ export default new Vuex.Store({
 
         updateOpChar({ commit }, data) {
             commit("UPDATE_OP_CHAR", data);
+        },
+
+        updateoperationlist({ commit }, data) {
+            commit("UPDATE_NEW_OPERATION_LIST", data);
+        },
+
+        addoperationlist({ commit }, data) {
+            commit("ADD_NEW_OPERATION_LIST", data);
         },
 
         addStationNotification({ commit }, data) {

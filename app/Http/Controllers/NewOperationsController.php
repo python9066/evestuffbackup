@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Events\CustomOperationPageUpdate;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
 use App\Models\NewOperation;
+use App\Models\OperationUser;
 use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -88,9 +89,38 @@ class NewOperationsController extends Controller
             foreach ($campaignIDs as $campaignID) {
                 NewCampaignOperation::create(['campaign_id' => $campaignID, 'operation_id' => $newOp->id]);
             }
+
+            $message = NewOperation::where('id', $newOp->id)
+                ->with(['campaign.system', 'campaign.alliance'])
+                ->first();
+
+            $flag = collect([
+                'flag' => 1,
+                'message' => $message,
+            ]);
+            broadcast(new CustomOperationPageUpdate($flag));
         } else {
             return null;
         }
+    }
+
+
+    public function edit(Request $request)
+    {
+        NewCampaignOperation::where('operation_id', $request->OpID)
+            ->whereNotIn('campaign_id', $request->picked)
+            ->delete();
+
+
+        $message = NewOperation::where('id', $request->OpID)
+            ->with(['campaign.system', 'campaign.alliance'])
+            ->first();
+
+        $flag = collect([
+            'flag' => 2,
+            'message' => $message,
+        ]);
+        broadcast(new CustomOperationPageUpdate($flag));
     }
 
     public function getCustomOperationList()

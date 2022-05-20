@@ -154,6 +154,12 @@ Broadcast::channel('operationsown.{id}', function () {
     return Auth::check();
 });
 
+Broadcast::channel('customoperationpage', function () {
+    return Auth::check();
+});
+
+
+
 
 
 

@@ -84,7 +84,24 @@ export default {
 
     addCampaignClose() {},
 
-    addCampaignDone() {},
+    async addCampaignDone() {
+      var request = {
+        OpID: this.campaign.id,
+        title: this.name,
+        picked: this.picked,
+      };
+
+      await axios({
+        method: "post", //you can set what request you want to be
+        url: "/api/editoperation",
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }).then(this.addCampaignClose);
+    },
   },
 
   computed: {

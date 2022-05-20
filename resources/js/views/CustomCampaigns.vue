@@ -1,6 +1,5 @@
 <template>
   <div class="pr-16 pl-16">
-    <messageComponent></messageComponent>
     <MultiCampaigns></MultiCampaigns>
     <StartCampaign></StartCampaign>
     <NewMultiCampaigns v-if="$can('super')"></NewMultiCampaigns>
@@ -24,6 +23,18 @@ export default {
   },
 
   created() {
+    Echo.private("customoperationpage").listen(
+      "CustomOperationPageUpdate",
+      (e) => {
+        if (e.flag.flag == 1) {
+          this.$store.dispatch("addoperationlist", e.flag.message);
+        }
+
+        if (e.flag.flag == 2) {
+          this.$store.dispatch("updateoperationlist", e.flag.message);
+        }
+      }
+    );
     this.$store.dispatch("getConstellationList");
   },
 
@@ -49,6 +60,8 @@ export default {
     },
   },
   computed: {},
-  beforeDestroy() {},
+  beforeDestroy() {
+    Echo.leave("customoperationpage");
+  },
 };
 </script>

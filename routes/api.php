@@ -309,4 +309,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/newcampaignslist', 'NewCampaignsController@campaignsList');
     Route::post('/newoperation', 'NewOperationsController@makeNewOperation');
     Route::get('/operationlist', 'NewOperationsController@getCustomOperationList');
+    Route::post('/editoperation', 'NewOperationsController@edit');
 });
