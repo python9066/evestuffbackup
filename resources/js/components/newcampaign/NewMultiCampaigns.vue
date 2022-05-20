@@ -24,28 +24,18 @@
                   No Multi Campaigns have been made
                 </template>
                 <template v-slot:[`item.campaign`]="{ item }">
-                  <NewSystemItemList :campaigns="item.campaign">
-                  </NewSystemItemList>
+                  <NewSystemItemList :campaigns="item.campaign" />
+                </template>
+                <template v-slot:[`item.status`]="{ item }">
+                  {{ operationStatus(item) }}
                 </template>
                 <template v-slot:[`item.actions`]="{ item }">
-                  <!-- <div class="d-inline-flex">
-                    <v-btn
-                      icon
-                      @click="
-                        (overlayEditID = item.id),
-                          (overlayEditName = item.name),
-                          (overlayEdit = !overlayEdit)
-                      "
-                      color="warning"
-                      ><font-awesome-icon
-                        icon="fa-solid fa-pen-to-square"
-                        size="2xl"
-                    /></v-btn>
-                    <DeleteButton :item="item"></DeleteButton>
+                  <div class="d-inline-flex">
+                    <EditOperation :campaigns="item.campaign" />
+                    <!-- <DeleteButton :item="item"></DeleteButton>
                     <v-btn @click="clickCampaign(item)" color="green"
-                      >View</v-btn
-                    >
-                  </div> -->
+                      >View</v-btn> -->
+                  </div>
                 </template>
 
                 <!-- <template v-slot:actions.="{ item }">
@@ -92,7 +82,13 @@ export default {
   },
 
   async mounted() {},
-  methods: {},
+  methods: {
+    operationStatus(item) {
+      if (item.status == 1) {
+        return "Active";
+      }
+    },
+  },
   computed: {
     ...mapState(["newOperationList"]),
 
