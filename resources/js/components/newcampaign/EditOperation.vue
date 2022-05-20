@@ -55,6 +55,7 @@ import Axios from "axios";
 import { EventBus } from "../../app";
 // import ApiL from "../service/apil";
 import { mapGetters, mapState } from "vuex";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -82,7 +83,9 @@ export default {
       this.picked = this.operation.campaign.map((c) => c.id);
     },
 
-    addCampaignClose() {},
+    addCampaignClose() {
+      this.overlay == false;
+    },
 
     async addCampaignDone() {
       var request = {
@@ -100,7 +103,7 @@ export default {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-      }).then(this.addCampaignClose);
+      }).then(this.addCampaignClose());
     },
   },
 

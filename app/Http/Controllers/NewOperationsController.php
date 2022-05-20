@@ -111,6 +111,13 @@ class NewOperationsController extends Controller
             ->whereNotIn('campaign_id', $request->picked)
             ->delete();
 
+        foreach ($request->picked as $campaignID) {
+            $count = NewCampaignOperation::where('operation_id', $request->OpID)->where('campaign_id', $campaignID)->count();
+            if ($count == 0) {
+                NewCampaignOperation::create(['campaign_id' => $campaignID, 'operation_id' => $request->OpID]);
+            }
+        }
+
 
         $message = NewOperation::where('id', $request->OpID)
             ->with(['campaign.system', 'campaign.alliance'])
