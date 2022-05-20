@@ -196,7 +196,7 @@ class NewOperationsController extends Controller
 
 
         $opToDelete->delete();
-        $$campaignToDelete->delete();
+        $campaignToDelete->delete();
 
         $operationUsers = OperationUser::where('operation_id', $id)->get();
 
