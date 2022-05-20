@@ -191,8 +191,12 @@ class NewOperationsController extends Controller
      */
     public function destroy($id)
     {
-        NewOperation::where('id', $id)->delete();
-        NewCampaignOperation::where('operation_id', $id)->delete();
+        $opToDelete = NewOperation::where('id', $id)->first();
+        $campaignToDelete =  NewCampaignOperation::where('operation_id', $id)->get();
+
+
+        $opToDelete->delete();
+        $$campaignToDelete->delete();
 
         $operationUsers = OperationUser::where('operation_id', $id)->get();
 
