@@ -11,11 +11,11 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasPermissions;
 use Laravel\Sanctum\HasApiTokens;
-
+use Spatie\Activitylog\Traits\CausesActivity;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles, HasPermissions, HasApiTokens;
+    use Notifiable, HasRoles, HasPermissions, HasApiTokens, CausesActivity;
 
 
 
