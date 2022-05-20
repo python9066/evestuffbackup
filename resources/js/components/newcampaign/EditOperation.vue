@@ -84,7 +84,7 @@ export default {
     },
 
     addCampaignClose() {
-      this.overlay == false;
+      this.overlay = false;
     },
 
     async addCampaignDone() {
