@@ -42,18 +42,17 @@ class setCampaignStatusJobs extends Command
     public function handle()
     {
         $campaigns = NewCampaign::where('job', 0)->get();
-        foreach($campaigns as $campaign){
+        foreach ($campaigns as $campaign) {
             $start = Carbon::parse($campaign->start_time);
             $twoHours = now()->addHours(2);
 
-            if($start <= $twoHours){
+            if ($start <= $twoHours) {
                 $a = $start->subHours(1);
-
+                $begin = $campaign->start_time;
                 setWarmUpdateFlagJob::dispatch($campaign->id)->onQueue('campaigns')->delay($a);
-                setActiveUpdateFlagJob::dispatch($campaign->id)->onQueue('campaigns')->delay($start);
+                setActiveUpdateFlagJob::dispatch($campaign->id)->onQueue('campaigns')->delay($begin);
                 $campaign->update(['job' => 1]);
             }
-
         }
     }
 }
