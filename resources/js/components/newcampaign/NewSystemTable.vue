@@ -76,48 +76,6 @@ export default {
   },
   data() {
     return {
-      headers: [
-        {
-          text: "NodeID",
-          value: "name",
-          sortable: false,
-        },
-        {
-          text: "Pilot",
-          value: "op_users",
-          sortable: true,
-        },
-
-        {
-          text: "Main",
-          value: "TODOMain",
-          sortable: true,
-        },
-
-        {
-          text: "Ship",
-          value: "TODOShip",
-          sortable: true,
-        },
-        {
-          text: "Status",
-          value: "node_status.name",
-          sortable: true,
-        },
-
-        {
-          text: "Age/Hack",
-          value: "created_at",
-          sortable: true,
-          align: "center",
-        },
-        {
-          text: "",
-          value: "actions",
-          align: "end",
-          sortable: false,
-        },
-      ],
       singleExpand: false,
     };
   },
@@ -156,6 +114,97 @@ export default {
 
     nodes() {
       return this.item.new_nodes;
+    },
+
+    _headers() {
+      if (this.activeCampaigns.length == 1) {
+        var headers = [
+          {
+            text: "NodeID",
+            value: "name",
+            sortable: false,
+          },
+          {
+            text: "Pilot",
+            value: "op_users",
+            sortable: true,
+          },
+
+          {
+            text: "Main",
+            value: "TODOMain",
+            sortable: true,
+          },
+
+          {
+            text: "Ship",
+            value: "TODOShip",
+            sortable: true,
+          },
+          {
+            text: "Status",
+            value: "node_status.name",
+            sortable: true,
+          },
+
+          {
+            text: "Age/Hack",
+            value: "created_at",
+            sortable: true,
+            align: "center",
+          },
+          {
+            text: "",
+            value: "actions",
+            align: "end",
+            sortable: false,
+          },
+        ];
+      } else {
+        var headers = [
+          {
+            text: "NodeID",
+            value: "name",
+            sortable: false,
+          },
+          {
+            text: "Pilot",
+            value: "op_users",
+            sortable: true,
+          },
+
+          {
+            text: "Main",
+            value: "TODOMain",
+            sortable: true,
+          },
+
+          {
+            text: "Ship",
+            value: "TODOShip",
+            sortable: true,
+          },
+          {
+            text: "Status",
+            value: "node_status.name",
+            sortable: true,
+          },
+
+          {
+            text: "Age/Hack",
+            value: "created_at",
+            sortable: true,
+            align: "center",
+          },
+          {
+            text: "",
+            value: "actions",
+            align: "end",
+            sortable: false,
+          },
+        ];
+      }
+      return headers;
     },
 
     expanded() {

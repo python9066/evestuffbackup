@@ -25,6 +25,11 @@ class NewSystemNode extends Model
         return $this->hasMany(NewUserNode::class, 'node_id');
     }
 
+    public function campaign()
+    {
+        return $this->belongsTo(NewCampaign::class);
+    }
+
 
     public function nonePrimeNodeUser()
     {

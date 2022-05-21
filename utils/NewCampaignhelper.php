@@ -288,6 +288,7 @@ class NewCampaignhelper
             ->with([
                 'newCampaigns.operations',
                 'newNodes.nodeStatus',
+                'newNodes..campaign',
                 'newNodes.nonePrimeNodeUser.opUser.user',
                 'newNodes.nonePrimeNodeUser.nodeStatus',
                 'newNodes.primeNodeUser.opUser.user',
@@ -305,6 +306,7 @@ class NewCampaignhelper
             ->with([
                 'newCampaigns.operations',
                 'newNodes.nodeStatus',
+                'newNodes..campaign',
                 'newNodes.nonePrimeNodeUser.opUser.user',
                 'newNodes.nonePrimeNodeUser.nodeStatus',
                 'newNodes.primeNodeUser.opUser.user',
