@@ -102,7 +102,7 @@ export default {
     ...mapState([]),
 
     activeCount() {
-      return activeCampaigns.length;
+      return this.activeCampaigns.length;
     },
   },
   beforeDestroy() {},
