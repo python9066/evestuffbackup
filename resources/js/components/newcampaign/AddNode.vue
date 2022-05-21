@@ -17,7 +17,7 @@
         Node</v-btn
       >
     </template>
-    <v-card>
+    <v-card height="100%">
       <v-card-text>
         <v-text-field
           label="Node"
