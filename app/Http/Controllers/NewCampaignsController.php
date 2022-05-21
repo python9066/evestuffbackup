@@ -22,7 +22,7 @@ class NewCampaignsController extends Controller
     public function campaignsList()
     {
         $data = [];
-        $pull = NewCampaign::where('status_id', "<", 3)->with(['system.region', 'system.constellation', 'alliance'])->orderBy('start_time', 'asc')->get();
+        $pull = NewCampaign::whereIn('status_id', [1, 2, 5])->with(['system.region', 'system.constellation', 'alliance'])->orderBy('start_time', 'asc')->get();
         foreach ($pull as $pull) {
             $data1 = [];
             if ($pull->event_type == 32226) {
