@@ -18,10 +18,8 @@
       >
     </template>
     <v-card>
-      <v-card-title class="pb-0 primary"> </v-card-title>
       <v-card-text>
         <v-text-field
-          class="mt-2"
           label="Node"
           placeholder="Enter Node"
           flat
