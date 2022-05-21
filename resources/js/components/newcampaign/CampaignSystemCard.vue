@@ -7,50 +7,60 @@
       <v-card-text> </v-card-text>
     </v-card>
   </div> -->
-
-  <v-expansion-panels
-    class="pb-5"
-    v-model="showSystemTable"
-    popout
-    style="cursor: context-menu"
+  <transition
+    name="custom-classes"
+    enter-active-class="animate__animated animate__bounceIn animate__repeat-2"
+    leave-active-class="animate__animated animate__fadeOut animate__faster"
+    mode="out-in"
   >
-    <v-expansion-panel class="rounded-xl" style="cursor: context-menu" readonly>
-      <v-expansion-panel-header
+    <v-expansion-panels
+      class="pb-5"
+      v-model="showSystemTable"
+      popout
+      style="cursor: context-menu"
+    >
+      <v-expansion-panel
+        class="rounded-xl"
         style="cursor: context-menu"
-        class="py-0 pr-2"
-        :class="filterRound"
-        hide-actions
+        readonly
       >
-        <v-row no-gutters>
-          <v-col cols="1" class="d-flex justify-start align-center mr-2">
-            {{ item.system_name }}
-          </v-col>
-          <v-divider class="mx-2" vertical></v-divider>
-          <v-col cols="3" class="d-flex justify-start align-center">
-            <SystemNodeCount :item="item.new_nodes" />
-          </v-col>
+        <v-expansion-panel-header
+          style="cursor: context-menu"
+          class="py-0 pr-2"
+          :class="filterRound"
+          hide-actions
+        >
+          <v-row no-gutters>
+            <v-col cols="1" class="d-flex justify-start align-center mr-2">
+              {{ item.system_name }}
+            </v-col>
+            <v-divider class="mx-2" vertical></v-divider>
+            <v-col cols="3" class="d-flex justify-start align-center">
+              <SystemNodeCount :item="item.new_nodes" />
+            </v-col>
 
-          <v-col cols="6" class="d-flex justify-end align-center">
+            <v-col cols="6" class="d-flex justify-end align-center">
+              <v-divider class="mx-2" vertical></v-divider>
+              <OnTheWay :operationID="operationID" :item="item" />
+              <v-divider class="mx-2" vertical></v-divider>
+              <ReadyToGo :operationID="operationID" :item="item" />
+            </v-col>
             <v-divider class="mx-2" vertical></v-divider>
-            <OnTheWay :operationID="operationID" :item="item" />
-            <v-divider class="mx-2" vertical></v-divider>
-            <ReadyToGo :operationID="operationID" :item="item" />
-          </v-col>
-          <v-divider class="mx-2" vertical></v-divider>
-          <v-col cols="1" class="d-flex justify-end align-center">
-            <v-btn icon @click="clickIcon()">
-              ><font-awesome-icon
-                icon="fa-solid fa-angle-up"
-                :class="iconRotate"
-            /></v-btn>
-          </v-col>
-        </v-row>
-      </v-expansion-panel-header>
-      <v-expansion-panel-content
-        ><CampaignSystemCardContent :item="item" :operationID="operationID" />
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-  </v-expansion-panels>
+            <v-col cols="1" class="d-flex justify-end align-center">
+              <v-btn icon @click="clickIcon()">
+                ><font-awesome-icon
+                  icon="fa-solid fa-angle-up"
+                  :class="iconRotate"
+              /></v-btn>
+            </v-col>
+          </v-row>
+        </v-expansion-panel-header>
+        <v-expansion-panel-content
+          ><CampaignSystemCardContent :item="item" :operationID="operationID" />
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
+  </transition>
 </template>
 <script>
 import Axios from "axios";
