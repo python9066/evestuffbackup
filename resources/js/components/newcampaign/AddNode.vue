@@ -23,7 +23,7 @@
           label="Node"
           placeholder="Enter Node"
           flat
-          autofocus
+          :autofocus="textFocus"
           v-mask="'AA##'"
           v-model="nodeText"
           @keyup.enter="addNode()"
@@ -109,6 +109,22 @@ export default {
     ...mapGetters([]),
 
     ...mapState([]),
+
+    textFocus() {
+      if (this.activeCount == 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    dropDownFocus() {
+      if (this.activeCount > 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
 
     activeCount() {
       return this.activeCampaigns.length;
