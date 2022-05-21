@@ -62,7 +62,7 @@ export default {
     campaigns() {
       var camp = this.item.new_campaigns;
       camp = camp.filter((c) => {
-        let operations = c.operations.filter((o) => o.id == opID);
+        let operations = c.operations.filter((o) => o.id == this.operationID);
         if (operations.length > 0) {
           return true;
         } else {
@@ -74,7 +74,7 @@ export default {
     },
 
     actionCampaign() {
-      var active = campaings.filter((c) => {
+      var active = this.campaigns.filter((c) => {
         if (c.status_id == 2) {
           return true;
         } else if (c.start_time <= this.currentTime && c.end_time == null) {
