@@ -163,7 +163,7 @@ export default {
           if (c.status_id == 2) {
             return true;
           } else if (
-            moment.utc(c.start_time) <= this.currentTime &&
+            moment.utc(c.start_time) >= this.currentTime &&
             c.end_time == null
           ) {
             return true;
