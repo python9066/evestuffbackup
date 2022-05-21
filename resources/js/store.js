@@ -778,6 +778,17 @@ export default new Vuex.Store({
             }
         },
 
+        DELETE_OPERATION_FROM_LSIT(state, num) {
+            const count = state.newOperationList.filter(
+                (o) => o.id == num
+            ).length;
+            if (count > 0) {
+                state.newOperationList = state.newOperationList.filter(
+                    (o) => o.id != num
+                );
+            }
+        },
+
         DELETE_STATION_NOTIFICATION(state, id) {
             let index = state.stations.findIndex((s) => s.id == id);
             if (index >= 0) {
@@ -1741,6 +1752,10 @@ export default new Vuex.Store({
 
         addoperationlist({ commit }, data) {
             commit("ADD_NEW_OPERATION_LIST", data);
+        },
+
+        deleteoperationfromlist({ commit }, num) {
+            commit("DELETE_OPERATION_FROM_LSIT", num);
         },
 
         addStationNotification({ commit }, data) {

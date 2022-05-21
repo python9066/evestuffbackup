@@ -110,4 +110,24 @@ class Broadcasthelper
         ]);
         broadcast(new CustomOperationPageUpdate($flag));
     }
+
+
+    /**
+
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     * @param int $flagNumber
+     * 3 = Delete CUstom Operation from list -
+
+     */
+
+    public static function broadcastCustomOperationDeleteSolo($opID, $flagNumber)
+    {
+
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $opID,
+        ]);
+        broadcast(new CustomOperationPageUpdate($flag));
+    }
 }

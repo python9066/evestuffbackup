@@ -33,6 +33,10 @@ export default {
         if (e.flag.flag == 2) {
           this.$store.dispatch("updateoperationlist", e.flag.message);
         }
+
+        if (e.flag.flag == 3) {
+          this.$store.dispatch("deleteoperationfromlist", e.flag.message);
+        }
       }
     );
     this.$store.dispatch("getConstellationList");

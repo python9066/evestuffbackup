@@ -24,9 +24,9 @@ class NewCampaignOperation extends Model
         return $this->hasMany(Logging::class);
     }
 
-    public function opertation()
+    public function operation()
     {
-        return $this->belongsTo(NewOperation::class, 'opertation_id', 'id');
+        return $this->belongsTo(NewOperation::class, 'operation_id', 'id');
     }
 
     public function campaign()

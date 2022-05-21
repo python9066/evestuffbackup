@@ -198,10 +198,10 @@ class NewOperationsController extends Controller
         $campaignToDelete =  NewCampaignOperation::where('operation_id', $id)->get();
 
 
-        $opToDelete->delete();
         foreach ($campaignToDelete as $a) {
             $a->delete();
         }
+        $opToDelete->delete();
 
         $operationUsers = OperationUser::where('operation_id', $id)->get();
 
@@ -216,6 +216,6 @@ class NewOperationsController extends Controller
             Broadcasthelper::broadcastuserOwnSolo($opuser->id, $opuser->user_id, 3);
         }
 
-        Broadcasthelper::broadcastCustomOperationSolo($id, 3);
+        Broadcasthelper::broadcastCustomOperationDeleteSolo($id, 3);
     }
 }
