@@ -126,8 +126,15 @@
             >
               <template slot="countdown" slot-scope="scope">
                 <span class="red--text pl-3">
-                  <span v-if(scope.props.hours> 1)</span>
-                  {{ scope.props.minutes }}:{{ scope.props.seconds }}
+                  <span v-if="scope.props.hours > 1">
+                    {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                      scope.props.seconds
+                    }}
+                  </span>
+
+                  <span v-else>
+                    {{ scope.props.minutes }}:{{ scope.props.seconds }}
+                  </span>
                 </span>
               </template>
             </CountDowntimer>
