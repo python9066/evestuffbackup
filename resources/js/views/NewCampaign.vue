@@ -221,7 +221,7 @@ export default {
     openCampaings() {
       if (this.activeCampaigns.length > 0 && this.warmUpCampaigns.length > 0) {
         let open = this.activeCampaigns.concat(this.warmUpCampaigns);
-        open = open.filter((item, index) => {
+        openCampaigns = open.filter((item, index) => {
           return open.indexOf(item) == index;
         });
       } else if (this.activeCampaigns.length > 0) {
