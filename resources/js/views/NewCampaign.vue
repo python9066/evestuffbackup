@@ -16,25 +16,25 @@
       </v-col>
     </v-row>
     <v-row no-gutters justify="space-around">
-      <transition-group
-        name="custom-classes"
-        enter-active-class="animate__animated animate__bounceIn animate__repeat-2"
-        leave-active-class="animate__animated animate__fadeOut animate__faster"
-        mode="out-in"
+      <v-col
+        cols="6"
+        class="px-5"
+        v-for="(item, index) in openSystems"
+        :key="index.id"
       >
-        <v-col
-          cols="6"
-          class="px-5"
-          v-for="(item, index) in openSystems"
-          :key="index.id"
+        <transition
+          name="custom-classes"
+          enter-active-class="animate__animated animate__bounceIn animate__repeat-2"
+          leave-active-class="animate__animated animate__fadeOut animate__faster"
+          mode="out-in"
         >
           <CampaignSystemCard
             :key="`${item.id}-card`"
             :item="item"
             :operationID="operationID"
           ></CampaignSystemCard>
-        </v-col>
-      </transition-group>
+        </transition>
+      </v-col>
     </v-row>
   </div>
 </template>
