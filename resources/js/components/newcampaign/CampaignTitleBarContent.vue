@@ -141,11 +141,6 @@
           </v-col>
         </v-row>
       </transition>
-      <v-row no-gutters>
-        <v-col>
-          <v-text-field v-model="newscore" type="number"></v-text-field>
-        </v-col>
-      </v-row>
     </v-col>
   </v-row>
 </template>
