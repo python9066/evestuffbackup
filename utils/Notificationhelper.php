@@ -7,12 +7,10 @@ use App\Events\StationInfoSet;
 use App\Events\StationNotificationDelete;
 use App\Events\StationNotificationNew;
 use App\Events\StationNotificationUpdate;
-use App\Events\StationUpdateCoord;
 use App\Events\TowerChanged;
 use App\Events\TowerDelete;
 use App\Models\Alliance;
 use App\Models\Corp;
-use App\Models\Logging;
 use App\Models\Notification;
 use App\Models\Temp_notifcation;
 use utils\Helper\Helper;
@@ -31,7 +29,6 @@ use Symfony\Component\Yaml\Yaml;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
 
 class Notifications
 {
@@ -185,22 +182,6 @@ class Notifications
 
             ]);
             $stationNew = Station::where('id', $id)->first();
-            if (!$oldStation) {
-                $log =  Logging::create(['station_id' => $id, 'logging_type_id' => 17, 'text' => "Added by the Recon Tool"]);
-                Helper::stationlogs($log->id);
-            } else {
-                if ($oldStation->name != $stationNew->name) {
-                    $log = Logging::create(['station_id' => $id, 'logging_type_id' => 18, 'text' => "Recon Tool changed station name from " . $oldStation->name . " to " . $stationNew->name]);
-                    Helper::stationlogs($log->id);
-                }
-
-                if ($oldStation->corp_id != $stationNew->corp_id) {
-                    $oldCorpName = Corp::where('id', $oldStation->corp_id)->value('name');
-                    $newCorpName = Corp::where('id', $stationNew->corp_id)->value('name');
-                    $log = Logging::create(['station_id' => $id, 'logging_type_id' => 18, 'text' => "Recon Tool changed corp from " . $oldCorpName . " to " . $newCorpName]);
-                    Helper::stationlogs($log->id);
-                }
-            }
 
             $status_id = Station::where('id', $id)->value('station_status_id');
             if ($status_id == 7) {
@@ -320,15 +301,6 @@ class Notifications
 
 
                 ]);
-
-                $l =  Logging::where('station_id', $stations[1]['id'])->get();
-                foreach ($l as $l) {
-                    $l->update(['station_id' => $stations[0]['id']]);
-                }
-                $s =  Station::where('id', $stations[1]['id'])->get();
-                foreach ($s as $s) {
-                    $s->delete();
-                }
             }
         }
     }
@@ -430,17 +402,8 @@ class Notifications
                         $s->update(['station_status_id' => 16]);
                     }
                 }
-                if ($oldStation->name != $stationNew->name) {
-                    $log = Logging::create(['station_id' => $station->id, 'logging_type_id' => 18, 'text' => "Recon Tool changed station name from " . $oldStation->name . " to " . $stationNew->name]);
-                    Helper::stationlogs($log->id);
-                }
 
-                if ($oldStation->corp_id != $stationNew->corp_id) {
-                    $oldCorpName = Corp::where('id', $oldStation->corp_id)->value('name');
-                    $newCorpName = Corp::where('id', $stationNew->corp_id)->value('name');
-                    $log = Logging::create(['station_id' => $station->id, 'logging_type_id' => 18, 'text' => "Recon Tool changed corp from " . $oldCorpName . " to " . $newCorpName]);
-                    Helper::stationlogs($log->id);
-                }
+
 
 
                 if ($stationdata['str_has_no_fitting'] != null) {
@@ -484,7 +447,7 @@ class Notifications
             if ($stationdata == "Error, Structure Not Found") {
             } else {
 
-                Logging::where('station_id', $station->id)->update(['station_id' => $stationdata['str_structure_id']]);
+
 
                 $oldupdate = $station->r_updated_at;
                 if ($oldupdate != $stationdata['updated_at']) {

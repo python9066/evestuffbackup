@@ -2,7 +2,7 @@
 
 namespace utils\Helper;
 
-use App\Events\RcSheetAddLogging;
+
 use App\Models\Auth;
 use App\Models\Campaign;
 use App\Models\Client;
@@ -10,17 +10,9 @@ use App\Models\User;
 use DateTime;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Utils;
-use App\Events\CampaignSystemUpdate;
-use App\Events\EveUserUpdate;
-use App\Events\LoggingUpdate;
-use App\Events\StationLogUpdate;
-use App\Models\Eve;
 use App\Models\HotRegion;
-use App\Models\Logging;
-use App\Models\LoggingType;
 use App\Models\Station;
 use App\Models\System;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 use function GuzzleHttp\json_decode;
@@ -239,81 +231,14 @@ class Helper
 
     public static function logUpdate($campid, $log)
     {
-
-        $log = Logging::where('id', $log)->first();
-        $timne = Helper::fixtime($log['created_at']);
-        $message = [
-            'id' => $log['id'],
-            'campaign_id' => $log['campaign_id'],
-            'campaign_name' => $log['campaign_name'],
-            'campaign_sola_system_id' => $log['campaign_sola_system_id'],
-            'sola_system_name' => $log['sola_system_name'],
-            'campaign_system_id' => $log['campaign_system_id'],
-            'user_id' => $log['user_id'],
-            'user_name' => $log->user()->value('name'),
-            'logging_type_id' => $log['logging_type_id'],
-            'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
-            'text' => $log['text'],
-            'created_at' => $timne
-        ];
-
-
-
-        $flag = collect([
-            'message' => $message,
-            'id' => $campid,
-        ]);
-        broadcast(new LoggingUpdate($flag));
     }
 
     public static function sheetlogs($log)
     {
-
-        $log = Logging::where('id', $log)->first();
-        $time = Helper::fixtime($log['created_at']);
-        $message = [
-            'id' => $log['id'],
-            'user_id' => $log['user_id'],
-            'user_name' => $log->user()->value('name'),
-            'logging_type_id' => $log['logging_type_id'],
-            'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
-            'station_id' => $log['station_id'],
-            'station_name' => Station::where('id', $log['station_id'])->value('name'),
-            'text' => $log['text'],
-            'created_at' => $time
-        ];
-
-
-
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new RcSheetAddLogging($flag));
     }
 
     public static function stationlogs($log)
     {
-
-        $log = Logging::where('id', $log)->first();
-        $time = Helper::fixtime($log['created_at']);
-        $message = [
-            'id' => $log['id'],
-            'user_id' => $log['user_id'],
-            'user_name' => $log->user()->value('name'),
-            'logging_type_id' => $log['logging_type_id'],
-            'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
-            'station_id' => $log['station_id'],
-            'station_name' => Station::where('id', $log['station_id'])->value('name'),
-            'text' => $log['text'],
-            'created_at' => $time
-        ];
-
-
-
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new StationLogUpdate($flag));
     }
 
 
@@ -368,14 +293,6 @@ class Helper
             $station_query->where('standing', '=<', 0);
         }
 
-        if ($user->can('view_station_logs')) {
-            $station_query->with([
-                'logs:id,station_id,user_id,logging_type_id,text,created_at',
-                'logs.type:id,name',
-                'logs.user:id,name',
-            ]);
-        }
-
         $station_query->with([
             'system',
             'system.constellation',
@@ -388,9 +305,6 @@ class Helper
             'corp.alliance:id,name,ticker,standing,url,color',
             'item',
             'fit:id,item_name',
-            'logs:id,station_id,user_id,logging_type_id,text,created_at',
-            'logs.type:id,name',
-            'logs.user:id,name',
             'addedBy:id,name'
 
         ]);
@@ -459,13 +373,6 @@ class Helper
 
         $station_query->where('standing', '=<', 0);
         $station_query->where('id', $id);
-        if ($user->can('view_station_logs')) {
-            $station_query->with([
-                'logs:id,station_id,user_id,logging_type_id,text,created_at',
-                'logs.type:id,name',
-                'logs.user:id,name',
-            ]);
-        }
         $station_query->with([
             'system',
             'system.constellation',

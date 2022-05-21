@@ -6,9 +6,7 @@ use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetUpdate;
 use App\Events\WelpSheetUpdate;
 use App\Models\ChillStationRecords;
-use App\Models\Logging;
 use App\Models\RcReconUsers;
-use App\Models\RcStationRecords;
 use App\Models\Station;
 use App\Models\User;
 use App\Models\WelpStationRecords;
@@ -67,12 +65,6 @@ class RcReconUsersController extends Controller
             ]);
             broadcast(new WelpSheetUpdate($flag));
         }
-        $text = Auth::user()->name . " Added as Cyno";
-
-        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 21]);
-        $log = $log->id;
-        Helper::sheetlogs($log);
-        Helper::stationlogs($log);
     }
 
     public function removeRecontoStation($id)
@@ -106,12 +98,6 @@ class RcReconUsersController extends Controller
             ]);
             broadcast(new WelpSheetUpdate($flag));
         }
-        $text = Auth::user()->name . " Removed " . $username . " As Cyno";
-
-        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 22]);
-        $log = $log->id;
-        Helper::sheetlogs($log);
-        Helper::stationlogs($log);
     }
 
     /**

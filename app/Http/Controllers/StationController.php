@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Events\ChillSheetUpdate;
-use App\Events\ChillStationCoreUpdate;
 use App\Events\RcMoveDelete;
 use App\Events\RcMoveUpdate;
 use App\Events\RcSheetUpdate;
@@ -11,7 +10,6 @@ use App\Events\StationAttackMessageUpdate;
 use App\Events\StationCoreUpdate;
 use App\Events\StationDeadCoord;
 use App\Events\StationDeadStationSheet;
-use App\Events\StationLogUpdate;
 use App\Events\StationMessageUpdate;
 use App\Events\StationNotificationDelete;
 use App\Events\StationNotificationNew;
@@ -23,7 +21,6 @@ use App\Models\Alliance;
 use App\Models\ChillStationRecords;
 use App\Models\Corp;
 use App\Models\Item;
-use App\Models\Logging;
 use App\Models\RcStationRecords;
 use App\Models\Station;
 use App\Models\StationItemJoin;
@@ -34,12 +31,10 @@ use App\Models\System;
 use App\Models\WelpStationRecords;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client as GuzzleHttpClient;
-use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use utils\Helper\Helper;
-use Illuminate\Support\Str;
 
 class StationController extends Controller
 {
@@ -465,12 +460,6 @@ class StationController extends Controller
                         StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
                     };
                 };
-                $text = Auth::user()->name .  " changed the station name from " . $oldName . " to " . $name;
-                $log =  Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
-                $l = Logging::where('station_id', $id)->get();
-                foreach ($l as $l) {
-                    $l->update(['station_id' => $stationdata['str_structure_id']]);
-                }
 
                 $message = StationRecords::where('id', $stationdata['str_structure_id'])->first();
                 $flag = collect([
@@ -478,7 +467,6 @@ class StationController extends Controller
                 ]);
 
                 broadcast(new RcMoveUpdate($flag));
-                Helper::stationlogs($log->id);
             }
         } else {
 
@@ -487,16 +475,12 @@ class StationController extends Controller
                 $s->update(['name' => $name, 'added_from_recon' => 0]);
             }
 
-            $text = Auth::user()->name .  " changed the station name from " . $oldName . " to " . $name;
-            $log =  Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
-
             $message = StationRecords::where('id', $id)->first();
             $flag = collect([
                 'message' => $message
             ]);
 
             broadcast(new RcMoveUpdate($flag));
-            Helper::stationlogs($log->id);
         };
     }
 
@@ -543,10 +527,6 @@ class StationController extends Controller
         broadcast(new StationNotificationNew($flag));
 
         broadcast(new RcMoveUpdate($flag));
-
-        $text = "Added by " . Auth::user()->name;
-        $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 17, 'text' => $text]);
-        Helper::stationlogs($logNew->id);
 
 
 
@@ -700,9 +680,7 @@ class StationController extends Controller
         ]);
         broadcast(new StationSheetUpdate($flag));
 
-        $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName;
-        $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
-        Helper::stationlogs($logNew->id);
+
 
 
         $RCmessage = Helper::StationRecordsSolo(4, $id);
@@ -859,23 +837,6 @@ class StationController extends Controller
             'message' => $message
         ]);
         broadcast(new RcSheetUpdate($flag));
-
-
-
-
-
-
-        if ($request->station_status_id != $oldStation->station_status_id) {
-            $text = Auth::user()->name .  " changed the Status from " . $oldStatus . " to " . $newStatus;
-            $log = Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
-            Helper::stationlogs($log->id);
-        }
-
-        if ($request->out_time != $oldStation->out_time) {
-            $text = Auth::user()->name .  " changed the timer from " . $oldStation->out_time . " to " . $request->out_time;
-            $log = Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
-            Helper::stationlogs($log->id);
-        }
     }
 
 
@@ -974,13 +935,5 @@ class StationController extends Controller
         ]);
         broadcast(new StationNotificationUpdate($flag));
         broadcast(new StationUpdateCoord($flag));
-
-
-
-
-
-        $text = Auth::user()->name . " Changed the status from Hull to Destroyed";
-        $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
-        Helper::stationlogs($logNew->id);
     }
 }

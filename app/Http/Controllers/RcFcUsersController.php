@@ -6,14 +6,11 @@ use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetUpdate;
 use App\Events\WelpSheetUpdate;
 use App\Models\ChillStationRecords;
-use App\Models\Logging;
 use App\Models\RcFcUsers;
-use App\Models\RcStationRecords;
 use App\Models\Station;
 use App\Models\User;
 use App\Models\WelpStationRecords;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use utils\Helper\Helper;
 
 class RcFcUsersController extends Controller
@@ -126,14 +123,6 @@ class RcFcUsersController extends Controller
             ]);
             broadcast(new WelpSheetUpdate($flag));
         }
-
-        $text = Auth::user()->name . " Added " . $fcname . " to FC";
-
-        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 19]);
-        $log = $log->id;
-        // dd($log);
-        Helper::sheetlogs($log);
-        Helper::stationlogs($log);
     }
 
     public function addFCadd(Request $request, $id)
@@ -169,12 +158,6 @@ class RcFcUsersController extends Controller
             ]);
             broadcast(new WelpSheetUpdate($flag));
         }
-
-        $text = Auth::user()->name . " Added " . $userName . " as FC";
-        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 19]);
-        $log = $log->id;
-        Helper::sheetlogs($log);
-        Helper::stationlogs($log);
     }
 
     public function removeFCtoStation($id)
@@ -210,12 +193,6 @@ class RcFcUsersController extends Controller
             ]);
             broadcast(new WelpSheetUpdate($flag));
         }
-
-        $text = Auth::user()->name . " Removed " . $userName . " as FC";
-        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 20]);
-        $log = $log->id;
-        Helper::sheetlogs($log);
-        Helper::stationlogs($log);
     }
 
     public function removeFC($id)

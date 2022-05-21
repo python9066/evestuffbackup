@@ -7,14 +7,12 @@ use App\Events\RcSheetUpdate;
 use App\Events\StationNotificationUpdate;
 use App\Events\StationUpdateCoord;
 use App\Events\WelpSheetUpdate;
-use App\Models\Logging;
 use App\Models\Station;
 use App\Models\StationRecords;
 use App\Models\StationStatus;
 use App\Models\WelpStationRecords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use utils\Helper\Helper;
 
 class WelpStationController extends Controller
 {
@@ -187,21 +185,6 @@ class WelpStationController extends Controller
             ]);
             broadcast(new WelpSheetUpdate($flag));
         }
-
-
-
-
-        if ($request->station_status_id != $oldStation->station_status_id) {
-            $text = Auth::user()->name .  " changed the Status from " . $oldStatus . " to " . $newStatus;
-            $log = Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
-            Helper::stationlogs($log->id);
-        }
-
-        if ($request->out_time != $oldStation->out_time) {
-            $text = Auth::user()->name .  " changed the timer from " . $oldStation->out_time . " to " . $request->out_time;
-            $log = Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
-            Helper::stationlogs($log->id);
-        }
     }
 
 
@@ -283,10 +266,6 @@ class WelpStationController extends Controller
         ]);
         broadcast(new StationNotificationUpdate($flag));
         broadcast(new StationUpdateCoord($flag));
-
-        $text = Auth::user()->name . " Changed the status from " . $oldStatusName . " to " . $newStatusName;
-        $logNew = Logging::Create(['station_id' => $message->id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
-        Helper::stationlogs($logNew->id);
     }
 
     /**

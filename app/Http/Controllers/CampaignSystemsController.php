@@ -21,8 +21,6 @@ use App\Models\CampaignSystemStatus;
 use App\Models\CampaignSystemUsers;
 use App\Models\CampaignUser;
 use App\Models\CampaignUserRecords;
-use App\Models\Logging;
-use App\Models\LoggingType;
 use App\Models\NodeJoin;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -134,28 +132,8 @@ class CampaignSystemsController extends Controller
         }
 
         $check = Auth::user();
-        if ($check->hasPermissionTo('view_campaign_logs')) {
+        if ($check->can('view_campaign_logs')) {
             $dataLog = [];
-            $logs = Logging::where('campaign_id', $campid)->get();
-            foreach ($logs as $log) {
-                $time = Helper::fixtime($log['created_at']);
-                $dataLog1 = null;
-                $dataLog1 = [
-                    'id' => $log['id'],
-                    'campaign_id' => $log['campaign_id'],
-                    'campaign_name' => $log['campaign_name'],
-                    'campaign_sola_system_id' => $log['campaign_sola_system_id'],
-                    'sola_system_name' => $log['sola_system_name'],
-                    'campaign_system_id' => $log['campaign_system_id'],
-                    'user_id' => $log['user_id'],
-                    'user_name' => $log->user()->value('name'),
-                    'logging_type_id' => $log['logging_type_id'],
-                    'logging_type_name' => LoggingType::where('id', $log['logging_type_id'])->value('name'),
-                    'text' => $log['text'],
-                    'created_at' => $time
-                ];
-                array_push($dataLog, $dataLog1);
-            }
         } else {
             $dataLog = [];
         }

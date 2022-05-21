@@ -6,14 +6,10 @@ use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetUpdate;
 use App\Events\WelpSheetUpdate;
 use App\Models\ChillStationRecords;
-use App\Models\Logging;
-use App\Models\RcGsolUsers;
-use App\Models\RcStationRecords;
 use App\Models\Station;
 use App\Models\User;
 use App\Models\WelpStationRecords;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use utils\Helper\Helper;
 
 class RcGsolUsersController extends Controller
@@ -70,12 +66,6 @@ class RcGsolUsersController extends Controller
             ]);
             broadcast(new WelpSheetUpdate($flag));
         }
-
-        $text = Auth::user()->name . " Added to Gsol";
-        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 23]);
-        $log = $log->id;
-        Helper::sheetlogs($log);
-        Helper::stationlogs($log);
     }
 
     public function removeGsoltoStation($id)
@@ -109,11 +99,6 @@ class RcGsolUsersController extends Controller
             ]);
             broadcast(new WelpSheetUpdate($flag));
         }
-        $text = Auth::user()->name . " Removed " . $gsolName . " from Gsol";
-        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 24]);
-        $log = $log->id;
-        Helper::sheetlogs($log);
-        Helper::stationlogs($log);
     }
 
     /**
