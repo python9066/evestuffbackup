@@ -16,18 +16,25 @@
       </v-col>
     </v-row>
     <v-row no-gutters justify="space-around">
-      <v-col
-        cols="6"
-        class="px-5"
-        v-for="(item, index) in openSystems"
-        :key="index.id"
+      <transition
+        name="custom-classes"
+        enter-active-class="animate__animated animate__bounceIn animate__repeat-2"
+        leave-active-class="animate__animated animate__bounceIn animate__faster"
+        mode="out-in"
       >
-        <CampaignSystemCard
-          :key="`${index.id}-card`"
-          :item="item"
-          :operationID="operationID"
-        ></CampaignSystemCard>
-      </v-col>
+        <v-col
+          cols="6"
+          class="px-5"
+          v-for="(item, index) in openSystems"
+          :key="`${index.id}-cell`"
+        >
+          <CampaignSystemCard
+            :key="`${index.id}-card`"
+            :item="item"
+            :operationID="operationID"
+          ></CampaignSystemCard>
+        </v-col>
+      </transition>
     </v-row>
   </div>
 </template>

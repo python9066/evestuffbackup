@@ -1,5 +1,5 @@
 <template>
-  <v-row no-gutters align="cetner">
+  <v-row no-gutters class="align-items-center">
     <v-col cols="12">
       <transition
         name="custom-classes"
