@@ -16,7 +16,7 @@
       </v-col>
     </v-row>
     <v-row no-gutters justify="space-around">
-      <transition
+      <transition-group
         name="custom-classes"
         enter-active-class="animate__animated animate__bounceIn animate__repeat-2"
         leave-active-class="animate__animated animate__bounceIn animate__faster"
@@ -34,7 +34,7 @@
             :operationID="operationID"
           ></CampaignSystemCard>
         </v-col>
-      </transition>
+      </transition-group>
     </v-row>
   </div>
 </template>
