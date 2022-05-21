@@ -43,7 +43,7 @@ class setCampaignStatusJobs extends Command
     {
         $campaigns = NewCampaign::where('job', 0)->get();
         foreach($campaigns as $campaign){
-            $start = Carbon::parse($campaign->start);
+            $start = Carbon::parse($campaign->start_time);
             $twoHours = now()->addHours(2);
 
             if($start <= $twoHours){
