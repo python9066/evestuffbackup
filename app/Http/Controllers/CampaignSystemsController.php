@@ -229,7 +229,10 @@ class CampaignSystemsController extends Controller
     {
         // dd($request->notes);
 
-        CampaignSystem::where('id', $id)->update($request->all());
+        $c = CampaignSystem::where('id', $id)->get();
+        foreach ($c as $c) {
+            $c->update($request->all());
+        }
 
         $message = CampaignSystemRecords::where('id', $id)->first();
         $flag = collect([
@@ -243,7 +246,10 @@ class CampaignSystemsController extends Controller
     {
         // dd($request->notes);
 
-        CampaignSystem::where('id', $id)->update($request->all());
+        $c = CampaignSystem::where('id', $id)->get();
+        foreach ($c as $c) {
+            $c->update($request->all());
+        }
 
         $message = CampaignSystemRecords::where('id', $id)->first();
         $flag = collect([
@@ -259,7 +265,10 @@ class CampaignSystemsController extends Controller
     {
         // dd($request->notes);
 
-        CampaignSystem::where('id', $id)->update($request->all());
+        $c =  CampaignSystem::where('id', $id)->get();
+        foreach ($c as $c) {
+            $c->update($request->all());
+        }
 
         $message = CampaignSystemRecords::where('id', $id)->first();
         if ($message->under_attack == 0) {
@@ -387,15 +396,27 @@ class CampaignSystemsController extends Controller
     public function finishCampaign($campid)
     {
 
-        CampaignSystem::where('campaign_id', $campid)->delete();
-        NodeJoin::where('campaign_id', $campid)->delete();
-        CampaignSystemUsers::where('campaign_id', $campid)->delete();
-        CampaignUser::where('campaign_id', $campid)
-            ->update([
+        $c = CampaignSystem::where('campaign_id', $campid)->get();
+        foreach ($c as $c) {
+            $c->delete();
+        }
+        $n = NodeJoin::where('campaign_id', $campid)->get();
+        foreach ($n as $n) {
+            $n->delete();
+        }
+        $c = CampaignSystemUsers::where('campaign_id', $campid)->get();
+        foreach ($c as $c) {
+            $c->delete();
+        }
+        $c = CampaignUser::where('campaign_id', $campid)->get();
+
+        foreach ($c as $c) {
+            $c->update([
                 'campaign_id' => null,
                 'campaign_system_id' => null,
                 'status_id' => 1
             ]);
+        }
         $flag = collect([
             'flag' => 7,
             'id' => $campid,
@@ -406,15 +427,27 @@ class CampaignSystemsController extends Controller
     public function mfinishCampaign($campid)
     {
 
-        CampaignSystem::where('custom_campaign_id', $campid)->delete();
-        NodeJoin::where('campaign_id', $campid)->delete();
-        CampaignSystemUsers::where('custom_campaign_id', $campid)->delete();
-        CampaignUser::where('campaign_id', $campid)
-            ->update([
+        $c = CampaignSystem::where('custom_campaign_id', $campid)->get();
+        foreach ($c as $c) {
+            $c->delete();
+        }
+        $n = NodeJoin::where('campaign_id', $campid)->get();
+        foreach ($n as $n) {
+            $n->delete();
+        }
+        $c = CampaignSystemUsers::where('custom_campaign_id', $campid)->get();
+        foreach ($c as $c) {
+            $c->delete();
+        }
+        $c = CampaignUser::where('campaign_id', $campid)->get();
+
+        foreach ($c as $c) {
+            $c->update([
                 'campaign_id' => null,
                 'campaign_system_id' => null,
                 'status_id' => 1
             ]);
+        }
         $flag = collect([
             'flag' => 7,
             'id' => $campid,
@@ -454,7 +487,10 @@ class CampaignSystemsController extends Controller
                 broadcast(new CampaignSystemUpdate($flag));
             }
         }
-        CampaignSolaSystem::where('id', $request->solaID)->update(['tidi' => $request->newTidi]);
+        $c = CampaignSolaSystem::where('id', $request->solaID)->get();
+        foreach ($c as $c) {
+            $c->update(['tidi' => $request->newTidi]);
+        }
         $pull = CampaignSolaSystem::where('id', $request->solaID)->first();
         $checker_name = User::where('id', $pull['last_checked_user_id'])->value('name');
         $supervier_name = User::where('id', $pull['supervisor_id'])->value('name');
@@ -506,8 +542,10 @@ class CampaignSystemsController extends Controller
                 broadcast(new CampaignSystemUpdate($flag));
             }
         }
-        CampaignSolaSystem::where('id', $request->solaID)->update(['tidi' => $request->newTidi]);
-
+        $c =  CampaignSolaSystem::where('id', $request->solaID)->get();
+        foreach ($c as $c) {
+            $c->update(['tidi' => $request->newTidi]);
+        }
         $pull = CampaignSolaSystem::where('id', $request->solaID)->first();
         $checker_name = User::where('id', $pull['last_checked_user_id'])->value('name');
         $supervier_name = User::where('id', $pull['supervisor_id'])->value('name');

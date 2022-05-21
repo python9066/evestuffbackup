@@ -99,7 +99,8 @@ class CampaignSystemUsersController extends Controller
      */
     public function destroy($id, $campid)
     {
-        CampaignSystemUsers::where('user_id', $id)->delete();
+        $c = CampaignSystemUsers::where('user_id', $id)->first();
+        $c->delete();
         $flag = collect([
             'flag' => 5,
             'id' => $campid

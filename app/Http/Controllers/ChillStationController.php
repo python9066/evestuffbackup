@@ -109,7 +109,17 @@ class ChillStationController extends Controller
 
     public function stationdone($id)
     {
-        Station::where('id', $id)->update(['show_on_chill' => 2, 'station_status_id' => 10, 'rc_fc_id' => null, 'rc_gsol_id' => null, 'rc_recon_id' => null, 'rc_id' => null, 'timer_image_link' => null, 'notes' => null]);
+        $s = Station::where('id', $id)->first();
+        $s->update([
+            'show_on_chill' => 2,
+            'station_status_id' => 10,
+            'rc_fc_id' => null,
+            'rc_gsol_id' => null,
+            'rc_recon_id' => null,
+            'rc_id' => null,
+            'timer_image_link' => null,
+            'notes' => null
+        ]);
         $message = ChillStationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
@@ -150,7 +160,10 @@ class ChillStationController extends Controller
         $oldStatus = str_replace('Upcoming - ', "", $oldStatus);
 
 
-        Station::find($id)->update($request->all());
+        $s = Station::find($id)->get();
+        foreach ($s as $s) {
+            $s->update($request->all());
+        }
         $newStation = Station::where('id', $id)->first();
         $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
         $newStatus = str_replace('Upcoming - ', "", $newStatus);
@@ -235,7 +248,14 @@ class ChillStationController extends Controller
         $newStatusName = str_replace('Upcoming - ', "", $newStatusName);
         $new = Station::find($id)->update($request->all());
         $now = now();
-        Station::find($id)->update(['added_by_user_id' => Auth::id(), "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null,]);
+        $s = Station::find($id)->first();
+        $s->update([
+            'added_by_user_id' => Auth::id(),
+            "rc_id" => null,
+            "rc_fc_id" => null,
+            "rc_gsol_id" => null,
+            "rc_recon_id" => null,
+        ]);
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message
@@ -257,7 +277,10 @@ class ChillStationController extends Controller
     public function destroy($id)
     {
 
-        Station::where('id', $id)->update(['show_on_chill' => 0]);
+        $s =  Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update(['show_on_chill' => 0]);
+        }
         $flag = collect([
             'flag' => 4
         ]);

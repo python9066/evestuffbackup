@@ -79,7 +79,10 @@ class Helper
             // dd($token);
             // echo "auth pull - ";
             if ($token == null) {
-                Auth::where('flag_standing', 1)->update(['flag_standing' => 0]);
+                $a =   Auth::where('flag_standing', 1)->get();
+                foreach ($a as $a) {
+                    $a->update(['flag_standing' => 0]);
+                }
                 $token = Auth::where('flag_standing', 0)->first();
                 $token->update(['flag_note' => 1]);
                 $url = 'https://esi.evetech.net/latest/alliances/1354830081/contacts/?datasource=tranquility';
@@ -107,7 +110,10 @@ class Helper
             $token = Auth::where('flag_station', 0)->first();
 
             if ($token == null) {
-                Auth::where('flag_station', 1)->update(['flag_station' => 0]);
+                $a =  Auth::where('flag_station', 1)->get();
+                foreach ($a as $a) {
+                    $a->update(['flag_station' => 0]);
+                }
                 $token = Auth::where('flag_station', 0)->first();
                 $token->update(['flag_station' => 1]);
 
@@ -159,7 +165,10 @@ class Helper
     {
 
         $now = now()->modify('-3 days');
-        User::where('updated_at', '<', $now)->update(['remember_token' => null]);
+        $u =  User::where('updated_at', '<', $now)->get();
+        foreach ($u as $u) {
+            $u->update(['remember_token' => null]);
+        }
     }
 
 

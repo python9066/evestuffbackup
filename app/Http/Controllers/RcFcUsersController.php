@@ -96,7 +96,10 @@ class RcFcUsersController extends Controller
 
         $fcid = RcFcUsers::where('user_id', $request->user_id)->value('id');
         $userid = RcFcUsers::where('user_id', $request->user_id)->value('user_id');
-        Station::where('id', $id)->update(['rc_fc_id' => $fcid]);
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update(['rc_fc_id' => $fcid]);
+        }
 
         $fcname = User::where('id', $userid)->value('name');
 
@@ -135,7 +138,10 @@ class RcFcUsersController extends Controller
 
     public function addFCadd(Request $request, $id)
     {
-        Station::where('id', $id)->update($request->all());
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update($request->all());
+        }
         $userid = RcFcUsers::where('id', $request->rc_fc_id)->value('user_id');
         $userName = User::where('id', $userid)->value('name');
 
@@ -176,7 +182,10 @@ class RcFcUsersController extends Controller
         $fcid = Station::where('id', $id)->value('rc_fc_id');
         $userid = RcFcUsers::where('id', $fcid)->value('user_id');
         $userName = User::where('id', $userid)->value('name');
-        Station::where('id', $id)->update(['rc_fc_id' => null]);
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update(['rc_fc_id' => null]);
+        }
         $message = Helper::StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
@@ -214,10 +223,19 @@ class RcFcUsersController extends Controller
         $user_id = RcFcUsers::where('id', $id)->value('user_id');
         // dd($fc);
         if ($user_id > 9999999999) {
-            User::where('id', $user_id)->delete();
+            $u = User::where('id', $user_id)->get();
+            foreach ($u as $u) {
+                $u->delete();
+            }
         }
-        Station::where('rc_fc_id', $id)->update(['rc_fc_id' => 0]);
-        RcFcUsers::where('id', $id)->delete();
+        $s = Station::where('rc_fc_id', $id)->get();
+        foreach ($s as $s) {
+            $s->update(['rc_fc_id' => 0]);
+        }
+        $r =  RcFcUsers::where('id', $id)->get();
+        foreach ($r as $r) {
+            $r->delete();
+        }
         $flag = collect([
             'flag' => 2
         ]);

@@ -50,11 +50,13 @@ class clearAll extends Command
         NewOperation::truncate();
         NewSystemNode::truncate();
         NewUserNode::truncate();
-        OperationUser::whereNotNull('id')
-            ->update([
+        $a = OperationUser::whereNotNull('id')->get();
+        foreach ($a as $a) {
+            $a->update([
                 'operation_id' => null,
                 'user_status_id' => 1,
                 'system_id' => null
             ]);
+        }
     }
 }

@@ -29,7 +29,10 @@ class JobTestController extends Controller
     {
         $token = Auth::where('flag_standing', 0)->first();
         if ($token == null) {
-            Auth::where('flag_standing', 1)->update(['flag_standing' => 0]);
+            $a =  Auth::where('flag_standing', 1)->get();
+            foreach ($a as $a) {
+                $a->update(['flag_standing' => 0]);
+            }
             $token = Auth::where('flag_standing', 0)->first();
             $token->update(['flag_note' => 1]);
             $url = 'https://esi.evetech.net/latest/alliances/1354830081/contacts/?datasource=tranquility';
@@ -52,21 +55,37 @@ class JobTestController extends Controller
                 $color = 1;
             }
             if ($var['contact_type'] == 'alliance') {
-                Alliance::where('id', $var['contact_id'])->update([
-                    'standing' => $var['standing'],
-                    'color' => $color
-                ]);
+                $a = Alliance::where('id', $var['contact_id'])->get();
+                foreach ($a as $a) {
+                    $a->update([
+                        'standing' => $var['standing'],
+                        'color' => $color
+                    ]);
+                }
             };
             if ($var['contact_type'] == 'corporation') {
-                Corp::where('id', $var['contact_id'])->update([
-                    'standing' => $var['standing'],
-                    'color' => $color
-                ]);
+                $c = Corp::where('id', $var['contact_id'])->get();
+
+                foreach ($c as $c) {
+                    $c->update([
+                        'standing' => $var['standing'],
+                        'color' => $color
+                    ]);
+                }
             };
         }
-        Alliance::where('color', '0')->update(['color' => 1]);
-        Corp::where('color', '0')->update(['color' => 1]);
-        Alliance::where('id', '1354830081')->update(['standing' => 10, 'color' => 3]);
+        $a = Alliance::where('color', '0')->get();
+        foreach ($a as $a) {
+            $a->update(['color' => 1]);
+        }
+        $c = Corp::where('color', '0')->get();
+        foreach ($c as $c) {
+            $c->update(['color' => 1]);
+        }
+        $a = Alliance::where('id', '1354830081')->get();
+        foreach ($a as $a) {
+            $a->update(['standing' => 10, 'color' => 3]);
+        }
     }
 
 

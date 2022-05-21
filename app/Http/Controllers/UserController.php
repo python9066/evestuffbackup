@@ -50,7 +50,10 @@ class UserController extends Controller
      */
     public function updateMessage(Request $request, $id)
     {
-        User::where('id', $id)->update($request->all());
+        $u = User::where('id', $id)->get();
+        foreach ($u as $u) {
+            $u->update($request->all());
+        }
         $message = User::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
@@ -64,7 +67,10 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        User::where('id', $id)->update($request->all());
+        $u = User::where('id', $id)->get();
+        foreach ($u as $u) {
+            $u->update($request->all());
+        }
     }
 
     /**

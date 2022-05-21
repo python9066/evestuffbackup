@@ -90,9 +90,18 @@ class HotRegionController extends Controller
 
 
 
-        HotRegion::whereNotNull('id')->update(['update' => 0, 'show_fcs' => 0]);
-        HotRegion::whereIn('region_id', $ids)->update(['update' => 1]);
-        HotRegion::whereIn('region_id', $fcIds)->update(['show_fcs' => 1]);
+        $h = HotRegion::whereNotNull('id')->get();
+        foreach ($h as $h) {
+            $h->update(['update' => 0, 'show_fcs' => 0]);
+        }
+        $h = HotRegion::whereIn('region_id', $ids)->get();
+        foreach ($h as $h) {
+            $h->update(['update' => 1]);
+        }
+        $h = HotRegion::whereIn('region_id', $fcIds)->get();
+        foreach ($h as $h) {
+            $h->update(['show_fcs' => 1]);
+        }
 
         $flag = collect([
             'flag' => 1
@@ -108,7 +117,10 @@ class HotRegionController extends Controller
             }
         }
 
-        WebWay::where('id', '>', 0)->update(['active' => 0]);
+        $w = WebWay::where('id', '>', 0)->get();
+        foreach ($w as $w) {
+            $w->update(['active' => 0]);
+        }
         $stations = Station::get();
         $stationSystems = $stations->pluck('system_id');
         $campaigns = Campaign::get();
@@ -117,8 +129,14 @@ class HotRegionController extends Controller
         $systemIDs = $stationSystems->merge($campaginSystems);
         $systemIDs = $systemIDs->unique();
         $systemIDs = $systemIDs->values();
-        WebWay::whereIn('system_id', $systemIDs)->update(['active' => 1]);
-        WebWay::where('active', 0)->delete();
+        $w = WebWay::whereIn('system_id', $systemIDs)->get();
+        foreach ($w as $w) {
+            $w->update(['active' => 1]);
+        }
+        $w = WebWay::where('active', 0)->get();
+        foreach ($w as $w) {
+            $w->delete();
+        }
 
         $start_system_id = env('HOME_SYSTEM_ID', ($variables && array_key_exists('HOME_SYSTEM_ID', $variables)) ? $variables['HOME_SYSTEM_ID'] : null);
 
@@ -152,7 +170,10 @@ class HotRegionController extends Controller
     {
         $user = Auth::user();
         if ($user->can('edit_hot_region')) {
-            HotRegion::where('id', $id)->update($request->all());
+            $h =   HotRegion::where('id', $id)->get();
+            foreach ($h as $h) {
+                $h->update($request->all());
+            }
         }
     }
 

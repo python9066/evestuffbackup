@@ -82,12 +82,16 @@ class NewSystemNodeController extends Controller
 
         ]);
 
-        OperationUser::where('id', $request->op_user_id)
-            ->update([
+        $o =  OperationUser::where('id', $request->op_user_id)->get();
+
+
+        foreach ($o as $o) {
+            $o->update([
                 'new_user_node_id' => $new->id,
                 'user_status_id' => 4,
                 'system_id' => $request->system_id
             ]);
+        }
 
 
 
@@ -324,13 +328,22 @@ class NewSystemNodeController extends Controller
         }
 
         if ($request->extra == true || $request->prime == true) {
-            NewUserNode::where('id', $id)->update(['node_status_id' => $request->status_id]);
+            $n = NewUserNode::where('id', $id)->get();
+            foreach ($n as $n) {
+                $n->update(['node_status_id' => $request->status_id]);
+            }
         } else {
-            NewSystemNode::where('id', $id)->update(['node_status' => $request->status_id]);
+            $n = NewSystemNode::where('id', $id)->get();
+            foreach ($n as $n) {
+                $n->update(['node_status' => $request->status_id]);
+            }
         }
 
         if ($oldCheck) {
-            NewSystemNode::where('id', $id)->update(['node_status' => $oldCheck->node_status_id]);
+            $n = NewSystemNode::where('id', $id)->get();
+            foreach ($n as $n) {
+                $n->update(['node_status' => $oldCheck->node_status_id]);
+            }
         }
 
 
@@ -361,7 +374,10 @@ class NewSystemNodeController extends Controller
 
             Broadcasthelper::broadcastuserOwnSolo($OpUser->id, $OpUser->user_id, 3);
             Broadcasthelper::broadcastuserSolo($OpUser->operation_id, $OpUser->id, 6);
-            NewUserNode::where('node_id', $node->id)->delete();
+            $n = NewUserNode::where('node_id', $node->id)->get();
+            foreach ($n as $n) {
+                $n->delete();
+            }
         }
         // TODO Change this so it only gets Campaigns what are active.
         $systemNode->delete();

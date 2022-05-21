@@ -94,11 +94,20 @@ class UpdateStanding extends Command
 
     public function updateStanding()
     {
-        Alliance::whereNotNull('id')->update(['standing' => 0, 'color' => 0]);
-        Corp::whereNotNull('id')->update(['standing' => 0, 'color' => 0]);
+        $a = Alliance::whereNotNull('id')->get();
+        foreach ($a as $a) {
+            $a->update(['standing' => 0, 'color' => 0]);
+        }
+        $c = Corp::whereNotNull('id')->get();
+        foreach ($c as $c) {
+            $c->update(['standing' => 0, 'color' => 0]);
+        }
         $token = Auth::where('flag_standing', 0)->first();
         if ($token == null) {
-            Auth::where('flag_standing', 1)->update(['flag_standing' => 0]);
+            $a = Auth::where('flag_standing', 1)->get();
+            foreach ($a as $a) {
+                $a->update(['flag_standing' => 0]);
+            }
             $token = Auth::where('flag_standing', 0)->first();
             $token->update(['flag_note' => 1]);
             $url = 'https://esi.evetech.net/latest/alliances/1354830081/contacts/?datasource=tranquility';
@@ -126,21 +135,32 @@ class UpdateStanding extends Command
             };
 
             if ($stand->get('contact_type') == "alliance") {
-                Alliance::where('id', $stand->get('contact_id'))->update([
-                    'color' => $color,
-                    'standing' => $stand->get('standing')
-                ]);
+                $a =  Alliance::where('id', $stand->get('contact_id'))->get();
+
+                foreach ($a as $a) {
+                    $a->update([
+                        'color' => $color,
+                        'standing' => $stand->get('standing')
+                    ]);
+                }
             }
 
             if ($stand->get('contact_type') == "corporation") {
-                Corp::where('id', $stand->get('contact_id'))->update([
-                    'color' => $color,
-                    'standing' => $stand->get('standing')
-                ]);
+                $c =  Corp::where('id', $stand->get('contact_id'))->get();
+
+                foreach ($c as $c) {
+                    $c->update([
+                        'color' => $color,
+                        'standing' => $stand->get('standing')
+                    ]);
+                }
             }
         }
 
 
-        Alliance::where('id', '1354830081')->update(['standing' => 10, 'color' => 3]);
+        $a =  Alliance::where('id', '1354830081')->get();
+        foreach ($a as $a) {
+            $a->update(['standing' => 10, 'color' => 3]);
+        }
     }
 }

@@ -139,7 +139,10 @@ class StationController extends Controller
         ]);
         broadcast(new StationCoreUpdate($flag));
 
-        System::where('id', $request->system_id)->update(['task_flag' => 1]);
+        $s =  System::where('id', $request->system_id)->get();
+        foreach ($s  as $s) {
+            $s->update(['task_flag' => 1]);
+        }
         $url = "https://recon.gnf.lt/api/task/add";
         $client = new GuzzleHttpClient();
         $headers = [
@@ -366,7 +369,10 @@ class StationController extends Controller
 
             if ($stationdata == "Error, Structure Not Found") {
 
-                Station::where('id', $id)->update(['name' => $name, 'added_from_recon' => 0]);
+                $s =  Station::where('id', $id)->get();
+                foreach ($s as $s) {
+                    $s->update(['name' => $name, 'added_from_recon' => 0]);
+                }
             } else {
 
                 $checkifthere = Station::find($stationdata['str_structure_id']);
@@ -461,7 +467,10 @@ class StationController extends Controller
                 };
                 $text = Auth::user()->name .  " changed the station name from " . $oldName . " to " . $name;
                 $log =  Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
-                Logging::where('station_id', $id)->update(['station_id' => $stationdata['str_structure_id']]);
+                $l = Logging::where('station_id', $id)->get();
+                foreach ($l as $l) {
+                    $l->update(['station_id' => $stationdata['str_structure_id']]);
+                }
 
                 $message = StationRecords::where('id', $stationdata['str_structure_id'])->first();
                 $flag = collect([
@@ -473,7 +482,10 @@ class StationController extends Controller
             }
         } else {
 
-            Station::where('id', $id)->update(['name' => $name, 'added_from_recon' => 0]);
+            $s = Station::where('id', $id)->get();
+            foreach ($s as $s) {
+                $s->update(['name' => $name, 'added_from_recon' => 0]);
+            }
 
             $text = Auth::user()->name .  " changed the station name from " . $oldName . " to " . $name;
             $log =  Logging::create(['station_id' => $id, 'user_id' => Auth::id(), 'logging_type_id' => 18, 'text' => $text]);
@@ -559,7 +571,10 @@ class StationController extends Controller
     {
         // dd($request->notes);
 
-        Station::where('id', $id)->update($request->all());
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update($request->all());
+        }
 
         $message = StationRecords::where('id', $id)->first();
         if ($message->under_attack == 0) {
@@ -581,7 +596,10 @@ class StationController extends Controller
     {
         // dd($request->notes);
 
-        Station::where('id', $id)->update($request->all());
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update($request->all());
+        }
 
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
@@ -597,7 +615,16 @@ class StationController extends Controller
     public function rcMoveDone($id)
     {
         $statusID = Station::where('id', $id)->value('station_status_id');
-        Station::where('id', $id)->update(['show_on_rc_move' => 0, 'show_on_rc' => 1, 'station_status_id' => $statusID, 'notes' => null, 'timer_image_link' => null]);
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update([
+                'show_on_rc_move' => 0,
+                'show_on_rc' => 1,
+                'station_status_id' => $statusID,
+                'notes' => null,
+                'timer_image_link' => null
+            ]);
+        }
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message
@@ -650,7 +677,16 @@ class StationController extends Controller
         $newStatusName = str_replace('Upcoming - ', "", $newStatusName);
         $new = Station::find($id)->update($request->all());
         $now = now();
-        Station::find($id)->update(['added_by_user_id' => Auth::id(), "rc_id" => null, "rc_fc_id" => null, "rc_gsol_id" => null, "rc_recon_id" => null,]);
+        $s = Station::find($id)->get();
+        foreach ($s as $s) {
+            $s->update([
+                'added_by_user_id' => Auth::id(),
+                "rc_id" => null,
+                "rc_fc_id" => null,
+                "rc_gsol_id" => null,
+                "rc_recon_id" => null,
+            ]);
+        }
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message
@@ -793,7 +829,10 @@ class StationController extends Controller
         $oldStatus = str_replace('Upcoming - ', "", $oldStatus);
 
 
-        Station::find($id)->update($request->all());
+        $s = Station::find($id)->get();
+        foreach ($s as $s) {
+            $s->update($request->all());
+        }
         $newStation = Station::where('id', $id)->first();
         $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
         $newStatus = str_replace('Upcoming - ', "", $newStatus);
@@ -848,8 +887,14 @@ class StationController extends Controller
      */
     public function destroy($id)
     {
-        Station::where('id', $id)->delete();
-        StationItemJoin::where('station_id', $id)->delete();
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->delete();
+        }
+        $s = StationItemJoin::where('station_id', $id)->get();
+        foreach ($s as $s) {
+            $s->delete();
+        }
         $flag = collect([
             'id' => $id
         ]);
@@ -902,17 +947,21 @@ class StationController extends Controller
         }
 
 
-        Station::where('id', $id)->update([
-            'show_on_rc' => 0,
-            'show_on_coord' => 1,
-            'show_on_welp' => 0,
-            'show_on_chill' => 0,
-            'station_status_id' => 7,
-            "rc_id" => null,
-            "rc_fc_id" => null,
-            "rc_gsol_id" => null,
-            "rc_recon_id" => null
-        ]);
+        $s =  Station::where('id', $id)->get();
+
+        foreach ($s as $s) {
+            $s->update([
+                'show_on_rc' => 0,
+                'show_on_coord' => 1,
+                'show_on_welp' => 0,
+                'show_on_chill' => 0,
+                'station_status_id' => 7,
+                "rc_id" => null,
+                "rc_fc_id" => null,
+                "rc_gsol_id" => null,
+                "rc_recon_id" => null
+            ]);
+        }
 
 
         $newStatusID = 7;

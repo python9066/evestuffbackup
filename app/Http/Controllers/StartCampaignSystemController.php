@@ -55,8 +55,14 @@ class StartCampaignSystemController extends Controller
     {
 
 
-        CampaignUser::where('id', $request->user_id)->update(['campaign_system_id' => $request->sys]);
-        StartCampaignSystems::find($id)->update(['campaign_user_id' => $request->user_id]);
+        $c =  CampaignUser::where('id', $request->user_id)->get();
+        foreach ($c as $c) {
+            $c->update(['campaign_system_id' => $request->sys]);
+        }
+        $s =  StartCampaignSystems::find($id)->get();
+        foreach ($s as $s) {
+            $s->update(['campaign_user_id' => $request->user_id]);
+        }
 
 
         $message = StartCampaignSystemRecords::where('id', $id)->first();
@@ -71,7 +77,10 @@ class StartCampaignSystemController extends Controller
     public function updatetimer(Request $request, $id, $campid)
     {
 
-        StartCampaignSystems::find($id)->update($request->all());
+        $s =  StartCampaignSystems::find($id)->get();
+        foreach ($s as $s) {
+            $s->update($request->all());
+        }
 
 
         $message = StartCampaignSystemRecords::where('id', $id)->first();
@@ -85,8 +94,14 @@ class StartCampaignSystemController extends Controller
 
     public function removeChar($id, $char, $campid)
     {
-        CampaignUser::find($char)->update(['campaign_id' => null, 'campaign_system_id' => null]);
-        StartCampaignSystems::find($id)->update(['campaign_user_id' => null]);
+        $c =  CampaignUser::find($char)->get();
+        foreach ($c as $c) {
+            $c->update(['campaign_id' => null, 'campaign_system_id' => null]);
+        }
+        $s = StartCampaignSystems::find($id)->get();
+        foreach ($s as $s) {
+            $s->update(['campaign_user_id' => null]);
+        }
 
         $message = StartCampaignSystemRecords::where('id', $id)->first();
         $flag = null;

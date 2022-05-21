@@ -66,7 +66,10 @@ class RcSheetController extends Controller
         $corpid = $corp->id;
         $allianceid = $corp->alliance_id;
 
-        Station::where('id', $id)->update(['corp_id' => $corpid, 'alliance_id' => $allianceid]);
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update(['corp_id' => $corpid, 'alliance_id' => $allianceid]);
+        }
 
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
@@ -81,7 +84,10 @@ class RcSheetController extends Controller
     {
         $alliance = Alliance::where('id', $request->allianceid)->first();
         $allianceid = $alliance->id;
-        Station::where('id', $id)->update(['alliance_id' => $allianceid]);
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update(['alliance_id' => $allianceid]);
+        }
 
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
@@ -142,7 +148,10 @@ class RcSheetController extends Controller
     {
         // dd($request->notes);
 
-        Station::where('id', $id)->update($request->all());
+        $s =  Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update($request->all());
+        }
 
         $message = RcStationRecords::where('id', $id)->first();
         if ($message) {
@@ -213,7 +222,19 @@ class RcSheetController extends Controller
 
     public function stationdone($id)
     {
-        Station::where('id', $id)->update(['show_on_rc' => 2, 'station_status_id' => 10, 'rc_fc_id' => null, 'rc_gsol_id' => null, 'rc_recon_id' => null, 'rc_id' => null, 'timer_image_link' => null, 'notes' => null]);
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update([
+                'show_on_rc' => 2,
+                'station_status_id' => 10,
+                'rc_fc_id' => null,
+                'rc_gsol_id' => null,
+                'rc_recon_id' => null,
+                'rc_id' => null,
+                'timer_image_link' => null,
+                'notes' => null
+            ]);
+        }
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message,

@@ -86,8 +86,14 @@ class Notifications
 
         $stationdata = Utils::jsonDecode($response->getBody(), true);
         if ($stationdata == "Error, Structure Not Found") {
-            Station::find($id)->delete();
-            StationItemJoin::where('station_id', $id)->delete();
+            $s =  Station::find($id)->get();
+            foreach ($s as $s) {
+                $s->delete();
+            }
+            $s =  StationItemJoin::where('station_id', $id)->get();
+            foreach ($s as $s) {
+                $s->delete();
+            }
         } else {
 
             $core = 0;
@@ -140,7 +146,10 @@ class Notifications
             if ($stationdata['str_cored'] == "Yes") {
                 $core = 1;
             };
-            StationItemJoin::where('station_id', $id)->delete();
+            $s = StationItemJoin::where('station_id', $id)->get();
+            foreach ($s as $s) {
+                $s->delete();
+            }
             $oldStation = Station::where('id', $id)->first();
 
             Station::updateOrCreate(['id' => $id], [
@@ -195,7 +204,10 @@ class Notifications
 
             $status_id = Station::where('id', $id)->value('station_status_id');
             if ($status_id == 7) {
-                Station::where('id', $id)->update(['station_status_id' => 16]);
+                $s = Station::where('id', $id)->get();
+                foreach ($s as $s) {
+                    $s->update(['station_status_id' => 16]);
+                }
             }
 
             $station = Station::where('id', $id)->first();
@@ -220,7 +232,10 @@ class Notifications
                 // print_r($stationdata);
                 // echo '</pre>';
                 if ($stationdata['str_has_no_fitting'] != 'No Fitting') {
-                    StationItemJoin::where('station_id', $id)->delete();
+                    $s =  StationItemJoin::where('station_id', $id)->get();
+                    foreach ($s as $s) {
+                        $s->delete();
+                    }
                     if ($stationdata['str_fitting']) {
                         $items = Utils::jsonDecode($stationdata['str_fitting'], true);
                         foreach ($items as $item) {
@@ -306,8 +321,14 @@ class Notifications
 
                 ]);
 
-                Logging::where('station_id', $stations[1]['id'])->update(['station_id' => $stations[0]['id']]);
-                Station::where('id', $stations[1]['id'])->delete();
+                $l =  Logging::where('station_id', $stations[1]['id'])->get();
+                foreach ($l as $l) {
+                    $l->update(['station_id' => $stations[0]['id']]);
+                }
+                $s =  Station::where('id', $stations[1]['id'])->get();
+                foreach ($s as $s) {
+                    $s->delete();
+                }
             }
         }
     }
@@ -333,13 +354,25 @@ class Notifications
 
             $stationdata = Utils::jsonDecode($response->getBody(), true);
             if ($stationdata == "Error, Structure Not Found") {
-                Station::find($station->id)->delete();
-                StationItemJoin::where('station_id', $station->id)->delete();
+                $s = Station::find($station->id)->get();
+                foreach ($s as $s) {
+                    $s->delete();
+                }
+                $s = StationItemJoin::where('station_id', $station->id)->get();
+                foreach ($s as $s) {
+                    $s->delete();
+                }
             } else {
-                StationItemJoin::where('station_id', $station->id)->delete();
+                $s = StationItemJoin::where('station_id', $station->id)->get();
+                foreach ($s as $s) {
+                    $s->delete();
+                }
                 $oldupdate = $station->r_updated_at;
                 if ($oldupdate != $stationdata['updated_at']) {
-                    System::where('id', $station->system_id)->update(['task_flag' => 0]);
+                    $s = System::where('id', $station->system_id)->get();
+                    foreach ($s as $s) {
+                        $s->update(['task_flag' => 0]);
+                    }
                 }
                 $oldStation = Station::where('id', $station->id)->first();
                 $core = 0;
@@ -358,7 +391,9 @@ class Notifications
                 if ($stationdata['str_cored'] == "Yes") {
                     $core = 1;
                 };
-                Station::where('id', $station->id)->update([
+                $s =  Station::where('id', $station->id)->first();
+
+                $s->update([
                     'name' => $stationdata['str_name'],
                     'standing' => $standing,
                     'r_hash' => $stationdata['str_structure_id_md5'],
@@ -390,7 +425,10 @@ class Notifications
                 $stationNew = Station::where('id', $station->id)->first();
 
                 if ($station->station_status_id == 7) {
-                    Station::where('id', $station->id)->update(['station_status_id' => 16]);
+                    $s =  Station::where('id', $station->id)->get();
+                    foreach ($s as $s) {
+                        $s->update(['station_status_id' => 16]);
+                    }
                 }
                 if ($oldStation->name != $stationNew->name) {
                     $log = Logging::create(['station_id' => $station->id, 'logging_type_id' => 18, 'text' => "Recon Tool changed station name from " . $oldStation->name . " to " . $stationNew->name]);
@@ -407,7 +445,10 @@ class Notifications
 
                 if ($stationdata['str_has_no_fitting'] != null) {
                     if ($stationdata['str_has_no_fitting'] != 'No Fitting') {
-                        StationItemJoin::where('station_id', $station->id)->delete();
+                        $s = StationItemJoin::where('station_id', $station->id)->get();
+                        foreach ($s as $s) {
+                            $s->delete();
+                        }
                         if ($stationdata['str_fitting']) {
                             $items = Utils::jsonDecode($stationdata['str_fitting'], true);
                             foreach ($items as $item) {
@@ -447,13 +488,18 @@ class Notifications
 
                 $oldupdate = $station->r_updated_at;
                 if ($oldupdate != $stationdata['updated_at']) {
-                    System::where('id', $station->system_id)->update(['task_flag' => 0]);
+                    $s =   System::where('id', $station->system_id)->get();
+                    foreach ($s as $s) {
+                        $s->update(['task_flag' => 0]);
+                    }
                 }
                 $core = 0;
                 if ($stationdata['str_cored'] == "Yes") {
                     $core = 1;
                 };
-                Station::where('name', $station->name)->update([
+                $s =  Station::where('name', $station->name)->first();
+
+                $s->update([
                     'id' => $stationdata['str_structure_id'],
                     'r_hash' => $stationdata['str_structure_id_md5'],
                     'corp_id' => $stationdata['str_owner_corporation_id'],
@@ -544,10 +590,22 @@ class Notifications
                 'moon_id' => $text['moonID']
             );
         } else if ($var['type'] == 'StructureDestroyed') {
-            Station::where('id', $text['structureID'])->update(['station_status_id' => 7, 'out_time' => null]);
-            StationNotificationShield::where('station_id', $text['structureID'])->delete();
-            StationNotificationArmor::where('station_id', $text['structureID'])->delete();
-            StationItemJoin::where('station_id', $text['structureID'])->delete();
+            $s = Station::where('id', $text['structureID'])->get();
+            foreach ($s as $s) {
+                $s->update(['station_status_id' => 7, 'out_time' => null]);
+            }
+            $s = StationNotificationShield::where('station_id', $text['structureID'])->get();
+            foreach ($s as $s) {
+                $s->delete();
+            }
+            $s = StationNotificationArmor::where('station_id', $text['structureID'])->get();
+            foreach ($s as $s) {
+                $s->delete();
+            }
+            $s = StationItemJoin::where('station_id', $text['structureID'])->get();
+            foreach ($s as $s) {
+                $s->delete();
+            }
         }
 
 
@@ -986,9 +1044,12 @@ class Notifications
         // dd($check);
         if ($check > 0) {
 
-            Notification::where('status_id', 2)
-                ->where('timestamp', '<=', $now)
-                ->update(['status_id' => 10]);
+            $n = Notification::where('status_id', 2)
+                ->where('timestamp', '<=', $now)->get();
+
+            foreach ($n as $n) {
+                $n->update(['status_id' => 10]);
+            }
             $flag = 1;
             $check = null;
         }
@@ -998,9 +1059,11 @@ class Notifications
             ->count();
 
         if ($check > 0) {
-            Notification::where('status_id', 4)
-                ->where('timestamp', '<=', $now)
-                ->update(['status_id' => 10]);
+            $n =  Notification::where('status_id', 4)
+                ->where('timestamp', '<=', $now)->get();
+            foreach ($n as $n) {
+                $n->update(['status_id' => 10]);
+            }
             $flag = 1;
             $check = null;
         }
@@ -1145,17 +1208,26 @@ class Notifications
 
                 if ($tempnote->id > $check[0]['id']) {
 
-                    Notification::where('si_id', $si_id)
-                        ->where('item_id', $stype)
-                        ->update([
+                    $n =   Notification::where('si_id', $si_id)
+                        ->where('item_id', $stype)->get();
+
+                    foreach ($n as $n) {
+                        $n->update([
                             'status_id' => 2,
                             'user_id' => null,
                         ]);
+                    }
                 }
-                Temp_notifcation::where('id', $tempnote->id)->update(['status' => 1]);
+                $t = Temp_notifcation::where('id', $tempnote->id)->get();
+                foreach ($t as $t) {
+                    $t->update(['status' => 1]);
+                }
             } else {
 
-                Temp_notifcation::where('id', $tempnote->id)->update(['status' => 1]);
+                $t = Temp_notifcation::where('id', $tempnote->id)->get();
+                foreach ($t as $t) {
+                    $t->update(['status' => 1]);
+                }
             }
         }
 
@@ -1295,10 +1367,22 @@ class Notifications
                 'id' => $check->id
             ]);
             broadcast(new StationNotificationDelete($flag));
-            StationItemJoin::where('station_id', $check->id)->delete();
-            StationNotificationArmor::where('station_id', $check->id)->delete();
-            StationNotificationShield::where('station_id', $check->id)->delete();
-            StationNotification::where('station_id', $check->id)->delete();
+            $s = StationItemJoin::where('station_id', $check->id)->get();
+            foreach ($s as $s) {
+                $s->delete();
+            }
+            $s = StationNotificationArmor::where('station_id', $check->id)->get();
+            foreach ($s as $s) {
+                $s->delete();
+            }
+            $s = StationNotificationShield::where('station_id', $check->id)->get();
+            foreach ($s as $s) {
+                $s->delete();
+            }
+            $s = StationNotification::where('station_id', $check->id)->get();
+            foreach ($s as $s) {
+                $s->delete();
+            }
             $check->delete();
         }
 

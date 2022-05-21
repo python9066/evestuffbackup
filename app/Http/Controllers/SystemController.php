@@ -35,14 +35,16 @@ class SystemController extends Controller
 
     public function checkedAt(Request $request, $systemID)
     {
-        System::where('id', $systemID)->update(['checked_id' => $request->user_id, 'scouted_at' => now()]);
+        $s =  System::where('id', $systemID)->first();
+        $s->update(['checked_id' => $request->user_id, 'scouted_at' => now()]);
         Broadcasthelper::broadcastsystemSolo($systemID, 7);
     }
 
 
     public function editTidi(Request $request, $systemID)
     {
-        System::where('id', $systemID)->update(['tidi' => $request->tidi]);
+        $s =  System::where('id', $systemID)->first();
+        $s->update(['tidi' => $request->tidi]);
 
         $systemNodes = NewSystemNode::where('system_id', $systemID)
             ->whereIn('node_status', [7, 8, 9])

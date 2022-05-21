@@ -81,7 +81,10 @@ class NewCampaignsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        NewCampaign::find($id)->update($request->all());
+        $n = NewCampaign::find($id)->get();
+        foreach ($n as $n) {
+            $n->update($request->all());
+        }
         $flag = collect([
             'flag' => 4,
             'id' => $id

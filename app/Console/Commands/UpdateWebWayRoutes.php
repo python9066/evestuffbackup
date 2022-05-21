@@ -47,7 +47,10 @@ class UpdateWebWayRoutes extends Command
 
         $start_system_id = env('HOME_SYSTEM_ID', ($variables && array_key_exists('HOME_SYSTEM_ID', $variables)) ? $variables['HOME_SYSTEM_ID'] : null);
 
-        WebWay::where('id', '>', 0)->update(['active' => 0]);
+        $w = WebWay::where('id', '>', 0)->get();
+        foreach ($w as $w) {
+            $w->update(['active' => 0]);
+        }
         $stations = Station::get();
         $stationSystems = $stations->pluck('system_id');
         $campaigns = Campaign::get();
@@ -56,8 +59,14 @@ class UpdateWebWayRoutes extends Command
         $systemIDs = $stationSystems->merge($campaginSystems);
         $systemIDs = $systemIDs->unique();
         $systemIDs = $systemIDs->values();
-        WebWay::whereIn('system_id', $systemIDs)->update(['active' => 1]);
-        WebWay::where('active', 0)->delete();
+        $w = WebWay::whereIn('system_id', $systemIDs)->get();
+        foreach ($w as $w) {
+            $w->update(['active' => 1]);
+        }
+        $w = WebWay::where('active', 0)->get();
+        foreach ($w as $w) {
+            $w->delete();
+        }
 
         foreach ($systemIDs as $end_system_id) {
             updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');

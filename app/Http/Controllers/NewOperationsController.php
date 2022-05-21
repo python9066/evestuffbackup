@@ -100,9 +100,12 @@ class NewOperationsController extends Controller
 
     public function edit(Request $request)
     {
-        NewCampaignOperation::where('operation_id', $request->OpID)
-            ->whereNotIn('campaign_id', $request->picked)
-            ->delete();
+        $n = NewCampaignOperation::where('operation_id', $request->OpID)
+            ->whereNotIn('campaign_id', $request->picked)->get();
+
+        foreach ($n as $n) {
+            $n->delete();
+        }
 
         foreach ($request->picked as $campaignID) {
             $count = NewCampaignOperation::where('operation_id', $request->OpID)->where('campaign_id', $campaignID)->count();

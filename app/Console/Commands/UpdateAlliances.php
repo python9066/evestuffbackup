@@ -64,8 +64,14 @@ class UpdateAlliances extends Command
         $allianceIDs = $response->collect();
         $deads =   Alliance::whereNotIn('id', $allianceIDs)->get();
         $deadIDs = $deads->pluck('id');
-        Corp::whereIn('alliance_id', $deadIDs)->update(['alliance_id' => 0]);
-        Alliance::whereNotIn('id', $allianceIDs)->delete();
+        $c =  Corp::whereIn('alliance_id', $deadIDs)->get();
+        foreach ($c as $c) {
+            $c->update(['alliance_id' => 0]);
+        }
+        $a =  Alliance::whereNotIn('id', $allianceIDs)->get();
+        foreach ($a as $a) {
+            $a->delete();
+        }
 
         foreach ($allianceIDs as $allianceID) {
             updateAlliancesJob::dispatch($allianceID)->onQueue('alliance');
@@ -120,7 +126,10 @@ class UpdateAlliances extends Command
                         'color' => 0
                     ]
                 );
-                Corp::where('alliance_id', $allianceID)->update(['alliance_id' => null]);
+                $c = Corp::where('alliance_id', $allianceID)->get();
+                foreach ($c as $c) {
+                    $c->update(['alliance_id' => null]);
+                }
                 do {
                     $responseCorp = Http::withHeaders([
                         'Content-Type' => 'application/json',
@@ -239,7 +248,10 @@ class UpdateAlliances extends Command
     {
         $token = Auth::where('flag_standing', 0)->first();
         if ($token == null) {
-            Auth::where('flag_standing', 1)->update(['flag_standing' => 0]);
+            $a =  Auth::where('flag_standing', 1)->get();
+            foreach ($a as $a) {
+                $a->update(['flag_standing' => 0]);
+            }
             $token = Auth::where('flag_standing', 0)->first();
             $token->update(['flag_note' => 1]);
             $url = 'https://esi.evetech.net/latest/alliances/1354830081/contacts/?datasource=tranquility';
@@ -264,23 +276,44 @@ class UpdateAlliances extends Command
             };
 
             if ($stand->get('contact_type') == "alliance") {
-                Alliance::where('id', $stand->get('contact_id'))->update([
-                    'color' => $color,
-                    'standing' => $stand->get('standing')
-                ]);
+                $a =  Alliance::where('id', $stand->get('contact_id'))->get();
+                foreach ($a as $a) {
+                    $a->update([
+                        'color' => $color,
+                        'standing' => $stand->get('standing')
+                    ]);
+                }
             }
 
             if ($stand->get('contact_type') == "corporation") {
-                Corp::where('id', $stand->get('contact_id'))->update([
-                    'color' => $color,
-                    'standing' => $stand->get('standing')
-                ]);
+                $c = Corp::where('id', $stand->get('contact_id'))->get();
+                foreach ($c as $c) {
+                    $c->update([
+                        'color' => $color,
+                        'standing' => $stand->get('standing')
+                    ]);
+                }
             }
         }
-        Alliance::where('color', '0')->update(['color' => 1]);
-        Alliance::whereNull('standing')->update(['standing' => 0]);
-        Alliance::where('id', '1354830081')->update(['standing' => 10, 'color' => 3]);
-        Corp::whereNull('standing')->update(['standing' => 0]);
-        Corp::where('color', '0')->update(['color' => 1]);
+        $a = Alliance::where('color', '0')->get();
+        foreach ($a as $a) {
+            $a->update(['color' => 1]);
+        }
+        $a = Alliance::whereNull('standing')->get();
+        foreach ($a as $a) {
+            $a->update(['standing' => 0]);
+        }
+        $a = Alliance::where('id', '1354830081')->get();
+        foreach ($a as $a) {
+            $a->update(['standing' => 10, 'color' => 3]);
+        }
+        $c = Corp::whereNull('standing')->get();
+        foreach ($c as $c) {
+            $c->update(['standing' => 0]);
+        }
+        $c = Corp::where('color', '0')->get();
+        foreach ($c as $c) {
+            $c->update(['color' => 1]);
+        }
     }
 }

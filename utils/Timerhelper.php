@@ -67,9 +67,18 @@ class Timerhelper
             Structure::updateOrCreate(['id' => $var['structure_id']], $data1);
         }
         $now = now();
-        Structure::where('status', 0)->delete();
-        Structure::where('status', 2)->update(['age' => $now]);
-        Structure::where('id', '>', 0)->update(['status' => 0]);
+        $s =  Structure::where('status', 0)->get();
+        foreach ($s as $s) {
+            $s->delete();
+        }
+        $s =  Structure::where('status', 2)->get();
+        foreach ($s as $s) {
+            $s->update(['age' => $now]);
+        }
+        $s =  Structure::where('id', '>', 0)->get();
+        foreach ($s as $s) {
+            $s->update(['status' => 0]);
+        }
         $system = Structure::where('adm', '>', 0)->select('system_id', 'adm')->get();
         $system = $system->unique('system_id');
         // System::where('id', '>', 0)->update(['adm' => 0]);
@@ -77,7 +86,10 @@ class Timerhelper
 
         foreach ($system as $system) {
 
-            System::where('id', $system->system_id)->update(['adm' => $system->adm]);
+            $s = System::where('id', $system->system_id)->get();
+            foreach ($s as $s) {
+                $s->update(['adm' => $system->adm]);
+            }
         }
     }
 }

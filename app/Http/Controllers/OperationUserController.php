@@ -76,7 +76,10 @@ class OperationUserController extends Controller
         //TODO remove from other operations and nodes in there to a new operations
 
 
-        OperationUser::where('id', $id)->update($request->all());
+        $n = OperationUser::where('id', $id)->get();
+        foreach ($n as $n) {
+            $n->update($request->all());
+        }
 
         if (Auth::id() == $userid) {
             Broadcasthelper::broadcastuserOwnSolo($id, $userid, 3);
@@ -92,7 +95,10 @@ class OperationUserController extends Controller
 
         //TODO remove from other operations and nodes in there to a new operations
 
-        OperationUser::where('id', $id)->update($request->all());
+        $n = OperationUser::where('id', $id)->get();
+        foreach ($n as $n) {
+            $n->update($request->all());
+        }
         // TODO Add boradcast to update info
         if (Auth::id() == $userid) {
             Broadcasthelper::broadcastuserOwnSolo($id, $userid, 3);

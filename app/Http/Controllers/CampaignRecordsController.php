@@ -117,7 +117,10 @@ class CampaignRecordsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Campaign::find($id)->update($request->all());
+        $c =  Campaign::find($id)->get();
+        foreach ($c as $c) {
+            $c->update($request->all());
+        }
         $flag = collect([
             'flag' => 4,
             'id' => $id

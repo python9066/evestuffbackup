@@ -73,7 +73,10 @@ class testController extends Controller
     {
         $user = Auth::user();
         if ($user->can('super')) {
-            NewCampaign::where('id', $id)->update($request->all());
+            $n = NewCampaign::where('id', $id)->get();
+            foreach ($n as $n) {
+                $n->update($request->all());
+            }
         }
     }
 
@@ -86,12 +89,16 @@ class testController extends Controller
         NewOperation::truncate();
         NewSystemNode::truncate();
         NewUserNode::truncate();
-        OperationUser::whereNotNull('id')
-            ->update([
+        $o =  OperationUser::whereNotNull('id')->get();
+
+
+        foreach ($o as $o) {
+            $o->update([
                 'operation_id' => null,
                 'user_status_id' => 1,
                 'system_id' => null
             ]);
+        }
     }
 
     public function testEveStatus()
@@ -248,7 +255,10 @@ class testController extends Controller
 
             $noCampaigns = NewOperation::where('status', '!=', 0)->doesntHave('campaign')->get();
             foreach ($noCampaigns as $noCampaign) {
-                NewCampaignOperation::where('operation_id', $noCampaign->id)->delete();
+                $n = NewCampaignOperation::where('operation_id', $noCampaign->id)->get();
+                foreach ($n as $n) {
+                    $n->delete();
+                }
                 $noCampaign->delete();
             }
 
@@ -281,39 +291,51 @@ class testController extends Controller
 
             //! IF CHECK = 0, that means its not on the API which means the campaing is over.
             // * Set Campaign to finished(3) but able to access still for 10mins
-            NewCampaign::where('check', 0)
-                ->whereNull('end_time')
-                ->update([
+            $n =    NewCampaign::where('check', 0)
+                ->whereNull('end_time')->get();
+
+            foreach ($n as $n) {
+                $n->update([
                     'end_time' => now(),
                     'status_id' => 3,
                     'check' => 1,
                 ]);
+            }
 
             // * Check if the campaign have been over more than 10mins, if true set it to finsiehd(3)
-            NewCampaign::where('check', 0)
+            $n =   NewCampaign::where('check', 0)
                 ->where('status_id', 2)
-                ->where('end_time', '>', now()->subMinutes(10))
-                ->update([
+                ->where('end_time', '>', now()->subMinutes(10))->get();
+
+            foreach ($n as $n) {
+                $n->update([
                     'status_id' => 3,
                     'check' => 1
                 ]);
+            }
 
 
             // * If campaign have been over for more than 10mins set it to finished(4), to show on the finished tab for 24 hours
-            NewCampaign::where('check', 0)
+            $n =   NewCampaign::where('check', 0)
                 ->where('status_id', 3)
-                ->where('end_time', '<', now()->subMinutes(10))->update([
+                ->where('end_time', '<', now()->subMinutes(10))->get();
+            foreach ($n as $n) {
+                $n->update([
                     'status_id' => 4,
                     'check' => 1
                 ]);
+            }
 
             // * If campaign has been over for more than 24 hours.  Delete the campaign.
-            NewCampaign::where('check', 0)
+            $n =   NewCampaign::where('check', 0)
                 ->where('status_id', 4)
-                ->where('end_time', '<', now()->subDay())->update([
+                ->where('end_time', '<', now()->subDay())->get();
+            foreach ($n as $n) {
+                $n->update([
                     'status_id' => 10,
                     'check' => 1
                 ]);
+            }
         }
     }
 
@@ -324,7 +346,10 @@ class testController extends Controller
     public function corptest()
     {
 
-        WebWay::where('id', '>', 0)->update(['active' => 0]);
+        $w =  WebWay::where('id', '>', 0)->get();
+        foreach ($w as $w) {
+            $w->update(['active' => 0]);
+        }
         $stations = Station::get();
         $stationSystems = $stations->pluck('system_id');
         $campaigns = Campaign::get();
@@ -333,8 +358,14 @@ class testController extends Controller
         $systemIDs = $stationSystems->merge($campaginSystems);
         $systemIDs = $systemIDs->unique();
         $systemIDs = $systemIDs->values();
-        WebWay::whereIn('system_id', $systemIDs)->update(['active' => 1]);
-        WebWay::where('active', 0)->delete();
+        $w =  WebWay::whereIn('system_id', $systemIDs)->get();
+        foreach ($w as $w) {
+            $w->update(['active' => 1]);
+        }
+        $w =  WebWay::where('active', 0)->get();
+        foreach ($w as $w) {
+            $w->delete();
+        }
 
         foreach ($systemIDs as $system_id) {
             updateWebwayJob::dispatch($system_id)->onQueue('slow');

@@ -27,7 +27,10 @@ class RCSheet extends Controller
     public function RCInput(Request $request)
     {
 
-        Station::where('show_on_rc', 1)->update(['show_on_rc' => 5]);
+        $s = Station::where('show_on_rc', 1)->get();
+        foreach ($s as $s) {
+            $s->update(['show_on_rc' => 5]);
+        }
 
         $inputs = $request->all();
         foreach ($inputs as $input) {
@@ -84,7 +87,10 @@ class RCSheet extends Controller
 
                         $check = Station::where('name', $input['structure_name'])->first();
                         if ($check) {
-                            Station::where('name', $input['structure_name'])->update(['rc_id' => $input['id'], 'show_on_rc' => 1, 'show_on_coord' => 0]);
+                            $s =  Station::where('name', $input['structure_name'])->get();
+                            foreach ($s as $s) {
+                                $s->update(['rc_id' => $input['id'], 'show_on_rc' => 1, 'show_on_coord' => 0]);
+                            }
                         } else {
                             $newStation = 1;
                         }
@@ -143,7 +149,10 @@ class RCSheet extends Controller
             }
         }
 
-        Station::where('show_on_rc', 5)->update(['rc_id' => null, 'station_status_id' => 18]);
+        $s =  Station::where('show_on_rc', 5)->get();
+        foreach ($s as $s) {
+            $s->update(['rc_id' => null, 'station_status_id' => 18]);
+        }
         $flag = collect([
             'flag' => 2
         ]);
