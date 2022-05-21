@@ -58,6 +58,33 @@ export default {
 
     ...mapState([]),
 
+    campaigns() {
+      var camp = this.item.new_campaigns;
+      camp = camp.filter((c) => {
+        let operations = c.operations.filter((o) => o.id == opID);
+        if (operations.length > 0) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+
+      return camp;
+    },
+
+    actionCampaign() {
+      var active = campaings.filter((c) => {
+        if (c.status_id == 2) {
+          return true;
+        } else if (c.start_time <= this.currentTime && c.end_time == null) {
+        } else {
+          return false;
+        }
+      });
+
+      return active;
+    },
+
     filterRound() {
       if (this.showSystemTable) {
         return "rounded-t-xl";
