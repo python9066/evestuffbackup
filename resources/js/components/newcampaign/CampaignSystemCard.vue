@@ -47,11 +47,7 @@
         </v-row>
       </v-expansion-panel-header>
       <v-expansion-panel-content
-        ><CampaignSystemCardContent
-          :currentTime="currentTime"
-          :item="item"
-          :operationID="operationID"
-        />
+        ><CampaignSystemCardContent :item="item" :operationID="operationID" />
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
@@ -69,7 +65,6 @@ export default {
   props: {
     item: Object,
     operationID: Number,
-    currentTime: Object,
   },
   data() {
     return {

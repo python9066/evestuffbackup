@@ -32,7 +32,6 @@ export default {
   props: {
     item: Object,
     operationID: Number,
-    currentTime: Object,
   },
   data() {
     return {
@@ -81,11 +80,6 @@ export default {
     actionCampaign() {
       var active = this.campaigns.filter((c) => {
         if (c.status_id == 2) {
-          return true;
-        } else if (
-          moment.utc(c.start_time) <= this.currentTime &&
-          c.end_time == null
-        ) {
           return true;
         } else {
           return false;

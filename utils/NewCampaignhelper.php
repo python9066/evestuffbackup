@@ -184,7 +184,7 @@ class NewCampaignhelper
             ->where('check', 1)
             ->get();
         foreach ($warmupCampaigns as $start) {
-            $start->update(['status_id' => 5, 'check' => 1]);
+            $start->update(['status_id' => 5, 'check' => 2]);
         };
 
         // * Checks to see if a campaign has moved from warmup to active
@@ -193,7 +193,7 @@ class NewCampaignhelper
             ->where('check', 1)
             ->get();
         foreach ($startedCampaigns as $start) {
-            $start->update(['status_id' => 2, 'check' => 1]);
+            $start->update(['status_id' => 2, 'check' => 2]);
         };
 
         //! IF CHECK = 0, that means its not on the API which means the campaing is over.

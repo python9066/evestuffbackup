@@ -2,7 +2,6 @@
   <div>
     <v-row no-gutters justify="center" class="pb-5">
       <v-col cols="10">
-        {{ currentTime }}
         <CampaignTitleBar
           :operationID="operationID"
           :title="newOperationInfo.title"
@@ -27,7 +26,6 @@
           :key="`${index.id}-card`"
           :item="item"
           :operationID="operationID"
-          :currentTime="currentTime"
         ></CampaignSystemCard>
       </v-col>
     </v-row>
@@ -46,16 +44,10 @@ function sleep(ms) {
 export default {
   title() {},
   data() {
-    return {
-      now: moment.utc(),
-    };
+    return {};
   },
 
   async created() {
-    var self = this;
-    setInterval(function () {
-      self.now = moment.utc();
-    }, 1000);
     this.operationLink = this.$route.params.id;
     await this.$store.dispatch("getOperationInfo", this.operationLink);
     Echo.private("operations." + this.operationID).listen(
@@ -135,10 +127,6 @@ export default {
     ...mapState(["newOperationInfo", "newCampaignSystems", "newCampaigns"]),
     ...mapGetters([]),
 
-    currentTime() {
-      return this.now;
-    },
-
     operationID() {
       return this.newOperationInfo.id;
     },
@@ -162,11 +150,6 @@ export default {
       if (check > 0) {
         var campaigns = this.newCampaigns.filter((c) => {
           if (c.status_id == 2) {
-            return true;
-          } else if (
-            moment.utc(c.start_time) <= this.currentTime &&
-            c.end_time == null
-          ) {
             return true;
           } else {
             return false;
@@ -193,11 +176,6 @@ export default {
       if (check > 0) {
         var campaigns = this.newCampaigns.filter((c) => {
           if (c.status_id == 5) {
-            return true;
-          } else if (
-            moment.utc(c.start_time).subtract(1, "h") <= this.currentTime &&
-            moment.utc(c.start_time) > this.currentTime
-          ) {
             return true;
           } else {
             return false;
