@@ -27,6 +27,7 @@ export default {
   props: {
     item: Object,
     operationID: Number,
+    currentTime: Object,
   },
   data() {
     return {

@@ -27,6 +27,7 @@
           :key="`${index.id}-card`"
           :item="item"
           :operationID="operationID"
+          :currentTime="currentTime"
         ></CampaignSystemCard>
       </v-col>
     </v-row>
