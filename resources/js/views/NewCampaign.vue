@@ -18,7 +18,6 @@
     <v-row no-gutters justify="space-around">
       <transition-group
         class="grid"
-        tag="CampaignSystemCard"
         name="custom-classes"
         enter-active-class="animate__animated animate__bounceIn animate__repeat-2"
         leave-active-class="animate__animated animate__fadeOut animate__faster"
