@@ -30,11 +30,12 @@
           v-for="(item, index) in openSystems"
           :key="index.id"
         >
-          <CampaignSystemCard
+          <!-- <CampaignSystemCard
             :key="`${index.id}-card`"
             :item="item"
             :operationID="operationID"
-          ></CampaignSystemCard>
+          ></CampaignSystemCard> -->
+          {{ item }}
         </v-col>
       </transition-group>
     </v-row>
