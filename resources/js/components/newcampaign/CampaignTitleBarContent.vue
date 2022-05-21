@@ -9,7 +9,7 @@
       >
         <v-row
           no-gutters
-          align="center"
+          class="align-items-center"
           v-if="showScore"
           :key="`${item.id}-score`"
         >
@@ -144,9 +144,6 @@
       <v-row no-gutters>
         <v-col>
           <v-text-field v-model="newscore" type="number"></v-text-field>
-          <v-btn @click="updateScore()"> update</v-btn>
-          <v-btn @click="update()"> artisan</v-btn>
-          <v-btn @click="clear()" color="warning"> CLER ALL DATA</v-btn>
         </v-col>
       </v-row>
     </v-col>
@@ -173,9 +170,7 @@ export default {
     warmUpCampaigns: Array,
   },
   data() {
-    return {
-      newscore: 0,
-    };
+    return {};
   },
 
   async created() {},
@@ -185,52 +180,7 @@ export default {
   async beforeCreate() {},
 
   async mounted() {},
-  methods: {
-    async updateScore() {
-      var d = this.newscore / 100;
-
-      var ascore = 1 - d;
-      var request = {
-        defenders_score: d,
-        attackers_score: ascore,
-      };
-
-      await axios({
-        method: "POST", //you can set what request you want to be
-        url: "/api/testscoreupdate/" + this.item.id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-
-    async update() {
-      await axios({
-        method: "POST", //you can set what request you want to be
-        url: "/api/testscorerun",
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-
-    async clear() {
-      await axios({
-        method: "POST", //you can set what request you want to be
-        url: "/api/testclearalldata",
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-  },
+  methods: {},
 
   computed: {
     ...mapGetters([
