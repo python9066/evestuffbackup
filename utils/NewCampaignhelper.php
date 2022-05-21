@@ -53,12 +53,12 @@ class NewCampaignhelper
         //     "Accept" => "application/json",
         //     'User-Agent' => 'evestuff.online python9066@gmail.com'
         // ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
-          $response = Http::withHeaders([
-                'Content-Type' => 'application/json',
-                "Accept" => "application/json",
-                'User-Agent' => 'evestuff.online python9066@gmail.com'
-            ])->get("https://628189349fac04c6540639f6.mockapi.io/timers");
-            $campaigns = $response->collect();
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com'
+        ])->get("https://628189349fac04c6540639f6.mockapi.io/timers");
+        $campaigns = $response->collect();
 
         $campaigns = $response->collect();
         foreach ($campaigns as $campaign) {
@@ -134,7 +134,7 @@ class NewCampaignhelper
                 }
 
                 // * Setting everything up for a new campaign
-                if (NewCampaignOperation::where('campaign_id', $id)->count() == 0) {
+                if (NewCampaign::where('id', $id)->count() == 0) {
                     $uuid = Str::uuid();
                     $system = System::where('id', $campaign['solar_system_id'])->first();
                     $systemName = $system->system_name;
@@ -169,13 +169,12 @@ class NewCampaignhelper
 
 
 
-        $noCampaigns = NewOperation::where('status', '!=', 0)->doesntHave('campaign')->get();
+        $noCampaigns = NewOperation::doesntHave('campaign')->get();
         foreach ($noCampaigns as $noCampaign) {
             $n =  NewCampaignOperation::where('operation_id', $noCampaign->id)->get();
             foreach ($n as $n) {
                 $n->delete();
             }
-            $noCampaign->delete();
         }
 
         // * Change new upcoming status to warmup (done an hour before start time)
@@ -304,8 +303,6 @@ class NewCampaignhelper
                 'checkUser'
             ])
             ->get();
-
-
     }
 
     public static function systemSolo($systemID)
