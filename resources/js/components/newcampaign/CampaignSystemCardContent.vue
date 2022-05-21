@@ -21,6 +21,7 @@ import { mapGetters, mapState } from "vuex";
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+import moment from "moment";
 export default {
   // TODO ADD ALL THE THINGS FOR MULTI CAMPAIGNS
   title() {},
