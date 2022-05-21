@@ -11,14 +11,15 @@
         Node</v-btn
       >
     </template>
-    <v-card tile min-height="250px">
-      <v-card-title class="pb-0"> </v-card-title>
+    <v-card tile rounded="xl">
+      <v-card-title class="pb-0 primary"> </v-card-title>
       <v-card-text>
         <v-text-field
           class="mt-2"
           label="Node"
           placeholder="Enter Node"
           flat
+          autofocus
           v-mask="'AA##'"
           v-model="nodeText"
           @keyup.enter="addNode()"
@@ -61,6 +62,7 @@ export default {
     return {
       addShown: false,
       nodeText: "",
+      pickedCampaign: [],
     };
   },
 
@@ -73,10 +75,13 @@ export default {
   async mounted() {},
   methods: {
     async addNode() {
+      if (this.activeCount == 1) {
+        var campaign_id = this.activeCampaigns[0].id;
+      }
       let node = this.nodeText.toUpperCase();
       var request = {
         system_id: this.item.id,
-        campaign_id: 0, //TODO need to code this so hardcode it
+        campaign_id: campaign_id, //TODO need to code this so hardcode it
         name: node,
       };
       this.nodeText = "";
