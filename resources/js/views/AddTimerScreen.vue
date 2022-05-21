@@ -210,7 +210,7 @@
                     <font-awesome-icon
                       icon="fa-solid fa-hat-wizard"
                       v-if="role.name == 'Wizard'"
-                      size="s"
+                      size="sm"
                       pull="left"
                     />
                     <span> {{ role.name }}</span>

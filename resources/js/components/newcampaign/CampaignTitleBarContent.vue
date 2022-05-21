@@ -45,7 +45,7 @@
               </strong>
             </v-progress-linear>
             <div dark :color="IconAColor" :class="IconAClass">
-              <font-awesome-icon :icon="IconD" size="s" pull="left" />
+              <font-awesome-icon :icon="IconD" size="sm" pull="left" />
             </div>
           </v-col>
           <v-col cols="4" class="d-flex justify-content-end align-items-center">

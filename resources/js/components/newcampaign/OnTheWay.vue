@@ -59,7 +59,7 @@
               >
                 <font-awesome-icon
                   icon="fa-solid fa-trash-can"
-                  size="s" /></span></span
+                  size="sm" /></span></span
           ></v-list-item-title>
         </v-list-item>
       </v-list>
