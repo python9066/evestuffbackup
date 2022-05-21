@@ -134,7 +134,7 @@ class NewCampaignhelper
                 }
 
                 // * Setting everything up for a new campaign
-                if (NewCampaign::where('id', $id)->count() == 0) {
+                if (NewCampaignOperation::where('campaign_id', $id)->count() == 0) {
                     $uuid = Str::uuid();
                     $system = System::where('id', $campaign['solar_system_id'])->first();
                     $systemName = $system->system_name;
