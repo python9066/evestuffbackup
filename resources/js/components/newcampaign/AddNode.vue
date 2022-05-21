@@ -11,7 +11,7 @@
         Node</v-btn
       >
     </template>
-    <v-card tile rounded="xl">
+    <v-card tile min-height="150px" rounded="xl">
       <v-card-title class="pb-0 primary"> </v-card-title>
       <v-card-text>
         <v-text-field
