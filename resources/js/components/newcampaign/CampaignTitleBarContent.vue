@@ -7,7 +7,12 @@
         leave-active-class="animate__animated animate__flash animate__faster"
         mode="out-in"
       >
-        <v-row no-gutters v-if="showScore" :key="`${item.id}-score`">
+        <v-row
+          no-gutters
+          v-if="showScore"
+          :key="`${item.id}-score`"
+          class="align-items-center"
+        >
           <v-col cols="2">
             <span :class="textColor">
               {{ item.system.system_name }} - {{ eventType }}:
@@ -18,7 +23,11 @@
           </v-col>
           <v-col
             cols="6"
-            class="d-flex justify-content-center align-content-center"
+            class="
+              d-flex
+              justify-content-center
+              align-content-center align-items-center
+            "
           >
             <div icon dark :color="IconDColor" :class="IconDClass">
               <font-awesome-icon :icon="IconD" pull="left" />
@@ -307,9 +316,9 @@ export default {
         this.item.defenders_score > this.item.defenders_score_old &&
         this.item.defenders_score_old > 0
       ) {
-        return "rotate";
+        return "rotate mr-2";
       } else {
-        return "rotate down";
+        return "rotate down mr-2";
       }
     },
 
