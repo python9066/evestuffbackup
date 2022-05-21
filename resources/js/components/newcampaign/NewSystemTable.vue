@@ -4,7 +4,7 @@
       <v-row no-gutters>
         <v-col cols="12">
           <v-data-table
-            :headers="_headers"
+            :headers="headers"
             :single-expand="singleExpand"
             :items="nodes"
             disable-sort
@@ -77,6 +77,48 @@ export default {
   data() {
     return {
       singleExpand: false,
+      headers: [
+        {
+          text: "NodeID",
+          value: "name",
+          sortable: false,
+        },
+        {
+          text: "Pilot",
+          value: "op_users",
+          sortable: true,
+        },
+
+        {
+          text: "Main",
+          value: "TODOMain",
+          sortable: true,
+        },
+
+        {
+          text: "Ship",
+          value: "TODOShip",
+          sortable: true,
+        },
+        {
+          text: "Status",
+          value: "node_status.name",
+          sortable: true,
+        },
+
+        {
+          text: "Age/Hack",
+          value: "created_at",
+          sortable: true,
+          align: "center",
+        },
+        {
+          text: "",
+          value: "actions",
+          align: "end",
+          sortable: false,
+        },
+      ],
     };
   },
 
