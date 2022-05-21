@@ -15,12 +15,22 @@ class NewCampaignOperation extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logOnly(['*']);
+            ->logOnly(['*', 'campaign.name', 'operation.name']);
         // Chain fluent methods for configuration options
     }
 
     public function link()
     {
         return $this->hasMany(Logging::class);
+    }
+
+    public function opertation()
+    {
+        return $this->belongsTo(NewOperation::class, 'opertation_id', 'id');
+    }
+
+    public function campaign()
+    {
+        return $this->belongsTo(NewCampaign::class, 'campaign_id', 'id');
     }
 }
