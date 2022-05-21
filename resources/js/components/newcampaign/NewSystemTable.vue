@@ -3,6 +3,7 @@
     <v-col cols="12">
       <v-row no-gutters>
         <v-col cols="12">
+          {{ activeCount }}
           <v-data-table
             :headers="_headers"
             :single-expand="singleExpand"
@@ -253,6 +254,9 @@ export default {
         ];
       }
       return headers;
+    },
+    activeCount() {
+      return this.activeCampaigns.length();
     },
 
     expanded() {
