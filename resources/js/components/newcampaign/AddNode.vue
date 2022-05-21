@@ -17,8 +17,20 @@
         Node</v-btn
       >
     </template>
-    <v-card min-height="150px">
+    <v-card :min-height="cardHight">
       <v-card-text>
+        <v-select
+          v-if="dropDownFocus"
+          class="mt-2"
+          v-model="nodeCampaignID"
+          label="Campaign"
+          placeholder="Which Hack is this for"
+          item-text="name"
+          item-value="id"
+          :items="activeCampaigns"
+          :autofocus="campaignActiveCountsingle"
+        >
+        </v-select>
         <v-text-field
           label="Node"
           placeholder="Enter Node"
@@ -67,6 +79,7 @@ export default {
       addShown: false,
       nodeText: "",
       pickedCampaign: [],
+      nodeCampaignID: [],
     };
   },
 
@@ -119,10 +132,18 @@ export default {
     },
 
     dropDownFocus() {
-      if (this.activeCount > 1) {
-        return true;
-      } else {
+      if (this.activeCount == 1) {
         return false;
+      } else {
+        return true;
+      }
+    },
+
+    cardHight() {
+      if (this.activeCount == 1) {
+        return "150px";
+      } else {
+        return "200px";
       }
     },
 

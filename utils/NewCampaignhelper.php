@@ -67,8 +67,10 @@ class NewCampaignhelper
                 $score_changed = false;
                 if ($event_type == 'ihub_defense') {
                     $event_type = 32458;
+                    $event_type_name = "Ihub";
                 } else {
                     $event_type = 32226;
+                    $event_type_name = "TCU";
                 }
 
 
@@ -86,7 +88,9 @@ class NewCampaignhelper
                         $score_changed = true;
                     }
                 }
-
+                $systemN = System::where('id',$campaign['solar_system_id'])->first();
+                $systemNamee = $systemN->system_name;
+                $cName =  $systemNamee . " - ". $event_type_name;
                 $time = $campaign['start_time'];
                 $start_time = Helper::fixtime($time);
                 $data = array();
@@ -100,6 +104,7 @@ class NewCampaignhelper
                     'start_time' => $start_time,
                     'structure_id' => $campaign['structure_id'],
                     'check' => 1,
+                    'name' => $cName
                 );
 
                 NewCampaign::updateOrCreate(['id' => $id], $data);

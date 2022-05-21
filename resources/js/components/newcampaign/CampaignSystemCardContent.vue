@@ -6,7 +6,7 @@
           <NewSystemTable
             :item="item"
             :operationID="operationID"
-            :activeCampaigns="actionCampaign"
+            :activeCampaigns="activeCampaigns"
           />
         </v-col>
       </v-row>
@@ -77,7 +77,7 @@ export default {
       return camp;
     },
 
-    actionCampaign() {
+    activeCampaigns() {
       var active = this.campaigns.filter((c) => {
         if (c.status_id == 2) {
           return true;

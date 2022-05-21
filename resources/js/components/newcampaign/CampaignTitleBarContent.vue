@@ -122,7 +122,7 @@
                 ><img :src="this.item.alliance.url" /></v-avatar
             ></span>
           </v-col>
-          <v-col cols="3">
+          <v-col cols="3" class="d-flex align-items-center">
             <CountDowntimer
               :start-time="moment.utc(item.start_time).unix()"
               :end-text="'Window Closed'"
