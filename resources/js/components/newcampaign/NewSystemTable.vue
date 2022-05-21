@@ -205,6 +205,12 @@ export default {
       } else {
         var headers = [
           {
+            text: "Campaign",
+            value: "campaign.name",
+            sortable: false,
+          },
+
+          {
             text: "NodeID",
             value: "name",
             sortable: false,
