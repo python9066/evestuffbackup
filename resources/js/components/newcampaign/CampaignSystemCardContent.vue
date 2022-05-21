@@ -78,6 +78,7 @@ export default {
         if (c.status_id == 2) {
           return true;
         } else if (c.start_time <= this.currentTime && c.end_time == null) {
+          return true;
         } else {
           return false;
         }
