@@ -55,6 +55,7 @@ export default {
   props: {
     item: Object,
     operationID: Number,
+    activeCampaigns: Object,
   },
   data() {
     return {
@@ -99,6 +100,10 @@ export default {
     ...mapGetters([]),
 
     ...mapState([]),
+
+    activeCount() {
+      return activeCampaigns.length;
+    },
   },
   beforeDestroy() {},
 };

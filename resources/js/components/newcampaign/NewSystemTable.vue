@@ -52,7 +52,11 @@
             </template>
 
             <template v-slot:[`header.actions`]="{ headers }">
-              <AddNode :item="item" :operationID="operationID" />
+              <AddNode
+                :item="item"
+                :operationID="operationID"
+                :activeCampaigns="activeCampaigns"
+              />
             </template>
           </v-data-table>
         </v-col>
@@ -68,6 +72,7 @@ export default {
   props: {
     item: Object,
     operationID: Number,
+    activeCampaigns: Object,
   },
   data() {
     return {

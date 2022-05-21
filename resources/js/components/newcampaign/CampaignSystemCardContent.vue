@@ -3,7 +3,11 @@
     <v-col cols="12">
       <v-row no-gutters>
         <v-col cols="12">
-          <NewSystemTable :item="item" :operationID="operationID" />
+          <NewSystemTable
+            :item="item"
+            :operationID="operationID"
+            :activeCampaigns="actionCampaign"
+          />
         </v-col>
       </v-row>
       <v-row no-gutters class="pt-5">
