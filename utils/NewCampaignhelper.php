@@ -48,11 +48,17 @@ class NewCampaignhelper
         foreach ($n as $n) {
             $n->update(['check' => 0]);
         }
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            "Accept" => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
-        ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
+        // $response = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     "Accept" => "application/json",
+        //     'User-Agent' => 'evestuff.online python9066@gmail.com'
+        // ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
+          $response = Http::withHeaders([
+                'Content-Type' => 'application/json',
+                "Accept" => "application/json",
+                'User-Agent' => 'evestuff.online python9066@gmail.com'
+            ])->get("https://628189349fac04c6540639f6.mockapi.io/timers");
+            $campaigns = $response->collect();
 
         $campaigns = $response->collect();
         foreach ($campaigns as $campaign) {
