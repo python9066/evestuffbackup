@@ -26,7 +26,7 @@ class AddNameColoumToNewCampaignsTable extends Migration
     public function down()
     {
         Schema::table('new_campaigns', function (Blueprint $table) {
-            //
+            $table->dropColumn('name');
         });
     }
 }

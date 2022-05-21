@@ -15,7 +15,7 @@ class NewCampaignOperation extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logOnly(['*', 'campaign.name', 'operation.name']);
+            ->logOnly(['*', 'campaign.name', 'operation.title']);
         // Chain fluent methods for configuration options
     }
 

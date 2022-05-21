@@ -24,8 +24,8 @@ class AddNamesToNewCampaign extends Migration
                 $type = "TCU";
             }
 
-            $system = System::where('id', $c->system_id)->pluck('system_name');
-            $text = $system . " - " . $type;
+            $system = System::where('id', $c->system_id)->first();
+            $text = $system->system_name . " - " . $type;
             $c->update(['name' => $text]);
         }
     }
