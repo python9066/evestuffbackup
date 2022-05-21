@@ -55,7 +55,7 @@ export default {
   props: {
     item: Object,
     operationID: Number,
-    activeCampaigns: Object,
+    activeCampaigns: Array,
   },
   data() {
     return {
