@@ -28,7 +28,7 @@
           item-text="name"
           item-value="id"
           :items="activeCampaigns"
-          :autofocus="campaignActiveCountsingle"
+          :autofocus="dropDownFocus"
         >
         </v-select>
         <v-text-field

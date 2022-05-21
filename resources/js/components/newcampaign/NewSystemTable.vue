@@ -4,7 +4,7 @@
       <v-row no-gutters>
         <v-col cols="12">
           <v-data-table
-            :headers="headers"
+            :headers="_headers"
             :single-expand="singleExpand"
             :items="nodes"
             disable-sort
