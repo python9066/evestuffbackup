@@ -29,7 +29,7 @@
           :key="index.id"
         >
           <CampaignSystemCard
-            :key="`${index.id}-card`"
+            :key="`${item.id}-card`"
             :item="item"
             :operationID="operationID"
           ></CampaignSystemCard>
