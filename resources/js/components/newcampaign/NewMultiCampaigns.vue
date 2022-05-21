@@ -35,8 +35,9 @@
                     <NewCustomCampaignDeleteButton
                       :item="item"
                     ></NewCustomCampaignDeleteButton>
-                    <!-- <v-btn @click="clickCampaign(item)" color="green"
-                      >View</v-btn> -->
+                    <v-btn @click="clickCampaign(item)" color="green"
+                      >View</v-btn
+                    >
                   </div>
                 </template>
 
@@ -89,6 +90,10 @@ export default {
       if (item.status == 1) {
         return "Active";
       }
+    },
+
+    clickCampaign(item) {
+      this.$router.push({ path: `/op/${item.link}` }); // -> /user/123
     },
   },
   computed: {
