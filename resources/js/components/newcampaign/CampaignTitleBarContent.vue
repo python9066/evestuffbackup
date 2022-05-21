@@ -1,5 +1,5 @@
 <template>
-  <v-row no-gutters>
+  <v-row no-gutters align="cetner">
     <v-col cols="12">
       <transition
         name="custom-classes"
@@ -7,12 +7,7 @@
         leave-active-class="animate__animated animate__flash animate__faster"
         mode="out-in"
       >
-        <v-row
-          no-gutters
-          class="align-items-center"
-          v-if="showScore"
-          :key="`${item.id}-score`"
-        >
+        <v-row no-gutters v-if="showScore" :key="`${item.id}-score`">
           <v-col cols="2">
             <span :class="textColor">
               {{ item.system.system_name }} - {{ eventType }}:
