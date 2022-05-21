@@ -1,5 +1,11 @@
 <template>
-  <v-menu :close-on-content-click="false" :value="addShown">
+  <v-menu
+    :close-on-content-click="false"
+    origin="center center"
+    transition="scale-transition"
+    :value="addShown"
+    rounded="xl"
+  >
     <template v-slot:activator="{ on, attrs }">
       <v-btn
         text
@@ -7,11 +13,11 @@
         v-on="on"
         @click="addShown = true"
         color="success"
-        ><font-awesome-icon icon="fa-solid fa-plus" size="2xl" pull="left" />
+        ><font-awesome-icon icon="fa-solid fa-plus" size="xl" pull="left" />
         Node</v-btn
       >
     </template>
-    <v-card tile min-height="150px" rounded="xl">
+    <v-card>
       <v-card-title class="pb-0 primary"> </v-card-title>
       <v-card-text>
         <v-text-field
@@ -28,7 +34,7 @@
       </v-card-text>
       <v-card-actions>
         <v-btn icon fixed left color="success" @click="addNode()"
-          ><font-awesome-icon icon="fa-solid fa-check"
+          ><font-awesome-icon icon="fa-solid fa-check" size="xl"
         /></v-btn>
 
         <v-btn
@@ -37,7 +43,7 @@
           icon
           color="warning"
           @click="(addShown = false), (nodeText = '')"
-          ><font-awesome-icon icon="fa-solid fa-circle-xmark"
+          ><font-awesome-icon icon="fa-solid fa-circle-xmark" size="xl"
         /></v-btn>
       </v-card-actions>
     </v-card>
