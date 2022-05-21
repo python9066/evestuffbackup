@@ -51,7 +51,7 @@ class setCampaignStatusJobs extends Command
 
                 setWarmUpdateFlagJob::dispatch($campaign->id)->onQueue('campaigns')->delay($a);
                 setActiveUpdateFlagJob::dispatch($campaign->id)->onQueue('campaigns')->delay($start);
-                $campaign->update(['job',1]);
+                $campaign->update(['job' => 1]);
             }
 
         }
