@@ -3,7 +3,7 @@
     <v-col cols="12">
       <v-row no-gutters>
         <v-col cols="12">
-          <!-- {{ activeCount }} -->
+          {{ count }}
           <v-data-table
             :headers="_headers"
             :single-expand="singleExpand"
@@ -255,9 +255,10 @@ export default {
       }
       return headers;
     },
-    // activeCount() {
-    //   return this.activeCampaigns.length();
-    // },
+    count() {
+      var count = this.activeCampaigns.length;
+      return count;
+    },
 
     expanded() {
       if (this.nodes) {
