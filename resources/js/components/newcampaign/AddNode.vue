@@ -39,7 +39,9 @@
           v-mask="'AA##'"
           v-model="nodeText"
           @keyup.enter="addNode()"
-          @keyup.esc="(addShown = false), (nodeText = '')"
+          @keyup.esc="
+            (addShown = false), (nodeText = ''), (pickedCampaign = [])
+          "
         ></v-text-field>
       </v-card-text>
       <v-card-actions>
@@ -52,7 +54,7 @@
           right
           icon
           color="warning"
-          @click="(addShown = false), (nodeText = '')"
+          @click="(addShown = false), (nodeText = ''), (pickedCampaign = [])"
           ><font-awesome-icon icon="fa-solid fa-circle-xmark" size="xl"
         /></v-btn>
       </v-card-actions>
@@ -143,7 +145,7 @@ export default {
       if (this.activeCount == 1) {
         return "150px";
       } else {
-        return "200px";
+        return "230px";
       }
     },
 
