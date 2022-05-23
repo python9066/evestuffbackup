@@ -14,7 +14,7 @@ class AddInputTimeColomnToCampaignSystemsTable extends Migration
     public function up()
     {
         Schema::table('campaign_systems', function (Blueprint $table) {
-            $table->dateTime('input_time')->after('tidi')->nullable();
+            $table->dateTime('input_time')->nullable();
         });
     }
 
