@@ -9,6 +9,7 @@
             :single-expand="singleExpand"
             :items="nodes"
             disable-sort
+            dense
             :item-class="itemRowBackground"
             :expanded="expanded"
             hide-default-footer
@@ -26,8 +27,14 @@
               /></v-btn>
             </template>
             <template v-slot:[`item.op_users`]="{ item }">
-              <AddPilot :node="item" :operationID="operationID" />
-              <NewNodeExtraChar :node="item" :operationID="operationID" />
+              <v-row no-gutters align="baseline">
+                <v-col cols="auto">
+                  <AddPilot :node="item" :operationID="operationID" />
+                </v-col>
+                <v-col cols="2">
+                  <NewNodeExtraChar :node="item" :operationID="operationID" />
+                </v-col>
+              </v-row>
             </template>
             <template v-slot:[`item.TODOMain`]="{ item }">
               <NewSystemTableSimpleText :node="item" :type="1" />

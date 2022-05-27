@@ -1,5 +1,5 @@
 <template>
-  <v-row no-gutters>
+  <v-row no-gutters class="px-2 pb-2">
     <v-col cols="12">
       <v-row no-gutters>
         <v-col cols="12">

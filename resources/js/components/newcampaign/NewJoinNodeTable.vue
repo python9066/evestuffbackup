@@ -36,7 +36,12 @@
         />
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-btn @click="deleteNode(item)" class="pl-4" color="orange darken-3">
+        <v-btn
+          icon
+          @click="deleteNode(item)"
+          class="pl-4"
+          color="orange darken-3"
+        >
           <font-awesome-icon icon="fa-solid fa-trash-can"
         /></v-btn>
       </template>

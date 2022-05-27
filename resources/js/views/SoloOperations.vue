@@ -1,157 +1,92 @@
 <template>
   <v-row class="pr-5 pl-5 pt-1" no-gutters v-resize="onResize" justify="center">
     <v-col cols="12">
-      <v-row no-gutters justify="space-between" class="pb-5">
-        <v-col cols="5">
-          <v-text-field
-            label="Search"
-            filled
-            dense
-            rounded
-            single-line
-            clearable
-            color="blue"
-          ></v-text-field>
-        </v-col>
-        <v-col cols="6"
-          ><v-expansion-panels>
-            <v-expansion-panel class="rounded-xl">
-              <v-expansion-panel-header
-                color="primary"
-                :class="filterRound"
-                @click="filterClick()"
-              >
-                <template v-slot:actions>
-                  <font-awesome-icon icon="fa-solid fa-filter" />
-                </template>
-                <template v-slot:default="{ open }">
-                  <v-row no-gutters>
-                    <v-col cols="2" class="font-bold"> Filters </v-col>
-                    <v-col cols="8" class="align-content-start">
-                      <v-fade-transition leave-absolute>
-                        <span v-if="open" key="0">
-                          Select your Filter Setting below.
-                        </span>
-                        <span v-else key="1">
-                          {{ filterText }}
-                        </span>
-                      </v-fade-transition>
-                    </v-col>
-                  </v-row>
-                </template>
-              </v-expansion-panel-header>
-              <v-expansion-panel-content class="rounded-xl">
-                <v-row no-gutters
-                  ><v-col cols="12"
-                    ><v-card flat
-                      ><v-card-text class="py-0"
-                        ><span class="subheading">Filter Regions</span
-                        ><v-autocomplete
-                          chips
-                          clearable
-                          deletable-chips
-                          solo-inverted
-                          dense
-                          hide-details
-                          hide-selected
-                          rounded
-                          small-chips
-                          multiple
-                          v-model="regionFilter"
-                          :items="regionList"
-                        ></v-autocomplete></v-card-text></v-card></v-col
-                ></v-row>
-                <v-row no-gutters
-                  ><v-col cols="12">
-                    <v-card flat
-                      ><v-card-text class="py-0"
-                        ><span class="subheading"> Filter Item</span
-                        ><v-chip-group
-                          active-class="primary--text"
-                          column
-                          v-model="filterItemTypeSelect"
-                        >
-                          <v-chip
-                            v-for="(list, index) in filterItemTypeSelectList"
-                            :key="index"
-                            filter
-                            :value="list.value"
-                            outlined
-                            small
-                          >
-                            {{ list.text }}
-                          </v-chip>
-                        </v-chip-group>
-                      </v-card-text>
-                    </v-card>
-                  </v-col></v-row
-                >
-                <v-row no-gutters
-                  ><v-col cols="12">
-                    <v-card flat
-                      ><v-card-text class="py-0"
-                        ><span class="subheading"> Standing</span
-                        ><v-chip-group
-                          active-class="primary--text"
-                          column
-                          v-model="filterStandingSelect"
-                        >
-                          <v-chip
-                            v-for="(list, index) in filterStandingSelectList"
-                            :key="index"
-                            filter
-                            :value="list.value"
-                            outlined
-                            small
-                          >
-                            {{ list.text }}
-                          </v-chip>
-                        </v-chip-group>
-                      </v-card-text>
-                    </v-card>
-                  </v-col></v-row
-                >
-
-                <v-row no-gutters
-                  ><v-col cols="12">
-                    <v-card flat
-                      ><v-card-text class="py-0"
-                        ><span class="subheading"> Status</span
-                        ><v-chip-group
-                          active-class="primary--text"
-                          column
-                          v-model="filterStatusSelect"
-                        >
-                          <v-chip
-                            v-for="(list, index) in filterStatusSelectList"
-                            :key="index"
-                            filter
-                            :value="list.value"
-                            outlined
-                            small
-                          >
-                            {{ list.text }}
-                          </v-chip>
-                        </v-chip-group>
-                      </v-card-text>
-                    </v-card>
-                  </v-col></v-row
-                >
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels></v-col
-        >
-      </v-row>
       <v-row no-gutters justify="center">
         <v-col cols="12">
           <v-card elevation="10" rounded="xl" class="mb-5">
             <v-card-title class="justify-center primary pa-3"
               >Operations</v-card-title
             >
+            <v-row
+              no-gutters
+              align="baseline"
+              justify="space-between"
+              class="mt-2 ml-2"
+            >
+              <v-col cols="3">
+                <v-text-field
+                  label="Search"
+                  v-model="search"
+                  filled
+                  dense
+                  rounded
+                  single-line
+                  clearable
+                  color="blue"
+                ></v-text-field> </v-col
+              ><v-col cols="6">
+                <v-row no-gutters
+                  ><v-col cols="12" class="d-flex justify-content-around"
+                    ><v-btn-toggle
+                      rounded
+                      active-class="primary--text"
+                      column
+                      v-model="filterItemTypeSelect"
+                    >
+                      <v-btn
+                        v-for="(list, index) in filterItemTypeSelectList"
+                        :key="index"
+                        filter
+                        :value="list.value"
+                        outlined
+                        small
+                      >
+                        {{ list.text }}
+                      </v-btn> </v-btn-toggle
+                    ><v-btn-toggle
+                      rounded
+                      active-class="primary--text"
+                      column
+                      v-model="filterStandingSelect"
+                    >
+                      <v-btn
+                        v-for="(list, index) in filterStandingSelectList"
+                        :key="index"
+                        filter
+                        :value="list.value"
+                        outlined
+                        small
+                      >
+                        {{ list.text }}
+                      </v-btn>
+                    </v-btn-toggle>
+                    <v-btn-toggle
+                      rounded
+                      active-class="primary--text"
+                      column
+                      mandatory
+                      v-model="filterStatusSelect"
+                    >
+                      <v-btn
+                        v-for="(list, index) in filterStatusSelectList"
+                        :key="index"
+                        filter
+                        :value="list.value"
+                        outlined
+                        small
+                      >
+                        {{ list.text }}
+                      </v-btn>
+                    </v-btn-toggle>
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
             <v-card-text class="pa-0">
               <SoloOperationsTable
                 :windowSize="windowSize"
                 :filteredItems="filterEnd"
+                :search="search"
               >
               </SoloOperationsTable>
             </v-card-text>
@@ -205,33 +140,27 @@ export default {
 
       filterItemTypeSelect: 32458,
       filterItemTypeSelectList: [
-        { text: "All", value: 1 },
         { text: "Ihub", value: 32458 },
         { text: "TCU", value: 32226 },
       ],
 
-      filterStandingSelect: 4,
+      filterStandingSelect: null,
       filterStandingSelectList: [
-        { text: "All", value: 4 },
         { text: "Goon", value: 3 },
         { text: "Friendly", value: 2 },
         { text: "Hostile", value: 1 },
       ],
 
-      filterStatusSelect: 2,
+      filterStatusSelect: 1,
       filterStatusSelectList: [
-        { text: "All", value: 1 },
-        { text: "Upcoming", value: 2 },
-        { text: "Active Only", value: 3 },
-        { text: "Finished", value: 4 },
+        { text: "Upcoming", value: 1 },
+        { text: "Active Only", value: 2 },
+        { text: "Finished", value: 3 },
       ],
     };
   },
 
   methods: {
-    filterClick() {
-      this.filterOpen = !this.filterOpen;
-    },
     onResize() {
       this.windowSize = { x: window.innerWidth, y: window.innerHeight };
     },
@@ -263,138 +192,53 @@ export default {
       }
     },
 
-    filterText() {
-      //Showing all {{Structurs/Ihubs/TCUs}} in {{All regions/[region list]}} belonging too {{Everyone/Goons/Friendly/Hosiles}} {{that are Active/Finished/Logged}} belonging to everyone
-
-      var start = "Showing all ";
-      var item = "";
-      var regions = "";
-      var standing = "";
-      var status = "";
-      switch (this.filterItemTypeSelect) {
-        case 1:
-          item = "structurs ";
-          break;
-
-        case 2:
-          item = "Ihubs ";
-          break;
-
-        case 3:
-          item = "TCUs ";
-          break;
-      }
-
-      switch (this.filterStandingSelect) {
-        case 1:
-          standing = "";
-          break;
-
-        case 2:
-          standing = "belonging to Goons ";
-          break;
-
-        case 3:
-          standing = "belonging to Friendlys ";
-          break;
-
-        case 4:
-          standing = "belonging to Hostiles ";
-          break;
-      }
-
-      switch (this.filterStatusSelect) {
-        case 1:
-          status = "";
-          break;
-
-        case 2:
-          status = "That are upcoming";
-          break;
-
-        case 3:
-          status = "that are active.";
-          break;
-
-        case 4:
-          status = "that have finished.";
-          break;
-      }
-      return start + item + regions + standing + status;
-    },
-
-    filteredItemsStart() {
-      if (this.filterStandingSelect == 1) {
-        return this.operationList.filter(
-          (o) => o.campaign[0].alliance.color == 1
-        );
-      } else if (this.filterStandingSelect == 2) {
-        return this.operationList.filter(
-          (o) =>
-            o.campaign[0].alliance.color == 3 ||
-            o.campaign[0].alliance.color == 2
-        );
-      } else if (this.filterStandingSelect == 3) {
-        return this.operationList.filter(
-          (o) => o.campaign[0].alliance.color == 3
+    filterStart() {
+      if (this.filterItemTypeSelect) {
+        return this.newSoloOperations.filter(
+          (d) => d.campaign[0].event_type == this.filterItemTypeSelect
         );
       } else {
-        return this.operationList;
+        return this.newSoloOperations;
       }
     },
 
-    filteredItemsMid() {
-      if (this.filterItemTypeSelect != 1) {
-        return this.filteredItemsStart.filter(
-          (o) => o.campaign[0]["event_type"] == this.filterItemTypeSelect
-        );
-      } else {
-        return this.filteredItemsStart;
-      }
-    },
-
-    filterItemsMidMid() {
-      if (this.filterStatusSelect != 1) {
-        if (this.filterStatusSelect == 2) {
-          return this.filteredItemsMid.filter(
-            (o) =>
-              o.campaign[0]["status_id"] == 1 || o.campaign[0]["status_id"] == 2
+    filterMind1() {
+      if (this.filterStandingSelect) {
+        if (this.filterStandingSelect == 3) {
+          return this.filterStart.filter(
+            (d) => d.campaign[0].alliance.color == 3
           );
-        }
-
-        if (this.filterStatusSelect == 3) {
-          return this.filteredItemsMid.filter(
-            (o) => o.campaign[0]["status_id"] == 2
+        } else if (this.filterStandingSelect == 2) {
+          return this.filterStart.filter(
+            (d) => d.campaign[0].alliance.standing > 0
           );
-        }
-
-        if (this.filterStatusSelect == 4) {
-          return this.filteredItemsMid.filter(
-            (o) =>
-              o.campaign[0]["status_id"] == 3 || o.campaign[0]["status_id"] == 4
+        } else {
+          return this.filterStart.filter(
+            (d) => d.campaign[0].alliance.standing <= 0
           );
         }
       } else {
-        return this.filteredItemsMid;
+        return this.filterStart;
       }
     },
 
     filterEnd() {
-      let data = [];
-      if (this.regionFilter.length != 0) {
-        this.regionFilter.forEach((p) => {
-          let pick = this.filterItemsMidMid.filter(
-            (f) => f.campaign[0].constellation.region.id == p
-          );
-          if (pick != null) {
-            pick.forEach((pk) => {
-              data.push(pk);
-            });
-          }
-        });
-        return data;
+      if (this.filterStatusSelect == 1) {
+        return this.filterMind1.filter(
+          (d) =>
+            d.campaign[0].status_id == 5 ||
+            d.campaign[0].status_id == 1 ||
+            d.campaign[0].status_id == 2
+        );
+      } else if (this.filterStatusSelect == 2) {
+        return this.filterMind1.filter(
+          (d) => d.campaign[0].status_id == 5 || d.campaign[0].status_id == 2
+        );
+      } else {
+        return this.filterMind1.filter(
+          (d) => d.campaign[0].status_id == 3 || d.campaign[0].status_id == 4
+        );
       }
-      return this.filterItemsMidMid;
     },
 
     regionList() {

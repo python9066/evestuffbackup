@@ -38,14 +38,15 @@
           <v-divider class="mx-2" vertical></v-divider>
           <v-col cols="1" class="d-flex justify-end align-center">
             <v-btn icon @click="clickIcon()">
-              ><font-awesome-icon
+              <font-awesome-icon
                 icon="fa-solid fa-angle-up"
                 :class="iconRotate"
+                size="xl"
             /></v-btn>
           </v-col>
         </v-row>
       </v-expansion-panel-header>
-      <v-expansion-panel-content
+      <v-expansion-panel-content id="expansion-panel-content-1"
         ><CampaignSystemCardContent :item="item" :operationID="operationID" />
       </v-expansion-panel-content>
     </v-expansion-panel>
@@ -128,6 +129,10 @@ export default {
 
 .toggleUpDown.rotate {
   transform: rotate(180deg);
+}
+
+#expansion-panel-content-1::v-deep .v-expansion-panel-content__wrap {
+  padding: 0 !important;
 }
 </style>
 

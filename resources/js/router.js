@@ -21,7 +21,7 @@ import welptimers from "./views/WelpViolenceTimers.vue";
 import Gsol from "./views/Gsol";
 import Recon from "./views/Recon";
 import StartCampaign from "./views/StartCampaignSystem";
-import KillList from "./views/RCsheet.vue";
+import KillList from "./views/RcSheet.vue";
 import RCMOVETIMER from "./views/RCMove.vue";
 import FleetKeys from "./views/FleetKeyPannel.vue";
 import CoordSheet from "./views/CoordSheet.vue";

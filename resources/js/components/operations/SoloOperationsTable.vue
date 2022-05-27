@@ -1,22 +1,40 @@
 <template>
-  <v-col cols="12" class="pa-0">
-    <v-row no-gutters>
-      <v-col cols="12">
-        <v-data-table
-          :headers="headers"
-          :items="filteredItems"
-          fixed-header
-          :height="height"
-          item-key="id"
-          :items-per-page="50"
-          @click:row="rowClick($event)"
-          :footer-props="{
-            'items-per-page-options': [10, 20, 30, 50, 100, -1],
-          }"
-          class="elevation-24 rounded-xl full-width"
-        >
-          <template slot="no-data"> No Active or Upcoming Campaigns </template>
-          <template v-slot:[`item.campaign[0].alliance.name`]="{ item }">
+  <v-row no-gutters>
+    <v-col cols="12">
+      <v-data-table
+        :headers="headers"
+        :items="filteredItems"
+        fixed-header
+        :height="height"
+        :search="search"
+        item-key="id"
+        :items-per-page="50"
+        :sort-by="['campaign[0].start_time']"
+        @click:row="rowClick($event)"
+        :footer-props="{
+          'items-per-page-options': [10, 20, 30, 50, 100, -1],
+        }"
+        class="elevation-24 rounded-xl full-width"
+      >
+        <template slot="no-data"> No Active or Upcoming Campaigns </template>
+        <template v-slot:[`item.campaign[0].alliance.name`]="{ item }">
+          <div class="d-flex flex-nowrap">
+            <span v-if="item.campaign[0].priority == 1" class="rainbow-2 pr-2">
+              <font-awesome-icon
+                icon="fa-solid fa-wand-magic-sparkles"
+                size="xl"
+                transform="flip-h"
+                class="fa-bounce"
+                style="
+                  --fa-bounce-start-scale-x: 1;
+                  --fa-bounce-start-scale-y: 1;
+                  --fa-bounce-jump-scale-x: 1;
+                  --fa-bounce-jump-scale-y: 1;
+                  --fa-bounce-land-scale-x: 1;
+                  --fa-bounce-land-scale-y: 1;
+                "
+                v-if="item.campaign[0].priority == 1"
+            /></span>
             <v-avatar size="35"
               ><img :src="item.campaign[0].alliance.url"
             /></v-avatar>
@@ -25,6 +43,15 @@
               class="blue--text pl-3"
               >{{ item.campaign[0].alliance.name }}
             </span>
+            <span v-if="item.campaign[0].priority == 0">
+              <span v-if="item.standing > 0" class="blue--text pl-3"
+                >{{ item.alliance }}
+              </span>
+              <span v-else-if="item.standing < 0" class="red--text pl-3"
+                >{{ item.alliance }}
+              </span>
+              <span v-else class="pl-3">{{ item.alliance }}</span></span
+            >
             <span
               v-else-if="item.campaign[0].alliance.standing < 0"
               class="red--text pl-3"
@@ -33,241 +60,256 @@
             <span v-else class="pl-3">{{
               item.campaign[0].alliance.name
             }}</span>
-          </template>
+            <span v-if="item.campaign[0].priority == 1" class="rainbow-2 pl-2">
+              <font-awesome-icon
+                icon="fa-solid fa-wand-magic-sparkles"
+                size="xl"
+                class="fa-bounce"
+                bounce
+                style="
+                  --fa-bounce-start-scale-x: 1;
+                  --fa-bounce-start-scale-y: 1;
+                  --fa-bounce-jump-scale-x: 1;
+                  --fa-bounce-jump-scale-y: 1;
+                  --fa-bounce-land-scale-x: 1;
+                  --fa-bounce-land-scale-y: 1;
+                "
+              />
+            </span>
+          </div>
+        </template>
 
-          <template v-slot:[`item.campaign[0].start_time`]="{ item }">
-            <span v-if="item.campaign[0].status_id == 1">
-              {{ item.campaign[0].start_time }}
-            </span>
-            <span
-              v-else-if="
-                item.campaign[0].status_id != 3 &&
-                item.campaign[0].status_id != 4
-              "
-              class="d-flex full-width align-content-center"
-            >
-              <span>
-                <span
-                  dark
-                  color="blue darken-4"
-                  v-if="
-                    item.campaign[0].defenders_score >
-                      item.campaign[0].defenders_score_old &&
-                    item.campaign[0].defenders_score_old > 0
-                  "
-                >
-                  <font-awesome-icon icon="fa-solid fa-circle-up" pull="left"
-                /></span>
-                <span
-                  dark
-                  color="blue darken-4"
-                  v-if="
-                    item.campaign[0].defenders_score <
-                      item.campaign[0].defenders_score_old &&
-                    item.campaign[0].defenders_score_old > 0
-                  "
-                >
-                  <font-awesome-icon icon="fa-solid fa-circle-down" pull="left"
-                /></span>
-                <span
-                  dark
-                  color="grey darken-3"
-                  v-if="
-                    item.campaign[0].defenders_score ==
-                      item.campaign[0].defenders_score_old ||
-                    item.campaign[0].defenders_score_old === null
-                  "
-                >
-                  <font-awesome-icon
-                    icon="fa-solid fa-circle-minus"
-                    pull="left"
-                /></span>
-              </span>
-
-              <v-progress-linear
-                :color="barColor(item)"
-                :value="barScoure(item)"
-                height="20"
-                rounded
-                :active="barActive(item)"
-                :reverse="barReverse(item)"
-                :background-color="barBgcolor(item)"
-                background-opacity="0.2"
-              >
-                <strong>
-                  {{ item.campaign[0].defenders_score * 100 }} /
-                  {{ item.campaign[0].attackers_score * 100 }}
-                </strong>
-              </v-progress-linear>
-              <span>
-                <span
-                  dark
-                  color="red darken-4"
-                  v-if="
-                    item.campaign[0].attackers_score >
-                      item.campaign[0].attackers_score_old &&
-                    item.campaign[0].attackers_score_old > 0
-                  "
-                >
-                  <font-awesome-icon icon="fa-solid fa-circle-up" pull="right"
-                /></span>
-                <span
-                  dark
-                  color="red darken-4"
-                  v-if="
-                    item.campaign[0].attackers_score <
-                      item.campaign[0].attackers_score_old &&
-                    item.campaign[0].attackers_score_old > 0
-                  "
-                >
-                  <font-awesome-icon
-                    icon="fa-solid fa-circle-down"
-                    pull="right"
-                /></span>
-                <span
-                  dark
-                  color="grey darken-3"
-                  v-if="
-                    item.campaign[0].attackers_score ==
-                      item.campaign[0].attackers_score_old ||
-                    item.campaign[0].attackers_score_old == null
-                  "
-                >
-                  <font-awesome-icon
-                    icon="fa-solid fa-circle-minus"
-                    pull="right"
-                /></span>
-              </span>
-            </span>
-            <span
-              v-else-if="
-                item.campaign[0].status_id == 3 ||
-                item.campaign[0].status_id == 4
-              "
-            >
-              <p
-                v-if="item.campaign[0].attackers_score == 0"
-                class="text-md-center green--text"
-              >
-                {{ item.campaign[0].alliance.name }}
-                <span class="font-weight-bold"> WON </span> the
-                {{ itemType(item.campaign[0].event_type) }} timer.
-              </p>
-              <p v-else class="text-md-center red--text">
-                {{ item.campaign[0].alliance.name }}
-                <span class="font-weight-bold"> LOST </span> the
-                {{ itemType(item.campaign[0].event_type) }} timer.
-              </p>
-            </span>
-          </template>
-          <template
-            v-slot:[`item.campaign[0].system.webway[0].jumps`]="{ item }"
+        <template v-slot:[`item.campaign[0].start_time`]="{ item }">
+          <span
+            v-if="
+              item.campaign[0].status_id == 1 || item.campaign[0].status_id == 5
+            "
           >
-            <SoloCampaginWebWay
-              v-if="item.campaign[0].system.webway[0]"
-              :jumps="item.campaign[0].system.webway[0].jumps"
-              :web="item.campaign[0].system.webway[0].webway"
-            ></SoloCampaginWebWay>
-          </template>
-          <template v-slot:[`item.count`]="{ item }">
-            <div class="d-inline-flex align-center">
-              <CountDowntimer
-                v-if="item.campaign[0].status_id == 1"
-                :start-time="moment.utc(item.campaign[0].start_time).unix()"
-                :end-text="'Window Closed'"
-                :interval="1000"
-                @campaignStart="campaignStart(item)"
-              >
-                <template slot="countdown" slot-scope="scope">
-                  <span
-                    v-if="
-                      scope.props.hours == 0 &&
-                      scope.props.days == 0 &&
-                      $can('access_campaigns')
-                    "
-                    class="red--text pl-3"
-                  >
-                    <v-chip
-                      class="ma-2 ma"
-                      filter
-                      pill
-                      :disabled="pillDisabled(item)"
-                      color="light-blue lighten-1"
-                    >
-                      {{ scope.props.minutes }}:{{ scope.props.seconds }}
-                    </v-chip>
-                  </span>
-                  <span v-else class="red--text pl-3"
-                    >{{ scope.props.days }}:{{ scope.props.hours }}:{{
-                      scope.props.minutes
-                    }}:{{ scope.props.seconds }}</span
-                  >
-                </template>
-              </CountDowntimer>
-              <div
+            {{ item.campaign[0].start_time }}
+          </span>
+          <span
+            v-else-if="
+              item.campaign[0].status_id != 3 && item.campaign[0].status_id != 4
+            "
+            class="d-flex full-width align-content-center"
+          >
+            <span>
+              <span
+                dark
+                color="blue darken-4"
                 v-if="
-                  item.campaign[0].status_id > 1 && $can('access_campaigns')
+                  item.campaign[0].defenders_score >
+                    item.campaign[0].defenders_score_old &&
+                  item.campaign[0].defenders_score_old > 0
                 "
               >
-                <v-chip
-                  class="ma-2 ma"
-                  filter
-                  pill
-                  :disabled="pillDisabled(item)"
-                  :color="pillColor(item)"
-                >
-                  {{ item.campaign[0].status.name }}
-                </v-chip>
-              </div>
-              <div v-else-if="item.campaign[0].status_id > 1">
-                <span class="pl-5">{{ item.campaign[0].status.name }}</span>
-              </div>
+                <font-awesome-icon icon="fa-solid fa-circle-up" pull="left"
+              /></span>
+              <span
+                dark
+                color="blue darken-4"
+                v-if="
+                  item.campaign[0].defenders_score <
+                    item.campaign[0].defenders_score_old &&
+                  item.campaign[0].defenders_score_old > 0
+                "
+              >
+                <font-awesome-icon icon="fa-solid fa-circle-down" pull="left"
+              /></span>
+              <span
+                dark
+                color="grey darken-3"
+                v-if="
+                  item.campaign[0].defenders_score ==
+                    item.campaign[0].defenders_score_old ||
+                  item.campaign[0].defenders_score_old === null
+                "
+              >
+                <font-awesome-icon icon="fa-solid fa-circle-minus" pull="left"
+              /></span>
+            </span>
 
-              <div
-                class="d-flex full-width align-content-center"
-                v-if="item.campaign[0].status_id == 2"
+            <v-progress-linear
+              :color="barColor(item)"
+              :value="barScoure(item)"
+              height="20"
+              rounded
+              :active="barActive(item)"
+              :reverse="barReverse(item)"
+              :background-color="barBgcolor(item)"
+              background-opacity="0.2"
+            >
+              <strong>
+                {{ item.campaign[0].defenders_score * 100 }} /
+                {{ item.campaign[0].attackers_score * 100 }}
+              </strong>
+            </v-progress-linear>
+            <span>
+              <span
+                dark
+                color="red darken-4"
+                v-if="
+                  item.campaign[0].attackers_score >
+                    item.campaign[0].attackers_score_old &&
+                  item.campaign[0].attackers_score_old > 0
+                "
               >
-                <VueCountUptimer
-                  :start-time="moment.utc(item.campaign[0].start_time).unix()"
-                  :end-text="'Campaign Started'"
-                  :interval="1000"
+                <font-awesome-icon icon="fa-solid fa-circle-up" pull="right"
+              /></span>
+              <span
+                dark
+                color="red darken-4"
+                v-if="
+                  item.campaign[0].attackers_score <
+                    item.campaign[0].attackers_score_old &&
+                  item.campaign[0].attackers_score_old > 0
+                "
+              >
+                <font-awesome-icon icon="fa-solid fa-circle-down" pull="right"
+              /></span>
+              <span
+                dark
+                color="grey darken-3"
+                v-if="
+                  item.campaign[0].attackers_score ==
+                    item.campaign[0].attackers_score_old ||
+                  item.campaign[0].attackers_score_old == null
+                "
+              >
+                <font-awesome-icon icon="fa-solid fa-circle-minus" pull="right"
+              /></span>
+            </span>
+          </span>
+          <span
+            v-else-if="
+              item.campaign[0].status_id == 3 || item.campaign[0].status_id == 4
+            "
+          >
+            <p
+              v-if="item.campaign[0].attackers_score == 0"
+              class="text-md-center green--text"
+            >
+              {{ item.campaign[0].alliance.name }}
+              <span class="font-weight-bold"> WON </span> the
+              {{ itemType(item.campaign[0].event_type) }} timer.
+            </p>
+            <p v-else class="text-md-center red--text">
+              {{ item.campaign[0].alliance.name }}
+              <span class="font-weight-bold"> LOST </span> the
+              {{ itemType(item.campaign[0].event_type) }} timer.
+            </p>
+          </span>
+        </template>
+        <template v-slot:[`item.campaign[0].system.webway[0].jumps`]="{ item }">
+          <SoloCampaginWebWay
+            v-if="item.campaign[0].system.webway[0]"
+            :jumps="item.campaign[0].system.webway[0].jumps"
+            :web="item.campaign[0].system.webway[0].webway"
+          ></SoloCampaginWebWay>
+        </template>
+        <template v-slot:[`item.count`]="{ item }">
+          <div class="d-inline-flex align-center">
+            <CountDowntimer
+              v-if="
+                item.campaign[0].status_id == 1 ||
+                item.campaign[0].status_id == 5
+              "
+              :start-time="moment.utc(item.campaign[0].start_time).unix()"
+              :end-text="'Window Closed'"
+              :interval="1000"
+              @campaignStart="campaignStart(item)"
+            >
+              <template slot="countdown" slot-scope="scope">
+                <span
+                  v-if="
+                    scope.props.hours == 0 &&
+                    scope.props.days == 0 &&
+                    $can('access_campaigns')
+                  "
+                  class="red--text pl-3"
                 >
-                  <template slot="countup" slot-scope="scope">
-                    <span class="green--text pl-3"
-                      >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                        scope.props.seconds
-                      }}</span
-                    >
-                  </template>
-                </VueCountUptimer>
-              </div>
-              <SoloCampaignMap
-                :system_name="item.campaign[0].system.system_name"
-                :region_name="item.campaign[0].constellation.region.region_name"
+                  <v-chip
+                    class="ma-2 ma"
+                    filter
+                    pill
+                    :disabled="pillDisabled(item)"
+                    color="light-blue lighten-1"
+                  >
+                    {{ scope.props.minutes }}:{{ scope.props.seconds }}
+                  </v-chip>
+                </span>
+                <span v-else class="red--text pl-3"
+                  >{{ scope.props.days }}:{{ scope.props.hours }}:{{
+                    scope.props.minutes
+                  }}:{{ scope.props.seconds }}</span
+                >
+              </template>
+            </CountDowntimer>
+            <div
+              v-if="item.campaign[0].status_id == 2 && $can('access_campaigns')"
+            >
+              <v-chip
+                class="ma-2 ma"
+                filter
+                pill
+                :disabled="pillDisabled(item)"
+                :color="pillColor(item)"
               >
-              </SoloCampaignMap>
+                {{ item.campaign[0].status.name }}
+              </v-chip>
+            </div>
+            <div
+              v-else-if="
+                item.campaign[0].status_id > 1 && !$can('access_campaigns')
+              "
+            >
+              <span class="pl-5">{{ item.campaign[0].status.name }}</span>
+            </div>
+
+            <div
+              class="d-flex full-width align-content-center"
+              v-if="item.campaign[0].status_id == 2"
+            >
               <VueCountUptimer
-                v-if="item.campaign[0].structure"
-                :start-time="moment.utc(item.campaign[0].structure.age).unix()"
-                :end-text="'Window Closed'"
+                :start-time="moment.utc(item.campaign[0].start_time).unix()"
+                :end-text="'Campaign Started'"
                 :interval="1000"
-                :leadingZero="false"
               >
                 <template slot="countup" slot-scope="scope">
                   <span class="green--text pl-3"
-                    ><span v-if="scope.props.days != 0">
-                      {{ scope.props.days }} Days - </span
-                    >{{ scope.props.hours }} Hours</span
+                    >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                      scope.props.seconds
+                    }}</span
                   >
                 </template>
               </VueCountUptimer>
-              <NewPriorityButton v-if="$can('edit_hack_priority')" />
             </div>
-          </template>
-        </v-data-table>
-      </v-col>
-    </v-row>
-  </v-col>
+            <SoloCampaignMap
+              :system_name="item.campaign[0].system.system_name"
+              :region_name="item.campaign[0].constellation.region.region_name"
+            >
+            </SoloCampaignMap>
+            <VueCountUptimer
+              v-if="item.campaign[0].structure"
+              :start-time="moment.utc(item.campaign[0].structure.age).unix()"
+              :end-text="'Window Closed'"
+              :interval="1000"
+              :leadingZero="false"
+            >
+              <template slot="countup" slot-scope="scope">
+                <span class="green--text pl-3"
+                  ><span v-if="scope.props.days != 0">
+                    {{ scope.props.days }} Days - </span
+                  >{{ scope.props.hours }} Hours</span
+                >
+              </template>
+            </VueCountUptimer>
+            <!-- <NewCampaginPriorityButton v-if="$can('edit_hack_priority')" /> -->
+          </div>
+        </template>
+      </v-data-table>
+    </v-col>
+  </v-row>
 </template>
 <script>
 import Axios from "axios";
@@ -276,6 +318,7 @@ export default {
   props: {
     windowSize: Object,
     filteredItems: Array,
+    search: String,
   },
   data() {
     return {
@@ -452,3 +495,58 @@ export default {
   },
 };
 </script>
+<style>
+.style-2 {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.follow {
+  margin-top: 40px;
+}
+
+.follow a {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.rainbow-2 {
+  animation: colorRotate 0.5s linear 0s infinite;
+}
+
+.style-1 {
+  background-color: rgb(184, 22, 35);
+}
+
+@keyframes colorRotate {
+  from {
+    color: #6666ff;
+  }
+  10% {
+    color: #0099ff;
+  }
+  50% {
+    color: #00ff00;
+  }
+  75% {
+    color: #ff3399;
+  }
+  100% {
+    color: #6666ff;
+  }
+}
+</style>

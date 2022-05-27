@@ -182,11 +182,11 @@ Vue.component(
 );
 Vue.component(
     "SystemMessage",
-    require("./components/campaignALL/SystemMessage.vue").default
+    require("./components/campaignAll/SystemMessage.vue").default
 );
 Vue.component(
     "SystemAttackMessage",
-    require("./components/campaignALL/SystemAttackMessage.vue").default
+    require("./components/campaignAll/SystemAttackMessage.vue").default
 );
 Vue.component("Info", require("./components/station/Info.vue").default);
 Vue.component(
@@ -547,6 +547,11 @@ Vue.component(
     "NewCustomCampaignDeleteButton",
     require("./components/newcampaign/NewCustomCampaignDeleteButton.vue")
         .default
+);
+
+Vue.component(
+    "NewCampaginPriorityButton",
+    require("./components/newcampaign/NewCampaginPriorityButton.vue").default
 );
 
 Vue.prototype.moment = moment;

@@ -792,7 +792,12 @@ export default {
             align: "center",
           },
           { text: "Countdown/Age", value: "count", sortable: false },
-          { text: "", value: "actions", align: "end", sortable: false },
+          {
+            text: "",
+            value: "actions",
+            align: "end",
+            sortable: false,
+          },
         ];
       } else {
         var Headers = [
