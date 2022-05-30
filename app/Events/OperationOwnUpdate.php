@@ -32,6 +32,6 @@ class OperationOwnUpdate implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('operationsown.' . $this->flag['id']);
+        return new PrivateChannel('operationsown.' . $this->flag['id'] . "-" . $this->flag['op_id']);
     }
 }

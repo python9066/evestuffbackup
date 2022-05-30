@@ -91,6 +91,15 @@ class NewUserNodeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $node = NewUserNode::where('id', $id)->first();
+        $systemID = $node->node->system_id;
+        $opUser = $node->opUser;
+        $opUser->new_user_node_id = null;
+        $opUser->user_status_id = 3;
+        $opUser->save();
+        Broadcasthelper::broadcastuserOwnSolo($opUser->id, $opUser->user_id, 3, $opUser->operation_id);
+        Broadcasthelper::broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
+        $node->delete();
+        Broadcasthelper::broadcastsystemSolo($systemID, 7);
     }
 }

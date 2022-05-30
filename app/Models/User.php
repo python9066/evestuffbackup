@@ -93,6 +93,11 @@ class User extends Authenticatable
         return $this->belongsToMany(KeyType::class, 'user_key_joins');
     }
 
+    public function opUsers()
+    {
+        return $this->hasMany(OperationUser::class);
+    }
+
 
 
 

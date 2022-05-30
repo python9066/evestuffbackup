@@ -13,6 +13,7 @@ use App\Models\NewOperation;
 use App\Models\NewSystemNode;
 use App\Models\NewUserNode;
 use App\Models\OperationUser;
+use App\Models\OperationUserList;
 use App\Models\Region;
 use App\Models\Station;
 use App\Models\System;
@@ -34,6 +35,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
 use utils\Broadcasthelper\Broadcasthelper;
 use Illuminate\Support\Str;
+use Pusher\Pusher;
 
 class testController extends Controller
 {
@@ -131,6 +133,74 @@ class testController extends Controller
             }
         } else {
             return null;
+        }
+    }
+
+
+    public function testPusher()
+    {
+        $user = Auth::user();
+        $flag = null;
+        if ($user->can('super')) {
+            OperationUserList::whereNotNull('id')->update(['delete' => 1]);
+            $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+            $pusher = new Pusher(
+                env('PUSHER_APP_KEY', ($variables && array_key_exists('PUSHER_APP_KEY', $variables)) ? $variables['PUSHER_APP_KEY'] : 'null'),
+                env('PUSHER_APP_SECRET', ($variables && array_key_exists('PUSHER_APP_SECRET', $variables)) ? $variables['PUSHER_APP_SECRET'] : 'null'),
+                env('PUSHER_APP_ID', ($variables && array_key_exists('PUSHER_APP_ID', $variables)) ? $variables['PUSHER_APP_ID'] : 'null'),
+                array(
+                    'cluster' => env('PUSHER_APP_CLUSTER', ($variables && array_key_exists('PUSHER_APP_CLUSTER', $variables)) ? $variables['PUSHER_APP_CLUSTER'] : 'null'),
+                    'encrypted' => true,
+                    'useTLS' => true,
+                    'host' => 'https://socket.evestuff.online',
+                    'port' => 443,
+                    'scheme' => 'https'
+                )
+            );
+            $response = $pusher->get('/channels');
+            $response = json_decode(json_encode($response), true);
+            $channels = $response['channels'];
+            $channels = array_keys($channels);
+            $data = collect([]);
+            foreach ($channels as $channel) {
+                $part = explode(".", $channel);
+                if ($part[0] === "private-operationsown") {
+                    $keys = collect(['userID', 'opID']);
+                    $info = explode("-", $part[1]);
+                    $data1 = collect($info);
+                    $data1 = $keys->combine($data1);
+                    $data->push($data1);
+                }
+            }
+            $groups = $data->groupBy('opID');
+            // return $groups;
+            foreach ($groups as $group) {
+                $opID = (int)$group[0]['opID'];
+                foreach ($group as $op) {
+                    $userID = (int)$op['userID'];
+                    $check = OperationUserList::where('operation_id', $opID)->where('user_id', $userID)->first();
+                    if (!$check) {
+                        $newOp = new OperationUserList;
+                        $newOp->operation_id = $opID;
+                        $newOp->user_id = $userID;
+                        $newOp->delete = 2;
+                        $newOp->save();
+                    } else {
+                        $check->delete = 0;
+                        $check->save();
+                    }
+                }
+            }
+
+            $deleteCheck = OperationUserList::where('delete', 1)->groupBy('operation_id')->pluck('operation_id');
+            $addCheck = OperationUserList::where('delete', 2)->groupBy('operation_id')->pluck('operation_id');
+            $combined = $deleteCheck->merge($addCheck);
+            $combined = $combined->unique();
+            OperationUserList::where('delete', 1)->delete();
+            OperationUserList::where('delete', 2)->update(['delete' => 0]);
+            foreach ($combined as $op) {
+                Broadcasthelper::broadcastOperationUserList($op, 1);
+            }
         }
     }
 

@@ -2,7 +2,7 @@
   <v-row no-gutters>
     <v-col>
       <v-expansion-panels
-        v-model="showCharTable"
+        v-model="hidePannel"
         readonly
         popout
         style="cursor: context-menu"
@@ -19,6 +19,17 @@
                   small
                 >
                   Char Table
+                </v-btn></v-col
+              >
+              <v-col cols="2" v-if="$can('view_campaign_members')">
+                <v-btn
+                  color="primary"
+                  @click="btnShowUserTable"
+                  :outlined="userTableOutlined"
+                  rounded
+                  small
+                >
+                  User List
                 </v-btn></v-col
               >
               <v-col cols="2"
@@ -48,7 +59,16 @@
             </v-row>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <OperationUserTable :operationID="operationID" />
+            <OperationUserTable
+              v-if="charTable"
+              :operationID="operationID"
+              :windowSize="windowSize"
+            />
+            <OperationUserListTable
+              v-if="usertable"
+              :operationID="operationID"
+              :windowSize="windowSize"
+            />
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -67,10 +87,13 @@ export default {
   title() {},
   props: {
     operationID: Number,
+    windowSize: Object,
   },
   data() {
     return {
-      showCharTable: null,
+      hidePannel: 1,
+      charTable: 0,
+      usertable: 0,
     };
   },
 
@@ -83,10 +106,32 @@ export default {
   async mounted() {},
   methods: {
     btnShowCharTable() {
-      if (this.showCharTable == null) {
-        this.showCharTable = 0;
+      if (this.hidePannel == 1) {
+        this.hidePannel = 0;
+        this.charTable = 1;
       } else {
-        this.showCharTable = null;
+        if (this.usertable == 1) {
+          this.usertable = 0;
+          this.charTable = 1;
+        } else {
+          this.hidePannel = 1;
+          this.charTable = 0;
+        }
+      }
+    },
+
+    btnShowUserTable() {
+      if (this.hidePannel == 1) {
+        this.hidePannel = 0;
+        this.usertable = 1;
+      } else {
+        if (this.charTable == 1) {
+          this.charTable = 0;
+          this.usertable = 1;
+        } else {
+          this.hidePannel = 1;
+          this.usertable = 0;
+        }
       }
     },
 
@@ -105,10 +150,18 @@ export default {
     ...mapState([]),
 
     charTableOutlined() {
-      if (this.showCharTable == null) {
-        return true;
-      } else {
+      if (this.hidePannel == 0 && this.charTable == 1) {
         return false;
+      } else {
+        return true;
+      }
+    },
+
+    userTableOutlined() {
+      if (this.hidePannel == 0 && this.usertable == 1) {
+        return false;
+      } else {
+        return true;
       }
     },
   },

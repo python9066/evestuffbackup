@@ -296,6 +296,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/newcampaignusersremove/{id}/{opID}/{userid}', 'OperationUserController@updateremove');
     Route::put('/newcampaignusersadd/{id}/{opID}/{userid}', 'OperationUserController@updateadd');
     Route::post('/newcampaignusers/{opID}/{userid}', 'OperationUserController@store');
+    Route::put('/newcampaignusers/{userid}/{opID}', 'OperationUserController@edit');
     Route::delete('/newcampaignusers/{id}/{opID}/{userid}', 'OperationUserController@destroy');
     Route::post('/addnode', 'NewSystemNodeController@store');
     Route::delete('/deletenode/{id}', 'NewSystemNodeController@destroy');
@@ -311,4 +312,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/operationlist', 'NewOperationsController@getCustomOperationList');
     Route::post('/editoperation', 'NewOperationsController@edit');
     Route::delete('/newoperation/{id}', 'NewOperationsController@destroy');
+    Route::delete('/newdeleteextanode/{id}', 'NewUserNodeController@destroy');
+    Route::post('/addcharadmin', 'NewSystemNodeController@addUserToNodeAdmin');
 });

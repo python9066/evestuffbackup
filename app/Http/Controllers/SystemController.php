@@ -47,7 +47,7 @@ class SystemController extends Controller
         $s->update(['tidi' => $request->tidi]);
 
         $systemNodes = NewSystemNode::where('system_id', $systemID)
-            ->whereIn('node_status', [7, 8, 9])
+            ->whereIn('node_status', [7, 8, 9])->whereNotNull('base_time')
             ->get();
 
         foreach ($systemNodes as $systemNode) {
@@ -68,7 +68,7 @@ class SystemController extends Controller
         $systemNodes = NewSystemNode::where('system_id', $systemID)->get();
         foreach ($systemNodes as $systemNode) {
             $userNodes = NewUserNode::where('node_id', $systemNode->id)
-                ->where('node_status_id', 3)->get();
+                ->where('node_status_id', 3)->whereNotNull('base_time')->get();
 
             foreach ($userNodes as $userNode) {
                 $time_passed = strtotime(now()) - strtotime($userNode->input_time);

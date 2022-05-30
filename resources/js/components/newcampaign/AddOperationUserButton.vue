@@ -1,0 +1,163 @@
+<template>
+  <v-menu
+    :close-on-content-click="false"
+    :value="addShown"
+    transition="fab-transition"
+    origin="100% -30%"
+  >
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn
+        text
+        v-bind="attrs"
+        v-on="on"
+        @click="addShown = true"
+        color="success"
+        ><font-awesome-icon icon="fa-solid fa-plus" pull="left" /> Char</v-btn
+      >
+    </template>
+    <v-row no-gutters>
+      <div>
+        <v-card class="pa-2" tile width="100%">
+          <v-form @submit.prevent="newCharForm()">
+            <v-text-field
+              v-model="newCharName"
+              label="Char Name"
+              required
+              autofocus
+              :rules="newNameRules"
+            ></v-text-field>
+            <v-select
+              v-model="newRole"
+              @change="roleForm($event)"
+              :rules="newRoleRules"
+              :items="dropdown_roles"
+              label="Role"
+              required
+            ></v-select>
+            <v-text-field
+              v-model="newShip"
+              :rules="newShipRules"
+              v-if="this.role == 1"
+              label="Ship"
+              required
+            ></v-text-field>
+            <v-radio-group
+              v-model="newLink"
+              :rules="newLinkRules"
+              v-if="this.role == 1"
+              row
+              label="Entosis Link"
+              required
+            >
+              <v-radio label="Tech 1" value="1"></v-radio>
+              <v-radio label="Tech 2" value="2"></v-radio>
+            </v-radio-group>
+
+            <v-btn color="success" class="mr-4" type="submit">submit</v-btn>
+            <v-btn color="warning" class="mr-4" @click="newCharFormClose()"
+              >Close</v-btn
+            >
+            <!-- <v-btn @click="clear">clear</v-btn> -->
+          </v-form>
+        </v-card>
+      </div>
+    </v-row>
+  </v-menu>
+</template>
+<script>
+import Axios from "axios";
+import { EventBus } from "../../app";
+// import ApiL from "../service/apil";
+import { mapGetters, mapState } from "vuex";
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+export default {
+  title() {},
+  props: { operationID: Number },
+  data() {
+    return {
+      addShown: false,
+      dropdown_roles: [
+        { text: "Hacker", value: 1 },
+        { text: "Support", value: 5 },
+        { text: "Scout", value: 2 },
+        { text: "FC", value: 3 },
+        { text: "Command", value: 4 },
+      ],
+      newCharName: null,
+      newNameRules: [(v) => !!v || "Name is required"],
+      newRole: null,
+      newRoleRules: [(v) => !!v || "You need to pick a role"],
+      newShip: null,
+      newShipRules: [(v) => !!v || "Ship is required"],
+      newLink: 0,
+      newLinkRules: [(v) => !!v || "T1 or T2?"],
+      role: 0,
+      editrole: 0,
+      oldChar: [],
+    };
+  },
+
+  async created() {},
+
+  beforeMonunt() {},
+
+  async beforeCreate() {},
+
+  async mounted() {},
+  methods: {
+    newCharFormClose() {
+      this.addShown = false;
+      this.newCharName = null;
+      this.newRole = null;
+      this.newShip = null;
+      this.newLink = null;
+    },
+
+    roleEditForm(a) {
+      this.editrole = a;
+    },
+
+    roleForm(a) {
+      this.role = a;
+    },
+    async newCharForm() {
+      var request = {
+        user_id: this.$store.state.user_id,
+        operation_id: this.operationID,
+        name: this.newCharName,
+        entosis: this.newLink,
+        ship: this.newShip,
+        role_id: this.newRole,
+        user_status_id: 1,
+      };
+
+      await axios({
+        method: "POST",
+        url:
+          "/api/newcampaignusers/" +
+          this.operationID +
+          "/" +
+          this.$store.state.user_id,
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+
+      this.role = null;
+      this.newCharName = null;
+      this.newLink = null;
+      this.newShip = null;
+      this.newRole = null;
+      this.addShown = false;
+    },
+  },
+
+  computed: {},
+  beforeDestroy() {},
+};
+</script>

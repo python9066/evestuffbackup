@@ -7,6 +7,7 @@ use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
 use App\Models\NewOperation;
 use App\Models\OperationUser;
+use App\Models\OperationUserList;
 use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -124,6 +125,7 @@ class NewOperationsController extends Controller
 
     public function getInfo($id)
     {
+        $user = Auth::user();
         $data = NewOperation::where('link', $id)
             ->with([
                 'campaign',
@@ -140,15 +142,22 @@ class NewOperationsController extends Controller
         // $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->where('status_id', [2, 5])->pluck('20000646');
         $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->pluck('constellation_id');
         $contellationIDs =  $contellationIDs->unique();
+        $userIDs = OperationUserList::where('operation_id', $operationsID)->pluck('user_id');
         $systems = NewCampaignhelper::systemsAll($contellationIDs);
         $opUsers = NewCampaignhelper::opUserAll($operationsID);
         $ownChars = NewCampaignhelper::ownUserAll(Auth::id());
+        if ($user->can('view_campaign_members')) {
+            $userList = NewCampaignhelper::userListAll($userIDs, $operationsID);
+        } else {
+            $userList = null;
+        }
 
         return [
             'data' => $data,
             'systems' => $systems,
             'opUsers' => $opUsers,
-            'ownChars' => $ownChars
+            'ownChars' => $ownChars,
+            'userList' => $userList,
         ];
     }
 

@@ -31,8 +31,11 @@
                 <v-col cols="auto">
                   <AddPilot :node="item" :operationID="operationID" />
                 </v-col>
-                <v-col cols="2">
+                <v-col cols="auto">
                   <NewNodeExtraChar :node="item" :operationID="operationID" />
+                </v-col>
+                <v-col cols="auto">
+                  <AddPilotAdmin :node="item" :operationID="operationID" />
                 </v-col>
               </v-row>
             </template>
@@ -50,7 +53,13 @@
             </template>
 
             <template v-slot:[`item.created_at`]="{ item }">
-              <NewSystemTableTimer :node="item" :operationID="operationID" />
+              <NewSystemTableTimer
+                :node="item"
+                :operationID="operationID"
+                :extra="1"
+                :tidiProp="item.system.tidi"
+                :systemIDProp="item.system_id"
+              />
             </template>
 
             <template v-slot:expanded-item="{ headers, item }">
@@ -147,9 +156,9 @@ export default {
 
     itemRowBackground: function (item) {
       if (item.node_status.id == 7) {
-        return "style-1";
+        return "style-1-table";
       } else if (item.node_status.id == 8) {
-        return "style-2";
+        return "style-2-table";
       }
       //   else if (item.under_attack == 1) {
       //     return "style-4";
@@ -278,16 +287,33 @@ export default {
 </script>
 
 <style>
-.style-4 {
+.style-4-table {
   background-color: rgba(255, 153, 0, 0.199);
 }
-.style-3 {
+.style-3-table {
   background-color: rgb(255, 172, 77);
 }
-.style-2 {
-  background-color: rgb(30, 30, 30, 1);
+.style-2-table {
+  background: linear-gradient(-45deg, #00768b, #00d9ff, #5fccff, #00a2ff);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
 }
-.style-1 {
-  background-color: rgb(184, 22, 35);
+
+.style-1-table {
+  background: linear-gradient(-45deg, #8b0000, #ff0000, #ff5f5f, #ff0000);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 </style>

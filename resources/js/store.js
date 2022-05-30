@@ -98,6 +98,7 @@ export default new Vuex.Store({
         newCampaigns: [],
         opUsers: [],
         ownChars: {},
+        operationUserList: [],
         newCampaignSystems: [],
         newCampaignsList: [],
         newOperationList: [],
@@ -141,6 +142,10 @@ export default new Vuex.Store({
             }
         },
 
+        UPDATE_OPERATION_USER_LIST(state, data) {
+            state.operationUserList = data;
+        },
+
         UPDATE_OP_CHAR(state, data) {
             const item = state.opUsers.find((item) => item.id === data.id);
             const count = state.opUsers.filter(
@@ -167,6 +172,7 @@ export default new Vuex.Store({
             state.opUsers = data.opUsers;
             state.ownChars = data.ownChars;
             state.newCampaigns = data.data.campaign;
+            state.operationUserList = data.userList;
         },
 
         UPDATE_CAMPAIGN_SYSTEMS(state, data) {
@@ -1716,6 +1722,10 @@ export default new Vuex.Store({
 
         updateAmmoRequest({ commit }, data) {
             commit("UPDATE_AMMO_REQUEST", data);
+        },
+
+        updateOperationUserList({ commit }, data) {
+            commit("UPDATE_OPERATION_USER_LIST", data);
         },
 
         updateNodeJoin({ commit }, data) {

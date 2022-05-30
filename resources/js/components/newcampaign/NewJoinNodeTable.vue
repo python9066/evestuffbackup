@@ -118,8 +118,8 @@ export default {
   methods: {
     async deleteNode(item) {
       await axios({
-        method: "PUT", //you can set what request you want to be
-        url: "/api/deleteextranode/" + item.id + "/" + item.campaign_id,
+        method: "delete", //you can set what request you want to be
+        url: "/api/newdeleteextanode/" + item.id,
         withCredentials: true,
         headers: {
           Accept: "application/json",

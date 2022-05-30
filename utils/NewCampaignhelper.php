@@ -11,6 +11,7 @@ use App\Models\NewOperation;
 use App\Models\NewSystemNode;
 use App\Models\NewUserNode;
 use App\Models\OperationUser;
+use App\Models\OperationUserList;
 use App\Models\System;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -88,9 +89,9 @@ class NewCampaignhelper
                         $score_changed = true;
                     }
                 }
-                $systemN = System::where('id',$campaign['solar_system_id'])->first();
+                $systemN = System::where('id', $campaign['solar_system_id'])->first();
                 $systemNamee = $systemN->system_name;
-                $cName =  $systemNamee . " - ". $event_type_name;
+                $cName =  $systemNamee . " - " . $event_type_name;
                 $time = $campaign['start_time'];
                 $start_time = Helper::fixtime($time);
                 $data = array();
@@ -347,5 +348,13 @@ class NewCampaignhelper
         return NewOperation::where('id', $opID)
             ->with(['campaign.system', 'campaign.alliance'])
             ->first();
+    }
+
+    public static function userListAll($userIDs, $opID)
+    {
+        return User::whereIn('id', $userIDs)
+            ->with(['opUsers' => function ($t) use ($opID) {
+                $t->where('operation_id', $opID);
+            }, "opUsers.userrole"])->select('id', 'name')->get();
     }
 }

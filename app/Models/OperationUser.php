@@ -44,6 +44,11 @@ class OperationUser extends Model
         return $this->belongsTo(NewUserNode::class, 'new_user_node_id', 'id');
     }
 
+    public function operation()
+    {
+        return $this->belongsTo(NewOperation::class, 'operation_id', 'id');
+    }
+
     protected $casts = [
         'id' => 'integer',
         'user_id' => 'integer',

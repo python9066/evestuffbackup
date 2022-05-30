@@ -554,6 +554,26 @@ Vue.component(
     require("./components/newcampaign/NewCampaginPriorityButton.vue").default
 );
 
+Vue.component(
+    "AddPilotAdmin",
+    require("./components/newcampaign/AddPilotAdmin.vue").default
+);
+
+Vue.component(
+    "OperationUserListTable",
+    require("./components/newcampaign/OperationUserListTable.vue").default
+);
+
+Vue.component(
+    "AddOperationUserButton",
+    require("./components/newcampaign/AddOperationUserButton.vue").default
+);
+
+Vue.component(
+    "NewUserEdit",
+    require("./components/newcampaign/NewUserEdit.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(VueEllipseProgress, "Vep");

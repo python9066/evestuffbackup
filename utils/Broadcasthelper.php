@@ -3,14 +3,29 @@
 namespace utils\Broadcasthelper;
 
 use App\Events\CustomOperationPageUpdate;
+use App\Events\OperationAdminUpdate;
 use App\Events\OperationOwnUpdate;
 use App\Events\OperationUpdate;
 use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
+use App\Models\OperationUser;
+use App\Models\OperationUserList;
 use utils\NewCampaignhelper\NewCampaignhelper;
 
 class Broadcasthelper
 {
+
+    /**
+
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     * @param int $flagNumber
+     * 4 = updates system info
+     * 5 = remove char from ops table
+     * 6 = update op char table
+     * 7 = update campaign system
+
+     */
 
     public static function broadcastsystemSolo($systemID, $flagNumber)
     {
@@ -71,16 +86,42 @@ class Broadcasthelper
      * Example of documenting multiple possible datatypes for a given parameter
 
      * @param int $flagNumber
+     * 1 = update operation user list,
+
+     */
+
+
+
+    public static function broadcastOperationUserList($opID, $flagNumber)
+    {
+        $userIDs = OperationUserList::where('operation_id', $opID)->pluck('user_id');
+        $message = NewCampaignhelper::userListAll($userIDs, $opID);
+        $flag = collect([
+            'flag' => $flagNumber,
+            'op_id' => $opID,
+            'message' => $message,
+            'id' => $opID
+        ]);
+
+        broadcast(new OperationAdminUpdate($flag));
+    }
+
+    /**
+
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     * @param int $flagNumber
      * 3 = Add/Update Own Char info -
      * 5 = RemoveChar -
 
      */
 
-    public static function broadcastuserOwnSolo($opUserID, $userID, $flagNumber)
+    public static function broadcastuserOwnSolo($opUserID, $userID, $flagNumber, $opID)
     {
         $message = NewCampaignhelper::ownUsersolo($opUserID);
         $flag = collect([
             'flag' => $flagNumber,
+            'op_id' => $opID,
             'userid' => $opUserID,
             'id' => $userID,
             'message' => $message

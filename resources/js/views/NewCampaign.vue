@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-resize="onResize">
     <v-row no-gutters justify="center" class="pb-5">
       <v-col cols="10">
         <CampaignTitleBar
@@ -12,7 +12,10 @@
     </v-row>
     <v-row no-gutters justify="center" class="pb-5">
       <v-col cols="10">
-        <CampaignActiveBar :operationID="operationID"></CampaignActiveBar>
+        <CampaignActiveBar
+          :windowSize="windowSize"
+          :operationID="operationID"
+        ></CampaignActiveBar>
       </v-col>
     </v-row>
     <v-row no-gutters justify="space-around">
@@ -44,7 +47,12 @@ function sleep(ms) {
 export default {
   title() {},
   data() {
-    return {};
+    return {
+      windowSize: {
+        x: 0,
+        y: 0,
+      },
+    };
   },
 
   async created() {
@@ -85,43 +93,78 @@ export default {
       }
     );
 
-    Echo.private("operationsown." + this.$store.state.user_id).listen(
-      "OperationOwnUpdate",
-      (e) => {
-        if (e.flag.flag == 1) {
-        }
-
-        if (e.flag.flag == 2) {
-        }
-        // * 3 add/update char to char table
-        if (e.flag.flag == 3) {
-          this.$store.dispatch("updateNewOwnChar", e.flag.message);
-        }
-        if (e.flag.flag == 4) {
-        }
-        // * 5 is to remove op char from own list
-        if (e.flag.flag == 5) {
-          this.$store.dispatch("removeCharfromOwnList", e.flag.userid);
-        }
-
-        if (e.flag.flag == 6) {
-        }
-
-        if (e.flag.flag == 7) {
-        }
-
-        if (e.flag.flag == 8) {
-        }
+    Echo.private(
+      "operationsown." + this.$store.state.user_id + "-" + this.operationID
+    ).listen("OperationOwnUpdate", (e) => {
+      if (e.flag.flag == 1) {
       }
-    );
+
+      if (e.flag.flag == 2) {
+      }
+      // * 3 add/update char to char table
+      if (e.flag.flag == 3) {
+        this.$store.dispatch("updateNewOwnChar", e.flag.message);
+      }
+      if (e.flag.flag == 4) {
+      }
+      // * 5 is to remove op char from own list
+      if (e.flag.flag == 5) {
+        this.$store.dispatch("removeCharfromOwnList", e.flag.userid);
+      }
+
+      if (e.flag.flag == 6) {
+      }
+
+      if (e.flag.flag == 7) {
+      }
+
+      if (e.flag.flag == 8) {
+      }
+    });
+
+    if (this.$can("view_campaign_members")) {
+      Echo.private("operationsadmin." + this.operationID).listen(
+        "OperationOwnUpdate",
+        (e) => {
+          // update watching user list
+          if (e.flag.flag == 1) {
+            this.$store.dispatch("updateOperationUserList", e.flag.message);
+          }
+
+          if (e.flag.flag == 2) {
+          }
+          if (e.flag.flag == 3) {
+          }
+          if (e.flag.flag == 4) {
+          }
+          if (e.flag.flag == 5) {
+          }
+
+          if (e.flag.flag == 6) {
+          }
+
+          if (e.flag.flag == 7) {
+          }
+
+          if (e.flag.flag == 8) {
+          }
+        }
+      );
+    }
   },
 
   beforeMonunt() {},
 
   async beforeCreate() {},
 
-  async mounted() {},
-  methods: {},
+  async mounted() {
+    this.onResize();
+  },
+  methods: {
+    onResize() {
+      this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+    },
+  },
 
   computed: {
     ...mapState(["newOperationInfo", "newCampaignSystems", "newCampaigns"]),
@@ -286,7 +329,9 @@ export default {
   },
   beforeDestroy() {
     Echo.leave("operations." + this.operationID);
-    Echo.leave("operationsown." + this.$store.state.user_id);
+    Echo.leave(
+      "operationsown." + this.$store.state.user_id + "-" + this.operationID
+    );
   },
 };
 </script>

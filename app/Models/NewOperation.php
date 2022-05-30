@@ -30,4 +30,9 @@ class NewOperation extends Model
     {
         return $this->belongsTo(Alliance::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'operation_user_lists', 'operation_id', 'user_id');
+    }
 }
