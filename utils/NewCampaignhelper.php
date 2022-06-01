@@ -350,6 +350,13 @@ class NewCampaignhelper
             ->first();
     }
 
+    public static function openAddUserOverlay($opID)
+    {
+        return OperationUserList::where('operation_id', $opID)
+            ->doesntHave('opUsers')
+            ->get();
+    }
+
     public static function userListAll($userIDs, $opID)
     {
         return User::whereIn('id', $userIDs)

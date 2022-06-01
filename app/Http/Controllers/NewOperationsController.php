@@ -74,6 +74,11 @@ class NewOperationsController extends Controller
         ];
     }
 
+    public function sendAddCharOverlay($opID, $type)
+    {
+        Broadcasthelper::broadcastAllCharOverlay(1, $opID, $type);
+    }
+
     public function makeNewOperation(Request $request)
     {
         $user = Auth::user();
@@ -222,7 +227,7 @@ class NewOperationsController extends Controller
                 'system_id' => null
             ]);
 
-            Broadcasthelper::broadcastuserOwnSolo($opuser->id, $opuser->user_id, 3);
+            Broadcasthelper::broadcastuserOwnSolo($opuser->id, $opuser->user_id, 3, $id);
         }
 
         Broadcasthelper::broadcastCustomOperationDeleteSolo($id, 3);

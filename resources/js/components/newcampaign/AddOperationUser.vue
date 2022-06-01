@@ -102,13 +102,20 @@ export default {
       ],
       statusflag: 0,
       toggle_exclusive: 0,
-      overlay: false,
+      //   overlay: false,
     };
   },
+  async created() {},
+
+  async mounted() {},
 
   methods: {
     close() {
       this.overlay = false;
+    },
+
+    open() {
+      this.overlay = true;
     },
 
     pillColor(item) {
@@ -206,9 +213,18 @@ export default {
   },
 
   computed: {
-    ...mapState(["campaignusers", "ownChars"]),
+    ...mapState(["campaignusers", "ownChars", "setOpenOperationAddChar"]),
     filteredItems() {
       return this.ownChars;
+    },
+
+    overlay: {
+      get() {
+        return this.setOpenOperationAddChar;
+      },
+      set(newValue) {
+        return this.$store.dispatch("setOpenOperationAddChar", newValue);
+      },
     },
   },
 };

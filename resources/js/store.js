@@ -102,6 +102,8 @@ export default new Vuex.Store({
         newCampaignSystems: [],
         newCampaignsList: [],
         newOperationList: [],
+        newOperationMessageOverlay: 0,
+        setOpenOperationAddChar: false,
     },
     mutations: {
         DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
@@ -164,6 +166,14 @@ export default new Vuex.Store({
 
         SET_STATION_LIST(state, stations) {
             state.stationList = stations;
+        },
+
+        SET_NEW_OPERATION_MESSAGE_OVERLAY(state, num) {
+            state.newOperationMessageOverlay = num;
+        },
+
+        NEW_OPEN_OPERATION_ADD_CHAR(state, num) {
+            state.setOpenOperationAddChar = num;
         },
 
         SET_OPERATION_PAGE(state, data) {
@@ -1698,6 +1708,14 @@ export default new Vuex.Store({
 
         updateCampaignSystemByUserID({ commit }, payload) {
             commit("UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID", payload);
+        },
+
+        updateOperationOverLay({ commit }, num) {
+            commit("SET_NEW_OPERATION_MESSAGE_OVERLAY", num);
+        },
+
+        setOpenOperationAddChar({ commit }, num) {
+            commit("NEW_OPEN_OPERATION_ADD_CHAR", num);
         },
 
         updateCampaignSolaSystem({ commit }, data) {

@@ -9,4 +9,9 @@ class OperationUserList extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function opUsers()
+    {
+        return $this->belongsTo(OperationUser::class, 'operation_id', 'id');
+    }
 }

@@ -32,6 +32,47 @@
                   User List
                 </v-btn></v-col
               >
+              <v-tooltip bottom color="#121212">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    v-if="$can('access_campaigns')"
+                    icon
+                    dark
+                    class="mr-4"
+                    small
+                    v-bind="attrs"
+                    color="blue"
+                    v-on="on"
+                    @click="sendAddCharMessage()"
+                  >
+                    <font-awesome-icon icon="fa-solid fa-bullhorn" size="xl" />
+                  </v-btn>
+                </template>
+                <span>
+                  Send a message to all Users without a Char to add chars
+                </span>
+              </v-tooltip>
+              <v-tooltip bottom color="#121212">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    v-if="$can('access_campaigns')"
+                    icon
+                    dark
+                    class="mr-4"
+                    small
+                    v-bind="attrs"
+                    color="red"
+                    v-on="on"
+                    @click="sendAddCharMessagePlus()"
+                  >
+                    <font-awesome-icon icon="fa-solid fa-bullhorn" size="xl" />
+                  </v-btn>
+                </template>
+                <span>
+                  Send a message to all Users without a Char added to add chars
+                  and head to systems
+                </span>
+              </v-tooltip>
               <v-col cols="2"
                 ><AddOperationUser :operationID="operationID"
               /></v-col>
@@ -118,6 +159,30 @@ export default {
           this.charTable = 0;
         }
       }
+    },
+
+    async sendAddCharMessage() {
+      await axios({
+        method: "post", //you can set what request you want to be
+        url: "/api/sendadduseroverlay/" + this.operationID + "/" + 1,
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+    },
+
+    async sendAddCharMessagePlus() {
+      await axios({
+        method: "post", //you can set what request you want to be
+        url: "/api/sendadduseroverlay/" + this.operationID + "/" + 2,
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
     },
 
     btnShowUserTable() {

@@ -314,4 +314,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/newoperation/{id}', 'NewOperationsController@destroy');
     Route::delete('/newdeleteextanode/{id}', 'NewUserNodeController@destroy');
     Route::post('/addcharadmin', 'NewSystemNodeController@addUserToNodeAdmin');
+    Route::post('/sendadduseroverlay/{opID}/{type}', 'NewOperationsController@sendAddCharOverlay');
 });

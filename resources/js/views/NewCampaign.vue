@@ -32,6 +32,66 @@
         ></CampaignSystemCard>
       </v-col>
     </v-row>
+    <v-overlay :value="showOverlay == 1">
+      <v-card :width="cardWidth" rounded="xl">
+        <v-card-title> MAKE SURE TO ADD A CHARACTER </v-card-title>
+        <v-card-text>
+          Remeber to add any chars you have in the campaign by pressing the
+          green "CHARACTER" button</v-card-text
+        >
+        <v-card-actions>
+          <v-btn class="white--text" color="teal" @click="closeOverlay()">
+            Close
+          </v-btn>
+          <v-btn
+            class="white--text"
+            color="green"
+            @click="closeOverlayAddChar()"
+          >
+            Characters
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-overlay>
+    <v-overlay :value="showOverlay == 2">
+      <v-card :width="cardWidth" rounded="xl">
+        <v-card-title class="warning"> WHAT TO DO </v-card-title>
+        <v-card-text>
+          <p>
+            Thanks for participating in this Entosis campaign. In order to
+            participate, we need you to add the characters you are using to
+            actively hack to this tool - don't worry - we don't require an ESI
+            link.
+          </p>
+          <p>
+            To do this, press the "CHARACTERS" button and pick **Hacker** as the
+            role for each alt.
+          </p>
+          <p>
+            Once you have added all of your characters, await instructions from
+            your FC. You will be assigned a specific system, which is done
+            in-game via Squads.
+          </p>
+          <p>
+            Check the name of your squad for the assigned system. Once
+            instructed, move to this system and prepare to hack. If in doubt,
+            ask for help.
+          </p></v-card-text
+        >
+        <v-card-actions>
+          <v-btn class="white--text" color="teal" @click="closeOverlay()">
+            Close
+          </v-btn>
+          <v-btn
+            class="white--text"
+            color="green"
+            @click="closeOverlayAddChar()"
+          >
+            Characters
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-overlay>
   </div>
 </template>
 <script>
@@ -97,6 +157,7 @@ export default {
       "operationsown." + this.$store.state.user_id + "-" + this.operationID
     ).listen("OperationOwnUpdate", (e) => {
       if (e.flag.flag == 1) {
+        this.$store.dispatch("updateOperationOverLay", parseInt(e.flag.type));
       }
 
       if (e.flag.flag == 2) {
@@ -164,14 +225,32 @@ export default {
     onResize() {
       this.windowSize = { x: window.innerWidth, y: window.innerHeight };
     },
+
+    closeOverlay() {
+      this.$store.dispatch("updateOperationOverLay", 0);
+    },
+
+    closeOverlayAddChar() {
+      this.$store.dispatch("updateOperationOverLay", 0);
+      this.$store.dispatch("setOpenOperationAddChar", true);
+    },
   },
 
   computed: {
-    ...mapState(["newOperationInfo", "newCampaignSystems", "newCampaigns"]),
+    ...mapState([
+      "newOperationInfo",
+      "newCampaignSystems",
+      "newCampaigns",
+      "newOperationMessageOverlay",
+    ]),
     ...mapGetters([]),
 
     operationID() {
       return this.newOperationInfo.id;
+    },
+
+    showOverlay() {
+      return this.newOperationMessageOverlay;
     },
 
     systems() {
@@ -325,6 +404,12 @@ export default {
         }
       });
       return systems;
+    },
+
+    cardWidth() {
+      var x = this.windowSize.x;
+      var num = 1268;
+      return x - num;
     },
   },
   beforeDestroy() {

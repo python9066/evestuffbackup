@@ -130,6 +130,37 @@ class Broadcasthelper
         broadcast(new OperationOwnUpdate($flag));
     }
 
+    /**
+
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     * @param int $flagNumber
+     * 1 = Open Add Char overlay -
+     *
+     *  @param int $type
+     * 1 = Normal message -
+     * 2 = read only message
+
+     */
+
+    public static function broadcastAllCharOverlay($flagNumber, $opID, $type)
+    {
+        $users = NewCampaignhelper::openAddUserOverlay($opID);
+        foreach ($users as $user) {
+
+            $userID = $user->user_id;
+
+            $flag = collect([
+                'flag' => $flagNumber,
+                'op_id' => $opID,
+                'id' => $userID,
+                'type' => $type
+            ]);
+
+            broadcast(new OperationOwnUpdate($flag));
+        }
+    }
+
 
     /**
 
