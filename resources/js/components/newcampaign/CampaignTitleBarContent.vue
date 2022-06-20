@@ -129,11 +129,10 @@
               :interval="1000"
             >
               <template slot="countdown" slot-scope="scope">
+                Warm up -
                 <span class="red--text pl-3">
                   <span v-if="scope.props.hours > 1">
-                    {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                      scope.props.seconds
-                    }}
+                    {{ scope.props.hours }}:{{ scope.props.minutes }}:{{}}
                   </span>
 
                   <span v-else>

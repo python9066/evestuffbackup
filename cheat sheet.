@@ -31,4 +31,6 @@ sailinit() {
 }
 
 
-sc install && scu && snpmi && snpmu && sdev
+sc install && scu && snpmi && snpmu && sdev && snpm run watch-poll
+
+sc install && scu && snpmi && snpmu && sprod

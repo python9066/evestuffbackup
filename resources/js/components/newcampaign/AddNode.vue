@@ -1,5 +1,6 @@
 <template>
   <v-menu
+    v-if="showButton"
     :close-on-content-click="false"
     origin="center center"
     transition="scale-transition"
@@ -127,6 +128,14 @@ export default {
 
     textFocus() {
       if (this.activeCount == 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    showButton() {
+      if (this.activeCount > 0) {
         return true;
       } else {
         return false;

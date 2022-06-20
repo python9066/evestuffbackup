@@ -185,6 +185,10 @@ export default new Vuex.Store({
             state.operationUserList = data.userList;
         },
 
+        UPDATE_OPERATION_PAGE(state, data) {
+            state.newOperationInfo = data;
+        },
+
         UPDATE_CAMPAIGN_SYSTEMS(state, data) {
             const item = state.newCampaignSystems.find(
                 (item) => item.id === data.id
@@ -1772,6 +1776,10 @@ export default new Vuex.Store({
 
         updateOpChar({ commit }, data) {
             commit("UPDATE_OP_CHAR", data);
+        },
+
+        updateOperationInfo({ commit }, data) {
+            commit("UPDATE_OPERATION_PAGE", data);
         },
 
         updateoperationlist({ commit }, data) {

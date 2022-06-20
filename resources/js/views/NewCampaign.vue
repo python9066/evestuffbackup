@@ -126,7 +126,9 @@ export default {
 
         if (e.flag.flag == 2) {
         }
+
         if (e.flag.flag == 3) {
+          this.$store.dispatch("updateOperationInfo", e.flag.message);
         }
 
         // * solo system update

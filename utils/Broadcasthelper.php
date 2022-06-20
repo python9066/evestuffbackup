@@ -6,8 +6,10 @@ use App\Events\CustomOperationPageUpdate;
 use App\Events\OperationAdminUpdate;
 use App\Events\OperationOwnUpdate;
 use App\Events\OperationUpdate;
+use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
+use App\Models\NewOperation;
 use App\Models\OperationUser;
 use App\Models\OperationUserList;
 use utils\NewCampaignhelper\NewCampaignhelper;
@@ -72,6 +74,41 @@ class Broadcasthelper
     public static function broadcastuserSolo($opID, $opUserID, $flagNumber)
     {
         $message = NewCampaignhelper::opUserSolo($opID, $opUserID);
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message,
+            'id' => $opID
+        ]);
+
+        broadcast(new OperationUpdate($flag));
+    }
+
+
+    /**
+
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     * @param int $flagNumber
+     * 3 = refresh operation info
+
+     */
+
+
+
+    public static function broadcastOperationRefresh($opID, $flagNumber)
+    {
+
+        $message = NewOperation::where('id', $opID)
+            ->with([
+                'campaign',
+                'campaign.status',
+                'campaign.constellation:id,constellation_name,region_id',
+                'campaign.constellation.region:id,region_name',
+                'campaign.alliance:id,name,ticker,standing,url,color',
+                'campaign.system:id,system_name,adm',
+            ])
+            ->first();
+
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $message,

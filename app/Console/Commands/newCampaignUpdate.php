@@ -2,7 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\setActiveUpdateFlagJob;
+use App\Jobs\setWarmUpdateFlagJob;
+use App\Models\NewCampaign;
 use App\Models\Userlogging;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use utils\Helper\Helper;
 use utils\NewCampaignhelper\NewCampaignhelper;
@@ -46,5 +50,18 @@ class newCampaignUpdate extends Command
         //     NewCampaignhelper::newUpdate();
         // };
         NewCampaignhelper::newUpdate();
+        $campaigns = NewCampaign::where('job', 0)->get();
+        foreach ($campaigns as $campaign) {
+            $start = Carbon::parse($campaign->start_time);
+            $twoHours = now()->addHours(2);
+
+            if ($start <= $twoHours) {
+                $a = $start->subHours(1);
+                $begin = Carbon::parse($campaign->start_time);
+                setWarmUpdateFlagJob::dispatch($campaign->id)->onQueue('campaigns')->delay($a);
+                setActiveUpdateFlagJob::dispatch($campaign->id)->onQueue('campaigns')->delay($begin);
+                $campaign->update(['job' => 1]);
+            }
+        }
     }
 }
