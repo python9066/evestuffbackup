@@ -6,11 +6,9 @@ use App\Events\CustomOperationPageUpdate;
 use App\Events\OperationAdminUpdate;
 use App\Events\OperationOwnUpdate;
 use App\Events\OperationUpdate;
-use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
-use App\Models\OperationUser;
 use App\Models\OperationUserList;
 use utils\NewCampaignhelper\NewCampaignhelper;
 
@@ -40,7 +38,7 @@ class Broadcasthelper
             $flag = collect([
                 'flag' => $flagNumber,
                 'message' => $message,
-                'id' => $op
+                'id' => $op,
             ]);
             broadcast(new OperationUpdate($flag));
         }
@@ -52,7 +50,7 @@ class Broadcasthelper
         $flag = collect([
             'flag' => $flagNumber,
             'id' => $opID,
-            'message' => $message
+            'message' => $message,
         ]);
 
         broadcast(new OperationUpdate($flag));
@@ -69,20 +67,17 @@ class Broadcasthelper
 
      */
 
-
-
     public static function broadcastuserSolo($opID, $opUserID, $flagNumber)
     {
         $message = NewCampaignhelper::opUserSolo($opID, $opUserID);
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $message,
-            'id' => $opID
+            'id' => $opID,
         ]);
 
         broadcast(new OperationUpdate($flag));
     }
-
 
     /**
 
@@ -92,8 +87,6 @@ class Broadcasthelper
      * 3 = refresh operation info
 
      */
-
-
 
     public static function broadcastOperationRefresh($opID, $flagNumber)
     {
@@ -112,7 +105,28 @@ class Broadcasthelper
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $message,
-            'id' => $opID
+            'id' => $opID,
+        ]);
+
+        broadcast(new OperationUpdate($flag));
+    }
+
+    /**
+
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     * @param int $flagNumber
+     * 2 = set Read Only
+
+     */
+
+    public static function broadcastOperationSetReadOnly($opID, $flagNumber, $message)
+    {
+
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message,
+            'id' => $opID,
         ]);
 
         broadcast(new OperationUpdate($flag));
@@ -127,8 +141,6 @@ class Broadcasthelper
 
      */
 
-
-
     public static function broadcastOperationUserList($opID, $flagNumber)
     {
         $userIDs = OperationUserList::where('operation_id', $opID)->pluck('user_id');
@@ -137,7 +149,7 @@ class Broadcasthelper
             'flag' => $flagNumber,
             'op_id' => $opID,
             'message' => $message,
-            'id' => $opID
+            'id' => $opID,
         ]);
 
         broadcast(new OperationAdminUpdate($flag));
@@ -161,7 +173,7 @@ class Broadcasthelper
             'op_id' => $opID,
             'userid' => $opUserID,
             'id' => $userID,
-            'message' => $message
+            'message' => $message,
         ]);
 
         broadcast(new OperationOwnUpdate($flag));
@@ -191,13 +203,12 @@ class Broadcasthelper
                 'flag' => $flagNumber,
                 'op_id' => $opID,
                 'id' => $userID,
-                'type' => $type
+                'type' => $type,
             ]);
 
             broadcast(new OperationOwnUpdate($flag));
         }
     }
-
 
     /**
 
@@ -219,7 +230,6 @@ class Broadcasthelper
         ]);
         broadcast(new CustomOperationPageUpdate($flag));
     }
-
 
     /**
 

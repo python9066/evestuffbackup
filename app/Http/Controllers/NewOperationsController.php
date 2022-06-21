@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\CustomOperationPageUpdate;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
 use App\Models\NewOperation;
@@ -11,9 +10,9 @@ use App\Models\OperationUserList;
 use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use utils\NewCampaignhelper\NewCampaignhelper;
 use Illuminate\Support\Str;
 use utils\Broadcasthelper\Broadcasthelper;
+use utils\NewCampaignhelper\NewCampaignhelper;
 
 class NewOperationsController extends Controller
 {
@@ -67,16 +66,30 @@ class NewOperationsController extends Controller
         $uRegionIDs = $regionIDs->unique();
         $regionList = Region::whereIn('id', $uRegionIDs)->select(['id as value', 'region_name as text'])->orderBy('region_name', 'asc')->get();
 
-
         return [
             'solooplist' => $data,
-            'regionList' => $regionList
+            'regionList' => $regionList,
         ];
     }
 
     public function sendAddCharOverlay($opID, $type)
     {
         Broadcasthelper::broadcastAllCharOverlay(1, $opID, $type);
+    }
+
+    public function changeReadyOnly(Request $request, $opID)
+    {
+        $user = Auth::user();
+        if ($user->can('edit_read_only')) {
+            $op = NewOperation::where('id', $opID)->first();
+            $op->read_only = $request->read_only;
+            $op->save();
+            Broadcasthelper::broadcastOperationSetReadOnly($opID, 2, $request->read_only);
+
+        } else {
+            return null;
+        }
+
     }
 
     public function makeNewOperation(Request $request)
@@ -88,9 +101,8 @@ class NewOperationsController extends Controller
                 'title' => $request->title,
                 'link' => $uuid,
                 'solo' => 0,
-                'status' => 1
+                'status' => 1,
             ]);
-
 
             $campaignIDs = $request->picked;
             foreach ($campaignIDs as $campaignID) {
@@ -102,7 +114,6 @@ class NewOperationsController extends Controller
             return null;
         }
     }
-
 
     public function edit(Request $request)
     {
@@ -146,7 +157,7 @@ class NewOperationsController extends Controller
         $campaignIDs = NewCampaignOperation::where('operation_id', $operationsID)->pluck('campaign_id');
         // $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->where('status_id', [2, 5])->pluck('20000646');
         $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->pluck('constellation_id');
-        $contellationIDs =  $contellationIDs->unique();
+        $contellationIDs = $contellationIDs->unique();
         $userIDs = OperationUserList::where('operation_id', $operationsID)->pluck('user_id');
         $systems = NewCampaignhelper::systemsAll($contellationIDs);
         $opUsers = NewCampaignhelper::opUserAll($operationsID);
@@ -209,8 +220,7 @@ class NewOperationsController extends Controller
     public function destroy($id)
     {
         $opToDelete = NewOperation::where('id', $id)->first();
-        $campaignToDelete =  NewCampaignOperation::where('operation_id', $id)->get();
-
+        $campaignToDelete = NewCampaignOperation::where('operation_id', $id)->get();
 
         foreach ($campaignToDelete as $a) {
             $a->delete();
@@ -224,7 +234,7 @@ class NewOperationsController extends Controller
             $opuser->update([
                 'operation_id' => null,
                 'user_status_id' => 1,
-                'system_id' => null
+                'system_id' => null,
             ]);
 
             Broadcasthelper::broadcastuserOwnSolo($opuser->id, $opuser->user_id, 3, $id);

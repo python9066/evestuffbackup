@@ -9,8 +9,8 @@
       >
         <v-expansion-panel class="rounded-xl" style="cursor: context-menu">
           <v-expansion-panel-header expand-icon="" style="cursor: context-menu">
-            <v-row no-gutters>
-              <v-col cols="2">
+            <v-row no-gutters align="baseline" justify="space-between">
+              <v-col cols="auto">
                 <v-btn
                   color="primary"
                   @click="btnShowCharTable"
@@ -21,7 +21,7 @@
                   Char Table
                 </v-btn></v-col
               >
-              <v-col cols="2" v-if="$can('view_campaign_members')">
+              <v-col cols="auto" v-if="$can('view_campaign_members')">
                 <v-btn
                   color="primary"
                   @click="btnShowUserTable"
@@ -32,51 +32,59 @@
                   User List
                 </v-btn></v-col
               >
-              <v-tooltip bottom color="#121212">
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    v-if="$can('access_campaigns')"
-                    icon
-                    dark
-                    class="mr-4"
-                    small
-                    v-bind="attrs"
-                    color="blue"
-                    v-on="on"
-                    @click="sendAddCharMessage()"
-                  >
-                    <font-awesome-icon icon="fa-solid fa-bullhorn" size="xl" />
-                  </v-btn>
-                </template>
-                <span>
-                  Send a message to all Users without a Char to add chars
-                </span>
-              </v-tooltip>
-              <v-tooltip bottom color="#121212">
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    v-if="$can('access_campaigns')"
-                    icon
-                    dark
-                    class="mr-4"
-                    small
-                    v-bind="attrs"
-                    color="red"
-                    v-on="on"
-                    @click="sendAddCharMessagePlus()"
-                  >
-                    <font-awesome-icon icon="fa-solid fa-bullhorn" size="xl" />
-                  </v-btn>
-                </template>
-                <span>
-                  Send a message to all Users without a Char added to add chars
-                  and head to systems
-                </span>
-              </v-tooltip>
-              <v-col cols="2"
+              <v-col cols="auto">
+                <v-tooltip bottom color="#121212">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      v-if="$can('access_campaigns')"
+                      icon
+                      dark
+                      class="mr-4"
+                      small
+                      v-bind="attrs"
+                      color="blue"
+                      v-on="on"
+                      @click="sendAddCharMessage()"
+                    >
+                      <font-awesome-icon
+                        icon="fa-solid fa-bullhorn"
+                        size="xl"
+                      />
+                    </v-btn>
+                  </template>
+                  <span>
+                    Send a message to all Users without a Char to add chars
+                  </span>
+                </v-tooltip>
+                <v-tooltip bottom color="#121212">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      v-if="$can('access_campaigns')"
+                      icon
+                      dark
+                      class="mr-4"
+                      small
+                      v-bind="attrs"
+                      color="red"
+                      v-on="on"
+                      @click="sendAddCharMessagePlus()"
+                    >
+                      <font-awesome-icon
+                        icon="fa-solid fa-bullhorn"
+                        size="xl"
+                      />
+                    </v-btn>
+                  </template>
+                  <span>
+                    Send a message to all Users without a Char added to add
+                    chars and head to systems
+                  </span>
+                </v-tooltip>
+              </v-col>
+              <v-col cols="auto"
                 ><AddOperationUser :operationID="operationID"
               /></v-col>
-              <v-col cols="2">
+              <v-col cols="auto">
                 <v-btn
                   :exact="true"
                   color="primary"
@@ -96,6 +104,34 @@
                 >
                   Close
                 </v-btn>
+              </v-col>
+              <v-col cols="auto">
+                <v-row no-gutters>
+                  <v-col cols="auto">
+                    <v-switch
+                      class="mt-0 pt-0"
+                      dense
+                      hide-details
+                      v-model="opInfoReadOnly"
+                      @change="updateReadOnly()"
+                    ></v-switch>
+                  </v-col>
+                  <v-col cols="auto" class="d-flex align-baseline">
+                    <transition
+                      mode="out-in"
+                      enter-active-class="animate__animated animate__flash animate__faster"
+                      leave-active-class="animate__animated animate__flash animate__faster"
+                    >
+                      <span
+                        class="pt-1"
+                        :key="opInfoReadOnly"
+                        :class="readOnlyClassColor"
+                      >
+                        Read Only - {{ readOnlyText }}</span
+                      >
+                    </transition>
+                  </v-col>
+                </v-row>
               </v-col>
             </v-row>
           </v-expansion-panel-header>
@@ -173,6 +209,28 @@ export default {
       });
     },
 
+    async updateReadOnly() {
+      if (this.opInfoReadOnly == true) {
+        var request = {
+          read_only: 1,
+        };
+      } else {
+        var request = {
+          read_only: 0,
+        };
+      }
+      await axios({
+        method: "POST",
+        url: "/api/setreadonly/" + this.operationID,
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+    },
+
     async sendAddCharMessagePlus() {
       await axios({
         method: "post", //you can set what request you want to be
@@ -212,7 +270,32 @@ export default {
   computed: {
     ...mapGetters([]),
 
-    ...mapState([]),
+    ...mapState(["newOperationInfo"]),
+
+    opInfoReadOnly: {
+      get() {
+        return this.newOperationInfo.read_only;
+      },
+      set(newValue) {
+        return this.$store.dispatch("setReadOnly", newValue);
+      },
+    },
+
+    readOnlyText() {
+      if (this.opInfoReadOnly == 1) {
+        return "On";
+      } else {
+        return "Off";
+      }
+    },
+
+    readOnlyClassColor() {
+      if (this.opInfoReadOnly == 1) {
+        return "blue--text";
+      } else {
+        return "red--text";
+      }
+    },
 
     charTableOutlined() {
       if (this.hidePannel == 0 && this.charTable == 1) {

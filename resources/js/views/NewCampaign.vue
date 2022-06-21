@@ -124,9 +124,12 @@ export default {
         if (e.flag.flag == 1) {
         }
 
+        // * Set ReadOnlyFlag
         if (e.flag.flag == 2) {
+          this.$store.dispatch("setReadOnly", e.flag.message);
         }
 
+        // * refresh Op info
         if (e.flag.flag == 3) {
           this.$store.dispatch("updateOperationInfo", e.flag.message);
         }

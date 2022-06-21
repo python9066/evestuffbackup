@@ -176,6 +176,10 @@ export default new Vuex.Store({
             state.setOpenOperationAddChar = num;
         },
 
+        SET_NEW_OPERATION_READ_ONLY(state, num) {
+            state.newOperationInfo.read_only = num;
+        },
+
         SET_OPERATION_PAGE(state, data) {
             state.newOperationInfo = data.data;
             state.newCampaignSystems = data.systems;
@@ -1676,6 +1680,10 @@ export default new Vuex.Store({
 
         updateRcFC({ commit }, data) {
             commit("UPDATE_RC_FC", data);
+        },
+
+        setReadOnly({ commit }, newValue) {
+            commit("SET_NEW_OPERATION_READ_ONLY", newValue);
         },
 
         updateCores({ commit }, data) {

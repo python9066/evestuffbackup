@@ -2,20 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\OperationUpdate;
-use App\Models\NewCampaginOperation;
-use App\Models\NewCampaignSystem;
-use App\Models\NewOperation;
 use App\Models\NewSystemNode;
 use App\Models\NewUserNode;
 use App\Models\OperationUser;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PHPUnit\Framework\Constraint\Operator;
 use utils\Broadcasthelper\Broadcasthelper;
-use utils\Campaignhelper\Campaignhelper;
-use utils\NewCampaignhelper\NewCampaignhelper;
 
 class NewSystemNodeController extends Controller
 {
@@ -52,9 +44,7 @@ class NewSystemNodeController extends Controller
     {
         //
 
-
     }
-
 
     public function addUserToNodeAdmin(Request $request)
     {
@@ -64,7 +54,6 @@ class NewSystemNodeController extends Controller
         if ($systemNode->node_status == 1) {
             $primery = 1;
         }
-
 
         $userNode = new NewUserNode;
         $userNode->primery = $primery;
@@ -81,7 +70,6 @@ class NewSystemNodeController extends Controller
         Broadcasthelper::broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
         Broadcasthelper::broadcastuserOwnSolo($opUser->id, $opUser->user_id, 3, $opUser->operation_id);
     }
-
 
     public function addCharToNode(Request $request)
     {
@@ -101,26 +89,23 @@ class NewSystemNodeController extends Controller
             $check->update(['node_status' => 2]);
         }
 
-        $new =  NewUserNode::create([
+        $new = NewUserNode::create([
             'primery' => $prime,
             'node_id' => $request->node_id,
             'operation_user_id' => $request->op_user_id,
-            'node_status_id' => 2
+            'node_status_id' => 2,
 
         ]);
 
-        $o =  OperationUser::where('id', $request->op_user_id)->get();
-
+        $o = OperationUser::where('id', $request->op_user_id)->get();
 
         foreach ($o as $o) {
             $o->update([
                 'new_user_node_id' => $new->id,
                 'user_status_id' => 4,
-                'system_id' => $request->system_id
+                'system_id' => $request->system_id,
             ]);
         }
-
-
 
         Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
         Broadcasthelper::broadcastuserSolo($request->opID, $request->op_user_id, 6);
@@ -196,8 +181,6 @@ class NewSystemNodeController extends Controller
                 Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
                 break;
 
-
-
             case 3: // * Hacking
                 $userNode = NewUserNode::where('id', $id)->first();
                 $userNode->node_status_id = 3;
@@ -207,8 +190,6 @@ class NewSystemNodeController extends Controller
                 Broadcasthelper::broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
                 Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
                 break;
-
-
 
             case 4: // * Success
                 $systemNode = NewSystemNode::where('id', $id)->first();
@@ -232,6 +213,31 @@ class NewSystemNodeController extends Controller
                     Broadcasthelper::broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
                 }
 
+                Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
+
+                break;
+
+            case 5: // * Failed
+                $systemNode = NewSystemNode::where('id', $id)->first();
+                if ($systemNode) {
+                    $userNodes = NewUserNode::where('node_id', $id)->get();
+                } else {
+                    $userNode = NewUserNode::where('id', $id)->first();
+                    $systemNode = NewSystemNode::where('id', $userNode->node_id)->first();
+                    $userNodes = NewUserNode::where('node_id', $userNode->node_id)->get();
+                }
+
+                $systemNode->node_status = 5;
+                $systemNode->save();
+                foreach ($userNodes as $node) {
+                    $opUser = $node->opUser;
+                    $opUser->new_user_node_id = null;
+                    $opUser->user_status_id = 3;
+                    $opUser->save();
+                    $node->delete();
+                    Broadcasthelper::broadcastuserOwnSolo($opUser->id, $opUser->user_id, 3, $opUser->operation_id);
+                    Broadcasthelper::broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
+                }
 
                 Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
 
@@ -365,9 +371,6 @@ class NewSystemNodeController extends Controller
                 break;
         }
     }
-
-
-
 
     /**
      * Remove the specified resource from storage.

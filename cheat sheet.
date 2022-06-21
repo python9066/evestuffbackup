@@ -24,6 +24,8 @@ alias sat='clear && sail test'
 alias sfat='clear && sail test --filter '
 alias satg='clear && sail test --group '
 alias samk='bash vendor/bin/sail artisan:make '
+alias supload='sc install && scu && snpmi && snpmu && sprod'
+alias scoding='sc install && scu && snpmi && snpmu && sdev && snpm run watch-poll'
 
 sailinit() {
     curl -s "https://laravel.build/${1:-laravel}" | bash
@@ -34,3 +36,7 @@ sailinit() {
 sc install && scu && snpmi && snpmu && sdev && snpm run watch-poll
 
 sc install && scu && snpmi && snpmu && sprod
+
+sc dumpautoload && sa optimize:clear && sa optimize && sa route:cache &&  sa config:cache && sc dumpautoload
+
+
