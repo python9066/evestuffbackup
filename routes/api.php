@@ -23,6 +23,7 @@ use App\Http\Controllers\FeedBackController;
 use App\Http\Controllers\FleetTypeController;
 use App\Http\Controllers\HotRegionController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\KeyFleetJoinControllerController;
 use App\Http\Controllers\KeyTypeController;
 use App\Http\Controllers\LoggingController;
 use App\Http\Controllers\MoonController;
@@ -31,6 +32,7 @@ use App\Http\Controllers\NewOperationsController;
 use App\Http\Controllers\NewSystemNodeController;
 use App\Http\Controllers\NewUserNodeController;
 use App\Http\Controllers\NodeJoinsController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\NotificationRecordsController;
 use App\Http\Controllers\OperationUserController;
 use App\Http\Controllers\RcFcUsersController;
@@ -334,5 +336,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/addcharadmin', [NewSystemNodeController::class, 'addUserToNodeAdmin']);
     Route::post('/sendadduseroverlay/{opID}/{type}', [NewOperationsController::class, 'sendAddCharOverlay']);
     Route::post('/setreadonly/{opID}', [NewOperationsController::class, 'changeReadyOnly']);
+    Route::post('/newcampaignpriority/{id}', [NewOperationsController::class, 'updatePriority']);
 
 });

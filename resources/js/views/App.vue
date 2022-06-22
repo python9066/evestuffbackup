@@ -92,7 +92,10 @@
                 Custom-Campaign
               </v-list-item>
               <v-list-item link to="/timers"> Windows </v-list-item>
-              <v-list-item v-if="$can('super')" to="/operations">
+              <v-list-item
+                v-if="$can('access_multi_campaigns')"
+                to="/operations"
+              >
                 Operations
               </v-list-item>
             </v-list>

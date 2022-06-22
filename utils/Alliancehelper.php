@@ -2,20 +2,15 @@
 
 namespace utils\Alliancehelper;
 
-use GuzzleHttp\Client;
 use App\Models\Alliance;
 use App\Models\Corp;
 use App\Models\Userlogging;
-use utils\Helper\Helper;
+use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Http;
 
-use function GuzzleHttp\json_decode;
-
-
 class Alliancehelper
 {
-
 
     public static function getCorpWithNoAlliance($id)
     {
@@ -25,7 +20,7 @@ class Alliancehelper
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
         ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", [$id]);
 
         $returns = $response->collect();
@@ -34,9 +29,8 @@ class Alliancehelper
 
                 $corpRep = Http::withHeaders([
                     'Content-Type' => 'application/json',
-                    "Accept" => "application/json"
+                    "Accept" => "application/json",
                 ])->get("https://esi.evetech.net/latest/corporations/" . $var[0]['id'] . "/?datasource=tranquility");
-
 
                 $corpReturn = $corpRep->collect();
                 Corp::create([
@@ -45,7 +39,7 @@ class Alliancehelper
                     "name" => $corpReturn["name"],
                     'ticker' => $corpReturn["ticker"],
                     'url' => "https://images.evetech.net/Corporation/" . $var[0]['id'] . "_64.png",
-                    'active' => 1
+                    'active' => 1,
                 ]);
 
                 $corpID = $var[0]['id'];
@@ -55,31 +49,29 @@ class Alliancehelper
 
         $tickerlist = Corp::select(['ticker as text', 'id as value'])->get();
 
-
         return [
             'ticklist' => $tickerlist,
             'corpID' => $corpID,
-            'corpTicker' => $corpTciker
+            'corpTicker' => $corpTciker,
         ];
     }
 
     public static function updateAlliances()
-
     {
         Userlogging::create(['url' => "demon alliances", 'user_id' => 9999999999]);
         $client = new Client();
         $headers = [
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
         ];
 
         $url = "https://esi.evetech.net/latest/alliances/?datasource=tranquility";
         $response = $client->request('GET', $url, [
-            'headers' => $headers
+            'headers' => $headers,
         ]);
         $data = Utils::jsonDecode($response->getBody(), true);
-        $a =  Alliance::whereNotNull('id')->get();
+        $a = Alliance::whereNotNull('id')->get();
         foreach ($a as $a) {
             $a->update(['active' => 0]);
         }
@@ -94,8 +86,6 @@ class Alliancehelper
             $a->delete();
         }
 
-
-
         $allianceID = Alliance::all()->pluck('id');
         $c = Corp::where('alliance_id', '>', 0)->get();
         foreach ($c as $c) {
@@ -105,11 +95,10 @@ class Alliancehelper
         $errorTime = 30;
         for ($i = 0; $i < count($allianceID); $i++) {
 
-
             $url = "https://esi.evetech.net/latest/alliances/" . $allianceID[$i] . "/corporations/?datasource=tranquility";
             $response = $client->request('GET', $url, [
                 'headers' => $headers,
-                'http_errors' => false
+                'http_errors' => false,
             ]);
 
             if ($response->getStatusCode() == 200) {
@@ -133,7 +122,7 @@ class Alliancehelper
                         [
                             'active' => 1,
                             'alliance_id' => $allianceID[$i],
-                            'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png"
+                            'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png",
                         ]
                     );
                 }
@@ -142,7 +131,7 @@ class Alliancehelper
                 $i = $i - 1;
             }
         }
-        $c =  Corp::where('active', 0)->get();
+        $c = Corp::where('active', 0)->get();
         foreach ($c as $c) {
             $c->delete();
         }
@@ -154,7 +143,7 @@ class Alliancehelper
             $url = "https://esi.evetech.net/latest/alliances/" . $data[$i] . "/?datasource=tranquility";
             $response = $client->request('GET', $url, [
                 'headers' => $headers,
-                'http_errors' => false
+                'http_errors' => false,
             ]);
 
             if ($response->getStatusCode() == 200) {
@@ -179,9 +168,9 @@ class Alliancehelper
                     'name' => $body["name"],
                     'ticker' => $body["ticker"],
                     'url' => "https://images.evetech.net/Alliance/" . $data[$i] . "_64.png",
-                    'color' => 1
+                    'color' => 1,
                 );
-                $a =  Alliance::where("id", $data[$i])->get();
+                $a = Alliance::where("id", $data[$i])->get();
                 foreach ($a as $a) {
                     $a->update($body);
                 }
@@ -199,7 +188,7 @@ class Alliancehelper
             $url = "https://esi.evetech.net/latest/corporations/" . $data[$i] . "/?datasource=tranquility";
             $response = $client->request('GET', $url, [
                 'headers' => $headers,
-                'http_errors' => false
+                'http_errors' => false,
 
             ]);
 
@@ -222,7 +211,7 @@ class Alliancehelper
                 $body = array(
                     'name' => $body["name"],
                     'ticker' => $body["ticker"],
-                    'color' => 1
+                    'color' => 1,
                 );
                 $c = Corp::where("id", $data[$i])->get();
                 foreach ($c as $c) {
@@ -242,8 +231,8 @@ class Alliancehelper
             $c->update(['standing' => 0, 'color' => 0]);
         }
         $type = "standing";
-        Helper::authcheck();
-        $data = Helper::authpull($type, 0);
+        authcheck();
+        $data = authpull($type, 0);
 
         foreach ($data as $var) {
             if ($var['standing'] > 0) {
@@ -252,34 +241,34 @@ class Alliancehelper
                 $color = 1;
             }
             if ($var['contact_type'] = 'alliance') {
-                $a =   Alliance::where('id', $var['contact_id'])->get();
+                $a = Alliance::where('id', $var['contact_id'])->get();
                 foreach ($a as $a) {
                     $a->update([
                         'standing' => $var['standing'],
-                        'color' => $color
+                        'color' => $color,
                     ]);
                 }
             };
             if ($var['contact_type'] = 'corporation') {
-                $c =  Corp::where('id', $var['contact_id'])->get();
+                $c = Corp::where('id', $var['contact_id'])->get();
                 foreach ($c as $c) {
                     $c->update([
                         'standing' => $var['standing'],
-                        'color' => $color
+                        'color' => $color,
                     ]);
                 }
             };
         };
 
-        $a =  Alliance::where('color', '0')->get();
+        $a = Alliance::where('color', '0')->get();
         foreach ($a as $a) {
             $a->update(['color' => 1]);
         }
-        $c =  Corp::where('color', '0')->get();
+        $c = Corp::where('color', '0')->get();
         foreach ($c as $c) {
             $c->update(['color' => 1]);
         }
-        $a =  Alliance::where('id', '1354830081')->get();
+        $a = Alliance::where('id', '1354830081')->get();
         foreach ($a as $a) {
             $a->update(['standing' => 10, 'color' => 3]);
         }

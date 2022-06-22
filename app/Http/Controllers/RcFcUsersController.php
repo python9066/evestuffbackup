@@ -11,7 +11,6 @@ use App\Models\Station;
 use App\Models\User;
 use App\Models\WelpStationRecords;
 use Illuminate\Http\Request;
-use utils\Helper\Helper;
 
 class RcFcUsersController extends Controller
 {
@@ -29,12 +28,11 @@ class RcFcUsersController extends Controller
 
             $name = User::where('id', $fc->user_id)->value('name');
 
-
             $data = [
                 'id' => $fc->id,
                 'user_id' => $fc->user_id,
                 'fleet' => $fc->fleet,
-                'name' => $name
+                'name' => $name,
             ];
 
             array_push($fclist, $data);
@@ -55,7 +53,6 @@ class RcFcUsersController extends Controller
                 $id = $id + 1;
             }
 
-
             $new = User::Create(['name' => $request->char_name]);
             $new->update(['id' => $id]);
         } else {
@@ -63,7 +60,7 @@ class RcFcUsersController extends Controller
         }
         RcFcUsers::Create(['user_id' => $id]);
         $flag = collect([
-            'flag' => 3
+            'flag' => 3,
         ]);
         broadcast(new RcSheetUpdate($flag));
         broadcast(new ChillSheetUpdate($flag));
@@ -100,7 +97,7 @@ class RcFcUsersController extends Controller
 
         $fcname = User::where('id', $userid)->value('name');
 
-        $message = Helper::StationRecordsSolo(4, $id);
+        $message = StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,
@@ -134,8 +131,7 @@ class RcFcUsersController extends Controller
         $userid = RcFcUsers::where('id', $request->rc_fc_id)->value('user_id');
         $userName = User::where('id', $userid)->value('name');
 
-
-        $message = Helper::StationRecordsSolo(4, $id);
+        $message = StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,
@@ -169,7 +165,7 @@ class RcFcUsersController extends Controller
         foreach ($s as $s) {
             $s->update(['rc_fc_id' => null]);
         }
-        $message = Helper::StationRecordsSolo(4, $id);
+        $message = StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,
@@ -184,7 +180,6 @@ class RcFcUsersController extends Controller
             ]);
             broadcast(new ChillSheetUpdate($flag));
         }
-
 
         $message = WelpStationRecords::where('id', $id)->first();
         if ($message) {
@@ -209,12 +204,12 @@ class RcFcUsersController extends Controller
         foreach ($s as $s) {
             $s->update(['rc_fc_id' => 0]);
         }
-        $r =  RcFcUsers::where('id', $id)->get();
+        $r = RcFcUsers::where('id', $id)->get();
         foreach ($r as $r) {
             $r->delete();
         }
         $flag = collect([
-            'flag' => 2
+            'flag' => 2,
         ]);
         broadcast(new RcSheetUpdate($flag));
         broadcast(new ChillSheetUpdate($flag));

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\NewSystemNode;
 use App\Models\NewUserNode;
 use Illuminate\Http\Request;
-use utils\Broadcasthelper\Broadcasthelper;
 
 class NewUserNodeController extends Controller
 {
@@ -38,10 +37,10 @@ class NewUserNodeController extends Controller
         $n->update([
             "end_time" => $request->end_time,
             "input_time" => now(),
-            "base_time" => $request->base_time
+            "base_time" => $request->base_time,
         ]);
 
-        Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
+        broadcastsystemSolo($request->system_id, 7);
     }
 
     public function addTimertoNode(Request $request, $id)
@@ -51,14 +50,11 @@ class NewUserNodeController extends Controller
         $n->update([
             "end_time" => $request->end_time,
             "input_time" => now(),
-            "base_time" => $request->base_time
+            "base_time" => $request->base_time,
         ]);
 
-        Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
+        broadcastsystemSolo($request->system_id, 7);
     }
-
-
-
 
     /**
      * Display the specified resource.
@@ -97,9 +93,9 @@ class NewUserNodeController extends Controller
         $opUser->new_user_node_id = null;
         $opUser->user_status_id = 3;
         $opUser->save();
-        Broadcasthelper::broadcastuserOwnSolo($opUser->id, $opUser->user_id, 3, $opUser->operation_id);
-        Broadcasthelper::broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
+        broadcastuserOwnSolo($opUser->id, $opUser->user_id, 3, $opUser->operation_id);
+        broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
         $node->delete();
-        Broadcasthelper::broadcastsystemSolo($systemID, 7);
+        broadcastsystemSolo($systemID, 7);
     }
 }

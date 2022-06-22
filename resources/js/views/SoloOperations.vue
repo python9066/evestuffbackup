@@ -106,6 +106,7 @@ function sleep(ms) {
 }
 export default {
   async created() {
+    await this.$store.dispatch("getWebwayStartSystems");
     Echo.private("solooperation").listen("SoloOperationUpdate", (e) => {});
     await this.$store.dispatch("getSoloOperationList");
   },

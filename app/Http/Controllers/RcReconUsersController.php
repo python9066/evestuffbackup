@@ -11,8 +11,6 @@ use App\Models\Station;
 use App\Models\User;
 use App\Models\WelpStationRecords;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use utils\Helper\Helper;
 
 class RcReconUsersController extends Controller
 {
@@ -36,13 +34,12 @@ class RcReconUsersController extends Controller
             RcReconUsers::where('user_id', $request->user_id)->get();
         }
 
-
         $reconid = RcReconUsers::where('user_id', $request->user_id)->value('id');
         $s = Station::where('id', $id)->get();
         foreach ($s as $s) {
             $s->update(['rc_recon_id' => $reconid]);
         }
-        $message = Helper::StationRecordsSolo(4, $id);
+        $message = StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,
@@ -76,7 +73,7 @@ class RcReconUsersController extends Controller
         foreach ($s as $s) {
             $s->update(['rc_recon_id' => null]);
         }
-        $message = Helper::StationRecordsSolo(4, $id);
+        $message = StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,

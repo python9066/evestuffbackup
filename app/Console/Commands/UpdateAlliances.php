@@ -3,18 +3,16 @@
 namespace App\Console\Commands;
 
 use App\Jobs\updateAlliancesJob;
-use App\Jobs\UpdateStandingJob;
 use App\Models\Alliance;
-use App\Models\Corp;
 use App\Models\Auth;
-use DateTime;
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Http;
-use utils\Helper\Helper;
 use App\Models\Client;
+use App\Models\Corp;
 use COM;
+use DateTime;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Utils;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
 
 class UpdateAlliances extends Command
 {
@@ -50,25 +48,24 @@ class UpdateAlliances extends Command
     public function handle()
     {
 
-
-        // $status = Helper::checkeve();
+        // $status = checkeve();
         // if ($status == 1) {
-        //     Alliancehelper::updateAlliances();
+        //     AllianceupdateAlliances();
         // }
         #############doing it in job###################
-        $response =  Http::withHeaders([
+        $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
         ])->get("https://esi.evetech.net/latest/alliances/?datasource=tranquility");
         $allianceIDs = $response->collect();
-        $deads =   Alliance::whereNotIn('id', $allianceIDs)->get();
+        $deads = Alliance::whereNotIn('id', $allianceIDs)->get();
         $deadIDs = $deads->pluck('id');
-        $c =  Corp::whereIn('alliance_id', $deadIDs)->get();
+        $c = Corp::whereIn('alliance_id', $deadIDs)->get();
         foreach ($c as $c) {
             $c->update(['alliance_id' => 0]);
         }
-        $a =  Alliance::whereNotIn('id', $allianceIDs)->get();
+        $a = Alliance::whereNotIn('id', $allianceIDs)->get();
         foreach ($a as $a) {
             $a->delete();
         }
@@ -108,7 +105,7 @@ class UpdateAlliances extends Command
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 "Accept" => "application/json",
-                'User-Agent' => 'evestuff.online python9066@gmail.com'
+                'User-Agent' => 'evestuff.online python9066@gmail.com',
             ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/?datasource=tranquility");
 
             if ($response->successful()) {
@@ -123,7 +120,7 @@ class UpdateAlliances extends Command
                         'standing' => 0,
                         'active' => 1,
                         'url' => "https://images.evetech.net/Alliance/" . $allianceID . "_64.png",
-                        'color' => 0
+                        'color' => 0,
                     ]
                 );
                 $c = Corp::where('alliance_id', $allianceID)->get();
@@ -134,7 +131,7 @@ class UpdateAlliances extends Command
                     $responseCorp = Http::withHeaders([
                         'Content-Type' => 'application/json',
                         "Accept" => "application/json",
-                        'User-Agent' => 'evestuff.online python9066@gmail.com'
+                        'User-Agent' => 'evestuff.online python9066@gmail.com',
                     ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility");
                     if ($responseCorp->successful()) {
                         $corpCount = 3;
@@ -172,7 +169,7 @@ class UpdateAlliances extends Command
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 "Accept" => "application/json",
-                'User-Agent' => 'evestuff.online python9066@gmail.com'
+                'User-Agent' => 'evestuff.online python9066@gmail.com',
             ])->get("https://esi.evetech.net/latest/corporations/" . $corpID . "/?datasource=tranquility");
             if ($response->successful()) {
                 $corpPull = 3;
@@ -221,19 +218,18 @@ class UpdateAlliances extends Command
                 $client = Client::first();
                 $http = new GuzzleHttpCLient();
 
-
                 $headers = [
                     'Authorization' => 'Basic ' . $client->code,
                     'Content-Type' => 'application/x-www-form-urlencoded',
                     'Host' => 'login.eveonline.com',
-                    'User-Agent' => 'evestuff.online python9066@gmail.com'
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
 
                 ];
                 $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
                 // print $body;
                 $response = $http->request('POST', 'https://login.eveonline.com/v2/oauth/token', [
                     'headers' => $headers,
-                    'body' => $body
+                    'body' => $body,
                 ]);
                 $data = Utils::jsonDecode($response->getBody(), true);
                 // dd($data);
@@ -248,7 +244,7 @@ class UpdateAlliances extends Command
     {
         $token = Auth::where('flag_standing', 0)->first();
         if ($token == null) {
-            $a =  Auth::where('flag_standing', 1)->get();
+            $a = Auth::where('flag_standing', 1)->get();
             foreach ($a as $a) {
                 $a->update(['flag_standing' => 0]);
             }
@@ -263,7 +259,7 @@ class UpdateAlliances extends Command
         $response = Http::withToken($token->access_token)->withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
         ])->get($url);
 
         $standings = $response->collect();
@@ -276,11 +272,11 @@ class UpdateAlliances extends Command
             };
 
             if ($stand->get('contact_type') == "alliance") {
-                $a =  Alliance::where('id', $stand->get('contact_id'))->get();
+                $a = Alliance::where('id', $stand->get('contact_id'))->get();
                 foreach ($a as $a) {
                     $a->update([
                         'color' => $color,
-                        'standing' => $stand->get('standing')
+                        'standing' => $stand->get('standing'),
                     ]);
                 }
             }
@@ -290,7 +286,7 @@ class UpdateAlliances extends Command
                 foreach ($c as $c) {
                     $c->update([
                         'color' => $color,
-                        'standing' => $stand->get('standing')
+                        'standing' => $stand->get('standing'),
                     ]);
                 }
             }

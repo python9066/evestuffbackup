@@ -10,7 +10,6 @@ use App\Models\Station;
 use App\Models\User;
 use App\Models\WelpStationRecords;
 use Illuminate\Http\Request;
-use utils\Helper\Helper;
 
 class RcGsolUsersController extends Controller
 {
@@ -43,7 +42,7 @@ class RcGsolUsersController extends Controller
         foreach ($s as $s) {
             $s->update(['rc_gsol_id' => $request->user_id]);
         }
-        $message = Helper::StationRecordsSolo(4, $id);
+        $message = StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,
@@ -72,11 +71,11 @@ class RcGsolUsersController extends Controller
     {
         $gsolNameID = Station::where('id', $id)->value('rc_gsol_id');
         $gsolName = User::where('id', $gsolNameID)->value('name');
-        $s =  Station::where('id', $id)->get();
+        $s = Station::where('id', $id)->get();
         foreach ($s as $s) {
             $s->update(['rc_gsol_id' => null]);
         }
-        $message = Helper::StationRecordsSolo(4, $id);
+        $message = StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,

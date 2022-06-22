@@ -2,16 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\OperationOwnUpdate;
 use App\Events\OperationUpdate;
-use App\Models\NewNodeCampaignUser;
-use App\Models\NewOperation;
 use App\Models\OperationUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use utils\Broadcasthelper\Broadcasthelper;
-use utils\Campaignhelper\Campaignhelper;
-use utils\NewCampaignhelper\NewCampaignhelper;
 
 class OperationUserController extends Controller
 {
@@ -35,8 +29,8 @@ class OperationUserController extends Controller
         $opUser->save();
         $userID = $opUser->user_id;
 
-        Broadcasthelper::broadcastuserOwnSolo($opUserID, $userID, 3, $opID);
-        Broadcasthelper::broadcastuserSolo($opID, $opUserID, 6);
+        broadcastuserOwnSolo($opUserID, $userID, 3, $opID);
+        broadcastuserSolo($opID, $opUserID, 6);
     }
 
     /**
@@ -51,10 +45,10 @@ class OperationUserController extends Controller
         $new = OperationUser::create($request->all());
 
         if (Auth::id() == $userid) {
-            Broadcasthelper::broadcastuserOwnSolo($new->id, $userid, 3, $opID);
+            broadcastuserOwnSolo($new->id, $userid, 3, $opID);
         }
 
-        Broadcasthelper::broadcastuserSolo($opID, $new->id, 6);
+        broadcastuserSolo($opID, $new->id, 6);
     }
 
     public function updateOnTheWayReadyToGO(Request $request, $opID, $opUserID)
@@ -65,15 +59,13 @@ class OperationUserController extends Controller
         $opUser->update($request->all());
 
         if ($oldSystemID) {
-            Broadcasthelper::broadcastsystemSolo($oldSystemID, 7);
+            broadcastsystemSolo($oldSystemID, 7);
         }
 
-        Broadcasthelper::broadcastuserOwnSolo($opUserID, $opUser->user_id, 3, $opID);
-        Broadcasthelper::broadcastuserSolo($opID, $opUserID, 6);
-        Broadcasthelper::broadcastsystemSolo($request->system_id, 7);
+        broadcastuserOwnSolo($opUserID, $opUser->user_id, 3, $opID);
+        broadcastuserSolo($opID, $opUserID, 6);
+        broadcastsystemSolo($request->system_id, 7);
     }
-
-
 
     /**
      * Display the specified resource.
@@ -90,17 +82,16 @@ class OperationUserController extends Controller
     {
         //TODO remove from other operations and nodes in there to a new operations
 
-
         $n = OperationUser::where('id', $id)->get();
         foreach ($n as $n) {
             $n->update($request->all());
         }
 
         if (Auth::id() == $userid) {
-            Broadcasthelper::broadcastuserOwnSolo($id, $userid, 3, $opID);
+            broadcastuserOwnSolo($id, $userid, 3, $opID);
         }
         if (Auth::id() == $userid) {
-            Broadcasthelper::broadcastuserSolo($opID, $id, 6);
+            broadcastuserSolo($opID, $id, 6);
         }
         // TODO Add baordcsat to update stuff
     }
@@ -116,14 +107,13 @@ class OperationUserController extends Controller
         }
         // TODO Add boradcast to update info
         if (Auth::id() == $userid) {
-            Broadcasthelper::broadcastuserOwnSolo($id, $userid, 3, $opID);
+            broadcastuserOwnSolo($id, $userid, 3, $opID);
         }
-
 
         $flag = collect([
             'flag' => 5,
             'id' => $opID,
-            "userid" => $id
+            "userid" => $id,
         ]);
 
         broadcast(new OperationUpdate($flag));
@@ -155,13 +145,13 @@ class OperationUserController extends Controller
         $flag = collect([
             'flag' => 5,
             'userid' => $id,
-            'id' => $opID
+            'id' => $opID,
         ]);
 
         broadcast(new OperationUpdate($flag));
 
         if (Auth::id() == $userid) {
-            Broadcasthelper::broadcastuserOwnSolo($id, $userid, 5, $opID);
+            broadcastuserOwnSolo($id, $userid, 5, $opID);
         }
 
         // TODO Sort out boardcasting

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-btn icon @click="click()">
-      <font-awesome-icon :icon="text" shake size="2xl" />
+      <font-awesome-icon :icon="text" size="2xl" />
     </v-btn>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
 
       axios({
         method: "post", //you can set what request you want to be
-        url: "api/campaignpriority/" + this.item.id,
+        url: "api/newcampaignpriority/" + this.item.id,
         withCredentials: true,
         data: request,
         headers: {

@@ -5,13 +5,10 @@ namespace App\Jobs;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use utils\Broadcasthelper\Broadcasthelper;
-use utils\NewCampaignhelper\NewCampaignhelper;
 
 class setWarmUpdateFlagJob implements ShouldQueue
 {
@@ -34,12 +31,12 @@ class setWarmUpdateFlagJob implements ShouldQueue
      */
     public function handle()
     {
-        $campaign =  NewCampaign::where('id', $this->campaign_id)->first();
+        $campaign = NewCampaign::where('id', $this->campaign_id)->first();
         $campaign->update(['status_id' => 5]);
-        NewCampaignhelper::campaignSolo($this->campaign_id);
+        campaignSolo($this->campaign_id);
         $operationIDs = NewCampaignOperation::where('campaign_id', $this->campaign_id)->get();
         foreach ($operationIDs as $opID) {
-            Broadcasthelper::broadcastOperationRefresh($opID->operation_id, 3);
+            broadcastOperationRefresh($opID->operation_id, 3);
         }
     }
 

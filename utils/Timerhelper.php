@@ -5,10 +5,7 @@ namespace utils\Timerhelper;
 use App\Models\Structure;
 use App\Models\System;
 use GuzzleHttp\Client;
-use utils\Helper\Helper;
 use GuzzleHttp\Utils;
-
-use function GuzzleHttp\json_decode;
 
 class Timerhelper
 {
@@ -20,11 +17,11 @@ class Timerhelper
         $headers = [
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
         ];
         $url = $url = "https://esi.evetech.net/latest/sovereignty/structures/?datasource=tranquility";
         $response = $client->request('GET', $url, [
-            'headers' => $headers
+            'headers' => $headers,
         ]);
         $response = Utils::jsonDecode($response->getBody(), true);
         // Structure::truncate();
@@ -35,13 +32,13 @@ class Timerhelper
             if ($count > 4) {
                 $adm = $var['vulnerability_occupancy_level'];
                 $time = $var['vulnerable_end_time'];
-                $vulnerable_end_time = Helper::fixtime($time);
+                $vulnerable_end_time = fixtime($time);
                 $time = $var['vulnerable_start_time'];
-                $vulnerable_start_time = Helper::fixtime($time);
+                $vulnerable_start_time = fixtime($time);
             } else {
-                $adm = NULL;
-                $vulnerable_end_time = NULL;
-                $vulnerable_start_time = NULL;
+                $adm = null;
+                $vulnerable_end_time = null;
+                $vulnerable_start_time = null;
             }
             $data1 = array();
 
@@ -59,7 +56,7 @@ class Timerhelper
                 'adm' => $adm,
                 'vulnerable_end_time' => $vulnerable_end_time,
                 'vulnerable_start_time' => $vulnerable_start_time,
-                'status' => $status
+                'status' => $status,
 
             );
 
@@ -67,15 +64,15 @@ class Timerhelper
             Structure::updateOrCreate(['id' => $var['structure_id']], $data1);
         }
         $now = now();
-        $s =  Structure::where('status', 0)->get();
+        $s = Structure::where('status', 0)->get();
         foreach ($s as $s) {
             $s->delete();
         }
-        $s =  Structure::where('status', 2)->get();
+        $s = Structure::where('status', 2)->get();
         foreach ($s as $s) {
             $s->update(['age' => $now]);
         }
-        $s =  Structure::where('id', '>', 0)->get();
+        $s = Structure::where('id', '>', 0)->get();
         foreach ($s as $s) {
             $s->update(['status' => 0]);
         }

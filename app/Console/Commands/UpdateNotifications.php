@@ -3,10 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Events\NotificationNew;
-use App\Models\User;
 use App\Models\Userlogging;
 use Illuminate\Console\Command;
-use utils\Helper\Helper;
 use utils\Notificationhelper\Notifications;
 
 class UpdateNotifications extends Command
@@ -44,11 +42,11 @@ class UpdateNotifications extends Command
     {
 
         Userlogging::create(['url' => "demon notes", 'user_id' => 9999999999]);
-        $status = Helper::checkeve();
+        $status = checkeve();
         if ($status == 1) {
             $type = "note";
-            Helper::authcheck();
-            $data = Helper::authpull($type, 0);
+            authcheck();
+            $data = authpull($type, 0);
             $flag = Notifications::update($data);
 
             // dd($flag);

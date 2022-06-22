@@ -2,13 +2,15 @@
   <v-row no-gutters>
     <v-col cols="12">
       <v-data-table
-        :headers="headers"
+        :headers="_headers"
         :items="filteredItems"
         fixed-header
         :height="height"
         :search="search"
         item-key="id"
         :items-per-page="50"
+        multi-sort
+        :item-class="itemRowBackground"
         :sort-by="['campaign[0].start_time']"
         @click:row="rowClick($event)"
         :footer-props="{
@@ -17,9 +19,32 @@
         class="elevation-24 rounded-xl full-width"
       >
         <template slot="no-data"> No Active or Upcoming Campaigns </template>
+        <template v-slot:[`item.campaign[0].system.system_name`]="{ item }">
+          <div class="text-no-wrap">
+            {{ item.campaign[0].system.system_name }}
+          </div>
+        </template>
+        <template
+          v-slot:[`item.campaign[0].constellation.region.region_name`]="{
+            item,
+          }"
+        >
+          <div class="text-no-wrap">
+            {{ item.campaign[0].constellation.region.region_name }}
+          </div>
+        </template>
+        <template
+          v-slot:[`item.campaign[0].constellation.constellation_name`]="{
+            item,
+          }"
+        >
+          <div class="text-no-wrap">
+            {{ item.campaign[0].constellation.constellation_name }}
+          </div>
+        </template>
         <template v-slot:[`item.campaign[0].alliance.name`]="{ item }">
           <div class="d-flex flex-nowrap">
-            <span v-if="item.campaign[0].priority == 1" class="rainbow-2 pr-2">
+            <span v-if="item.priority == 1" class="rainbow-2 pr-2">
               <font-awesome-icon
                 icon="fa-solid fa-wand-magic-sparkles"
                 size="xl"
@@ -33,34 +58,42 @@
                   --fa-bounce-land-scale-x: 1;
                   --fa-bounce-land-scale-y: 1;
                 "
-                v-if="item.campaign[0].priority == 1"
+                v-if="item.priority == 1"
             /></span>
+
             <v-avatar size="35"
               ><img :src="item.campaign[0].alliance.url"
             /></v-avatar>
-            <span
-              v-if="item.campaign[0].alliance.standing > 0"
-              class="blue--text pl-3"
-              >{{ item.campaign[0].alliance.name }}
-            </span>
-            <span v-if="item.campaign[0].priority == 0">
-              <span v-if="item.standing > 0" class="blue--text pl-3"
-                >{{ item.alliance }}
+            <span v-if="item.priority == 0">
+              <span
+                v-if="item.campaign[0].alliance.standing > 0"
+                class="blue--text pl-3"
+                >{{ item.campaign[0].alliance.name }}
               </span>
-              <span v-else-if="item.standing < 0" class="red--text pl-3"
-                >{{ item.alliance }}
+              <span
+                v-else-if="item.campaign[0].alliance.standing < 0"
+                class="red--text pl-3"
+                >{{ item.campaign[0].alliance.name }}
               </span>
-              <span v-else class="pl-3">{{ item.alliance }}</span></span
+              <span v-else class="pl-3">{{
+                item.campaign[0].alliance.name
+              }}</span></span
             >
-            <span
-              v-else-if="item.campaign[0].alliance.standing < 0"
-              class="red--text pl-3"
-              >{{ item.campaign[0].alliance.name }}
-            </span>
-            <span v-else class="pl-3">{{
-              item.campaign[0].alliance.name
-            }}</span>
-            <span v-if="item.campaign[0].priority == 1" class="rainbow-2 pl-2">
+            <span v-else>
+              <v-chip
+                v-if="item.campaign[0].alliance.standing > 0"
+                color="primary"
+                >{{ item.campaign[0].alliance.name }}</v-chip
+              >
+              <v-chip
+                v-else-if="item.campaign[0].alliance.standing < 0"
+                color="red"
+                text-color="white"
+                >{{ item.campaign[0].alliance.name }}</v-chip
+              >
+              <v-chip v-else>{{ item.campaign[0].alliance.name }}</v-chip></span
+            >
+            <span v-if="item.priority == 1" class="rainbow-2 pl-2">
               <font-awesome-icon
                 icon="fa-solid fa-wand-magic-sparkles"
                 size="xl"
@@ -80,11 +113,7 @@
         </template>
 
         <template v-slot:[`item.campaign[0].start_time`]="{ item }">
-          <span
-            v-if="
-              item.campaign[0].status_id == 1 || item.campaign[0].status_id == 5
-            "
-          >
+          <span v-if="item.campaign[0].status_id == 1">
             {{ item.campaign[0].start_time }}
           </span>
           <span
@@ -200,24 +229,63 @@
             </p>
           </span>
         </template>
-        <template v-slot:[`item.campaign[0].system.webway[0].jumps`]="{ item }">
+        <template v-slot:[`header.webwayCol`]="{ props }">
+          <v-row no-gutters>
+            <v-col>
+              <span class="myFont">Webway</span>
+            </v-col></v-row
+          >
+          <v-row no-gutters>
+            <v-col>
+              <v-menu
+                v-if="webwayButton"
+                v-model="menu"
+                :close-on-content-click="false"
+                offset-y
+                :transition="false"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn text v-bind="attrs" v-on="on" x-small>
+                    <span class="myFontSmall">{{
+                      webwaySelectedStartSystem.text
+                    }}</span>
+                  </v-btn>
+                </template>
+
+                <v-card>
+                  <v-list>
+                    <v-list-item
+                      v-for="(list, index) in webwayDropdownList(
+                        webwaySelectedStartSystem.value
+                      )"
+                      :key="index"
+                      @click="updateWebwaySelectedStartSystem(list)"
+                    >
+                      <v-list-item-title>{{ list.text }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-card>
+              </v-menu>
+              <span v-else class="myFontSmall">{{
+                webwaySelectedStartSystem.text
+              }}</span>
+            </v-col>
+          </v-row>
+        </template>
+        <template v-slot:[`item.webwayCol`]="{ item }">
           <SoloCampaginWebWay
-            v-if="item.campaign[0].system.webway[0]"
-            :jumps="item.campaign[0].system.webway[0].jumps"
-            :web="item.campaign[0].system.webway[0].webway"
+            v-if="webwayJumps(item) && webwayLink(item)"
+            :jumps="webwayJumps(item)"
+            :web="webwayLink(item)"
           ></SoloCampaginWebWay>
         </template>
         <template v-slot:[`item.count`]="{ item }">
           <div class="d-inline-flex align-center">
             <CountDowntimer
-              v-if="
-                item.campaign[0].status_id == 1 ||
-                item.campaign[0].status_id == 5
-              "
+              v-if="item.campaign[0].status_id == 1"
               :start-time="moment.utc(item.campaign[0].start_time).unix()"
               :end-text="'Window Closed'"
               :interval="1000"
-              @campaignStart="campaignStart(item)"
             >
               <template slot="countdown" slot-scope="scope">
                 <span
@@ -239,14 +307,22 @@
                   </v-chip>
                 </span>
                 <span v-else class="red--text pl-3"
-                  >{{ scope.props.days }}:{{ scope.props.hours }}:{{
-                    scope.props.minutes
-                  }}:{{ scope.props.seconds }}</span
+                  ><span v-if="item.priority == 0"
+                    >{{ scope.props.days }}:{{ scope.props.hours }}:{{
+                      scope.props.minutes
+                    }}:{{ scope.props.seconds }}</span
+                  ><span v-else
+                    ><v-chip color="red"
+                      >{{ scope.props.days }}:{{ scope.props.hours }}:{{
+                        scope.props.minutes
+                      }}:{{ scope.props.seconds }}</v-chip
+                    ></span
+                  ></span
                 >
               </template>
             </CountDowntimer>
             <div
-              v-if="item.campaign[0].status_id == 2 && $can('access_campaigns')"
+              v-if="item.campaign[0].status_id > 1 && $can('access_campaigns')"
             >
               <v-chip
                 class="ma-2 ma"
@@ -258,12 +334,13 @@
                 {{ item.campaign[0].status.name }}
               </v-chip>
             </div>
-            <div
-              v-else-if="
-                item.campaign[0].status_id > 1 && !$can('access_campaigns')
-              "
-            >
-              <span class="pl-5">{{ item.campaign[0].status.name }}</span>
+            <div v-else-if="item.campaign[0].status_id > 1">
+              <span v-if="item.priority == 0" class="pl-5">{{
+                item.campaign[0].status.name
+              }}</span>
+              <v-chip v-else class="pl-5">{{
+                item.campaign[0].status.name
+              }}</v-chip>
             </div>
 
             <div
@@ -276,21 +353,28 @@
                 :interval="1000"
               >
                 <template slot="countup" slot-scope="scope">
-                  <span class="green--text pl-3"
+                  <span
+                    v-if="item.priority.priority == 0"
+                    class="green--text pl-3"
                     >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
                       scope.props.seconds
                     }}</span
                   >
+                  <v-chip v-else color="green darken-3"
+                    >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                      scope.props.seconds
+                    }}</v-chip
+                  >
                 </template>
               </VueCountUptimer>
             </div>
-            <SoloCampaignMap
+            <CampaignMap
               :system_name="item.campaign[0].system.system_name"
               :region_name="item.campaign[0].constellation.region.region_name"
             >
-            </SoloCampaignMap>
+            </CampaignMap>
             <VueCountUptimer
-              v-if="item.campaign[0].structure"
+              v-if="item.campaign[0].structure.age != null"
               :start-time="moment.utc(item.campaign[0].structure.age).unix()"
               :end-text="'Window Closed'"
               :interval="1000"
@@ -304,7 +388,14 @@
                 >
               </template>
             </VueCountUptimer>
-            <!-- <NewCampaginPriorityButton v-if="$can('edit_hack_priority')" /> -->
+          </div>
+        </template>
+        <template v-slot:[`item.actions`]="{ item }">
+          <div @click.stop="onSingleCellClick()">
+            <NewCampaginPriorityButton
+              v-if="$can('edit_hack_priority')"
+              :item="item"
+            />
           </div>
         </template>
       </v-data-table>
@@ -314,6 +405,7 @@
 <script>
 import Axios from "axios";
 import { mapGetters, mapState } from "vuex";
+import moment, { now, unix, utc } from "moment";
 export default {
   props: {
     windowSize: Object,
@@ -322,64 +414,7 @@ export default {
   },
   data() {
     return {
-      headers: [
-        {
-          text: "WebWay",
-          value: "campaign[0].system.webway[0].jumps",
-          sortable: false,
-        },
-        {
-          text: "Region",
-          value: "campaign[0].constellation.region.region_name",
-          sortable: true,
-        },
-
-        {
-          text: "Constellation",
-          value: "campaign[0].constellation.constellation_name",
-          sortable: true,
-        },
-
-        {
-          text: "System",
-          value: "campaign[0].system.system_name",
-          sortable: true,
-        },
-        {
-          text: "Alliance",
-          value: "campaign[0].alliance.name",
-          sortable: true,
-        },
-
-        {
-          text: "ADM",
-          value: "campaign[0].system.adm",
-          sortable: true,
-        },
-        {
-          text: "Ticker",
-          value: "campaign[0].alliance.ticker",
-          sortable: true,
-        },
-
-        {
-          text: "Structure",
-          value: "campaign[0].event_type",
-          sortable: true,
-        },
-
-        {
-          text: "Start/Progress",
-          value: "campaign[0].start_time",
-          sortable: true,
-        },
-
-        {
-          text: "Countdown/Age",
-          value: "count",
-          sortable: true,
-        },
-      ],
+      menu: false,
     };
   },
   mounted() {},
@@ -394,37 +429,30 @@ export default {
     },
 
     rowClick(item) {
-      //   if (this.$can("access_campaigns")) {
-      //     var left = moment.utc(item.start).unix() - moment.utc().unix();
-      //     if (left < 3600 && item.status_id < 3) {
-      //       this.$router.push({ path: `/op/${item.link}` }); // -> /user/123
-      //     }
-      //   }
-
       if (this.$can("access_campaigns")) {
-        this.$router.push({ path: `/op/${item.link}` }); // -> /user/123
+        var left =
+          moment.utc(item.campaign[0].start_time).unix() - moment.utc().unix();
+        if (left < 3600 && item.campaign[0].status_id < 3) {
+          this.$router.push({ path: `/op/${item.link}` }); // -> /user/123
+        }
       }
     },
 
-    campaignStart(item) {
-      item.campaign[0].status.status_name = "Active";
-      item.campaign[0].status_id = 2;
-      var request = {
-        status_id: 2,
-      };
-
-      this.$store.dispatch("updateNewSoloOperation", item);
-
-      axios({
-        method: "put", //you can set what request you want to be
-        url: "api/newcampaigns/" + item.campaign[0].id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+    webwayJumps(item) {
+      if (item.campaign[0].system.webway.length > 0) {
+        var base = item.campaign[0].system.webway;
+        var filter = base.filter(
+          (f) => f.start_system_id == this.webwaySelectedStartSystem.value
+        );
+        if (filter.length > 0) {
+          var jumps = filter[0].jumps;
+          return jumps;
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
     },
 
     barScoure(item) {
@@ -443,6 +471,24 @@ export default {
         return true;
       }
       return false;
+    },
+
+    onSingleCellClick() {},
+
+    webwayDropdownList(value) {
+      var list = this.webwayButtonList.filter((f) => f.value != value);
+      return list;
+    },
+
+    updateWebwaySelectedStartSystem(item) {
+      var data = {
+        value: item.value,
+        text: item.text,
+      };
+
+      this.menu = false;
+
+      this.$store.dispatch("updateWebwaySelectedStartSystem", data);
     },
 
     barReverse(item) {
@@ -479,6 +525,29 @@ export default {
 
       return "green darken-3";
     },
+
+    itemRowBackground: function (item) {
+      if (item.priority == 1) {
+        return "style-2";
+      }
+    },
+
+    webwayLink(item) {
+      if (item.campaign[0].system.webway.length > 0) {
+        var base = item.campaign[0].system.webway;
+        var filter = base.filter(
+          (f) => f.start_system_id == this.webwaySelectedStartSystem.value
+        );
+        if (filter.length > 0) {
+          var link = filter[0].webway;
+          return link;
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
+    },
     itemType(typeID) {
       if (typeID == 32458) {
         return "Ihub";
@@ -488,9 +557,152 @@ export default {
     },
   },
   computed: {
+    ...mapState(["webwayStartSystems", "webwaySelectedStartSystem"]),
+
+    webwayButton() {
+      if (this.webwayStartSystems.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    webwayButtonList() {
+      var list = this.webwayStartSystems;
+      var data = {
+        value: 30004759,
+        text: "1DQ1-A",
+      };
+      list.push(data);
+      list.sort(function (a, b) {
+        return a.value - b.value || a.text.localeCompare(b.text);
+      });
+
+      return list;
+    },
+
     height() {
-      let num = this.windowSize.y - 262;
+      let num = this.windowSize.y - 350;
       return num;
+    },
+
+    _headers() {
+      if (this.$can("edit_hack_priority")) {
+        var Headers = [
+          {
+            text: "WebWay",
+            value: "webwayCol",
+            sortable: false,
+          },
+          {
+            text: "Region",
+            value: "campaign[0].constellation.region.region_name",
+            width: "7%",
+          },
+
+          {
+            text: "Constellation",
+            value: "campaign[0].constellation.constellation_name",
+          },
+
+          {
+            text: "System",
+            value: "campaign[0].system.system_name",
+          },
+          {
+            text: "Alliance",
+            value: "campaign[0].alliance.name",
+          },
+
+          {
+            text: "Ticker",
+            value: "campaign[0].alliance.ticker",
+          },
+          {
+            text: "ADM",
+            value: "campaign[0].system.adm",
+          },
+
+          {
+            text: "Structure",
+            value: "campaign[0].event_type",
+          },
+
+          {
+            text: "Start/Progress",
+            value: "campaign[0].start_time",
+            width: "25%",
+            align: "center",
+          },
+
+          {
+            text: "Countdown/Age",
+            value: "count",
+            sortable: false,
+          },
+          {
+            text: "",
+            value: "actions",
+            align: "end",
+            sortable: false,
+          },
+        ];
+      } else {
+        var Headers = [
+          {
+            text: "WebWay",
+            value: "webwayCol",
+            sortable: false,
+          },
+          {
+            text: "Region",
+            value: "campaign[0].constellation.region.region_name",
+            width: "7%",
+          },
+
+          {
+            text: "Constellation",
+            value: "campaign[0].constellation.constellation_name",
+          },
+
+          {
+            text: "System",
+            value: "campaign[0].system.system_name",
+          },
+          {
+            text: "Alliance",
+            value: "campaign[0].alliance.name",
+          },
+
+          {
+            text: "Ticker",
+            value: "campaign[0].alliance.ticker",
+            align: "start",
+          },
+          {
+            text: "ADM",
+            value: "campaign[0].system.adm",
+          },
+          {
+            text: "Structure",
+            value: "campaign[0].event_type",
+          },
+
+          {
+            text: "Start/Progress",
+            value: "campaign[0].start_time",
+            width: "20%",
+            align: "center",
+          },
+
+          {
+            text: "Countdown/Age",
+            value: "count",
+            sortable: false,
+          },
+        ];
+      }
+      return Headers;
     },
   },
 };

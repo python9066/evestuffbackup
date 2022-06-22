@@ -8,14 +8,11 @@ use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
 use App\Models\NewSystemNode;
 use App\Models\OperationUser;
-use App\Models\OperationUserList;
 use App\Models\System;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use utils\Broadcasthelper\Broadcasthelper;
-use utils\Helper\Helper;
 
 class NewCampaignhelper
 {
@@ -23,6 +20,7 @@ class NewCampaignhelper
     public static function newUpdate()
     {
 
+        $updatedCampaignID = collect();
         $deathCampaign = NewCampaign::where('status_id', 10)->get();
 
         foreach ($deathCampaign as $c) {
@@ -45,16 +43,16 @@ class NewCampaignhelper
         foreach ($n as $n) {
             $n->update(['check' => 0]);
         }
-        // $response = Http::withHeaders([
-        //     'Content-Type' => 'application/json',
-        //     "Accept" => "application/json",
-        //     'User-Agent' => 'evestuff.online python9066@gmail.com'
-        // ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
             'User-Agent' => 'evestuff.online python9066@gmail.com',
-        ])->get("https://628189349fac04c6540639f6.mockapi.io/timers");
+        ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
+        // $response = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     "Accept" => "application/json",
+        //     'User-Agent' => 'evestuff.online python9066@gmail.com',
+        // ])->get("https://628189349fac04c6540639f6.mockapi.io/timers");
         $campaigns = $response->collect();
 
         $campaigns = $response->collect();
@@ -85,7 +83,7 @@ class NewCampaignhelper
                 $systemNamee = $systemN->system_name;
                 $cName = $systemNamee . " - " . $event_type_name;
                 $time = $campaign['start_time'];
-                $start_time = Helper::fixtime($time);
+                $start_time = fixtime($time);
                 $data = array();
                 $data = array(
                     'attackers_score' => $campaign['attackers_score'],
@@ -122,12 +120,12 @@ class NewCampaignhelper
                             echo "yay add 1 to red";
                         }
                         $campaignNode->delete();
-                        Broadcasthelper::broadcastsystemSolo($system_id, 7);
+                        broadcastsystemSolo($system_id, 7);
                     }
 
                     $campaign->update(['b_node' => $bNode, 'r_node' => $rNode]);
                     foreach ($campaignOperations as $campaignOperation) {
-                        Broadcasthelper::broadcastCampaignSolo($campaign->id, $campaignOperation->operation_id, 4);
+                        broadcastCampaignSolo($campaign->id, $campaignOperation->operation_id, 4);
                     }
                 }
 
@@ -322,13 +320,6 @@ class NewCampaignhelper
         return NewOperation::where('id', $opID)
             ->with(['campaign.system', 'campaign.alliance'])
             ->first();
-    }
-
-    public static function openAddUserOverlay($opID)
-    {
-        return OperationUserList::where('operation_id', $opID)
-            ->doesntHave('opUsers')
-            ->get();
     }
 
     public static function userListAll($userIDs, $opID)

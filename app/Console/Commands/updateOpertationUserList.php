@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Models\OperationUserList;
 use Illuminate\Console\Command;
 use Pusher\Pusher;
-use utils\Broadcasthelper\Broadcasthelper;
 
 class updateOpertationUserList extends Command
 {
@@ -52,7 +51,7 @@ class updateOpertationUserList extends Command
                 'useTLS' => true,
                 'host' => 'https://socket.evestuff.online',
                 'port' => 443,
-                'scheme' => 'https'
+                'scheme' => 'https',
             )
         );
         $response = $pusher->get('/channels');
@@ -72,10 +71,12 @@ class updateOpertationUserList extends Command
         }
         $groups = $data->groupBy('opID');
         // return $groups;
+        $this->info($groups);
         foreach ($groups as $group) {
-            $opID = (int)$group[0]['opID'];
+            $opID = (int) $group[0]['opID'];
+            $this->info($opID);
             foreach ($group as $op) {
-                $userID = (int)$op['userID'];
+                $userID = (int) $op['userID'];
                 $check = OperationUserList::where('operation_id', $opID)->where('user_id', $userID)->first();
                 if (!$check) {
                     $newOp = new OperationUserList;
@@ -97,7 +98,7 @@ class updateOpertationUserList extends Command
         OperationUserList::where('delete', 1)->delete();
         OperationUserList::where('delete', 2)->update(['delete' => 0]);
         foreach ($combined as $op) {
-            Broadcasthelper::broadcastOperationUserList($op, 1);
+            broadcastOperationUserList($op, 1);
         }
     }
 }

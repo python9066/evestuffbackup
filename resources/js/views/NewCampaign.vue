@@ -190,10 +190,11 @@ export default {
 
     if (this.$can("view_campaign_members")) {
       Echo.private("operationsadmin." + this.operationID).listen(
-        "OperationOwnUpdate",
+        "OperationAdminUpdate",
         (e) => {
           // update watching user list
           if (e.flag.flag == 1) {
+            console.log("updte user list");
             this.$store.dispatch("updateOperationUserList", e.flag.message);
           }
 
@@ -422,6 +423,7 @@ export default {
     Echo.leave(
       "operationsown." + this.$store.state.user_id + "-" + this.operationID
     );
+    Echo.leave("operationsadmin." + this.operationID);
   },
 };
 </script>

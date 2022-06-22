@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\updateWebway;
 use App\Jobs\updateWebwayJob;
 use App\Models\Campaign;
-use App\Models\Corp;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
@@ -20,22 +18,16 @@ use App\Models\System;
 use App\Models\testNote;
 use App\Models\User;
 use App\Models\WebWay;
-use DateTime;
-use Illuminate\Http\Request;
-use utils\Helper\Helper;
-use utils\Notificationhelper\Notifications;
-use Symfony\Component\Yaml\Yaml;
-use GuzzleHttp\Utils;
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Artisan;
+use GuzzleHttp\Utils;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use utils\Alliancehelper\Alliancehelper;
-use Spatie\Permission\Traits\HasRoles;
-use Spatie\Permission\Traits\HasPermissions;
-use utils\Broadcasthelper\Broadcasthelper;
 use Illuminate\Support\Str;
 use Pusher\Pusher;
+use Spatie\Permission\Traits\HasPermissions;
+use Spatie\Permission\Traits\HasRoles;
+use utils\Notificationhelper\Notifications;
 
 class testController extends Controller
 {
@@ -59,17 +51,24 @@ class testController extends Controller
 
     public function key()
     {
+        $opID = 1;
+        // $users = OperationUserList::where('operation_id', $opID)
+        //     ->with(['opUsers' => function ($query) use ($opID) {
+        //         $query->where('operation_id', $opID);
+        //     }])->withCount(['opUsers' => function ($query) use ($opID) {
+        //     $query->where('operation_id', $opID);
+        // }])->get();
 
-        return User::where('id', 25107)->with('keys')->select('id', 'name')->first();
-        // $user = User::find(25107);
-        // foreach ($user->keys as $key) {
-        //     echo $key->name;
-        //     foreach ($key->fleets as $fleet) {
-        //         echo $fleet->name;
-        //     }
-        // }
+        $users = OperationUserList::where('operation_id', $opID)
+            ->withCount(['ownUsers' => function ($query) use ($opID) {
+                $query->where('operation_id', $opID);
+            }])->get();
+        // return $users;
+        foreach ($users as $user) {
+            return $user->own_users_count;
+        }
+        return $users;
     }
-
 
     public function testUpdateScore(Request $request, $id)
     {
@@ -82,7 +81,6 @@ class testController extends Controller
         }
     }
 
-
     public function testClearCampaigns()
     {
         NewCampaignOperation::truncate();
@@ -91,14 +89,13 @@ class testController extends Controller
         NewOperation::truncate();
         NewSystemNode::truncate();
         NewUserNode::truncate();
-        $o =  OperationUser::whereNotNull('id')->get();
-
+        $o = OperationUser::whereNotNull('id')->get();
 
         foreach ($o as $o) {
             $o->update([
                 'operation_id' => null,
                 'user_status_id' => 1,
-                'system_id' => null
+                'system_id' => null,
             ]);
         }
     }
@@ -111,12 +108,11 @@ class testController extends Controller
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 "Accept" => "application/json",
-                'User-Agent' => 'evestuff.online python9066@gmail.com'
+                'User-Agent' => 'evestuff.online python9066@gmail.com',
             ])->get("https://esi.evetech.net/status.json?version=latest");
             $status = $response->collect();
 
             foreach ($status as $status) {
-
 
                 $endpoint = $status['endpoint'];
                 $method = $status['method'];
@@ -136,7 +132,6 @@ class testController extends Controller
         }
     }
 
-
     public function testPusher()
     {
         $user = Auth::user();
@@ -154,7 +149,7 @@ class testController extends Controller
                     'useTLS' => true,
                     'host' => 'https://socket.evestuff.online',
                     'port' => 443,
-                    'scheme' => 'https'
+                    'scheme' => 'https',
                 )
             );
             $response = $pusher->get('/channels');
@@ -175,9 +170,9 @@ class testController extends Controller
             $groups = $data->groupBy('opID');
             // return $groups;
             foreach ($groups as $group) {
-                $opID = (int)$group[0]['opID'];
+                $opID = (int) $group[0]['opID'];
                 foreach ($group as $op) {
-                    $userID = (int)$op['userID'];
+                    $userID = (int) $op['userID'];
                     $check = OperationUserList::where('operation_id', $opID)->where('user_id', $userID)->first();
                     if (!$check) {
                         $newOp = new OperationUserList;
@@ -199,7 +194,7 @@ class testController extends Controller
             OperationUserList::where('delete', 1)->delete();
             OperationUserList::where('delete', 2)->update(['delete' => 0]);
             foreach ($combined as $op) {
-                Broadcasthelper::broadcastOperationUserList($op, 1);
+                broadcastOperationUserList($op, 1);
             }
         }
     }
@@ -211,10 +206,9 @@ class testController extends Controller
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
                 "Accept" => "application/json",
-                'User-Agent' => 'evestuff.online python9066@gmail.com'
+                'User-Agent' => 'evestuff.online python9066@gmail.com',
             ])->get("https://628189349fac04c6540639f6.mockapi.io/timers");
             $campaigns = $response->collect();
-
 
             foreach ($campaigns as $campaign) {
                 $event_type = $campaign['event_type'];
@@ -226,7 +220,6 @@ class testController extends Controller
                         $event_type = 32226;
                     }
 
-
                     $id = $campaign['campaign_id'];
                     $old = NewCampaign::where('id', $id)->first();
                     if ($old) {
@@ -236,14 +229,14 @@ class testController extends Controller
                             $defenders_score_old = $old->defenders_score;
                             $old->update([
                                 'attackers_score_old' => $attackers_score_old,
-                                'defenders_score_old' => $defenders_score_old
+                                'defenders_score_old' => $defenders_score_old,
                             ]);
                             $score_changed = true;
                         }
                     }
 
                     $time = $campaign['start_time'];
-                    $start_time = Helper::fixtime($time);
+                    $start_time = fixtime($time);
                     $data = array();
                     $data = array(
                         'attackers_score' => $campaign['attackers_score'],
@@ -279,12 +272,12 @@ class testController extends Controller
                                 echo "yay add 1 to red";
                             }
                             $campaignNode->delete();
-                            Broadcasthelper::broadcastsystemSolo($system_id, 7);
+                            broadcastsystemSolo($system_id, 7);
                         }
 
                         $campaign->update(['b_node' => $bNode, 'r_node' => $rNode]);
                         foreach ($campaignOperations as $campaignOperation) {
-                            Broadcasthelper::broadcastCampaignSolo($campaign->id, $campaignOperation->operation_id, 4);
+                            broadcastCampaignSolo($campaign->id, $campaignOperation->operation_id, 4);
                         }
                     }
 
@@ -308,20 +301,19 @@ class testController extends Controller
 
                         NewCampaignOperation::create([
                             'campaign_id' => $id,
-                            'operation_id' => $newOp->id
+                            'operation_id' => $newOp->id,
                         ]);
 
                         $campaignSystemsIDs = System::where('constellation_id', $campaign['constellation_id'])->pluck('id');
                         foreach ($campaignSystemsIDs as $systemid) {
                             NewCampaignSystem::create([
                                 'system_id' => $systemid,
-                                'new_campaign_id' => $id
+                                'new_campaign_id' => $id,
                             ]);
                         }
                     }
                 }
             }
-
 
             $noCampaigns = NewOperation::where('status', '!=', 0)->doesntHave('campaign')->get();
             foreach ($noCampaigns as $noCampaign) {
@@ -342,7 +334,7 @@ class testController extends Controller
                 $start->update(['status_id' => 5, 'check' => 1]);
                 $opIDs = NewCampaignOperation::where('campaign_id', $start->id)->get();
                 foreach ($opIDs as $opID) {
-                    Broadcasthelper::broadcastCampaignSolo($start->id, $opID->operation_id, 4);
+                    broadcastCampaignSolo($start->id, $opID->operation_id, 4);
                 }
             };
 
@@ -355,13 +347,13 @@ class testController extends Controller
                 $start->update(['status_id' => 2, 'check' => 1]);
                 $opIDs = NewCampaignOperation::where('campaign_id', $start->id)->get();
                 foreach ($opIDs as $opID) {
-                    Broadcasthelper::broadcastCampaignSolo($start->id, $opID->operation_id, 4);
+                    broadcastCampaignSolo($start->id, $opID->operation_id, 4);
                 }
             };
 
             //! IF CHECK = 0, that means its not on the API which means the campaing is over.
             // * Set Campaign to finished(3) but able to access still for 10mins
-            $n =    NewCampaign::where('check', 0)
+            $n = NewCampaign::where('check', 0)
                 ->whereNull('end_time')->get();
 
             foreach ($n as $n) {
@@ -373,50 +365,45 @@ class testController extends Controller
             }
 
             // * Check if the campaign have been over more than 10mins, if true set it to finsiehd(3)
-            $n =   NewCampaign::where('check', 0)
+            $n = NewCampaign::where('check', 0)
                 ->where('status_id', 2)
                 ->where('end_time', '>', now()->subMinutes(10))->get();
 
             foreach ($n as $n) {
                 $n->update([
                     'status_id' => 3,
-                    'check' => 1
+                    'check' => 1,
                 ]);
             }
 
-
             // * If campaign have been over for more than 10mins set it to finished(4), to show on the finished tab for 24 hours
-            $n =   NewCampaign::where('check', 0)
+            $n = NewCampaign::where('check', 0)
                 ->where('status_id', 3)
                 ->where('end_time', '<', now()->subMinutes(10))->get();
             foreach ($n as $n) {
                 $n->update([
                     'status_id' => 4,
-                    'check' => 1
+                    'check' => 1,
                 ]);
             }
 
             // * If campaign has been over for more than 24 hours.  Delete the campaign.
-            $n =   NewCampaign::where('check', 0)
+            $n = NewCampaign::where('check', 0)
                 ->where('status_id', 4)
                 ->where('end_time', '<', now()->subDay())->get();
             foreach ($n as $n) {
                 $n->update([
                     'status_id' => 10,
-                    'check' => 1
+                    'check' => 1,
                 ]);
             }
         }
     }
 
-
-
-
-
     public function corptest()
     {
 
-        $w =  WebWay::where('id', '>', 0)->get();
+        $w = WebWay::where('id', '>', 0)->get();
         foreach ($w as $w) {
             $w->update(['active' => 0]);
         }
@@ -428,11 +415,11 @@ class testController extends Controller
         $systemIDs = $stationSystems->merge($campaginSystems);
         $systemIDs = $systemIDs->unique();
         $systemIDs = $systemIDs->values();
-        $w =  WebWay::whereIn('system_id', $systemIDs)->get();
+        $w = WebWay::whereIn('system_id', $systemIDs)->get();
         foreach ($w as $w) {
             $w->update(['active' => 1]);
         }
-        $w =  WebWay::where('active', 0)->get();
+        $w = WebWay::where('active', 0)->get();
         foreach ($w as $w) {
             $w->delete();
         }
@@ -454,7 +441,7 @@ class testController extends Controller
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
         ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", ["monty"]);
 
         $returns = $response->collect();
@@ -465,10 +452,8 @@ class testController extends Controller
                 $corpRep = Http::withHeaders([
                     'Content-Type' => 'application/json',
                     "Accept" => "application/json",
-                    'User-Agent' => 'evestuff.online python9066@gmail.com'
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
                 ])->get("https://esi.evetech.net/latest/corporations/" . $var[0]['id'] . "/?datasource=tranquility");
-
-
 
                 $corpReturn = $corpRep->collect();
                 // Corp::create([
@@ -485,7 +470,6 @@ class testController extends Controller
         }
 
         // $tickerlist = Corp::select(['ticker as text', 'id as value'])->get();
-
 
         // return [
         //     'ticklist' => $tickerlist,
@@ -512,17 +496,17 @@ class testController extends Controller
         if ($user->can('super')) {
 
             return ['operations' => NewOperation::where('solo', 1)
-                ->with([
-                    'campaign',
-                    'campaign.constellation:id,constellation_name',
-                    'campaign.alliance:id,name,ticker,standing,url,color',
-                    'campaign.system:id,system_name,adm',
-                    'campaign.system.webway' => function ($t) {
-                        $t->where('permissions', 1);
-                    },
-                    'campaign.structure:id,item_id,age',
-                ])
-                ->get()];
+                    ->with([
+                        'campaign',
+                        'campaign.constellation:id,constellation_name',
+                        'campaign.alliance:id,name,ticker,standing,url,color',
+                        'campaign.system:id,system_name,adm',
+                        'campaign.system.webway' => function ($t) {
+                            $t->where('permissions', 1);
+                        },
+                        'campaign.structure:id,item_id,age',
+                    ])
+                    ->get()];
         } else {
             return null;
         }
@@ -544,28 +528,26 @@ class testController extends Controller
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
         ])->get("https://esi.evetech.net/latest/alliances/" . $id . "/?datasource=tranquility");
         $allianceInfo = $response->collect();
 
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
         ])->get("https://esi.evetech.net/latest/alliances/" . $id . "/corporations/?datasource=tranquility");
         $corpIDs = $response->collect();
 
         dd($allianceInfo, $corpIDs);
     }
 
-
     public function testStationRecords($type)
     {
 
-        $data = Helper::StationRecords($type);
+        $data = StationRecords($type);
         return ['stations' => $data];
     }
-
 
     public function testPull()
     {
@@ -573,11 +555,11 @@ class testController extends Controller
         $headers = [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
         ];
         $url = "https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility";
         $response = $client->request('GET', $url, [
-            'headers' => $headers
+            'headers' => $headers,
         ]);
         $response = Utils::jsonDecode($response->getBody(), true);
         dd($response);
@@ -605,7 +587,7 @@ class testController extends Controller
                     'campaign.constellation:id,constellation_name',
                     'campaign.alliance:id,name,ticker,standing,url,color',
                     'campaign.system:id,system_name,adm',
-                    'campaign.structure:id,age'
+                    'campaign.structure:id,age',
                 ])
                 ->get();
             return ['list' => $list];
@@ -617,17 +599,17 @@ class testController extends Controller
         $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
         /*
         send = [
-            startSystem => start system get from env (1dq)
-            endStstem => $system_id
+        startSystem => start system get from env (1dq)
+        endStstem => $system_id
         ]
-       return =  api code to request too webway repos $response will be:
-            [
-                link: UUID of the saved route
-                jumps: number of jumps from 1dq ( ID got from env file) to target system
-                link_p: UUID of the saved route (with permissions)
-                jumps_p: number of jumps from 1dq ( ID got from env file) to target system (with permissions)
-            ]
-        */
+        return =  api code to request too webway repos $response will be:
+        [
+        link: UUID of the saved route
+        jumps: number of jumps from 1dq ( ID got from env file) to target system
+        link_p: UUID of the saved route (with permissions)
+        jumps_p: number of jumps from 1dq ( ID got from env file) to target system (with permissions)
+        ]
+         */
 
         $startSystem = env('HOME_SYSTEM_ID', ($variables && array_key_exists('HOME_SYSTEM_ID', $variables)) ? $variables['HOME_SYSTEM_ID'] : null);
         $webwayURL = env('WEBWAY_URL', ($variables && array_key_exists('WEBWAY_URL', $variables)) ? $variables['WEBWAY_URL'] : null);
@@ -635,17 +617,16 @@ class testController extends Controller
 
         $data = [
             'startSystem' => $startSystem,
-            'endSystem' => 30000142
+            'endSystem' => 30000142,
         ];
 
         Http::withToken($webwayToken)
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 "Accept" => "application/json",
-                'User-Agent' => 'evestuff.online python9066@gmail.com'
+                'User-Agent' => 'evestuff.online python9066@gmail.com',
             ])->post($webwayURL, $data);
     }
-
 
     public function notifications(Request $request)
     {
@@ -675,7 +656,6 @@ class testController extends Controller
         dd($user, $id, $current);
     }
 
-
     public function test($id)
     {
         $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
@@ -695,7 +675,7 @@ class testController extends Controller
         ];
         $response = $client->request('GET', $url, [
             'headers' => $headers,
-            'http_errors' => false
+            'http_errors' => false,
         ]);
         $data = Utils::jsonDecode($response->getBody(), true);
         if ($data = "Error, Structure Not Found") {

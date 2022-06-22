@@ -124,7 +124,7 @@ export default {
   computed: {
     ...mapGetters([]),
 
-    ...mapState([]),
+    ...mapState(["newOperationInfo"]),
 
     textFocus() {
       if (this.activeCount == 1) {
@@ -136,7 +136,15 @@ export default {
 
     showButton() {
       if (this.activeCount > 0) {
-        return true;
+        if (this.newOperationInfo.read_only == 1) {
+          if (this.$can("view_operation_read_only")) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return true;
+        }
       } else {
         return false;
       }

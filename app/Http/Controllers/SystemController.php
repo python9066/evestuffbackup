@@ -7,7 +7,6 @@ use App\Models\NewSystemNode;
 use App\Models\NewUserNode;
 use App\Models\System;
 use Illuminate\Http\Request;
-use utils\Broadcasthelper\Broadcasthelper;
 
 class SystemController extends Controller
 {
@@ -24,7 +23,7 @@ class SystemController extends Controller
             $data = [];
             $data = [
                 'text' => $system->system_name,
-                'value' => $system->id
+                'value' => $system->id,
             ];
 
             array_push($systemlist, $data);
@@ -35,15 +34,14 @@ class SystemController extends Controller
 
     public function checkedAt(Request $request, $systemID)
     {
-        $s =  System::where('id', $systemID)->first();
+        $s = System::where('id', $systemID)->first();
         $s->update(['checked_id' => $request->user_id, 'scouted_at' => now()]);
-        Broadcasthelper::broadcastsystemSolo($systemID, 7);
+        broadcastsystemSolo($systemID, 7);
     }
-
 
     public function editTidi(Request $request, $systemID)
     {
-        $s =  System::where('id', $systemID)->first();
+        $s = System::where('id', $systemID)->first();
         $s->update(['tidi' => $request->tidi]);
 
         $systemNodes = NewSystemNode::where('system_id', $systemID)
@@ -61,7 +59,7 @@ class SystemController extends Controller
             $systemNode->update([
                 'end_time' => $end_time,
                 'input_time' => now(),
-                'base_time' => $base_time
+                'base_time' => $base_time,
             ]);
         }
 
@@ -81,15 +79,13 @@ class SystemController extends Controller
                 $userNode->update([
                     'end_time' => $end_time,
                     'input_time' => now(),
-                    'base_time' => $base_time
+                    'base_time' => $base_time,
                 ]);
             }
         }
 
-        Broadcasthelper::broadcastsystemSolo($systemID, 7);
+        broadcastsystemSolo($systemID, 7);
     }
-
-
 
     /**
      * Store a newly created resource in storage.

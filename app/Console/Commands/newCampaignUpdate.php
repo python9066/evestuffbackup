@@ -5,11 +5,8 @@ namespace App\Console\Commands;
 use App\Jobs\setActiveUpdateFlagJob;
 use App\Jobs\setWarmUpdateFlagJob;
 use App\Models\NewCampaign;
-use App\Models\Userlogging;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use utils\Helper\Helper;
-use utils\NewCampaignhelper\NewCampaignhelper;
 
 class newCampaignUpdate extends Command
 {
@@ -45,11 +42,12 @@ class newCampaignUpdate extends Command
     public function handle()
     {
         // Userlogging::create(['url' => 'demon newCampaign', 'user_id' => 9999999999]);
-        // $status = Helper::checkeve();
+        // $status = checkeve();
         // if ($status == 1) {
-        //     NewCampaignhelper::newUpdate();
+        //     NewnewUpdate();
         // };
-        NewCampaignhelper::newUpdate();
+
+        newUpdate();
         $campaigns = NewCampaign::where('job', 0)->get();
         foreach ($campaigns as $campaign) {
             $start = Carbon::parse($campaign->start_time);

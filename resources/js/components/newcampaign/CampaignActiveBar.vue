@@ -11,28 +11,24 @@
           <v-expansion-panel-header expand-icon="" style="cursor: context-menu">
             <v-row no-gutters align="baseline" justify="space-between">
               <v-col cols="auto">
-                <v-btn
-                  color="primary"
-                  @click="btnShowCharTable"
-                  :outlined="charTableOutlined"
-                  rounded
-                  small
-                >
-                  Char Table
-                </v-btn></v-col
-              >
-              <v-col cols="auto" v-if="$can('view_campaign_members')">
-                <v-btn
-                  color="primary"
-                  @click="btnShowUserTable"
-                  :outlined="userTableOutlined"
-                  rounded
-                  small
-                >
-                  User List
-                </v-btn></v-col
-              >
-              <v-col cols="auto">
+                <v-row no-gutters>
+                  <v-col cols="auto" class="pr-2">
+                    <v-btn
+                      color="primary"
+                      @click="btnShowCharTable"
+                      :outlined="charTableOutlined"
+                      rounded
+                      small
+                    >
+                      Char Table
+                    </v-btn></v-col
+                  >
+                  <v-col cols="auto"
+                    ><AddOperationUser :operationID="operationID"
+                  /></v-col>
+                </v-row>
+              </v-col>
+              <v-col cols="auto" v-if="$can('access_multi_campaigns')">
                 <v-tooltip bottom color="#121212">
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn
@@ -81,31 +77,19 @@
                   </span>
                 </v-tooltip>
               </v-col>
-              <v-col cols="auto"
-                ><AddOperationUser :operationID="operationID"
-              /></v-col>
-              <v-col cols="auto">
+
+              <v-col cols="auto" v-if="$can('view_campaign_members')">
                 <v-btn
-                  :exact="true"
                   color="primary"
-                  class="rounded-l-xl"
-                  @click="toggleopen"
-                  small
-                  rounded-l-xl
-                >
-                  Open
-                </v-btn>
-                <v-btn
-                  :exact="true"
-                  color="primary"
-                  class="rounded-r-xl"
-                  @click="toggleclose"
+                  @click="btnShowUserTable"
+                  :outlined="userTableOutlined"
+                  rounded
                   small
                 >
-                  Close
-                </v-btn>
-              </v-col>
-              <v-col cols="auto">
+                  User List
+                </v-btn></v-col
+              >
+              <v-col cols="auto" v-if="$can('edit_read_only')">
                 <v-row no-gutters>
                   <v-col cols="auto">
                     <v-switch
@@ -132,6 +116,27 @@
                     </transition>
                   </v-col>
                 </v-row>
+              </v-col>
+              <v-col cols="auto">
+                <v-btn
+                  :exact="true"
+                  color="primary"
+                  class="rounded-l-xl"
+                  @click="toggleopen"
+                  small
+                  rounded-l-xl
+                >
+                  Open
+                </v-btn>
+                <v-btn
+                  :exact="true"
+                  color="primary"
+                  class="rounded-r-xl"
+                  @click="toggleclose"
+                  small
+                >
+                  Close
+                </v-btn>
               </v-col>
             </v-row>
           </v-expansion-panel-header>

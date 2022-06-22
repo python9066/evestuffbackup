@@ -10,7 +10,6 @@ use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
 use App\Models\OperationUserList;
-use utils\NewCampaignhelper\NewCampaignhelper;
 
 class Broadcasthelper
 {
@@ -31,7 +30,7 @@ class Broadcasthelper
     {
         $campaignIDs = NewCampaignSystem::where('system_id', $systemID)->pluck('new_campaign_id');
         $obIDS = NewCampaignOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
-        $message = NewCampaignhelper::systemSolo($systemID);
+        $message = NewsystemSolo($systemID);
 
         foreach ($obIDS as $op) {
 
@@ -46,7 +45,7 @@ class Broadcasthelper
 
     public static function broadcastCampaignSolo($campaignID, $opID, $flagNumber)
     {
-        $message = NewCampaignhelper::campaignSolo($campaignID);
+        $message = NewcampaignSolo($campaignID);
         $flag = collect([
             'flag' => $flagNumber,
             'id' => $opID,
@@ -69,7 +68,7 @@ class Broadcasthelper
 
     public static function broadcastuserSolo($opID, $opUserID, $flagNumber)
     {
-        $message = NewCampaignhelper::opUserSolo($opID, $opUserID);
+        $message = NewopUserSolo($opID, $opUserID);
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $message,
@@ -144,7 +143,7 @@ class Broadcasthelper
     public static function broadcastOperationUserList($opID, $flagNumber)
     {
         $userIDs = OperationUserList::where('operation_id', $opID)->pluck('user_id');
-        $message = NewCampaignhelper::userListAll($userIDs, $opID);
+        $message = NewuserListAll($userIDs, $opID);
         $flag = collect([
             'flag' => $flagNumber,
             'op_id' => $opID,
@@ -167,7 +166,7 @@ class Broadcasthelper
 
     public static function broadcastuserOwnSolo($opUserID, $userID, $flagNumber, $opID)
     {
-        $message = NewCampaignhelper::ownUsersolo($opUserID);
+        $message = NewownUsersolo($opUserID);
         $flag = collect([
             'flag' => $flagNumber,
             'op_id' => $opID,
@@ -194,19 +193,23 @@ class Broadcasthelper
 
     public static function broadcastAllCharOverlay($flagNumber, $opID, $type)
     {
-        $users = NewCampaignhelper::openAddUserOverlay($opID);
+        $users = OperationUserList::where('operation_id', $opID)
+            ->withCount(['ownUsers' => function ($query) use ($opID) {
+                $query->where('operation_id', $opID);
+            }])->get();
+
         foreach ($users as $user) {
+            if ($user->own_users_count == 0) {
+                $userID = $user->user_id;
 
-            $userID = $user->user_id;
+                $flag = collect([
+                    'flag' => $flagNumber,
+                    'op_id' => $opID,
+                    'id' => $userID,
+                    'type' => $type,
+                ]);
 
-            $flag = collect([
-                'flag' => $flagNumber,
-                'op_id' => $opID,
-                'id' => $userID,
-                'type' => $type,
-            ]);
-
-            broadcast(new OperationOwnUpdate($flag));
+                broadcast(new OperationOwnUpdate($flag));}
         }
     }
 
@@ -223,7 +226,7 @@ class Broadcasthelper
 
     public static function broadcastCustomOperationSolo($opID, $flagNumber)
     {
-        $message = NewCampaignhelper::customOperationSolo($opID);
+        $message = NewcustomOperationSolo($opID);
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $message,

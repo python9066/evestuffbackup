@@ -4,8 +4,6 @@ namespace App\Console\Commands;
 
 use App\Models\Userlogging;
 use Illuminate\Console\Command;
-use utils\Helper\Helper;
-use utils\Timerhelper\Timerhelper;
 
 class UpdateTimers extends Command
 {
@@ -42,9 +40,9 @@ class UpdateTimers extends Command
     {
 
         Userlogging::create(['url' => "demon windows", 'user_id' => 9999999999]);
-        $status = Helper::checkeve();
+        $status = checkeve();
         if ($status == 1) {
-            Timerhelper::update();
+            timeUpdate();
         }
     }
 }

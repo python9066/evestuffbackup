@@ -11,14 +11,10 @@
         "php": "^8.1",
         "brick/math": "^0.9.1",
         "doctrine/dbal": "^3.3",
-        "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.4",
         "haruncpi/laravel-log-reader": "^1.0",
-        "illuminate/contracts": "^8.77",
-        "illuminate/queue": "^8.77",
-        "illuminate/support": "^8.77",
-        "laravel/framework": "^8.0",
+        "laravel/framework": "^9.0",
         "laravel/horizon": "^5.7",
         "laravel/sanctum": "^2.13",
         "laravel/socialite": "^5.0",
@@ -36,11 +32,11 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
-        "facade/ignition": "^2.3.6",
+        "spatie/laravel-ignition": "^1.0",
         "fzaninotto/faker": "^1.9.1",
         "laravel/sail": "^1.14",
         "mockery/mockery": "^1.3.1",
-        "nunomaduro/collision": "^5.0",
+        "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.3"
     },
     "config": {
@@ -68,14 +64,15 @@
             "database/factories"
         ],
         "files": [
-            "utils/Helper.php",
-            "utils/Alliancehelper.php",
-            "utils/Notificationhelper.php",
-            "utils/Timerhelper.php",
-            "utils/Campaignhelper.php",
-            "utils/Loghelper.php",
-            "utils/Broadcasthelper.php",
-            "utils/NewCampaignhelper.php"
+            "app/Helpers/Alliancehelper.php",
+            "app/Helpers/Broadcasthelper.php",
+            "app/Helpers/Campaignhelper.php",
+            "app/Helpers/Helper.php",
+            "app/Helpers/Loghelper.php",
+            "app/Helpers/NewCampaignhelper.php",
+            "app/Helpers/Notificationhelper.php",
+            "app/Helpers/Timerhelper.php"
+
         ]
     },
     "autoload-dev": {

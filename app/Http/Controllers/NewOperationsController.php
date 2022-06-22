@@ -11,8 +11,6 @@ use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use utils\Broadcasthelper\Broadcasthelper;
-use utils\NewCampaignhelper\NewCampaignhelper;
 
 class NewOperationsController extends Controller
 {
@@ -74,7 +72,7 @@ class NewOperationsController extends Controller
 
     public function sendAddCharOverlay($opID, $type)
     {
-        Broadcasthelper::broadcastAllCharOverlay(1, $opID, $type);
+        broadcastAllCharOverlay(1, $opID, $type);
     }
 
     public function changeReadyOnly(Request $request, $opID)
@@ -84,7 +82,7 @@ class NewOperationsController extends Controller
             $op = NewOperation::where('id', $opID)->first();
             $op->read_only = $request->read_only;
             $op->save();
-            Broadcasthelper::broadcastOperationSetReadOnly($opID, 2, $request->read_only);
+            broadcastOperationSetReadOnly($opID, 2, $request->read_only);
 
         } else {
             return null;
@@ -109,7 +107,7 @@ class NewOperationsController extends Controller
                 NewCampaignOperation::create(['campaign_id' => $campaignID, 'operation_id' => $newOp->id]);
             }
 
-            Broadcasthelper::broadcastCustomOperationSolo($newOp->id, 1);
+            broadcastCustomOperationSolo($newOp->id, 1);
         } else {
             return null;
         }
@@ -130,7 +128,17 @@ class NewOperationsController extends Controller
                 NewCampaignOperation::create(['campaign_id' => $campaignID, 'operation_id' => $request->OpID]);
             }
         }
-        Broadcasthelper::broadcastCustomOperationSolo($request->OpID, 2);
+        broadcastCustomOperationSolo($request->OpID, 2);
+    }
+
+    public function updatePriority(Request $request, $id)
+    {
+        $user = Auth::user();
+        if ($user->can("edit_hack_priority")) {
+            $operation = NewOperation::where('id', $id)->first();
+            $operation->priority = $request->priority;
+            $operation->save();
+        }
     }
 
     public function getCustomOperationList()
@@ -159,11 +167,11 @@ class NewOperationsController extends Controller
         $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->pluck('constellation_id');
         $contellationIDs = $contellationIDs->unique();
         $userIDs = OperationUserList::where('operation_id', $operationsID)->pluck('user_id');
-        $systems = NewCampaignhelper::systemsAll($contellationIDs);
-        $opUsers = NewCampaignhelper::opUserAll($operationsID);
-        $ownChars = NewCampaignhelper::ownUserAll(Auth::id());
+        $systems = systemsAll($contellationIDs);
+        $opUsers = opUserAll($operationsID);
+        $ownChars = ownUserAll(Auth::id());
         if ($user->can('view_campaign_members')) {
-            $userList = NewCampaignhelper::userListAll($userIDs, $operationsID);
+            $userList = userListAll($userIDs, $operationsID);
         } else {
             $userList = null;
         }
@@ -237,9 +245,9 @@ class NewOperationsController extends Controller
                 'system_id' => null,
             ]);
 
-            Broadcasthelper::broadcastuserOwnSolo($opuser->id, $opuser->user_id, 3, $id);
+            broadcastuserOwnSolo($opuser->id, $opuser->user_id, 3, $id);
         }
 
-        Broadcasthelper::broadcastCustomOperationDeleteSolo($id, 3);
+        broadcastCustomOperationDeleteSolo($id, 3);
     }
 }

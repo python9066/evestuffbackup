@@ -78,7 +78,6 @@
       }"
       :sort-by="['start']"
       :search="search"
-      :sort-desc="[false, true]"
       multi-sort
       @click:row="rowClick($event)"
       class="elevation-1"
