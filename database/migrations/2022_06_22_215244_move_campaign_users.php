@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         $users = CampaignUser::all();
+        OperationUser::truncate();
         foreach ($users as $user) {
             $new = new OperationUser();
             $new->name = $user->char_name;
             $new->ship = $user->ship;
-            $new->entosis = $user->link;
+            $new->entosis = $user->link ?? 0;
             $new->user_id = $user->site_id;
             $new->role_id = $user->campaign_role_id;
             $new->save();
