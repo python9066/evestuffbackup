@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\EveEsiStatus;
 use App\Models\Userlogging;
 use Illuminate\Console\Command;
 
@@ -40,8 +41,8 @@ class UpdateTimers extends Command
     {
 
         Userlogging::create(['url' => "demon windows", 'user_id' => 9999999999]);
-        $status = checkeve();
-        if ($status == 1) {
+        $check = EveEsiStatus::where('route', "/sovereignty/structures/")->first();
+        if ($check->status = "green") {
             timeUpdate();
         }
     }

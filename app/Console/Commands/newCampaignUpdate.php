@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Jobs\setActiveUpdateFlagJob;
 use App\Jobs\setWarmUpdateFlagJob;
+use App\Models\EveEsiStatus;
 use App\Models\NewCampaign;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -46,8 +47,10 @@ class newCampaignUpdate extends Command
         // if ($status == 1) {
         //     NewnewUpdate();
         // };
-
-        newUpdateCampaigns();
+        $check = EveEsiStatus::where('route', '/sovereignty/campaigns/')->first();
+        if ($check->status == "green") {
+            newUpdateCampaigns();
+        }
         $campaigns = NewCampaign::where('job', 0)->get();
         foreach ($campaigns as $campaign) {
             $start = Carbon::parse($campaign->start_time);

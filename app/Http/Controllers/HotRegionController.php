@@ -6,7 +6,6 @@ use App\Events\StationSheetUpdate;
 use App\Jobs\updateWebwayJob;
 use App\Models\Campaign;
 use App\Models\HotRegion;
-use utils\Notificationhelper\Notifications;
 use App\Models\Region;
 use App\Models\Station;
 use App\Models\System;
@@ -70,7 +69,6 @@ class HotRegionController extends Controller
         //
     }
 
-
     public function updateSetting(Request $request)
     {
         $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
@@ -86,10 +84,6 @@ class HotRegionController extends Controller
             array_push($fcIds, $fc['value']);
         }
 
-
-
-
-
         $h = HotRegion::whereNotNull('id')->get();
         foreach ($h as $h) {
             $h->update(['update' => 0, 'show_fcs' => 0]);
@@ -104,16 +98,16 @@ class HotRegionController extends Controller
         }
 
         $flag = collect([
-            'flag' => 1
+            'flag' => 1,
         ]);
         broadcast(new StationSheetUpdate($flag));
 
         $ids = HotRegion::where('update', 1)->pluck('region_id');
 
         foreach ($ids as $id) {
-            $stations =  Notifications::reconRegionPull($id);
+            $stations = reconRegionPull($id);
             foreach ($stations as $station) {
-                Notifications::reconRegionPullIdCheck($station);
+                reconRegionPullIdCheck($station);
             }
         }
 
@@ -151,10 +145,8 @@ class HotRegionController extends Controller
             }
         }
 
-
-
         $flag = collect([
-            'flag' => 2
+            'flag' => 2,
         ]);
         broadcast(new StationSheetUpdate($flag));
     }
@@ -170,7 +162,7 @@ class HotRegionController extends Controller
     {
         $user = Auth::user();
         if ($user->can('edit_hot_region')) {
-            $h =   HotRegion::where('id', $id)->get();
+            $h = HotRegion::where('id', $id)->get();
             foreach ($h as $h) {
                 $h->update($request->all());
             }

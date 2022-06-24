@@ -2,10 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Controllers\TowerRecordsController;
 use App\Models\Userlogging;
 use Illuminate\Console\Command;
-use utils\Notificationhelper\Notifications;
 
 class UpdateTowers extends Command
 {
@@ -42,6 +40,6 @@ class UpdateTowers extends Command
     {
 
         Userlogging::create(['url' => 'demon towers', 'user_id' => 9999999999]);
-        Notifications::towerUpdate();
+        towerUpdate();
     }
 }

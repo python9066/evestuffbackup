@@ -656,7 +656,7 @@ class testController extends Controller
     {
 
         testNote::create(['text' => $request]);
-        Notifications::test($request, 1);
+        test($request, 1);
     }
 
     public function rc(Request $request)

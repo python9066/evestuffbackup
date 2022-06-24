@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Events\EveUserUpdate;
 use App\Models\Eve;
+use App\Models\EveEsiStatus;
 use App\Models\Userlogging;
 use Illuminate\Console\Command;
 
@@ -41,7 +42,10 @@ class UpdateEveUserCount extends Command
     public function handle()
     {
         Userlogging::create(['url' => "demon eve", 'user_id' => 9999999999]);
-        $count = eveUserCount();
+        $check = EveEsiStatus::where('route', "/status/")->first();
+        if ($check->status == "green") {
+            $count = eveUserCount();
+        }
         Eve::where('id', 1)->update(['user_count' => $count]);
 
         $flag = collect([

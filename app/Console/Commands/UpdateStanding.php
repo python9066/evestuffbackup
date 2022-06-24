@@ -3,14 +3,15 @@
 namespace App\Console\Commands;
 
 use App\Models\Alliance;
-use App\Models\Corp;
 use App\Models\Auth;
-use DateTime;
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Http;
 use App\Models\Client;
+use App\Models\Corp;
+use App\Models\EveEsiStatus;
+use DateTime;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Utils;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
 
 class UpdateStanding extends Command
 {
@@ -50,8 +51,11 @@ class UpdateStanding extends Command
 
     public function runStandingUpdate()
     {
-        $this->checkKeys();
-        $this->updateStanding();
+        $check = EveEsiStatus::where('route', "/alliances/{alliance_id}/contacts/")->first();
+        if ($check->status == "green") {
+            $this->checkKeys();
+            $this->updateStanding();
+        }
     }
 
     public function checkKeys()
@@ -69,19 +73,18 @@ class UpdateStanding extends Command
                 $client = Client::first();
                 $http = new GuzzleHttpCLient();
 
-
                 $headers = [
                     'Authorization' => 'Basic ' . $client->code,
                     'Content-Type' => 'application/x-www-form-urlencoded',
                     'Host' => 'login.eveonline.com',
-                    'User-Agent' => 'evestuff.online python9066@gmail.com'
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
 
                 ];
                 $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
                 // print $body;
                 $response = $http->request('POST', 'https://login.eveonline.com/v2/oauth/token', [
                     'headers' => $headers,
-                    'body' => $body
+                    'body' => $body,
                 ]);
                 $data = Utils::jsonDecode($response->getBody(), true);
                 // dd($data);
@@ -119,7 +122,7 @@ class UpdateStanding extends Command
         $response = Http::withToken($token->access_token)->withHeaders([
             'Content-Type' => 'application/json',
             "Accept" => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
         ])->get($url);
 
         $standings = $response->collect();
@@ -135,30 +138,29 @@ class UpdateStanding extends Command
             };
 
             if ($stand->get('contact_type') == "alliance") {
-                $a =  Alliance::where('id', $stand->get('contact_id'))->get();
+                $a = Alliance::where('id', $stand->get('contact_id'))->get();
 
                 foreach ($a as $a) {
                     $a->update([
                         'color' => $color,
-                        'standing' => $stand->get('standing')
+                        'standing' => $stand->get('standing'),
                     ]);
                 }
             }
 
             if ($stand->get('contact_type') == "corporation") {
-                $c =  Corp::where('id', $stand->get('contact_id'))->get();
+                $c = Corp::where('id', $stand->get('contact_id'))->get();
 
                 foreach ($c as $c) {
                     $c->update([
                         'color' => $color,
-                        'standing' => $stand->get('standing')
+                        'standing' => $stand->get('standing'),
                     ]);
                 }
             }
         }
 
-
-        $a =  Alliance::where('id', '1354830081')->get();
+        $a = Alliance::where('id', '1354830081')->get();
         foreach ($a as $a) {
             $a->update(['standing' => 10, 'color' => 3]);
         }

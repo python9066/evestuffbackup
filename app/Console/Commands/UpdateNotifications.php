@@ -3,9 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Events\NotificationNew;
+use App\Models\EveEsiStatus;
 use App\Models\Userlogging;
 use Illuminate\Console\Command;
-use utils\Notificationhelper\Notifications;
 
 class UpdateNotifications extends Command
 {
@@ -42,14 +42,12 @@ class UpdateNotifications extends Command
     {
 
         Userlogging::create(['url' => "demon notes", 'user_id' => 9999999999]);
-        $status = checkeve();
-        if ($status == 1) {
+        $check = EveEsiStatus::where('route', "/characters/{character_id}/notifications/")->first();
+        if ($check->status = "green") {
             $type = "note";
-            authcheck();
             $data = authpull($type, 0);
-            $flag = Notifications::update($data);
+            $flag = notificationUpdate($data);
 
-            // dd($flag);
             if ($flag['notificationflag'] == 1) {
                 broadcast(new NotificationNew($flag['notificationflag']))->toOthers();
             }

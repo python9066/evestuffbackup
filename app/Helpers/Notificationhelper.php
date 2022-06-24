@@ -588,7 +588,7 @@ if (!function_exists('test')) {
 
                 $station = Station::where('id', $text['structureID'])->first();
                 if ($station == null) {
-                    $stationdata = Notifications::reconPull($text['structureID']);
+                    $stationdata = reconPull($text['structureID']);
                     if (array_key_exists('str_structure_id_md5', $stationdata)) {
                         $core = 0;
                         if ($stationdata['str_cored'] == "Yes") {
@@ -642,9 +642,9 @@ if (!function_exists('test')) {
                             'r_composite' => $stationdata['str_composite'],
                             'r_cored' => $core,
                             'status_update' => $current,
-                            'show_on_main' => Notifications::setShowMainNew($show),
-                            'show_on_chill' => Notifications::setShowChillNew($show),
-                            'show_on_welp' => Notifications::setShowWelpNew($show),
+                            'show_on_main' => setShowMainNew($show),
+                            'show_on_chill' => setShowChillNew($show),
+                            'show_on_welp' => setShowWelpNew($show),
                             'added_from_recon' => 1,
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
@@ -672,9 +672,9 @@ if (!function_exists('test')) {
                             'timestamp' => $time,
                             'status_update' => $current,
                             'out_time' => null,
-                            'show_on_main' => Notifications::setShowMainNew($show),
-                            'show_on_chill' => Notifications::setShowChillNew($show),
-                            'show_on_welp' => Notifications::setShowWelpNew($show),
+                            'show_on_main' => setShowMainNew($show),
+                            'show_on_chill' => setShowChillNew($show),
+                            'show_on_welp' => setShowWelpNew($show),
                         ]);
                     }
                 } else {
@@ -689,9 +689,9 @@ if (!function_exists('test')) {
                         'station_status_id' => $status,
                         'timestamp' => $time,
                         'status_update' => $current,
-                        'show_on_main' => Notifications::setShowMain($station, $show),
-                        'show_on_chill' => Notifications::setShowChill($station, $show),
-                        'show_on_welp' => Notifications::setShowWelp($station, $show),
+                        'show_on_main' => setShowMain($station, $show),
+                        'show_on_chill' => setShowChill($station, $show),
+                        'show_on_welp' => setShowWelp($station, $show),
                     ]);
                 }
 
@@ -720,7 +720,7 @@ if (!function_exists('test')) {
 
                 $station = Station::where('id', $text['structureID'])->first();
                 if ($station == null) {
-                    $stationdata = Notifications::reconPull($text['structureID']);
+                    $stationdata = reconPull($text['structureID']);
                     if (array_key_exists('str_structure_id_md5', $stationdata)) {
                         $core = 0;
                         if ($stationdata['str_cored'] == "Yes") {
@@ -774,9 +774,9 @@ if (!function_exists('test')) {
                             'r_cored' => $core,
                             'status_update' => $current,
                             'out_time' => $outTime,
-                            'show_on_main' => Notifications::setShowMainNew($show),
-                            'show_on_chill' => Notifications::setShowChillNew($show),
-                            'show_on_welp' => Notifications::setShowWelpNew($show),
+                            'show_on_main' => setShowMainNew($show),
+                            'show_on_chill' => setShowChillNew($show),
+                            'show_on_welp' => setShowWelpNew($show),
                             'added_from_recon' => 1,
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
@@ -804,9 +804,9 @@ if (!function_exists('test')) {
                             'timestamp' => $time,
                             'out_time' => $outTime,
                             'status_update' => $current,
-                            'show_on_main' => Notifications::setShowMainNew($show),
-                            'show_on_chill' => Notifications::setShowChillNew($show),
-                            'show_on_welp' => Notifications::setShowWelpNew($show),
+                            'show_on_main' => setShowMainNew($show),
+                            'show_on_chill' => setShowChillNew($show),
+                            'show_on_welp' => setShowWelpNew($show),
                         ]);
                     }
                 } else {
@@ -817,9 +817,9 @@ if (!function_exists('test')) {
                         'timestamp' => $time,
                         'status_update' => $current,
                         'out_time' => $outTime,
-                        'show_on_main' => Notifications::setShowMain($station, $show),
-                        'show_on_chill' => Notifications::setShowChill($station, $show),
-                        'show_on_welp' => Notifications::setShowWelp($station, $show),
+                        'show_on_main' => setShowMain($station, $show),
+                        'show_on_chill' => setShowChill($station, $show),
+                        'show_on_welp' => setShowWelp($station, $show),
                     ]);
                 }
 
@@ -849,7 +849,7 @@ if (!function_exists('test')) {
                 $station = Station::where('id', $text['structureID'])->first();
                 // echo $stationcheck;
                 if ($station == null) {
-                    $stationdata = Notifications::reconPull($text['structureID']);
+                    $stationdata = reconPull($text['structureID']);
                     if (array_key_exists('str_structure_id_md5', $stationdata)) {
                         $core = 0;
                         if ($stationdata['str_cored'] == "Yes") {
@@ -903,9 +903,9 @@ if (!function_exists('test')) {
                             'r_cored' => $core,
                             'status_update' => $current,
                             'out_time' => $outTime,
-                            'show_on_main' => Notifications::setShowMainNew($show),
-                            'show_on_chill' => Notifications::setShowChillNew($show),
-                            'show_on_welp' => Notifications::setShowWelpNew($show),
+                            'show_on_main' => setShowMainNew($show),
+                            'show_on_chill' => setShowChillNew($show),
+                            'show_on_welp' => setShowWelpNew($show),
                             'added_from_recon' => 1,
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
@@ -934,9 +934,9 @@ if (!function_exists('test')) {
                             'timestamp' => $time,
                             'out_time' => $outTime,
                             'status_update' => $current,
-                            'show_on_main' => Notifications::setShowMainNew($show),
-                            'show_on_chill' => Notifications::setShowChillNew($show),
-                            'show_on_welp' => Notifications::setShowWelpNew($show),
+                            'show_on_main' => setShowMainNew($show),
+                            'show_on_chill' => setShowChillNew($show),
+                            'show_on_welp' => setShowWelpNew($show),
                         ]);
                     }
                 } else {
@@ -947,9 +947,9 @@ if (!function_exists('test')) {
                         'timestamp' => $time,
                         'status_update' => $current,
                         'out_time' => $outTime,
-                        'show_on_main' => Notifications::setShowMain($station, $show),
-                        'show_on_chill' => Notifications::setShowChill($station, $show),
-                        'show_on_welp' => Notifications::setShowWelp($station, $show),
+                        'show_on_main' => setShowMain($station, $show),
+                        'show_on_chill' => setShowChill($station, $show),
+                        'show_on_welp' => setShowWelp($station, $show),
                     ]);
 
                     $data = array(
