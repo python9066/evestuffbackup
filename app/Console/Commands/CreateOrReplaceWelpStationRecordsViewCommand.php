@@ -39,7 +39,7 @@ class CreateOrReplaceWelpStationRecordsViewCommand extends Command
     public function handle()
     {
 
-        DB::statement("CREATE VIEW welp_station_records AS SELECT stations.id AS id,
+        DB::statement("CREATE OR ALTER VIEW welp_station_records AS SELECT stations.id AS id,
 stations.name AS name,
 stations.system_id AS system_id,
 systems.system_name AS system_name,

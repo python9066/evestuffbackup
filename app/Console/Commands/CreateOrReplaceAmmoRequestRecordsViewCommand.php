@@ -39,7 +39,7 @@ class CreateOrReplaceAmmoRequestRecordsViewCommand extends Command
     public function handle()
     {
         DB::statement(
-            "CREATE VIEW ammo_request_records AS SELECT ammo_requests.id AS 'id',
+            "CREATE OR ALTER VIEW ammo_request_records AS SELECT ammo_requests.id AS 'id',
 ammo_requests.station_id AS 'station_id',
 stations.name AS 'station_name',
 stations.system_id AS 'system_id',

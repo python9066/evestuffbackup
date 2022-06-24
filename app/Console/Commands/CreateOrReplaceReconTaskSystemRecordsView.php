@@ -38,7 +38,7 @@ class CreateOrReplaceReconTaskSystemRecordsView extends Command
      */
     public function handle()
     {
-        DB::statement("CREATE VIEW recon_task_system_records AS SELECT recon_task_systems.id AS id,
+        DB::statement("CREATE OR ALTER VIEW recon_task_system_records AS SELECT recon_task_systems.id AS id,
         recon_task_systems.recon_task_id AS recon_task_id,
 recon_task_systems.system_id AS system_id,
 recon_task_systems.last_edit AS last_edit,

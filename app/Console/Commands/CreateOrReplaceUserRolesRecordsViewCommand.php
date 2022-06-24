@@ -38,7 +38,7 @@ class CreateOrReplaceUserRolesRecordsViewCommand extends Command
      */
     public function handle()
     {
-        DB::statement("CREATE VIEW user_roles_records AS SELECT model_has_roles.model_id AS 'user_id',
+        DB::statement("CREATE OR ALTER VIEW user_roles_records AS SELECT model_has_roles.model_id AS 'user_id',
         users.name AS 'user_name',
         model_has_roles.role_id AS 'role_id',
         roles.name AS 'role_name',

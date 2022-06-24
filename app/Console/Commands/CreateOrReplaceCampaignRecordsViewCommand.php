@@ -39,7 +39,7 @@ class CreateOrReplaceCampaignRecordsViewCommand extends Command
     public function handle()
     {
         DB::statement(
-            "CREATE VIEW campaign_records AS SELECT campaigns.id AS 'id',
+            "CREATE OR ALTER VIEW campaign_records AS SELECT campaigns.id AS 'id',
         regions.region_name AS 'region',
         regions.id AS 'region_id',
         constellations.constellation_name AS 'constellation',
