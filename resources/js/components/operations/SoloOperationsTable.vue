@@ -24,6 +24,10 @@
             {{ item.campaign[0].system.system_name }}
           </div>
         </template>
+        <template v-slot:[`item.campaign[0].event_type`]="{ item }">
+          {{ eventTypeName(item.campaign[0].event_type) }}
+        </template>
+
         <template
           v-slot:[`item.campaign[0].constellation.region.region_name`]="{
             item,
@@ -465,6 +469,14 @@ export default {
         }
       } else {
         return null;
+      }
+    },
+
+    eventTypeName(type) {
+      if (type == "32226") {
+        return "TCU";
+      } else {
+        return "Ihub";
       }
     },
 
