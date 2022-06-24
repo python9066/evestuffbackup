@@ -33,10 +33,11 @@ class setWarmUpdateFlagJob implements ShouldQueue
     {
         $campaign = NewCampaign::where('id', $this->campaign_id)->first();
         $campaign->update(['status_id' => 5]);
-        campaignSolo($this->campaign_id);
         $operationIDs = NewCampaignOperation::where('campaign_id', $this->campaign_id)->get();
         foreach ($operationIDs as $opID) {
-            broadcastOperationRefresh($opID->operation_id, 3);
+            broadcastOperationRefresh($opID->operation_id, $this->campaign_id, 8);
+            broadcastSoloOpSoloOp(1, $opID->operation_id);
+
         }
     }
 

@@ -4,6 +4,7 @@ use App\Events\CustomOperationPageUpdate;
 use App\Events\OperationAdminUpdate;
 use App\Events\OperationOwnUpdate;
 use App\Events\OperationUpdate;
+use App\Events\SoloOperationUpdate;
 use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
@@ -17,7 +18,6 @@ if (!function_exists('broadcastsystemSolo')) {
      * @param int $flagNumber
      * 4 = updates system info
      * 5 = remove char from ops table
-     * 6 = update op char table
      * 7 = update campaign system
 
      */
@@ -26,7 +26,7 @@ if (!function_exists('broadcastsystemSolo')) {
     {
         $campaignIDs = NewCampaignSystem::where('system_id', $systemID)->pluck('new_campaign_id');
         $obIDS = NewCampaignOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
-        $message = NewsystemSolo($systemID);
+        $message = systemSolo($systemID);
 
         foreach ($obIDS as $op) {
 
@@ -43,7 +43,7 @@ if (!function_exists('broadcastsystemSolo')) {
 if (!function_exists('broadcastCampaignSolo')) {
     function broadcastCampaignSolo($campaignID, $opID, $flagNumber)
     {
-        $message = NewcampaignSolo($campaignID);
+        $message = campaignSolo($campaignID);
         $flag = collect([
             'flag' => $flagNumber,
             'id' => $opID,
@@ -68,7 +68,7 @@ if (!function_exists('broadcastuserSolo')) {
 
     function broadcastuserSolo($opID, $opUserID, $flagNumber)
     {
-        $message = NewopUserSolo($opID, $opUserID);
+        $message = opUserSolo($opID, $opUserID);
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $message,
@@ -86,15 +86,18 @@ if (!function_exists('broadcastOperationRefresh')) {
 
      * @param int $flagNumber
      * 3 = refresh operation info
+     * 8 = update camaping page status
 
      */
 
-    function broadcastOperationRefresh($opID, $flagNumber)
+    function broadcastOperationRefresh($opID, $campaignID, $flagNumber)
     {
 
         $message = NewOperation::where('id', $opID)
             ->with([
-                'campaign',
+                'campaign' => function ($q) use ($campaignID) {
+                    $q->where('campaign_id', $campaignID);
+                },
                 'campaign.status',
                 'campaign.constellation:id,constellation_name,region_id',
                 'campaign.constellation.region:id,region_name',
@@ -148,7 +151,7 @@ if (!function_exists('broadcastOperationUserList')) {
     function broadcastOperationUserList($opID, $flagNumber)
     {
         $userIDs = OperationUserList::where('operation_id', $opID)->pluck('user_id');
-        $message = NewuserListAll($userIDs, $opID);
+        $message = userListAll($userIDs, $opID);
         $flag = collect([
             'flag' => $flagNumber,
             'op_id' => $opID,
@@ -174,7 +177,7 @@ if (!function_exists('broadcastuserOwnSolo')) {
 
     function broadcastuserOwnSolo($opUserID, $userID, $flagNumber, $opID)
     {
-        $message = NewownUsersolo($opUserID);
+        $message = ownUsersolo($opUserID);
         $flag = collect([
             'flag' => $flagNumber,
             'op_id' => $opID,
@@ -238,7 +241,7 @@ if (!function_exists('broadcastCustomOperationSolo')) {
 
     function broadcastCustomOperationSolo($opID, $flagNumber)
     {
-        $message = NewcustomOperationSolo($opID);
+        $message = customOperationSolo($opID);
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $message,
@@ -264,5 +267,41 @@ if (!function_exists('broadcastCustomOperationDeleteSolo')) {
             'message' => $opID,
         ]);
         broadcast(new CustomOperationPageUpdate($flag));
+    }
+}
+
+if (!function_exists('broadcastSoloOpSoloOp')) {
+    /**
+
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     * @param int $flagNumber
+     * 1 = Update solo SoloOp Table -
+
+     */
+
+    function broadcastSoloOpSoloOp($flagNumber, $opID)
+    {
+        $message = NewOperation::where('solo', 1)
+            ->where('id', $opID)
+            ->with([
+                'campaign',
+                'campaign.status',
+                'campaign.constellation:id,constellation_name,region_id',
+                'campaign.constellation.region:id,region_name',
+                'campaign.alliance:id,name,ticker,standing,url,color',
+                'campaign.system:id,system_name,adm',
+                'campaign.system.webway' => function ($t) {
+                    $t->where('permissions', 1);
+                },
+                'campaign.structure:id,item_id,age',
+            ])
+            ->first();
+
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message,
+        ]);
+        broadcast(new SoloOperationUpdate($flag));
     }
 }

@@ -107,8 +107,13 @@ function sleep(ms) {
 export default {
   async created() {
     await this.$store.dispatch("getWebwayStartSystems");
-    Echo.private("solooperation").listen("SoloOperationUpdate", (e) => {});
     await this.$store.dispatch("getSoloOperationList");
+    Echo.private("solooperation").listen("SoloOperationUpdate", (e) => {
+      // 1 = update solo Op
+      if (e.flag.flag == 1) {
+        this.$store.dispatch("updateSoloOperationList", e.flag.message);
+      }
+    });
   },
 
   async mounted() {

@@ -80,6 +80,7 @@ export default {
         this.showSystemTable = 0;
       }
     });
+    this.checkRoute();
   },
 
   beforeMonunt() {},
@@ -93,6 +94,16 @@ export default {
         this.showSystemTable = null;
       } else {
         this.showSystemTable = 0;
+      }
+    },
+
+    checkRoute() {
+      if (this.$route.params.system) {
+        if (this.$route.params.system == this.item.system_name) {
+          this.showSystemTable = 0;
+        } else {
+          this.showSystemTable = null;
+        }
       }
     },
   },

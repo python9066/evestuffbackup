@@ -47,7 +47,7 @@ class newCampaignUpdate extends Command
         //     NewnewUpdate();
         // };
 
-        newUpdate();
+        newUpdateCampaigns();
         $campaigns = NewCampaign::where('job', 0)->get();
         foreach ($campaigns as $campaign) {
             $start = Carbon::parse($campaign->start_time);

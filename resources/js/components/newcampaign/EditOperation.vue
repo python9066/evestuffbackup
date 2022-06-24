@@ -4,13 +4,12 @@
       <v-dialog v-model="overlay" min-width="1200" max-width="1200" z-index="0">
         <template v-slot:activator="{ on, attrs }">
           <v-btn
-            class="mr-4"
+            class="mr-2"
             color="green lighten-1"
             v-bind="attrs"
             v-on="on"
             icon
             @click="open()"
-            small
           >
             <font-awesome-icon icon="fa-solid fa-pen-to-square" size="2xl"
           /></v-btn>

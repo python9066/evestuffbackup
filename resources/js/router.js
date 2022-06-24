@@ -67,19 +67,13 @@ export default new Router({
         },
 
         {
-            path: "/op/:id",
+            path: "/op/:id/:system?",
             name: "op",
             component: NewOperation,
-            beforeEnter(to, from, next) {
-                if (Permissions.indexOf("access_multi_campaigns") !== -1) {
-                    next();
-                } else {
-                    next("/notifications");
-                }
-            },
             props: (route) => {
                 const id = route.params.id;
-                return { id };
+                const routeSystem = route.params.system ?? null;
+                return { id, routeSystem };
             },
         },
 
@@ -172,13 +166,6 @@ export default new Router({
             path: "/operations",
             name: "operations",
             component: SoloOperations,
-            beforeEnter(to, from, next) {
-                if (Permissions.indexOf("super") !== -1) {
-                    next();
-                } else {
-                    next("/notifications");
-                }
-            },
         },
 
         {

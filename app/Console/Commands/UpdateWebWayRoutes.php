@@ -4,11 +4,11 @@ namespace App\Console\Commands;
 
 use App\Jobs\updateWebwayJob;
 use App\Models\Campaign;
+use App\Models\NewCampaignSystem;
 use App\Models\Station;
 use App\Models\WebWay;
 use App\Models\WebWayStartSystem;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Http;
 
 class UpdateWebWayRoutes extends Command
 {
@@ -55,8 +55,11 @@ class UpdateWebWayRoutes extends Command
         $stationSystems = $stations->pluck('system_id');
         $campaigns = Campaign::get();
         $campaginSystems = $campaigns->pluck('system_id');
+        $newCampaigns = NewCampaignSystem::get();
+        $newCampaignsSystems = $newCampaigns->pluck('system_id');
 
         $systemIDs = $stationSystems->merge($campaginSystems);
+        $systemIDs = $systemIDs->merge($newCampaignsSystems);
         $systemIDs = $systemIDs->unique();
         $systemIDs = $systemIDs->values();
         $w = WebWay::whereIn('system_id', $systemIDs)->get();
@@ -72,7 +75,7 @@ class UpdateWebWayRoutes extends Command
             updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');
         }
 
-        $start_system_ids = WebWayStartSystem::where('system_id', '!=', 30004759)->pluck('system_id');;
+        $start_system_ids = WebWayStartSystem::where('system_id', '!=', 30004759)->pluck('system_id');
         foreach ($start_system_ids as $start_system_id) {
             foreach ($systemIDs as $end_system_id) {
                 updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');

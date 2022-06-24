@@ -1,9 +1,14 @@
 <template>
-  <div class="pr-16 pl-16">
-    <MultiCampaigns></MultiCampaigns>
-    <StartCampaign></StartCampaign>
-    <NewMultiCampaigns v-if="$can('super')"></NewMultiCampaigns>
-  </div>
+  <v-row no-gutters v-resize="onResize">
+    <v-col cols="12">
+      <!-- <MultiCampaigns></MultiCampaigns> -->
+      <NewMultiCampaigns
+        class="pb-3"
+        :windowSize="windowSize"
+      ></NewMultiCampaigns>
+      <StartCampaign :windowSize="windowSize"></StartCampaign>
+    </v-col>
+  </v-row>
 </template>
 <script>
 import Axios from "axios";
@@ -19,7 +24,12 @@ export default {
     return `EveStuff - MultiCampaigns`;
   },
   data() {
-    return {};
+    return {
+      windowSize: {
+        x: 0,
+        y: 0,
+      },
+    };
   },
 
   created() {
@@ -44,8 +54,12 @@ export default {
 
   async mounted() {
     this.log();
+    this.onResize();
   },
   methods: {
+    onResize() {
+      this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+    },
     log() {
       var request = {
         url: this.$route.path,

@@ -3,7 +3,6 @@
     <v-col cols="12">
       <v-row no-gutters>
         <v-col cols="12">
-          {{ count }}
           <v-data-table
             :headers="_headers"
             :single-expand="singleExpand"
@@ -35,7 +34,11 @@
                   <NewNodeExtraChar :node="item" :operationID="operationID" />
                 </v-col>
                 <v-col cols="auto">
-                  <AddPilotAdmin :node="item" :operationID="operationID" />
+                  <AddPilotAdmin
+                    v-if="$can('campaigns_admin_access')"
+                    :node="item"
+                    :operationID="operationID"
+                  />
                 </v-col>
               </v-row>
             </template>

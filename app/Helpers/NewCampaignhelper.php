@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\setJustOverFlagJob;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
@@ -12,48 +13,30 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
-if (!function_exists('newUpdate')) {
-    function newUpdate()
+if (!function_exists('newUpdateCampaigns')) {
+    function newUpdateCampaigns()
     {
 
         $updatedCampaignID = collect();
-        $deathCampaign = NewCampaign::where('status_id', 10)->get();
-
-        foreach ($deathCampaign as $c) {
-            // TODO: Finish everything else that needs to be cleaned up when a campaign is over.
-            $campaginOperation = NewCampaignOperation::where('campaign_id', $c->id)->get();
-            foreach ($campaginOperation as $co) {
-
-                $op = NewOperation::where('id', $co->operation_id)->first();
-                if ($op->solo == 1) {
-                    $op->delete();
-                }
-                $co->delete();
-            }
-
-            $c->delete();
-        }
 
         // * Set check flag to 0
         $n = NewCampaign::where('id', '>', 0)->get();
         foreach ($n as $n) {
             $n->update(['check' => 0]);
         }
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            "Accept" => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com',
-        ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
         // $response = Http::withHeaders([
         //     'Content-Type' => 'application/json',
         //     "Accept" => "application/json",
         //     'User-Agent' => 'evestuff.online python9066@gmail.com',
-        // ])->get("https://628189349fac04c6540639f6.mockapi.io/timers");
-        $campaigns = $response->collect();
-
-        $campaigns = $response->collect();
-        foreach ($campaigns as $campaign) {
-            $event_type = $campaign['event_type'];
+        // ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            "Accept" => "application/json",
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
+        ])->get("https://628189349fac04c6540639f6.mockapi.io/timers");
+        $res = $response->collect();
+        foreach ($res as $r) {
+            $event_type = $r['event_type'];
             if ($event_type == 'ihub_defense' || $event_type == 'tcu_defense') {
                 $score_changed = false;
                 if ($event_type == 'ihub_defense') {
@@ -64,41 +47,47 @@ if (!function_exists('newUpdate')) {
                     $event_type_name = "TCU";
                 }
 
-                $id = $campaign['campaign_id'];
+                $id = $r['campaign_id'];
                 $old = NewCampaign::where('id', $id)->first();
                 if ($old) {
                     // * Checking if the score has changed
-                    if ($campaign['attackers_score'] != $old->attackers_score) {
+                    if ($r['attackers_score'] != $old->attackers_score) {
                         $old->attackers_score_old = $old->attackers_score;
                         $old->defenders_score_old = $old->defenders_score;
                         $old->save();
                         $score_changed = true;
                     }
                 }
-                $systemN = System::where('id', $campaign['solar_system_id'])->first();
+                $systemN = System::where('id', $r['solar_system_id'])->first();
                 $systemNamee = $systemN->system_name;
                 $cName = $systemNamee . " - " . $event_type_name;
-                $time = $campaign['start_time'];
+                $time = $r['start_time'];
                 $start_time = fixtime($time);
                 $data = array();
                 $data = array(
-                    'attackers_score' => $campaign['attackers_score'],
-                    'constellation_id' => $campaign['constellation_id'],
-                    'alliance_id' => $campaign['defender_id'],
-                    'defenders_score' => $campaign['defender_score'],
+                    'attackers_score' => $r['attackers_score'],
+                    'constellation_id' => $r['constellation_id'],
+                    'alliance_id' => $r['defender_id'],
+                    'defenders_score' => $r['defender_score'],
                     'event_type' => $event_type,
-                    'system_id' => $campaign['solar_system_id'],
+                    'system_id' => $r['solar_system_id'],
                     'start_time' => $start_time,
-                    'structure_id' => $campaign['structure_id'],
+                    'structure_id' => $r['structure_id'],
                     'check' => 1,
                     'name' => $cName,
                 );
 
+                $checkNew = NewCampaign::where('id', $id)->count();
+                if ($checkNew == 0) {
+                    $updatedCampaignID->push($id);
+                }
                 NewCampaign::updateOrCreate(['id' => $id], $data);
                 echo $score_changed;
                 // * If Score has changed
 
                 if ($score_changed) {
+                    // $updatedCampaignID->push($id);
+
                     echo " -  I AM IN   -";
                     $campaign = NewCampaign::where('id', $id)->first();
                     $campaignOperations = NewCampaignOperation::where('campaign_id', $id)->get();
@@ -128,7 +117,7 @@ if (!function_exists('newUpdate')) {
                 // * Setting everything up for a new campaign
                 if (NewCampaignOperation::where('campaign_id', $id)->count() == 0) {
                     $uuid = Str::uuid();
-                    $system = System::where('id', $campaign['solar_system_id'])->first();
+                    $system = System::where('id', $r['solar_system_id'])->first();
                     $systemName = $system->system_name;
                     if ($event_type == 32458) {
                         $type = "Ihub";
@@ -148,7 +137,7 @@ if (!function_exists('newUpdate')) {
                         'operation_id' => $newOp->id,
                     ]);
 
-                    $campaignSystemsIDs = System::where('constellation_id', $campaign['constellation_id'])->pluck('id');
+                    $campaignSystemsIDs = System::where('constellation_id', $r['constellation_id'])->pluck('id');
                     foreach ($campaignSystemsIDs as $systemid) {
                         NewCampaignSystem::create([
                             'system_id' => $systemid,
@@ -170,58 +159,29 @@ if (!function_exists('newUpdate')) {
             ->whereNull('end_time')->get();
 
         foreach ($ns as $n) {
-            if ($campaign['defenders_score'] > 0.5) {
-                $dScore = 1;
-                $aScore = 0;
-            } else {
-                $dScore = 0;
-                $aScore = 1;
+            setJustOverFlagJob::dispatch($n->id, $r['defender_score'])->onQueue('campaigns');
+        }
+        // * Check if the campaign have been over more than 10mins, if true set it to finsiehd(3)
+
+        $updatedCampaignIDs = $updatedCampaignID->unique();
+        print_r($updatedCampaignIDs);
+        foreach ($updatedCampaignIDs as $updatedCampaignID) {
+            $ops = NewCampaignOperation::where('campaign_id', $updatedCampaignID)->get();
+            foreach ($ops as $op) {
+                broadcastCampaignSolo($updatedCampaignID, $op->operation_id, 3);
+
+                $operation = NewOperation::where('id', $op->operation_id)->where('solo', 1)->first();
+                if ($operation) {
+
+                    broadcastSoloOpSoloOp(1, $operation->id);
+                }
 
             }
-            $n->update([
-                'end_time' => now(),
-                'status_id' => 3,
-                'check' => 1,
-                'defenders_score' => $dScore,
-                'attackers_score' => $aScore,
-            ]);
         }
 
-        // * Check if the campaign have been over more than 10mins, if true set it to finsiehd(3)
-        $ns = NewCampaign::where('check', 0)
-            ->where('status_id', 2)
-            ->where('end_time', '>', now()->subMinutes(10))->get();
-
-        foreach ($ns as $n) {
-            $n->update([
-                'status_id' => 3,
-                'check' => 1,
-            ]);
-        }
-
-        // * If campaign have been over for more than 10mins set it to finished(4), to show on the finished tab for 24 hours
-        $ns = NewCampaign::where('check', 0)
-            ->where('status_id', 3)
-            ->where('end_time', '<', now()->subMinutes(10))->get();
-        foreach ($ns as $n) {
-            $n->update([
-                'status_id' => 4,
-                'check' => 1,
-            ]);
-        }
-
-        // * If campaign has been over for more than 24 hours.  Delete the campaign.
-        $ns = NewCampaign::where('check', 0)
-            ->where('status_id', 4)
-            ->where('end_time', '<', now()->subDay())->get();
-        foreach ($ns as $n) {
-            $n->update([
-                'status_id' => 10,
-                'check' => 1,
-            ]);
-        }
     }
 }
+
 if (!function_exists('ownUserAll')) {
     function ownUserAll()
     {

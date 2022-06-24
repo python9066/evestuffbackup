@@ -5,7 +5,7 @@
         <v-expansion-panel class="rounded-xl">
           <v-expansion-panel-header>
             <span class="text-h3 text-center">{{ title }}</span>
-            <v-btn @click="clear()" color="warning"> CLER ALL DATA</v-btn>
+            <!-- <v-btn @click="clear()" color="warning"> CLER ALL DATA</v-btn> -->
           </v-expansion-panel-header>
           <v-expansion-panel-content>
             <CampaignTitleBarContent

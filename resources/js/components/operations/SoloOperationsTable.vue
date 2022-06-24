@@ -282,7 +282,10 @@
         <template v-slot:[`item.count`]="{ item }">
           <div class="d-inline-flex align-center">
             <CountDowntimer
-              v-if="item.campaign[0].status_id == 1"
+              v-if="
+                item.campaign[0].status_id == 1 ||
+                item.campaign[0].status_id == 5
+              "
               :start-time="moment.utc(item.campaign[0].start_time).unix()"
               :end-text="'Window Closed'"
               :interval="1000"
@@ -322,7 +325,12 @@
               </template>
             </CountDowntimer>
             <div
-              v-if="item.campaign[0].status_id > 1 && $can('access_campaigns')"
+              v-if="
+                (item.campaign[0].status_id == 2 ||
+                  item.campaign[0].status_id == 3 ||
+                  item.campaign[0].status_id == 4) &&
+                $can('access_campaigns')
+              "
             >
               <v-chip
                 class="ma-2 ma"
@@ -334,7 +342,13 @@
                 {{ item.campaign[0].status.name }}
               </v-chip>
             </div>
-            <div v-else-if="item.campaign[0].status_id > 1">
+            <div
+              v-else-if="
+                item.campaign[0].status_id == 2 ||
+                item.campaign[0].status_id == 3 ||
+                item.campaign[0].status_id == 4
+              "
+            >
               <span v-if="item.priority == 0" class="pl-5">{{
                 item.campaign[0].status.name
               }}</span>
@@ -353,9 +367,7 @@
                 :interval="1000"
               >
                 <template slot="countup" slot-scope="scope">
-                  <span
-                    v-if="item.priority.priority == 0"
-                    class="green--text pl-3"
+                  <span v-if="item.priority == 0" class="green--text pl-3"
                     >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
                       scope.props.seconds
                     }}</span
@@ -430,9 +442,10 @@ export default {
 
     rowClick(item) {
       if (this.$can("access_campaigns")) {
-        var left =
-          moment.utc(item.campaign[0].start_time).unix() - moment.utc().unix();
-        if (left < 3600 && item.campaign[0].status_id < 3) {
+        if (
+          item.campaign[0].status_id == 2 ||
+          item.campaign[0].status_id == 5
+        ) {
           this.$router.push({ path: `/op/${item.link}` }); // -> /user/123
         }
       }

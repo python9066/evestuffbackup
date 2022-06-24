@@ -113,7 +113,11 @@
             </Vep>
           </v-col>
         </v-row>
-        <v-row no-gutters v-else :key="`${item.id}-timer`">
+        <v-row
+          no-gutters
+          v-else-if="item.status_id != 3 && item.status_id != 4"
+          :key="`${item.id}-timer`"
+        >
           <v-col cols="2">
             <span :class="textColor">
               {{ item.system.system_name }} - {{ eventType }}:
@@ -125,7 +129,7 @@
           <v-col cols="3" class="d-flex align-items-center">
             <CountDowntimer
               :start-time="moment.utc(item.start_time).unix()"
-              :end-text="'Window Closed'"
+              :end-text="'Campaign Over'"
               :interval="1000"
             >
               <template slot="countdown" slot-scope="scope">
@@ -141,6 +145,19 @@
                 </span>
               </template>
             </CountDowntimer>
+          </v-col>
+        </v-row>
+        <v-row no-gutters v-else :key="`${item.id}-timer`">
+          <v-col cols="2">
+            <span :class="textColor">
+              {{ item.system.system_name }} - {{ eventType }}:
+              {{ this.item.alliance.ticker }}
+              <v-avatar size="50"
+                ><img :src="this.item.alliance.url" /></v-avatar
+            ></span>
+          </v-col>
+          <v-col cols="3" class="d-flex align-items-center">
+            <span class="red--text"> Campaign Over</span>
           </v-col>
         </v-row>
       </transition>

@@ -25,11 +25,18 @@
         v-for="(item, index) in openSystems"
         :key="index.id"
       >
-        <CampaignSystemCard
-          :key="`${index.id}-card`"
-          :item="item"
-          :operationID="operationID"
-        ></CampaignSystemCard>
+        <transition
+          name="custom-classes"
+          enter-active-class="animate__animated animate__heartBeat animate__repeat-2"
+          leave-active-class="animate__animated animate__flash animate__faster"
+          mode="out-in"
+        >
+          <CampaignSystemCard
+            :key="`${index.id}-card`"
+            :item="item"
+            :operationID="operationID"
+          ></CampaignSystemCard>
+        </transition>
       </v-col>
     </v-row>
     <v-overlay :value="showOverlay == 1">
@@ -154,6 +161,10 @@ export default {
         }
 
         if (e.flag.flag == 8) {
+          this.$store.dispatch(
+            "updateNewCampaigns",
+            e.flag.message.campaign[0]
+          );
         }
       }
     );
@@ -381,6 +392,14 @@ export default {
         return ids;
       } else {
         return [];
+      }
+    },
+
+    test() {
+      if (this.$route.params.system) {
+        return "true";
+      } else {
+        return "false";
       }
     },
 

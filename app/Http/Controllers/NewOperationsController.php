@@ -41,7 +41,7 @@ class NewOperationsController extends Controller
         } else {
             $data = NewOperation::where('solo', 1)
                 ->with([
-                    'campaign:id,solo,status,created_at,updated_at',
+                    'campaign',
                     'campaign.status',
                     'campaign.constellation:id,constellation_name,region_id',
                     'campaign.constellation.region:id,region_name',

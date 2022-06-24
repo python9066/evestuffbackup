@@ -33,4 +33,5 @@ class NewCampaignOperation extends Model
     {
         return $this->belongsTo(NewCampaign::class, 'campaign_id', 'id');
     }
+
 }

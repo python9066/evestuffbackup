@@ -30,7 +30,7 @@ class Broadcasthelper
     {
         $campaignIDs = NewCampaignSystem::where('system_id', $systemID)->pluck('new_campaign_id');
         $obIDS = NewCampaignOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
-        $message = NewsystemSolo($systemID);
+        $message = systemSolo($systemID);
 
         foreach ($obIDS as $op) {
 
@@ -45,7 +45,7 @@ class Broadcasthelper
 
     public static function broadcastCampaignSolo($campaignID, $opID, $flagNumber)
     {
-        $message = NewcampaignSolo($campaignID);
+        $message = campaignSolo($campaignID);
         $flag = collect([
             'flag' => $flagNumber,
             'id' => $opID,
@@ -68,7 +68,7 @@ class Broadcasthelper
 
     public static function broadcastuserSolo($opID, $opUserID, $flagNumber)
     {
-        $message = NewopUserSolo($opID, $opUserID);
+        $message = opUserSolo($opID, $opUserID);
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $message,
@@ -87,12 +87,14 @@ class Broadcasthelper
 
      */
 
-    public static function broadcastOperationRefresh($opID, $flagNumber)
+    public static function broadcastOperationRefresh($opID, $campaignID, $flagNumber)
     {
 
         $message = NewOperation::where('id', $opID)
             ->with([
-                'campaign',
+                'campaign' => function ($q) use ($campaignID) {
+                    $q->where('id', $campaignID);
+                },
                 'campaign.status',
                 'campaign.constellation:id,constellation_name,region_id',
                 'campaign.constellation.region:id,region_name',
@@ -143,7 +145,7 @@ class Broadcasthelper
     public static function broadcastOperationUserList($opID, $flagNumber)
     {
         $userIDs = OperationUserList::where('operation_id', $opID)->pluck('user_id');
-        $message = NewuserListAll($userIDs, $opID);
+        $message = userListAll($userIDs, $opID);
         $flag = collect([
             'flag' => $flagNumber,
             'op_id' => $opID,
@@ -166,7 +168,7 @@ class Broadcasthelper
 
     public static function broadcastuserOwnSolo($opUserID, $userID, $flagNumber, $opID)
     {
-        $message = NewownUsersolo($opUserID);
+        $message = ownUsersolo($opUserID);
         $flag = collect([
             'flag' => $flagNumber,
             'op_id' => $opID,
@@ -226,7 +228,7 @@ class Broadcasthelper
 
     public static function broadcastCustomOperationSolo($opID, $flagNumber)
     {
-        $message = NewcustomOperationSolo($opID);
+        $message = customOperationSolo($opID);
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $message,

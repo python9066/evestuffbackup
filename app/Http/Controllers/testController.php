@@ -70,15 +70,39 @@ class testController extends Controller
         return $users;
     }
 
-    public function testUpdateScore(Request $request, $id)
+    public function testUpdateScore()
     {
         $user = Auth::user();
         if ($user->can('super')) {
-            $n = NewCampaign::where('id', $id)->get();
-            foreach ($n as $n) {
-                $n->update($request->all());
-            }
+            $opID = 9;
+            $campaignID = 97625;
+            $message = NewOperation::where('id', $opID)
+                ->with([
+                    'campaign' => function ($q) use ($campaignID) {
+                        // dd($q);
+                        $q->where('campaign_id', $campaignID);
+                    },
+                    'campaign.status',
+                    'campaign.constellation:id,constellation_name,region_id',
+                    'campaign.constellation.region:id,region_name',
+                    'campaign.alliance:id,name,ticker,standing,url,color',
+                    'campaign.system:id,system_name,adm',
+                ])
+                ->first();
+
+            return $message;
+
         }
+    }
+
+    public function deleteOperation($operation)
+    {
+        $operationUsers = OperationUser::where('operation_id', $operation->id)->get();
+        foreach ($operationUsers as $operationUser) {
+            $operationUser->opertaion_id = null;
+            $operationUser->save();
+        }
+        $operation->delete();
     }
 
     public function testClearCampaigns()

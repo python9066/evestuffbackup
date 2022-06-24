@@ -3,16 +3,14 @@
     <v-dialog persistent max-width="700px" z-index="0" v-model="showDelete">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-          class="pt-4"
           color="purple accent-3"
           dark
           icon
-          x-small
           v-bind="attrs"
           v-on="on"
           @click="open()"
         >
-          <font-awesome-icon icon="fa-solid fa-trash" pull="left" size="xl" />
+          <font-awesome-icon icon="fa-solid fa-trash" pull="left" size="2xl" />
         </v-btn>
       </template>
 

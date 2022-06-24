@@ -244,8 +244,17 @@ export default new Vuex.Store({
         },
 
         UPDATE_NEW_SOLO_OPERATIONS(state, data) {
-            const item = state.newSoloOperations.find((c) => c.id === data.id);
-            Object.assign(item, data);
+            const item = state.newSoloOperations.find(
+                (item) => item.id === data.id
+            );
+            const count = state.newSoloOperations.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                state.newSoloOperations.push(data);
+            }
         },
 
         SET_NEW_SOLO_OPERATIONS_REGIONS(state, regionList) {
@@ -1678,6 +1687,10 @@ export default new Vuex.Store({
             commit("UPDATE_RC_STATION_CURRENT", data);
         },
 
+        updateSoloOperationList({ commit }, data) {
+            commit("UPDATE_NEW_SOLO_OPERATIONS", data);
+        },
+
         updateRcFC({ commit }, data) {
             commit("UPDATE_RC_FC", data);
         },
@@ -1692,10 +1705,6 @@ export default new Vuex.Store({
 
         updateCampaigns({ commit }, data) {
             commit("UPDATE_CAMPAIGNS", data);
-        },
-
-        updateNewSoloOperation({ commit }, data) {
-            commit("UPDATE_NEW_SOLO_OPERATIONS", data);
         },
 
         updateTowers({ commit }, data) {
