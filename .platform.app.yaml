@@ -72,12 +72,12 @@ web:
       allow: true
       passthru: "/index.php"
 workers:
-  schedule:
+  schedule-work:
     size: S
     commands:
       start: |
         php artisan schedule:daemon
-  horizon:
+  horizon-work:
     size: M
     disk: 2048
     commands:

@@ -24,6 +24,6 @@ mix.js("resources/js/app.js", "public/js")
     .extract();
 
 if (mix.inProduction()) {
-    mix.compress();
+    // mix.compress();
     mix.version();
 }
