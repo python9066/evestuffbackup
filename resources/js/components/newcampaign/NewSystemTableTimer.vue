@@ -95,9 +95,13 @@
         :interval="1000"
       >
         <template slot="countdown" slot-scope="scope">
-          <span :class="hackCountDownTextColor"
+          <span :class="hackCountDownTextColor" v-if="node.node_status.id != 8"
             ><span v-if="scope.props.hours > 0">{{ scope.props.hours }}:</span
             >{{ scope.props.minutes }}:{{ scope.props.seconds }}</span
+          >
+          <v-chip color="blue darken-4" v-else
+            ><span v-if="scope.props.hours > 0">{{ scope.props.hours }}:</span
+            >{{ scope.props.minutes }}:{{ scope.props.seconds }}</v-chip
           >
           <v-menu :close-on-content-click="false" :value="timerShown">
             <template v-slot:activator="{ on, attrs }">

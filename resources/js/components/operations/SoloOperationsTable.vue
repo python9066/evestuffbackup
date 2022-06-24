@@ -386,7 +386,7 @@
             >
             </CampaignMap>
             <VueCountUptimer
-              v-if="item.campaign[0].structure.age != null"
+              v-if="item.campaign[0].structure != null"
               :start-time="moment.utc(item.campaign[0].structure.age).unix()"
               :end-text="'Window Closed'"
               :interval="1000"
