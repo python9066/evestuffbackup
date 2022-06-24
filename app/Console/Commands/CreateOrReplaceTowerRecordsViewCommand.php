@@ -38,7 +38,7 @@ class CreateOrReplaceTowerRecordsViewCommand extends Command
      */
     public function handle()
     {
-        DB::statement("CREATE OR ALTER VIEW tower_records AS SELECT towers.id AS 'id',
+        DB::statement("CREATE OR REPLACE VIEW tower_records AS SELECT towers.id AS 'id',
         towers.alliance_id AS 'alliance_id',
         alliances.name AS 'alliance_name',
         alliances.ticker AS 'alliance_ticker',
