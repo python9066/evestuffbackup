@@ -50,8 +50,14 @@ class ReconTaskSystemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        ReconTaskSystems::find($id)->update(['user_id' => null]);
-        ReconTaskSystems::find($id)->update($request->all());
+        $r =  ReconTaskSystems::find($id)->get();
+        foreach ($r as $r) {
+            $r->update(['user_id' => null]);
+        }
+        $r =  ReconTaskSystems::find($id)->get();
+        foreach ($r as $r) {
+            $r->update($request->all());
+        }
         $task_id = ReconTaskSystems::find($id)->value('recon_task_id');
         $message = ReconTaskSystemRecords::where('id', $id)->first();
         $flag = collect([

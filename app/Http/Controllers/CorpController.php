@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Corp;
 use Illuminate\Http\Request;
-use utils\Alliancehelper\Alliancehelper;
 
 class CorpController extends Controller
 {
@@ -33,7 +32,7 @@ class CorpController extends Controller
     {
 
         $id = $name;
-        $response = Alliancehelper::getCorpWithNoAlliance($id);
+        $response = getCorpWithNoAlliance($id);
         return $response;
     }
 

@@ -182,11 +182,11 @@ Vue.component(
 );
 Vue.component(
     "SystemMessage",
-    require("./components/campaignALL/SystemMessage.vue").default
+    require("./components/campaignAll/SystemMessage.vue").default
 );
 Vue.component(
     "SystemAttackMessage",
-    require("./components/campaignALL/SystemAttackMessage.vue").default
+    require("./components/campaignAll/SystemAttackMessage.vue").default
 );
 Vue.component("Info", require("./components/station/Info.vue").default);
 Vue.component(
@@ -531,6 +531,47 @@ Vue.component(
 Vue.component(
     "SoloCampaignPriorityButton",
     require("./components/operations/SoloCampaignPriorityButton.vue").default
+);
+
+Vue.component(
+    "NewSystemItemList",
+    require("./components/newcampaign/NewSystemItemList.vue").default
+);
+
+Vue.component(
+    "EditOperation",
+    require("./components/newcampaign/EditOperation.vue").default
+);
+
+Vue.component(
+    "NewCustomCampaignDeleteButton",
+    require("./components/newcampaign/NewCustomCampaignDeleteButton.vue")
+        .default
+);
+
+Vue.component(
+    "NewCampaginPriorityButton",
+    require("./components/newcampaign/NewCampaginPriorityButton.vue").default
+);
+
+Vue.component(
+    "AddPilotAdmin",
+    require("./components/newcampaign/AddPilotAdmin.vue").default
+);
+
+Vue.component(
+    "OperationUserListTable",
+    require("./components/newcampaign/OperationUserListTable.vue").default
+);
+
+Vue.component(
+    "AddOperationUserButton",
+    require("./components/newcampaign/AddOperationUserButton.vue").default
+);
+
+Vue.component(
+    "NewUserEdit",
+    require("./components/newcampaign/NewUserEdit.vue").default
 );
 
 Vue.prototype.moment = moment;

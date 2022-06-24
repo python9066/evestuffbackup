@@ -150,9 +150,19 @@ Broadcast::channel('operations.{id}', function () {
     return Auth::check();
 });
 
+Broadcast::channel('operationsadmin.{id}', function () {
+    return Auth::check();
+});
+
 Broadcast::channel('operationsown.{id}', function () {
     return Auth::check();
 });
+
+Broadcast::channel('customoperationpage', function () {
+    return Auth::check();
+});
+
+
 
 
 

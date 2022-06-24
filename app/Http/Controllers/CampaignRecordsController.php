@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\CampaignSystemUpdate;
 use App\Models\Campaign;
 use App\Models\CampaignRecords;
+use App\Models\NewCampaign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
@@ -62,6 +63,8 @@ class CampaignRecordsController extends Controller
         return ['campaignslist' => $data];
     }
 
+
+
     public function campaignslistRegion()
     {
         $data = [];
@@ -114,7 +117,10 @@ class CampaignRecordsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Campaign::find($id)->update($request->all());
+        $c =  Campaign::find($id)->get();
+        foreach ($c as $c) {
+            $c->update($request->all());
+        }
         $flag = collect([
             'flag' => 4,
             'id' => $id

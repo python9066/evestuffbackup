@@ -1,5 +1,5 @@
 <template>
-  <v-row class="pr-1 pl-1 pt-3" no-gutters v-resize="onResize" justify="center">
+  <v-row class="pr-1 pl-1 pt-3" no-gutters justify="center">
     <v-col cols="10" class="pt-0">
       <v-card elevation="10" rounded="xl">
         <v-card-title class="primary pt-0 pb-0">
@@ -25,6 +25,7 @@
           <v-data-table
             :headers="headers"
             :items="campaigns"
+            fixed-header
             item-key="id"
             :loading="loading"
             :items-per-page="25"
@@ -75,6 +76,9 @@ function sleep(ms) {
 }
 
 export default {
+  props: {
+    windowSize: Object,
+  },
   data() {
     return {
       loadingr: true,
@@ -90,6 +94,7 @@ export default {
       overlayEdit: false,
       overlayEditID: "",
       overlayEditName: "",
+
       headers: [
         { text: "Name", value: "name", width: "10%" },
         {
@@ -152,7 +157,10 @@ export default {
   },
   computed: {
     ...mapState(["startcampaigns"]),
-
+    height() {
+      let num = this.windowSize.y - 375 * 2;
+      return num;
+    },
     campaigns() {
       return this.startcampaigns;
     },

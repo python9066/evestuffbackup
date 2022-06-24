@@ -3,12 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Constellation extends Model
 {
-    protected $guarded =[];
+    use LogsActivity;
+    protected $guarded = [];
 
-        public function region()
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['*']);
+        // Chain fluent methods for configuration options
+    }
+    public function region()
     {
         return $this->belongsTO(Region::class);
     }
@@ -28,6 +38,4 @@ class Constellation extends Model
         'id' => 'integer',
         'region_id' => 'integer',
     ];
-
-
 }

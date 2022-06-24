@@ -69,7 +69,10 @@ class CustomCampaignsController extends Controller
 
         $data = $request->all();
         foreach ($data as $data) {
-            CampaignJoin::where('custom_campaign_id', $campid)->where('campaign_id', $data)->delete();
+            $c =  CampaignJoin::where('custom_campaign_id', $campid)->where('campaign_id', $data)->get();
+            foreach ($c as $c) {
+                $c->delete();
+            }
         }
         $oldCampaignIDs = CampaignJoin::where('custom_campaign_id', $campid)->get();
 
@@ -113,9 +116,19 @@ class CustomCampaignsController extends Controller
 
 
         $data = $request->all();
-        CampaignJoin::where('custom_campaign_id', $campid)->delete();
-        CampaignSolaSystem::where('campaign_id', $campid)->delete();
-        CustomCampaign::find($campid)->update(['name' => $name]);
+        $c = CampaignJoin::where('custom_campaign_id', $campid)->get();
+        foreach ($c as $c) {
+            $c->delete();
+        }
+        $c = CampaignSolaSystem::where('campaign_id', $campid)->get();
+        foreach ($c as $c) {
+            $c->delete();
+        }
+        $c = CustomCampaign::find($campid)->get();
+        foreach ($c as $c) {
+            $c->update(['name' => $name]);
+        }
+
         foreach ($data as $data) {
             // dd($data);
             CampaignJoin::create(['custom_campaign_id' => $campid, 'campaign_id' => $data]);
@@ -167,16 +180,38 @@ class CustomCampaignsController extends Controller
     {
 
 
-        CustomCampaign::destroy($id);
-        CampaignJoin::where('custom_campaign_id', $id)->delete();
-        CampaignSystem::where('custom_campaign_id', $id)->delete();
-        NodeJoin::where('campaign_id', $id)->delete();
-        CampaignSystemUsers::where('custom_campaign_id', $id)->delete();
-        CampaignUser::where('campaign_id', $id)->update([
-            'campaign_id' => null,
-            'campaign_system_id' => null,
-            'status_id' => 1
-        ]);
-        CampaignSolaSystem::where('campaign_id', $id)->delete();
+
+        $c = CustomCampaign::where('id', $id)->get();
+        foreach ($c as $c) {
+            $c->delete();
+        }
+        $c = CampaignJoin::where('custom_campaign_id', $id)->get();
+        foreach ($c as $c) {
+            $c->delete();
+        }
+        $c = CampaignSystem::where('custom_campaign_id', $id)->get();
+        foreach ($c as $c) {
+            $c->delete();
+        }
+        $c = NodeJoin::where('campaign_id', $id)->get();
+        foreach ($c as $c) {
+            $c->delete();
+        }
+        $c = CampaignSystemUsers::where('custom_campaign_id', $id)->get();
+        foreach ($c as $c) {
+            $c->delete();
+        }
+        $c = CampaignUser::where('campaign_id', $id)->get();
+        foreach ($c as $c) {
+            $c->update([
+                'campaign_id' => null,
+                'campaign_system_id' => null,
+                'status_id' => 1
+            ]);
+        }
+        $c = CampaignSolaSystem::where('campaign_id', $id)->get();
+        foreach ($c as $c) {
+            $c->delete();
+        }
     }
 }

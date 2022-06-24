@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\TimersRecord;
-use utils\Helper\Helper;
-use utils\Timerhelper\Timerhelper;
 
 class TimerController extends Controller
 {
-
 
     public function getTimerData()
     {
@@ -26,7 +23,7 @@ class TimerController extends Controller
             $data1 = [];
             $data1 = [
                 "text" => $pull['region'],
-                "value" => $pull['region_id']
+                "value" => $pull['region_id'],
             ];
 
             array_push($data, $data1);
@@ -37,9 +34,9 @@ class TimerController extends Controller
 
     public function updateTimerData()
     {
-        $status = Helper::checkeve();
+        $status = checkeve();
         if ($status == 1) {
-            Timerhelper::update();
+            timeUpdate();
         }
     }
 }

@@ -3,12 +3,23 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Campaign extends Model
 {
-    protected $guarded =[];
+
+    use LogsActivity;
+    protected $guarded = [];
     public $timestamps = false;
 
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['*']);
+        // Chain fluent methods for configuration options
+    }
 
     public function constellation()
     {
@@ -40,7 +51,8 @@ class Campaign extends Model
         return $this->hasMany(CampaignSystem::class);
     }
 
-    public function campaignjoin(){
+    public function campaignjoin()
+    {
         return $this->hasMany(CampaignJoin::class);
     }
 
@@ -56,6 +68,4 @@ class Campaign extends Model
         'status_id' => 'integer',
         'check' => 'integer',
     ];
-
-
 }

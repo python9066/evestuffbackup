@@ -71,8 +71,14 @@ class FleetTypeController extends Controller
      */
     public function destroy($id)
     {
-        FleetType::find($id)->delete();
-        KeyFleetJoin::where('fleet_type_id', $id)->delete();
+        $f = FleetType::find($id)->get();
+        foreach ($f as $f) {
+            $f->delete();
+        }
+        $f = KeyFleetJoin::where('fleet_type_id', $id)->get();
+        foreach ($f as $f) {
+            $f->delete();
+        }
         $flag = collect([
             'id' => 1
         ]);

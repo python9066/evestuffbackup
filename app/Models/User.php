@@ -11,13 +11,20 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasPermissions;
 use Laravel\Sanctum\HasApiTokens;
-
+use Spatie\Activitylog\Traits\CausesActivity;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles, HasPermissions, HasApiTokens;
+    use Notifiable, HasRoles, HasPermissions, HasApiTokens, CausesActivity, LogsActivity;
 
-
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['*']);
+        // Chain fluent methods for configuration options
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -84,6 +91,11 @@ class User extends Authenticatable
     public function keys()
     {
         return $this->belongsToMany(KeyType::class, 'user_key_joins');
+    }
+
+    public function opUsers()
+    {
+        return $this->hasMany(OperationUser::class);
     }
 
 

@@ -1,10 +1,14 @@
 <template>
-  <div class="pr-16 pl-16">
-    <messageComponent></messageComponent>
-    <MultiCampaigns></MultiCampaigns>
-    <StartCampaign></StartCampaign>
-    <NewMultiCampaigns v-if="$can('super')"></NewMultiCampaigns>
-  </div>
+  <v-row no-gutters v-resize="onResize">
+    <v-col cols="12">
+      <!-- <MultiCampaigns></MultiCampaigns> -->
+      <NewMultiCampaigns
+        class="pb-3"
+        :windowSize="windowSize"
+      ></NewMultiCampaigns>
+      <StartCampaign :windowSize="windowSize"></StartCampaign>
+    </v-col>
+  </v-row>
 </template>
 <script>
 import Axios from "axios";
@@ -20,17 +24,42 @@ export default {
     return `EveStuff - MultiCampaigns`;
   },
   data() {
-    return {};
+    return {
+      windowSize: {
+        x: 0,
+        y: 0,
+      },
+    };
   },
 
   created() {
+    Echo.private("customoperationpage").listen(
+      "CustomOperationPageUpdate",
+      (e) => {
+        if (e.flag.flag == 1) {
+          this.$store.dispatch("addoperationlist", e.flag.message);
+        }
+
+        if (e.flag.flag == 2) {
+          this.$store.dispatch("updateoperationlist", e.flag.message);
+        }
+
+        if (e.flag.flag == 3) {
+          this.$store.dispatch("deleteoperationfromlist", e.flag.message);
+        }
+      }
+    );
     this.$store.dispatch("getConstellationList");
   },
 
   async mounted() {
     this.log();
+    this.onResize();
   },
   methods: {
+    onResize() {
+      this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+    },
     log() {
       var request = {
         url: this.$route.path,
@@ -49,6 +78,8 @@ export default {
     },
   },
   computed: {},
-  beforeDestroy() {},
+  beforeDestroy() {
+    Echo.leave("customoperationpage");
+  },
 };
 </script>

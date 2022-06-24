@@ -6,15 +6,10 @@ use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetUpdate;
 use App\Events\WelpSheetUpdate;
 use App\Models\ChillStationRecords;
-use App\Models\Logging;
-use App\Models\RcGsolUsers;
-use App\Models\RcStationRecords;
 use App\Models\Station;
 use App\Models\User;
 use App\Models\WelpStationRecords;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use utils\Helper\Helper;
 
 class RcGsolUsersController extends Controller
 {
@@ -43,8 +38,11 @@ class RcGsolUsersController extends Controller
     {
         $gsolNameID = Station::where('id', $id)->value('rc_gsol_id');
         $gsolName = User::where('id', $gsolNameID)->value('name');
-        Station::where('id', $id)->update(['rc_gsol_id' => $request->user_id]);
-        $message = Helper::StationRecordsSolo(4, $id);
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update(['rc_gsol_id' => $request->user_id]);
+        }
+        $message = StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,
@@ -67,20 +65,17 @@ class RcGsolUsersController extends Controller
             ]);
             broadcast(new WelpSheetUpdate($flag));
         }
-
-        $text = Auth::user()->name . " Added to Gsol";
-        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 23]);
-        $log = $log->id;
-        Helper::sheetlogs($log);
-        Helper::stationlogs($log);
     }
 
     public function removeGsoltoStation($id)
     {
         $gsolNameID = Station::where('id', $id)->value('rc_gsol_id');
         $gsolName = User::where('id', $gsolNameID)->value('name');
-        Station::where('id', $id)->update(['rc_gsol_id' => null]);
-        $message = Helper::StationRecordsSolo(4, $id);
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update(['rc_gsol_id' => null]);
+        }
+        $message = StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,
@@ -103,11 +98,6 @@ class RcGsolUsersController extends Controller
             ]);
             broadcast(new WelpSheetUpdate($flag));
         }
-        $text = Auth::user()->name . " Removed " . $gsolName . " from Gsol";
-        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 24]);
-        $log = $log->id;
-        Helper::sheetlogs($log);
-        Helper::stationlogs($log);
     }
 
     /**

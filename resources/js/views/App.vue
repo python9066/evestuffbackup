@@ -84,16 +84,14 @@
               <v-tab v-bind="attrs" v-on="on"> Sovereignty </v-tab>
             </template>
             <v-list>
-              <v-list-item link to="/campaigns"> Campaigns </v-list-item>
+              <!-- <v-list-item link to="/campaigns"> Campaigns </v-list-item> -->
+              <v-list-item to="/operations"> Operations </v-list-item>
+              <v-list-item link to="/timers"> Windows </v-list-item>
               <v-list-item
                 v-if="$can('access_multi_campaigns')"
                 to="/mcampaigns"
               >
                 Custom-Campaign
-              </v-list-item>
-              <v-list-item link to="/timers"> Windows </v-list-item>
-              <v-list-item v-if="$can('super')" to="/operations">
-                Operations
               </v-list-item>
             </v-list>
           </v-menu>

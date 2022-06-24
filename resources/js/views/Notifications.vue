@@ -390,7 +390,7 @@
                 >
                   <font-awesome-icon
                     icon="fa-solid fa-fire-flame"
-                    size="s"
+                    size="sm"
                     pull="left"
                   />
                   {{ item.status_name }}

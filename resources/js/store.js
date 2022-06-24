@@ -98,7 +98,12 @@ export default new Vuex.Store({
         newCampaigns: [],
         opUsers: [],
         ownChars: {},
+        operationUserList: [],
         newCampaignSystems: [],
+        newCampaignsList: [],
+        newOperationList: [],
+        newOperationMessageOverlay: 0,
+        setOpenOperationAddChar: false,
     },
     mutations: {
         DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
@@ -139,6 +144,10 @@ export default new Vuex.Store({
             }
         },
 
+        UPDATE_OPERATION_USER_LIST(state, data) {
+            state.operationUserList = data;
+        },
+
         UPDATE_OP_CHAR(state, data) {
             const item = state.opUsers.find((item) => item.id === data.id);
             const count = state.opUsers.filter(
@@ -159,12 +168,29 @@ export default new Vuex.Store({
             state.stationList = stations;
         },
 
+        SET_NEW_OPERATION_MESSAGE_OVERLAY(state, num) {
+            state.newOperationMessageOverlay = num;
+        },
+
+        NEW_OPEN_OPERATION_ADD_CHAR(state, num) {
+            state.setOpenOperationAddChar = num;
+        },
+
+        SET_NEW_OPERATION_READ_ONLY(state, num) {
+            state.newOperationInfo.read_only = num;
+        },
+
         SET_OPERATION_PAGE(state, data) {
             state.newOperationInfo = data.data;
             state.newCampaignSystems = data.systems;
             state.opUsers = data.opUsers;
             state.ownChars = data.ownChars;
             state.newCampaigns = data.data.campaign;
+            state.operationUserList = data.userList;
+        },
+
+        UPDATE_OPERATION_PAGE(state, data) {
+            state.newOperationInfo = data;
         },
 
         UPDATE_CAMPAIGN_SYSTEMS(state, data) {
@@ -218,8 +244,17 @@ export default new Vuex.Store({
         },
 
         UPDATE_NEW_SOLO_OPERATIONS(state, data) {
-            const item = state.newSoloOperations.find((c) => c.id === data.id);
-            Object.assign(item, data);
+            const item = state.newSoloOperations.find(
+                (item) => item.id === data.id
+            );
+            const count = state.newSoloOperations.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                state.newSoloOperations.push(data);
+            }
         },
 
         SET_NEW_SOLO_OPERATIONS_REGIONS(state, regionList) {
@@ -622,6 +657,26 @@ export default new Vuex.Store({
             state.campaignslist = campaignslist;
         },
 
+        SET_NEW_CAMPAIGNSLIST(state, campaignslist) {
+            state.newCampaignsList = campaignslist;
+        },
+
+        SET_NEW_OPERATION_LIST(state, operations) {
+            state.newOperationList = operations;
+        },
+
+        UPDATE_NEW_OPERATION_LIST(state, data) {
+            const item = state.newOperationList.find(
+                (item) => item.id === data.id
+            );
+            const count = state.newOperationList.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            }
+        },
+
         SET_LOGGING_CAMPAIGN(state, logs) {
             state.loggingcampaign = logs;
         },
@@ -742,6 +797,28 @@ export default new Vuex.Store({
                 Object.assign(check, data);
             } else {
                 state.stations.push(data);
+            }
+        },
+
+        ADD_NEW_OPERATION_LIST(state, data) {
+            const check = state.newOperationList.find(
+                (station) => station.id == data.id
+            );
+            if (check != null) {
+                Object.assign(check, data);
+            } else {
+                state.newOperationList.push(data);
+            }
+        },
+
+        DELETE_OPERATION_FROM_LSIT(state, num) {
+            const count = state.newOperationList.filter(
+                (o) => o.id == num
+            ).length;
+            if (count > 0) {
+                state.newOperationList = state.newOperationList.filter(
+                    (o) => o.id != num
+                );
             }
         },
 
@@ -1476,6 +1553,32 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
         },
 
+        async getNewCampaignsList({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/newcampaignslist",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_NEW_CAMPAIGNSLIST", res.data.campaignslist);
+        },
+
+        async getCustomOperationList({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationlist",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_NEW_OPERATION_LIST", res.data.operations);
+        },
+
         async getLoggingCampaign({ commit }, campaign_id) {
             let res = await axios({
                 method: "get",
@@ -1584,8 +1687,16 @@ export default new Vuex.Store({
             commit("UPDATE_RC_STATION_CURRENT", data);
         },
 
+        updateSoloOperationList({ commit }, data) {
+            commit("UPDATE_NEW_SOLO_OPERATIONS", data);
+        },
+
         updateRcFC({ commit }, data) {
             commit("UPDATE_RC_FC", data);
+        },
+
+        setReadOnly({ commit }, newValue) {
+            commit("SET_NEW_OPERATION_READ_ONLY", newValue);
         },
 
         updateCores({ commit }, data) {
@@ -1594,10 +1705,6 @@ export default new Vuex.Store({
 
         updateCampaigns({ commit }, data) {
             commit("UPDATE_CAMPAIGNS", data);
-        },
-
-        updateNewSoloOperation({ commit }, data) {
-            commit("UPDATE_NEW_SOLO_OPERATIONS", data);
         },
 
         updateTowers({ commit }, data) {
@@ -1624,6 +1731,14 @@ export default new Vuex.Store({
             commit("UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID", payload);
         },
 
+        updateOperationOverLay({ commit }, num) {
+            commit("SET_NEW_OPERATION_MESSAGE_OVERLAY", num);
+        },
+
+        setOpenOperationAddChar({ commit }, num) {
+            commit("NEW_OPEN_OPERATION_ADD_CHAR", num);
+        },
+
         updateCampaignSolaSystem({ commit }, data) {
             commit("UPDATE_CAMPAIGN_SOLA_SYSTEMS", data);
         },
@@ -1646,6 +1761,10 @@ export default new Vuex.Store({
 
         updateAmmoRequest({ commit }, data) {
             commit("UPDATE_AMMO_REQUEST", data);
+        },
+
+        updateOperationUserList({ commit }, data) {
+            commit("UPDATE_OPERATION_USER_LIST", data);
         },
 
         updateNodeJoin({ commit }, data) {
@@ -1674,6 +1793,22 @@ export default new Vuex.Store({
 
         updateOpChar({ commit }, data) {
             commit("UPDATE_OP_CHAR", data);
+        },
+
+        updateOperationInfo({ commit }, data) {
+            commit("UPDATE_OPERATION_PAGE", data);
+        },
+
+        updateoperationlist({ commit }, data) {
+            commit("UPDATE_NEW_OPERATION_LIST", data);
+        },
+
+        addoperationlist({ commit }, data) {
+            commit("ADD_NEW_OPERATION_LIST", data);
+        },
+
+        deleteoperationfromlist({ commit }, num) {
+            commit("DELETE_OPERATION_FROM_LSIT", num);
         },
 
         addStationNotification({ commit }, data) {

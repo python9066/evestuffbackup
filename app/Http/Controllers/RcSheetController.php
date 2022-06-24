@@ -16,10 +16,8 @@ use App\Models\RcStationRecords;
 use App\Models\Station;
 use App\Models\WelpStationRecords;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
-use utils\Helper\Helper;
+use Spatie\Permission\Traits\HasRoles;
 
 class RcSheetController extends Controller
 {
@@ -46,7 +44,7 @@ class RcSheetController extends Controller
         //     ])->get()];
         // }
 
-        return ['stations' => Helper::StationRecords(4)];
+        return ['stations' => StationRecords(4)];
     }
 
     /**
@@ -66,7 +64,10 @@ class RcSheetController extends Controller
         $corpid = $corp->id;
         $allianceid = $corp->alliance_id;
 
-        Station::where('id', $id)->update(['corp_id' => $corpid, 'alliance_id' => $allianceid]);
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update(['corp_id' => $corpid, 'alliance_id' => $allianceid]);
+        }
 
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
@@ -81,7 +82,10 @@ class RcSheetController extends Controller
     {
         $alliance = Alliance::where('id', $request->allianceid)->first();
         $allianceid = $alliance->id;
-        Station::where('id', $id)->update(['alliance_id' => $allianceid]);
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update(['alliance_id' => $allianceid]);
+        }
 
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
@@ -91,9 +95,6 @@ class RcSheetController extends Controller
         broadcast(new ChillSheetUpdate($flag));
         broadcast(new WelpSheetUpdate($flag));
     }
-
-
-
 
     public function rcSheetListType()
     {
@@ -105,7 +106,7 @@ class RcSheetController extends Controller
             $data1 = [];
             $data1 = [
                 "text" => $pull['item_name'],
-                "value" => $pull['item_id']
+                "value" => $pull['item_id'],
             ];
 
             array_push($data, $data1);
@@ -127,7 +128,7 @@ class RcSheetController extends Controller
             $data1 = [];
             $data1 = [
                 "text" => $text,
-                "value" => $pull['status_id']
+                "value" => $pull['status_id'],
             ];
 
             array_push($data, $data1);
@@ -142,13 +143,16 @@ class RcSheetController extends Controller
     {
         // dd($request->notes);
 
-        Station::where('id', $id)->update($request->all());
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update($request->all());
+        }
 
         $message = RcStationRecords::where('id', $id)->first();
         if ($message) {
             $flag = collect([
                 'message' => $message,
-                'id' => $id
+                'id' => $id,
             ]);
 
             // dd($request, $id, $flag);
@@ -159,7 +163,7 @@ class RcSheetController extends Controller
         if ($message) {
             $flag = collect([
                 'message' => $message,
-                'id' => $id
+                'id' => $id,
             ]);
 
             // dd($request, $id, $flag);
@@ -170,25 +174,24 @@ class RcSheetController extends Controller
         if ($message) {
             $flag = collect([
                 'message' => $message,
-                'id' => $id
+                'id' => $id,
             ]);
 
             // dd($request, $id, $flag);
             broadcast(new WelpSheetMessageUpdate($flag))->toOthers();
         }
 
-        $message = Helper::StationRecordsSolo(6, $id);
+        $message = StationRecordsSolo(6, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,
-                'id' => $id
+                'id' => $id,
             ]);
 
             // dd($request, $id, $flag);
             broadcast(new StationSheetMessageUpdate($flag))->toOthers();
         }
     }
-
 
     public function rcSheetListRegion()
     {
@@ -200,7 +203,7 @@ class RcSheetController extends Controller
             $data1 = [];
             $data1 = [
                 "text" => $pull['region_name'],
-                "value" => $pull['region_id']
+                "value" => $pull['region_id'],
             ];
 
             array_push($data, $data1);
@@ -213,15 +216,25 @@ class RcSheetController extends Controller
 
     public function stationdone($id)
     {
-        Station::where('id', $id)->update(['show_on_rc' => 2, 'station_status_id' => 10, 'rc_fc_id' => null, 'rc_gsol_id' => null, 'rc_recon_id' => null, 'rc_id' => null, 'timer_image_link' => null, 'notes' => null]);
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update([
+                'show_on_rc' => 2,
+                'station_status_id' => 10,
+                'rc_fc_id' => null,
+                'rc_gsol_id' => null,
+                'rc_recon_id' => null,
+                'rc_id' => null,
+                'timer_image_link' => null,
+                'notes' => null,
+            ]);
+        }
         $message = RcStationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
         ]);
         broadcast(new RcSheetUpdate($flag));
     }
-
-
 
     /**
      * Display the specified resource.

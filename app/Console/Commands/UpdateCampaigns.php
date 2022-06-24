@@ -2,13 +2,9 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use utils\Campaignhelper\Campaignhelper;
-use utils\Helper\Helper;
-use App\Events\CampaignChanged;
-use App\Events\CampaignSystemUpdate;
-use App\Models\CampaignUser;
+use App\Models\EveEsiStatus;
 use App\Models\Userlogging;
+use Illuminate\Console\Command;
 
 class UpdateCampaigns extends Command
 {
@@ -43,9 +39,9 @@ class UpdateCampaigns extends Command
      */
     // public function handle()
     // {
-    //     $status = Helper::checkeve();
+    //     $status = checkeve();
     //     if ($status == 1) {
-    //         $flag = Campaignhelper::update();
+    //         $flag = update();
     //         if ($flag == 1) {
     //             broadcast(new CampaignChanged($flag))->toOthers();
     //         }
@@ -54,9 +50,9 @@ class UpdateCampaigns extends Command
 
     // public function handle()
     // {
-    //     $status = Helper::checkeve();
+    //     $status = checkeve();
     //     if ($status == 1) {
-    //         $request = Campaignhelper::update();
+    //         $request = update();
     //         $flag = $request[0];
     //         if ($flag == 1) {
     //             broadcast(new CampaignChanged($flag))->toOthers();
@@ -64,7 +60,7 @@ class UpdateCampaigns extends Command
     //         $flag = null;
     //         $check = $request[1];
     //         foreach ($check as $check) {
-    //             Campaignhelper::removeNode($check);
+    //             removeNode($check);
     //             $flag = collect([
     //                 'flag' => 4,
     //                 'id' => $check
@@ -74,15 +70,16 @@ class UpdateCampaigns extends Command
     //         }
     //     }
 
-
     // }
 
     public function handle()
     {
 
-        // $status = Helper::checkeve();
+        // $status = checkeve();
         Userlogging::create(['url' => 'demon campagin', 'user_id' => 9999999999]);
-
-        Campaignhelper::update();
+        $check = EveEsiStatus::where('route', '/sovereignty/campaigns/')->first();
+        if ($check->status == "green") {
+            campaignUpdate();
+        }
     }
 }

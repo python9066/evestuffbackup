@@ -1,33 +1,30 @@
 <?php
 
-
-
 namespace App\Http\Controllers;
 
 use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetUpdate;
 use App\Events\WelpSheetUpdate;
 use App\Models\Alliance;
-use Illuminate\Http\Request;
-use utils\Helper\Helper;
-use GuzzleHttp\Client as GuzzleHttpClient;
-use GuzzleHttp\Utils;
+use App\Models\Corp;
+use App\Models\Item;
 use App\Models\Station;
 use App\Models\StationItemJoin;
 use App\Models\StationItems;
-use App\Models\Corp;
-use App\Models\Item;
-use App\Models\Logging;
 use App\Models\System;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\Utils;
+use Illuminate\Http\Request;
 
 class RCSheet extends Controller
 {
     public function RCInput(Request $request)
     {
 
-        Station::where('show_on_rc', 1)->update(['show_on_rc' => 5]);
+        $s = Station::where('show_on_rc', 1)->get();
+        foreach ($s as $s) {
+            $s->update(['show_on_rc' => 5]);
+        }
 
         $inputs = $request->all();
         foreach ($inputs as $input) {
@@ -40,7 +37,7 @@ class RCSheet extends Controller
                     $corpIDID = 0;
                     $allianceIDID = 0;
                     $stationName = $input['structure_name'];
-                    $timer = Helper::fixtime($input['timer_expires']);
+                    $timer = fixtime($input['timer_expires']);
                     $corpID = Corp::where('ticker', $input['owning_corp_ticker'])->first();
                     $allianceID = Alliance::where('ticker', $input['owning_alliance_ticker'])->first();
                     $alliance_count = Alliance::where('ticker', $input['owning_alliance_ticker'])->count();
@@ -59,7 +56,6 @@ class RCSheet extends Controller
                     //     $skip = 1;
                     // }
 
-
                     // dd($allianceIDID, $corpIDID);
 
                     if ($input['timer_type'] == "Armor") {
@@ -77,14 +73,16 @@ class RCSheet extends Controller
                         $statusID = 17;
                     }
 
-
                     $check = Station::where('rc_id', $input['id'])->first();
 
                     if (!$check) {
 
                         $check = Station::where('name', $input['structure_name'])->first();
                         if ($check) {
-                            Station::where('name', $input['structure_name'])->update(['rc_id' => $input['id'], 'show_on_rc' => 1, 'show_on_coord' => 0]);
+                            $s = Station::where('name', $input['structure_name'])->get();
+                            foreach ($s as $s) {
+                                $s->update(['rc_id' => $input['id'], 'show_on_rc' => 1, 'show_on_coord' => 0]);
+                            }
                         } else {
                             $newStation = 1;
                         }
@@ -106,17 +104,14 @@ class RCSheet extends Controller
                         $reconpull = $this->reconPullbyname($stationName, $rcid);
                         // dd($reconpull, $stationName);
 
-
                         if ($reconpull == false) {
                             // dd("yoyo");
-                            $id = Station::where('added_from_recon',  0)->max('id');
+                            $id = Station::where('added_from_recon', 0)->max('id');
                             if ($id == null) {
                                 $id = 1;
                             } else {
                                 $id = $id + 1;
                             }
-
-
 
                             $new = Station::Create(['name' => $input['structure_name'], 'system_id' => $input['solar_system']['solar_system_id'], 'alliance_id' => $allianceIDID, 'corp_id' => $corpIDID, 'item_id' => $input['structure_type']['type_id'], 'station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1, 'rc_id' => $input['id'], 'show_on_coord' => 0]);
                             if ($allianceIDID == 0) {
@@ -136,23 +131,22 @@ class RCSheet extends Controller
                             }
                         }
                     }
-                    $logStation = Station::where('rc_id', $input['id'])->first();
-                    $log = Logging::create(['station_id' => $logStation->id, 'logging_type_id' => 18, 'text' => "Added from RC2"]);
-                    Helper::stationlogs($log->id);
                 }
             }
         }
 
-        Station::where('show_on_rc', 5)->update(['rc_id' => null, 'station_status_id' => 18]);
+        $s = Station::where('show_on_rc', 5)->get();
+        foreach ($s as $s) {
+            $s->update(['rc_id' => null, 'station_status_id' => 18]);
+        }
         $flag = collect([
-            'flag' => 2
+            'flag' => 2,
         ]);
         broadcast(new RcSheetUpdate($flag));
         broadcast(new ChillSheetUpdate($flag));
         broadcast(new WelpSheetUpdate($flag));
         // dd('yo');
     }
-
 
     public function invalidStructure($item_id)
     {
@@ -195,8 +189,6 @@ class RCSheet extends Controller
         }
     }
 
-
-
     public static function reconPullbyname($stationName, $rcid)
     {
         $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
@@ -212,7 +204,7 @@ class RCSheet extends Controller
         ];
         $response = $client->request('GET', $url, [
             'headers' => $headers,
-            'http_errors' => false
+            'http_errors' => false,
         ]);
 
         $stationdata = Utils::jsonDecode($response->getBody(), true);
@@ -272,8 +264,7 @@ class RCSheet extends Controller
                     'r_cored' => $core,
                     'show_on_rc' => 1,
                     'rc_id' => $rcid,
-                    'added_from_recon' => 1
-
+                    'added_from_recon' => 1,
 
                 ]);
                 // dd($stationdata);

@@ -7,7 +7,6 @@
       <v-card-text> </v-card-text>
     </v-card>
   </div> -->
-
   <v-expansion-panels
     class="pb-5"
     v-model="showSystemTable"
@@ -39,14 +38,15 @@
           <v-divider class="mx-2" vertical></v-divider>
           <v-col cols="1" class="d-flex justify-end align-center">
             <v-btn icon @click="clickIcon()">
-              ><font-awesome-icon
+              <font-awesome-icon
                 icon="fa-solid fa-angle-up"
                 :class="iconRotate"
+                size="xl"
             /></v-btn>
           </v-col>
         </v-row>
       </v-expansion-panel-header>
-      <v-expansion-panel-content
+      <v-expansion-panel-content id="expansion-panel-content-1"
         ><CampaignSystemCardContent :item="item" :operationID="operationID" />
       </v-expansion-panel-content>
     </v-expansion-panel>
@@ -80,6 +80,7 @@ export default {
         this.showSystemTable = 0;
       }
     });
+    this.checkRoute();
   },
 
   beforeMonunt() {},
@@ -93,6 +94,16 @@ export default {
         this.showSystemTable = null;
       } else {
         this.showSystemTable = 0;
+      }
+    },
+
+    checkRoute() {
+      if (this.$route.params.system) {
+        if (this.$route.params.system == this.item.system_name) {
+          this.showSystemTable = 0;
+        } else {
+          this.showSystemTable = null;
+        }
       }
     },
   },
@@ -129,6 +140,10 @@ export default {
 
 .toggleUpDown.rotate {
   transform: rotate(180deg);
+}
+
+#expansion-panel-content-1::v-deep .v-expansion-panel-content__wrap {
+  padding: 0 !important;
 }
 </style>
 

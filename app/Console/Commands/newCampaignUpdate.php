@@ -2,10 +2,12 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Userlogging;
+use App\Jobs\setActiveUpdateFlagJob;
+use App\Jobs\setWarmUpdateFlagJob;
+use App\Models\EveEsiStatus;
+use App\Models\NewCampaign;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
-use utils\Helper\Helper;
-use utils\NewCampaignhelper\NewCampaignhelper;
 
 class newCampaignUpdate extends Command
 {
@@ -41,10 +43,26 @@ class newCampaignUpdate extends Command
     public function handle()
     {
         // Userlogging::create(['url' => 'demon newCampaign', 'user_id' => 9999999999]);
-        // $status = Helper::checkeve();
+        // $status = checkeve();
         // if ($status == 1) {
-        //     NewCampaignhelper::newUpdate();
+        //     NewnewUpdate();
         // };
-        NewCampaignhelper::newUpdate();
+        $check = EveEsiStatus::where('route', '/sovereignty/campaigns/')->first();
+        if ($check->status == "green") {
+            newUpdateCampaigns();
+        }
+        $campaigns = NewCampaign::where('job', 0)->get();
+        foreach ($campaigns as $campaign) {
+            $start = Carbon::parse($campaign->start_time);
+            $twoHours = now()->addHours(2);
+
+            if ($start <= $twoHours) {
+                $a = $start->subHours(1);
+                $begin = Carbon::parse($campaign->start_time);
+                setWarmUpdateFlagJob::dispatch($campaign->id)->onQueue('campaigns')->delay($a);
+                setActiveUpdateFlagJob::dispatch($campaign->id)->onQueue('campaigns')->delay($begin);
+                $campaign->update(['job' => 1]);
+            }
+        }
     }
 }

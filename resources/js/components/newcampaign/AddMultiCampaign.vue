@@ -5,7 +5,7 @@
       min-width="1200"
       max-width="1200"
       z-index="0"
-      @click:outside="close()"
+      @click:outside="addCampaignClose()"
     >
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -15,7 +15,6 @@
           v-on="on"
           rounded
           small
-          outlined
           >Add Campaign</v-btn
         >
       </template>
@@ -31,7 +30,7 @@
           </v-text-field>
           <v-select
             v-model="picked"
-            :items="list"
+            :items="newCampaignsList"
             label="Select"
             multiple
             chips
@@ -63,15 +62,45 @@ function sleep(ms) {
 
 export default {
   data() {
-    return {};
+    return {
+      overlay: false,
+      name: null,
+      picked: null,
+    };
   },
 
   created() {},
 
   async mounted() {},
-  methods: {},
+  methods: {
+    addCampaignClose() {
+      (this.name = null), (this.picked = null), (this.overlay = false);
+    },
+
+    async addCampaignDone() {
+      var request = {
+        title: this.name,
+        picked: this.picked,
+      };
+
+      await axios({
+        method: "post", //you can set what request you want to be
+        url: "/api/newoperation",
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }).then(this.addCampaignClose);
+    },
+  },
   computed: {
-    ...mapState([]),
+    ...mapState(["newCampaignsList"]),
+
+    // list() {
+    //   return this.newCampaignsList;
+    // },
   },
   beforeDestroy() {},
 };

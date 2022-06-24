@@ -67,7 +67,10 @@ class TowerRecordsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Tower::find($id)->update($request->all());
+        $t = Tower::find($id)->get();
+        foreach ($t as $t) {
+            $t->update($request->all());
+        }
         $message =  TowerRecord::find($id);
         if ($message->status_id != 10) {
             $flag = collect([
@@ -82,7 +85,10 @@ class TowerRecordsController extends Controller
     {
         // dd($request->notes);
 
-        Tower::where('id', $id)->update($request->all());
+        $t = Tower::where('id', $id)->get();
+        foreach ($t as $t) {
+            $t->update($request->all());
+        }
 
         $message = TowerRecord::where('id', $id)->first();
         $flag = collect([

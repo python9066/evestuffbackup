@@ -38,7 +38,7 @@ class CreateOrReplaceNotificationViewCommand extends Command
      */
     public function handle()
     {
-        DB::statement("CREATE VIEW notification_records AS SELECT notifications.id AS 'id',
+        DB::statement("CREATE OR REPLACE VIEW notification_records AS SELECT notifications.id AS 'id',
         notifications.system_id AS 'system_id',
         regions.region_name AS 'region_name',
         regions.id AS 'region_id',

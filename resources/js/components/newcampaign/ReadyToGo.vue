@@ -30,7 +30,7 @@
       rounded
       class="no-uppercase"
     >
-      On the Way
+      Ready To Go
     </v-btn>
     <span v-else> Ready To Go - </span>
     <v-menu transition="fade-transition">
@@ -249,3 +249,8 @@ export default {
   beforeDestroy() {},
 };
 </script>
+<style scoped>
+.no-uppercase {
+  text-transform: unset !important;
+}
+</style>

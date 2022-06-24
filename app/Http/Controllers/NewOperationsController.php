@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
 use App\Models\NewOperation;
+use App\Models\OperationUser;
+use App\Models\OperationUserList;
 use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use utils\NewCampaignhelper\NewCampaignhelper;
 use Illuminate\Support\Str;
 
 class NewOperationsController extends Controller
@@ -41,7 +41,7 @@ class NewOperationsController extends Controller
         } else {
             $data = NewOperation::where('solo', 1)
                 ->with([
-                    'campaign:id,solo,status,created_at,updated_at',
+                    'campaign',
                     'campaign.status',
                     'campaign.constellation:id,constellation_name,region_id',
                     'campaign.constellation.region:id,region_name',
@@ -64,11 +64,30 @@ class NewOperationsController extends Controller
         $uRegionIDs = $regionIDs->unique();
         $regionList = Region::whereIn('id', $uRegionIDs)->select(['id as value', 'region_name as text'])->orderBy('region_name', 'asc')->get();
 
-
         return [
             'solooplist' => $data,
-            'regionList' => $regionList
+            'regionList' => $regionList,
         ];
+    }
+
+    public function sendAddCharOverlay($opID, $type)
+    {
+        broadcastAllCharOverlay(1, $opID, $type);
+    }
+
+    public function changeReadyOnly(Request $request, $opID)
+    {
+        $user = Auth::user();
+        if ($user->can('edit_read_only')) {
+            $op = NewOperation::where('id', $opID)->first();
+            $op->read_only = $request->read_only;
+            $op->save();
+            broadcastOperationSetReadOnly($opID, 2, $request->read_only);
+
+        } else {
+            return null;
+        }
+
     }
 
     public function makeNewOperation(Request $request)
@@ -76,19 +95,61 @@ class NewOperationsController extends Controller
         $user = Auth::user();
         if ($user->can('access_multi_campaigns')) {
             $uuid = Str::uuid();
-            NewOperation::create([
+            $newOp = NewOperation::create([
                 'title' => $request->title,
                 'link' => $uuid,
                 'solo' => 0,
-                'status' => 1
+                'status' => 1,
             ]);
+
+            $campaignIDs = $request->picked;
+            foreach ($campaignIDs as $campaignID) {
+                NewCampaignOperation::create(['campaign_id' => $campaignID, 'operation_id' => $newOp->id]);
+            }
+
+            broadcastCustomOperationSolo($newOp->id, 1);
         } else {
             return null;
         }
     }
 
+    public function edit(Request $request)
+    {
+        $n = NewCampaignOperation::where('operation_id', $request->OpID)
+            ->whereNotIn('campaign_id', $request->picked)->get();
+
+        foreach ($n as $n) {
+            $n->delete();
+        }
+
+        foreach ($request->picked as $campaignID) {
+            $count = NewCampaignOperation::where('operation_id', $request->OpID)->where('campaign_id', $campaignID)->count();
+            if ($count == 0) {
+                NewCampaignOperation::create(['campaign_id' => $campaignID, 'operation_id' => $request->OpID]);
+            }
+        }
+        broadcastCustomOperationSolo($request->OpID, 2);
+    }
+
+    public function updatePriority(Request $request, $id)
+    {
+        $user = Auth::user();
+        if ($user->can("edit_hack_priority")) {
+            $operation = NewOperation::where('id', $id)->first();
+            $operation->priority = $request->priority;
+            $operation->save();
+        }
+    }
+
+    public function getCustomOperationList()
+    {
+        $ops = NewOperation::where('solo', 0)->with(['campaign.system', 'campaign.alliance'])->get();
+        return ['operations' => $ops];
+    }
+
     public function getInfo($id)
     {
+        $user = Auth::user();
         $data = NewOperation::where('link', $id)
             ->with([
                 'campaign',
@@ -104,16 +165,23 @@ class NewOperationsController extends Controller
         $campaignIDs = NewCampaignOperation::where('operation_id', $operationsID)->pluck('campaign_id');
         // $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->where('status_id', [2, 5])->pluck('20000646');
         $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->pluck('constellation_id');
-        $contellationIDs =  $contellationIDs->unique();
-        $systems = NewCampaignhelper::systemsAll($contellationIDs);
-        $opUsers = NewCampaignhelper::opUserAll($operationsID);
-        $ownChars = NewCampaignhelper::ownUserAll(Auth::id());
+        $contellationIDs = $contellationIDs->unique();
+        $userIDs = OperationUserList::where('operation_id', $operationsID)->pluck('user_id');
+        $systems = systemsAll($contellationIDs);
+        $opUsers = opUserAll($operationsID);
+        $ownChars = ownUserAll(Auth::id());
+        if ($user->can('view_campaign_members')) {
+            $userList = userListAll($userIDs, $operationsID);
+        } else {
+            $userList = null;
+        }
 
         return [
             'data' => $data,
             'systems' => $systems,
             'opUsers' => $opUsers,
-            'ownChars' => $ownChars
+            'ownChars' => $ownChars,
+            'userList' => $userList,
         ];
     }
 
@@ -159,6 +227,27 @@ class NewOperationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $opToDelete = NewOperation::where('id', $id)->first();
+        $campaignToDelete = NewCampaignOperation::where('operation_id', $id)->get();
+
+        foreach ($campaignToDelete as $a) {
+            $a->delete();
+        }
+        $opToDelete->delete();
+
+        $operationUsers = OperationUser::where('operation_id', $id)->get();
+
+        foreach ($operationUsers as $opuser) {
+
+            $opuser->update([
+                'operation_id' => null,
+                'user_status_id' => 1,
+                'system_id' => null,
+            ]);
+
+            broadcastuserOwnSolo($opuser->id, $opuser->user_id, 3, $id);
+        }
+
+        broadcastCustomOperationDeleteSolo($id, 3);
     }
 }

@@ -4,11 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class OperationUser extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
     protected $guarded = [];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['*']);
+        // Chain fluent methods for configuration options
+    }
 
     public function user()
     {
@@ -33,6 +42,11 @@ class OperationUser extends Model
     public function userNode()
     {
         return $this->belongsTo(NewUserNode::class, 'new_user_node_id', 'id');
+    }
+
+    public function operation()
+    {
+        return $this->belongsTo(NewOperation::class, 'operation_id', 'id');
     }
 
     protected $casts = [

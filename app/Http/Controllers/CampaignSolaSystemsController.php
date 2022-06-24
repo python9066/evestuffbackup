@@ -80,7 +80,10 @@ class CampaignSolaSystemsController extends Controller
     public function update(Request $request, $solaid, $campid)
     {
         //CampaignSystemRecords::find($id)->update($request->all());
-        CampaignSolaSystem::find($solaid)->update($request->all());
+        $c =  CampaignSolaSystem::find($solaid)->get();
+        foreach ($c as $c) {
+            $c->update($request->all());
+        }
         $pull = CampaignSolaSystem::where('id', $solaid)->first();
         $checker_name = User::where('id', $pull['last_checked_user_id'])->value('name');
         $supervier_name = User::where('id', $pull['supervisor_id'])->value('name');

@@ -78,7 +78,6 @@
       }"
       :sort-by="['start']"
       :search="search"
-      :sort-desc="[false, true]"
       multi-sort
       @click:row="rowClick($event)"
       class="elevation-1"
@@ -792,7 +791,12 @@ export default {
             align: "center",
           },
           { text: "Countdown/Age", value: "count", sortable: false },
-          { text: "", value: "actions", align: "end", sortable: false },
+          {
+            text: "",
+            value: "actions",
+            align: "end",
+            sortable: false,
+          },
         ];
       } else {
         var Headers = [

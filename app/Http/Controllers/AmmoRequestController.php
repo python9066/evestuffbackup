@@ -79,7 +79,8 @@ class AmmoRequestController extends Controller
     public function store(Request $request)
     {
         $new = AmmoRequest::create($request->all());
-        Station::where('id', $new->station_id)->first()->update(['ammo_request_id' => $new->id]);
+        $s = Station::where('id', $new->station_id)->first();
+        $s->update(['ammo_request_id' => $new->id]);
         $message = StationRecords::where('id', $new->station_id)->first();
         $flag = collect([
             'message' => $message
@@ -113,7 +114,10 @@ class AmmoRequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        AmmoRequest::find($id)->update($request->all());
+        $a =  AmmoRequest::find($id)->get();
+        foreach ($a as $a) {
+            $a->update($request->all());
+        }
 
         $message = AmmoRequestRecords::where('id', $id)->first();
         $flag = collect([
@@ -134,7 +138,13 @@ class AmmoRequestController extends Controller
             'id' => $id
         ]);
         broadcast(new AmmoRequestDelete($flag));
-        AmmoRequest::destroy($id);
-        Station::where('ammo_request_id', $id)->first()->update(['ammo_request_id' => null]);
+        $a = AmmoRequest::where('id', $id)->delete();
+        foreach ($a as $a) {
+            $a->delete();
+        }
+        $s = Station::where('ammo_request_id', $id)->first()->get();
+        foreach ($s as $s) {
+            $s->update(['ammo_request_id' => null]);
+        }
     }
 }

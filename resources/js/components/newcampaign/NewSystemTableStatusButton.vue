@@ -156,16 +156,46 @@ export default {
     },
 
     pillOutlined() {
-      if (this.nodeStatusID == 7 || this.nodeStatusID == 9) {
+      if (
+        this.nodeStatusID == 7 ||
+        this.nodeStatusID == 9 ||
+        this.nodeStatusID == 8
+      ) {
         return false;
       } else {
         return true;
       }
     },
 
+    filterDropDownStart() {
+      if (this.node.prime_node_user.length > 0) {
+        var filter = this.dropdown_edit.filter(
+          (d) =>
+            d.value == 1 ||
+            d.value == 2 ||
+            d.value == 3 ||
+            d.value == 4 ||
+            d.value == 6
+        );
+      } else {
+        var filter = this.dropdown_edit.filter(
+          (d) =>
+            d.value == 1 ||
+            d.value == 8 ||
+            d.value == 9 ||
+            d.value == 4 ||
+            d.value == 6 ||
+            d.value == 7 ||
+            d.value == 5
+        );
+      }
+
+      return filter;
+    },
+
     filterDropDown() {
       if (this.extra == 1) {
-        var list = this.dropdown_edit.filter(
+        var list = this.filterDropDownStart.filter(
           (f) => f.value != this.nodeStatusID
         );
       } else {
@@ -184,8 +214,12 @@ export default {
       if (this.nodeStatusID == 2) {
         return "lime darken-4";
       }
-      if (this.nodeStatusID == 3 || this.nodeStatusID == 8) {
+      if (this.nodeStatusID == 3) {
         return "green darken-3";
+      }
+
+      if (this.nodeStatusID == 8) {
+        return "blue darken-4";
       }
       if (this.nodeStatusID == 4) {
         return "green accent-4";

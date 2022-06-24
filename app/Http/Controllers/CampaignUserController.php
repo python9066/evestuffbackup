@@ -70,7 +70,10 @@ class CampaignUserController extends Controller
     public function update(Request $request, $id, $campid)
     {
 
-        CampaignUser::find($id)->update($request->all());
+        $c = CampaignUser::find($id)->get();
+        foreach ($c as $c) {
+            $c->update($request->all());
+        }
         $message = CampaignUserRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
@@ -95,7 +98,10 @@ class CampaignUserController extends Controller
         }
 
 
-        CampaignUser::find($id)->update($request->all());
+        $c =  CampaignUser::find($id)->get();
+        foreach ($c as $c) {
+            $c->update($request->all());
+        }
         $message = CampaignUserRecords::where('id', $id)->first();
         $flag = null;
         $flag = collect([
@@ -128,7 +134,10 @@ class CampaignUserController extends Controller
             ]);
         }
 
-        CampaignUser::find($id)->update($request->all());
+        $c =  CampaignUser::find($id)->get();
+        foreach ($c as $c) {
+            $c->update($request->all());
+        }
         $user_id = CampaignUserRecords::where('id', $id)->value('id');
         $flag = collect([
             'userid' => $user_id,

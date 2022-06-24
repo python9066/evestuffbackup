@@ -2,14 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use utils\Campaignhelper\Campaignhelper;
-use utils\Helper\Helper;
-use App\Events\CampaignChanged;
-use App\Events\CampaignSystemUpdate;
-use App\Models\CampaignUser;
 use App\Models\Userlogging;
-use utils\Notificationhelper\Notifications;
+use Illuminate\Console\Command;
 
 class UpdateStationNotifications extends Command
 {
@@ -43,11 +37,10 @@ class UpdateStationNotifications extends Command
      * @return int
      */
 
-
     public function handle()
     {
 
         Userlogging::create(['url' => 'demon station note', 'user_id' => 9999999999]);
-        Notifications::stationNotificationCheck();
+        stationNotificationCheck();
     }
 }

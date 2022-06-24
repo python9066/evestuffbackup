@@ -21,12 +21,11 @@ import welptimers from "./views/WelpViolenceTimers.vue";
 import Gsol from "./views/Gsol";
 import Recon from "./views/Recon";
 import StartCampaign from "./views/StartCampaignSystem";
-import KillList from "./views/RCsheet.vue";
+import KillList from "./views/RcSheet.vue";
 import RCMOVETIMER from "./views/RCMove.vue";
 import FleetKeys from "./views/FleetKeyPannel.vue";
 import CoordSheet from "./views/CoordSheet.vue";
 import SoloOperations from "./views/SoloOperations.vue";
-import MultiOperations from "./views/CustomOperations.vue";
 import Station from "./views/StationSheet.vue";
 import NewOperation from "./views/NewCampaign.vue";
 
@@ -68,19 +67,13 @@ export default new Router({
         },
 
         {
-            path: "/op/:id",
+            path: "/op/:id/:system?",
             name: "op",
             component: NewOperation,
-            // beforeEnter(to, from, next) {
-            //     if (Permissions.indexOf("super") !== -1) {
-            //         next();
-            //     } else {
-            //         next("/notifications");
-            //     }
-            // },
             props: (route) => {
                 const id = route.params.id;
-                return { id };
+                const routeSystem = route.params.system ?? null;
+                return { id, routeSystem };
             },
         },
 
@@ -173,13 +166,6 @@ export default new Router({
             path: "/operations",
             name: "operations",
             component: SoloOperations,
-            beforeEnter(to, from, next) {
-                if (Permissions.indexOf("super") !== -1) {
-                    next();
-                } else {
-                    next("/notifications");
-                }
-            },
         },
 
         {
@@ -330,19 +316,6 @@ export default new Router({
             component: MultiCampagins,
             beforeEnter(to, from, next) {
                 if (Permissions.indexOf("access_multi_campaigns") !== -1) {
-                    next();
-                } else {
-                    next("/campaigns");
-                }
-            },
-        },
-
-        {
-            path: "/moperations",
-            name: "moperations",
-            component: MultiOperations,
-            beforeEnter(to, from, next) {
-                if (Permissions.indexOf("super") !== -1) {
                     next();
                 } else {
                     next("/campaigns");

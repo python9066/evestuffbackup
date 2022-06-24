@@ -7,7 +7,6 @@ use App\Models\NewSystemNode;
 use App\Models\NewUserNode;
 use App\Models\System;
 use Illuminate\Http\Request;
-use utils\Broadcasthelper\Broadcasthelper;
 
 class SystemController extends Controller
 {
@@ -24,7 +23,7 @@ class SystemController extends Controller
             $data = [];
             $data = [
                 'text' => $system->system_name,
-                'value' => $system->id
+                'value' => $system->id,
             ];
 
             array_push($systemlist, $data);
@@ -35,17 +34,18 @@ class SystemController extends Controller
 
     public function checkedAt(Request $request, $systemID)
     {
-        System::where('id', $systemID)->update(['checked_id' => $request->user_id, 'scouted_at' => now()]);
-        Broadcasthelper::broadcastsystemSolo($systemID, 7);
+        $s = System::where('id', $systemID)->first();
+        $s->update(['checked_id' => $request->user_id, 'scouted_at' => now()]);
+        broadcastsystemSolo($systemID, 7);
     }
-
 
     public function editTidi(Request $request, $systemID)
     {
-        System::where('id', $systemID)->update(['tidi' => $request->tidi]);
+        $s = System::where('id', $systemID)->first();
+        $s->update(['tidi' => $request->tidi]);
 
         $systemNodes = NewSystemNode::where('system_id', $systemID)
-            ->whereIn('node_status', [7, 8, 9])
+            ->whereIn('node_status', [7, 8, 9])->whereNotNull('base_time')
             ->get();
 
         foreach ($systemNodes as $systemNode) {
@@ -59,14 +59,14 @@ class SystemController extends Controller
             $systemNode->update([
                 'end_time' => $end_time,
                 'input_time' => now(),
-                'base_time' => $base_time
+                'base_time' => $base_time,
             ]);
         }
 
         $systemNodes = NewSystemNode::where('system_id', $systemID)->get();
         foreach ($systemNodes as $systemNode) {
             $userNodes = NewUserNode::where('node_id', $systemNode->id)
-                ->where('node_status_id', 3)->get();
+                ->where('node_status_id', 3)->whereNotNull('base_time')->get();
 
             foreach ($userNodes as $userNode) {
                 $time_passed = strtotime(now()) - strtotime($userNode->input_time);
@@ -79,15 +79,13 @@ class SystemController extends Controller
                 $userNode->update([
                     'end_time' => $end_time,
                     'input_time' => now(),
-                    'base_time' => $base_time
+                    'base_time' => $base_time,
                 ]);
             }
         }
 
-        Broadcasthelper::broadcastsystemSolo($systemID, 7);
+        broadcastsystemSolo($systemID, 7);
     }
-
-
 
     /**
      * Store a newly created resource in storage.

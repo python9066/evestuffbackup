@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alliance;
-use utils\Alliancehelper\Alliancehelper;
-use utils\Helper\Helper;
 
 //hierhere
 class AllianceController extends Controller
@@ -15,19 +13,15 @@ class AllianceController extends Controller
         $this->middleware('auth');
     }
 
-
-
     public function updateAlliances()
-
     {
-        $status = Helper::checkeve();
+        $status = checkeve();
         if ($status == 1) {
-            Alliancehelper::updateAlliances();
+            updateAlliances();
         }
     }
 
     public function allianceTickList()
-
     {
         $tickerlist = [];
         $tickers = Alliance::select('ticker as text', 'id as value')->get();

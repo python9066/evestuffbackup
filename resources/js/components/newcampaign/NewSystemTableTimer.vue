@@ -109,10 +109,7 @@
                 icon
                 color="warning"
               >
-                <font-awesome-icon
-                  icon="fa-solid fa-pen-to-square"
-                  size="2xl"
-                />
+                <font-awesome-icon icon="fa-solid fa-pen-to-square" />
               </v-btn>
             </template>
 
@@ -299,12 +296,21 @@ export default {
       // } else {
       //     return false;
       // }
+      if (this.extra == 1) {
+        if (this.node.prime_node_user.length > 0) {
+          var use = this.opUserInfo.node_status.id;
+        } else {
+          var use = this.node.node_status.id;
+        }
+      } else {
+        var use = this.node.node_status.id;
+      }
 
       if (
-        this.node.node_status.id == 7 ||
-        this.node.node_status.id == 8 ||
-        this.node.node_status.id == 3 ||
-        this.node.node_status.id == 9
+        use == 7 || // * Hostile Hacking
+        use == 8 || // * Friendly Hacking
+        use == 3 || // * Hacking
+        use == 9 // * Passive
       ) {
         return true;
       } else {
@@ -337,7 +343,16 @@ export default {
     },
 
     showAgeCountUp() {
-      switch (this.node.node_status.id) {
+      if (this.extra == 1) {
+        if (this.node.prime_node_user.length > 0) {
+          var use = this.node.prime_node_user[0].node_status.id;
+        } else {
+          var use = this.node.node_status.id;
+        }
+      } else {
+        var use = this.node.node_status.id;
+      }
+      switch (use) {
         case 1: // * New
           return true;
 
@@ -407,7 +422,10 @@ export default {
 
     checkHackUser() {
       if (this.opUserInfo) {
-        if (this.opUserInfo.end_time == null && this.node.node_status.id == 3) {
+        if (
+          this.opUserInfo.end_time == null &&
+          this.opUserInfo.node_status.id == 3
+        ) {
           return true;
         } else if (
           this.opUserInfo.end_time == null &&
@@ -436,7 +454,7 @@ export default {
     },
 
     pillOutlined() {
-      if (this.node.node_status.id == 7) {
+      if (this.node.node_status.id == 7 || this.node.node_status.id == 8) {
         return false;
       } else {
         return true;

@@ -4,11 +4,11 @@ namespace App\Console\Commands;
 
 use App\Jobs\updateWebwayJob;
 use App\Models\Campaign;
+use App\Models\NewCampaignSystem;
 use App\Models\Station;
 use App\Models\WebWay;
 use App\Models\WebWayStartSystem;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Http;
 
 class UpdateWebWayRoutes extends Command
 {
@@ -47,23 +47,35 @@ class UpdateWebWayRoutes extends Command
 
         $start_system_id = env('HOME_SYSTEM_ID', ($variables && array_key_exists('HOME_SYSTEM_ID', $variables)) ? $variables['HOME_SYSTEM_ID'] : null);
 
-        WebWay::where('id', '>', 0)->update(['active' => 0]);
+        $w = WebWay::where('id', '>', 0)->get();
+        foreach ($w as $w) {
+            $w->update(['active' => 0]);
+        }
         $stations = Station::get();
         $stationSystems = $stations->pluck('system_id');
         $campaigns = Campaign::get();
         $campaginSystems = $campaigns->pluck('system_id');
+        $newCampaigns = NewCampaignSystem::get();
+        $newCampaignsSystems = $newCampaigns->pluck('system_id');
 
         $systemIDs = $stationSystems->merge($campaginSystems);
+        $systemIDs = $systemIDs->merge($newCampaignsSystems);
         $systemIDs = $systemIDs->unique();
         $systemIDs = $systemIDs->values();
-        WebWay::whereIn('system_id', $systemIDs)->update(['active' => 1]);
-        WebWay::where('active', 0)->delete();
+        $w = WebWay::whereIn('system_id', $systemIDs)->get();
+        foreach ($w as $w) {
+            $w->update(['active' => 1]);
+        }
+        $w = WebWay::where('active', 0)->get();
+        foreach ($w as $w) {
+            $w->delete();
+        }
 
         foreach ($systemIDs as $end_system_id) {
             updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');
         }
 
-        $start_system_ids = WebWayStartSystem::where('system_id', '!=', 30004759)->pluck('system_id');;
+        $start_system_ids = WebWayStartSystem::where('system_id', '!=', 30004759)->pluck('system_id');
         foreach ($start_system_ids as $start_system_id) {
             foreach ($systemIDs as $end_system_id) {
                 updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');

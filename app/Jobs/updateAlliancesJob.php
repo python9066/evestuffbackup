@@ -62,7 +62,10 @@ class updateAlliancesJob implements ShouldQueue
                         'url' => "https://images.evetech.net/Alliance/" . $allianceID . "_64.png",
                     ]
                 );
-                Corp::where('alliance_id', $allianceID)->update(['alliance_id' => null]);
+                $c =  Corp::where('alliance_id', $allianceID)->get();
+                foreach ($c as $c) {
+                    $c->update(['alliance_id' => null]);
+                }
                 do {
                     $responseCorp = Http::withHeaders([
                         'Content-Type' => 'application/json',

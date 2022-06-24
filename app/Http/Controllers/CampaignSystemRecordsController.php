@@ -44,7 +44,10 @@ class CampaignSystemRecordsController extends Controller
     {
         $user = Auth::user();
         if ($user->can("edit_hack_priority")) {
-            Campaign::where('id', $id)->update(['priority' => $request->priority]);
+            $c =  Campaign::where('id', $id)->get();
+            foreach ($c as $c) {
+                $c->update(['priority' => $request->priority]);
+            }
         }
     }
 
@@ -58,7 +61,10 @@ class CampaignSystemRecordsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        CampaignSystemRecords::find($id)->update($request->all());
+        $c = CampaignSystemRecords::find($id)->get();
+        foreach ($c as $c) {
+            $c->update($request->all());
+        }
     }
 
     /**

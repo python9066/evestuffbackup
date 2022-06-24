@@ -9,6 +9,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Str;
+use PDO;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
 
@@ -89,7 +90,10 @@ class AuthController extends Controller
 
     public function webwayUser()
     {
-        User::where('id', 1)->delete();
+        $u = User::where('id', 1)->get();
+        foreach ($u as $u) {
+            $u->delete();
+        }
 
         $new = User::create([
             'id' => 1,

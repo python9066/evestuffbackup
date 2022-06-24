@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\SoloOperationUpdate;
 use App\Models\NewCampaign;
+use App\Models\NewOperation;
 use Illuminate\Http\Request;
 
 class NewCampaignsController extends Controller
@@ -18,6 +19,38 @@ class NewCampaignsController extends Controller
         //
     }
 
+    public function campaignsList()
+    {
+        $data = [];
+        $pull = NewCampaign::whereIn('status_id', [1, 2, 5])->with(['system.region', 'system.constellation', 'alliance'])->orderBy('start_time', 'asc')->get();
+        foreach ($pull as $pull) {
+            $data1 = [];
+            if ($pull->event_type == 32226) {
+                $eventType = "TCU";
+            } else {
+                $eventType = "Ihub";
+            }
+            $systemName = $pull->system->system_name;
+            $regionName = $pull->system->region->region_name;
+            $constellationName = $pull->system->constellation->constellation_name;
+            $allianceName = $pull->alliance->name;
+
+            $text = $regionName . " - " . $constellationName . " - " . $systemName . " - " . $allianceName . " - " . $eventType . " - " . $pull->start_time;
+
+
+            $data1 = [
+                "text" => $text,
+                'value' => $pull['id']
+            ];
+
+            array_push($data, $data1);
+        }
+
+        // dd($data);
+
+        return ['campaignslist' => $data];
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -26,7 +59,6 @@ class NewCampaignsController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -49,7 +81,10 @@ class NewCampaignsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        NewCampaign::find($id)->update($request->all());
+        $n = NewCampaign::find($id)->get();
+        foreach ($n as $n) {
+            $n->update($request->all());
+        }
         $flag = collect([
             'flag' => 4,
             'id' => $id

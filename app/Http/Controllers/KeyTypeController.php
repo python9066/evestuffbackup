@@ -43,7 +43,10 @@ class KeyTypeController extends Controller
 
     public function removeKey(Request $request)
     {
-        UserKeyJoin::where('key_type_id', $request->key_type_id)->where('user_id', $request->user_id)->delete();
+        $u =  UserKeyJoin::where('key_type_id', $request->key_type_id)->where('user_id', $request->user_id)->get();
+        foreach ($u as $u) {
+            $u->delete();
+        }
         $flag = collect([
             'id' => 1
         ]);
@@ -81,9 +84,18 @@ class KeyTypeController extends Controller
      */
     public function destroy($id)
     {
-        KeyType::find($id)->delete();
-        UserKeyJoin::where('key_type_id', $id)->delete();
-        KeyFleetJoin::where('key_type_id', $id)->delete();
+        $k = KeyType::find($id)->get();
+        foreach ($k as $k) {
+            $k->delete();
+        }
+        $k = UserKeyJoin::where('key_type_id', $id)->get();
+        foreach ($k as $k) {
+            $k->delete();
+        }
+        $k = KeyFleetJoin::where('key_type_id', $id)->get();
+        foreach ($k as $k) {
+            $k->delete();
+        }
         $flag = collect([
             'id' => 1
         ]);

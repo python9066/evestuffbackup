@@ -25,10 +25,7 @@ use App\Models\User;
 use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Artisan;
-use utils\Helper\Helper;
 use Illuminate\Support\Str;
-
-use function GuzzleHttp\json_decode;
 
 class Campaignhelper
 {
@@ -49,7 +46,7 @@ class Campaignhelper
             'campaign_system_status_id' => intval($join->campaign_system_status_id),
             'statusName' => CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name'),
             'campaign_sola_system_id' => CampaignSolaSystem::where('campaign_id', $join->campaignSystem->campaign_id)->where('system_id', $join->campaignSystem->systemm_id)->value('id'),
-            'campaign_id' => $join->campaign_id
+            'campaign_id' => $join->campaign_id,
 
         ];
 
@@ -65,21 +62,38 @@ class Campaignhelper
         $checkflag = null;
         //Removing old Campaigns and all data from databae -- start////
 
-
         $toDelete = Campaign::where('status_id', 10)
             ->get();
 
         if ($toDelete->count() != 0) {
             foreach ($toDelete as $toDelete) {
-                CampaignUser::where('campaign_id', $toDelete->id)->update(["system_id" => null, "status_id" => 1]);
-                CampaignSystemUsers::where('campaign_id', $toDelete->id)->delete(); //
-                CampaignSystem::where('campaign_id', $toDelete->id)->delete(); //
-                Campaign::where('id', $toDelete->id)->delete(); //
-                CampaignJoin::where('campaign_id', $toDelete->id)->delete(); //
-                CampaignSolaSystem::where('campaign_id', $toDelete->id)->delete(); //
+                $c = CampaignUser::where('campaign_id', $toDelete->id)->get();
+                foreach ($c as $c) {
+                    $c->update(["system_id" => null, "status_id" => 1]);
+                }
+                $c = CampaignSystemUsers::where('campaign_id', $toDelete->id)->get();
+                foreach ($c as $c) {
+                    $c->delete();
+                }
+                $c = CampaignSystem::where('campaign_id', $toDelete->id)->get();
+                foreach ($c as $c) {
+                    $c->delete();
+                }
+                $c = Campaign::where('id', $toDelete->id)->get();
+                foreach ($c as $c) {
+                    $c->delete();
+                }
+                $c = CampaignJoin::where('campaign_id', $toDelete->id)->get();
+                foreach ($c as $c) {
+                    $c->delete();
+                }
+                $c = CampaignSolaSystem::where('campaign_id', $toDelete->id)->get();
+                foreach ($c as $c) {
+                    $c->delete();
+                }
                 $flag = collect([
                     'flag' => 4,
-                    'id' => $toDelete->id
+                    'id' => $toDelete->id,
                 ]);
                 broadcast(new CampaignSystemUpdate($flag));
             }
@@ -88,9 +102,11 @@ class Campaignhelper
         //-----end----//
 
         //-----set all checks to 0 for start---///
-        Campaign::where('id', '>', 0)->update(['check' => 0]);
+        $c = Campaign::where('id', '>', 0)->get();
+        foreach ($c as $c) {
+            $c->update(['check' => 0]);
+        }
         //-----end----//
-
 
         $flag = 0;
         $changed = collect([]);
@@ -98,11 +114,11 @@ class Campaignhelper
         $headers = [
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
         ];
         $url = "https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility";
         $response = $client->request('GET', $url, [
-            'headers' => $headers
+            'headers' => $headers,
         ]);
         $response = Utils::jsonDecode($response->getBody(), true);
 
@@ -119,7 +135,7 @@ class Campaignhelper
 
                 $before = Campaign::where('id', $id)->get();
                 $time = $var['start_time'];
-                $start_time = Helper::fixtime($time);
+                $start_time = fixtime($time);
                 $data = array();
                 $data = array(
                     'attackers_score' => $var['attackers_score'],
@@ -139,14 +155,14 @@ class Campaignhelper
                 //     $checkflag = 1;
                 // }
 
-
                 if (Campaign::where('id', $id)->whereNotNull('link')->count() == 0) {
                     $string = Str::uuid();
-                    Campaign::where('id', $id)->update(['link' => $string]);
+                    $c = Campaign::where('id', $id)->get();
+                    foreach ($c as $c) {
+                        $c->update(['link' => $string]);
+                    }
                     $checkflag = 1;
                 }
-
-
 
                 $after = Campaign::where('id', $id)->get();
                 if ($before->count() > 0) {
@@ -159,8 +175,14 @@ class Campaignhelper
                         // echo "diffurent";
                         $flag = 1;
                         $checkflag = 1;
-                        Campaign::where('id', $id)->update(['defenders_score_old' => $defenders_old, 'attackers_score_old' => $attackers_old]);
-                        Campaignhelper::removeNode($id);
+                        $c = Campaign::where('id', $id)->get();
+                        foreach ($c as $c) {
+                            $c->update([
+                                'defenders_score_old' => $defenders_old,
+                                'attackers_score_old' => $attackers_old,
+                            ]);
+                        }
+                        removeNode($id);
                     };
                 } else {
                     $constellation = System::where('id', $var['solar_system_id'])->value('constellation_id');
@@ -188,7 +210,7 @@ class Campaignhelper
                 $flag = null;
                 $flag = collect([
                     'message' => $message,
-                    'id' => $start->id
+                    'id' => $start->id,
                 ]);
                 broadcast(new CampaignSystemUpdate($flag))->toOthers();
             }
@@ -196,23 +218,23 @@ class Campaignhelper
             $checkflag = 1;
         }
 
-
         $warmchecks = Campaign::where('warmup', 0)->where('status_id', 1)->get();
         foreach ($warmchecks as $warmcheck) {
-            if (strtotime($warmcheck->start_time) - strtotime(now()) > 0 && strtotime($warmcheck->start_time)  - strtotime(now()) < 3601) {
-                Campaign::where('id', $warmcheck['id'])->where('status_id', 1)->where('warmup', 0)->update(['warmup' => 1]);
+            if (strtotime($warmcheck->start_time) - strtotime(now()) > 0 && strtotime($warmcheck->start_time) - strtotime(now()) < 3601) {
+                $c = Campaign::where('id', $warmcheck['id'])->where('status_id', 1)->where('warmup', 0)->get();
+                foreach ($c as $c) {
+                    $c->update(['warmup' => 1]);
+                }
                 $message = CampaignRecords::where('id', $warmcheck['id'])->first();
                 $flag = null;
                 $flag = collect([
                     'message' => $message,
-                    'id' => $check
+                    'id' => $check,
                 ]);
                 broadcast(new CampaignUpdate($flag))->toOthers();
                 $checkflag = 1;
             }
         };
-
-
 
         $check = Campaign::where('check', 0)->count();
 
@@ -222,13 +244,10 @@ class Campaignhelper
             foreach ($warms as $warm) {
                 $warm->update(['status_id' => 3, 'warmup' => 0]);
 
-
-                // Campaignhelper::removeNode($warm->id);
+                // removeNode($warm->id);
                 $checkflag = 1;
                 // echo "1";
             }
-
-
 
             $as = Campaign::where('end', null)
                 ->where('check', 0)->get();
@@ -240,7 +259,7 @@ class Campaignhelper
                 $flag = null;
                 $flag = collect([
                     'message' => $message,
-                    'id' => $a->id
+                    'id' => $a->id,
                 ]);
                 broadcast(new CampaignUpdate($flag))->toOthers();
 
@@ -251,7 +270,7 @@ class Campaignhelper
                         foreach ($dNodes as $dNode) {
                             $flag = collect([
                                 "joinNodeID" => $dNode->id,
-                                "id" => $dNode->campaign_id
+                                "id" => $dNode->campaign_id,
                             ]);
                             broadcast(new NodeJoinDelete($flag));
 
@@ -266,7 +285,7 @@ class Campaignhelper
                         $flag = null;
                         $flag = collect([
                             "message" => $message,
-                            "id" => $dCampaignUser->campaign_id
+                            "id" => $dCampaignUser->campaign_id,
                         ]);
                         broadcast(new CampaignUserUpdate($flag));
                     }
@@ -274,13 +293,12 @@ class Campaignhelper
                     $flag = null;
                     $flag = collect([
                         'campSysID' => $dCampaignSystem->id,
-                        'id' => $a->id
+                        'id' => $a->id,
                     ]);
                     broadcast(new CampaignSystemDelete($flag))->toOthers();
                     $dCampaignSystem->delete();
                 }
             }
-
 
             $bs = Campaign::where('end', '<=', $now10m)
                 ->where('check', 0)
@@ -293,12 +311,11 @@ class Campaignhelper
                 $flag = null;
                 $flag = collect([
                     'message' => $message,
-                    'id' => $b->id
+                    'id' => $b->id,
                 ]);
                 broadcast(new CampaignUpdate($flag))->toOthers();
                 // echo "3";
             }
-
 
             // ->update(['check' => 1]);
             $cs = Campaign::where('end', '<=', $now10)
@@ -312,28 +329,30 @@ class Campaignhelper
                 $flag = null;
                 $flag = collect([
                     'message' => $message,
-                    'id' => $c->id
+                    'id' => $c->id,
                 ]);
                 broadcast(new CampaignUpdate($flag))->toOthers();
                 // echo "4";
             }
         }
 
-
-
         $finished = Campaign::where('status_id', 3)
             ->get();
         foreach ($finished as $finish) {
-
-
 
             $a = $finish->attackers_score;
             $d = $finish->defenders_score;
 
             if ($a > $d) {
-                Campaign::where('id', $finish->id)->update(['attackers_score' => 1, 'defenders_score' => 0]);
+                $c = Campaign::where('id', $finish->id)->get();
+                foreach ($c as $c) {
+                    $c->update(['attackers_score' => 1, 'defenders_score' => 0]);
+                }
             } else {
-                Campaign::where('id', $finish->id)->update(['attackers_score' => 0, 'defenders_score' => 1]);
+                $c = Campaign::where('id', $finish->id)->get();
+                foreach ($c as $c) {
+                    $c->update(['attackers_score' => 0, 'defenders_score' => 1]);
+                }
             }
 
             $campaignJoins = CampaignJoin::where('campaign_id', $finish->id)->get();
@@ -352,38 +371,30 @@ class Campaignhelper
             $flag = null;
             $flag = collect([
                 'message' => $message,
-                'id' => $finish->id
+                'id' => $finish->id,
             ]);
             broadcast(new CampaignUpdate($flag))->toOthers();
             $checkflag = 1;
             // echo "5";
         }
 
-
-
         if ($checkflag == 1) {
             $flag = null;
             $message = "hi";
             $flag = collect([
                 'message' => $message,
-                'id' => $check
+                'id' => $check,
             ]);
             // echo "yoyo";
             broadcast(new CampaignChanged($flag))->toOthers();
         }
 
-
         //NEW SCRIPT FOR UPDATED CAMPAIGN/HACKING PAGE//
-
 
     }
 
-
-
     public static function removeNode($check)
     {
-
-
 
         $campaign = Campaign::find($check);
         $b_node_add = $campaign->campaignsystems()
@@ -409,7 +420,6 @@ class Campaignhelper
             ->where('campaign_system_status_id', 5)
             ->update(['campaign_system_status_id' => 10]);
 
-
         $user = $campaign->campaignsystems()
             ->where('campaign_system_status_id', 10)
             ->where('campaign_user_id', "!=", null)
@@ -420,19 +430,17 @@ class Campaignhelper
             $user->campaignusers()
                 ->update([
                     'campaign_system_id' => null,
-                    'status_id' => 3
+                    'status_id' => 3,
                 ]);
 
             $message = CampaignUserRecords::where('id', $user->campaignusers()->value('id'))->first();
             $flag = null;
             $flag = collect([
                 'message' => $message,
-                'id' => $check
+                'id' => $check,
             ]);
             broadcast(new CampaignUserUpdate($flag));
         }
-
-
 
         $dels = $campaign->campaignsystems()
             ->where('campaign_system_status_id', 10)->get();
@@ -440,7 +448,7 @@ class Campaignhelper
             $flag = null;
             $flag = collect([
                 'campSysID' => $del['id'],
-                'id' => $check
+                'id' => $check,
             ]);
             broadcast(new CampaignSystemDelete($flag));
         };
@@ -453,7 +461,7 @@ class Campaignhelper
         $flag = null;
         $flag = collect([
             'message' => $message,
-            'id' => $check
+            'id' => $check,
         ]);
         // echo "8";
         broadcast(new CampaignUpdate($flag));

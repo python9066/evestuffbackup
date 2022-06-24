@@ -2,10 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\EveEsiStatus;
 use App\Models\Userlogging;
 use Illuminate\Console\Command;
-use utils\Campaignhelper\Campaignhelper;
-use utils\Helper\Helper;
 
 class newnewcampaignsupdate extends Command
 {
@@ -41,9 +40,9 @@ class newnewcampaignsupdate extends Command
     public function handle()
     {
         Userlogging::create(['url' => 'demon campagin fix', 'user_id' => 9999999999]);
-        $status = Helper::checkeve();
-        if ($status == 1) {
-            Campaignhelper::update();
+        $check = EveEsiStatus::where('route', '/sovereignty/campaigns/')->first();
+        if ($check->status == "green") {
+            campaignUpdate();
         };
     }
 }

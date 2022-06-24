@@ -39,7 +39,13 @@ class CleanUpCoordShhet extends Command
      */
     public function handle()
     {;
-        Station::where('show_on_coord', 1)->where('show_on_rc', 1)->update(['show_on_coord' => 0]);
-        Station::where('show_on_coord', 1)->where('show_on_rc_move', 1)->update(['show_on_coord' => 0]);
+        $a = Station::where('show_on_coord', 1)->where('show_on_rc', 1)->get();
+        foreach ($a as $a) {
+            $a->update(['show_on_coord' => 0]);
+        }
+        $b = Station::where('show_on_coord', 1)->where('show_on_rc_move', 1)->get();
+        foreach ($b as $b) {
+            $b->update(['show_on_coord' => 0]);
+        }
     }
 }

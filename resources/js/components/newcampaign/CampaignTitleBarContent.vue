@@ -1,5 +1,5 @@
 <template>
-  <v-row no-gutters>
+  <v-row no-gutters class="align-items-center">
     <v-col cols="12">
       <transition
         name="custom-classes"
@@ -9,9 +9,9 @@
       >
         <v-row
           no-gutters
-          align="center"
           v-if="showScore"
           :key="`${item.id}-score`"
+          class="align-items-center"
         >
           <v-col cols="2">
             <span :class="textColor">
@@ -23,7 +23,11 @@
           </v-col>
           <v-col
             cols="6"
-            class="d-flex justify-content-center align-content-center"
+            class="
+              d-flex
+              justify-content-center
+              align-content-center align-items-center
+            "
           >
             <div icon dark :color="IconDColor" :class="IconDClass">
               <font-awesome-icon :icon="IconD" pull="left" />
@@ -45,7 +49,7 @@
               </strong>
             </v-progress-linear>
             <div dark :color="IconAColor" :class="IconAClass">
-              <font-awesome-icon :icon="IconD" size="s" pull="left" />
+              <font-awesome-icon :icon="IconD" size="sm" pull="left" />
             </div>
           </v-col>
           <v-col cols="4" class="d-flex justify-content-end align-items-center">
@@ -109,6 +113,40 @@
             </Vep>
           </v-col>
         </v-row>
+        <v-row
+          no-gutters
+          v-else-if="item.status_id != 3 && item.status_id != 4"
+          :key="`${item.id}-timer`"
+        >
+          <v-col cols="2">
+            <span :class="textColor">
+              {{ item.system.system_name }} - {{ eventType }}:
+              {{ this.item.alliance.ticker }}
+              <v-avatar size="50"
+                ><img :src="this.item.alliance.url" /></v-avatar
+            ></span>
+          </v-col>
+          <v-col cols="3" class="d-flex align-items-center">
+            <CountDowntimer
+              :start-time="moment.utc(item.start_time).unix()"
+              :end-text="'Campaign Over'"
+              :interval="1000"
+            >
+              <template slot="countdown" slot-scope="scope">
+                Warm up -
+                <span class="red--text pl-3">
+                  <span v-if="scope.props.hours > 1">
+                    {{ scope.props.hours }}:{{ scope.props.minutes }}:{{}}
+                  </span>
+
+                  <span v-else>
+                    {{ scope.props.minutes }}:{{ scope.props.seconds }}
+                  </span>
+                </span>
+              </template>
+            </CountDowntimer>
+          </v-col>
+        </v-row>
         <v-row no-gutters v-else :key="`${item.id}-timer`">
           <v-col cols="2">
             <span :class="textColor">
@@ -118,30 +156,11 @@
                 ><img :src="this.item.alliance.url" /></v-avatar
             ></span>
           </v-col>
-          <v-col cols="3">
-            <CountDowntimer
-              :start-time="moment.utc(item.start_time).unix()"
-              :end-text="'Window Closed'"
-              :interval="1000"
-            >
-              <template slot="countdown" slot-scope="scope">
-                <span class="red--text pl-3">
-                  <span v-if(scope.props.hours> 1)</span>
-                  {{ scope.props.minutes }}:{{ scope.props.seconds }}
-                </span>
-              </template>
-            </CountDowntimer>
+          <v-col cols="3" class="d-flex align-items-center">
+            <span class="red--text"> Campaign Over</span>
           </v-col>
         </v-row>
       </transition>
-      <v-row no-gutters>
-        <v-col>
-          <v-text-field v-model="newscore" type="number"></v-text-field>
-          <v-btn @click="updateScore()"> update</v-btn>
-          <v-btn @click="update()"> artisan</v-btn>
-          <v-btn @click="clear()" color="warning"> CLER ALL DATA</v-btn>
-        </v-col>
-      </v-row>
     </v-col>
   </v-row>
 </template>
@@ -166,9 +185,7 @@ export default {
     warmUpCampaigns: Array,
   },
   data() {
-    return {
-      newscore: 0,
-    };
+    return {};
   },
 
   async created() {},
@@ -178,52 +195,7 @@ export default {
   async beforeCreate() {},
 
   async mounted() {},
-  methods: {
-    async updateScore() {
-      var d = this.newscore / 100;
-
-      var ascore = 1 - d;
-      var request = {
-        defenders_score: d,
-        attackers_score: ascore,
-      };
-
-      await axios({
-        method: "POST", //you can set what request you want to be
-        url: "/api/testscoreupdate/" + this.item.id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-
-    async update() {
-      await axios({
-        method: "POST", //you can set what request you want to be
-        url: "/api/testscorerun",
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-
-    async clear() {
-      await axios({
-        method: "POST", //you can set what request you want to be
-        url: "/api/testclearalldata",
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-  },
+  methods: {},
 
   computed: {
     ...mapGetters([
@@ -360,9 +332,9 @@ export default {
         this.item.defenders_score > this.item.defenders_score_old &&
         this.item.defenders_score_old > 0
       ) {
-        return "rotate";
+        return "rotate mr-2";
       } else {
-        return "rotate down";
+        return "rotate down mr-2";
       }
     },
 

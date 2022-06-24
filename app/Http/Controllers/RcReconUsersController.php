@@ -6,15 +6,11 @@ use App\Events\ChillSheetUpdate;
 use App\Events\RcSheetUpdate;
 use App\Events\WelpSheetUpdate;
 use App\Models\ChillStationRecords;
-use App\Models\Logging;
 use App\Models\RcReconUsers;
-use App\Models\RcStationRecords;
 use App\Models\Station;
 use App\Models\User;
 use App\Models\WelpStationRecords;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use utils\Helper\Helper;
 
 class RcReconUsersController extends Controller
 {
@@ -38,10 +34,12 @@ class RcReconUsersController extends Controller
             RcReconUsers::where('user_id', $request->user_id)->get();
         }
 
-
         $reconid = RcReconUsers::where('user_id', $request->user_id)->value('id');
-        Station::where('id', $id)->update(['rc_recon_id' => $reconid]);
-        $message = Helper::StationRecordsSolo(4, $id);
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update(['rc_recon_id' => $reconid]);
+        }
+        $message = StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,
@@ -64,12 +62,6 @@ class RcReconUsersController extends Controller
             ]);
             broadcast(new WelpSheetUpdate($flag));
         }
-        $text = Auth::user()->name . " Added as Cyno";
-
-        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 21]);
-        $log = $log->id;
-        Helper::sheetlogs($log);
-        Helper::stationlogs($log);
     }
 
     public function removeRecontoStation($id)
@@ -77,8 +69,11 @@ class RcReconUsersController extends Controller
         $reconrcid = Station::where('id', $id)->value('rc_recon_id');
         $userid = RcReconUsers::where('id', $reconrcid)->value('user_id');
         $username = User::where('id', $userid)->value('name');
-        Station::where('id', $id)->update(['rc_recon_id' => null]);
-        $message = Helper::StationRecordsSolo(4, $id);
+        $s = Station::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->update(['rc_recon_id' => null]);
+        }
+        $message = StationRecordsSolo(4, $id);
         if ($message) {
             $flag = collect([
                 'message' => $message,
@@ -100,12 +95,6 @@ class RcReconUsersController extends Controller
             ]);
             broadcast(new WelpSheetUpdate($flag));
         }
-        $text = Auth::user()->name . " Removed " . $username . " As Cyno";
-
-        $log = Logging::Create(['station_id' => $id, 'user_id' => Auth::id(), 'text' => $text, 'logging_type_id' => 22]);
-        $log = $log->id;
-        Helper::sheetlogs($log);
-        Helper::stationlogs($log);
     }
 
     /**

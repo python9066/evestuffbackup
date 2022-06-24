@@ -4,8 +4,6 @@ namespace App\Console\Commands;
 
 use App\Models\Userlogging;
 use Illuminate\Console\Command;
-use utils\Helper\Helper;
-use utils\Timerhelper\Timerhelper;
 
 class UpdateAuth extends Command
 {
@@ -41,6 +39,6 @@ class UpdateAuth extends Command
     public function handle()
     {
         Userlogging::create(['url' => "demon auth", 'user_id' => 9999999999]);
-        Helper::authcheck();
+        authcheck();
     }
 }

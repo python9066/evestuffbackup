@@ -36,7 +36,12 @@
         />
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-btn @click="deleteNode(item)" class="pl-4" color="orange darken-3">
+        <v-btn
+          icon
+          @click="deleteNode(item)"
+          class="pl-4"
+          color="orange darken-3"
+        >
           <font-awesome-icon icon="fa-solid fa-trash-can"
         /></v-btn>
       </template>
@@ -113,8 +118,8 @@ export default {
   methods: {
     async deleteNode(item) {
       await axios({
-        method: "PUT", //you can set what request you want to be
-        url: "/api/deleteextranode/" + item.id + "/" + item.campaign_id,
+        method: "delete", //you can set what request you want to be
+        url: "/api/newdeleteextanode/" + item.id,
         withCredentials: true,
         headers: {
           Accept: "application/json",

@@ -53,7 +53,10 @@ class UpdateStandingJob implements ShouldQueue
     {
         $token = Auth::where('flag_standing', 0)->first();
         if ($token == null) {
-            Auth::where('flag_standing', 1)->update(['flag_standing' => 0]);
+            $a = Auth::where('flag_standing', 1)->get();
+            foreach ($a as $a) {
+                $a->update(['flag_standing' => 0]);
+            }
             $token = Auth::where('flag_standing', 0)->first();
             $token->update(['flag_note' => 1]);
             $url = 'https://esi.evetech.net/latest/alliances/1354830081/contacts/?datasource=tranquility';
@@ -78,24 +81,45 @@ class UpdateStandingJob implements ShouldQueue
             };
 
             if ($stand->get('contact_type') == "alliance") {
-                Alliance::where('id', $stand->get('contact_id'))->update([
-                    'color' => $color,
-                    'standing' => $stand->get('standing')
-                ]);
+                $a =  Alliance::where('id', $stand->get('contact_id'))->get();
+                foreach ($a as $a) {
+                    $a->update([
+                        'color' => $color,
+                        'standing' => $stand->get('standing')
+                    ]);
+                }
             }
 
             if ($stand->get('contact_type') == "corporation") {
-                Corp::where('id', $stand->get('contact_id'))->update([
-                    'color' => $color,
-                    'standing' => $stand->get('standing')
-                ]);
+                $c =  Corp::where('id', $stand->get('contact_id'))->get();
+                foreach ($c as $c) {
+                    $c->update([
+                        'color' => $color,
+                        'standing' => $stand->get('standing')
+                    ]);
+                }
             }
         }
-        Alliance::where('color', '0')->update(['color' => 1]);
-        Alliance::whereNull('standing')->update(['standing' => 0]);
-        Alliance::where('id', '1354830081')->update(['standing' => 10, 'color' => 3]);
-        Corp::whereNull('standing')->update(['standing' => 0]);
-        Corp::where('color', '0')->update(['color' => 1]);
+        $a = Alliance::where('color', '0')->get();
+        foreach ($a as $a) {
+            $a->update(['color' => 1]);
+        }
+        $a = Alliance::whereNull('standing')->get();
+        foreach ($a as $a) {
+            $a->update(['standing' => 0]);
+        }
+        $a = Alliance::where('id', '1354830081')->get();
+        foreach ($a as $a) {
+            $a->update(['standing' => 10, 'color' => 3]);
+        }
+        $c = Corp::whereNull('standing')->get();
+        foreach ($c as $c) {
+            $c->update(['standing' => 0]);
+        }
+        $c = Corp::where('color', '0')->get();
+        foreach ($c as $c) {
+            $c->update(['color' => 1]);
+        }
     }
 
     public function checkKeys()

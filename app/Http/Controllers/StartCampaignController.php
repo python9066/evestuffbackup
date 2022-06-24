@@ -88,14 +88,29 @@ class StartCampaignController extends Controller
      */
     public function destroy($id)
     {
-        StartCampaigns::destroy($id);
-        StartCampaignJoins::where('start_campaign_id', $id)->delete();
-        StartCampaignSystems::where('start_campaign_id', $id)->delete();
-        CampaignSystemUsers::where('campaign_id', $id)->delete();
-        CampaignUser::where('campaign_id', $id)->update([
-            'campaign_id' => null,
-            'campaign_system_id' => null,
-            'status_id' => 1
-        ]);
+        $s = StartCampaigns::where('id', $id)->get();
+        foreach ($s as $s) {
+            $s->delete();
+        }
+        $s = StartCampaignJoins::where('start_campaign_id', $id)->get();
+        foreach ($s as $s) {
+            $s->delete();
+        }
+        $s = StartCampaignSystems::where('start_campaign_id', $id)->get();
+        foreach ($s as $s) {
+            $s->delete();
+        }
+        $s = CampaignSystemUsers::where('campaign_id', $id)->get();
+        foreach ($s as $s) {
+            $s->delete();
+        }
+        $c = CampaignUser::where('campaign_id', $id)->get();
+        foreach ($c as $c) {
+            $c->update([
+                'campaign_id' => null,
+                'campaign_system_id' => null,
+                'status_id' => 1
+            ]);
+        }
     }
 }

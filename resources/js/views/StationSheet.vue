@@ -12,6 +12,25 @@
                     v-if="$can('view_coord_sheet')"
                   ></SettingPannel></v-col></v-row
             ></v-card-title>
+            <v-row
+              no-gutters
+              align="baseline"
+              justify="space-between"
+              class="mt-2 ml-2"
+            >
+              <v-col cols="3">
+                <v-text-field
+                  label="Search"
+                  v-model="search"
+                  filled
+                  dense
+                  rounded
+                  single-line
+                  clearable
+                  color="blue"
+                ></v-text-field>
+              </v-col>
+            </v-row>
             <v-card-text>
               <v-data-table
                 :headers="headers"
