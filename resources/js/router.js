@@ -166,6 +166,7 @@ export default new Router({
             path: "/operations",
             name: "operations",
             component: SoloOperations,
+            alias: "/campaigns",
         },
 
         {
@@ -211,6 +212,7 @@ export default new Router({
             path: "/stationtimers",
             name: "killlist",
             component: KillList,
+            alias: "/fornatshealth",
             beforeEnter(to, from, next) {
                 if (Permissions.indexOf("view_killsheet") !== -1) {
                     next();
@@ -220,18 +222,18 @@ export default new Router({
             },
         },
 
-        {
-            path: "/fornatshealth",
-            name: "killlist",
-            component: KillList,
-            beforeEnter(to, from, next) {
-                if (Permissions.indexOf("view_killsheet") !== -1) {
-                    next();
-                } else {
-                    next("/notifications");
-                }
-            },
-        },
+        // {
+        //     path: "/fornatshealth",
+        //     name: "killlist",
+        //     component: KillList,
+        //     beforeEnter(to, from, next) {
+        //         if (Permissions.indexOf("view_killsheet") !== -1) {
+        //             next();
+        //         } else {
+        //             next("/notifications");
+        //         }
+        //     },
+        // },
 
         {
             path: "/gsol",
@@ -304,11 +306,11 @@ export default new Router({
             component: Notifications,
         },
 
-        {
-            path: "/campaigns",
-            name: "campaigns",
-            component: Campagins,
-        },
+        // {
+        //     path: "/campaigns",
+        //     name: "campaigns",
+        //     component: Campagins,
+        // },
 
         {
             path: "/mcampaigns",

@@ -136,7 +136,9 @@
                 Warm up -
                 <span class="red--text pl-3">
                   <span v-if="scope.props.hours > 1">
-                    {{ scope.props.hours }}:{{ scope.props.minutes }}:{{}}
+                    {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                      scope.props.seconds
+                    }}
                   </span>
 
                   <span v-else>
