@@ -10,8 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class CampaignStatus extends Model
 {
 
-    use HasFactory,
-        LogsActivity;
+    use HasFactory;
     protected $guarded = [];
     public $timestamps = false;
 
