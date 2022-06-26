@@ -28,6 +28,7 @@ import CoordSheet from "./views/CoordSheet.vue";
 import SoloOperations from "./views/SoloOperations.vue";
 import Station from "./views/StationSheet.vue";
 import NewOperation from "./views/NewCampaign.vue";
+import OperationInfo from "./views/OperationInfo.vue";
 
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -175,6 +176,19 @@ export default new Router({
             component: CoordSheet,
             beforeEnter(to, from, next) {
                 if (Permissions.indexOf("view_coord_sheet") !== -1) {
+                    next();
+                } else {
+                    next("/notifications");
+                }
+            },
+        },
+
+        {
+            path: "/operationinfo",
+            name: "operationinfo",
+            component: OperationInfo,
+            beforeEnter(to, from, next) {
+                if (Permissions.indexOf("super") !== -1) {
                     next();
                 } else {
                     next("/notifications");

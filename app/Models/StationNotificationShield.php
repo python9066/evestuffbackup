@@ -9,13 +9,6 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class StationNotificationShield extends Model
 {
-    use HasFactory, LogsActivity;
+    use HasFactory;
     protected $guarded = [];
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logOnly(['*']);
-        // Chain fluent methods for configuration options
-    }
 }

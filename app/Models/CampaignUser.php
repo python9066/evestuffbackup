@@ -9,7 +9,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class CampaignUser extends Model
 {
-    use HasFactory, LogsActivity;
+    use HasFactory;
     protected $guarded = [];
     public $timestamps = false;
     protected $casts = [
@@ -24,12 +24,7 @@ class CampaignUser extends Model
 
     ];
 
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logOnly(['*']);
-        // Chain fluent methods for configuration options
-    }
+
 
 
     public function user()

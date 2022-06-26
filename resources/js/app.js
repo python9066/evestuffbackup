@@ -574,6 +574,11 @@ Vue.component(
     require("./components/newcampaign/NewUserEdit.vue").default
 );
 
+Vue.component(
+    "AddOperationInfo",
+    require("./components/operationinfo/AddOperationInfo.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(VueEllipseProgress, "Vep");

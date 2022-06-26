@@ -72,7 +72,8 @@
             "app/Helpers/NewCampaignhelper.php",
             "app/Helpers/Notificationhelper.php",
             "app/Helpers/Timerhelper.php",
-            "app/Helpers/DiscordBot.php"
+            "app/Helpers/DiscordBot.php",
+            "app/Helpers/OperationInfoHelper.php"
 
         ]
     },

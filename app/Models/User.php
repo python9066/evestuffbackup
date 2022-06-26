@@ -17,14 +17,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles, HasPermissions, HasApiTokens, CausesActivity, LogsActivity;
+    use Notifiable, HasRoles, HasPermissions, HasApiTokens;
 
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logOnly(['*']);
-        // Chain fluent methods for configuration options
-    }
+
 
     /**
      * The attributes that are mass assignable.

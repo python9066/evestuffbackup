@@ -9,14 +9,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class CampaignSolaSystem extends Model
 {
-    use HasFactory, LogsActivity;
+    use HasFactory;
 
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logOnly(['*']);
-        // Chain fluent methods for configuration options
-    }
+
     protected $guarded = [];
     public $timestamps = false;
 

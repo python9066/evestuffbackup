@@ -8,14 +8,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class CampaignRecords extends Model
 {
-    use LogsActivity;
 
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logOnly(['*']);
-        // Chain fluent methods for configuration options
-    }
+
+
     protected $guarded = [];
     public $timestamps = false;
 

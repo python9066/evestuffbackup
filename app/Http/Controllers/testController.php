@@ -10,6 +10,7 @@ use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
 use App\Models\NewSystemNode;
 use App\Models\NewUserNode;
+use App\Models\OperationInfoUser;
 use App\Models\OperationUser;
 use App\Models\OperationUserList;
 use App\Models\Region;
@@ -91,7 +92,6 @@ class testController extends Controller
                 ->first();
 
             return $message;
-
         }
     }
 
@@ -121,6 +121,48 @@ class testController extends Controller
                 'user_status_id' => 1,
                 'system_id' => null,
             ]);
+        }
+    }
+
+    public function nameToID($name)
+    {
+        $user = Auth::user();
+        if ($user->can('super')) {
+            $check = OperationInfoUser::where('name', $name)->count();
+            if ($check == 0) {
+                $userIds = collect();
+                $response = Http::withHeaders([
+                    'Content-Type' => 'application/json',
+                    "Accept" => "application/json",
+                    'User-Agent' => 'evestuff.online python9066@gmail.com'
+                ])
+                    ->withBody(json_encode([$name]), 'application/json')
+                    ->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en");
+
+                $res = $response->collect($key = null);
+                foreach ($res as $key => $re) {
+                    if ($key == "characters")
+                        $userIds->push($re[0]['id']);
+                }
+
+                foreach ($userIds as $userID) {
+                    $response = Http::withHeaders([
+                        'Content-Type' => 'application/json',
+                        "Accept" => "application/json",
+                        'User-Agent' => 'evestuff.online python9066@gmail.com'
+                    ])->get("https://esi.evetech.net/latest/characters/" . $userID . "/?datasource=tranquility");
+                    $res = $response->collect($key = null);
+                    $new = new OperationInfoUser();
+                    $new->id = $userID;
+                    $new->alliance_id = $res['alliance_id'] ?? null;
+                    $new->corporation_id = $res['corporation_id'];
+                    $new->name = $res['name'];
+                    $new->url = "https://images.evetech.net/characters/" . $userID . "/portrait?tenant=tranquility&size=64";
+                    $new->save();
+                }
+            } else {
+                return "ALREADY THERE";
+            }
         }
     }
 
@@ -520,17 +562,17 @@ class testController extends Controller
         if ($user->can('super')) {
 
             return ['operations' => NewOperation::where('solo', 1)
-                    ->with([
-                        'campaign',
-                        'campaign.constellation:id,constellation_name',
-                        'campaign.alliance:id,name,ticker,standing,url,color',
-                        'campaign.system:id,system_name,adm',
-                        'campaign.system.webway' => function ($t) {
-                            $t->where('permissions', 1);
-                        },
-                        'campaign.structure:id,item_id,age',
-                    ])
-                    ->get()];
+                ->with([
+                    'campaign',
+                    'campaign.constellation:id,constellation_name',
+                    'campaign.alliance:id,name,ticker,standing,url,color',
+                    'campaign.system:id,system_name,adm',
+                    'campaign.system.webway' => function ($t) {
+                        $t->where('permissions', 1);
+                    },
+                    'campaign.structure:id,item_id,age',
+                ])
+                ->get()];
         } else {
             return null;
         }

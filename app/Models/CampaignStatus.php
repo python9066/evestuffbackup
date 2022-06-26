@@ -15,12 +15,7 @@ class CampaignStatus extends Model
     protected $guarded = [];
     public $timestamps = false;
 
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logOnly(['*']);
-        // Chain fluent methods for configuration options
-    }
+
 
     public function campagain()
     {

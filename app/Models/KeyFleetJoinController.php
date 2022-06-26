@@ -9,12 +9,5 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class KeyFleetJoinController extends Model
 {
-    use HasFactory, LogsActivity;
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logOnly(['*']);
-        // Chain fluent methods for configuration options
-    }
+    use HasFactory;
 }

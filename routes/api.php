@@ -34,6 +34,7 @@ use App\Http\Controllers\NewUserNodeController;
 use App\Http\Controllers\NodeJoinsController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\NotificationRecordsController;
+use App\Http\Controllers\OperationInfoController;
 use App\Http\Controllers\OperationUserController;
 use App\Http\Controllers\RcFcUsersController;
 use App\Http\Controllers\RcGsolUsersController;
@@ -60,6 +61,7 @@ use App\Http\Controllers\UserRolesRecordsController;
 use App\Http\Controllers\WebWayStartSystemsContorller;
 use App\Http\Controllers\WelpStationController;
 use App\Models\Notification;
+use App\Models\OperationInfo;
 use App\Models\WebWay;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -337,5 +339,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/sendadduseroverlay/{opID}/{type}', [NewOperationsController::class, 'sendAddCharOverlay']);
     Route::post('/setreadonly/{opID}', [NewOperationsController::class, 'changeReadyOnly']);
     Route::post('/newcampaignpriority/{id}', [NewOperationsController::class, 'updatePriority']);
-
+    Route::post('/operationinfo', [OperationInfoController::class, 'store']);
+    Route::get('/operationinfo', [OperationInfoController::class, 'index']);
 });

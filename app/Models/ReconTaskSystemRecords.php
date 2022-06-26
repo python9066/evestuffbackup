@@ -9,15 +9,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class ReconTaskSystemRecords extends Model
 {
-    use HasFactory, LogsActivity;
+    use HasFactory;
     protected $guarded = [];
 
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logOnly(['*']);
-        // Chain fluent methods for configuration options
-    }
+
 
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',

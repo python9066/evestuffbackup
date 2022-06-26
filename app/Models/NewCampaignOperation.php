@@ -9,7 +9,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class NewCampaignOperation extends Model
 {
-    use HasFactory, LogsActivity;
+    use HasFactory;
     protected $guarded = [];
 
     public function getActivitylogOptions(): LogOptions
@@ -33,5 +33,4 @@ class NewCampaignOperation extends Model
     {
         return $this->belongsTo(NewCampaign::class, 'campaign_id', 'id');
     }
-
 }

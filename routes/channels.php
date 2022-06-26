@@ -162,6 +162,10 @@ Broadcast::channel('customoperationpage', function () {
     return Auth::check();
 });
 
+Broadcast::channel('operationinfopage', function () {
+    return Auth::check();
+});
+
 
 
 

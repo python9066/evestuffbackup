@@ -13,6 +13,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        operationInfo: [],
+
         allianceticklist: [],
         ammoRequest: [],
         campaigns: [],
@@ -166,6 +168,10 @@ export default new Vuex.Store({
 
         SET_STATION_LIST(state, stations) {
             state.stationList = stations;
+        },
+
+        SET_OPERATION_INFO(state, data) {
+            state.operationInfo = data;
         },
 
         SET_NEW_OPERATION_MESSAGE_OVERLAY(state, num) {
@@ -897,6 +903,19 @@ export default new Vuex.Store({
     },
 
     actions: {
+        async getOperationSheetInfo({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfo",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_OPERATION_INFO", res.data.opinfo);
+        },
+
         async getStationList({ commit }) {
             let res = await axios({
                 method: "get",
