@@ -37,10 +37,9 @@ class NodeJoinsController extends Controller
         if ($nodes->count() > 0) {
             if ($request['campaign_system_status_id'] == 4 || $request['campaign_system_status_id'] == 5) {
                 foreach ($nodes as $node) {
-
                     $flag = collect([
-                        "joinNodeID" => $node->id,
-                        "id" => $campid,
+                        'joinNodeID' => $node->id,
+                        'id' => $campid,
                     ]);
                     broadcast(new NodeJoinDelete($flag));
 
@@ -51,8 +50,8 @@ class NodeJoinsController extends Controller
                     $message = CampaignUserRecords::where('id', $node->campaign_user_id)->first();
                     $flag = null;
                     $flag = collect([
-                        "message" => $message,
-                        "id" => $campid,
+                        'message' => $message,
+                        'id' => $campid,
                     ]);
                     broadcast(new CampaignUserUpdate($flag));
 
@@ -68,34 +67,35 @@ class NodeJoinsController extends Controller
                 $message = CampaignUserRecords::where('id', $CampaignSystem->campaign_user_id)->first();
                 $flag = null;
                 $flag = collect([
-                    "message" => $message,
-                    "id" => $campid,
+                    'message' => $message,
+                    'id' => $campid,
                 ]);
                 broadcast(new CampaignUserUpdate($flag));
                 $CampaignSystem->update(['campaign_user_id' => null, 'campaign_system_status_id' => $request['campaign_system_status_id'], 'node_join_count' => 0]);
                 $message = CampaignSystemRecords::where('id', $CampaignSystem->id)->first();
                 $flag = null;
                 $flag = collect([
-                    "message" => $message,
-                    "id" => $campid,
+                    'message' => $message,
+                    'id' => $campid,
                 ]);
                 broadcast(new CampaignSystemUpdate($flag));
+
                 return;
             }
 
             if ($nodes->where('campaign_system_status_id', 3)->count() > 0) {
                 $status = 1;
                 $node = $nodes->where('campaign_system_status_id', 3)->first();
-            } else if ($nodes->where('campaign_system_status_id', 2)->count() > 0) {
+            } elseif ($nodes->where('campaign_system_status_id', 2)->count() > 0) {
                 $status = 2;
                 $node = $nodes->where('campaign_system_status_id', 2)->first();
             } else {
                 $node = $nodes->first();
-            };
+            }
 
             $flag = collect([
-                "joinNodeID" => $node->id,
-                "id" => $campid,
+                'joinNodeID' => $node->id,
+                'id' => $campid,
             ]);
             broadcast(new NodeJoinDelete($flag));
 
@@ -116,30 +116,27 @@ class NodeJoinsController extends Controller
             $message = CampaignUserRecords::where('id', $CampaignSystem->campaign_user_id)->first();
             $flag = null;
             $flag = collect([
-                "message" => $message,
-                "id" => $campid,
+                'message' => $message,
+                'id' => $campid,
             ]);
             broadcast(new CampaignUserUpdate($flag));
 
             if ($status == 1) {
-
                 $CampaignSystem->update(['campaign_user_id' => $user_id, 'campaign_system_status_id' => $campaign_system_status_id, 'node_join_count' => $count]);
             } else {
-
                 $CampaignSystem->update(['campaign_user_id' => $user_id, 'campaign_system_status_id' => $campaign_system_status_id, 'node_join_count' => $count, 'input_time' => null, 'base_time' => null, 'end_time' => null]);
-            };
+            }
 
             $message = CampaignSystemRecords::where('id', $CampaignSystem->id)->first();
             $flag = null;
             $flag = collect([
-                "message" => $message,
-                "id" => $campid,
+                'message' => $message,
+                'id' => $campid,
             ]);
             broadcast(new CampaignSystemUpdate($flag));
 
             $node->delete();
         } else {
-
             if ($request['campaign_system_status_id'] == null) {
                 $campaign_system_status_id = 1;
             } else {
@@ -161,18 +158,18 @@ class NodeJoinsController extends Controller
             $flag = null;
             $message = CampaignUserRecords::where('id', $user_id)->first();
             $flag = collect([
-                "message" => $message,
-                "id" => $campid,
+                'message' => $message,
+                'id' => $campid,
             ]);
             broadcast(new CampaignUserUpdate($flag));
             $flag = null;
             $message = CampaignSystemRecords::where('id', $id)->first();
             $flag = collect([
-                "message" => $message,
-                "id" => $campid,
+                'message' => $message,
+                'id' => $campid,
             ]);
             broadcast(new CampaignSystemUpdate($flag));
-        };
+        }
 
         //done - Just waiting to finish rest before removing this call//
         // $flag = null;
@@ -185,7 +182,6 @@ class NodeJoinsController extends Controller
 
     public function deleteExtraNode($id, $campid)
     {
-
         $node = NodeJoin::where('id', $id)->first();
 
         $flag = null;
@@ -233,8 +229,8 @@ class NodeJoinsController extends Controller
             $message = nodeJoinRecords($new->id);
             $flag = null;
             $flag = collect([
-                "message" => $message,
-                "id" => $campid,
+                'message' => $message,
+                'id' => $campid,
             ]);
             broadcast(new NodeJoinNew($flag))->toOthers();
 
@@ -245,8 +241,8 @@ class NodeJoinsController extends Controller
         $flag = null;
         $message = CampaignSystemRecords::where('id', $id)->first();
         $flag = collect([
-            "message" => $message,
-            "id" => $campid,
+            'message' => $message,
+            'id' => $campid,
         ]);
         broadcast(new CampaignSystemUpdate($flag));
 
@@ -258,8 +254,8 @@ class NodeJoinsController extends Controller
         $message = CampaignUserRecords::where('id', $campaignUserID)->first();
         $flag = null;
         $flag = collect([
-            "message" => $message,
-            "id" => $campid,
+            'message' => $message,
+            'id' => $campid,
         ]);
         broadcast(new CampaignUserUpdate($flag));
 
@@ -279,7 +275,6 @@ class NodeJoinsController extends Controller
         $joins = NodeJoin::where('campaign_id', $campid)->get();
         if ($joins->count() > 0) {
             foreach ($joins as $join) {
-
                 $pull = [
                     'id' => $join->id,
                     'campaign_system_id' => $join->campaign_system_id,
@@ -295,9 +290,10 @@ class NodeJoinsController extends Controller
                     'campaign_id' => $campid,
                 ];
                 array_push($nodeJoin, $pull);
-            };
+            }
         }
-        return ["nodeJoin" => $nodeJoin];
+
+        return ['nodeJoin' => $nodeJoin];
     }
 
     /**

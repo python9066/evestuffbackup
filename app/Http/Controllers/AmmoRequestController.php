@@ -12,9 +12,7 @@ use App\Models\Station;
 use App\Models\StationItemJoin;
 use App\Models\StationItems;
 use App\Models\StationRecords;
-use App\Models\System;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AmmoRequestController extends Controller
 {
@@ -34,15 +32,15 @@ class AmmoRequestController extends Controller
         $items = [];
         $stations = Station::where('ammo_request_id', '!=', null)->get();
         foreach ($stations as $station) {
-            if ($station->r_cored == "Yes") {
-                $core = "Yes";
+            if ($station->r_cored == 'Yes') {
+                $core = 'Yes';
             } else {
-                $core = "No";
+                $core = 'No';
             }
 
             $data1 = [
-                "station_id" => $station->id,
-                "cored" => $core,
+                'station_id' => $station->id,
+                'cored' => $core,
             ];
 
             array_push($coreData, $data1);
@@ -51,22 +49,19 @@ class AmmoRequestController extends Controller
             foreach ($joins as $join) {
                 $name = StationItems::where('id', $join->station_item_id)->first();
                 $data = [
-                    "station_id" => $join->station_id,
-                    "item_name" => $name->item_name,
-                    "item_id" => $name->id
+                    'station_id' => $join->station_id,
+                    'item_name' => $name->item_name,
+                    'item_id' => $name->id,
                 ];
                 array_push($items, $data);
             }
         }
 
-
-
-
         return [
             'cores' => $coreData,
             'fit' => Station::where('r_hash', '!=', null)->where('ammo_request_id', '!=', null)->get(),
             'items' => $items,
-            'ammorequest' => AmmoRequestRecords::all()
+            'ammorequest' => AmmoRequestRecords::all(),
         ];
     }
 
@@ -83,13 +78,13 @@ class AmmoRequestController extends Controller
         $s->update(['ammo_request_id' => $new->id]);
         $message = StationRecords::where('id', $new->station_id)->first();
         $flag = collect([
-            'message' => $message
+            'message' => $message,
         ]);
         broadcast(new StationNotificationUpdate($flag));
 
         $message = AmmoRequestRecords::where('id', $new->id)->first();
         $flag = collect([
-            'message' => $message
+            'message' => $message,
         ]);
         broadcast(new AmmoRequestNew($flag));
     }
@@ -114,14 +109,14 @@ class AmmoRequestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $a =  AmmoRequest::find($id)->get();
+        $a = AmmoRequest::find($id)->get();
         foreach ($a as $a) {
             $a->update($request->all());
         }
 
         $message = AmmoRequestRecords::where('id', $id)->first();
         $flag = collect([
-            'message' => $message
+            'message' => $message,
         ]);
         broadcast(new AmmoRequestUpdate($flag));
     }
@@ -135,7 +130,7 @@ class AmmoRequestController extends Controller
     public function destroy($id)
     {
         $flag = collect([
-            'id' => $id
+            'id' => $id,
         ]);
         broadcast(new AmmoRequestDelete($flag));
         $a = AmmoRequest::where('id', $id)->delete();

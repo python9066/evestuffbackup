@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Constellation;
 use App\Models\StartCampaignJoins;
-use App\Models\StartCampaignSystems;
 use Illuminate\Http\Request;
 
 class StartCampaignJoinController extends Controller
@@ -25,16 +24,17 @@ class StartCampaignJoinController extends Controller
                 foreach ($constellations as $con) {
                     $data = [];
                     $data = [
-                        "constellation_id" => $pull['constellation_id'],
-                        "start_campaign_id" => $pull['start_campaign_id'],
-                        "id" => $pull['id'],
-                        "constellation_name" => $con['constellation_name']
+                        'constellation_id' => $pull['constellation_id'],
+                        'start_campaign_id' => $pull['start_campaign_id'],
+                        'id' => $pull['id'],
+                        'constellation_name' => $con['constellation_name'],
                     ];
                 }
                 array_push($list, $data);
             }
         }
-        return ["value" => $list];
+
+        return ['value' => $list];
     }
 
     public function indexByID($campid)
@@ -48,16 +48,17 @@ class StartCampaignJoinController extends Controller
                 foreach ($constellations as $con) {
                     $data = [];
                     $data = [
-                        "constellation_id" => $pull['constellation_id'],
-                        "start_campaign_id" => $pull['start_campaign_id'],
-                        "id" => $pull['id'],
-                        "constellation_name" => $con['constellation_name']
+                        'constellation_id' => $pull['constellation_id'],
+                        'start_campaign_id' => $pull['start_campaign_id'],
+                        'id' => $pull['id'],
+                        'constellation_name' => $con['constellation_name'],
                     ];
                 }
                 array_push($list, $data);
             }
         }
-        return ["value" => $list];
+
+        return ['value' => $list];
     }
 
     /**

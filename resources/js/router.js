@@ -29,6 +29,7 @@ import SoloOperations from "./views/SoloOperations.vue";
 import Station from "./views/StationSheet.vue";
 import NewOperation from "./views/NewCampaign.vue";
 import OperationInfo from "./views/OperationInfo.vue";
+import OperationInfoPage from "./views/OperationInfoPage.vue";
 
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -188,7 +189,20 @@ export default new Router({
             name: "operationinfo",
             component: OperationInfo,
             beforeEnter(to, from, next) {
-                if (Permissions.indexOf("super") !== -1) {
+                if (Permissions.indexOf("view_opertaion_info") !== -1) {
+                    next();
+                } else {
+                    next("/notifications");
+                }
+            },
+        },
+
+        {
+            path: "/operationinfo/:id",
+            name: "operationinfopage",
+            component: OperationInfoPage,
+            beforeEnter(to, from, next) {
+                if (Permissions.indexOf("view_opertaion_info") !== -1) {
                     next();
                 } else {
                     next("/notifications");

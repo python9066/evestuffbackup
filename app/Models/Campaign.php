@@ -3,18 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class Campaign extends Model
 {
-
-
     protected $guarded = [];
+
     public $timestamps = false;
-
-
-
 
     public function constellation()
     {
@@ -50,7 +44,6 @@ class Campaign extends Model
     {
         return $this->hasMany(CampaignJoin::class);
     }
-
 
     protected $casts = [
         'id' => 'integer',

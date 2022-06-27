@@ -4,16 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class NewSystemNode extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
-
-
-
 
     public function allUsers()
     {
@@ -24,7 +20,6 @@ class NewSystemNode extends Model
     {
         return $this->belongsTo(NewCampaign::class);
     }
-
 
     public function nonePrimeNodeUser()
     {

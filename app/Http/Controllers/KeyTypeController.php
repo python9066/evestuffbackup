@@ -36,19 +36,19 @@ class KeyTypeController extends Controller
     {
         KeyType::create($request->all());
         $flag = collect([
-            'id' => 1
+            'id' => 1,
         ]);
         broadcast(new FleetKeysUpdate($flag));
     }
 
     public function removeKey(Request $request)
     {
-        $u =  UserKeyJoin::where('key_type_id', $request->key_type_id)->where('user_id', $request->user_id)->get();
+        $u = UserKeyJoin::where('key_type_id', $request->key_type_id)->where('user_id', $request->user_id)->get();
         foreach ($u as $u) {
             $u->delete();
         }
         $flag = collect([
-            'id' => 1
+            'id' => 1,
         ]);
         broadcast(new FleetKeysUpdate($flag));
     }
@@ -97,7 +97,7 @@ class KeyTypeController extends Controller
             $k->delete();
         }
         $flag = collect([
-            'id' => 1
+            'id' => 1,
         ]);
         broadcast(new FleetKeysUpdate($flag));
     }

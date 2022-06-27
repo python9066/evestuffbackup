@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\StationMessageUpdate;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendStationMessage
 {

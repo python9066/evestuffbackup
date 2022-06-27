@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 use App\Models\System;
 use App\Models\Userlogging;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AppController extends Controller
@@ -16,7 +15,7 @@ class AppController extends Controller
         if ($check != null) {
             Userlogging::create([
                 'user_id' => Auth::id(),
-                'url' => "joined"
+                'url' => 'joined',
             ]);
         }
         $url = url()->current();
@@ -27,7 +26,6 @@ class AppController extends Controller
         return view('/home');
     }
 
-
     public function url(Request $request)
     {
         Userlogging::create(['user_id' => Auth::id(), 'url' => $request->url]);
@@ -35,15 +33,14 @@ class AppController extends Controller
 
     public function test()
     {
-
         $system = System::all();
         //   dd($system);
         $hello = 'YO YO YO';
+
         return view('/test', compact('hello', 'system'));
     }
 
     public function saveAllianceData(Request $request)
     {
-        $request;
     }
 }

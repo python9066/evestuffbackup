@@ -6,14 +6,11 @@ use App\Events\CampaignSystemUpdate;
 use App\Events\CampaignUserDelete;
 use App\Events\CampaignUserNew;
 use App\Events\CampaignUserUpdate;
-use App\Events\OperationUpdate;
 use App\Models\CampaignSystem;
 use App\Models\CampaignSystemRecords;
 use App\Models\CampaignUser;
 use App\Models\CampaignUserRecords;
-use App\Models\OperationUser;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CampaignUserController extends Controller
 {
@@ -35,19 +32,16 @@ class CampaignUserController extends Controller
      */
     public function store(Request $request, $campid)
     {
-
         $new = CampaignUser::create($request->all());
         $userid = $new->id;
         $user = CampaignUserRecords::where('id', $userid)->first();
         $flag = null;
         $flag = collect([
             'message' => $user,
-            'id' => $campid
+            'id' => $campid,
         ]);
         broadcast(new CampaignUserNew($flag))->toOthers();
     }
-
-
 
     /**
      * Display the specified resource.
@@ -69,7 +63,6 @@ class CampaignUserController extends Controller
      */
     public function update(Request $request, $id, $campid)
     {
-
         $c = CampaignUser::find($id)->get();
         foreach ($c as $c) {
             $c->update($request->all());
@@ -77,7 +70,7 @@ class CampaignUserController extends Controller
         $message = CampaignUserRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
-            'id' => $campid
+            'id' => $campid,
         ]);
         broadcast(new CampaignUserUpdate($flag));
     }
@@ -92,13 +85,12 @@ class CampaignUserController extends Controller
             $message = CampaignSystemRecords::where('id', $node->id)->first();
             $flag = collect([
                 'message' => $message,
-                'id' => $campid
+                'id' => $campid,
             ]);
             broadcast(new CampaignSystemUpdate($flag))->toOthers();
         }
 
-
-        $c =  CampaignUser::find($id)->get();
+        $c = CampaignUser::find($id)->get();
         foreach ($c as $c) {
             $c->update($request->all());
         }
@@ -106,16 +98,13 @@ class CampaignUserController extends Controller
         $flag = null;
         $flag = collect([
             'message' => $message,
-            'id' => $campid
+            'id' => $campid,
         ]);
         broadcast(new CampaignUserNew($flag))->toOthers();
     }
 
-
-
     public function updateremove(Request $request, $id, $campid)
     {
-
         $node = CampaignSystem::where('campaign_user_id', $id)->first();
 
         if ($node != null) {
@@ -124,29 +113,27 @@ class CampaignUserController extends Controller
             $message = CampaignSystemRecords::where('id', $node->id)->first();
             $flag = collect([
                 'message' => $message,
-                'id' => $campid
+                'id' => $campid,
             ]);
             broadcast(new CampaignSystemUpdate($flag))->toOthers();
             $flag = null;
             $flag = collect([
                 'flag' => 2,
-                'id' => $campid
+                'id' => $campid,
             ]);
         }
 
-        $c =  CampaignUser::find($id)->get();
+        $c = CampaignUser::find($id)->get();
         foreach ($c as $c) {
             $c->update($request->all());
         }
         $user_id = CampaignUserRecords::where('id', $id)->value('id');
         $flag = collect([
             'userid' => $user_id,
-            'id' => $campid
+            'id' => $campid,
         ]);
         broadcast(new CampaignUserDelete($flag))->toOthers();
     }
-
-
 
     /**
      * Remove the specified resource from storage.
@@ -156,11 +143,10 @@ class CampaignUserController extends Controller
      */
     public function destroy($id, $campid, $siteid)
     {
-
         CampaignUser::destroy($id);
         $flag = collect([
             'userid' => $id,
-            'id' => $campid
+            'id' => $campid,
         ]);
 
         broadcast(new CampaignUserDelete($flag))->toOthers();

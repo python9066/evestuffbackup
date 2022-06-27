@@ -43,14 +43,12 @@ Route::get('/testUsers', [testController::class, 'key']);
 Route::get('/testpull', [testController::class, 'testUpdateScore']);
 Route::get('/nametoid/{name}', [testController::class, 'nameToID']);
 
-
-
 Route::get('/73cbd63ecd4d2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff', [AuthController::class, 'admin']);
 Route::get('/73cbd63ecd4d704/5a1f48be9e4df773064f33590be892ff', [AuthController::class, 'borisToken']);
 Route::get('/73cbd63ecd4d2f33590be892ff', [AuthController::class, 'webwayUser']);
 Route::get('/7fegrghrthtrhtr2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff', [AuthController::class, 'martyn']);
 Route::get('/scopehIhaveNoIdeaWhatIamDoing', [AuthController::class, 'testPusher']);
-Route::get('/login', [AuthController::class, 'login'])->name("login");
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/oauth/login', [AuthController::class, 'redirectToProvider']);
 Route::get('/oauth/callback', [AuthController::class, 'handleProviderCallback']);
 Route::get('/logout', [AuthController::class, 'logout']);

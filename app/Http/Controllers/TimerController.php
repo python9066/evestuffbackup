@@ -6,7 +6,6 @@ use App\Models\TimersRecord;
 
 class TimerController extends Controller
 {
-
     public function getTimerData()
     {
         return ['timers' => TimersRecord::all()];
@@ -22,8 +21,8 @@ class TimerController extends Controller
         foreach ($pull as $pull) {
             $data1 = [];
             $data1 = [
-                "text" => $pull['region'],
-                "value" => $pull['region_id'],
+                'text' => $pull['region'],
+                'value' => $pull['region_id'],
             ];
 
             array_push($data, $data1);

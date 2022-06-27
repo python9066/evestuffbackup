@@ -15,6 +15,8 @@ export default new Vuex.Store({
     state: {
         operationInfo: [],
 
+        operationInfoPage: [],
+
         allianceticklist: [],
         ammoRequest: [],
         campaigns: [],
@@ -174,6 +176,10 @@ export default new Vuex.Store({
             state.operationInfo = data;
         },
 
+        SET_OPERATION_INFO_PAGE(state, data) {
+            state.operationInfoPage = data;
+        },
+
         SET_NEW_OPERATION_MESSAGE_OVERLAY(state, num) {
             state.newOperationMessageOverlay = num;
         },
@@ -210,6 +216,20 @@ export default new Vuex.Store({
                 Object.assign(item, data);
             } else {
                 state.newCampaignSystems.push(data);
+            }
+        },
+
+        UPDATE_OPERATION_PAGE_INFO(state, data) {
+            const item = state.operationInfo.find(
+                (item) => item.id === data.id
+            );
+            const count = state.operationInfo.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                state.operationInfo.push(data);
             }
         },
 
@@ -907,13 +927,26 @@ export default new Vuex.Store({
             let res = await axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/operationinfo",
+                url: "/api/operationinfosheet",
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
             });
             commit("SET_OPERATION_INFO", res.data.opinfo);
+        },
+
+        async getOperationSheetInfoPage({ commit }, id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfopage/" + id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_OPERATION_INFO_PAGE", res.data.data);
         },
 
         async getStationList({ commit }) {
@@ -1696,6 +1729,14 @@ export default new Vuex.Store({
 
         updateChillStationCurrent({ commit }, data) {
             commit("UPDATE_CHILL_STATION_CURRENT", data);
+        },
+
+        updateOperationPageInfo({ commit }, data) {
+            commit("UPDATE_OPERATION_PAGE_INFO", data);
+        },
+
+        updateOperationSheetInfoPage({ commit }, data) {
+            commit("SET_OPERATION_INFO_PAGE", data);
         },
 
         updateWelpStationCurrent({ commit }, data) {

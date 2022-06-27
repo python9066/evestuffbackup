@@ -16,8 +16,15 @@ use Illuminate\Queue\SerializesModels;
 
 class setJustOverFlagJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    protected $campaign_id, $defender_score;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
+
+    protected $campaign_id;
+
+    protected $defender_score;
+
     /**
      * Create a new job instance.
      *
@@ -49,7 +56,6 @@ class setJustOverFlagJob implements ShouldQueue
         } else {
             $dScore = 0;
             $aScore = 1;
-
         }
 
         $campaign->update([
@@ -67,12 +73,10 @@ class setJustOverFlagJob implements ShouldQueue
             $this->cleanUpCampaign($this->campaign_id);
             broadcastOperationRefresh($opID->operation_id, $this->campaign_id, 8);
             broadcastSoloOpSoloOp(1, $opID->operation_id);
-
         }
 
         setOverFlagJob::dispatch($this->campaign_id)->onQueue('campaigns')->delay($tenMins);
         setDeleteFlagJob::dispatch($this->campaign_id)->onQueue('campaigns')->delay($tommorw);
-
     }
 
     public function cleanUpCampaign($campaignID)
@@ -96,6 +100,5 @@ class setJustOverFlagJob implements ShouldQueue
         foreach ($campaignSystems as $campaignSystem) {
             $campaignSystem->delete();
         }
-
     }
 }

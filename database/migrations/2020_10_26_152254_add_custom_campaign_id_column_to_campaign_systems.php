@@ -26,7 +26,6 @@ class AddCustomCampaignIdColumnToCampaignSystems extends Migration
     public function down()
     {
         Schema::table('campaign_systems', function (Blueprint $table) {
-
         });
     }
 }

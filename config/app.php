@@ -6,7 +6,7 @@
     |--------------------------------------------------------------------------
     */
 
-$variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+$variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
 
 return [
 

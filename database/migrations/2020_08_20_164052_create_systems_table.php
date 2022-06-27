@@ -24,7 +24,6 @@ class CreateSystemsTable extends Migration
             $table->index('id');
             $table->index('region_id');
             $table->index('constellation_id');
-
         });
     }
 

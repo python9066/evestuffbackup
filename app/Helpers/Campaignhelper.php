@@ -25,7 +25,7 @@ use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 
-if (!function_exists('nodeJoinRecords')) {
+if (! function_exists('nodeJoinRecords')) {
     function nodeJoinRecords($id)
     {
         $join = NodeJoin::where('id', $id)->first();
@@ -49,13 +49,13 @@ if (!function_exists('nodeJoinRecords')) {
         return $data;
     }
 }
-if (!function_exists('runrun')) {
+if (! function_exists('runrun')) {
     function runrun()
     {
         Artisan::call('schedule:run');
     }
 }
-if (!function_exists('campaignUpdate')) {
+if (! function_exists('campaignUpdate')) {
     function campaignUpdate()
     {
         $checkflag = null;
@@ -68,7 +68,7 @@ if (!function_exists('campaignUpdate')) {
             foreach ($toDelete as $toDelete) {
                 $c = CampaignUser::where('campaign_id', $toDelete->id)->get();
                 foreach ($c as $c) {
-                    $c->update(["system_id" => null, "status_id" => 1]);
+                    $c->update(['system_id' => null, 'status_id' => 1]);
                 }
                 $c = CampaignSystemUsers::where('campaign_id', $toDelete->id)->get();
                 foreach ($c as $c) {
@@ -115,14 +115,13 @@ if (!function_exists('campaignUpdate')) {
             'Accept' => 'application/json',
             'User-Agent' => 'evestuff.online python9066@gmail.com',
         ];
-        $url = "https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility";
+        $url = 'https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility';
         $response = $client->request('GET', $url, [
             'headers' => $headers,
         ]);
         $response = Utils::jsonDecode($response->getBody(), true);
 
         foreach ($response as $var) {
-
             $event_type = $var['event_type'];
             if ($event_type == 'ihub_defense' || $event_type == 'tcu_defense') {
                 if ($event_type == 'ihub_defense') {
@@ -135,8 +134,8 @@ if (!function_exists('campaignUpdate')) {
                 $before = Campaign::where('id', $id)->get();
                 $time = $var['start_time'];
                 $start_time = fixtime($time);
-                $data = array();
-                $data = array(
+                $data = [];
+                $data = [
                     'attackers_score' => $var['attackers_score'],
                     'constellation_id' => $var['constellation_id'],
                     'alliance_id' => $var['defender_id'],
@@ -146,7 +145,7 @@ if (!function_exists('campaignUpdate')) {
                     'start_time' => $start_time,
                     'structure_id' => $var['structure_id'],
                     'check' => 1,
-                );
+                ];
                 Campaign::updateOrCreate(['id' => $id], $data);
                 // if (Campaign::where('id', $id)->where('link', "!=", null)->count() == 0) {
                 //     $string = $id . $var['solar_system_id'] . $var['structure_id'] . substr(md5(rand()), 0, 7);
@@ -183,7 +182,6 @@ if (!function_exists('campaignUpdate')) {
                         }
                         removeNode($id);
                     }
-                    ;
                 } else {
                     $constellation = System::where('id', $var['solar_system_id'])->value('constellation_id');
                     $systems = System::where('constellation_id', $constellation)->select('id')->get();
@@ -191,7 +189,6 @@ if (!function_exists('campaignUpdate')) {
                         CampaignSolaSystem::create(['system_id' => $system['id'], 'campaign_id' => $id]);
                     }
                 }
-                ;
             }
         }
         // dd("fwefe");
@@ -236,12 +233,10 @@ if (!function_exists('campaignUpdate')) {
                 $checkflag = 1;
             }
         }
-        ;
 
         $check = Campaign::where('check', 0)->count();
 
         if ($check > 0) {
-
             $warms = Campaign::where('end', '!=', null)->where('check', 0)->where('status_id', '<', 3)->get();
             foreach ($warms as $warm) {
                 $warm->update(['status_id' => 3, 'warmup' => 0]);
@@ -254,7 +249,6 @@ if (!function_exists('campaignUpdate')) {
             $as = Campaign::where('end', null)
                 ->where('check', 0)->get();
             foreach ($as as $a) {
-
                 $a->update(['end' => $now, 'status_id' => 3]);
                 $checkflag = 1;
                 $message = CampaignRecords::where('id', $a->id)->first();
@@ -271,8 +265,8 @@ if (!function_exists('campaignUpdate')) {
                     if ($dNodes->count() > 0) {
                         foreach ($dNodes as $dNode) {
                             $flag = collect([
-                                "joinNodeID" => $dNode->id,
-                                "id" => $dNode->campaign_id,
+                                'joinNodeID' => $dNode->id,
+                                'id' => $dNode->campaign_id,
                             ]);
                             broadcast(new NodeJoinDelete($flag));
 
@@ -286,8 +280,8 @@ if (!function_exists('campaignUpdate')) {
                         $message = CampaignUserRecords::where('id', $dCampaignUser->id)->first();
                         $flag = null;
                         $flag = collect([
-                            "message" => $message,
-                            "id" => $dCampaignUser->campaign_id,
+                            'message' => $message,
+                            'id' => $dCampaignUser->campaign_id,
                         ]);
                         broadcast(new CampaignUserUpdate($flag));
                     }
@@ -306,7 +300,6 @@ if (!function_exists('campaignUpdate')) {
                 ->where('check', 0)
                 ->where('status_id', 3)->where('status_id', '!=', 4)->get();
             foreach ($bs as $b) {
-
                 $b->update(['status_id' => 4]);
                 $checkflag = 1;
                 $message = CampaignRecords::where('id', $b->id)->first();
@@ -324,7 +317,6 @@ if (!function_exists('campaignUpdate')) {
                 ->where('check', 0)
                 ->where('status_id', 4)->get();
             foreach ($cs as $c) {
-
                 $c->update(['status_id' => 10]);
                 $checkflag = 1;
                 $message = CampaignRecords::where('id', $c->id)->first();
@@ -341,7 +333,6 @@ if (!function_exists('campaignUpdate')) {
         $finished = Campaign::where('status_id', 3)
             ->get();
         foreach ($finished as $finish) {
-
             $a = $finish->attackers_score;
             $d = $finish->defenders_score;
 
@@ -382,7 +373,7 @@ if (!function_exists('campaignUpdate')) {
 
         if ($checkflag == 1) {
             $flag = null;
-            $message = "hi";
+            $message = 'hi';
             $flag = collect([
                 'message' => $message,
                 'id' => $check,
@@ -392,13 +383,11 @@ if (!function_exists('campaignUpdate')) {
         }
 
         //NEW SCRIPT FOR UPDATED CAMPAIGN/HACKING PAGE//
-
     }
 }
-if (!function_exists('removeNode')) {
+if (! function_exists('removeNode')) {
     function removeNode($check)
     {
-
         $campaign = Campaign::find($check);
         $b_node_add = $campaign->campaignsystems()
             ->where('campaign_system_status_id', 4)
@@ -410,8 +399,8 @@ if (!function_exists('removeNode')) {
         $b_node_new = $campaign->b_node + $b_node_add;
         $r_node_new = $campaign->r_node + $r_node_add;
 
-        $campaign->update(["b_node" => $b_node_new]);
-        $campaign->update(["r_node" => $r_node_new]);
+        $campaign->update(['b_node' => $b_node_new]);
+        $campaign->update(['r_node' => $r_node_new]);
 
         $message = CampaignRecords::where('id', $check)->first();
 
@@ -425,11 +414,10 @@ if (!function_exists('removeNode')) {
 
         $user = $campaign->campaignsystems()
             ->where('campaign_system_status_id', 10)
-            ->where('campaign_user_id', "!=", null)
+            ->where('campaign_user_id', '!=', null)
             ->get();
 
         foreach ($user as $user) {
-
             $user->campaignusers()
                 ->update([
                     'campaign_system_id' => null,
@@ -455,7 +443,6 @@ if (!function_exists('removeNode')) {
             ]);
             broadcast(new CampaignSystemDelete($flag));
         }
-        ;
 
         $campaign->campaignsystems()
             ->where('campaign_system_status_id', 10)
@@ -469,6 +456,5 @@ if (!function_exists('removeNode')) {
         ]);
         // echo "8";
         broadcast(new CampaignUpdate($flag));
-        return;
     }
 }

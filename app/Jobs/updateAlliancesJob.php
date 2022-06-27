@@ -4,9 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Alliance;
 use App\Models\Corp;
-use App\Models\testTable;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -15,8 +13,13 @@ use Illuminate\Support\Facades\Http;
 
 class updateAlliancesJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    protected  $allianceID;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
+
+    protected $allianceID;
+
     /**
      * Create a new job instance.
      *
@@ -43,12 +46,11 @@ class updateAlliancesJob implements ShouldQueue
         $corpCount = 0;
 
         do {
-
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-                "Accept" => "application/json",
-                'User-Agent' => 'evestuff.online python9066@gmail.com'
-            ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/?datasource=tranquility");
+                'Accept' => 'application/json',
+                'User-Agent' => 'evestuff.online python9066@gmail.com',
+            ])->get('https://esi.evetech.net/latest/alliances/'.$allianceID.'/?datasource=tranquility');
 
             if ($response->successful()) {
                 $done = 3;
@@ -59,24 +61,23 @@ class updateAlliancesJob implements ShouldQueue
                         'name' => $allianceInfo->get('name'),
                         'ticker' => $allianceInfo->get('ticker'),
                         'active' => 1,
-                        'url' => "https://images.evetech.net/Alliance/" . $allianceID . "_64.png",
+                        'url' => 'https://images.evetech.net/Alliance/'.$allianceID.'_64.png',
                     ]
                 );
-                $c =  Corp::where('alliance_id', $allianceID)->get();
+                $c = Corp::where('alliance_id', $allianceID)->get();
                 foreach ($c as $c) {
                     $c->update(['alliance_id' => null]);
                 }
                 do {
                     $responseCorp = Http::withHeaders([
                         'Content-Type' => 'application/json',
-                        "Accept" => "application/json",
-                        'User-Agent' => 'evestuff.online python9066@gmail.com'
-                    ])->get("https://esi.evetech.net/latest/alliances/" . $allianceID . "/corporations/?datasource=tranquility");
+                        'Accept' => 'application/json',
+                        'User-Agent' => 'evestuff.online python9066@gmail.com',
+                    ])->get('https://esi.evetech.net/latest/alliances/'.$allianceID.'/corporations/?datasource=tranquility');
                     if ($responseCorp->successful()) {
                         $corpCount = 3;
                         $corpIDs = $responseCorp->collect();
                         foreach ($corpIDs as $corpID) {
-
                             $corpCheck = Corp::where('id', $corpID)->first();
                             if ($corpCheck) {
                                 $corpCheck->update(['alliance_id' => $allianceID]);
@@ -106,9 +107,9 @@ class updateAlliancesJob implements ShouldQueue
         do {
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-                "Accept" => "application/json",
-                'User-Agent' => 'evestuff.online python9066@gmail.com'
-            ])->get("https://esi.evetech.net/latest/corporations/" . $corpID . "/?datasource=tranquility");
+                'Accept' => 'application/json',
+                'User-Agent' => 'evestuff.online python9066@gmail.com',
+            ])->get('https://esi.evetech.net/latest/corporations/'.$corpID.'/?datasource=tranquility');
             if ($response->successful()) {
                 $corpPull = 3;
                 $corpInfo = $response->collect();
@@ -119,7 +120,7 @@ class updateAlliancesJob implements ShouldQueue
                         'name' => $corpInfo->get('name'),
                         'ticker' => $corpInfo->get('ticker'),
                         'active' => 1,
-                        'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png",
+                        'url' => 'https://images.evetech.net/Corporation/'.$corpID.'_64.png',
 
                     ]
                 );

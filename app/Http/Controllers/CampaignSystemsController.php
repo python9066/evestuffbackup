@@ -5,17 +5,15 @@ namespace App\Http\Controllers;
 use App\Events\CampaignSolaSystemUpdate;
 use App\Events\CampaignSystemDelete;
 use App\Events\CampaignSystemNew;
-use App\Models\CampaignSystem;
 use App\Events\CampaignSystemUpdate;
 use App\Events\CampaignUserUpdate;
 use App\Events\KickUserFromCampaign;
 use App\Events\NodeAttackMessageUpdate;
 use App\Events\NodeJoinDelete;
 use App\Events\NodeMessageUpdate;
-use App\Events\StationMessageUpdate;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Campaign;
 use App\Models\CampaignSolaSystem;
+use App\Models\CampaignSystem;
 use App\Models\CampaignSystemRecords;
 use App\Models\CampaignSystemStatus;
 use App\Models\CampaignSystemUsers;
@@ -24,11 +22,9 @@ use App\Models\CampaignUserRecords;
 use App\Models\NodeJoin;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-use utils\Helper\Helper;
 
 class CampaignSystemsController extends Controller
 {
@@ -38,6 +34,7 @@ class CampaignSystemsController extends Controller
      * @return \Illuminate\Http\Response
      */
     use HasPermissions;
+
     use HasRoles;
 
     public function load(Request $request)
@@ -51,15 +48,12 @@ class CampaignSystemsController extends Controller
             $userid = $request['user_id'];
         }
 
-
-
         $dataSola = [];
         $pull = CampaignSolaSystem::where('campaign_id', $campid)->get();
         foreach ($pull as $pull) {
             $checker_name = null;
             $supervier_name = null;
             if ($pull['last_checked_user_id'] != null) {
-
                 $checker_name = User::where('id', $pull['last_checked_user_id'])->value('name');
             }
 
@@ -67,20 +61,17 @@ class CampaignSystemsController extends Controller
                 $supervier_name = User::where('id', $pull['supervisor_id'])->value('name');
             }
 
-
-
-
             $dataSola1 = [];
             $dataSola1 = [
-                "id" => $pull['id'],
-                "system_id" => $pull['system_id'],
-                "campaign_id" => $pull['campaign_id'],
-                "supervisor_id" => $pull['supervisor_id'],
-                "supervier_user_name" => $supervier_name,
-                "last_checked_user_id" => $pull['last_checked_user_id'],
-                "last_checked_user_name" => $checker_name,
-                "last_checked" => $pull['last_checked'],
-                "tidi" => $pull['tidi'],
+                'id' => $pull['id'],
+                'system_id' => $pull['system_id'],
+                'campaign_id' => $pull['campaign_id'],
+                'supervisor_id' => $pull['supervisor_id'],
+                'supervier_user_name' => $supervier_name,
+                'last_checked_user_id' => $pull['last_checked_user_id'],
+                'last_checked_user_name' => $checker_name,
+                'last_checked' => $pull['last_checked'],
+                'tidi' => $pull['tidi'],
             ];
             array_push($dataSola, $dataSola1);
         }
@@ -90,7 +81,6 @@ class CampaignSystemsController extends Controller
         if ($request['type'] == 1) {
             if ($joins->count() > 0) {
                 foreach ($joins as $join) {
-
                     $pull = [
                         'id' => $join->id,
                         'campaign_system_id' => $join->campaign_system_id,
@@ -103,7 +93,7 @@ class CampaignSystemsController extends Controller
                         'campaign_system_status_id' => intval($join->campaign_system_status_id),
                         'statusName' => CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name'),
                         'campaign_sola_system_id' => CampaignSolaSystem::where('campaign_id', $join->campaignSystem->campaign_id)->where('system_id', $join->campaignSystem->system_id)->value('id'),
-                        'campaign_id' => $campid
+                        'campaign_id' => $campid,
                     ];
                     array_push($nodeJoin, $pull);
                 }
@@ -124,7 +114,7 @@ class CampaignSystemsController extends Controller
                         'campaign_system_status_id' => intval($join->campaign_system_status_id),
                         'statusName' => CampaignSystemStatus::where('id', $join->campaign_system_status_id)->value('name'),
                         'campaign_sola_system_id' => CampaignSolaSystem::where('campaign_id', $campid)->where('system_id', $join->campaignSystem->system_id)->value('id'),
-                        'campaign_id' => $campid
+                        'campaign_id' => $campid,
                     ];
                     array_push($nodeJoin, $pull);
                 }
@@ -148,11 +138,6 @@ class CampaignSystemsController extends Controller
         ];
     }
 
-
-
-
-
-
     public function index()
     {
         //
@@ -166,14 +151,13 @@ class CampaignSystemsController extends Controller
      */
     public function store(Request $request, $campid)
     {
-
         $system = CampaignSystem::create($request->all());
         $system->update(['input_time' => now()]);
 
         $message = CampaignSystemRecords::where('id', $system->id)->first();
         $flag = collect([
             'message' => $message,
-            'id' => $campid
+            'id' => $campid,
         ]);
         broadcast(new CampaignSystemNew($flag));
         $flag = null;
@@ -215,7 +199,7 @@ class CampaignSystemsController extends Controller
         $message = CampaignSystemRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
-            'id' => $campid
+            'id' => $campid,
         ]);
         broadcast(new CampaignSystemUpdate($flag));
     }
@@ -232,7 +216,7 @@ class CampaignSystemsController extends Controller
         $message = CampaignSystemRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
-            'id' => $id
+            'id' => $id,
         ]);
 
         // dd($request, $id, $flag);
@@ -243,7 +227,7 @@ class CampaignSystemsController extends Controller
     {
         // dd($request->notes);
 
-        $c =  CampaignSystem::where('id', $id)->get();
+        $c = CampaignSystem::where('id', $id)->get();
         foreach ($c as $c) {
             $c->update($request->all());
         }
@@ -257,7 +241,7 @@ class CampaignSystemsController extends Controller
         $flag = collect([
             'type' => $type,
             'message' => $message,
-            'id' => $id
+            'id' => $id,
         ]);
 
         // dd($request, $id, $flag);
@@ -276,7 +260,7 @@ class CampaignSystemsController extends Controller
             $message = CampaignSystemRecords::where('id', $node->id)->first();
             $flag = collect([
                 'message' => $message,
-                'id' => $campid
+                'id' => $campid,
             ]);
             broadcast(new CampaignSystemUpdate($flag));
         }
@@ -284,7 +268,6 @@ class CampaignSystemsController extends Controller
 
     public function movechar(Request $request, $campid)
     {
-
         $node = CampaignSystem::where('campaign_user_id', $request->id)->first();
 
         if ($node != null) {
@@ -293,7 +276,7 @@ class CampaignSystemsController extends Controller
             $message = CampaignSystemRecords::where('id', $node->id)->first();
             $flag = collect([
                 'message' => $message,
-                'id' => $campid
+                'id' => $campid,
             ]);
             broadcast(new CampaignSystemUpdate($flag))->toOthers();
 
@@ -301,13 +284,11 @@ class CampaignSystemsController extends Controller
             $flag = null;
             $flag = collect([
                 'flag' => 2,
-                'id' => $campid
+                'id' => $campid,
             ]);
             broadcast(new CampaignSystemUpdate($flag))->toOthers();
         }
     }
-
-
 
     /**
      * Remove the specified resource from storage.
@@ -317,7 +298,6 @@ class CampaignSystemsController extends Controller
      */
     public function destroy($id, $campid)
     {
-
         $users = CampaignUser::where('campaign_system_id', $id)->get();
 
         foreach ($users as $user) {
@@ -325,7 +305,7 @@ class CampaignSystemsController extends Controller
             $message = CampaignUserRecords::where('id', $user->id)->first();
             $flag = collect([
                 'message' => $message,
-                'id' => $campid
+                'id' => $campid,
             ]);
             broadcast(new CampaignUserUpdate($flag))->toOthers();
         }
@@ -335,17 +315,16 @@ class CampaignSystemsController extends Controller
             $flag = null;
             $flag = collect([
                 'joinNodeID' => $node->id,
-                'id' => $campid
+                'id' => $campid,
             ]);
             broadcast(new NodeJoinDelete($flag))->toOthers();
             $node->delete();
         }
 
-
         $flag = null;
         $flag = collect([
             'campSysID' => $id,
-            'id' => $campid
+            'id' => $campid,
         ]);
         broadcast(new CampaignSystemDelete($flag))->toOthers();
         CampaignSystem::destroy($id);
@@ -353,11 +332,9 @@ class CampaignSystemsController extends Controller
 
     public function checkAddChar($campid)
     {
-
-
         $flag = collect([
             'flag' => 5,
-            'id' => $campid
+            'id' => $campid,
         ]);
         broadcast(new CampaignSystemUpdate($flag))->toOthers();
     }
@@ -366,14 +343,13 @@ class CampaignSystemsController extends Controller
     {
         $flag = collect([
             'id' => $campid,
-            'user_id' => $request['user_id']
+            'user_id' => $request['user_id'],
         ]);
         broadcast(new KickUserFromCampaign($flag))->toOthers();
     }
 
     public function finishCampaign($campid)
     {
-
         $c = CampaignSystem::where('campaign_id', $campid)->get();
         foreach ($c as $c) {
             $c->delete();
@@ -392,7 +368,7 @@ class CampaignSystemsController extends Controller
             $c->update([
                 'campaign_id' => null,
                 'campaign_system_id' => null,
-                'status_id' => 1
+                'status_id' => 1,
             ]);
         }
         $flag = collect([
@@ -404,7 +380,6 @@ class CampaignSystemsController extends Controller
 
     public function mfinishCampaign($campid)
     {
-
         $c = CampaignSystem::where('custom_campaign_id', $campid)->get();
         foreach ($c as $c) {
             $c->delete();
@@ -423,7 +398,7 @@ class CampaignSystemsController extends Controller
             $c->update([
                 'campaign_id' => null,
                 'campaign_system_id' => null,
-                'status_id' => 1
+                'status_id' => 1,
             ]);
         }
         $flag = collect([
@@ -435,11 +410,10 @@ class CampaignSystemsController extends Controller
 
     public function tidi(Request $request, $sysid, $campid)
     {
-
         $systems = CampaignSystem::where('system_id', $sysid)
             ->where('campaign_id', $campid)
-            ->where('end_time', "!=", null)
-            ->where('end_time', ">", now())
+            ->where('end_time', '!=', null)
+            ->where('end_time', '>', now())
             ->where('campaign_system_status_id', '!=', 4)
             ->where('campaign_system_status_id', '!=', 5)
             ->where('campaign_system_status_id', '!=', 10)
@@ -453,14 +427,14 @@ class CampaignSystemsController extends Controller
                 $time_left = $base_time / ($request->newTidi / 100);
                 if ($time_left <= 0) {
                     $time_left = $time_left * -1;
-                };
-                $end_time = now()->modify("+ " . round($time_left) . " seconds");
+                }
+                $end_time = now()->modify('+ '.round($time_left).' seconds');
                 $system->update(['end_time' => $end_time, 'input_time' => now(), 'base_time' => $base_time]);
                 $system->save();
                 $message = CampaignSystemRecords::where('id', $system->id)->first();
                 $flag = collect([
                     'message' => $message,
-                    'id' => $campid
+                    'id' => $campid,
                 ]);
                 broadcast(new CampaignSystemUpdate($flag));
             }
@@ -473,15 +447,15 @@ class CampaignSystemsController extends Controller
         $checker_name = User::where('id', $pull['last_checked_user_id'])->value('name');
         $supervier_name = User::where('id', $pull['supervisor_id'])->value('name');
         $message = [
-            "id" => $pull['id'],
-            "system_id" => $pull['system_id'],
-            "campaign_id" => $pull['campaign_id'],
-            "supervisor_id" => $pull['supervisor_id'],
-            "supervier_user_name" => $supervier_name,
-            "last_checked_user_id" => $pull['last_checked_user_id'],
-            "last_checked_user_name" => $checker_name,
-            "last_checked" => $pull['last_checked'],
-            "tidi" => $pull['tidi'],
+            'id' => $pull['id'],
+            'system_id' => $pull['system_id'],
+            'campaign_id' => $pull['campaign_id'],
+            'supervisor_id' => $pull['supervisor_id'],
+            'supervier_user_name' => $supervier_name,
+            'last_checked_user_id' => $pull['last_checked_user_id'],
+            'last_checked_user_name' => $checker_name,
+            'last_checked' => $pull['last_checked'],
+            'tidi' => $pull['tidi'],
         ];
 
         $flag = collect([
@@ -493,11 +467,10 @@ class CampaignSystemsController extends Controller
 
     public function tidimulti(Request $request, $sysid, $campid)
     {
-
         $systems = CampaignSystem::where('system_id', $sysid)
             ->where('custom_campaign_id', $campid)
-            ->where('end_time', "!=", null)
-            ->where('end_time', ">", now())
+            ->where('end_time', '!=', null)
+            ->where('end_time', '>', now())
             ->where('campaign_system_status_id', '!=', 4)
             ->where('campaign_system_status_id', '!=', 5)
             ->where('campaign_system_status_id', '!=', 10)
@@ -509,18 +482,18 @@ class CampaignSystemsController extends Controller
                 $time_passed = strtotime(now()) - strtotime($system->input_time);
                 $base_time = $system->base_time - $time_passed;
                 $time_left = $base_time / ($request->newTidi / 100);
-                $end_time = now()->modify("+ " . round($time_left) . " seconds");
+                $end_time = now()->modify('+ '.round($time_left).' seconds');
                 $system->update(['end_time' => $end_time, 'input_time' => now(), 'base_time' => $base_time]);
                 $system->save();
                 $message = CampaignSystemRecords::where('id', $system->id)->first();
                 $flag = collect([
                     'message' => $message,
-                    'id' => $campid
+                    'id' => $campid,
                 ]);
                 broadcast(new CampaignSystemUpdate($flag));
             }
         }
-        $c =  CampaignSolaSystem::where('id', $request->solaID)->get();
+        $c = CampaignSolaSystem::where('id', $request->solaID)->get();
         foreach ($c as $c) {
             $c->update(['tidi' => $request->newTidi]);
         }
@@ -528,15 +501,15 @@ class CampaignSystemsController extends Controller
         $checker_name = User::where('id', $pull['last_checked_user_id'])->value('name');
         $supervier_name = User::where('id', $pull['supervisor_id'])->value('name');
         $message = [
-            "id" => $pull['id'],
-            "system_id" => $pull['system_id'],
-            "campaign_id" => $pull['campaign_id'],
-            "supervisor_id" => $pull['supervisor_id'],
-            "supervier_user_name" => $supervier_name,
-            "last_checked_user_id" => $pull['last_checked_user_id'],
-            "last_checked_user_name" => $checker_name,
-            "last_checked" => $pull['last_checked'],
-            "tidi" => $pull['tidi'],
+            'id' => $pull['id'],
+            'system_id' => $pull['system_id'],
+            'campaign_id' => $pull['campaign_id'],
+            'supervisor_id' => $pull['supervisor_id'],
+            'supervier_user_name' => $supervier_name,
+            'last_checked_user_id' => $pull['last_checked_user_id'],
+            'last_checked_user_name' => $checker_name,
+            'last_checked' => $pull['last_checked'],
+            'tidi' => $pull['tidi'],
         ];
 
         $flag = collect([

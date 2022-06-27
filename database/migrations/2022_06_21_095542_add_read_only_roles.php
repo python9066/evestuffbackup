@@ -16,7 +16,6 @@ class AddReadOnlyRoles extends Migration
         Artisan::call("permission:create-role 'Director' web 'edit_read_only | view_operation_read_only'");
         Artisan::call("permission:create-role 'GSFOE Leader' web 'edit_read_only | view_operation_read_only'");
         Artisan::call("permission:create-role 'GSFOE FC' web 'edit_read_only | view_operation_read_only'");
-
     }
 
     /**

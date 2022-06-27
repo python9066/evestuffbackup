@@ -3,16 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class NotificationRecords extends Model
 {
-
     protected $guarded = [];
+
     public $timestamps = false;
-
-
 
     protected $casts = [
         'id' => 'integer',

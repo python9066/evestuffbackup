@@ -1,5 +1,6 @@
 <?php
-$relationships = getenv("PLATFORM_RELATIONSHIPS");
+
+$relationships = getenv('PLATFORM_RELATIONSHIPS');
 $database = false;
 $redis = false;
 if ($relationships) {
@@ -15,7 +16,8 @@ if ($relationships) {
     }
 }
 
-$variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+$variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+
 return [
 
     /*
@@ -31,7 +33,6 @@ return [
 
     'enabled' => env('PREQUEL_ENABLED', true),
 
-
     /*
         |--------------------------------------------------------------------------
         | Prequel Locale : string
@@ -42,7 +43,6 @@ return [
         */
 
     'locale' => env('APP_LOCALE', 'en'),
-
 
     /*
         |--------------------------------------------------------------------------
@@ -55,7 +55,6 @@ return [
         */
 
     'path' => 'a524f35da058742f0defd6fb0db6afc4',
-
 
     /*
         |--------------------------------------------------------------------------
@@ -90,7 +89,6 @@ return [
         'resource'   => 'Resource',
     ],
 
-
     /*
         |--------------------------------------------------------------------------
         | Prequel Database Configuration : array
@@ -118,7 +116,6 @@ return [
         'password'  => env('DB_PASSWORD', ($database) ? $database['password'] : 'forge'),
     ],
 
-
     /*
         |--------------------------------------------------------------------------
         | Prequel ignored databases and tables : array
@@ -140,7 +137,6 @@ return [
         // 'mysql'               => ['*'],
     ],
 
-
     /*
         |--------------------------------------------------------------------------
         | Prequel pagination per page : integer
@@ -152,7 +148,6 @@ return [
         */
 
     'pagination' => 100,
-
 
     /*
         |--------------------------------------------------------------------------
@@ -168,6 +163,6 @@ return [
     'middleware' => [
         Protoqol\Prequel\Http\Middleware\Authorised::class,
         'web',
-        \App\Http\Middleware\Authenticate::class
+        \App\Http\Middleware\Authenticate::class,
     ],
 ];

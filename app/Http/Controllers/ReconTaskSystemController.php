@@ -50,22 +50,23 @@ class ReconTaskSystemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $r =  ReconTaskSystems::find($id)->get();
+        $r = ReconTaskSystems::find($id)->get();
         foreach ($r as $r) {
             $r->update(['user_id' => null]);
         }
-        $r =  ReconTaskSystems::find($id)->get();
+        $r = ReconTaskSystems::find($id)->get();
         foreach ($r as $r) {
             $r->update($request->all());
         }
         $task_id = ReconTaskSystems::find($id)->value('recon_task_id');
         $message = ReconTaskSystemRecords::where('id', $id)->first();
         $flag = collect([
-            "message" => $message,
+            'message' => $message,
             'id' => $task_id,
         ]);
         broadcast(new ReconTimerUpdate($flag))->toOthers();
     }
+
     /**
      * Remove the specified resource from storage.
      *

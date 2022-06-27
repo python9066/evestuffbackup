@@ -31,13 +31,12 @@ class NewUserNodeController extends Controller
 
     public function addTimer(Request $request, $id)
     {
-
         $n = NewUserNode::where('id', $id)->first();
 
         $n->update([
-            "end_time" => $request->end_time,
-            "input_time" => now(),
-            "base_time" => $request->base_time,
+            'end_time' => $request->end_time,
+            'input_time' => now(),
+            'base_time' => $request->base_time,
         ]);
 
         broadcastsystemSolo($request->system_id, 7);
@@ -48,9 +47,9 @@ class NewUserNodeController extends Controller
         $n = NewSystemNode::where('id', $id)->first();
 
         $n->update([
-            "end_time" => $request->end_time,
-            "input_time" => now(),
-            "base_time" => $request->base_time,
+            'end_time' => $request->end_time,
+            'input_time' => now(),
+            'base_time' => $request->base_time,
         ]);
 
         broadcastsystemSolo($request->system_id, 7);

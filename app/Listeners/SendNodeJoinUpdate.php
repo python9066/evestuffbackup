@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\NodeJoinUpdate;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendNodeJoinUpdate
 {

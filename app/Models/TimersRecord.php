@@ -3,23 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class TimersRecord extends Model
 {
-
     protected $table = 'timer_records';
-
 
     public function alliance()
     {
         return $this->belongsTo(Alliance::class);
     }
-
-
-
-
 
     protected $casts = [
         'region_id' => 'integer',

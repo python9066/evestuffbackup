@@ -13,7 +13,6 @@ class CreateLoggingsTable extends Migration
      */
     public function up()
     {
-
         Schema::create('loggings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('campaign_id')->nullable();

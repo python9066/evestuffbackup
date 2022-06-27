@@ -38,7 +38,7 @@ class CreateOrReplaceStartCampaignSystemRecordsViewCommand extends Command
      */
     public function handle()
     {
-        DB::statement("CREATE OR REPLACE VIEW start_campaign_system_records AS SELECT start_campaign_systems.id AS id,
+        DB::statement('CREATE OR REPLACE VIEW start_campaign_system_records AS SELECT start_campaign_systems.id AS id,
 start_campaign_systems.start_campaign_id AS start_campaign_id,
 start_campaign_systems.system_id AS system_id,
 systems.system_name AS system_name,
@@ -57,6 +57,6 @@ FROM start_campaign_systems
 LEFT JOIN systems ON systems.id = start_campaign_systems.system_id
 LEFT JOIN campaign_users ON campaign_users.id = start_campaign_systems.campaign_user_id
 LEFT JOIN campaign_system_statuses ON campaign_system_statuses.id = start_campaign_systems.campaign_system_status_id
-LEFT JOIN users ON users.id = campaign_users.site_id");
+LEFT JOIN users ON users.id = campaign_users.site_id');
     }
 }

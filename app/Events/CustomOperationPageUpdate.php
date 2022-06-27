@@ -2,19 +2,20 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
 class CustomOperationPageUpdate implements ShouldBroadcastNow
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable;
+    use InteractsWithSockets;
+    use SerializesModels;
+
     public $flag;
+
     /**
      * Create a new event instance.
      *
@@ -24,6 +25,7 @@ class CustomOperationPageUpdate implements ShouldBroadcastNow
     {
         $this->flag = $flag;
     }
+
     /**
      * Get the channels the event should broadcast on.
      *

@@ -7,39 +7,37 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Http;
 
-if (!function_exists('getCorpWithNoAlliance')) {
+if (! function_exists('getCorpWithNoAlliance')) {
     function getCorpWithNoAlliance($id)
     {
-
         $corpID = null;
         $corpTciker = null;
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json",
+            'Accept' => 'application/json',
             'User-Agent' => 'evestuff.online python9066@gmail.com',
-        ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", [$id]);
+        ])->post('https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en', [$id]);
 
         $returns = $response->collect();
         foreach ($returns as $key => $var) {
-            if ($key == "corporations") {
-
+            if ($key == 'corporations') {
                 $corpRep = Http::withHeaders([
                     'Content-Type' => 'application/json',
-                    "Accept" => "application/json",
-                ])->get("https://esi.evetech.net/latest/corporations/" . $var[0]['id'] . "/?datasource=tranquility");
+                    'Accept' => 'application/json',
+                ])->get('https://esi.evetech.net/latest/corporations/'.$var[0]['id'].'/?datasource=tranquility');
 
                 $corpReturn = $corpRep->collect();
                 Corp::create([
                     'id' => $var[0]['id'],
                     'alliance_id' => 1,
-                    "name" => $corpReturn["name"],
-                    'ticker' => $corpReturn["ticker"],
-                    'url' => "https://images.evetech.net/Corporation/" . $var[0]['id'] . "_64.png",
+                    'name' => $corpReturn['name'],
+                    'ticker' => $corpReturn['ticker'],
+                    'url' => 'https://images.evetech.net/Corporation/'.$var[0]['id'].'_64.png',
                     'active' => 1,
                 ]);
 
                 $corpID = $var[0]['id'];
-                $corpTciker = $corpReturn["ticker"];
+                $corpTciker = $corpReturn['ticker'];
             }
         }
 
@@ -50,20 +48,21 @@ if (!function_exists('getCorpWithNoAlliance')) {
             'corpID' => $corpID,
             'corpTicker' => $corpTciker,
         ];
-    }}
+    }
+}
 
-if (!function_exists('updateAlliances')) {
+if (! function_exists('updateAlliances')) {
     function updateAlliances()
     {
-        Userlogging::create(['url' => "demon alliances", 'user_id' => 9999999999]);
+        Userlogging::create(['url' => 'demon alliances', 'user_id' => 9999999999]);
         $client = new Client();
         $headers = [
             'Content-Type' => 'application/json',
-            "Accept" => "application/json",
+            'Accept' => 'application/json',
             'User-Agent' => 'evestuff.online python9066@gmail.com',
         ];
 
-        $url = "https://esi.evetech.net/latest/alliances/?datasource=tranquility";
+        $url = 'https://esi.evetech.net/latest/alliances/?datasource=tranquility';
         $response = $client->request('GET', $url, [
             'headers' => $headers,
         ]);
@@ -78,7 +77,7 @@ if (!function_exists('updateAlliances')) {
                 ['active' => 1]
             );
         }
-        ;
+
         $a = Alliance::where('active', 0)->get();
         foreach ($a as $a) {
             $a->delete();
@@ -92,8 +91,7 @@ if (!function_exists('updateAlliances')) {
         $errorCount = 100;
         $errorTime = 30;
         for ($i = 0; $i < count($allianceID); $i++) {
-
-            $url = "https://esi.evetech.net/latest/alliances/" . $allianceID[$i] . "/corporations/?datasource=tranquility";
+            $url = 'https://esi.evetech.net/latest/alliances/'.$allianceID[$i].'/corporations/?datasource=tranquility';
             $response = $client->request('GET', $url, [
                 'headers' => $headers,
                 'http_errors' => false,
@@ -101,14 +99,13 @@ if (!function_exists('updateAlliances')) {
 
             if ($response->getStatusCode() == 200) {
                 foreach ($response->getHeaders() as $name => $values) {
-                    if ($name == "X-Esi-Error-Limit-Remain") {
+                    if ($name == 'X-Esi-Error-Limit-Remain') {
                         $errorCount = $values;
                     }
-                    ;
-                    if ($name == "X-Esi-Error-Limit-Reset") {
+
+                    if ($name == 'X-Esi-Error-Limit-Reset') {
                         $errorTime = $values;
                     }
-                    ;
                 }
                 $errorCount = $errorCount[0] - 1;
                 $errorTime = $errorTime[0] + 5;
@@ -122,7 +119,7 @@ if (!function_exists('updateAlliances')) {
                         [
                             'active' => 1,
                             'alliance_id' => $allianceID[$i],
-                            'url' => "https://images.evetech.net/Corporation/" . $corpID . "_64.png",
+                            'url' => 'https://images.evetech.net/Corporation/'.$corpID.'_64.png',
                         ]
                     );
                 }
@@ -140,7 +137,7 @@ if (!function_exists('updateAlliances')) {
         $errorTime = 30;
 
         for ($i = 0; $i < count($data); $i++) {
-            $url = "https://esi.evetech.net/latest/alliances/" . $data[$i] . "/?datasource=tranquility";
+            $url = 'https://esi.evetech.net/latest/alliances/'.$data[$i].'/?datasource=tranquility';
             $response = $client->request('GET', $url, [
                 'headers' => $headers,
                 'http_errors' => false,
@@ -148,14 +145,13 @@ if (!function_exists('updateAlliances')) {
 
             if ($response->getStatusCode() == 200) {
                 foreach ($response->getHeaders() as $name => $values) {
-                    if ($name == "X-Esi-Error-Limit-Remain") {
+                    if ($name == 'X-Esi-Error-Limit-Remain') {
                         $errorCount = $values;
                     }
-                    ;
-                    if ($name == "X-Esi-Error-Limit-Reset") {
+
+                    if ($name == 'X-Esi-Error-Limit-Reset') {
                         $errorTime = $values;
                     }
-                    ;
                 }
 
                 $errorCount = $errorCount[0] - 1;
@@ -166,13 +162,13 @@ if (!function_exists('updateAlliances')) {
                 }
                 $body = Utils::jsonDecode($response->getBody(), true);
 
-                $body = array(
-                    'name' => $body["name"],
-                    'ticker' => $body["ticker"],
-                    'url' => "https://images.evetech.net/Alliance/" . $data[$i] . "_64.png",
+                $body = [
+                    'name' => $body['name'],
+                    'ticker' => $body['ticker'],
+                    'url' => 'https://images.evetech.net/Alliance/'.$data[$i].'_64.png',
                     'color' => 1,
-                );
-                $a = Alliance::where("id", $data[$i])->get();
+                ];
+                $a = Alliance::where('id', $data[$i])->get();
                 foreach ($a as $a) {
                     $a->update($body);
                 }
@@ -187,7 +183,7 @@ if (!function_exists('updateAlliances')) {
         $errorTime = 30;
 
         for ($i = 0; $i < count($data); $i++) {
-            $url = "https://esi.evetech.net/latest/corporations/" . $data[$i] . "/?datasource=tranquility";
+            $url = 'https://esi.evetech.net/latest/corporations/'.$data[$i].'/?datasource=tranquility';
             $response = $client->request('GET', $url, [
                 'headers' => $headers,
                 'http_errors' => false,
@@ -196,14 +192,13 @@ if (!function_exists('updateAlliances')) {
 
             if ($response->getStatusCode() == 200) {
                 foreach ($response->getHeaders() as $name => $values) {
-                    if ($name == "X-Esi-Error-Limit-Remain") {
+                    if ($name == 'X-Esi-Error-Limit-Remain') {
                         $errorCount = $values;
                     }
-                    ;
-                    if ($name == "X-Esi-Error-Limit-Reset") {
+
+                    if ($name == 'X-Esi-Error-Limit-Reset') {
                         $errorTime = $values;
                     }
-                    ;
                 }
                 $errorCount = $errorCount[0] - 1;
                 $errorTime = $errorTime[0] + 5;
@@ -212,12 +207,12 @@ if (!function_exists('updateAlliances')) {
                 }
                 $body = Utils::jsonDecode($response->getBody(), true);
 
-                $body = array(
-                    'name' => $body["name"],
-                    'ticker' => $body["ticker"],
+                $body = [
+                    'name' => $body['name'],
+                    'ticker' => $body['ticker'],
                     'color' => 1,
-                );
-                $c = Corp::where("id", $data[$i])->get();
+                ];
+                $c = Corp::where('id', $data[$i])->get();
                 foreach ($c as $c) {
                     $c->update($body);
                 }
@@ -234,7 +229,7 @@ if (!function_exists('updateAlliances')) {
         foreach ($c as $c) {
             $c->update(['standing' => 0, 'color' => 0]);
         }
-        $type = "standing";
+        $type = 'standing';
         authcheck();
         $data = authpull($type, 0);
 
@@ -253,7 +248,7 @@ if (!function_exists('updateAlliances')) {
                     ]);
                 }
             }
-            ;
+
             if ($var['contact_type'] = 'corporation') {
                 $c = Corp::where('id', $var['contact_id'])->get();
                 foreach ($c as $c) {
@@ -263,9 +258,7 @@ if (!function_exists('updateAlliances')) {
                     ]);
                 }
             }
-            ;
         }
-        ;
 
         $a = Alliance::where('color', '0')->get();
         foreach ($a as $a) {
@@ -279,4 +272,5 @@ if (!function_exists('updateAlliances')) {
         foreach ($a as $a) {
             $a->update(['standing' => 10, 'color' => 3]);
         }
-    }}
+    }
+}

@@ -20,7 +20,6 @@ class RCSheet extends Controller
 {
     public function RCInput(Request $request)
     {
-
         $s = Station::where('show_on_rc', 1)->get();
         foreach ($s as $s) {
             $s->update(['show_on_rc' => 5]);
@@ -58,25 +57,24 @@ class RCSheet extends Controller
 
                     // dd($allianceIDID, $corpIDID);
 
-                    if ($input['timer_type'] == "Armor") {
+                    if ($input['timer_type'] == 'Armor') {
                         $statusID = 5;
                     }
 
-                    if ($input['timer_type'] == "Hull") {
+                    if ($input['timer_type'] == 'Hull') {
                         $statusID = 13;
                     }
-                    if ($input['timer_type'] == "Anchoring") {
+                    if ($input['timer_type'] == 'Anchoring') {
                         $statusID = 14;
                     }
 
-                    if ($input['timer_type'] == "Unanchoring") {
+                    if ($input['timer_type'] == 'Unanchoring') {
                         $statusID = 17;
                     }
 
                     $check = Station::where('rc_id', $input['id'])->first();
 
-                    if (!$check) {
-
+                    if (! $check) {
                         $check = Station::where('name', $input['structure_name'])->first();
                         if ($check) {
                             $s = Station::where('name', $input['structure_name'])->get();
@@ -92,13 +90,11 @@ class RCSheet extends Controller
                         if ($timer != $station->out_time) {
                             $station->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1, 'show_on_coord' => 0, 'name' => $input['structure_name']]);
                         } else {
-
                             $station->update(['show_on_rc' => 1, 'station_status_id' => $statusID, 'show_on_coord' => 0, 'name' => $input['structure_name']]);
                         }
 
                         // dd($check->id);
                     } else {
-
                         $rcid = $input['id'];
                         // dd($input);
                         $reconpull = $this->reconPullbyname($stationName, $rcid);
@@ -120,7 +116,6 @@ class RCSheet extends Controller
                                 $new->update(['id' => $id]);
                             }
                         } else {
-
                             $check = Station::where('id', $reconpull)->first();
                             $check->update(['station_status_id' => $statusID, 'out_time' => $timer, 'show_on_rc' => 1, 'show_on_coord' => 0]);
 
@@ -191,8 +186,8 @@ class RCSheet extends Controller
 
     public static function reconPullbyname($stationName, $rcid)
     {
-        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
-        $url = "https://recon.gnf.lt/api/structure/" . $stationName;
+        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+        $url = 'https://recon.gnf.lt/api/structure/'.$stationName;
 
         $client = new GuzzleHttpClient();
         $headers = [
@@ -210,8 +205,7 @@ class RCSheet extends Controller
         $stationdata = Utils::jsonDecode($response->getBody(), true);
         // dd($stationdata);
         if ($response->getStatusCode() == 200) {
-            if ($stationdata == "Error, Structure Not Found") {
-
+            if ($stationdata == 'Error, Structure Not Found') {
                 return false;
             } else {
                 $core = 0;
@@ -227,9 +221,9 @@ class RCSheet extends Controller
                 } else {
                     $standing = $corp->standing;
                 }
-                if ($stationdata['str_cored'] == "Yes") {
+                if ($stationdata['str_cored'] == 'Yes') {
                     $core = 1;
-                };
+                }
                 Station::updateOrCreate(['id' => $stationdata['str_structure_id']], [
                     'name' => $stationdata['str_name'],
                     'standing' => $standing,
@@ -269,7 +263,7 @@ class RCSheet extends Controller
                 ]);
                 // dd($stationdata);
                 if ($stationdata['str_has_no_fitting'] != null) {
-                    if ($stationdata['str_has_no_fitting'] != "No Fitting") {
+                    if ($stationdata['str_has_no_fitting'] != 'No Fitting') {
                         $items = Utils::jsonDecode($stationdata['str_fitting'], true);
                         if ($stationdata['str_fitting']) {
                             foreach ($items as $item) {
@@ -278,7 +272,7 @@ class RCSheet extends Controller
                                     StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
                                 }
                                 StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
-                            };
+                            }
                         }
                     }
                 }
@@ -295,6 +289,6 @@ class RCSheet extends Controller
             } else {
                 return false;
             }
-        };
+        }
     }
 }

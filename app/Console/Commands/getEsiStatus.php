@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Events\OverlayUpdate;
 use App\Models\EveEsiStatus;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
@@ -42,9 +41,9 @@ class getEsiStatus extends Command
     {
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
-        ])->get("https://esi.evetech.net/status.json?version=latest");
+            'Accept' => 'application/json',
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
+        ])->get('https://esi.evetech.net/status.json?version=latest');
         $status = $response->collect();
         foreach ($status as $status) {
             $endpoint = $status['endpoint'];

@@ -32,7 +32,7 @@ class ReconTaskController extends Controller
         foreach ($request->systems as $system) {
             ReconTaskSystems::Create(['recon_task_id' => $id, 'system_id' => $system]);
         }
-        broadcast(new ReconTaskNew);
+        broadcast(new ReconTaskNew());
     }
 
     /**
@@ -68,6 +68,6 @@ class ReconTaskController extends Controller
         ReconTasks::destroy($id);
         $systems = ReconTaskSystems::where('recon_task_id', $id);
         $systems->delete();
-        broadcast(new ReconTaskNew);
+        broadcast(new ReconTaskNew());
     }
 }

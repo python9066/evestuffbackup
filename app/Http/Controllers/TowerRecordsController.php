@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Events\TowerChanged;
-use App\Events\TowerDelete;
 use App\Events\TowerMessageUpdate;
 use App\Events\TowerNew;
 use App\Models\Tower;
@@ -41,7 +40,7 @@ class TowerRecordsController extends Controller
         $new->update(['id' => $id]);
         $message = TowerRecord::where('id', $new->id)->first();
         $flag = collect([
-            'message' => $message
+            'message' => $message,
         ]);
 
         broadcast(new TowerNew($flag));
@@ -71,7 +70,7 @@ class TowerRecordsController extends Controller
         foreach ($t as $t) {
             $t->update($request->all());
         }
-        $message =  TowerRecord::find($id);
+        $message = TowerRecord::find($id);
         if ($message->status_id != 10) {
             $flag = collect([
                 'message' => $message,
@@ -79,7 +78,6 @@ class TowerRecordsController extends Controller
             broadcast(new TowerChanged($flag));
         }
     }
-
 
     public function updateMessage(Request $request, $id)
     {
@@ -93,14 +91,12 @@ class TowerRecordsController extends Controller
         $message = TowerRecord::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
-            'id' => $id
+            'id' => $id,
         ]);
 
         // dd($request, $id, $flag);
         broadcast(new TowerMessageUpdate($flag))->toOthers();
     }
-
-
 
     /**
      * Remove the specified resource from storage.

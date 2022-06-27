@@ -19,7 +19,7 @@ class CreateCampaignSystemsTable extends Migration
             $table->foreignId('system_id');
             $table->foreignId('campaign_user_id')->nullable();
             $table->foreignId('campaign_system_status_id')->default(1);
-            $table->string('node_id',8);
+            $table->string('node_id', 8);
             $table->text('notes')->nullable();
             $table->timestamps();
         });

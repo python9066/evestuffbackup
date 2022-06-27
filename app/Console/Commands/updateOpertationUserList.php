@@ -40,19 +40,19 @@ class updateOpertationUserList extends Command
     public function handle()
     {
         OperationUserList::whereNotNull('id')->update(['delete' => 1]);
-        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
         $pusher = new Pusher(
             env('PUSHER_APP_KEY', ($variables && array_key_exists('PUSHER_APP_KEY', $variables)) ? $variables['PUSHER_APP_KEY'] : 'null'),
             env('PUSHER_APP_SECRET', ($variables && array_key_exists('PUSHER_APP_SECRET', $variables)) ? $variables['PUSHER_APP_SECRET'] : 'null'),
             env('PUSHER_APP_ID', ($variables && array_key_exists('PUSHER_APP_ID', $variables)) ? $variables['PUSHER_APP_ID'] : 'null'),
-            array(
+            [
                 'cluster' => env('PUSHER_APP_CLUSTER', ($variables && array_key_exists('PUSHER_APP_CLUSTER', $variables)) ? $variables['PUSHER_APP_CLUSTER'] : 'null'),
                 'encrypted' => true,
                 'useTLS' => true,
                 'host' => 'https://socket.evestuff.online',
                 'port' => 443,
                 'scheme' => 'https',
-            )
+            ]
         );
         $response = $pusher->get('/channels');
         $response = json_decode(json_encode($response), true);
@@ -60,10 +60,10 @@ class updateOpertationUserList extends Command
         $channels = array_keys($channels);
         $data = collect([]);
         foreach ($channels as $channel) {
-            $part = explode(".", $channel);
-            if ($part[0] === "private-operationsown") {
+            $part = explode('.', $channel);
+            if ($part[0] === 'private-operationsown') {
                 $keys = collect(['userID', 'opID']);
-                $info = explode("-", $part[1]);
+                $info = explode('-', $part[1]);
                 $data1 = collect($info);
                 $data1 = $keys->combine($data1);
                 $data->push($data1);
@@ -78,8 +78,8 @@ class updateOpertationUserList extends Command
             foreach ($group as $op) {
                 $userID = (int) $op['userID'];
                 $check = OperationUserList::where('operation_id', $opID)->where('user_id', $userID)->first();
-                if (!$check) {
-                    $newOp = new OperationUserList;
+                if (! $check) {
+                    $newOp = new OperationUserList();
                     $newOp->operation_id = $opID;
                     $newOp->user_id = $userID;
                     $newOp->delete = 2;

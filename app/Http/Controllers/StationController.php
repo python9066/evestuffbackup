@@ -64,28 +64,29 @@ class StationController extends Controller
     {
         $user = Auth::user();
         if ($user->can('view_station_list')) {
-
             $data = StationRecords(6);
+
             return ['stations' => $data];
         }
     }
+
     public function loadStationData()
     {
         $coreData = [];
         $stations = Station::all();
         foreach ($stations as $station) {
             if ($station->r_cored == 1) {
-                $core = "Yes";
+                $core = 'Yes';
             } else {
-                $core = "No";
+                $core = 'No';
             }
 
             $taskFlag = System::where('id', $station->system_id)->value('task_flag');
 
             $data1 = [
-                "task_flag" => $taskFlag,
-                "station_id" => $station->id,
-                "cored" => $core,
+                'task_flag' => $taskFlag,
+                'station_id' => $station->id,
+                'cored' => $core,
             ];
 
             array_push($coreData, $data1);
@@ -96,9 +97,9 @@ class StationController extends Controller
         foreach ($joins as $join) {
             $name = StationItems::where('id', $join->station_item_id)->first();
             $data = [
-                "station_id" => $join->station_id,
-                "item_name" => $name->item_name,
-                "item_id" => $name->id,
+                'station_id' => $join->station_id,
+                'item_name' => $name->item_name,
+                'item_id' => $name->id,
             ];
             array_push($items, $data);
         }
@@ -117,7 +118,7 @@ class StationController extends Controller
 
     public function taskRequest(Request $request)
     {
-        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
         $message = [
             'station_id' => $request->station_id,
             'task_flag' => 1,
@@ -132,7 +133,7 @@ class StationController extends Controller
         foreach ($s as $s) {
             $s->update(['task_flag' => 1]);
         }
-        $url = "https://recon.gnf.lt/api/task/add";
+        $url = 'https://recon.gnf.lt/api/task/add';
         $client = new GuzzleHttpClient();
         $headers = [
             // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
@@ -156,12 +157,12 @@ class StationController extends Controller
 
     public static function reconPullbyname(Request $request)
     {
-        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
 
-        $name = preg_replace("/\([^\)]+\)(\R|$)/", "$1", $request->stationName);
+        $name = preg_replace("/\([^\)]+\)(\R|$)/", '$1', $request->stationName);
         $name = rtrim($name);
         // dd($name);
-        $url = "https://recon.gnf.lt/api/structure/" . $name;
+        $url = 'https://recon.gnf.lt/api/structure/'.$name;
 
         $client = new GuzzleHttpClient();
         $headers = [
@@ -180,8 +181,7 @@ class StationController extends Controller
 
         $stationdata = Utils::jsonDecode($response->getBody(), true);
         if ($response->getStatusCode() == 200) {
-
-            if ($stationdata == "Error, Structure Not Found") {
+            if ($stationdata == 'Error, Structure Not Found') {
                 $stationCheck = station::where('name', $name)->get();
                 $check = $stationCheck->count();
                 if ($check > null) {
@@ -191,10 +191,10 @@ class StationController extends Controller
                         'state' => 2,
                         'station_name' => $name,
                     ];
+
                     return $data;
                 }
             } else {
-
                 $checkifthere = Station::find($stationdata['str_structure_id']);
                 $showMain = 0;
                 $showChill = 0;
@@ -221,9 +221,9 @@ class StationController extends Controller
                 }
 
                 $core = 0;
-                if ($stationdata['str_cored'] == "Yes") {
+                if ($stationdata['str_cored'] == 'Yes') {
                     $core = 1;
-                };
+                }
                 $standing = 0;
                 $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
                 $alliance = Alliance::where('id', $corp->alliance_id)->first();
@@ -280,11 +280,10 @@ class StationController extends Controller
                     foreach ($items as $item) {
                         StationItems::where('id', $item['type_id'])->get()->count();
                         if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-
                             StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
                         }
                         StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
-                    };
+                    }
                 }
 
                 $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
@@ -299,13 +298,14 @@ class StationController extends Controller
                     'system_name' => $system->system_name,
                     'corp_ticker' => $corp->ticker,
                 ];
+
                 return $data;
             }
         } else {
-
             $stationCheck = station::where('name', $name)->first();
             if ($stationCheck) {
                 $station = StationRecords::where('id', $stationCheck->id)->first();
+
                 return $data = [
                     'state' => 3,
                     'station_id' => $station->id,
@@ -319,20 +319,21 @@ class StationController extends Controller
                     'state' => 2,
                     'station_name' => $name,
                 ];
+
                 return $data;
             }
-        };
+        }
     }
 
     public static function editStationNameReconCheck(Request $request, $id)
     {
-        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
         $oldName = Station::where('id', $id)->value('name');
 
-        $name = preg_replace("/\([^\)]+\)(\R|$)/", "$1", $request->stationName);
+        $name = preg_replace("/\([^\)]+\)(\R|$)/", '$1', $request->stationName);
         $name = rtrim($name);
         // dd($name);
-        $url = "https://recon.gnf.lt/api/structure/" . $name;
+        $url = 'https://recon.gnf.lt/api/structure/'.$name;
 
         $client = new GuzzleHttpClient();
         $headers = [
@@ -351,15 +352,12 @@ class StationController extends Controller
 
         $stationdata = Utils::jsonDecode($response->getBody(), true);
         if ($response->getStatusCode() == 200) {
-
-            if ($stationdata == "Error, Structure Not Found") {
-
+            if ($stationdata == 'Error, Structure Not Found') {
                 $s = Station::where('id', $id)->get();
                 foreach ($s as $s) {
                     $s->update(['name' => $name, 'added_from_recon' => 0]);
                 }
             } else {
-
                 $checkifthere = Station::find($stationdata['str_structure_id']);
                 $showMain = 0;
                 $showChill = 0;
@@ -386,9 +384,9 @@ class StationController extends Controller
                 }
 
                 $core = 0;
-                if ($stationdata['str_cored'] == "Yes") {
+                if ($stationdata['str_cored'] == 'Yes') {
                     $core = 1;
-                };
+                }
 
                 $standing = 0;
                 $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
@@ -444,12 +442,11 @@ class StationController extends Controller
                     foreach ($items as $item) {
                         StationItems::where('id', $item['type_id'])->get()->count();
                         if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-
                             StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
                         }
                         StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
-                    };
-                };
+                    }
+                }
 
                 $message = StationRecords::where('id', $stationdata['str_structure_id'])->first();
                 $flag = collect([
@@ -459,7 +456,6 @@ class StationController extends Controller
                 broadcast(new RcMoveUpdate($flag));
             }
         } else {
-
             $s = Station::where('id', $id)->get();
             foreach ($s as $s) {
                 $s->update(['name' => $name, 'added_from_recon' => 0]);
@@ -471,7 +467,7 @@ class StationController extends Controller
             ]);
 
             broadcast(new RcMoveUpdate($flag));
-        };
+        }
     }
 
     /**
@@ -633,23 +629,22 @@ class StationController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $oldStatusID = Station::where('id', $id)->value('station_status_id');
         $oldStatusName = StationStatus::where('id', $oldStatusID)->value('name');
-        $oldStatusName = str_replace('Upcoming - ', "", $oldStatusName);
+        $oldStatusName = str_replace('Upcoming - ', '', $oldStatusName);
         $newStatusID = $request->station_status_id;
         $newStatusName = StationStatus::where('id', $newStatusID)->value('name');
-        $newStatusName = str_replace('Upcoming - ', "", $newStatusName);
+        $newStatusName = str_replace('Upcoming - ', '', $newStatusName);
         $new = Station::find($id)->update($request->all());
         $now = now();
         $s = Station::find($id)->get();
         foreach ($s as $s) {
             $s->update([
                 'added_by_user_id' => Auth::id(),
-                "rc_id" => null,
-                "rc_fc_id" => null,
-                "rc_gsol_id" => null,
-                "rc_recon_id" => null,
+                'rc_id' => null,
+                'rc_fc_id' => null,
+                'rc_gsol_id' => null,
+                'rc_recon_id' => null,
             ]);
         }
         $message = StationRecords::where('id', $id)->first();
@@ -667,7 +662,6 @@ class StationController extends Controller
 
         $RCmessage = StationRecordsSolo(4, $id);
         if ($RCmessage) {
-
             $flag = collect([
                 'message' => $RCmessage,
             ]);
@@ -688,7 +682,6 @@ class StationController extends Controller
 
         $RCmessage = StationRecordsSolo(6, $id);
         if ($RCmessage) {
-
             $flag = collect([
                 'message' => $RCmessage,
             ]);
@@ -709,7 +702,6 @@ class StationController extends Controller
 
         $RCmessage = ChillStationRecords::where('id', $id)->first();
         if ($RCmessage) {
-
             $flag = collect([
                 'message' => $RCmessage,
             ]);
@@ -719,7 +711,6 @@ class StationController extends Controller
 
         $RCmessage = WelpStationRecords::where('id', $id)->first();
         if ($RCmessage) {
-
             $flag = collect([
                 'message' => $RCmessage,
             ]);
@@ -783,7 +774,7 @@ class StationController extends Controller
 
         $oldStation = Station::where('id', $id)->first();
         $oldStatus = StationStatus::where('id', $oldStation->station_status_id)->value('name');
-        $oldStatus = str_replace('Upcoming - ', "", $oldStatus);
+        $oldStatus = str_replace('Upcoming - ', '', $oldStatus);
 
         $s = Station::find($id)->get();
         foreach ($s as $s) {
@@ -791,7 +782,7 @@ class StationController extends Controller
         }
         $newStation = Station::where('id', $id)->first();
         $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
-        $newStatus = str_replace('Upcoming - ', "", $newStatus);
+        $newStatus = str_replace('Upcoming - ', '', $newStatus);
 
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
@@ -843,7 +834,6 @@ class StationController extends Controller
 
     public function softDestroy($id)
     {
-
         $now = now();
         // $stationName = Station::find($id)->value('name');
 
@@ -892,16 +882,16 @@ class StationController extends Controller
                 'show_on_welp' => 0,
                 'show_on_chill' => 0,
                 'station_status_id' => 7,
-                "rc_id" => null,
-                "rc_fc_id" => null,
-                "rc_gsol_id" => null,
-                "rc_recon_id" => null,
+                'rc_id' => null,
+                'rc_fc_id' => null,
+                'rc_gsol_id' => null,
+                'rc_recon_id' => null,
             ]);
         }
 
         $newStatusID = 7;
         $newStatusName = StationStatus::where('id', $newStatusID)->value('name');
-        $newStatusName = str_replace('Upcoming - ', "", $newStatusName);
+        $newStatusName = str_replace('Upcoming - ', '', $newStatusName);
 
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([

@@ -3,15 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class Temp_notifcation extends Model
 {
-
     protected $guarded = [];
-
-
 
     protected $casts = [
         'id' => 'integer',

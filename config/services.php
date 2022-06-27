@@ -1,5 +1,7 @@
 <?php
-$variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+
+$variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+
 return [
 
     /*
@@ -36,7 +38,6 @@ return [
         'client_secret' => env('GOON_CLIENT_SECRET', ($variables && array_key_exists('GOON_CLIENT_SECRET', $variables)) ? $variables['GOON_CLIENT_SECRET'] : 'null'),
         // 'redirect' => env('GOON_REDIRECT_URL'),
         'redirect' => env('GOON_REDIRECT_URL', ($variables && array_key_exists('GOON_REDIRECT_URL', $variables)) ? $variables['GOON_REDIRECT_URL'] : 'null'),
-
 
     ],
 ];

@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\TowerDelete;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendTowerDelete
 {

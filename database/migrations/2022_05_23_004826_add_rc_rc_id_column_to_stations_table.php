@@ -13,10 +13,14 @@ class AddRcRcIdColumnToStationsTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasColumn('stations', 'rc_recon_id')) {
-            Schema::table('stations', function (Blueprint $table) {
+        if (! Schema::hasColumn('stations', 'rc_recon_id')) {
+            Schema::table(
+                'stations',
+                function (Blueprint $table) {
                 $table->foreignId('rc_recon_id')->nullable();
-            });}
+            }
+            );
+        }
     }
 
     /**

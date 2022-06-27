@@ -41,14 +41,14 @@ class UpdateReconStations extends Command
      */
     public function handle()
     {
-        Userlogging::create(['url' => "demon recon station", 'user_id' => 9999999999]);
+        Userlogging::create(['url' => 'demon recon station', 'user_id' => 9999999999]);
         dubp();
         $s = Station::where('id', '>', 0)->get();
         foreach ($s as $s) {
             $s->update(['import_flag' => 0]);
         }
 
-        Userlogging::create(['url' => "demon region", 'user_id' => 9999999999]);
+        Userlogging::create(['url' => 'demon region', 'user_id' => 9999999999]);
         $ids = HotRegion::where('update', 1)->pluck('region_id');
 
         foreach ($ids as $id) {

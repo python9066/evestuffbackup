@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class Alliance extends Model
 {
@@ -34,8 +33,8 @@ class Alliance extends Model
     }
 
     public $incrementing = false;
-    protected $primaryKey = 'id';
 
+    protected $primaryKey = 'id';
 
     protected $casts = [
         'id' => 'integer',

@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
-use Spatie\Permission\Traits\HasPermissions;
 use Illuminate\Support\Facades\Auth;
-
+use Spatie\Permission\Traits\HasPermissions;
 
 class LoggingController extends Controller
 {
-
     use HasPermissions;
+
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +19,7 @@ class LoggingController extends Controller
     {
         $data = [];
 
-        return ["logs" => $data];
+        return ['logs' => $data];
     }
 
     public function logCampaign($campid)
@@ -29,9 +27,8 @@ class LoggingController extends Controller
         // dd($campid);
         $data = [];
 
-        return ["logs" => $data];
+        return ['logs' => $data];
     }
-
 
     public function rcSheetLogging()
     {
@@ -40,13 +37,11 @@ class LoggingController extends Controller
         if ($check->can('view_admin_logs')) {
             $data = [];
 
-            return ["logs" => $data];
+            return ['logs' => $data];
         } else {
-            return ["logs" => null];
+            return ['logs' => null];
         }
     }
-
-
 
     public function stationLogging()
     {
@@ -54,7 +49,7 @@ class LoggingController extends Controller
 
         $data = [];
 
-        return ["logs" => $data];
+        return ['logs' => $data];
     }
 
     public function logAdmin()
@@ -62,7 +57,7 @@ class LoggingController extends Controller
         // dd($campid);
         $data = [];
 
-        return ["logs" => $data];
+        return ['logs' => $data];
     }
 
     /**
@@ -79,8 +74,6 @@ class LoggingController extends Controller
     {
     }
 
-
-
     public function joinleaveCampaign($campid, $charid, $logtype)
     {
     }
@@ -93,7 +86,6 @@ class LoggingController extends Controller
     {
     }
 
-
     public function addremovechar(Request $request, $campid)
     {
     }
@@ -101,8 +93,6 @@ class LoggingController extends Controller
     public function addRemoveRoles(Request $request)
     {
     }
-
-
 
     public function nodeDeleteMulti(Request $request, $campid)
     {

@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Schema;
 
 class CallTheNotificationRecordsCommand extends Migration
 {
@@ -14,8 +12,7 @@ class CallTheNotificationRecordsCommand extends Migration
      */
     public function up()
     {
-        Artisan::call("view:CreateOrReplaceNotificationRecordsView");
-
+        Artisan::call('view:CreateOrReplaceNotificationRecordsView');
     }
 
     /**

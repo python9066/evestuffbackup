@@ -4,14 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class Corp extends Model
 {
     use HasFactory;
-
-
 
     protected $guarded = [];
 
@@ -29,8 +25,6 @@ class Corp extends Model
     {
         return $this->hasMany(ChillStation::class);
     }
-
-
 
     protected $casts = [
         'id' => 'integer',

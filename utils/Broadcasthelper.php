@@ -13,19 +13,16 @@ use App\Models\OperationUserList;
 
 class Broadcasthelper
 {
-
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 4 = updates system info
      * 5 = remove char from ops table
      * 6 = update op char table
      * 7 = update campaign system
-
      */
-
     public static function broadcastsystemSolo($systemID, $flagNumber)
     {
         $campaignIDs = NewCampaignSystem::where('system_id', $systemID)->pluck('new_campaign_id');
@@ -33,7 +30,6 @@ class Broadcasthelper
         $message = systemSolo($systemID);
 
         foreach ($obIDS as $op) {
-
             $flag = collect([
                 'flag' => $flagNumber,
                 'message' => $message,
@@ -56,16 +52,14 @@ class Broadcasthelper
     }
 
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 4 = updates system info
      * 5 = remove char from ops table
      * 6 = update op char table
-
      */
-
     public static function broadcastuserSolo($opID, $opUserID, $flagNumber)
     {
         $message = opUserSolo($opID, $opUserID);
@@ -79,17 +73,14 @@ class Broadcasthelper
     }
 
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 3 = refresh operation info
-
      */
-
     public static function broadcastOperationRefresh($opID, $campaignID, $flagNumber)
     {
-
         $message = NewOperation::where('id', $opID)
             ->with([
                 'campaign' => function ($q) use ($campaignID) {
@@ -113,17 +104,14 @@ class Broadcasthelper
     }
 
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 2 = set Read Only
-
      */
-
     public static function broadcastOperationSetReadOnly($opID, $flagNumber, $message)
     {
-
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $message,
@@ -134,14 +122,12 @@ class Broadcasthelper
     }
 
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 1 = update operation user list,
-
      */
-
     public static function broadcastOperationUserList($opID, $flagNumber)
     {
         $userIDs = OperationUserList::where('operation_id', $opID)->pluck('user_id');
@@ -157,15 +143,13 @@ class Broadcasthelper
     }
 
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 3 = Add/Update Own Char info -
      * 5 = RemoveChar -
-
      */
-
     public static function broadcastuserOwnSolo($opUserID, $userID, $flagNumber, $opID)
     {
         $message = ownUsersolo($opUserID);
@@ -181,18 +165,15 @@ class Broadcasthelper
     }
 
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
-     * 1 = Open Add Char overlay -
      *
-     *  @param int $type
+     * @param  int  $flagNumber
+     * 1 = Open Add Char overlay -
+     *  @param  int  $type
      * 1 = Normal message -
      * 2 = read only message
-
      */
-
     public static function broadcastAllCharOverlay($flagNumber, $opID, $type)
     {
         $users = OperationUserList::where('operation_id', $opID)
@@ -211,21 +192,20 @@ class Broadcasthelper
                     'type' => $type,
                 ]);
 
-                broadcast(new OperationOwnUpdate($flag));}
+                broadcast(new OperationOwnUpdate($flag));
+            }
         }
     }
 
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 1 = Add Custom Operation To list -
      * 2 = Update Custom Operation On List -
      * 3 = Delete CUstom Operation from list -
-
      */
-
     public static function broadcastCustomOperationSolo($opID, $flagNumber)
     {
         $message = customOperationSolo($opID);
@@ -237,17 +217,14 @@ class Broadcasthelper
     }
 
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 3 = Delete CUstom Operation from list -
-
      */
-
     public static function broadcastCustomOperationDeleteSolo($opID, $flagNumber)
     {
-
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $opID,

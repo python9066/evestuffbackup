@@ -28,12 +28,12 @@ use Illuminate\Support\Str;
 use Pusher\Pusher;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
-use utils\Notificationhelper\Notifications;
 
 class testController extends Controller
 {
     use HasRoles;
     use HasPermissions;
+
     public function index()
     {
         return view('test2');
@@ -68,6 +68,7 @@ class testController extends Controller
         foreach ($users as $user) {
             return $user->own_users_count;
         }
+
         return $users;
     }
 
@@ -133,35 +134,36 @@ class testController extends Controller
                 $userIds = collect();
                 $response = Http::withHeaders([
                     'Content-Type' => 'application/json',
-                    "Accept" => "application/json",
-                    'User-Agent' => 'evestuff.online python9066@gmail.com'
+                    'Accept' => 'application/json',
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
                 ])
                     ->withBody(json_encode([$name]), 'application/json')
-                    ->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en");
+                    ->post('https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en');
 
                 $res = $response->collect($key = null);
                 foreach ($res as $key => $re) {
-                    if ($key == "characters")
+                    if ($key == 'characters') {
                         $userIds->push($re[0]['id']);
+                    }
                 }
 
                 foreach ($userIds as $userID) {
                     $response = Http::withHeaders([
                         'Content-Type' => 'application/json',
-                        "Accept" => "application/json",
-                        'User-Agent' => 'evestuff.online python9066@gmail.com'
-                    ])->get("https://esi.evetech.net/latest/characters/" . $userID . "/?datasource=tranquility");
+                        'Accept' => 'application/json',
+                        'User-Agent' => 'evestuff.online python9066@gmail.com',
+                    ])->get('https://esi.evetech.net/latest/characters/'.$userID.'/?datasource=tranquility');
                     $res = $response->collect($key = null);
                     $new = new OperationInfoUser();
                     $new->id = $userID;
                     $new->alliance_id = $res['alliance_id'] ?? null;
                     $new->corporation_id = $res['corporation_id'];
                     $new->name = $res['name'];
-                    $new->url = "https://images.evetech.net/characters/" . $userID . "/portrait?tenant=tranquility&size=64";
+                    $new->url = 'https://images.evetech.net/characters/'.$userID.'/portrait?tenant=tranquility&size=64';
                     $new->save();
                 }
             } else {
-                return "ALREADY THERE";
+                return 'ALREADY THERE';
             }
         }
     }
@@ -170,16 +172,14 @@ class testController extends Controller
     {
         $user = Auth::user();
         if ($user->can('super')) {
-
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-                "Accept" => "application/json",
+                'Accept' => 'application/json',
                 'User-Agent' => 'evestuff.online python9066@gmail.com',
-            ])->get("https://esi.evetech.net/status.json?version=latest");
+            ])->get('https://esi.evetech.net/status.json?version=latest');
             $status = $response->collect();
 
             foreach ($status as $status) {
-
                 $endpoint = $status['endpoint'];
                 $method = $status['method'];
                 $stat = $status['status'];
@@ -190,7 +190,7 @@ class testController extends Controller
                 echo $stat;
                 echo $tag;
                 echo '<pre>';
-                echo "NEW";
+                echo 'NEW';
                 echo '</pre>';
             }
         } else {
@@ -204,19 +204,19 @@ class testController extends Controller
         $flag = null;
         if ($user->can('super')) {
             OperationUserList::whereNotNull('id')->update(['delete' => 1]);
-            $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+            $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
             $pusher = new Pusher(
                 env('PUSHER_APP_KEY', ($variables && array_key_exists('PUSHER_APP_KEY', $variables)) ? $variables['PUSHER_APP_KEY'] : 'null'),
                 env('PUSHER_APP_SECRET', ($variables && array_key_exists('PUSHER_APP_SECRET', $variables)) ? $variables['PUSHER_APP_SECRET'] : 'null'),
                 env('PUSHER_APP_ID', ($variables && array_key_exists('PUSHER_APP_ID', $variables)) ? $variables['PUSHER_APP_ID'] : 'null'),
-                array(
+                [
                     'cluster' => env('PUSHER_APP_CLUSTER', ($variables && array_key_exists('PUSHER_APP_CLUSTER', $variables)) ? $variables['PUSHER_APP_CLUSTER'] : 'null'),
                     'encrypted' => true,
                     'useTLS' => true,
                     'host' => 'https://socket.evestuff.online',
                     'port' => 443,
                     'scheme' => 'https',
-                )
+                ]
             );
             $response = $pusher->get('/channels');
             $response = json_decode(json_encode($response), true);
@@ -224,10 +224,10 @@ class testController extends Controller
             $channels = array_keys($channels);
             $data = collect([]);
             foreach ($channels as $channel) {
-                $part = explode(".", $channel);
-                if ($part[0] === "private-operationsown") {
+                $part = explode('.', $channel);
+                if ($part[0] === 'private-operationsown') {
                     $keys = collect(['userID', 'opID']);
-                    $info = explode("-", $part[1]);
+                    $info = explode('-', $part[1]);
                     $data1 = collect($info);
                     $data1 = $keys->combine($data1);
                     $data->push($data1);
@@ -240,8 +240,8 @@ class testController extends Controller
                 foreach ($group as $op) {
                     $userID = (int) $op['userID'];
                     $check = OperationUserList::where('operation_id', $opID)->where('user_id', $userID)->first();
-                    if (!$check) {
-                        $newOp = new OperationUserList;
+                    if (! $check) {
+                        $newOp = new OperationUserList();
                         $newOp->operation_id = $opID;
                         $newOp->user_id = $userID;
                         $newOp->delete = 2;
@@ -271,9 +271,9 @@ class testController extends Controller
         if ($user->can('super')) {
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
-                "Accept" => "application/json",
+                'Accept' => 'application/json',
                 'User-Agent' => 'evestuff.online python9066@gmail.com',
-            ])->get("https://628189349fac04c6540639f6.mockapi.io/timers");
+            ])->get('https://628189349fac04c6540639f6.mockapi.io/timers');
             $campaigns = $response->collect();
 
             foreach ($campaigns as $campaign) {
@@ -303,8 +303,8 @@ class testController extends Controller
 
                     $time = $campaign['start_time'];
                     $start_time = fixtime($time);
-                    $data = array();
-                    $data = array(
+                    $data = [];
+                    $data = [
                         'attackers_score' => $campaign['attackers_score'],
                         'constellation_id' => $campaign['constellation_id'],
                         'alliance_id' => $campaign['defender_id'],
@@ -314,14 +314,14 @@ class testController extends Controller
                         'start_time' => $start_time,
                         'structure_id' => $campaign['structure_id'],
                         'check' => 1,
-                    );
+                    ];
 
                     NewCampaign::updateOrCreate(['id' => $id], $data);
                     echo $score_changed;
                     // * If Score has changed
 
                     if ($score_changed) {
-                        echo " -  I AM IN   -";
+                        echo ' -  I AM IN   -';
                         $campaign = NewCampaign::where('id', $id)->first();
                         $campaignOperations = NewCampaignOperation::where('campaign_id', $id)->get();
                         $bNode = $campaign->b_node;
@@ -332,10 +332,10 @@ class testController extends Controller
                             $system_id = $campaignNode->system_id;
                             if ($campaignNode->node_status == 4) {
                                 $bNode = $bNode + 1;
-                                echo "yay add 1 to blue";
+                                echo 'yay add 1 to blue';
                             } else {
                                 $rNode = $rNode + 1;
-                                echo "yay add 1 to red";
+                                echo 'yay add 1 to red';
                             }
                             $campaignNode->delete();
                             broadcastsystemSolo($system_id, 7);
@@ -353,11 +353,11 @@ class testController extends Controller
                         $system = System::where('id', $campaign['solar_system_id'])->first();
                         $systemName = $system->system_name;
                         if ($event_type == 32458) {
-                            $type = "Ihub";
+                            $type = 'Ihub';
                         } else {
-                            $type = "TCU";
+                            $type = 'TCU';
                         }
-                        $title = $systemName . " - " . $type;
+                        $title = $systemName.' - '.$type;
                         $newOp = NewOperation::create([
                             'link' => $uuid,
                             'solo' => 1,
@@ -402,7 +402,7 @@ class testController extends Controller
                 foreach ($opIDs as $opID) {
                     broadcastCampaignSolo($start->id, $opID->operation_id, 4);
                 }
-            };
+            }
 
             // * Checks to see if a campaign has moved from warmup to active
             $startedCampaigns = NewCampaign::where('start_time', '<=', now())
@@ -415,7 +415,7 @@ class testController extends Controller
                 foreach ($opIDs as $opID) {
                     broadcastCampaignSolo($start->id, $opID->operation_id, 4);
                 }
-            };
+            }
 
             //! IF CHECK = 0, that means its not on the API which means the campaing is over.
             // * Set Campaign to finished(3) but able to access still for 10mins
@@ -468,7 +468,6 @@ class testController extends Controller
 
     public function corptest()
     {
-
         $w = WebWay::where('id', '>', 0)->get();
         foreach ($w as $w) {
             $w->update(['active' => 0]);
@@ -501,25 +500,23 @@ class testController extends Controller
 
     public static function getCorpWithNoAlliance()
     {
-
         $corpID = null;
         $corpTciker = null;
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json",
+            'Accept' => 'application/json',
             'User-Agent' => 'evestuff.online python9066@gmail.com',
-        ])->post("https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en", ["monty"]);
+        ])->post('https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en', ['monty']);
 
         $returns = $response->collect();
         dd($returns);
         foreach ($returns as $key => $var) {
-            if ($key == "corporations") {
-
+            if ($key == 'corporations') {
                 $corpRep = Http::withHeaders([
                     'Content-Type' => 'application/json',
-                    "Accept" => "application/json",
+                    'Accept' => 'application/json',
                     'User-Agent' => 'evestuff.online python9066@gmail.com',
-                ])->get("https://esi.evetech.net/latest/corporations/" . $var[0]['id'] . "/?datasource=tranquility");
+                ])->get('https://esi.evetech.net/latest/corporations/'.$var[0]['id'].'/?datasource=tranquility');
 
                 $corpReturn = $corpRep->collect();
                 // Corp::create([
@@ -546,7 +543,6 @@ class testController extends Controller
 
     public function prequal()
     {
-
         $user = Auth::user();
         if ($user->can('super')) {
             return redirect('/a524f35da058742f0defd6fb0db6afc4');
@@ -557,10 +553,8 @@ class testController extends Controller
 
     public function getSoloOperations()
     {
-
         $user = Auth::user();
         if ($user->can('super')) {
-
             return ['operations' => NewOperation::where('solo', 1)
                 ->with([
                     'campaign',
@@ -572,7 +566,7 @@ class testController extends Controller
                     },
                     'campaign.structure:id,item_id,age',
                 ])
-                ->get()];
+                ->get(), ];
         } else {
             return null;
         }
@@ -580,7 +574,6 @@ class testController extends Controller
 
     public function horizon()
     {
-
         $user = Auth::user();
         if ($user->can('super')) {
             return redirect('/a3bc619080ec6c04c44fffff8cc780de');
@@ -593,16 +586,16 @@ class testController extends Controller
     {
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json",
+            'Accept' => 'application/json',
             'User-Agent' => 'evestuff.online python9066@gmail.com',
-        ])->get("https://esi.evetech.net/latest/alliances/" . $id . "/?datasource=tranquility");
+        ])->get('https://esi.evetech.net/latest/alliances/'.$id.'/?datasource=tranquility');
         $allianceInfo = $response->collect();
 
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json",
+            'Accept' => 'application/json',
             'User-Agent' => 'evestuff.online python9066@gmail.com',
-        ])->get("https://esi.evetech.net/latest/alliances/" . $id . "/corporations/?datasource=tranquility");
+        ])->get('https://esi.evetech.net/latest/alliances/'.$id.'/corporations/?datasource=tranquility');
         $corpIDs = $response->collect();
 
         dd($allianceInfo, $corpIDs);
@@ -610,8 +603,8 @@ class testController extends Controller
 
     public function testStationRecords($type)
     {
-
         $data = StationRecords($type);
+
         return ['stations' => $data];
     }
 
@@ -623,7 +616,7 @@ class testController extends Controller
             'Accept' => 'application/json',
             'User-Agent' => 'evestuff.online python9066@gmail.com',
         ];
-        $url = "https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility";
+        $url = 'https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility';
         $response = $client->request('GET', $url, [
             'headers' => $headers,
         ]);
@@ -641,13 +634,13 @@ class testController extends Controller
 
         $uRegionIDs = $regionIDs->unique();
         $regionList = Region::whereIn('id', $uRegionIDs)->select(['id as value', 'region_name as text'])->orderBy('region_name', 'asc')->get();
+
         return ['regionList' => $regionList];
     }
 
     public function campaginListTest()
     {
         if (Auth::user()->can('super')) {
-
             $list = NewOperation::where('solo', 1)
                 ->with([
                     'campaign.constellation:id,constellation_name',
@@ -656,13 +649,14 @@ class testController extends Controller
                     'campaign.structure:id,age',
                 ])
                 ->get();
+
             return ['list' => $list];
         }
     }
 
     public function corptest2()
     {
-        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
         /*
         send = [
         startSystem => start system get from env (1dq)
@@ -689,14 +683,13 @@ class testController extends Controller
         Http::withToken($webwayToken)
             ->withHeaders([
                 'Content-Type' => 'application/json',
-                "Accept" => "application/json",
+                'Accept' => 'application/json',
                 'User-Agent' => 'evestuff.online python9066@gmail.com',
             ])->post($webwayURL, $data);
     }
 
     public function notifications(Request $request)
     {
-
         testNote::create(['text' => $request]);
         test($request, 1);
     }
@@ -709,7 +702,6 @@ class testController extends Controller
 
         $inputs = $request->all();
         foreach ($inputs as $input) {
-
             dd($input);
         }
     }
@@ -724,8 +716,8 @@ class testController extends Controller
 
     public function test($id)
     {
-        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
-        $url = "https://recon.gnf.lt/api/structure/" . $id;
+        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+        $url = 'https://recon.gnf.lt/api/structure/'.$id;
         // $dance = env('RECON_TOKEN', "DANCE");
         $dance = env('RECON_TOKEN', ($variables && array_key_exists('RECON_TOKEN', $variables)) ? $variables['RECON_TOKEN'] : 'DANCE2');
         // $dance2 = env('RECON_USER', 'DANCE2');
@@ -744,7 +736,7 @@ class testController extends Controller
             'http_errors' => false,
         ]);
         $data = Utils::jsonDecode($response->getBody(), true);
-        if ($data = "Error, Structure Not Found") {
+        if ($data = 'Error, Structure Not Found') {
             // echo "NO STATION";
         } else {
             // echo $dance . " - " . $dance2;

@@ -78,7 +78,7 @@ class UpdateCampaigns extends Command
         // $status = checkeve();
         Userlogging::create(['url' => 'demon campagin', 'user_id' => 9999999999]);
         $check = EveEsiStatus::where('route', '/sovereignty/campaigns/')->first();
-        if ($check->status == "green") {
+        if ($check->status == 'green') {
             campaignUpdate();
         }
     }

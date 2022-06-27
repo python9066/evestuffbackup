@@ -39,10 +39,9 @@ class UpdateTimers extends Command
      */
     public function handle()
     {
-
-        Userlogging::create(['url' => "demon windows", 'user_id' => 9999999999]);
-        $check = EveEsiStatus::where('route', "/sovereignty/structures/")->first();
-        if ($check->status = "green") {
+        Userlogging::create(['url' => 'demon windows', 'user_id' => 9999999999]);
+        $check = EveEsiStatus::where('route', '/sovereignty/structures/')->first();
+        if ($check->status = 'green') {
             timeUpdate();
         }
     }

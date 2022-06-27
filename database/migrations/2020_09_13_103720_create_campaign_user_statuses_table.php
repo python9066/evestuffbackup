@@ -15,8 +15,7 @@ class CreateCampaignUserStatusesTable extends Migration
     {
         Schema::create('campaign_user_statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('name',50);
-
+            $table->string('name', 50);
         });
     }
 

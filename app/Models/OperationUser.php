@@ -4,15 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class OperationUser extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
-
-
 
     public function user()
     {
@@ -21,17 +18,17 @@ class OperationUser extends Model
 
     public function userrole()
     {
-        return $this->belongsTo(CampaignUserRole::class, "role_id", "id");
+        return $this->belongsTo(CampaignUserRole::class, 'role_id', 'id');
     }
 
     public function userstatus()
     {
-        return $this->belongsTo(CampaignUserStatus::class, "user_status_id", "id");
+        return $this->belongsTo(CampaignUserStatus::class, 'user_status_id', 'id');
     }
 
     public function system()
     {
-        return $this->belongsTo(System::class, "system_id", "id");
+        return $this->belongsTo(System::class, 'system_id', 'id');
     }
 
     public function userNode()

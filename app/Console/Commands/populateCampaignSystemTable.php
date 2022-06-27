@@ -40,9 +40,6 @@ class populateCampaignSystemTable extends Command
      */
     public function handle()
     {
-
-
-
         $campaigns = NewCampaign::whereNotNull('id')->get();
         $this->info($campaigns);
         foreach ($campaigns as $c) {
@@ -52,7 +49,7 @@ class populateCampaignSystemTable extends Command
             foreach ($systemsIDs as $sid) {
                 NewCampaignSystem::create([
                     'system_id' => $sid,
-                    'new_campaign_id' => $c->id
+                    'new_campaign_id' => $c->id,
                 ]);
             }
         }

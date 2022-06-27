@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\StationUpdateCoord;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendStationUpdateCoord
 {

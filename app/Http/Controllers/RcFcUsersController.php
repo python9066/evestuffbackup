@@ -37,12 +37,12 @@ class RcFcUsersController extends Controller
 
             array_push($fclist, $data);
         }
+
         return ['fcs' => $fclist];
     }
 
     public function newfc(Request $request)
     {
-
         $check = User::where('name', $request->char_name)->count();
         // dd($check);
         if ($check == null) {

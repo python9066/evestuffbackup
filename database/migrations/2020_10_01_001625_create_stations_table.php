@@ -54,8 +54,6 @@ class CreateStationsTable extends Migration
             $table->string('r_cored')->nullable();
             $table->timestamps();
         });
-
-        
     }
 
     /**

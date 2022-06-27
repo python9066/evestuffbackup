@@ -15,6 +15,7 @@ class ReconTaskSystemRecordsController extends Controller
     public function index()
     {
         $data = ReconTaskSystemRecords::all();
+
         return ['systems' => $data];
     }
 

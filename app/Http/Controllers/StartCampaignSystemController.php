@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\StartCampaignSystemUpdate;
-use App\Models\Auth;
 use App\Models\CampaignUser;
-use App\Models\StartCampaigns;
 use App\Models\StartCampaignSystemRecords;
 use App\Models\StartCampaignSystems;
 use Illuminate\Http\Request;
@@ -53,48 +51,43 @@ class StartCampaignSystemController extends Controller
      */
     public function update(Request $request, $id, $campid)
     {
-
-
-        $c =  CampaignUser::where('id', $request->user_id)->get();
+        $c = CampaignUser::where('id', $request->user_id)->get();
         foreach ($c as $c) {
             $c->update(['campaign_system_id' => $request->sys]);
         }
-        $s =  StartCampaignSystems::find($id)->get();
+        $s = StartCampaignSystems::find($id)->get();
         foreach ($s as $s) {
             $s->update(['campaign_user_id' => $request->user_id]);
         }
-
 
         $message = StartCampaignSystemRecords::where('id', $id)->first();
         $flag = null;
         $flag = collect([
             'message' => $message,
-            'id' => $campid
+            'id' => $campid,
         ]);
         broadcast(new StartCampaignSystemUpdate($flag))->toOthers();
     }
 
     public function updatetimer(Request $request, $id, $campid)
     {
-
-        $s =  StartCampaignSystems::find($id)->get();
+        $s = StartCampaignSystems::find($id)->get();
         foreach ($s as $s) {
             $s->update($request->all());
         }
-
 
         $message = StartCampaignSystemRecords::where('id', $id)->first();
         $flag = null;
         $flag = collect([
             'message' => $message,
-            'id' => $campid
+            'id' => $campid,
         ]);
         broadcast(new StartCampaignSystemUpdate($flag))->toOthers();
     }
 
     public function removeChar($id, $char, $campid)
     {
-        $c =  CampaignUser::find($char)->get();
+        $c = CampaignUser::find($char)->get();
         foreach ($c as $c) {
             $c->update(['campaign_id' => null, 'campaign_system_id' => null]);
         }
@@ -107,7 +100,7 @@ class StartCampaignSystemController extends Controller
         $flag = null;
         $flag = collect([
             'message' => $message,
-            'id' => $campid
+            'id' => $campid,
         ]);
         broadcast(new StartCampaignSystemUpdate($flag))->toOthers();
     }

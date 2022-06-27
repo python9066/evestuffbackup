@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\OperationAdminUpdate;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendOperationAdminUpdate
 {

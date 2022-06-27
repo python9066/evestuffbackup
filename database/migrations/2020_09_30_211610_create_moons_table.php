@@ -18,7 +18,7 @@ class CreateMoonsTable extends Migration
             $table->foreignId('system_id')->index();
             $table->foreignId('constellation_id')->index();
             $table->foreignId('region_id')->index();
-            $table->string("name",100);
+            $table->string('name', 100);
         });
     }
 

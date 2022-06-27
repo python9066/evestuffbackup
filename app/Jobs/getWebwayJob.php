@@ -3,10 +3,8 @@
 namespace App\Jobs;
 
 use App\Events\StationSheetUpdateWebway;
-use App\Listeners\SendStationSheetUpdateWebway;
 use App\Models\WebWay;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -14,8 +12,23 @@ use Illuminate\Queue\SerializesModels;
 
 class getWebwayJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    protected $system_id, $link, $jumps, $link_p, $jumps_p, $start_system_id;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
+
+    protected $system_id;
+
+    protected $link;
+
+    protected $jumps;
+
+    protected $link_p;
+
+    protected $jumps_p;
+
+    protected $start_system_id;
+
     /**
      * Create a new job instance.
      *
@@ -31,7 +44,6 @@ class getWebwayJob implements ShouldQueue
         $this->jumps_p = $jumps_p;
     }
 
-
     /**
      * Execute the job.
      *
@@ -39,27 +51,25 @@ class getWebwayJob implements ShouldQueue
      */
     public function handle()
     {
-
         $send = false;
 
         $old = WebWay::where([
             'start_system_id' => $this->start_system_id,
             'system_id' => $this->system_id,
-            'permissions' => 0
+            'permissions' => 0,
         ])->first();
 
         $oldp = WebWay::where([
             'start_system_id' => $this->start_system_id,
             'system_id' => $this->system_id,
-            'permissions' => 1
+            'permissions' => 1,
         ])->first();
-
 
         WebWay::updateOrCreate(
             [
                 'start_system_id' => $this->start_system_id,
                 'system_id' => $this->system_id,
-                'permissions' => 0
+                'permissions' => 0,
             ],
             [
                 'webway' => $this->link,
@@ -67,20 +77,17 @@ class getWebwayJob implements ShouldQueue
             ]
         );
 
-
-
         WebWay::updateOrCreate(
             [
                 'start_system_id' => $this->start_system_id,
                 'system_id' => $this->system_id,
-                'permissions' => 1
+                'permissions' => 1,
             ],
             [
                 'webway' => $this->link_p,
-                'jumps' => $this->jumps_p
+                'jumps' => $this->jumps_p,
             ]
         );
-
 
         if ($old) {
             if ($old->webway != $this->link || $old->jumps != $this->jumps) {
@@ -88,7 +95,7 @@ class getWebwayJob implements ShouldQueue
             }
         } else {
             $send = true;
-        };
+        }
 
         if ($oldp) {
             if ($oldp->webway != $this->link_p || $oldp->jumps != $this->jumps_p) {
@@ -96,12 +103,12 @@ class getWebwayJob implements ShouldQueue
             }
         } else {
             $send = true;
-        };
+        }
 
         if ($send) {
             $system = $this->system_id;
             $flag = collect([
-                'id' => $system
+                'id' => $system,
             ]);
 
             broadcast(new StationSheetUpdateWebway($flag));

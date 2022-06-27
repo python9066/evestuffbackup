@@ -15,6 +15,7 @@ class MoonController extends Controller
     public function index()
     {
         $moon = Moon::all();
+
         return ['moons' => $moon];
     }
 
@@ -25,11 +26,12 @@ class MoonController extends Controller
         foreach ($moons as $moon) {
             $data = [
                 'text' => $moon->name,
-                'value' => $moon->id
+                'value' => $moon->id,
             ];
 
             array_push($moonlist, $data);
         }
+
         return ['moons' => $moonlist];
     }
 

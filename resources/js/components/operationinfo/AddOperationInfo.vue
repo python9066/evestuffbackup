@@ -54,7 +54,9 @@
               >Add</v-btn
             ></v-col
           ><v-spacer /><v-col cols="auto"
-            ><v-btn rounded color=" warning">Close</v-btn></v-col
+            ><v-btn rounded color=" warning" @click="close()"
+              >Close</v-btn
+            ></v-col
           >
         </v-row>
       </v-card-actions>
@@ -95,16 +97,24 @@ export default {
       };
       await axios({
         method: "POST",
-        url: "/api/operationinfo",
+        url: "/api/operationinfosheet",
         withCredentials: true,
         data: request,
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-      });
+      }).then(
+        (this.nameText = ""),
+        (this.infoText = ""),
+        (this.addShown = false)
+      );
 
       // TODO Add logging
+    },
+
+    close() {
+      (this.nameText = ""), (this.infoText = ""), (this.addShown = false);
     },
   },
 

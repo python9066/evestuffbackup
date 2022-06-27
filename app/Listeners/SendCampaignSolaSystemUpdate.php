@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\CampaignSolaSystemUpdate;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendCampaignSolaSystemUpdate
 {

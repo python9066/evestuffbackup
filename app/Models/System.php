@@ -3,15 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class System extends Model
 {
-
     protected $guarded = [];
-
-
 
     public function region()
     {
@@ -60,7 +55,7 @@ class System extends Model
 
     public function webway()
     {
-        return $this->hasMany(WebWay::class, "system_id", "id");
+        return $this->hasMany(WebWay::class, 'system_id', 'id');
     }
 
     public function newCampaigns()
@@ -73,7 +68,6 @@ class System extends Model
         return $this->hasMany(NewSystemNode::class, 'system_id', 'id');
     }
 
-
     public function scoutUser()
     {
         return $this->belongsTo(User::class, 'scout_id', 'id');
@@ -83,8 +77,6 @@ class System extends Model
     {
         return $this->belongsTo(User::class, 'checked_id', 'id');
     }
-
-
 
     protected $casts = [
         'region_id ' => 'integer',

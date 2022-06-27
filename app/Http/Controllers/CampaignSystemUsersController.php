@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Events\CampaignUsersChanged;
 use App\Models\Campaign;
 use App\Models\CampaignSystemUsers;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class CampaignSystemUsersController extends Controller
@@ -25,10 +23,10 @@ class CampaignSystemUsersController extends Controller
             foreach ($members as $member) {
                 $data = [];
                 $data = [
-                    "id" => $member->id,
-                    "user_id" => $member->user_id,
-                    "user_name" => $member->user->name,
-                    "campaign_id" => $member->campaign_id,
+                    'id' => $member->id,
+                    'user_id' => $member->user_id,
+                    'user_name' => $member->user->name,
+                    'campaign_id' => $member->campaign_id,
                 ];
                 array_push($users, $data);
             }
@@ -50,7 +48,7 @@ class CampaignSystemUsersController extends Controller
             $campaign_id = Campaign::where('link', $campid)->value('id');
             $data = [
                 'user_id' => $request['user_id'],
-                'campaign_id' => $campaign_id
+                'campaign_id' => $campaign_id,
             ];
         } else {
             $campaign_id = $campid;
@@ -59,11 +57,11 @@ class CampaignSystemUsersController extends Controller
                 'user_id' => $request['user_id'],
                 'campaign_id' => $request['campaign_id'],
             ];
-        };
+        }
         CampaignSystemUsers::create($data);
         $flag = collect([
             'flag' => 5,
-            'id' => $campaign_id
+            'id' => $campaign_id,
         ]);
         broadcast(new CampaignUsersChanged($flag))->toOthers();
     }
@@ -103,7 +101,7 @@ class CampaignSystemUsersController extends Controller
         $c->delete();
         $flag = collect([
             'flag' => 5,
-            'id' => $campid
+            'id' => $campid,
         ]);
         broadcast(new CampaignUsersChanged($flag))->toOthers();
     }

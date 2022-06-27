@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\OperationUpdate;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendOperationUpdate
 {

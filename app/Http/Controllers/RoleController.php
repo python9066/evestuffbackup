@@ -6,15 +6,16 @@ use App\Events\UserUpdate;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
-use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
     use HasRoles;
     use HasPermissions;
+
     /**
      * Display a listing of the resource.
      *
@@ -22,14 +23,13 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return ['roles' => Role::where("name", "!=", "Super Admin")->where("name", "!=", "Wizard")->select('id', 'name')->orderBy('name', 'asc')->get()];
+        return ['roles' => Role::where('name', '!=', 'Super Admin')->where('name', '!=', 'Wizard')->select('id', 'name')->orderBy('name', 'asc')->get()];
     }
-
 
     public function removeRole(Request $request)
     {
         $check = Auth::user();
-        $check->hasRole("edit_users");
+        $check->hasRole('edit_users');
         if ($check) {
             $user = User::find($request->userId);
             $user->removeRole($request->roleId);
@@ -41,7 +41,7 @@ class RoleController extends Controller
     public function addRole(Request $request)
     {
         $check = Auth::user();
-        $check->hasRole("edit_users");
+        $check->hasRole('edit_users');
         if ($check) {
             $user = User::find($request->userId);
             $user->assignRole($request->roleId);
@@ -57,7 +57,6 @@ class RoleController extends Controller
 
     public function Wizard()
     {
-
         $user = User::find(25107);
         // $permissions = $user->getAllPermissions()->pluck("name");
         // // if($permissions == true){
@@ -69,12 +68,10 @@ class RoleController extends Controller
         // dd($permissions);
         $user->assignRole('Wizard');
         // $role = Role::findByName('Super Admin');
-
     }
 
     public function remove()
     {
-
         $role = User::where('name', 'Coord')->get();
         $permission = Permission::where('name', 'edit_all_users')->get();
         $role->revokePermissionTo($permission);
@@ -88,7 +85,6 @@ class RoleController extends Controller
         // dd($permissions);
         // $user->assignRole('Wizard');
         // $role = Role::findByName('Super Admin');
-
     }
 
     /**

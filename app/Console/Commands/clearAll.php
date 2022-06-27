@@ -55,7 +55,7 @@ class clearAll extends Command
             $a->update([
                 'operation_id' => null,
                 'user_status_id' => 1,
-                'system_id' => null
+                'system_id' => null,
             ]);
         }
     }

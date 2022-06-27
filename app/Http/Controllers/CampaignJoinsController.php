@@ -26,19 +26,20 @@ class CampaignJoinsController extends Controller
                 foreach ($camp as $camp) {
                     $data = [];
                     $data = [
-                        "text" => $camp['system'] . " - " . $camp['item_name'],
-                        "campaign_id" => $pull['campaign_id'],
-                        "custom_campaign_id" => $pull['custom_campaign_id'],
-                        "color" => $camp['color'],
-                        "status_id" => $camp['status_id'],
-                        "constellation_id" => $camp['constellation_id'],
-                        "warmup" => $camp['warmup']
+                        'text' => $camp['system'].' - '.$camp['item_name'],
+                        'campaign_id' => $pull['campaign_id'],
+                        'custom_campaign_id' => $pull['custom_campaign_id'],
+                        'color' => $camp['color'],
+                        'status_id' => $camp['status_id'],
+                        'constellation_id' => $camp['constellation_id'],
+                        'warmup' => $camp['warmup'],
                     ];
                 }
                 array_push($list, $data);
             }
         }
-        return ["value" => $list];
+
+        return ['value' => $list];
     }
 
     public function index()
@@ -52,19 +53,20 @@ class CampaignJoinsController extends Controller
                 foreach ($camp as $camp) {
                     $data = [];
                     $data = [
-                        "text" => $camp['system'] . " - " . $camp['item_name'],
-                        "campaign_id" => $pull['campaign_id'],
-                        "custom_campaign_id" => $pull['custom_campaign_id'],
-                        "color" => $camp['color'],
-                        "status_id" => $camp['status_id'],
-                        "constellation_id" => $camp['constellation_id'],
-                        "warmup" => $camp['warmup']
+                        'text' => $camp['system'].' - '.$camp['item_name'],
+                        'campaign_id' => $pull['campaign_id'],
+                        'custom_campaign_id' => $pull['custom_campaign_id'],
+                        'color' => $camp['color'],
+                        'status_id' => $camp['status_id'],
+                        'constellation_id' => $camp['constellation_id'],
+                        'warmup' => $camp['warmup'],
                     ];
                 }
                 array_push($list, $data);
             }
         }
-        return ["value" => $list];
+
+        return ['value' => $list];
     }
 
     /**
@@ -89,17 +91,18 @@ class CampaignJoinsController extends Controller
                 foreach ($sys as $sys) {
                     $data = [];
                     $data = [
-                        "id" => $sys['id'],
-                        "system_name" => $sys['system_name'],
-                        "constellation_id" => $sys['constellation_id'],
-                        "constellation_name" => $const['constellation_name']
+                        'id' => $sys['id'],
+                        'system_name' => $sys['system_name'],
+                        'constellation_id' => $sys['constellation_id'],
+                        'constellation_name' => $const['constellation_name'],
                     ];
                     array_push($list, $data);
                 }
             }
         }
         $list = array_unique($list, SORT_REGULAR);
-        return ["systems" => $list];
+
+        return ['systems' => $list];
     }
 
     /**
@@ -119,20 +122,21 @@ class CampaignJoinsController extends Controller
                 foreach ($camp as $camp) {
                     $data = [];
                     $data = [
-                        "text" => $camp['system'] . " - " . $camp['item_name']
+                        'text' => $camp['system'].' - '.$camp['item_name'],
                     ];
                 }
                 array_push($list, $data);
             }
         }
-        return ["value" => $list];
+
+        return ['value' => $list];
     }
 
     public function list($id)
     {
         $pull = CampaignJoin::where('custom_campaign_id', $id)->get()->pluck('campaign_id');
 
-        return ["value" => $pull];
+        return ['value' => $pull];
     }
 
     /**

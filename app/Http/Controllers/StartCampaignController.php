@@ -26,10 +26,10 @@ class StartCampaignController extends Controller
             $data = [];
             $data = [
                 'id' => $pull['id'],
-                'name' => $pull['name']
+                'name' => $pull['name'],
             ];
             array_push($list, $data);
-        };
+        }
 
         return ['campaigns' => $list];
     }
@@ -51,7 +51,6 @@ class StartCampaignController extends Controller
             StartCampaignJoins::create(['start_campaign_id' => $campid, 'constellation_id' => $data]);
             $solas = System::where('constellation_id', $data)->get();
             foreach ($solas as $sola) {
-
                 StartCampaignSystems::create(['system_id' => $sola['id'], 'start_campaign_id' => $campid, 'constellation_id' => $data]);
             }
         }
@@ -109,7 +108,7 @@ class StartCampaignController extends Controller
             $c->update([
                 'campaign_id' => null,
                 'campaign_system_id' => null,
-                'status_id' => 1
+                'status_id' => 1,
             ]);
         }
     }

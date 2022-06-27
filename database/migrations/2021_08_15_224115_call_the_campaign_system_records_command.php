@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Artisan;
 
 class CallTheCampaignSystemRecordsCommand extends Migration
@@ -14,7 +12,7 @@ class CallTheCampaignSystemRecordsCommand extends Migration
      */
     public function up()
     {
-        Artisan::call("view:CreateOrReplaceCampaignSystemRecordsView");
+        Artisan::call('view:CreateOrReplaceCampaignSystemRecordsView');
     }
 
     /**
@@ -24,6 +22,5 @@ class CallTheCampaignSystemRecordsCommand extends Migration
      */
     public function down()
     {
-
     }
 }

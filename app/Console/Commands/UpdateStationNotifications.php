@@ -36,10 +36,8 @@ class UpdateStationNotifications extends Command
      *
      * @return int
      */
-
     public function handle()
     {
-
         Userlogging::create(['url' => 'demon station note', 'user_id' => 9999999999]);
         stationNotificationCheck();
     }

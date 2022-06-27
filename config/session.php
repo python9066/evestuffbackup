@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Str;
 
-$variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+$variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+
 return [
 
     /*
@@ -129,7 +130,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        Str::slug(env('APP_NAME', 'laravel'), '_') . '_session'
+        Str::slug(env('APP_NAME', 'laravel'), '_').'_session'
     ),
 
     /*

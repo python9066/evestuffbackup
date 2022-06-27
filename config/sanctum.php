@@ -1,5 +1,7 @@
 <?php
-$variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+
+$variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+
 return [
 
     /*
@@ -22,7 +24,7 @@ return [
     'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', ($variables && array_key_exists('SANCTUM_STATEFUL_DOMAINS', $variables)) ? $variables['SANCTUM_STATEFUL_DOMAINS'] : 'null', sprintf(
         '%s%s',
         'localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
-        env('APP_URL') ? ',' . parse_url(env('APP_URL'), PHP_URL_HOST) : ''
+        env('APP_URL') ? ','.parse_url(env('APP_URL'), PHP_URL_HOST) : ''
     ))),
 
     /*

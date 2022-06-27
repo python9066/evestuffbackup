@@ -38,7 +38,7 @@ class CreateOrReplaceReconTaskSystemRecordsView extends Command
      */
     public function handle()
     {
-        DB::statement("CREATE OR REPLACE VIEW recon_task_system_records AS SELECT recon_task_systems.id AS id,
+        DB::statement('CREATE OR REPLACE VIEW recon_task_system_records AS SELECT recon_task_systems.id AS id,
         recon_task_systems.recon_task_id AS recon_task_id,
 recon_task_systems.system_id AS system_id,
 recon_task_systems.last_edit AS last_edit,
@@ -55,6 +55,6 @@ FROM recon_task_systems
 LEFT JOIN users ON users.id = recon_task_systems.user_id
 LEFT JOIN systems ON systems.id = recon_task_systems.system_id
 LEFT JOIN regions ON regions.id = systems.region_id
-LEFT JOIN constellations ON constellations.id = systems.constellation_id");
+LEFT JOIN constellations ON constellations.id = systems.constellation_id');
     }
 }

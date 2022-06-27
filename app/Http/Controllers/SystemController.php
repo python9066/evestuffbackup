@@ -55,7 +55,7 @@ class SystemController extends Controller
             if ($time_left <= 0) {
                 $time_left = $time_left * -1;
             }
-            $end_time = now()->modify("+ " . round($time_left) . " seconds");
+            $end_time = now()->modify('+ '.round($time_left).' seconds');
             $systemNode->update([
                 'end_time' => $end_time,
                 'input_time' => now(),
@@ -75,7 +75,7 @@ class SystemController extends Controller
                 if ($time_left <= 0) {
                     $time_left = $time_left * -1;
                 }
-                $end_time = now()->modify("+ " . round($time_left) . " seconds");
+                $end_time = now()->modify('+ '.round($time_left).' seconds');
                 $userNode->update([
                     'end_time' => $end_time,
                     'input_time' => now(),
@@ -112,6 +112,7 @@ class SystemController extends Controller
     public function systemsinconstellation($id)
     {
         $constid = Campaign::where('link', $id)->value('constellation_id');
+
         return ['systems' => System::where('constellation_id', $constid)->select('id', 'system_name')->get()];
     }
 

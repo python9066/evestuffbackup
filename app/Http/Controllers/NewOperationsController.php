@@ -83,11 +83,9 @@ class NewOperationsController extends Controller
             $op->read_only = $request->read_only;
             $op->save();
             broadcastOperationSetReadOnly($opID, 2, $request->read_only);
-
         } else {
             return null;
         }
-
     }
 
     public function makeNewOperation(Request $request)
@@ -134,7 +132,7 @@ class NewOperationsController extends Controller
     public function updatePriority(Request $request, $id)
     {
         $user = Auth::user();
-        if ($user->can("edit_hack_priority")) {
+        if ($user->can('edit_hack_priority')) {
             $operation = NewOperation::where('id', $id)->first();
             $operation->priority = $request->priority;
             $operation->save();
@@ -144,6 +142,7 @@ class NewOperationsController extends Controller
     public function getCustomOperationList()
     {
         $ops = NewOperation::where('solo', 0)->with(['campaign.system', 'campaign.alliance'])->get();
+
         return ['operations' => $ops];
     }
 
@@ -238,7 +237,6 @@ class NewOperationsController extends Controller
         $operationUsers = OperationUser::where('operation_id', $id)->get();
 
         foreach ($operationUsers as $opuser) {
-
             $opuser->update([
                 'operation_id' => null,
                 'user_status_id' => 1,

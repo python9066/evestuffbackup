@@ -30,6 +30,7 @@ class CreateOrReplaceStationRecordsViewCommand extends Command
     {
         parent::__construct();
     }
+
     // items.item_name AS 'item_name',
     /**
      * Execute the console com ffmand.

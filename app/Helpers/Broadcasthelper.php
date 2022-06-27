@@ -10,18 +10,16 @@ use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
 use App\Models\OperationUserList;
 
-if (!function_exists('broadcastsystemSolo')) {
+if (! function_exists('broadcastsystemSolo')) {
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 4 = updates system info
      * 5 = remove char from ops table
      * 7 = update campaign system
-
      */
-
     function broadcastsystemSolo($systemID, $flagNumber)
     {
         $campaignIDs = NewCampaignSystem::where('system_id', $systemID)->pluck('new_campaign_id');
@@ -29,7 +27,6 @@ if (!function_exists('broadcastsystemSolo')) {
         $message = systemSolo($systemID);
 
         foreach ($obIDS as $op) {
-
             $flag = collect([
                 'flag' => $flagNumber,
                 'message' => $message,
@@ -40,7 +37,7 @@ if (!function_exists('broadcastsystemSolo')) {
     }
 }
 
-if (!function_exists('broadcastCampaignSolo')) {
+if (! function_exists('broadcastCampaignSolo')) {
     function broadcastCampaignSolo($campaignID, $opID, $flagNumber)
     {
         $message = campaignSolo($campaignID);
@@ -54,18 +51,16 @@ if (!function_exists('broadcastCampaignSolo')) {
     }
 }
 
-if (!function_exists('broadcastuserSolo')) {
+if (! function_exists('broadcastuserSolo')) {
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 4 = updates system info
      * 5 = remove char from ops table
      * 6 = update op char table
-
      */
-
     function broadcastuserSolo($opID, $opUserID, $flagNumber)
     {
         $message = opUserSolo($opID, $opUserID);
@@ -79,20 +74,17 @@ if (!function_exists('broadcastuserSolo')) {
     }
 }
 
-if (!function_exists('broadcastOperationRefresh')) {
+if (! function_exists('broadcastOperationRefresh')) {
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 3 = refresh operation info
      * 8 = update camaping page status
-
      */
-
     function broadcastOperationRefresh($opID, $campaignID, $flagNumber)
     {
-
         $message = NewOperation::where('id', $opID)
             ->with([
                 'campaign' => function ($q) use ($campaignID) {
@@ -116,19 +108,16 @@ if (!function_exists('broadcastOperationRefresh')) {
     }
 }
 
-if (!function_exists('broadcastOperationSetReadOnly')) {
+if (! function_exists('broadcastOperationSetReadOnly')) {
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 2 = set Read Only
-
      */
-
     function broadcastOperationSetReadOnly($opID, $flagNumber, $message)
     {
-
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $message,
@@ -136,18 +125,17 @@ if (!function_exists('broadcastOperationSetReadOnly')) {
         ]);
 
         broadcast(new OperationUpdate($flag));
-    }}
+    }
+}
 
-if (!function_exists('broadcastOperationUserList')) {
+if (! function_exists('broadcastOperationUserList')) {
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 1 = update operation user list,
-
      */
-
     function broadcastOperationUserList($opID, $flagNumber)
     {
         $userIDs = OperationUserList::where('operation_id', $opID)->pluck('user_id');
@@ -163,18 +151,16 @@ if (!function_exists('broadcastOperationUserList')) {
     }
 }
 
-if (!function_exists('broadcastuserOwnSolo')) {
+if (! function_exists('broadcastuserOwnSolo')) {
 
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 3 = Add/Update Own Char info -
      * 5 = RemoveChar -
-
      */
-
     function broadcastuserOwnSolo($opUserID, $userID, $flagNumber, $opID)
     {
         $message = ownUsersolo($opUserID);
@@ -190,20 +176,17 @@ if (!function_exists('broadcastuserOwnSolo')) {
     }
 }
 
-if (!function_exists('broadcastAllCharOverlay')) {
+if (! function_exists('broadcastAllCharOverlay')) {
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
-     * 1 = Open Add Char overlay -
      *
-     *  @param int $type
+     * @param  int  $flagNumber
+     * 1 = Open Add Char overlay -
+     *  @param  int  $type
      * 1 = Normal message -
      * 2 = read only message
-
      */
-
     function broadcastAllCharOverlay($flagNumber, $opID, $type)
     {
         $users = OperationUserList::where('operation_id', $opID)
@@ -222,23 +205,22 @@ if (!function_exists('broadcastAllCharOverlay')) {
                     'type' => $type,
                 ]);
 
-                broadcast(new OperationOwnUpdate($flag));}
+                broadcast(new OperationOwnUpdate($flag));
+            }
         }
     }
 }
 
-if (!function_exists('broadcastCustomOperationSolo')) {
+if (! function_exists('broadcastCustomOperationSolo')) {
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 1 = Add Custom Operation To list -
      * 2 = Update Custom Operation On List -
      * 3 = Delete CUstom Operation from list -
-
      */
-
     function broadcastCustomOperationSolo($opID, $flagNumber)
     {
         $message = customOperationSolo($opID);
@@ -251,17 +233,15 @@ if (!function_exists('broadcastCustomOperationSolo')) {
 }
 
 /**
-
  * Example of documenting multiple possible datatypes for a given parameter
 
- * @param int $flagNumber
+ *
+ * @param  int  $flagNumber
  * 3 = Delete CUstom Operation from list -
-
  */
-if (!function_exists('broadcastCustomOperationDeleteSolo')) {
+if (! function_exists('broadcastCustomOperationDeleteSolo')) {
     function broadcastCustomOperationDeleteSolo($opID, $flagNumber)
     {
-
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $opID,
@@ -270,16 +250,14 @@ if (!function_exists('broadcastCustomOperationDeleteSolo')) {
     }
 }
 
-if (!function_exists('broadcastSoloOpSoloOp')) {
+if (! function_exists('broadcastSoloOpSoloOp')) {
     /**
-
      * Example of documenting multiple possible datatypes for a given parameter
 
-     * @param int $flagNumber
+     *
+     * @param  int  $flagNumber
      * 1 = Update solo SoloOp Table -
-
      */
-
     function broadcastSoloOpSoloOp($flagNumber, $opID)
     {
         $message = NewOperation::where('solo', 1)

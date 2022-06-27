@@ -32,8 +32,6 @@ class AppServiceProvider extends ServiceProvider
         }
     }
 
-
-
     /**
      * Bootstrap any application services.
      *
@@ -41,7 +39,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         if ($this->app->environment('production')) {
             \Illuminate\Support\Facades\URL::forceScheme('https');
         }
@@ -50,6 +47,7 @@ class AppServiceProvider extends ServiceProvider
             'gice',
             function ($app) use ($socialite) {
                 $config = $app['config']['services.gice'];
+
                 return $socialite->buildProvider(GiceProvider::class, $config);
             }
         );

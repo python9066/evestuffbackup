@@ -15,7 +15,7 @@ class CreateCampaignUserRolesTable extends Migration
     {
         Schema::create('campaign_user_roles', function (Blueprint $table) {
             $table->id();
-            $table->string('role',50);
+            $table->string('role', 50);
         });
     }
 

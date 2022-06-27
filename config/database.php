@@ -6,7 +6,7 @@
     |--------------------------------------------------------------------------
     */
 
-$relationships = getenv("PLATFORM_RELATIONSHIPS");
+$relationships = getenv('PLATFORM_RELATIONSHIPS');
 $database = false;
 $redis = false;
 if ($relationships) {
@@ -72,7 +72,7 @@ return [
             'collation' => 'utf8mb4_unicode_ci',
             'prefix'    => env('DB_PREFIX', ''),
             'strict'    => false,
-            'engine'    => 'InnoDB'
+            'engine'    => 'InnoDB',
         ],
 
         'pgsql' => [
@@ -143,7 +143,5 @@ return [
         ],
 
     ],
-
-
 
 ];

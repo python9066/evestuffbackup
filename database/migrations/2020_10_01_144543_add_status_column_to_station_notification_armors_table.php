@@ -14,7 +14,8 @@ class AddStatusColumnToStationNotificationArmorsTable extends Migration
     public function up()
     {
         Schema::table('station_notification_armors', function (Blueprint $table) {
-            $table->integer('status')->after('timestamp')->default(0);        });
+            $table->integer('status')->after('timestamp')->default(0);
+        });
     }
 
     /**

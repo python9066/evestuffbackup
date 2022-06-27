@@ -2,26 +2,23 @@
 
 namespace utils\Helper;
 
-
 use App\Models\Auth;
 use App\Models\Campaign;
 use App\Models\Client;
+use App\Models\HotRegion;
+use App\Models\Station;
+use App\Models\System;
 use App\Models\User;
 use DateTime;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Utils;
-use App\Models\HotRegion;
-use App\Models\Station;
-use App\Models\System;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
-
-use function GuzzleHttp\json_decode;
 
 class Helper
 {
     public static function displayName()
     {
-        return "Laravel fefefFramework";
+        return 'Laravel fefefFramework';
     }
 
     public static function authcheck()
@@ -39,24 +36,23 @@ class Helper
                 $client = Client::first();
                 $http = new GuzzleHttpCLient();
 
-
                 $headers = [
-                    'Authorization' => 'Basic ' . $client->code,
+                    'Authorization' => 'Basic '.$client->code,
                     'Content-Type' => 'application/x-www-form-urlencoded',
                     'Host' => 'login.eveonline.com',
-                    'User-Agent' => 'evestuff.online python9066@gmail.com'
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
 
                 ];
-                $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
+                $body = 'grant_type=refresh_token&refresh_token='.$auth->refresh_token;
                 // echo $body;
                 $response = $http->request('POST', 'https://login.eveonline.com/v2/oauth/token', [
                     'headers' => $headers,
-                    'body' => $body
+                    'body' => $body,
                 ]);
                 $data = Utils::jsonDecode($response->getBody(), true);
                 // dd($data);
                 $date = new DateTime();
-                $date = $date->modify("+19 minutes");
+                $date = $date->modify('+19 minutes');
                 $auth->update(['access_token' => $data['access_token'], 'refresh_token' => $data['refresh_token'], 'expire_date' => $date]);
             }
         }
@@ -66,12 +62,12 @@ class Helper
     {
         $type = $type;
 
-        if ($type == "standing") {
+        if ($type == 'standing') {
             $token = Auth::where('flag_standing', 0)->first();
             // dd($token);
             // echo "auth pull - ";
             if ($token == null) {
-                $a =   Auth::where('flag_standing', 1)->get();
+                $a = Auth::where('flag_standing', 1)->get();
                 foreach ($a as $a) {
                     $a->update(['flag_standing' => 0]);
                 }
@@ -82,7 +78,7 @@ class Helper
                 $token->update(['flag_standing' => 1]);
                 $url = 'https://esi.evetech.net/latest/alliances/1354830081/contacts/?datasource=tranquility';
             }
-        } elseif ($type == "note") {
+        } elseif ($type == 'note') {
             $token = Auth::where('flag_note', 0)->first();
 
             if ($token == null) {
@@ -91,37 +87,37 @@ class Helper
                 $token = Auth::where('flag_note', 0)->first();
                 $token->update(['flag_note' => 1]);
 
-                $url = "https://esi.evetech.net/latest/characters/" . $token->char_id . "/notifications/";
-                // dd($url);
+                $url = 'https://esi.evetech.net/latest/characters/'.$token->char_id.'/notifications/';
+            // dd($url);
             } else {
                 $token->update(['flag_note' => 1]);
-                $url = "https://esi.evetech.net/latest/characters/" . $token->char_id . "/notifications/";
+                $url = 'https://esi.evetech.net/latest/characters/'.$token->char_id.'/notifications/';
                 // dd($url);
             }
-        } elseif ($type == "station") {
+        } elseif ($type == 'station') {
             $token = Auth::where('flag_station', 0)->first();
 
             if ($token == null) {
-                $a =  Auth::where('flag_station', 1)->get();
+                $a = Auth::where('flag_station', 1)->get();
                 foreach ($a as $a) {
                     $a->update(['flag_station' => 0]);
                 }
                 $token = Auth::where('flag_station', 0)->first();
                 $token->update(['flag_station' => 1]);
 
-                $url = "https://esi.evetech.net/latest/universe/structures/" . $station_id . "/?datasource=tranquility";
-                // dd($url);
+                $url = 'https://esi.evetech.net/latest/universe/structures/'.$station_id.'/?datasource=tranquility';
+            // dd($url);
             } else {
                 $token->update(['flag_station' => 1]);
-                $url = "https://esi.evetech.net/latest/universe/structures/" . $station_id . "/?datasource=tranquility";
+                $url = 'https://esi.evetech.net/latest/universe/structures/'.$station_id.'/?datasource=tranquility';
                 // dd($url);
             }
         }
         // echo $url.":url";
         $client = new GuzzleHttpClient();
         $headers = [
-            'Authorization' => 'Bearer ' . $token->access_token,
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
+            'Authorization' => 'Bearer '.$token->access_token,
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
 
         ];
         $good = 0;
@@ -129,11 +125,12 @@ class Helper
         while ($good == 0) {
             $response = $client->request('GET', $url, [
                 'headers' => $headers,
-                'http_errors' => false
+                'http_errors' => false,
             ]);
             if ($response->getStatusCode() == 200) {
                 $data = Utils::jsonDecode($response->getBody(), true);
                 $good = 1;
+
                 return $data;
             } else {
                 sleep(10);
@@ -143,40 +140,34 @@ class Helper
 
     public static function fixtime($time)
     {
-
-
-        $time = str_replace("Z", "", $time);
-        $time = str_replace("T", " ", $time);
-        $time = str_replace("+00:00", "", $time);
+        $time = str_replace('Z', '', $time);
+        $time = str_replace('T', ' ', $time);
+        $time = str_replace('+00:00', '', $time);
 
         return $time;
     }
 
-
     public static function clearRemember()
     {
-
         $now = now()->modify('-3 days');
-        $u =  User::where('updated_at', '<', $now)->get();
+        $u = User::where('updated_at', '<', $now)->get();
         foreach ($u as $u) {
             $u->update(['remember_token' => null]);
         }
     }
 
-
     public static function checkeve()
     {
-
         $http = new GuzzleHttpCLient();
 
         $headers = [
-            'Accept' => "text/plain",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
+            'Accept' => 'text/plain',
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
         ];
 
         $response = $http->request('GET', 'https://esi.evetech.net/ping');
         $status = $response->getBody();
-        if ($status != "ok") {
+        if ($status != 'ok') {
             return 0;
         }
 
@@ -199,17 +190,17 @@ class Helper
 
     public static function eveUserCount()
     {
-
         $http = new GuzzleHttpCLient();
         $headers = [
-            'Accept' => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
+            'Accept' => 'application/json',
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
         ];
 
         $response = $http->request('GET', 'https://esi.evetech.net/latest/status/?datasource=tranquility', [
             'headers' => $headers,
         ]);
         $status = Utils::jsonDecode($response->getBody());
+
         return $status->players;
     }
 
@@ -218,14 +209,15 @@ class Helper
         $campaign = Campaign::where('id', $campaignID)->first();
         $systemname = $campaign->system->system_name;
         if ($campaign->event_type == 32226) {
-            $itemname = "TCU";
+            $itemname = 'TCU';
         } else {
-            $itemname = "IHUB";
+            $itemname = 'IHUB';
         }
-        $campaignname = $itemname . " in " . $systemname;
+        $campaignname = $itemname.' in '.$systemname;
+
         return $date = [
             'campaign_name' => $campaignname,
-            'system_name' => $systemname
+            'system_name' => $systemname,
         ];
     }
 
@@ -240,7 +232,6 @@ class Helper
     public static function stationlogs($log)
     {
     }
-
 
     public static function StationRecords($type)
     {
@@ -264,16 +255,14 @@ class Helper
 
         if ($type == 4) {
             $station_query->where('show_on_rc', 1);
-            if ($user->can("use_reserved_connection")) {
-                $station_query->with(['system.webway'
-                => function ($t) {
+            if ($user->can('use_reserved_connection')) {
+                $station_query->with(['system.webway' => function ($t) {
                     $t->where('permissions', 1);
-                },]);
+                }]);
             } else {
-                $station_query->with(['system.webway'
-                => function ($t) {
+                $station_query->with(['system.webway' => function ($t) {
                     $t->where('permissions', 0);
-                },]);
+                }]);
             }
         }
 
@@ -282,10 +271,9 @@ class Helper
         }
 
         if ($type == 6) {
-            $station_query->where('show_on_coord', 1)->with(['system.webway'
-            => function ($t) {
+            $station_query->where('show_on_coord', 1)->with(['system.webway' => function ($t) {
                 $t->where('permissions', 1);
-            },]);
+            }]);
             if ($user->can('view_coord_sheet')) {
             } else {
                 $station_query->where('show_on_coord', 1)->whereIn('system_id', $systemIDs);
@@ -305,17 +293,17 @@ class Helper
             'corp.alliance:id,name,ticker,standing,url,color',
             'item',
             'fit:id,item_name',
-            'addedBy:id,name'
+            'addedBy:id,name',
 
         ]);
 
         $stationRecords = $station_query->get();
+
         return $stationRecords;
     }
 
     public static function StationRecordsSolo($type, $id)
     {
-
         $regionIDs = HotRegion::where('show_fcs', 1)->pluck('region_id');
         $systemIDs = System::whereIn('region_id', $regionIDs)->pluck('id');
         $user = FacadesAuth::user();
@@ -334,20 +322,17 @@ class Helper
             $station_query->where('show_on_welp', 1);
         }
 
-
         //rchsheet
         if ($type == 4) {
             $station_query->where('show_on_rc', 1);
-            if ($user->can("use_reserved_connection")) {
-                $station_query->with(['system.webway'
-                => function ($t) {
+            if ($user->can('use_reserved_connection')) {
+                $station_query->with(['system.webway' => function ($t) {
                     $t->where('permissions', 1);
-                },]);
+                }]);
             } else {
-                $station_query->with(['system.webway'
-                => function ($t) {
+                $station_query->with(['system.webway' => function ($t) {
                     $t->where('permissions', 0);
-                },]);
+                }]);
             }
         }
 
@@ -355,15 +340,11 @@ class Helper
             $station_query->where('show_on_rc_move', 1);
         }
 
-
         //station sheet
         if ($type == 6) {
-            $station_query->where('show_on_coord', 1)->with(['system.webway'
-            => function ($t) {
+            $station_query->where('show_on_coord', 1)->with(['system.webway' => function ($t) {
                 $t->where('permissions', 1);
-            },]);
-
-
+            }]);
 
             if ($user->can('view_coord_sheet')) {
             } else {
@@ -390,6 +371,7 @@ class Helper
         ]);
 
         $stationRecords = $station_query->first();
+
         return $stationRecords;
     }
 }

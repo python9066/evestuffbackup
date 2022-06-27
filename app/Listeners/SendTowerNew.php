@@ -2,10 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\NotificationNew;
 use App\Events\TowerNew;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendTowerNew
 {

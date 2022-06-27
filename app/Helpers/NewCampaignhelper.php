@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
-if (!function_exists('newUpdateCampaigns')) {
+if (! function_exists('newUpdateCampaigns')) {
     function newUpdateCampaigns()
     {
-
         $updatedCampaignID = collect();
 
         // * Set check flag to 0
@@ -26,9 +25,9 @@ if (!function_exists('newUpdateCampaigns')) {
         }
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json",
+            'Accept' => 'application/json',
             'User-Agent' => 'evestuff.online python9066@gmail.com',
-        ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
+        ])->get('https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility');
         // $response = Http::withHeaders([
         //     'Content-Type' => 'application/json',
         //     "Accept" => "application/json",
@@ -41,10 +40,10 @@ if (!function_exists('newUpdateCampaigns')) {
                 $score_changed = false;
                 if ($event_type == 'ihub_defense') {
                     $event_type = 32458;
-                    $event_type_name = "Ihub";
+                    $event_type_name = 'Ihub';
                 } else {
                     $event_type = 32226;
-                    $event_type_name = "TCU";
+                    $event_type_name = 'TCU';
                 }
 
                 $id = $r['campaign_id'];
@@ -60,11 +59,11 @@ if (!function_exists('newUpdateCampaigns')) {
                 }
                 $systemN = System::where('id', $r['solar_system_id'])->first();
                 $systemNamee = $systemN->system_name;
-                $cName = $systemNamee . " - " . $event_type_name;
+                $cName = $systemNamee.' - '.$event_type_name;
                 $time = $r['start_time'];
                 $start_time = fixtime($time);
-                $data = array();
-                $data = array(
+                $data = [];
+                $data = [
                     'attackers_score' => $r['attackers_score'],
                     'constellation_id' => $r['constellation_id'],
                     'alliance_id' => $r['defender_id'],
@@ -75,7 +74,7 @@ if (!function_exists('newUpdateCampaigns')) {
                     'structure_id' => $r['structure_id'],
                     'check' => 1,
                     'name' => $cName,
-                );
+                ];
 
                 $checkNew = NewCampaign::where('id', $id)->count();
                 if ($checkNew == 0) {
@@ -88,7 +87,7 @@ if (!function_exists('newUpdateCampaigns')) {
                 if ($score_changed) {
                     // $updatedCampaignID->push($id);
 
-                    echo " -  I AM IN   -";
+                    echo ' -  I AM IN   -';
                     $campaign = NewCampaign::where('id', $id)->first();
                     $campaignOperations = NewCampaignOperation::where('campaign_id', $id)->get();
                     $bNode = $campaign->b_node;
@@ -99,10 +98,10 @@ if (!function_exists('newUpdateCampaigns')) {
                         $system_id = $campaignNode->system_id;
                         if ($campaignNode->node_status == 4) {
                             $bNode = $bNode + 1;
-                            echo "yay add 1 to blue";
+                            echo 'yay add 1 to blue';
                         } else {
                             $rNode = $rNode + 1;
-                            echo "yay add 1 to red";
+                            echo 'yay add 1 to red';
                         }
                         $campaignNode->delete();
                         broadcastsystemSolo($system_id, 7);
@@ -120,11 +119,11 @@ if (!function_exists('newUpdateCampaigns')) {
                     $system = System::where('id', $r['solar_system_id'])->first();
                     $systemName = $system->system_name;
                     if ($event_type == 32458) {
-                        $type = "Ihub";
+                        $type = 'Ihub';
                     } else {
-                        $type = "TCU";
+                        $type = 'TCU';
                     }
-                    $title = $systemName . " - " . $type;
+                    $title = $systemName.' - '.$type;
                     $newOp = NewOperation::create([
                         'link' => $uuid,
                         'solo' => 1,
@@ -172,17 +171,14 @@ if (!function_exists('newUpdateCampaigns')) {
 
                 $operation = NewOperation::where('id', $op->operation_id)->where('solo', 1)->first();
                 if ($operation) {
-
                     broadcastSoloOpSoloOp(1, $operation->id);
                 }
-
             }
         }
-
     }
 }
 
-if (!function_exists('ownUserAll')) {
+if (! function_exists('ownUserAll')) {
     function ownUserAll()
     {
         return OperationUser::where('user_id', Auth::id())
@@ -190,7 +186,7 @@ if (!function_exists('ownUserAll')) {
             ->get();
     }
 }
-if (!function_exists('ownUsersolo')) {
+if (! function_exists('ownUsersolo')) {
     function ownUsersolo($id)
     {
         return OperationUser::where('id', $id)
@@ -198,36 +194,36 @@ if (!function_exists('ownUsersolo')) {
             ->first();
     }
 }
-if (!function_exists('opUserAll')) {
+if (! function_exists('opUserAll')) {
     function opUserAll($opID)
     {
         return OperationUser::where('operation_id', $opID)
             ->with([
                 'user:id,name',
-                "userrole",
-                "userstatus",
-                "system",
-                "userNode.node",
+                'userrole',
+                'userstatus',
+                'system',
+                'userNode.node',
             ])
             ->get();
     }
 }
-if (!function_exists('opUserSolo')) {
+if (! function_exists('opUserSolo')) {
     function opUserSolo($opID, $id)
     {
         return OperationUser::where('operation_id', $opID)
             ->where('id', $id)
             ->with([
                 'user:id,name',
-                "userrole",
-                "userstatus",
-                "system",
-                "userNode.node",
+                'userrole',
+                'userstatus',
+                'system',
+                'userNode.node',
             ])
             ->first();
     }
 }
-if (!function_exists('systemsAll')) {
+if (! function_exists('systemsAll')) {
     function systemsAll($contellationIDs)
     {
         return System::whereIn('constellation_id', $contellationIDs)
@@ -246,7 +242,7 @@ if (!function_exists('systemsAll')) {
             ->get();
     }
 }
-if (!function_exists('systemSolo')) {
+if (! function_exists('systemSolo')) {
     function systemSolo($systemID)
     {
         return System::where('id', $systemID)
@@ -265,7 +261,7 @@ if (!function_exists('systemSolo')) {
             ->first();
     }
 }
-if (!function_exists('campaignSolo')) {
+if (! function_exists('campaignSolo')) {
     function campaignSolo($campaignID)
     {
         return NewCampaign::where('id', $campaignID)->with([
@@ -277,21 +273,20 @@ if (!function_exists('campaignSolo')) {
         ])->first();
     }
 }
-if (!function_exists('customOperationSolo')) {
+if (! function_exists('customOperationSolo')) {
     function customOperationSolo($opID)
     {
-
         return NewOperation::where('id', $opID)
             ->with(['campaign.system', 'campaign.alliance'])
             ->first();
     }
 }
-if (!function_exists('userListAll')) {
+if (! function_exists('userListAll')) {
     function userListAll($userIDs, $opID)
     {
         return User::whereIn('id', $userIDs)
             ->with(['opUsers' => function ($t) use ($opID) {
                 $t->where('operation_id', $opID);
-            }, "opUsers.userrole"])->select('id', 'name')->get();
+            }, 'opUsers.userrole'])->select('id', 'name')->get();
     }
 }

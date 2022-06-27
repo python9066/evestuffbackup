@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Arr;
 use Laravel\Socialite\Two\AbstractProvider;
+use Laravel\Socialite\Two\InvalidStateException;
 use Laravel\Socialite\Two\ProviderInterface;
 use Laravel\Socialite\Two\User;
-use Illuminate\Support\Arr;
-use Laravel\Socialite\Two\InvalidStateException;
 
 class GiceProvider extends AbstractProvider implements ProviderInterface
 {
@@ -24,32 +24,29 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
      */
     protected $scopes = [
         'openid',
-        'groups'
+        'groups',
     ];
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected function getAuthUrl($state)
     {
-
         return $this->buildAuthUrlFromBase('https://esi.goonfleet.com/oauth/authorize', $state);
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected function getTokenUrl()
     {
-
         return 'https://esi.goonfleet.com/oauth/token';
     }
-
 
     public function getAccessToken($code)
     {
         $response = $this->getHttpClient()->post($this->getTokenUrl(), [
-            'headers' => ['Authorization' => 'Basic ' . base64_encode($this->clientId . ':' . $this->clientSecret)],
+            'headers' => ['Authorization' => 'Basic '.base64_encode($this->clientId.':'.$this->clientSecret)],
             'body'    => $this->getTokenFields($code),
         ]);
 
@@ -69,6 +66,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
             'headers' => ['Accept' => 'application/json'],
             'form_params' => $this->getTokenFields($code),
         ]);
+
         return json_decode($response->getBody(), true);
     }
 
@@ -86,7 +84,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected function getUserByToken($token)
     {
@@ -94,7 +92,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
         $response = $this->getHttpClient()->get('https://esi.goonfleet.com/oauth/userinfo', [
             'headers' => [
                 'Accept' => 'application/json',
-                'Authorization' => 'Bearer ' . $token,
+                'Authorization' => 'Bearer '.$token,
             ],
         ]);
 
@@ -115,8 +113,9 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
 
         $response = $this->getAccessTokenResponse($this->getCode());
         $test = $response['id_token'];
-        $info = explode(".", $test);
+        $info = explode('.', $test);
         $information = base64_decode($info[1]);
+
         return json_decode($information);
         // return $response;
         // dd($response);
@@ -129,13 +128,8 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
             ->setExpiresIn(Arr::get($response, 'expires_in'));
     }
 
-
-
-
-
-
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected function mapUserToObject(array $user)
     {
@@ -146,7 +140,7 @@ class GiceProvider extends AbstractProvider implements ProviderInterface
         // $user['verified_email'] = Arr::get($user, 'email_verified');
         // $user['link'] = Arr::get($user, 'profile');
 
-        return (new User)->setRaw($user)->map([
+        return (new User())->setRaw($user)->map([
             'id' => Arr::get($user, 'sub'),
             'nickname' => Arr::get($user, 'username'),
             'name' => Arr::get($user, 'name'),

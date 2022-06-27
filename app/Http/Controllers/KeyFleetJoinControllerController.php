@@ -29,7 +29,7 @@ class KeyFleetJoinControllerController extends Controller
     {
         KeyFleetJoin::create($request->all());
         $flag = collect([
-            'id' => 1
+            'id' => 1,
         ]);
         broadcast(new FleetKeysUpdate($flag));
     }
@@ -41,7 +41,7 @@ class KeyFleetJoinControllerController extends Controller
             $k->delete();
         }
         $flag = collect([
-            'id' => 1
+            'id' => 1,
         ]);
         broadcast(new FleetKeysUpdate($flag));
     }

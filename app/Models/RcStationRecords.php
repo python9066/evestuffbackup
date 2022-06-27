@@ -4,21 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class RcStationRecords extends Model
 {
     use HasFactory;
 
-
-
     public function webway()
     {
         return $this->hasMany(WebWay::class, 'system_id', 'system_id');
     }
-
-
 
     protected $casts = [
         'alliance_id' => 'integer',
@@ -38,7 +32,6 @@ class RcStationRecords extends Model
         'id' => 'integer',
         'added_by_user_id' => 'integer',
         'corp_id' => 'integer',
-
 
     ];
 }

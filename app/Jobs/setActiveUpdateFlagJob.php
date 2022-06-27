@@ -12,8 +12,13 @@ use Illuminate\Queue\SerializesModels;
 
 class setActiveUpdateFlagJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
+
     protected $campaign_id;
+
     /**
      * Create a new job instance.
      *
@@ -37,7 +42,6 @@ class setActiveUpdateFlagJob implements ShouldQueue
         foreach ($operationIDs as $opID) {
             broadcastOperationRefresh($opID->operation_id, $this->campaign_id, 8);
             broadcastSoloOpSoloOp(1, $opID->operation_id);
-
         }
     }
 

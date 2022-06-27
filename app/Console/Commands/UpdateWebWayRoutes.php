@@ -43,7 +43,7 @@ class UpdateWebWayRoutes extends Command
      */
     public function handle()
     {
-        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
 
         $start_system_id = env('HOME_SYSTEM_ID', ($variables && array_key_exists('HOME_SYSTEM_ID', $variables)) ? $variables['HOME_SYSTEM_ID'] : null);
 

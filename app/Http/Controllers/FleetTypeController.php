@@ -30,7 +30,7 @@ class FleetTypeController extends Controller
     {
         FleetType::create($request->all());
         $flag = collect([
-            'id' => 1
+            'id' => 1,
         ]);
         broadcast(new FleetKeysUpdate($flag));
     }
@@ -80,7 +80,7 @@ class FleetTypeController extends Controller
             $f->delete();
         }
         $flag = collect([
-            'id' => 1
+            'id' => 1,
         ]);
         broadcast(new FleetKeysUpdate($flag));
     }

@@ -5,11 +5,10 @@ namespace App\Http\Controllers;
 use App\Events\CampaignSystemUpdate;
 use App\Models\Campaign;
 use App\Models\CampaignRecords;
-use App\Models\NewCampaign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
+use Spatie\Permission\Traits\HasRoles;
 
 class CampaignRecordsController extends Controller
 {
@@ -23,14 +22,13 @@ class CampaignRecordsController extends Controller
      */
     public function index()
     {
-
-        if (Auth::user()->can("use_reserved_connection")) {
+        if (Auth::user()->can('use_reserved_connection')) {
             return ['campaigns' => CampaignRecords::with(
                 [
                     'webway' => function ($t) {
                         $t->where('permissions', 1);
                     },
-                    'priority'
+                    'priority',
                 ]
             )->get()];
         } else {
@@ -38,21 +36,21 @@ class CampaignRecordsController extends Controller
                 'webway' => function ($t) {
                     $t->where('permissions', 1);
                 },
-                'priority'
+                'priority',
             ])
-                ->get()];
+                ->get(), ];
         }
     }
 
     public function campaignslist()
     {
         $data = [];
-        $pull = CampaignRecords::where('status_id', "<", 3)->orderBy('start', 'asc')->get();
+        $pull = CampaignRecords::where('status_id', '<', 3)->orderBy('start', 'asc')->get();
         foreach ($pull as $pull) {
             $data1 = [];
             $data1 = [
-                "text" => $pull['region'] . " - " . $pull['constellation'] . " - " . $pull['system'] . " - " . $pull['alliance'] . " - " . $pull['item_name'] . " - " . $pull['start'],
-                'value' => $pull['id']
+                'text' => $pull['region'].' - '.$pull['constellation'].' - '.$pull['system'].' - '.$pull['alliance'].' - '.$pull['item_name'].' - '.$pull['start'],
+                'value' => $pull['id'],
             ];
 
             array_push($data, $data1);
@@ -63,19 +61,17 @@ class CampaignRecordsController extends Controller
         return ['campaignslist' => $data];
     }
 
-
-
     public function campaignslistRegion()
     {
         $data = [];
-        $pull = CampaignRecords::where('status_id', "<", 3)->orderBy('start', 'asc')->get();
+        $pull = CampaignRecords::where('status_id', '<', 3)->orderBy('start', 'asc')->get();
         $pull = $pull->unique('region_id');
         $pull = $pull->sortBy('region');
         foreach ($pull as $pull) {
             $data1 = [];
             $data1 = [
-                "text" => $pull['region'],
-                "value" => $pull['region_id']
+                'text' => $pull['region'],
+                'value' => $pull['region_id'],
             ];
 
             array_push($data, $data1);
@@ -117,13 +113,13 @@ class CampaignRecordsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $c =  Campaign::find($id)->get();
+        $c = Campaign::find($id)->get();
         foreach ($c as $c) {
             $c->update($request->all());
         }
         $flag = collect([
             'flag' => 4,
-            'id' => $id
+            'id' => $id,
         ]);
         broadcast(new CampaignSystemUpdate($flag));
     }

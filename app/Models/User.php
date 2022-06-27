@@ -2,24 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasPermissions;
-use Laravel\Sanctum\HasApiTokens;
-use Spatie\Activitylog\Traits\CausesActivity;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles, HasPermissions, HasApiTokens;
-
-
+    use Notifiable;
+    use HasRoles;
+    use HasPermissions;
+    use HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -46,7 +43,6 @@ class User extends Authenticatable
         'id' => 'integer',
         'pri_grp' => 'integer',
     ];
-
 
     public function campaignsystemusers()
     {
@@ -93,9 +89,6 @@ class User extends Authenticatable
         return $this->hasMany(OperationUser::class);
     }
 
-
-
-
     public function getAllPermissionsAttribute()
     {
         $permissions = [];
@@ -106,6 +99,7 @@ class User extends Authenticatable
                 $permissions[] = $permission->name;
             }
         }
+
         return $permissions;
     }
 
@@ -119,6 +113,7 @@ class User extends Authenticatable
                 $roles[] = $role->name;
             }
         }
+
         return $roles;
     }
 }

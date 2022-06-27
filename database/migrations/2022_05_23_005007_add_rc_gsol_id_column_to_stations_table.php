@@ -13,12 +13,14 @@ class AddRcGsolIdColumnToStationsTable extends Migration
      */
     public function up()
     {
-
-        if (!Schema::hasColumn('stations', 'rc_gsol_id')) {
-            Schema::table('stations', function (Blueprint $table) {
+        if (! Schema::hasColumn('stations', 'rc_gsol_id')) {
+            Schema::table(
+                'stations',
+                function (Blueprint $table) {
                 $table->foreignId('rc_gsol_id')->nullable();
-            });}
-
+            }
+            );
+        }
     }
 
     /**

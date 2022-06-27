@@ -48,7 +48,7 @@ class newCampaignUpdate extends Command
         //     NewnewUpdate();
         // };
         $check = EveEsiStatus::where('route', '/sovereignty/campaigns/')->first();
-        if ($check->status == "green") {
+        if ($check->status == 'green') {
             newUpdateCampaigns();
         }
         $campaigns = NewCampaign::where('job', 0)->get();

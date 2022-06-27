@@ -6,15 +6,10 @@ use App\Events\NotificationChanged;
 use App\Models\NotificationRecords;
 use App\Models\Region;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Mockery\Matcher\Not;
 use utils\Notificationhelper\Notifications;
 
 class NotificationRecordsController extends Controller
 {
-
-
-
     /**
      * Display a listing of the resource.
      *
@@ -25,6 +20,7 @@ class NotificationRecordsController extends Controller
         ////========API FOR NOTIFICATIONS=========
         // return ['notifications' => NotificationRecords::all()];
         $now = Now('-3 hours');
+
         return ['notifications' => NotificationRecords::where('timestamp', '>=', $now)->get()];
     }
 
@@ -42,36 +38,31 @@ class NotificationRecordsController extends Controller
     public function regionLink($region_id)
     {
         $now = Now('-3 hours');
-        $http = "https://evemaps.dotlan.net/map/";
+        $http = 'https://evemaps.dotlan.net/map/';
         $region = Region::where('id', $region_id)->get();
         foreach ($region as $region) {
-            if ($region->region_name == "Period Basis") {
-
-                $http = $http . "Period_Basis/";
+            if ($region->region_name == 'Period Basis') {
+                $http = $http.'Period_Basis/';
             } else {
-
-                $http = $http . $region->region_name . "/";
+                $http = $http.$region->region_name.'/';
             }
         }
         $link = NotificationRecords::where('region_id', $region_id)->where('timestamp', '>=', $now)->where('status_id', '<', 10)->get()->pluck('system_name');
         $count = $link->count();
         // dd($count);
         if ($count == 0) {
-            return ['link' => "nope"];
+            return ['link' => 'nope'];
         }
         $link = $link->unique();
         // dd($link);
         foreach ($link as $link) {
-            $http = $http . $link . ",";
+            $http = $http.$link.',';
         }
         $http = substr($http, 0, -1);
-        $http = $http . "#adm";
+        $http = $http.'#adm';
+
         return ['link' => $http];
     }
-
-
-
-
 
     /**
      * Display the specified resource.
@@ -105,7 +96,6 @@ class NotificationRecordsController extends Controller
             broadcast(new NotificationChanged($notifications))->toOthers();
         }
         // broadcast(new NotificationChanged($notifications));
-
     }
 
     /**

@@ -4,15 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class Station extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
-
-
 
     public function system()
     {
@@ -39,7 +36,6 @@ class Station extends Model
         return $this->belongsTo(User::class, 'added_by_user_id', 'id');
     }
 
-
     public function status()
     {
         return $this->belongsTo(StationStatus::class, 'station_status_id');
@@ -49,10 +45,12 @@ class Station extends Model
     {
         return $this->belongsTo(RcFcUsers::class, 'rc_fc_id', 'id');
     }
+
     public function recon()
     {
         return $this->belongsTo(RcReconUsers::class, 'rc_recon_id', 'id');
     }
+
     public function gsoluser()
     {
         return $this->belongsTo(RcGsolUsers::class, 'rc_gsol_id', 'id');
@@ -62,6 +60,7 @@ class Station extends Model
     {
         return $this->belongsToMany(StationItems::class, 'station_item_joins', 'station_id', 'station_item_id')->withPivot('id');
     }
+
     public function corp()
     {
         return $this->belongsTo(Corp::class);
@@ -112,9 +111,6 @@ class Station extends Model
         'rc_recon_id' => 'integer',
         'added_by_user_id' => 'integer',
         'corp_id' => 'integer',
-
-
-
 
     ];
 }

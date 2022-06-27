@@ -13,8 +13,13 @@ use Illuminate\Queue\SerializesModels;
 
 class setDeleteFlagJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
+
     protected $campaign_id;
+
     /**
      * Create a new job instance.
      *
@@ -39,10 +44,8 @@ class setDeleteFlagJob implements ShouldQueue
             if ($count == 1) {
                 $this->deleteOperation($operation);
             }
-
         }
         NewCampaignOperation::where('campaign_id', $this->campaign_id)->delete();
-
     }
 
     public function deleteOperation($operation)
@@ -54,5 +57,4 @@ class setDeleteFlagJob implements ShouldQueue
         }
         $operation->delete();
     }
-
 }

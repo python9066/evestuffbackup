@@ -14,7 +14,6 @@ class CorpController extends Controller
      */
     public function index()
     {
-
         $tickers = Corp::select('ticker as text', 'id as value')->get();
         // foreach ($tickers as $ticker) {
         //     $data = [];
@@ -30,9 +29,9 @@ class CorpController extends Controller
 
     public function addMissingCorp($name)
     {
-
         $id = $name;
         $response = getCorpWithNoAlliance($id);
+
         return $response;
     }
 

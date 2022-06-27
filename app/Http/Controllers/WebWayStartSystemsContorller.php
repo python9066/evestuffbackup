@@ -24,6 +24,7 @@ class WebWayStartSystemsContorller extends Controller
         $webwaySystemIDs = WebWayStartSystem::where('system_id', '!=', 30004759)->pluck('system_id');
         if ($webwaySystemIDs) {
             $systems = System::whereIn('id', $webwaySystemIDs)->select(['id as value', 'system_name as text'])->get();
+
             return ['systems' => $systems];
         }
     }
@@ -38,8 +39,6 @@ class WebWayStartSystemsContorller extends Controller
     {
         WebWayStartSystem::create(['system_id' => $request->system_id]);
     }
-
-
 
     /**
      * Display the specified resource.

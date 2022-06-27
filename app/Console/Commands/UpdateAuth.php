@@ -38,7 +38,7 @@ class UpdateAuth extends Command
      */
     public function handle()
     {
-        Userlogging::create(['url' => "demon auth", 'user_id' => 9999999999]);
+        Userlogging::create(['url' => 'demon auth', 'user_id' => 9999999999]);
         authcheck();
     }
 }

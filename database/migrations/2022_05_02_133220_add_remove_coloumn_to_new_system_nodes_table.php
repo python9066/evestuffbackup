@@ -15,7 +15,7 @@ class AddRemoveColoumnToNewSystemNodesTable extends Migration
     {
         Schema::table('new_system_nodes', function (Blueprint $table) {
             $table->dropColumn('timer');
-            $table->string('name')->after("id");
+            $table->string('name')->after('id');
         });
     }
 

@@ -3,8 +3,6 @@
 use App\Models\NewCampaign;
 use App\Models\System;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 class AddNamesToNewCampaign extends Migration
 {
@@ -19,13 +17,13 @@ class AddNamesToNewCampaign extends Migration
 
         foreach ($campaings as $c) {
             if ($c->event_type == 32458) {
-                $type = "Ihub";
+                $type = 'Ihub';
             } else {
-                $type = "TCU";
+                $type = 'TCU';
             }
 
             $system = System::where('id', $c->system_id)->first();
-            $text = $system->system_name . " - " . $type;
+            $text = $system->system_name.' - '.$type;
             $c->update(['name' => $text]);
         }
     }

@@ -4,15 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class NewUserNode extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
-
-
 
     public function opUser()
     {
@@ -23,7 +20,6 @@ class NewUserNode extends Model
     {
         return $this->belongsTo(NewSystemNode::class, 'node_id', 'id');
     }
-
 
     public function nodeStatus()
     {

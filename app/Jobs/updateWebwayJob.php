@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Models\WebWay;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -13,9 +12,15 @@ use Illuminate\Support\Facades\Http;
 
 class updateWebwayJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
+
     protected $end_system_id;
+
     protected $start_system_id;
+
     /**
      * Create a new job instance.
      *
@@ -39,7 +44,7 @@ class updateWebwayJob implements ShouldQueue
 
     public function updateWebway($start_system_id, $end_system_id)
     {
-        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
         /*
         send = [
             startSystem => start system get from env (1dq)
@@ -59,14 +64,14 @@ class updateWebwayJob implements ShouldQueue
 
         $data = [
             'startSystem' => $start_system_id,
-            'endSystem' => $end_system_id
+            'endSystem' => $end_system_id,
         ];
 
         Http::withToken($webwayToken)
             ->withHeaders([
                 'Content-Type' => 'application/json',
-                "Accept" => "application/json",
-                'User-Agent' => 'evestuff.online python9066@gmail.com'
+                'Accept' => 'application/json',
+                'User-Agent' => 'evestuff.online python9066@gmail.com',
             ])->post($webwayURL, $data);
     }
 }

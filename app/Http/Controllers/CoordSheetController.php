@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\StationRecords;
-use Illuminate\Http\Request;
 
 class CoordSheetController extends Controller
 {
-
     public function index()
-
-
     {
         return ['stations' => StationRecords::where('show_on_coord', 1)->where('standing', '<=', 0)->get()];
     }
@@ -24,8 +20,8 @@ class CoordSheetController extends Controller
         foreach ($pull as $pull) {
             $data1 = [];
             $data1 = [
-                "text" => $pull['item_name'],
-                "value" => $pull['item_id']
+                'text' => $pull['item_name'],
+                'value' => $pull['item_id'],
             ];
 
             array_push($data, $data1);
@@ -43,11 +39,11 @@ class CoordSheetController extends Controller
         $pull = $pull->unique('station_status_id');
         $pull = $pull->sortBy('station_status_name');
         foreach ($pull as $pull) {
-            $text = str_replace("Upcoming - ", "", $pull['station_status_name'],);
+            $text = str_replace('Upcoming - ', '', $pull['station_status_name'], );
             $data1 = [];
             $data1 = [
-                "text" => $text,
-                "value" => $pull['station_status_id']
+                'text' => $text,
+                'value' => $pull['station_status_id'],
             ];
 
             array_push($data, $data1);
@@ -67,8 +63,8 @@ class CoordSheetController extends Controller
         foreach ($pull as $pull) {
             $data1 = [];
             $data1 = [
-                "text" => $pull['region_name'],
-                "value" => $pull['region_id']
+                'text' => $pull['region_name'],
+                'value' => $pull['region_id'],
             ];
 
             array_push($data, $data1);

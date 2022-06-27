@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\StationSheetUpdateWebway;
 use App\Jobs\getWebwayJob;
-use App\Listeners\SendStationSheetUpdateWebway;
-use App\Models\WebWay;
 use Illuminate\Http\Request;
 
 class WebWayController extends Controller
@@ -39,9 +36,6 @@ class WebWayController extends Controller
         $link_p = $request['link_p'];
         $jumps_p = $request['jumps_p'];
         $start_system_id = $request['start_system_id'];
-
-
-
 
         getWebwayJob::dispatch(
             $start_system_id,

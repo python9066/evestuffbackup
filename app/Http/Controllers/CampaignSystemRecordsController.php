@@ -43,14 +43,13 @@ class CampaignSystemRecordsController extends Controller
     public function updatePriority(Request $request, $id)
     {
         $user = Auth::user();
-        if ($user->can("edit_hack_priority")) {
-            $c =  Campaign::where('id', $id)->get();
+        if ($user->can('edit_hack_priority')) {
+            $c = Campaign::where('id', $id)->get();
             foreach ($c as $c) {
                 $c->update(['priority' => $request->priority]);
             }
         }
     }
-
 
     /**
      * Update the specified resource in storage.

@@ -23,6 +23,7 @@ class RcSheetController extends Controller
 {
     use HasRoles;
     use HasPermissions;
+
     /**
      * Display a listing of the resource.
      *
@@ -105,8 +106,8 @@ class RcSheetController extends Controller
         foreach ($pull as $pull) {
             $data1 = [];
             $data1 = [
-                "text" => $pull['item_name'],
-                "value" => $pull['item_id'],
+                'text' => $pull['item_name'],
+                'value' => $pull['item_id'],
             ];
 
             array_push($data, $data1);
@@ -124,11 +125,11 @@ class RcSheetController extends Controller
         $pull = $pull->unique('status_id');
         $pull = $pull->sortBy('status_name');
         foreach ($pull as $pull) {
-            $text = str_replace("Upcoming - ", "", $pull['status_name']);
+            $text = str_replace('Upcoming - ', '', $pull['status_name']);
             $data1 = [];
             $data1 = [
-                "text" => $text,
-                "value" => $pull['status_id'],
+                'text' => $text,
+                'value' => $pull['status_id'],
             ];
 
             array_push($data, $data1);
@@ -202,8 +203,8 @@ class RcSheetController extends Controller
         foreach ($pull as $pull) {
             $data1 = [];
             $data1 = [
-                "text" => $pull['region_name'],
-                "value" => $pull['region_id'],
+                'text' => $pull['region_name'],
+                'value' => $pull['region_id'],
             ];
 
             array_push($data, $data1);

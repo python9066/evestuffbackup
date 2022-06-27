@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\StationNotificationDelete;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendStationNotificationDelete
 {

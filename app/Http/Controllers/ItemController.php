@@ -43,6 +43,7 @@ class ItemController extends Controller
         $list = $structures->map(function ($items) {
             $data['value'] = $items->id;
             $data['text'] = $items->item_name;
+
             return $data;
         });
 
@@ -98,12 +99,12 @@ class ItemController extends Controller
         $list = $structures->map(function ($items) {
             $data['value'] = $items->id;
             $data['text'] = $items->item_name;
+
             return $data;
         });
 
         return ['towerlist' => $list];
     }
-
 
     // public function index()
     // {

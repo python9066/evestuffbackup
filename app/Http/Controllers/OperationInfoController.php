@@ -16,6 +16,7 @@ class OperationInfoController extends Controller
     public function index()
     {
         $data = operationInfoAll();
+
         return ['opinfo' => $data];
     }
 
@@ -34,6 +35,7 @@ class OperationInfoController extends Controller
             $new->info = $request->info;
             $new->status = 1;
             $new->save();
+            operationInfoSoloBroadcast($new->id, 2);
         }
     }
 

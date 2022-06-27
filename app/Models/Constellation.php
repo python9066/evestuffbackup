@@ -3,21 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class Constellation extends Model
 {
-
     protected $guarded = [];
-
-
 
     public function region()
     {
         return $this->belongsTO(Region::class);
     }
-
 
     public function campaigns()
     {

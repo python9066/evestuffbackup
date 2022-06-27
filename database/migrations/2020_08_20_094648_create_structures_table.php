@@ -19,8 +19,8 @@ class CreateStructuresTable extends Migration
             $table->foreignId('system_id');
             $table->foreignId('item_id');
             $table->float('adm')->nullable();
-            $table->dateTime('vulnerable_end_time',)->nullable();
-            $table->dateTime('vulnerable_start_time',)->nullable();
+            $table->dateTime('vulnerable_end_time', )->nullable();
+            $table->dateTime('vulnerable_start_time', )->nullable();
             $table->integer('status')->nullable()->default(0);
             $table->timestamps();
 

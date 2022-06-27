@@ -40,11 +40,10 @@ class UpdateNotifications extends Command
      */
     public function handle()
     {
-
-        Userlogging::create(['url' => "demon notes", 'user_id' => 9999999999]);
-        $check = EveEsiStatus::where('route', "/characters/{character_id}/notifications/")->first();
-        if ($check->status = "green") {
-            $type = "note";
+        Userlogging::create(['url' => 'demon notes', 'user_id' => 9999999999]);
+        $check = EveEsiStatus::where('route', '/characters/{character_id}/notifications/')->first();
+        if ($check->status = 'green') {
+            $type = 'note';
             $data = authpull($type, 0);
             $flag = notificationUpdate($data);
 

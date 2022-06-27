@@ -2,10 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\NotificationChanged;
 use App\Events\TowerChanged;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendTowerChange
 {

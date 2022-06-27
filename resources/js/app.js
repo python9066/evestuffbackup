@@ -30,6 +30,7 @@ import Permissions from "./mixins/Permissions.vue";
 import titleMixin from "./mixins/titleMixin";
 import Clipboard from "v-clipboard";
 import VueEllipseProgress from "vue-ellipse-progress";
+import VueGridLayout from "vue-grid-layout";
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 // library.add(faUserSecret);
@@ -579,6 +580,11 @@ Vue.component(
     require("./components/operationinfo/AddOperationInfo.vue").default
 );
 
+Vue.component(
+    "OperationInfoTable",
+    require("./components/operationinfo/OperationInfoTable.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(VueEllipseProgress, "Vep");
@@ -586,9 +592,9 @@ Vue.use(Clipboard);
 Vue.use(CountdownTimer);
 Vue.use(VueCountdownTimer);
 Vue.use(VueCountupTimer);
-
 Vue.config.productionTip = false;
 Vue.component(VueCountdown.name, VueCountdown);
+Vue.use(VueGridLayout);
 Vue.use(VueMask);
 Vue.mixin(Permissions);
 Vue.mixin(titleMixin);

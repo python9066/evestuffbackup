@@ -4,22 +4,24 @@ namespace App\Jobs;
 
 use App\Models\Alliance;
 use App\Models\Auth;
+use App\Models\Client;
+use App\Models\Corp;
 use DateTime;
+use GuzzleHttp\Client as GuzzleHttpClient;
+use GuzzleHttp\Utils;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Client;
-use App\Models\Corp;
-use GuzzleHttp\Client as GuzzleHttpClient;
-use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Http;
 
 class UpdateStandingJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * Create a new job instance.
@@ -41,13 +43,11 @@ class UpdateStandingJob implements ShouldQueue
         $this->runStandingUpdate();
     }
 
-
     public function runStandingUpdate()
     {
         $this->checkKeys();
         $this->updateStanding();
     }
-
 
     public function updateStanding()
     {
@@ -67,8 +67,8 @@ class UpdateStandingJob implements ShouldQueue
 
         $response = Http::withToken($token->access_token)->withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json",
-            'User-Agent' => 'evestuff.online python9066@gmail.com'
+            'Accept' => 'application/json',
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
         ])->get($url);
 
         $standings = $response->collect();
@@ -78,24 +78,24 @@ class UpdateStandingJob implements ShouldQueue
                 $color = 2;
             } else {
                 $color = 1;
-            };
+            }
 
-            if ($stand->get('contact_type') == "alliance") {
-                $a =  Alliance::where('id', $stand->get('contact_id'))->get();
+            if ($stand->get('contact_type') == 'alliance') {
+                $a = Alliance::where('id', $stand->get('contact_id'))->get();
                 foreach ($a as $a) {
                     $a->update([
                         'color' => $color,
-                        'standing' => $stand->get('standing')
+                        'standing' => $stand->get('standing'),
                     ]);
                 }
             }
 
-            if ($stand->get('contact_type') == "corporation") {
-                $c =  Corp::where('id', $stand->get('contact_id'))->get();
+            if ($stand->get('contact_type') == 'corporation') {
+                $c = Corp::where('id', $stand->get('contact_id'))->get();
                 foreach ($c as $c) {
                     $c->update([
                         'color' => $color,
-                        'standing' => $stand->get('standing')
+                        'standing' => $stand->get('standing'),
                     ]);
                 }
             }
@@ -126,7 +126,6 @@ class UpdateStandingJob implements ShouldQueue
     {
         $auths = Auth::all();
         foreach ($auths as $auth) {
-
             $expire_date = new DateTime($auth->expire_date);
             $date = new DateTime();
 
@@ -134,23 +133,22 @@ class UpdateStandingJob implements ShouldQueue
                 $client = Client::first();
                 $http = new GuzzleHttpCLient();
 
-
                 $headers = [
-                    'Authorization' => 'Basic ' . $client->code,
+                    'Authorization' => 'Basic '.$client->code,
                     'Content-Type' => 'application/x-www-form-urlencoded',
                     'Host' => 'login.eveonline.com',
-                    'User-Agent' => 'evestuff.online python9066@gmail.com'
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
 
                 ];
-                $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
+                $body = 'grant_type=refresh_token&refresh_token='.$auth->refresh_token;
                 $response = $http->request('POST', 'https://login.eveonline.com/v2/oauth/token', [
                     'headers' => $headers,
-                    'body' => $body
+                    'body' => $body,
                 ]);
                 $data = Utils::jsonDecode($response->getBody(), true);
                 // dd($data);
                 $date = new DateTime();
-                $date = $date->modify("+19 minutes");
+                $date = $date->modify('+19 minutes');
                 $auth->update(['access_token' => $data['access_token'], 'refresh_token' => $data['refresh_token'], 'expire_date' => $date]);
             }
         }

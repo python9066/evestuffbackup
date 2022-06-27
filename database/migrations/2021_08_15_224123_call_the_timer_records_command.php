@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Schema;
 
 class CallTheTimerRecordsCommand extends Migration
 {
@@ -14,7 +12,7 @@ class CallTheTimerRecordsCommand extends Migration
      */
     public function up()
     {
-        Artisan::call("view:CreateOrReplaceTimerRecordsView");
+        Artisan::call('view:CreateOrReplaceTimerRecordsView');
     }
 
     /**

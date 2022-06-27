@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Events\SoloOperationUpdate;
 use App\Models\NewCampaign;
-use App\Models\NewOperation;
 use Illuminate\Http\Request;
 
 class NewCampaignsController extends Controller
@@ -26,21 +25,20 @@ class NewCampaignsController extends Controller
         foreach ($pull as $pull) {
             $data1 = [];
             if ($pull->event_type == 32226) {
-                $eventType = "TCU";
+                $eventType = 'TCU';
             } else {
-                $eventType = "Ihub";
+                $eventType = 'Ihub';
             }
             $systemName = $pull->system->system_name;
             $regionName = $pull->system->region->region_name;
             $constellationName = $pull->system->constellation->constellation_name;
             $allianceName = $pull->alliance->name;
 
-            $text = $regionName . " - " . $constellationName . " - " . $systemName . " - " . $allianceName . " - " . $eventType . " - " . $pull->start_time;
-
+            $text = $regionName.' - '.$constellationName.' - '.$systemName.' - '.$allianceName.' - '.$eventType.' - '.$pull->start_time;
 
             $data1 = [
-                "text" => $text,
-                'value' => $pull['id']
+                'text' => $text,
+                'value' => $pull['id'],
             ];
 
             array_push($data, $data1);
@@ -87,7 +85,7 @@ class NewCampaignsController extends Controller
         }
         $flag = collect([
             'flag' => 4,
-            'id' => $id
+            'id' => $id,
         ]);
         broadcast(new SoloOperationUpdate($flag));
     }

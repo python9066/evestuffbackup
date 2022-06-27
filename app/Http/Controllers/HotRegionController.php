@@ -71,7 +71,7 @@ class HotRegionController extends Controller
 
     public function updateSetting(Request $request)
     {
-        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
         $ids = [];
         $fcIds = [];
         $fc = $request->fc;

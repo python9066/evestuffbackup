@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Str;
 
-$variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+$variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+
 return [
 
     /*
@@ -185,7 +186,7 @@ return [
         'production' => [
             'hamsters' => [
                 'connection' => 'redis',
-                'queue' => ['corp', 'alliance', 'webway','campaigns', 'default'],
+                'queue' => ['corp', 'alliance', 'webway', 'campaigns', 'default'],
                 'balance' => 'auto',
                 'maxProcesses' => 20,
                 'memory' => 2048,
@@ -198,7 +199,7 @@ return [
         'local' => [
             'hamsters' => [
                 'connection' => 'redis',
-                'queue' => ['corp', 'alliance', 'webway','campaigns', 'default'],
+                'queue' => ['corp', 'alliance', 'webway', 'campaigns', 'default'],
                 'balance' => 'auto',
                 'maxProcesses' => 20,
                 'memory' => 2048,

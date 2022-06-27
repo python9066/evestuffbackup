@@ -4,15 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class StationRecords extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
-
-
 
     protected $casts = [
         'id' => 'integer',
@@ -24,9 +21,6 @@ class StationRecords extends Model
         'station_status_id' => 'integer',
         'system_id' => 'integer',
         'under_attack' => 'integer',
-
-
-
 
     ];
 }

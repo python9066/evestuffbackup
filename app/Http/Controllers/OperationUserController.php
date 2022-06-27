@@ -41,7 +41,6 @@ class OperationUserController extends Controller
      */
     public function store(Request $request, $opID, $userid)
     {
-
         $new = OperationUser::create($request->all());
 
         if (Auth::id() == $userid) {
@@ -53,7 +52,6 @@ class OperationUserController extends Controller
 
     public function updateOnTheWayReadyToGO(Request $request, $opID, $opUserID)
     {
-
         $opUser = OperationUser::where('id', $opUserID)->first();
         $oldSystemID = $opUser->system_id;
         $opUser->update($request->all());
@@ -113,7 +111,7 @@ class OperationUserController extends Controller
         $flag = collect([
             'flag' => 5,
             'id' => $opID,
-            "userid" => $id,
+            'userid' => $id,
         ]);
 
         broadcast(new OperationUpdate($flag));
@@ -139,7 +137,6 @@ class OperationUserController extends Controller
      */
     public function destroy($id, $opID, $userid)
     {
-
         OperationUser::destroy($id);
 
         $flag = collect([

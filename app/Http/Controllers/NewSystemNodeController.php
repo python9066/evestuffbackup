@@ -7,7 +7,6 @@ use App\Models\NewUserNode;
 use App\Models\OperationUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use utils\Broadcasthelper\Broadcasthelper;
 
 class NewSystemNodeController extends Controller
 {
@@ -43,7 +42,6 @@ class NewSystemNodeController extends Controller
     public function show($id)
     {
         //
-
     }
 
     public function addUserToNodeAdmin(Request $request)
@@ -55,7 +53,7 @@ class NewSystemNodeController extends Controller
             $primery = 1;
         }
 
-        $userNode = new NewUserNode;
+        $userNode = new NewUserNode();
         $userNode->primery = $primery;
         $userNode->node_id = $systemNode->id;
         $userNode->operation_user_id = $opUser->id;
@@ -126,7 +124,6 @@ class NewSystemNodeController extends Controller
 
     public function updateStatus(Request $request, $id)
     {
-
         $opUserID = null;
         $oldCheck = null;
         switch ($request->status_id) {
@@ -384,7 +381,6 @@ class NewSystemNodeController extends Controller
         $system_id = $systemNode->system_id;
         $nodes = NewUserNode::where('node_id', $id)->get();
         foreach ($nodes as $node) {
-
             $OpUser = $node->opUser;
             $OpUser->new_user_node_id = null;
             $OpUser->user_status_id = 3;

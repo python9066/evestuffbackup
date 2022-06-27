@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Constellation;
-use App\Models\StartCampaignJoins;
-use App\Models\StartCampaigns;
-use App\Models\StartCampaignSystems;
-use App\Models\System;
 use Illuminate\Http\Request;
 
 class ConstellationsController extends Controller
@@ -19,6 +15,7 @@ class ConstellationsController extends Controller
     public function index()
     {
         $data = Constellation::all();
+
         return ['constellationlist' => $data];
     }
 
@@ -30,8 +27,8 @@ class ConstellationsController extends Controller
         foreach ($pull as $pull) {
             $data1 = [];
             $data1 = [
-                "text" => $pull['constellation_name'],
-                'value' => $pull['id']
+                'text' => $pull['constellation_name'],
+                'value' => $pull['id'],
             ];
 
             array_push($data, $data1);
@@ -48,8 +45,6 @@ class ConstellationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-
 
     /**
      * Display the specified resource.

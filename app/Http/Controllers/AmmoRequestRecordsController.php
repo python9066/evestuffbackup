@@ -15,6 +15,7 @@ class AmmoRequestRecordsController extends Controller
     public function index()
     {
         $data = AmmoRequestRecords::all();
+
         return ['ammorequest' => $data];
     }
 

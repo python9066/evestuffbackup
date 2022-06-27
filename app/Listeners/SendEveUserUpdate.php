@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\EveUserUpdate;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendEveUserUpdate
 {

@@ -29,7 +29,7 @@ class UserKeyJoinControllerController extends Controller
     {
         UserKeyJoin::create($request->all());
         $flag = collect([
-            'id' => 1
+            'id' => 1,
         ]);
         broadcast(new FleetKeysUpdate($flag));
     }

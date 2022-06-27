@@ -2,10 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Userlogging;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
-use utils\Campaignhelper\Campaignhelper;
 
 class RunSchedulerDaemonCommand extends Command
 {

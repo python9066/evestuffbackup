@@ -4,14 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class CampaignUser extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
+
     public $timestamps = false;
+
     protected $casts = [
         'id' => 'integer',
         'site_id' => 'integer',
@@ -23,9 +24,6 @@ class CampaignUser extends Model
         'campaign_role_id' => 'integer',
 
     ];
-
-
-
 
     public function user()
     {

@@ -23,6 +23,7 @@ class ChillStationController extends Controller
     public function index()
     {
         $data = ChillStationRecords::where('show_on_chill', 1)->get();
+
         return ['stations' => $data];
     }
 
@@ -46,8 +47,8 @@ class ChillStationController extends Controller
         foreach ($pull as $pull) {
             $data1 = [];
             $data1 = [
-                "text" => $pull['region_name'],
-                "value" => $pull['region_id']
+                'text' => $pull['region_name'],
+                'value' => $pull['region_id'],
             ];
 
             array_push($data, $data1);
@@ -66,11 +67,11 @@ class ChillStationController extends Controller
         $pull = $pull->unique('status_id');
         $pull = $pull->sortBy('status_name');
         foreach ($pull as $pull) {
-            $text = str_replace("Upcoming - ", "", $pull['status_name']);
+            $text = str_replace('Upcoming - ', '', $pull['status_name']);
             $data1 = [];
             $data1 = [
-                "text" => $text,
-                "value" => $pull['status_id']
+                'text' => $text,
+                'value' => $pull['status_id'],
             ];
 
             array_push($data, $data1);
@@ -83,17 +84,16 @@ class ChillStationController extends Controller
 
     public function chillSheetListStatus()
     {
-
         $data = [];
         $pull = ChillStationRecords::where('show_on_chill', 1)->get();
         $pull = $pull->unique('status_id');
         $pull = $pull->sortBy('status_name');
         foreach ($pull as $pull) {
-            $text = str_replace("Upcoming - ", "", $pull['status_name']);
+            $text = str_replace('Upcoming - ', '', $pull['status_name']);
             $data1 = [];
             $data1 = [
-                "text" => $text,
-                "value" => $pull['status_id']
+                'text' => $text,
+                'value' => $pull['status_id'],
             ];
 
             array_push($data, $data1);
@@ -103,7 +103,6 @@ class ChillStationController extends Controller
 
         return ['chillsheetlistStatus' => $data];
     }
-
 
     public function stationdone($id)
     {
@@ -116,7 +115,7 @@ class ChillStationController extends Controller
             'rc_recon_id' => null,
             'rc_id' => null,
             'timer_image_link' => null,
-            'notes' => null
+            'notes' => null,
         ]);
         $message = ChillStationRecords::where('id', $id)->first();
         $flag = collect([
@@ -124,7 +123,6 @@ class ChillStationController extends Controller
         ]);
         broadcast(new ChillSheetUpdate($flag));
     }
-
 
     public function chillSheetListType()
     {
@@ -135,8 +133,8 @@ class ChillStationController extends Controller
         foreach ($pull as $pull) {
             $data1 = [];
             $data1 = [
-                "text" => $pull['item_name'],
-                "value" => $pull['item_id']
+                'text' => $pull['item_name'],
+                'value' => $pull['item_id'],
             ];
 
             array_push($data, $data1);
@@ -147,7 +145,6 @@ class ChillStationController extends Controller
         return ['chillsheetlistType' => $data];
     }
 
-
     public function chillEditUpdate(Request $request, $id)
     {
         // dd($id);
@@ -155,8 +152,7 @@ class ChillStationController extends Controller
 
         $oldStation = Station::where('id', $id)->first();
         $oldStatus = StationStatus::where('id', $oldStation->station_status_id)->value('name');
-        $oldStatus = str_replace('Upcoming - ', "", $oldStatus);
-
+        $oldStatus = str_replace('Upcoming - ', '', $oldStatus);
 
         $s = Station::find($id)->get();
         foreach ($s as $s) {
@@ -164,11 +160,11 @@ class ChillStationController extends Controller
         }
         $newStation = Station::where('id', $id)->first();
         $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
-        $newStatus = str_replace('Upcoming - ', "", $newStatus);
+        $newStatus = str_replace('Upcoming - ', '', $newStatus);
 
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
-            'message' => $message
+            'message' => $message,
         ]);
         broadcast(new StationNotificationUpdate($flag));
         broadcast(new StationUpdateCoord($flag));
@@ -182,7 +178,6 @@ class ChillStationController extends Controller
             broadcast(new ChillSheetUpdate($flag));
         }
     }
-
 
     /**
      * Display the specified resource.
@@ -202,20 +197,17 @@ class ChillStationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-
     public function update(Request $request, $id)
     {
-
         $oldStatusID = Station::where('id', $id)->value('station_status_id');
         $oldStatusName = StationStatus::where('id', $oldStatusID)->value('name');
-        $oldStatusName = str_replace('Upcoming - ', "", $oldStatusName);
+        $oldStatusName = str_replace('Upcoming - ', '', $oldStatusName);
 
         $RCmessage = ChillStationRecords::where('id', $id)->first();
         if ($RCmessage) {
             $RCmessageSend = [
                 'id' => $RCmessage->id,
-                'show_on_chill' => 0
+                'show_on_chill' => 0,
             ];
             $flag = collect([
                 'message' => $RCmessageSend,
@@ -224,24 +216,22 @@ class ChillStationController extends Controller
             broadcast(new ChillSheetUpdate($flag));
         }
 
-
-
         $newStatusID = $request->station_status_id;
         $newStatusName = StationStatus::where('id', $newStatusID)->value('name');
-        $newStatusName = str_replace('Upcoming - ', "", $newStatusName);
+        $newStatusName = str_replace('Upcoming - ', '', $newStatusName);
         $new = Station::find($id)->update($request->all());
         $now = now();
         $s = Station::find($id)->first();
         $s->update([
             'added_by_user_id' => Auth::id(),
-            "rc_id" => null,
-            "rc_fc_id" => null,
-            "rc_gsol_id" => null,
-            "rc_recon_id" => null,
+            'rc_id' => null,
+            'rc_fc_id' => null,
+            'rc_gsol_id' => null,
+            'rc_recon_id' => null,
         ]);
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
-            'message' => $message
+            'message' => $message,
         ]);
         broadcast(new StationNotificationUpdate($flag));
         broadcast(new StationUpdateCoord($flag));
@@ -255,13 +245,12 @@ class ChillStationController extends Controller
      */
     public function destroy($id)
     {
-
-        $s =  Station::where('id', $id)->get();
+        $s = Station::where('id', $id)->get();
         foreach ($s as $s) {
             $s->update(['show_on_chill' => 0]);
         }
         $flag = collect([
-            'flag' => 4
+            'flag' => 4,
         ]);
         broadcast(new ChillSheetUpdate($flag));
     }

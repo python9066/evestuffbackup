@@ -4,15 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 class ReconTasks extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
-
-
 
     public function madeBy()
     {
@@ -34,6 +31,6 @@ class ReconTasks extends Model
         'updated_at' => 'datetime:Y-m-d H:i:s',
         'id' => 'integer',
         'made_by_user_id' => 'integer',
-        'edited_by_user_id' => 'integer'
+        'edited_by_user_id' => 'integer',
     ];
 }

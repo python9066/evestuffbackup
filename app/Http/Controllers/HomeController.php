@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Notification;
 use App\Models\TimersRecord;
-use DateTime;
-use Illuminate\Http\Request;
-use utils\Helper\Helper;
 
 class HomeController extends Controller
 {
@@ -25,11 +22,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
         return view('home');
@@ -39,14 +36,13 @@ class HomeController extends Controller
     {
     }
 
-
     public function party2()
     {
         $test = Notification::all()->unique('brand');
         $test2 = $test->toJson();
-        $data = ['timers' => $test,];
+        $data = ['timers' => $test];
         $test3 = [$test];
-        $data2 = ['timers' => TimersRecord::all(),];
+        $data2 = ['timers' => TimersRecord::all()];
         dd($test2, $test3, $data, $data2);
     }
 }

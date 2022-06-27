@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Schema;
 
 class CallTheAmmoRequestRecordsCommand extends Migration
 {
@@ -14,7 +12,7 @@ class CallTheAmmoRequestRecordsCommand extends Migration
      */
     public function up()
     {
-        Artisan::call("view:CreateOrReplaceAmmoRequestRecordsView");
+        Artisan::call('view:CreateOrReplaceAmmoRequestRecordsView');
     }
 
     /**

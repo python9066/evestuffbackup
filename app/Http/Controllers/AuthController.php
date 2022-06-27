@@ -4,25 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Events\UserUpdate;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Support\Str;
-use PDO;
-use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
+use Spatie\Permission\Traits\HasRoles;
 
 class AuthController extends Controller
 {
     use AuthenticatesUsers;
     use HasRoles;
     use HasPermissions;
+
     protected $redirectTo = RouteServiceProvider::HOME;
+
     public function redirectToProvider()
     {
         return Socialite::with('gice')->redirect();
     }
+
     public function handleProviderCallback()
     {
         $flag = 0;
@@ -31,13 +32,9 @@ class AuthController extends Controller
         $check = User::where('id', $userGice->sub)->get()->count();
         if ($check != 1) {
             $flag = 1;
-        };
-
-
-
+        }
 
         // dd($userGice->grp);
-
 
         User::updateOrCreate(['id' => $userGice->sub], ['name' => $userGice->name]);
 
@@ -46,9 +43,7 @@ class AuthController extends Controller
         if (isset($userGice->grp)) {
             $roles = $userGice->grp;
             if (is_array($roles)) {
-
                 foreach ($roles as $role) {
-
                     $this->addRoles($user, $role);
                 }
             } else {
@@ -56,12 +51,9 @@ class AuthController extends Controller
                     $user,
                     $roles
                 );
-            };
+            }
             // dd(is_array($roles));
-
-        };
-
-
+        }
 
         Auth::login($user, true);
 
@@ -78,8 +70,6 @@ class AuthController extends Controller
 
     public function monty()
     {
-
-
         User::updateOrCreate(['id' => 9999999999], ['name' => 'Monty The Apprentice', 'token' => '9999999999999999999999999', 'pri_grp' => 5]);
         $user = User::where('id', 9999999999)->first();
         Auth::login($user, true);
@@ -97,8 +87,8 @@ class AuthController extends Controller
 
         $new = User::create([
             'id' => 1,
-            'name' => "Webway",
-            'token' => "12348",
+            'name' => 'Webway',
+            'token' => '12348',
             'pri_grp' => 9,
 
         ]);
@@ -108,12 +98,9 @@ class AuthController extends Controller
         return ['token' => $token->plainTextToken];
     }
 
-
     public function borisToken()
     {
-        $user =  User::where('id', 79231)->first();
-
-
+        $user = User::where('id', 79231)->first();
 
         $token = $user->createToken('auth_token');
 
@@ -122,8 +109,6 @@ class AuthController extends Controller
 
     public function admin()
     {
-
-
         User::updateOrCreate(['id' => 5], ['name' => 'admin', 'token' => '456456456456456', 'pri_grp' => 5]);
         $user = User::where('id', 5)->first();
         Auth::login($user, true);
@@ -133,8 +118,6 @@ class AuthController extends Controller
 
     public function martyn()
     {
-
-
         User::updateOrCreate(['id' => 99999999], ['name' => 'martn', 'token' => '9999999999999999999999999', 'pri_grp' => 5]);
         $user = User::where('id', 99999999)->first();
         Auth::login($user, true);
@@ -144,8 +127,6 @@ class AuthController extends Controller
 
     public function scopeh()
     {
-
-
         User::updateOrCreate(['id' => 999999999], ['name' => 'Schpeh The Hero', 'token' => '9999999999999999999999999', 'pri_grp' => 5]);
         $user = User::where('id', 999999999)->first();
         Auth::login($user, true);
@@ -154,17 +135,15 @@ class AuthController extends Controller
         return redirect('/notifications');
     }
 
-
-
     public function logout()
     {
         Auth::logout();
+
         return view('auth.login');
     }
 
     public function login()
     {
-
         return view('auth.login');
     }
 
@@ -188,7 +167,6 @@ class AuthController extends Controller
     FC -> 731 -> 12
 
     */
-
 
     public function purgeRoles($user)
     {

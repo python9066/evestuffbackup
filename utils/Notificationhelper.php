@@ -31,11 +31,10 @@ use Symfony\Component\Yaml\Yaml;
 
 class Notifications
 {
-
     public static function reconRegionPull($id)
     {
-        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
-        $url = "https://recon.gnf.lt/api/structures/hostile/region/" . $id;
+        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+        $url = 'https://recon.gnf.lt/api/structures/hostile/region/'.$id;
 
         $client = new GuzzleHttpClient();
         $headers = [
@@ -50,15 +49,16 @@ class Notifications
             'http_errors' => false,
         ]);
         $data = Utils::jsonDecode($response->getBody(), true);
+
         return $data;
     }
 
     public static function reconRegionPullIdCheck($id)
     {
-        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
         $i = 0;
 
-        $url = "https://recon.gnf.lt/api/structure/" . $id;
+        $url = 'https://recon.gnf.lt/api/structure/'.$id;
         $client = new GuzzleHttpClient();
         $headers = [
             // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
@@ -73,7 +73,7 @@ class Notifications
         ]);
 
         $stationdata = Utils::jsonDecode($response->getBody(), true);
-        if ($stationdata == "Error, Structure Not Found") {
+        if ($stationdata == 'Error, Structure Not Found') {
             $s = Station::find($id)->get();
             foreach ($s as $s) {
                 $s->delete();
@@ -83,18 +83,17 @@ class Notifications
                 $s->delete();
             }
         } else {
-
             $core = 0;
             $standing = 0;
             $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
-            if (!$corp) {
+            if (! $corp) {
                 $corpPull = 0;
                 do {
                     $response = Http::withHeaders([
                         'Content-Type' => 'application/json',
-                        "Accept" => "application/json",
+                        'Accept' => 'application/json',
                         'User-Agent' => 'evestuff.online python9066@gmail.com',
-                    ])->get("https://esi.evetech.net/latest/corporations/" . $stationdata['str_owner_corporation_id'] . "/?datasource=tranquility");
+                    ])->get('https://esi.evetech.net/latest/corporations/'.$stationdata['str_owner_corporation_id'].'/?datasource=tranquility');
                     if ($response->successful()) {
                         $corpPull = 3;
                         $corpInfo = $response->collect();
@@ -107,7 +106,7 @@ class Notifications
                                 'color' => 0,
                                 'standing' => 0,
                                 'active' => 1,
-                                'url' => "https://images.evetech.net/Corporation/" . $stationdata['str_owner_corporation_id'] . "_64.png",
+                                'url' => 'https://images.evetech.net/Corporation/'.$stationdata['str_owner_corporation_id'].'_64.png',
 
                             ]
                         );
@@ -131,9 +130,9 @@ class Notifications
                 $standing = $corp->standing;
             }
 
-            if ($stationdata['str_cored'] == "Yes") {
+            if ($stationdata['str_cored'] == 'Yes') {
                 $core = 1;
-            };
+            }
             $s = StationItemJoin::where('station_id', $id)->get();
             foreach ($s as $s) {
                 $s->delete();
@@ -208,11 +207,10 @@ class Notifications
                         foreach ($items as $item) {
                             StationItems::where('id', $item['type_id'])->get()->count();
                             if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-
                                 StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
                             }
                             StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $id]);
-                        };
+                        }
                     }
                 }
             }
@@ -222,8 +220,8 @@ class Notifications
     //////////////////
     public static function reconPull($id)
     {
-        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
-        $url = "https://recon.gnf.lt/api/structure/" . $id;
+        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+        $url = 'https://recon.gnf.lt/api/structure/'.$id;
 
         $client = new GuzzleHttpClient();
         $headers = [
@@ -238,9 +236,10 @@ class Notifications
             'http_errors' => false,
         ]);
         $data = Utils::jsonDecode($response->getBody(), true);
-        if ($data == "Error, Structure Not Found") {
+        if ($data == 'Error, Structure Not Found') {
             authcheck();
             $stationdata = authpull('station', $id);
+
             return $stationdata;
         } else {
             return $data;
@@ -290,10 +289,10 @@ class Notifications
 
     public static function reconUpdate()
     {
-        $variables = json_decode(base64_decode(getenv("PLATFORM_VARIABLES")), true);
+        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
         $stations = Station::where('added_from_recon', 1)->where('import_flag', 0)->get();
         foreach ($stations as $station) {
-            $url = "https://recon.gnf.lt/api/structure/" . $station->id;
+            $url = 'https://recon.gnf.lt/api/structure/'.$station->id;
             $client = new GuzzleHttpClient();
             $headers = [
                 // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
@@ -308,7 +307,7 @@ class Notifications
             ]);
 
             $stationdata = Utils::jsonDecode($response->getBody(), true);
-            if ($stationdata == "Error, Structure Not Found") {
+            if ($stationdata == 'Error, Structure Not Found') {
                 $s = Station::find($station->id)->get();
                 foreach ($s as $s) {
                     $s->delete();
@@ -343,9 +342,9 @@ class Notifications
                 } else {
                     $standing = $corp->standing;
                 }
-                if ($stationdata['str_cored'] == "Yes") {
+                if ($stationdata['str_cored'] == 'Yes') {
                     $core = 1;
-                };
+                }
                 $s = Station::where('id', $station->id)->first();
 
                 $s->update([
@@ -397,11 +396,10 @@ class Notifications
                             foreach ($items as $item) {
                                 StationItems::where('id', $item['type_id'])->get()->count();
                                 if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-
                                     StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
                                 }
                                 StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $station->id]);
-                            };
+                            }
                         }
                     }
                 }
@@ -409,7 +407,7 @@ class Notifications
         }
         $stations = Station::where('added_from_recon', 0)->get();
         foreach ($stations as $station) {
-            $url = "https://recon.gnf.lt/api/structure/" . $station->name;
+            $url = 'https://recon.gnf.lt/api/structure/'.$station->name;
             $client = new GuzzleHttpClient();
             $headers = [
                 // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
@@ -424,9 +422,8 @@ class Notifications
             ]);
 
             $stationdata = Utils::jsonDecode($response->getBody(), true);
-            if ($stationdata == "Error, Structure Not Found") {
+            if ($stationdata == 'Error, Structure Not Found') {
             } else {
-
                 $oldupdate = $station->r_updated_at;
                 if ($oldupdate != $stationdata['updated_at']) {
                     $s = System::where('id', $station->system_id)->get();
@@ -435,9 +432,9 @@ class Notifications
                     }
                 }
                 $core = 0;
-                if ($stationdata['str_cored'] == "Yes") {
+                if ($stationdata['str_cored'] == 'Yes') {
                     $core = 1;
-                };
+                }
                 $s = Station::where('name', $station->name)->first();
 
                 $s->update([
@@ -473,11 +470,10 @@ class Notifications
                     foreach ($items as $item) {
                         StationItems::where('id', $item['type_id'])->get()->count();
                         if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-
                             StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
                         }
                         StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $stationdata['str_structure_id']]);
-                    };
+                    }
                 }
             }
         }
@@ -491,13 +487,12 @@ class Notifications
 
     public static function test($var, $show)
     {
-
         $time = $var['timestamp'];
         $time = fixtime($time);
-        $data = array();
+        $data = [];
         $text = $var['text'];
-        $text = str_replace("solarSystemID", "system_id", $text);
-        $text = str_replace("structureTypeID", "item_id", $text);
+        $text = str_replace('solarSystemID', 'system_id', $text);
+        $text = str_replace('structureTypeID', 'item_id', $text);
         $text = Yaml::parse($text);
         $current = now();
 
@@ -509,18 +504,18 @@ class Notifications
             if ($maxNotificationID == null || $maxNotificationID == 0) {
                 $maxNotificationID == 1;
             }
-            $station_id = array(
+            $station_id = [
                 'station_id' => $text['structureID'],
-            );
-        } else if ($var['type'] == 'AllAnchoringMsg') {
+            ];
+        } elseif ($var['type'] == 'AllAnchoringMsg') {
             $towernumber = Tower::max('id');
             if ($towernumber == null || $towernumber == 0) {
                 $towernumber = 1;
             }
-            $moon_id = array(
+            $moon_id = [
                 'moon_id' => $text['moonID'],
-            );
-        } else if ($var['type'] == 'StructureDestroyed') {
+            ];
+        } elseif ($var['type'] == 'StructureDestroyed') {
             $s = Station::where('id', $text['structureID'])->get();
             foreach ($s as $s) {
                 $s->update(['station_status_id' => 7, 'out_time' => null]);
@@ -546,13 +541,13 @@ class Notifications
 
             $time = $var['timestamp'];
             $time = fixtime($time);
-            $data = array();
+            $data = [];
             $text = $var['text'];
-            $text = str_replace("solarSystemID", "system_id", $text);
-            $text = str_replace("structureTypeID", "item_id", $text);
+            $text = str_replace('solarSystemID', 'system_id', $text);
+            $text = str_replace('structureTypeID', 'item_id', $text);
             $text = Yaml::parse($text);
 
-            $data = array(
+            $data = [
                 'id' => $var['notification_id'],
                 'alliance_id' => $text['allianceID'],
                 'item_id' => $text['typeID'],
@@ -560,9 +555,9 @@ class Notifications
                 'tower_status_id' => 1,
                 'user_id' => null,
 
-            );
+            ];
             Tower::updateOrCreate($moon_id, $data);
-            // $check = Tower::where('moon_id', $moon_id)->first();
+        // $check = Tower::where('moon_id', $moon_id)->first();
             // if ($check == null) {
             //     Tower::updateOrCreate($moon_id, $data);
             // } else {
@@ -574,17 +569,15 @@ class Notifications
             // }
             // }
         } elseif ($var['type'] == 'StructureUnderAttack') {
-
             if ($var['notification_id'] > $maxNotificationID) {
-
                 $station = Station::where('id', $text['structureID'])->first();
                 if ($station == null) {
                     $stationdata = reconPull($text['structureID']);
                     if (array_key_exists('str_structure_id_md5', $stationdata)) {
                         $core = 0;
-                        if ($stationdata['str_cored'] == "Yes") {
+                        if ($stationdata['str_cored'] == 'Yes') {
                             $core = 1;
-                        };
+                        }
 
                         $standing = 0;
                         $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
@@ -642,11 +635,10 @@ class Notifications
                             foreach ($items as $item) {
                                 StationItems::where('id', $item['type_id'])->get()->count();
                                 if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-
                                     StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
                                 }
                                 StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $text['structureID']]);
-                            };
+                            }
                         }
                     } else {
                         Station::Create([
@@ -684,10 +676,10 @@ class Notifications
                     ]);
                 }
 
-                $data = array(
+                $data = [
                     'id' => $var['notification_id'],
                     'timestamp' => $time,
-                );
+                ];
                 StationNotification::updateOrCreate($station_id, $data);
             }
 
@@ -703,18 +695,17 @@ class Notifications
             $ldap = $text['timestamp'];
             $winSecs = (int) ($ldap / 10000000);
             $unixTimestamp = ($winSecs - 11644473600);
-            $outTime = date("Y-m-d H:i:s", $unixTimestamp);
+            $outTime = date('Y-m-d H:i:s', $unixTimestamp);
 
             if ($var['notification_id'] > $maxNotificationID) {
-
                 $station = Station::where('id', $text['structureID'])->first();
                 if ($station == null) {
                     $stationdata = reconPull($text['structureID']);
                     if (array_key_exists('str_structure_id_md5', $stationdata)) {
                         $core = 0;
-                        if ($stationdata['str_cored'] == "Yes") {
+                        if ($stationdata['str_cored'] == 'Yes') {
                             $core = 1;
-                        };
+                        }
                         $standing = 0;
                         $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
                         $alliance = Alliance::where('id', $corp->alliance_id)->first();
@@ -772,11 +763,10 @@ class Notifications
                             foreach ($items as $item) {
                                 StationItems::where('id', $item['type_id'])->get()->count();
                                 if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-
                                     StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
                                 }
                                 StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $text['structureID']]);
-                            };
+                            }
                         }
                     } else {
                         Station::Create([
@@ -810,11 +800,11 @@ class Notifications
                     ]);
                 }
 
-                $data = array(
+                $data = [
                     'id' => $var['notification_id'],
                     'timestamp' => $time,
 
-                );
+                ];
                 StationNotificationShield::updateOrCreate($station_id, $data);
             }
             $message = StationRecords::where('id', $text['structureID'])->first();
@@ -829,19 +819,18 @@ class Notifications
             $ldap = $text['timestamp'];
             $winSecs = (int) ($ldap / 10000000);
             $unixTimestamp = ($winSecs - 11644473600);
-            $outTime = date("Y-m-d H:i:s", $unixTimestamp);
+            $outTime = date('Y-m-d H:i:s', $unixTimestamp);
 
             if ($var['notification_id'] > $maxNotificationID) {
-
                 $station = Station::where('id', $text['structureID'])->first();
                 // echo $stationcheck;
                 if ($station == null) {
                     $stationdata = reconPull($text['structureID']);
                     if (array_key_exists('str_structure_id_md5', $stationdata)) {
                         $core = 0;
-                        if ($stationdata['str_cored'] == "Yes") {
+                        if ($stationdata['str_cored'] == 'Yes') {
                             $core = 1;
-                        };
+                        }
                         $standing = 0;
                         $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
                         $alliance = Alliance::where('id', $corp->alliance_id)->first();
@@ -899,14 +888,12 @@ class Notifications
                             foreach ($items as $item) {
                                 StationItems::where('id', $item['type_id'])->get()->count();
                                 if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-
                                     StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
                                 }
                                 StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $text['structureID']]);
-                            };
+                            }
                         }
                     } else {
-
                         Station::Create([
                             'id' => $text['structureID'],
                             'name' => $stationdata['name'],
@@ -937,11 +924,11 @@ class Notifications
                         'show_on_welp' => setShowWelp($station, $show),
                     ]);
 
-                    $data = array(
+                    $data = [
                         'id' => $var['notification_id'],
                         'timestamp' => $time,
 
-                    );
+                    ];
                     StationNotificationArmor::updateOrCreate($station_id, $data);
                 }
             }
@@ -968,7 +955,6 @@ class Notifications
             ->count();
         // dd($check);
         if ($check > 0) {
-
             $n = Notification::where('status_id', 2)
                 ->where('timestamp', '<=', $now)->get();
 
@@ -1005,12 +991,12 @@ class Notifications
                     $time = $var['timestamp'];
 
                     $time = fixtime($time);
-                    $result = array();
-                    $data = array();
+                    $result = [];
+                    $data = [];
                     $text = $var['text'];
                     $text = explode("\n", $text);
-                    $text = str_replace("solarSystemID", "system_id", $text);
-                    $text = str_replace("structureTypeID", "item_id", $text);
+                    $text = str_replace('solarSystemID', 'system_id', $text);
+                    $text = str_replace('structureTypeID', 'item_id', $text);
                     array_pop($text);
 
                     for ($i = 0; $i < count($text); $i++) {
@@ -1023,22 +1009,22 @@ class Notifications
                         $item[1] = (int) $item[1];
                         $item = array_values($item);
                         $result[$keys[0]] = $item[0];
-                    };
-                    $si_id = $result['system_id'] . $result['item_id'];
+                    }
+                    $si_id = $result['system_id'].$result['item_id'];
                     $check_si_id = $si_id;
                     $check_si_id = (int) $check_si_id;
-                    $si_id = array(
+                    $si_id = [
                         'si_id' => $si_id = (int) $si_id,
-                    );
+                    ];
 
-                    $data = array(
+                    $data = [
                         'id' => $var['notification_id'],
                         'timestamp' => $time,
                         'notification_type_id' => 1,
                         'status_id' => 1,
                         'user_id' => null,
 
-                    );
+                    ];
                     $data2 = array_merge($data, $result);
                     $check = Notification::where('si_id', $check_si_id)->first();
                     $count = Notification::where('si_id', $check_si_id)->get()->count();
@@ -1046,9 +1032,7 @@ class Notifications
                         Notification::updateOrCreate($si_id, $data2);
                         $flag = 1;
                     } else {
-
                         if ($var['notification_id'] > $check->id) {
-
                             Notification::updateOrCreate($si_id, $data2);
                             $flag = 1;
                         }
@@ -1059,13 +1043,13 @@ class Notifications
                     $time2 = $var['timestamp'];
                     $time = $var['timestamp'];
                     $time = fixtime($time);
-                    $result = array();
-                    $data = array();
+                    $result = [];
+                    $data = [];
 
                     $text = $var['text'];
                     $text = explode("\n", $text);
-                    $text = str_replace("campaignEventType", "event_type_id", $text);
-                    $text = str_replace("solarSystemID", "system_id", $text);
+                    $text = str_replace('campaignEventType', 'event_type_id', $text);
+                    $text = str_replace('solarSystemID', 'system_id', $text);
                     array_pop($text);
 
                     for ($i = 0; $i < count($text); $i++) {
@@ -1079,20 +1063,20 @@ class Notifications
                             $item[1] = (int) $item[1];
                             $item = array_values($item);
                             $result[$keys[0]] = $item[0];
-                        };
-                    };
-                    $es_id = $result['event_type_id'] . $result['system_id'];
+                        }
+                    }
+                    $es_id = $result['event_type_id'].$result['system_id'];
                     $check_es_id = $es_id;
                     $check_es_id = (int) $check_es_id;
-                    $es_id = array(
+                    $es_id = [
                         'es_id' => $es_id = (int) $es_id,
-                    );
-                    $data = array(
+                    ];
+                    $data = [
                         'id' => $var['notification_id'],
                         'timestamp' => $time,
                         'notification_type_id' => 2,
                         'status' => 0,
-                    );
+                    ];
 
                     // ($data2);
                     $data2 = array_merge($data, $result);
@@ -1103,7 +1087,6 @@ class Notifications
                         $flag = 1;
                     } else {
                         if ($var['notification_id'] > $check->id) {
-
                             Temp_notifcation::updateOrCreate($es_id, $data2);
                             $flag = 1;
                         }
@@ -1120,15 +1103,13 @@ class Notifications
                 $stype = 32458;
             }
 
-            $si_id = $tempnote->system_id . $stype;
+            $si_id = $tempnote->system_id.$stype;
             $si_id = (int) $si_id;
             $check = Notification::where('si_id', $si_id)->get();
             if ($check->count() == 1) {
-
                 $check = $check->toArray();
 
                 if ($tempnote->id > $check[0]['id']) {
-
                     $n = Notification::where('si_id', $si_id)
                         ->where('item_id', $stype)->get();
 
@@ -1144,7 +1125,6 @@ class Notifications
                     $t->update(['status' => 1]);
                 }
             } else {
-
                 $t = Temp_notifcation::where('id', $tempnote->id)->get();
                 foreach ($t as $t) {
                     $t->update(['status' => 1]);
@@ -1152,11 +1132,11 @@ class Notifications
             }
         }
 
-        return $request = array(
+        return $request = [
             'stationflag' => $stationflag,
             'towerflag' => $towerflag,
             'notificationflag' => $flag,
-        );
+        ];
     }
 
     public static function stationNotificationCheck()
@@ -1172,7 +1152,6 @@ class Notifications
 
         $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 1)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //New
         foreach ($checks as $check) {
-
             $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
             $stationID = $check->id;
             $flag = null;
@@ -1184,7 +1163,6 @@ class Notifications
 
         $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 2)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //On They way
         foreach ($checks as $check) {
-
             $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
             $stationID = $check->id;
             $flag = null;
@@ -1196,7 +1174,6 @@ class Notifications
 
         $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 3)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Gunning
         foreach ($checks as $check) {
-
             $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
             $stationID = $check->id;
             $flag = null;
@@ -1208,7 +1185,6 @@ class Notifications
 
         $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 4)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Saved
         foreach ($checks as $check) {
-
             $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
             $stationID = $check->id;
             $flag = null;
@@ -1218,9 +1194,8 @@ class Notifications
             broadcast(new StationNotificationDelete($flag));
         }
 
-        $checks = Station::where('out_time', "<=", $now)->where('station_status_id', 5)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Upcoming
+        $checks = Station::where('out_time', '<=', $now)->where('station_status_id', 5)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Upcoming
         foreach ($checks as $check) {
-
             $check->update(['station_status_id' => 6, 'status_update' => now(), 'out_time' => null, 'timestamp' => now()]);
             $message = StationRecords::where('id', $check->id)->first();
             $flag = null;
@@ -1230,9 +1205,8 @@ class Notifications
             broadcast(new StationNotificationUpdate($flag));
         }
 
-        $checks = Station::where('out_time', "<=", $now)->where('station_status_id', 13)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Upcoming
+        $checks = Station::where('out_time', '<=', $now)->where('station_status_id', 13)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Upcoming
         foreach ($checks as $check) {
-
             $check->update(['station_status_id' => 6, 'status_update' => now(), 'out_time' => null, 'timestamp' => now()]);
             $message = StationRecords::where('id', $check->id)->first();
             $flag = null;
@@ -1242,9 +1216,8 @@ class Notifications
             broadcast(new StationNotificationUpdate($flag));
         }
 
-        $checks = Station::where('out_time', "<=", $now)->where('station_status_id', 14)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Upcoming
+        $checks = Station::where('out_time', '<=', $now)->where('station_status_id', 14)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Upcoming
         foreach ($checks as $check) {
-
             $check->update(['station_status_id' => 15, 'status_update' => now(), 'out_time' => null, 'timestamp' => now()]);
             $message = StationRecords::where('id', $check->id)->first();
             $flag = null;
@@ -1267,7 +1240,6 @@ class Notifications
 
         $checks = Station::where('out_time', '<', $now10min)->where('station_status_id', 15)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Out
         foreach ($checks as $check) {
-
             $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
             $stationID = $check->id;
             $flag = null;
@@ -1279,7 +1251,6 @@ class Notifications
 
         $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 7)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Destoryed
         foreach ($checks as $check) {
-
             $stationID = $check->id;
             $flag = null;
             $flag = collect([
@@ -1307,7 +1278,6 @@ class Notifications
 
         $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 8)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Reffed - Shield
         foreach ($checks as $check) {
-
             $check->update(['station_status_id' => 5, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'status_update' => now(), 'gunner_id' => null, 'attack_notes' => null, 'attack_adash_link' => null]);
             $stationID = $check->id;
             $message = StationRecords::where('id', $check->id)->first();
@@ -1320,7 +1290,6 @@ class Notifications
 
         $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 9)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Reffed - Armor
         foreach ($checks as $check) {
-
             $check->update(['station_status_id' => 13, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'status_update' => now(), 'gunner_id' => null, 'attack_notes' => null, 'attack_adash_link' => null]);
             $message = StationRecords::where('id', $check->id)->first();
             $flag = null;
@@ -1347,7 +1316,6 @@ class Notifications
 
         $towers = Tower::where('tower_status_id', 3)->where('out_time', '>', now())->get();
         foreach ($towers as $tower) {
-
             $tower->update(['tower_status_id' => 4, 'out_time' => null]);
             $message = TowerRecord::where('id', $tower->id)->first();
             if ($message->status_id != 10) {
@@ -1374,7 +1342,6 @@ class Notifications
 
     public static function setShowMain($pull, $show)
     {
-
         $showMain = $pull->show_on_main;
 
         if ($show == 1) {
@@ -1386,7 +1353,6 @@ class Notifications
 
     public static function setShowChill($pull, $show)
     {
-
         $showChill = $pull->show_on_chill;
 
         if ($show == 2) {
@@ -1398,7 +1364,6 @@ class Notifications
 
     public static function setShowWelp($pull, $show)
     {
-
         $showWelp = $pull->show_on_welp;
 
         if ($show == 3) {

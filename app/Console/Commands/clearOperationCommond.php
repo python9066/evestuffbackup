@@ -49,6 +49,5 @@ class clearOperationCommond extends Command
                 'system_id' => null,
             ]);
         }
-
     }
 }

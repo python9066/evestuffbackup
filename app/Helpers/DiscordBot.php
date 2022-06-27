@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Helpers;
 
 use Illuminate\Support\Facades\Http;
 
-if (!function_exists('discordPost')) {
+if (! function_exists('discordPost')) {
     function discordPost($webhook, $content, $embeds)
     {
         /*
@@ -17,12 +17,12 @@ if (!function_exists('discordPost')) {
          *       ]
          */
 
-        return Http::post($webhook, [
+        return Http::post(
+            $webhook,
+            [
             'content' => $content,
             'embeds' => [$embeds],
         ],
         );
-
     }
-
 }

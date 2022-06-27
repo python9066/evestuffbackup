@@ -16,10 +16,8 @@ use Illuminate\Support\Str;
 
 class NewCampaignhelper
 {
-
     public static function newUpdate()
     {
-
         $updatedCampaignID = collect();
         $deathCampaign = NewCampaign::where('status_id', 10)->get();
 
@@ -27,7 +25,6 @@ class NewCampaignhelper
             // TODO: Finish everything else that needs to be cleaned up when a campaign is over.
             $campaginOperation = NewCampaignOperation::where('campaign_id', $c->id)->get();
             foreach ($campaginOperation as $co) {
-
                 $op = NewOperation::where('id', $co->operation_id)->first();
                 if ($op->solo == 1) {
                     $op->delete();
@@ -45,9 +42,9 @@ class NewCampaignhelper
         }
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            "Accept" => "application/json",
+            'Accept' => 'application/json',
             'User-Agent' => 'evestuff.online python9066@gmail.com',
-        ])->get("https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility");
+        ])->get('https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility');
         // $response = Http::withHeaders([
         //     'Content-Type' => 'application/json',
         //     "Accept" => "application/json",
@@ -62,10 +59,10 @@ class NewCampaignhelper
                 $score_changed = false;
                 if ($event_type == 'ihub_defense') {
                     $event_type = 32458;
-                    $event_type_name = "Ihub";
+                    $event_type_name = 'Ihub';
                 } else {
                     $event_type = 32226;
-                    $event_type_name = "TCU";
+                    $event_type_name = 'TCU';
                 }
 
                 $id = $campaign['campaign_id'];
@@ -81,11 +78,11 @@ class NewCampaignhelper
                 }
                 $systemN = System::where('id', $campaign['solar_system_id'])->first();
                 $systemNamee = $systemN->system_name;
-                $cName = $systemNamee . " - " . $event_type_name;
+                $cName = $systemNamee.' - '.$event_type_name;
                 $time = $campaign['start_time'];
                 $start_time = fixtime($time);
-                $data = array();
-                $data = array(
+                $data = [];
+                $data = [
                     'attackers_score' => $campaign['attackers_score'],
                     'constellation_id' => $campaign['constellation_id'],
                     'alliance_id' => $campaign['defender_id'],
@@ -96,14 +93,14 @@ class NewCampaignhelper
                     'structure_id' => $campaign['structure_id'],
                     'check' => 1,
                     'name' => $cName,
-                );
+                ];
 
                 NewCampaign::updateOrCreate(['id' => $id], $data);
                 echo $score_changed;
                 // * If Score has changed
 
                 if ($score_changed) {
-                    echo " -  I AM IN   -";
+                    echo ' -  I AM IN   -';
                     $campaign = NewCampaign::where('id', $id)->first();
                     $campaignOperations = NewCampaignOperation::where('campaign_id', $id)->get();
                     $bNode = $campaign->b_node;
@@ -114,10 +111,10 @@ class NewCampaignhelper
                         $system_id = $campaignNode->system_id;
                         if ($campaignNode->node_status == 4) {
                             $bNode = $bNode + 1;
-                            echo "yay add 1 to blue";
+                            echo 'yay add 1 to blue';
                         } else {
                             $rNode = $rNode + 1;
-                            echo "yay add 1 to red";
+                            echo 'yay add 1 to red';
                         }
                         $campaignNode->delete();
                         broadcastsystemSolo($system_id, 7);
@@ -135,11 +132,11 @@ class NewCampaignhelper
                     $system = System::where('id', $campaign['solar_system_id'])->first();
                     $systemName = $system->system_name;
                     if ($event_type == 32458) {
-                        $type = "Ihub";
+                        $type = 'Ihub';
                     } else {
-                        $type = "TCU";
+                        $type = 'TCU';
                     }
-                    $title = $systemName . " - " . $type;
+                    $title = $systemName.' - '.$type;
                     $newOp = NewOperation::create([
                         'link' => $uuid,
                         'solo' => 1,
@@ -180,7 +177,6 @@ class NewCampaignhelper
             } else {
                 $dScore = 0;
                 $aScore = 1;
-
             }
             $n->update([
                 'end_time' => now(),
@@ -245,10 +241,10 @@ class NewCampaignhelper
         return OperationUser::where('operation_id', $opID)
             ->with([
                 'user:id,name',
-                "userrole",
-                "userstatus",
-                "system",
-                "userNode.node",
+                'userrole',
+                'userstatus',
+                'system',
+                'userNode.node',
             ])
             ->get();
     }
@@ -259,10 +255,10 @@ class NewCampaignhelper
             ->where('id', $id)
             ->with([
                 'user:id,name',
-                "userrole",
-                "userstatus",
-                "system",
-                "userNode.node",
+                'userrole',
+                'userstatus',
+                'system',
+                'userNode.node',
             ])
             ->first();
     }
@@ -316,7 +312,6 @@ class NewCampaignhelper
 
     public static function customOperationSolo($opID)
     {
-
         return NewOperation::where('id', $opID)
             ->with(['campaign.system', 'campaign.alliance'])
             ->first();
@@ -327,6 +322,6 @@ class NewCampaignhelper
         return User::whereIn('id', $userIDs)
             ->with(['opUsers' => function ($t) use ($opID) {
                 $t->where('operation_id', $opID);
-            }, "opUsers.userrole"])->select('id', 'name')->get();
+            }, 'opUsers.userrole'])->select('id', 'name')->get();
     }
 }

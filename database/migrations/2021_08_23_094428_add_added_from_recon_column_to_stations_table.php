@@ -14,7 +14,6 @@ class AddAddedFromReconColumnToStationsTable extends Migration
     public function up()
     {
         Schema::table('stations', function (Blueprint $table) {
-
             $table->tinyInteger('added_from_recon')->after('ammo_request_id')->default(0);
         });
     }
