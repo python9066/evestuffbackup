@@ -40,7 +40,6 @@ use App\Http\Controllers\OperationUserController;
 use App\Http\Controllers\RcFcUsersController;
 use App\Http\Controllers\RcGsolUsersController;
 use App\Http\Controllers\RcReconUsersController;
-use App\Http\Controllers\RCSheet;
 use App\Http\Controllers\RcSheetController;
 use App\Http\Controllers\ReconTaskController;
 use App\Http\Controllers\ReconTaskSystemController;
@@ -63,7 +62,6 @@ use App\Http\Controllers\WebWayController;
 use App\Http\Controllers\WebWayStartSystemsContorller;
 use App\Http\Controllers\WelpStationController;
 use App\Models\Notification;
-use App\Models\WebWay;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -346,4 +344,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/operationinfopage/{id}', [OperationInfoSheetController::class, 'index']);
     Route::put('/operationinfopage/{id}', [OperationInfoSheetController::class, 'update']);
+    Route::put('/operationinfopagemessage/{id}', [OperationInfoSheetController::class, 'messageAdd']);
+    Route::delete('/operationinfopagemessage/{id}', [OperationInfoSheetController::class, 'messageDelete']);
 });

@@ -10,14 +10,15 @@ use App\Models\User;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\Http;
 
-if (! function_exists('displayName')) {
+if (!function_exists('displayName')) {
     function displayName()
     {
         return 'Laravel fefefFramework';
     }
 }
-if (! function_exists('authcheck')) {
+if (!function_exists('authcheck')) {
     function authcheck()
     {
         $auths = Auth::all();
@@ -34,13 +35,13 @@ if (! function_exists('authcheck')) {
                 $http = new GuzzleHttpCLient();
 
                 $headers = [
-                    'Authorization' => 'Basic '.$client->code,
+                    'Authorization' => 'Basic ' . $client->code,
                     'Content-Type' => 'application/x-www-form-urlencoded',
                     'Host' => 'login.eveonline.com',
                     'User-Agent' => 'evestuff.online python9066@gmail.com',
 
                 ];
-                $body = 'grant_type=refresh_token&refresh_token='.$auth->refresh_token;
+                $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
                 // echo $body;
                 $response = $http->request('POST', 'https://login.eveonline.com/v2/oauth/token', [
                     'headers' => $headers,
@@ -55,7 +56,7 @@ if (! function_exists('authcheck')) {
         }
     }
 }
-if (! function_exists('authpull')) {
+if (!function_exists('authpull')) {
     function authpull($type, $station_id)
     {
         $type = $type;
@@ -85,11 +86,11 @@ if (! function_exists('authpull')) {
                 $token = Auth::where('flag_note', 0)->first();
                 $token->update(['flag_note' => 1]);
 
-                $url = 'https://esi.evetech.net/latest/characters/'.$token->char_id.'/notifications/';
-            // dd($url);
+                $url = 'https://esi.evetech.net/latest/characters/' . $token->char_id . '/notifications/';
+                // dd($url);
             } else {
                 $token->update(['flag_note' => 1]);
-                $url = 'https://esi.evetech.net/latest/characters/'.$token->char_id.'/notifications/';
+                $url = 'https://esi.evetech.net/latest/characters/' . $token->char_id . '/notifications/';
                 // dd($url);
             }
         } elseif ($type == 'station') {
@@ -103,18 +104,18 @@ if (! function_exists('authpull')) {
                 $token = Auth::where('flag_station', 0)->first();
                 $token->update(['flag_station' => 1]);
 
-                $url = 'https://esi.evetech.net/latest/universe/structures/'.$station_id.'/?datasource=tranquility';
-            // dd($url);
+                $url = 'https://esi.evetech.net/latest/universe/structures/' . $station_id . '/?datasource=tranquility';
+                // dd($url);
             } else {
                 $token->update(['flag_station' => 1]);
-                $url = 'https://esi.evetech.net/latest/universe/structures/'.$station_id.'/?datasource=tranquility';
+                $url = 'https://esi.evetech.net/latest/universe/structures/' . $station_id . '/?datasource=tranquility';
                 // dd($url);
             }
         }
         // echo $url.":url";
         $client = new GuzzleHttpClient();
         $headers = [
-            'Authorization' => 'Bearer '.$token->access_token,
+            'Authorization' => 'Bearer ' . $token->access_token,
             'User-Agent' => 'evestuff.online python9066@gmail.com',
 
         ];
@@ -136,7 +137,7 @@ if (! function_exists('authpull')) {
         }
     }
 }
-if (! function_exists('fixtime')) {
+if (!function_exists('fixtime')) {
     function fixtime($time)
     {
         $time = str_replace('Z', '', $time);
@@ -146,7 +147,7 @@ if (! function_exists('fixtime')) {
         return $time;
     }
 }
-if (! function_exists('clearRemember')) {
+if (!function_exists('clearRemember')) {
     function clearRemember()
     {
         $now = now()->modify('-3 days');
@@ -156,7 +157,7 @@ if (! function_exists('clearRemember')) {
         }
     }
 }
-if (! function_exists('checkeve')) {
+if (!function_exists('checkeve')) {
     function checkeve()
     {
         $http = new GuzzleHttpCLient();
@@ -189,7 +190,7 @@ if (! function_exists('checkeve')) {
         return 1;
     }
 }
-if (! function_exists('eveUserCount')) {
+if (!function_exists('eveUserCount')) {
     function eveUserCount()
     {
         $http = new GuzzleHttpCLient();
@@ -206,7 +207,7 @@ if (! function_exists('eveUserCount')) {
         return $status->players;
     }
 }
-if (! function_exists('campaignName')) {
+if (!function_exists('campaignName')) {
     function campaignName($campaignID)
     {
         $campaign = Campaign::where('id', $campaignID)->first();
@@ -216,7 +217,7 @@ if (! function_exists('campaignName')) {
         } else {
             $itemname = 'IHUB';
         }
-        $campaignname = $itemname.' in '.$systemname;
+        $campaignname = $itemname . ' in ' . $systemname;
 
         return $date = [
             'campaign_name' => $campaignname,
@@ -224,22 +225,22 @@ if (! function_exists('campaignName')) {
         ];
     }
 }
-if (! function_exists('logUpdate')) {
+if (!function_exists('logUpdate')) {
     function logUpdate($campid, $log)
     {
     }
 }
-if (! function_exists('sheetlogs')) {
+if (!function_exists('sheetlogs')) {
     function sheetlogs($log)
     {
     }
 }
-if (! function_exists('stationlogs')) {
+if (!function_exists('stationlogs')) {
     function stationlogs($log)
     {
     }
 }
-if (! function_exists('StationRecords')) {
+if (!function_exists('StationRecords')) {
     function StationRecords($type)
     {
         $regionIDs = HotRegion::where('show_fcs', 1)->pluck('region_id');
@@ -309,7 +310,7 @@ if (! function_exists('StationRecords')) {
         return $stationRecords;
     }
 }
-if (! function_exists('StationRecordsSolo')) {
+if (!function_exists('StationRecordsSolo')) {
     function StationRecordsSolo($type, $id)
     {
         $regionIDs = HotRegion::where('show_fcs', 1)->pluck('region_id');
@@ -381,5 +382,32 @@ if (! function_exists('StationRecordsSolo')) {
         $stationRecords = $station_query->first();
 
         return $stationRecords;
+    }
+}
+
+if (!function_exists('nameToID')) {
+    function nameToID($name)
+    {
+        $userIds = collect();
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
+        ])
+            ->withBody(json_encode([$name]), 'application/json')
+            ->post('https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en');
+
+        $res = $response->collect($key = null);
+        foreach ($res as $key => $re) {
+            if ($key == 'characters') {
+                $userIds->push($re[0]['id']);
+            }
+        }
+        $count = $userIds->count();
+        if ($count > 0) {
+            return $userIds[0];
+        } else {
+            return null;
+        }
     }
 }

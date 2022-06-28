@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\OperationInfo;
+use App\Models\OperationInfoMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OperationInfoSheetController extends Controller
 {
@@ -37,6 +39,25 @@ class OperationInfoSheetController extends Controller
     public function show($id)
     {
         //
+    }
+
+
+    public function messageAdd(Request $request, $id)
+    {
+        $new = new OperationInfoMessage();
+        $new->operation_info_id = $id;
+        $new->user_id = Auth::id();
+        $new->message = $request->message;
+        $new->save();
+        operationInfoSoloPageBroadcast($id, 1);
+    }
+
+    public function messageDelete($id)
+    {
+        $message = OperationInfoMessage::where('id', $id)->first();
+        $opID = $message->operation_info_id;
+        $message->delete();
+        operationInfoSoloPageBroadcast($opID, 1);
     }
 
     /**

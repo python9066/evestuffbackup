@@ -96,14 +96,9 @@ class testController extends Controller
         }
     }
 
-    public function deleteOperation($operation)
+    public function testnamejob($name)
     {
-        $operationUsers = OperationUser::where('operation_id', $operation->id)->get();
-        foreach ($operationUsers as $operationUser) {
-            $operationUser->opertaion_id = null;
-            $operationUser->save();
-        }
-        $operation->delete();
+        return nameToID($name);
     }
 
     public function testClearCampaigns()
@@ -152,14 +147,14 @@ class testController extends Controller
                         'Content-Type' => 'application/json',
                         'Accept' => 'application/json',
                         'User-Agent' => 'evestuff.online python9066@gmail.com',
-                    ])->get('https://esi.evetech.net/latest/characters/'.$userID.'/?datasource=tranquility');
+                    ])->get('https://esi.evetech.net/latest/characters/' . $userID . '/?datasource=tranquility');
                     $res = $response->collect($key = null);
                     $new = new OperationInfoUser();
                     $new->id = $userID;
                     $new->alliance_id = $res['alliance_id'] ?? null;
                     $new->corporation_id = $res['corporation_id'];
                     $new->name = $res['name'];
-                    $new->url = 'https://images.evetech.net/characters/'.$userID.'/portrait?tenant=tranquility&size=64';
+                    $new->url = 'https://images.evetech.net/characters/' . $userID . '/portrait?tenant=tranquility&size=64';
                     $new->save();
                 }
             } else {
@@ -240,7 +235,7 @@ class testController extends Controller
                 foreach ($group as $op) {
                     $userID = (int) $op['userID'];
                     $check = OperationUserList::where('operation_id', $opID)->where('user_id', $userID)->first();
-                    if (! $check) {
+                    if (!$check) {
                         $newOp = new OperationUserList();
                         $newOp->operation_id = $opID;
                         $newOp->user_id = $userID;
@@ -357,7 +352,7 @@ class testController extends Controller
                         } else {
                             $type = 'TCU';
                         }
-                        $title = $systemName.' - '.$type;
+                        $title = $systemName . ' - ' . $type;
                         $newOp = NewOperation::create([
                             'link' => $uuid,
                             'solo' => 1,
@@ -516,7 +511,7 @@ class testController extends Controller
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
                     'User-Agent' => 'evestuff.online python9066@gmail.com',
-                ])->get('https://esi.evetech.net/latest/corporations/'.$var[0]['id'].'/?datasource=tranquility');
+                ])->get('https://esi.evetech.net/latest/corporations/' . $var[0]['id'] . '/?datasource=tranquility');
 
                 $corpReturn = $corpRep->collect();
                 // Corp::create([
@@ -566,7 +561,7 @@ class testController extends Controller
                     },
                     'campaign.structure:id,item_id,age',
                 ])
-                ->get(), ];
+                ->get(),];
         } else {
             return null;
         }
@@ -588,14 +583,14 @@ class testController extends Controller
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
             'User-Agent' => 'evestuff.online python9066@gmail.com',
-        ])->get('https://esi.evetech.net/latest/alliances/'.$id.'/?datasource=tranquility');
+        ])->get('https://esi.evetech.net/latest/alliances/' . $id . '/?datasource=tranquility');
         $allianceInfo = $response->collect();
 
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
             'User-Agent' => 'evestuff.online python9066@gmail.com',
-        ])->get('https://esi.evetech.net/latest/alliances/'.$id.'/corporations/?datasource=tranquility');
+        ])->get('https://esi.evetech.net/latest/alliances/' . $id . '/corporations/?datasource=tranquility');
         $corpIDs = $response->collect();
 
         dd($allianceInfo, $corpIDs);
@@ -717,7 +712,7 @@ class testController extends Controller
     public function test($id)
     {
         $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
-        $url = 'https://recon.gnf.lt/api/structure/'.$id;
+        $url = 'https://recon.gnf.lt/api/structure/' . $id;
         // $dance = env('RECON_TOKEN', "DANCE");
         $dance = env('RECON_TOKEN', ($variables && array_key_exists('RECON_TOKEN', $variables)) ? $variables['RECON_TOKEN'] : 'DANCE2');
         // $dance2 = env('RECON_USER', 'DANCE2');

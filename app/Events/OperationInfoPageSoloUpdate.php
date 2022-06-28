@@ -2,15 +2,13 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class OperationInfoPageSoloUpdate
+class OperationInfoPageSoloUpdate implements ShouldBroadcastNow
 {
     use Dispatchable;
     use InteractsWithSockets;
@@ -35,6 +33,7 @@ class OperationInfoPageSoloUpdate
      */
     public function broadcastOn()
     {
+
         return new PrivateChannel('operationinfooppage.' . $this->flag['id']);
     }
 }

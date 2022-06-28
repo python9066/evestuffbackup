@@ -52,7 +52,7 @@ class setDeleteFlagJob implements ShouldQueue
     {
         $operationUsers = OperationUser::where('operation_id', $operation->id)->get();
         foreach ($operationUsers as $operationUser) {
-            $operationUser->opertaion_id = null;
+            $operationUser->operation_id = null;
             $operationUser->save();
         }
         $operation->delete();

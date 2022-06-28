@@ -61,7 +61,8 @@ if (!function_exists('operationInfoSoloPageBroadcast')) {
         $message = operationInfoSoloPagePull($id);
         $flag = collect([
             'flag' => $flagNumber,
-            'message' => $message
+            'message' => $message,
+            'id' => $id
         ]);
         broadcast(new OperationInfoPageSoloUpdate($flag));
     }
@@ -78,6 +79,6 @@ if (!function_exists('operationInfoSoloPagePull')) {
      */
     function operationInfoSoloPagePull($id)
     {
-        return  OperationInfo::where('id', $id)->with(['messages.user:id,name'])->first();
+        return  OperationInfo::where('id', $id)->with(['messages.user:id,name,eve_user_id'])->first();
     }
 }
