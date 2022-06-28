@@ -585,6 +585,24 @@ Vue.component(
     require("./components/operationinfo/OperationInfoTable.vue").default
 );
 
+Vue.component(
+    "OperationInfoPlanningCard",
+    require("./components/operationinfo/OperationInfoPlanningCard.vue").default
+);
+Vue.component(
+    "OperationPreOpFormUpCard",
+    require("./components/operationinfo/OperationPreOpFormUpCard.vue").default
+);
+Vue.component(
+    "OperationInfoPostOpCard",
+    require("./components/operationinfo/OperationInfoPostOpCard.vue").default
+);
+
+Vue.component(
+    "OperationInfoMessageCard",
+    require("./components/operationinfo/OperationInfoMessageCard.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(VueEllipseProgress, "Vep");

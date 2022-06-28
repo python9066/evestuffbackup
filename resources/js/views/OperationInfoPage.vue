@@ -7,50 +7,27 @@
             ><v-col cols="auto">Operation - {{ opInfo.name }}</v-col></v-row
           ></v-card-title
         ><v-card-text class="pt-3"
-          ><v-row no-gutters justify="space-around"
+          ><v-row no-gutters justify="space-between">
+            <v-col cols="4">
+              <v-row no-gutters>
+                <v-col cols="auto"
+                  ><OperationInfoPlanningCard :loaded="loaded" />
+                </v-col>
+                <v-col cols="auto">
+                  <v-row no-gutters
+                    ><v-col cols="auto"
+                      ><OperationPreOpFormUpCard :loaded="loaded" /></v-col
+                  ></v-row>
+                </v-col>
+                <v-col cols="auto">
+                  <v-row no-gutters
+                    ><v-col cols="auto"
+                      ><OperationInfoPostOpCard
+                        :loaded="
+                          loaded
+                        " /></v-col></v-row></v-col></v-row></v-col
             ><v-col cols="auto"
-              ><v-row no-gutters
-                ><v-col cols="auto"
-                  ><v-card rounded="xl"
-                    ><v-card-title class="green">Pre-Op Planning</v-card-title
-                    ><v-card-text>
-                      <v-row no-gutters>
-                        <v-col cols="auto">Formup Time</v-col
-                        ><v-col cols="auto"></v-col>
-                      </v-row>
-                      <v-row no-gutters>
-                        <v-col cols="auto">Fourm OP Posted</v-col
-                        ><v-col cols="auto"></v-col>
-                      </v-row>
-                      <v-row no-gutters>
-                        <v-col cols="auto">OP Pre-Pinged?</v-col
-                        ><v-col cols="auto"></v-col>
-                      </v-row>
-                      <v-row no-gutters>
-                        <v-col cols="auto">Reacon Informed</v-col
-                        ><v-col cols="auto"></v-col>
-                      </v-row>
-                      <v-row no-gutters>
-                        <v-col cols="auto">Campaital FC's Found</v-col
-                        ><v-col cols="auto"></v-col>
-                      </v-row>
-                      <v-row no-gutters>
-                        <v-col cols="auto">FC's Found</v-col
-                        ><v-col cols="auto"></v-col>
-                      </v-row>
-                      <v-row no-gutters>
-                        <v-col cols="auto">Doctrines decided</v-col
-                        ><v-col cols="auto"></v-col>
-                      </v-row>
-                      <v-row no-gutters>
-                        <v-col cols="auto">Allies Informed</v-col
-                        ><v-col cols="auto"></v-col>
-                      </v-row>
-                    </v-card-text> </v-card></v-col
-              ></v-row>
-              <v-row no-gutters><v-col cols="auto">Forming</v-col></v-row>
-              <v-row no-gutters><v-col cols="auto">Post</v-col></v-row></v-col
-            ><v-col cols="auto">Message</v-col
+              ><OperationInfoMessageCard :loaded="loaded" /></v-col
             ><v-col cols="auto">Fleets</v-col></v-row
           ></v-card-text
         ></v-card
@@ -78,6 +55,7 @@ export default {
         x: 0,
         y: 0,
       },
+      loaded: false,
     };
   },
 
@@ -87,9 +65,10 @@ export default {
       this.$route.params.id
     );
     Echo.private("operationinfooppage." + this.$route.params.id).listen(
-      "OperationInfoPageUpdate",
+      "OperationInfoPageSoloUpdate",
       (e) => {
         if (e.flag.flag == 1) {
+          this.$store.dispatch("updateOperationSheetInfoPage", e.flag.message);
         }
 
         if (e.flag.flag == 2) {
@@ -103,10 +82,16 @@ export default {
 
   async mounted() {
     this.onResize();
+    this.setLoad();
   },
   methods: {
     onResize() {
       this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+    },
+
+    async setLoad() {
+      await sleep(1000);
+      this.loaded = true;
     },
   },
   computed: {
@@ -117,7 +102,7 @@ export default {
         return this.$store.state.operationInfoPage;
       },
       set(newValue) {
-        return this.$store.dispatch("updateOperationSheetInfoPage");
+        return this.$store.dispatch("updateOperationSheetInfoPage", newValue);
       },
     },
   },

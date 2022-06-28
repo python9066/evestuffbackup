@@ -344,4 +344,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/operationinfosheet', [OperationInfoController::class, 'index']);
 
     Route::get('/operationinfopage/{id}', [OperationInfoSheetController::class, 'index']);
+    Route::put('/operationinfopage/{id}', [OperationInfoSheetController::class, 'update']);
 });

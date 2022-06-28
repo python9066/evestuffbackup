@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\OperationInfoPageSoloUpdate;
 use App\Events\OperationInfoPageUpdate;
 use App\Models\OperationInfo;
 
@@ -43,5 +44,40 @@ if (!function_exists('operationInfoSoloBroadcast')) {
             'message' => $message
         ]);
         broadcast(new OperationInfoPageUpdate($flag));
+    }
+}
+
+if (!function_exists('operationInfoSoloPageBroadcast')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     *
+     * @param  int  $flagNumber
+     * 1 = Add/Update Solo Operation Info
+
+     */
+    function operationInfoSoloPageBroadcast($id, $flagNumber)
+    {
+        $message = operationInfoSoloPagePull($id);
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message
+        ]);
+        broadcast(new OperationInfoPageSoloUpdate($flag));
+    }
+}
+
+if (!function_exists('operationInfoSoloPagePull')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     *
+     * @param  int  $flagNumber
+     * 2 = Add/Update Solo Operation Info
+
+     */
+    function operationInfoSoloPagePull($id)
+    {
+        return  OperationInfo::where('id', $id)->with(['messages.user:id,name'])->first();
     }
 }
