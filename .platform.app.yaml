@@ -45,7 +45,7 @@ relationships:
   database: "mysqldb:mysql"
   redis: "redis:redis"
 # The size of the persistent disk of the application (in MB).
-disk: 2048
+disk: 5048
 
 # The mounts that will be performed when the package is deployed.
 mounts:
