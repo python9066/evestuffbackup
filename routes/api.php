@@ -59,6 +59,7 @@ use App\Http\Controllers\TowerRecordsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserKeyJoinControllerController;
 use App\Http\Controllers\UserRolesRecordsController;
+use App\Http\Controllers\WebWayController;
 use App\Http\Controllers\WebWayStartSystemsContorller;
 use App\Http\Controllers\WelpStationController;
 use App\Models\Notification;
@@ -91,7 +92,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function () {
 
     //BROISES FEED//
-    Route::post('/webway', [WebWay::class, 'getWebway']);
+    Route::post('/webway', [WebWayController::class, 'getWebway']);
     Route::post('/url', [AppController::class, 'url']);
     Route::post('/brois', [testController::class, 'notifications']);
     Route::get('/test', [testController::class, 'key']);
@@ -99,13 +100,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/testscorerun', [testController::class, 'testRunScore']);
     Route::post('/testclearalldata', [testController::class, 'testClearCampaigns']);
     Route::get('/eveusercount', [EveController::class, 'playerCount']);
-    Route::post('/rcInput', [RCSheet::class, 'RCInput']);
+    Route::post('/rcInput', [RcSheetController::class, 'RCInput']);
     Route::get('/reconpullregion', [StationController::class, 'reconRegionPull']);
 
     //HACKING NOTIFICATION APIS//
     Route::get('//notifications/{region_id}', [NotificationRecordsController::class, 'regionLink']);
     Route::get('/notifications', [NotificationRecordsController::class, 'index']);
-    Route::put('//notifications/{id}', [Notification::class, 'update']);
+    Route::put('//notifications/{id}', [NotificationController::class, 'update']);
     Route::put('/notificationsaddtime/{id}', [NotificationController::class, 'addTime']);
 
     //IHUB-TCU WINDOWS//
