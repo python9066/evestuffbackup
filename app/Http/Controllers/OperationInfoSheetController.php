@@ -90,6 +90,7 @@ class OperationInfoSheetController extends Controller
         $operation->post_op_fc_done = intval($request->post_op_fc_done);
         $operation->post_op_recon_done = intval($request->post_op_recon_done);
         $operation->post_op_scouts_done = intval($request->post_op_scouts_done);
+        $operation->status_id = intval($request->status_id);
         $operation->save();
         operationInfoSoloPageBroadcast($id, 1);
     }

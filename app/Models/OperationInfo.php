@@ -14,7 +14,7 @@ class OperationInfo extends Model
 
     public function status()
     {
-        return $this->hasOne(OperationInfoStatus::class, 'id', 'status');
+        return $this->hasOne(OperationInfoStatus::class, 'id', 'status_id');
     }
 
     /**
@@ -25,5 +25,16 @@ class OperationInfo extends Model
     public function messages(): HasMany
     {
         return $this->hasMany(OperationInfoMessage::class, 'operation_info_id', 'id');
+    }
+
+
+    /**
+     * Get all of the comments for the OperationInfo
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function fleets(): HasMany
+    {
+        return $this->hasMany(OperationInfoFleet::class, 'operation_info_id', 'id');
     }
 }

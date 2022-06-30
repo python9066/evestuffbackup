@@ -603,6 +603,16 @@ Vue.component(
     require("./components/operationinfo/OperationInfoMessageCard.vue").default
 );
 
+Vue.component(
+    "OperationInfoFleetCard",
+    require("./components/operationinfo/OperationInfoFleetCard.vue").default
+);
+
+Vue.component(
+    "OperationInfoFleetSoloCard",
+    require("./components/operationinfo/OperationInfoFleetSoloCard.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(VueEllipseProgress, "Vep");

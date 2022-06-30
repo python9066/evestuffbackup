@@ -1,12 +1,4 @@
 <template>
-  <!-- <div>
-    <v-card rounded="xl">
-      <v-card-title class="justify-center primary pa-3">{{
-        item.system_name
-      }}</v-card-title>
-      <v-card-text> </v-card-text>
-    </v-card>
-  </div> -->
   <v-expansion-panels
     class="pb-5"
     v-model="showSystemTable"

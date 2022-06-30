@@ -31,9 +31,9 @@ class OperationInfoController extends Controller
         $user = Auth::user();
         if ($user->can('edit_opertaion_info')) {
             $new = new OperationInfo();
-            $new->name = $request->info;
+            $new->name = $request->name;
             $new->info = $request->info;
-            $new->status = 1;
+            $new->status_id = 1;
             $new->save();
             operationInfoSoloBroadcast($new->id, 2);
         }

@@ -17,6 +17,10 @@ export default new Vuex.Store({
 
         operationInfoPage: [],
 
+        operationInfoUsers: [],
+        operationInfoMumble: [],
+        operationInfoDoctrines: [],
+
         allianceticklist: [],
         ammoRequest: [],
         campaigns: [],
@@ -180,6 +184,18 @@ export default new Vuex.Store({
             state.operationInfoPage = data;
         },
 
+        SET_OPERATION_INFO_USERS(state, data) {
+            state.operationInfoUsers = data;
+        },
+
+        SET_OPERATION_INFO_MUMBLE(state, data) {
+            state.operationInfoMumble = data;
+        },
+
+        SET_OPERATION_INFO_DOCTRINES(state, data) {
+            state.operationInfoDoctrines = data;
+        },
+
         SET_NEW_OPERATION_MESSAGE_OVERLAY(state, num) {
             state.newOperationMessageOverlay = num;
         },
@@ -263,6 +279,13 @@ export default new Vuex.Store({
             } else {
                 state.stationList.push(data);
             }
+        },
+
+        UPDATE_FLEET_INFO(state, data) {
+            const item = state.operationInfoPage.fleets.find(
+                (f) => f.id === data.id
+            );
+            Object.assign(item, data);
         },
 
         SET_NEW_SOLO_OPERATIONS(state, solooplist) {
@@ -923,6 +946,45 @@ export default new Vuex.Store({
     },
 
     actions: {
+        async getOperationUsers({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfousers",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_OPERATION_INFO_USERS", res.data.users);
+        },
+
+        async getOperationInfoMumble({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfomumble",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_OPERATION_INFO_MUMBLE", res.data.mumble);
+        },
+
+        async getOperationInfoDoctrines({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfodoctrines",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_OPERATION_INFO_DOCTRINES", res.data.doc);
+        },
+
         async getOperationSheetInfo({ commit }) {
             let res = await axios({
                 method: "get",
@@ -1931,6 +1993,14 @@ export default new Vuex.Store({
             commit("UPDATE_CAMPAIGN_SYSTEMS", data);
         },
 
+        updateOperationSheetInfoPageFleet({ commit }, data) {
+            commit("UPDATE_FLEET_INFO", data);
+        },
+
+        updateOperationUsers({ commit }, data) {
+            commit("SET_OPERATION_INFO_USERS", data);
+        },
+
         async getNotifications({ commit }) {
             let res = await axios({
                 method: "get",
@@ -2811,6 +2881,12 @@ export default new Vuex.Store({
             });
 
             return red;
+        },
+
+        getFleetInfo: (state) => (fleetID) => {
+            var fleets = state.operationInfoPage.fleets;
+            var data = fleets.find((f) => f.id == fleetID);
+            return data;
         },
     },
 });

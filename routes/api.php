@@ -35,7 +35,11 @@ use App\Http\Controllers\NodeJoinsController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\NotificationRecordsController;
 use App\Http\Controllers\OperationInfoController;
+use App\Http\Controllers\OperationInfoDoctrineController;
+use App\Http\Controllers\OperationInfoFleetController;
+use App\Http\Controllers\OperationInfoMumbleController;
 use App\Http\Controllers\OperationInfoSheetController;
+use App\Http\Controllers\OperationInfoUserController;
 use App\Http\Controllers\OperationUserController;
 use App\Http\Controllers\RcFcUsersController;
 use App\Http\Controllers\RcGsolUsersController;
@@ -62,6 +66,7 @@ use App\Http\Controllers\WebWayController;
 use App\Http\Controllers\WebWayStartSystemsContorller;
 use App\Http\Controllers\WelpStationController;
 use App\Models\Notification;
+use App\Models\OperationInfoUser;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -346,4 +351,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/operationinfopage/{id}', [OperationInfoSheetController::class, 'update']);
     Route::put('/operationinfopagemessage/{id}', [OperationInfoSheetController::class, 'messageAdd']);
     Route::delete('/operationinfopagemessage/{id}', [OperationInfoSheetController::class, 'messageDelete']);
+
+    Route::get('/operationinfousers', [OperationInfoUserController::class, 'index']);
+    Route::get('/operationinfomumble', [OperationInfoMumbleController::class, 'index']);
+    Route::get('/operationinfodoctrines', [OperationInfoDoctrineController::class, 'index']);
+
+    Route::post('/operationinfofleet/{id}', [OperationInfoFleetController::class, 'store']);
+    Route::delete('/operationinfofleet/{id}', [OperationInfoFleetController::class, 'destroy']);
+    Route::put('/operationinfofleet/{id}', [OperationInfoFleetController::class, 'update']);
+    Route::put('/operationinfofleetname/{id}', [OperationInfoFleetController::class, 'name']);
 });

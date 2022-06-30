@@ -1,10 +1,15 @@
 <template>
   <v-row no-gutters>
-    <v-col cols="auto"
-      ><v-card rounded="xl"
+    <v-col cols="12"
+      ><v-card rounded="xl" :height="heightCard" :max-height="heightCard"
         ><v-card-title class="primary">Messages</v-card-title
         ><v-card-text>
-          <v-list key="dance">
+          <v-list
+            key="dance"
+            class="scroll"
+            :height="heightList"
+            :max-height="heightList"
+          >
             <transition-group
               mode="out-in"
               :enter-active-class="showEnter"
@@ -15,7 +20,8 @@
                   <v-img :src="url(item.user.eve_user_id)"></v-img>
                 </v-list-item-avatar>
                 <v-list-item-content>
-                  {{ item.message }}
+                  <span class="h5"> {{ item.message }}</span>
+
                   <v-list-item-action-text
                     >{{ textSub(item) }}
                     <v-btn icon color=" warning" @click="deleteMessage(item.id)"
@@ -27,18 +33,23 @@
               </v-list-item>
             </transition-group>
           </v-list>
-          <v-textarea
+          <v-text-field
+            class="pt-5"
             rounded
             clearable
             outlined
             v-model="messageText"
             placeholder="ENTER NOTES HERE"
-          ></v-textarea></v-card-text
-        ><v-card-actions v-if="messageText"
-          ><v-btn rounded class="primary" @click="submitMessage()"
-            >Submit</v-btn
-          ></v-card-actions
-        ></v-card
+            @keyup.enter="submitMessage()"
+            @keyup.esc="messageText = null"
+          ></v-text-field>
+          <!-- <v-btn
+            v-if="messageText"
+            rounded
+            class="primary"
+            @click="submitMessage()"
+            >Submit</v-btn> -->
+        </v-card-text></v-card
       >
     </v-col>
   </v-row>
@@ -56,6 +67,7 @@ export default {
   title() {},
   props: {
     loaded: Boolean,
+    windowSize: Object,
   },
   data() {
     return {
@@ -83,6 +95,10 @@ export default {
       var name = item.user.name;
       var time = moment(item.created_at).format("YYYY-MM-DD HH:mm:ss");
       return name + " " + time;
+    },
+
+    textMessage(item) {
+      return item;
     },
 
     async submitMessage() {
@@ -119,13 +135,13 @@ export default {
 
     showEnter() {
       if (this.loaded == true) {
-        return "animate__animated animate__bounceInRight animate__faster";
+        return "animate__animated animate__flash animate__faster";
       }
     },
 
     showLeave() {
       if (this.loaded == true) {
-        return "animate__animated animate__bounceOutLeft animate__faster";
+        return "animate__animated animate__flash animate__faster";
       }
     },
 
@@ -137,7 +153,23 @@ export default {
         return this.$store.dispatch("updateOperationSheetInfoPage", newValue);
       },
     },
+
+    heightCard() {
+      let num = this.windowSize.y - 232;
+      return num;
+    },
+
+    heightList() {
+      let num = this.windowSize.y - 382;
+      return num;
+    },
   },
   beforeDestroy() {},
 };
 </script>
+
+<style>
+.scroll {
+  overflow-y: scroll;
+}
+</style>

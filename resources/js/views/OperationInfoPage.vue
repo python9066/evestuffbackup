@@ -1,38 +1,54 @@
 <template>
   <v-row no-gutters v-resize="onResize" justify="center">
-    <v-col cols="11"
+    <v-col cols="12" class="pl-5 pr-5"
       ><v-card rounded="xl"
-        ><v-card-title class="primary"
+        ><v-card-title class="primary pt-0 pb-0"
           ><v-row no-gutters justify="center"
-            ><v-col cols="auto">Operation - {{ opInfo.name }}</v-col></v-row
-          ></v-card-title
-        ><v-card-text class="pt-3"
-          ><v-row no-gutters justify="space-between">
-            <v-col cols="4">
-              <v-row no-gutters>
-                <v-col cols="auto"
-                  ><OperationInfoPlanningCard :loaded="loaded" />
-                </v-col>
-                <v-col cols="auto">
-                  <v-row no-gutters
-                    ><v-col cols="auto"
-                      ><OperationPreOpFormUpCard :loaded="loaded" /></v-col
-                  ></v-row>
-                </v-col>
-                <v-col cols="auto">
-                  <v-row no-gutters
-                    ><v-col cols="auto"
-                      ><OperationInfoPostOpCard
-                        :loaded="
-                          loaded
-                        " /></v-col></v-row></v-col></v-row></v-col
             ><v-col cols="auto"
-              ><OperationInfoMessageCard :loaded="loaded" /></v-col
-            ><v-col cols="auto">Fleets</v-col></v-row
-          ></v-card-text
-        ></v-card
-      ></v-col
-    >
+              ><v-row no-gutters justify="center"></v-row>
+              <v-col class="pt-0 pb-0" cols="auto"
+                >Operation - {{ opInfo.name }}</v-col
+              >
+              <v-row no-gutters justify="center"></v-row>
+              <v-col v-if="opInfo.start" class="pt-0 pb-0" cols="auto">{{
+                moment(opInfo.start).format("YYYY-MM-DD HH:mm:ss")
+              }}</v-col>
+            </v-col></v-row
+          ></v-card-title
+        ><v-card-text class="pt-3">
+          <v-row no-gutters justify="space-between">
+            <v-col cols="auto">
+              <transition
+                mode="out-in"
+                :enter-active-class="showEnter"
+                :leave-active-class="showLeave"
+              >
+                <OperationInfoPlanningCard
+                  :loaded="loaded"
+                  v-if="showCard == 1"
+                />
+                <OperationPreOpFormUpCard
+                  :loaded="loaded"
+                  v-if="showCard == 2"
+                />
+                <OperationInfoPostOpCard
+                  :loaded="loaded"
+                  v-if="showCard == 3"
+                />
+              </transition>
+            </v-col>
+            <v-col cols="5">
+              <OperationInfoMessageCard
+                :loaded="loaded"
+                :windowSize="windowSize"
+            /></v-col>
+            <v-col cols="5">
+              <OperationInfoFleetCard
+                :loaded="loaded"
+                :windowSize="
+                  windowSize
+                " /></v-col></v-row></v-card-text></v-card
+    ></v-col>
   </v-row>
 </template>
 <script>
@@ -64,6 +80,11 @@ export default {
       "getOperationSheetInfoPage",
       this.$route.params.id
     );
+    await this.$store.dispatch("getOperationUsers");
+    await this.$store.dispatch("getOperationInfoMumble");
+    await this.$store.dispatch("getOperationInfoDoctrines");
+    await this.$store.dispatch("getAllianceTickList");
+
     Echo.private("operationinfooppage." + this.$route.params.id).listen(
       "OperationInfoPageSoloUpdate",
       (e) => {
@@ -72,9 +93,14 @@ export default {
         }
 
         if (e.flag.flag == 2) {
+          this.$store.dispatch(
+            "updateOperationSheetInfoPageFleet",
+            e.flag.message
+          );
         }
 
         if (e.flag.flag == 3) {
+          this.$store.dispatch("updateOperationUsers", e.flag.message);
         }
       }
     );
@@ -95,7 +121,7 @@ export default {
     },
   },
   computed: {
-    ...mapState["operationInfoPage"],
+    ...mapState[("operationInfoPage", "operationInfoUsers")],
 
     opInfo: {
       get() {
@@ -104,6 +130,26 @@ export default {
       set(newValue) {
         return this.$store.dispatch("updateOperationSheetInfoPage", newValue);
       },
+    },
+
+    showEnter() {
+      if (this.loaded == true) {
+        return "animate__animated animate__fadeIn animate__faster";
+      }
+    },
+
+    showLeave() {
+      if (this.loaded == true) {
+        return "animate__animated animate__fadeOut animate__faster";
+      }
+    },
+
+    showCard() {
+      if (this.opInfo.status) {
+        return this.opInfo.status.id;
+      } else {
+        return 0;
+      }
     },
   },
   beforeDestroy() {

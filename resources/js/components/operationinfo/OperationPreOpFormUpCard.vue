@@ -217,6 +217,9 @@
             </v-col>
           </v-row>
         </v-card-text>
+        <v-card-actions v-if="showButton"
+          ><v-btn text @click="done()">Next</v-btn></v-card-actions
+        >
       </v-card>
     </v-col>
   </v-row>
@@ -250,6 +253,21 @@ export default {
       if (value == 1) {
         return "text-decoration-line-through green--text";
       }
+    },
+
+    async done() {
+      this.opInfo.status_id = 3;
+      var request = this.opInfo;
+      await axios({
+        method: "put", //you can set what request you want to be
+        url: "/api/operationinfopage/" + this.opInfo.id,
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
     },
 
     async changeCheck() {
@@ -291,6 +309,23 @@ export default {
     showLeave() {
       if (this.loaded == true) {
         return "animate__animated animate__flash animate__faster";
+      }
+    },
+
+    showButton() {
+      if (
+        this.opInfo.form_op_allies_ready &&
+        this.opInfo.form_op_blackhand_ready &&
+        this.opInfo.form_op_capital_fc_ready &&
+        this.opInfo.form_op_fc_ready &&
+        this.opInfo.form_op_gsfoe_ready &&
+        this.opInfo.form_op_gsol_ready &&
+        this.opInfo.form_op_recon_ready &&
+        this.opInfo.form_op_scouts_ready
+      ) {
+        return true;
+      } else {
+        return false;
       }
     },
   },
