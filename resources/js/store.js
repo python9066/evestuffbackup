@@ -14,6 +14,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         operationInfo: [],
+        operationInfoSetting: {
+            showMessageTable: true,
+            showTickList: true,
+            showFleets: true,
+        },
 
         operationInfoPage: [],
 

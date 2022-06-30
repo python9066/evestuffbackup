@@ -24,7 +24,7 @@ class OperationInfo extends Model
      */
     public function messages(): HasMany
     {
-        return $this->hasMany(OperationInfoMessage::class, 'operation_info_id', 'id');
+        return $this->hasMany(OperationInfoMessage::class, 'operation_info_id', 'id')->orderBy('id', 'desc');
     }
 
 

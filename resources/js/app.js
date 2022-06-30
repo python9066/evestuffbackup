@@ -659,7 +659,6 @@ export default new Vuetify({
         dark: true,
     },
     icons: {
-        // iconfont: ["faSvg", "fas", "far"],
         iconfont: "faSvg",
     },
 });

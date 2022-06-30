@@ -1,136 +1,145 @@
 <template>
-  <div class="grey lighten-5">
-    <v-row no-gutters class="blue" justify="center">
-      <!-- <v-col cols="6"> -->
-      <v-col lg="1">
-        <v-card class="pa-2" outlined tile> 1 of 3 </v-card>
-      </v-col>
-      <v-col md="1">
-        <v-card class="pa-2" outlined tile> Variable width content </v-card>
-      </v-col>
-      <v-col lg="1">
-        <v-card class="pa-2" outlined tile> 3 of 3 </v-card>
-      </v-col>
-      <v-btn @click="load()">test</v-btn>
-      <!-- </v-col> -->
-    </v-row>
+  <div>
+    <div class="">
+      Displayed as <code>[x, y, w, h]</code>:
+      <div class="columns">
+        <div class="layoutItem" v-for="item in layout" :key="item.i">
+          <b>{{ item.i }}</b
+          >: [{{ item.x }}, {{ item.y }}, {{ item.w }}, {{ item.h }}]
+        </div>
+      </div>
+    </div>
+    <button @click="addItem">Add an item dynamically</button>
+    <input type="checkbox" v-model="draggable" /> Draggable
+    <input type="checkbox" v-model="resizable" /> Resizable
+    <grid-layout
+      :layout.sync="layout"
+      :col-num="colNum"
+      :row-height="30"
+      :is-draggable="draggable"
+      :is-resizable="resizable"
+      :vertical-compact="true"
+      :use-css-transforms="true"
+    >
+      <grid-item
+        v-for="item in layout"
+        :static="item.static"
+        :key="item.i"
+        :x="item.x"
+        :y="item.y"
+        :w="item.w"
+        :h="item.h"
+        :i="item.i"
+      >
+        <span class="text">{{ item.i }}</span>
+        <span class="remove" @click="removeItem(item.i)">x</span>
+      </grid-item>
+    </grid-layout>
   </div>
 </template>
-<!-- {{ $route.params.id }} - {{ test }} -  -->
-<script>
-import Axios from "axios";
-import { EventBus } from "../event-bus";
-import ApiL from "../service/apil";
-import { mapGetters } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 
+<script>
+import VueGridLayout from "vue-grid-layout";
 export default {
+  components: {
+    GridLayout: VueGridLayout.GridLayout,
+    GridItem: VueGridLayout.GridItem,
+  },
   data() {
     return {
-      test: 1,
-      test2: "",
-      alignmentsAvailable: ["start", "center", "end", "baseline", "stretch"],
-      rcdata: null,
-      alignment: "center",
-      dense: false,
-      justifyAvailable: [
-        "start",
-        "center",
-        "end",
-        "space-around",
-        "space-between",
-      ],
-      justify: "center",
+      layout: [],
+      draggable: true,
+      resizable: true,
+      colNum: 12,
+      index: 0,
     };
   },
-
-  beforeMonunt() {},
-
-  beforeCreate() {},
-
-  async mounted() {
-    if (this.$store.getters.getCampaignsCount == 0) {
-      await this.$store.dispatch("getCampaigns");
-    }
+  mounted() {
+    // this.$gridlayout.load();
+    this.index = this.layout.length;
   },
   methods: {
-    async load() {
-      await axios({
-        method: "get",
-        url: "/api/test",
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
+    addItem: function () {
+      // Add a new item. It must have a unique key!
+      this.layout.push({
+        x: (this.layout.length * 2) % (this.colNum || 12),
+        y: this.layout.length + (this.colNum || 12), // puts it at the bottom
+        w: 2,
+        h: 2,
+        i: this.index,
       });
+      // Increment the counter to ensure key is always unique.
+      this.index++;
     },
-  },
-
-  async created() {
-    this.test = 2;
-    this.test2 = 1;
-    this.navdrawer = true;
-  },
-
-  computed: {
-    ...mapGetters([
-      "getCampaignById",
-      "getActiveCampaigns",
-      "getCampaignsCount",
-    ]),
-
-    campaign() {
-      return this.getCampaignById(this.$route.params.id);
-    },
-    barScoure() {
-      var d = this.getCampaignById(this.$route.params.id).defenders_score * 100;
-      var a = this.getCampaignById(this.$route.params.id).attackers_score * 100;
-
-      if (d > 50) {
-        return d;
-      }
-
-      return a;
-    },
-
-    barBgcolor() {
-      var d = this.getCampaignById(this.$route.params.id).defenders_score * 100;
-      var a = this.getCampaignById(this.$route.params.id).attackers_score * 100;
-
-      if (d > 50) {
-        return "red darken-4";
-      }
-
-      return "blue darken-4";
-    },
-
-    barColor() {
-      var d = this.getCampaignById(this.$route.params.id).defenders_score * 100;
-      if (d > 50) {
-        return "blue darken-4";
-      }
-
-      return "red darken-4";
-    },
-
-    barReverse() {
-      var d = this.getCampaignById(this.$route.params.id).defenders_score * 100;
-      if (d > 50) {
-        return false;
-      }
-
-      return true;
-    },
-
-    barActive() {
-      if (this.getCampaignById(this.$route.params.id).status_id > 1) {
-        return true;
-      }
-      return false;
+    removeItem: function (val) {
+      const index = this.layout.map((item) => item.i).indexOf(val);
+      this.layout.splice(index, 1);
     },
   },
 };
 </script>
+
+<style>
+.columns {
+  -moz-columns: 120px;
+  -webkit-columns: 120px;
+  columns: 120px;
+}
+/*************************************/
+.remove {
+  position: absolute;
+  right: 2px;
+  top: 0;
+  cursor: pointer;
+}
+.vue-grid-layout {
+  background: #eee;
+}
+.vue-grid-item:not(.vue-grid-placeholder) {
+  background: #ccc;
+  border: 1px solid black;
+}
+.vue-grid-item .resizing {
+  opacity: 0.9;
+}
+.vue-grid-item .static {
+  background: #cce;
+}
+.vue-grid-item .text {
+  font-size: 24px;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+}
+.vue-grid-item .no-drag {
+  height: 100%;
+  width: 100%;
+}
+.vue-grid-item .minMax {
+  font-size: 12px;
+}
+.vue-grid-item .add {
+  cursor: pointer;
+}
+.vue-draggable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0;
+  left: 0;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><circle cx='5' cy='5' r='5' fill='#999999'/></svg>")
+    no-repeat;
+  background-position: bottom right;
+  padding: 0 8px 8px 0;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+</style>

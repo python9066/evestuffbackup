@@ -1,8 +1,8 @@
 <template>
   <v-row no-gutters>
     <v-col cols="12">
-      <v-card rounded="xl" :max-height="heightCard"
-        ><v-card-title class="red"
+      <v-card rounded="xl" :max-height="heightCard" :height="heightCard"
+        ><v-card-title class="red pt-1 pb-1"
           >Fleets <v-btn fab small @click="addFleet()">A</v-btn></v-card-title
         ><v-card-text :style="style">
           <transition-group
@@ -12,24 +12,13 @@
             :enter-active-class="showEnter"
             :leave-active-class="showLeave"
           >
-            <!-- <v-row no-gutters justify="space-around" key="dance"> -->
-            <v-col
-              cols="4"
+            <!-- <v-row no-gutters justify="space-around"> -->
+            <OperationInfoFleetSoloCard
               v-for="fleet in opInfo.fleets"
-              :key="fleet.id"
-              class="px-5"
-            >
-              <!-- <transition
-                mode="out-in"
-                :enter-active-class="showEnter"
-                :leave-active-class="showLeave"
-              > -->
-              <OperationInfoFleetSoloCard
-                :loaded="loaded"
-                :fleetID="fleet.id"
-              />
-              <!-- </transition> -->
-            </v-col>
+              :key="`${fleet.id}-card`"
+              :loaded="loaded"
+              :fleetID="fleet.id"
+            />
             <!-- </v-row> -->
           </transition-group>
         </v-card-text>
@@ -108,12 +97,27 @@ export default {
     },
 
     heightList() {
-      let num = this.windowSize.y - 300;
+      let num = this.windowSize.y - 332;
       return num;
     },
 
     style() {
-      return "height: " + this.heightList + "px; overflow-y: scroll";
+      return (
+        "overflow-y: auto; height: " +
+        this.heightList +
+        "px; max-height: " +
+        this.heightList +
+        "px;"
+      );
+      //
+    },
+
+    fleetCol() {
+      if (this.windowSize.y <= 1000) {
+        return 6;
+      } else {
+        return 4;
+      }
     },
   },
   beforeDestroy() {},
@@ -121,6 +125,10 @@ export default {
 </script>
 <style>
 .scroll {
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+.compact {
+  transform: scale(0.875);
+  transform-origin: left;
 }
 </style>

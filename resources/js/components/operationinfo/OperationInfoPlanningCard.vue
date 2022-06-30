@@ -5,7 +5,14 @@
         ><v-card-title class="green">Pre-Op Planning</v-card-title
         ><v-card-text>
           <v-row no-gutters>
-            <v-col cols="auto">Formup Time</v-col><v-col cols="auto"></v-col>
+            <v-col cols="auto"
+              ><v-btn
+                text
+                class="lowercase"
+                @click="opInfo.planing_op_posted = !opInfo.planing_op_posted"
+                >Formup Time</v-btn
+              ></v-col
+            ><v-col cols="auto"></v-col>
           </v-row>
           <v-row no-gutters align="end">
             <v-col cols="auto">
@@ -28,8 +35,12 @@
                 <span
                   :key="opInfo.planing_op_posted"
                   :class="cross(opInfo.planing_op_posted)"
-                >
-                  Forum OP Posted?
+                  ><span
+                    style="cursor: pointer"
+                    @click="clickButtonOpPosted(opInfo.planing_op_posted)"
+                  >
+                    Forum OP Posted?</span
+                  >
                 </span>
               </transition>
             </v-col>
@@ -231,7 +242,17 @@ export default {
         return "text-decoration-line-through green--text";
       }
     },
+    clickButtonOpPosted(item) {
+      console.log(item);
+      if (item == 1) {
+        var num = 0;
+      } else {
+        var num = 1;
+      }
 
+      this.opInfo.planing_op_posted = num;
+      this.changeCheck();
+    },
     async done() {
       this.opInfo.status_id = 2;
       var request = this.opInfo;

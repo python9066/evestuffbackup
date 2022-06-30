@@ -17,37 +17,52 @@
           ></v-card-title
         ><v-card-text class="pt-3">
           <v-row no-gutters justify="space-between">
-            <v-col cols="auto">
-              <transition
-                mode="out-in"
-                :enter-active-class="showEnter"
-                :leave-active-class="showLeave"
-              >
-                <OperationInfoPlanningCard
+            <transition
+              mode="out-in"
+              :enter-active-class="showEnter"
+              :leave-active-class="showLeave"
+            >
+              <v-col cols="auto" v-if="opSetting.showTickList">
+                <transition
+                  mode="out-in"
+                  :enter-active-class="showEnter"
+                  :leave-active-class="showLeave"
+                >
+                  <OperationInfoPlanningCard
+                    :loaded="loaded"
+                    v-if="showCard == 1"
+                  />
+                  <OperationPreOpFormUpCard
+                    :loaded="loaded"
+                    v-if="showCard == 2"
+                  />
+                  <OperationInfoPostOpCard
+                    :loaded="loaded"
+                    v-if="showCard == 3"
+                  />
+                </transition>
+              </v-col>
+            </transition>
+            <transition
+              mode="out-in"
+              :enter-active-class="showEnter"
+              :leave-active-class="showLeave"
+            >
+              <v-col cols="5" v-if="opSetting.showMessageTable">
+                <OperationInfoMessageCard
                   :loaded="loaded"
-                  v-if="showCard == 1"
-                />
-                <OperationPreOpFormUpCard
+                  :windowSize="windowSize" /></v-col
+            ></transition>
+            <transition
+              mode="out-in"
+              :enter-active-class="showEnter"
+              :leave-active-class="showLeave"
+            >
+              <v-col :cols="fleetCardCols" v-if="opSetting.showFleets">
+                <OperationInfoFleetCard
                   :loaded="loaded"
-                  v-if="showCard == 2"
-                />
-                <OperationInfoPostOpCard
-                  :loaded="loaded"
-                  v-if="showCard == 3"
-                />
-              </transition>
-            </v-col>
-            <v-col cols="5">
-              <OperationInfoMessageCard
-                :loaded="loaded"
-                :windowSize="windowSize"
-            /></v-col>
-            <v-col cols="5">
-              <OperationInfoFleetCard
-                :loaded="loaded"
-                :windowSize="
-                  windowSize
-                " /></v-col></v-row></v-card-text></v-card
+                  :windowSize="windowSize"
+              /></v-col> </transition></v-row></v-card-text></v-card
     ></v-col>
   </v-row>
 </template>
@@ -109,6 +124,8 @@ export default {
   async mounted() {
     this.onResize();
     this.setLoad();
+    console.log(this.$vuetify.breakpoint.width);
+    console.log(this.$vuetify.breakpoint.name);
   },
   methods: {
     onResize() {
@@ -121,7 +138,29 @@ export default {
     },
   },
   computed: {
-    ...mapState[("operationInfoPage", "operationInfoUsers")],
+    ...mapState[
+      ("operationInfoPage", "operationInfoUsers", "operationInfoSetting")
+    ],
+
+    fleetCardCols() {
+      if (this.opSetting.showMessageTable) {
+        return 5;
+      } else {
+        return 10;
+      }
+    },
+
+    opSetting: {
+      get() {
+        return this.$store.state.operationInfoSetting;
+      },
+      set(newValue) {
+        return this.$store.dispatch(
+          "updateOperationSheetInfoSetting",
+          newValue
+        );
+      },
+    },
 
     opInfo: {
       get() {

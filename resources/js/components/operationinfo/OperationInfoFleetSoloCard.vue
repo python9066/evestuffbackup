@@ -1,139 +1,157 @@
 <template>
-  <v-row no-gutters class="pt-2">
-    <v-col cols="12">
-      <v-card rounded="xl" :key="fleetID"
-        ><v-card-title class="red"
-          ><v-row no-gutters justify="space-between"
-            ><v-col cols="auto">{{ fleetInfo.name }}</v-col
-            ><v-col cols="auto"
-              ><v-fab-transition
-                ><v-speed-dial
-                  v-model="fab"
-                  v-if="readOnly"
-                  direction="left"
-                  transition="slide-y-reverse-transition"
-                >
-                  <template v-slot:activator>
-                    <v-btn v-model="fab" color="blue darken-2" small fab>
+  <v-col cols="auto" class="px-2 pt-2" :key="`${fleetID}-start-col`">
+    <v-row no-gutters :key="`${fleetID}-start-row`">
+      <v-col cols="12" :key="`${fleetID}-2-col`">
+        <v-card rounded="xl" :key="`${fleetID}-3-col`"
+          ><v-card-title class="red pt-1 pb-1"
+            ><v-row no-gutters justify="space-between"
+              ><v-col cols="auto">{{ fleetInfo.name }}</v-col
+              ><v-col cols="auto"
+                ><v-fab-transition
+                  ><v-speed-dial
+                    v-model="fab"
+                    v-if="readOnly"
+                    direction="left"
+                    transition="slide-y-reverse-transition"
+                  >
+                    <template v-slot:activator>
+                      <v-btn v-model="fab" color="blue darken-2" small fab>
+                        <font-awesome-icon
+                          v-if="fab"
+                          size="xl"
+                          icon="fa-solid fa-xmark"
+                        />
+                        <font-awesome-icon
+                          v-else
+                          size="xl"
+                          icon="fa-solid fa-bars"
+                        />
+                      </v-btn>
+                    </template>
+                    <v-btn fab x-small color="green" @click="readOnlyOff()">
                       <font-awesome-icon
-                        v-if="fab"
                         size="xl"
-                        icon="fa-solid fa-xmark"
-                      />
-                      <font-awesome-icon
-                        v-else
-                        size="xl"
-                        icon="fa-solid fa-bars"
+                        icon="fa-solid fa-pen-to-square"
                       />
                     </v-btn>
-                  </template>
-                  <v-btn fab x-small color="green" @click="readOnlyOff()">
+                    <v-btn fab x-small color="red" @click="deleteFleet()">
+                      <font-awesome-icon
+                        size="xl"
+                        icon="fa-solid fa-trash-can"
+                      />
+                    </v-btn>
+                  </v-speed-dial>
+                  <v-btn fab color="green" small v-else @click="readOnlyOn()">
                     <font-awesome-icon
-                      size="xl"
-                      icon="fa-solid fa-pen-to-square"
-                    />
-                  </v-btn>
-                  <v-btn fab x-small color="red" @click="deleteFleet()">
-                    <font-awesome-icon size="xl" icon="fa-solid fa-trash-can" />
-                  </v-btn>
-                </v-speed-dial>
-                <v-btn fab color="green" small v-else @click="readOnlyOn()">
-                  <font-awesome-icon
-                    icon="fa-solid fa-check"
-                    size="xl" /></v-btn></v-fab-transition></v-col></v-row></v-card-title
-        ><v-card-text>
-          <v-row class="pt-2" no-gutters
-            ><v-col cols="auto"></v-col>
-            <v-combobox
-              outlined
-              :clearable="!readOnly"
-              :readonly="readOnly"
-              :append-icon="dropDownIcon"
-              :items="operationInfoUsers"
-              v-model="fleetInfo.fc"
-              item-text="name"
-              item-value="id"
-              hide-details
-              rounded
-              label="FC"
-              dense
-              @change="updateFC()"
-            ></v-combobox
-          ></v-row>
-          <v-row class="pt-2" no-gutters
-            ><v-col cols="auto"></v-col
-            ><v-combobox
-              outlined
-              :clearable="!readOnly"
-              :readonly="readOnly"
-              :append-icon="dropDownIcon"
-              :items="operationInfoUsers"
-              v-model="fleetInfo.boss"
-              item-text="name"
-              item-value="id"
-              hide-details
-              rounded
-              label="Boss"
-              dense
-              @change="updateBoss()"
-            ></v-combobox
-          ></v-row>
-          <v-row class="pt-2" no-gutters
-            ><v-col cols="auto"></v-col
-            ><v-autocomplete
-              outlined
-              :clearable="!readOnly"
-              :readonly="readOnly"
-              :append-icon="dropDownIcon"
-              :items="operationInfoDoctrines"
-              v-model="fleetInfo.doctrine_id"
-              item-text="name"
-              item-value="id"
-              hide-details
-              rounded
-              label="Doctrine"
-              dense
-              @change="updateFleet()"
-            ></v-autocomplete
-          ></v-row>
-          <v-row class="pt-2" no-gutters
-            ><v-col cols="auto"></v-col
-            ><v-autocomplete
-              outlined
-              :clearable="!readOnly"
-              :readonly="readOnly"
-              :append-icon="dropDownIcon"
-              :items="operationInfoMumble"
-              v-model="fleetInfo.mumble_id"
-              item-text="name"
-              item-value="id"
-              hide-details
-              rounded
-              label="Mumble"
-              dense
-              @change="updateFleet()"
-            ></v-autocomplete
-          ></v-row>
-          <v-row class="pt-2" no-gutters
-            ><v-col cols="auto"></v-col>
-            <v-autocomplete
-              outlined
-              :clearable="!readOnly"
-              :readonly="readOnly"
-              :append-icon="dropDownIcon"
-              :items="allianceticklist"
-              v-model="fleetInfo.alliance_id"
-              hide-details
-              rounded
-              label="Alliance"
-              dense
-              @change="updateFleet()"
-            ></v-autocomplete
-          ></v-row>
-        </v-card-text>
-      </v-card>
-    </v-col>
-  </v-row>
+                      icon="fa-solid fa-check"
+                      size="xl" /></v-btn></v-fab-transition></v-col></v-row></v-card-title
+          ><v-card-text>
+            <div v-if="!readOnly">
+              <v-row class="pt-2" no-gutters
+                ><v-col cols="auto"></v-col>
+                <v-combobox
+                  outlined
+                  :clearable="!readOnly"
+                  :readonly="readOnly"
+                  :append-icon="dropDownIcon"
+                  :items="operationInfoUsers"
+                  v-model="fleetInfo.fc"
+                  item-text="name"
+                  item-value="id"
+                  hide-details
+                  rounded
+                  label="FC"
+                  dense
+                  @change="updateFC()"
+                ></v-combobox
+              ></v-row>
+              <v-row class="pt-2" no-gutters
+                ><v-col cols="auto"></v-col
+                ><v-combobox
+                  outlined
+                  :clearable="!readOnly"
+                  :readonly="readOnly"
+                  :append-icon="dropDownIcon"
+                  :items="operationInfoUsers"
+                  v-model="fleetInfo.boss"
+                  item-text="name"
+                  item-value="id"
+                  hide-details
+                  rounded
+                  label="Boss"
+                  dense
+                  @change="updateBoss()"
+                ></v-combobox
+              ></v-row>
+              <v-row class="pt-2" no-gutters
+                ><v-col cols="auto"></v-col
+                ><v-autocomplete
+                  outlined
+                  :clearable="!readOnly"
+                  :readonly="readOnly"
+                  :append-icon="dropDownIcon"
+                  :items="operationInfoDoctrines"
+                  v-model="fleetInfo.doctrine_id"
+                  item-text="name"
+                  item-value="id"
+                  hide-details
+                  rounded
+                  label="Doctrine"
+                  dense
+                  @change="updateFleet()"
+                ></v-autocomplete
+              ></v-row>
+              <v-row class="pt-2" no-gutters
+                ><v-col cols="auto"></v-col
+                ><v-autocomplete
+                  outlined
+                  :clearable="!readOnly"
+                  :readonly="readOnly"
+                  :append-icon="dropDownIcon"
+                  :items="operationInfoMumble"
+                  v-model="fleetInfo.mumble_id"
+                  item-text="name"
+                  item-value="id"
+                  hide-details
+                  rounded
+                  label="Mumble"
+                  dense
+                  @change="updateFleet()"
+                ></v-autocomplete
+              ></v-row>
+              <v-row class="pt-2" no-gutters
+                ><v-col cols="auto"></v-col>
+                <v-autocomplete
+                  outlined
+                  :clearable="!readOnly"
+                  :readonly="readOnly"
+                  :append-icon="dropDownIcon"
+                  :items="allianceticklist"
+                  v-model="fleetInfo.alliance_id"
+                  hide-details
+                  rounded
+                  label="Alliance"
+                  dense
+                  @change="updateFleet()"
+                ></v-autocomplete
+              ></v-row>
+            </div>
+            <div v-else>
+              <span>FC - {{ fcText }}</span>
+              <br />
+              <span> Boss - {{ bossText }}</span>
+              <br />
+              <span> Doctrine - {{ doctrineText }}</span>
+              <br />
+              <span> Mumble - {{ mumbleText }}</span>
+              <br />
+              <span> Alliance - {{ allianceText }}</span>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-col>
 </template>
 <script>
 import Axios from "axios";
@@ -306,6 +324,54 @@ export default {
 
     typeBoss() {
       return typeof this.fleetInfo.boss;
+    },
+
+    fcText() {
+      if (this.fleetInfo.fc) {
+        return this.fleetInfo.fc.name;
+      } else {
+        return "none";
+      }
+    },
+
+    bossText() {
+      if (this.fleetInfo.boss) {
+        return this.fleetInfo.boss.name;
+      } else {
+        return "none";
+      }
+    },
+
+    doctrineText() {
+      if (this.fleetInfo.doctrine) {
+        return this.fleetInfo.doctrine.name;
+      } else {
+        return "none";
+      }
+    },
+
+    mumbleText() {
+      if (this.fleetInfo.mumble) {
+        return this.fleetInfo.mumble.name;
+      } else {
+        return "none";
+      }
+    },
+
+    allianceText() {
+      if (this.fleetInfo.alliance) {
+        return this.fleetInfo.alliance.name;
+      } else {
+        return "none";
+      }
+    },
+
+    cardCols() {
+      if (this.readOnly) {
+        return 3;
+      } else {
+        return 5;
+      }
     },
 
     dropDownIcon() {
