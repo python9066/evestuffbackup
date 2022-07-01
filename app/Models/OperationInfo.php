@@ -28,6 +28,12 @@ class OperationInfo extends Model
     }
 
 
+    public function recons(): HasMany
+    {
+        return $this->hasMany(OperationInfoRecon::class, 'operation_info_id', 'id');
+    }
+
+
     /**
      * Get all of the comments for the OperationInfo
      *

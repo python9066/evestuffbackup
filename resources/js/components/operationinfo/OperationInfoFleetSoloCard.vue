@@ -4,7 +4,11 @@
       <v-col cols="12" :key="`${fleetID}-2-col`">
         <v-card rounded="xl" :key="`${fleetID}-3-col`"
           ><v-card-title class="red pt-1 pb-1"
-            ><v-row no-gutters justify="space-between"
+            ><v-row no-gutters justify="space-between">
+              <v-col cols="auto">
+                <v-btn icon x-small class="handle" color="gray">
+                  <font-awesome-icon
+                    icon="fa-solid fa-up-down-left-right" /></v-btn></v-col
               ><v-col cols="auto">{{ fleetInfo.name }}</v-col
               ><v-col cols="auto"
                 ><v-fab-transition

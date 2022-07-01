@@ -12,7 +12,7 @@
       >
         <template slot="no-data"> No Operations </template>
         <template v-slot:[`item.action`]="{ item }">
-          <v-btn rounded color="green" @click="go(item.id)"> view </v-btn>
+          <v-btn rounded color="green" @click="go(item.link)"> view </v-btn>
         </template>
         <template v-slot:[`header.action`]="{ headers }">
           <AddOperationInfo />

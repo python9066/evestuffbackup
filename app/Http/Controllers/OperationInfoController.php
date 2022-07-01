@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OperationInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class OperationInfoController extends Controller
 {
@@ -30,7 +31,9 @@ class OperationInfoController extends Controller
     {
         $user = Auth::user();
         if ($user->can('edit_opertaion_info')) {
+
             $new = new OperationInfo();
+            $new->link = Str::uuid();
             $new->name = $request->name;
             $new->info = $request->info;
             $new->status_id = 1;

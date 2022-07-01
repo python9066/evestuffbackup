@@ -38,6 +38,7 @@ use App\Http\Controllers\OperationInfoController;
 use App\Http\Controllers\OperationInfoDoctrineController;
 use App\Http\Controllers\OperationInfoFleetController;
 use App\Http\Controllers\OperationInfoMumbleController;
+use App\Http\Controllers\OperationInfoReconController;
 use App\Http\Controllers\OperationInfoSheetController;
 use App\Http\Controllers\OperationInfoUserController;
 use App\Http\Controllers\OperationUserController;
@@ -66,7 +67,6 @@ use App\Http\Controllers\WebWayController;
 use App\Http\Controllers\WebWayStartSystemsContorller;
 use App\Http\Controllers\WelpStationController;
 use App\Models\Notification;
-use App\Models\OperationInfoUser;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -347,7 +347,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/operationinfosheet', [OperationInfoController::class, 'store']);
     Route::get('/operationinfosheet', [OperationInfoController::class, 'index']);
 
-    Route::get('/operationinfopage/{id}', [OperationInfoSheetController::class, 'index']);
+    Route::get('/operationinfopage/{link}', [OperationInfoSheetController::class, 'index']);
     Route::put('/operationinfopage/{id}', [OperationInfoSheetController::class, 'update']);
     Route::put('/operationinfopagemessage/{id}', [OperationInfoSheetController::class, 'messageAdd']);
     Route::delete('/operationinfopagemessage/{id}', [OperationInfoSheetController::class, 'messageDelete']);
@@ -360,4 +360,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/operationinfofleet/{id}', [OperationInfoFleetController::class, 'destroy']);
     Route::put('/operationinfofleet/{id}', [OperationInfoFleetController::class, 'update']);
     Route::put('/operationinfofleetname/{id}', [OperationInfoFleetController::class, 'name']);
+
+
+    Route::post('/operationinforecon', [OperationInfoReconController::class, 'store']);
+    Route::post('/operationinforecon/{id}', [OperationInfoReconController::class, 'update']);
+    Route::get('/operationinforecon', [OperationInfoReconController::class, 'index']);
 });

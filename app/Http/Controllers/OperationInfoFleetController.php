@@ -30,7 +30,7 @@ class OperationInfoFleetController extends Controller
         $new->name = "Fleet - " . $count + 1;
         $new->operation_info_id = $id;
         $new->save();
-        operationInfoSoloPageBroadcast($id, 1);
+        operationInfoSoloPageFleetBroadcast($new->id, $id, 2);
     }
 
     /**
@@ -61,7 +61,7 @@ class OperationInfoFleetController extends Controller
             }
         }
         $fleet->save();
-        operationInfoSoloPageFleetBroadcast($fleet->id, 2);
+        operationInfoSoloPageFleetBroadcast($fleet->id, $fleet->operation_info_id, 2);
     }
 
     /**
@@ -82,7 +82,7 @@ class OperationInfoFleetController extends Controller
         $fleet->alliance_id = $request->alliance_id;
         $fleet->save();
 
-        operationInfoSoloPageFleetBroadcast($fleet->id, 2);
+        operationInfoSoloPageFleetBroadcast($fleet->id, $fleet->operation_info_id, 2);
     }
 
     /**
@@ -96,6 +96,6 @@ class OperationInfoFleetController extends Controller
         $fleet = OperationInfoFleet::where('id', $id)->first();
         $opID = $fleet->operation_info_id;
         $fleet->delete();
-        operationInfoSoloPageBroadcast($opID, 1);
+        operationInfoSoloPageFleetBroadcastDelete($id, $opID, 6);
     }
 }

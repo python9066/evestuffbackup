@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\updateWebwayJob;
+use App\Models\AdashLocalScan;
+use App\Models\AdashLocalScanAlliance;
+use App\Models\AdashLocalScanCorp;
 use App\Models\Campaign;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
@@ -100,6 +103,197 @@ class testController extends Controller
     {
         return nameToID($name);
     }
+
+
+    public function adashLScan()
+    {
+        $user = Auth::user();
+        if ($user->can('super')) {
+
+            $systemID = 30004759;
+            // $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+            // $token = env('ADASH_TOKEN', ($variables && array_key_exists('ADASH_TOKEN', $variables)) ? $variables['ADASH_TOKEN'] : 'null');
+            // $response = Http::withHeaders([
+            //     'aD_APISecret' => $token,
+            //     'Content-Type' => 'application/json',
+            //     'Accept' => 'application/json',
+            //     'User-Agent' => 'evestuff.online python9066@gmail.com',
+            // ])->get('https://adashboard.info/recon/api/lo/recentfromsystem/' . $systemID);
+
+            // $data =  $response->json();
+            // return $data;
+            $json = '[{"0NolYGOT":[{"total":177},{"alliances":[{"1354830081":"CONDI(125)"},{"99004425":"BASTN(13)"},{"99009163":"D.C(12)"},{"150097440":"LAWN(7)"},{"1900696668":"INIT.(5)"}]},{"unaffiliated":[{"98641388":"SHOWU(7)"}]}]},{"2w9OuYpC":[{"total":175},{"alliances":[{"1354830081":"CONDI(126)"},{"99004425":"BASTN(13)"},{"99009163":"D.C(10)"},{"150097440":"LAWN(7)"}]},{"unaffiliated":[{"98641388":"SHOWU(7)"}]}]}]';
+            $data = json_decode($json, true);
+            if (count($data) > 0) {
+                foreach ($data as $scan) {
+                    $hash = key($scan);
+
+                    foreach ($scan[$hash] as $key => $loop) {
+                        if (key($loop) == "total") {
+                            $total = $loop['total'];
+                        }
+
+                        if (key($loop) == "alliances") {
+                            $alliances = $loop['alliances'];
+                        }
+
+                        if (key($loop) == "unaffiliated") {
+                            $unaffiliated = $loop['unaffiliated'];
+                        }
+                    }
+                    $a = collect();
+                    foreach ($alliances as $aKey => $alliance) {
+                        $allianceID = key($alliance);
+                        $text =  $alliance[$allianceID];
+                        $text = substr($text, 0, -1);
+                        $textx = explode("(", $text);
+                        $textx[1];
+
+                        $b = collect(['id' => $allianceID, 'count' => intval($textx[1])]);
+                        $a->push($b);
+                    }
+                    $c = collect();
+                    foreach ($unaffiliated as $uKey => $un) {
+                        $corpID = key($un);
+                        $text =  $un[$corpID];
+                        $text = substr($text, 0, -1);
+                        $textx = explode("(", $text);
+                        $textx[1];
+
+                        $d = collect(['id' => $corpID, 'count' => intval($textx[1])]);
+                        $c->push($d);
+                    }
+
+                    $check = AdashLocalScan::where('hash', $hash)->count();
+                    if ($check == 0) {
+                        $new = new AdashLocalScan();
+                        $new->system_id = $systemID;
+                        $new->hash = $hash;
+                        $new->total = $total;
+                        $new->unaffiliated = 0;
+                        $new->save();
+                        $scanID = $new->id;
+
+                        foreach ($a as $al) {
+                            $newA = new AdashLocalScanAlliance();
+                            $newA->adash_local_scan_id = $scanID;
+                            $newA->alliance_id = $al['id'];
+                            $newA->count = $al['count'];
+                            $newA->save();
+                        }
+
+                        foreach ($c as $co) {
+                            $newC = new AdashLocalScanCorp();
+                            $newC->adash_local_scan_id = $scanID;
+                            $newC->corp_id = $co['id'];
+                            $newC->count = $co['count'];
+                            $newC->save();
+                        }
+                    }
+
+                    // dd($data[0][$hash], $hash, $total, $a, $unaffiliated);
+                }
+
+                $count = AdashLocalScan::where('system_id', $systemID)->count();
+                if ($count > 5) {
+                    $take = $count - 5;
+                    $olds = AdashLocalScan::latest()->take($take)->get();
+                    foreach ($olds as $old) {
+                        AdashLocalScanAlliance::where('adash_local_scan_id', $old->id)->delete();
+                        AdashLocalScanCorp::where('adash_local_scan_id', $old->id)->delete();
+                        $old->delete();
+                    }
+                }
+            }
+        }
+    }
+
+    public function adashDScan()
+    {
+        $user = Auth::user();
+        if ($user->can('super')) {
+
+            $systemID = 30004027;
+            $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+            $token = env('ADASH_TOKEN', ($variables && array_key_exists('ADASH_TOKEN', $variables)) ? $variables['ADASH_TOKEN'] : 'null');
+            $response = Http::withHeaders([
+                'aD_APISecret' => $token,
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+                'User-Agent' => 'evestuff.online python9066@gmail.com',
+            ])->get('https://adashboard.info/recon/api/ds/recentfromsystem/' . $systemID);
+
+            $data =  $response->json();
+            return $data;
+            // $json = '[{"hbVcQHOh":[{"total":128},{"alliances":[{"1354830081":"CONDI(96)"},{"99004425":"BASTN(11)"}]},{"unaffiliated":[]}]},{"0Tz5k6yS":[{"total":128},{"alliances":[{"1354830081":"CONDI(96)"},{"99004425":"BASTN(11)"}]},{"unaffiliated":[]}]},{"MH3Iixzr":[{"total":128},{"alliances":[{"1354830081":"CONDI(96)"},{"99004425":"BASTN(11)"}]},{"unaffiliated":[]}]}]';
+            // $data = json_decode($json, true);
+            if (count($data) > 0) {
+                foreach ($data as $scan) {
+                    $hash = key($scan);
+
+                    foreach ($scan[$hash] as $key => $loop) {
+                        if (key($loop) == "total") {
+                            $total = $loop['total'];
+                        }
+
+                        if (key($loop) == "alliances") {
+                            $alliances = $loop['alliances'];
+                        }
+
+                        if (key($loop) == "unaffiliated") {
+                            $unaffiliated = $loop['unaffiliated'];
+                        }
+                    }
+                    $a = collect();
+                    foreach ($alliances as $aKey => $alliance) {
+                        $allianceID = key($alliance);
+                        $text =  $alliance[$allianceID];
+                        $text = substr($text, 0, -1);
+                        $textx = explode("(", $text);
+                        $textx[1];
+
+                        $b = collect(['id' => $allianceID, 'count' => intval($textx[1])]);
+                        $a->push($b);
+                    }
+
+                    $check = AdashLocalScan::where('hash', $hash)->count();
+                    if ($check == 0) {
+                        $new = new AdashLocalScan();
+                        $new->system_id = $systemID;
+                        $new->hash = $hash;
+                        $new->total = $total;
+                        $new->unaffiliated = 0;
+                        $new->save();
+                        $scanID = $new->id;
+
+                        foreach ($a as $al) {
+                            $newA = new AdashLocalScanAlliance();
+                            $newA->adash_local_scan_id = $scanID;
+                            $newA->alliance_id = $al['id'];
+                            $newA->count = $al['count'];
+                            $newA->save();
+                        }
+                    }
+
+                    // dd($data[0][$hash], $hash, $total, $a, $unaffiliated);
+                }
+
+                $count = AdashLocalScan::where('system_id', $systemID)->count();
+                if ($count > 5) {
+                    $take = $count - 5;
+                    $olds = AdashLocalScan::latest()->take($take)->get();
+                    foreach ($olds as $old) {
+                        AdashLocalScanAlliance::where('adash_local_scan_id', $old->id)->delete();
+                        $old->delete();
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
 
     public function testClearCampaigns()
     {

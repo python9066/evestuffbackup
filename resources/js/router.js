@@ -198,7 +198,7 @@ export default new Router({
         },
 
         {
-            path: "/operationinfo/:id",
+            path: "/operationinfo/:link",
             name: "operationinfopage",
             component: OperationInfoPage,
             beforeEnter(to, from, next) {

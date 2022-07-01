@@ -613,6 +613,16 @@ Vue.component(
     require("./components/operationinfo/OperationInfoFleetSoloCard.vue").default
 );
 
+Vue.component(
+    "OperationInfoReconCard",
+    require("./components/operationinfo/OperationInfoReconCard.vue").default
+);
+
+Vue.component(
+    "AddOperationReconButton",
+    require("./components/operationinfo/AddOperationReconButton.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(VueEllipseProgress, "Vep");

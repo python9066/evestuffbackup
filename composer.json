@@ -31,7 +31,6 @@
         "symfony/yaml": "^5.1"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.6",
         "fzaninotto/faker": "^1.9.1",
         "laravel/pint": "^0.2.0",
         "laravel/sail": "^1.14",

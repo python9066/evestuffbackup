@@ -24,21 +24,21 @@ class OperationInfoFleet extends Model
 
     public function boss(): HasOne
     {
-        return $this->hasOne(OperationInfoUser::class,  'id', 'boss_id');
+        return $this->hasOne(OperationInfoUser::class, 'id', 'boss_id');
     }
 
     public function mumble(): HasOne
     {
-        return $this->hasOne(OperationInfoMumble::class,  'id', 'mumble_id');
+        return $this->hasOne(OperationInfoMumble::class, 'id', 'mumble_id');
     }
 
     public function doctrine(): HasOne
     {
-        return $this->hasOne(OperationInfoDoctrine::class,  'id', 'doctrine_id');
+        return $this->hasOne(OperationInfoDoctrine::class, 'id', 'doctrine_id');
     }
 
     public function alliance(): HasOne
     {
-        return $this->hasOne(Alliance::class,  'id', 'alliance_id');
+        return $this->hasOne(Alliance::class, 'id', 'alliance_id');
     }
 }

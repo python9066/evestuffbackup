@@ -5,22 +5,30 @@
         ><v-card-title class="red pt-1 pb-1"
           >Fleets <v-btn fab small @click="addFleet()">A</v-btn></v-card-title
         ><v-card-text :style="style">
-          <transition-group
-            mode="out-in"
-            tag="v-row"
-            class="no-gutters justify-space-around"
-            :enter-active-class="showEnter"
-            :leave-active-class="showLeave"
+          <draggable
+            v-model="opInfo.fleets"
+            key="drag"
+            v-bind="dragOptions"
+            handle=".handle"
           >
-            <!-- <v-row no-gutters justify="space-around"> -->
-            <OperationInfoFleetSoloCard
-              v-for="fleet in opInfo.fleets"
-              :key="`${fleet.id}-card`"
-              :loaded="loaded"
-              :fleetID="fleet.id"
-            />
-            <!-- </v-row> -->
-          </transition-group>
+            <transition-group
+              mode="out-in"
+              tag="v-row"
+              name="flip-list"
+              class="no-gutters justify-space-around"
+              :enter-active-class="showEnter"
+              :leave-active-class="showLeave"
+            >
+              <!-- <v-row no-gutters justify="space-around"> -->
+              <OperationInfoFleetSoloCard
+                v-for="fleet in opInfo.fleets"
+                :key="`${fleet.id}-card`"
+                :loaded="loaded"
+                :fleetID="fleet.id"
+              />
+            </transition-group>
+          </draggable>
+          <!-- </v-row> -->
         </v-card-text>
       </v-card>
     </v-col>
@@ -31,14 +39,19 @@ import Axios from "axios";
 import { EventBus } from "../../app";
 // import ApiL from "../service/apil";
 import { mapGetters, mapState } from "vuex";
+import draggable from "vuedraggable";
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 export default {
+  components: {
+    draggable,
+  },
   title() {},
   props: {
     loaded: Boolean,
     windowSize: Object,
+    drag: false,
   },
   data() {
     return {};
@@ -119,6 +132,15 @@ export default {
         return 4;
       }
     },
+
+    dragOptions() {
+      return {
+        animation: 200,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost",
+      };
+    },
   },
   beforeDestroy() {},
 };
@@ -130,5 +152,16 @@ export default {
 .compact {
   transform: scale(0.875);
   transform-origin: left;
+}
+
+.flip-list-move {
+  transition: transform 0.5s;
+}
+.no-move {
+  transition: transform 0s;
+}
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
 }
 </style>

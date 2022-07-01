@@ -25,6 +25,7 @@ export default new Vuex.Store({
         operationInfoUsers: [],
         operationInfoMumble: [],
         operationInfoDoctrines: [],
+        operationInfoRecon: [],
 
         allianceticklist: [],
         ammoRequest: [],
@@ -133,6 +134,16 @@ export default new Vuex.Store({
             }
         },
 
+        DELETE_OPERATION_SHEET_INFO_PAGE_FLEET(state, id) {
+            let check = state.operationInfoPage.fleets.filter(
+                (e) => e.id == id
+            ).length;
+            if (check > 0) {
+                state.operationInfoPage.fleets =
+                    state.operationInfoPage.fleets.filter((e) => e.id != id);
+            }
+        },
+
         UPDATE_OWN_CHAR(state, data) {
             const item = state.ownChars.find((item) => item.id === data.id);
             const count = state.ownChars.filter(
@@ -191,6 +202,10 @@ export default new Vuex.Store({
 
         SET_OPERATION_INFO_USERS(state, data) {
             state.operationInfoUsers = data;
+        },
+
+        SET_OPERATION_INFO_RECON(state, data) {
+            state.operationInfoRecon = data;
         },
 
         SET_OPERATION_INFO_MUMBLE(state, data) {
@@ -287,10 +302,32 @@ export default new Vuex.Store({
         },
 
         UPDATE_FLEET_INFO(state, data) {
-            const item = state.operationInfoPage.fleets.find(
-                (f) => f.id === data.id
-            );
-            Object.assign(item, data);
+            const count = state.operationInfoPage.fleets.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                const item = state.operationInfoPage.fleets.find(
+                    (f) => f.id === data.id
+                );
+                Object.assign(item, data);
+            } else {
+                state.operationInfoPage.fleets.push(data);
+            }
+        },
+
+        UPDATE_OPERATION_RECON_SOLO(state, data) {
+            const count = state.operationInfoPage.recons.filter(
+                (item) => item.id === data.id
+            ).length;
+
+            if (count > 0) {
+                const item = state.operationInfoPage.recons.find(
+                    (f) => f.id === data.id
+                );
+                Object.assign(item, data);
+            } else {
+                state.operationInfoPage.recons.push(data);
+            }
         },
 
         SET_NEW_SOLO_OPERATIONS(state, solooplist) {
@@ -962,6 +999,19 @@ export default new Vuex.Store({
                 },
             });
             commit("SET_OPERATION_INFO_USERS", res.data.users);
+        },
+
+        async getOperationRecon({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinforecon",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_OPERATION_INFO_RECON", res.data.recon);
         },
 
         async getOperationInfoMumble({ commit }) {
@@ -1758,6 +1808,10 @@ export default new Vuex.Store({
             commit("DELETE_OP_CHAR_FROM_CHAR_LIST", id);
         },
 
+        deleteOperationSheetInfoPageFleet({ commit }, id) {
+            commit("DELETE_OPERATION_SHEET_INFO_PAGE_FLEET", id);
+        },
+
         removeCharfromOwnList({ commit }, id) {
             commit("DELETE_OP_CHAR_FROM_OWN_LIST", id);
         },
@@ -2002,8 +2056,16 @@ export default new Vuex.Store({
             commit("UPDATE_FLEET_INFO", data);
         },
 
+        updateOperationReconSolo({ commit }, data) {
+            commit("UPDATE_OPERATION_RECON_SOLO", data);
+        },
+
         updateOperationUsers({ commit }, data) {
             commit("SET_OPERATION_INFO_USERS", data);
+        },
+
+        updateOperationRecon({ commit }, data) {
+            commit("SET_OPERATION_INFO_RECON", data);
         },
 
         async getNotifications({ commit }) {

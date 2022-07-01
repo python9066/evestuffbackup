@@ -14,9 +14,9 @@ class OperationInfoSheetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index($link)
     {
-        return ['data' => operationInfoSoloPagePull($id)];
+        return ['data' => operationInfoSoloPagePullLink($link)];
     }
 
     /**

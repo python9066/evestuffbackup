@@ -17,32 +17,41 @@
           ></v-card-title
         ><v-card-text class="pt-3">
           <v-row no-gutters justify="space-between">
-            <transition
-              mode="out-in"
-              :enter-active-class="showEnter"
-              :leave-active-class="showLeave"
-            >
-              <v-col cols="auto" v-if="opSetting.showTickList">
+            <v-col cols="auto">
+              <v-row no-gutters>
                 <transition
                   mode="out-in"
                   :enter-active-class="showEnter"
                   :leave-active-class="showLeave"
                 >
-                  <OperationInfoPlanningCard
-                    :loaded="loaded"
-                    v-if="showCard == 1"
-                  />
-                  <OperationPreOpFormUpCard
-                    :loaded="loaded"
-                    v-if="showCard == 2"
-                  />
-                  <OperationInfoPostOpCard
-                    :loaded="loaded"
-                    v-if="showCard == 3"
-                  />
+                  <v-col cols="aut" v-if="opSetting.showTickList">
+                    <transition
+                      mode="out-in"
+                      :enter-active-class="showEnter"
+                      :leave-active-class="showLeave"
+                    >
+                      <OperationInfoPlanningCard
+                        :loaded="loaded"
+                        v-if="showCard == 1"
+                      />
+                      <OperationPreOpFormUpCard
+                        :loaded="loaded"
+                        v-if="showCard == 2"
+                      />
+                      <OperationInfoPostOpCard
+                        :loaded="loaded"
+                        v-if="showCard == 3"
+                      />
+                    </transition>
+                  </v-col>
                 </transition>
-              </v-col>
-            </transition>
+              </v-row>
+              <v-row no-gutters>
+                <v-col cols="12">
+                  <OperationInfoReconCard :loaded="loaded" />
+                </v-col>
+              </v-row>
+            </v-col>
             <transition
               mode="out-in"
               :enter-active-class="showEnter"
@@ -93,14 +102,15 @@ export default {
   async created() {
     await this.$store.dispatch(
       "getOperationSheetInfoPage",
-      this.$route.params.id
+      this.$route.params.link
     );
     await this.$store.dispatch("getOperationUsers");
     await this.$store.dispatch("getOperationInfoMumble");
     await this.$store.dispatch("getOperationInfoDoctrines");
+    await this.$store.dispatch("getOperationRecon");
     await this.$store.dispatch("getAllianceTickList");
 
-    Echo.private("operationinfooppage." + this.$route.params.id).listen(
+    Echo.private("operationinfooppage." + this.opInfo.id).listen(
       "OperationInfoPageSoloUpdate",
       (e) => {
         if (e.flag.flag == 1) {
@@ -116,6 +126,21 @@ export default {
 
         if (e.flag.flag == 3) {
           this.$store.dispatch("updateOperationUsers", e.flag.message);
+        }
+
+        if (e.flag.flag == 4) {
+          this.$store.dispatch("updateOperationRecon", e.flag.message);
+        }
+
+        if (e.flag.flag == 5) {
+          this.$store.dispatch("updateOperationReconSolo", e.flag.message);
+        }
+
+        if (e.flag.flag == 6) {
+          this.$store.dispatch(
+            "deleteOperationSheetInfoPageFleet",
+            e.flag.message
+          );
         }
       }
     );
@@ -192,7 +217,7 @@ export default {
     },
   },
   beforeDestroy() {
-    Echo.leave("operationinfopage");
+    Echo.leave("operationinfooppage." + this.opInfo.id);
   },
 };
 </script>
