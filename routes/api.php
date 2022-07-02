@@ -360,7 +360,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/operationinfofleet/{id}', [OperationInfoFleetController::class, 'destroy']);
     Route::put('/operationinfofleet/{id}', [OperationInfoFleetController::class, 'update']);
     Route::put('/operationinfofleetname/{id}', [OperationInfoFleetController::class, 'name']);
-
+    Route::put('/operationinfofleetrecon/{id}', [OperationInfoFleetController::class, 'recon']);
 
     Route::post('/operationinforecon', [OperationInfoReconController::class, 'store']);
     Route::post('/operationinforecon/{id}', [OperationInfoReconController::class, 'update']);

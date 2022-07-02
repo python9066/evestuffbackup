@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\OperationInfoFleet;
+use App\Models\OperationInfoRecon;
 use Illuminate\Http\Request;
 
 class OperationInfoFleetController extends Controller
@@ -64,6 +65,31 @@ class OperationInfoFleetController extends Controller
         operationInfoSoloPageFleetBroadcast($fleet->id, $fleet->operation_info_id, 2);
     }
 
+    public function recon(Request $request, $id)
+    {
+
+        $fleet = OperationInfoFleet::where('id', $id)->first();
+
+
+        if ($request->recon_id != null) {
+            $recon = OperationInfoRecon::where('id', $request->recon_id)->first();
+            $recon->operation_info_fleet_id = $fleet->id;
+            $recon->operation_info_recon_status_id = 2;
+            $recon->save();
+        } else {
+            $recon = OperationInfoRecon::where('id', $fleet->recon_id)->first();
+            $recon->operation_info_fleet_id = null;
+            $recon->operation_info_recon_status_id = 1;
+            $recon->save();
+        }
+
+        operationReconSoloBcast($recon->id, 5);
+
+        $fleet->recon_id = $request->recon_id;
+        $fleet->save();
+        operationInfoSoloPageFleetBroadcast($fleet->id, $fleet->operation_info_id, 2);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -95,6 +121,13 @@ class OperationInfoFleetController extends Controller
     {
         $fleet = OperationInfoFleet::where('id', $id)->first();
         $opID = $fleet->operation_info_id;
+        $recon = OperationInfoRecon::where('id', $fleet->recon_id)->frist();
+        if ($recon) {
+            $recon->operation_info_fleet_id = null;
+            $recon->operation_info_recon_status_id = 1;
+            $recon->save();
+            operationReconSoloBcast($recon->id, 5);
+        }
         $fleet->delete();
         operationInfoSoloPageFleetBroadcastDelete($id, $opID, 6);
     }

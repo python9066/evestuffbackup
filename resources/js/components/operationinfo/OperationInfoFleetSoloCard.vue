@@ -9,7 +9,7 @@
                 <v-btn icon x-small class="handle" color="gray">
                   <font-awesome-icon
                     icon="fa-solid fa-up-down-left-right" /></v-btn></v-col
-              ><v-col cols="auto">{{ fleetInfo.name }}</v-col
+              ><v-col cols="auto">{{ fleetInfo.name }} </v-col
               ><v-col cols="auto"
                 ><v-fab-transition
                   ><v-speed-dial
@@ -124,6 +124,24 @@
                 ></v-autocomplete
               ></v-row>
               <v-row class="pt-2" no-gutters
+                ><v-col cols="auto"></v-col
+                ><v-autocomplete
+                  outlined
+                  :clearable="!readOnly"
+                  :readonly="readOnly"
+                  :append-icon="dropDownIcon"
+                  :items="operationInfoRecon"
+                  v-model="fleetInfo.recon_id"
+                  item-text="name"
+                  item-value="id"
+                  hide-details
+                  rounded
+                  label="Recon"
+                  dense
+                  @change="updateFleetRecon()"
+                ></v-autocomplete
+              ></v-row>
+              <v-row class="pt-2" no-gutters
                 ><v-col cols="auto"></v-col>
                 <v-autocomplete
                   outlined
@@ -148,6 +166,14 @@
               <span> Doctrine - {{ doctrineText }}</span>
               <br />
               <span> Mumble - {{ mumbleText }}</span>
+              <br />
+              <v-tooltip bottom :disabled="!showreconToolTip"
+                ><template v-slot:activator="{ on, attrs }">
+                  <span v-bind="attrs" v-on="on">
+                    Recon - {{ reconText }}</span
+                  ></template
+                >{{ reconToolTip }}
+              </v-tooltip>
               <br />
               <span> Alliance - {{ allianceText }}</span>
             </div>
@@ -193,6 +219,20 @@ export default {
 
     readOnlyOn() {
       this.readOnly = true;
+    },
+
+    async updateFleetRecon() {
+      var request = this.fleetInfo;
+      await axios({
+        method: "put", //you can set what request you want to be
+        url: "/api/operationinfofleetrecon/" + this.fleetInfo.id,
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
     },
 
     async updateBoss() {
@@ -287,6 +327,7 @@ export default {
       "operationInfoUsers",
       "operationInfoDoctrines",
       "allianceticklist",
+      "operationInfoRecon",
     ]),
 
     opInfo: {
@@ -357,6 +398,36 @@ export default {
     mumbleText() {
       if (this.fleetInfo.mumble) {
         return this.fleetInfo.mumble.name;
+      } else {
+        return "none";
+      }
+    },
+
+    reconText() {
+      if (this.fleetInfo.recon) {
+        this.fleetInfo.recon.name;
+        var name = this.fleetInfo.recon.name;
+
+        return name;
+      } else {
+        return "none";
+      }
+    },
+
+    showreconToolTip() {
+      if (this.fleetInfo.recon) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    reconToolTip() {
+      if (this.fleetInfo.recon) {
+        this.fleetInfo.recon.name;
+        var main = this.fleetInfo.recon.main.name;
+
+        return main;
       } else {
         return "none";
       }

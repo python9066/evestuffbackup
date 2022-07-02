@@ -20,7 +20,7 @@
       <v-card-text>
         <v-combobox
           outlined
-          :items="operationInfoRecon"
+          :items="dropDown"
           v-model="name"
           item-text="name"
           item-value="id"
@@ -99,6 +99,13 @@ export default {
     ...mapGetters([]),
 
     ...mapState(["operationInfoRecon"]),
+
+    dropDown() {
+      var data = this.operationInfoRecon.filter(
+        (r) => r.operation_info_id != this.$store.state.operationInfoPage.id
+      );
+      return data;
+    },
 
     type() {
       return typeof this.name;

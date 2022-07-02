@@ -93,6 +93,7 @@ if (!function_exists('operationInfoSoloPagePull')) {
             'fleets.mumble',
             'fleets.doctrine',
             'fleets.alliance',
+            'fleets.recon.main',
             'recons.main',
             'recons.system',
             'status'
@@ -118,6 +119,7 @@ if (!function_exists('operationInfoSoloPagePullLink')) {
             'fleets.mumble',
             'fleets.doctrine',
             'fleets.alliance',
+            'fleets.recon.main',
             'recons.main',
             'recons.system',
             'status'
@@ -162,6 +164,7 @@ if (!function_exists('operationInfoFleetSolo')) {
             'mumble',
             'doctrine',
             'alliance',
+            'recon.main'
         ])->first();
     }
 }
@@ -319,6 +322,7 @@ if (!function_exists('checkUserNameRecon')) {
                     'id' => $opID
                 ]);
                 broadcast(new OperationInfoPageSoloUpdate($flag));
+                operationReconSoloBcast($new->id, 5);
                 return $new->id;
             }
         } else {

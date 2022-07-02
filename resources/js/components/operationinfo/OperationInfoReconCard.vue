@@ -8,6 +8,9 @@
           ></v-card-title
         ><v-card-text
           ><v-col cols="auto"><AddOperationReconButton /></v-col>
+          <div v-for="recon in opInfo.recons" :key="`${recon.id}-card`">
+            {{ recon.name }} - {{ recon.main.name }}
+          </div>
         </v-card-text>
       </v-card>
     </v-col>

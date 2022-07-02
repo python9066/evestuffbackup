@@ -41,4 +41,14 @@ class OperationInfoFleet extends Model
     {
         return $this->hasOne(Alliance::class, 'id', 'alliance_id');
     }
+
+    /**
+     * Get the recon associated with the OperationInfoFleet
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function recon(): HasOne
+    {
+        return $this->hasOne(OperationInfoRecon::class, 'id', 'recon_id');
+    }
 }
