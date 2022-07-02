@@ -8,8 +8,35 @@
           ></v-card-title
         ><v-card-text
           ><v-col cols="auto"><AddOperationReconButton /></v-col>
+
           <div v-for="recon in opInfo.recons" :key="`${recon.id}-card`">
-            {{ recon.name }} - {{ recon.main.name }}
+            <!-- <v-tooltip right> -->
+            <v-tooltip right :disabled="!showToolTip(recon)"
+              ><template v-slot:activator="{ on, attrs }">
+                <transition
+                  mode="out-in"
+                  :enter-active-class="showEnter"
+                  :leave-active-class="showLeave"
+                >
+                  <span
+                    v-bind="attrs"
+                    v-on="on"
+                    :key="`${recon.id}-${recon.operation_info_recon_status_id}-span`"
+                    :class="textColor(recon)"
+                  >
+                    {{ recon.name }} - {{ recon.main.name }}</span
+                  >
+                </transition></template
+              >
+
+              <span v-if="recon.operation_info_recon_status_id == 2"
+                >Fleet - {{ recon.fleet.name }}</span
+              >
+              <span
+                v-if="recon.operation_info_recon_status_id == 1 && recon.system"
+                >Location - {{ recon.system.system_name }}</span
+              >
+            </v-tooltip>
           </div>
         </v-card-text>
       </v-card>
@@ -40,7 +67,24 @@ export default {
   async beforeCreate() {},
 
   async mounted() {},
-  methods: {},
+  methods: {
+    textColor(recon) {
+      if (recon.operation_info_recon_status_id == 1) {
+        return "";
+      }
+
+      if (recon.operation_info_recon_status_id == 2) {
+        return "green--text";
+      }
+    },
+
+    showToolTip(recon) {
+      if (recon.operation_info_recon_status_id == 1 && !recon.system) {
+        return false;
+      }
+      return true;
+    },
+  },
 
   computed: {
     ...mapGetters([]),

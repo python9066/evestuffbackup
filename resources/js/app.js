@@ -31,6 +31,8 @@ import titleMixin from "./mixins/titleMixin";
 import Clipboard from "v-clipboard";
 import VueEllipseProgress from "vue-ellipse-progress";
 import VueGridLayout from "vue-grid-layout";
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 // library.add(faUserSecret);
@@ -630,6 +632,12 @@ Vue.use(Clipboard);
 Vue.use(CountdownTimer);
 Vue.use(VueCountdownTimer);
 Vue.use(VueCountupTimer);
+Vue.use(Toast, {
+    transition: "Vue-Toastification__bounce",
+    maxToasts: 20,
+    newestOnTop: true,
+    shareAppContext: true,
+});
 Vue.config.productionTip = false;
 Vue.component(VueCountdown.name, VueCountdown);
 Vue.use(VueGridLayout);
@@ -669,7 +677,7 @@ export default new Vuetify({
         dark: true,
     },
     icons: {
-        iconfont: "faSvg",
+        iconfont: "fa",
     },
 });
 export const EventBus = new Vue();

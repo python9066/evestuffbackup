@@ -25,7 +25,15 @@ class OperationInfoReconController extends Controller
      */
     public function store(Request $request)
     {
-        $charID =  checkUserNameRecon($request->name, $request->opID);
+        $done =  checkUserNameRecon($request->name, $request->opID);
+
+        if (!$done) {
+            return response()->json([
+                'status' => true,
+                'message' => 'user not found',
+                'errors' => 'all'
+            ], 201);
+        }
     }
 
     /**

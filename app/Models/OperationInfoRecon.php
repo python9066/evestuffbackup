@@ -61,4 +61,14 @@ class OperationInfoRecon extends Model
     {
         return $this->hasOne(OperationInfoReconStatus::class, 'id', 'operation_info_recon_status_id');
     }
+
+    /**
+     * Get the fleet that owns the OperationInfoRecon
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function fleet(): BelongsTo
+    {
+        return $this->belongsTo(OperationInfoFleet::class, 'operation_info_fleet_id', 'id');
+    }
 }

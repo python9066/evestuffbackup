@@ -95,7 +95,9 @@ if (!function_exists('operationInfoSoloPagePull')) {
             'fleets.alliance',
             'fleets.recon.main',
             'recons.main',
+            'recons.status',
             'recons.system',
+            'recons.fleet',
             'status'
         ])->first();
     }
@@ -121,7 +123,9 @@ if (!function_exists('operationInfoSoloPagePullLink')) {
             'fleets.alliance',
             'fleets.recon.main',
             'recons.main',
+            'recons.status',
             'recons.system',
+            'recons.fleet',
             'status'
         ])->first();
     }
@@ -282,6 +286,7 @@ if (!function_exists('checkUserNameRecon')) {
     {
         $check = OperationInfoRecon::where('name', $name)->count();
         if ($check == 0) {
+            $good = false;
             $userIds = collect();
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json',
@@ -294,10 +299,13 @@ if (!function_exists('checkUserNameRecon')) {
             $res = $response->collect($key = null);
             foreach ($res as $key => $re) {
                 if ($key == 'characters') {
+                    $good = true;
                     $userIds->push($re[0]['id']);
                 }
             }
-
+            if (!$good) {
+                return false;
+            }
             foreach ($userIds as $userID) {
                 $response = Http::withHeaders([
                     'Content-Type' => 'application/json',
@@ -323,7 +331,7 @@ if (!function_exists('checkUserNameRecon')) {
                 ]);
                 broadcast(new OperationInfoPageSoloUpdate($flag));
                 operationReconSoloBcast($new->id, 5);
-                return $new->id;
+                return true;
             }
         } else {
 
@@ -331,7 +339,7 @@ if (!function_exists('checkUserNameRecon')) {
             $check->operation_info_id = $opID;
             $check->save();
             operationReconSoloBcast($check->id, 5);
-            return $check->id;
+            return true;
         }
     }
 }
@@ -347,6 +355,7 @@ if (!function_exists('operationReconAll')) {
             'alliance:id,name,ticker,url',
             'corp:id,name,ticker,url',
             'system:id,system_name',
+            'fleet',
             'status'
         ])->get();
         return $data;
@@ -362,6 +371,7 @@ if (!function_exists('operationReconSolo')) {
             'alliance:id,name,ticker,url',
             'corp:id,name,ticker,url',
             'system:id,system_name',
+            'fleet',
             'status'
         ])->first();
         return $data;
