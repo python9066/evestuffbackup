@@ -39,7 +39,9 @@ class updateWebwayJob implements ShouldQueue
      */
     public function handle()
     {
+        activity()->disableLogging();
         $this->updateWebway($this->start_system_id, $this->end_system_id);
+        activity()->enableLogging();
     }
 
     public function updateWebway($start_system_id, $end_system_id)

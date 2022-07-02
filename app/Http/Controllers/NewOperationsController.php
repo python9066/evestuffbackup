@@ -81,6 +81,7 @@ class NewOperationsController extends Controller
         if ($user->can('edit_read_only')) {
             $op = NewOperation::where('id', $opID)->first();
             $op->read_only = $request->read_only;
+            $op->log_helper = 1;
             $op->save();
             broadcastOperationSetReadOnly($opID, 2, $request->read_only);
         } else {
@@ -93,16 +94,21 @@ class NewOperationsController extends Controller
         $user = Auth::user();
         if ($user->can('access_multi_campaigns')) {
             $uuid = Str::uuid();
-            $newOp = NewOperation::create([
-                'title' => $request->title,
-                'link' => $uuid,
-                'solo' => 0,
-                'status' => 1,
-            ]);
+
+            $newOp = new NewOperation();
+            $newOp->title = $request->title;
+            $newOp->link = $uuid;
+            $newOp->solo = 0;
+            $newOp->status = 1;
+            $newOp->save();
 
             $campaignIDs = $request->picked;
             foreach ($campaignIDs as $campaignID) {
                 NewCampaignOperation::create(['campaign_id' => $campaignID, 'operation_id' => $newOp->id]);
+                $new = new NewCampaignOperation();
+                $new->campaign_id = $campaignID;
+                $new->operation_id = $newOp->id;
+                $new->save();
             }
 
             broadcastCustomOperationSolo($newOp->id, 1);
@@ -123,7 +129,10 @@ class NewOperationsController extends Controller
         foreach ($request->picked as $campaignID) {
             $count = NewCampaignOperation::where('operation_id', $request->OpID)->where('campaign_id', $campaignID)->count();
             if ($count == 0) {
-                NewCampaignOperation::create(['campaign_id' => $campaignID, 'operation_id' => $request->OpID]);
+                $new = new NewCampaignOperation();
+                $new->campaign_id = $campaignID;
+                $new->operation_id = $request->OpID;
+                $new->save();
             }
         }
         broadcastCustomOperationSolo($request->OpID, 2);
@@ -135,6 +144,7 @@ class NewOperationsController extends Controller
         if ($user->can('edit_hack_priority')) {
             $operation = NewOperation::where('id', $id)->first();
             $operation->priority = $request->priority;
+            $operation->log_helper = 2;
             $operation->save();
         }
     }

@@ -85,16 +85,20 @@ class HotRegionController extends Controller
         }
 
         $h = HotRegion::whereNotNull('id')->get();
+        activity()->disableLogging();
         foreach ($h as $h) {
             $h->update(['update' => 0, 'show_fcs' => 0]);
         }
+        activity()->enableLogging();
         $h = HotRegion::whereIn('region_id', $ids)->get();
         foreach ($h as $h) {
-            $h->update(['update' => 1]);
+            $h->update = 1;
+            $h->save();
         }
         $h = HotRegion::whereIn('region_id', $fcIds)->get();
         foreach ($h as $h) {
-            $h->update(['show_fcs' => 1]);
+            $h->show_fcs = 1;
+            $h->save();
         }
 
         $flag = collect([

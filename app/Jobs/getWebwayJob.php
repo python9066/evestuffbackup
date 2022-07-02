@@ -51,6 +51,7 @@ class getWebwayJob implements ShouldQueue
      */
     public function handle()
     {
+        activity()->disableLogging();
         $send = false;
 
         $old = WebWay::where([
@@ -113,5 +114,6 @@ class getWebwayJob implements ShouldQueue
 
             broadcast(new StationSheetUpdateWebway($flag));
         }
+        activity()->enableLogging();
     }
 }

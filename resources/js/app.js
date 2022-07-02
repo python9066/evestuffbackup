@@ -677,7 +677,7 @@ export default new Vuetify({
         dark: true,
     },
     icons: {
-        iconfont: "fa",
+        iconfont: "faSvg",
     },
 });
 export const EventBus = new Vue();

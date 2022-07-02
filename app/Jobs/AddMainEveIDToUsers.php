@@ -11,7 +11,10 @@ use Illuminate\Queue\SerializesModels;
 
 class AddMainEveIDToUsers implements ShouldQueue
 {
-    use Dispatchable;use InteractsWithQueue;use Queueable;use SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
     protected $name;
     /**
      * Create a new job instance.
@@ -30,9 +33,11 @@ class AddMainEveIDToUsers implements ShouldQueue
      */
     public function handle()
     {
+        activity()->disableLogging();
         $id = nameToID($this->name);
         $user =  User::where('name', $this->name)->first();
         $user->eve_user_id = $id ?? null;
         $user->save();
+        activity()->enableLogging();
     }
 }

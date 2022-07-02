@@ -40,7 +40,9 @@ class UpdateStandingJob implements ShouldQueue
      */
     public function handle()
     {
+        activity()->disableLogging();
         $this->runStandingUpdate();
+        activity()->enableLogging();
     }
 
     public function runStandingUpdate()
@@ -134,13 +136,13 @@ class UpdateStandingJob implements ShouldQueue
                 $http = new GuzzleHttpCLient();
 
                 $headers = [
-                    'Authorization' => 'Basic '.$client->code,
+                    'Authorization' => 'Basic ' . $client->code,
                     'Content-Type' => 'application/x-www-form-urlencoded',
                     'Host' => 'login.eveonline.com',
                     'User-Agent' => 'evestuff.online python9066@gmail.com',
 
                 ];
-                $body = 'grant_type=refresh_token&refresh_token='.$auth->refresh_token;
+                $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
                 $response = $http->request('POST', 'https://login.eveonline.com/v2/oauth/token', [
                     'headers' => $headers,
                     'body' => $body,

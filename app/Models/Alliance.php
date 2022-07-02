@@ -10,13 +10,6 @@ class Alliance extends Model
     //
     protected $guarded = [];
 
-    // public function getActivitylogOptions(): LogOptions
-    // {
-    //     return LogOptions::defaults()
-    //         ->logOnly(['*']);
-    //     // Chain fluent methods for configuration options
-    // }
-
     public function alliance_id()
     {
         return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');

@@ -37,6 +37,7 @@ class setDeleteFlagJob implements ShouldQueue
      */
     public function handle()
     {
+        activity()->disableLogging();
         $campaign = NewCampaign::where('id', $this->campaign_id)->with('operations')->first();
         $operations = $campaign->operations;
         foreach ($operations as $operation) {
@@ -46,6 +47,7 @@ class setDeleteFlagJob implements ShouldQueue
             }
         }
         NewCampaignOperation::where('campaign_id', $this->campaign_id)->delete();
+        activity()->enableLogging();
     }
 
     public function deleteOperation($operation)

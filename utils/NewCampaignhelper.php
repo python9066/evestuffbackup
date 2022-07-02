@@ -18,6 +18,7 @@ class NewCampaignhelper
 {
     public static function newUpdate()
     {
+        activity()->disableLogging();
         $updatedCampaignID = collect();
         $deathCampaign = NewCampaign::where('status_id', 10)->get();
 
@@ -78,7 +79,7 @@ class NewCampaignhelper
                 }
                 $systemN = System::where('id', $campaign['solar_system_id'])->first();
                 $systemNamee = $systemN->system_name;
-                $cName = $systemNamee.' - '.$event_type_name;
+                $cName = $systemNamee . ' - ' . $event_type_name;
                 $time = $campaign['start_time'];
                 $start_time = fixtime($time);
                 $data = [];
@@ -136,7 +137,7 @@ class NewCampaignhelper
                     } else {
                         $type = 'TCU';
                     }
-                    $title = $systemName.' - '.$type;
+                    $title = $systemName . ' - ' . $type;
                     $newOp = NewOperation::create([
                         'link' => $uuid,
                         'solo' => 1,
@@ -220,6 +221,7 @@ class NewCampaignhelper
                 'check' => 1,
             ]);
         }
+        activity()->enableLogging();
     }
 
     public static function ownUserAll()

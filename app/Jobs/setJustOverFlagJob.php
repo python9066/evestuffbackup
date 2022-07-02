@@ -43,6 +43,7 @@ class setJustOverFlagJob implements ShouldQueue
      */
     public function handle()
     {
+        activity()->disableLogging();
         $campaign = NewCampaign::where('id', $this->campaign_id)->first();
         $tenMins = now()->addMinutes(10);
         $tommorw = now()->addDay();
@@ -77,6 +78,7 @@ class setJustOverFlagJob implements ShouldQueue
 
         setOverFlagJob::dispatch($this->campaign_id)->onQueue('campaigns')->delay($tenMins);
         setDeleteFlagJob::dispatch($this->campaign_id)->onQueue('campaigns')->delay($tommorw);
+        activity()->enableLogging();
     }
 
     public function cleanUpCampaign($campaignID)

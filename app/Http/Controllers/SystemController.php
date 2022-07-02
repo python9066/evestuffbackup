@@ -55,12 +55,12 @@ class SystemController extends Controller
             if ($time_left <= 0) {
                 $time_left = $time_left * -1;
             }
-            $end_time = now()->modify('+ '.round($time_left).' seconds');
-            $systemNode->update([
-                'end_time' => $end_time,
-                'input_time' => now(),
-                'base_time' => $base_time,
-            ]);
+            $end_time = now()->modify('+ ' . round($time_left) . ' seconds');
+
+            $systemNode->end_time = $end_time;
+            $systemNode->input_time = now();
+            $systemNode->base_time = $base_time;
+            $systemNode->save();
         }
 
         $systemNodes = NewSystemNode::where('system_id', $systemID)->get();
@@ -75,12 +75,12 @@ class SystemController extends Controller
                 if ($time_left <= 0) {
                     $time_left = $time_left * -1;
                 }
-                $end_time = now()->modify('+ '.round($time_left).' seconds');
-                $userNode->update([
-                    'end_time' => $end_time,
-                    'input_time' => now(),
-                    'base_time' => $base_time,
-                ]);
+                $end_time = now()->modify('+ ' . round($time_left) . ' seconds');
+
+                $userNode->end_time = $end_time;
+                $userNode->input_time = now();
+                $userNode->base_time = $base_time;
+                $userNode->save();
             }
         }
 
