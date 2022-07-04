@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
-if (! function_exists('newUpdateCampaigns')) {
+if (!function_exists('newUpdateCampaigns')) {
     function newUpdateCampaigns()
     {
+        activity()->disableLogging();
         $updatedCampaignID = collect();
 
         // * Set check flag to 0
@@ -59,7 +60,7 @@ if (! function_exists('newUpdateCampaigns')) {
                 }
                 $systemN = System::where('id', $r['solar_system_id'])->first();
                 $systemNamee = $systemN->system_name;
-                $cName = $systemNamee.' - '.$event_type_name;
+                $cName = $systemNamee . ' - ' . $event_type_name;
                 $time = $r['start_time'];
                 $start_time = fixtime($time);
                 $data = [];
@@ -123,7 +124,7 @@ if (! function_exists('newUpdateCampaigns')) {
                     } else {
                         $type = 'TCU';
                     }
-                    $title = $systemName.' - '.$type;
+                    $title = $systemName . ' - ' . $type;
                     $newOp = NewOperation::create([
                         'link' => $uuid,
                         'solo' => 1,
@@ -175,10 +176,12 @@ if (! function_exists('newUpdateCampaigns')) {
                 }
             }
         }
+
+        activity()->enableLogging();
     }
 }
 
-if (! function_exists('ownUserAll')) {
+if (!function_exists('ownUserAll')) {
     function ownUserAll()
     {
         return OperationUser::where('user_id', Auth::id())
@@ -186,7 +189,7 @@ if (! function_exists('ownUserAll')) {
             ->get();
     }
 }
-if (! function_exists('ownUsersolo')) {
+if (!function_exists('ownUsersolo')) {
     function ownUsersolo($id)
     {
         return OperationUser::where('id', $id)
@@ -194,7 +197,7 @@ if (! function_exists('ownUsersolo')) {
             ->first();
     }
 }
-if (! function_exists('opUserAll')) {
+if (!function_exists('opUserAll')) {
     function opUserAll($opID)
     {
         return OperationUser::where('operation_id', $opID)
@@ -208,7 +211,7 @@ if (! function_exists('opUserAll')) {
             ->get();
     }
 }
-if (! function_exists('opUserSolo')) {
+if (!function_exists('opUserSolo')) {
     function opUserSolo($opID, $id)
     {
         return OperationUser::where('operation_id', $opID)
@@ -223,7 +226,7 @@ if (! function_exists('opUserSolo')) {
             ->first();
     }
 }
-if (! function_exists('systemsAll')) {
+if (!function_exists('systemsAll')) {
     function systemsAll($contellationIDs)
     {
         return System::whereIn('constellation_id', $contellationIDs)
@@ -242,7 +245,7 @@ if (! function_exists('systemsAll')) {
             ->get();
     }
 }
-if (! function_exists('systemSolo')) {
+if (!function_exists('systemSolo')) {
     function systemSolo($systemID)
     {
         return System::where('id', $systemID)
@@ -261,7 +264,7 @@ if (! function_exists('systemSolo')) {
             ->first();
     }
 }
-if (! function_exists('campaignSolo')) {
+if (!function_exists('campaignSolo')) {
     function campaignSolo($campaignID)
     {
         return NewCampaign::where('id', $campaignID)->with([
@@ -273,7 +276,7 @@ if (! function_exists('campaignSolo')) {
         ])->first();
     }
 }
-if (! function_exists('customOperationSolo')) {
+if (!function_exists('customOperationSolo')) {
     function customOperationSolo($opID)
     {
         return NewOperation::where('id', $opID)
@@ -281,7 +284,7 @@ if (! function_exists('customOperationSolo')) {
             ->first();
     }
 }
-if (! function_exists('userListAll')) {
+if (!function_exists('userListAll')) {
     function userListAll($userIDs, $opID)
     {
         return User::whereIn('id', $userIDs)

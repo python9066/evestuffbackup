@@ -39,7 +39,9 @@ class updateCorpsJob implements ShouldQueue
      */
     public function handle()
     {
+        activity()->disableLogging();
         $this->startCorpJob($this->corpID, $this->allianceID);
+        activity()->enableLogging();
     }
 
     public function startCorpJob($corpID, $allianceID)
@@ -50,7 +52,7 @@ class updateCorpsJob implements ShouldQueue
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
                 'User-Agent' => 'evestuff.online python9066@gmail.com',
-            ])->get('https://esi.evetech.net/latest/corporations/'.$corpID.'/?datasource=tranquility');
+            ])->get('https://esi.evetech.net/latest/corporations/' . $corpID . '/?datasource=tranquility');
             if ($response->successful()) {
                 $corpPull = 3;
                 $corpInfo = $response->collect();
@@ -63,7 +65,7 @@ class updateCorpsJob implements ShouldQueue
                         'color' => 0,
                         'standing' => 0,
                         'active' => 1,
-                        'url' => 'https://images.evetech.net/Corporation/'.$corpID.'_64.png',
+                        'url' => 'https://images.evetech.net/Corporation/' . $corpID . '_64.png',
 
                     ]
                 );

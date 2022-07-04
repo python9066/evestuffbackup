@@ -86,14 +86,12 @@ class NewSystemNodeController extends Controller
         if ($prime == 1) {
             $check->update(['node_status' => 2]);
         }
-
-        $new = NewUserNode::create([
-            'primery' => $prime,
-            'node_id' => $request->node_id,
-            'operation_user_id' => $request->op_user_id,
-            'node_status_id' => 2,
-
-        ]);
+        $new = new NewUserNode();
+        $new->primery = $prime;
+        $new->node_id = $request->node_id;
+        $new->operation_user_id = $request->op_user_id;
+        $new->node_status_id = 2;
+        $new->save();
 
         $o = OperationUser::where('id', $request->op_user_id)->get();
 

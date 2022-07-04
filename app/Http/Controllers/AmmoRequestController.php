@@ -73,9 +73,14 @@ class AmmoRequestController extends Controller
      */
     public function store(Request $request)
     {
-        $new = AmmoRequest::create($request->all());
+        $new = new AmmoRequest();
+        $new->station_id = $request->station_id;
+        $new->current_ammo = $request->current_ammo;
+        $new->request_text = $request->request_text;
+        $new->save();
         $s = Station::where('id', $new->station_id)->first();
-        $s->update(['ammo_request_id' => $new->id]);
+        $s->ammo_request_id = $new->id;
+        $s->save();
         $message = StationRecords::where('id', $new->station_id)->first();
         $flag = collect([
             'message' => $message,
@@ -111,7 +116,8 @@ class AmmoRequestController extends Controller
     {
         $a = AmmoRequest::find($id)->get();
         foreach ($a as $a) {
-            $a->update($request->all());
+            $a->user_id = $request->user_id;
+            $a->save();
         }
 
         $message = AmmoRequestRecords::where('id', $id)->first();

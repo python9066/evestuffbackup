@@ -46,11 +46,11 @@ class NewUserNodeController extends Controller
     {
         $n = NewSystemNode::where('id', $id)->first();
 
-        $n->update([
-            'end_time' => $request->end_time,
-            'input_time' => now(),
-            'base_time' => $request->base_time,
-        ]);
+
+        $n->end_time = $request->end_time;
+        $n->input_time = now();
+        $n->base_time = $request->base_time;
+        $n->save();
 
         broadcastsystemSolo($request->system_id, 7);
     }

@@ -28,7 +28,9 @@ class FleetTypeController extends Controller
      */
     public function store(Request $request)
     {
-        FleetType::create($request->all());
+        $new = new FleetType();
+        $new->name = $request->name;
+        $new->save();
         $flag = collect([
             'id' => 1,
         ]);
@@ -75,10 +77,13 @@ class FleetTypeController extends Controller
         foreach ($f as $f) {
             $f->delete();
         }
+
         $f = KeyFleetJoin::where('fleet_type_id', $id)->get();
+        activity()->disableLogging();
         foreach ($f as $f) {
             $f->delete();
         }
+        activity()->enableLogging();
         $flag = collect([
             'id' => 1,
         ]);

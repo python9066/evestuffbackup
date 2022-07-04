@@ -34,7 +34,10 @@ class KeyTypeController extends Controller
      */
     public function store(Request $request)
     {
-        KeyType::create($request->all());
+
+        $new = new KeyType();
+        $new->name = $request->name;
+        $new->save();
         $flag = collect([
             'id' => 1,
         ]);

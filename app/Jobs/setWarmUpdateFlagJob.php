@@ -36,6 +36,7 @@ class setWarmUpdateFlagJob implements ShouldQueue
      */
     public function handle()
     {
+        activity()->disableLogging();
         $campaign = NewCampaign::where('id', $this->campaign_id)->first();
         $campaign->update(['status_id' => 5]);
         $operationIDs = NewCampaignOperation::where('campaign_id', $this->campaign_id)->get();
@@ -43,6 +44,7 @@ class setWarmUpdateFlagJob implements ShouldQueue
             broadcastOperationRefresh($opID->operation_id, $this->campaign_id, 8);
             broadcastSoloOpSoloOp(1, $opID->operation_id);
         }
+        activity()->enableLogging();
     }
 
     public function uniqueId()

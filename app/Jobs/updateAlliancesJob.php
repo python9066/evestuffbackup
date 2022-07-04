@@ -37,11 +37,14 @@ class updateAlliancesJob implements ShouldQueue
      */
     public function handle()
     {
+        activity()->disableLogging();
         $this->startAlliance($this->allianceID);
+        activity()->enableLogging();
     }
 
     public function startAlliance($allianceID)
     {
+
         $done = 0;
         $corpCount = 0;
 
@@ -50,7 +53,7 @@ class updateAlliancesJob implements ShouldQueue
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
                 'User-Agent' => 'evestuff.online python9066@gmail.com',
-            ])->get('https://esi.evetech.net/latest/alliances/'.$allianceID.'/?datasource=tranquility');
+            ])->get('https://esi.evetech.net/latest/alliances/' . $allianceID . '/?datasource=tranquility');
 
             if ($response->successful()) {
                 $done = 3;
@@ -61,7 +64,7 @@ class updateAlliancesJob implements ShouldQueue
                         'name' => $allianceInfo->get('name'),
                         'ticker' => $allianceInfo->get('ticker'),
                         'active' => 1,
-                        'url' => 'https://images.evetech.net/Alliance/'.$allianceID.'_64.png',
+                        'url' => 'https://images.evetech.net/Alliance/' . $allianceID . '_64.png',
                     ]
                 );
                 $c = Corp::where('alliance_id', $allianceID)->get();
@@ -73,7 +76,7 @@ class updateAlliancesJob implements ShouldQueue
                         'Content-Type' => 'application/json',
                         'Accept' => 'application/json',
                         'User-Agent' => 'evestuff.online python9066@gmail.com',
-                    ])->get('https://esi.evetech.net/latest/alliances/'.$allianceID.'/corporations/?datasource=tranquility');
+                    ])->get('https://esi.evetech.net/latest/alliances/' . $allianceID . '/corporations/?datasource=tranquility');
                     if ($responseCorp->successful()) {
                         $corpCount = 3;
                         $corpIDs = $responseCorp->collect();
@@ -109,7 +112,7 @@ class updateAlliancesJob implements ShouldQueue
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
                 'User-Agent' => 'evestuff.online python9066@gmail.com',
-            ])->get('https://esi.evetech.net/latest/corporations/'.$corpID.'/?datasource=tranquility');
+            ])->get('https://esi.evetech.net/latest/corporations/' . $corpID . '/?datasource=tranquility');
             if ($response->successful()) {
                 $corpPull = 3;
                 $corpInfo = $response->collect();
@@ -120,7 +123,7 @@ class updateAlliancesJob implements ShouldQueue
                         'name' => $corpInfo->get('name'),
                         'ticker' => $corpInfo->get('ticker'),
                         'active' => 1,
-                        'url' => 'https://images.evetech.net/Corporation/'.$corpID.'_64.png',
+                        'url' => 'https://images.evetech.net/Corporation/' . $corpID . '_64.png',
 
                     ]
                 );

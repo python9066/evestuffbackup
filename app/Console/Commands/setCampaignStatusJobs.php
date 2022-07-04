@@ -41,6 +41,7 @@ class setCampaignStatusJobs extends Command
      */
     public function handle()
     {
+        activity()->disableLogging();
         $campaigns = NewCampaign::where('job', 0)->get();
         foreach ($campaigns as $campaign) {
             $start = Carbon::parse($campaign->start_time);
@@ -54,5 +55,7 @@ class setCampaignStatusJobs extends Command
                 $campaign->update(['job' => 1]);
             }
         }
+
+        activity()->enableLogging();
     }
 }

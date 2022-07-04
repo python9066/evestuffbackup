@@ -5,12 +5,58 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Models\Activity;
 
 class OperationInfoFleet extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+
+
+    public function tapActivity(Activity $activity, string $eventName)
+    {
+        if ($eventName == 'updated') {
+            $activity->description = 'Operation Fleet Updated';
+        }
+
+        if ($eventName == 'created') {
+            $activity->description = 'Operation Fleet Made';
+        }
+
+        if ($eventName == 'deleted') {
+            $activity->description = 'Operation Fleet Deleted';
+        }
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly([
+                'id',
+                'name',
+                'operation_info_id',
+                'gsf_fleet',
+                'mumble_id',
+                'doctrine_id',
+                'alliance_id',
+                'recon_id',
+                'fc',
+                'boss',
+                'mumble',
+                'doctrine',
+                'alliance',
+                'recon'
+            ])
+            ->useLogName('Operation Fleet')
+            ->dontLogIfAttributesChangedOnly([
+                'updated_at',
+                'show'
+
+            ]);
+        // Chain fluent methods for configuration options
+    }
 
     /**
      * Get the user associated with the OperationInfoFleet

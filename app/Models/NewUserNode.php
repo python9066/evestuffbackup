@@ -4,12 +4,55 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Models\Activity;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class NewUserNode extends Model
 {
     use HasFactory;
+    use LogsActivity;
 
     protected $guarded = [];
+
+
+    public function tapActivity(Activity $activity, string $eventName)
+    {
+        if ($eventName == 'updated') {
+            $activity->description = 'User Node Updated';
+        }
+
+        if ($eventName == 'created') {
+            $activity->description = 'User Node Made';
+        }
+
+        if ($eventName == 'deleted') {
+            $activity->description = 'User Node Deleted';
+        }
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly([
+                'id',
+                'primery',
+                'node_id',
+                'node',
+                'notes',
+                'end_time',
+                'node_status_id',
+                'nodeStatus'
+            ])
+            ->useLogName('User Node')
+            ->dontLogIfAttributesChangedOnly([
+                'updated_at',
+                'input_time',
+                'base_time',
+
+            ]);
+        // Chain fluent methods for configuration options
+    }
 
     public function opUser()
     {

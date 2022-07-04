@@ -40,6 +40,7 @@ class populateCampaignSystemTable extends Command
      */
     public function handle()
     {
+        activity()->disableLogging();
         $campaigns = NewCampaign::whereNotNull('id')->get();
         $this->info($campaigns);
         foreach ($campaigns as $c) {
@@ -53,5 +54,6 @@ class populateCampaignSystemTable extends Command
                 ]);
             }
         }
+        activity()->enableLogging();
     }
 }
