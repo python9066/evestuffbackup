@@ -159,7 +159,7 @@ if (!function_exists('newUpdateCampaigns')) {
             ->whereNull('end_time')->get();
 
         foreach ($ns as $n) {
-            setJustOverFlagJob::dispatch($n->id, $r['defender_score'])->onQueue('campaigns');
+            setJustOverFlagJob::dispatch($n->id, $n->defenders_score)->onQueue('campaigns');
         }
         // * Check if the campaign have been over more than 10mins, if true set it to finsiehd(3)
 
