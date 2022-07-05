@@ -44,7 +44,8 @@ class NewOperation extends Model
                 'id',
                 'title',
                 'read_only',
-                'priority'
+                'priority',
+                'log_helper'
             ])
             ->useLogName('Operations')
             ->dontLogIfAttributesChangedOnly([
