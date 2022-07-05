@@ -26,7 +26,7 @@ class setJustOverFlagJob implements ShouldQueue
     protected $defender_score;
 
     /**
-     * Create a new job instance.
+     * Create a new job instance.ssss
      *
      * @return void
      */
