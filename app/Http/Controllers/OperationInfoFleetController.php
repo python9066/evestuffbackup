@@ -112,7 +112,7 @@ class OperationInfoFleetController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource fromddddd storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
