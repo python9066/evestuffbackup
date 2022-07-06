@@ -55,10 +55,10 @@ class newCampaignUpdate extends Command
         $campaigns = NewCampaign::where('job', 0)->get();
         foreach ($campaigns as $campaign) {
             $start = Carbon::parse($campaign->start_time);
-            $twoHours = now()->addHours(2);
+            $twoHours = now()->addHours(3);
 
             if ($start <= $twoHours) {
-                $a = $start->subHours(1);
+                $a = $start->subHours(2);
                 $begin = Carbon::parse($campaign->start_time);
                 setWarmUpdateFlagJob::dispatch($campaign->id)->onQueue('campaigns')->delay($a);
                 setActiveUpdateFlagJob::dispatch($campaign->id)->onQueue('campaigns')->delay($begin);
