@@ -117,7 +117,11 @@
         </template>
 
         <template v-slot:[`item.campaign[0].start_time`]="{ item }">
-          <span v-if="item.campaign[0].status_id == 1">
+          <span
+            v-if="
+              item.campaign[0].status_id == 1 || item.campaign[0].status_id == 5
+            "
+          >
             {{ item.campaign[0].start_time }}
           </span>
           <span
@@ -308,7 +312,14 @@
                     :disabled="pillDisabled(item)"
                     color="light-blue lighten-1"
                   >
-                    {{ scope.props.minutes }}:{{ scope.props.seconds }}
+                    <span v-if="scope.props.hours == 1">
+                      {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                        scope.props.seconds
+                      }}</span
+                    >
+                    <span v-else>
+                      {{ scope.props.minutes }}:{{ scope.props.seconds }}</span
+                    >
                   </v-chip>
                 </span>
                 <span v-else class="red--text pl-3"
