@@ -345,6 +345,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/newcampaignpriority/{id}', [NewOperationsController::class, 'updatePriority']);
 
     Route::post('/operationinfosheet', [OperationInfoController::class, 'store']);
+    Route::post('/operationinfosheet/{id}', [OperationInfoController::class, 'editHackOperation']);
     Route::get('/operationinfosheet', [OperationInfoController::class, 'index']);
 
     Route::get('/operationinfopage/{link}', [OperationInfoSheetController::class, 'index']);
@@ -365,4 +366,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/operationinforecon', [OperationInfoReconController::class, 'store']);
     Route::post('/operationinforecon/{id}', [OperationInfoReconController::class, 'update']);
     Route::get('/operationinforecon', [OperationInfoReconController::class, 'index']);
+
+    Route::get('/operationlistinfoop', [NewOperationsController::class, 'operationlist']);
 });

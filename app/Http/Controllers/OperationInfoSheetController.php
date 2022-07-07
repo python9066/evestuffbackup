@@ -49,7 +49,7 @@ class OperationInfoSheetController extends Controller
         $new->user_id = Auth::id();
         $new->message = $request->message;
         $new->save();
-        operationInfoSoloPageBroadcast($id, 1);
+        operationInfoSoloPageMessageBroadcast($id, 7);
     }
 
     public function messageDelete($id)
@@ -57,7 +57,7 @@ class OperationInfoSheetController extends Controller
         $message = OperationInfoMessage::where('id', $id)->first();
         $opID = $message->operation_info_id;
         $message->delete();
-        operationInfoSoloPageBroadcast($opID, 1);
+        operationInfoSoloPageMessageBroadcast($opID, 7);
     }
 
     /**

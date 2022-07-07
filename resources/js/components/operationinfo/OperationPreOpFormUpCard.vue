@@ -271,7 +271,6 @@ export default {
     },
 
     async changeCheck() {
-      console.log(this.opInfo);
       var request = this.opInfo;
       await axios({
         method: "put", //you can set what request you want to be

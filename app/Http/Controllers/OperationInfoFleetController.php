@@ -121,7 +121,7 @@ class OperationInfoFleetController extends Controller
     {
         $fleet = OperationInfoFleet::where('id', $id)->first();
         $opID = $fleet->operation_info_id;
-        $recon = OperationInfoRecon::where('id', $fleet->recon_id)->frist();
+        $recon = OperationInfoRecon::where('id', $fleet->recon_id)->first();
         if ($recon) {
             $recon->operation_info_fleet_id = null;
             $recon->operation_info_recon_status_id = 1;

@@ -205,7 +205,6 @@ export default {
         (e) => {
           // update watching user list
           if (e.flag.flag == 1) {
-            console.log("updte user list");
             this.$store.dispatch("updateOperationUserList", e.flag.message);
           }
 

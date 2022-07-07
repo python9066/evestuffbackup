@@ -243,7 +243,6 @@ export default {
       }
     },
     clickButtonOpPosted(item) {
-      console.log(item);
       if (item == 1) {
         var num = 0;
       } else {

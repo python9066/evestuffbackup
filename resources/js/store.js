@@ -26,6 +26,7 @@ export default new Vuex.Store({
         operationInfoMumble: [],
         operationInfoDoctrines: [],
         operationInfoRecon: [],
+        operationInfoOperationList: [],
 
         allianceticklist: [],
         ammoRequest: [],
@@ -196,8 +197,17 @@ export default new Vuex.Store({
             state.operationInfo = data;
         },
 
+        SET_OPERATION_INFO_OPERATION_LIST(state, operations) {
+            state.operationInfoOperationList = operations;
+        },
+
         SET_OPERATION_INFO_PAGE(state, data) {
             state.operationInfoPage = data;
+        },
+
+        UPDATE_OPERATION_INFO_PAGE(state, data) {
+            const item = state.operationInfoPage;
+            Object.assign(item, data);
         },
 
         SET_OPERATION_INFO_USERS(state, data) {
@@ -328,6 +338,10 @@ export default new Vuex.Store({
             } else {
                 state.operationInfoPage.recons.push(data);
             }
+        },
+
+        UPDATE_OPERATION_MESSAGE_SOLO(state, data) {
+            state.operationInfoPage.messages = data;
         },
 
         SET_NEW_SOLO_OPERATIONS(state, solooplist) {
@@ -1051,6 +1065,19 @@ export default new Vuex.Store({
                 },
             });
             commit("SET_OPERATION_INFO", res.data.opinfo);
+        },
+
+        async getOperationSheetInfoOperationList({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationlistinfoop",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_OPERATION_INFO_OPERATION_LIST", res.data.operations);
         },
 
         async getOperationSheetInfoPage({ commit }, id) {
@@ -1857,7 +1884,7 @@ export default new Vuex.Store({
         },
 
         updateOperationSheetInfoPage({ commit }, data) {
-            commit("SET_OPERATION_INFO_PAGE", data);
+            commit("UPDATE_OPERATION_INFO_PAGE", data);
         },
 
         updateWelpStationCurrent({ commit }, data) {
@@ -2058,6 +2085,10 @@ export default new Vuex.Store({
 
         updateOperationReconSolo({ commit }, data) {
             commit("UPDATE_OPERATION_RECON_SOLO", data);
+        },
+
+        updateOperationMessageSolo({ commit }, data) {
+            commit("UPDATE_OPERATION_MESSAGE_SOLO", data);
         },
 
         updateOperationUsers({ commit }, data) {

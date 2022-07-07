@@ -75,6 +75,13 @@ class NewOperationsController extends Controller
         broadcastAllCharOverlay(1, $opID, $type);
     }
 
+
+    public function operationList()
+    {
+        $data = NewOperation::whereNot('status', 4)->whereNot('status', 3)->get();
+        return ['operations' => $data];
+    }
+
     public function changeReadyOnly(Request $request, $opID)
     {
         $user = Auth::user();

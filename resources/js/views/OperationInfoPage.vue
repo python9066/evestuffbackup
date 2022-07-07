@@ -13,8 +13,9 @@
               <v-col v-if="opInfo.start" class="pt-0 pb-0" cols="auto">{{
                 moment(opInfo.start).format("YYYY-MM-DD HH:mm:ss")
               }}</v-col>
-            </v-col></v-row
-          ></v-card-title
+              <v-col cols="1" class="d-flex justify-content-end"
+                ><OperationInfoSettingPannel></OperationInfoSettingPannel
+              ></v-col> </v-col></v-row></v-card-title
         ><v-card-text class="pt-3">
           <v-row no-gutters justify="space-between">
             <v-col cols="auto">
@@ -109,6 +110,8 @@ export default {
     await this.$store.dispatch("getOperationInfoDoctrines");
     await this.$store.dispatch("getOperationRecon");
     await this.$store.dispatch("getAllianceTickList");
+    await this.$store.dispatch("getSystemList");
+    await this.$store.dispatch("getOperationSheetInfoOperationList");
 
     Echo.private("operationinfooppage." + this.opInfo.id).listen(
       "OperationInfoPageSoloUpdate",
@@ -142,6 +145,10 @@ export default {
             e.flag.message
           );
         }
+
+        if (e.flag.flag == 7) {
+          this.$store.dispatch("updateOperationMessageSolo", e.flag.message);
+        }
       }
     );
   },
@@ -149,8 +156,6 @@ export default {
   async mounted() {
     this.onResize();
     this.setLoad();
-    console.log(this.$vuetify.breakpoint.width);
-    console.log(this.$vuetify.breakpoint.name);
   },
   methods: {
     onResize() {

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Models\Activity;
@@ -105,5 +107,36 @@ class OperationInfo extends Model
     public function fleets(): HasMany
     {
         return $this->hasMany(OperationInfoFleet::class, 'operation_info_id', 'id');
+    }
+
+
+    /**
+     * The systems that belong to the OperationInfo
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function systems(): BelongsToMany
+    {
+        return $this->belongsToMany(System::class, 'operation_info_systems', 'operation_info_id', 'system_id')->withPivot('jammed');
+    }
+
+    /**
+     * The systems that belong to the OperationInfo
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function campaigns(): BelongsToMany
+    {
+        return $this->belongsToMany(NewCampaign::class, 'new_campaign_operations', 'operation_id', 'campaign_id');
+    }
+
+    /**
+     * Get the operation that owns the OperationInfo
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function operation(): BelongsTo
+    {
+        return $this->belongsTo(NewOperation::class, 'operation_id', 'id');
     }
 }

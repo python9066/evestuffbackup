@@ -5,6 +5,7 @@ use App\Events\OperationInfoPageUpdate;
 use App\Models\OperationInfo;
 use App\Models\OperationInfoDoctrine;
 use App\Models\OperationInfoFleet;
+use App\Models\OperationInfoMessage;
 use App\Models\OperationInfoMumble;
 use App\Models\OperationInfoRecon;
 use App\Models\OperationInfoUser;
@@ -58,18 +59,60 @@ if (!function_exists('operationInfoSoloPageBroadcast')) {
     /**
      * Example of documenting multiple possible datatypes for a given parameter
 
-     *
+     * @param  int  $id
+     * Op ID
      * @param  int  $flagNumber
      * 1 = Add/Update Solo Operation Info
 
      */
     function operationInfoSoloPageBroadcast($id, $flagNumber)
     {
-        $message = operationInfoSoloPagePull($id);
+        $message = operationInfoSoloPagePullTopInfo($id);
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $message,
             'id' => $id
+        ]);
+        broadcast(new OperationInfoPageSoloUpdate($flag));
+    }
+}
+
+if (!function_exists('operationInfoSoloPagePullTopInfo')) {
+    function operationInfoSoloPagePullTopInfo($id)
+    {
+        return  OperationInfo::where('id', $id)->first();
+    }
+}
+
+if (!function_exists('operationInfoSoloPageMessage')) {
+    function operationInfoSoloPageMessage($id)
+    {
+        return  OperationInfoMessage::where('operation_info_id', $id)
+            ->with('user:id,name,eve_user_id')
+            ->orderBy('id', 'desc')
+            ->get();
+    }
+}
+
+if (!function_exists('operationInfoSoloPageMessageBroadcast')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     *
+     *  @param  int  $opID
+     * OP ID
+     *
+     * @param  int  $flagNumber
+     * 7 = Add/Update Solo Operation Info Message
+
+     */
+    function operationInfoSoloPageMessageBroadcast($opID, $flagNumber)
+    {
+        $message = operationInfoSoloPageMessage($opID);
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message,
+            'id' => $opID
         ]);
         broadcast(new OperationInfoPageSoloUpdate($flag));
     }
@@ -98,7 +141,12 @@ if (!function_exists('operationInfoSoloPagePull')) {
             'recons.status',
             'recons.system',
             'recons.fleet',
-            'status'
+            'status',
+            'systems:id,system_name,constellation_id,region_id',
+            'systems.region:id,region_name',
+            'systems.constellation:id,constellation_name',
+            'campaigns',
+            'operation'
         ])->first();
     }
 }
@@ -126,7 +174,12 @@ if (!function_exists('operationInfoSoloPagePullLink')) {
             'recons.status',
             'recons.system',
             'recons.fleet',
-            'status'
+            'status',
+            'systems:id,system_name,constellation_id,region_id',
+            'systems.region:id,region_name',
+            'systems.constellation:id,constellation_name',
+            'campaigns',
+            'operation'
         ])->first();
     }
 }
