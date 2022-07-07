@@ -121,9 +121,7 @@
             {{ item.campaign[0].start_time }}
           </span>
           <span
-            v-else-if="
-              item.campaign[0].status_id != 3 && item.campaign[0].status_id != 4
-            "
+            v-else-if="item.campaign[0].status_id == 2"
             class="d-flex full-width align-content-center"
           >
             <span>
@@ -297,7 +295,7 @@
               <template slot="countdown" slot-scope="scope">
                 <span
                   v-if="
-                    scope.props.hours == 0 &&
+                    scope.props.hours <= 1 &&
                     scope.props.days == 0 &&
                     $can('access_campaigns')
                   "
