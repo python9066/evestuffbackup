@@ -3,50 +3,45 @@
     <v-col cols="12" class="pl-5 pr-5"
       ><v-card rounded="xl"
         ><v-card-title class="primary pt-0 pb-0"
-          ><v-row no-gutters justify="center"
-            ><v-col cols="auto"
-              ><v-row no-gutters justify="center"></v-row>
-              <v-col class="pt-0 pb-0" cols="auto"
-                >Operation - {{ opInfo.name }}</v-col
-              >
-              <v-row no-gutters justify="center"></v-row>
-              <v-col v-if="opInfo.start" class="pt-0 pb-0" cols="auto">{{
-                moment(opInfo.start).format("YYYY-MM-DD HH:mm:ss")
-              }}</v-col>
-              <v-col cols="1" class="d-flex justify-content-end"
-                ><OperationInfoSettingPannel></OperationInfoSettingPannel
-              ></v-col> </v-col></v-row></v-card-title
-        ><v-card-text class="pt-3">
-          <v-row no-gutters justify="space-between">
-            <v-col cols="auto">
-              <v-row no-gutters>
+          ><v-row no-gutters justify="space-between">
+            <transition
+              mode="out-in"
+              :enter-active-class="showEnter"
+              :leave-active-class="showLeave"
+            >
+              <v-col cols="aut" v-if="opSetting.showTickList">
                 <transition
                   mode="out-in"
                   :enter-active-class="showEnter"
                   :leave-active-class="showLeave"
                 >
-                  <v-col cols="aut" v-if="opSetting.showTickList">
-                    <transition
-                      mode="out-in"
-                      :enter-active-class="showEnter"
-                      :leave-active-class="showLeave"
-                    >
-                      <OperationInfoPlanningCard
-                        :loaded="loaded"
-                        v-if="showCard == 1"
-                      />
-                      <OperationPreOpFormUpCard
-                        :loaded="loaded"
-                        v-if="showCard == 2"
-                      />
-                      <OperationInfoPostOpCard
-                        :loaded="loaded"
-                        v-if="showCard == 3"
-                      />
-                    </transition>
-                  </v-col>
+                  <OperationInfoPlanningCard
+                    :loaded="loaded"
+                    v-if="showCard == 1"
+                  />
+                  <OperationPreOpFormUpCard
+                    :loaded="loaded"
+                    v-if="showCard == 2"
+                  />
+                  <OperationInfoPostOpCard
+                    :loaded="loaded"
+                    v-if="showCard == 3"
+                  />
                 </transition>
-              </v-row>
+              </v-col>
+            </transition>
+            <v-col class="pt-0 pb-0" cols="auto"
+              >Operation - {{ opInfo.name }}</v-col
+            >
+            <v-col v-if="opInfo.start" class="pt-0 pb-0" cols="auto">{{
+              moment(opInfo.start).format("YYYY-MM-DD HH:mm:ss")
+            }}</v-col>
+            <v-col cols="auto" class="d-flex justify-content-end"
+              ><OperationInfoSettingPannel></OperationInfoSettingPannel
+            ></v-col> </v-row></v-card-title
+        ><v-card-text class="pt-3">
+          <v-row no-gutters justify="space-between">
+            <v-col cols="auto">
               <v-row no-gutters>
                 <v-col cols="12">
                   <OperationInfoReconCard :loaded="loaded" />
@@ -147,15 +142,23 @@ export default {
         }
 
         if (e.flag.flag == 7) {
-          this.$store.dispatch("updateOperationMessageSolo", e.flag.message);
+          this.$store.dispatch("updateOperationMessage", e.flag.message);
         }
 
         if (e.flag.flag == 8) {
-          this.$store.dispatch("updateOperationStatusSolo", e.flag.message);
+          this.$store.dispatch("updateOperationStatus", e.flag.message);
         }
 
         if (e.flag.flag == 9) {
-          this.$store.dispatch("updateOperationOperationSolo", e.flag.message);
+          this.$store.dispatch("updateOperationOperation", e.flag.message);
+        }
+
+        if (e.flag.flag == 10) {
+          this.$store.dispatch("updateOperationCampaigns", e.flag.message);
+        }
+
+        if (e.flag.flag == 11) {
+          this.$store.dispatch("updateOperationSystems", e.flag.message);
         }
       }
     );

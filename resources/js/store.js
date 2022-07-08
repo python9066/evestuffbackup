@@ -340,16 +340,24 @@ export default new Vuex.Store({
             }
         },
 
-        UPDATE_OPERATION_MESSAGE_SOLO(state, data) {
+        UPDATE_OPERATION_MESSAGE(state, data) {
             state.operationInfoPage.messages = data;
         },
 
-        UPDATE_OPERATION_STATUS_SOLO(state, data) {
+        UPDATE_OPERATION_STATUS(state, data) {
             state.operationInfoPage.status = data;
         },
 
-        UPDATE_OPERATION_OPERATION_SOLO(state, data) {
+        UPDATE_OPERATION_OPERATION(state, data) {
             state.operationInfoPage.operation = data;
+        },
+
+        UPDATE_OPERATION_CAMPAIGNS(state, data) {
+            state.operationInfoPage.campaigns = data;
+        },
+
+        UPDATE_OPERATION_SYSTEMS(state, data) {
+            state.operationInfoPage.systems = data;
         },
 
         SET_NEW_SOLO_OPERATIONS(state, solooplist) {
@@ -2095,16 +2103,24 @@ export default new Vuex.Store({
             commit("UPDATE_OPERATION_RECON_SOLO", data);
         },
 
-        updateOperationMessageSolo({ commit }, data) {
-            commit("UPDATE_OPERATION_MESSAGE_SOLO", data);
+        updateOperationMessage({ commit }, data) {
+            commit("UPDATE_OPERATION_MESSAGE", data);
         },
 
-        updateOperationStatusSolo({ commit }, data) {
-            commit("UPDATE_OPERATION_STATUS_SOLO", data);
+        updateOperationStatus({ commit }, data) {
+            commit("UPDATE_OPERATION_STATUS", data);
         },
 
-        updateOperationOperationSolo({ commit }, data) {
-            commit("UPDATE_OPERATION_OPERATION_SOLO", data);
+        updateOperationOperation({ commit }, data) {
+            commit("UPDATE_OPERATION_OPERATION", data);
+        },
+
+        updateOperationCampaigns({ commit }, data) {
+            commit("UPDATE_OPERATION_CAMPAIGNS", data);
+        },
+
+        updateOperationSystems({ commit }, data) {
+            commit("UPDATE_OPERATION_SYSTEMS", data);
         },
 
         updateOperationUsers({ commit }, data) {

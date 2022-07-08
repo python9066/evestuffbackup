@@ -1,216 +1,247 @@
 <template>
-  <v-row no-gutters>
-    <v-col cols="auto">
-      <v-card rounded="xl"
-        ><v-card-title class="green">Pre-Op Planning</v-card-title
-        ><v-card-text>
-          <v-row no-gutters>
-            <v-col cols="auto"
-              ><v-btn
-                text
-                class="lowercase"
-                @click="opInfo.planing_op_posted = !opInfo.planing_op_posted"
-                >Formup Time</v-btn
-              ></v-col
-            ><v-col cols="auto"></v-col>
-          </v-row>
-          <v-row no-gutters align="end">
-            <v-col cols="auto">
-              <v-checkbox
-                @change="changeCheck()"
-                hide-details
-                dense
-                v-model="opInfo.planing_op_posted"
-                :false-value="0"
-                :true-value="1"
-              >
-              </v-checkbox>
-            </v-col>
-            <v-col cols="auto">
-              <transition
-                mode="out-in"
-                :enter-active-class="showEnter"
-                :leave-active-class="showLeave"
-              >
-                <span
-                  :key="opInfo.planing_op_posted"
-                  :class="cross(opInfo.planing_op_posted)"
-                  ><span
-                    style="cursor: pointer"
-                    @click="clickButtonOpPosted(opInfo.planing_op_posted)"
-                  >
-                    Forum OP Posted?</span
-                  >
-                </span>
-              </transition>
-            </v-col>
-          </v-row>
-          <v-row no-gutters align="end">
-            <v-col cols="auto">
-              <v-checkbox
-                @change="changeCheck()"
-                hide-details
-                dense
-                v-model="opInfo.planing_op_pre_ping"
-                :false-value="0"
-                :true-value="1"
-              >
-              </v-checkbox>
-            </v-col>
-            <v-col cols="auto">
-              <transition
-                mode="out-in"
-                :enter-active-class="showEnter"
-                :leave-active-class="showLeave"
-              >
-                <span
-                  :key="opInfo.planing_op_pre_ping"
-                  :class="cross(opInfo.planing_op_pre_ping)"
-                >
-                  OP Pre-Pinged?
-                </span>
-              </transition>
-            </v-col>
-          </v-row>
-          <v-row no-gutters align="end">
-            <v-col cols="auto">
-              <v-checkbox
-                @change="changeCheck()"
-                hide-details
-                dense
-                v-model="opInfo.planing_op_recon_alerted"
-                :false-value="0"
-                :true-value="1"
-              >
-              </v-checkbox>
-            </v-col>
-            <v-col cols="auto">
-              <transition
-                mode="out-in"
-                :enter-active-class="showEnter"
-                :leave-active-class="showLeave"
-              >
-                <span
-                  :key="opInfo.planing_op_recon_alerted"
-                  :class="cross(opInfo.planing_op_recon_alerted)"
-                >
-                  Reacon Informed
-                </span>
-              </transition>
-            </v-col>
-          </v-row>
-          <v-row no-gutters align="end">
-            <v-col cols="auto">
-              <v-checkbox
-                @change="changeCheck()"
-                hide-details
-                dense
-                v-model="opInfo.planing_op_capital_fc_found"
-                :false-value="0"
-                :true-value="1"
-              >
-              </v-checkbox>
-            </v-col>
-            <v-col cols="auto">
-              <transition
-                mode="out-in"
-                :enter-active-class="showEnter"
-                :leave-active-class="showLeave"
-              >
-                <span
-                  :key="opInfo.planing_op_capital_fc_found"
-                  :class="cross(opInfo.planing_op_capital_fc_found)"
-                >
-                  Capaital FC's Found
-                </span>
-              </transition>
-            </v-col>
-          </v-row>
-          <v-row no-gutters align="end"
-            ><v-col cols="auto"
-              ><v-checkbox
-                @change="changeCheck()"
-                hide-details
-                dense
-                v-model="opInfo.planing_op_fc_found"
-                :false-value="0"
-                :true-value="1"
-              >
-              </v-checkbox>
-            </v-col>
-            <v-col cols="auto">
-              <transition
-                mode="out-in"
-                :enter-active-class="showEnter"
-                :leave-active-class="showLeave"
-              >
-                <span
-                  :key="opInfo.planing_op_fc_found"
-                  :class="cross(opInfo.planing_op_fc_found)"
-                  >FC's Found
-                </span>
-              </transition>
-            </v-col>
-          </v-row>
-          <v-row no-gutters align="end"
-            ><v-col cols="auto"
-              ><v-checkbox
-                @change="changeCheck()"
-                hide-details
-                dense
-                v-model="opInfo.planing_op_doctromes_decoded"
-                :false-value="0"
-                :true-value="1"
-              >
-              </v-checkbox>
-            </v-col>
-            <v-col cols="auto">
-              <transition
-                mode="out-in"
-                :enter-active-class="showEnter"
-                :leave-active-class="showLeave"
-              >
-                <span
-                  :key="opInfo.planing_op_doctromes_decoded"
-                  :class="cross(opInfo.planing_op_doctromes_decoded)"
-                  >Doctrines decided
-                </span>
-              </transition>
-            </v-col>
-          </v-row>
-          <v-row no-gutters align="end"
-            ><v-col cols="auto"
-              ><v-checkbox
-                @change="changeCheck()"
-                hide-details
-                dense
-                v-model="opInfo.planing_op_allies_infored"
-                :false-value="0"
-                :true-value="1"
-              >
-              </v-checkbox>
-            </v-col>
-            <v-col cols="auto">
-              <transition
-                mode="out-in"
-                :enter-active-class="showEnter"
-                :leave-active-class="showLeave"
-              >
-                <span
-                  :key="opInfo.planing_op_allies_infored"
-                  :class="cross(opInfo.planing_op_allies_infored)"
-                  >Allies Informed
-                </span>
-              </transition>
-            </v-col>
-          </v-row>
-        </v-card-text>
-        <v-card-actions v-if="showButton"
-          ><v-btn text @click="done()">Next</v-btn></v-card-actions
+  <v-menu
+    :close-on-content-click="false"
+    v-model="addShown"
+    z-index="0"
+    content-class="rounded-xl"
+  >
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn
+        text
+        v-bind="attrs"
+        v-on="on"
+        @click="addShown = true"
+        color="green"
+        >Planning
+        <Vep
+          :progress="countPercent"
+          :size="30"
+          :legend-value="count"
+          fontSize="0.60rem"
+          color="#00ff00"
+          :thickness="4"
+          :emptyThickness="1"
+          emptyColor="#a4fca4"
         >
-      </v-card>
-    </v-col>
-  </v-row>
+          <template v-slot:legend-value>
+            <span slot="legend-value">/7</span>
+          </template>
+        </Vep></v-btn
+      >
+    </template>
+    <v-row no-gutters>
+      <v-col cols="auto">
+        <v-card rounded="xl"
+          ><v-card-title class="green">Pre-Op Planning</v-card-title
+          ><v-card-text>
+            <v-row no-gutters>
+              <v-col cols="auto"
+                ><v-btn
+                  text
+                  class="lowercase"
+                  @click="opInfo.planing_op_posted = !opInfo.planing_op_posted"
+                  >Formup Time</v-btn
+                ></v-col
+              ><v-col cols="auto"></v-col>
+            </v-row>
+            <v-row no-gutters align="end">
+              <v-col cols="auto">
+                <v-checkbox
+                  @change="changeCheck()"
+                  hide-details
+                  dense
+                  v-model="opInfo.planing_op_posted"
+                  :false-value="0"
+                  :true-value="1"
+                >
+                </v-checkbox>
+              </v-col>
+              <v-col cols="auto">
+                <transition
+                  mode="out-in"
+                  :enter-active-class="showEnter"
+                  :leave-active-class="showLeave"
+                >
+                  <span
+                    :key="opInfo.planing_op_posted"
+                    :class="cross(opInfo.planing_op_posted)"
+                    ><span
+                      style="cursor: pointer"
+                      @click="clickButtonOpPosted(opInfo.planing_op_posted)"
+                    >
+                      Forum OP Posted?</span
+                    >
+                  </span>
+                </transition>
+              </v-col>
+            </v-row>
+            <v-row no-gutters align="end">
+              <v-col cols="auto">
+                <v-checkbox
+                  @change="changeCheck()"
+                  hide-details
+                  dense
+                  v-model="opInfo.planing_op_pre_ping"
+                  :false-value="0"
+                  :true-value="1"
+                >
+                </v-checkbox>
+              </v-col>
+              <v-col cols="auto">
+                <transition
+                  mode="out-in"
+                  :enter-active-class="showEnter"
+                  :leave-active-class="showLeave"
+                >
+                  <span
+                    :key="opInfo.planing_op_pre_ping"
+                    :class="cross(opInfo.planing_op_pre_ping)"
+                  >
+                    OP Pre-Pinged?
+                  </span>
+                </transition>
+              </v-col>
+            </v-row>
+            <v-row no-gutters align="end">
+              <v-col cols="auto">
+                <v-checkbox
+                  @change="changeCheck()"
+                  hide-details
+                  dense
+                  v-model="opInfo.planing_op_recon_alerted"
+                  :false-value="0"
+                  :true-value="1"
+                >
+                </v-checkbox>
+              </v-col>
+              <v-col cols="auto">
+                <transition
+                  mode="out-in"
+                  :enter-active-class="showEnter"
+                  :leave-active-class="showLeave"
+                >
+                  <span
+                    :key="opInfo.planing_op_recon_alerted"
+                    :class="cross(opInfo.planing_op_recon_alerted)"
+                  >
+                    Reacon Informed
+                  </span>
+                </transition>
+              </v-col>
+            </v-row>
+            <v-row no-gutters align="end">
+              <v-col cols="auto">
+                <v-checkbox
+                  @change="changeCheck()"
+                  hide-details
+                  dense
+                  v-model="opInfo.planing_op_capital_fc_found"
+                  :false-value="0"
+                  :true-value="1"
+                >
+                </v-checkbox>
+              </v-col>
+              <v-col cols="auto">
+                <transition
+                  mode="out-in"
+                  :enter-active-class="showEnter"
+                  :leave-active-class="showLeave"
+                >
+                  <span
+                    :key="opInfo.planing_op_capital_fc_found"
+                    :class="cross(opInfo.planing_op_capital_fc_found)"
+                  >
+                    Capaital FC's Found
+                  </span>
+                </transition>
+              </v-col>
+            </v-row>
+            <v-row no-gutters align="end"
+              ><v-col cols="auto"
+                ><v-checkbox
+                  @change="changeCheck()"
+                  hide-details
+                  dense
+                  v-model="opInfo.planing_op_fc_found"
+                  :false-value="0"
+                  :true-value="1"
+                >
+                </v-checkbox>
+              </v-col>
+              <v-col cols="auto">
+                <transition
+                  mode="out-in"
+                  :enter-active-class="showEnter"
+                  :leave-active-class="showLeave"
+                >
+                  <span
+                    :key="opInfo.planing_op_fc_found"
+                    :class="cross(opInfo.planing_op_fc_found)"
+                    >FC's Found
+                  </span>
+                </transition>
+              </v-col>
+            </v-row>
+            <v-row no-gutters align="end"
+              ><v-col cols="auto"
+                ><v-checkbox
+                  @change="changeCheck()"
+                  hide-details
+                  dense
+                  v-model="opInfo.planing_op_doctromes_decoded"
+                  :false-value="0"
+                  :true-value="1"
+                >
+                </v-checkbox>
+              </v-col>
+              <v-col cols="auto">
+                <transition
+                  mode="out-in"
+                  :enter-active-class="showEnter"
+                  :leave-active-class="showLeave"
+                >
+                  <span
+                    :key="opInfo.planing_op_doctromes_decoded"
+                    :class="cross(opInfo.planing_op_doctromes_decoded)"
+                    >Doctrines decided
+                  </span>
+                </transition>
+              </v-col>
+            </v-row>
+            <v-row no-gutters align="end"
+              ><v-col cols="auto"
+                ><v-checkbox
+                  @change="changeCheck()"
+                  hide-details
+                  dense
+                  v-model="opInfo.planing_op_allies_infored"
+                  :false-value="0"
+                  :true-value="1"
+                >
+                </v-checkbox>
+              </v-col>
+              <v-col cols="auto">
+                <transition
+                  mode="out-in"
+                  :enter-active-class="showEnter"
+                  :leave-active-class="showLeave"
+                >
+                  <span
+                    :key="opInfo.planing_op_allies_infored"
+                    :class="cross(opInfo.planing_op_allies_infored)"
+                    >Allies Informed
+                  </span>
+                </transition>
+              </v-col>
+            </v-row>
+          </v-card-text>
+          <v-card-actions v-if="showButton"
+            ><v-btn text @click="done()">Next</v-btn></v-card-actions
+          >
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-menu>
 </template>
 <script>
 import Axios from "axios";
@@ -226,7 +257,9 @@ export default {
     loaded: Boolean,
   },
   data() {
-    return {};
+    return {
+      addShown: false,
+    };
   },
 
   async created() {},
@@ -322,6 +355,22 @@ export default {
       } else {
         return false;
       }
+    },
+
+    count() {
+      var count =
+        this.opInfo.planing_op_allies_infored +
+        this.opInfo.planing_op_capital_fc_found +
+        this.opInfo.planing_op_doctromes_decoded +
+        this.opInfo.planing_op_fc_found +
+        this.opInfo.planing_op_posted +
+        this.opInfo.planing_op_pre_ping +
+        this.opInfo.planing_op_recon_alerted;
+      return count;
+    },
+
+    countPercent() {
+      return (this.count / 7) * 100;
     },
   },
   beforeDestroy() {},

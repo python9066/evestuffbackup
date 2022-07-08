@@ -27,7 +27,7 @@
           <v-row no-gutters justify="start">
             <v-col>
               <v-autocomplete
-                v-model="operationPick"
+                v-model="opInfo.operation_id"
                 :items="operationList"
                 item-text="title"
                 item-value="id"
@@ -42,49 +42,6 @@
               ></v-autocomplete>
             </v-col>
           </v-row>
-          <!-- <v-row no-gutters justify="start">
-            <v-col>
-              <v-autocomplete
-                v-model="fcPicked"
-                :items="pullPicked"
-                label="Select"
-                chips
-                clearable
-                deletable-chips
-                dense
-                hint="Which Regions would you like FCs to see"
-                hide-selected
-                multiple
-                persistent-hint
-                rounded
-                small-chips
-                solo-inverted
-                return-object
-                stationListPullRegions
-              ></v-autocomplete>
-            </v-col>
-          </v-row>
-          <v-row no-gutters justify="start">
-            <v-col>
-              <v-autocomplete
-                v-model="webwayPicked"
-                :items="systemlist"
-                label="Select"
-                chips
-                clearable
-                deletable-chips
-                dense
-                hint="Set Staging Systems for Webway (1DQ is defaulted)"
-                hide-selected
-                multiple
-                persistent-hint
-                rounded
-                small-chips
-                solo-inverted
-                return-object
-              ></v-autocomplete>
-            </v-col>
-          </v-row> -->
         </v-card-text>
         <v-spacer></v-spacer
         ><v-card-actions>
@@ -127,7 +84,7 @@ export default {
 
     submit() {
       var request = {
-        operation_id: this.operationPick,
+        operation_id: this.opInfo.operation_id,
       };
 
       axios({

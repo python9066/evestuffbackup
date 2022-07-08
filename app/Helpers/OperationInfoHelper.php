@@ -88,7 +88,7 @@ if (!function_exists('operationInfoSoloPagePullTopInfo')) {
 }
 
 if (!function_exists('operationInfoSoloPageMessage')) {
-    function operationInfoSoloPageMessage($id)
+    function operationInfoPageMessage($id)
     {
         return  OperationInfoMessage::where('operation_info_id', $id)
             ->with('user:id,name,eve_user_id')
@@ -97,7 +97,7 @@ if (!function_exists('operationInfoSoloPageMessage')) {
     }
 }
 
-if (!function_exists('operationInfoSoloPageMessageBroadcast')) {
+if (!function_exists('operationInfoPageMessageBroadcast')) {
     /**
      * Example of documenting multiple possible datatypes for a given parameter
 
@@ -109,9 +109,9 @@ if (!function_exists('operationInfoSoloPageMessageBroadcast')) {
      * 7 = Add/Update Solo Operation Info Message
 
      */
-    function operationInfoSoloPageMessageBroadcast($opID, $flagNumber)
+    function operationInfoPageMessageBroadcast($opID, $flagNumber)
     {
-        $message = operationInfoSoloPageMessage($opID);
+        $message = operationInfoPageMessage($opID);
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $message,
@@ -282,15 +282,15 @@ if (!function_exists('operationInfoSoloPageFleetBroadcastDelete')) {
 
 
 
-if (!function_exists('operationInfoStatusSolo')) {
+if (!function_exists('operationInfoStatus')) {
 
-    function operationInfoStatusSolo($statusID)
+    function operationInfoStatus($statusID)
     {
         return  OperationInfoStatus::where('id', $statusID)->first();
     }
 }
 
-if (!function_exists('operationInfoStatusSoloBcast')) {
+if (!function_exists('operationInfoStatusBcast')) {
     /**
      * Example of documenting multiple possible datatypes for a given parameter
      * @param  int  $id
@@ -303,9 +303,9 @@ if (!function_exists('operationInfoStatusSoloBcast')) {
      * 8 = Update Op Status
 
      */
-    function operationInfoStatusSoloBcast($id, $opID, $flagNumber)
+    function operationInfoStatusBcast($id, $opID, $flagNumber)
     {
-        $message =  operationInfoStatusSolo($id);
+        $message =  operationInfoStatus($id);
 
         $flag = collect([
             'flag' => $flagNumber,
@@ -318,16 +318,16 @@ if (!function_exists('operationInfoStatusSoloBcast')) {
 
 
 
-if (!function_exists('operationInfoOperationSolo')) {
+if (!function_exists('operationInfoOperation')) {
 
-    function operationInfoOperationSolo($opID)
+    function operationInfoOperation($opID)
     {
         $op = OperationInfo::where('id', $opID)->first();
         return  $op->operation;
     }
 }
 
-if (!function_exists('operationInfoOperationSoloBcast')) {
+if (!function_exists('operationInfoOperationBcast')) {
     /**
      * Example of documenting multiple possible datatypes for a given parameter
      *
@@ -339,9 +339,9 @@ if (!function_exists('operationInfoOperationSoloBcast')) {
      * 9 = add/remove Hack Operation
 
      */
-    function operationInfoOperationSoloBcast($opID, $flagNumber)
+    function operationInfoOperationBcast($opID, $flagNumber)
     {
-        $message =  operationInfoOperationSolo($opID);
+        $message =  operationInfoOperation($opID);
 
         $flag = collect([
             'flag' => $flagNumber,
@@ -353,16 +353,16 @@ if (!function_exists('operationInfoOperationSoloBcast')) {
 }
 
 
-if (!function_exists('operationInfoCampaignsSolo')) {
+if (!function_exists('operationInfoCampaigns')) {
 
-    function operationInfoCampaignsSolo($opID)
+    function operationInfoCampaigns($opID)
     {
         $op = OperationInfo::where('id', $opID)->first();
         return  $op->campaigns;
     }
 }
 
-if (!function_exists('operationInfoCampaignsSoloBcast')) {
+if (!function_exists('operationInfoCampaignsBcast')) {
     /**
      * Example of documenting multiple possible datatypes for a given parameter
      *
@@ -374,9 +374,9 @@ if (!function_exists('operationInfoCampaignsSoloBcast')) {
      * 10 = Add/Remove Campaigns
 
      */
-    function operationInfoCampaignsSoloBcast($opID, $flagNumber)
+    function operationInfoCampaignsBcast($opID, $flagNumber)
     {
-        $message =  operationInfoCampaignsSolo($opID);
+        $message =  operationInfoCampaigns($opID);
 
         $flag = collect([
             'flag' => $flagNumber,
@@ -388,51 +388,41 @@ if (!function_exists('operationInfoCampaignsSoloBcast')) {
 }
 
 
-if (!function_exists('operationInfoSystemsSolo')) {
+if (!function_exists('operationInfoSystems')) {
 
-    function operationInfoSystemsSolo($systemIDs)
+    function operationInfoSystems($opID)
     {
         //  'systems:id,system_name,constellation_id,region_id',
         //     'systems.region:id,region_name',
         //     'systems.constellation:id,constellation_name',
-        return System::whereIn('id', $systemIDs)
+        $op = OperationInfo::where('id', $opID)->first();
+        $systems = $op->systems()
             ->with([
                 'region:id,region_name',
                 'constellation:id,constellation_name'
             ])
-            ->select(
-                'id',
-                'system_name',
-                'constellation_id',
-                'region_id'
-            )
+            ->select(['systems.id', 'system_name', 'constellation_id', 'region_id'])
             ->get();
+        return $systems;
     }
 }
 
-if (!function_exists('operationInfoSystemsSoloBcast')) {
+if (!function_exists('operationInfoSystemsBcast')) {
     /**
      * Example of documenting multiple possible datatypes for a given parameter
      *
-     *   @param  array  $systemIDs
-     * Array of systems IDs
+     *
      *
      *  @param  int  $opID
      * OP ID
      *
      * @param  int  $flagNumber
      * 11 = add/remove systems
-     * @param  int  $deleteFlag
-     * removing all systems or not
-
+     *
      */
-    function operationInfoSystemsSoloBcast($systemIDs, $opID, $flagNumber, $deleteFlag)
+    function operationInfoSystemsBcast($opID, $flagNumber)
     {
-        if ($deleteFlag == 0) {
-            $message =  operationInfoSystemsSolo($systemIDs);
-        } else {
-            $message = null;
-        }
+        $message =  operationInfoSystems($opID);
 
         $flag = collect([
             'flag' => $flagNumber,
