@@ -65,6 +65,7 @@ class OperationInfoController extends Controller
                     $new->save();
                 }
             }
+            operationInfoSystemsSoloBcast($systemIDs, $id, 11, 0);
         } else {
             $operationInfo = OperationInfo::where('id', $id)->first();
             $operationInfo->operation_id = null;
@@ -73,9 +74,12 @@ class OperationInfoController extends Controller
             foreach ($systems as $system) {
                 $system->delete();
             }
+            operationInfoSystemsSoloBcast(null, $id, 11, 1);
         }
 
         operationInfoSoloPageBroadcast($id, 1);
+        operationInfoOperationSoloBcast($id, 9);
+        operationInfoCampaignsSoloBcast($id, 10);
     }
 
     /**

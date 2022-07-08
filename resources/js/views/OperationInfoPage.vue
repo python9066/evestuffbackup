@@ -149,6 +149,14 @@ export default {
         if (e.flag.flag == 7) {
           this.$store.dispatch("updateOperationMessageSolo", e.flag.message);
         }
+
+        if (e.flag.flag == 8) {
+          this.$store.dispatch("updateOperationStatusSolo", e.flag.message);
+        }
+
+        if (e.flag.flag == 9) {
+          this.$store.dispatch("updateOperationOperationSolo", e.flag.message);
+        }
       }
     );
   },

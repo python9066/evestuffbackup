@@ -344,6 +344,14 @@ export default new Vuex.Store({
             state.operationInfoPage.messages = data;
         },
 
+        UPDATE_OPERATION_STATUS_SOLO(state, data) {
+            state.operationInfoPage.status = data;
+        },
+
+        UPDATE_OPERATION_OPERATION_SOLO(state, data) {
+            state.operationInfoPage.operation = data;
+        },
+
         SET_NEW_SOLO_OPERATIONS(state, solooplist) {
             state.newSoloOperations = solooplist;
         },
@@ -2089,6 +2097,14 @@ export default new Vuex.Store({
 
         updateOperationMessageSolo({ commit }, data) {
             commit("UPDATE_OPERATION_MESSAGE_SOLO", data);
+        },
+
+        updateOperationStatusSolo({ commit }, data) {
+            commit("UPDATE_OPERATION_STATUS_SOLO", data);
+        },
+
+        updateOperationOperationSolo({ commit }, data) {
+            commit("UPDATE_OPERATION_OPERATION_SOLO", data);
         },
 
         updateOperationUsers({ commit }, data) {

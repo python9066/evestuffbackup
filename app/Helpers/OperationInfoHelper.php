@@ -2,13 +2,16 @@
 
 use App\Events\OperationInfoPageSoloUpdate;
 use App\Events\OperationInfoPageUpdate;
+use App\Models\NewOperation;
 use App\Models\OperationInfo;
 use App\Models\OperationInfoDoctrine;
 use App\Models\OperationInfoFleet;
 use App\Models\OperationInfoMessage;
 use App\Models\OperationInfoMumble;
 use App\Models\OperationInfoRecon;
+use App\Models\OperationInfoStatus;
 use App\Models\OperationInfoUser;
+use App\Models\System;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
@@ -271,6 +274,169 @@ if (!function_exists('operationInfoSoloPageFleetBroadcastDelete')) {
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $id,
+            'id' => $opID,
+        ]);
+        broadcast(new OperationInfoPageSoloUpdate($flag));
+    }
+}
+
+
+
+if (!function_exists('operationInfoStatusSolo')) {
+
+    function operationInfoStatusSolo($statusID)
+    {
+        return  OperationInfoStatus::where('id', $statusID)->first();
+    }
+}
+
+if (!function_exists('operationInfoStatusSoloBcast')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+     * @param  int  $id
+     * Status ID
+     *
+     *  @param  int  $opID
+     * OP ID
+     *
+     * @param  int  $flagNumber
+     * 8 = Update Op Status
+
+     */
+    function operationInfoStatusSoloBcast($id, $opID, $flagNumber)
+    {
+        $message =  operationInfoStatusSolo($id);
+
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message,
+            'id' => $opID,
+        ]);
+        broadcast(new OperationInfoPageSoloUpdate($flag));
+    }
+}
+
+
+
+if (!function_exists('operationInfoOperationSolo')) {
+
+    function operationInfoOperationSolo($opID)
+    {
+        $op = OperationInfo::where('id', $opID)->first();
+        return  $op->operation;
+    }
+}
+
+if (!function_exists('operationInfoOperationSoloBcast')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+     *
+     *
+     *  @param  int  $opID
+     * OP ID
+     *
+     * @param  int  $flagNumber
+     * 9 = add/remove Hack Operation
+
+     */
+    function operationInfoOperationSoloBcast($opID, $flagNumber)
+    {
+        $message =  operationInfoOperationSolo($opID);
+
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message,
+            'id' => $opID,
+        ]);
+        broadcast(new OperationInfoPageSoloUpdate($flag));
+    }
+}
+
+
+if (!function_exists('operationInfoCampaignsSolo')) {
+
+    function operationInfoCampaignsSolo($opID)
+    {
+        $op = OperationInfo::where('id', $opID)->first();
+        return  $op->campaigns;
+    }
+}
+
+if (!function_exists('operationInfoCampaignsSoloBcast')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+     *
+     *
+     *  @param  int  $opID
+     * OP ID
+     *
+     * @param  int  $flagNumber
+     * 10 = Add/Remove Campaigns
+
+     */
+    function operationInfoCampaignsSoloBcast($opID, $flagNumber)
+    {
+        $message =  operationInfoCampaignsSolo($opID);
+
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message,
+            'id' => $opID,
+        ]);
+        broadcast(new OperationInfoPageSoloUpdate($flag));
+    }
+}
+
+
+if (!function_exists('operationInfoSystemsSolo')) {
+
+    function operationInfoSystemsSolo($systemIDs)
+    {
+        //  'systems:id,system_name,constellation_id,region_id',
+        //     'systems.region:id,region_name',
+        //     'systems.constellation:id,constellation_name',
+        return System::whereIn('id', $systemIDs)
+            ->with([
+                'region:id,region_name',
+                'constellation:id,constellation_name'
+            ])
+            ->select(
+                'id',
+                'system_name',
+                'constellation_id',
+                'region_id'
+            )
+            ->get();
+    }
+}
+
+if (!function_exists('operationInfoSystemsSoloBcast')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+     *
+     *   @param  array  $systemIDs
+     * Array of systems IDs
+     *
+     *  @param  int  $opID
+     * OP ID
+     *
+     * @param  int  $flagNumber
+     * 11 = add/remove systems
+     * @param  int  $deleteFlag
+     * removing all systems or not
+
+     */
+    function operationInfoSystemsSoloBcast($systemIDs, $opID, $flagNumber, $deleteFlag)
+    {
+        if ($deleteFlag == 0) {
+            $message =  operationInfoSystemsSolo($systemIDs);
+        } else {
+            $message = null;
+        }
+
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message,
             'id' => $opID,
         ]);
         broadcast(new OperationInfoPageSoloUpdate($flag));

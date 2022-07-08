@@ -93,6 +93,10 @@ class OperationInfoSheetController extends Controller
         $operation->status_id = intval($request->status_id);
         $operation->save();
         operationInfoSoloPageBroadcast($id, 1);
+
+        if ($operation->wasChanged('status_id')) {
+            operationInfoStatusSoloBcast(intval($request->status_id), $id, 8);
+        }
     }
 
     /**
