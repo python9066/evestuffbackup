@@ -2,7 +2,6 @@
 
 use App\Events\OperationInfoPageSoloUpdate;
 use App\Events\OperationInfoPageUpdate;
-use App\Models\NewOperation;
 use App\Models\OperationInfo;
 use App\Models\OperationInfoDoctrine;
 use App\Models\OperationInfoFleet;

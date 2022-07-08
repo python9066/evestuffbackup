@@ -11,7 +11,7 @@
         v-bind="attrs"
         v-on="on"
         @click="addShown = true"
-        elevation="24"
+        class="elevation-10"
         color="red"
         >Post-Op
         <Vep
@@ -33,7 +33,7 @@
     <v-row no-gutters>
       <v-col cols="auto">
         <v-card rounded="xl"
-          ><v-card-title class="red">Post-Op Cooldown {{ count }}</v-card-title
+          ><v-card-title class="red">Post-Op Cooldown</v-card-title
           ><v-card-text>
             <v-row no-gutters align="end">
               <v-col cols="auto">

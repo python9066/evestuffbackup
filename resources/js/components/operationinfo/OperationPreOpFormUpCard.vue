@@ -7,10 +7,11 @@
   >
     <template v-slot:activator="{ on, attrs }">
       <v-btn
-        text
+        rounded
         v-bind="attrs"
         v-on="on"
         @click="addShown = true"
+        class="elevation-10"
         color="orange"
         >Form Up
         <Vep

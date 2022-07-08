@@ -28,6 +28,8 @@ export default new Vuex.Store({
         operationInfoRecon: [],
         operationInfoOperationList: [],
 
+        operationInfoMessageCount: 0,
+
         allianceticklist: [],
         ammoRequest: [],
         campaigns: [],
@@ -342,6 +344,12 @@ export default new Vuex.Store({
 
         UPDATE_OPERATION_MESSAGE(state, data) {
             state.operationInfoPage.messages = data;
+            state.operationInfoMessageCount =
+                state.operationInfoMessageCount + 1;
+        },
+
+        CLEAR_OPERATION_MESSAGE_COUNT(state) {
+            state.operationInfoMessageCount = 0;
         },
 
         UPDATE_OPERATION_STATUS(state, data) {
@@ -1957,6 +1965,10 @@ export default new Vuex.Store({
 
         updateOperationOverLay({ commit }, num) {
             commit("SET_NEW_OPERATION_MESSAGE_OVERLAY", num);
+        },
+
+        clearOperationInfoMessageCount({ commit }) {
+            commit("CLEAR_OPERATION_MESSAGE_COUNT");
         },
 
         setOpenOperationAddChar({ commit }, num) {

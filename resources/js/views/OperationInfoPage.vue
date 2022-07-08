@@ -2,14 +2,14 @@
   <v-row no-gutters v-resize="onResize" justify="center">
     <v-col cols="12" class="pl-5 pr-5"
       ><v-card rounded="xl"
-        ><v-card-title class="primary pt-0 pb-0"
+        ><v-card-title class="primary pt-2 pb-2"
           ><v-row no-gutters justify="space-between">
             <transition
               mode="out-in"
               :enter-active-class="showEnter"
               :leave-active-class="showLeave"
             >
-              <v-col cols="aut" v-if="opSetting.showTickList">
+              <v-col cols="auto" v-if="opSetting.showTickList">
                 <transition
                   mode="out-in"
                   :enter-active-class="showEnter"
@@ -30,6 +30,11 @@
                 </transition>
               </v-col>
             </transition>
+            <v-col cols="auto" v-if="opSetting.showMessageTable">
+              <OperationInfoMessageCard
+                :loaded="loaded"
+                :windowSize="windowSize"
+            /></v-col>
             <v-col class="pt-0 pb-0" cols="auto"
               >Operation - {{ opInfo.name }}</v-col
             >
@@ -48,16 +53,7 @@
                 </v-col>
               </v-row>
             </v-col>
-            <transition
-              mode="out-in"
-              :enter-active-class="showEnter"
-              :leave-active-class="showLeave"
-            >
-              <v-col cols="5" v-if="opSetting.showMessageTable">
-                <OperationInfoMessageCard
-                  :loaded="loaded"
-                  :windowSize="windowSize" /></v-col
-            ></transition>
+
             <transition
               mode="out-in"
               :enter-active-class="showEnter"
