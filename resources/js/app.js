@@ -630,6 +630,16 @@ Vue.component(
     require("./components/operationinfo/OperationInfoSettingPannel.vue").default
 );
 
+Vue.component(
+    "OpertationInfoSystemTable",
+    require("./components/operationinfo/OpertationInfoSystemTable.vue").default
+);
+
+Vue.component(
+    "OperationInfoSystemAddNotes",
+    require("./components/operationinfo/OperationInfoSystemAddNotes.vue")
+        .default
+);
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(VueEllipseProgress, "Vep");

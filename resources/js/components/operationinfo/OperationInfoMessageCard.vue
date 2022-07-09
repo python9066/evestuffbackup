@@ -35,7 +35,7 @@
                 <v-btn
                   fab
                   x-small
-                  @click="addShown = false"
+                  @click="close()"
                   class="elevation-10"
                   color="red"
                   ><font-awesome-icon
@@ -147,6 +147,12 @@ export default {
     open() {
       this.$store.dispatch("clearOperationInfoMessageCount");
       this.addShown = true;
+    },
+
+    close() {
+      this.$store.dispatch("clearOperationInfoMessageCount");
+      this.messageText = null;
+      this.addShown = false;
     },
 
     async submitMessage() {

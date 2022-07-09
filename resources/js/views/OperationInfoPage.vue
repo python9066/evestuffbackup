@@ -4,37 +4,42 @@
       ><v-card rounded="xl"
         ><v-card-title class="primary pt-2 pb-2"
           ><v-row no-gutters justify="space-between">
-            <transition
-              mode="out-in"
-              :enter-active-class="showEnter"
-              :leave-active-class="showLeave"
-            >
-              <v-col cols="auto" v-if="opSetting.showTickList">
+            <v-col cols="auto">
+              <v-row no-gutters>
                 <transition
                   mode="out-in"
                   :enter-active-class="showEnter"
                   :leave-active-class="showLeave"
                 >
-                  <OperationInfoPlanningCard
-                    :loaded="loaded"
-                    v-if="showCard == 1"
-                  />
-                  <OperationPreOpFormUpCard
-                    :loaded="loaded"
-                    v-if="showCard == 2"
-                  />
-                  <OperationInfoPostOpCard
-                    :loaded="loaded"
-                    v-if="showCard == 3"
-                  />
+                  <v-col cols="auto" v-if="showCheckList" class="mr-2">
+                    <transition
+                      mode="out-in"
+                      :enter-active-class="showEnter"
+                      :leave-active-class="showLeave"
+                    >
+                      <OperationInfoPlanningCard
+                        :loaded="loaded"
+                        v-if="showCard == 1"
+                      />
+                      <OperationPreOpFormUpCard
+                        :loaded="loaded"
+                        v-if="showCard == 2"
+                      />
+                      <OperationInfoPostOpCard
+                        :loaded="loaded"
+                        v-if="showCard == 3"
+                      />
+                    </transition>
+                  </v-col>
                 </transition>
-              </v-col>
-            </transition>
-            <v-col cols="auto" v-if="opSetting.showMessageTable">
-              <OperationInfoMessageCard
-                :loaded="loaded"
-                :windowSize="windowSize"
-            /></v-col>
+                <v-col cols="auto">
+                  <OperationInfoMessageCard
+                    :loaded="loaded"
+                    :windowSize="windowSize"
+                /></v-col>
+              </v-row>
+            </v-col>
+
             <v-col class="pt-0 pb-0" cols="auto"
               >Operation - {{ opInfo.name }}</v-col
             >
@@ -46,20 +51,36 @@
             ></v-col> </v-row></v-card-title
         ><v-card-text class="pt-3">
           <v-row no-gutters justify="space-between">
-            <v-col cols="auto">
-              <v-row no-gutters>
-                <v-col cols="12">
-                  <OperationInfoReconCard :loaded="loaded" />
-                </v-col>
-              </v-row>
-            </v-col>
-
             <transition
               mode="out-in"
               :enter-active-class="showEnter"
               :leave-active-class="showLeave"
             >
-              <v-col :cols="fleetCardCols" v-if="opSetting.showFleets">
+              <v-col cols="auto" v-if="showReconTable">
+                <v-row no-gutters>
+                  <v-col cols="12">
+                    <OperationInfoReconCard :loaded="loaded" />
+                  </v-col>
+                </v-row>
+              </v-col>
+            </transition>
+            <transition
+              mode="out-in"
+              :enter-active-class="showEnter"
+              :leave-active-class="showLeave"
+            >
+              <v-col :cols="fleetCardCols" v-if="showSystemTable">
+                <OpertationInfoSystemTable
+                  :loaded="loaded"
+                  :windowSize="windowSize"
+              /></v-col>
+            </transition>
+            <transition
+              mode="out-in"
+              :enter-active-class="showEnter"
+              :leave-active-class="showLeave"
+            >
+              <v-col :cols="fleetCardCols" v-if="showFleets">
                 <OperationInfoFleetCard
                   :loaded="loaded"
                   :windowSize="windowSize"
@@ -71,7 +92,7 @@
 import Axios from "axios";
 import moment, { now, unix, utc } from "moment";
 import { stringify } from "querystring";
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import VueGridLayout from "vue-grid-layout";
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -226,6 +247,38 @@ export default {
       } else {
         return 0;
       }
+    },
+
+    showCheckList() {
+      if (this.opSetting.showTickList && this.opInfo.check_list) {
+        return true;
+      }
+
+      return false;
+    },
+
+    showFleets() {
+      if (this.opSetting.showFleets && this.opInfo.fleet_table) {
+        return true;
+      }
+
+      return false;
+    },
+
+    showReconTable() {
+      if (this.opSetting.showReconTable && this.opInfo.recon_table) {
+        return true;
+      }
+
+      return false;
+    },
+
+    showSystemTable() {
+      if (this.opSetting.showSystemTable && this.opInfo.system_table) {
+        return true;
+      }
+
+      return false;
     },
   },
   beforeDestroy() {

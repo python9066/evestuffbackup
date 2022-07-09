@@ -91,6 +91,11 @@ class OperationInfoSheetController extends Controller
         $operation->post_op_recon_done = intval($request->post_op_recon_done);
         $operation->post_op_scouts_done = intval($request->post_op_scouts_done);
         $operation->status_id = intval($request->status_id);
+        $operation->fleet_table = intval($request->fleet_table);
+        $operation->check_list = intval($request->check_list);
+        $operation->recon_table = intval($request->recon_table);
+        $operation->system_table = intval($request->system_table);
+
         $operation->save();
         operationInfoSoloPageBroadcast($id, 1);
 

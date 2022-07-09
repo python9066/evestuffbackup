@@ -48,8 +48,43 @@ class OperationInfoController extends Controller
 
     public function editHackOperation(Request $request, $id)
     {
+
+        if ($request->systemsToUpdate) {
+
+            foreach ($request->systemsToUpdate as $systemID) {
+                $check = OperationInfoSystem::where('system_id', $systemID)->where('operation_info_id', $id)->count();
+                if ($check == 0) {
+                    $new = new OperationInfoSystem();
+                    $new->operation_info_id = $id;
+                    $new->system_id = $systemID;
+                    $new->save();
+                }
+            }
+            $ss = OperationInfoSystem::where('operation_info_id', $id)
+                ->whereNull("new_operation_id")
+                ->whereNotIn('system_id', $request->systemsToUpdate)
+                ->get();
+            foreach ($ss as $s) {
+                $s->delete();
+            }
+        } else {
+
+            $ss = OperationInfoSystem::where('operation_info_id', $id)
+                ->whereNull("new_operation_id")
+                ->get();
+            foreach ($ss as $s) {
+                $s->delete();
+            }
+        }
         if ($request->operation_id) {
             $operationInfo = OperationInfo::where('id', $id)->first();
+            if ($operationInfo->operation_id != $request->operation_id) {
+                $oldOperationID = $operationInfo->operation_id;
+                $ss = OperationInfoSystem::where('new_operation_id', $oldOperationID)->get();
+                foreach ($ss as $s) {
+                    $s->delete();
+                }
+            }
             $operationInfo->operation_id = $request->operation_id;
             $operationInfo->save();
             $campaignIDs = NewCampaignOperation::where('operation_id', $request->operation_id)->pluck('campaign_id');
@@ -62,18 +97,25 @@ class OperationInfoController extends Controller
                     $new = new OperationInfoSystem();
                     $new->operation_info_id = $id;
                     $new->system_id = $systemID;
+                    $new->new_operation_id = $request->operation_id;
                     $new->save();
                 }
             }
         } else {
             $operationInfo = OperationInfo::where('id', $id)->first();
-            $operationInfo->operation_id = null;
-            $operationInfo->save();
-            $systems = OperationInfoSystem::where('operation_info_id', $id)->get();
-            foreach ($systems as $system) {
-                $system->delete();
+            if ($operationInfo->operation_id > 0) {
+                $oldOperationID = $operationInfo->operation_id;
+                $ss = OperationInfoSystem::where('new_operation_id', $oldOperationID)->get();
+                foreach ($ss as $s) {
+                    $s->delete();
+                }
+                $operationInfo = OperationInfo::where('id', $id)->first();
+                $operationInfo->operation_id = null;
+                $operationInfo->save();
             }
         }
+
+
 
         operationInfoSoloPageBroadcast($id, 1);
         operationInfoOperationBcast($id, 9);

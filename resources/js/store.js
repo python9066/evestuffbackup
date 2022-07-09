@@ -15,7 +15,8 @@ export default new Vuex.Store({
     state: {
         operationInfo: [],
         operationInfoSetting: {
-            showMessageTable: true,
+            showReconTable: true,
+            showSystemTable: true,
             showTickList: true,
             showFleets: true,
         },
@@ -3029,6 +3030,20 @@ export default new Vuex.Store({
             var fleets = state.operationInfoPage.fleets;
             var data = fleets.find((f) => f.id == fleetID);
             return data;
+        },
+
+        getOperationInfoSystemList: (state) => {
+            var ids = [];
+            if (state.operationInfoPage.systems) {
+                var systems = state.operationInfoPage.systems;
+
+                systems.forEach((s) => {
+                    if (s.pivot.new_operation_id == null) {
+                        ids.push(s.id);
+                    }
+                });
+            }
+            return ids;
         },
     },
 });
