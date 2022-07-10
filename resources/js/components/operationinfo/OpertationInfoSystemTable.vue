@@ -19,6 +19,10 @@
               <OperationInfoSystemAddNotes :loaded="loaded" :item="item" />
             </template>
 
+            <template v-slot:[`item.pivot.jammed_status`]="{ item }">
+              {{ jamerText(item.pivot.jammed_status) }}
+            </template>
+
             <!-- <template v-slot:[`header.actions`]="{ headers }">
               <AddNode
                 :item="item"
@@ -67,6 +71,12 @@ export default {
           value: "TODOShip",
           sortable: true,
         },
+
+        {
+          text: "Jammed",
+          value: "pivot.jammed_status",
+          sortable: true,
+        },
         {
           text: "Notes",
           value: "pivot.notes",
@@ -86,6 +96,15 @@ export default {
   methods: {
     addNotes(item) {
       console.log(item);
+    },
+
+    jamerText(num) {
+      switch (num) {
+        case 1:
+          return "No";
+        case 2:
+          return "Yes";
+      }
     },
   },
 

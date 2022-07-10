@@ -292,7 +292,25 @@ class testController extends Controller
     }
 
 
+    public function dankDoc()
+    {
+        $user = Auth::user();
+        if ($user->can('super')) {
 
+
+            $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+            $token = env('DANK_TOKEN', ($variables && array_key_exists('DANK_TOKEN', $variables)) ? $variables['DANK_TOKEN'] : 'null');
+            $response = Http::withHeaders([
+                'X-ApiKey' => $token,
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+                'User-Agent' => 'evestuff.online python9066@gmail.com',
+            ])->get('https://fleets.apps.gnf.lt/api/v1/coordination/fleet-setups');
+
+            $data =  $response->json();
+            dd($data, $token);
+        }
+    }
 
 
     public function testClearCampaigns()

@@ -117,7 +117,7 @@ class OperationInfo extends Model
      */
     public function systems(): BelongsToMany
     {
-        return $this->belongsToMany(System::class, 'operation_info_systems', 'operation_info_id', 'system_id')->withPivot('notes', 'new_operation_id');
+        return $this->belongsToMany(System::class, 'operation_info_systems', 'operation_info_id', 'system_id')->withPivot('notes', 'new_operation_id', "jammed_status");
     }
 
     /**
