@@ -183,7 +183,7 @@ class NewOperationsController extends Controller
         $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->pluck('constellation_id');
         $contellationIDs = $contellationIDs->unique();
         $userIDs = OperationUserList::where('operation_id', $operationsID)->pluck('user_id');
-        $systems = systemsAll($contellationIDs);
+        $systems = systemsAll($contellationIDs, $operationsID);
         $opUsers = opUserAll($operationsID);
         $ownChars = ownUserAll(Auth::id());
         if ($user->can('view_campaign_members')) {

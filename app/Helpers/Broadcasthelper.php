@@ -10,7 +10,7 @@ use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
 use App\Models\OperationUserList;
 
-if (! function_exists('broadcastsystemSolo')) {
+if (!function_exists('broadcastsystemSolo')) {
     /**
      * Example of documenting multiple possible datatypes for a given parameter
 
@@ -24,9 +24,9 @@ if (! function_exists('broadcastsystemSolo')) {
     {
         $campaignIDs = NewCampaignSystem::where('system_id', $systemID)->pluck('new_campaign_id');
         $obIDS = NewCampaignOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
-        $message = systemSolo($systemID);
 
         foreach ($obIDS as $op) {
+            $message = systemSolo($systemID, $op);
             $flag = collect([
                 'flag' => $flagNumber,
                 'message' => $message,
@@ -37,7 +37,7 @@ if (! function_exists('broadcastsystemSolo')) {
     }
 }
 
-if (! function_exists('broadcastCampaignSolo')) {
+if (!function_exists('broadcastCampaignSolo')) {
     function broadcastCampaignSolo($campaignID, $opID, $flagNumber)
     {
         $message = campaignSolo($campaignID);
@@ -51,7 +51,7 @@ if (! function_exists('broadcastCampaignSolo')) {
     }
 }
 
-if (! function_exists('broadcastuserSolo')) {
+if (!function_exists('broadcastuserSolo')) {
     /**
      * Example of documenting multiple possible datatypes for a given parameter
 
@@ -74,7 +74,7 @@ if (! function_exists('broadcastuserSolo')) {
     }
 }
 
-if (! function_exists('broadcastOperationRefresh')) {
+if (!function_exists('broadcastOperationRefresh')) {
     /**
      * Example of documenting multiple possible datatypes for a given parameter
 
@@ -108,7 +108,7 @@ if (! function_exists('broadcastOperationRefresh')) {
     }
 }
 
-if (! function_exists('broadcastOperationSetReadOnly')) {
+if (!function_exists('broadcastOperationSetReadOnly')) {
     /**
      * Example of documenting multiple possible datatypes for a given parameter
 
@@ -128,7 +128,7 @@ if (! function_exists('broadcastOperationSetReadOnly')) {
     }
 }
 
-if (! function_exists('broadcastOperationUserList')) {
+if (!function_exists('broadcastOperationUserList')) {
     /**
      * Example of documenting multiple possible datatypes for a given parameter
 
@@ -151,7 +151,7 @@ if (! function_exists('broadcastOperationUserList')) {
     }
 }
 
-if (! function_exists('broadcastuserOwnSolo')) {
+if (!function_exists('broadcastuserOwnSolo')) {
 
     /**
      * Example of documenting multiple possible datatypes for a given parameter
@@ -176,7 +176,7 @@ if (! function_exists('broadcastuserOwnSolo')) {
     }
 }
 
-if (! function_exists('broadcastAllCharOverlay')) {
+if (!function_exists('broadcastAllCharOverlay')) {
     /**
      * Example of documenting multiple possible datatypes for a given parameter
 
@@ -211,7 +211,7 @@ if (! function_exists('broadcastAllCharOverlay')) {
     }
 }
 
-if (! function_exists('broadcastCustomOperationSolo')) {
+if (!function_exists('broadcastCustomOperationSolo')) {
     /**
      * Example of documenting multiple possible datatypes for a given parameter
 
@@ -239,7 +239,7 @@ if (! function_exists('broadcastCustomOperationSolo')) {
  * @param  int  $flagNumber
  * 3 = Delete CUstom Operation from list -
  */
-if (! function_exists('broadcastCustomOperationDeleteSolo')) {
+if (!function_exists('broadcastCustomOperationDeleteSolo')) {
     function broadcastCustomOperationDeleteSolo($opID, $flagNumber)
     {
         $flag = collect([
@@ -250,7 +250,7 @@ if (! function_exists('broadcastCustomOperationDeleteSolo')) {
     }
 }
 
-if (! function_exists('broadcastSoloOpSoloOp')) {
+if (!function_exists('broadcastSoloOpSoloOp')) {
     /**
      * Example of documenting multiple possible datatypes for a given parameter
 
