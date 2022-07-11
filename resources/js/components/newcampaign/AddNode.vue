@@ -98,7 +98,7 @@ export default {
       if (this.activeCount == 1) {
         var campaign_id = this.activeCampaigns[0].id;
       } else {
-        var campaign_id = this.pickedCampaign.id;
+        var campaign_id = this.pickedCampaign;
       }
       let node = this.nodeText.toUpperCase();
       var request = {
