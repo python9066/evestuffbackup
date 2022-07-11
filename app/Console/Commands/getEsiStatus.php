@@ -39,6 +39,7 @@ class getEsiStatus extends Command
      */
     public function handle()
     {
+        EveEsiStatus::truncate();
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',

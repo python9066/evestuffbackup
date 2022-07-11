@@ -37,6 +37,39 @@ class AuthController extends Controller
 
         // dd($userGice);
 
+        //           +"sub": "25107"
+        //   +"name": "JohnMonty"
+        //   +"username": "johnmonty"
+        //   +"oi_au_id": "e2fe745e-b97c-4fd1-9e0f-4f1284fafdfa"
+        //   +"pri_grp": "9"
+        //   +"grp": array:17 [▼
+        //     0 => "9"
+        //     1 => "28"
+        //     2 => "59"
+        //     3 => "78"
+        //     4 => "173"
+        //     5 => "184"
+        //     6 => "195"
+        //     7 => "231"
+        //     8 => "294"
+        //     9 => "296"
+        //     10 => "470"
+        //     11 => "530"
+        //     12 => "1045"
+        //     13 => "1048"
+        //     14 => "1130"
+        //     15 => "1151"
+        //     16 => "1181"
+        //   ]
+        //   +"azp": "dc0b0754f92949fd96de92522c33d3e0"
+        //   +"at_hash": "54lQhs5r86XLTLgKcI_Ggg"
+        //   +"oi_tkn_id": "b707d80b-bc08-4031-a4e3-e579f504524c"
+        //   +"aud": "dc0b0754f92949fd96de92522c33d3e0"
+        //   +"exp": 1657585670
+        //   +"iss": "https://esi.goonfleet.com/"
+        //   +"iat": 1657578470
+        // }
+
         User::updateOrCreate(['id' => $userGice->sub], ['name' => $userGice->name]);
 
         $user = User::where('id', $userGice->sub)->first();
