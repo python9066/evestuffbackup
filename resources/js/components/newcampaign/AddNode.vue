@@ -41,7 +41,7 @@
           v-model="nodeText"
           @keyup.enter="addNode()"
           @keyup.esc="
-            (addShown = false), (nodeText = ''), (pickedCampaign = [])
+            (addShown = false), (nodeText = ''), (nodeCampaignID = null)
           "
         ></v-text-field>
       </v-card-text>
@@ -55,7 +55,7 @@
           right
           icon
           color="warning"
-          @click="(addShown = false), (nodeText = ''), (pickedCampaign = [])"
+          @click="(addShown = false), (nodeText = ''), (nodeCampaignID = null)"
           ><font-awesome-icon icon="fa-solid fa-circle-xmark" size="xl"
         /></v-btn>
       </v-card-actions>
@@ -81,8 +81,7 @@ export default {
     return {
       addShown: false,
       nodeText: "",
-      pickedCampaign: [],
-      nodeCampaignID: [],
+      nodeCampaignID: null,
     };
   },
 
@@ -97,6 +96,8 @@ export default {
     async addNode() {
       if (this.activeCount == 1) {
         var campaign_id = this.activeCampaigns[0].id;
+      } else {
+        var campaign_id = this.nodeCampaignID;
       }
       let node = this.nodeText.toUpperCase();
       var request = {
