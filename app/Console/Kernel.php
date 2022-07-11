@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('update:EveEsiStatus')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:eveiduser')->everyMinute()->withoutOverlapping();
+        // $schedule->command('update:eveiduser')->everyMinute()->withoutOverlapping();
         // $schedule->command('update:campaigns')->everyMinute()->withoutOverlapping();
         // $schedule->command('update:campaginFix')->everyMinute()->withoutOverlapping();
         $schedule->command('update:newCampaigns')->everyMinute()->withoutOverlapping();
