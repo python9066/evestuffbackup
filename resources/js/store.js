@@ -341,6 +341,40 @@ export default new Vuex.Store({
             } else {
                 state.operationInfoPage.recons.push(data);
             }
+
+            const countRecon = state.operationInfoRecon.filter(
+                (item) => item.id === data.id
+            ).length;
+
+            if (countRecon > 0) {
+                const item = state.operationInfoRecon.find(
+                    (f) => f.id === data.id
+                );
+                Object.assign(item, data);
+            } else {
+                state.operationInfoRecon.push(data);
+            }
+        },
+
+        REMOVED_OPERATION_RECON(state, data) {
+            console.log(data);
+            var info = state.operationInfoPage.recons.filter(
+                (r) => r.id != data.id
+            );
+            state.operationInfoPage.recons = info;
+
+            const count = state.operationInfoRecon.filter(
+                (item) => item.id === data.id
+            ).length;
+
+            if (count > 0) {
+                const item = state.operationInfoRecon.find(
+                    (f) => f.id === data.id
+                );
+                Object.assign(item, data);
+            } else {
+                state.operationInfoRecon.push(data);
+            }
         },
 
         UPDATE_OPERATION_MESSAGE(state, data) {
@@ -2086,6 +2120,10 @@ export default new Vuex.Store({
 
         deleteUsersChars({ commit }, id) {
             commit("DELETE_USER_CHAR", id);
+        },
+
+        removeOperationReconSolo({ commit }, data) {
+            commit("REMOVED_OPERATION_RECON", data);
         },
 
         deleteNodeJoin({ commit }, id) {

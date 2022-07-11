@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Models\Activity;
@@ -41,13 +42,12 @@ class OperationInfoFleet extends Model
                 'mumble_id',
                 'doctrine_id',
                 'alliance_id',
-                'recon_id',
                 'fc',
                 'boss',
                 'mumble',
                 'doctrine',
                 'alliance',
-                'recon'
+                'recons'
             ])
             ->useLogName('Operation Fleet')
             ->dontLogIfAttributesChangedOnly([
@@ -89,12 +89,12 @@ class OperationInfoFleet extends Model
     }
 
     /**
-     * Get the recon associated with the OperationInfoFleet
+     * Get all of the recon for the OperationInfoFleet
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function recon(): HasOne
+    public function recons(): HasMany
     {
-        return $this->hasOne(OperationInfoRecon::class, 'id', 'recon_id');
+        return $this->hasMany(OperationInfoRecon::class);
     }
 }

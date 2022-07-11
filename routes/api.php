@@ -364,7 +364,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/operationinfofleetrecon/{id}', [OperationInfoFleetController::class, 'recon']);
 
     Route::post('/operationinforecon', [OperationInfoReconController::class, 'store']);
-    Route::post('/operationinforecon/{id}', [OperationInfoReconController::class, 'update']);
+    Route::post('/operationinforeconremove/{id}', [OperationInfoReconController::class, 'removeFromOp']);
     Route::get('/operationinforecon', [OperationInfoReconController::class, 'index']);
 
     Route::get('/operationlistinfoop', [NewOperationsController::class, 'operationlist']);

@@ -177,6 +177,14 @@ export default {
         if (e.flag.flag == 11) {
           this.$store.dispatch("updateOperationSystems", e.flag.message);
         }
+
+        if (e.flag.flag == 12) {
+          this.$store.dispatch("getOperationInfoDoctrines");
+        }
+
+        if (e.flag.flag == 13) {
+          this.$store.dispatch("removeOperationReconSolo", e.flag.message);
+        }
       }
     );
   },

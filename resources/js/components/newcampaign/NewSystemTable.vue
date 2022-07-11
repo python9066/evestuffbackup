@@ -15,9 +15,7 @@
             disable-pagination
             class="elevation-24 rounded-xl full-width"
           >
-            <template slot="no-data">
-              No Nodes in this system statemtmem
-            </template>
+            <template slot="no-data"> No Nodes Reported In System </template>
             <template v-slot:[`item.actions`]="{ item }">
               <v-btn icon class="pl-5" @click="removenode(item)">
                 <font-awesome-icon
