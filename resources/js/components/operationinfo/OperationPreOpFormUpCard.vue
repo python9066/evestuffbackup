@@ -270,7 +270,9 @@ export default {
     loaded: Boolean,
   },
   data() {
-    return {};
+    return {
+      addShown: false,
+    };
   },
 
   async created() {},

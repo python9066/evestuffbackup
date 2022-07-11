@@ -27,7 +27,6 @@
           hide-details
           rounded
           dense
-          @change="addRecon()"
         ></v-combobox>
       </v-card-text>
       <v-card-actions
@@ -72,6 +71,7 @@ export default {
   async mounted() {},
   methods: {
     async addRecon() {
+      await sleep(500);
       if (this.type == "string") {
         var name = this.name;
       } else {

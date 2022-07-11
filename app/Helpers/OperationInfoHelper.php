@@ -545,6 +545,8 @@ if (!function_exists('checkUserNameRecon')) {
 
             $check = OperationInfoRecon::where('name', $name)->first();
             $check->operation_info_id = $opID;
+            $check->operation_info_fleet_id = null;
+            $check->operation_info_recon_status_id = null;
             $check->save();
             operationReconSoloBcast($check->id, 5);
             return true;

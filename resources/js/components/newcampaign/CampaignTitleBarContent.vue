@@ -221,7 +221,7 @@ export default {
     },
 
     eventType() {
-      if (this.event_type == "32458") {
+      if (this.item.event_type == "32458") {
         return "Ihub";
       } else {
         return "TCU";
