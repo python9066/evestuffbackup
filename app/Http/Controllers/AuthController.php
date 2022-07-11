@@ -74,7 +74,7 @@ class AuthController extends Controller
 
         $user = User::where('id', $userGice->sub)->first();
 
-        if (!$user->main_character_id) {
+        if (!$user->eve_user_id) {
             $eveESIStatus = EveEsiStatus::where('route', '/universe/ids/')->first();
             if ($eveESIStatus) {
                 $stats = $eveESIStatus->status;
