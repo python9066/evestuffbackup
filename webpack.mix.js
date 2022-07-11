@@ -20,8 +20,8 @@ const webpack = require("webpack");
 mix.js("resources/js/app.js", "public/js")
     .vue()
     .sass("resources/sass/app.scss", "public/css")
-    .version()
     .compress()
+    .version()
     .extract();
 
 if (mix.inProduction()) {
