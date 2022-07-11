@@ -1,39 +1,34 @@
 <template>
   <v-menu
     :close-on-content-click="false"
+    :close-on-click="false"
     v-model="addShown"
     z-index="0"
     content-class="rounded-xl"
+    persistent
   >
     <template v-slot:activator="{ on, attrs }">
       <v-btn
-        fab
+        icon
         x-small
         v-bind="attrs"
         v-on="on"
-        @click="addShown = true"
-        color="success"
-        ><font-awesome-icon icon="fa-solid fa-plus" size="2xl"
-      /></v-btn>
+        @click="open()"
+        color="warning"
+      >
+        <font-awesome-icon icon="fa-solid fa-pen-to-square" />
+      </v-btn>
     </template>
     <v-card tile class="rounded-xl">
       <v-card-text>
-        <v-combobox
-          outlined
-          :items="dropDown"
-          v-model="name"
-          label="Recon"
-          item-text="name"
-          item-value="id"
-          hide-details
-          rounded
-          dense
-        ></v-combobox>
+        Edit the Role of {{ item.name }}
         <v-autocomplete
           class="pt-2"
           outlined
           :items="roleDrop"
-          v-model="role"
+          v-model="recon.role_id"
+          auto-select-first
+          hide-selected
           label="Role"
           item-text="name"
           item-value="id"
@@ -45,8 +40,8 @@
       <v-card-actions
         ><v-row no-gutters>
           <v-col cols="auto"
-            ><v-btn rounded color=" primary" @click="addRecon()"
-              >Add</v-btn
+            ><v-btn rounded color=" primary" @click="updateRecon()"
+              >Update</v-btn
             ></v-col
           ><v-spacer /><v-col cols="auto"
             ><v-btn rounded color=" warning" @click="close()"
@@ -70,12 +65,13 @@ export default {
   title() {},
   props: {
     fleetID: Number,
+    item: [Array, Object],
   },
   data() {
     return {
       addShown: false,
       role: null,
-      name: null,
+      oldRole: null,
     };
   },
 
@@ -87,10 +83,14 @@ export default {
 
   async mounted() {},
   methods: {
-    async addRecon() {
+    open() {
+      this.oldRole = this.recon.role_id;
+      this.addShown = true;
+    },
+    async updateRecon() {
       var request = {
-        reconID: this.name.id,
-        role: this.role,
+        reconID: this.item.id,
+        role: this.recon.role_id,
         opID: this.$store.state.operationInfoPage.id,
       };
       await axios({
@@ -103,13 +103,12 @@ export default {
           "Content-Type": "application/json",
         },
       }).then((response) => {
-        this.close();
+        this.addShown = false;
       });
     },
 
     close() {
-      this.name = null;
-      this.role = null;
+      this.recon.role_id = this.oldRole;
       this.addShown = false;
     },
   },
@@ -132,8 +131,17 @@ export default {
       return this.$store.state.operationInfoReconFleetRoleList;
     },
 
-    type() {
-      return typeof this.name;
+    fleetInfo: {
+      get() {
+        return this.$store.getters.getFleetInfo(this.fleetID);
+      },
+      set(newValue) {},
+    },
+
+    recon() {
+      var recons = this.fleetInfo.recons;
+      var recon = recons.find((r) => r.id == this.item.id);
+      return recon;
     },
   },
   beforeDestroy() {},

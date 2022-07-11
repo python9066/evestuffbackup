@@ -65,29 +65,16 @@ class OperationInfoFleetController extends Controller
         operationInfoSoloPageFleetBroadcast($fleet->id, $fleet->operation_info_id, 2);
     }
 
-    public function recon(Request $request, $id)
+    public function reconAdd(Request $request, $id)
     {
-
-        $fleet = OperationInfoFleet::where('id', $id)->first();
-
-
-        if ($request->recon_id != null) {
-            $recon = OperationInfoRecon::where('id', $request->recon_id)->first();
-            $recon->operation_info_fleet_id = $fleet->id;
-            $recon->operation_info_recon_status_id = 2;
-            $recon->save();
-        } else {
-            $recon = OperationInfoRecon::where('id', $fleet->recon_id)->first();
-            $recon->operation_info_fleet_id = null;
-            $recon->operation_info_recon_status_id = 1;
-            $recon->save();
-        }
+        $recon = OperationInfoRecon::where('id', $request->reconID)->first();
+        $recon->operation_info_fleet_id = $id;
+        $recon->operation_info_recon_status_id = 2;
+        $recon->role_id = $request->role;
+        $recon->save();
 
         operationReconSoloBcast($recon->id, 5);
-
-        $fleet->recon_id = $request->recon_id;
-        $fleet->save();
-        operationInfoSoloPageFleetBroadcast($fleet->id, $fleet->operation_info_id, 2);
+        operationInfoSoloPageFleetBroadcast($id, $request->opID, 2);
     }
 
     public function reconRemove(Request $request, $id)

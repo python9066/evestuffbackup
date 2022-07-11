@@ -210,20 +210,6 @@ export default {
       this.readOnly = true;
     },
 
-    async updateFleetRecon() {
-      var request = this.fleetInfo;
-      await axios({
-        method: "put", //you can set what request you want to be
-        url: "/api/operationinfofleetrecon/" + this.fleetInfo.id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-
     async updateBoss() {
       if (this.typeBoss == "string") {
         var name = this.fleetInfo.boss ?? null;

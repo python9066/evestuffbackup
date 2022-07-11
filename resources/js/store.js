@@ -27,6 +27,7 @@ export default new Vuex.Store({
         operationInfoMumble: [],
         operationInfoDoctrines: [],
         operationInfoRecon: [],
+        operationInfoReconFleetRoleList: [],
         operationInfoOperationList: [],
 
         operationInfoMessageCount: 0,
@@ -223,6 +224,10 @@ export default new Vuex.Store({
 
         SET_OPERATION_INFO_MUMBLE(state, data) {
             state.operationInfoMumble = data;
+        },
+
+        SET_OPERATION_INFO_RECON_FLEET_ROLE_LIST(state, data) {
+            state.operationInfoReconFleetRoleList = data;
         },
 
         SET_OPERATION_INFO_DOCTRINES(state, data) {
@@ -1098,6 +1103,22 @@ export default new Vuex.Store({
                 },
             });
             commit("SET_OPERATION_INFO_MUMBLE", res.data.mumble);
+        },
+
+        async getOperationInfoMumble({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfofleetreconrole",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit(
+                "SET_OPERATION_INFO_RECON_FLEET_ROLE_LIST",
+                res.data.roleList
+            );
         },
 
         async getOperationInfoDoctrines({ commit }) {

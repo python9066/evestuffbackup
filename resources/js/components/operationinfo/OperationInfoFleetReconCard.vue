@@ -6,7 +6,7 @@
           ><v-row no-gutters
             ><v-col cols="auto">Recon</v-col>
             <v-col cols="auto"
-              ><AddOperationFleetReconButton
+              ><AddOperationFleetReconButton :fleetID="fleetID"
             /></v-col> </v-row></v-card-title
         ><v-card-text>
           <v-row
@@ -21,9 +21,10 @@
             <v-col cols="auto">
               <v-row no-gutters justify="end">
                 <v-col cols="auto">
-                  <v-btn icon x-small color="warning">
-                    <font-awesome-icon icon="fa-solid fa-pen-to-square" />
-                  </v-btn>
+                  <AddOperationFleetReconEditButton
+                    :fleetID="fleetID"
+                    :item="recon"
+                  />
                 </v-col>
                 <v-col cols="auto">
                   <v-btn
