@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Events\UserUpdate;
+use App\Jobs\AddMainEveIDToUsers;
+use App\Models\EveEsiStatus;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -33,11 +35,22 @@ class AuthController extends Controller
             $flag = 1;
         }
 
-        // dd($userGice->grp);
+        dd($userGice->grp);
 
         User::updateOrCreate(['id' => $userGice->sub], ['name' => $userGice->name]);
 
         $user = User::where('id', $userGice->sub)->first();
+
+        if (!$user->main_character_id) {
+            $eveESIStatus = EveEsiStatus::where('route', '/universe/ids/')->first();
+            if ($eveESIStatus) {
+                $stats = $eveESIStatus->status;
+                if ($stats == 'green') {
+                    AddMainEveIDToUsers::dispatch($user->name);
+                }
+            }
+        }
+
         $this->purgeRoles($user);
         if (isset($userGice->grp)) {
             $roles = $userGice->grp;
