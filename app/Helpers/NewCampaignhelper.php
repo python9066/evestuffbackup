@@ -223,11 +223,15 @@ if (!function_exists('opUserSolo')) {
     }
 }
 if (!function_exists('systemsAll')) {
-    function systemsAll($contellationIDs)
+    function systemsAll($contellationIDs, $opID)
     {
+        $campaignIDs = NewCampaignOperation::where('operation_id', $opID)->pluck('campaign_id');
         return System::whereIn('constellation_id', $contellationIDs)
             ->with([
                 'newCampaigns.operations',
+                'newNodes' => function ($n) use ($campaignIDs) {
+                    $n->whereIn('campaign_id', $campaignIDs);
+                },
                 'newNodes.nodeStatus',
                 'newNodes.campaign',
                 'newNodes.nonePrimeNodeUser.opUser.user',
@@ -242,11 +246,15 @@ if (!function_exists('systemsAll')) {
     }
 }
 if (!function_exists('systemSolo')) {
-    function systemSolo($systemID)
+    function systemSolo($systemID, $opID)
     {
+        $campaignIDs = NewCampaignOperation::where('operation_id', $opID)->pluck('campaign_id');
         return System::where('id', $systemID)
             ->with([
                 'newCampaigns.operations',
+                'newNodes' => function ($n) use ($campaignIDs) {
+                    $n->whereIn('campaign_id', $campaignIDs);
+                },
                 'newNodes.nodeStatus',
                 'newNodes.campaign',
                 'newNodes.nonePrimeNodeUser.opUser.user',

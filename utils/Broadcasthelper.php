@@ -27,9 +27,9 @@ class Broadcasthelper
     {
         $campaignIDs = NewCampaignSystem::where('system_id', $systemID)->pluck('new_campaign_id');
         $obIDS = NewCampaignOperation::whereIn('campaign_id', $campaignIDs)->pluck('operation_id');
-        $message = systemSolo($systemID);
 
         foreach ($obIDS as $op) {
+            $message = systemSolo($systemID, $campaignIDs);
             $flag = collect([
                 'flag' => $flagNumber,
                 'message' => $message,
