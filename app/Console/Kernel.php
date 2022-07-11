@@ -30,8 +30,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('update:EveEsiStatus')->everyMinute()->withoutOverlapping();
         $schedule->command('update:eveiduser')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:campaigns')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:campaginFix')->everyMinute()->withoutOverlapping();
+        // $schedule->command('update:campaigns')->everyMinute()->withoutOverlapping();
+        // $schedule->command('update:campaginFix')->everyMinute()->withoutOverlapping();
         $schedule->command('update:newCampaigns')->everyMinute()->withoutOverlapping();
         $schedule->command('update:eveusercount')->everyMinute()->withoutOverlapping();
         $schedule->command('update:opuserlist')->everyMinute();
