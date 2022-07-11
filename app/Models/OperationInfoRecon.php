@@ -71,4 +71,14 @@ class OperationInfoRecon extends Model
     {
         return $this->belongsTo(OperationInfoFleet::class, 'operation_info_fleet_id', 'id');
     }
+
+    /**
+     * Get the fleetRole associated with the OperationInfoRecon
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function fleetRole(): HasOne
+    {
+        return $this->hasOne(OperationInfoFleetReconRole::class, 'id', 'role_id');
+    }
 }

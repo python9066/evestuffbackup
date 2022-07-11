@@ -307,8 +307,10 @@ class testController extends Controller
                 'User-Agent' => 'evestuff.online python9066@gmail.com',
             ])->get('https://fleets.apps.gnf.lt/api/v1/coordination/fleet-setups');
 
-            $data =  $response->json();
-            dd($data, $token);
+            $datas =  $response->json();
+            foreach ($datas as $data) {
+                dd($data['id'], $data['name']);
+            }
         }
     }
 

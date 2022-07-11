@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OperationInfoRecon;
 use Illuminate\Http\Request;
 
 class OperationInfoReconController extends Controller
@@ -57,6 +58,32 @@ class OperationInfoReconController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function removeFromOp(Request $request, $id)
+    {
+        $recon = OperationInfoRecon::where('id', $request->id)->first();
+        $recon->operation_info_id = 0;
+        $recon->operation_info_recon_status_id = 0;
+        if ($recon->operation_system_id) {
+            $recon->operation_system_id = null;
+        } else {
+            $recon->operation_system_id = null;
+        }
+
+        if ($recon->operation_info_fleet_id) {
+            $recon->operation_info_fleet_id = null;
+        } else {
+            $recon->operation_info_fleet_id = null;
+        }
+
+
+        $recon->save();
+        operationReconRemoveSoloBcast($recon->id, $id, 13);
+
+        // $fleet->recon_id = $request->recon_id;
+        // $fleet->save();
+        // operationInfoSoloPageFleetBroadcast($fleet->id, $fleet->operation_info_id, 2);
     }
 
     /**

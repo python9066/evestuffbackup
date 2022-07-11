@@ -124,23 +124,9 @@
                 ></v-autocomplete
               ></v-row>
               <v-row class="pt-2" no-gutters
-                ><v-col cols="auto"></v-col
-                ><v-autocomplete
-                  outlined
-                  :clearable="!readOnly"
-                  :readonly="readOnly"
-                  :append-icon="dropDownIcon"
-                  :items="operationInfoRecon"
-                  v-model="fleetInfo.recon_id"
-                  item-text="name"
-                  item-value="id"
-                  hide-details
-                  rounded
-                  label="Recon"
-                  dense
-                  @change="updateFleetRecon()"
-                ></v-autocomplete
-              ></v-row>
+                ><v-col cols="auto"></v-col>
+                <OperationInfoFleetReconCard :fleetID="this.fleetID" />
+              </v-row>
               <v-row class="pt-2" no-gutters
                 ><v-col cols="auto"></v-col>
                 <v-autocomplete
@@ -170,10 +156,13 @@
               <v-tooltip bottom :disabled="!showreconToolTip"
                 ><template v-slot:activator="{ on, attrs }">
                   <span v-bind="attrs" v-on="on">
-                    Recon - {{ reconText }}</span
-                  ></template
-                >{{ reconToolTip }}
+                    Recon - {{ reconNameText }}</span
+                  > </template
+                >{{ reconMainNameText }}
               </v-tooltip>
+              <v-btn class="warning" icon x-small v-if="showReconCount">
+                <font-awesome-icon :icon="numberIcon"
+              /></v-btn>
               <br />
               <span> Alliance - {{ allianceText }}</span>
             </div>
@@ -339,6 +328,63 @@ export default {
       },
     },
 
+    recons() {
+      return this.fleetInfo.recons;
+    },
+
+    reconCount() {
+      let length = this.recons.length;
+      return length;
+    },
+
+    showReconCount() {
+      if (this.reconCount > 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    reconMain() {
+      var main = this.recons.find((r) => r.fleet_role.id == 1);
+      if (main) {
+        return main;
+      } else {
+        return null;
+      }
+    },
+
+    reconNameText() {
+      if (this.reconMain) {
+        return this.reconMain.name;
+      } else {
+        return "none";
+      }
+    },
+
+    reconMainNameText() {
+      if (this.reconMain) {
+        return this.reconMain.main.name;
+      } else {
+        return "none";
+      }
+    },
+
+    showreconToolTip() {
+      if (this.reconMain) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    numberIcon() {
+      var text = "fa-solid fa-";
+      var num = this.reconCount;
+      var icon = text + num;
+      return icon;
+    },
+
     fleetInfo: {
       get() {
         return this.$store.getters.getFleetInfo(this.fleetID);
@@ -398,36 +444,6 @@ export default {
     mumbleText() {
       if (this.fleetInfo.mumble) {
         return this.fleetInfo.mumble.name;
-      } else {
-        return "none";
-      }
-    },
-
-    reconText() {
-      if (this.fleetInfo.recon) {
-        this.fleetInfo.recon.name;
-        var name = this.fleetInfo.recon.name;
-
-        return name;
-      } else {
-        return "none";
-      }
-    },
-
-    showreconToolTip() {
-      if (this.fleetInfo.recon) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-
-    reconToolTip() {
-      if (this.fleetInfo.recon) {
-        this.fleetInfo.recon.name;
-        var main = this.fleetInfo.recon.main.name;
-
-        return main;
       } else {
         return "none";
       }

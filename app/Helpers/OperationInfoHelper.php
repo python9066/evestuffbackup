@@ -138,11 +138,13 @@ if (!function_exists('operationInfoSoloPagePull')) {
             'fleets.mumble',
             'fleets.doctrine',
             'fleets.alliance',
-            'fleets.recon.main',
+            'fleets.recons.main:id,eve_user_id,name',
+            'fleets.recons.fleetRole',
             'recons.main',
             'recons.status',
             'recons.system',
             'recons.fleet',
+            'recons.fleetRole',
             'status',
             'systems:id,system_name,constellation_id,region_id',
             'systems.region:id,region_name',
@@ -171,11 +173,13 @@ if (!function_exists('operationInfoSoloPagePullLink')) {
             'fleets.mumble',
             'fleets.doctrine',
             'fleets.alliance',
-            'fleets.recon.main',
+            'fleets.recons.main:id,eve_user_id,name',
+            'fleets.recons.fleetRole',
             'recons.main',
             'recons.status',
             'recons.system',
             'recons.fleet',
+            'recons.fleetRole',
             'status',
             'systems:id,system_name,constellation_id,region_id',
             'systems.region:id,region_name',
@@ -208,7 +212,7 @@ if (!function_exists('operationInfoDoctrinesAll')) {
 
     function operationInfoDoctrinesAll()
     {
-        return  OperationInfoDoctrine::all();
+        return  OperationInfoDoctrine::orderBy("name")->get();
     }
 }
 
@@ -223,7 +227,8 @@ if (!function_exists('operationInfoFleetSolo')) {
             'mumble',
             'doctrine',
             'alliance',
-            'recon.main'
+            'recons.main:id,eve_user_id,name',
+            'recons.fleetRole',
         ])->first();
     }
 }
@@ -565,6 +570,7 @@ if (!function_exists('operationReconAll')) {
             'alliance:id,name,ticker,url',
             'corp:id,name,ticker,url',
             'system:id,system_name',
+            'fleetRole',
             'fleet',
             'status'
         ])->get();
@@ -582,6 +588,7 @@ if (!function_exists('operationReconSolo')) {
             'corp:id,name,ticker,url',
             'system:id,system_name',
             'fleet',
+            'fleetRole',
             'status'
         ])->first();
         return $data;
@@ -608,5 +615,54 @@ if (!function_exists('operationReconSoloBcast')) {
             'id' => $opID
         ]);
         broadcast(new OperationInfoPageSoloUpdate($flag));
+    }
+}
+
+if (!function_exists('operationReconRemoveSoloBcast')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+     * @param  int  $id
+     * Recon User ID
+     *
+     *   @param  int  $opID
+     * Operation info
+     * @param  int  $flagNumber
+     * 13 = remove Recon User from operation
+
+     */
+    function operationReconRemoveSoloBcast($id, $opID, $flagNumber)
+    {
+        $message = operationReconSolo($id);
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message,
+            'id' => $opID
+        ]);
+        broadcast(new OperationInfoPageSoloUpdate($flag));
+    }
+}
+
+
+if (!function_exists('operationDoctrineBcast')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     *
+     * @param  int  $flagNumber
+     * 12 = update fleet doctrins
+
+     */
+    function operationDoctrineBcast($flagNumber)
+    {
+
+        $OpIDs = OperationInfo::all();
+        foreach ($OpIDs as $opID) {
+            $id = $opID->id;
+            $flag = collect([
+                'flag' => $flagNumber,
+                'id' => $id,
+            ]);
+            broadcast(new OperationInfoPageSoloUpdate($flag));
+        }
     }
 }

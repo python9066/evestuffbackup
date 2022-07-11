@@ -29,11 +29,6 @@ if (!function_exists('newUpdateCampaigns')) {
             'Accept' => 'application/json',
             'User-Agent' => 'evestuff.online python9066@gmail.com',
         ])->get('https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility');
-        // $response = Http::withHeaders([
-        //     'Content-Type' => 'application/json',
-        //     "Accept" => "application/json",
-        //     'User-Agent' => 'evestuff.online python9066@gmail.com',
-        // ])->get("https://628189349fac04c6540639f6.mockapi.io/timers");
         $res = $response->collect();
         foreach ($res as $r) {
             $event_type = $r['event_type'];
@@ -159,7 +154,8 @@ if (!function_exists('newUpdateCampaigns')) {
             ->whereNull('end_time')->get();
 
         foreach ($ns as $n) {
-            setJustOverFlagJob::dispatch($n->id, $n->defenders_score)->onQueue('campaigns');
+            if ($n->start_time < now())
+                setJustOverFlagJob::dispatch($n->id, $n->defenders_score)->onQueue('campaigns');
         }
         // * Check if the campaign have been over more than 10mins, if true set it to finsiehd(3)
 

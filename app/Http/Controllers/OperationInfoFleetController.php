@@ -90,6 +90,21 @@ class OperationInfoFleetController extends Controller
         operationInfoSoloPageFleetBroadcast($fleet->id, $fleet->operation_info_id, 2);
     }
 
+    public function reconRemove(Request $request, $id)
+    {
+
+
+        $recon = OperationInfoRecon::where('id', $request->id)->first();
+        $fleetID = $recon->operation_info_fleet_id;
+        $recon->operation_info_fleet_id = null;
+        $recon->operation_info_recon_status_id = null;
+        $recon->role_id = null;
+        $recon->save();
+
+        operationReconSoloBcast($recon->id, 5);
+        operationInfoSoloPageFleetBroadcast($fleetID, $id, 2);
+    }
+
     /**
      * Update the specified resource in storage.
      *
