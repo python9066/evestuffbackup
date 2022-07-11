@@ -22,12 +22,17 @@
               <v-row no-gutters justify="end">
                 <v-col cols="auto">
                   <v-btn icon x-small color="warning">
-                    <font-awesome-icon icon="fa-regular fa-comments" />
+                    <font-awesome-icon icon="fa-solid fa-pen-to-square" />
                   </v-btn>
                 </v-col>
                 <v-col cols="auto">
-                  <v-btn icon x-small color="red">
-                    <font-awesome-icon icon="fa-regular fa-comments" />
+                  <v-btn
+                    icon
+                    x-small
+                    color="red"
+                    @click="removeReconFromFleet(recon)"
+                  >
+                    <font-awesome-icon icon="fa-solid fa-trash-can" />
                   </v-btn>
                 </v-col>
               </v-row>
@@ -74,13 +79,13 @@ export default {
       }
     },
 
-    async removeRecon(item) {
+    async removeReconFromFleet(item) {
       console.log(item);
 
       var request = item;
       await axios({
         method: "post", //you can set what request you want to be
-        url: "/api/operationinforeconremove/" + item.operation_info_id,
+        url: "/api/operationinfofleetreconremove/" + item.operation_info_id,
         withCredentials: true,
         data: request,
         headers: {

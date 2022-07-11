@@ -138,7 +138,9 @@ export default {
 
     dropDown() {
       var data = this.operationInfoRecon.filter(
-        (r) => r.operation_info_id != this.$store.state.operationInfoPage.id
+        (r) =>
+          r.operation_info_id == this.$store.state.operationInfoPage.id &&
+          r.operation_info_fleet_id == null
       );
       return data;
     },

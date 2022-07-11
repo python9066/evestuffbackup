@@ -67,6 +67,7 @@ use App\Http\Controllers\WebWayController;
 use App\Http\Controllers\WebWayStartSystemsContorller;
 use App\Http\Controllers\WelpStationController;
 use App\Models\Notification;
+use App\Models\OperationInfoFleet;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -366,6 +367,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/operationinforecon', [OperationInfoReconController::class, 'store']);
     Route::post('/operationinforeconremove/{id}', [OperationInfoReconController::class, 'removeFromOp']);
     Route::get('/operationinforecon', [OperationInfoReconController::class, 'index']);
+
+    Route::post('/operationinfofleetreconremove/{id}', [OperationInfoFleetController::class, "reconRemove"]);
 
     Route::get('/operationlistinfoop', [NewOperationsController::class, 'operationlist']);
 });
