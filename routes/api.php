@@ -37,6 +37,7 @@ use App\Http\Controllers\NotificationRecordsController;
 use App\Http\Controllers\OperationInfoController;
 use App\Http\Controllers\OperationInfoDoctrineController;
 use App\Http\Controllers\OperationInfoFleetController;
+use App\Http\Controllers\OperationInfoFleetReconRoleController;
 use App\Http\Controllers\OperationInfoMumbleController;
 use App\Http\Controllers\OperationInfoReconController;
 use App\Http\Controllers\OperationInfoSheetController;
@@ -67,7 +68,6 @@ use App\Http\Controllers\WebWayController;
 use App\Http\Controllers\WebWayStartSystemsContorller;
 use App\Http\Controllers\WelpStationController;
 use App\Models\Notification;
-use App\Models\OperationInfoFleet;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -362,7 +362,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/operationinfofleet/{id}', [OperationInfoFleetController::class, 'destroy']);
     Route::put('/operationinfofleet/{id}', [OperationInfoFleetController::class, 'update']);
     Route::put('/operationinfofleetname/{id}', [OperationInfoFleetController::class, 'name']);
-    Route::put('/operationinfofleetrecon/{id}', [OperationInfoFleetController::class, 'recon']);
+    Route::post('/operationinfofleetrecon/{id}', [OperationInfoFleetController::class, 'reconAdd']);
 
     Route::post('/operationinforecon', [OperationInfoReconController::class, 'store']);
     Route::post('/operationinforeconremove/{id}', [OperationInfoReconController::class, 'removeFromOp']);
@@ -371,4 +371,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/operationinfofleetreconremove/{id}', [OperationInfoFleetController::class, "reconRemove"]);
 
     Route::get('/operationlistinfoop', [NewOperationsController::class, 'operationlist']);
+
+    Route::get('/operationinfofleetreconrole', [OperationInfoFleetReconRoleController::class, 'index']);
 });

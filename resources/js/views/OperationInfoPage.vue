@@ -124,6 +124,7 @@ export default {
     await this.$store.dispatch("getAllianceTickList");
     await this.$store.dispatch("getSystemList");
     await this.$store.dispatch("getOperationSheetInfoOperationList");
+    await this.$store.dispatch("getOperationInfoMumble");
 
     Echo.private("operationinfooppage." + this.opInfo.id).listen(
       "OperationInfoPageSoloUpdate",

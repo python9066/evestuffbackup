@@ -22,12 +22,25 @@
           outlined
           :items="dropDown"
           v-model="name"
+          label="Recon"
           item-text="name"
           item-value="id"
           hide-details
           rounded
           dense
         ></v-combobox>
+        <v-autocomplete
+          class="pt-2"
+          outlined
+          :items="roleDrop"
+          v-model="role"
+          label="Role"
+          item-text="name"
+          item-value="id"
+          rounded
+          dense
+          hide-details
+        ></v-autocomplete>
       </v-card-text>
       <v-card-actions
         ><v-row no-gutters>
@@ -36,9 +49,10 @@
               >Add</v-btn
             ></v-col
           ><v-spacer /><v-col cols="auto"
-            ><v-btn rounded color=" warning" @click="close()">Close</v-btn
-            ><font-awesome-icon icon="fa-solid fa-user-astronaut"
-          /></v-col>
+            ><v-btn rounded color=" warning" @click="close()"
+              >Close</v-btn
+            ></v-col
+          >
         </v-row>
       </v-card-actions>
     </v-card>
@@ -54,10 +68,13 @@ function sleep(ms) {
 }
 export default {
   title() {},
-  props: {},
+  props: {
+    fleetID: Number,
+  },
   data() {
     return {
       addShown: false,
+      role: null,
       name: null,
     };
   },
@@ -71,19 +88,14 @@ export default {
   async mounted() {},
   methods: {
     async addRecon() {
-      await sleep(500);
-      if (this.type == "string") {
-        var name = this.name;
-      } else {
-        var name = this.name.name;
-      }
       var request = {
-        name: name,
+        reconID: this.name.id,
+        role: this.role,
         opID: this.$store.state.operationInfoPage.id,
       };
       await axios({
         method: "post", //you can set what request you want to be
-        url: "/api/operationinforecon",
+        url: "/api/operationinfofleetrecon/" + this.fleetID,
         withCredentials: true,
         data: request,
         headers: {
@@ -91,43 +103,14 @@ export default {
           "Content-Type": "application/json",
         },
       }).then((response) => {
-        var code = response.status;
-        if (code == 201) {
-          this.name = null;
-          var text = name + " not found";
-          this.$toast.error(text, {
-            position: "bottom-left",
-            timeout: 2000,
-            closeOnClick: true,
-            pauseOnFocusLoss: false,
-            pauseOnHover: false,
-            draggable: false,
-            draggablePercent: 0.6,
-            showCloseButtonOnHover: false,
-            hideProgressBar: false,
-            closeButton: "button",
-            icon: true,
-          });
-        } else {
-          var text = name + " added";
-          this.name = null;
-          this.addShown = false;
-          this.$toast.success(text, {
-            position: "bottom-left",
-            timeout: 2000,
-            closeOnClick: true,
-            pauseOnFocusLoss: false,
-            pauseOnHover: false,
-            draggable: false,
-            draggablePercent: 0.6,
-            showCloseButtonOnHover: false,
-            hideProgressBar: false,
-            closeButton: "button",
-            icon: true,
-            rtl: false,
-          });
-        }
+        this.close();
       });
+    },
+
+    close() {
+      this.name = null;
+      this.role = null;
+      this.addShown = false;
     },
   },
 
@@ -143,6 +126,10 @@ export default {
           r.operation_info_fleet_id == null
       );
       return data;
+    },
+
+    roleDrop() {
+      return this.$store.state.operationInfoReconFleetRoleList;
     },
 
     type() {

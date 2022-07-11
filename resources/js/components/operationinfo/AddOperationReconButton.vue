@@ -36,9 +36,10 @@
               >Add</v-btn
             ></v-col
           ><v-spacer /><v-col cols="auto"
-            ><v-btn rounded color=" warning" @click="close()">Close</v-btn
-            ><font-awesome-icon icon="fa-solid fa-user-astronaut"
-          /></v-col>
+            ><v-btn rounded color=" warning" @click="close()"
+              >Close</v-btn
+            ></v-col
+          >
         </v-row>
       </v-card-actions>
     </v-card>
