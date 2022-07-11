@@ -35,7 +35,7 @@ class AuthController extends Controller
             $flag = 1;
         }
 
-        dd($userGice);
+        // dd($userGice);
 
         User::updateOrCreate(['id' => $userGice->sub], ['name' => $userGice->name]);
 
