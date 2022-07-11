@@ -15,7 +15,7 @@
         @click="addShown = true"
         color="success"
         ><font-awesome-icon icon="fa-solid fa-plus" size="xl" pull="left" />
-        Nodee</v-btn
+        Nodeeeee</v-btn
       >
     </template>
     <v-card :min-height="cardHight">
