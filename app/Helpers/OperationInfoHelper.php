@@ -149,6 +149,7 @@ if (!function_exists('operationInfoSoloPagePull')) {
             'systems:id,system_name,constellation_id,region_id',
             'systems.region:id,region_name',
             'systems.constellation:id,constellation_name',
+            'systems.recons',
             'campaigns',
             'operation'
         ])->first();
@@ -184,6 +185,7 @@ if (!function_exists('operationInfoSoloPagePullLink')) {
             'systems:id,system_name,constellation_id,region_id',
             'systems.region:id,region_name',
             'systems.constellation:id,constellation_name',
+            'systems.recons',
             'campaigns',
             'operation'
         ])->first();
@@ -396,20 +398,21 @@ if (!function_exists('operationInfoSystems')) {
 
     function operationInfoSystems($opID)
     {
-        //  'systems:id,system_name,constellation_id,region_id',
-        //     'systems.region:id,region_name',
-        //     'systems.constellation:id,constellation_name',
+
         $op = OperationInfo::where('id', $opID)->first();
         $systems = $op->systems()
             ->with([
                 'region:id,region_name',
-                'constellation:id,constellation_name'
+                'constellation:id,constellation_name',
+                'recons'
             ])
             ->select(['systems.id', 'system_name', 'constellation_id', 'region_id'])
             ->get();
         return $systems;
     }
 }
+
+
 
 if (!function_exists('operationInfoSystemsBcast')) {
     /**
@@ -437,7 +440,52 @@ if (!function_exists('operationInfoSystemsBcast')) {
     }
 }
 
+if (!function_exists('operationInfoSoloSystems')) {
 
+    function operationInfoSoloSystems($systemID, $opid)
+    {
+
+        $op = OperationInfo::where('id', $opid)->first();
+        $systems = $op->systems()
+            ->where('systems.id', $systemID)
+            ->with([
+                'region:id,region_name',
+                'constellation:id,constellation_name',
+                'recons'
+            ])
+            ->select(['systems.id', 'system_name', 'constellation_id', 'region_id'])
+            ->first();
+
+        return $systems;
+    }
+}
+
+if (!function_exists('operationInfoSystemsSoloBcast')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+     *
+     *
+     *
+     *  @param  int  $opID
+     * OP ID
+     * @param  int  $systemID
+     * ID of System Updated
+     * @param  int  $flagNumber
+     * 14 = update Solo system ifo
+     *
+     */
+    function operationInfoSystemsSoloBcast($opID, $systemID, $flagNumber)
+    {
+        $message =  operationInfoSoloSystems($systemID, $opID);
+
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message,
+            'id' => $opID,
+        ]);
+        broadcast(new OperationInfoPageSoloUpdate($flag));
+    }
+}
 if (!function_exists('checkUserName')) {
 
     function checkUserName($name, $opID)

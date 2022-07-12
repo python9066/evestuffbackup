@@ -78,6 +78,11 @@ class System extends Model
         return $this->belongsTo(User::class, 'checked_id', 'id');
     }
 
+    public function recons()
+    {
+        return $this->belongsToMany(OperationInfoRecon::class, 'operation_info_system_recons', 'operation_info_system_id', 'operation_info_recon_id');
+    }
+
     protected $casts = [
         'region_id ' => 'integer',
         'constellation_id' => 'integer',

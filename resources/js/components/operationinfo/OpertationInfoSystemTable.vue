@@ -17,6 +17,21 @@
             </template>
             <template v-slot:[`item.actions`]="{ item }">
               <OperationInfoSystemAddNotes :loaded="loaded" :item="item" />
+              <OperationInfoSystemJammerSetting :loaded="loaded" :item="item" />
+            </template>
+
+            <template v-slot:[`item.TODORecon`]="{ item }">
+              <v-row no-gutters justify="start" align="center">
+                <v-col cols="auto">
+                  <OperationInfoSystemReconChips
+                    :windowSize="windowSize"
+                    :loaded="loaded"
+                    :item="item"
+                /></v-col>
+                <v-col cols="auto">
+                  <OperationInfoSystemAddRecon :loaded="loaded" :item="item"
+                /></v-col>
+              </v-row>
             </template>
 
             <template v-slot:[`item.pivot.jammed_status`]="{ item }">
@@ -68,7 +83,7 @@ export default {
 
         {
           text: "Recon",
-          value: "TODOShip",
+          value: "TODORecon",
           sortable: true,
         },
 

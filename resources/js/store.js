@@ -29,6 +29,7 @@ export default new Vuex.Store({
         operationInfoRecon: [],
         operationInfoReconFleetRoleList: [],
         operationInfoOperationList: [],
+        operationInfoJamList: [],
 
         operationInfoMessageCount: 0,
 
@@ -226,6 +227,10 @@ export default new Vuex.Store({
             state.operationInfoMumble = data;
         },
 
+        SET_OPERATION_INFO_JAM_LIST(state, data) {
+            state.operationInfoJamList = data;
+        },
+
         SET_OPERATION_INFO_RECON_FLEET_ROLE_LIST(state, data) {
             state.operationInfoReconFleetRoleList = data;
         },
@@ -330,6 +335,20 @@ export default new Vuex.Store({
                 Object.assign(item, data);
             } else {
                 state.operationInfoPage.fleets.push(data);
+            }
+        },
+
+        UPDATE_OPERATION_INFO_SYSTEM(state, data) {
+            const count = state.operationInfoPage.systems.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                const item = state.operationInfoPage.systems.find(
+                    (f) => f.id === data.id
+                );
+                Object.assign(item, data);
+            } else {
+                state.operationInfoPage.systems.push(data);
             }
         },
 
@@ -1103,6 +1122,19 @@ export default new Vuex.Store({
                 },
             });
             commit("SET_OPERATION_INFO_MUMBLE", res.data.mumble);
+        },
+
+        async getOperationInfoJamList({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfojammerstatus",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_OPERATION_INFO_JAM_LIST", res.data.jam);
         },
 
         async getOperationInfoMumble({ commit }) {
@@ -2171,6 +2203,10 @@ export default new Vuex.Store({
             commit("UPDATE_FLEET_INFO", data);
         },
 
+        updateOperationSoloSystems({ commit }, data) {
+            commit("UPDATE_OPERATION_INFO_SYSTEM", data);
+        },
+
         updateOperationReconSolo({ commit }, data) {
             commit("UPDATE_OPERATION_RECON_SOLO", data);
         },
@@ -3103,6 +3139,15 @@ export default new Vuex.Store({
                 });
             }
             return ids;
+        },
+
+        getOperationSystemInfo: (state) => (systemID) => {
+            if (state.operationInfoPage.systems) {
+                var systems = state.operationInfoPage.systems;
+                var data = systems.find((s) => s.id == systemID);
+                return data;
+            }
+            return [];
         },
     },
 });

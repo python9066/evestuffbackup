@@ -8,7 +8,11 @@
             ><v-col cols="auto"
               ><AddOperationReconButton /></v-col></v-row></v-card-title
         ><v-card-text>
-          <v-row v-for="recon in opInfo.recons" :key="`${recon.id}-card`">
+          <v-row
+            no-gutters
+            v-for="recon in opInfo.recons"
+            :key="`${recon.id}-card`"
+          >
             <!-- <v-tooltip right> -->
             <v-col cols="auto">
               <v-tooltip right :disabled="hideToolTip(recon)"

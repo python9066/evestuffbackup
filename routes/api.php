@@ -38,6 +38,7 @@ use App\Http\Controllers\OperationInfoController;
 use App\Http\Controllers\OperationInfoDoctrineController;
 use App\Http\Controllers\OperationInfoFleetController;
 use App\Http\Controllers\OperationInfoFleetReconRoleController;
+use App\Http\Controllers\OperationInfoJammedStatusController;
 use App\Http\Controllers\OperationInfoMumbleController;
 use App\Http\Controllers\OperationInfoReconController;
 use App\Http\Controllers\OperationInfoSheetController;
@@ -348,6 +349,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/operationinfosheet', [OperationInfoController::class, 'store']);
     Route::post('/operationinfosheet/{id}', [OperationInfoController::class, 'editHackOperation']);
     Route::get('/operationinfosheet', [OperationInfoController::class, 'index']);
+    Route::post('/operationinfosystemnoteupdate/{id}', [OperationInfoController::class, 'updateNote']);
+    Route::post('/operationinfosystemjamupdate/{id}', [OperationInfoController::class, 'updateJam']);
+    Route::post('/operationinfosystemreconupdate/{id}', [OperationInfoController::class, 'updateRecon']);
+    Route::delete('/operationinfosystemreconremove/{id}', [OperationInfoController::class, 'deleteRecon']);
+
 
     Route::get('/operationinfopage/{link}', [OperationInfoSheetController::class, 'index']);
     Route::put('/operationinfopage/{id}', [OperationInfoSheetController::class, 'update']);
@@ -373,4 +379,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/operationlistinfoop', [NewOperationsController::class, 'operationlist']);
 
     Route::get('/operationinfofleetreconrole', [OperationInfoFleetReconRoleController::class, 'index']);
+
+    Route::get('/operationinfojammerstatus', [OperationInfoJammedStatusController::class, 'index']);
 });

@@ -659,6 +659,24 @@ Vue.component(
         .default
 );
 
+Vue.component(
+    "OperationInfoSystemJammerSetting",
+    require("./components/operationinfo/OperationInfoSystemJammerSetting.vue")
+        .default
+);
+
+Vue.component(
+    "OperationInfoSystemAddRecon",
+    require("./components/operationinfo/OperationInfoSystemAddRecon.vue")
+        .default
+);
+
+Vue.component(
+    "OperationInfoSystemReconChips",
+    require("./components/operationinfo/OperationInfoSystemReconChips.vue")
+        .default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(VueEllipseProgress, "Vep");

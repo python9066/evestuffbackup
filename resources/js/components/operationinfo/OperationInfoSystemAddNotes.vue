@@ -6,37 +6,42 @@
     content-class="rounded-xl"
   >
     <template v-slot:activator="{ on, attrs }">
-      <v-btn
-        icon
-        v-bind="attrs"
-        v-on="on"
-        @click="addShown = true"
-        color="blue"
-      >
+      <v-btn icon v-bind="attrs" v-on="on" @click="open()" color="blue">
         <font-awesome-icon icon="fa-solid fa-clipboard" size="xl" />
       </v-btn>
     </template>
     <v-row no-gutters>
       <v-col cols="auto">
         <v-card rounded="xl"
-          ><v-card-title class="blue"
+          ><v-card-title class="blue py-1"
             >Notes for {{ item.system_name }}</v-card-title
           ><v-card-text>
-            <v-row no-gutters align="end"
+            <v-row no-gutters align="end" class="pt-2"
               ><v-col cols="auto"
                 ><v-textarea
                   hide-details
+                  autofocus
+                  outlined
+                  rounded
                   dense
-                  v-model="item.pivot.notes"
-                  :false-value="0"
-                  :true-value="1"
+                  v-model="text"
                 >
                 </v-textarea>
               </v-col>
             </v-row>
           </v-card-text>
-          <v-card-actions
-            ><v-btn text @click="done()">Update</v-btn></v-card-actions
+          <v-card-actions>
+            <v-row no-gutters justify="space-between">
+              <v-col cols="auto">
+                <v-btn rounded color="success" @click="done()"
+                  >Update</v-btn
+                ></v-col
+              ><v-col cols="auto">
+                <v-btn rounded color="error" @click="close()"
+                  >Close</v-btn
+                ></v-col
+              ></v-row
+            ></v-card-actions
           >
         </v-card>
       </v-col>
@@ -60,6 +65,7 @@ export default {
   data() {
     return {
       addShown: false,
+      text: "",
     };
   },
 
@@ -71,38 +77,32 @@ export default {
 
   async mounted() {},
   methods: {
-    cross(value) {
-      if (value == 1) {
-        return "text-decoration-line-through green--text";
-      }
+    open() {
+      this.text = this.item.pivot.notes;
+      this.addShown = true;
+    },
+
+    close() {
+      this.text = "";
+      this.addShown = false;
     },
 
     async done() {
-      this.opInfo.status_id = 4;
-      var request = this.opInfo;
+      var request = {
+        notes: this.text,
+      };
       await axios({
-        method: "put", //you can set what request you want to be
-        url: "/api/operationinfopage/" + this.opInfo.id,
+        method: "post", //you can set what request you want to be
+        url: "/api/operationinfosystemnoteupdate/" + this.item.id,
         withCredentials: true,
         data: request,
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-      });
-    },
-
-    async changeCheck() {
-      var request = this.opInfo;
-      await axios({
-        method: "put", //you can set what request you want to be
-        url: "/api/operationinfopage/" + this.opInfo.id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
+      }).then((reponse) => {
+        this.text = "";
+        this.addShown = false;
       });
     },
   },
@@ -131,34 +131,6 @@ export default {
       if (this.loaded == true) {
         return "animate__animated animate__flash animate__faster";
       }
-    },
-
-    showButton() {
-      if (
-        this.opInfo.post_op_coord_done &&
-        this.opInfo.post_op_defrief_done &&
-        this.opInfo.post_op_fc_done &&
-        this.opInfo.post_op_recon_done &&
-        this.opInfo.post_op_scouts_done
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-
-    count() {
-      var count =
-        this.opInfo.post_op_coord_done +
-        this.opInfo.post_op_defrief_done +
-        this.opInfo.post_op_fc_done +
-        this.opInfo.post_op_recon_done +
-        this.opInfo.post_op_scouts_done;
-      return count;
-    },
-
-    countPercent() {
-      return (this.count / 5) * 100;
     },
   },
   beforeDestroy() {},

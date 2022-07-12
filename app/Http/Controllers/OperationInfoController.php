@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
 use App\Models\OperationInfo;
+use App\Models\OperationInfoRecon;
 use App\Models\OperationInfoSystem;
+use App\Models\OperationInfoSystemRecon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -44,6 +46,83 @@ class OperationInfoController extends Controller
             operationInfoSoloBroadcast($new->id, 2);
         }
     }
+
+
+    public function updateNote(Request $request, $id)
+    {
+        $systems = OperationInfoSystem::where('system_id', $id)->get();
+        foreach ($systems as $system) {
+            $system->notes = $request->notes;
+            $system->save();
+            operationInfoSystemsSoloBcast($system->operation_info_id, $id, 14);
+        }
+    }
+
+    public function updateJam(Request $request, $id)
+    {
+        $systems = OperationInfoSystem::where('system_id', $id)->get();
+        foreach ($systems as $system) {
+            $system->jammed_status = $request->jam;
+            $system->save();
+            operationInfoSystemsSoloBcast($system->operation_info_id, $id, 14);
+        }
+    }
+
+    public function updateRecon(Request $request, $id)
+    {
+        $reconArray = $request->recons;
+        if (count($reconArray) > 0) {
+            if (gettype($reconArray[0]) == "array") {
+                $reconCollect = collect($reconArray);
+                $reconCollect = $reconCollect->pluck('id');
+                $reconArray = $reconCollect->all();
+            }
+        }
+        $old = OperationInfoSystemRecon::whereNotIn('operation_info_recon_id', $reconArray)
+            ->where('operation_info_system_id', $id)->get();
+        foreach ($old as $old) {
+            $recon = OperationInfoRecon::where('id', $old->operation_info_recon_id)->first();
+            $recon->system_id = null;
+            $recon->operation_info_recon_status_id = 1;
+            $recon->save();
+            $old->delete();
+            operationReconSoloBcast($old->operation_info_recon_id, 5);
+        }
+        foreach ($reconArray as $reconID) {
+            $check = OperationInfoSystemRecon::where('operation_info_system_id', $id)
+                ->where('operation_info_recon_id', $reconID)
+                ->count();
+            if ($check == 0) {
+                $new = new OperationInfoSystemRecon();
+                $new->operation_info_recon_id = $reconID;
+                $new->operation_info_system_id = $id;
+                $new->save();
+                $recon = OperationInfoRecon::where('id', $reconID)->first();
+                $recon->system_id = $id;
+                $recon->operation_info_recon_status_id = 3;
+                $recon->save();
+
+                operationReconSoloBcast($reconID, 5);
+            }
+        };
+
+        operationInfoSystemsSoloBcast($request->opID, $id, 14);
+    }
+
+
+    public function deleteRecon(Request $request, $id)
+    {
+        $recon = OperationInfoRecon::where('id', $request->reconID)->first();
+        $recon->system_id = null;
+        $recon->operation_info_recon_status_id = 1;
+        $recon->save();
+        OperationInfoSystemRecon::where('operation_info_recon_id', $request->reconID)
+            ->where('operation_info_system_id', $id)->delete();
+        operationReconSoloBcast($request->reconID, 5);
+        operationInfoSystemsSoloBcast($request->opID, $id, 14);
+    }
+
+
 
 
     public function editHackOperation(Request $request, $id)
