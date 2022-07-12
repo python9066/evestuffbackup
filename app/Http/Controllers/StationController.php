@@ -777,7 +777,7 @@ class StationController extends Controller
         $oldStatus = str_replace('Upcoming - ', '', $oldStatus);
 
         $s = Station::find($id)->get();
-        $s = Station::where('$id', $id)->first();
+        $s = Station::where('id', $id)->first();
         $s->station_status_id = $request->station_status_id;
         $s->out_time = $request->out_time;
         $s->timer_image_link = $request->timer_image_link;
