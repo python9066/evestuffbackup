@@ -162,7 +162,7 @@ class StationController extends Controller
         $name = preg_replace("/\([^\)]+\)(\R|$)/", '$1', $request->stationName);
         $name = rtrim($name);
         // dd($name);
-        $url = 'https://recon.gnf.lt/api/structure/'.$name;
+        $url = 'https://recon.gnf.lt/api/structure/' . $name;
 
         $client = new GuzzleHttpClient();
         $headers = [
@@ -333,7 +333,7 @@ class StationController extends Controller
         $name = preg_replace("/\([^\)]+\)(\R|$)/", '$1', $request->stationName);
         $name = rtrim($name);
         // dd($name);
-        $url = 'https://recon.gnf.lt/api/structure/'.$name;
+        $url = 'https://recon.gnf.lt/api/structure/' . $name;
 
         $client = new GuzzleHttpClient();
         $headers = [
@@ -777,9 +777,21 @@ class StationController extends Controller
         $oldStatus = str_replace('Upcoming - ', '', $oldStatus);
 
         $s = Station::find($id)->get();
-        foreach ($s as $s) {
-            $s->update($request->all());
-        }
+        $s = Station::where('$id', $id)->first();
+        $s->station_status_id = $request->station_status_id;
+        $s->out_time = $request->out_time;
+        $s->timer_image_link = $request->timer_image_link;
+        $s->rc_fc_id = $request->rc_fc_id;
+        $s->rc_recon_id = $request->rc_recon_id;
+        $s->rc_gsol_id = $request->rc_gsol_id;
+        $s->show_on_rc_move = $request->show_on_rc_move;
+        $s->show_on_rc = $request->show_on_rc;
+        $s->show_on_coord = $request->show_on_coord;
+        $s->status_update = $request->status_update;
+        $s->notes = $request->notes;
+        $s->save();
+
+
         $newStation = Station::where('id', $id)->first();
         $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
         $newStatus = str_replace('Upcoming - ', '', $newStatus);
