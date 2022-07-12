@@ -43,7 +43,7 @@ class UpdateReconStations extends Command
     {
         Userlogging::create(['url' => 'demon recon station', 'user_id' => 9999999999]);
         dubp();
-        $s = Station::where('id', '>', 0)->get();
+        $s = Station::get();
         foreach ($s as $s) {
             $s->update(['import_flag' => 0]);
         }
