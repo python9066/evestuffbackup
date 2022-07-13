@@ -83,7 +83,11 @@ class OperationInfoController extends Controller
         foreach ($old as $old) {
             $recon = OperationInfoRecon::where('id', $old->operation_info_recon_id)->first();
             $recon->system_id = null;
-            $recon->operation_info_recon_status_id = 1;
+            if ($recon->operation_info_recon_status_id == 4) {
+                $recon->operation_info_recon_status_id = 2;
+            } else {
+                $recon->operation_info_recon_status_id = 1;
+            }
             $recon->save();
             $old->delete();
             operationReconSoloBcast($old->operation_info_recon_id, 5);
@@ -99,7 +103,11 @@ class OperationInfoController extends Controller
                 $new->save();
                 $recon = OperationInfoRecon::where('id', $reconID)->first();
                 $recon->system_id = $id;
-                $recon->operation_info_recon_status_id = 3;
+                if ($recon->operation_info_recon_status_id == 2) {
+                    $recon->operation_info_recon_status_id = 4;
+                } else {
+                    $recon->operation_info_recon_status_id = 3;
+                }
                 $recon->save();
 
                 operationReconSoloBcast($reconID, 5);
@@ -114,7 +122,11 @@ class OperationInfoController extends Controller
     {
         $recon = OperationInfoRecon::where('id', $request->reconID)->first();
         $recon->system_id = null;
-        $recon->operation_info_recon_status_id = 1;
+        if ($recon->operation_info_recon_status_id == 4) {
+            $recon->operation_info_recon_status_id = 2;
+        } else {
+            $recon->operation_info_recon_status_id = 1;
+        }
         $recon->save();
         OperationInfoSystemRecon::where('operation_info_recon_id', $request->reconID)
             ->where('operation_info_system_id', $id)->delete();

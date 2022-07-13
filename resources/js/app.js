@@ -677,6 +677,11 @@ Vue.component(
         .default
 );
 
+Vue.component(
+    "OperationInfoReconCardNames",
+    require("./components/operationinfo/OperationInfoReconCardNames.vue")
+        .default
+);
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(VueEllipseProgress, "Vep");

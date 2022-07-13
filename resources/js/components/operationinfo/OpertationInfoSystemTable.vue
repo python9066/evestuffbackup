@@ -37,14 +37,6 @@
             <template v-slot:[`item.pivot.jammed_status`]="{ item }">
               {{ jamerText(item.pivot.jammed_status) }}
             </template>
-
-            <!-- <template v-slot:[`header.actions`]="{ headers }">
-              <AddNode
-                :item="item"
-                :operationID="operationID"
-                :activeCampaigns="activeCampaigns"
-              />
-            </template> -->
           </v-data-table>
         </v-col>
       </v-row>
