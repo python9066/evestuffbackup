@@ -7,26 +7,31 @@
   >
     <template v-slot:activator="{ on, attrs }">
       <v-btn icon v-bind="attrs" v-on="on" @click="open()" color="blue">
-        <font-awesome-icon icon="fa-solid fa-clipboard" size="xl" />
+        <font-awesome-icon icon="fa-solid fa-poo-storm" size="xl" />
       </v-btn>
     </template>
     <v-row no-gutters>
       <v-col cols="auto">
         <v-card rounded="xl"
           ><v-card-title class="blue py-1"
-            >Notes for {{ item.system_name }}</v-card-title
+            >Jammer Status for {{ item.system_name }}</v-card-title
           ><v-card-text>
             <v-row no-gutters align="end" class="pt-2"
               ><v-col cols="auto"
-                ><v-textarea
-                  hide-details
-                  autofocus
-                  outlined
-                  rounded
+                ><v-autocomplete
+                  v-model="systemInfo.pivot.jammed_status"
+                  :items="dropDown"
+                  item-text="name"
+                  item-value="id"
+                  auto-select-first
                   dense
-                  v-model="text"
+                  hint="What is the jammer status"
+                  hide-selected
+                  persistent-hint
+                  rounded
+                  solo-inverted
                 >
-                </v-textarea>
+                </v-autocomplete>
               </v-col>
             </v-row>
           </v-card-text>
@@ -65,7 +70,7 @@ export default {
   data() {
     return {
       addShown: false,
-      text: "",
+      old: null,
     };
   },
 
@@ -78,22 +83,22 @@ export default {
   async mounted() {},
   methods: {
     open() {
-      this.text = this.item.pivot.notes;
+      this.old = this.systemInfo.pivot.jammed_status;
       this.addShown = true;
     },
 
     close() {
-      this.text = "";
+      this.systemInfo.pivot.jammed_status = this.old;
       this.addShown = false;
     },
 
     async done() {
       var request = {
-        notes: this.text,
+        jam: this.systemInfo.pivot.jammed_status,
       };
       await axios({
         method: "post", //you can set what request you want to be
-        url: "/api/operationinfosystemnoteupdate/" + this.item.id,
+        url: "/api/operationinfosystemjamupdate/" + this.item.id,
         withCredentials: true,
         data: request,
         headers: {
@@ -101,16 +106,15 @@ export default {
           "Content-Type": "application/json",
         },
       }).then((reponse) => {
-        this.text = "";
         this.addShown = false;
       });
     },
   },
 
   computed: {
-    ...mapGetters([]),
+    ...mapGetters(["getOperationSystemInfo"]),
 
-    ...mapState["operationInfoPage"],
+    ...mapState(["operationInfoPage", "operationInfoJamList"]),
 
     opInfo: {
       get() {
@@ -119,6 +123,17 @@ export default {
       set(newValue) {
         return this.$store.dispatch("updateOperationSheetInfoPage", newValue);
       },
+    },
+
+    dropDown() {
+      return this.operationInfoJamList;
+    },
+
+    systemInfo: {
+      get() {
+        return this.$store.getters.getOperationSystemInfo(this.item.id);
+      },
+      set(newValue) {},
     },
 
     showEnter() {

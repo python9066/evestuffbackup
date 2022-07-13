@@ -59,7 +59,10 @@
               <v-col cols="auto" v-if="showReconTable">
                 <v-row no-gutters>
                   <v-col cols="12">
-                    <OperationInfoReconCard :loaded="loaded" />
+                    <OperationInfoReconCard
+                      :windowSize="windowSize"
+                      :loaded="loaded"
+                    />
                   </v-col>
                 </v-row>
               </v-col>
@@ -124,7 +127,7 @@ export default {
     await this.$store.dispatch("getAllianceTickList");
     await this.$store.dispatch("getSystemList");
     await this.$store.dispatch("getOperationSheetInfoOperationList");
-    await this.$store.dispatch("getOperationInfoMumble");
+    await this.$store.dispatch("getOperationInfoJamList");
 
     Echo.private("operationinfooppage." + this.opInfo.id).listen(
       "OperationInfoPageSoloUpdate",
@@ -185,6 +188,10 @@ export default {
 
         if (e.flag.flag == 13) {
           this.$store.dispatch("removeOperationReconSolo", e.flag.message);
+        }
+
+        if (e.flag.flag == 14) {
+          this.$store.dispatch("updateOperationSoloSystems", e.flag.message);
         }
       }
     );

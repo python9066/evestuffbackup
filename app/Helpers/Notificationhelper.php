@@ -27,11 +27,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\Yaml\Yaml;
 
-if (! function_exists('reconRegionPull')) {
+if (!function_exists('reconRegionPull')) {
     function reconRegionPull($id)
     {
         $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
-        $url = 'https://recon.gnf.lt/api/structures/hostile/region/'.$id;
+        $url = 'https://recon.gnf.lt/api/structures/hostile/region/' . $id;
 
         $client = new GuzzleHttpClient();
         $headers = [
@@ -51,13 +51,13 @@ if (! function_exists('reconRegionPull')) {
     }
 }
 
-if (! function_exists('reconRegionPullIdCheck')) {
+if (!function_exists('reconRegionPullIdCheck')) {
     function reconRegionPullIdCheck($id)
     {
         $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
         $i = 0;
 
-        $url = 'https://recon.gnf.lt/api/structure/'.$id;
+        $url = 'https://recon.gnf.lt/api/structure/' . $id;
         $client = new GuzzleHttpClient();
         $headers = [
             // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
@@ -74,9 +74,8 @@ if (! function_exists('reconRegionPullIdCheck')) {
         $stationdata = Utils::jsonDecode($response->getBody(), true);
         if ($stationdata == 'Error, Structure Not Found') {
             $s = Station::find($id)->get();
-            foreach ($s as $s) {
-                $s->delete();
-            }
+            $s = Station::where('id', $id)->first();
+            $s->delete();
             $s = StationItemJoin::where('station_id', $id)->get();
             foreach ($s as $s) {
                 $s->delete();
@@ -85,14 +84,14 @@ if (! function_exists('reconRegionPullIdCheck')) {
             $core = 0;
             $standing = 0;
             $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
-            if (! $corp) {
+            if (!$corp) {
                 $corpPull = 0;
                 do {
                     $response = Http::withHeaders([
                         'Content-Type' => 'application/json',
                         'Accept' => 'application/json',
                         'User-Agent' => 'evestuff.online python9066@gmail.com',
-                    ])->get('https://esi.evetech.net/latest/corporations/'.$stationdata['str_owner_corporation_id'].'/?datasource=tranquility');
+                    ])->get('https://esi.evetech.net/latest/corporations/' . $stationdata['str_owner_corporation_id'] . '/?datasource=tranquility');
                     if ($response->successful()) {
                         $corpPull = 3;
                         $corpInfo = $response->collect();
@@ -105,7 +104,7 @@ if (! function_exists('reconRegionPullIdCheck')) {
                                 'color' => 0,
                                 'standing' => 0,
                                 'active' => 1,
-                                'url' => 'https://images.evetech.net/Corporation/'.$stationdata['str_owner_corporation_id'].'_64.png',
+                                'url' => 'https://images.evetech.net/Corporation/' . $stationdata['str_owner_corporation_id'] . '_64.png',
 
                             ]
                         );
@@ -175,10 +174,9 @@ if (! function_exists('reconRegionPullIdCheck')) {
 
             $status_id = Station::where('id', $id)->value('station_status_id');
             if ($status_id == 7) {
-                $s = Station::where('id', $id)->get();
-                foreach ($s as $s) {
-                    $s->update(['station_status_id' => 16]);
-                }
+                $s = Station::where('id', $id)->first();
+                $s->station_status_id = 16;
+                $s->save();
             }
 
             $station = Station::where('id', $id)->first();
@@ -218,11 +216,11 @@ if (! function_exists('reconRegionPullIdCheck')) {
     }
 }
 
-if (! function_exists('reconPull')) { //////////////////
+if (!function_exists('reconPull')) {
     function reconPull($id)
     {
         $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
-        $url = 'https://recon.gnf.lt/api/structure/'.$id;
+        $url = 'https://recon.gnf.lt/api/structure/' . $id;
 
         $client = new GuzzleHttpClient();
         $headers = [
@@ -247,7 +245,7 @@ if (! function_exists('reconPull')) { //////////////////
         }
     }
 }
-if (! function_exists('dubp')) {
+if (!function_exists('dubp')) {
     function dubp()
     {
         $dups = Station::groupBy('name')->select('name', DB::raw('count(*) as total'))->get();
@@ -289,13 +287,13 @@ if (! function_exists('dubp')) {
         }
     }
 }
-if (! function_exists('reconUpdate')) {
+if (!function_exists('reconUpdate')) {
     function reconUpdate()
     {
         $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
         $stations = Station::where('added_from_recon', 1)->where('import_flag', 0)->get();
         foreach ($stations as $station) {
-            $url = 'https://recon.gnf.lt/api/structure/'.$station->id;
+            $url = 'https://recon.gnf.lt/api/structure/' . $station->id;
             $client = new GuzzleHttpClient();
             $headers = [
                 // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
@@ -411,7 +409,7 @@ if (! function_exists('reconUpdate')) {
         }
         $stations = Station::where('added_from_recon', 0)->get();
         foreach ($stations as $station) {
-            $url = 'https://recon.gnf.lt/api/structure/'.$station->name;
+            $url = 'https://recon.gnf.lt/api/structure/' . $station->name;
             $client = new GuzzleHttpClient();
             $headers = [
                 // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
@@ -491,7 +489,7 @@ if (! function_exists('reconUpdate')) {
     }
 }
 
-if (! function_exists('test')) {
+if (!function_exists('test')) {
     function test($var, $show)
     {
         $time = $var['timestamp'];
@@ -564,7 +562,7 @@ if (! function_exists('test')) {
 
             ];
             Tower::updateOrCreate($moon_id, $data);
-        // $check = Tower::where('moon_id', $moon_id)->first();
+            // $check = Tower::where('moon_id', $moon_id)->first();
             // if ($check == null) {
             //     Tower::updateOrCreate($moon_id, $data);
             // } else {
@@ -952,7 +950,7 @@ if (! function_exists('test')) {
     }
 }
 
-if (! function_exists('notificationUpdate')) {
+if (!function_exists('notificationUpdate')) {
     function notificationUpdate($data)
     {
         $current = now();
@@ -1022,7 +1020,7 @@ if (! function_exists('notificationUpdate')) {
                         $result[$keys[0]] = $item[0];
                     }
 
-                    $si_id = $result['system_id'].$result['item_id'];
+                    $si_id = $result['system_id'] . $result['item_id'];
                     $check_si_id = $si_id;
                     $check_si_id = (int) $check_si_id;
                     $si_id = [
@@ -1078,7 +1076,7 @@ if (! function_exists('notificationUpdate')) {
                         }
                     }
 
-                    $es_id = $result['event_type_id'].$result['system_id'];
+                    $es_id = $result['event_type_id'] . $result['system_id'];
                     $check_es_id = $es_id;
                     $check_es_id = (int) $check_es_id;
                     $es_id = [
@@ -1116,7 +1114,7 @@ if (! function_exists('notificationUpdate')) {
                 $stype = 32458;
             }
 
-            $si_id = $tempnote->system_id.$stype;
+            $si_id = $tempnote->system_id . $stype;
             $si_id = (int) $si_id;
             $check = Notification::where('si_id', $si_id)->get();
             if ($check->count() == 1) {
@@ -1152,7 +1150,7 @@ if (! function_exists('notificationUpdate')) {
         ];
     }
 }
-if (! function_exists('stationNotificationCheck')) {
+if (!function_exists('stationNotificationCheck')) {
     function stationNotificationCheck()
     {
         $now = now();
@@ -1314,7 +1312,7 @@ if (! function_exists('stationNotificationCheck')) {
         }
     }
 }
-if (! function_exists('towerUpdate')) {
+if (!function_exists('towerUpdate')) {
     function towerUpdate()
     {
         $now10min = now()->modify(' -10 minutes');
@@ -1356,7 +1354,7 @@ if (! function_exists('towerUpdate')) {
     }
 }
 
-if (! function_exists('setShowMain')) {
+if (!function_exists('setShowMain')) {
     function setShowMain($pull, $show)
     {
         $showMain = $pull->show_on_main;
@@ -1368,7 +1366,7 @@ if (! function_exists('setShowMain')) {
         }
     }
 }
-if (! function_exists('setShowChill')) {
+if (!function_exists('setShowChill')) {
     function setShowChill($pull, $show)
     {
         $showChill = $pull->show_on_chill;
@@ -1380,7 +1378,7 @@ if (! function_exists('setShowChill')) {
         }
     }
 }
-if (! function_exists('setShowWelp')) {
+if (!function_exists('setShowWelp')) {
     function setShowWelp($pull, $show)
     {
         $showWelp = $pull->show_on_welp;
@@ -1392,7 +1390,7 @@ if (! function_exists('setShowWelp')) {
         }
     }
 }
-if (! function_exists('setShowMainNew')) {
+if (!function_exists('setShowMainNew')) {
     function setShowMainNew($show)
     {
         if ($show == 1) {
@@ -1402,7 +1400,7 @@ if (! function_exists('setShowMainNew')) {
         }
     }
 }
-if (! function_exists('setShowChillNew')) {
+if (!function_exists('setShowChillNew')) {
     function setShowChillNew($show)
     {
         if ($show == 2) {
@@ -1412,7 +1410,7 @@ if (! function_exists('setShowChillNew')) {
         }
     }
 }
-if (! function_exists('setShowWelpNew')) {
+if (!function_exists('setShowWelpNew')) {
     function setShowWelpNew($show)
     {
         if ($show == 3) {

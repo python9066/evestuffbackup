@@ -160,9 +160,40 @@
                   > </template
                 >{{ reconMainNameText }}
               </v-tooltip>
-              <v-btn class="warning" icon x-small v-if="showReconCount">
-                <font-awesome-icon :icon="numberIcon"
-              /></v-btn>
+              <v-menu
+                bottom
+                origin="center center"
+                transition="scale-transition"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    class="warning"
+                    icon
+                    x-small
+                    v-if="showReconCount"
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    <font-awesome-icon :icon="numberIcon" />
+                  </v-btn>
+                </template>
+                <v-list>
+                  <v-list-item
+                    v-for="(recon, index) in extraRecons"
+                    :key="index"
+                  >
+                    <v-list-item-avatar :size="32">
+                      <v-img :src="recon.url"></v-img>
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                      <v-list-item-subtitle>
+                        {{ recon.fleet_role.name }} - {{ recon.name }} -
+                        {{ recon.main.name }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
               <br />
               <span> Alliance - {{ allianceText }}</span>
             </div>
@@ -318,13 +349,18 @@ export default {
       return this.fleetInfo.recons;
     },
 
+    extraRecons() {
+      let data = this.recons.filter((r) => r.role_id != 1);
+      return data;
+    },
+
     reconCount() {
-      let length = this.recons.length;
+      let length = this.recons.filter((r) => r.role_id != 1).length;
       return length;
     },
 
     showReconCount() {
-      if (this.reconCount > 1) {
+      if (this.reconCount > 0) {
         return true;
       } else {
         return false;

@@ -69,7 +69,11 @@ class OperationInfoFleetController extends Controller
     {
         $recon = OperationInfoRecon::where('id', $request->reconID)->first();
         $recon->operation_info_fleet_id = $id;
-        $recon->operation_info_recon_status_id = 2;
+        if ($recon->operation_info_recon_status_id == 3) {
+            $recon->operation_info_recon_status_id = 4;
+        } else {
+            $recon->operation_info_recon_status_id = 2;
+        }
         $recon->role_id = $request->role;
         $recon->save();
 
@@ -84,7 +88,11 @@ class OperationInfoFleetController extends Controller
         $recon = OperationInfoRecon::where('id', $request->id)->first();
         $fleetID = $recon->operation_info_fleet_id;
         $recon->operation_info_fleet_id = null;
-        $recon->operation_info_recon_status_id = null;
+        if ($recon->operation_info_recon_status_id == 4) {
+            $recon->operation_info_recon_status_id = 3;
+        } else {
+            $recon->operation_info_recon_status_id = null;
+        }
         $recon->role_id = null;
         $recon->save();
 

@@ -4,37 +4,43 @@
     v-model="addShown"
     z-index="0"
     content-class="rounded-xl"
+    max-width="500px"
   >
     <template v-slot:activator="{ on, attrs }">
-      <v-btn icon v-bind="attrs" v-on="on" @click="open()" color="blue">
-        <font-awesome-icon icon="fa-solid fa-clipboard" size="xl" />
+      <v-btn icon v-bind="attrs" v-on="on" @click="open()" color="green">
+        <font-awesome-icon icon="fa-solid fa-plus" />
       </v-btn>
     </template>
     <v-row no-gutters>
       <v-col cols="auto">
-        <v-card rounded="xl"
-          ><v-card-title class="blue py-1"
-            >Notes for {{ item.system_name }}</v-card-title
-          ><v-card-text>
-            <v-row no-gutters align="end" class="pt-2"
-              ><v-col cols="auto"
-                ><v-textarea
-                  hide-details
-                  autofocus
-                  outlined
-                  rounded
-                  dense
-                  v-model="text"
-                >
-                </v-textarea>
-              </v-col>
-            </v-row>
-          </v-card-text>
+        <v-card rounded="xl">
+          <v-row no-gutters align="end" class="pt-2"
+            ><v-col cols="auto"
+              ><v-autocomplete
+                v-model="systemInfo.recons"
+                deletable-chips
+                multiple
+                chips
+                clearable
+                :items="dropDown"
+                item-text="name"
+                item-value="id"
+                auto-select-first
+                dense
+                hint="Add a Cyno to the System"
+                hide-selected
+                persistent-hint
+                rounded
+                solo-inverted
+              >
+              </v-autocomplete>
+            </v-col>
+          </v-row>
           <v-card-actions>
             <v-row no-gutters justify="space-between">
               <v-col cols="auto">
                 <v-btn rounded color="success" @click="done()"
-                  >Update</v-btn
+                  >Add</v-btn
                 ></v-col
               ><v-col cols="auto">
                 <v-btn rounded color="error" @click="close()"
@@ -65,7 +71,6 @@ export default {
   data() {
     return {
       addShown: false,
-      text: "",
     };
   },
 
@@ -78,22 +83,21 @@ export default {
   async mounted() {},
   methods: {
     open() {
-      this.text = this.item.pivot.notes;
       this.addShown = true;
     },
 
     close() {
-      this.text = "";
       this.addShown = false;
     },
 
     async done() {
       var request = {
-        notes: this.text,
+        recons: this.systemInfo.recons,
+        opID: this.opInfo.id,
       };
       await axios({
         method: "post", //you can set what request you want to be
-        url: "/api/operationinfosystemnoteupdate/" + this.item.id,
+        url: "/api/operationinfosystemreconupdate/" + this.item.id,
         withCredentials: true,
         data: request,
         headers: {
@@ -101,7 +105,6 @@ export default {
           "Content-Type": "application/json",
         },
       }).then((reponse) => {
-        this.text = "";
         this.addShown = false;
       });
     },
@@ -110,7 +113,7 @@ export default {
   computed: {
     ...mapGetters([]),
 
-    ...mapState["operationInfoPage"],
+    ...mapState(["operationInfoPage", "operationInfoRecon"]),
 
     opInfo: {
       get() {
@@ -119,6 +122,20 @@ export default {
       set(newValue) {
         return this.$store.dispatch("updateOperationSheetInfoPage", newValue);
       },
+    },
+
+    dropDown() {
+      var data = this.operationInfoRecon.filter(
+        (r) => r.operation_info_id == this.$store.state.operationInfoPage.id
+      );
+      return data;
+    },
+
+    systemInfo: {
+      get() {
+        return this.$store.getters.getOperationSystemInfo(this.item.id);
+      },
+      set(newValue) {},
     },
 
     showEnter() {
