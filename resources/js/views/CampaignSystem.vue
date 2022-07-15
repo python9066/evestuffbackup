@@ -1,6 +1,5 @@
 <template>
   <div v-if="this.load == 1">
-    <hackingToolMessage></hackingToolMessage>
     <v-row
       no-gutters
       v-if="this.getCampaignsCount > 1"

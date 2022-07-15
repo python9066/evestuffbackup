@@ -1,8 +1,6 @@
 <template>
   <div class="pr-16 pl-16">
     <div>
-      <messageNotification v-if="seeMessage()"></messageNotification>
-      <!-- <testingMessage></testingMessage> -->
       <div class="d-flex align-items-center">
         <v-card-title>Hack Notifications</v-card-title>
         <div v-if="$can('access hacks')">You can edit posts.</div>

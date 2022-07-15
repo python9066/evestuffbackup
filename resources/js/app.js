@@ -37,10 +37,7 @@ import "vue-toastification/dist/index.css";
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 // library.add(faUserSecret);
 library.add(fas, far); // Include needed icons
-Vue.component(
-    "messageComponent",
-    require("./components/random/messageComponent.vue").default
-);
+
 Vue.component(
     "CampaginWebWay",
     require("./components/campaign/CampaginWebWay.vue").default
@@ -50,10 +47,7 @@ Vue.component(
     "SoloCampaginWebWay",
     require("./components/operations/SoloCampaginWebWay.vue").default
 );
-Vue.component(
-    "errorMessage",
-    require("./components/random/errorMessage.vue").default
-); //component name should be in camel-case
+
 Vue.component(
     "SystemTable",
     require("./components/campaign/SystemTable.vue").default
@@ -63,17 +57,10 @@ Vue.component(
     require("./components/campaign/UserTable.vue").default
 );
 Vue.component(
-    "hackingToolMessage",
-    require("./components/random/hackingToolMessage.vue").default
-);
-Vue.component(
     "v-progress-circular",
     require("easy-circular-progress/src/index.vue").default
 );
-Vue.component(
-    "messageNotification",
-    require("./components/random/messageNotification.vue").default
-);
+
 Vue.component(
     "SystemTableTimer",
     require("./components/campaignAll/SystemTableTimer.vue").default
@@ -82,14 +69,7 @@ Vue.component(
     "WatchUserTable",
     require("./components/campaignAll/WatchUserTable.vue").default
 );
-Vue.component(
-    "messageStations",
-    require("./components/random/messageStations.vue").default
-);
-Vue.component(
-    "testingMessage",
-    require("./components/random/testingMessage.vue").default
-);
+
 Vue.component(
     "NotificationTimer",
     require("./components/notification/NotificationTimer.vue").default
@@ -285,10 +265,6 @@ Vue.component(
 Vue.component(
     "StartSystemTable",
     require("./components/startcampaign/StartSystemTable.vue").default
-);
-Vue.component(
-    "StartCampaignMessage",
-    require("./components/random/StartCampaignMessage").default
 );
 Vue.component(
     "StartSystemTableTimer",
