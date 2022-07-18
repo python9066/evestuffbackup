@@ -91,6 +91,16 @@ class OperationInfoReconController extends Controller
         operationReconSoloBcast($id, 5);
     }
 
+    public function updateOnlineStatus(Request $request, $id)
+    {
+        $recon = OperationInfoRecon::where('id', $id)->first();
+        $recon->online = $request->online;
+        $recon->save();
+
+        operationReconSoloBcast($id, 5);
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *
