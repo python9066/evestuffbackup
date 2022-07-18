@@ -658,6 +658,12 @@ Vue.component(
     require("./components/operationinfo/OperationInfoReconCardNames.vue")
         .default
 );
+
+Vue.component(
+    "AddOperationStartTime",
+    require("./components/operationinfo/AddOperationStartTime.vue").default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(VueEllipseProgress, "Vep");

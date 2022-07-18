@@ -39,13 +39,17 @@
                 /></v-col>
               </v-row>
             </v-col>
-
-            <v-col class="pt-0 pb-0" cols="auto"
-              >Operation - {{ opInfo.name }}</v-col
-            >
-            <v-col v-if="opInfo.start" class="pt-0 pb-0" cols="auto">{{
-              moment(opInfo.start).format("YYYY-MM-DD HH:mm:ss")
-            }}</v-col>
+            <v-row no-gutters justify="center" align="center">
+              <v-col class="py-0 pr-2" cols="auto"
+                >Operation - {{ opInfo.name }}
+              </v-col>
+              <v-col v-if="opInfo.start" class="pt-0 pb-0" cols="auto">{{
+                moment(opInfo.start).format("YYYY-MM-DD HH:mm:ss")
+              }}</v-col>
+              <v-col v-else class="pt-0 pb-0" cols="auto">
+                <AddOperationStartTime />
+              </v-col>
+            </v-row>
             <v-col cols="auto" class="d-flex justify-content-end"
               ><OperationInfoSettingPannel></OperationInfoSettingPannel
             ></v-col> </v-row></v-card-title
