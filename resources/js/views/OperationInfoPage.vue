@@ -46,7 +46,86 @@
               <v-col v-if="opInfo.start" class="pt-0 pb-0" cols="auto">{{
                 moment(opInfo.start).format("YYYY-MM-DD HH:mm:ss")
               }}</v-col>
-              <v-col v-else class="pt-0 pb-0" cols="auto">
+              <v-col v-if="showCountDown" class="pt-0 pb-0" cols="auto">
+                <CountDowntimer
+                  :start-time="moment.utc(opInfo.start).unix()"
+                  :end-text="'Campaign Over'"
+                  :interval="1000"
+                >
+                  <template slot="countdown" slot-scope="scope">
+                    <span class="red--text pl-3">
+                      <span
+                        v-if="scope.props.hours > 1 && scope.props.days > 1"
+                      >
+                        <v-chip color="red">
+                          {{ scope.props.days }} - {{ scope.props.hours }}:{{
+                            scope.props.minutes
+                          }}:{{ scope.props.seconds }}
+                        </v-chip>
+                      </span>
+                      <span
+                        v-else-if="
+                          scope.props.hours > 1 && scope.props.days == 0
+                        "
+                      >
+                        <v-chip color="red">
+                          {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                            scope.props.seconds
+                          }}
+                        </v-chip>
+                      </span>
+
+                      <span v-else>
+                        <v-chip color="red">
+                          {{ scope.props.minutes }}:{{ scope.props.seconds }}
+                        </v-chip>
+                      </span>
+                    </span>
+                  </template>
+                </CountDowntimer></v-col
+              >
+
+              <v-col class="pt-0 pb-0" cols="auto" v-if="showCountUp">
+                <VueCountUptimer
+                  :start-time="moment.utc(opInfo.start).unix()"
+                  :end-text="'Window Closed'"
+                  :interval="1000"
+                >
+                  <template slot="countup" slot-scope="scope">
+                    <span class="green--text pl-3">
+                      <span
+                        v-if="scope.props.hours > 1 && scope.props.days > 1"
+                      >
+                        <v-chip color="green">
+                          {{ scope.props.days }} - {{ scope.props.hours }}:{{
+                            scope.props.minutes
+                          }}:{{ scope.props.seconds }}</v-chip
+                        >
+                      </span>
+                      <span
+                        v-else-if="
+                          scope.props.hours > 1 && scope.props.days == 0
+                        "
+                      >
+                        <v-chip color="green">
+                          {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                            scope.props.seconds
+                          }}</v-chip
+                        >
+                      </span>
+
+                      <span v-else>
+                        <v-chip color="green">
+                          {{ scope.props.minutes }}:{{
+                            scope.props.seconds
+                          }}</v-chip
+                        >
+                      </span>
+                    </span>
+                  </template>
+                </VueCountUptimer></v-col
+              >
+              <v-col v-if="!opInfo.start" class="pt-0 pb-0" cols="auto">
                 <AddOperationStartTime />
               </v-col>
             </v-row>
@@ -299,6 +378,30 @@ export default {
       }
 
       return false;
+    },
+
+    showCountDown() {
+      if (
+        this.opInfo.start &&
+        moment.utc().format("YYYY-MM-DD HH:mm:ss") <
+          moment(this.opInfo.start).format("YYYY-MM-DD HH:mm:ss")
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    showCountUp() {
+      if (
+        this.opInfo.start &&
+        moment.utc().format("YYYY-MM-DD HH:mm:ss") >
+          moment(this.opInfo.start).format("YYYY-MM-DD HH:mm:ss")
+      ) {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
   beforeDestroy() {

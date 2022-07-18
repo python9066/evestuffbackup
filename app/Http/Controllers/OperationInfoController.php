@@ -135,6 +135,15 @@ class OperationInfoController extends Controller
     }
 
 
+    public function updateStartTime(Request $request, $id)
+    {
+        $operation = OperationInfo::where('id', $id)->first();
+        $operation->start = $request->start;
+        $operation->save();
+        operationInfoSoloPageBroadcast($id, 1);
+    }
+
+
 
 
     public function editHackOperation(Request $request, $id)

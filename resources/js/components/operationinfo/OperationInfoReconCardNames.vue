@@ -28,6 +28,12 @@
       <v-btn x-small color="orange" icon @click="removeRecon(recon)"
         ><font-awesome-icon icon="fa-solid fa-trash"
       /></v-btn>
+      <v-btn x-small color="blue" icon @click="dead(recon)"
+        ><font-awesome-icon icon="fa-solid fa-skull-crossbones"
+      /></v-btn>
+      <v-btn x-small color="blue" icon @click="removeRecon(recon)"
+        ><font-awesome-icon icon="fa-solid fa-power-off"
+      /></v-btn>
     </v-col>
   </v-row>
 </template>

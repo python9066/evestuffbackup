@@ -347,6 +347,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/newcampaignpriority/{id}', [NewOperationsController::class, 'updatePriority']);
 
     Route::post('/operationinfosheet', [OperationInfoController::class, 'store']);
+    Route::post('/operationinfostart/{id}', [OperationInfoController::class, 'updateStartTime']);
     Route::post('/operationinfosheet/{id}', [OperationInfoController::class, 'editHackOperation']);
     Route::get('/operationinfosheet', [OperationInfoController::class, 'index']);
     Route::post('/operationinfosystemnoteupdate/{id}', [OperationInfoController::class, 'updateNote']);

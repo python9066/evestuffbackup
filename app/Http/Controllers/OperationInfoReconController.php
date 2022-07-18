@@ -80,10 +80,15 @@ class OperationInfoReconController extends Controller
 
         $recon->save();
         operationReconRemoveSoloBcast($recon->id, $id, 13);
+    }
 
-        // $fleet->recon_id = $request->recon_id;
-        // $fleet->save();
-        // operationInfoSoloPageFleetBroadcast($fleet->id, $fleet->operation_info_id, 2);
+    public function updateDeadStatus(Request $request, $id)
+    {
+        $recon = OperationInfoRecon::where('id', $id)->first();
+        $recon->dead = $request->dead;
+        $recon->save();
+
+        operationReconSoloBcast($id, 5);
     }
 
     /**
