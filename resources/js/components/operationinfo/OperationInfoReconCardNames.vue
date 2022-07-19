@@ -176,7 +176,11 @@ export default {
       var a = this.textColor;
       var b = this.textCross;
       var c = this.textOnline;
-      return a + " " + b + " " + c;
+      if (c || b) {
+        return c + " " + b;
+      } else {
+        return a;
+      }
     },
 
     onlineColor() {
