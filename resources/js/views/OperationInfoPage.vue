@@ -155,7 +155,7 @@
               :enter-active-class="showEnter"
               :leave-active-class="showLeave"
             >
-              <v-col :cols="fleetCardCols" v-if="showSystemTable">
+              <v-col cols="8" v-if="showSystemTable">
                 <OpertationInfoSystemTable
                   :loaded="loaded"
                   :windowSize="windowSize"
@@ -166,7 +166,7 @@
               :enter-active-class="showEnter"
               :leave-active-class="showLeave"
             >
-              <v-col :cols="fleetCardCols" v-if="showFleets">
+              <v-col cols="5" v-if="showFleets">
                 <OperationInfoFleetCard
                   :loaded="loaded"
                   :windowSize="windowSize"
@@ -298,14 +298,6 @@ export default {
     ...mapState[
       ("operationInfoPage", "operationInfoUsers", "operationInfoSetting")
     ],
-
-    fleetCardCols() {
-      if (this.opSetting.showMessageTable) {
-        return 5;
-      } else {
-        return 10;
-      }
-    },
 
     opSetting: {
       get() {

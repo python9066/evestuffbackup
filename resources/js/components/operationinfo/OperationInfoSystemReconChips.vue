@@ -101,7 +101,7 @@ export default {
     },
 
     MaxW() {
-      let num = this.windowSize.x - 1500;
+      let num = this.windowSize.x - 1600;
       return num;
     },
 

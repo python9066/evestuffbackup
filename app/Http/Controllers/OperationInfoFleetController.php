@@ -131,13 +131,22 @@ class OperationInfoFleetController extends Controller
     {
         $fleet = OperationInfoFleet::where('id', $id)->first();
         $opID = $fleet->operation_info_id;
-        $recon = OperationInfoRecon::where('id', $fleet->recon_id)->first();
-        if ($recon) {
+        $recons = OperationInfoRecon::where('operation_info_fleet_id', $id)->get();
+        foreach ($recons as $recon) {
             $recon->operation_info_fleet_id = null;
-            $recon->operation_info_recon_status_id = 1;
+            if ($recon->operation_info_recon_status_id == 4) {
+                $recon->operation_info_recon_status_id = 3;
+            } else {
+                $recon->operation_info_recon_status_id = 1;
+            }
+            $recon->role_id = null;
             $recon->save();
             operationReconSoloBcast($recon->id, 5);
         }
+
+
+
+
         $fleet->delete();
         operationInfoSoloPageFleetBroadcastDelete($id, $opID, 6);
     }

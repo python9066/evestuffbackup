@@ -171,13 +171,6 @@
           </v-btn></v-card-actions
         >
       </v-card>
-
-      <!-- <showStationSettingPannel
-                :nodeNoteItem="nodeNoteItem"
-                v-if="$can('super')"
-                @closeMessage="showStationSettingPannel = false"
-            >
-            </showStationSettingPannel> -->
     </v-dialog>
   </div>
 </template>
