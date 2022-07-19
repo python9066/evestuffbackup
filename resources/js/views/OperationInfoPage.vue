@@ -155,7 +155,7 @@
               :enter-active-class="showEnter"
               :leave-active-class="showLeave"
             >
-              <v-col cols="8" v-if="showSystemTable">
+              <v-col cols="9" v-if="showSystemTable">
                 <OpertationInfoSystemTable
                   :loaded="loaded"
                   :windowSize="windowSize"

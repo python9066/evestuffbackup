@@ -41,8 +41,8 @@
             </template>
 
             <template v-slot:[`item.TODORecon`]="{ item }">
-              <v-row no-gutters justify="space-around">
-                <v-col cols="10">
+              <v-row no-gutters justify="start">
+                <v-col cols="11">
                   <OperationInfoSystemReconChips
                     :windowSize="windowSize"
                     :loaded="loaded"
@@ -103,8 +103,8 @@ export default {
           text: "Recon",
           value: "TODORecon",
           sortable: true,
-          width: "30%",
           cellClass: "pl-0 pr-0",
+          align: "start",
         },
 
         {
@@ -118,13 +118,15 @@ export default {
           text: "Notes",
           value: "pivot.notes",
           sortable: true,
+          width: "15%",
         },
 
         {
           text: "",
           value: "actions",
           sortable: true,
-          align: "center",
+          align: "end",
+          width: "8%",
         },
       ],
     };
