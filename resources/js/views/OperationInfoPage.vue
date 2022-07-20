@@ -211,6 +211,7 @@ export default {
     await this.$store.dispatch("getSystemList");
     await this.$store.dispatch("getOperationSheetInfoOperationList");
     await this.$store.dispatch("getOperationInfoJamList");
+    await this.$store.dispatch("getUserList");
 
     Echo.private("operationinfooppage." + this.opInfo.id).listen(
       "OperationInfoPageSoloUpdate",

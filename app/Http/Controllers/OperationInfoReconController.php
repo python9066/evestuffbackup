@@ -27,7 +27,7 @@ class OperationInfoReconController extends Controller
      */
     public function store(Request $request)
     {
-        $done =  checkUserNameRecon($request->name, $request->opID);
+        $done =  checkUserNameRecon($request->name, $request->user_id, $request->opID);
 
         if (!$done) {
             return response()->json([

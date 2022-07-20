@@ -124,6 +124,7 @@ export default new Vuex.Store({
         newOperationList: [],
         newOperationMessageOverlay: 0,
         setOpenOperationAddChar: false,
+        userList: [],
     },
     mutations: {
         DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
@@ -196,6 +197,10 @@ export default new Vuex.Store({
 
         SET_STATION_LIST(state, stations) {
             state.stationList = stations;
+        },
+
+        SET_USER_LIST(state, data) {
+            state.userList = data;
         },
 
         SET_OPERATION_INFO(state, data) {
@@ -1216,6 +1221,18 @@ export default new Vuex.Store({
                 },
             });
             commit("SET_STATION_LIST", res.data.stations);
+        },
+        async getUserList({ commit }) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/users",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_USER_LIST", res.data.users);
         },
 
         async getOperationInfo({ commit }, id) {
