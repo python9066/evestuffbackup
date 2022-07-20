@@ -150,28 +150,39 @@
                 </v-row>
               </v-col>
             </transition>
-            <transition
-              mode="out-in"
-              :enter-active-class="showEnter"
-              :leave-active-class="showLeave"
-            >
-              <v-col cols="9" v-if="showSystemTable">
-                <OpertationInfoSystemTable
-                  :loaded="loaded"
-                  :windowSize="windowSize"
-              /></v-col>
-            </transition>
-            <transition
-              mode="out-in"
-              :enter-active-class="showEnter"
-              :leave-active-class="showLeave"
-            >
-              <v-col cols="5" v-if="showFleets">
-                <OperationInfoFleetCard
-                  :loaded="loaded"
-                  :windowSize="windowSize"
-              /></v-col> </transition></v-row></v-card-text></v-card
-    ></v-col>
+
+            <v-col cols="9">
+              <v-row no-gutters>
+                <transition
+                  mode="out-in"
+                  :enter-active-class="showEnter"
+                  :leave-active-class="showLeave"
+                >
+                  <v-col cols="12" v-if="showSystemTable">
+                    <OpertationInfoSystemTable
+                      :loaded="loaded"
+                      :windowSize="windowSize"
+                  /></v-col>
+                </transition>
+              </v-row>
+              <v-row no-gutters class="pt-2">
+                <transition
+                  mode="out-in"
+                  :enter-active-class="showEnter"
+                  :leave-active-class="showLeave"
+                >
+                  <v-col cols="12" v-if="showFleets">
+                    <OperationInfoFleetCard
+                      :loaded="loaded"
+                      :windowSize="windowSize"
+                  /></v-col>
+                </transition>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-card-text>
+      </v-card>
+    </v-col>
   </v-row>
 </template>
 <script>

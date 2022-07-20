@@ -8,9 +8,19 @@
               <v-col cols="auto">
                 <v-btn icon x-small class="handle" color="gray">
                   <font-awesome-icon
-                    icon="fa-solid fa-up-down-left-right" /></v-btn></v-col
-              ><v-col cols="auto">{{ fleetInfo.name }} </v-col
-              ><v-col cols="auto"
+                    icon="fa-solid fa-up-down-left-right" /></v-btn
+              ></v-col>
+              <v-col v-if="readOnly" cols="auto">{{ fleetInfo.name }} </v-col>
+              <v-col v-else cols="auto">
+                <v-text-field
+                  outlined
+                  rounded
+                  filled
+                  v-model="fleetInfo.name"
+                  @change="updateFleet()"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="auto"
                 ><v-fab-transition
                   ><v-speed-dial
                     v-model="fab"

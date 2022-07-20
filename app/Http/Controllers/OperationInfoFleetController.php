@@ -111,12 +111,20 @@ class OperationInfoFleetController extends Controller
     {
 
         $fleet = OperationInfoFleet::where('id', $id)->first();
+        $oldName = $fleet->name;
         $fleet->name = $request->name;
         $fleet->gsf_fleet = $request->gsf_fleet;
         $fleet->mumble_id = $request->mumble_id;
         $fleet->doctrine_id = $request->doctrine_id;
         $fleet->alliance_id = $request->alliance_id;
         $fleet->save();
+
+        if ($oldName != $fleet->name) {
+            $recons = OperationInfoRecon::where('operation_info_fleet_id', $id)->get();
+            foreach ($recons as $recon) {
+                operationReconSoloBcast($recon->id, 5);
+            }
+        }
 
         operationInfoSoloPageFleetBroadcast($fleet->id, $fleet->operation_info_id, 2);
     }
