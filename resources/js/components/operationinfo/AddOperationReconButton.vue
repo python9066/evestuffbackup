@@ -144,9 +144,13 @@ export default {
       await sleep(500);
       if (this.type == "string") {
         var name = this.name;
-        var mainID = this.mainName;
       } else {
         var name = this.name.name;
+      }
+
+      if (this.showMain) {
+        var mainID = this.mainName;
+      } else {
         var mainID = this.$store.state.user_id;
       }
       var request = {
