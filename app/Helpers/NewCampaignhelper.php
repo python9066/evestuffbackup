@@ -19,7 +19,7 @@ if (!function_exists('newUpdateCampaigns')) {
         activity()->disableLogging();
         $updatedCampaignID = collect();
 
-        // * Set check flag to 0
+        // * Set check flag to 0ffff
         $n = NewCampaign::where('id', '>', 0)->get();
         foreach ($n as $n) {
             $n->update(['check' => 0]);
