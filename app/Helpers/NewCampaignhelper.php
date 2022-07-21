@@ -142,6 +142,25 @@ if (!function_exists('newUpdateCampaigns')) {
                 }
             }
         }
+        $yesterday = now()->subDay();
+        $oldCampaigns = NewCampaign::where('status_id', 4)->where('end_time', '<', $yesterday)->get();
+        foreach ($oldCampaigns as $oldCampaign) {
+            $campaign = NewCampaign::where('id', $oldCampaign->id)->with('operations')->first();
+            $operations = $campaign->operations;
+            foreach ($operations as $operation) {
+                $count = $operation->campaign->count();
+                if ($count == 1) {
+                    $operationUsers = OperationUser::where('operation_id', $operation->id)->get();
+                    foreach ($operationUsers as $operationUser) {
+                        $operationUser->operation_id = null;
+                        $operationUser->save();
+                    }
+                    $operation->delete();
+                }
+            }
+
+            NewCampaignOperation::where('campaign_id', $oldCampaign->id)->delete();
+        }
 
         $noCampaigns = NewOperation::doesntHave('campaign')->get();
         foreach ($noCampaigns as $noCampaign) {
