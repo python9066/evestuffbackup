@@ -46,6 +46,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('update:timers')->hourly()->withoutOverlapping();
         // $schedule->command('update:alliances')->dailyAt('22:00')->withoutOverlapping();
         // $schedule->command('clear:remembertoken')->twiceDaily(9, 21)->withoutOverlapping();
+        // $schedule->command('get:dankdocs')->twiceDaily(9, 21)->withoutOverlapping();
     }
 
     /**

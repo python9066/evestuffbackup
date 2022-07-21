@@ -101,6 +101,7 @@ class OperationInfoSheetController extends Controller
 
         if ($operation->wasChanged('status_id')) {
             operationInfoStatusBcast(intval($request->status_id), $id, 8);
+            operationInfoSoloBroadcast($id, 2);
         }
     }
 

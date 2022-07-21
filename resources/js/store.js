@@ -141,6 +141,28 @@ export default new Vuex.Store({
             }
         },
 
+        REMOVE_OPERATION_PAGE_INFO(state, id) {
+            let check = state.operationInfo.filter((e) => e.id == id).length;
+            if (check > 0) {
+                state.operationInfo = state.operationInfo.filter(
+                    (e) => e.id != id
+                );
+            } else {
+                state.operationInfo = [];
+            }
+        },
+
+        CLEAR_OPERATION_INFO_SOLO(state) {
+            state.operationInfoPage = [];
+            state.operationInfoUsers = [];
+            state.operationInfoMumble = [];
+            state.operationInfoDoctrines = [];
+            state.operationInfoRecon = [];
+            state.operationInfoReconFleetRoleList = [];
+            state.operationInfoOperationList = [];
+            state.operationInfoJamList = [];
+        },
+
         DELETE_OPERATION_SHEET_INFO_PAGE_FLEET(state, id) {
             let check = state.operationInfoPage.fleets.filter(
                 (e) => e.id == id
@@ -924,6 +946,10 @@ export default new Vuex.Store({
             Object.assign(item, data);
         },
 
+        UPDATE_OPERATION_INFO_SETTING(state, data) {
+            state.operationInfoSetting = data;
+        },
+
         UPDATE_CAMPAIGN_SYSTEM(state, data) {
             const item = state.campaignsystems.find(
                 (item) => item.id === data.id
@@ -1142,7 +1168,7 @@ export default new Vuex.Store({
             commit("SET_OPERATION_INFO_JAM_LIST", res.data.jam);
         },
 
-        async getOperationInfoMumble({ commit }) {
+        async getOperationInfoReconRoles({ commit }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -2012,6 +2038,14 @@ export default new Vuex.Store({
             commit("UPDATE_OPERATION_PAGE_INFO", data);
         },
 
+        removeOperationPageInfo({ commit }, data) {
+            commit("REMOVE_OPERATION_PAGE_INFO", data);
+        },
+
+        clearOperationInfoSolo({ commit }) {
+            commit("CLEAR_OPERATION_INFO_SOLO");
+        },
+
         updateOperationSheetInfoPage({ commit }, data) {
             commit("UPDATE_OPERATION_INFO_PAGE", data);
         },
@@ -2054,6 +2088,10 @@ export default new Vuex.Store({
 
         updateStartCampaignSystem({ commit }, data) {
             commit("UPDATE_START_CAMPAIGN_SYSTEM", data);
+        },
+
+        updateOperationInfoSetting({ commit }, data) {
+            commit("UPDATE_OPERATION_INFO_SETTING", data);
         },
 
         updateTooltipToggle({ commit }, data) {

@@ -30,24 +30,29 @@
               x-small
               v-bind="attrs"
               v-on="on"
-              @click="addShown = true"
+              @click="infoShown = true"
               color="blue"
               ><font-awesome-icon icon="fa-solid fa-circle-info" size="2xl" />
             </v-btn>
           </template>
           <v-card>
             <v-card-text>
-              Find the Cyno characters in the drop down list below.<br /><br />
-              Character is not in the drop down:<br />
-              Own character just enter the fullname in the drop down list and
-              hit ADD and it will be added.<br />
-              Someone elses character dosn't belong to you, enter the fullname
-              of the character, toggle to save its not your character then enter
-              the Main character of the cyno</v-card-text
+              If you have added a Cyno before you will find the characters in
+              the drop down list below. Just select it and press ADD<br />
+              <br />
+              Character not in the dropdown:<br />
+              If own character just enter the fullname in the dropdown list and
+              hit ADD.<br /><br />
+              If character is own by someone else. Enter fullname in the drop
+              down list, then toggle the "Add Main"<br />Once toggled a new
+              dropdown should show, find the main character in the dropdown list
+              select it and press add<br />If you cant find the name, that means
+              the person has never logged into the site.</v-card-text
             ></v-card
           ></v-menu
-        ></v-card-subtitle
-      >
+        >
+        <span> {{ infoText }} </span>
+      </v-card-subtitle>
       <v-card-text>
         <v-row no-gutters>
           <v-combobox
@@ -218,6 +223,10 @@ export default {
 
     dropDownMain() {
       return this.userList;
+    },
+
+    infoText() {
+      return "<-- read before adding Cyno";
     },
 
     type() {
