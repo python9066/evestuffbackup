@@ -1,9 +1,13 @@
 <template>
   <v-row no-gutters>
     <v-col cols="12">
-      <v-card rounded="xl" :max-height="heightCard" :height="heightCard"
+      <v-card rounded="xl"
         ><v-card-title class="red pt-1 pb-1"
-          >Fleets <v-btn fab small @click="addFleet()">A</v-btn></v-card-title
+          ><span class="pr-2">Fleets</span>
+          <v-btn fab x-small color="blue" @click="addFleet()"
+            ><font-awesome-icon
+              icon="fa-solid fa-plus"
+              size="2xl" /></v-btn></v-card-title
         ><v-card-text :style="style">
           <draggable
             v-model="opInfo.fleets"
@@ -102,16 +106,6 @@ export default {
       if (this.loaded == true) {
         return "animate__animated animate__zoomOut";
       }
-    },
-
-    heightCard() {
-      let num = this.windowSize.y - 232;
-      return num;
-    },
-
-    heightList() {
-      let num = this.windowSize.y - 332;
-      return num;
     },
 
     style() {

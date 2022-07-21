@@ -14,7 +14,7 @@
             :recon="recon"
             no-gutters
             v-for="recon in opInfo.recons"
-            :key="`${recon.id}-${recon.operation_info_recon_status_id}-card`"
+            :key="`${recon.id}-${recon.operation_info_recon_status_id}-${recon.dead}-${recon.online}-card`"
           />
         </transition-group>
       </v-card-text>

@@ -8,9 +8,21 @@
               <v-col cols="auto">
                 <v-btn icon x-small class="handle" color="gray">
                   <font-awesome-icon
-                    icon="fa-solid fa-up-down-left-right" /></v-btn></v-col
-              ><v-col cols="auto">{{ fleetInfo.name }} </v-col
-              ><v-col cols="auto"
+                    icon="fa-solid fa-up-down-left-right" /></v-btn
+              ></v-col>
+              <v-col v-if="readOnly" cols="auto">{{ fleetInfo.name }} </v-col>
+              <v-col v-else cols="auto">
+                <v-text-field
+                  outlined
+                  rounded
+                  dense
+                  hide-details
+                  filled
+                  v-model="fleetInfo.name"
+                  @change="updateFleet()"
+                ></v-text-field>
+              </v-col>
+              <v-col cols="auto"
                 ><v-fab-transition
                   ><v-speed-dial
                     v-model="fab"
@@ -19,7 +31,7 @@
                     transition="slide-y-reverse-transition"
                   >
                     <template v-slot:activator>
-                      <v-btn v-model="fab" color="blue darken-2" small fab>
+                      <v-btn v-model="fab" color="blue darken-2" x-small fab>
                         <font-awesome-icon
                           v-if="fab"
                           size="xl"
@@ -52,97 +64,99 @@
           ><v-card-text>
             <div v-if="!readOnly">
               <v-row class="pt-2" no-gutters
-                ><v-col cols="auto"></v-col>
-                <v-combobox
-                  outlined
-                  :clearable="!readOnly"
-                  :readonly="readOnly"
-                  :append-icon="dropDownIcon"
-                  :items="operationInfoUsers"
-                  v-model="fleetInfo.fc"
-                  item-text="name"
-                  item-value="id"
-                  hide-details
-                  rounded
-                  label="FC"
-                  dense
-                  @change="updateFC()"
-                ></v-combobox
+                ><v-col cols="auto">
+                  <v-combobox
+                    outlined
+                    :clearable="!readOnly"
+                    :readonly="readOnly"
+                    :append-icon="dropDownIcon"
+                    :items="operationInfoUsers"
+                    v-model="fleetInfo.fc"
+                    item-text="name"
+                    item-value="id"
+                    hide-details
+                    rounded
+                    label="FC"
+                    dense
+                    @change="updateFC()"
+                  ></v-combobox></v-col
               ></v-row>
               <v-row class="pt-2" no-gutters
-                ><v-col cols="auto"></v-col
-                ><v-combobox
-                  outlined
-                  :clearable="!readOnly"
-                  :readonly="readOnly"
-                  :append-icon="dropDownIcon"
-                  :items="operationInfoUsers"
-                  v-model="fleetInfo.boss"
-                  item-text="name"
-                  item-value="id"
-                  hide-details
-                  rounded
-                  label="Boss"
-                  dense
-                  @change="updateBoss()"
-                ></v-combobox
+                ><v-col cols="auto"
+                  ><v-combobox
+                    outlined
+                    :clearable="!readOnly"
+                    :readonly="readOnly"
+                    :append-icon="dropDownIcon"
+                    :items="operationInfoUsers"
+                    v-model="fleetInfo.boss"
+                    item-text="name"
+                    item-value="id"
+                    hide-details
+                    rounded
+                    label="Boss"
+                    dense
+                    @change="updateBoss()"
+                  ></v-combobox></v-col
               ></v-row>
               <v-row class="pt-2" no-gutters
-                ><v-col cols="auto"></v-col
-                ><v-autocomplete
-                  outlined
-                  :clearable="!readOnly"
-                  :readonly="readOnly"
-                  :append-icon="dropDownIcon"
-                  :items="operationInfoDoctrines"
-                  v-model="fleetInfo.doctrine_id"
-                  item-text="name"
-                  item-value="id"
-                  hide-details
-                  rounded
-                  label="Doctrine"
-                  dense
-                  @change="updateFleet()"
-                ></v-autocomplete
+                ><v-col cols="auto"
+                  ><v-autocomplete
+                    outlined
+                    :clearable="!readOnly"
+                    :readonly="readOnly"
+                    :append-icon="dropDownIcon"
+                    :items="operationInfoDoctrines"
+                    v-model="fleetInfo.doctrine_id"
+                    item-text="name"
+                    item-value="id"
+                    hide-details
+                    rounded
+                    label="Doctrine"
+                    dense
+                    @change="updateFleet()"
+                  ></v-autocomplete></v-col
               ></v-row>
               <v-row class="pt-2" no-gutters
-                ><v-col cols="auto"></v-col
-                ><v-autocomplete
-                  outlined
-                  :clearable="!readOnly"
-                  :readonly="readOnly"
-                  :append-icon="dropDownIcon"
-                  :items="operationInfoMumble"
-                  v-model="fleetInfo.mumble_id"
-                  item-text="name"
-                  item-value="id"
-                  hide-details
-                  rounded
-                  label="Mumble"
-                  dense
-                  @change="updateFleet()"
-                ></v-autocomplete
+                ><v-col cols="auto"
+                  ><v-autocomplete
+                    outlined
+                    :clearable="!readOnly"
+                    :readonly="readOnly"
+                    :append-icon="dropDownIcon"
+                    :items="operationInfoMumble"
+                    v-model="fleetInfo.mumble_id"
+                    item-text="name"
+                    item-value="id"
+                    hide-details
+                    rounded
+                    label="Mumble"
+                    dense
+                    @change="updateFleet()"
+                  ></v-autocomplete></v-col
               ></v-row>
               <v-row class="pt-2" no-gutters
-                ><v-col cols="auto"></v-col>
-                <OperationInfoFleetReconCard :fleetID="this.fleetID" />
+                ><v-col cols="auto">
+                  <OperationInfoFleetReconCard :fleetID="this.fleetID" />
+                </v-col>
               </v-row>
-              <v-row class="pt-2" no-gutters
-                ><v-col cols="auto"></v-col>
-                <v-autocomplete
-                  outlined
-                  :clearable="!readOnly"
-                  :readonly="readOnly"
-                  :append-icon="dropDownIcon"
-                  :items="allianceticklist"
-                  v-model="fleetInfo.alliance_id"
-                  hide-details
-                  rounded
-                  label="Alliance"
-                  dense
-                  @change="updateFleet()"
-                ></v-autocomplete
-              ></v-row>
+              <v-row class="pt-2" no-gutters>
+                <!-- <v-col cols="auto">
+                  <v-autocomplete
+                    outlined
+                    :clearable="!readOnly"
+                    :readonly="readOnly"
+                    :append-icon="dropDownIcon"
+                    :items="allianceticklist"
+                    v-model="fleetInfo.alliance_id"
+                    hide-details
+                    rounded
+                    label="Alliance"
+                    dense
+                    @change="updateFleet()"
+                  ></v-autocomplete>
+                </v-col> -->
+              </v-row>
             </div>
             <div v-else>
               <span>FC - {{ fcText }}</span>
@@ -195,7 +209,7 @@
                 </v-list>
               </v-menu>
               <br />
-              <span> Alliance - {{ allianceText }}</span>
+              <!-- <span> Alliance - {{ allianceText }}</span> -->
             </div>
           </v-card-text>
         </v-card>
@@ -336,6 +350,18 @@ export default {
       "operationInfoRecon",
     ]),
 
+    fleetInfo: {
+      get() {
+        return this.$store.getters.getFleetInfo(this.fleetID);
+      },
+      set(newValue) {
+        return this.$store.dispatch(
+          "updateOperationSheetInfoPageFleet",
+          newValue
+        );
+      },
+    },
+
     opInfo: {
       get() {
         return this.$store.state.operationInfoPage;
@@ -346,7 +372,11 @@ export default {
     },
 
     recons() {
-      return this.fleetInfo.recons;
+      if (this.fleetInfo.recons) {
+        return this.fleetInfo.recons;
+      } else {
+        return null;
+      }
     },
 
     extraRecons() {
@@ -368,9 +398,13 @@ export default {
     },
 
     reconMain() {
-      var main = this.recons.find((r) => r.fleet_role.id == 1);
-      if (main) {
-        return main;
+      if (this.recons.length > 0) {
+        var main = this.recons.find((r) => r.fleet_role.id == 1);
+        if (main) {
+          return main;
+        } else {
+          return null;
+        }
       } else {
         return null;
       }
@@ -405,18 +439,6 @@ export default {
       var num = this.reconCount;
       var icon = text + num;
       return icon;
-    },
-
-    fleetInfo: {
-      get() {
-        return this.$store.getters.getFleetInfo(this.fleetID);
-      },
-      set(newValue) {
-        return this.$store.dispatch(
-          "updateOperationSheetInfoPageFleet",
-          newValue
-        );
-      },
     },
 
     showEnter() {

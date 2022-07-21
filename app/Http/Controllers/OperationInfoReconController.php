@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\OperationInfoRecon;
+use App\Models\OperationInfoSystemRecon;
 use Illuminate\Http\Request;
 
 class OperationInfoReconController extends Controller
@@ -26,7 +27,7 @@ class OperationInfoReconController extends Controller
      */
     public function store(Request $request)
     {
-        $done =  checkUserNameRecon($request->name, $request->opID);
+        $done =  checkUserNameRecon($request->name, $request->user_id, $request->opID);
 
         if (!$done) {
             return response()->json([
@@ -62,29 +63,65 @@ class OperationInfoReconController extends Controller
 
     public function removeFromOp(Request $request, $id)
     {
+        $oldFleetID = null;
+        $oldSystemID = null;
         $recon = OperationInfoRecon::where('id', $request->id)->first();
-        $recon->operation_info_id = 0;
-        $recon->operation_info_recon_status_id = 0;
-        if ($recon->operation_system_id) {
-            $recon->operation_system_id = null;
-        } else {
-            $recon->operation_system_id = null;
+        $checkSystemRecon = OperationInfoSystemRecon::where('operation_info_recon_id', $recon->id)->first();
+        if ($checkSystemRecon) {
+            $oldSystemID = $checkSystemRecon->operation_info_system_id;
         }
+        $oldOpID = $recon->operation_info_id;
+        $recon->operation_info_id = null;
 
         if ($recon->operation_info_fleet_id) {
-            $recon->operation_info_fleet_id = null;
-        } else {
-            $recon->operation_info_fleet_id = null;
+            $oldFleetID = $recon->operation_info_fleet_id;
         }
+        $recon->operation_info_fleet_id = null;
+
+        if ($recon->system_id) {
+            $oldSystemID = $recon->system_id;
+        }
+        $recon->system_id = null;
 
 
+        $recon->operation_info_recon_status_id = 1;
+        $recon->role_id = 0;
+        $recon->online = 0;
+        $recon->dead = 0;
         $recon->save();
-        operationReconRemoveSoloBcast($recon->id, $id, 13);
 
-        // $fleet->recon_id = $request->recon_id;
-        // $fleet->save();
-        // operationInfoSoloPageFleetBroadcast($fleet->id, $fleet->operation_info_id, 2);
+
+
+        operationReconSoloBcast($recon->id, 5);
+        operationReconRemoveSoloBcast($recon->id, $oldOpID, 13);
+        if ($oldFleetID) {
+            operationInfoSoloPageFleetBroadcast($oldFleetID, $oldOpID, 2);
+        }
+        if ($oldSystemID) {
+            OperationInfoSystemRecon::where('operation_info_recon_id', $recon->id)
+                ->where('operation_info_system_id', $oldSystemID)->delete();
+            operationInfoSystemsSoloBcast($oldOpID, $oldSystemID, 14);
+        }
     }
+
+    public function updateDeadStatus(Request $request, $id)
+    {
+        $recon = OperationInfoRecon::where('id', $id)->first();
+        $recon->dead = $request->dead;
+        $recon->save();
+
+        operationReconSoloBcast($id, 5);
+    }
+
+    public function updateOnlineStatus(Request $request, $id)
+    {
+        $recon = OperationInfoRecon::where('id', $id)->first();
+        $recon->online = $request->online;
+        $recon->save();
+
+        operationReconSoloBcast($id, 5);
+    }
+
 
     /**
      * Remove the specified resource from storage.

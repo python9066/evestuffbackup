@@ -1,6 +1,6 @@
 /*!
-  * Bootstrap v4.6.1 (https://getbootstrap.com/)
-  * Copyright 2011-2021 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Bootstrap v4.6.2 (https://getbootstrap.com/)
+  * Copyright 2011-2022 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 
@@ -11,7 +11,7 @@
  */
 
 /*!
- * Pusher JavaScript Library v7.0.6
+ * Pusher JavaScript Library v7.2.0
  * https://pusher.com/
  *
  * Copyright 2020, Pusher
@@ -30,7 +30,7 @@
  */
 
 /*!
- * Vue.js v2.7.6
+ * Vue.js v2.7.7
  * (c) 2014-2022 Evan You
  * Released under the MIT License.
  */

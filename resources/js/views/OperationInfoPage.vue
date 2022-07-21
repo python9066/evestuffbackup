@@ -1,7 +1,7 @@
 <template>
   <v-row no-gutters v-resize="onResize" justify="center">
     <v-col cols="12" class="pl-5 pr-5"
-      ><v-card rounded="xl"
+      ><v-card rounded="xl" :min-height="mainHeight"
         ><v-card-title class="primary pt-2 pb-2"
           ><v-row no-gutters justify="space-between">
             <v-col cols="auto">
@@ -39,56 +39,152 @@
                 /></v-col>
               </v-row>
             </v-col>
+            <v-row no-gutters justify="center" align="center">
+              <v-col class="py-0 pr-2" cols="auto"
+                >Operation - {{ opInfo.name }}
+              </v-col>
+              <v-col v-if="opInfo.start" class="pt-0 pb-0" cols="auto">{{
+                moment(opInfo.start).format("YYYY-MM-DD HH:mm:ss")
+              }}</v-col>
+              <v-col v-if="showCountDown" class="pt-0 pb-0" cols="auto">
+                <CountDowntimer
+                  :start-time="moment.utc(opInfo.start).unix()"
+                  :end-text="'Campaign Over'"
+                  :interval="1000"
+                >
+                  <template slot="countdown" slot-scope="scope">
+                    <span class="red--text pl-3">
+                      <span
+                        v-if="scope.props.hours > 1 && scope.props.days > 1"
+                      >
+                        <v-chip color="red">
+                          {{ scope.props.days }} - {{ scope.props.hours }}:{{
+                            scope.props.minutes
+                          }}:{{ scope.props.seconds }}
+                        </v-chip>
+                      </span>
+                      <span
+                        v-else-if="
+                          scope.props.hours > 1 && scope.props.days == 0
+                        "
+                      >
+                        <v-chip color="red">
+                          {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                            scope.props.seconds
+                          }}
+                        </v-chip>
+                      </span>
 
-            <v-col class="pt-0 pb-0" cols="auto"
-              >Operation - {{ opInfo.name }}</v-col
-            >
-            <v-col v-if="opInfo.start" class="pt-0 pb-0" cols="auto">{{
-              moment(opInfo.start).format("YYYY-MM-DD HH:mm:ss")
-            }}</v-col>
+                      <span v-else>
+                        <v-chip color="red">
+                          {{ scope.props.minutes }}:{{ scope.props.seconds }}
+                        </v-chip>
+                      </span>
+                    </span>
+                  </template>
+                </CountDowntimer></v-col
+              >
+
+              <v-col class="pt-0 pb-0" cols="auto" v-if="showCountUp">
+                <VueCountUptimer
+                  :start-time="moment.utc(opInfo.start).unix()"
+                  :end-text="'Window Closed'"
+                  :interval="1000"
+                >
+                  <template slot="countup" slot-scope="scope">
+                    <span class="green--text pl-3">
+                      <span
+                        v-if="scope.props.hours > 1 && scope.props.days > 1"
+                      >
+                        <v-chip color="green">
+                          {{ scope.props.days }} - {{ scope.props.hours }}:{{
+                            scope.props.minutes
+                          }}:{{ scope.props.seconds }}</v-chip
+                        >
+                      </span>
+                      <span
+                        v-else-if="
+                          scope.props.hours > 1 && scope.props.days == 0
+                        "
+                      >
+                        <v-chip color="green">
+                          {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
+                            scope.props.seconds
+                          }}</v-chip
+                        >
+                      </span>
+
+                      <span v-else>
+                        <v-chip color="green">
+                          {{ scope.props.minutes }}:{{
+                            scope.props.seconds
+                          }}</v-chip
+                        >
+                      </span>
+                    </span>
+                  </template>
+                </VueCountUptimer></v-col
+              >
+              <v-col v-if="!opInfo.start" class="pt-0 pb-0" cols="auto">
+                <AddOperationStartTime />
+              </v-col>
+            </v-row>
             <v-col cols="auto" class="d-flex justify-content-end"
               ><OperationInfoSettingPannel></OperationInfoSettingPannel
             ></v-col> </v-row></v-card-title
         ><v-card-text class="pt-3">
-          <v-row no-gutters justify="space-between">
-            <transition
-              mode="out-in"
-              :enter-active-class="showEnter"
-              :leave-active-class="showLeave"
-            >
-              <v-col cols="auto" v-if="showReconTable">
+          <v-card rounded="xl" flat class="scroll" :max-height="cardHeight">
+            <v-row no-gutters :justify="cardJustify">
+              <transition
+                mode="out-in"
+                :enter-active-class="showEnter"
+                :leave-active-class="showLeave"
+              >
+                <v-col cols="auto" v-if="showReconTable">
+                  <v-row no-gutters>
+                    <v-col cols="12">
+                      <OperationInfoReconCard
+                        :windowSize="windowSize"
+                        :loaded="loaded"
+                      />
+                    </v-col>
+                  </v-row>
+                </v-col>
+              </transition>
+
+              <v-col cols="9">
                 <v-row no-gutters>
-                  <v-col cols="12">
-                    <OperationInfoReconCard
-                      :windowSize="windowSize"
-                      :loaded="loaded"
-                    />
-                  </v-col>
+                  <transition
+                    mode="out-in"
+                    :enter-active-class="showEnter"
+                    :leave-active-class="showLeave"
+                  >
+                    <v-col cols="12" v-if="showSystemTable">
+                      <OpertationInfoSystemTable
+                        :loaded="loaded"
+                        :windowSize="windowSize"
+                    /></v-col>
+                  </transition>
+                </v-row>
+                <v-row no-gutters class="pt-2">
+                  <transition
+                    mode="out-in"
+                    :enter-active-class="showEnter"
+                    :leave-active-class="showLeave"
+                  >
+                    <v-col cols="12" v-if="showFleets">
+                      <OperationInfoFleetCard
+                        :loaded="loaded"
+                        :windowSize="windowSize"
+                    /></v-col>
+                  </transition>
                 </v-row>
               </v-col>
-            </transition>
-            <transition
-              mode="out-in"
-              :enter-active-class="showEnter"
-              :leave-active-class="showLeave"
-            >
-              <v-col :cols="fleetCardCols" v-if="showSystemTable">
-                <OpertationInfoSystemTable
-                  :loaded="loaded"
-                  :windowSize="windowSize"
-              /></v-col>
-            </transition>
-            <transition
-              mode="out-in"
-              :enter-active-class="showEnter"
-              :leave-active-class="showLeave"
-            >
-              <v-col :cols="fleetCardCols" v-if="showFleets">
-                <OperationInfoFleetCard
-                  :loaded="loaded"
-                  :windowSize="windowSize"
-              /></v-col> </transition></v-row></v-card-text></v-card
-    ></v-col>
+            </v-row>
+          </v-card>
+        </v-card-text>
+      </v-card>
+    </v-col>
   </v-row>
 </template>
 <script>
@@ -128,6 +224,7 @@ export default {
     await this.$store.dispatch("getSystemList");
     await this.$store.dispatch("getOperationSheetInfoOperationList");
     await this.$store.dispatch("getOperationInfoJamList");
+    await this.$store.dispatch("getUserList");
 
     Echo.private("operationinfooppage." + this.opInfo.id).listen(
       "OperationInfoPageSoloUpdate",
@@ -216,11 +313,11 @@ export default {
       ("operationInfoPage", "operationInfoUsers", "operationInfoSetting")
     ],
 
-    fleetCardCols() {
-      if (this.opSetting.showMessageTable) {
-        return 5;
+    cardJustify() {
+      if (this.showReconTable) {
+        return "space-between";
       } else {
-        return 10;
+        return "center";
       }
     },
 
@@ -234,6 +331,16 @@ export default {
           newValue
         );
       },
+    },
+
+    mainHeight() {
+      let num = this.windowSize.y - 149;
+      return num;
+    },
+
+    cardHeight() {
+      let num = this.windowSize.y - 239;
+      return num;
     },
 
     opInfo: {
@@ -296,9 +403,39 @@ export default {
 
       return false;
     },
+
+    showCountDown() {
+      if (
+        this.opInfo.start &&
+        moment.utc().format("YYYY-MM-DD HH:mm:ss") <
+          moment(this.opInfo.start).format("YYYY-MM-DD HH:mm:ss")
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    showCountUp() {
+      if (
+        this.opInfo.start &&
+        moment.utc().format("YYYY-MM-DD HH:mm:ss") >
+          moment(this.opInfo.start).format("YYYY-MM-DD HH:mm:ss")
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   beforeDestroy() {
     Echo.leave("operationinfooppage." + this.opInfo.id);
   },
 };
 </script>
+
+<style>
+.scroll {
+  overflow-y: auto;
+}
+</style>

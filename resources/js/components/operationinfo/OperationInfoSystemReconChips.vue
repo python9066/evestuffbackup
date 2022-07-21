@@ -1,23 +1,21 @@
 <template>
-  <div class="d-inline-flex">
-    <v-sheet class="mx-auto transparent" :max-width="MaxW">
-      <v-chip-group active-class="primary--text" max="0">
-        <v-chip
-          v-for="(recon, index) in systemInfo.recons"
-          :key="index"
-          small
-          close
-          draggable
-          @click:close="remove(recon.id)"
-        >
-          <v-avatar left>
-            <v-img :src="recon.url"></v-img>
-          </v-avatar>
-          {{ recon.name }}
-        </v-chip>
-      </v-chip-group>
-    </v-sheet>
-  </div>
+  <v-sheet class="transparent" :max-width="MaxW">
+    <v-chip-group active-class="primary--text" max="0">
+      <v-chip
+        v-for="(recon, index) in systemInfo.recons"
+        :key="index"
+        small
+        close
+        draggable
+        @click:close="remove(recon.id)"
+      >
+        <v-avatar left>
+          <v-img :src="recon.url"></v-img>
+        </v-avatar>
+        {{ recon.name }}
+      </v-chip>
+    </v-chip-group>
+  </v-sheet>
 </template>
 <script>
 import Axios from "axios";
@@ -101,7 +99,7 @@ export default {
     },
 
     MaxW() {
-      let num = this.windowSize.x - 1500;
+      let num = this.windowSize.x - 1400;
       return num;
     },
 

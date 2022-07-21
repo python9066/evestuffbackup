@@ -543,7 +543,7 @@ if (!function_exists('checkUserName')) {
 
 if (!function_exists('checkUserNameRecon')) {
 
-    function checkUserNameRecon($name, $opID)
+    function checkUserNameRecon($name, $mainID, $opID)
     {
         $check = OperationInfoRecon::where('name', $name)->count();
         if ($check == 0) {
@@ -578,7 +578,9 @@ if (!function_exists('checkUserNameRecon')) {
                 $new->id = $userID;
                 $new->user_id = Auth::id();
                 $new->alliance_id = $res['alliance_id'] ?? null;
+                $new->user_id = $mainID;
                 $new->corp_id = $res['corporation_id'];
+                $new->operation_info_recon_status_id = 1;
                 $new->name = $res['name'];
                 $new->url = 'https://images.evetech.net/characters/' . $userID . '/portrait?tenant=tranquility&size=64';
                 $new->operation_info_id = $opID;
@@ -599,7 +601,7 @@ if (!function_exists('checkUserNameRecon')) {
             $check = OperationInfoRecon::where('name', $name)->first();
             $check->operation_info_id = $opID;
             $check->operation_info_fleet_id = null;
-            $check->operation_info_recon_status_id = null;
+            $check->operation_info_recon_status_id = 1;
             $check->save();
             operationReconSoloBcast($check->id, 5);
             return true;

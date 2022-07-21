@@ -194,7 +194,7 @@ class AuthController extends Controller
 
     public function index()
     {
-        return ['users' => User::select('id', 'name')->get()];
+        return ['users' => User::select('id', 'name')->where('id', '>', 5)->orderBy("name")->get()];
     }
 
     /*

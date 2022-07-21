@@ -347,6 +347,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/newcampaignpriority/{id}', [NewOperationsController::class, 'updatePriority']);
 
     Route::post('/operationinfosheet', [OperationInfoController::class, 'store']);
+    Route::post('/operationinfostart/{id}', [OperationInfoController::class, 'updateStartTime']);
     Route::post('/operationinfosheet/{id}', [OperationInfoController::class, 'editHackOperation']);
     Route::get('/operationinfosheet', [OperationInfoController::class, 'index']);
     Route::post('/operationinfosystemnoteupdate/{id}', [OperationInfoController::class, 'updateNote']);
@@ -373,6 +374,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/operationinforecon', [OperationInfoReconController::class, 'store']);
     Route::post('/operationinforeconremove/{id}', [OperationInfoReconController::class, 'removeFromOp']);
     Route::get('/operationinforecon', [OperationInfoReconController::class, 'index']);
+    Route::post('/operationinforecondead/{id}', [OperationInfoReconController::class, 'updateDeadStatus']);
+    Route::post('/operationinforecononline/{id}', [OperationInfoReconController::class, 'updateOnlineStatus']);
 
     Route::post('/operationinfofleetreconremove/{id}', [OperationInfoFleetController::class, "reconRemove"]);
 

@@ -20,15 +20,35 @@
               <OperationInfoSystemJammerSetting :loaded="loaded" :item="item" />
             </template>
 
+            <template v-slot:[`item.region.region_name`]="{ item }">
+              <div class="text-no-wrap">
+                {{ item.region.region_name }}
+              </div>
+            </template>
+
+            <template
+              v-slot:[`item.constellation.constellation_name`]="{ item }"
+            >
+              <div class="text-no-wrap">
+                {{ item.constellation.constellation_name }}
+              </div>
+            </template>
+
+            <template v-slot:[`item.system_name`]="{ item }">
+              <div class="text-no-wrap">
+                {{ item.system_name }}
+              </div>
+            </template>
+
             <template v-slot:[`item.TODORecon`]="{ item }">
-              <v-row no-gutters justify="start" align="center">
-                <v-col cols="auto">
+              <v-row no-gutters justify="start">
+                <v-col cols="11">
                   <OperationInfoSystemReconChips
                     :windowSize="windowSize"
                     :loaded="loaded"
                     :item="item"
                 /></v-col>
-                <v-col cols="auto">
+                <v-col cols="1">
                   <OperationInfoSystemAddRecon :loaded="loaded" :item="item"
                 /></v-col>
               </v-row>
@@ -60,41 +80,53 @@ export default {
           text: "Region",
           value: "region.region_name",
           sortable: false,
+          align: "start",
+          width: "5%",
         },
         {
           text: "Constellation",
           value: "constellation.constellation_name",
           sortable: true,
+          align: "start",
+          width: "5%",
         },
 
         {
           text: "System",
           value: "system_name",
           sortable: true,
+          align: "start",
+          width: "5%",
         },
 
         {
           text: "Recon",
           value: "TODORecon",
           sortable: true,
+          cellClass: "pl-0 pr-0",
+          align: "start",
         },
 
         {
           text: "Jammed",
           value: "pivot.jammed_status",
           sortable: true,
+          align: "start",
+          width: "5%",
         },
         {
           text: "Notes",
           value: "pivot.notes",
           sortable: true,
+          width: "15%",
         },
 
         {
           text: "",
           value: "actions",
           sortable: true,
-          align: "center",
+          align: "end",
+          width: "8%",
         },
       ],
     };
