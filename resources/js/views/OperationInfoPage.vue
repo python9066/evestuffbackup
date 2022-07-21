@@ -1,7 +1,7 @@
 <template>
   <v-row no-gutters v-resize="onResize" justify="center">
     <v-col cols="12" class="pl-5 pr-5"
-      ><v-card rounded="xl"
+      ><v-card rounded="xl" :min-height="mainHeight"
         ><v-card-title class="primary pt-2 pb-2"
           ><v-row no-gutters justify="space-between">
             <v-col cols="auto">
@@ -133,53 +133,55 @@
               ><OperationInfoSettingPannel></OperationInfoSettingPannel
             ></v-col> </v-row></v-card-title
         ><v-card-text class="pt-3">
-          <v-row no-gutters justify="space-between">
-            <transition
-              mode="out-in"
-              :enter-active-class="showEnter"
-              :leave-active-class="showLeave"
-            >
-              <v-col cols="auto" v-if="showReconTable">
+          <v-card rounded="xl" flat class="scroll" :max-height="cardHeight">
+            <v-row no-gutters :justify="cardJustify">
+              <transition
+                mode="out-in"
+                :enter-active-class="showEnter"
+                :leave-active-class="showLeave"
+              >
+                <v-col cols="auto" v-if="showReconTable">
+                  <v-row no-gutters>
+                    <v-col cols="12">
+                      <OperationInfoReconCard
+                        :windowSize="windowSize"
+                        :loaded="loaded"
+                      />
+                    </v-col>
+                  </v-row>
+                </v-col>
+              </transition>
+
+              <v-col cols="9">
                 <v-row no-gutters>
-                  <v-col cols="12">
-                    <OperationInfoReconCard
-                      :windowSize="windowSize"
-                      :loaded="loaded"
-                    />
-                  </v-col>
+                  <transition
+                    mode="out-in"
+                    :enter-active-class="showEnter"
+                    :leave-active-class="showLeave"
+                  >
+                    <v-col cols="12" v-if="showSystemTable">
+                      <OpertationInfoSystemTable
+                        :loaded="loaded"
+                        :windowSize="windowSize"
+                    /></v-col>
+                  </transition>
+                </v-row>
+                <v-row no-gutters class="pt-2">
+                  <transition
+                    mode="out-in"
+                    :enter-active-class="showEnter"
+                    :leave-active-class="showLeave"
+                  >
+                    <v-col cols="12" v-if="showFleets">
+                      <OperationInfoFleetCard
+                        :loaded="loaded"
+                        :windowSize="windowSize"
+                    /></v-col>
+                  </transition>
                 </v-row>
               </v-col>
-            </transition>
-
-            <v-col cols="9">
-              <v-row no-gutters>
-                <transition
-                  mode="out-in"
-                  :enter-active-class="showEnter"
-                  :leave-active-class="showLeave"
-                >
-                  <v-col cols="12" v-if="showSystemTable">
-                    <OpertationInfoSystemTable
-                      :loaded="loaded"
-                      :windowSize="windowSize"
-                  /></v-col>
-                </transition>
-              </v-row>
-              <v-row no-gutters class="pt-2">
-                <transition
-                  mode="out-in"
-                  :enter-active-class="showEnter"
-                  :leave-active-class="showLeave"
-                >
-                  <v-col cols="12" v-if="showFleets">
-                    <OperationInfoFleetCard
-                      :loaded="loaded"
-                      :windowSize="windowSize"
-                  /></v-col>
-                </transition>
-              </v-row>
-            </v-col>
-          </v-row>
+            </v-row>
+          </v-card>
         </v-card-text>
       </v-card>
     </v-col>
@@ -311,6 +313,14 @@ export default {
       ("operationInfoPage", "operationInfoUsers", "operationInfoSetting")
     ],
 
+    cardJustify() {
+      if (this.showReconTable) {
+        return "space-between";
+      } else {
+        return "center";
+      }
+    },
+
     opSetting: {
       get() {
         return this.$store.state.operationInfoSetting;
@@ -321,6 +331,16 @@ export default {
           newValue
         );
       },
+    },
+
+    mainHeight() {
+      let num = this.windowSize.y - 149;
+      return num;
+    },
+
+    cardHeight() {
+      let num = this.windowSize.y - 239;
+      return num;
     },
 
     opInfo: {
@@ -413,3 +433,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.scroll {
+  overflow-y: auto;
+}
+</style>
