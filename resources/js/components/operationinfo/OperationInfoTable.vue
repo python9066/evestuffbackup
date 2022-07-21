@@ -13,6 +13,9 @@
         <template slot="no-data"> No Operations </template>
         <template v-slot:[`item.action`]="{ item }">
           <v-btn rounded color="green" @click="go(item.link)"> view </v-btn>
+          <v-btn icon color="red" @click="remove(item.link)">
+            <font-awesome-icon icon="fa-solid fa-trash-can" size="2xl" />
+          </v-btn>
         </template>
         <template v-slot:[`header.action`]="{ headers }">
           <AddOperationInfo />
@@ -71,6 +74,18 @@ export default {
   methods: {
     go(id) {
       this.$router.push({ path: `/operationinfo/${id}` });
+    },
+
+    async remove(id) {
+      await axios({
+        method: "DELETE",
+        url: "/api/operationinfosheet/" + id,
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
     },
   },
 

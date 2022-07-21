@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FeedBack;
 use App\Models\User;
 use Illuminate\Http\Request;
+
 use function App\Http\Controllers\Helpers\discordPost;
 
 class FeedBackController extends Controller

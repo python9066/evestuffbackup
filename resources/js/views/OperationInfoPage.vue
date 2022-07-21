@@ -6,6 +6,9 @@
           ><v-row no-gutters justify="space-between">
             <v-col cols="auto">
               <v-row no-gutters>
+                <v-col cols="auto" class="pr-2">
+                  <OperationInfoShowSetting />
+                </v-col>
                 <transition
                   mode="out-in"
                   :enter-active-class="showEnter"
@@ -40,6 +43,31 @@
               </v-row>
             </v-col>
             <v-row no-gutters justify="center" align="center">
+              <v-col class="py-0 pr-2" cols="auto">
+                <v-menu
+                  :close-on-content-click="false"
+                  v-model="infoShown"
+                  z-index="0"
+                  content-class="rounded-xl"
+                  ><template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      icon
+                      v-bind="attrs"
+                      v-on="on"
+                      @click="infoShown = true"
+                      ><font-awesome-icon
+                        icon="fa-solid fa-circle-info"
+                        size="xl"
+                      />
+                    </v-btn>
+                  </template>
+                  <v-card>
+                    <v-card-text>
+                      {{ opInfo.info }}
+                    </v-card-text></v-card
+                  ></v-menu
+                >
+              </v-col>
               <v-col class="py-0 pr-2" cols="auto"
                 >Operation - {{ opInfo.name }}
               </v-col>
@@ -54,9 +82,7 @@
                 >
                   <template slot="countdown" slot-scope="scope">
                     <span class="red--text pl-3">
-                      <span
-                        v-if="scope.props.hours > 1 && scope.props.days > 1"
-                      >
+                      <span v-if="scope.props.days > 0">
                         <v-chip color="red">
                           {{ scope.props.days }} - {{ scope.props.hours }}:{{
                             scope.props.minutes
@@ -65,7 +91,7 @@
                       </span>
                       <span
                         v-else-if="
-                          scope.props.hours > 1 && scope.props.days == 0
+                          scope.props.hours > 0 && scope.props.days == 0
                         "
                       >
                         <v-chip color="red">
@@ -93,20 +119,14 @@
                 >
                   <template slot="countup" slot-scope="scope">
                     <span class="green--text pl-3">
-                      <span
-                        v-if="scope.props.hours > 1 && scope.props.days > 1"
-                      >
+                      <span v-if="scope.props.days > 0">
                         <v-chip color="green">
                           {{ scope.props.days }} - {{ scope.props.hours }}:{{
                             scope.props.minutes
                           }}:{{ scope.props.seconds }}</v-chip
                         >
                       </span>
-                      <span
-                        v-else-if="
-                          scope.props.hours > 1 && scope.props.days == 0
-                        "
-                      >
+                      <span v-else-if="scope.props.hours > 0">
                         <v-chip color="green">
                           {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
                             scope.props.seconds
@@ -208,6 +228,7 @@ export default {
         y: 0,
       },
       loaded: false,
+      infoShown: false,
     };
   },
 
@@ -222,6 +243,7 @@ export default {
     await this.$store.dispatch("getOperationRecon");
     await this.$store.dispatch("getAllianceTickList");
     await this.$store.dispatch("getSystemList");
+    await this.$store.dispatch("getOperationInfoReconRoles");
     await this.$store.dispatch("getOperationSheetInfoOperationList");
     await this.$store.dispatch("getOperationInfoJamList");
     await this.$store.dispatch("getUserList");
@@ -289,6 +311,11 @@ export default {
 
         if (e.flag.flag == 14) {
           this.$store.dispatch("updateOperationSoloSystems", e.flag.message);
+        }
+
+        if (e.flag.flag == 15) {
+          this.$store.dispatch("clearOperationInfoSolo");
+          this.$router.push({ path: `/operationinfoover` });
         }
       }
     );

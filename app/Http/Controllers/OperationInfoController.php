@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
 use App\Models\OperationInfo;
+use App\Models\OperationInfoFleet;
+use App\Models\OperationInfoMessage;
 use App\Models\OperationInfoRecon;
 use App\Models\OperationInfoSystem;
 use App\Models\OperationInfoSystemRecon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -44,6 +47,7 @@ class OperationInfoController extends Controller
             $new->status_id = 1;
             $new->save();
             operationInfoSoloBroadcast($new->id, 2);
+            Artisan::call("get:dankdocs");
         }
     }
 
@@ -141,6 +145,7 @@ class OperationInfoController extends Controller
         $operation->start = $request->start;
         $operation->save();
         operationInfoSoloPageBroadcast($id, 1);
+        operationInfoSoloBroadcast($id, 2);
     }
 
 
@@ -308,6 +313,38 @@ class OperationInfoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $operation = OperationInfo::where('link', $id)->first();
+        $opID = $operation->id;
+        $opFleets = OperationInfoFleet::where('operation_info_id', $opID)->get();
+        foreach ($opFleets as $opFleet) {
+            $opFleet->delete();
+        }
+        $opMessage = OperationInfoMessage::where('operation_info_id', $opID)->get();
+        foreach ($opMessage as $opMessage) {
+            $opMessage->delete();
+        }
+        $opRecons = OperationInfoRecon::where('operation_info_id', $opID)->get();
+        foreach ($opRecons as $opRecon) {
+            $opRecon->operation_info_id = null;
+            $opRecon->operation_info_fleet_id = null;
+            $opRecon->system_id = null;
+            $opRecon->operation_info_recon_status_id = 1;
+            $opRecon->operation_system_id = null;
+            $opRecon->role_id = null;
+            $opRecon->online = 0;
+            $opRecon->dead = 0;
+            $opRecon->save();
+            $opSystemRecon = OperationInfoSystemRecon::where('operation_info_recon_id', $opRecon->id)->get();
+            foreach ($opSystemRecon as $sRecon) {
+                $sRecon->delete();
+            }
+        }
+        $opSystems = OperationInfoSystem::where('operation_info_id', $opID)->get();
+        foreach ($opSystems as $opSystem) {
+            $opSystem->delete();
+        }
+        $operation->delete();
+        operationInfoOver($opID, 15);
+        operationInfoSoloDeleteBroadcast($opID, 3);
     }
 }

@@ -26,17 +26,6 @@ if (!function_exists('operationInfoAll')) {
     }
 }
 
-if (!function_exists('operationInfoSolo')) {
-
-    function operationInfoSolo($id)
-    {
-        return OperationInfo::where('id', $id)
-            ->with(['status'])->select('id', 'name', 'start', 'status_id', 'link')->first();
-    }
-}
-
-
-
 if (!function_exists('operationInfoSoloBroadcast')) {
     /**
      * Example of documenting multiple possible datatypes for a given parameter
@@ -56,6 +45,39 @@ if (!function_exists('operationInfoSoloBroadcast')) {
         broadcast(new OperationInfoPageUpdate($flag));
     }
 }
+
+if (!function_exists('operationInfoSoloDeleteBroadcast')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     *
+     * @param  int  $flagNumber
+     * 3 = Removes Operation
+
+     */
+    function operationInfoSoloDeleteBroadcast($id, $flagNumber)
+    {
+
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $id
+        ]);
+        broadcast(new OperationInfoPageUpdate($flag));
+    }
+}
+
+if (!function_exists('operationInfoSolo')) {
+
+    function operationInfoSolo($id)
+    {
+        return OperationInfo::where('id', $id)
+            ->with(['status'])->select('id', 'name', 'start', 'status_id', 'link')->first();
+    }
+}
+
+
+
+
 
 if (!function_exists('operationInfoSoloPageBroadcast')) {
     /**
@@ -714,5 +736,29 @@ if (!function_exists('operationDoctrineBcast')) {
             ]);
             broadcast(new OperationInfoPageSoloUpdate($flag));
         }
+    }
+}
+
+
+
+if (!function_exists('operationInfoOver')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     * @param  int  $id
+     * Op ID
+     * @param  int  $flagNumber
+     * 15 = closes op and kicks all users
+
+     */
+    function operationInfoOver($id, $flagNumber)
+    {
+        $message = operationInfoSoloPagePullTopInfo($id);
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message,
+            'id' => $id
+        ]);
+        broadcast(new OperationInfoPageSoloUpdate($flag));
     }
 }

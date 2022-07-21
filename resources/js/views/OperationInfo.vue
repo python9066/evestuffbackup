@@ -53,6 +53,7 @@ export default {
       }
 
       if (e.flag.flag == 3) {
+        this.$store.dispatch("removeOperationPageInfo", e.flag.message);
       }
     });
   },

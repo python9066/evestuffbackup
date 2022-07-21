@@ -171,7 +171,7 @@
             </v-row>
           </v-card-text>
           <v-card-actions v-if="showButton"
-            ><v-btn text @click="done()">Done</v-btn></v-card-actions
+            ><v-btn text @click="done()">Close Op</v-btn></v-card-actions
           >
         </v-card>
       </v-col>
@@ -212,13 +212,10 @@ export default {
     },
 
     async done() {
-      this.opInfo.status_id = 4;
-      var request = this.opInfo;
       await axios({
-        method: "put", //you can set what request you want to be
-        url: "/api/operationinfopage/" + this.opInfo.id,
+        method: "DELETE",
+        url: "/api/operationinfosheet/" + this.opInfo.link,
         withCredentials: true,
-        data: request,
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",

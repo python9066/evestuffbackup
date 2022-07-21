@@ -78,6 +78,7 @@
               class="pt-5"
               rounded
               clearable
+              autofocus
               outlined
               v-model="messageText"
               placeholder="ENTER NOTES HERE"

@@ -664,6 +664,10 @@ Vue.component(
     require("./components/operationinfo/AddOperationStartTime.vue").default
 );
 
+Vue.component(
+    "OperationInfoShowSetting",
+    require("./components/operationinfo/OperationInfoShowSetting.vue").default
+);
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(VueEllipseProgress, "Vep");
