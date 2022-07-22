@@ -668,6 +668,17 @@ Vue.component(
     "OperationInfoShowSetting",
     require("./components/operationinfo/OperationInfoShowSetting.vue").default
 );
+
+Vue.component(
+    "OperationInfoShowHacking",
+    require("./components/operationinfo/OperationInfoShowHacking.vue").default
+);
+Vue.component(
+    "OperationInfoShowHackingContent",
+    require("./components/operationinfo/OperationInfoShowHackingContent.vue")
+        .default
+);
+
 Vue.prototype.moment = moment;
 // import '@fortawesome/fontawesome-f      ree/css/all.css'
 Vue.use(VueEllipseProgress, "Vep");
