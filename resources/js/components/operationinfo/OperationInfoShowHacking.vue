@@ -50,36 +50,12 @@ export default {
     close() {
       this.addShown = false;
     },
-
-    checkText(num) {
-      if (num) {
-        return "Show";
-      } else {
-        return "Hide";
-      }
-    },
-
-    textcolor(num) {
-      if (num) {
-        return "green--text";
-      } else {
-        return "red--text";
-      }
-    },
   },
 
   computed: {
     ...mapGetters([]),
 
-    ...mapState(["operationInfoSetting"]),
-    viewSettings: {
-      get() {
-        return this.$store.state.operationInfoSetting;
-      },
-      set(newValue) {
-        return this.$store.dispatch("updateOperationInfoSetting", newValue);
-      },
-    },
+    ...mapState([]),
   },
 
   beforeDestroy() {},
