@@ -11,7 +11,7 @@
  */
 
 /*!
- * Pusher JavaScript Library v7.2.0
+ * Pusher JavaScript Library v7.3.0
  * https://pusher.com/
  *
  * Copyright 2020, Pusher
@@ -30,7 +30,7 @@
  */
 
 /*!
- * Vue.js v2.7.7
+ * Vue.js v2.7.8
  * (c) 2014-2022 Evan You
  * Released under the MIT License.
  */
