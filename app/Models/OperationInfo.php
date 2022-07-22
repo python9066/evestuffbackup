@@ -127,7 +127,7 @@ class OperationInfo extends Model
      */
     public function campaigns(): BelongsToMany
     {
-        return $this->belongsToMany(NewCampaign::class, 'new_campaign_operations', 'operation_id', 'campaign_id');
+        return $this->belongsToMany(NewCampaign::class, 'new_campaign_operations', 'operation_id', 'campaign_id', 'operation_id');
     }
 
     /**

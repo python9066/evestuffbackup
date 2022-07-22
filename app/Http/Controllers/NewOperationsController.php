@@ -78,7 +78,7 @@ class NewOperationsController extends Controller
 
     public function operationList()
     {
-        $data = NewOperation::whereNot('status', 4)->whereNot('status', 3)->get();
+        $data = NewOperation::where('status', 1)->get();
         return ['operations' => $data];
     }
 

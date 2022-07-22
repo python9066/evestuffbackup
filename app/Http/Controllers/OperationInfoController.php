@@ -208,6 +208,7 @@ class OperationInfoController extends Controller
                 $s->delete();
             }
         }
+
         if ($request->operation_id) {
             $operationInfo = OperationInfo::where('id', $id)->first();
             if ($operationInfo->operation_id != $request->operation_id) {
@@ -229,21 +230,21 @@ class OperationInfoController extends Controller
                     }
                     $s->delete();
                 }
-            }
-            $operationInfo->operation_id = $request->operation_id;
-            $operationInfo->save();
-            $campaignIDs = NewCampaignOperation::where('operation_id', $request->operation_id)->pluck('campaign_id');
-            $systemIDs = NewCampaignSystem::whereIn('new_campaign_id', $campaignIDs)->pluck('system_id');
-            $systemIDs = $systemIDs->unique();
-            $systemIDs = $systemIDs->values();
-            foreach ($systemIDs as $systemID) {
-                $check = OperationInfoSystem::where('system_id', $systemID)->where('operation_info_id', $id)->count();
-                if ($check == 0) {
-                    $new = new OperationInfoSystem();
-                    $new->operation_info_id = $id;
-                    $new->system_id = $systemID;
-                    $new->new_operation_id = $request->operation_id;
-                    $new->save();
+                $operationInfo->operation_id = $request->operation_id;
+                $operationInfo->save();
+                $campaignIDs = NewCampaignOperation::where('operation_id', $request->operation_id)->pluck('campaign_id');
+                $systemIDs = NewCampaignSystem::whereIn('new_campaign_id', $campaignIDs)->pluck('system_id');
+                $systemIDs = $systemIDs->unique();
+                $systemIDs = $systemIDs->values();
+                foreach ($systemIDs as $systemID) {
+                    $check = OperationInfoSystem::where('system_id', $systemID)->where('operation_info_id', $id)->count();
+                    if ($check == 0) {
+                        $new = new OperationInfoSystem();
+                        $new->operation_info_id = $id;
+                        $new->system_id = $systemID;
+                        $new->new_operation_id = $request->operation_id;
+                        $new->save();
+                    }
                 }
             }
         } else {

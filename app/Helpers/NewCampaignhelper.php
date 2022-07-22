@@ -158,9 +158,25 @@ if (!function_exists('newUpdateCampaigns')) {
                     $operation->delete();
                 }
             }
-
             NewCampaignOperation::where('campaign_id', $oldCampaign->id)->delete();
         }
+
+        $active = 0;
+        $newOperations = NewOperation::where('status', 1)->get();
+        foreach ($newOperations as $newOperation) {
+            $campaignChecks = $newOperation->campaign;
+            foreach ($campaignChecks as $campaignCheck) {
+                if ($campaignCheck->status_id == 1 || $campaignCheck->status_id == 2 || $campaignCheck->status_id == 5) {
+                    $active = 1;
+                }
+            }
+
+            if ($active != 1) {
+                $newOperation->status = 2;
+                $newOperation->save();
+            }
+        }
+
 
         $noCampaigns = NewOperation::doesntHave('campaign')->get();
         foreach ($noCampaigns as $noCampaign) {
@@ -176,7 +192,6 @@ if (!function_exists('newUpdateCampaigns')) {
             if ($n->start_time < now()->subMinutes(30))
                 setJustOverFlagJob::dispatch($n->id, $n->defenders_score)->onQueue('campaigns');
         }
-        // * Check if the campaign have been over more than 10mins, if true set it to finsiehd(3)
 
         $updatedCampaignIDs = $updatedCampaignID->unique();
         print_r($updatedCampaignIDs);

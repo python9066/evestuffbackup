@@ -149,9 +149,16 @@
                 <AddOperationStartTime />
               </v-col>
             </v-row>
+            <v-col
+              cols="auto"
+              v-if="showHack"
+              class="d-flex justify-content-end pr-2"
+            >
+              <OperationInfoShowHacking />
+            </v-col>
             <v-col cols="auto" class="d-flex justify-content-end"
-              ><OperationInfoSettingPannel></OperationInfoSettingPannel
-            ></v-col> </v-row></v-card-title
+              ><OperationInfoSettingPannel
+            /></v-col> </v-row></v-card-title
         ><v-card-text class="pt-3">
           <v-card rounded="xl" flat class="scroll" :max-height="cardHeight">
             <v-row no-gutters :justify="cardJustify">
@@ -358,6 +365,34 @@ export default {
           newValue
         );
       },
+    },
+
+    showHack() {
+      //   if (this.opInfo) {
+      //     var count = this.opInfo.campaigns.length;
+      //     if (count > 0) {
+      //       return true;
+      //     } else {
+      //       return false;
+      //     }
+      //   } else {
+      //     return false;
+      //   }
+
+      if (this.opInfo) {
+        if (this.opInfo.campaigns) {
+          var count = this.opInfo.campaigns.length;
+          if (count > 0) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
     },
 
     mainHeight() {
