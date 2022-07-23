@@ -548,6 +548,7 @@ class testController extends Controller
                             }
                             $campaignNode->delete();
                             broadcastsystemSolo($system_id, 7);
+                            operationInfoSoloSystemBCast($system_id, 16);
                         }
 
                         $campaign->update(['b_node' => $bNode, 'r_node' => $rNode]);

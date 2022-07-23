@@ -44,6 +44,7 @@ class setActiveUpdateFlagJob implements ShouldQueue
             broadcastOperationRefresh($opID->operation_id, $this->campaign_id, 8);
             broadcastSoloOpSoloOp(1, $opID->operation_id);
         }
+        operationInfoCampaignsSoloBcast($this->campaign_id, 17);
         activity()->enableLogging();
     }
 

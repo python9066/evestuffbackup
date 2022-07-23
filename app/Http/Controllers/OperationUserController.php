@@ -58,11 +58,13 @@ class OperationUserController extends Controller
 
         if ($oldSystemID) {
             broadcastsystemSolo($oldSystemID, 7);
+            operationInfoSoloSystemBCast($oldSystemID, 16);
         }
 
         broadcastuserOwnSolo($opUserID, $opUser->user_id, 3, $opID);
         broadcastuserSolo($opID, $opUserID, 6);
         broadcastsystemSolo($request->system_id, 7);
+        operationInfoSoloSystemBCast($request->system_id, 16);
     }
 
     /**

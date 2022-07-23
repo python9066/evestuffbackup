@@ -37,6 +37,7 @@ class SystemController extends Controller
         $s = System::where('id', $systemID)->first();
         $s->update(['checked_id' => $request->user_id, 'scouted_at' => now()]);
         broadcastsystemSolo($systemID, 7);
+        operationInfoSoloSystemBCast($systemID, 16);
     }
 
     public function editTidi(Request $request, $systemID)
@@ -85,6 +86,7 @@ class SystemController extends Controller
         }
 
         broadcastsystemSolo($systemID, 7);
+        operationInfoSoloSystemBCast($systemID, 16);
     }
 
     /**

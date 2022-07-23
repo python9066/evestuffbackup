@@ -75,6 +75,7 @@ class setJustOverFlagJob implements ShouldQueue
             broadcastOperationRefresh($opID->operation_id, $this->campaign_id, 8);
             broadcastSoloOpSoloOp(1, $opID->operation_id);
         }
+        operationInfoCampaignsSoloBcast($this->campaign_id, 17);
 
         setOverFlagJob::dispatch($this->campaign_id)->onQueue('campaigns')->delay($tenMins);
         setDeleteFlagJob::dispatch($this->campaign_id)->onQueue('campaigns')->delay($tommorw);

@@ -2,6 +2,8 @@
 
 use App\Events\OperationInfoPageSoloUpdate;
 use App\Events\OperationInfoPageUpdate;
+use App\Models\NewCampaign;
+use App\Models\NewCampaignOperation;
 use App\Models\OperationInfo;
 use App\Models\OperationInfoDoctrine;
 use App\Models\OperationInfoFleet;
@@ -9,6 +11,7 @@ use App\Models\OperationInfoMessage;
 use App\Models\OperationInfoMumble;
 use App\Models\OperationInfoRecon;
 use App\Models\OperationInfoStatus;
+use App\Models\OperationInfoSystem;
 use App\Models\OperationInfoUser;
 use App\Models\System;
 use Illuminate\Support\Facades\Auth;
@@ -153,6 +156,8 @@ if (!function_exists('operationInfoSoloPagePull')) {
      */
     function operationInfoSoloPagePull($id)
     {
+        $opInfo = OperationInfo::where('id', $id)->first();
+        $campaignIDs = NewCampaignOperation::where('operation_id', $opInfo->operation_id)->pluck('campaign_id');
         return  OperationInfo::where('id', $id)->with([
             'messages.user:id,name,eve_user_id',
             'fleets.fc',
@@ -172,7 +177,18 @@ if (!function_exists('operationInfoSoloPagePull')) {
             'systems.region:id,region_name',
             'systems.constellation:id,constellation_name',
             'systems.recons',
-            'campaigns',
+            'systems.newNodes' => function ($n) use ($campaignIDs) {
+                $n->whereIn('campaign_id', $campaignIDs);
+            },
+            'systems.newNodes.nodeStatus',
+            'systems.newNodes.campaign',
+            'systems.newNodes.nonePrimeNodeUser.opUser.user',
+            'systems.newNodes.nonePrimeNodeUser.nodeStatus',
+            'systems.newNodes.primeNodeUser.opUser.user',
+            'systems.newNodes.primeNodeUser.nodeStatus',
+            'systems.newNodes.system',
+            'campaigns.system',
+            'campaigns.alliance',
             'operation'
         ])->first();
     }
@@ -189,6 +205,8 @@ if (!function_exists('operationInfoSoloPagePullLink')) {
      */
     function operationInfoSoloPagePullLink($link)
     {
+        $opInfo = OperationInfo::where('link', $link)->first();
+        $campaignIDs = NewCampaignOperation::where('operation_id', $opInfo->operation_id)->pluck('campaign_id');
         return  OperationInfo::where('link', $link)->with([
             'messages.user:id,name,eve_user_id',
             'fleets.fc',
@@ -208,11 +226,78 @@ if (!function_exists('operationInfoSoloPagePullLink')) {
             'systems.region:id,region_name',
             'systems.constellation:id,constellation_name',
             'systems.recons',
-            'campaigns',
+            'systems.newNodes' => function ($n) use ($campaignIDs) {
+                $n->whereIn('campaign_id', $campaignIDs);
+            },
+            'systems.newNodes.nodeStatus',
+            'systems.newNodes.campaign',
+            'systems.newNodes.nonePrimeNodeUser.opUser.user',
+            'systems.newNodes.nonePrimeNodeUser.nodeStatus',
+            'systems.newNodes.primeNodeUser.opUser.user',
+            'systems.newNodes.primeNodeUser.nodeStatus',
+            'systems.newNodes.system',
+            'campaigns.system',
+            'campaigns.alliance',
             'operation'
         ])->first();
     }
 }
+
+
+if (!function_exists('OperationInfoSoloSystem')) {
+
+    function OperationInfoSoloSystem($systemID, $opInfoID)
+    {
+        $opInfo = OperationInfo::where('id', $opInfoID)->first();
+        $campaignIDs = NewCampaignOperation::where('operation_id', $opInfo->operation_id)->pluck('campaign_id');
+        return  System::where('id', $systemID)->select('id', 'system_name', 'constellation_id', 'region_id')->with([
+            'region:id,region_name',
+            'constellation:id,constellation_name',
+            'recons',
+            'newNodes' => function ($n) use ($campaignIDs) {
+                $n->whereIn('campaign_id', $campaignIDs);
+            },
+            'newNodes.nodeStatus',
+            'newNodes.campaign',
+            'newNodes.nonePrimeNodeUser.opUser.user',
+            'newNodes.nonePrimeNodeUser.nodeStatus',
+            'newNodes.primeNodeUser.opUser.user',
+            'newNodes.primeNodeUser.nodeStatus',
+            'newNodes.system',
+        ])->first();
+    }
+}
+
+if (!function_exists('operationInfoSoloSystemBCast')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+     * @param  int  $id
+     * SYSTEM ID
+     *
+     *  @param  int  $opID
+     * OP ID
+     *
+     * @param  int  $flagNumber
+     * 16 = UpdateSolo System
+
+     */
+    function operationInfoSoloSystemBCast($systemID, $flagNumber)
+    {
+
+        $OpInfoSystems = OperationInfoSystem::where('system_id', $systemID)->whereNotNull('new_operation_id')->get();
+        foreach ($OpInfoSystems as $opInfoSystem) {
+            $opID = $opInfoSystem->operation_info_id;
+            $message =  OperationInfoSoloSystem($systemID, $opID);
+            $flag = collect([
+                'flag' => $flagNumber,
+                'message' => $message,
+                'id' => $opID,
+            ]);
+            broadcast(new OperationInfoPageSoloUpdate($flag));
+        }
+    }
+}
+
 
 
 if (!function_exists('operationInfoUsersAll')) {
@@ -386,9 +471,11 @@ if (!function_exists('operationInfoCampaigns')) {
     function operationInfoCampaigns($opID)
     {
         $op = OperationInfo::where('id', $opID)->first();
-        return  $op->campaigns;
+        return  $op->campaigns()->with(['system', 'alliance'])->get();
     }
 }
+
+
 
 if (!function_exists('operationInfoCampaignsBcast')) {
     /**
@@ -415,18 +502,69 @@ if (!function_exists('operationInfoCampaignsBcast')) {
     }
 }
 
+if (!function_exists('operationInfoCampaignsSolo')) {
+
+    function operationInfoCampaignsSolo($campaignID)
+    {
+
+        return  NewCampaign::where('id', $campaignID)->with(['system', 'alliance'])->first();
+    }
+}
+
+if (!function_exists('operationInfoCampaignsSoloBcast')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+     *
+     *
+     *  @param  int  $opID
+     * OP ID
+     *
+     * @param  int  $flagNumber
+     * 17 = Update Campaigns
+
+     */
+    function operationInfoCampaignsSoloBcast($campaignID, $flagNumber)
+    {
+
+        $operationIDs = NewCampaignOperation::where('campaign_id', $campaignID)->pluck('operation_id');
+        $opInfos = OperationInfo::whereIn('operation_id', $operationIDs)->get();
+        foreach ($opInfos as $opInfo) {
+            $opID = $opInfo->id;
+            $message =  operationInfoCampaignsSolo($campaignID);
+
+            $flag = collect([
+                'flag' => $flagNumber,
+                'message' => $message,
+                'id' => $opID,
+            ]);
+            broadcast(new OperationInfoPageSoloUpdate($flag));
+        }
+    }
+}
+
 
 if (!function_exists('operationInfoSystems')) {
 
     function operationInfoSystems($opID)
     {
-
+        $opInfo = OperationInfo::where('id', $opID)->first();
+        $campaignIDs = NewCampaignOperation::where('operation_id', $opInfo->operation_id)->pluck('campaign_id');
         $op = OperationInfo::where('id', $opID)->first();
         $systems = $op->systems()
             ->with([
                 'region:id,region_name',
                 'constellation:id,constellation_name',
-                'recons'
+                'recons',
+                'newNodes' => function ($n) use ($campaignIDs) {
+                    $n->whereIn('campaign_id', $campaignIDs);
+                },
+                'newNodes.nodeStatus',
+                'newNodes.campaign',
+                'newNodes.nonePrimeNodeUser.opUser.user',
+                'newNodes.nonePrimeNodeUser.nodeStatus',
+                'newNodes.primeNodeUser.opUser.user',
+                'newNodes.primeNodeUser.nodeStatus',
+                'newNodes.system',
             ])
             ->select(['systems.id', 'system_name', 'constellation_id', 'region_id'])
             ->get();

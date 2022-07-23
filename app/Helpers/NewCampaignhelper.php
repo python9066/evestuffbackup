@@ -101,11 +101,13 @@ if (!function_exists('newUpdateCampaigns')) {
                         }
                         $campaignNode->delete();
                         broadcastsystemSolo($system_id, 7);
+                        operationInfoSoloSystemBCast($system_id, 16);
                     }
 
                     $campaign->update(['b_node' => $bNode, 'r_node' => $rNode]);
                     foreach ($campaignOperations as $campaignOperation) {
                         broadcastCampaignSolo($campaign->id, $campaignOperation->operation_id, 4);
+                        operationInfoCampaignsSoloBcast($campaign->id, 17);
                     }
                 }
 
@@ -199,6 +201,7 @@ if (!function_exists('newUpdateCampaigns')) {
             $ops = NewCampaignOperation::where('campaign_id', $updatedCampaignID)->get();
             foreach ($ops as $op) {
                 broadcastCampaignSolo($updatedCampaignID, $op->operation_id, 3);
+                operationInfoCampaignsSoloBcast($updatedCampaignID, 17);
 
                 $operation = NewOperation::where('id', $op->operation_id)->where('solo', 1)->first();
                 if ($operation) {
