@@ -40,6 +40,7 @@ class NewUserNodeController extends Controller
         ]);
 
         broadcastsystemSolo($request->system_id, 7);
+        operationInfoSoloSystemBCast($request->system_id, 16);
     }
 
     public function addTimertoNode(Request $request, $id)
@@ -53,6 +54,7 @@ class NewUserNodeController extends Controller
         $n->save();
 
         broadcastsystemSolo($request->system_id, 7);
+        operationInfoSoloSystemBCast($request->system_id, 16);
     }
 
     /**
@@ -96,5 +98,6 @@ class NewUserNodeController extends Controller
         broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
         $node->delete();
         broadcastsystemSolo($systemID, 7);
+        operationInfoSoloSystemBCast($systemID, 16);
     }
 }

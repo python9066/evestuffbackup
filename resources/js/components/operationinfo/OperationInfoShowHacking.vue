@@ -1,5 +1,6 @@
 <template>
-  <v-menu
+  <v-dialog
+    transition="dialog-top-transition"
     :close-on-content-click="false"
     v-model="addShown"
     z-index="0"
@@ -17,10 +18,15 @@
       /></v-btn>
     </template>
     <v-card tile class="rounded-xl">
-      <v-card-text> </v-card-text>
-      <v-card-actions> </v-card-actions>
+      <v-card-text class="pb-1">
+        <OperationInfoShowHackingContent
+          v-for="(item, index) in opInfo.campaigns"
+          :key="index"
+          :item="item"
+        />
+      </v-card-text>
     </v-card>
-  </v-menu>
+  </v-dialog>
 </template>
 <script>
 import Axios from "axios";
@@ -56,6 +62,15 @@ export default {
     ...mapGetters([]),
 
     ...mapState([]),
+
+    opInfo: {
+      get() {
+        return this.$store.state.operationInfoPage;
+      },
+      set(newValue) {
+        return this.$store.dispatch("updateOperationSheetInfoPage", newValue);
+      },
+    },
   },
 
   beforeDestroy() {},

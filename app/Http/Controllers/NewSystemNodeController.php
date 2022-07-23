@@ -31,6 +31,7 @@ class NewSystemNodeController extends Controller
         NewSystemNode::create($request->all());
         // TODO Change this so it only gets Campaigns what are active.
         broadcastsystemSolo($request->system_id, 7);
+        operationInfoSoloSystemBCast($request->system_id, 16);
     }
 
     /**
@@ -65,6 +66,7 @@ class NewSystemNodeController extends Controller
         $opUser->save();
 
         broadcastsystemSolo($systemNode->system_id, 7);
+        operationInfoSoloSystemBCast($systemNode->system_id, 16);
         broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
         broadcastuserOwnSolo($opUser->id, $opUser->user_id, 3, $opUser->operation_id);
     }
@@ -104,6 +106,7 @@ class NewSystemNodeController extends Controller
         }
 
         broadcastsystemSolo($request->system_id, 7);
+        operationInfoSoloSystemBCast($request->system_id, 16);
         broadcastuserSolo($request->opID, $request->op_user_id, 6);
         broadcastuserOwnSolo($request->op_user_id, Auth::id(), 3, $request->opID);
     }
@@ -164,6 +167,7 @@ class NewSystemNodeController extends Controller
                 broadcastuserOwnSolo($opUser->id, $opUser->user_id, 3, $opUser->operation_id);
                 broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
                 broadcastsystemSolo($request->system_id, 7);
+                operationInfoSoloSystemBCast($request->system_id, 16);
 
                 break;
             case 2: // * warm up
@@ -174,6 +178,7 @@ class NewSystemNodeController extends Controller
                 broadcastuserOwnSolo($opUser->id, $opUser->user_id, 3, $opUser->operation_id);
                 broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
                 broadcastsystemSolo($request->system_id, 7);
+                operationInfoSoloSystemBCast($request->system_id, 16);
                 break;
 
             case 3: // * Hacking
@@ -184,6 +189,7 @@ class NewSystemNodeController extends Controller
                 broadcastuserOwnSolo($opUser->id, $opUser->user_id, 3, $opUser->operation_id);
                 broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
                 broadcastsystemSolo($request->system_id, 7);
+                operationInfoSoloSystemBCast($request->system_id, 16);
                 break;
 
             case 4: // * Success
@@ -209,6 +215,7 @@ class NewSystemNodeController extends Controller
                 }
 
                 broadcastsystemSolo($request->system_id, 7);
+                operationInfoSoloSystemBCast($request->system_id, 16);
 
                 break;
 
@@ -235,6 +242,7 @@ class NewSystemNodeController extends Controller
                 }
 
                 broadcastsystemSolo($request->system_id, 7);
+                operationInfoSoloSystemBCast($request->system_id, 16);
 
                 break;
             case 6: // * Pushed off
@@ -273,6 +281,7 @@ class NewSystemNodeController extends Controller
                     broadcastuserOwnSolo($opUser->id, $opUser->user_id, 3, $opUser->operation_id);
                     broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
                     broadcastsystemSolo($systemID, 7);
+                    operationInfoSoloSystemBCast($systemID, 16);
                 } else {
                     $systemNode = NewSystemNode::where('id', $id)->first();
                     $new = NewUserNode::where('node_id', $systemNode->id)->oldest()->first();
@@ -290,6 +299,7 @@ class NewSystemNodeController extends Controller
                         broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
 
                         broadcastsystemSolo($systemNode->system_id, 7);
+                        operationInfoSoloSystemBCast($systemNode->system_id, 16);
                     }
                 }
                 break;
@@ -309,6 +319,7 @@ class NewSystemNodeController extends Controller
                         broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
                     }
                     broadcastsystemSolo($systemNode->system_id, 7);
+                    operationInfoSoloSystemBCast($systemNode->system_id, 16);
                 } else {
                     $userNode = NewUserNode::where('id', $id)->first();
                     $systemNode = NewSystemNode::where('id', $userNode->node_id)->first();
@@ -324,6 +335,7 @@ class NewSystemNodeController extends Controller
                         broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
                     }
                     broadcastsystemSolo($systemNode->system_id, 7);
+                    operationInfoSoloSystemBCast($systemNode->system_id, 16);
                 }
                 break;
             case 8: // * Friendly Hacking
@@ -331,6 +343,7 @@ class NewSystemNodeController extends Controller
                 $SystemNode->node_status = 8;
                 $SystemNode->save();
                 broadcastsystemSolo($SystemNode->system_id, 7);
+                operationInfoSoloSystemBCast($SystemNode->system_id, 16);
                 break;
             case 9: // * Passive
                 $systemNode = NewSystemNode::where('id', $id)->first();
@@ -347,6 +360,7 @@ class NewSystemNodeController extends Controller
                         broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
                     }
                     broadcastsystemSolo($request->system_id, 7);
+                    operationInfoSoloSystemBCast($request->system_id, 16);
                 } else {
                     $userNode = NewUserNode::where('id', $id)->first();
                     $systemNode = NewSystemNode::where('id', $userNode->node_id)->first();
@@ -362,6 +376,7 @@ class NewSystemNodeController extends Controller
                         broadcastuserSolo($opUser->operation_id, $opUser->id, 6);
                     }
                     broadcastsystemSolo($request->system_id, 7);
+                    operationInfoSoloSystemBCast($request->system_id, 16);
                 }
                 break;
         }
@@ -391,5 +406,6 @@ class NewSystemNodeController extends Controller
         // TODO Change this so it only gets Campaigns what are active.
         $systemNode->delete();
         broadcastsystemSolo($system_id, 7);
+        operationInfoSoloSystemBCast($system_id, 16);
     }
 }

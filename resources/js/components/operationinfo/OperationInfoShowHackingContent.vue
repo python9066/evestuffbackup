@@ -12,8 +12,9 @@
           v-if="showScore"
           :key="`${item.id}-score`"
           class="align-items-center"
+          justify="space-between"
         >
-          <v-col cols="2">
+          <v-col cols="auto">
             <span :class="textColor">
               {{ item.system.system_name }} - {{ eventType }}:
               {{ this.item.alliance.ticker }}
@@ -22,7 +23,7 @@
             ></span>
           </v-col>
           <v-col
-            cols="6"
+            cols="5"
             class="
               d-flex
               justify-content-center
@@ -52,7 +53,10 @@
               <font-awesome-icon :icon="IconD" size="sm" pull="left" />
             </div>
           </v-col>
-          <v-col cols="4" class="d-flex justify-content-end align-items-center">
+          <v-col
+            cols="auto"
+            class="d-flex justify-content-end align-items-center"
+          >
             <span class="text-caption"> Active Nodes -</span>
             <Vep
               :progress="blueProgress"
@@ -181,10 +185,6 @@ export default {
   title() {},
   props: {
     item: [Object, Array],
-    title: String,
-    operationID: Number,
-    activeCampaigns: Array,
-    warmUpCampaigns: Array,
   },
   data() {
     return {};
@@ -201,23 +201,23 @@ export default {
 
   computed: {
     ...mapGetters([
-      "getRedCampaignNodes",
-      "getBlueCampaignNodes",
-      "getTotalCampaignNodes",
+      "getRedCampaignNodesInfo",
+      "getBlueCampaignNodesInfo",
+      "getTotalCampaignNodesInfo",
     ]),
 
     ...mapState([]),
 
     totalNode() {
-      return this.getTotalCampaignNodes(this.item.id);
+      return this.getTotalCampaignNodesInfo(this.item.id);
     },
 
     redNode() {
-      return this.getRedCampaignNodes(this.item.id);
+      return this.getRedCampaignNodesInfo(this.item.id);
     },
 
     blueNode() {
-      return this.getBlueCampaignNodes(this.item.id);
+      return this.getBlueCampaignNodesInfo(this.item.id);
     },
 
     eventType() {
@@ -392,14 +392,11 @@ export default {
     },
 
     showScore() {
-      var show = false;
-      this.activeCampaigns.forEach((n) => {
-        if (n.id == this.item.id) {
-          show = true;
-        }
-      });
-
-      return show;
+      if (this.item.status_id == 2) {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
   beforeDestroy() {},

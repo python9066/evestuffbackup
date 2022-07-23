@@ -305,6 +305,20 @@ export default new Vuex.Store({
             }
         },
 
+        UPDATE_CAMPAIGN_SYSTEMS_INFO(state, data) {
+            const item = state.operationInfoPage.systems.find(
+                (item) => item.id === data.id
+            );
+            const count = state.operationInfoPage.systems.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                state.operationInfoPage.systems.push(data);
+            }
+        },
+
         UPDATE_OPERATION_PAGE_INFO(state, data) {
             const item = state.operationInfo.find(
                 (item) => item.id === data.id
@@ -448,6 +462,20 @@ export default new Vuex.Store({
 
         UPDATE_OPERATION_CAMPAIGNS(state, data) {
             state.operationInfoPage.campaigns = data;
+        },
+
+        UPDATE_OPERATION_CAMPAIGNS_SOLO(state, data) {
+            const item = state.operationInfoPage.campaigns.find(
+                (item) => item.id === data.id
+            );
+            const count = state.operationInfoPage.campaigns.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                state.operationInfoPage.campaigns.push(data);
+            }
         },
 
         UPDATE_OPERATION_SYSTEMS(state, data) {
@@ -2254,6 +2282,10 @@ export default new Vuex.Store({
             commit("UPDATE_CAMPAIGN_SYSTEMS", data);
         },
 
+        updateNewCampaignSystemInfo({ commit }, data) {
+            commit("UPDATE_CAMPAIGN_SYSTEMS_INFO", data);
+        },
+
         updateOperationSheetInfoPageFleet({ commit }, data) {
             commit("UPDATE_FLEET_INFO", data);
         },
@@ -2280,6 +2312,10 @@ export default new Vuex.Store({
 
         updateOperationCampaigns({ commit }, data) {
             commit("UPDATE_OPERATION_CAMPAIGNS", data);
+        },
+
+        updateOperationCampaignsSolo({ commit }, data) {
+            commit("UPDATE_OPERATION_CAMPAIGNS_SOLO", data);
         },
 
         updateOperationSystems({ commit }, data) {
@@ -3133,6 +3169,18 @@ export default new Vuex.Store({
             return total;
         },
 
+        getTotalCampaignNodesInfo: (state) => (campaignID) => {
+            var total = 0;
+            state.operationInfoPage.systems.forEach((c) => {
+                let count = c.new_nodes.filter(
+                    (n) => n.campaign_id === campaignID
+                ).length;
+                total = total + count;
+            });
+
+            return total;
+        },
+
         getBlueCampaignNodes: (state) => (campaignID) => {
             var blue = 0;
 
@@ -3157,10 +3205,51 @@ export default new Vuex.Store({
             return blue;
         },
 
+        getBlueCampaignNodesInfo: (state) => (campaignID) => {
+            var blue = 0;
+            state.operationInfoPage.systems.forEach((a) => {
+                let nodes = a.new_nodes;
+                nodes.forEach((b) => {
+                    if (
+                        b.prime_node_user.length > 0 &&
+                        b.campaign_id === campaignID
+                    ) {
+                        blue = blue + 1;
+                    } else if (
+                        (b.node_status.id == 8 || b.node_status.id == 4) &&
+                        b.campaign_id === campaignID
+                    ) {
+                        blue = blue + 1;
+                    }
+                });
+            });
+
+            return blue;
+        },
+
         getRedCampaignNodes: (state) => (campaignID) => {
             var red = 0;
 
             state.newCampaignSystems.forEach((a) => {
+                let nodes = a.new_nodes;
+
+                nodes.forEach((b) => {
+                    if (
+                        (b.node_status.id == 7 || b.node_status.id == 5) &&
+                        b.campaign_id === campaignID
+                    ) {
+                        red = red + 1;
+                    }
+                });
+            });
+
+            return red;
+        },
+
+        getRedCampaignNodesInfo: (state) => (campaignID) => {
+            var red = 0;
+
+            state.operationInfoPage.systems.forEach((a) => {
                 let nodes = a.new_nodes;
 
                 nodes.forEach((b) => {

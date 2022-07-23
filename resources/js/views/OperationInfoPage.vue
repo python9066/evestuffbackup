@@ -324,6 +324,13 @@ export default {
           this.$store.dispatch("clearOperationInfoSolo");
           this.$router.push({ path: `/operationinfoover` });
         }
+        if (e.flag.flag == 16) {
+          this.$store.dispatch("updateNewCampaignSystemInfo", e.flag.message);
+        }
+
+        if (e.flag.flag == 17) {
+          this.$store.dispatch("updateOperationCampaignsSolo", e.flag.message);
+        }
       }
     );
   },
