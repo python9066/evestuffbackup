@@ -31,6 +31,7 @@
           hide-selected
           label="Role"
           item-text="name"
+          :menu-props="{ top: true, offsetY: true }"
           item-value="id"
           rounded
           dense

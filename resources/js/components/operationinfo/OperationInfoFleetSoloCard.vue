@@ -140,23 +140,6 @@
                   <OperationInfoFleetReconCard :fleetID="this.fleetID" />
                 </v-col>
               </v-row>
-              <v-row class="pt-2" no-gutters>
-                <!-- <v-col cols="auto">
-                  <v-autocomplete
-                    outlined
-                    :clearable="!readOnly"
-                    :readonly="readOnly"
-                    :append-icon="dropDownIcon"
-                    :items="allianceticklist"
-                    v-model="fleetInfo.alliance_id"
-                    hide-details
-                    rounded
-                    label="Alliance"
-                    dense
-                    @change="updateFleet()"
-                  ></v-autocomplete>
-                </v-col> -->
-              </v-row>
             </div>
             <div v-else>
               <span>FC - {{ fcText }}</span>
@@ -203,6 +186,9 @@
                       <v-list-item-subtitle>
                         {{ recon.fleet_role.name }} - {{ recon.name }} -
                         {{ recon.main.name }}
+                        <span v-if="recon.system">
+                          - {{ recon.system.system_name }}
+                        </span>
                       </v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
