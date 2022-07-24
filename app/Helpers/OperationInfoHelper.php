@@ -167,6 +167,7 @@ if (!function_exists('operationInfoSoloPagePull')) {
             'fleets.alliance',
             'fleets.recons.main:id,eve_user_id,name',
             'fleets.recons.fleetRole',
+            'fleets.recons.system',
             'recons.main',
             'recons.status',
             'recons.system',
@@ -216,6 +217,7 @@ if (!function_exists('operationInfoSoloPagePullLink')) {
             'fleets.alliance',
             'fleets.recons.main:id,eve_user_id,name',
             'fleets.recons.fleetRole',
+            'fleets.recons.system',
             'recons.main',
             'recons.status',
             'recons.system',
@@ -338,6 +340,7 @@ if (!function_exists('operationInfoFleetSolo')) {
             'alliance',
             'recons.main:id,eve_user_id,name',
             'recons.fleetRole',
+            'recons.system'
         ])->first();
     }
 }

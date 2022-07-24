@@ -20,6 +20,7 @@
                 v-model="systemInfo.recons"
                 deletable-chips
                 multiple
+                :menu-props="{ top: true, offsetY: true }"
                 chips
                 clearable
                 :items="dropDown"

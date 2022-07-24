@@ -17,6 +17,9 @@
             <v-col cols="auto">
               {{ recon.name }} - {{ recon.main.name }} -
               {{ recon.fleet_role.name }}
+              <span v-if="recon.system">
+                - {{ recon.system.system_name }}
+              </span>
             </v-col>
             <v-col cols="auto">
               <v-row no-gutters justify="end">

@@ -93,8 +93,12 @@ class OperationInfoController extends Controller
                 $recon->operation_info_recon_status_id = 1;
             }
             $recon->save();
+
             $old->delete();
             operationReconSoloBcast($old->operation_info_recon_id, 5);
+            if ($recon->operation_info_fleet_id) {
+                operationInfoSoloPageFleetBroadcast($recon->operation_info_fleet_id, $recon->operation_info_id, 2);
+            }
         }
         foreach ($reconArray as $reconID) {
             $check = OperationInfoSystemRecon::where('operation_info_system_id', $id)
@@ -113,8 +117,10 @@ class OperationInfoController extends Controller
                     $recon->operation_info_recon_status_id = 3;
                 }
                 $recon->save();
-
                 operationReconSoloBcast($reconID, 5);
+                if ($recon->operation_info_fleet_id) {
+                    operationInfoSoloPageFleetBroadcast($recon->operation_info_fleet_id, $recon->operation_info_id, 2);
+                }
             }
         };
 
@@ -136,6 +142,7 @@ class OperationInfoController extends Controller
             ->where('operation_info_system_id', $id)->delete();
         operationReconSoloBcast($request->reconID, 5);
         operationInfoSystemsSoloBcast($request->opID, $id, 14);
+        operationInfoSoloPageFleetBroadcast($recon->operation_info_fleet_id, $recon->operation_info_id, 2);
     }
 
 
