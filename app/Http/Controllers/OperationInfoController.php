@@ -67,6 +67,7 @@ class OperationInfoController extends Controller
         $systems = OperationInfoSystem::where('system_id', $id)->get();
         foreach ($systems as $system) {
             $system->jammed_status = $request->jam;
+            $system->cynos_needed = $request->cynos;
             $system->save();
             operationInfoSystemsSoloBcast($system->operation_info_id, $id, 14);
         }

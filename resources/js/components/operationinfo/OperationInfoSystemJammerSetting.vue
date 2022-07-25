@@ -34,6 +34,19 @@
                 </v-autocomplete>
               </v-col>
             </v-row>
+            <v-row no-gutters align="end" class="pt-2"
+              ><v-col cols="12">
+                <v-slider
+                  class="pt-3"
+                  persistent-hint
+                  min="0"
+                  max="10"
+                  hint="Needed Cynos"
+                  v-model="systemInfo.pivot.cynos_needed"
+                  thumb-label="always"
+                ></v-slider>
+              </v-col>
+            </v-row>
           </v-card-text>
           <v-card-actions>
             <v-row no-gutters justify="space-between">
@@ -95,6 +108,7 @@ export default {
     async done() {
       var request = {
         jam: this.systemInfo.pivot.jammed_status,
+        cynos: this.systemInfo.pivot.cynos_needed,
       };
       await axios({
         method: "post", //you can set what request you want to be

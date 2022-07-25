@@ -41,8 +41,8 @@
             </template>
 
             <template v-slot:[`item.TODORecon`]="{ item }">
-              <v-row no-gutters justify="start">
-                <v-col cols="11">
+              <v-row no-gutters justify="start" align="center">
+                <v-col :cols="colCount(item)">
                   <OperationInfoSystemReconChips
                     :windowSize="windowSize"
                     :loaded="loaded"
@@ -51,6 +51,9 @@
                 <v-col cols="1">
                   <OperationInfoSystemAddRecon :loaded="loaded" :item="item"
                 /></v-col>
+                <v-col cols="1" v-if="showReconCount(item)">
+                  {{ reconCount(item) }} / {{ item.pivot.cynos_needed }}
+                </v-col>
               </v-row>
             </template>
 
@@ -140,10 +143,32 @@ export default {
     jamerText(num) {
       switch (num) {
         case 1:
-          return "No";
+          return "Unknown";
         case 2:
+          return "No";
+        case 3:
           return "Yes";
       }
+    },
+
+    colCount(item) {
+      if (item.pivot.cynos_needed > 0) {
+        return "10";
+      } else {
+        return "11";
+      }
+    },
+
+    showReconCount(item) {
+      if (item.pivot.cynos_needed > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    reconCount(item) {
+      return item.recons.length;
     },
   },
 
