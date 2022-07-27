@@ -49,7 +49,7 @@ class updateOpertationUserList extends Command
                 'cluster' => env('PUSHER_APP_CLUSTER', ($variables && array_key_exists('PUSHER_APP_CLUSTER', $variables)) ? $variables['PUSHER_APP_CLUSTER'] : 'null'),
                 'encrypted' => true,
                 'useTLS' => true,
-                'host' => 'https://socket.evestuff.online',
+                'host' => 'https://sockets.scopeh.co.uk',
                 'port' => 443,
                 'scheme' => 'https',
             ]
@@ -78,7 +78,7 @@ class updateOpertationUserList extends Command
             foreach ($group as $op) {
                 $userID = (int) $op['userID'];
                 $check = OperationUserList::where('operation_id', $opID)->where('user_id', $userID)->first();
-                if (! $check) {
+                if (!$check) {
                     $newOp = new OperationUserList();
                     $newOp->operation_id = $opID;
                     $newOp->user_id = $userID;
