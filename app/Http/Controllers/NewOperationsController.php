@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Constellation;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
 use App\Models\NewOperation;
@@ -56,17 +57,24 @@ class NewOperationsController extends Controller
         }
 
         $regionIDs = collect();
+        $contellationIDs = collect();
         $regions = NewOperation::where('solo', 1)->with('campaign.constellation.region')->get();
         foreach ($regions as $r) {
             $regionIDs->push($r->campaign[0]->constellation->region->id);
+            $contellationIDs->push($r->campaign[0]->constellation->id);
         }
 
         $uRegionIDs = $regionIDs->unique();
+        $uContellationID = $contellationIDs->unique();
         $regionList = Region::whereIn('id', $uRegionIDs)->select(['id as value', 'region_name as text'])->orderBy('region_name', 'asc')->get();
+        $constellationList = Constellation::whereIn('id', $uContellationID)->select(['id as value', 'constellation_name as text'])->orderBy('constellation_name', 'asc')->get();
+
+
 
         return [
             'solooplist' => $data,
             'regionList' => $regionList,
+            'constellationList' => $constellationList
         ];
     }
 

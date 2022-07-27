@@ -13,7 +13,7 @@
               justify="space-between"
               class="mt-2 ml-2"
             >
-              <v-col cols="3">
+              <v-col cols="1">
                 <v-text-field
                   label="Search"
                   v-model="search"
@@ -24,7 +24,41 @@
                   clearable
                   color="blue"
                 ></v-text-field> </v-col
-              ><v-col cols="6">
+              ><v-col cols="2">
+                <v-autocomplete
+                  label="Region"
+                  :items="regionList"
+                  v-model="regionPicked"
+                  filled
+                  dense
+                  auto-select-first
+                  rounded
+                  single-line
+                  clearable
+                  color="blue"
+                ></v-autocomplete> </v-col
+              ><v-col cols="2">
+                <v-autocomplete
+                  label="Constellation"
+                  :items="constellationList"
+                  v-model="constellationPicked"
+                  filled
+                  dense
+                  auto-select-first
+                  rounded
+                  single-line
+                  clearable
+                  color="blue"
+                ></v-autocomplete>
+              </v-col>
+
+              <v-col cols="1">
+                <v-btn icon @click="click()">
+                  <font-awesome-icon :icon="text" size="2xl" />
+                </v-btn>
+              </v-col>
+
+              <v-col cols="6">
                 <v-row no-gutters
                   ><v-col cols="12" class="d-flex justify-content-around"
                     ><v-btn-toggle
@@ -133,12 +167,9 @@ export default {
       filterOpen: false,
 
       date: null,
-      trip: {
-        name: "",
-        location: null,
-        start: null,
-        end: null,
-      },
+      regionPicked: null,
+      constellationPicked: null,
+      pOnly: 0,
 
       search: null,
 
@@ -170,6 +201,15 @@ export default {
     onResize() {
       this.windowSize = { x: window.innerWidth, y: window.innerHeight };
     },
+
+    click() {
+      if (this.pOnly == 0) {
+        this.pOnly = 1;
+      } else {
+        this.pOnly = 0;
+      }
+    },
+
     log() {
       var request = {
         url: this.$route.path,
@@ -189,7 +229,12 @@ export default {
   },
 
   computed: {
-    ...mapState(["newSoloOperations", "newSoloOperationsRegionList"]),
+    ...mapState([
+      "newSoloOperations",
+      "newSoloOperationsRegionList",
+      "newSoloOperationsConstellationList",
+    ]),
+
     filterRound() {
       if (this.filterOpen == 0) {
         return "rounded-t-xl";
@@ -208,47 +253,86 @@ export default {
       }
     },
 
-    filterMind1() {
-      if (this.filterStandingSelect) {
-        if (this.filterStandingSelect == 3) {
-          return this.filterStart.filter(
-            (d) => d.campaign[0].alliance.color == 3
-          );
-        } else if (this.filterStandingSelect == 2) {
-          return this.filterStart.filter(
-            (d) => d.campaign[0].alliance.standing > 0
-          );
-        } else {
-          return this.filterStart.filter(
-            (d) => d.campaign[0].alliance.standing <= 0
-          );
-        }
+    filterMind() {
+      if (this.regionPicked) {
+        return this.filterStart.filter(
+          (d) => d.campaign[0].constellation.region_id == this.regionPicked
+        );
       } else {
         return this.filterStart;
       }
     },
 
+    filterMind1() {
+      if (this.constellationPicked) {
+        return this.filterMind.filter(
+          (d) => d.campaign[0].constellation_id == this.constellationPicked
+        );
+      } else {
+        return this.filterMind;
+      }
+    },
+
+    filterMind2() {
+      if (this.filterStandingSelect) {
+        if (this.filterStandingSelect == 3) {
+          return this.filterMind1.filter(
+            (d) => d.campaign[0].alliance.color == 3
+          );
+        } else if (this.filterStandingSelect == 2) {
+          return this.filterMind1.filter(
+            (d) => d.campaign[0].alliance.standing > 0
+          );
+        } else {
+          return this.filterMind1.filter(
+            (d) => d.campaign[0].alliance.standing <= 0
+          );
+        }
+      } else {
+        return this.filterMind1;
+      }
+    },
+
+    filterMind3() {
+      if (this.pOnly == 1) {
+        return this.filterMind2.filter((d) => d.priority == 1);
+      } else {
+        return this.filterMind2;
+      }
+    },
+
     filterEnd() {
       if (this.filterStatusSelect == 1) {
-        return this.filterMind1.filter(
+        return this.filterMind3.filter(
           (d) =>
             d.campaign[0].status_id == 5 ||
             d.campaign[0].status_id == 1 ||
             d.campaign[0].status_id == 2
         );
       } else if (this.filterStatusSelect == 2) {
-        return this.filterMind1.filter(
+        return this.filterMind3.filter(
           (d) => d.campaign[0].status_id == 5 || d.campaign[0].status_id == 2
         );
       } else {
-        return this.filterMind1.filter(
+        return this.filterMind3.filter(
           (d) => d.campaign[0].status_id == 3 || d.campaign[0].status_id == 4
         );
       }
     },
 
+    text() {
+      if (this.pOnly == 0) {
+        return "fa-regular fa-bell";
+      } else {
+        return "fa-solid fa-bell";
+      }
+    },
+
     regionList() {
       return this.newSoloOperationsRegionList;
+    },
+    constellationList() {
+      return this.newSoloOperationsConstellationList;
     },
 
     operationList() {

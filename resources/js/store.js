@@ -102,6 +102,7 @@ export default new Vuex.Store({
         webwayStartSystems: [],
         newSoloOperations: [],
         newSoloOperationsRegionList: [],
+        newSoloOperationsConstellationList: [],
 
         stationList: [],
 
@@ -502,6 +503,10 @@ export default new Vuex.Store({
 
         SET_NEW_SOLO_OPERATIONS_REGIONS(state, regionList) {
             state.newSoloOperationsRegionList = regionList;
+        },
+
+        SET_NEW_SOLO_OPERATIONS_CONSTELLATION(state, constellationList) {
+            state.newSoloOperationsConstellationList = constellationList;
         },
 
         SET_AMMO_REQUEST(state, ammorequest) {
@@ -1344,6 +1349,10 @@ export default new Vuex.Store({
             });
             commit("SET_NEW_SOLO_OPERATIONS", res.data.solooplist);
             commit("SET_NEW_SOLO_OPERATIONS_REGIONS", res.data.regionList);
+            commit(
+                "SET_NEW_SOLO_OPERATIONS_CONSTELLATION",
+                res.data.constellationList
+            );
         },
 
         async getTimerDataAll({ commit }) {

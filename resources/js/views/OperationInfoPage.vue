@@ -226,7 +226,7 @@ function sleep(ms) {
 
 export default {
   title() {
-    return `EveStuff - MultiCampaigns`;
+    return `EveStuff - Operation Info`;
   },
   data() {
     return {
