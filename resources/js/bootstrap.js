@@ -45,7 +45,7 @@ window.Echo = new Echo({
     // key: "588e30b463a02a48ec1c",
     key: "python9066",
     cluster: "eu",
-    wsHost: "socket.evestuff.online",
+    wsHost: "sockets.scopeh.co.uk",
     wsPort: 443,
     wssPort: 443,
     disableStats: true,

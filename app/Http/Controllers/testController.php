@@ -422,7 +422,7 @@ class testController extends Controller
                     'cluster' => env('PUSHER_APP_CLUSTER', ($variables && array_key_exists('PUSHER_APP_CLUSTER', $variables)) ? $variables['PUSHER_APP_CLUSTER'] : 'null'),
                     'encrypted' => true,
                     'useTLS' => true,
-                    'host' => 'https://socket.evestuff.online',
+                    'host' => 'https://sockets.scopeh.co.uk',
                     'port' => 443,
                     'scheme' => 'https',
                 ]
