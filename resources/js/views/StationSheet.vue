@@ -18,17 +18,66 @@
               justify="space-between"
               class="mt-2 ml-2"
             >
-              <v-col cols="3">
+              <v-col cols="1">
                 <v-text-field
                   label="Search"
                   v-model="search"
                   filled
                   dense
+                  hide-details
                   rounded
-                  single-line
                   clearable
                   color="blue"
                 ></v-text-field>
+              </v-col>
+              <v-col cols="3">
+                <v-autocomplete
+                  label="Type"
+                  :items="typeDropDown"
+                  v-model="typePicked"
+                  hide-details
+                  filled
+                  multiple
+                  small-chips
+                  deletable-chips
+                  dense
+                  auto-select-first
+                  rounded
+                  clearable
+                  color="blue"
+                ></v-autocomplete> </v-col
+              ><v-col cols="3">
+                <v-autocomplete
+                  label="Region"
+                  :items="regionDrop"
+                  v-model="regionPicked"
+                  hide-details
+                  filled
+                  multiple
+                  small-chips
+                  deletable-chips
+                  dense
+                  auto-select-first
+                  rounded
+                  clearable
+                  color="blue"
+                ></v-autocomplete> </v-col
+              ><v-col cols="3">
+                <v-autocomplete
+                  label="Constellation"
+                  :items="conDrop"
+                  v-model="constellationPicked"
+                  filled
+                  hide-details
+                  multiple
+                  small-chips
+                  deletable-chips
+                  dense
+                  auto-select-first
+                  rounded
+                  clearable
+                  color="blue"
+                ></v-autocomplete>
               </v-col>
             </v-row>
             <v-card-text>
@@ -41,9 +90,9 @@
                 fixed-header
                 :expanded.sync="expanded"
                 :loading="loadingt"
-                :items-per-page="50"
+                :hide-default-footer="true"
                 :footer-props="{
-                  'items-per-page-options': [10, 20, 30, 50, 100, -1],
+                  'items-per-page-options': [-1],
                 }"
                 :search="search"
                 :sort-by="['system.region.region_name']"
@@ -306,6 +355,9 @@ export default {
       loadingt: true,
       search: "",
       menu: false,
+      regionPicked: [],
+      constellationPicked: [],
+      typePicked: [],
 
       headers: [
         {
@@ -675,10 +727,122 @@ export default {
       "webwaySelectedStartSystem",
     ]),
 
-    filter_end() {
-      return this.stationList.filter(
+    filter_con() {
+      var base = this.stationList.filter(
         (f) => f.show_on_coord == 1 && f.standing <= 0
       );
+      if (this.constellationPicked.length != 0) {
+        let data = [];
+        this.constellationPicked.forEach((p) => {
+          let pick = base.filter((f) => f.system.constellation.id == p);
+          if (pick != null) {
+            pick.forEach((pk) => {
+              data.push(pk);
+            });
+          }
+        });
+        return data;
+      } else {
+        return base;
+      }
+    },
+
+    filter_region() {
+      if (this.regionPicked.length != 0) {
+        let data = [];
+        this.regionPicked.forEach((p) => {
+          let pick = this.filter_con.filter((f) => f.system.region.id == p);
+          if (pick != null) {
+            pick.forEach((pk) => {
+              data.push(pk);
+            });
+          }
+        });
+        return data;
+      } else {
+        return this.filter_con;
+      }
+    },
+
+    filter_type() {
+      if (this.typePicked.length != 0) {
+        let data = [];
+        this.typePicked.forEach((p) => {
+          let pick = this.filter_region.filter((f) => f.item.id == p);
+          if (pick != null) {
+            pick.forEach((pk) => {
+              data.push(pk);
+            });
+          }
+        });
+        return data;
+      } else {
+        return this.filter_region;
+      }
+    },
+
+    filter_end() {
+      return this.filter_type;
+    },
+
+    typeDropDown() {
+      var data = this.stationList.map((s) => ({
+        id: s.item.id,
+        type: s.item.item_name,
+      }));
+      const result = [];
+      const map = new Map();
+      for (const item of data) {
+        if (!map.has(item.id)) {
+          map.set(item.id, true); // set any value to Map
+          result.push({
+            value: item.id,
+            text: item.type,
+          });
+        }
+      }
+
+      return result;
+    },
+
+    regionDrop() {
+      var data = this.stationList.map((s) => ({
+        id: s.system.region.id,
+        name: s.system.region.region_name,
+      }));
+      const result = [];
+      const map = new Map();
+      for (const item of data) {
+        if (!map.has(item.id)) {
+          map.set(item.id, true); // set any value to Map
+          result.push({
+            value: item.id,
+            text: item.name,
+          });
+        }
+      }
+
+      return result;
+    },
+
+    conDrop() {
+      var data = this.stationList.map((s) => ({
+        id: s.system.constellation.id,
+        name: s.system.constellation.constellation_name,
+      }));
+      const result = [];
+      const map = new Map();
+      for (const item of data) {
+        if (!map.has(item.id)) {
+          map.set(item.id, true); // set any value to Map
+          result.push({
+            value: item.id,
+            text: item.name,
+          });
+        }
+      }
+
+      return result;
     },
 
     webwayButtonList() {
@@ -703,7 +867,7 @@ export default {
     },
 
     height() {
-      let num = this.windowSize.y - 370;
+      let num = this.windowSize.y - 330;
       return num;
     },
   },
@@ -732,5 +896,11 @@ export default {
   line-height: 18px;
   tab-size: 4;
   color: rgba(255, 255, 255, 0.7);
+}
+</style>
+
+<style lang="scss" scoped>
+.autocomplete {
+  background-color: rgb(212, 8, 8);
 }
 </style>
