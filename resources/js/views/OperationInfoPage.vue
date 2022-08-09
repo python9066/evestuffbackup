@@ -167,7 +167,7 @@
                 :enter-active-class="showEnter"
                 :leave-active-class="showLeave"
               >
-                <v-col cols="auto" v-if="showReconTable">
+                <v-col cols="3" v-if="showReconTable">
                   <v-row no-gutters>
                     <v-col cols="12">
                       <OperationInfoReconCard

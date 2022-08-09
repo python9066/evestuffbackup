@@ -2,29 +2,37 @@
   <v-row :key="`${recon.id}-card`" no-gutters>
     <!-- <v-tooltip right> -->
 
-    <v-col cols="auto">
-      <v-tooltip right :disabled="hideToolTip">
+    <v-col cols="9" class="text-truncate">
+      <!-- <v-tooltip right :disabled="hideToolTip"> -->
+      <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
           <span :class="textClass" v-bind="attrs" v-on="on">
             {{ recon.name }} - {{ recon.main.name }}
           </span>
         </template>
         <span v-if="recon.operation_info_recon_status_id == 2"
-          >Fleet - {{ recon.fleet.name }} <br />
+          >{{ recon.name }} - {{ recon.main.name }} <br />
+          Fleet - {{ recon.fleet.name }} <br />
           Role - {{ recon.fleet_role.name }}</span
         >
         <span v-if="recon.operation_info_recon_status_id == 3"
-          >System - {{ recon.system.system_name }}</span
+          >{{ recon.name }} - {{ recon.main.name }} <br />
+          System - {{ recon.system.system_name }}</span
         >
 
-        <span v-if="recon.operation_info_recon_status_id == 4"
-          >Fleet - {{ recon.fleet.name }} <br />
+        <span v-if="recon.operation_info_recon_status_id == 4">
+          {{ recon.name }} - {{ recon.main.name }} <br />
+          Fleet - {{ recon.fleet.name }} <br />
           Role - {{ recon.fleet_role.name }} <br />System -
           {{ recon.system.system_name }}
         </span>
+
+        <span v-if="recon.operation_info_recon_status_id == 1">
+          {{ recon.name }} - {{ recon.main.name }}
+        </span>
       </v-tooltip>
     </v-col>
-    <v-col cols="auto">
+    <v-col cols="3">
       <v-btn x-small color="orange" icon @click="removeRecon(recon)"
         ><font-awesome-icon icon="fa-solid fa-trash"
       /></v-btn>

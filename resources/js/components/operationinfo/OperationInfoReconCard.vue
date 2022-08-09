@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="auto">
+  <v-col cols="12">
     <v-card rounded="xl"
       ><v-card-title class="green"
         ><v-row no-gutters
