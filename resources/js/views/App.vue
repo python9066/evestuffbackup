@@ -54,15 +54,25 @@
               <v-list-item v-if="$can('view_station_list')" link to="/stations">
                 Station List
               </v-list-item>
+              <v-list-item
+                v-if="$can('view_welp_timers')"
+                link
+                to="/welpviolence"
+              >
+                Welp Violence
+              </v-list-item>
+              <v-list-item
+                v-if="$can('view_chill_timers')"
+                link
+                to="/chillstations"
+              >
+                Chilled Timers
+              </v-list-item>
             </v-list>
           </v-menu>
 
-          <v-tab v-if="$can('view_welp_timers')" link to="/welpviolence">
-            Welp Violence
-          </v-tab>
-
-          <v-tab v-if="$can('view_chill_timers')" link to="/chillstations">
-            Chilled Timers
+          <v-tab v-if="$can('view_opertaion_info')" link to="/operationinfo">
+            Operations
           </v-tab>
 
           <v-tab v-if="$can('view_coord_sheet')" link to="/coordsheet">

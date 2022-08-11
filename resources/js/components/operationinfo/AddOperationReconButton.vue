@@ -189,6 +189,7 @@ export default {
           var text = name + " added";
           this.name = null;
           this.addShown = false;
+          this.showMain = 0;
           this.$toast.success(text, {
             position: "bottom-left",
             timeout: 2000,

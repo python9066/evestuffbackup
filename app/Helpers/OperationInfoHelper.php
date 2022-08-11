@@ -739,7 +739,6 @@ if (!function_exists('checkUserNameRecon')) {
                 $res = $response->collect($key = null);
                 $new = new OperationInfoRecon();
                 $new->id = $userID;
-                $new->user_id = Auth::id();
                 $new->alliance_id = $res['alliance_id'] ?? null;
                 $new->user_id = $mainID;
                 $new->corp_id = $res['corporation_id'];
@@ -765,6 +764,7 @@ if (!function_exists('checkUserNameRecon')) {
             $check->operation_info_id = $opID;
             $check->operation_info_fleet_id = null;
             $check->operation_info_recon_status_id = 1;
+            $check->user_id = $mainID;
             $check->save();
             operationReconSoloBcast($check->id, 5);
             return true;

@@ -30,7 +30,7 @@ export default {
     GridItem: VueGridLayout.GridItem,
   },
   title() {
-    return `EveStuff - MultiCampaigns`;
+    return `EveStuff - Operation Info`;
   },
   data() {
     return {
