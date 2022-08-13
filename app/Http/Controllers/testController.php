@@ -13,7 +13,9 @@ use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
 use App\Models\NewSystemNode;
 use App\Models\NewUserNode;
+use App\Models\OperationInfo;
 use App\Models\OperationInfoUser;
+use App\Models\OperationInfoUserList;
 use App\Models\OperationUser;
 use App\Models\OperationUserList;
 use App\Models\Region;
@@ -29,6 +31,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Pusher\Pusher;
+use Spatie\Activitylog\Models\Activity;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -412,7 +415,7 @@ class testController extends Controller
         $user = Auth::user();
         $flag = null;
         if ($user->can('super')) {
-            OperationUserList::whereNotNull('id')->update(['delete' => 1]);
+            OperationInfoUserList::whereNotNull('id')->update(['delete' => 1]);
             $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
             $pusher = new Pusher(
                 env('PUSHER_APP_KEY', ($variables && array_key_exists('PUSHER_APP_KEY', $variables)) ? $variables['PUSHER_APP_KEY'] : 'null'),
@@ -427,14 +430,16 @@ class testController extends Controller
                     'scheme' => 'https',
                 ]
             );
+
             $response = $pusher->get('/channels');
             $response = json_decode(json_encode($response), true);
             $channels = $response['channels'];
             $channels = array_keys($channels);
             $data = collect([]);
+
             foreach ($channels as $channel) {
                 $part = explode('.', $channel);
-                if ($part[0] === 'private-operationsown') {
+                if ($part[0] === 'private-operationinfooppageown') {
                     $keys = collect(['userID', 'opID']);
                     $info = explode('-', $part[1]);
                     $data1 = collect($info);
@@ -448,10 +453,10 @@ class testController extends Controller
                 $opID = (int) $group[0]['opID'];
                 foreach ($group as $op) {
                     $userID = (int) $op['userID'];
-                    $check = OperationUserList::where('operation_id', $opID)->where('user_id', $userID)->first();
+                    $check = OperationInfoUserList::where('operation_info_id', $opID)->where('user_id', $userID)->first();
                     if (!$check) {
-                        $newOp = new OperationUserList();
-                        $newOp->operation_id = $opID;
+                        $newOp = new OperationInfoUserList();
+                        $newOp->operation_info_id = $opID;
                         $newOp->user_id = $userID;
                         $newOp->delete = 2;
                         $newOp->save();
@@ -462,14 +467,16 @@ class testController extends Controller
                 }
             }
 
-            $deleteCheck = OperationUserList::where('delete', 1)->groupBy('operation_id')->pluck('operation_id');
-            $addCheck = OperationUserList::where('delete', 2)->groupBy('operation_id')->pluck('operation_id');
+            $deleteCheck = OperationInfoUserList::where('delete', 1)->groupBy('operation_info_id')->pluck('operation_info_id');
+            $addCheck = OperationInfoUserList::where('delete', 2)->groupBy('operation_info_id')->pluck('operation_info_id');
             $combined = $deleteCheck->merge($addCheck);
             $combined = $combined->unique();
-            OperationUserList::where('delete', 1)->delete();
-            OperationUserList::where('delete', 2)->update(['delete' => 0]);
+            dd($combined);
+            OperationInfoUserList::where('delete', 1)->delete();
+            OperationInfoUserList::where('delete', 2)->update(['delete' => 0]);
             foreach ($combined as $op) {
-                broadcastOperationUserList($op, 1);
+                $this->info($op);
+                broadcastOperationInfoUserList($op, 18);
             }
         }
     }
@@ -673,6 +680,18 @@ class testController extends Controller
                     'check' => 1,
                 ]);
             }
+        }
+    }
+
+
+    public function testOpLogging()
+    {
+        $user = Auth::user();
+        if ($user->can('super')) {
+            $op = OperationInfo::first();
+            activity()->on($op)->event('joined')->useLog('Operation Info')->log('joined');
+            $lastActivity = Activity::where('subject_id', 15)->where('log_name', 'Operation Info')->with(['subject', 'causer'])->latest()->first();
+            return $lastActivity;
         }
     }
 

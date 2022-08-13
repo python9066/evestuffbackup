@@ -89,6 +89,12 @@ class User extends Authenticatable
         return $this->hasMany(OperationUser::class);
     }
 
+
+    public function operationInfoUser()
+    {
+        return $this->hasMany(OperationInfoUserList::class);
+    }
+
     public function getAllPermissionsAttribute()
     {
         $permissions = [];

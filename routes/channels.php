@@ -170,6 +170,9 @@ Broadcast::channel('operationinfooppage.{id}', function () {
     return Auth::check();
 });
 
+Broadcast::channel('operationinfooppageown.{id}', function () {
+    return Auth::check();
+});
 
 
 //  Broadcast::channel('App.User.{id}', function ($user, $id) {

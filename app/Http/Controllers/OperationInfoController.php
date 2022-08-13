@@ -29,6 +29,14 @@ class OperationInfoController extends Controller
         return ['opinfo' => $data];
     }
 
+
+    public function getLogs($id)
+    {
+
+        $data = operationInfoLogsAll($id);
+        return ['logs' => $data];
+    }
+
     /**
      * Store a newly created resource in storage.
      *
