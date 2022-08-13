@@ -12,10 +12,12 @@ return new class () extends Migration {
      */
     public function up()
     {
-        Schema::table('operation_info_systems', function (Blueprint $table) {
-            Schema::table('operation_info_systems', function (Blueprint $table) {
-                $table->integer('cynos_needed')->default(0);
-            });
+        Schema::create('operation_info_user_lists', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('operation_info_id');
+            $table->foreignId('user_id');
+            $table->boolean('delete')->default(0);
+            $table->timestamps();
         });
     }
 
@@ -26,8 +28,6 @@ return new class () extends Migration {
      */
     public function down()
     {
-        Schema::table('operation_info_systems', function (Blueprint $table) {
-            $table->dropColumn('cynos_needed');
-        });
+        Schema::dropIfExists('operation_info_user_lists');
     }
 };

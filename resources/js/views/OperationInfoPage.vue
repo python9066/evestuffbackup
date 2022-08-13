@@ -254,7 +254,12 @@ export default {
     await this.$store.dispatch("getOperationSheetInfoOperationList");
     await this.$store.dispatch("getOperationInfoJamList");
     await this.$store.dispatch("getUserList");
-
+    Echo.private(
+      "operationinfooppageown." +
+        this.$store.state.user_id +
+        "-" +
+        this.opInfo.id
+    );
     Echo.private("operationinfooppage." + this.opInfo.id).listen(
       "OperationInfoPageSoloUpdate",
       (e) => {
@@ -330,6 +335,10 @@ export default {
 
         if (e.flag.flag == 17) {
           this.$store.dispatch("updateOperationCampaignsSolo", e.flag.message);
+        }
+
+        if (e.flag.flag == 18) {
+          this.$store.dispatch("updateOperationInfoUserList", e.flag.message);
         }
       }
     );
@@ -499,6 +508,12 @@ export default {
   },
   beforeDestroy() {
     Echo.leave("operationinfooppage." + this.opInfo.id);
+    Echo.leave(
+      "operationinfooppageown." +
+        this.$store.state.user_id +
+        "-" +
+        this.opInfo.id
+    );
   },
 };
 </script>

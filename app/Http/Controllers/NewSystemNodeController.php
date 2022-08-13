@@ -349,6 +349,7 @@ class NewSystemNodeController extends Controller
                 $systemNode = NewSystemNode::where('id', $id)->first();
                 if ($systemNode) {
                     $systemNode->node_status = 9;
+                    $systemNode->save();
                     $userNodes = NewUserNode::where('node_id', $systemNode->id)->get();
                     foreach ($userNodes as $userNode) {
                         $opUser = $userNode->opUser;
@@ -365,6 +366,7 @@ class NewSystemNodeController extends Controller
                     $userNode = NewUserNode::where('id', $id)->first();
                     $systemNode = NewSystemNode::where('id', $userNode->node_id)->first();
                     $systemNode->node_status = 9;
+                    $systemNode->save();
                     $userNodes = NewUserNode::where('node_id', $userNode->node_id)->get();
                     foreach ($userNodes as $userNode) {
                         $opUser = $userNode->opUser;
@@ -391,21 +393,23 @@ class NewSystemNodeController extends Controller
     public function destroy($id)
     {
         $systemNode = NewSystemNode::where('id', $id)->first();
-        $system_id = $systemNode->system_id;
-        $nodes = NewUserNode::where('node_id', $id)->get();
-        foreach ($nodes as $node) {
-            $OpUser = $node->opUser;
-            $OpUser->new_user_node_id = null;
-            $OpUser->user_status_id = 3;
-            $OpUser->save();
-            $node->delete();
+        if ($systemNode) {
+            $system_id = $systemNode->system_id;
+            $nodes = NewUserNode::where('node_id', $id)->get();
+            foreach ($nodes as $node) {
+                $OpUser = $node->opUser;
+                $OpUser->new_user_node_id = null;
+                $OpUser->user_status_id = 3;
+                $OpUser->save();
+                $node->delete();
 
-            broadcastuserOwnSolo($OpUser->id, $OpUser->user_id, 3, $OpUser->operation_id);
-            broadcastuserSolo($OpUser->operation_id, $OpUser->id, 6);
+                broadcastuserOwnSolo($OpUser->id, $OpUser->user_id, 3, $OpUser->operation_id);
+                broadcastuserSolo($OpUser->operation_id, $OpUser->id, 6);
+            }
+            // TODO Change this so it only gets Campaigns what are active.
+            $systemNode->delete();
+            broadcastsystemSolo($system_id, 7);
+            operationInfoSoloSystemBCast($system_id, 16);
         }
-        // TODO Change this so it only gets Campaigns what are active.
-        $systemNode->delete();
-        broadcastsystemSolo($system_id, 7);
-        operationInfoSoloSystemBCast($system_id, 16);
     }
 }
