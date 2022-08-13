@@ -29,6 +29,11 @@ if (!function_exists('newUpdateCampaigns')) {
             'Accept' => 'application/json',
             'User-Agent' => 'evestuff.online python9066@gmail.com',
         ])->get('https://esi.evetech.net/latest/sovereignty/campaigns/?datasource=tranquility');
+        // $response = Http::withHeaders([
+        //     'Content-Type' => 'application/json',
+        //     "Accept" => "application/json",
+        //     'User-Agent' => 'evestuff.online python9066@gmail.com',
+        // ])->get("https://628189349fac04c6540639f6.mockapi.io/timers");
         $res = $response->collect();
         foreach ($res as $r) {
             $event_type = $r['event_type'];

@@ -13,8 +13,9 @@ use App\Models\OperationInfoRecon;
 use App\Models\OperationInfoStatus;
 use App\Models\OperationInfoSystem;
 use App\Models\OperationInfoUser;
+use App\Models\OperationInfoUserList;
 use App\Models\System;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
 if (!function_exists('operationInfoAll')) {
@@ -79,6 +80,39 @@ if (!function_exists('operationInfoSolo')) {
 }
 
 
+if (!function_exists('broadcastOperationInfoUserList')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     *
+     * @param  int  $flagNumber
+     * 18 = update operation info user list,
+     *  @param  int  $opID
+     * operation info page id
+     */
+    function broadcastOperationInfoUserList($opID, $flagNumber)
+    {
+        $userIDs = OperationInfoUserList::where('operation_info_id', $opID)->pluck('user_id');
+        $message = operationInfoUserListAll($userIDs, $opID);
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message,
+            'id' => $opID,
+        ]);
+
+        broadcast(new OperationInfoPageSoloUpdate($flag));
+    }
+}
+
+if (!function_exists('operationInfoUserListAll')) {
+    function operationInfoUserListAll($userIDs, $opID)
+    {
+        return User::whereIn('id', $userIDs)
+            ->with(['operationInfoUser' => function ($t) use ($opID) {
+                $t->where('operation_info_id', $opID);
+            }])->select('id', 'name')->get();
+    }
+}
 
 
 

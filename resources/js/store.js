@@ -126,6 +126,8 @@ export default new Vuex.Store({
         newOperationMessageOverlay: 0,
         setOpenOperationAddChar: false,
         userList: [],
+
+        operationInfoUserList: [],
     },
     mutations: {
         DELETE_OP_CHAR_FROM_OWN_LIST(state, id) {
@@ -200,6 +202,10 @@ export default new Vuex.Store({
 
         UPDATE_OPERATION_USER_LIST(state, data) {
             state.operationUserList = data;
+        },
+
+        UPDATE_OPERATION_INFO_USER_LIST(state, data) {
+            state.operationInfoUserList = data;
         },
 
         UPDATE_OP_CHAR(state, data) {
@@ -2181,6 +2187,10 @@ export default new Vuex.Store({
 
         updateOperationUserList({ commit }, data) {
             commit("UPDATE_OPERATION_USER_LIST", data);
+        },
+
+        updateOperationInfoUserList({ commit }, data) {
+            commit("UPDATE_OPERATION_INFO_USER_LIST", data);
         },
 
         updateNodeJoin({ commit }, data) {

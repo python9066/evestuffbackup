@@ -49,8 +49,10 @@ class newCampaignUpdate extends Command
         // };
         activity()->disableLogging();
         $check = EveEsiStatus::where('route', '/sovereignty/campaigns/')->first();
-        if ($check->status == 'green') {
-            newUpdateCampaigns();
+        if ($check) {
+            if ($check->status == 'green') {
+                newUpdateCampaigns();
+            }
         }
         $campaigns = NewCampaign::where('job', 0)->get();
         foreach ($campaigns as $campaign) {
