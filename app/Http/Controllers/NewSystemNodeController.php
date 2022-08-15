@@ -28,7 +28,11 @@ class NewSystemNodeController extends Controller
      */
     public function store(Request $request)
     {
-        NewSystemNode::create($request->all());
+        $new = new NewSystemNode();
+        $new->system_id = $request->system_id;
+        $new->campaign_id = $request->campaign_id;
+        $new->name = $request->name;
+        $new->save();
         // TODO Change this so it only gets Campaigns what are active.
         broadcastsystemSolo($request->system_id, 7);
         operationInfoSoloSystemBCast($request->system_id, 16);

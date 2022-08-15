@@ -166,6 +166,10 @@ export default {
             e.flag.message.campaign[0]
           );
         }
+
+        if (e.flag.flag == 9) {
+          this.$store.dispatch("updateCampaignSystemAll", e.flag.message);
+        }
       }
     );
 

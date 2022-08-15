@@ -294,6 +294,10 @@ export default new Vuex.Store({
             state.operationUserList = data.userList;
         },
 
+        UPDATE_OPERATION_SYSTEMS_ALL(state, data) {
+            state.newCampaignSystems = data;
+        },
+
         UPDATE_OPERATION_PAGE(state, data) {
             state.newOperationInfo = data;
         },
@@ -2055,6 +2059,10 @@ export default new Vuex.Store({
 
         updateKeyMessage({ commit }, data) {
             commit("UPDATE_KEY_MESSAGE", data);
+        },
+
+        updateCampaignSystemAll({ commit }, data) {
+            commit("UPDATE_OPERATION_SYSTEMS_ALL", data);
         },
 
         updateRcStation({ commit }, data) {

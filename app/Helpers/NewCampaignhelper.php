@@ -196,8 +196,10 @@ if (!function_exists('newUpdateCampaigns')) {
             ->whereNull('end_time')->get();
 
         foreach ($ns as $n) {
-            if ($n->start_time < now()->subMinutes(30))
+            if ($n->start_time < now()->subMinutes(30)) {
+                print_r("dance");
                 setJustOverFlagJob::dispatch($n->id, $n->defenders_score)->onQueue('campaigns');
+            }
         }
 
         $updatedCampaignIDs = $updatedCampaignID->unique();
