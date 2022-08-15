@@ -5,6 +5,7 @@ use App\Events\OperationAdminUpdate;
 use App\Events\OperationOwnUpdate;
 use App\Events\OperationUpdate;
 use App\Events\SoloOperationUpdate;
+use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
@@ -101,6 +102,19 @@ if (!function_exists('broadcastOperationRefresh')) {
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $message,
+            'id' => $opID,
+        ]);
+
+        broadcast(new OperationUpdate($flag));
+
+        $campaignIDs = NewCampaignOperation::where('operation_id', $opID)->pluck('campaign_id');
+        $contellationIDs = NewCampaign::whereIn('id', $campaignIDs)->pluck('constellation_id');
+        $contellationIDs = $contellationIDs->unique();
+        $systems = systemsAll($contellationIDs, $opID);
+
+        $flag = collect([
+            'flag' => 9,
+            'message' => $systems,
             'id' => $opID,
         ]);
 
