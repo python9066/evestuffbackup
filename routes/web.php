@@ -44,7 +44,7 @@ Route::get('/testpull', [testController::class, 'testUpdateScore']);
 Route::get('/nametoid/{name}', [testController::class, 'nameToID']);
 Route::get('/adashd', [testController::class, 'adashDScan']);
 Route::get('/danktest', [testController::class, 'dankDoc']);
-Route::get('/testlog', [testController::class, 'testOpLogging']);
+Route::get('/testlog', [testController::class, 'testLogs']);
 
 Route::get('/73cbd63ecd4d2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff', [AuthController::class, 'admin']);
 Route::get('/73cbd63ecd4d704/5a1f48be9e4df773064f33590be892ff', [AuthController::class, 'borisToken']);

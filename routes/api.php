@@ -385,4 +385,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/operationinfofleetreconrole', [OperationInfoFleetReconRoleController::class, 'index']);
 
     Route::get('/operationinfojammerstatus', [OperationInfoJammedStatusController::class, 'index']);
+
+    Route::get('/newoperationlogs/{opID}', [NewCampaignsController::class, 'logs']);
 });

@@ -274,6 +274,7 @@ Vue.component(
     "DeleteButton",
     require("./components/multicampaigns/DeleteButton.vue").default
 );
+
 Vue.component(
     "RcFCButton",
     require("./components/rcsheet/RcFCButton.vue").default
@@ -543,6 +544,15 @@ Vue.component(
     require("./components/newcampaign/OperationUserListTable.vue").default
 );
 
+Vue.component(
+    "OperationLogTable",
+    require("./components/newcampaign/OperationLogTable.vue").default
+);
+
+Vue.component(
+    "NewCampaignLogText",
+    require("./components/newcampaign/NewCampaignLogText.vue").default
+);
 Vue.component(
     "AddOperationUserButton",
     require("./components/newcampaign/AddOperationUserButton.vue").default
