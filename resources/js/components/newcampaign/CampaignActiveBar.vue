@@ -89,7 +89,7 @@
                   User List
                 </v-btn></v-col
               >
-              <v-col cols="auto" v-if="$can('super')">
+              <v-col cols="auto" v-if="$can('view_campaign_members')">
                 <v-btn
                   color="primary"
                   @click="btnShowLogTable"
@@ -221,15 +221,17 @@ export default {
       }
     },
 
-    btnShowLogTable() {
+    async btnShowLogTable() {
       if (this.hidePannel == 1) {
         this.hidePannel = 0;
         this.logTable = 1;
+        await this.$store.dispatch("getCampaignsList", this.operationID);
       } else {
         if (this.usertable == 1 || this.charTable == 1) {
           this.usertable = 0;
           this.logTable = 1;
           this.charTable = 0;
+          await this.$store.dispatch("getCampaignsList", this.operationID);
         } else {
           this.hidePannel = 1;
           this.logTable = 0;
