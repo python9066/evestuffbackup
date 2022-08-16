@@ -59,6 +59,7 @@ export default new Vuex.Store({
         loggingcampaign: [],
         loggingRcSheet: [],
         loggingStations: [],
+        loggingNewCampaign: [],
         missingCorpID: 0,
         missingCorpTick: "",
         moonlist: [],
@@ -909,6 +910,10 @@ export default new Vuex.Store({
 
         SET_START_CAMPAIGNS(state, startcampaigns) {
             state.startcampaigns = startcampaigns;
+        },
+
+        SET_CAMPAIGN_LOGS(state, logs) {
+            state.loggingNewCampaign = logs;
         },
 
         SET_CAMPAIGNSLIST(state, campaignslist) {
@@ -1949,6 +1954,19 @@ export default new Vuex.Store({
                 },
             });
             commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
+        },
+
+        async getCampaignsList({ commit }, op_id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/newoperationlogs/" + op_id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            commit("SET_CAMPAIGN_LOGS", res.data.logs);
         },
 
         async getNewCampaignsList({ commit }) {

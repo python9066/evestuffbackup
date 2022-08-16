@@ -40,9 +40,11 @@ class NewUserNode extends Model
                 'node_id',
                 'node',
                 'notes',
+                'node.system',
                 'end_time',
                 'node_status_id',
-                'nodeStatus'
+                'nodeStatus',
+                'opUser'
             ])
             ->useLogName('User Node')
             ->dontLogIfAttributesChangedOnly([

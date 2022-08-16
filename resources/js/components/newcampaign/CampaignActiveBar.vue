@@ -89,6 +89,17 @@
                   User List
                 </v-btn></v-col
               >
+              <v-col cols="auto" v-if="$can('view_campaign_members')">
+                <v-btn
+                  color="primary"
+                  @click="btnShowLogTable"
+                  :outlined="logTableOutlined"
+                  rounded
+                  small
+                >
+                  Logs
+                </v-btn></v-col
+              >
               <v-col cols="auto" v-if="$can('edit_read_only')">
                 <v-row no-gutters>
                   <v-col cols="auto">
@@ -151,6 +162,12 @@
               :operationID="operationID"
               :windowSize="windowSize"
             />
+
+            <OperationLogTable
+              v-if="logTable"
+              :operationID="operationID"
+              :windowSize="windowSize"
+            />
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -176,6 +193,7 @@ export default {
       hidePannel: 1,
       charTable: 0,
       usertable: 0,
+      logTable: 0,
     };
   },
 
@@ -192,12 +210,31 @@ export default {
         this.hidePannel = 0;
         this.charTable = 1;
       } else {
-        if (this.usertable == 1) {
+        if (this.usertable == 1 || this.logTable == 1) {
           this.usertable = 0;
+          this.logTable = 0;
           this.charTable = 1;
         } else {
           this.hidePannel = 1;
           this.charTable = 0;
+        }
+      }
+    },
+
+    async btnShowLogTable() {
+      if (this.hidePannel == 1) {
+        this.hidePannel = 0;
+        this.logTable = 1;
+        await this.$store.dispatch("getCampaignsList", this.operationID);
+      } else {
+        if (this.usertable == 1 || this.charTable == 1) {
+          this.usertable = 0;
+          this.logTable = 1;
+          this.charTable = 0;
+          await this.$store.dispatch("getCampaignsList", this.operationID);
+        } else {
+          this.hidePannel = 1;
+          this.logTable = 0;
         }
       }
     },
@@ -253,8 +290,9 @@ export default {
         this.hidePannel = 0;
         this.usertable = 1;
       } else {
-        if (this.charTable == 1) {
+        if (this.charTable == 1 || this.logTable == 1) {
           this.charTable = 0;
+          this.logTable = 0;
           this.usertable = 1;
         } else {
           this.hidePannel = 1;
@@ -312,6 +350,14 @@ export default {
 
     userTableOutlined() {
       if (this.hidePannel == 0 && this.usertable == 1) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+
+    logTableOutlined() {
+      if (this.hidePannel == 0 && this.logTable == 1) {
         return false;
       } else {
         return true;

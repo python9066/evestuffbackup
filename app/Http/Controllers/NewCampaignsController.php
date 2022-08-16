@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Events\SoloOperationUpdate;
 use App\Models\NewCampaign;
+use App\Models\NewOperation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Activitylog\Models\Activity;
 
 class NewCampaignsController extends Controller
 {
@@ -34,7 +37,7 @@ class NewCampaignsController extends Controller
             $constellationName = $pull->system->constellation->constellation_name;
             $allianceName = $pull->alliance->name;
 
-            $text = $regionName.' - '.$constellationName.' - '.$systemName.' - '.$allianceName.' - '.$eventType.' - '.$pull->start_time;
+            $text = $regionName . ' - ' . $constellationName . ' - ' . $systemName . ' - ' . $allianceName . ' - ' . $eventType . ' - ' . $pull->start_time;
 
             $data1 = [
                 'text' => $text,
@@ -68,6 +71,42 @@ class NewCampaignsController extends Controller
     public function show($id)
     {
         //
+    }
+
+
+    public function logs($opID)
+    {
+        $user = Auth::user();
+        if ($user->can("view_campaign_members")) {
+            $operation = NewOperation::where('id', $opID)->first();
+            $campaigns = $operation->campaign()->get();
+            $campaignIDs = $campaigns->pluck('id');
+            $systemNode = Activity::where('log_name', 'System Node')
+                ->where(function ($q) use ($campaignIDs) {
+                    $q->whereIn('properties->attributes->campaign_id', $campaignIDs)
+                        ->orWHereIn('properties->old->campaign_id', $campaignIDs);
+                })
+                ->with(['subject', 'causer:id,name'])->get();
+            $userNode =
+                Activity::where('log_name', 'User Node')
+                ->where(function ($q) use ($campaignIDs) {
+                    $q->whereIn('properties->attributes->node->campaign_id', $campaignIDs)
+                        ->orWHereIn('properties->old->node->campaign_id', $campaignIDs);
+                })
+
+                ->with(['subject', 'causer'])->get();
+
+            $readOnly = Activity::where('description', 'Read Only Changed')
+                ->where('properties->attributes->id', $opID)
+                ->with(['subject', 'causer'])
+                ->get();
+
+            $logs = $systemNode->merge($userNode);
+            $logs = $logs->merge($readOnly);
+            return ['logs' => $logs];
+        } else {
+            return null;
+        }
     }
 
     /**

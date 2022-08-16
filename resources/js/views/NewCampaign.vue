@@ -125,6 +125,7 @@ export default {
   async created() {
     this.operationLink = this.$route.params.id;
     await this.$store.dispatch("getOperationInfo", this.operationLink);
+    await this.$store.dispatch("getCampaignsList", this.operationID);
     Echo.private("operations." + this.operationID).listen(
       "OperationUpdate",
       (e) => {

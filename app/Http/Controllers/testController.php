@@ -974,4 +974,29 @@ class testController extends Controller
             // echo '</pre>';
         }
     }
+
+
+    public function testLogs()
+    {
+        if (Auth::user()->can('super')) {
+            // App\Models\NewSystemNode
+            // App\Models\NewUserNode
+            $opID = 5;
+            $operation = NewOperation::where('id', 5)->first();
+            $campaigns = $operation->campaign()->get();
+            $campaignIDs = $campaigns->pluck('id');
+            $systemNode = Activity::where('log_name', 'System Node')
+                ->whereIn('properties->attributes->campaign_id', $campaignIDs)
+                ->orWHereIn('properties->old->campaign_id', $campaignIDs)
+                ->with(['subject', 'causer'])->get();
+            $userNode =
+                Activity::where('log_name', 'User Node')
+                ->whereIn('properties->attributes->node->campaign_id', $campaignIDs)
+                ->orWHereIn('properties->old->node->campaign_id', $campaignIDs)
+                ->with(['subject', 'causer'])->get();
+
+            $logs = $systemNode->merge($userNode);
+            return ['logs' => $logs];
+        }
+    }
 }
