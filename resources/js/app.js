@@ -559,6 +559,11 @@ Vue.component(
 );
 
 Vue.component(
+    "OperationCal",
+    require("./components/newcampaign/OperationCal.vue").default
+);
+
+Vue.component(
     "NewUserEdit",
     require("./components/newcampaign/NewUserEdit.vue").default
 );

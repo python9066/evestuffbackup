@@ -26,6 +26,9 @@
                   <v-col cols="auto"
                     ><AddOperationUser :operationID="operationID"
                   /></v-col>
+                  <v-col cols="auto"
+                    ><OperationCal :operationID="operationID"
+                  /></v-col>
                 </v-row>
               </v-col>
               <v-col cols="auto" v-if="$can('access_multi_campaigns')">
