@@ -45,7 +45,6 @@ class UpdateNotifications extends Command
         if ($check->status = 'green') {
             $type = 'note';
             $data = authpull($type, 0);
-            $this->info($data);
             $flag = notificationUpdate($data);
 
             if ($flag['notificationflag'] == 1) {
