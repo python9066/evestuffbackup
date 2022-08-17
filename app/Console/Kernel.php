@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('update:campaginFix')->everyMinute()->withoutOverlapping();
         $schedule->command('update:newCampaigns')->everyMinute()->withoutOverlapping();
         // $schedule->command('update:notifications')->everyMinute()->withoutOverlapping();
-        $schedule->command(' update:newnotifications')->everyMinute()->withoutOverlapping();
+        $schedule->command('update:newnotifications')->everyMinute()->withoutOverlapping();
         $schedule->command('update:eveusercount')->everyMinute()->withoutOverlapping();
         $schedule->command('update:opuserlist')->everyMinute();
         $schedule->command('update:standing')->everyTenMinutes();
