@@ -33,12 +33,13 @@ class Kernel extends ConsoleKernel
         // $schedule->command('update:campaigns')->everyMinute()->withoutOverlapping();
         // $schedule->command('update:campaginFix')->everyMinute()->withoutOverlapping();
         $schedule->command('update:newCampaigns')->everyMinute()->withoutOverlapping();
+        // $schedule->command('update:notifications')->everyMinute()->withoutOverlapping();
+        $schedule->command(' update:newnotifications')->everyMinute()->withoutOverlapping();
         $schedule->command('update:eveusercount')->everyMinute()->withoutOverlapping();
         $schedule->command('update:opuserlist')->everyMinute();
         $schedule->command('update:standing')->everyTenMinutes();
         $schedule->command('clean:coordsheet')->everyMinute()->withoutOverlapping();
         $schedule->command('update:towers')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:notifications')->everyMinute()->withoutOverlapping();
         // $schedule->command('update:stationnotifications')->everyMinute()->withoutOverlapping();
         $schedule->command('update:reconstations')->everyFiveMinutes()->withoutOverlapping();
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
