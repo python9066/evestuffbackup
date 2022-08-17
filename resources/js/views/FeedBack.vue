@@ -75,7 +75,11 @@
       <v-card>
         <v-btn @click="startReconRgionPull()">Recon Pull TEST</v-btn></v-card
       >
-
+      <v-card
+        ><v-btn class="mr-4" color="green lighten-1" href="/esi/add"
+          >ADD</v-btn
+        ></v-card
+      >
       <v-card> <v-btn @click="prequal()">Prequal</v-btn></v-card>
       <v-card> <v-btn @click="horizon()"> Horizon </v-btn></v-card>
     </v-row>

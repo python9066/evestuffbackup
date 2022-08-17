@@ -119,84 +119,22 @@ if (!function_exists('authpull')) {
             'User-Agent' => 'evestuff.online python9066@gmail.com',
 
         ];
+        $good = 0;
 
+        while ($good == 0) {
+            $response = $client->request('GET', $url, [
+                'headers' => $headers,
+                'http_errors' => false,
+            ]);
+            if ($response->getStatusCode() == 200) {
+                $data = Utils::jsonDecode($response->getBody(), true);
+                $good = 1;
 
-        $done = 0;
-        do {
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $token->access_token,
-                'Content-Type' => 'application/x-www-form-urlencoded',
-                'User-Agent' => 'webway python9066@gmail.com',
-            ])->get($url);
-            if ($response->successful()) {
-                $done = 3;
-                $data = $response->collect();
-                dd($data);
+                return $data;
             } else {
-                $errorCode = $response->status();
-                switch ($errorCode) {
-                    case 400:
-                        $done++;
-                        sleep(5);
-                        break;
-
-                    case 401:
-                        $done++;
-                        $tokenDead = 1;
-                        sleep(5);
-                        break;
-
-                    case 403:
-                        $done++;
-                        $tokenDead = 1;
-                        sleep(5);
-                        break;
-
-                    case 420:
-                        $done++;
-                        $headers = $response->headers();
-                        $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
-                        sleep($sleep);
-                        break;
-
-                    case 500:
-                        $done++;
-                        sleep(5);
-                        break;
-
-                    case 503:
-                        $done++;
-                        sleep(5);
-                        break;
-
-                    case 504:
-                        $done++;
-                        sleep(5);
-                        break;
-                }
+                sleep(10);
             }
-        } while ($done != 3);
-
-
-
-
-        // $good = 0;
-
-        // while ($good == 0) {
-        //     $response = $client->request('GET', $url, [
-        //         'headers' => $headers,
-        //         'http_errors' => false,
-        //     ]);
-        //     dd($response);
-        //     if ($response->getStatusCode() == 200) {
-        //         $data = Utils::jsonDecode($response->getBody(), true);
-        //         $good = 1;
-
-        //         return $data;
-        //     } else {
-        //         sleep(10);
-        //     }
-        // }
+        }
     }
 }
 if (!function_exists('fixtime')) {

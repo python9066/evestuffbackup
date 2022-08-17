@@ -59,6 +59,17 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/updateNotifications', [NotificationController::class, 'getNotifications']);
 Route::get('/blablabla/{id}', [NotificationController::class, 'test']);
+
+
+
+Route::get('esi/add', [
+    'as' => 'esi.add',
+    'uses' => 'ESITokensController@redirectToProvider',
+]);
+
+Route::get('esi/callback', 'ESITokensController@handleProviderCallback');
+
+
 // Route::get('/monty', [AuthController::class, 'monty']);
 //  NOTHING BELOW THIS LINEfffff
 // Route::get('/{any}', 'AppController@index')->where('any', '.*');

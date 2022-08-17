@@ -50,5 +50,13 @@ class AppServiceProvider extends ServiceProvider
                 return $socialite->buildProvider(GiceProvider::class, $config);
             }
         );
+        $socialite->extend(
+            'eveonline',
+            function ($app) use ($socialite) {
+                $config = $app['config']['services.eveonline'];
+
+                return $socialite->buildProvider(EVEOnlineSocialiteProvider::class, $config);
+            }
+        );
     }
 }
