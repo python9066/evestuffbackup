@@ -65,7 +65,7 @@ Route::get('/blablabla/{id}', [NotificationController::class, 'test']);
 
 Route::get('esi/add', [
     'as' => 'esi.add',
-    'uses' => ESITokensController::class, 'redirectToProvider'
+    'uses' => 'ESITokensController@redirectToProvider',
 ]);
 
 Route::get('esi/callback', [ESITokensController::class, 'handleProviderCallback']);
