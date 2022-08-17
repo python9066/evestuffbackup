@@ -87,11 +87,11 @@ if (!function_exists('authpull')) {
                 $token->update(['flag_note' => 1]);
 
                 $url = 'https://esi.evetech.net/latest/characters/' . $token->char_id . '/notifications/';
-                // dd($url);
+                dd($url);
             } else {
                 $token->update(['flag_note' => 1]);
                 $url = 'https://esi.evetech.net/latest/characters/' . $token->char_id . '/notifications/';
-                // dd($url);
+                dd($url);
             }
         } elseif ($type == 'station') {
             $token = Auth::where('flag_station', 0)->first();
@@ -126,6 +126,7 @@ if (!function_exists('authpull')) {
                 'headers' => $headers,
                 'http_errors' => false,
             ]);
+            dd($response->getStatusCode());;
             if ($response->getStatusCode() == 200) {
                 $data = Utils::jsonDecode($response->getBody(), true);
                 $good = 1;

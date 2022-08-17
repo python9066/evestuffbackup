@@ -27,6 +27,7 @@ use App\Models\WebWay;
 use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
@@ -972,6 +973,17 @@ class testController extends Controller
             // echo '<pre>';
             // print_r($data);
             // echo '</pre>';
+        }
+    }
+
+
+    public function testNotes()
+    {
+        $user = Auth::user();
+        if ($user->can('super')) {
+            Artisan::call('update:notifications');
+        } else {
+            return null;
         }
     }
 
