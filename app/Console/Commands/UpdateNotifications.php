@@ -24,7 +24,7 @@ class UpdateNotifications extends Command
     protected $description = 'This will run and check for new notifications';
 
     /**
-     * Create a new command instance.
+     * Create a new command instance.cscscs
      *
      * @return void
      */
