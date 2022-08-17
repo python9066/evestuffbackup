@@ -40,4 +40,13 @@ return [
         'redirect' => env('GOON_REDIRECT_URL', ($variables && array_key_exists('GOON_REDIRECT_URL', $variables)) ? $variables['GOON_REDIRECT_URL'] : 'null'),
 
     ],
+
+    'eveonline' => [
+        'client_id' => env('EVEONLINE_CLIENT_ID', ($variables && array_key_exists(
+            'EVEONLINE_CLIENT_ID',
+            $variables
+        )) ? $variables['EVEONLINE_CLIENT_ID'] : null),
+        'client_secret' => env('EVEONLINE_CLIENT_SECRET', ($variables && array_key_exists('EVEONLINE_CLIENT_SECRET', $variables)) ? $variables['EVEONLINE_CLIENT_SECRET'] : null),
+        'redirect' => env('EVEONLINE_CALLBACK_URI', ($variables && array_key_exists('EVEONLINE_CALLBACK_URI', $variables)) ? $variables['EVEONLINE_CALLBACK_URI'] : null),
+    ],
 ];
