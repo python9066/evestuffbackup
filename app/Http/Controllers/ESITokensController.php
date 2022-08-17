@@ -1,14 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\ESITokensController;
+namespace App\Http\Controllers;
 
-use App\Events\UserUpdate;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helpers\EVE;
 use App\Models\Auth as ModelsAuth;
-use App\Models\EVE\Characters;
-use App\Models\EVE\ESITokens;
-use Auth;
 use Socialite;
 
 class ESITokensController extends Controller
