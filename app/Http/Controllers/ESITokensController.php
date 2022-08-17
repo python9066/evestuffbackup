@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Auth as ModelsAuth;
+use DateTime;
 use Socialite;
 
 class ESITokensController extends Controller
@@ -43,13 +44,13 @@ class ESITokensController extends Controller
     public function handleProviderCallback()
     {
         $user = Socialite::driver('eveonline')->user();
-
-
+        $date = new DateTime();
         $esi = new ModelsAuth();
         $esi->char_id = $user->id;
         $esi->name = $user->name;
         $esi->access_token = $user->token;
         $esi->refresh_token = $user->refreshToken;
+        $esi->expire_date = $date;
 
 
         $esi->save();
