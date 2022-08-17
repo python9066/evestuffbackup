@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ESITokensController\ESITokensController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobTestController;
 use App\Http\Controllers\NotificationController;
@@ -64,13 +65,14 @@ Route::get('/blablabla/{id}', [NotificationController::class, 'test']);
 
 Route::get('esi/add', [
     'as' => 'esi.add',
-    'uses' => 'ESITokensController@redirectToProvider',
+    'uses' => [ESITokensController::class, 'redirectToProvider']
 ]);
 
-Route::get('esi/callback', 'ESITokensController@handleProviderCallback');
+Route::get('esi/callback', [ESITokensController::class], 'handleProviderCallback');
 
 
 // Route::get('/monty', [AuthController::class, 'monty']);
 //  NOTHING BELOW THIS LINEfffff
+//'ESITokensController@redirectToProvider',
 // Route::get('/{any}', 'AppController@index')->where('any', '.*');
 Route::get('/{any}', [AppController::class, 'index'])->where('any', '.*');
