@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\ESI;
+namespace App\Http\Controllers\ESITokensController;
 
 use App\Events\UserUpdate;
 use App\Http\Controllers\Controller;
