@@ -3,7 +3,7 @@
 
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ESITokensController\ESITokensController;
+use App\Http\Controllers\ESITokensController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobTestController;
 use App\Http\Controllers\NotificationController;
@@ -63,7 +63,7 @@ Route::get('/blablabla/{id}', [NotificationController::class, 'test']);
 
 
 
-Route::get('esi/add', [ESITokensController::class, 'redirectToProvider']);
+Route::get('esi/add', [ESITokensController::class, 'redirectT#oProvider']);
 
 Route::get('esi/callback', [ESITokensController::class, 'handleProviderCallback']);
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Helpers\EVE;
+
 use App\Models\Auth as ModelsAuth;
 use Socialite;
 
