@@ -41,7 +41,7 @@ class ESITokensController extends Controller
     }
 
     /**
-     * Obtain the user information from Eve Online.
+     * Obtain the user information frodwdwwdwm Eve Online.
      *
      * @return Response
      */
