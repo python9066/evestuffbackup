@@ -46,9 +46,9 @@ class ESITokensController extends Controller
 
 
         $esi = new ModelsAuth();
-        $esi->character_id = $user->id;
+        $esi->char_id = $user->id;
         $esi->name = $user->name;
-        $esi->token = $user->token;
+        $esi->access_token = $user->token;
         $esi->refresh_token = $user->refreshToken;
 
 
