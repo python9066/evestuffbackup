@@ -5,7 +5,7 @@ use App\Models\System;
 use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
 
-if (! function_exists('timeUpdate')) {
+if (!function_exists('timeUpdate')) {
     function timeUpdate()
     {
         $client = new Client();
@@ -67,7 +67,7 @@ if (! function_exists('timeUpdate')) {
         foreach ($s as $s) {
             $s->update(['age' => $now]);
         }
-        $s = Structure::where('id', '>', 0)->get();
+        $s = Structure::get();
         foreach ($s as $s) {
             $s->update(['status' => 0]);
         }
