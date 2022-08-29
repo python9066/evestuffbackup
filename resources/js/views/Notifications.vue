@@ -1,25 +1,9 @@
 <template>
   <div class="pr-16 pl-16">
+    <NotificationTable />
     <div>
       <div class="d-flex align-items-center">
         <v-card-title>Hack Notifications</v-card-title>
-        <div v-if="$can('access hacks')">You can edit posts.</div>
-
-        <v-btn
-          :loading="loadingr"
-          :disabled="loadingr"
-          color="primary"
-          class="ma-2 white--text"
-          @click="loadtimers()"
-        >
-          Update
-
-          <font-awesome-icon
-            icon="fa-solid fa-rotate"
-            pull="right"
-            size="2xl"
-          />
-        </v-btn>
         <div>
           <v-btn-toggle v-model="icon" borderless group>
             <v-dialog
@@ -837,9 +821,7 @@ export default {
           (notifications) => notifications.status_id == 6
         );
       } else {
-        return this.notifications.filter(
-          (notifications) => notifications.status_id != 10
-        );
+        return this.notifications;
       }
     },
 

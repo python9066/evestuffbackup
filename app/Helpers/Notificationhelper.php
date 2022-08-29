@@ -1420,3 +1420,19 @@ if (!function_exists('setShowWelpNew')) {
         }
     }
 }
+
+if (!function_exists('newHackNotificationAll')) {
+    function newHackNotificationAll()
+    {
+        return Notification::with([
+            'system:system_name,region_id,constellation_id,id,adm',
+            'system.region:id,region_name',
+            'system.constellation:id,constellation_name',
+            'item',
+            'notification_type',
+            'status',
+            'user:id,name'
+
+        ])->get();
+    }
+}

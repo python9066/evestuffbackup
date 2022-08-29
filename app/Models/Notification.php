@@ -28,6 +28,11 @@ class Notification extends Model
         return $this->belongsTo(Status::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected $casts = [
         'id' => 'integer',
         'system_id' => 'integer',

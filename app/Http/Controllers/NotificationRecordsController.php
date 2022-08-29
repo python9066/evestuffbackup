@@ -21,7 +21,7 @@ class NotificationRecordsController extends Controller
         // return ['notifications' => NotificationRecords::all()];
         $now = Now('-3 hours');
 
-        return ['notifications' => NotificationRecords::where('timestamp', '>=', $now)->get()];
+        return ['notifications' => NotificationRecords::get()];
     }
 
     /**
@@ -42,9 +42,9 @@ class NotificationRecordsController extends Controller
         $region = Region::where('id', $region_id)->get();
         foreach ($region as $region) {
             if ($region->region_name == 'Period Basis') {
-                $http = $http.'Period_Basis/';
+                $http = $http . 'Period_Basis/';
             } else {
-                $http = $http.$region->region_name.'/';
+                $http = $http . $region->region_name . '/';
             }
         }
         $link = NotificationRecords::where('region_id', $region_id)->where('timestamp', '>=', $now)->where('status_id', '<', 10)->get()->pluck('system_name');
@@ -56,10 +56,10 @@ class NotificationRecordsController extends Controller
         $link = $link->unique();
         // dd($link);
         foreach ($link as $link) {
-            $http = $http.$link.',';
+            $http = $http . $link . ',';
         }
         $http = substr($http, 0, -1);
-        $http = $http.'#adm';
+        $http = $http . '#adm';
 
         return ['link' => $http];
     }

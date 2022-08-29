@@ -74,6 +74,11 @@ Vue.component(
     "NotificationTimer",
     require("./components/notification/NotificationTimer.vue").default
 );
+
+Vue.component(
+    "NotificationTable",
+    require("./components/notification/NotificationTable.vue").default
+);
 Vue.component(
     "CampaignMap",
     require("./components/campaign/CampaignMap.vue").default
