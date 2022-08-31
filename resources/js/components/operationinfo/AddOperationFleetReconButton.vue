@@ -45,7 +45,11 @@
       <v-card-actions
         ><v-row no-gutters>
           <v-col cols="auto"
-            ><v-btn rounded color=" primary" @click="addRecon()"
+            ><v-btn
+              rounded
+              color=" primary"
+              @click="addRecon()"
+              :disabled="disableAddButton"
               >Add</v-btn
             ></v-col
           ><v-spacer /><v-col cols="auto"
@@ -118,6 +122,14 @@ export default {
     ...mapGetters([]),
 
     ...mapState(["operationInfoRecon"]),
+
+    disableAddButton() {
+      if (this.name && this.role) {
+        return false;
+      } else {
+        return true;
+      }
+    },
 
     dropDown() {
       var data = this.operationInfoRecon.filter(
