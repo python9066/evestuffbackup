@@ -812,6 +812,18 @@ class testController extends Controller
         }
     }
 
+    public function logreader()
+    {
+        $user = Auth::user();
+        if ($user->can('super')) {
+            return redirect('/c26c3ba256e4564ca5a8215dc8e13fe9');
+        } else {
+            return null;
+        }
+    }
+
+
+
     public function testGetAlliance($id)
     {
         $response = Http::withHeaders([

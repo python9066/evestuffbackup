@@ -150,14 +150,34 @@
               <br />
               <span> Mumble - {{ mumbleText }}</span>
               <br />
-              <v-tooltip bottom :disabled="!showreconToolTip"
-                ><template v-slot:activator="{ on, attrs }">
-                  <span v-bind="attrs" v-on="on">
-                    Recon - {{ reconNameText }}</span
-                  > </template
-                >{{ reconMainNameText }}
-              </v-tooltip>
-              <v-menu
+              <v-row no-gutters align-content="center" justify="center">
+                <v-col cols="auto"> Recon </v-col>
+              </v-row>
+              <v-row no-gutters>
+                <v-col cols="auto">
+                  <v-row
+                    no-gutters
+                    v-for="(recon, index) in recons"
+                    :key="index"
+                  >
+                    <v-tooltip bottom :disabled="!showreconToolTip"
+                      ><template v-slot:activator="{ on, attrs }"
+                        ><span v-bind="attrs" v-on="on">
+                          {{ recon.fleet_role.name }} - {{ recon.name }}
+                          <span v-if="recon.system">
+                            - {{ recon.system.system_name }}
+                          </span></span
+                        ></template
+                      ><span>Main - {{ recon.main.name }}</span>
+                      <span v-if="recon.system">
+                        <br />
+                        System - {{ recon.system.system_name }}
+                      </span></v-tooltip
+                    >
+                  </v-row>
+                </v-col>
+              </v-row>
+              <!-- <v-menu
                 bottom
                 origin="center center"
                 transition="scale-transition"
@@ -193,7 +213,7 @@
                     </v-list-item-content>
                   </v-list-item>
                 </v-list>
-              </v-menu>
+              </v-menu> -->
               <br />
               <!-- <span> Alliance - {{ allianceText }}</span> -->
             </div>

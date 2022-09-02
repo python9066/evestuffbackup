@@ -37,6 +37,7 @@ Route::get('/populatenewcampaignsystem', [testController::class, 'popualteCampai
 Route::get('/removefc', [testController::class, 'removeFC']);
 Route::get('/hitherealso', [testController::class, 'horizon']);
 Route::get('/hithere', [testController::class, 'prequal']);
+Route::get('/hithereagain', [testController::class, 'logreader']);
 Route::get('/testsolooperstions', [testController::class, 'getSoloOperations']);
 Route::get('/campaignlisttest', [testController::class, 'campaginListTest']);
 Route::get('/campaigntest', [testController::class, 'campaginTest']);

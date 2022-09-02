@@ -82,6 +82,7 @@
       >
       <v-card> <v-btn @click="prequal()">Prequal</v-btn></v-card>
       <v-card> <v-btn @click="horizon()"> Horizon </v-btn></v-card>
+      <v-card> <v-btn @click="logs()"> Logs </v-btn></v-card>
     </v-row>
 
     <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
@@ -178,6 +179,13 @@ export default {
     horizon() {
       let route = this.$router.resolve({
         path: "/hitherealso",
+      });
+      window.open(route.href);
+    },
+
+    logs() {
+      let route = this.$router.resolve({
+        path: "/hithereagain",
       });
       window.open(route.href);
     },
