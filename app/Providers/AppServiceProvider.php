@@ -6,7 +6,6 @@ use App\Http\Controllers\Auth\GiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Protoqol\Prequel\PrequelServiceProvider;
 use Spatie\Activitylog\ActivitylogServiceProvider;
-use App\Providers\EVEOnlineSocialiteProvider;
 
 class AppServiceProvider extends ServiceProvider
 {

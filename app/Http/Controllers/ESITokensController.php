@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Auth as ModelsAuth;
 use DateTime;
 use Socialite;

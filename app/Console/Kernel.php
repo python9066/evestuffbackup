@@ -18,6 +18,21 @@ class Kernel extends ConsoleKernel
         Commands\UpdateCampaigns::class,
         Commands\UpdateTimers::class,
         Commands\ClearRememberToken::class,
+        Commands\getEsiStatus::class,
+        Commands\newCampaignUpdate::class,
+        Commands\newNotificationUpdate::class,
+        Commands\UpdateEveUserCount::class,
+        Commands\updateOpertationUserList::class,
+        Commands\UpdateStanding::class,
+        Commands\CleanUpCoordShhet::class,
+        Commands\UpdateTowers::class,
+        Commands\UpdateReconStations::class,
+        Commands\UpdateWebWayRoutes::class,
+        COmmands\getDankDocsCommand::class,
+
+
+
+
     ];
 
     /**
@@ -33,8 +48,8 @@ class Kernel extends ConsoleKernel
         // $schedule->command('update:campaigns')->everyMinute()->withoutOverlapping();
         // $schedule->command('update:campaginFix')->everyMinute()->withoutOverlapping();
         $schedule->command('update:newCampaigns')->everyMinute()->withoutOverlapping();
-        // $schedule->command('update:notifications')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:newnotifications')->everyMinute()->withoutOverlapping();
+        $schedule->command('update:notifications')->everyMinute()->withoutOverlapping();
+        // $schedule->command('update:newnotifications')->everyMinute()->withoutOverlapping();
         $schedule->command('update:eveusercount')->everyMinute()->withoutOverlapping();
         $schedule->command('update:opuserlist')->everyMinute();
         $schedule->command('update:standing')->everyTenMinutes();

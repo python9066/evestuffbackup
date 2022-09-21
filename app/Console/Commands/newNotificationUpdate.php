@@ -9,7 +9,6 @@ use Illuminate\Console\Command;
 
 class newNotificationUpdate extends Command
 {
-
     /**
      * The name and signature of the console command.
      *
