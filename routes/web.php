@@ -48,6 +48,7 @@ Route::get('/adashd', [testController::class, 'adashDScan']);
 Route::get('/danktest', [testController::class, 'dankDoc']);
 Route::get('/testlog', [testController::class, 'testLogs']);
 Route::get('testNotes', [testController::class, 'testNotes']);
+Route::get('/testDankFleet', [testController::class, 'testDankFleet']);
 
 Route::get('/73cbd63ecd4d2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff', [AuthController::class, 'admin']);
 Route::get('/73cbd63ecd4d704/5a1f48be9e4df773064f33590be892ff', [AuthController::class, 'borisToken']);
@@ -72,7 +73,7 @@ Route::get('esi/add', [
 Route::get('esi/callback', [ESITokensController::class, 'handleProviderCallback']);
 
 
-// Route::get('/monty', [AuthController::class, 'monty']);
+Route::get('/monty', [AuthController::class, 'monty']);
 //  NOTHING BELOW THIS LINEfffff
 //'ESITokensController@redirectToProvider',
 // Route::get('/{any}', 'AppController@index')->where('any', '.*');

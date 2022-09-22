@@ -2,6 +2,7 @@
 
 use App\Events\OperationInfoPageSoloUpdate;
 use App\Events\OperationInfoPageUpdate;
+use App\Models\DankOperation;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
 use App\Models\OperationInfo;
@@ -224,7 +225,8 @@ if (!function_exists('operationInfoSoloPagePull')) {
             'systems.newNodes.system',
             'campaigns.system',
             'campaigns.alliance',
-            'operation'
+            'operation',
+            'dankop'
         ])->first();
     }
 }
@@ -274,7 +276,8 @@ if (!function_exists('operationInfoSoloPagePullLink')) {
             'systems.newNodes.system',
             'campaigns.system',
             'campaigns.alliance',
-            'operation'
+            'operation',
+            'dankop'
         ])->first();
     }
 }
@@ -935,5 +938,126 @@ if (!function_exists('operationInfoOver')) {
             'id' => $id
         ]);
         broadcast(new OperationInfoPageSoloUpdate($flag));
+    }
+}
+
+
+if (!function_exists('operationInfoAddDankLink')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     * @param  string  $link
+     * Link to operation/fleet page
+     * @param  int  $id
+     * Op ID
+     */
+    function operationInfoAddDankLink($link, $id)
+    {
+        $linkID = basename($link);
+        $fleetURL = "https://fleets.apps.gnf.lt/api/v1/coordination/operation/" . $linkID . "/fleets";
+        $opURL = "https://fleets.apps.gnf.lt/api/v1/coordination/operation/" . $linkID;
+
+        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+        $token = env('DANK_TOKEN', ($variables && array_key_exists('DANK_TOKEN', $variables)) ? $variables['DANK_TOKEN'] : 'null');
+        $response = Http::withHeaders([
+            'X-ApiKey' => $token,
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
+        ])->get($fleetURL);
+
+        $fleets =  $response->json();
+
+        $response = Http::withHeaders([
+            'X-ApiKey' => $token,
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+            'User-Agent' => 'evestuff.online python9066@gmail.com',
+        ])->get($opURL);
+
+        $operation =  $response->json();
+
+        if (DankOperation::where('dank_id', $linkID)->count() == 0) {
+            $new = new DankOperation();
+            $new->name = $operation['name'];
+            $new->dank_id = $linkID;
+            $new->closed_at = $operation['closedAt'] ?? null;
+            $new->operation_info_id = $id;
+            $new->save();
+        } else {
+            $old = DankOperation::where('dank_id', $linkID)->first();
+            $old->closed_at = $operation['closedAt'] ?? null;
+            $old->name = $operation['name'];
+            $old->save();
+        }
+
+
+        foreach ($fleets as $fleet) {
+            $old = OperationInfoFleet::where('uid', $fleet['id'])->first();
+            $docID = OperationInfoDoctrine::where('name', $fleet['setupName'])->first();
+            if ($old) {
+                $old->uid = $fleet['id'];
+                $old->name = $fleet['name'];
+                $old->started = $fleet['startedAt'];
+                $old->closed = $fleet['closedAt'];
+                $old->fc_id = $fleet['fleetCommanderId'];
+                $old->boss_id = $fleet['fleetBossId'];
+                $old->dank_operation_id = $operation['id'];
+                $old->doctrine_id = $docID->id ?? null;
+                $old->save();
+            } else {
+
+                $checkCustomFleet = OperationInfoFleet::where('uid', '!=', $fleet['id'])
+                    ->where('fc_id', $fleet['fleetCommanderId'])
+                    ->first();
+
+                if ($checkCustomFleet) {
+                    $checkCustomFleet->uid = $fleet['id'];
+                    $checkCustomFleet->name = $fleet['name'];
+                    $checkCustomFleet->started = $fleet['startedAt'];
+                    $checkCustomFleet->closed = $fleet['closedAt'];
+                    $checkCustomFleet->fc_id = $fleet['fleetCommanderId'];
+                    $checkCustomFleet->boss_id = $fleet['fleetBossId'];
+                    $checkCustomFleet->dank_operation_id = $operation['id'];
+                    $checkCustomFleet->doctrine_id = $docID->id ?? null;
+                    $checkCustomFleet->save();
+                } else {
+                    $new = new OperationInfoFleet();
+                    $new->uid = $fleet['id'];
+                    $new->name = $fleet['name'];
+                    $new->started = $fleet['startedAt'];
+                    $new->closed = $fleet['closedAt'];
+                    $new->fc_id = $fleet['fleetCommanderId'];
+                    $new->boss_id = $fleet['fleetBossId'];
+                    $new->dank_operation_id = $operation['id'];
+                    $new->doctrine_id = $docID->id ?? null;
+                    $new->save();
+                }
+            }
+
+            $bossCheck = OperationInfoUser::where('id', $fleet['fleetBossId'])->first();
+            if (!$bossCheck) {
+                $url = "https://images.evetech.net/characters/" . $fleet['fleetBossId'] . "/portrait?tenant=tranquility&size=64";
+                $new = new OperationInfoUser();
+                $new->id = $fleet['fleetBossId'];
+                $new->name = $fleet['fleetBoss'];
+                $new->url = $url;
+                $new->corporation_id = $fleet['fleetBossCorporationId'];
+                $new->alliance_id = $fleet['fleetBossAllianceId'];
+                $new->save();
+            }
+
+            $fcCheck = OperationInfoUser::where('id', $fleet['fleetCommanderId'])->first();
+            if (!$fcCheck) {
+                $url = "https://images.evetech.net/characters/" . $fleet['fleetCommanderId'] . "/portrait?tenant=tranquility&size=64";
+                $new = new OperationInfoUser();
+                $new->id = $fleet['fleetCommanderId'];
+                $new->name = $fleet['fleetCommander'];
+                $new->url = $url;
+                $new->corporation_id = $fleet['fleetCommanderCorporationId'];
+                $new->alliance_id = $fleet['fleetCommanderAllianceId'];
+                $new->save();
+            }
+        }
     }
 }

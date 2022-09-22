@@ -3,11 +3,16 @@
     <v-col cols="12">
       <v-card rounded="xl"
         ><v-card-title class="red pt-1 pb-1"
-          ><span class="pr-2">Fleets</span>
-          <v-btn fab x-small color="blue" @click="addFleet()"
-            ><font-awesome-icon
-              icon="fa-solid fa-plus"
-              size="2xl" /></v-btn></v-card-title
+          ><v-row no-gutters
+            ><span class="pr-2">Fleets</span>
+            <v-col cols="2">
+              <v-btn fab x-small color="blue" @click="addFleet()"
+                ><font-awesome-icon icon="fa-solid fa-plus" size="2xl" /></v-btn
+            ></v-col>
+            <v-col cols="8" class="d-flex justify-center align-center"
+              ><span class="mr-3">{{ dankTitle }}</span>
+              <AddOperationDankFleetButton />
+            </v-col> </v-row></v-card-title
         ><v-card-text :style="style">
           <draggable
             v-model="opInfo.fleets"
@@ -99,6 +104,14 @@ export default {
     showEnter() {
       if (this.loaded == true) {
         return "animate__animated animate__zoomIn";
+      }
+    },
+
+    dankTitle() {
+      if (this.opInfo.dankop) {
+        return this.opInfo.dankop.name;
+      } else {
+        return "Add Dank Link";
       }
     },
 

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -138,5 +139,15 @@ class OperationInfo extends Model
     public function operation(): BelongsTo
     {
         return $this->belongsTo(NewOperation::class, 'operation_id', 'id');
+    }
+
+    /**
+     * Get the user associated with the OperationInfo
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function dankop(): HasOne
+    {
+        return $this->hasOne(DankOperation::class, 'operation_info_id', 'id');
     }
 }
