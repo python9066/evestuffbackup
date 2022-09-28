@@ -340,6 +340,17 @@ export default {
         if (e.flag.flag == 18) {
           this.$store.dispatch("updateOperationInfoUserList", e.flag.message);
         }
+
+        if (e.flag.flag == 19) {
+          this.$store.dispatch(
+            "updateOperationInfoUpdateAllFleet",
+            e.flag.message
+          );
+        }
+
+        if (e.flag.flag == 20) {
+          this.$store.dispatch("updateOperationInfoAddDankOp", e.flag.message);
+        }
       }
     );
   },

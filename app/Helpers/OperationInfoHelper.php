@@ -382,6 +382,72 @@ if (!function_exists('operationInfoFleetSolo')) {
     }
 }
 
+if (!function_exists('operationInfoFleetAll')) {
+
+    function operationInfoFleetAll($id)
+    {
+        return  OperationInfoFleet::where('operation_info_id', $id)->with([
+            'fc',
+            'boss',
+            'mumble',
+            'doctrine',
+            'alliance',
+            'recons.main:id,eve_user_id,name',
+            'recons.fleetRole',
+            'recons.system'
+        ])->get();
+    }
+}
+
+
+if (!function_exists('operationInfoSoloPageAllFleetBroadcast')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     *
+     *  @param  int  $opID
+     * OP ID
+     *
+     * @param  int  $flagNumber
+     * 19 = Update All Fleets
+
+     */
+    function operationInfoSoloPageAllFleetBroadcast($opID, $flagNumber)
+    {
+        $message = operationInfoFleetAll($opID);
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message,
+            'id' => $opID
+        ]);
+        broadcast(new OperationInfoPageSoloUpdate($flag));
+    }
+}
+
+if (!function_exists('operationInfoSoloPageAddDankOp')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     *
+     *  @param  int  $opID
+     * OP ID
+     *
+     * @param  int  $flagNumber
+     * 20 = Add Dank
+
+     */
+    function operationInfoSoloPageAddDankOp($opID, $flagNumber)
+    {
+        $message = DankOperation::where('operation_info_id', $opID)->first();
+        $flag = collect([
+            'flag' => $flagNumber,
+            'message' => $message,
+            'id' => $opID
+        ]);
+        broadcast(new OperationInfoPageSoloUpdate($flag));
+    }
+}
+
 
 if (!function_exists('operationInfoSoloPageFleetBroadcast')) {
     /**
@@ -983,11 +1049,14 @@ if (!function_exists('operationInfoAddDankLink')) {
             $new->dank_id = $linkID;
             $new->closed_at = $operation['closedAt'] ?? null;
             $new->operation_info_id = $id;
+            $new->link = $link;
             $new->save();
+            $dankID = $new->id;
         } else {
             $old = DankOperation::where('dank_id', $linkID)->first();
             $old->closed_at = $operation['closedAt'] ?? null;
             $old->name = $operation['name'];
+            $dankID = $old->id;
             $old->save();
         }
 
@@ -1018,7 +1087,7 @@ if (!function_exists('operationInfoAddDankLink')) {
                     $checkCustomFleet->closed = $fleet['closedAt'];
                     $checkCustomFleet->fc_id = $fleet['fleetCommanderId'];
                     $checkCustomFleet->boss_id = $fleet['fleetBossId'];
-                    $checkCustomFleet->dank_operation_id = $operation['id'];
+                    $checkCustomFleet->dank_operation_id = $dankID;
                     $checkCustomFleet->doctrine_id = $docID->id ?? null;
                     $checkCustomFleet->save();
                 } else {
@@ -1029,8 +1098,9 @@ if (!function_exists('operationInfoAddDankLink')) {
                     $new->closed = $fleet['closedAt'];
                     $new->fc_id = $fleet['fleetCommanderId'];
                     $new->boss_id = $fleet['fleetBossId'];
-                    $new->dank_operation_id = $operation['id'];
+                    $new->dank_operation_id = $dankID;
                     $new->doctrine_id = $docID->id ?? null;
+                    $new->operation_info_id = $id;
                     $new->save();
                 }
             }
@@ -1059,5 +1129,8 @@ if (!function_exists('operationInfoAddDankLink')) {
                 $new->save();
             }
         }
+
+        operationInfoSoloPageAllFleetBroadcast($id, 19);
+        operationInfoSoloPageAddDankOp($id, 20);
     }
 }

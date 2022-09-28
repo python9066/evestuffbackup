@@ -158,4 +158,10 @@ class OperationInfoFleetController extends Controller
         $fleet->delete();
         operationInfoSoloPageFleetBroadcastDelete($id, $opID, 6);
     }
+
+
+    public function dankLinkAdd(Request $request)
+    {
+        operationInfoAddDankLink($request->link, $request->opID);
+    }
 }

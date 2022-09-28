@@ -209,6 +209,14 @@ export default new Vuex.Store({
             state.operationInfoUserList = data;
         },
 
+        UPDATE_OPERATION_INFO_UPDATE_ALL_FLEETS(state, data) {
+            state.operationInfoPage.fleets = data;
+        },
+
+        UPDATE_OPERATION_INFO_ADD_DANK_OP(state, data) {
+            state.operationInfoPage.dankop = data;
+        },
+
         UPDATE_OP_CHAR(state, data) {
             const item = state.opUsers.find((item) => item.id === data.id);
             const count = state.opUsers.filter(
@@ -2217,6 +2225,14 @@ export default new Vuex.Store({
 
         updateOperationInfoUserList({ commit }, data) {
             commit("UPDATE_OPERATION_INFO_USER_LIST", data);
+        },
+
+        updateOperationInfoUpdateAllFleet({ commit }, data) {
+            commit("UPDATE_OPERATION_INFO_UPDATE_ALL_FLEETS", data);
+        },
+
+        updateOperationInfoAddDankOp({ commit }, data) {
+            commit("UPDATE_OPERATION_INFO_ADD_DANK_OP", data);
         },
 
         updateNodeJoin({ commit }, data) {

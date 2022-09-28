@@ -69,6 +69,7 @@ use App\Http\Controllers\WebWayController;
 use App\Http\Controllers\WebWayStartSystemsContorller;
 use App\Http\Controllers\WelpStationController;
 use App\Models\Notification;
+use App\Models\OperationInfoFleet;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -379,6 +380,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/operationinforecononline/{id}', [OperationInfoReconController::class, 'updateOnlineStatus']);
 
     Route::post('/operationinfofleetreconremove/{id}', [OperationInfoFleetController::class, "reconRemove"]);
+    Route::post('/operationdanklink', [OperationInfoFleetController::class, "dankLinkAdd"]);
 
     Route::get('/operationlistinfoop', [NewOperationsController::class, 'operationlist']);
 

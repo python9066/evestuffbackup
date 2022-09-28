@@ -12,7 +12,7 @@
         x-small
         v-bind="attrs"
         v-on="on"
-        @click="addShown = true"
+        @click="open()"
         :color="fabColor"
         ><font-awesome-icon :icon="buttonIcon" size="2xl"
       /></v-btn>
@@ -26,7 +26,7 @@
             dense
             rounded
             label="link"
-            v-model="opInfo.dankop.link"
+            v-model="text"
           ></v-textarea>
         </v-row>
         <v-row no-gutters>
@@ -46,7 +46,7 @@
       <v-card-actions
         ><v-row no-gutters>
           <v-col cols="auto"
-            ><v-btn rounded color=" primary" @click="addRecon()">{{
+            ><v-btn rounded color=" primary" @click="addDankLink()">{{
               doneButton
             }}</v-btn></v-col
           ><v-spacer /><v-col cols="auto"
@@ -77,6 +77,7 @@ export default {
       infoShown: false,
       showMain: 0,
       mainName: null,
+      text: null,
     };
   },
 
@@ -86,11 +87,43 @@ export default {
 
   async beforeCreate() {},
 
-  async mounted() {},
+  async mounted() {
+    this.setText();
+  },
   methods: {
     close() {
-      this.name = null;
       this.addShown = false;
+    },
+
+    open() {
+      this.setText();
+      this.addShown = true;
+    },
+
+    setText() {
+      if (this.checkDankLink) {
+        this.text = this.opInfo.dankop.link;
+      } else {
+        this.text = null;
+      }
+    },
+
+    async addDankLink() {
+      var request = {
+        link: this.text,
+        opID: this.$store.state.operationInfoPage.id,
+      };
+
+      await axios({
+        method: "POST",
+        url: "/api/operationdanklink",
+        withCredentials: true,
+        data: request,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }).then(this.close());
     },
   },
 

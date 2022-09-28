@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DankOperation;
 use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
 use App\Models\OperationInfo;
@@ -356,6 +357,10 @@ class OperationInfoController extends Controller
                 $sRecon->delete();
             }
         }
+
+        $dankOp = DankOperation::where('operation_info_id', $id)->first();
+        $dankOp->delete();
+
         $opSystems = OperationInfoSystem::where('operation_info_id', $opID)->get();
         foreach ($opSystems as $opSystem) {
             $opSystem->delete();
