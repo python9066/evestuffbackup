@@ -28,7 +28,8 @@ class Kernel extends ConsoleKernel
         Commands\UpdateTowers::class,
         Commands\UpdateReconStations::class,
         Commands\UpdateWebWayRoutes::class,
-        COmmands\getDankDocsCommand::class,
+        Commands\getDankDocsCommand::class,
+        Commands\newnewCampaigns::class,
 
 
 
@@ -48,11 +49,11 @@ class Kernel extends ConsoleKernel
         // $schedule->command('update:campaginFix')->everyMinute()->withoutOverlapping();
         // $schedule->command('update:notifications')->everyMinute()->withoutOverlapping();
         // $schedule->command('update:stationnotifications')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:EveEsiStatus')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:newnewCampaigns')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:newnotifications')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:DankOps')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:eveusercount')->everyMinute()->withoutOverlapping();
+        $schedule->command('update:EveEsiStatus')->everyMinute();
+        $schedule->command('update:newnewCampaigns')->everyMinute();
+        $schedule->command('update:newnotifications')->everyMinute();
+        $schedule->command('update:DankOps')->everyMinute();
+        $schedule->command('update:eveusercount')->everyMinute();
         $schedule->command('update:opuserlist')->everyMinute();
         $schedule->command('update:standing')->everyTenMinutes();
         $schedule->command('clean:coordsheet')->everyMinute()->withoutOverlapping();
