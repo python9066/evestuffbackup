@@ -16,7 +16,7 @@ class newCampaignUpdate extends Command
      *
      * @var string
      */
-    protected $signature = 'update:newCampaigns';
+    protected $signature = 'update:OLDnewCampaignsOLD';
 
     /**
      * The console command description.
