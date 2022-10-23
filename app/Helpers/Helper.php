@@ -150,7 +150,8 @@ if (!function_exists('fixtime')) {
 if (!function_exists('clearRemember')) {
     function clearRemember()
     {
-        $now = now()->modify('-3 days');
+
+        $now = now()->subDays(3);
         $u = User::where('updated_at', '<', $now)->get();
         foreach ($u as $u) {
             $u->update(['remember_token' => null]);

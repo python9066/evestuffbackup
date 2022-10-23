@@ -25,7 +25,7 @@ use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 
-if (! function_exists('nodeJoinRecords')) {
+if (!function_exists('nodeJoinRecords')) {
     function nodeJoinRecords($id)
     {
         $join = NodeJoin::where('id', $id)->first();
@@ -49,13 +49,13 @@ if (! function_exists('nodeJoinRecords')) {
         return $data;
     }
 }
-if (! function_exists('runrun')) {
+if (!function_exists('runrun')) {
     function runrun()
     {
         Artisan::call('schedule:run');
     }
 }
-if (! function_exists('campaignUpdate')) {
+if (!function_exists('campaignUpdate')) {
     function campaignUpdate()
     {
         $checkflag = null;
@@ -193,11 +193,11 @@ if (! function_exists('campaignUpdate')) {
         }
         // dd("fwefe");
         $now = now();
-        $warmup = now()->modify(' -1 hour');
-        $now10 = now()->modify('-12 hours');
-        $now2m = now()->modify('-2 minutes');
-        $now10m = now()->modify('-10 minutes');
-        $yesterday = now('-8 hours');
+        $warmup = now()->subHours(1);
+        $now10 = now()->subHours(12);
+        $now2m = now()->subMinutes(2);
+        $now10m = now()->subMinutes(10);
+        $yesterday = now()->subHours(8);
 
         $check = Campaign::where('start_time', '<=', $now)->where('status_id', 1)->count();
         if ($check > 0) {
@@ -385,7 +385,7 @@ if (! function_exists('campaignUpdate')) {
         //NEW SCRIPT FOR UPDATED CAMPAIGN/HACKING PAGE//
     }
 }
-if (! function_exists('removeNode')) {
+if (!function_exists('removeNode')) {
     function removeNode($check)
     {
         $campaign = Campaign::find($check);

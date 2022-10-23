@@ -1154,13 +1154,13 @@ if (!function_exists('stationNotificationCheck')) {
     function stationNotificationCheck()
     {
         $now = now();
-        $now5min = now()->modify(' -5 minutes');
-        $now10min = now()->modify(' -10 minutes');
-        $now20min = now()->modify(' -20 minutes');
-        $now30min = now()->modify(' -30 minutes');
-        $now1hour = now()->modify(' -1 hour');
-        $now5hour = now()->modify(' -5 hours'); //if less than
-        $soon24hour = now()->modify(' +24 hours');
+        $now5min = now()->subMinutes(5);
+        $now10min = now()->subMinutes(10);
+        $now20min = now()->subMinutes(20);
+        $now30min = now()->subMinutes(30);
+        $now1hour = now()->subHours(1);
+        $now5hour = now()->subHours(5); //if less than
+        $soon24hour = now()->addDay();
 
         $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 1)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //New
         foreach ($checks as $check) {
@@ -1316,6 +1316,7 @@ if (!function_exists('towerUpdate')) {
     function towerUpdate()
     {
         $now10min = now()->modify(' -10 minutes');
+        $now10min = now()->subMinutes(10);
         $towers = Tower::where('tower_status_id', 6)->where('updated_at', '<', $now10min)->get();
         foreach ($towers as $tower) {
             $id = $tower->id;
