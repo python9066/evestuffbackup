@@ -2,25 +2,29 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\setActiveUpdateFlagJob;
+use App\Jobs\setWarmUpdateFlagJob;
 use App\Models\EveEsiStatus;
+use App\Models\NewCampaign;
 use App\Models\Userlogging;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
-class newnewcampaignsupdate extends Command
+class newCampaignUpdate extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'update:campaginFix';
+    protected $signature = 'update:newnewCampaigns';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'New command to update sov stuff';
 
     /**
      * Create a new command instance.
@@ -39,10 +43,32 @@ class newnewcampaignsupdate extends Command
      */
     public function handle()
     {
-        Userlogging::create(['url' => 'demon campagin fix', 'user_id' => 9999999999]);
+        Userlogging::create(['url' => 'demon newCampaign', 'user_id' => 9999999999]);
+        // $status = checkeve();
+        // if ($status == 1) {
+        //     NewnewUpdate();
+        // };
+        activity()->disableLogging();
         $check = EveEsiStatus::where('route', '/sovereignty/campaigns/')->first();
-        if ($check->status == 'green') {
-            campaignUpdate();
+        if ($check) {
+            if ($check->status == 'green') {
+                newUpdateCampaigns();
+            }
         }
+        $campaigns = NewCampaign::where('job', 0)->get();
+        foreach ($campaigns as $campaign) {
+            $start = Carbon::parse($campaign->start_time);
+            $twoHours = now()->addHours(3);
+
+            if ($start <= $twoHours) {
+                $a = $start->subHours(2);
+                $begin = Carbon::parse($campaign->start_time);
+                setWarmUpdateFlagJob::dispatch($campaign->id)->onQueue('campaigns')->delay($a);
+                setActiveUpdateFlagJob::dispatch($campaign->id)->onQueue('campaigns')->delay($begin);
+                $campaign->update(['job' => 1]);
+            }
+        }
+
+        activity()->enableLogging();
     }
 }
