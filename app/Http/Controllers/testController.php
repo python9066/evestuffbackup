@@ -7,7 +7,6 @@ use App\Models\AdashLocalScan;
 use App\Models\AdashLocalScanAlliance;
 use App\Models\AdashLocalScanCorp;
 use App\Models\Campaign;
-use App\Models\DankFleet;
 use App\Models\DankOperation;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;

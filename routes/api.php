@@ -69,7 +69,6 @@ use App\Http\Controllers\WebWayController;
 use App\Http\Controllers\WebWayStartSystemsContorller;
 use App\Http\Controllers\WelpStationController;
 use App\Models\Notification;
-use App\Models\OperationInfoFleet;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
