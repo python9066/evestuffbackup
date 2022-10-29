@@ -20,7 +20,7 @@ class newnewnewcampaignsupdate extends Command
     protected $signature = 'update:newnewnewCampaigns';
 
     /**
-     * The console command description.
+     * The console command description.ddddddd
      *
      * @var string
      */
