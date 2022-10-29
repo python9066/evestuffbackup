@@ -1,0 +1,766 @@
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
+require("./bootstrap");
+// window.Vue = require('vue');
+import Vue from "vue";
+import Vuetify from "vuetify";
+import router from "./router";
+import store from "./store";
+import App from "./views/App";
+import "animate.css";
+import colors from "vuetify/lib/util/colors";
+// import "@fortawesome/fontawesome-free/css/all.css";
+import VueCountdown from "@chenfengyuan/vue-countdown";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
+// import { faBell as fasBell } from "@fortawesome/free-solid-svg-icons";
+// import { faBell as farBell } from "@fortawesome/free-regular-svg-icons";
+import moment from "moment";
+import VueCountdownTimer from "vuejs-countdown-timer";
+import VueCountupTimer from "./components/countup/index";
+import CountdownTimer from "./components/countdown/index";
+import VueMask from "v-mask";
+import Permissions from "./mixins/Permissions.vue";
+import titleMixin from "./mixins/titleMixin";
+import Clipboard from "v-clipboard";
+import VueEllipseProgress from "vue-ellipse-progress";
+import VueGridLayout from "vue-grid-layout";
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
+
+Vue.component("font-awesome-icon", FontAwesomeIcon);
+// library.add(faUserSecret);
+library.add(fas, far); // Include needed icons
+
+Vue.component(
+    "CampaginWebWay",
+    require("./components/campaign/CampaginWebWay.vue").default
+);
+
+Vue.component(
+    "SoloCampaginWebWay",
+    require("./components/operations/SoloCampaginWebWay.vue").default
+);
+
+Vue.component(
+    "SystemTable",
+    require("./components/campaign/SystemTable.vue").default
+);
+Vue.component(
+    "UserTable",
+    require("./components/campaign/UserTable.vue").default
+);
+Vue.component(
+    "v-progress-circular",
+    require("easy-circular-progress/src/index.vue").default
+);
+
+Vue.component(
+    "SystemTableTimer",
+    require("./components/campaignAll/SystemTableTimer.vue").default
+);
+Vue.component(
+    "WatchUserTable",
+    require("./components/campaignAll/WatchUserTable.vue").default
+);
+
+Vue.component(
+    "NotificationTimer",
+    require("./components/notification/NotificationTimer.vue").default
+);
+Vue.component(
+    "CampaignMap",
+    require("./components/campaign/CampaignMap.vue").default
+);
+Vue.component(
+    "CampaignMapSystem",
+    require("./components/campaign/CampaignMapSystem.vue").default
+);
+Vue.component(
+    "SystemItemList",
+    require("./components/multicampaigns/SystemItemList.vue").default
+);
+Vue.component(
+    "MultiCampaignAdd",
+    require("./components/multicampaigns/MultiCampaignAdd.vue").default
+);
+Vue.component(
+    "MultiCampaignEdit",
+    require("./components/multicampaigns/MultiCampaignEdit.vue").default
+);
+Vue.component(
+    "TitleBar",
+    require("./components/multicampaigns/TitleBar.vue").default
+);
+Vue.component(
+    "MultiSystemTable",
+    require("./components/multicampaigns/MultiSystemTable.vue").default
+);
+Vue.component(
+    "UsersChars",
+    require("./components/campaignAll/UsersChars.vue").default
+);
+Vue.component(
+    "UsersCharsEdit",
+    require("./components/campaignAll/UsersCharsEdit.vue").default
+);
+Vue.component(
+    "ShowNotes",
+    require("./components/campaignAll/ShowNotes.vue").default
+);
+Vue.component(
+    "LastedChecked",
+    require("./components/campaignAll/LastedChecked.vue").default
+);
+Vue.component(
+    "SystemScout",
+    require("./components/campaignAll/SystemScout.vue").default
+);
+Vue.component(
+    "StationGunner",
+    require("./components/station/StationGunner.vue").default
+);
+Vue.component(
+    "SystemTidi",
+    require("./components/campaign/SystemTidi.vue").default
+);
+Vue.component(
+    "SystemTidiMulti",
+    require("./components/multicampaigns/SystemTidiMulti.vue").default
+);
+Vue.component(
+    "AdminHackUserTable",
+    require("./components/campaignAll/admin/UserTable.vue").default
+);
+Vue.component(
+    "SolaSystemLogging",
+    require("./components/logging/campaign/SolaSystemLogging.vue").default
+);
+Vue.component(
+    "CampaignLogging",
+    require("./components/logging/campaign/CampaignLogging.vue").default
+);
+Vue.component(
+    "AdminLogging",
+    require("./components/logging/adminpanel/AdminLogging.vue").default
+);
+Vue.component(
+    "NodeExtraChar",
+    require("./components/campaign/NodeExtraChar.vue").default
+);
+Vue.component("TidiCalc", require("./components/random/TidiCalc.vue").default);
+Vue.component(
+    "JoinNodeTable",
+    require("./components/campaignAll/JoinNodeTable.vue").default
+);
+Vue.component(
+    "NodeExtraCharMulti",
+    require("./components/multicampaigns/NodeExtraCharMulti.vue").default
+);
+Vue.component(
+    "SystemMessage",
+    require("./components/campaignAll/SystemMessage.vue").default
+);
+Vue.component(
+    "SystemAttackMessage",
+    require("./components/campaignAll/SystemAttackMessage.vue").default
+);
+Vue.component("Info", require("./components/station/Info.vue").default);
+Vue.component(
+    "StationTimer",
+    require("./components/station/StationTimer.vue").default
+);
+Vue.component(
+    "Structure",
+    require("./components/station/Structure.vue").default
+);
+Vue.component(
+    "AddStation",
+    require("./components/station/AddStation.vue").default
+);
+Vue.component(
+    "TowerOnlineTimer",
+    require("./components/tower/TowerOnlineTimer.vue").default
+);
+Vue.component(
+    "TowerRefTimer",
+    require("./components/tower/TowerRefTimer.vue").default
+);
+Vue.component(
+    "StationNewTimer",
+    require("./components/station/StationNewTimer.vue").default
+);
+Vue.component("AddTower", require("./components/tower/AddTower.vue").default);
+Vue.component(
+    "StationAttack",
+    require("./components/station/StationAttack.vue").default
+);
+Vue.component(
+    "StationMessage",
+    require("./components/station/StationMessage.vue").default
+);
+Vue.component(
+    "TowerMessage",
+    require("./components/tower/TowerMessage.vue").default
+);
+Vue.component(
+    "StationRequestAmmo",
+    require("./components/station/StationRequestAmmo.vue").default
+);
+Vue.component(
+    "AmmoRequestTable",
+    require("./components/gsol/AmmoRequestTable.vue").default
+);
+Vue.component(
+    "AmmoStationInfo",
+    require("./components/gsol/AmmoStationInfo.vue").default
+);
+Vue.component(
+    "AmmoStocker",
+    require("./components/gsol/AmmoStocker.vue").default
+);
+Vue.component(
+    "AddReconTask",
+    require("./components/recon/AddReconTask.vue").default
+);
+Vue.component(
+    "ReconTaskTable",
+    require("./components/recon/ReconTaskTable.vue").default
+);
+Vue.component(
+    "LastedCheckedTimerRecon",
+    require("./components/recon/LastedCheckedTimerRecon.vue").default
+);
+Vue.component("TaskInfo", require("./components/recon/TaskInfo.vue").default);
+Vue.component(
+    "DeleteReconTask",
+    require("./components/recon/DeleteReconTask.vue").default
+);
+Vue.component(
+    "MultiCampaigns",
+    require("./components/multicampaigns/MultiCampaigns.vue").default
+);
+Vue.component(
+    "StartCampaign",
+    require("./components/startcampaign/StartCampaign.vue").default
+);
+Vue.component(
+    "StartCampaignAdd",
+    require("./components/startcampaign/StartCampaignAdd.vue").default
+);
+Vue.component(
+    "StartSystemItemList",
+    require("./components/startcampaign/StartSystemItemList.vue").default
+);
+Vue.component(
+    "StartTitleBar",
+    require("./components/startcampaign/StartTitleBar.vue").default
+);
+Vue.component(
+    "StartSystemTable",
+    require("./components/startcampaign/StartSystemTable.vue").default
+);
+Vue.component(
+    "StartSystemTableTimer",
+    require("./components/startcampaign/StartSystemTableTimer.vue").default
+);
+Vue.component(
+    "DeleteButton",
+    require("./components/multicampaigns/DeleteButton.vue").default
+);
+
+Vue.component(
+    "RcFCButton",
+    require("./components/rcsheet/RcFCButton.vue").default
+);
+Vue.component(
+    "RcReconButton",
+    require("./components/rcsheet/RcReconButton.vue").default
+);
+Vue.component(
+    "RcGsolButton",
+    require("./components/rcsheet/RcGsolButton.vue").default
+);
+Vue.component("RcFCAdd", require("./components/rcsheet/RcFCAdd.vue").default);
+Vue.component(
+    "AddCorpTicker",
+    require("./components/rcsheet/AddCorpTicker.vue").default
+);
+Vue.component(
+    "AddAllianceTicker",
+    require("./components/rcsheet/AddAllianceTicker.vue").default
+);
+Vue.component(
+    "RcStationMessage",
+    require("./components/rcsheet/RcStationMessage.vue").default
+);
+Vue.component(
+    "AdminLoggingSheet",
+    require("./components/rcsheet/AdminLoggingSheet.vue").default
+);
+Vue.component(
+    "RcMoveImage",
+    require("./components/rcsheet/RcMoveImage.vue").default
+);
+Vue.component(
+    "RcMoveMessage",
+    require("./components/rcsheet/RcMoveMessage.vue").default
+);
+Vue.component("RcInfo", require("./components/rcsheet/RcInfo.vue").default);
+Vue.component(
+    "EditStation",
+    require("./components/station/EditStation.vue").default
+);
+Vue.component(
+    "RcMoveCopyButton",
+    require("./components/rcsheet/RcMoveCopyButton.vue").default
+);
+Vue.component(
+    "EditFleets",
+    require("./components/keypannel/EditFleet.vue").default
+);
+Vue.component(
+    "EditKeys",
+    require("./components/keypannel/EditKeys.vue").default
+);
+Vue.component(
+    "DoneButton",
+    require("./components/rcsheet/DoneButton.vue").default
+);
+Vue.component(
+    "AddTimerFromDone",
+    require("./components/rcsheet/AddTimerFromDone.vue").default
+);
+Vue.component(
+    "AddTimerFromDoneCoord",
+    require("./components/coord/AddTimerFromDoneCoord.vue").default
+);
+Vue.component(
+    "DoneButtonCoord",
+    require("./components/coord/DoneButtonCoord.vue").default
+);
+Vue.component(
+    "FCMessage",
+    require("./components/keypannel/FCMessage.vue").default
+);
+Vue.component(
+    "StationLogs",
+    require("./components/station/StationLogs.vue").default
+);
+Vue.component(
+    "AddMissingCorp",
+    require("./components/station/addMissingCorp.vue").default
+);
+
+Vue.component(
+    "SoloOperationsTable",
+    require("./components/operations/SoloOperationsTable.vue").default
+);
+
+Vue.component(
+    "SoloCampaignMap",
+    require("./components/operations/SoloCampaignMap.vue").default
+);
+
+Vue.component(
+    "StationSheetInfo",
+    require("./components/stationSheet/StationSheetInfo.vue").default
+);
+Vue.component(
+    "StationSheetLogs",
+    require("./components/stationSheet/StationSheetLogs.vue").default
+);
+
+Vue.component(
+    "StatusButton",
+    require("./components/stationSheet/StatusButton.vue").default
+);
+
+Vue.component(
+    "AddTimerFromStationSheet",
+    require("./components/stationSheet/AddTimerFromStationSheet.vue").default
+);
+
+Vue.component(
+    "SettingPannel",
+    require("./components/stationSheet/SettingPannel.vue").default
+);
+Vue.component("RcTimer", require("./components/rcsheet/RcTimer.vue").default);
+
+Vue.component(
+    "CampaignTitleBar",
+    require("./components/newcampaign/CampaignTitleBar.vue").default
+);
+
+Vue.component(
+    "CampaignSystemCard",
+    require("./components/newcampaign/CampaignSystemCard.vue").default
+);
+
+Vue.component(
+    "CampaignActiveBar",
+    require("./components/newcampaign/CampaignActiveBar.vue").default
+);
+
+Vue.component(
+    "AddOperationUser",
+    require("./components/newcampaign/AddOperationUser.vue").default
+);
+
+Vue.component(
+    "OperationUserTable",
+    require("./components/newcampaign/OperationUserTable.vue").default
+);
+
+Vue.component(
+    "CampaignSystemCardContent",
+    require("./components/newcampaign/CampaignSystemCardContent.vue").default
+);
+
+Vue.component(
+    "NewSystemTable",
+    require("./components/newcampaign/NewSystemTable.vue").default
+);
+
+Vue.component(
+    "AddPilot",
+    require("./components/newcampaign/AddPilot.vue").default
+);
+
+Vue.component(
+    "NewSystemTableSimpleText",
+    require("./components/newcampaign/NewSystemTableSimpleText.vue").default
+);
+
+Vue.component(
+    "NewSystemTableStatusButton",
+    require("./components/newcampaign/NewSystemTableStatusButton.vue").default
+);
+
+Vue.component(
+    "NewSystemTableTimer",
+    require("./components/newcampaign/NewSystemTableTimer.vue").default
+);
+
+Vue.component(
+    "NewNodeExtraChar",
+    require("./components/newcampaign/NewNodeExtraChar.vue").default
+);
+
+Vue.component(
+    "NewJoinNodeTable",
+    require("./components/newcampaign/NewJoinNodeTable.vue").default
+);
+
+Vue.component(
+    "AddNode",
+    require("./components/newcampaign/AddNode.vue").default
+);
+
+Vue.component(
+    "OnTheWay",
+    require("./components/newcampaign/OnTheWay.vue").default
+);
+
+Vue.component(
+    "ReadyToGo",
+    require("./components/newcampaign/ReadyToGo.vue").default
+);
+
+Vue.component(
+    "SystemNodeCount",
+    require("./components/newcampaign/SystemNodeCount.vue").default
+);
+
+Vue.component(
+    "CampaignTitleBarContent",
+    require("./components/newcampaign/CampaignTitleBarContent.vue").default
+);
+
+Vue.component(
+    "SystemCheckButton",
+    require("./components/newcampaign/SystemCheckButton.vue").default
+);
+
+Vue.component(
+    "TidiButton",
+    require("./components/newcampaign/TidiButton.vue").default
+);
+
+Vue.component(
+    "AddMultiCampaign",
+    require("./components/newcampaign/AddMultiCampaign.vue").default
+);
+
+Vue.component(
+    "NewMultiCampaigns",
+    require("./components/newcampaign/NewMultiCampaigns.vue").default
+);
+
+Vue.component(
+    "CampaginPriorityButton",
+    require("./components/campaign/CampaginPriorityButton.vue").default
+);
+
+Vue.component(
+    "SoloCampaignPriorityButton",
+    require("./components/operations/SoloCampaignPriorityButton.vue").default
+);
+
+Vue.component(
+    "NewSystemItemList",
+    require("./components/newcampaign/NewSystemItemList.vue").default
+);
+
+Vue.component(
+    "EditOperation",
+    require("./components/newcampaign/EditOperation.vue").default
+);
+
+Vue.component(
+    "NewCustomCampaignDeleteButton",
+    require("./components/newcampaign/NewCustomCampaignDeleteButton.vue")
+        .default
+);
+
+Vue.component(
+    "NewCampaginPriorityButton",
+    require("./components/newcampaign/NewCampaginPriorityButton.vue").default
+);
+
+Vue.component(
+    "AddPilotAdmin",
+    require("./components/newcampaign/AddPilotAdmin.vue").default
+);
+
+Vue.component(
+    "OperationUserListTable",
+    require("./components/newcampaign/OperationUserListTable.vue").default
+);
+
+Vue.component(
+    "OperationLogTable",
+    require("./components/newcampaign/OperationLogTable.vue").default
+);
+
+Vue.component(
+    "NewCampaignLogText",
+    require("./components/newcampaign/NewCampaignLogText.vue").default
+);
+Vue.component(
+    "AddOperationUserButton",
+    require("./components/newcampaign/AddOperationUserButton.vue").default
+);
+
+Vue.component(
+    "OperationCal",
+    require("./components/newcampaign/OperationCal.vue").default
+);
+
+Vue.component(
+    "NewUserEdit",
+    require("./components/newcampaign/NewUserEdit.vue").default
+);
+
+Vue.component(
+    "AddOperationInfo",
+    require("./components/operationinfo/AddOperationInfo.vue").default
+);
+
+Vue.component(
+    "OperationInfoTable",
+    require("./components/operationinfo/OperationInfoTable.vue").default
+);
+
+Vue.component(
+    "OperationInfoPlanningCard",
+    require("./components/operationinfo/OperationInfoPlanningCard.vue").default
+);
+Vue.component(
+    "OperationPreOpFormUpCard",
+    require("./components/operationinfo/OperationPreOpFormUpCard.vue").default
+);
+Vue.component(
+    "OperationInfoPostOpCard",
+    require("./components/operationinfo/OperationInfoPostOpCard.vue").default
+);
+
+Vue.component(
+    "OperationInfoMessageCard",
+    require("./components/operationinfo/OperationInfoMessageCard.vue").default
+);
+
+Vue.component(
+    "OperationInfoFleetCard",
+    require("./components/operationinfo/OperationInfoFleetCard.vue").default
+);
+
+Vue.component(
+    "OperationInfoFleetSoloCard",
+    require("./components/operationinfo/OperationInfoFleetSoloCard.vue").default
+);
+
+Vue.component(
+    "OperationInfoReconCard",
+    require("./components/operationinfo/OperationInfoReconCard.vue").default
+);
+
+Vue.component(
+    "AddOperationReconButton",
+    require("./components/operationinfo/AddOperationReconButton.vue").default
+);
+
+Vue.component(
+    "OperationInfoSettingPannel",
+    require("./components/operationinfo/OperationInfoSettingPannel.vue").default
+);
+
+Vue.component(
+    "OpertationInfoSystemTable",
+    require("./components/operationinfo/OpertationInfoSystemTable.vue").default
+);
+
+Vue.component(
+    "OperationInfoSystemAddNotes",
+    require("./components/operationinfo/OperationInfoSystemAddNotes.vue")
+        .default
+);
+
+Vue.component(
+    "AddOperationFleetReconButton",
+    require("./components/operationinfo/AddOperationFleetReconButton.vue")
+        .default
+);
+
+Vue.component(
+    "OperationInfoFleetReconCard",
+    require("./components/operationinfo/OperationInfoFleetReconCard.vue")
+        .default
+);
+
+Vue.component(
+    "AddOperationFleetReconEditButton",
+    require("./components/operationinfo/AddOperationFleetReconEditButton.vue")
+        .default
+);
+
+Vue.component(
+    "OperationInfoSystemJammerSetting",
+    require("./components/operationinfo/OperationInfoSystemJammerSetting.vue")
+        .default
+);
+
+Vue.component(
+    "OperationInfoSystemAddRecon",
+    require("./components/operationinfo/OperationInfoSystemAddRecon.vue")
+        .default
+);
+
+Vue.component(
+    "OperationInfoSystemReconChips",
+    require("./components/operationinfo/OperationInfoSystemReconChips.vue")
+        .default
+);
+
+Vue.component(
+    "OperationInfoReconCardNames",
+    require("./components/operationinfo/OperationInfoReconCardNames.vue")
+        .default
+);
+
+Vue.component(
+    "AddOperationStartTime",
+    require("./components/operationinfo/AddOperationStartTime.vue").default
+);
+
+Vue.component(
+    "OperationInfoShowSetting",
+    require("./components/operationinfo/OperationInfoShowSetting.vue").default
+);
+
+Vue.component(
+    "OperationInfoShowHacking",
+    require("./components/operationinfo/OperationInfoShowHacking.vue").default
+);
+Vue.component(
+    "OperationInfoShowHackingContent",
+    require("./components/operationinfo/OperationInfoShowHackingContent.vue")
+        .default
+);
+
+Vue.component(
+    "AddOperationDankFleetButton",
+    require("./components/operationinfo/AddOperationDankFleetButton.vue")
+        .default
+);
+Vue.prototype.moment = moment;
+// import '@fortawesome/fontawesome-f      ree/css/all.css'
+Vue.use(VueEllipseProgress, "Vep");
+Vue.use(Clipboard);
+Vue.use(CountdownTimer);
+Vue.use(VueCountdownTimer);
+Vue.use(VueCountupTimer);
+Vue.use(Toast, {
+    transition: "Vue-Toastification__bounce",
+    maxToasts: 20,
+    newestOnTop: true,
+    shareAppContext: true,
+});
+Vue.config.productionTip = false;
+Vue.component(VueCountdown.name, VueCountdown);
+Vue.use(VueGridLayout);
+Vue.use(VueMask);
+Vue.mixin(Permissions);
+Vue.mixin(titleMixin);
+
+/**
+ * The following block of code may be used to automatically register your
+ * Vue components. It will recursively scan this directory for the Vue
+ * components and automatically register them with their "basename".
+ *
+ * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ */
+
+// const files = require.context('./', true, /\.vue$/i)
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+// Vue.component('box', require('./components/Box.vue').default);
+
+Vue.use(Vuetify);
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+export default new Vuetify({
+    theme: {
+        light: {
+            a: colors.teal,
+            warning: "#F57C00",
+            secondary: "#65F5FC",
+
+            "dark-orange": "#F57C00",
+        },
+        dark: true,
+    },
+    icons: {
+        iconfont: "faSvg",
+    },
+});
+export const EventBus = new Vue();
+const app = new Vue({
+    components: {
+        App,
+    },
+    el: "#app",
+    router,
+    store,
+    vuetify: new Vuetify(),
+});
