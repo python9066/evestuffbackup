@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
         Commands\UpdateReconStations::class,
         Commands\UpdateWebWayRoutes::class,
         Commands\getDankDocsCommand::class,
-        Commands\newnewCampaigns::class,
+        Commands\newnewnewCampaigns::class,
     ];
 
     /**
@@ -45,22 +45,22 @@ class Kernel extends ConsoleKernel
         // $schedule->command('update:campaginFix')->everyMinute()->withoutOverlapping();
         // $schedule->command('update:notifications')->everyMinute()->withoutOverlapping();
         // $schedule->command('update:stationnotifications')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:EveEsiStatus')->everyMinute();
-        $schedule->command('update:newnewCampaigns')->everyMinute();
-        $schedule->command('update:newnotifications')->everyMinute();
-        $schedule->command('update:DankOps')->everyMinute();
-        $schedule->command('update:eveusercount')->everyMinute();
-        $schedule->command('update:opuserlist')->everyMinute();
-        $schedule->command('update:standing')->everyTenMinutes();
-        $schedule->command('clean:coordsheet')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:towers')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:reconstations')->everyFiveMinutes()->withoutOverlapping();
-        $schedule->command('horizon:snapshot')->everyFiveMinutes();
-        $schedule->command('update:webway')->everyFiveMinutes();
-        $schedule->command('update:timers')->hourly()->withoutOverlapping();
-        $schedule->command('update:alliances')->dailyAt('22:00')->withoutOverlapping();
-        $schedule->command('clear:remembertoken')->twiceDaily(9, 21)->withoutOverlapping();
-        $schedule->command('get:dankdocs')->twiceDaily(9, 21)->withoutOverlapping();
+        // $schedule->command('update:EveEsiStatus')->everyMinute();
+        // $schedule->command('update:newnnewewCampaigns')->everyMinute();
+        // $schedule->command('update:newnotifications')->everyMinute();
+        // $schedule->command('update:DankOps')->everyMinute();
+        // $schedule->command('update:eveusercount')->everyMinute();
+        // $schedule->command('update:opuserlist')->everyMinute();
+        // $schedule->command('update:standing')->everyTenMinutes();
+        // $schedule->command('clean:coordsheet')->everyMinute()->withoutOverlapping();
+        // $schedule->command('update:towers')->everyMinute()->withoutOverlapping();
+        // $schedule->command('update:reconstations')->everyFiveMinutes()->withoutOverlapping();
+        // $schedule->command('horizon:snapshot')->everyFiveMinutes();
+        // $schedule->command('update:webway')->everyFiveMinutes();
+        // $schedule->command('update:timers')->hourly()->withoutOverlapping();
+        // $schedule->command('update:alliances')->dailyAt('22:00')->withoutOverlapping();
+        // $schedule->command('clear:remembertoken')->twiceDaily(9, 21)->withoutOverlapping();
+        // $schedule->command('get:dankdocs')->twiceDaily(9, 21)->withoutOverlapping();
     }
 
     /**

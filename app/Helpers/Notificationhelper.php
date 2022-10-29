@@ -1421,3 +1421,23 @@ if (!function_exists('setShowWelpNew')) {
         }
     }
 }
+
+
+if (!function_exists('notificationSolo')) {
+    function notificationSolo($id)
+    {
+        $data =  Notification::where('id', $id)
+            ->with([
+                'system:id,region_id,constellation_id,system_name,adm,tidi',
+                'system.region:id,region_name',
+                'system.constellation:id,constellation_name',
+                'item',
+                'notification_type:id,name',
+                'status:id,name',
+                'updatedBy:id,name'
+            ])
+            ->first();
+
+        return ["notification" => $data];
+    }
+}

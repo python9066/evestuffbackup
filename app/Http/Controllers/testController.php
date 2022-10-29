@@ -14,6 +14,7 @@ use App\Models\NewCampaignSystem;
 use App\Models\NewOperation;
 use App\Models\NewSystemNode;
 use App\Models\NewUserNode;
+use App\Models\Notification;
 use App\Models\OperationInfo;
 use App\Models\OperationInfoDoctrine;
 use App\Models\OperationInfoFleet;
@@ -1053,6 +1054,17 @@ class testController extends Controller
     {
         testNote::create(['text' => $request]);
         test($request, 1);
+    }
+
+
+    public function testNotification()
+    {
+        $user = Auth::user();
+        if ($user->can('super')) {
+            return notificationSolo(1643582201);
+        } else {
+            return "noob";
+        }
     }
 
     public function rc(Request $request)

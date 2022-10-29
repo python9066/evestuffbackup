@@ -10,14 +10,14 @@ use App\Models\Userlogging;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
-class newnewCampaigns extends Command
+class newnewnewCampaigns extends Command
 {
     /**
      * The name and signature of dwdwdwdthe console command.
      *
      * @var string
      */
-    protected $signature = 'update:newnewCampaigns';
+    protected $signature = 'update:newnewnewCampaigns';
 
     /**
      * The console command description.
