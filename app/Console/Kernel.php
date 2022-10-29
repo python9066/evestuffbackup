@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
         Commands\UpdateReconStations::class,
         Commands\UpdateWebWayRoutes::class,
         Commands\getDankDocsCommand::class,
-        Commands\newnewCampaigns::class,
+        Commands\newnewnewcampaignsupdate::class,
     ];
 
     /**
@@ -46,7 +46,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('update:notifications')->everyMinute()->withoutOverlapping();
         // $schedule->command('update:stationnotifications')->everyMinute()->withoutOverlapping();
         $schedule->command('update:EveEsiStatus')->everyMinute();
-        $schedule->command('update:newnewCampaigns')->everyMinute();
+        $schedule->command('update:newnewnewCampaigns')->everyMinute();
         $schedule->command('update:newnotifications')->everyMinute();
         $schedule->command('update:DankOps')->everyMinute();
         $schedule->command('update:eveusercount')->everyMinute();
