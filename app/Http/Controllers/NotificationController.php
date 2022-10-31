@@ -11,6 +11,7 @@ class NotificationController extends Controller
 {
     public function getNotifications()
     {
+        return notificationAllActive();
     }
 
     public function test($id)

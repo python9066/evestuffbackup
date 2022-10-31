@@ -29,6 +29,7 @@ Route::get('/stationrecordtest/{id}', [testController::class, 'testStationRecord
 Route::get('/testGetAliiance/{id}', [testController::class, 'testGetAlliance']);
 Route::get('/testGetAliianceJob/{id}', [JobTestController::class, 'jobAllianceTest']);
 Route::get('/testGetCorpJob/{id}', [JobTestController::class, 'jobCorpTest']);
+Route::get('/teststuff', [testController::class, 'testNotification']);
 // Route::get('/dance', [testController::class, 'corptest']);
 Route::get('/testCorpWithNoAlliance', [testController::class, 'getCorpWithNoAlliance']);
 Route::get('/testCampagin', [testController::class, 'testPull']);
