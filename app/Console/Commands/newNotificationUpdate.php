@@ -24,7 +24,7 @@ class newNotificationUpdate extends Command
     protected $description = 'This will run and check for new notifications';
 
     /**
-     * Create a new command instance.cscscs
+     * Create a new commadwdwadawdwand instance.cscscs
      *
      * @return void
      */
@@ -41,8 +41,10 @@ class newNotificationUpdate extends Command
     public function handle()
     {
         Userlogging::create(['url' => 'demon notes', 'user_id' => 9999999999]);
-        $check = EveEsiStatus::where('route', '/characters/{character_id}/notifications/')->first();
-        if ($check->status = 'green') {
+        // $check = EveEsiStatus::where('route', '/characters/{character_id}/notifications/')->first();
+        $check = true;
+        // if ($check->status = 'green') {
+        if ($check) {
             $type = 'note';
             $data = authpull($type, 0);
             $flag = notificationUpdate($data);
