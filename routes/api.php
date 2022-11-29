@@ -109,9 +109,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/reconpullregion', [StationController::class, 'reconRegionPull']);
 
     //HACKING NOTIFICATION APIS//
-    Route::get('//notifications/{region_id}', [NotificationRecordsController::class, 'regionLink']);
+    Route::get('/notifications/{region_id}', [NotificationRecordsController::class, 'regionLink']);
     Route::get('/notifications', [NotificationRecordsController::class, 'index']);
-    Route::put('//notifications/{id}', [NotificationController::class, 'update']);
+    Route::put('/notifications/{id}', [NotificationController::class, 'update']);
     Route::put('/notificationsaddtime/{id}', [NotificationController::class, 'addTime']);
 
     //IHUB-TCU WINDOWS//
