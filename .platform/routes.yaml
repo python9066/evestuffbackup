@@ -1,6 +1,6 @@
 # The routes of the project.
 #
-# Each route describes how an incoming URL is going
+# Each route describes how an incoming dddddddddURL is going
 # to be processed by Platform.sh.
 
 "https://{default}/":
@@ -19,6 +19,6 @@
   upstream: "app:http"
   cache:
     enabled: false
-"https://{default}/bugfix097":
+"https://{default}/bugfix098":
   type: redirect
   to: "https://{default}/bugfix"
