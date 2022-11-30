@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Station;
+use App\Models\Userlogging;
 use Illuminate\Console\Command;
 
 class CleanUpCoordShhet extends Command
@@ -38,6 +39,7 @@ class CleanUpCoordShhet extends Command
      */
     public function handle()
     {
+        Userlogging::create(['url' => 'demon CoordSheet', 'user_id' => 9999999999]);
         $a = Station::where('show_on_coord', 1)->where('show_on_rc', 1)->get();
         foreach ($a as $a) {
             $a->update(['show_on_coord' => 0]);

@@ -6,6 +6,7 @@ use App\Jobs\updateWebwayJob;
 use App\Models\Campaign;
 use App\Models\NewCampaignSystem;
 use App\Models\Station;
+use App\Models\Userlogging;
 use App\Models\WebWay;
 use App\Models\WebWayStartSystem;
 use Illuminate\Console\Command;
@@ -44,6 +45,7 @@ class UpdateWebWayRoutes extends Command
     public function handle()
     {
         activity()->disableLogging();
+        Userlogging::create(['url' => 'demon webway', 'user_id' => 9999999999]);
         $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
 
         $start_system_id = env('HOME_SYSTEM_ID', ($variables && array_key_exists('HOME_SYSTEM_ID', $variables)) ? $variables['HOME_SYSTEM_ID'] : null);

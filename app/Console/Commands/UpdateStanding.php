@@ -7,6 +7,7 @@ use App\Models\Auth;
 use App\Models\Client;
 use App\Models\Corp;
 use App\Models\EveEsiStatus;
+use App\Models\Userlogging;
 use DateTime;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Utils;
@@ -60,6 +61,7 @@ class UpdateStanding extends Command
 
     public function checkKeys()
     {
+        Userlogging::create(['url' => 'demon Standing', 'user_id' => 9999999999]);
         $auths = Auth::all();
         foreach ($auths as $auth) {
             // print " - " . $auth->name . " - ";
@@ -74,13 +76,13 @@ class UpdateStanding extends Command
                 $http = new GuzzleHttpCLient();
 
                 $headers = [
-                    'Authorization' => 'Basic '.$client->code,
+                    'Authorization' => 'Basic ' . $client->code,
                     'Content-Type' => 'application/x-www-form-urlencoded',
                     'Host' => 'login.eveonline.com',
                     'User-Agent' => 'evestuff.online python9066@gmail.com',
 
                 ];
-                $body = 'grant_type=refresh_token&refresh_token='.$auth->refresh_token;
+                $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
                 // print $body;
                 $response = $http->request('POST', 'https://login.eveonline.com/v2/oauth/token', [
                     'headers' => $headers,

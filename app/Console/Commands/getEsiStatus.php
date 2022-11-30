@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\EveEsiStatus;
+use App\Models\Userlogging;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -39,6 +40,8 @@ class getEsiStatus extends Command
      */
     public function handle()
     {
+
+        Userlogging::create(['url' => 'demon EVEEsiStatus', 'user_id' => 9999999999]);
         EveEsiStatus::truncate();
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\OperationInfoDoctrine;
+use App\Models\Userlogging;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -30,6 +31,7 @@ class getDankDocsCommand extends Command
     public function handle()
     {
         $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+        Userlogging::create(['url' => 'demon GetDank', 'user_id' => 9999999999]);
         $token = env('DANK_TOKEN', ($variables && array_key_exists('DANK_TOKEN', $variables)) ? $variables['DANK_TOKEN'] : 'null');
         $response = Http::withHeaders([
             'X-ApiKey' => $token,

@@ -7,6 +7,7 @@ use App\Models\Alliance;
 use App\Models\Auth;
 use App\Models\Client;
 use App\Models\Corp;
+use App\Models\Userlogging;
 use COM;
 use DateTime;
 use GuzzleHttp\Client as GuzzleHttpClient;
@@ -53,6 +54,7 @@ class UpdateAlliances extends Command
         //     AllianceupdateAlliances();
         // }
         //############doing it in job###################
+        Userlogging::create(['url' => 'demon Alliance', 'user_id' => 9999999999]);
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
@@ -105,7 +107,7 @@ class UpdateAlliances extends Command
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
                 'User-Agent' => 'evestuff.online python9066@gmail.com',
-            ])->get('https://esi.evetech.net/latest/alliances/'.$allianceID.'/?datasource=tranquility');
+            ])->get('https://esi.evetech.net/latest/alliances/' . $allianceID . '/?datasource=tranquility');
 
             if ($response->successful()) {
                 $done = 3;
@@ -118,7 +120,7 @@ class UpdateAlliances extends Command
                         'ticker' => $allianceInfo->get('ticker'),
                         'standing' => 0,
                         'active' => 1,
-                        'url' => 'https://images.evetech.net/Alliance/'.$allianceID.'_64.png',
+                        'url' => 'https://images.evetech.net/Alliance/' . $allianceID . '_64.png',
                         'color' => 0,
                     ]
                 );
@@ -131,7 +133,7 @@ class UpdateAlliances extends Command
                         'Content-Type' => 'application/json',
                         'Accept' => 'application/json',
                         'User-Agent' => 'evestuff.online python9066@gmail.com',
-                    ])->get('https://esi.evetech.net/latest/alliances/'.$allianceID.'/corporations/?datasource=tranquility');
+                    ])->get('https://esi.evetech.net/latest/alliances/' . $allianceID . '/corporations/?datasource=tranquility');
                     if ($responseCorp->successful()) {
                         $corpCount = 3;
                         $corpIDs = $responseCorp->collect();
@@ -168,7 +170,7 @@ class UpdateAlliances extends Command
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
                 'User-Agent' => 'evestuff.online python9066@gmail.com',
-            ])->get('https://esi.evetech.net/latest/corporations/'.$corpID.'/?datasource=tranquility');
+            ])->get('https://esi.evetech.net/latest/corporations/' . $corpID . '/?datasource=tranquility');
             if ($response->successful()) {
                 $corpPull = 3;
                 $corpInfo = $response->collect();
@@ -182,7 +184,7 @@ class UpdateAlliances extends Command
                         'color' => 0,
                         'standing' => 0,
                         'active' => 1,
-                        'url' => 'https://images.evetech.net/Corporation/'.$corpID.'_64.png',
+                        'url' => 'https://images.evetech.net/Corporation/' . $corpID . '_64.png',
 
                     ]
                 );
@@ -217,13 +219,13 @@ class UpdateAlliances extends Command
                 $http = new GuzzleHttpCLient();
 
                 $headers = [
-                    'Authorization' => 'Basic '.$client->code,
+                    'Authorization' => 'Basic ' . $client->code,
                     'Content-Type' => 'application/x-www-form-urlencoded',
                     'Host' => 'login.eveonline.com',
                     'User-Agent' => 'evestuff.online python9066@gmail.com',
 
                 ];
-                $body = 'grant_type=refresh_token&refresh_token='.$auth->refresh_token;
+                $body = 'grant_type=refresh_token&refresh_token=' . $auth->refresh_token;
                 // print $body;
                 $response = $http->request('POST', 'https://login.eveonline.com/v2/oauth/token', [
                     'headers' => $headers,

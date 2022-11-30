@@ -7,6 +7,7 @@ use App\Models\DankOperation;
 use App\Models\OperationInfoDoctrine;
 use App\Models\OperationInfoFleet;
 use App\Models\OperationInfoUser;
+use App\Models\Userlogging;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -33,7 +34,7 @@ class UpdateDankOps extends Command
      */
     public function handle()
     {
-
+        Userlogging::create(['url' => 'DANK', 'user_id' => 9999999999]);
         $activeOps = DankOperation::whereNull('closed_at')->get();
         // $activeOps = DankOperation::get();
 

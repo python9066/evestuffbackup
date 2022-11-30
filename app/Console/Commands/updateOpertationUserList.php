@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\OperationUserList;
+use App\Models\Userlogging;
 use Illuminate\Console\Command;
 use Pusher\Pusher;
 
@@ -39,6 +40,7 @@ class updateOpertationUserList extends Command
      */
     public function handle()
     {
+        Userlogging::create(['url' => 'demon OpUserList', 'user_id' => 9999999999]);
         OperationUserList::whereNotNull('id')->update(['delete' => 1]);
         $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
         $pusher = new Pusher(

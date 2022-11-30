@@ -41,7 +41,7 @@ class UpdateEveUserCount extends Command
      */
     public function handle()
     {
-        Userlogging::create(['url' => 'demon eve', 'user_id' => 9999999999]);
+        Userlogging::create(['url' => 'demon eveCount', 'user_id' => 9999999999]);
         $check = EveEsiStatus::where('route', '/status/')->first();
         if ($check->status == 'green') {
             $count = eveUserCount();
