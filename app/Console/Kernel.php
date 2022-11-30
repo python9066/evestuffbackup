@@ -52,15 +52,15 @@ class Kernel extends ConsoleKernel
         $schedule->command('update:eveusercount')->everyMinute();
         $schedule->command('update:opuserlist')->everyMinute();
         $schedule->command('update:standing')->everyTenMinutes();
-        $schedule->command('clean:coordsheet')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:towers')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:reconstations')->everyFiveMinutes()->withoutOverlapping();
+        $schedule->command('clean:coordsheet')->everyMinute();
+        $schedule->command('update:towers')->everyMinute();
+        $schedule->command('update:reconstations')->everyFiveMinutes();
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
         $schedule->command('update:webway')->everyFiveMinutes();
-        $schedule->command('update:timers')->hourly()->withoutOverlapping();
-        $schedule->command('update:alliances')->dailyAt('22:00')->withoutOverlapping();
-        $schedule->command('clear:remembertoken')->twiceDaily(9, 21)->withoutOverlapping();
-        $schedule->command('get:dankdocs')->twiceDaily(9, 21)->withoutOverlapping();
+        $schedule->command('update:timers')->hourly();
+        $schedule->command('update:alliances')->dailyAt('22:00');
+        $schedule->command('clear:remembertoken')->twiceDaily(9, 21);
+        $schedule->command('get:dankdocs')->twiceDaily(9, 21);
     }
 
     /**
