@@ -34,9 +34,9 @@
               <v-tab v-bind="attrs" v-on="on"> Stations </v-tab>
             </template>
             <v-list>
-              <v-list-item v-if="$can('view_killsheet')" link to="/stationtimers">
+              <!-- <v-list-item v-if="$can('view_killsheet')" link to="/stationtimers">
                 Timers
-              </v-list-item>
+              </v-list-item> -->
               <v-list-item v-if="$can('finish_move_timer')" link to="/addtimer">
                 To Check
               </v-list-item>
