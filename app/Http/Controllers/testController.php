@@ -112,7 +112,7 @@ class testController extends Controller
         $user = Auth::user();
         if ($user->can('super')) {
 
-            $paste = "https://fleets.apps.gnf.lt/fleet/operation/85d3b871-9104-4d93-a330-a652a1b7e195";
+            $paste = "https://fleets.apps.gnf.lt/fleet/operation/6f999056-b0ee-4090-92d7-a9324e450078";
             $opID = basename($paste);
             $url1 = "https://fleets.apps.gnf.lt/api/v1/coordination/operation/" . $opID . "/fleets";
             $url = "https://fleets.apps.gnf.lt/api/v1/coordination/operation/" . $opID;
@@ -128,6 +128,7 @@ class testController extends Controller
 
             $fleets =  $response->json();
 
+
             $response = Http::withHeaders([
                 'X-ApiKey' => $token,
                 'Content-Type' => 'application/json',
@@ -136,6 +137,7 @@ class testController extends Controller
             ])->get($url);
 
             $operation =  $response->json();
+            dd($operation);
 
             if (DankOperation::where('id', $opID)->count() == 0) {
                 $new = new DankOperation();

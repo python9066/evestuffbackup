@@ -332,6 +332,7 @@ class OperationInfoController extends Controller
     public function destroy($id)
     {
         $operation = OperationInfo::where('link', $id)->first();
+
         $opID = $operation->id;
         $opFleets = OperationInfoFleet::where('operation_info_id', $opID)->get();
         foreach ($opFleets as $opFleet) {
@@ -358,8 +359,7 @@ class OperationInfoController extends Controller
             }
         }
 
-        $dankOp = DankOperation::where('operation_info_id', $id)->first();
-        $dankOp->delete();
+        DankOperation::where('operation_info_id', $id)->delete();
 
         $opSystems = OperationInfoSystem::where('operation_info_id', $opID)->get();
         foreach ($opSystems as $opSystem) {

@@ -7,11 +7,10 @@
             ><v-row no-gutters justify="space-between">
               <v-col cols="auto">
                 <v-btn icon x-small class="handle" color="gray">
-                  <font-awesome-icon
-                    icon="fa-solid fa-up-down-left-right" /></v-btn
+                  <font-awesome-icon icon="fa-solid fa-up-down-left-right" /></v-btn
               ></v-col>
               <v-col v-if="readOnly" cols="auto">{{ fleetInfo.name }} </v-col>
-              <v-col v-else cols="auto">
+              <v-col v-else-if="!dankfleet" cols="auto">
                 <v-text-field
                   outlined
                   rounded
@@ -22,6 +21,7 @@
                   @change="updateFleet()"
                 ></v-text-field>
               </v-col>
+              <v-col v-else cols="auto">{{ fleetInfo.name }} </v-col>
               <v-col cols="auto"
                 ><v-fab-transition
                   ><v-speed-dial
@@ -37,24 +37,14 @@
                           size="xl"
                           icon="fa-solid fa-xmark"
                         />
-                        <font-awesome-icon
-                          v-else
-                          size="xl"
-                          icon="fa-solid fa-bars"
-                        />
+                        <font-awesome-icon v-else size="xl" icon="fa-solid fa-bars" />
                       </v-btn>
                     </template>
                     <v-btn fab x-small color="green" @click="readOnlyOff()">
-                      <font-awesome-icon
-                        size="xl"
-                        icon="fa-solid fa-pen-to-square"
-                      />
+                      <font-awesome-icon size="xl" icon="fa-solid fa-pen-to-square" />
                     </v-btn>
                     <v-btn fab x-small color="red" @click="deleteFleet()">
-                      <font-awesome-icon
-                        size="xl"
-                        icon="fa-solid fa-trash-can"
-                      />
+                      <font-awesome-icon size="xl" icon="fa-solid fa-trash-can" />
                     </v-btn>
                   </v-speed-dial>
                   <v-btn fab color="green" small v-else @click="readOnlyOn()">
@@ -63,7 +53,7 @@
                       size="xl" /></v-btn></v-fab-transition></v-col></v-row></v-card-title
           ><v-card-text>
             <div v-if="!readOnly">
-              <v-row class="pt-2" no-gutters
+              <v-row v-if="!dankfleet" class="pt-2" no-gutters
                 ><v-col cols="auto">
                   <v-combobox
                     outlined
@@ -81,7 +71,10 @@
                     @change="updateFC()"
                   ></v-combobox></v-col
               ></v-row>
-              <v-row class="pt-2" no-gutters
+              <v-row v-else>
+                <span class="pt-5">FC - {{ fcText }}</span></v-row
+              >
+              <v-row v-if="!dankfleet" class="pt-2" no-gutters
                 ><v-col cols="auto"
                   ><v-combobox
                     outlined
@@ -99,7 +92,10 @@
                     @change="updateBoss()"
                   ></v-combobox></v-col
               ></v-row>
-              <v-row class="pt-2" no-gutters
+              <v-row v-else>
+                <span> Boss - {{ bossText }}</span></v-row
+              >
+              <v-row v-if="!dankfleet" class="pt-2" no-gutters
                 ><v-col cols="auto"
                   ><v-autocomplete
                     outlined
@@ -117,6 +113,9 @@
                     @change="updateFleet()"
                   ></v-autocomplete></v-col
               ></v-row>
+              <v-row v-else>
+                <span class="pb-5"> Doctrine - {{ doctrineText }}</span></v-row
+              >
               <v-row class="pt-2" no-gutters
                 ><v-col cols="auto"
                   ><v-autocomplete
@@ -155,11 +154,7 @@
               </v-row>
               <v-row no-gutters>
                 <v-col cols="auto">
-                  <v-row
-                    no-gutters
-                    v-for="(recon, index) in recons"
-                    :key="index"
-                  >
+                  <v-row no-gutters v-for="(recon, index) in recons" :key="index">
                     <v-tooltip bottom :disabled="!showreconToolTip"
                       ><template v-slot:activator="{ on, attrs }"
                         ><span v-bind="attrs" v-on="on">
@@ -361,11 +356,15 @@ export default {
         return this.$store.getters.getFleetInfo(this.fleetID);
       },
       set(newValue) {
-        return this.$store.dispatch(
-          "updateOperationSheetInfoPageFleet",
-          newValue
-        );
+        return this.$store.dispatch("updateOperationSheetInfoPageFleet", newValue);
       },
+    },
+
+    dankfleet() {
+      if (this.fleetInfo.uid) {
+        return true;
+      }
+      return false;
     },
 
     opInfo: {
