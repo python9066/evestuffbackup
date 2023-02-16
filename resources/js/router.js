@@ -47,7 +47,7 @@ export default new Router({
         {
             path: "/",
             name: "default",
-            component: Notifications,
+            component: SoloOperations,
         },
         {
             path: "/campaign/:id",
@@ -172,18 +172,18 @@ export default new Router({
             alias: "/campaigns",
         },
 
-        {
-            path: "/coordsheet",
-            name: "coordsheet",
-            component: CoordSheet,
-            beforeEnter(to, from, next) {
-                if (Permissions.indexOf("view_coord_sheet") !== -1) {
-                    next();
-                } else {
-                    next("/notifications");
-                }
-            },
-        },
+        // {
+        //     path: "/coordsheet",
+        //     name: "coordsheet",
+        //     component: CoordSheet,
+        //     beforeEnter(to, from, next) {
+        //         if (Permissions.indexOf("view_coord_sheet") !== -1) {
+        //             next();
+        //         } else {
+        //             next("/notifications");
+        //         }
+        //     },
+        // },
 
         {
             path: "/operationinfo",
@@ -237,32 +237,32 @@ export default new Router({
             },
         },
 
-        {
-            path: "/fleetkeys",
-            name: "fleetkeys",
-            component: FleetKeys,
-            beforeEnter(to, from, next) {
-                if (Permissions.indexOf("view_fleet_key") !== -1) {
-                    next();
-                } else {
-                    next("/notifications");
-                }
-            },
-        },
+        // {
+        //     path: "/fleetkeys",
+        //     name: "fleetkeys",
+        //     component: FleetKeys,
+        //     beforeEnter(to, from, next) {
+        //         if (Permissions.indexOf("view_fleet_key") !== -1) {
+        //             next();
+        //         } else {
+        //             next("/notifications");
+        //         }
+        //     },
+        // },
 
-        {
-            path: "/stationtimers",
-            name: "killlist",
-            component: KillList,
-            alias: "/fornatshealth",
-            beforeEnter(to, from, next) {
-                if (Permissions.indexOf("view_killsheet") !== -1) {
-                    next();
-                } else {
-                    next("/notifications");
-                }
-            },
-        },
+        // {
+        //     path: "/stationtimers",
+        //     name: "killlist",
+        //     component: KillList,
+        //     alias: "/fornatshealth",
+        //     beforeEnter(to, from, next) {
+        //         if (Permissions.indexOf("view_killsheet") !== -1) {
+        //             next();
+        //         } else {
+        //             next("/notifications");
+        //         }
+        //     },
+        // },
 
         // {
         //     path: "/fornatshealth",
@@ -277,18 +277,18 @@ export default new Router({
         //     },
         // },
 
-        {
-            path: "/gsol",
-            name: "gsol",
-            component: Gsol,
-            beforeEnter(to, from, next) {
-                if (Permissions.indexOf("view_gsol") !== -1) {
-                    next();
-                } else {
-                    next("/notifications");
-                }
-            },
-        },
+        // {
+        //     path: "/gsol",
+        //     name: "gsol",
+        //     component: Gsol,
+        //     beforeEnter(to, from, next) {
+        //         if (Permissions.indexOf("view_gsol") !== -1) {
+        //             next();
+        //         } else {
+        //             next("/notifications");
+        //         }
+        //     },
+        // },
 
         {
             path: "/towers",
@@ -342,11 +342,11 @@ export default new Router({
             },
         },
 
-        {
-            path: "/notifications",
-            name: "notifications",
-            component: Notifications,
-        },
+        // {
+        //     path: "/notifications",
+        //     name: "notifications",
+        //     component: Notifications,
+        // },
 
         // {
         //     path: "/campaigns",
@@ -367,44 +367,44 @@ export default new Router({
             },
         },
 
-        {
-            path: "/chillstations",
-            name: "chillstations",
-            component: chillstations,
-            beforeEnter(to, from, next) {
-                if (Permissions.indexOf("view_chill_timers") !== -1) {
-                    next();
-                } else {
-                    next("/notifications");
-                }
-            },
-        },
+        // {
+        //     path: "/chillstations",
+        //     name: "chillstations",
+        //     component: chillstations,
+        //     beforeEnter(to, from, next) {
+        //         if (Permissions.indexOf("view_chill_timers") !== -1) {
+        //             next();
+        //         } else {
+        //             next("/notifications");
+        //         }
+        //     },
+        // },
 
-        {
-            path: "/welpviolence",
-            name: "welpviolence",
-            component: welptimers,
-            beforeEnter(to, from, next) {
-                if (Permissions.indexOf("view_welp_timers") !== -1) {
-                    next();
-                } else {
-                    next("/notifications");
-                }
-            },
-        },
+        // {
+        //     path: "/welpviolence",
+        //     name: "welpviolence",
+        //     component: welptimers,
+        //     beforeEnter(to, from, next) {
+        //         if (Permissions.indexOf("view_welp_timers") !== -1) {
+        //             next();
+        //         } else {
+        //             next("/notifications");
+        //         }
+        //     },
+        // },
 
-        {
-            path: "/recon",
-            name: "recon",
-            component: Recon,
-            beforeEnter(to, from, next) {
-                if (Permissions.indexOf("view_recon") !== -1) {
-                    next();
-                } else {
-                    next("/notifications");
-                }
-            },
-        },
+        // {
+        //     path: "/recon",
+        //     name: "recon",
+        //     component: Recon,
+        //     beforeEnter(to, from, next) {
+        //         if (Permissions.indexOf("view_recon") !== -1) {
+        //             next();
+        //         } else {
+        //             next("/notifications");
+        //         }
+        //     },
+        // },
 
         {
             path: "/stations",

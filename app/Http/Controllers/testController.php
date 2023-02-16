@@ -36,6 +36,8 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Pusher\Pusher;
 use Spatie\Activitylog\Models\Activity;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -56,6 +58,19 @@ class testController extends Controller
             $users = User::all();
             foreach ($users as $user) {
                 $user->removeRole(12);
+            }
+        }
+    }
+
+    public function removeOps()
+    {
+        $check = Auth::user();
+        if ($check->can('super')) {
+            $role = Role::where('name', 'Ops')->first();
+            $permissions = Permission::get();
+
+            foreach ($permissions as $permission) {
+                $permission->removeRole($role);
             }
         }
     }

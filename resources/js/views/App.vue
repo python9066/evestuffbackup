@@ -21,53 +21,38 @@
         <v-tabs
           entered
           centered
+          :value="3"
           background-color="#272727"
           icons-and-text
           align-with-title
         >
           <v-tabs-slider></v-tabs-slider>
-          <v-tab link to="/notifications"> Notifications </v-tab>
+          <!-- <v-tab link to="/notifications"> Notifications </v-tab> -->
 
           <v-menu offset-y v-if="$can('view_killsheet')">
             <template v-slot:activator="{ on, attrs }">
               <v-tab v-bind="attrs" v-on="on"> Stations </v-tab>
             </template>
             <v-list>
-              <v-list-item
-                v-if="$can('view_killsheet')"
-                link
-                to="/stationtimers"
-              >
+              <v-list-item v-if="$can('view_killsheet')" link to="/stationtimers">
                 Timers
               </v-list-item>
               <v-list-item v-if="$can('finish_move_timer')" link to="/addtimer">
                 To Check
               </v-list-item>
 
-              <v-list-item
-                v-else-if="$can('view_move_timers')"
-                link
-                to="/addtimer"
-              >
+              <v-list-item v-else-if="$can('view_move_timers')" link to="/addtimer">
                 ADD TIMER
               </v-list-item>
               <v-list-item v-if="$can('view_station_list')" link to="/stations">
                 Station List
               </v-list-item>
-              <v-list-item
-                v-if="$can('view_welp_timers')"
-                link
-                to="/welpviolence"
-              >
+              <!-- <v-list-item v-if="$can('view_welp_timers')" link to="/welpviolence">
                 Welp Violence
-              </v-list-item>
-              <v-list-item
-                v-if="$can('view_chill_timers')"
-                link
-                to="/chillstations"
-              >
+              </v-list-item> -->
+              <!-- <v-list-item v-if="$can('view_chill_timers')" link to="/chillstations">
                 Chilled Timers
-              </v-list-item>
+              </v-list-item> -->
             </v-list>
           </v-menu>
 
@@ -75,19 +60,17 @@
             Operations
           </v-tab>
 
-          <v-tab v-if="$can('view_coord_sheet')" link to="/coordsheet">
+          <!-- <v-tab v-if="$can('view_coord_sheet')" link to="/coordsheet">
             Coord Sheet
-          </v-tab>
+          </v-tab> -->
 
-          <v-tab v-if="$can('view_recon')" link to="/recon"> Recon </v-tab>
+          <!-- <v-tab v-if="$can('view_recon')" link to="/recon"> Recon </v-tab> -->
 
-          <v-tab v-if="$can('view_fleet_key')" link to="/fleetkeys">
-            Fleet Keys
-          </v-tab>
+          <!-- <v-tab v-if="$can('view_fleet_key')" link to="/fleetkeys"> Fleet Keys </v-tab> -->
 
           <v-tab v-if="$can('view_towers')" link to="/towers"> Towers </v-tab>
 
-          <v-tab link to="/gsol" v-if="$can('view_gsol')"> GSOL </v-tab>
+          <!-- <v-tab link to="/gsol" v-if="$can('view_gsol')"> GSOL </v-tab> -->
 
           <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
@@ -97,10 +80,7 @@
               <!-- <v-list-item link to="/campaigns"> Campaigns </v-list-item> -->
               <v-list-item to="/operations"> Operations </v-list-item>
               <v-list-item link to="/timers"> Windows </v-list-item>
-              <v-list-item
-                v-if="$can('access_multi_campaigns')"
-                to="/mcampaigns"
-              >
+              <v-list-item v-if="$can('access_multi_campaigns')" to="/mcampaigns">
                 Custom-Campaign
               </v-list-item>
             </v-list>
@@ -151,16 +131,10 @@
                 ></v-textarea>
               </v-card-text>
               <v-card-actions>
-                <v-btn
-                  color="success"
-                  @click="(overlay = false), submitFeedBack()"
-                >
+                <v-btn color="success" @click="(overlay = false), submitFeedBack()">
                   Submit
                 </v-btn>
-                <v-btn
-                  color="warning"
-                  @click="(overlay = false), (feedBackText = '')"
-                >
+                <v-btn color="warning" @click="(overlay = false), (feedBackText = '')">
                   Close
                 </v-btn>
               </v-card-actions>
@@ -206,9 +180,7 @@ export default {
         this.$store.dispatch("updateEveUserCount", e.flag.message);
       }
     });
-    await this.$store
-      .dispatch("setUser_id", this.user_id)
-      .then((this.ready = true));
+    await this.$store.dispatch("setUser_id", this.user_id).then((this.ready = true));
     await this.$store.dispatch("setUser_name", this.username);
     await this.$store.dispatch("geteveusercount");
   },
