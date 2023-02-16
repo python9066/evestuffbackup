@@ -46,8 +46,8 @@ class newNotificationUpdate extends Command
         // if ($check->status = 'green') {
         if ($check) {
             $type = 'note';
-            dd("test");
             $data = authpull($type, 0);
+            dd("test");
             $flag = notificationUpdate($data);
 
             if ($flag['notificationflag'] == 1) {
