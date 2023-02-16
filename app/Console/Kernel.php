@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
     ];
 
     /**
-     * Define the application's command schedule.ddddd
+     * Define the application's command schedule.ddddd update all the things
      *
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
