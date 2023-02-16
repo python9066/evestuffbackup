@@ -48,8 +48,6 @@ class newNotificationUpdate extends Command
             $type = 'note';
             $data = authpull($type, 0);
             $flag = notificationUpdate($data);
-            dd("test");
-
             if ($flag['notificationflag'] == 1) {
                 broadcast(new NotificationNew($flag['notificationflag']))->toOthers();
             }
