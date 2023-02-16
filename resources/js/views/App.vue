@@ -21,14 +21,25 @@
         <v-tabs
           entered
           centered
-          :value="3"
           background-color="#272727"
           icons-and-text
           align-with-title
         >
           <v-tabs-slider></v-tabs-slider>
           <!-- <v-tab link to="/notifications"> Notifications </v-tab> -->
-
+          <v-menu offset-y>
+            <template v-slot:activator="{ on, attrs }">
+              <v-tab v-bind="attrs" v-on="on"> Sovereignty </v-tab>
+            </template>
+            <v-list>
+              <!-- <v-list-item link to="/campaigns"> Campaigns </v-list-item> -->
+              <v-list-item to="/operations"> Operations </v-list-item>
+              <v-list-item link to="/timers"> Windows </v-list-item>
+              <v-list-item v-if="$can('access_multi_campaigns')" to="/mcampaigns">
+                Custom-Campaign
+              </v-list-item>
+            </v-list>
+          </v-menu>
           <v-menu offset-y v-if="$can('view_killsheet')">
             <template v-slot:activator="{ on, attrs }">
               <v-tab v-bind="attrs" v-on="on"> Stations </v-tab>
@@ -37,15 +48,16 @@
               <!-- <v-list-item v-if="$can('view_killsheet')" link to="/stationtimers">
                 Timers
               </v-list-item> -->
+
+              <v-list-item v-if="$can('view_station_list')" link to="/stations">
+                Station List
+              </v-list-item>
               <v-list-item v-if="$can('finish_move_timer')" link to="/addtimer">
                 To Check
               </v-list-item>
 
               <v-list-item v-else-if="$can('view_move_timers')" link to="/addtimer">
                 ADD TIMER
-              </v-list-item>
-              <v-list-item v-if="$can('view_station_list')" link to="/stations">
-                Station List
               </v-list-item>
               <!-- <v-list-item v-if="$can('view_welp_timers')" link to="/welpviolence">
                 Welp Violence
@@ -71,20 +83,6 @@
           <v-tab v-if="$can('view_towers')" link to="/towers"> Towers </v-tab>
 
           <!-- <v-tab link to="/gsol" v-if="$can('view_gsol')"> GSOL </v-tab> -->
-
-          <v-menu offset-y>
-            <template v-slot:activator="{ on, attrs }">
-              <v-tab v-bind="attrs" v-on="on"> Sovereignty </v-tab>
-            </template>
-            <v-list>
-              <!-- <v-list-item link to="/campaigns"> Campaigns </v-list-item> -->
-              <v-list-item to="/operations"> Operations </v-list-item>
-              <v-list-item link to="/timers"> Windows </v-list-item>
-              <v-list-item v-if="$can('access_multi_campaigns')" to="/mcampaigns">
-                Custom-Campaign
-              </v-list-item>
-            </v-list>
-          </v-menu>
 
           <v-tab v-if="$can('edit_users')" link to="/pannel"> Users </v-tab>
 
