@@ -37,12 +37,8 @@
             ></v-select>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="success" class="mr-4" @click="addCampaignDone()"
-              >Done</v-btn
-            >
-            <v-btn color="warning" class="mr-4" @click="addCampaignClose()"
-              >Close</v-btn
-            >
+            <v-btn color="success" class="mr-4" @click="addCampaignDone()">Done</v-btn>
+            <v-btn color="warning" class="mr-4" @click="addCampaignClose()">Close</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -50,11 +46,8 @@
   </v-row>
 </template>
 <script>
-import Axios from "axios";
-import { EventBus } from "../../app";
 // import ApiL from "../service/apil";
 import { mapGetters, mapState } from "vuex";
-import { faL } from "@fortawesome/free-solid-svg-icons";
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }

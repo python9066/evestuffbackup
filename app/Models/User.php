@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
+use LaravelAndVueJS\Traits\LaravelPermissionToVueJS;
 
 class User extends Authenticatable
 {
@@ -17,6 +18,7 @@ class User extends Authenticatable
     use HasRoles;
     use HasPermissions;
     use HasApiTokens;
+    use LaravelPermissionToVueJS;
 
     /**
      * The attributes that are mass assignable.
@@ -121,5 +123,10 @@ class User extends Authenticatable
         }
 
         return $roles;
+    }
+
+    public function getCheckPermissions()
+    {
+        return checkPermissions();
     }
 }
