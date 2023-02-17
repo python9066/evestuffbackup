@@ -65,6 +65,7 @@
                 flat
                 icon="fa-solid fa-comment"
                 label="Feedback"
+                @click="showFeedback = true"
               />
             </div>
             <div class="col-1 align-bottom q-ml-xs">
@@ -82,8 +83,42 @@
     </q-header>
 
     <q-page-container>
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <transition
+          mode="out-in"
+          enter-active-class="animate__animated animate__fadeIn "
+          leave-active-class="animate__animated animate__fadeOut "
+        >
+          <component :key="route.path" :is="Component" />
+        </transition>
+      </router-view>
     </q-page-container>
+
+    <q-dialog v-model="showFeedback" persistent>
+      <q-card class="myRoundTop" style="width: 500px">
+        <q-card-section class="bg-primary text-h5 text-center">
+          <h4 class="no-margin">Give your feedback here</h4>
+        </q-card-section>
+        <q-card-section>
+          <div>
+            <q-input
+              input-style="height: 500px"
+              v-model="feedBackText"
+              clearable
+              outlined
+              rounded
+              dense
+              type="textarea"
+              label="Describe your bug/feedback here"
+            />
+          </div>
+        </q-card-section>
+        <q-card-actions align="right">
+          <q-btn color="primary" label="Submit" @click="submitFeedBack()" />
+          <q-btn color="negative" label="Close" @click="closeFeedBack()" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </q-layout>
 </template>
 
@@ -113,7 +148,35 @@ onBeforeUnmount(async () => {
   await Echo.leave("evestuff");
 });
 
+let showFeedback = $ref(false);
+let feedBackText = $ref("");
+
 let logout = () => {
   window.location.href = "/logout";
+};
+
+let submitFeedBack = () => {
+  let request = {
+    user_id: store.user_id,
+    text: feedBackText,
+  };
+
+  axios({
+    method: "post",
+    url: "/api/feedback",
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  showFeedback = false;
+  feedBackText = null;
+};
+
+let closeFeedBack = () => {
+  showFeedback = false;
+  feedBackText = null;
 };
 </script>
