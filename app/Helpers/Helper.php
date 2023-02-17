@@ -18,6 +18,18 @@ if (!function_exists('displayName')) {
         return 'Laravel fefefFramework';
     }
 }
+if (!function_exists('checkPermissions')) {
+    function checkPermissions()
+    {
+        $array =
+            [
+                'roles' => FacadesAuth::user()->roles->pluck('name'),
+                'permissions' => FacadesAuth::user()->allPermissions,
+            ];
+
+        return json_encode($array);
+    }
+}
 if (!function_exists('authcheck')) {
     function authcheck()
     {
