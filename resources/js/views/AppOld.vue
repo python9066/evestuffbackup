@@ -114,7 +114,7 @@
       <!-- <v-overlay :value="tidiCalc">
                 <TidiCalc @closeCalc="tidiCalc = false"> </TidiCalc>
             </v-overlay> -->
-      <v-overlay :value="overlay">
+      <!-- <v-overlay :value="overlay">
         <v-row no-gutters>
           <v-col cols="auto">
             <v-card min-width="800">
@@ -139,7 +139,7 @@
             </v-card>
           </v-col>
         </v-row>
-      </v-overlay>
+      </v-overlay> -->
       <!-- <transition name="fade" mode="out-in"> -->
       <v-fade-transition mode="out-in">
         <router-view :key="$route.path" />
@@ -207,25 +207,25 @@ export default {
       tidiCalc == true;
     },
 
-    async submitFeedBack() {
-      let request = {
-        user_id: this.$store.state.user_id,
-        text: this.feedBackText,
-      };
+    // async submitFeedBack() {
+    //   let request = {
+    //     user_id: this.$store.state.user_id,
+    //     text: this.feedBackText,
+    //   };
 
-      await axios({
-        method: "post", //you can set what request you want to be
-        url: "/api/feedback",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+    //   await axios({
+    //     method: "post", //you can set what request you want to be
+    //     url: "/api/feedback",
+    //     withCredentials: true,
+    //     data: request,
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //     },
+    //   });
 
-      this.feedBackText == null;
-    },
+    //   this.feedBackText == null;
+    // },
   },
   computed: {
     ...mapGetters(["getEveCount"]),
