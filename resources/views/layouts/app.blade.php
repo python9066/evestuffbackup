@@ -11,9 +11,9 @@
     <link rel="icon" href="{!! asset('svg/logo.svg') !!}"/>
 
     <!-- Scripts -->
-    <script src="{{ mix('js/manifest.js') }}" Cache-Control: no-cache, must-revalidate defer></script>
-  <script src="{{ mix('js/vendor.js') }}" Cache-Control: no-cache, must-revalidate defer></script>
-  <script src="{{ mix('js/app.js') }}" Cache-Control: no-cache, must-revalidate defer></script>
+    @vite('resources/js/manifest.js')
+  @vite('resources/js/vendor.js')
+  @vite('resources/js/app.js')
 <script>
     //  import Axios from "axios";
     window.onload = function()
