@@ -1,18 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card text-center">
-                <div class="card-header align-middle">{{ __('Login') }}</div>
+    <div class="container">
+        <div class="app row justify-content-center">
 
-                <div class="card-body">
-                    <div>When you login for the first time ever, it will spit an error.  Just refresh and all will be fine.  This only ever happens once. (I have no idea why)</div>
-                        <a class="btn btn-primary" href="/oauth/login" role="button">LOGIN</a>
+            <div class="col-md-8">
+                <div style="text-align: center">
+
+                    <h3 style="color:blanchedalmond">GSF EveStuff</h3>
+                    <br>
+                    <br>
+
+                    <a href="/oauth/login"><img src="{!! asset('svg/logo.svg') !!}" style="width:500px;height:300px;"></a>
+
+                    <br>
+                    <br>
+                    <h4><a class="btn btn-block btn-primary" href="/oauth/login" role="button">LOGIN</a></h4>
+
                 </div>
             </div>
         </div>
-    </div>
-</div>
-@endsection
+    @endsection

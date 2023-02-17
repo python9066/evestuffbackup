@@ -23,49 +23,49 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/jobtest', 'JobTestController@standingJob');
 
 Route::controller(JobTestController::class)->group(function () {
-    Route::get('/jobtest',  'standingJob');
-    Route::get('/testGetAliianceJob/{id}',  'jobAllianceTest');
-    Route::get('/testGetCorpJob/{id}',  'jobCorpTest');
+    Route::get('/jobtest', 'standingJob');
+    Route::get('/testGetAliianceJob/{id}', 'jobAllianceTest');
+    Route::get('/testGetCorpJob/{id}', 'jobCorpTest');
 });
 
 Route::controller(testController::class)->group(function () {
-    Route::get('/testpusher',  'testPusher');
-    Route::get('/testRunScore',  'testRunScore');
-    Route::get('/teststatus',  'testEveStatus');
-    Route::get('/stationrecordtest/{id}',  'testStationRecords');
-    Route::get('/testGetAliiance/{id}',  'testGetAlliance');
-    Route::get('/testCorpWithNoAlliance',  'getCorpWithNoAlliance');
-    Route::get('/testCampagin',  'testPull');
-    Route::get('/populatenewcampaignsystem',  'popualteCampaignSystemTable');
-    Route::get('/removefc',  'removeFC');
-    Route::get('/hitherealso',  'horizon');
-    Route::get('/hithere',  'prequal');
-    Route::get('/hithereagain',  'logreader');
-    Route::get('/testsolooperstions',  'getSoloOperations');
-    Route::get('/campaignlisttest',  'campaginListTest');
-    Route::get('/campaigntest',  'campaginTest');
-    Route::get('/testUsers',  'key');
-    Route::get('/testpull',  'testUpdateScore');
-    Route::get('/nametoid/{name}',  'nameToID');
-    Route::get('/adashd',  'adashDScan');
-    Route::get('/danktest',  'dankDoc');
-    Route::get('/testlog',  'testLogs');
-    Route::get('testNotes',  'testNotes');
-    Route::get('/testDankFleet',  'testDankFleet');
-    Route::get('/test/testremove',  'removeOps');
+    Route::get('/testpusher', 'testPusher');
+    Route::get('/testRunScore', 'testRunScore');
+    Route::get('/teststatus', 'testEveStatus');
+    Route::get('/stationrecordtest/{id}', 'testStationRecords');
+    Route::get('/testGetAliiance/{id}', 'testGetAlliance');
+    Route::get('/testCorpWithNoAlliance', 'getCorpWithNoAlliance');
+    Route::get('/testCampagin', 'testPull');
+    Route::get('/populatenewcampaignsystem', 'popualteCampaignSystemTable');
+    Route::get('/removefc', 'removeFC');
+    Route::get('/hitherealso', 'horizon');
+    Route::get('/hithere', 'prequal');
+    Route::get('/hithereagain', 'logreader');
+    Route::get('/testsolooperstions', 'getSoloOperations');
+    Route::get('/campaignlisttest', 'campaginListTest');
+    Route::get('/campaigntest', 'campaginTest');
+    Route::get('/testUsers', 'key');
+    Route::get('/testpull', 'testUpdateScore');
+    Route::get('/nametoid/{name}', 'nameToID');
+    Route::get('/adashd', 'adashDScan');
+    Route::get('/danktest', 'dankDoc');
+    Route::get('/testlog', 'testLogs');
+    Route::get('testNotes', 'testNotes');
+    Route::get('/testDankFleet', 'testDankFleet');
+    Route::get('/test/testremove', 'removeOps');
 });
 
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/73cbd63ecd4d2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff',  'admin');
-    Route::get('/73cbd63ecd4d704/5a1f48be9e4df773064f33590be892ff',  'borisToken');
-    Route::get('/73cbd63ecd4d2f33590be892ff',  'webwayUser');
-    Route::get('/7fegrghrthtrhtr2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff',  'martyn');
-    Route::get('/scopehIhaveNoIdeaWhatIamDoing',  'testPusher');
-    Route::get('/login',  'login')->name('login');
-    Route::get('/oauth/login',  'redirectToProvider');
-    Route::get('/oauth/callback',  'handleProviderCallback');
-    Route::get('/logout',  'logout');
-    Route::get('/monty',  'monty');
+    Route::get('/73cbd63ecd4d2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff', 'admin');
+    Route::get('/73cbd63ecd4d704/5a1f48be9e4df773064f33590be892ff', 'borisToken');
+    Route::get('/73cbd63ecd4d2f33590be892ff', 'webwayUser');
+    Route::get('/7fegrghrthtrhtr2d9267ae4ad7bf25c704/5a1f48be9e4df773064f33590be892ff', 'martyn');
+    Route::get('/scopehIhaveNoIdeaWhatIamDoing', 'testPusher');
+    Route::get('/login', 'login')->name('login');
+    Route::get('/oauth/login', 'redirectToProvider');
+    Route::get('/oauth/callback', 'handleProviderCallback');
+    Route::get('/logout', 'logout');
+    Route::get('/monty', 'monty');
 });
 
 Route::controller(HomeController::class)->group(function () {
@@ -78,7 +78,7 @@ Route::controller(NotificationController::class)->group(function () {
 });
 
 Route::controller(ESITokensController::class)->group(function () {
-    Route::get('esi/callback',  'handleProviderCallback');
+    Route::get('esi/callback', 'handleProviderCallback');
 });
 
 Route::get('esi/add', [

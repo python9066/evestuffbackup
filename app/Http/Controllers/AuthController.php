@@ -296,4 +296,13 @@ class AuthController extends Controller
             $user->assignRole(12);
         }
     }
+    public function loginInfo()
+    {
+        $data = [
+            "username" => Auth::user()->name,
+            "user_id" => Auth::user()->id
+        ];
+
+        return ["data" => $data];
+    }
 }
