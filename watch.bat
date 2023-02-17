@@ -1,1 +1,1 @@
-npm run watch-poll
+npm run dev-poll
