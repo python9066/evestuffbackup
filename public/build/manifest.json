@@ -1,38 +1,38 @@
 {
-  "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2": {
-    "file": "assets/fa-brands-400.f4617423.woff2",
-    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2"
-  },
   "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.woff2": {
     "file": "assets/fa-solid-900.e2c5cf54.woff2",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.woff2"
   },
-  "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2": {
-    "file": "assets/fa-regular-400.7ba24c41.woff2",
-    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2"
+  "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400.f4617423.woff2",
+    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2"
   },
   "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.woff2": {
     "file": "assets/fa-v4compatibility.7c377405.woff2",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.woff2"
   },
+  "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400.7ba24c41.woff2",
+    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2"
+  },
   "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.ttf": {
     "file": "assets/fa-brands-400.2ef6fdde.ttf",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.ttf"
-  },
-  "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.ttf": {
-    "file": "assets/fa-solid-900.67a880b4.ttf",
-    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.ttf"
-  },
-  "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.ttf": {
-    "file": "assets/fa-regular-400.12dea17b.ttf",
-    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.ttf"
   },
   "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.ttf": {
     "file": "assets/fa-v4compatibility.8d9500e8.ttf",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.ttf"
   },
+  "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400.12dea17b.ttf",
+    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.ttf"
+  },
+  "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900.67a880b4.ttf",
+    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.ttf"
+  },
   "resources/js/app.js": {
-    "file": "assets/app.c82db660.js",
+    "file": "assets/app.eda35ecb.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -53,24 +53,17 @@
     ]
   },
   "resources/js/views/test.vue": {
-    "file": "assets/test.d99cf179.js",
+    "file": "assets/test.b814634d.js",
     "src": "resources/js/views/test.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
-    ],
-    "css": [
-      "assets/test.29fd4252.css"
     ]
   },
   "resources/sass/app.scss": {
     "file": "assets/app.6ac10adc.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
-  },
-  "resources/js/views/test.css": {
-    "file": "assets/test.29fd4252.css",
-    "src": "resources/js/views/test.css"
   },
   "resources/js/app.css": {
     "file": "assets/app.6b29c371.css",

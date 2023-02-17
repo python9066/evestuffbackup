@@ -46,10 +46,12 @@
 
 </head>
 
-<body>
-    <div id="app">
-        @yield('content')
-    </div>
-</body>
+<body style="background-color:#202020;">
+
+    <body>
+        <div id="app">
+            @yield('content')
+        </div>
+    </body>
 
 </html>

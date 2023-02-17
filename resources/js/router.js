@@ -37,13 +37,6 @@ const routes = [
         path: "/",
         name: "default",
         component: () => import("./views/test.vue"),
-        beforeEnter(to, from, next) {
-            if (can("base")) {
-                next("/mapping");
-            } else {
-                next("/login");
-            }
-        },
     },
 ];
 

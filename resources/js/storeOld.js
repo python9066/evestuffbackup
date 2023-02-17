@@ -1154,13 +1154,13 @@ export default new Vuex.Store({
             state.periodbasisLink = periodbasisLink;
         },
 
-        SET_EVE_USER_COUNT(state, count) {
-            state.eveUserCount = count;
-        },
+        // SET_EVE_USER_COUNT(state, count) {
+        //     state.eveUserCount = count;
+        // },
 
-        UPDATE_EVE_USER_COUNT(state, data) {
-            state.eveUserCount = data;
-        },
+        // UPDATE_EVE_USER_COUNT(state, data) {
+        //     state.eveUserCount = data;
+        // },
     },
 
     actions: {
@@ -2436,18 +2436,18 @@ export default new Vuex.Store({
             commit("SET_PERIOD_BASIS_LINK", res.data.link);
         },
 
-        async geteveusercount({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true, //you can set what request you want to be
-                url: "/api/eveusercount",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_EVE_USER_COUNT", res.data.count);
-        },
+        // async geteveusercount({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true, //you can set what request you want to be
+        //         url: "/api/eveusercount",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_EVE_USER_COUNT", res.data.count);
+        // },
 
         setUser_id({ commit }, user_id) {
             commit("SET_USER_ID", user_id);
