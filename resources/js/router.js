@@ -38,6 +38,12 @@ const routes = [
         name: "default",
         component: () => import("./views/test.vue"),
     },
+
+    {
+        path: "/operations",
+        name: "operations",
+        component: () => import("./views/SoloOperations.vue"),
+    },
 ];
 
 const router = createRouter({

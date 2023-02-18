@@ -21,7 +21,7 @@
               <template v-slot:default>
                 <q-menu>
                   <q-list style="min-width: 100px">
-                    <q-item to="/page10" clickable v-close-popup>
+                    <q-item to="/operations" clickable v-close-popup>
                       <q-item-section>Operations</q-item-section>
                     </q-item>
                     <q-item to="/page1220" clickable v-close-popup>
@@ -81,7 +81,17 @@
         </div>
       </div>
     </q-header>
-
+    <q-drawer
+      show-if-above
+      v-model="leftDrawerOpen"
+      :width="200"
+      :breakpoint="500"
+      side="left"
+      mini-to-overlay
+      elevated
+    >
+      <q-resize-observer @resize="onResize" />
+    </q-drawer>
     <q-page-container>
       <router-view v-slot="{ Component }">
         <transition
@@ -132,11 +142,13 @@ let store = useMainStore();
 let can = inject("can");
 let route = useRoute();
 let $q = useQuasar();
+
 $q.dark.set(true); // or false or "auto"
 
 onMounted(async () => {
   await store.getLoginInfo();
   await store.geteveusercount();
+  leftDrawerOpen = false;
   Echo.private("evestuff").listen("EveUserUpdate", (e) => {
     if (e.flag.message != null) {
       store.eveUserCount = e.flag.message;
@@ -147,7 +159,7 @@ onMounted(async () => {
 onBeforeUnmount(async () => {
   await Echo.leave("evestuff");
 });
-
+let leftDrawerOpen = $ref(false);
 let showFeedback = $ref(false);
 let feedBackText = $ref("");
 
@@ -178,5 +190,9 @@ let submitFeedBack = () => {
 let closeFeedBack = () => {
   showFeedback = false;
   feedBackText = null;
+};
+
+let onResize = (size) => {
+  store.size = size;
 };
 </script>

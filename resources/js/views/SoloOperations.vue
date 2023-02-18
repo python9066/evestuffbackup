@@ -1,344 +1,493 @@
 <template>
-  <v-row class="pr-5 pl-5 pt-1" no-gutters v-resize="onResize" justify="center">
-    <v-col cols="12">
-      <v-row no-gutters justify="center">
-        <v-col cols="12">
-          <v-card elevation="10" rounded="xl" class="mb-5">
-            <v-card-title class="justify-center primary pa-3"
-              >Operations</v-card-title
-            >
-            <v-row
-              no-gutters
-              align="baseline"
-              justify="space-between"
-              class="mt-2 ml-2"
-            >
-              <v-col cols="1">
-                <v-text-field
-                  label="Search"
-                  v-model="search"
-                  filled
-                  dense
-                  rounded
-                  single-line
-                  clearable
-                  color="blue"
-                ></v-text-field> </v-col
-              ><v-col cols="2">
-                <v-autocomplete
-                  label="Region"
-                  :items="regionList"
-                  v-model="regionPicked"
-                  filled
-                  dense
-                  auto-select-first
-                  rounded
-                  single-line
-                  clearable
-                  color="blue"
-                ></v-autocomplete> </v-col
-              ><v-col cols="2">
-                <v-autocomplete
-                  label="Constellation"
-                  :items="constellationList"
-                  v-model="constellationPicked"
-                  filled
-                  dense
-                  auto-select-first
-                  rounded
-                  single-line
-                  clearable
-                  color="blue"
-                ></v-autocomplete>
-              </v-col>
+  <div class="q-ma-md">
+    <q-table
+      title="Connections"
+      class="myTableOperations myRound bg-webBack"
+      :rows="filterEnd"
+      :columns="columns"
+      table-class=" text-webway"
+      table-header-class=" text-weight-bolder bg-amber"
+      row-key="id"
+      dense
+      dark
+      ref="tableRef"
+      rounded
+      color="amber"
+      :pagination="pagination"
+    >
+      <template v-slot:top="props">
+        <div class="row full-width flex-center q-pt-xs myRoundTop bg-primary">
+          <div class="col-12 flex flex-center">
+            <span class="text-h4">Operations</span>
+          </div>
+        </div>
+        <div class="row full-width q-pt-md">
+          <div class="col-auto">
+            search
+            <!-- <q-select
+              rounded
+              dense
+              standout
+              label-color="webway"
+              option-value="value"
+              option-label="text"
+              v-model="start_system_id"
+              :options="systemlistStartEnd"
+              label="From"
+              input-debounce="0"
+              clearable
+              ref="fromSystemRef"
+              @filter="filterFnSystemListStart"
+              map-options
+              use-input
+              hide-selected
+              fill-input
+            /> -->
+          </div>
+          <div class="col-auto">
+            <q-select
+              rounded
+              dense
+              standout
+              input-debounce="0"
+              label-color="webway"
+              option-value="value"
+              option-label="text"
+              v-model="region_id"
+              :options="regionList"
+              ref="toRegionRef"
+              label="Region"
+              @filter="filterFnRegionFinish"
+              @filter-abort="abortFilterFn"
+              map-options
+              use-input
+              hide-selected
+              fill-input
+            />
+          </div>
+          <div class="col-auto">
+            <q-select
+              rounded
+              dense
+              standout
+              input-debounce="0"
+              label-color="webway"
+              option-value="value"
+              option-label="text"
+              v-model="constellation_id"
+              :options="constellationList"
+              ref="toConstellationRef"
+              label="Constellations"
+              @filter="filterFnConstellationFinish"
+              @filter-abort="abortFilterFn"
+              map-options
+              use-input
+              hide-selected
+              fill-input
+            />
+          </div>
+          <div class="col-auto">
+            <q-btn dense flat round :icon="text" @click="clickBell()" />
+          </div>
+          <div class="col-auto">
+            <q-btn-toggle
+              v-model="filterItemTypeSelect"
+              rounded
+              unelevated
+              clearable
+              color="webDark"
+              text-color="gray"
+              toggle-color="primary"
+              toggle-text-color="gray"
+              :options="[
+                { label: 'Ihub', value: 32458 },
+                { label: 'TCU', value: 32226 },
+              ]"
+            />
+          </div>
+          <div class="col-auto">
+            <q-btn-toggle
+              v-model="filterStandingSelectList"
+              rounded
+              unelevated
+              clearable
+              color="webDark"
+              text-color="gray"
+              toggle-color="primary"
+              toggle-text-color="gray"
+              :options="[
+                { label: 'Goon', value: 3 },
+                { label: 'Friendly', value: 2 },
+                { label: 'Hostile', value: 1 },
+              ]"
+            />
+          </div>
+          <div class="col-auto">
+            <q-btn-toggle
+              v-model="filterStatusSelect"
+              rounded
+              unelevated
+              color="webDark"
+              text-color="gray"
+              toggle-color="primary"
+              toggle-text-color="gray"
+              :options="[
+                { label: 'Upcoming', value: 1 },
+                { label: 'Active', value: 2 },
+                { label: 'Finished', value: 3 },
+              ]"
+            />
+          </div>
+        </div>
+      </template>
 
-              <v-col cols="1">
-                <v-btn icon @click="click()">
-                  <font-awesome-icon :icon="text" size="2xl" />
-                </v-btn>
-              </v-col>
+      <template v-slot:body-cell-alliance="props">
+        <q-td :props="props">
+          <div>
+            <q-avatar size="35">
+              <img :src="props.row.campaign[0].alliance.url" />
+            </q-avatar>
+            {{ props.value }}
 
-              <v-col cols="6">
-                <v-row no-gutters
-                  ><v-col cols="12" class="d-flex justify-content-around"
-                    ><v-btn-toggle
-                      rounded
-                      active-class="primary--text"
-                      column
-                      v-model="filterItemTypeSelect"
-                    >
-                      <v-btn
-                        v-for="(list, index) in filterItemTypeSelectList"
-                        :key="index"
-                        filter
-                        :value="list.value"
-                        outlined
-                        small
-                      >
-                        {{ list.text }}
-                      </v-btn> </v-btn-toggle
-                    ><v-btn-toggle
-                      rounded
-                      active-class="primary--text"
-                      column
-                      v-model="filterStandingSelect"
-                    >
-                      <v-btn
-                        v-for="(list, index) in filterStandingSelectList"
-                        :key="index"
-                        filter
-                        :value="list.value"
-                        outlined
-                        small
-                      >
-                        {{ list.text }}
-                      </v-btn>
-                    </v-btn-toggle>
-                    <v-btn-toggle
-                      rounded
-                      active-class="primary--text"
-                      column
-                      mandatory
-                      v-model="filterStatusSelect"
-                    >
-                      <v-btn
-                        v-for="(list, index) in filterStatusSelectList"
-                        :key="index"
-                        filter
-                        :value="list.value"
-                        outlined
-                        small
-                      >
-                        {{ list.text }}
-                      </v-btn>
-                    </v-btn-toggle>
-                  </v-col>
-                </v-row>
-              </v-col>
-            </v-row>
-            <v-card-text class="pa-0">
-              <SoloOperationsTable
-                :windowSize="windowSize"
-                :filteredItems="filterEnd"
-                :search="search"
+            <span v-if="props.row.priority == 0">
+              <span v-if="props.row.campaign[0].alliance.standing > 0" class="text-blue"
+                >{{ props.row.campaign[0].alliance.name }}
+              </span>
+              <span
+                v-else-if="props.row.campaign[0].alliance.standing < 0"
+                class="text-red"
+                >{{ props.row.campaign[0].alliance.name }}
+              </span>
+              <span v-else class="">{{ props.row.campaign[0].alliance.name }}</span></span
+            >
+            <span v-else>
+              <q-chip
+                v-if="props.row.campaign[0].alliance.standing > 0"
+                color="primary"
+                >{{ props.row.campaign[0].alliance.name }}</q-chip
               >
-              </SoloOperationsTable>
-            </v-card-text>
-          </v-card> </v-col
-      ></v-row>
-    </v-col>
-  </v-row>
+              <q-chip
+                v-else-if="props.row.campaign[0].alliance.standing < 0"
+                color="red"
+                text-color="white"
+                >{{ props.row.campaign[0].alliance.name }}</q-chip
+              >
+              <q-chip v-else>{{ props.row.campaign[0].alliance.name }}</q-chip></span
+            >
+          </div>
+        </q-td>
+      </template>
+    </q-table>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import moment from "moment";
-import { stringify } from "querystring";
-import { mapState } from "vuex";
-import ApiL from "../service/apil";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  async created() {
-    await this.$store.dispatch("getWebwayStartSystems");
-    await this.$store.dispatch("getSoloOperationList");
-    Echo.private("solooperation").listen("SoloOperationUpdate", (e) => {
-      // 1 = update solo Op
-      if (e.flag.flag == 1) {
-        this.$store.dispatch("updateSoloOperationList", e.flag.message);
-      }
-    });
-  },
 
-  async mounted() {
-    this.onResize();
-    this.log();
-  },
-  title() {
-    return `EveStuff - Operations`;
-  },
-  data() {
-    return {
-      windowSize: {
-        x: 0,
-        y: 0,
-      },
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import { useMainStore } from "@/store/useMain.js";
+let store = useMainStore();
+let can = inject("can");
+let pOnly = $ref(0);
 
-      filterOpen: false,
+onMounted(async () => {
+  await store.getWebwayStartSystems();
+  await store.getSoloOperationList();
 
-      date: null,
-      regionPicked: null,
-      constellationPicked: null,
-      pOnly: 0,
+  Echo.private("solooperation").listen("SoloOperationUpdate", (e) => {
+    if (e.flag.flag == 1) {
+      this.$store.dispatch("updateSoloOperationList", e.flag.message);
+    }
+  });
+});
 
-      search: null,
+onBeforeUnmount(async () => {});
 
-      regionFilter: [],
+document.title = "Evestuff - Operations";
 
-      filterItemTypeSelect: 32458,
-      filterItemTypeSelectList: [
-        { text: "Ihub", value: 32458 },
-        { text: "TCU", value: 32226 },
-      ],
-
-      filterStandingSelect: null,
-      filterStandingSelectList: [
-        { text: "Goon", value: 3 },
-        { text: "Friendly", value: 2 },
-        { text: "Hostile", value: 1 },
-      ],
-
-      filterStatusSelect: 1,
-      filterStatusSelectList: [
-        { text: "Upcoming", value: 1 },
-        { text: "Active Only", value: 2 },
-        { text: "Finished", value: 3 },
-      ],
-    };
-  },
-
-  methods: {
-    onResize() {
-      this.windowSize = { x: window.innerWidth, y: window.innerHeight };
-    },
-
-    click() {
-      if (this.pOnly == 0) {
-        this.pOnly = 1;
-      } else {
-        this.pOnly = 0;
-      }
-    },
-
-    log() {
-      var request = {
-        url: this.$route.path,
-      };
-
-      axios({
-        method: "post", //you can set what request you want to be
-        url: "api/url",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-  },
-
-  computed: {
-    ...mapState([
-      "newSoloOperations",
-      "newSoloOperationsRegionList",
-      "newSoloOperationsConstellationList",
-    ]),
-
-    filterRound() {
-      if (this.filterOpen == 0) {
-        return "rounded-t-xl";
-      } else {
-        return "rounded-xl";
-      }
-    },
-
-    filterStart() {
-      if (this.filterItemTypeSelect) {
-        return this.newSoloOperations.filter(
-          (d) => d.campaign[0].event_type == this.filterItemTypeSelect
-        );
-      } else {
-        return this.newSoloOperations;
-      }
-    },
-
-    filterMind() {
-      if (this.regionPicked) {
-        return this.filterStart.filter(
-          (d) => d.campaign[0].constellation.region_id == this.regionPicked
-        );
-      } else {
-        return this.filterStart;
-      }
-    },
-
-    filterMind1() {
-      if (this.constellationPicked) {
-        return this.filterMind.filter(
-          (d) => d.campaign[0].constellation_id == this.constellationPicked
-        );
-      } else {
-        return this.filterMind;
-      }
-    },
-
-    filterMind2() {
-      if (this.filterStandingSelect) {
-        if (this.filterStandingSelect == 3) {
-          return this.filterMind1.filter(
-            (d) => d.campaign[0].alliance.color == 3
-          );
-        } else if (this.filterStandingSelect == 2) {
-          return this.filterMind1.filter(
-            (d) => d.campaign[0].alliance.standing > 0
-          );
-        } else {
-          return this.filterMind1.filter(
-            (d) => d.campaign[0].alliance.standing <= 0
-          );
-        }
-      } else {
-        return this.filterMind1;
-      }
-    },
-
-    filterMind3() {
-      if (this.pOnly == 1) {
-        return this.filterMind2.filter((d) => d.priority == 1);
-      } else {
-        return this.filterMind2;
-      }
-    },
-
-    filterEnd() {
-      if (this.filterStatusSelect == 1) {
-        return this.filterMind3.filter(
-          (d) =>
-            d.campaign[0].status_id == 5 ||
-            d.campaign[0].status_id == 1 ||
-            d.campaign[0].status_id == 2
-        );
-      } else if (this.filterStatusSelect == 2) {
-        return this.filterMind3.filter(
-          (d) => d.campaign[0].status_id == 5 || d.campaign[0].status_id == 2
-        );
-      } else {
-        return this.filterMind3.filter(
-          (d) => d.campaign[0].status_id == 3 || d.campaign[0].status_id == 4
-        );
-      }
-    },
-
-    text() {
-      if (this.pOnly == 0) {
-        return "fa-regular fa-bell";
-      } else {
-        return "fa-solid fa-bell";
-      }
-    },
-
-    regionList() {
-      return this.newSoloOperationsRegionList;
-    },
-    constellationList() {
-      return this.newSoloOperationsConstellationList;
-    },
-
-    operationList() {
-      return this.newSoloOperations;
-    },
-  },
-  beforeDestroy() {},
+let abortFilterFn = () => {
+  // console.log('delayed filter aborted')
 };
+
+let region_id = $ref(null);
+let regionText = $ref();
+let filterItemTypeSelect = $ref(32458);
+let filterStandingSelectList = $ref(null);
+let filterStatusSelect = $ref(1);
+
+let regionList = $computed(() => {
+  if (regionText) {
+    return store.newSoloOperationsRegionList.filter(
+      (d) => d.text.toLowerCase().indexOf(regionText) > -1
+    );
+  }
+  return store.newSoloOperationsRegionList;
+});
+
+let filterFnRegionFinish = (val, update, abort) => {
+  update(() => {
+    regionText = val.toLowerCase();
+    if (regionList.length > 0 && val) {
+      region_id = regionList[0];
+    }
+  });
+};
+
+let constellation_id = $ref(null);
+let constellationText = $ref();
+
+let constellationList = $computed(() => {
+  if (constellationText) {
+    return store.newSoloOperationsConstellationList.filter(
+      (d) => d.text.toLowerCase().indexOf(constellationText) > -1
+    );
+  }
+  return store.newSoloOperationsConstellationList;
+});
+
+let filterFnConstellationFinish = (val, update, abort) => {
+  update(() => {
+    constellationText = val.toLowerCase();
+    if (constellationList.length > 0 && val) {
+      constellation_id = constellationList[0];
+    }
+  });
+};
+
+let text = $computed(() => {
+  if (pOnly == 0) {
+    return "fa-regular fa-bell";
+  } else {
+    return "fa-solid fa-bell";
+  }
+});
+
+let clickBell = () => {
+  if (pOnly == 0) {
+    pOnly = 1;
+  } else {
+    pOnly = 0;
+  }
+};
+
+let filterStart = $computed(() => {
+  if (filterItemTypeSelect) {
+    return store.newSoloOperations.filter(
+      (d) => d.campaign[0].event_type == filterItemTypeSelect
+    );
+  } else {
+    return store.newSoloOperations;
+  }
+});
+
+let filterMind = $computed(() => {
+  if (region_id) {
+    return filterStart.filter((d) => d.campaign[0].constellation.region_id == region_id);
+  } else {
+    return filterStart;
+  }
+});
+
+let filterMind1 = $computed(() => {
+  if (constellation_id) {
+    return filterMind.filter((d) => d.campaign[0].constellation_id == constellation_id);
+  } else {
+    return filterMind;
+  }
+});
+
+let filterMind2 = $computed(() => {
+  if (filterStandingSelectList) {
+    if (filterStandingSelectList == 3) {
+      return filterMind1.filter((d) => d.campaign[0].alliance.color == 3);
+    } else if (filterStandingSelectList == 2) {
+      return filterMind1.filter((d) => d.campaign[0].alliance.standing > 0);
+    } else {
+      return filterMind1.filter((d) => d.campaign[0].alliance.standing <= 0);
+    }
+  } else {
+    return filterMind1;
+  }
+});
+
+let filterMind3 = $computed(() => {
+  if (pOnly == 1) {
+    return filterMind2.filter((d) => d.priority == 1);
+  } else {
+    return filterMind2;
+  }
+});
+
+let filterEnd = $computed(() => {
+  if (filterStatusSelect == 1) {
+    return filterMind3.filter(
+      (d) =>
+        d.campaign[0].status_id == 5 ||
+        d.campaign[0].status_id == 1 ||
+        d.campaign[0].status_id == 2
+    );
+  } else if (filterStatusSelect == 2) {
+    return filterMind3.filter(
+      (d) => d.campaign[0].status_id == 5 || d.campaign[0].status_id == 2
+    );
+  } else {
+    return filterMind3.filter(
+      (d) => d.campaign[0].status_id == 3 || d.campaign[0].status_id == 4
+    );
+  }
+});
+
+let filterEndtest = $computed(() => {
+  return store.newSoloOperations;
+});
+
+let pagination = $ref({
+  sortBy: "progress",
+  descending: false,
+  page: 1,
+  rowsPerPage: 0,
+});
+
+let columns = $ref([
+  {
+    name: "webway",
+    required: false,
+    label: "Webway",
+    align: "left",
+    field: (row) => row.id,
+    format: (val) => `${val}`,
+    sortable: false,
+  },
+  {
+    name: "region",
+    required: true,
+    label: "Region",
+    align: "left",
+    field: (row) => row.campaign[0].constellation.region.region_name,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: "constellation",
+    required: true,
+    label: "Constellation",
+    align: "left",
+    field: (row) => row.campaign[0].constellation.constellation_name,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: "system",
+    align: "left",
+    label: "System",
+    field: (row) => row.campaign[0].system.system_name,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: "alliance",
+    required: true,
+    label: "Alliance",
+    align: "center",
+    field: (row) => row.campaign[0].alliance.name,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: "ticker",
+    required: true,
+    label: "Ticker",
+    align: "center",
+    field: (row) => row.campaign[0].alliance.ticker,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: "adm",
+    label: "ADM",
+    align: "right",
+    field: (row) => row.campaign[0].system.adm,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: "structure",
+    label: "Structure",
+    align: "right",
+    field: (row) => row.campaign[0].event_type,
+    format: (val) => {
+      if (val == 32458) {
+        return "IHUB";
+      }
+      return "TCU";
+    },
+  },
+  {
+    name: "progress",
+    label: "Start/Progress",
+    align: "right",
+    field: (row) => row.campaign[0].start_time,
+    format: (val) => `${val}`,
+  },
+  {
+    name: "age",
+    label: "Countdown/Age",
+    align: "right",
+    field: (row) => row.campaign[0].system.adm,
+    format: (val) => {
+      let date = new Date(val);
+      let dateString = date.toISOString();
+      dateString = dateString.replace("T", " ");
+      dateString = dateString.slice(0, 16);
+      return dateString;
+    },
+  },
+
+  {
+    name: "actions",
+    label: "",
+    align: "right",
+    field: (row) => row.id,
+    format: (val) => `${val}`,
+  },
+]);
+
+let h = $computed(() => {
+  let mins = 50;
+  let window = store.size.height;
+
+  return window - mins + "px";
+});
 </script>
+
+<style lang="sass">
+.myTableOperations
+  /* height or max-height is important */
+  height: v-bind(h)
+
+  .q-table__top
+    padding-top: 0 !important
+    padding-left: 0 !important
+    padding-right: 0 !important
+
+
+
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: #202020
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+</style>
+
+<style lang="sass" scoped>
+.my-custom-toggle
+  border: 1px solid #027be3
+</style>
