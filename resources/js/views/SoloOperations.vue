@@ -177,6 +177,43 @@
           </div>
         </q-td>
       </template>
+      <template v-slot:body-cell-progress="props">
+        <q-td :props="props">
+          <div
+            v-if="
+              props.row.campaign[0].status_id == 1 || props.row.campaign[0].status_id == 5
+            "
+          >
+            {{ props.row.campaign[0].start_time }}
+          </div>
+          <SoloCampaignProgressLine
+            v-else-if="props.row.campaign[0].status_id == 2"
+            :attackScore="props.row.campaign[0].attackers_score"
+            :defenderScore="props.row.campaign[0].defenders_score"
+            :attackScoreOld="props.row.campaign[0].attackers_score_old"
+            :defenderScoreOld="props.row.campaign[0].defenders_score_old"
+          />
+          <span
+            v-else-if="
+              props.row.campaign[0].status_id == 3 || props.row.campaign[0].status_id == 4
+            "
+          >
+            <p
+              v-if="props.row.campaign[0].attackers_score == 0"
+              class="text-md-center text-green"
+            >
+              {{ props.row.campaign[0].alliance.name }}
+              <span class="font-weight-bold"> WON </span> the
+              {{ itemType(props.row.campaign[0].event_type) }} timer.
+            </p>
+            <p v-else class="text-md-center text-red">
+              {{ props.row.campaign[0].alliance.name }}
+              <span class="font-weight-bold"> LOST </span> the
+              {{ itemType(props.row.campaign[0].event_type) }} timer.
+            </p>
+          </span>
+        </q-td>
+      </template>
     </q-table>
   </div>
 </template>
@@ -187,6 +224,10 @@ import { useMainStore } from "@/store/useMain.js";
 let store = useMainStore();
 let can = inject("can");
 let pOnly = $ref(0);
+
+const SoloCampaignProgressLine = defineAsyncComponent(() =>
+  import("../components/operations/SoloCampaignProgressLine.vue")
+);
 
 onMounted(async () => {
   await store.getWebwayStartSystems();
@@ -335,9 +376,13 @@ let filterEnd = $computed(() => {
   }
 });
 
-let filterEndtest = $computed(() => {
-  return store.newSoloOperations;
-});
+let itemType = (typeID) => {
+  if (typeID == 32458) {
+    return "Ihub";
+  } else {
+    return "TCU";
+  }
+};
 
 let pagination = $ref({
   sortBy: "progress",
@@ -351,7 +396,7 @@ let columns = $ref([
     name: "webway",
     required: false,
     label: "Webway",
-    align: "left",
+    classes: "text-no-wrap",
     field: (row) => row.id,
     format: (val) => `${val}`,
     sortable: false,
@@ -360,7 +405,8 @@ let columns = $ref([
     name: "region",
     required: true,
     label: "Region",
-    align: "left",
+    classes: "text-no-wrap",
+    style: "width: 7%",
     field: (row) => row.campaign[0].constellation.region.region_name,
     format: (val) => `${val}`,
     sortable: true,
@@ -369,14 +415,14 @@ let columns = $ref([
     name: "constellation",
     required: true,
     label: "Constellation",
-    align: "left",
+    classes: "text-no-wrap",
     field: (row) => row.campaign[0].constellation.constellation_name,
     format: (val) => `${val}`,
     sortable: true,
   },
   {
     name: "system",
-    align: "left",
+    classes: "text-no-wrap",
     label: "System",
     field: (row) => row.campaign[0].system.system_name,
     format: (val) => `${val}`,
@@ -385,8 +431,8 @@ let columns = $ref([
   {
     name: "alliance",
     required: true,
+    classes: "text-no-wrap",
     label: "Alliance",
-    align: "center",
     field: (row) => row.campaign[0].alliance.name,
     format: (val) => `${val}`,
     sortable: true,
@@ -395,7 +441,7 @@ let columns = $ref([
     name: "ticker",
     required: true,
     label: "Ticker",
-    align: "center",
+    classes: "text-no-wrap",
     field: (row) => row.campaign[0].alliance.ticker,
     format: (val) => `${val}`,
     sortable: true,
@@ -403,7 +449,7 @@ let columns = $ref([
   {
     name: "adm",
     label: "ADM",
-    align: "right",
+    classes: "text-no-wrap",
     field: (row) => row.campaign[0].system.adm,
     format: (val) => `${val}`,
     sortable: true,
@@ -411,7 +457,7 @@ let columns = $ref([
   {
     name: "structure",
     label: "Structure",
-    align: "right",
+    classes: "text-no-wrap",
     field: (row) => row.campaign[0].event_type,
     format: (val) => {
       if (val == 32458) {
@@ -423,7 +469,9 @@ let columns = $ref([
   {
     name: "progress",
     label: "Start/Progress",
-    align: "right",
+    classes: "text-no-wrap",
+    align: "center",
+    style: "width: 25%",
     field: (row) => row.campaign[0].start_time,
     format: (val) => `${val}`,
   },
@@ -431,20 +479,16 @@ let columns = $ref([
     name: "age",
     label: "Countdown/Age",
     align: "right",
+    classes: "text-no-wrap",
     field: (row) => row.campaign[0].system.adm,
-    format: (val) => {
-      let date = new Date(val);
-      let dateString = date.toISOString();
-      dateString = dateString.replace("T", " ");
-      dateString = dateString.slice(0, 16);
-      return dateString;
-    },
+    format: (val) => `${val}`,
   },
 
   {
     name: "actions",
     label: "",
     align: "right",
+    classes: "text-no-wrap",
     field: (row) => row.id,
     format: (val) => `${val}`,
   },

@@ -109,7 +109,7 @@
         </template>
 
         <template v-slot:[`item.campaign[0].start_time`]="{ item }">
-          <span v-if="item.campaign[0].status_id == 1 || item.campaign[0].status_id == 5">
+          <!-- <span v-if="item.campaign[0].status_id == 1 || item.campaign[0].status_id == 5">
             {{ item.campaign[0].start_time }}
           </span>
           <span
@@ -219,7 +219,7 @@
               <span class="font-weight-bold"> LOST </span> the
               {{ itemType(item.campaign[0].event_type) }} timer.
             </p>
-          </span>
+          </span> -->
         </template>
         <template v-slot:[`header.webwayCol`]="{ props }">
           <v-row no-gutters>
