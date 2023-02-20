@@ -1,39 +1,20 @@
 <template>
   <div>
-    <v-btn
-      class="mx-2"
-      fab
-      :href="url"
-      target="_blank"
-      color="green darken-4"
-      dark
-      x-small
-    >
-      {{ this.jumps }}
-    </v-btn>
+    <q-btn round size="sm" :href="url" target="_blank" color="positive" dark>
+      {{ props.jumps }}
+    </q-btn>
   </div>
 </template>
 
-<script>
-import { mapState, mapGetters } from "vuex";
-import moment from "moment";
-export default {
-  props: {
-    jumps: Number,
-    web: String,
-  },
-  data() {
-    return {};
-  },
+<script setup>
+const props = defineProps({
+  jumps: Number,
+  web: String,
+});
 
-  methods: {},
-
-  computed: {
-    url() {
-      var base = "https://webway.apps.gnf.lt/routing?share=";
-      var url = base + this.web;
-      return url;
-    },
-  },
-};
+let url = $computed(() => {
+  var base = "https://webway.apps.gnf.lt/routing?share=";
+  var url = base + props.web;
+  return url;
+});
 </script>

@@ -19,33 +19,25 @@
         class="elevation-24 rounded-xl full-width"
       >
         <template slot="no-data"> No Active or Upcoming Campaigns </template>
-        <template v-slot:[`item.campaign[0].system.system_name`]="{ item }">
+        <!-- <template v-slot:[`item.campaign[0].system.system_name`]="{ item }">
           <div class="text-no-wrap">
             {{ item.campaign[0].system.system_name }}
           </div>
-        </template>
-        <template v-slot:[`item.campaign[0].event_type`]="{ item }">
+        </template> -->
+        <!-- <template v-slot:[`item.campaign[0].event_type`]="{ item }">
           {{ eventTypeName(item.campaign[0].event_type) }}
-        </template>
+        </template> -->
 
-        <template
-          v-slot:[`item.campaign[0].constellation.region.region_name`]="{
-            item,
-          }"
-        >
+        <!-- <template v-slot:[`item.campaign[0].constellation.region.region_name`]="{ item }">
           <div class="text-no-wrap">
             {{ item.campaign[0].constellation.region.region_name }}
           </div>
-        </template>
-        <template
-          v-slot:[`item.campaign[0].constellation.constellation_name`]="{
-            item,
-          }"
-        >
+        </template> -->
+        <!-- <template v-slot:[`item.campaign[0].constellation.constellation_name`]="{ item }">
           <div class="text-no-wrap">
             {{ item.campaign[0].constellation.constellation_name }}
           </div>
-        </template>
+        </template> -->
         <template v-slot:[`item.campaign[0].alliance.name`]="{ item }">
           <div class="d-flex flex-nowrap">
             <span v-if="item.priority == 1" class="rainbow-2 pr-2">
@@ -65,7 +57,7 @@
                 v-if="item.priority == 1"
             /></span>
 
-            <v-avatar size="35"
+            <!-- <v-avatar size="35"
               ><img :src="item.campaign[0].alliance.url"
             /></v-avatar>
             <span v-if="item.priority == 0">
@@ -96,7 +88,7 @@
                 >{{ item.campaign[0].alliance.name }}</v-chip
               >
               <v-chip v-else>{{ item.campaign[0].alliance.name }}</v-chip></span
-            >
+            > -->
             <span v-if="item.priority == 1" class="rainbow-2 pl-2">
               <font-awesome-icon
                 icon="fa-solid fa-wand-magic-sparkles"
@@ -117,11 +109,7 @@
         </template>
 
         <template v-slot:[`item.campaign[0].start_time`]="{ item }">
-          <span
-            v-if="
-              item.campaign[0].status_id == 1 || item.campaign[0].status_id == 5
-            "
-          >
+          <!-- <span v-if="item.campaign[0].status_id == 1 || item.campaign[0].status_id == 5">
             {{ item.campaign[0].start_time }}
           </span>
           <span
@@ -216,9 +204,7 @@
             </span>
           </span>
           <span
-            v-else-if="
-              item.campaign[0].status_id == 3 || item.campaign[0].status_id == 4
-            "
+            v-else-if="item.campaign[0].status_id == 3 || item.campaign[0].status_id == 4"
           >
             <p
               v-if="item.campaign[0].attackers_score == 0"
@@ -233,7 +219,7 @@
               <span class="font-weight-bold"> LOST </span> the
               {{ itemType(item.campaign[0].event_type) }} timer.
             </p>
-          </span>
+          </span> -->
         </template>
         <template v-slot:[`header.webwayCol`]="{ props }">
           <v-row no-gutters>
@@ -252,9 +238,7 @@
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn text v-bind="attrs" v-on="on" x-small>
-                    <span class="myFontSmall">{{
-                      webwaySelectedStartSystem.text
-                    }}</span>
+                    <span class="myFontSmall">{{ webwaySelectedStartSystem.text }}</span>
                   </v-btn>
                 </template>
 
@@ -272,9 +256,7 @@
                   </v-list>
                 </v-card>
               </v-menu>
-              <span v-else class="myFontSmall">{{
-                webwaySelectedStartSystem.text
-              }}</span>
+              <span v-else class="myFontSmall">{{ webwaySelectedStartSystem.text }}</span>
             </v-col>
           </v-row>
         </template>
@@ -288,10 +270,7 @@
         <template v-slot:[`item.count`]="{ item }">
           <div class="d-inline-flex align-center">
             <CountDowntimer
-              v-if="
-                item.campaign[0].status_id == 1 ||
-                item.campaign[0].status_id == 5
-              "
+              v-if="item.campaign[0].status_id == 1 || item.campaign[0].status_id == 5"
               :start-time="moment.utc(item.campaign[0].start_time).unix()"
               :end-text="'Window Closed'"
               :interval="1000"
@@ -365,9 +344,7 @@
               <span v-if="item.priority == 0" class="pl-5">{{
                 item.campaign[0].status.name
               }}</span>
-              <v-chip v-else class="pl-5">{{
-                item.campaign[0].status.name
-              }}</v-chip>
+              <v-chip v-else class="pl-5">{{ item.campaign[0].status.name }}</v-chip>
             </div>
 
             <div
@@ -417,10 +394,7 @@
         </template>
         <template v-slot:[`item.actions`]="{ item }">
           <div @click.stop="onSingleCellClick()">
-            <NewCampaginPriorityButton
-              v-if="$can('edit_hack_priority')"
-              :item="item"
-            />
+            <NewCampaginPriorityButton v-if="$can('edit_hack_priority')" :item="item" />
           </div>
         </template>
       </v-data-table>
@@ -455,10 +429,7 @@ export default {
 
     rowClick(item) {
       if (this.$can("access_campaigns")) {
-        if (
-          item.campaign[0].status_id == 2 ||
-          item.campaign[0].status_id == 5
-        ) {
+        if (item.campaign[0].status_id == 2 || item.campaign[0].status_id == 5) {
           this.$router.push({ path: `/op/${item.link}` }); // -> /user/123
         }
       }

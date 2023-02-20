@@ -92,10 +92,10 @@ export default new Vuex.Store({
         welpsheetRegion: [],
         welpsheetItem: [],
         welpsheetStatus: [],
-        webwayStartSystems: [],
-        newSoloOperations: [],
-        newSoloOperationsRegionList: [],
-        newSoloOperationsConstellationList: [],
+        // webwayStartSystems: [],
+        // newSoloOperations: [],
+        // newSoloOperationsRegionList: [],
+        // newSoloOperationsConstellationList: [],
 
         stationList: [],
 
@@ -349,9 +349,9 @@ export default new Vuex.Store({
             state.webwaySelectedStartSystem = data;
         },
 
-        SET_WEBWAY_START_SYSTEMS(state, systems) {
-            state.webwayStartSystems = systems;
-        },
+        // SET_WEBWAY_START_SYSTEMS(state, systems) {
+        //     state.webwayStartSystems = systems;
+        // },
 
         SET_STATION_REGION_LIST(state, regionlist) {
             state.stationListRegionList = regionlist;
@@ -494,31 +494,31 @@ export default new Vuex.Store({
             state.operationInfoPage.systems = data;
         },
 
-        SET_NEW_SOLO_OPERATIONS(state, solooplist) {
-            state.newSoloOperations = solooplist;
-        },
+        // SET_NEW_SOLO_OPERATIONS(state, solooplist) {
+        //     state.newSoloOperations = solooplist;
+        // },
 
-        UPDATE_NEW_SOLO_OPERATIONS(state, data) {
-            const item = state.newSoloOperations.find(
-                (item) => item.id === data.id
-            );
-            const count = state.newSoloOperations.filter(
-                (item) => item.id === data.id
-            ).length;
-            if (count > 0) {
-                Object.assign(item, data);
-            } else {
-                state.newSoloOperations.push(data);
-            }
-        },
+        // UPDATE_NEW_SOLO_OPERATIONS(state, data) {
+        //     const item = state.newSoloOperations.find(
+        //         (item) => item.id === data.id
+        //     );
+        //     const count = state.newSoloOperations.filter(
+        //         (item) => item.id === data.id
+        //     ).length;
+        //     if (count > 0) {
+        //         Object.assign(item, data);
+        //     } else {
+        //         state.newSoloOperations.push(data);
+        //     }
+        // },
 
-        SET_NEW_SOLO_OPERATIONS_REGIONS(state, regionList) {
-            state.newSoloOperationsRegionList = regionList;
-        },
+        // SET_NEW_SOLO_OPERATIONS_REGIONS(state, regionList) {
+        //     state.newSoloOperationsRegionList = regionList;
+        // },
 
-        SET_NEW_SOLO_OPERATIONS_CONSTELLATION(state, constellationList) {
-            state.newSoloOperationsConstellationList = constellationList;
-        },
+        // SET_NEW_SOLO_OPERATIONS_CONSTELLATION(state, constellationList) {
+        //     state.newSoloOperationsConstellationList = constellationList;
+        // },
 
         SET_AMMO_REQUEST(state, ammorequest) {
             state.ammoRequest = ammorequest;
@@ -1322,18 +1322,18 @@ export default new Vuex.Store({
             commit("SET_OPERATION_PAGE", res.data);
         },
 
-        async getWebwayStartSystems({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/getwebwaystartsystems",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_WEBWAY_START_SYSTEMS", res.data.systems);
-        },
+        // async getWebwayStartSystems({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/getwebwaystartsystems",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_WEBWAY_START_SYSTEMS", res.data.systems);
+        // },
 
         async getStationRegionLists({ commit }) {
             let res = await axios({
@@ -2127,9 +2127,9 @@ export default new Vuex.Store({
             commit("UPDATE_RC_STATION_CURRENT", data);
         },
 
-        updateSoloOperationList({ commit }, data) {
-            commit("UPDATE_NEW_SOLO_OPERATIONS", data);
-        },
+        // updateSoloOperationList({ commit }, data) {
+        //     commit("UPDATE_NEW_SOLO_OPERATIONS", data);
+        // },
 
         updateRcFC({ commit }, data) {
             commit("UPDATE_RC_FC", data);
