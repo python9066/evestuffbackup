@@ -1,1 +1,0 @@
-import{o as r,c as s}from"./app.eda35ecb.js";const a=(t,e)=>{const c=t.__vccOpts||t;for(const[n,o]of e)c[n]=o;return c},_={};function f(t,e){return r(),s("div",null,"dance")}const d=a(_,[["render",f]]);export{d as default};

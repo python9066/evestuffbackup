@@ -1,7 +1,7 @@
 <template>
   <div class="row full-width justify-around items-center">
     <div class="col-1">
-      <q-icon :name="defenderIcon" :class="defenderIconColor" left />
+      <q-icon :name="defenderIcon" :class="defenderIconColor" />
     </div>
     <div class="col-10">
       <q-linear-progress
@@ -17,7 +17,7 @@
       ></q-linear-progress>
     </div>
     <div class="col-1">
-      <q-icon :name="attackerIcon" :class="attackerIconColor" right />
+      <q-icon :name="attackerIcon" :class="attackerIconColor" />
     </div>
   </div>
 </template>

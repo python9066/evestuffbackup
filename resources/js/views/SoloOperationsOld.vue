@@ -16,8 +16,9 @@
                   single-line
                   clearable
                   color="blue"
-                ></v-text-field> </v-col
-              ><v-col cols="2">
+                ></v-text-field>
+              </v-col>
+              <!-- <v-col cols="2">
                 <v-autocomplete
                   label="Region"
                   :items="regionList"
@@ -30,7 +31,8 @@
                   clearable
                   color="blue"
                 ></v-autocomplete> </v-col
-              ><v-col cols="2">
+              > -->
+              <!-- <v-col cols="2">
                 <v-autocomplete
                   label="Constellation"
                   :items="constellationList"
@@ -43,15 +45,15 @@
                   clearable
                   color="blue"
                 ></v-autocomplete>
-              </v-col>
+              </v-col> -->
 
-              <v-col cols="1">
+              <!-- <v-col cols="1">
                 <v-btn icon @click="click()">
                   <font-awesome-icon :icon="text" size="2xl" />
                 </v-btn>
-              </v-col>
+              </v-col> -->
 
-              <v-col cols="6">
+              <!-- <v-col cols="6">
                 <v-row no-gutters
                   ><v-col cols="12" class="d-flex justify-content-around"
                     ><v-btn-toggle
@@ -107,18 +109,19 @@
                     </v-btn-toggle>
                   </v-col>
                 </v-row>
-              </v-col>
+              </v-col> -->
             </v-row>
-            <v-card-text class="pa-0">
+            <!-- <v-card-text class="pa-0">
               <SoloOperationsTable
                 :windowSize="windowSize"
                 :filteredItems="filterEnd"
                 :search="search"
               >
               </SoloOperationsTable>
-            </v-card-text>
-          </v-card> </v-col
-      ></v-row>
+            </v-card-text> -->
+          </v-card>
+        </v-col></v-row
+      >
     </v-col>
   </v-row>
 </template>

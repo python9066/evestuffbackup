@@ -11,6 +11,10 @@ export const useMainStore = defineStore("main", {
         newSoloOperations: [],
         newSoloOperationsRegionList: [],
         newSoloOperationsConstellationList: [],
+        webwaySelectedStartSystem: {
+            value: 30004759,
+            text: "1DQ1-A",
+        },
     }),
 
     getters: {},
@@ -83,6 +87,10 @@ export const useMainStore = defineStore("main", {
             } else {
                 this.newSoloOperations.push(data);
             }
+        },
+
+        updateWebwaySelectedStartSystem(data) {
+            this.webwaySelectedStartSystem = data;
         },
     },
 });
