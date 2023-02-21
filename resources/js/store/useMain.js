@@ -3,14 +3,16 @@ import { defineStore } from "pinia";
 
 export const useMainStore = defineStore("main", {
     state: () => ({
-        size: [],
-        user_name: null,
-        user_id: null,
         eveUserCount: 0,
-        webwayStartSystems: [],
         newSoloOperations: [],
         newSoloOperationsRegionList: [],
         newSoloOperationsConstellationList: [],
+        size: [],
+        timers: [],
+        timersRegions: [],
+        user_name: null,
+        user_id: null,
+        webwayStartSystems: [],
         webwaySelectedStartSystem: {
             value: 30004759,
             text: "1DQ1-A",
@@ -19,6 +21,12 @@ export const useMainStore = defineStore("main", {
 
     getters: {},
     actions: {
+        markOver(id) {
+            var item = this.timers.find((item) => item.id === id);
+            item.status = 1;
+            Object.assign(item, timer);
+        },
+
         async getLoginInfo() {
             let res = await axios({
                 method: "get",
@@ -91,6 +99,32 @@ export const useMainStore = defineStore("main", {
 
         updateWebwaySelectedStartSystem(data) {
             this.webwaySelectedStartSystem = data;
+        },
+
+        async getTimerDataAll() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/timers",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.timers = res.data.timers;
+        },
+
+        async getTimerDataAllRegion() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/timersregions",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.timersRegions = res.data.timersregions;
         },
     },
 });

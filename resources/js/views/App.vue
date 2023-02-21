@@ -24,7 +24,7 @@
                     <q-item to="/operations" clickable v-close-popup>
                       <q-item-section>Operations</q-item-section>
                     </q-item>
-                    <q-item to="/page1220" clickable v-close-popup>
+                    <q-item to="/windows" clickable v-close-popup>
                       <q-item-section>Windows</q-item-section>
                     </q-item>
                     <q-item to="/page10" clickable v-close-popup>

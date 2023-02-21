@@ -78,8 +78,8 @@ export default new Vuex.Store({
         structurelist: [],
         systemlist: [],
         ticklist: [],
-        timers: [],
-        timersRegions: [],
+        // timers: [],
+        // timersRegions: [],
         tooltipToggle: true,
         towers: [],
         towerlist: [],
@@ -595,18 +595,18 @@ export default new Vuex.Store({
             state.allianceticklist = allianceticklist;
         },
 
-        SET_TIMERS(state, timers) {
-            state.timers = timers;
-        },
+        // SET_TIMERS(state, timers) {
+        //     state.timers = timers;
+        // },
 
-        SET_TIMERS_REGIONS(state, timersRegions) {
-            state.timersRegions = timersRegions;
-        },
+        // SET_TIMERS_REGIONS(state, timersRegions) {
+        //     state.timersRegions = timersRegions;
+        // },
 
-        MARK_TIMER_OVER(state, timer) {
-            const item = state.timers.find((item) => item.id === timer.id);
-            Object.assign(item, timer);
-        },
+        // MARK_TIMER_OVER(state, timer) {
+        //     const item = state.timers.find((item) => item.id === timer.id);
+        //     Object.assign(item, timer);
+        // },
 
         SET_NODE_JOIN(state, nodeJoin) {
             state.nodeJoin = nodeJoin;
@@ -1370,31 +1370,31 @@ export default new Vuex.Store({
             );
         },
 
-        async getTimerDataAll({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/timers",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_TIMERS", res.data.timers);
-        },
+        // async getTimerDataAll({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/timers",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_TIMERS", res.data.timers);
+        // },
 
-        async getTimerDataAll({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/timers",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_TIMERS", res.data.timers);
-        },
+        // async getTimerDataAll({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/timers",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_TIMERS", res.data.timers);
+        // },
 
         async updateTickList({ commit }, ticker) {
             let res = await axios({
@@ -1411,18 +1411,18 @@ export default new Vuex.Store({
             commit("SET_MISSING_CORP_TICK", res.data.corpTicker);
         },
 
-        async getTimerDataAllRegion({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/timersregions",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_TIMERS_REGIONS", res.data.timersregions);
-        },
+        // async getTimerDataAllRegion({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/timersregions",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_TIMERS_REGIONS", res.data.timersregions);
+        // },
 
         async getSystemList({ commit }) {
             let res = await axios({

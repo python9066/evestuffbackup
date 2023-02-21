@@ -1,27 +1,27 @@
 {
-  "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2": {
-    "file": "assets/fa-regular-400.7ba24c41.woff2",
-    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2"
-  },
   "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2": {
     "file": "assets/fa-brands-400.f4617423.woff2",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2"
   },
-  "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.woff2": {
-    "file": "assets/fa-v4compatibility.7c377405.woff2",
-    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.woff2"
+  "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400.7ba24c41.woff2",
+    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2"
   },
   "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.woff2": {
     "file": "assets/fa-solid-900.e2c5cf54.woff2",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.woff2"
   },
-  "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.ttf": {
-    "file": "assets/fa-regular-400.12dea17b.ttf",
-    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.ttf"
+  "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.woff2": {
+    "file": "assets/fa-v4compatibility.7c377405.woff2",
+    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.woff2"
   },
   "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.ttf": {
     "file": "assets/fa-brands-400.2ef6fdde.ttf",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.ttf"
+  },
+  "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400.12dea17b.ttf",
+    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.ttf"
   },
   "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.ttf": {
     "file": "assets/fa-v4compatibility.8d9500e8.ttf",
@@ -32,12 +32,13 @@
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.ttf"
   },
   "resources/js/app.js": {
-    "file": "assets/app.a5b64522.js",
+    "file": "assets/app.7fac84fd.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
       "resources/js/views/test.vue",
-      "resources/js/views/SoloOperations.vue"
+      "resources/js/views/SoloOperations.vue",
+      "resources/js/views/Timers.vue"
     ],
     "css": [
       "assets/app.57962967.css"
@@ -54,34 +55,43 @@
     ]
   },
   "resources/js/views/test.vue": {
-    "file": "assets/test.552252a2.js",
+    "file": "assets/test.e667ef56.js",
     "src": "resources/js/views/test.vue",
     "isDynamicEntry": true,
     "imports": [
-      "__plugin-vue_export-helper.ca4f8b50.js",
-      "_QBadge.67640098.js",
+      "_QTable.2b339d37.js",
+      "_QBadge.fe19dac8.js",
+      "__plugin-vue_export-helper.52b323b3.js",
       "resources/js/app.js"
     ]
   },
-  "__plugin-vue_export-helper.ca4f8b50.js": {
-    "file": "assets/_plugin-vue_export-helper.ca4f8b50.js",
+  "_QTable.2b339d37.js": {
+    "file": "assets/QTable.2b339d37.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_QBadge.67640098.js": {
-    "file": "assets/QBadge.67640098.js",
+  "_QBadge.fe19dac8.js": {
+    "file": "assets/QBadge.fe19dac8.js",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "__plugin-vue_export-helper.52b323b3.js": {
+    "file": "assets/_plugin-vue_export-helper.52b323b3.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/views/SoloOperations.vue": {
-    "file": "assets/SoloOperations.b3f2d267.js",
+    "file": "assets/SoloOperations.4c683d69.js",
     "src": "resources/js/views/SoloOperations.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "__plugin-vue_export-helper.ca4f8b50.js"
+      "_QTable.2b339d37.js",
+      "_QAvatar.1313c7f3.js",
+      "__plugin-vue_export-helper.52b323b3.js"
     ],
     "dynamicImports": [
       "resources/js/components/operations/SoloCampaignProgressLine.vue",
@@ -92,21 +102,44 @@
       "resources/js/components/newcampaign/NewCampaginPriorityButton.vue"
     ],
     "css": [
-      "assets/SoloOperations.2672a8a9.css"
+      "assets/SoloOperations.ff64e041.css"
+    ]
+  },
+  "_QAvatar.1313c7f3.js": {
+    "file": "assets/QAvatar.1313c7f3.js",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/views/Timers.vue": {
+    "file": "assets/Timers.1df44a9e.js",
+    "src": "resources/js/views/Timers.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_QTable.2b339d37.js",
+      "_QAvatar.1313c7f3.js"
+    ],
+    "dynamicImports": [
+      "resources/js/components/countup/index.ts",
+      "resources/js/components/timers/TimerCountDown.vue"
+    ],
+    "css": [
+      "assets/Timers.ad81edd0.css"
     ]
   },
   "resources/js/components/operations/SoloCampaignProgressLine.vue": {
-    "file": "assets/SoloCampaignProgressLine.1504047d.js",
+    "file": "assets/SoloCampaignProgressLine.f357841c.js",
     "src": "resources/js/components/operations/SoloCampaignProgressLine.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QBadge.67640098.js",
-      "__plugin-vue_export-helper.ca4f8b50.js"
+      "_QBadge.fe19dac8.js",
+      "_QTable.2b339d37.js"
     ]
   },
   "resources/js/components/countup/index.ts": {
-    "file": "assets/index.0a6059db.js",
+    "file": "assets/index.3d8860b4.js",
     "src": "resources/js/components/countup/index.ts",
     "isDynamicEntry": true,
     "imports": [
@@ -114,12 +147,12 @@
     ]
   },
   "resources/js/components/operations/SoloCampaignOperationChip.vue": {
-    "file": "assets/SoloCampaignOperationChip.a3cbe534.js",
+    "file": "assets/SoloCampaignOperationChip.9b8c9124.js",
     "src": "resources/js/components/operations/SoloCampaignOperationChip.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "__plugin-vue_export-helper.ca4f8b50.js"
+      "_QTable.2b339d37.js"
     ],
     "dynamicImports": [
       "resources/js/components/countdown/index.ts",
@@ -127,7 +160,7 @@
     ]
   },
   "resources/js/components/campaign/CampaignMap.vue": {
-    "file": "assets/CampaignMap.846c7fb3.js",
+    "file": "assets/CampaignMap.8db6cdb5.js",
     "src": "resources/js/components/campaign/CampaignMap.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -135,7 +168,7 @@
     ]
   },
   "resources/js/components/operations/SoloCampaginWebWay.vue": {
-    "file": "assets/SoloCampaginWebWay.cc30106c.js",
+    "file": "assets/SoloCampaginWebWay.030d12d2.js",
     "src": "resources/js/components/operations/SoloCampaginWebWay.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -143,15 +176,26 @@
     ]
   },
   "resources/js/components/newcampaign/NewCampaginPriorityButton.vue": {
-    "file": "assets/NewCampaginPriorityButton.6505075a.js",
+    "file": "assets/NewCampaginPriorityButton.a8f03bf7.js",
     "src": "resources/js/components/newcampaign/NewCampaginPriorityButton.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
+  "resources/js/components/timers/TimerCountDown.vue": {
+    "file": "assets/TimerCountDown.b941e96b.js",
+    "src": "resources/js/components/timers/TimerCountDown.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "dynamicImports": [
+      "resources/js/components/countdown/index.ts"
+    ]
+  },
   "resources/js/components/countdown/index.ts": {
-    "file": "assets/index.55528543.js",
+    "file": "assets/index.542d01fe.js",
     "src": "resources/js/components/countdown/index.ts",
     "isDynamicEntry": true,
     "imports": [
@@ -163,8 +207,12 @@
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
+  "resources/js/views/Timers.css": {
+    "file": "assets/Timers.ad81edd0.css",
+    "src": "resources/js/views/Timers.css"
+  },
   "resources/js/views/SoloOperations.css": {
-    "file": "assets/SoloOperations.2672a8a9.css",
+    "file": "assets/SoloOperations.ff64e041.css",
     "src": "resources/js/views/SoloOperations.css"
   },
   "resources/js/app.css": {
