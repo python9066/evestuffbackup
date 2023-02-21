@@ -176,8 +176,8 @@
               v-if="webwayJumps(props.row) && webwayLink(props.row)"
               :jumps="webwayJumps(props.row)"
               :web="webwayLink(props.row)"
-            ></SoloCampaginWebWay
-          ></q-td>
+            ></SoloCampaginWebWay>
+          </q-td>
           <q-td key="region" :props="props">
             <span v-if="props.row.priority == 0">
               {{ props.row.campaign[0].constellation.region.region_name }}
@@ -408,7 +408,9 @@ onMounted(async () => {
   });
 });
 
-onBeforeUnmount(async () => {});
+onBeforeUnmount(async () => {
+  Echo.leave("solooperation");
+});
 
 document.title = "Evestuff - Operations";
 
@@ -833,9 +835,11 @@ let h = $computed(() => {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -863,15 +867,19 @@ let h = $computed(() => {
   from {
     color: #6666ff;
   }
+
   10% {
     color: #0099ff;
   }
+
   50% {
     color: #00ff00;
   }
+
   75% {
     color: #ff3399;
   }
+
   100% {
     color: #6666ff;
   }

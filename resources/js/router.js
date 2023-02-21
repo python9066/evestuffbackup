@@ -44,6 +44,12 @@ const routes = [
         name: "operations",
         component: () => import("./views/SoloOperations.vue"),
     },
+
+    {
+        path: "/windows",
+        name: "windows",
+        component: () => import("./views/Timers.vue"),
+    },
 ];
 
 const router = createRouter({
