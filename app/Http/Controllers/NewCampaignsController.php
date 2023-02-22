@@ -36,12 +36,14 @@ class NewCampaignsController extends Controller
             $regionName = $pull->system->region->region_name;
             $constellationName = $pull->system->constellation->constellation_name;
             $allianceName = $pull->alliance->name;
+            $standing = $pull->alliance->standing;
 
             $text = $regionName . ' - ' . $constellationName . ' - ' . $systemName . ' - ' . $allianceName . ' - ' . $eventType . ' - ' . $pull->start_time;
 
             $data1 = [
                 'text' => $text,
                 'value' => $pull['id'],
+                'standing' => $standing
             ];
 
             array_push($data, $data1);

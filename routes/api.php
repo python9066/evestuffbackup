@@ -352,7 +352,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::controller(StartCampaignController::class)->group(function () {
-        Route::post('/startcampaigns/{campid}/{name}', 'store');
+        Route::post('/startcampaigns/{name}', 'store');
         Route::get('/startcampaigns', 'index');
         Route::delete('/startcampaigns/{id}', 'destroy');
     });

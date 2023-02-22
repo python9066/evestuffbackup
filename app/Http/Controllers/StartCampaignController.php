@@ -10,6 +10,7 @@ use App\Models\StartCampaignSystems;
 use App\Models\System;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class StartCampaignController extends Controller
 {
@@ -40,18 +41,29 @@ class StartCampaignController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $campid, $name)
+    public function store(Request $request, $name)
     {
         $data = $request->all();
+        $link = Str::uuid();
         $user_id = Auth::id();
-        // dd($data);
-        StartCampaigns::create(['id' => $campid, 'name' => $name, 'user_id' => $user_id]);
+
+        $new = new StartCampaigns();
+        $new->link = $link;
+        $new->name = $name;
+        $new->user_id = $user_id;
+        $new->save();
         foreach ($data as $data) {
-            // dd($data);
-            StartCampaignJoins::create(['start_campaign_id' => $campid, 'constellation_id' => $data]);
-            $solas = System::where('constellation_id', $data)->get();
+            $newJoin = new StartCampaignJoins();
+            $newJoin->start_campaign_id = $new->id;
+            $newJoin->constellation_id = $data['value'];
+            $newJoin->save();
+            $solas = System::where('constellation_id', $data['value'])->get();
             foreach ($solas as $sola) {
-                StartCampaignSystems::create(['system_id' => $sola['id'], 'start_campaign_id' => $campid, 'constellation_id' => $data]);
+                $newSystem = new StartCampaignSystems();
+                $newSystem->system_id = $sola->id;
+                $newSystem->start_campaign_id = $new->id;
+                $newSystem->constellation_id = $data['value'];
+                $newSystem->save();
             }
         }
     }

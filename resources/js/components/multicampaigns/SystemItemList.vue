@@ -2,7 +2,7 @@
   <div class="d-inline-flex">
     <span v-if="systemcount">
       <span v-for="(system, index) in systems" :key="index" class="pr-2">
-        <v-chip pill :color="pillcolor(system)" dark>
+        <v-chip dense :color="pillcolor(system)" dark>
           <span> {{ system.text }}</span>
         </v-chip>
       </span>

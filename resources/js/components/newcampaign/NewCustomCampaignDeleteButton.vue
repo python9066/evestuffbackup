@@ -1,145 +1,57 @@
 <template>
   <div>
-    <v-dialog persistent max-width="700px" z-index="0" v-model="showDelete">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="purple accent-3"
-          dark
-          icon
-          v-bind="attrs"
-          v-on="on"
-          @click="open()"
-        >
-          <font-awesome-icon icon="fa-solid fa-trash" pull="left" size="2xl" />
-        </v-btn>
-      </template>
-
-      <v-card tile class="d-flex flex-column" rounded="xl">
-        <v-card-title class="justify-center" color="primery">
-          <p>
-            ARE YOU SURE<strong class="purple--text test--accent-3">
-              EMILY!!!!!!!!!!!</strong
-            >
-          </p>
-        </v-card-title>
-        <v-card-actions class="justify-center">
-          <v-btn class="white--text" color="teal" @click="close()">
-            Close
-          </v-btn>
-          <v-btn
-            class="white--text"
-            color="green"
-            @click="deleteCampaign(item)"
+    <q-btn
+      color="negative"
+      icon="fa-solid fa-trash-can"
+      flat
+      size="sm"
+      round
+      @click="confirm = true"
+    />
+    <q-dialog v-model="confirm" persistent>
+      <q-card>
+        <q-card-section class="row items-center">
+          <q-icon name="fa-solid fa-triangle-exclamation" color="warning" size="xl" />
+          <span class="q-ml-sm text-h4"
+            >Are you sure
+            <span class="text-pink-13 text-bold">EMILY!!!!!!!!!!</span></span
           >
-            YES
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-
-      <!-- <showReconTask
-                :nodeNotestation="nodeNotestation"
-                v-if="$can('super')"
-                @closeMessage="showReconTask = false"
-            >
-            </showReconTask> -->
-    </v-dialog>
+          <q-icon name="fa-solid fa-triangle-exclamation" color="warning" size="xl" />
+        </q-card-section>
+        <q-card-actions align="right">
+          <q-btn rounded label="Cancel" color="negative" v-close-popup />
+          <q-btn
+            rounded
+            label="Yes"
+            color="primary"
+            v-close-popup
+            @click="deleteCampaign"
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
-<script>
-import { mapState, mapGetters } from "vuex";
-import moment from "moment";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  props: {
-    item: Object,
-  },
-  data() {
-    return {
-      showDelete: false,
-    };
-  },
+<script setup>
+import axios from "axios";
 
-  methods: {
-    close() {
-      this.showDelete = false;
+const props = defineProps({
+  item: Object,
+});
+let confirm = $ref(false);
+
+let deleteCampaign = async () => {
+  await axios({
+    method: "delete",
+    url: "/api/newoperation/" + props.item.id,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-
-    async submit() {
-      var request = {
-        title: this.taskName,
-        info: this.infoText,
-        made_by_user_id: this.$store.state.user_id,
-        systems: this.systemValue,
-      };
-
-      await axios({
-        method: "post", //you can set what request you want to be
-        url: "api/recontask",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }).then(
-        (this.taskName = null),
-        (this.showReconTask = false),
-        (this.systemValue = []),
-        (this.infoText = null)
-      );
-    },
-
-    async deleteCampaign(item) {
-      await axios({
-        method: "delete", //you can set what request you want to be
-        url: "/api/newoperation/" + item.id,
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-
-      this.showDelete = false;
-    },
-
-    async open() {},
-  },
-
-  computed: {
-    ...mapGetters([]),
-    ...mapState(["systemlist"]),
-
-    showSubmit() {
-      if (
-        this.taskName != null &&
-        this.infoText != null &&
-        this.systemValue != []
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-
-    systemList() {
-      return this.systemlist;
-    },
-  },
-
-  beforeDestroy() {},
+  });
 };
 </script>
 
-<style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-</style>
+<style lang="scss"></style>
