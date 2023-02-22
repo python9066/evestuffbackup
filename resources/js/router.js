@@ -63,6 +63,19 @@ const routes = [
             }
         },
     },
+
+    {
+        path: "/stations",
+        name: "stations",
+        component: () => import("./views/StationSheet.vue"),
+        beforeEnter(to, from, next) {
+            if (can("view_station_list")) {
+                next();
+            } else {
+                next("/");
+            }
+        },
+    },
 ];
 
 const router = createRouter({

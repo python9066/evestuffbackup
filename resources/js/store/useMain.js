@@ -13,6 +13,11 @@ export const useMainStore = defineStore("main", {
         size: [],
         startcampaigns: [],
         startcampaignJoin: [],
+        stationListPullRegions: [],
+        stationListFCRegions: [],
+        stationListRegionList: [],
+        systemlist: [],
+        stationList: [],
         timers: [],
         timersRegions: [],
         user_name: null,
@@ -237,6 +242,56 @@ export const useMainStore = defineStore("main", {
                 },
             });
             this.startcampaignJoin = res.data.value;
+        },
+
+        async getStationRegionLists() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/getregionlists",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+
+            this.stationListPullRegions = res.data.pull;
+            this.stationListFCRegions = res.data.fcs;
+            this.stationListRegionList = res.data.regionlist;
+            this.systemlist = res.data.systemlist;
+            this.webwayStartSystems = res.data.webwayStartSystems;
+        },
+
+        async getStationList() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/stationsheet",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.stationList = res.data.stations;
+        },
+
+        updateStationList(data) {
+            const item = this.stationList.find((item) => item.id === data.id);
+            const count = this.stationList.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.stationList.push(data);
+            }
+        },
+
+        deleteStationSheetNotification(id) {
+            let index = this.stationList.findIndex((s) => s.id == id);
+            if (index >= 0) {
+                this.stationList.splice(index, 1);
+            }
         },
     },
 });

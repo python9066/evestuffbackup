@@ -38,13 +38,25 @@
               ><template v-slot:default>
                 <q-menu>
                   <q-list style="min-width: 100px">
-                    <q-item to="/page10" clickable v-close-popup>
-                      <q-item-section>Station List</q-item-section>
+                    <q-item to="/stations" clickable v-close-popup>
+                      <q-item-section v-if="can('view_station_list')"
+                        >Station List</q-item-section
+                      >
                     </q-item>
-                    <q-item to="/page10" clickable v-close-popup>
+                    <q-item
+                      to="/page10"
+                      v-if="can('finish_move_timer')"
+                      clickable
+                      v-close-popup
+                    >
                       <q-item-section>To Check</q-item-section>
                     </q-item>
-                    <q-item to="/page10" clickable v-close-popup>
+                    <q-item
+                      to="/page10"
+                      v-else-if="can('view_move_timers')"
+                      clickable
+                      v-close-popup
+                    >
                       <q-item-section>Add Timer</q-item-section>
                     </q-item>
                   </q-list>
