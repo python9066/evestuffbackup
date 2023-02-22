@@ -92,7 +92,7 @@
     >
       <q-resize-observer @resize="onResize" />
     </q-drawer>
-    <q-page-container>
+    <q-page-container class="bg-test">
       <router-view v-slot="{ Component }">
         <transition
           mode="out-in"

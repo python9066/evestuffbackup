@@ -24,7 +24,14 @@ export const useMainStore = defineStore("main", {
         },
     }),
 
-    getters: {},
+    getters: {
+        getStartJoinById: (state) => (id) => {
+            let data = state.startcampaignJoin.filter(
+                (c) => c.start_campaign_id == id
+            );
+            return data;
+        },
+    },
     actions: {
         markOver(id) {
             var item = this.timers.find((item) => item.id === id);

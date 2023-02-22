@@ -145,7 +145,6 @@ let chipColor = (item) => {
 };
 
 let listColor = (item) => {
-  console.log(item);
   if (item.standing >= 2) {
     return "bg-blue";
   } else if (item.standing == 1) {
@@ -164,10 +163,13 @@ let addCampaignDone = async () => {
       "Content-Type": "application/json",
     },
   });
+  store.getStartCampaigns();
+  store.getStartCampaignJoinData();
+  addCampaignClose();
 };
 
 let addCampaignClose = () => {
-  (titleText = null), (campaignPicked = []);
+  (titleText = null), (constellationPicked = []);
 };
 </script>
 

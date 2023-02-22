@@ -144,7 +144,6 @@ let chipColor = (item) => {
 };
 
 let listColor = (item) => {
-  console.log(item);
   if (item.standing >= 2) {
     return "bg-blue";
   } else if (item.standing == 1) {

@@ -3,8 +3,8 @@
     <span v-if="systemCount">
       <span v-for="(campaign, index) in props.campaigns" :key="index" class="pr-2">
         <q-chip dense :label="text(campaign)" :color="pillColor(campaign)"
-      /></span>
-    </span>
+      /></span> </span
+    ><span v-else><div>All Campaigns have finished</div></span>
   </div>
 </template>
 

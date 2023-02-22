@@ -11,7 +11,6 @@
       row-key="id"
       dark
       dense
-      :filter="search"
       ref="tableRef"
       rounded
       :pagination="pagination"
@@ -23,15 +22,21 @@
           </div>
         </div>
       </template>
-      <template v-slot:body-cell-campaign="props">
-        <q-td :props="props"> <NewSystemItemList :campaigns="props.row.campaign" /></q-td>
+      <template v-slot:body-cell-system="props">
+        <q-td :props="props"> <StartSystemItemList :campaignID="props.row.id" /></q-td>
       </template>
       <template v-slot:body-cell-actions="props">
         <q-td>
           <div class="row justify-end items-baseline">
-            <div class="col-auto"><EditOperation :operation="props.row" /></div>
             <div class="col-auto">
-              <NewCustomCampaignDeleteButton :item="props.row" />
+              <q-btn
+                color="negative"
+                icon="fa-solid fa-trash-can"
+                flat
+                size="sm"
+                round
+                @click="deleteCampagin(props.row)"
+              />
             </div>
             <div class="col-auto">
               <q-btn
@@ -51,19 +56,23 @@
 
 <script setup>
 import { onMounted, onBeforeUnmount, defineAsyncComponent } from "vue";
-import { useMainStore } from "@/store/useMain.js";
 import { useRouter } from "vue-router";
-import Echo from "laravel-echo";
-let router = useRouter();
+import { useMainStore } from "@/store/useMain.js";
+import axios from "axios";
 let store = useMainStore();
+let router = useRouter();
 const AddStartCampaign = defineAsyncComponent(() => import("./AddStartCampaign.vue"));
+const StartSystemItemList = defineAsyncComponent(() =>
+  import("./StartSystemItemList.vue")
+);
+
 onMounted(async () => {
   store.getConstellationList();
   store.getStartCampaigns();
-  this.loadStartCampaignJoinData();
+  loadStartCampaignJoinData();
 
   Echo.private("startcampaigns").listen("StartcampaignUpdate", (e) => {
-    this.$store.dispatch("getStartCampaigns");
+    store.getStartCampaigns();
     loadStartCampaignJoinData();
   });
 });
@@ -75,6 +84,26 @@ onBeforeUnmount(async () => {
 let loadStartCampaignJoinData = () => {
   store.getStartCampaignJoinData();
 };
+
+let deleteCampagin = async (item) => {
+  await axios({
+    method: "delete", //you can set what request you want to be
+    url: "/api/startcampaigns/" + item.id,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+
+  store.getStartCampaigns();
+};
+
+let pagination = $ref({
+  descending: false,
+  page: 1,
+  rowsPerPage: 0,
+});
 
 let columns = $ref([
   {
@@ -108,6 +137,11 @@ let columns = $ref([
     filter: true,
   },
 ]);
+
+let clickCampaign = (item) => {
+  console.log(item);
+  router.push({ path: `/scampaign/${item.link}` }); // -> /user/123
+};
 
 let h = $computed(() => {
   let mins = 50;

@@ -28,6 +28,7 @@ class StartCampaignController extends Controller
             $data = [
                 'id' => $pull['id'],
                 'name' => $pull['name'],
+                'link' => $pull['link']
             ];
             array_push($list, $data);
         }

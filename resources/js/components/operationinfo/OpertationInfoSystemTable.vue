@@ -12,9 +12,7 @@
             disable-pagination
             class="elevation-24 rounded-xl full-width"
           >
-            <template slot="no-data">
-              No Systems Picked for this Operation
-            </template>
+            <template slot="no-data"> No Systems Picked for this Operation </template>
             <template v-slot:[`item.actions`]="{ item }">
               <OperationInfoSystemAddNotes :loaded="loaded" :item="item" />
               <OperationInfoSystemJammerSetting :loaded="loaded" :item="item" />
@@ -26,9 +24,7 @@
               </div>
             </template>
 
-            <template
-              v-slot:[`item.constellation.constellation_name`]="{ item }"
-            >
+            <template v-slot:[`item.constellation.constellation_name`]="{ item }">
               <div class="text-no-wrap">
                 {{ item.constellation.constellation_name }}
               </div>
@@ -136,9 +132,7 @@ export default {
   },
 
   methods: {
-    addNotes(item) {
-      console.log(item);
-    },
+    addNotes(item) {},
 
     jamerText(num) {
       switch (num) {
@@ -187,4 +181,3 @@ export default {
   },
 };
 </script>
-

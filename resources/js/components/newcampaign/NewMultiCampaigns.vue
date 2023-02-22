@@ -11,7 +11,6 @@
       row-key="id"
       dark
       dense
-      :filter="search"
       ref="tableRef"
       rounded
       :pagination="pagination"
@@ -80,6 +79,12 @@ let operationStatus = (item) => {
     return "Active";
   }
 };
+
+let pagination = $ref({
+  descending: false,
+  page: 1,
+  rowsPerPage: 0,
+});
 
 let columns = $ref([
   {
