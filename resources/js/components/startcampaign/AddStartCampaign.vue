@@ -1,24 +1,24 @@
 <template>
   <div>
     <q-btn
-      color="none"
-      text-color="warning"
-      icon="fa-solid fa-pen-to-square"
+      color="positive"
+      class="myOutLineButton"
+      label="Add"
+      push
       size="xs"
-      flat
-      round
-      @click="open()"
+      rounded
+      @click="confirm = true"
     />
     <q-dialog v-model="confirm" persistent>
       <q-card class="myRoundTop" style="width: 1500px; max-width: 80vw">
         <q-card-section class="bg-primary text-h5 text-center">
-          <h4 class="no-margin">Edit your Mulit-Campaign Here</h4>
+          <h4 class="no-margin">Make your Inital-Campaign Here</h4>
         </q-card-section>
         <q-card-section>
           <div>
             <q-input
               class="q-mb-md"
-              v-model="operation.title"
+              v-model="titleText"
               type="text"
               label="Title"
               rounded
@@ -36,13 +36,14 @@
               label-color="webway"
               option-value="value"
               option-label="text"
-              v-model="campaignPicked"
-              :options="campaignPickedEnd"
-              label="Region"
-              ref="regionDropDown"
-              @filter="regionPickStart"
+              v-model="constellationPicked"
+              :options="constellationPickedEnd"
+              label="Constellation"
+              ref="constellationDropDown"
+              @filter="constellationPickStart"
               map-options
               use-input
+              clearable
               use-chips
               multiple
             >
@@ -102,29 +103,20 @@ let store = useMainStore();
 let confirm = $ref(false);
 let titleText = $ref();
 
-const props = defineProps({
-  operation: Object,
-});
-
-let campaignPickedText = $ref();
-let campaignPicked = $ref([]);
-let campaignPickedEnd = $computed(() => {
-  if (campaignPickedText) {
-    return store.newCampaignsList.filter(
-      (d) => d.text.toLowerCase().indexOf(campaignPickedText) > -1
+let constellationPickedText = $ref();
+let constellationPicked = $ref([]);
+let constellationPickedEnd = $computed(() => {
+  if (constellationPickedText) {
+    return store.constellationlist.filter(
+      (d) => d.text.toLowerCase().indexOf(constellationPickedText) > -1
     );
   }
-  return store.newCampaignsList;
+  return store.constellationlist;
 });
 
-let open = () => {
-  campaignPicked = props.operation.campaign.map((c) => c.id);
-  confirm = true;
-};
-
-let regionPickStart = (val, update, abort) => {
+let constellationPickStart = (val, update, abort) => {
   update(() => {
-    campaignPickedText = val.toLowerCase();
+    constellationPickedText = val.toLowerCase();
     if (systemlistFinishEnd.length > 0 && val) {
       finish_system_id = systemlistFinishEnd[0];
     }
@@ -136,11 +128,11 @@ let finsishSystemText = $ref();
 
 let systemlistFinishEnd = $computed(() => {
   if (finsishSystemText) {
-    return store.newCampaignsList.filter(
+    return store.constellationlist.filter(
       (d) => d.text.toLowerCase().indexOf(finsishSystemText) > -1
     );
   }
-  return store.newCampaignsList;
+  return store.constellationlist;
 });
 
 let chipColor = (item) => {
@@ -161,26 +153,23 @@ let listColor = (item) => {
 };
 
 let addCampaignDone = async () => {
-  var request = {
-    OpID: props.operation.id,
-    title: titleText,
-    picked: campaignPicked,
-  };
-
   await axios({
-    method: "post", //you can set what request you want to be
-    url: "/api/editoperation",
+    method: "POST",
+    url: "/api/startcampaigns/" + titleText,
     withCredentials: true,
-    data: request,
+    data: constellationPicked,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-  }).then(addCampaignClose);
+  });
+  store.getStartCampaigns();
+  store.getStartCampaignJoinData();
+  addCampaignClose();
 };
 
 let addCampaignClose = () => {
-  (titleText = null), (campaignPicked = []);
+  (titleText = null), (constellationPicked = []);
 };
 </script>
 

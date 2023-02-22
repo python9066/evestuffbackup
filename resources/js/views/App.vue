@@ -27,7 +27,7 @@
                     <q-item to="/windows" clickable v-close-popup>
                       <q-item-section>Windows</q-item-section>
                     </q-item>
-                    <q-item to="/page10" clickable v-close-popup>
+                    <q-item to="/mcampaigns" clickable v-close-popup>
                       <q-item-section>Custom Campaign</q-item-section>
                     </q-item>
                   </q-list>
@@ -92,7 +92,7 @@
     >
       <q-resize-observer @resize="onResize" />
     </q-drawer>
-    <q-page-container>
+    <q-page-container class="bg-test">
       <router-view v-slot="{ Component }">
         <transition
           mode="out-in"

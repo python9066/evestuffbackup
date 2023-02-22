@@ -50,6 +50,19 @@ const routes = [
         name: "windows",
         component: () => import("./views/Timers.vue"),
     },
+
+    {
+        path: "/mcampaigns",
+        name: "mcampaigns",
+        component: () => import("./views/CustomCampaigns.vue"),
+        beforeEnter(to, from, next) {
+            if (can("access_multi_campaigns")) {
+                next();
+            } else {
+                next("/");
+            }
+        },
+    },
 ];
 
 const router = createRouter({
@@ -408,19 +421,6 @@ export default router;
 //     path: "/campaigns",
 //     name: "campaigns",
 //     component: Campagins,
-// },
-
-// {
-//     path: "/mcampaigns",
-//     name: "mcampaigns",
-//     component: MultiCampagins,
-//     beforeEnter(to, from, next) {
-//         if (Permissions.indexOf("access_multi_campaigns") !== -1) {
-//             next();
-//         } else {
-//             next("/campaigns");
-//         }
-//     },
 // },
 
 // {

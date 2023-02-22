@@ -1,172 +1,181 @@
 <template>
-  <v-row class="pr-1 pl-1 pt-3" no-gutters justify="center">
-    <v-col cols="10" class="pt-0">
-      <v-card elevation="10" rounded="xl">
-        <v-card-title class="primary pt-0 pb-0">
-          <v-row no-gutters align-content="start" align="center">
-            <v-col cols="6">
-              <v-col cols="6">
-                Initial Campaigns
-                <v-btn
-                  dark
-                  rounded
-                  :loading="loadingf"
-                  :disabled="loadingf"
-                  @click="overlay = !overlay"
-                  color="green"
-                >
-                  ADD CAMPAIGN
-                </v-btn></v-col
-              >
-            </v-col>
-          </v-row>
-        </v-card-title>
-        <v-card-text>
-          <v-data-table
-            :headers="headers"
-            :items="campaigns"
-            fixed-header
-            item-key="id"
-            :loading="loading"
-            :items-per-page="25"
-            :footer-props="{ 'items-per-page-options': [15, 25, 50, 100, -1] }"
-          >
-            <!-- @click:row="rowClick($event)" -->
-            <template slot="no-data">
-              No Multi Campaigns have been made
-            </template>
-            <template v-slot:[`item.system`]="{ item }">
-              <StartSystemItemList :campaignID="item.id"> </StartSystemItemList>
-            </template>
-            <template v-slot:[`item.actions`]="{ item }">
-              <v-btn
-                icon
-                @click="
-                  (overlayEditID = item.id),
-                    (overlayEditName = item.name),
-                    (overlayEdit = !overlayEdit)
-                "
-                color="warning"
-                ><font-awesome-icon icon="fa-solid fa-pen-to-square" size="2xl"
-              /></v-btn>
-              <v-btn icon @click="deleteCampaign(item)" color="warning"
-                ><font-awesome-icon icon="fa-solid fa-trash" size="2xl"
-              /></v-btn>
-              <v-btn @click="clickCampaign(item)" color="green">View</v-btn>
-            </template>
-          </v-data-table>
-        </v-card-text>
-      </v-card>
-    </v-col>
-    <v-overlay :value="overlay">
-      <StartCampaignAdd
-        @closeAddNew="updatemultiCampaginAdd()"
-        @closeAdd="overlay = !overlay"
-      ></StartCampaignAdd>
-    </v-overlay>
-  </v-row>
+  <div class="q-ma-md">
+    <q-table
+      title="Connections"
+      class="myCustomTables myRound bg-webBack"
+      :rows="store.startcampaigns"
+      :columns="columns"
+      table-class=" text-webway"
+      table-header-class=" text-weight-bolder"
+      no-data-label="No Starting Campaigns"
+      row-key="id"
+      dark
+      dense
+      ref="tableRef"
+      rounded
+      :pagination="pagination"
+    >
+      <template v-slot:top="props">
+        <div class="row full-width flex-center q-pt-xs myRoundTop bg-primary">
+          <div class="col-12 flex flex-center">
+            <span class="text-h4">Initial Campaigns</span> <AddStartCampaign />
+          </div>
+        </div>
+      </template>
+      <template v-slot:body-cell-system="props">
+        <q-td :props="props"> <StartSystemItemList :campaignID="props.row.id" /></q-td>
+      </template>
+      <template v-slot:body-cell-actions="props">
+        <q-td>
+          <div class="row justify-end items-baseline">
+            <div class="col-auto">
+              <q-btn
+                color="negative"
+                icon="fa-solid fa-trash-can"
+                flat
+                size="sm"
+                round
+                @click="deleteCampagin(props.row)"
+              />
+            </div>
+            <div class="col-auto">
+              <q-btn
+                color="primary"
+                rounded
+                size="sm"
+                label="view"
+                @click="clickCampaign(props.row)"
+              />
+            </div>
+          </div>
+        </q-td>
+      </template>
+    </q-table>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import moment, { now, unix, utc } from "moment";
-import { stringify } from "querystring";
-import { mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 
-export default {
-  props: {
-    windowSize: Object,
-  },
-  data() {
-    return {
-      loadingr: true,
-      loadingf: true,
-      loading: true,
-      endcount: "",
-      search: "",
-      componentKey: 0,
-      toggle_exclusive: 0,
-      colorflag: 4,
-      name: "Timer",
-      overlay: false,
-      overlayEdit: false,
-      overlayEditID: "",
-      overlayEditName: "",
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent } from "vue";
+import { useRouter } from "vue-router";
+import { useMainStore } from "@/store/useMain.js";
+import axios from "axios";
+let store = useMainStore();
+let router = useRouter();
+const AddStartCampaign = defineAsyncComponent(() => import("./AddStartCampaign.vue"));
+const StartSystemItemList = defineAsyncComponent(() =>
+  import("./StartSystemItemList.vue")
+);
 
-      headers: [
-        { text: "Name", value: "name", width: "10%" },
-        {
-          text: "Constellations - Target",
-          value: "system",
-          width: "70%",
-          align: "center",
-        },
-        { text: "", value: "actions", align: "end" },
-      ],
-    };
-  },
+onMounted(async () => {
+  store.getConstellationList();
+  store.getStartCampaigns();
+  loadStartCampaignJoinData();
 
-  created() {
-    this.$store.dispatch("getConstellationList");
-    this.$store.dispatch("getStartCampaigns").then(() => {
-      this.loadingf = false;
-      this.loadingr = false;
-      this.loading = false;
-    });
-    this.loadStartCampaignJoinData();
+  Echo.private("startcampaigns").listen("StartcampaignUpdate", (e) => {
+    store.getStartCampaigns();
+    loadStartCampaignJoinData();
+  });
+});
 
-    Echo.private("startcampaigns").listen("StartcampaignUpdate", (e) => {
-      this.$store.dispatch("getStartCampaigns");
-      this.loadStartCampaignJoinData();
-    });
-  },
+onBeforeUnmount(async () => {
+  Echo.leave("startcampaigns");
+});
 
-  async mounted() {},
-  methods: {
-    updatemultiCampaginAdd() {
-      this.overlay = !this.overlay;
-      this.$store.dispatch("getStartCampaigns");
-      this.loadStartCampaignJoinData();
-    },
-
-    clickCampaign(item) {
-      this.$router.push({ path: `/scampaign/${item.id}` }); // -> /user/123
-    },
-
-    loadStartCampaignJoinData() {
-      this.$store.dispatch("getStartCampaignJoinData");
-    },
-
-    async deleteCampaign(item) {
-      await axios({
-        method: "delete", //you can set what request you want to be
-        url: "/api/startcampaigns/" + item.id,
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-
-      sleep(500);
-
-      this.$store.dispatch("getStartCampaigns");
-    },
-  },
-  computed: {
-    ...mapState(["startcampaigns"]),
-    height() {
-      let num = this.windowSize.y - 375 * 2;
-      return num;
-    },
-    campaigns() {
-      return this.startcampaigns;
-    },
-  },
-  beforeDestroy() {
-    Echo.leave("startcampaigns");
-  },
+let loadStartCampaignJoinData = () => {
+  store.getStartCampaignJoinData();
 };
+
+let deleteCampagin = async (item) => {
+  await axios({
+    method: "delete", //you can set what request you want to be
+    url: "/api/startcampaigns/" + item.id,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+
+  store.getStartCampaigns();
+};
+
+let pagination = $ref({
+  descending: false,
+  page: 1,
+  rowsPerPage: 0,
+});
+
+let columns = $ref([
+  {
+    name: "name",
+    align: "left",
+    required: false,
+    label: "Name",
+    classes: "text-no-wrap",
+    field: (row) => row.name,
+    format: (val) => `${val}`,
+    sortable: false,
+  },
+  {
+    name: "system",
+    required: true,
+    align: "center",
+    label: "Constellations - Target",
+    field: (row) => row.system,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "actions",
+    align: "right",
+    classes: "text-no-wrap",
+    label: "",
+    field: (row) => row.id,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+]);
+
+let clickCampaign = (item) => {
+  console.log(item);
+  router.push({ path: `/scampaign/${item.link}` }); // -> /user/123
+};
+
+let h = $computed(() => {
+  let mins = 50;
+  let window = store.size.height;
+
+  return window - mins + "px";
+});
 </script>
+
+<style lang="sass">
+.myCustomTables
+  /* height or max-height is important */
+  height: v-bind(h)
+
+  .q-table__top
+    padding-top: 0 !important
+    padding-left: 0 !important
+    padding-right: 0 !important
+
+
+
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: #202020
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+</style>

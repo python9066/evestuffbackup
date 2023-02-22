@@ -39,7 +39,7 @@ export default new Vuex.Store({
         chillsheetRegion: [],
         chillsheetItem: [],
         chillsheetStatus: [],
-        constellationlist: [],
+        // constellationlist: [],
         cores: [],
         delveLink: "",
         eveUserCount: 0,
@@ -114,7 +114,7 @@ export default new Vuex.Store({
         ownChars: {},
         operationUserList: [],
         newCampaignSystems: [],
-        newCampaignsList: [],
+        // newCampaignsList: [],
         newOperationList: [],
         newOperationMessageOverlay: 0,
         setOpenOperationAddChar: false,
@@ -908,9 +908,9 @@ export default new Vuex.Store({
             state.multicampaigns = multicampaigns;
         },
 
-        SET_START_CAMPAIGNS(state, startcampaigns) {
-            state.startcampaigns = startcampaigns;
-        },
+        // SET_START_CAMPAIGNS(state, startcampaigns) {
+        //     state.startcampaigns = startcampaigns;
+        // },
 
         SET_CAMPAIGN_LOGS(state, logs) {
             state.loggingNewCampaign = logs;
@@ -920,25 +920,25 @@ export default new Vuex.Store({
             state.campaignslist = campaignslist;
         },
 
-        SET_NEW_CAMPAIGNSLIST(state, campaignslist) {
-            state.newCampaignsList = campaignslist;
-        },
+        // SET_NEW_CAMPAIGNSLIST(state, campaignslist) {
+        //     state.newCampaignsList = campaignslist;
+        // },
 
-        SET_NEW_OPERATION_LIST(state, operations) {
-            state.newOperationList = operations;
-        },
+        // SET_NEW_OPERATION_LIST(state, operations) {
+        //     state.newOperationList = operations;
+        // },
 
-        UPDATE_NEW_OPERATION_LIST(state, data) {
-            const item = state.newOperationList.find(
-                (item) => item.id === data.id
-            );
-            const count = state.newOperationList.filter(
-                (item) => item.id === data.id
-            ).length;
-            if (count > 0) {
-                Object.assign(item, data);
-            }
-        },
+        // UPDATE_NEW_OPERATION_LIST(state, data) {
+        //     const item = state.newOperationList.find(
+        //         (item) => item.id === data.id
+        //     );
+        //     const count = state.newOperationList.filter(
+        //         (item) => item.id === data.id
+        //     ).length;
+        //     if (count > 0) {
+        //         Object.assign(item, data);
+        //     }
+        // },
 
         SET_LOGGING_CAMPAIGN(state, logs) {
             state.loggingcampaign = logs;
@@ -1067,27 +1067,27 @@ export default new Vuex.Store({
             }
         },
 
-        ADD_NEW_OPERATION_LIST(state, data) {
-            const check = state.newOperationList.find(
-                (station) => station.id == data.id
-            );
-            if (check != null) {
-                Object.assign(check, data);
-            } else {
-                state.newOperationList.push(data);
-            }
-        },
+        // ADD_NEW_OPERATION_LIST(state, data) {
+        //     const check = state.newOperationList.find(
+        //         (station) => station.id == data.id
+        //     );
+        //     if (check != null) {
+        //         Object.assign(check, data);
+        //     } else {
+        //         state.newOperationList.push(data);
+        //     }
+        // },
 
-        DELETE_OPERATION_FROM_LSIT(state, num) {
-            const count = state.newOperationList.filter(
-                (o) => o.id == num
-            ).length;
-            if (count > 0) {
-                state.newOperationList = state.newOperationList.filter(
-                    (o) => o.id != num
-                );
-            }
-        },
+        // DELETE_OPERATION_FROM_LSIT(state, num) {
+        //     const count = state.newOperationList.filter(
+        //         (o) => o.id == num
+        //     ).length;
+        //     if (count > 0) {
+        //         state.newOperationList = state.newOperationList.filter(
+        //             (o) => o.id != num
+        //         );
+        //     }
+        // },
 
         DELETE_STATION_NOTIFICATION(state, id) {
             let index = state.stations.findIndex((s) => s.id == id);
@@ -1609,19 +1609,19 @@ export default new Vuex.Store({
             commit("SET_START_CAMPAIGN_JOIN", res.data.value);
         },
 
-        async getStartCampaignJoinData({ commit }, campid) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/startcampaignjoin",
-                data: this.picked,
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_START_CAMPAIGN_JOIN", res.data.value);
-        },
+        // async getStartCampaignJoinData({ commit }, campid) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/startcampaignjoin",
+        //         data: this.picked,
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_START_CAMPAIGN_JOIN", res.data.value);
+        // },
 
         async getCampaignMembers({ commit }, campaign_id) {
             let res = await axios({
@@ -1930,18 +1930,18 @@ export default new Vuex.Store({
             commit("SET_MULTI_CAMPAIGNS", res.data.campaigns);
         },
 
-        async getStartCampaigns({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/startcampaigns",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_START_CAMPAIGNS", res.data.campaigns);
-        },
+        // async getStartCampaigns({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/startcampaigns",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_START_CAMPAIGNS", res.data.campaigns);
+        // },
 
         async getCampaignsList({ commit }) {
             let res = await axios({
@@ -1969,31 +1969,31 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGN_LOGS", res.data.logs);
         },
 
-        async getNewCampaignsList({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/newcampaignslist",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_NEW_CAMPAIGNSLIST", res.data.campaignslist);
-        },
+        // async getNewCampaignsList({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/newcampaignslist",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_NEW_CAMPAIGNSLIST", res.data.campaignslist);
+        // },
 
-        async getCustomOperationList({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/operationlist",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_NEW_OPERATION_LIST", res.data.operations);
-        },
+        // async getCustomOperationList({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/operationlist",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_NEW_OPERATION_LIST", res.data.operations);
+        // },
 
         async getLoggingCampaign({ commit }, campaign_id) {
             let res = await axios({
@@ -2259,17 +2259,17 @@ export default new Vuex.Store({
             commit("UPDATE_OPERATION_PAGE", data);
         },
 
-        updateoperationlist({ commit }, data) {
-            commit("UPDATE_NEW_OPERATION_LIST", data);
-        },
+        // updateoperationlist({ commit }, data) {
+        //     commit("UPDATE_NEW_OPERATION_LIST", data);
+        // },
 
-        addoperationlist({ commit }, data) {
-            commit("ADD_NEW_OPERATION_LIST", data);
-        },
+        // addoperationlist({ commit }, data) {
+        //     commit("ADD_NEW_OPERATION_LIST", data);
+        // },
 
-        deleteoperationfromlist({ commit }, num) {
-            commit("DELETE_OPERATION_FROM_LSIT", num);
-        },
+        // deleteoperationfromlist({ commit }, num) {
+        //     commit("DELETE_OPERATION_FROM_LSIT", num);
+        // },
 
         addStationNotification({ commit }, data) {
             commit("ADD_STATION_NOTIFICATION", data);
@@ -2606,19 +2606,19 @@ export default new Vuex.Store({
             }
         },
 
-        async getConstellationList({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true, //you can set what request you want to be
-                url: "/api/constellations",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
+        // async getConstellationList({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true, //you can set what request you want to be
+        //         url: "/api/constellations",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
 
-            commit("SET_CONSTELLATION_LIST", res.data.constellationlist);
-        },
+        //     commit("SET_CONSTELLATION_LIST", res.data.constellationlist);
+        // },
 
         async loadCampaignSystemData({ commit }, payload) {
             let request = {

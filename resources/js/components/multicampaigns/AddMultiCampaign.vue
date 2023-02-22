@@ -1,24 +1,24 @@
 <template>
   <div>
     <q-btn
-      color="none"
-      text-color="warning"
-      icon="fa-solid fa-pen-to-square"
+      color="positive"
+      class="myOutLineButton"
+      label="Add"
+      push
       size="xs"
-      flat
-      round
-      @click="open()"
+      rounded
+      @click="confirm = true"
     />
     <q-dialog v-model="confirm" persistent>
       <q-card class="myRoundTop" style="width: 1500px; max-width: 80vw">
         <q-card-section class="bg-primary text-h5 text-center">
-          <h4 class="no-margin">Edit your Mulit-Campaign Here</h4>
+          <h4 class="no-margin">Make Your Multi-Campaign Here</h4>
         </q-card-section>
         <q-card-section>
           <div>
             <q-input
               class="q-mb-md"
-              v-model="operation.title"
+              v-model="titleText"
               type="text"
               label="Title"
               rounded
@@ -102,10 +102,6 @@ let store = useMainStore();
 let confirm = $ref(false);
 let titleText = $ref();
 
-const props = defineProps({
-  operation: Object,
-});
-
 let campaignPickedText = $ref();
 let campaignPicked = $ref([]);
 let campaignPickedEnd = $computed(() => {
@@ -116,11 +112,6 @@ let campaignPickedEnd = $computed(() => {
   }
   return store.newCampaignsList;
 });
-
-let open = () => {
-  campaignPicked = props.operation.campaign.map((c) => c.id);
-  confirm = true;
-};
 
 let regionPickStart = (val, update, abort) => {
   update(() => {
@@ -162,14 +153,13 @@ let listColor = (item) => {
 
 let addCampaignDone = async () => {
   var request = {
-    OpID: props.operation.id,
     title: titleText,
     picked: campaignPicked,
   };
 
   await axios({
     method: "post", //you can set what request you want to be
-    url: "/api/editoperation",
+    url: "/api/newoperation",
     withCredentials: true,
     data: request,
     headers: {

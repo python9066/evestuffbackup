@@ -1,122 +1,157 @@
 <template>
-  <v-row no-gutters justify="center">
-    <v-col cols="10">
-      <v-row no-gutters
-        ><v-col>
-          <v-card elevation="10" rounded="xl">
-            <v-card-title class="primary">
-              Custom Operation
-              <AddMultiCampaign class="pl-3"></AddMultiCampaign>
-            </v-card-title>
-            <v-card-text>
-              <v-data-table
-                :headers="headers"
-                :items="campaigns"
-                fixed-header
-                item-key="id"
-                :items-per-page="25"
-                :footer-props="{
-                  'items-per-page-options': [15, 25, 50, 100, -1],
-                }"
-              >
-                <!-- @click:row="rowClick($event)" -->
-                <template slot="no-data">
-                  No Multi Campaigns have been made
-                </template>
-                <template v-slot:[`item.campaign`]="{ item }">
-                  <NewSystemItemList :campaigns="item.campaign" />
-                </template>
-                <template v-slot:[`item.status`]="{ item }">
-                  {{ operationStatus(item) }}
-                </template>
-                <template v-slot:[`item.actions`]="{ item }">
-                  <v-row no-gutters justify="end">
-                    <v-col cols="auto">
-                      <EditOperation :operation="item" />
-                    </v-col>
-                    <v-col cols="auto">
-                      <NewCustomCampaignDeleteButton
-                        :item="item"
-                      ></NewCustomCampaignDeleteButton>
-                    </v-col>
-                    <v-col cols="auto">
-                      <v-btn @click="clickCampaign(item)" color="green"
-                        >View</v-btn
-                      >
-                    </v-col>
-                  </v-row>
-                </template>
-
-                <!-- <template v-slot:actions.="{ item }">
-                LALALALA
-            </template> -->
-              </v-data-table>
-            </v-card-text></v-card
-          ></v-col
-        ></v-row
-      >
-    </v-col>
-  </v-row>
+  <div class="q-ma-md">
+    <q-table
+      title="Connections"
+      class="myMultiCampaignAddTables myRound bg-webBack"
+      :rows="store.newOperationList"
+      :columns="columns"
+      table-class=" text-webway"
+      table-header-class=" text-weight-bolder"
+      no-data-label="No Custom Campaigns"
+      row-key="id"
+      dark
+      dense
+      ref="tableRef"
+      rounded
+      :pagination="pagination"
+    >
+      <template v-slot:top="props">
+        <div class="row full-width flex-center q-pt-xs myRoundTop bg-primary">
+          <div class="col-12 flex flex-center">
+            <span class="text-h4">Custom Operations</span> <AddMultiCampaign />
+          </div>
+        </div>
+      </template>
+      <template v-slot:body-cell-campaign="props">
+        <q-td :props="props"> <NewSystemItemList :campaigns="props.row.campaign" /></q-td>
+      </template>
+      <template v-slot:body-cell-actions="props">
+        <q-td>
+          <div class="row justify-end items-baseline">
+            <div class="col-auto"><EditOperation :operation="props.row" /></div>
+            <div class="col-auto">
+              <NewCustomCampaignDeleteButton :item="props.row" />
+            </div>
+            <div class="col-auto">
+              <q-btn
+                color="primary"
+                rounded
+                size="sm"
+                label="view"
+                @click="clickCampaign(props.row)"
+              />
+            </div>
+          </div>
+        </q-td>
+      </template>
+    </q-table>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import moment, { now, unix, utc } from "moment";
-import { stringify } from "querystring";
-import { mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 
-export default {
-  props: {
-    windowSize: Object,
-  },
-  data() {
-    return {
-      headers: [
-        { text: "Name", value: "title", width: "10%" },
-        {
-          text: "System - Target",
-          value: "campaign",
-          width: "70%",
-          align: "center",
-        },
-        { text: "Status", value: "status", align: "end" },
-        { text: "", value: "actions", align: "end" },
-        // { text: "", value: "actions" },
-      ],
-    };
-  },
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent } from "vue";
+import { useMainStore } from "@/store/useMain.js";
+import { useRouter } from "vue-router";
+let router = useRouter();
+let store = useMainStore();
+const AddMultiCampaign = defineAsyncComponent(() =>
+  import("../multicampaigns/AddMultiCampaign.vue")
+);
+const NewSystemItemList = defineAsyncComponent(() => import("./NewSystemItemList.vue"));
+const NewCustomCampaignDeleteButton = defineAsyncComponent(() =>
+  import("./NewCustomCampaignDeleteButton.vue")
+);
+const EditOperation = defineAsyncComponent(() => import("./EditOperation.vue"));
 
-  created() {
-    this.$store.dispatch("getNewCampaignsList");
-    this.$store.dispatch("getCustomOperationList");
-  },
+onMounted(async () => {
+  await store.getNewCampaignsList();
+  await store.getCustomOperationList();
+});
 
-  async mounted() {},
-  methods: {
-    operationStatus(item) {
-      if (item.status == 1) {
-        return "Active";
-      }
-    },
+onBeforeUnmount(async () => {});
 
-    clickCampaign(item) {
-      this.$router.push({ path: `/op/${item.link}` }); // -> /user/123
-    },
-  },
-  computed: {
-    ...mapState(["newOperationList"]),
-
-    campaigns() {
-      return this.newOperationList;
-    },
-
-    height() {
-      let num = this.windowSize.y - 375 * 2;
-      return num;
-    },
-  },
-  beforeDestroy() {},
+let clickCampaign = (item) => {
+  router.push({ path: `/op/${item.link}` }); // -> /user/123
 };
+
+let operationStatus = (item) => {
+  if (item.status == 1) {
+    return "Active";
+  }
+};
+
+let pagination = $ref({
+  descending: false,
+  page: 1,
+  rowsPerPage: 0,
+});
+
+let columns = $ref([
+  {
+    name: "title",
+    align: "left",
+    required: false,
+    label: "Name",
+    classes: "text-no-wrap",
+    field: (row) => row.title,
+    format: (val) => `${val}`,
+    sortable: false,
+  },
+  {
+    name: "campaign",
+    required: true,
+    align: "center",
+    label: "System - Target",
+    field: (row) => row.campaign,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "actions",
+    align: "right",
+    classes: "text-no-wrap",
+    label: "",
+    field: (row) => row.id,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+]);
+
+let h = $computed(() => {
+  let mins = 50;
+  let window = store.size.height;
+
+  return window - mins + "px";
+});
 </script>
+
+<style lang="sass">
+.myMultiCampaignAddTables
+  /* height or max-height is important */
+  height: v-bind(h)
+
+  .q-table__top
+    padding-top: 0 !important
+    padding-left: 0 !important
+    padding-right: 0 !important
+
+
+
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: #202020
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+</style>

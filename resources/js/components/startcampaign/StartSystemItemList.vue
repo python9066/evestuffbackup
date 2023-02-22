@@ -1,51 +1,55 @@
 <template>
-  <div class="d-inline-flex">
-    <span v-if="systemcount">
+  <div>
+    <span v-if="systemCount">
       <span v-for="(system, index) in systems" :key="index" class="pr-2">
-        <v-chip pill color="red" dark>
-          <span> {{ system.constellation_name }}</span>
-        </v-chip>
-      </span>
-    </span>
-    <span v-else>
-      <div>All Campaigns have finished</div>
+        <q-chip dense :label="system.constellation_name" color="red"
+      /></span>
     </span>
   </div>
 </template>
 
-<script>
-import { mapState, mapGetters } from "vuex";
-import moment from "moment";
-export default {
-  props: {
-    campaignID: Number,
-  },
-  data() {
-    return {
-      test: "",
-    };
-  },
+<script setup>
+import { useMainStore } from "@/store/useMain.js";
+let store = useMainStore();
+const props = defineProps({
+  campaignID: Number,
+});
 
-  created() {},
-  async mounted() {},
-
-  methods: {},
-
-  computed: {
-    ...mapGetters(["getStartJoinById"]),
-
-    systems() {
-      return this.getStartJoinById(this.campaignID);
-    },
-
-    systemcount() {
-      let count = this.getStartJoinById(this.campaignID).length;
-      if (count == 0) {
-        return false;
-      } else {
-        return true;
-      }
-    },
-  },
+let pillColor = (campaign) => {
+  if (campaign.alliance.standing < 0) {
+    return "red";
+  } else if (campaign.alliance.standing == 0) {
+    return "webChip";
+  } else {
+    return "blue";
+  }
 };
+
+let text = (campaign) => {
+  var name = campaign.system.system_name;
+  if (campaign.event_type == "32458") {
+    var type = "Ihub";
+  } else {
+    var type = "TCU";
+  }
+
+  var text = name + " - " + type;
+  return text;
+};
+
+let systemCount = $computed(() => {
+  let count = store.getStartJoinById(props.campaignID);
+  if (count == 0) {
+    return false;
+  } else {
+    return true;
+  }
+});
+
+let systems = $computed(() => {
+  let data = store.getStartJoinById(props.campaignID);
+  return data;
+});
 </script>
+
+<style lang="scss"></style>

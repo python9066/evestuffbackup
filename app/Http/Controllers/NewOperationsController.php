@@ -117,11 +117,11 @@ class NewOperationsController extends Controller
             $newOp->status = 1;
             $newOp->save();
 
+
             $campaignIDs = $request->picked;
             foreach ($campaignIDs as $campaignID) {
-                // NewCampaignOperation::create(['campaign_id' => $campaignID, 'operation_id' => $newOp->id]);
                 $new = new NewCampaignOperation();
-                $new->campaign_id = $campaignID;
+                $new->campaign_id = $campaignID['value'];
                 $new->operation_id = $newOp->id;
                 $new->save();
             }

@@ -1,23 +1,19 @@
 {
-  "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2": {
-    "file": "assets/fa-brands-400.f4617423.woff2",
-    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2"
-  },
   "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2": {
     "file": "assets/fa-regular-400.7ba24c41.woff2",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2"
   },
-  "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.woff2": {
-    "file": "assets/fa-solid-900.e2c5cf54.woff2",
-    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.woff2"
+  "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400.f4617423.woff2",
+    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2"
   },
   "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.woff2": {
     "file": "assets/fa-v4compatibility.7c377405.woff2",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.woff2"
   },
-  "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.ttf": {
-    "file": "assets/fa-brands-400.2ef6fdde.ttf",
-    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.ttf"
+  "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900.e2c5cf54.woff2",
+    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.woff2"
   },
   "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.ttf": {
     "file": "assets/fa-regular-400.12dea17b.ttf",
@@ -27,21 +23,26 @@
     "file": "assets/fa-v4compatibility.8d9500e8.ttf",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.ttf"
   },
+  "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.ttf": {
+    "file": "assets/fa-brands-400.2ef6fdde.ttf",
+    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.ttf"
+  },
   "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.ttf": {
     "file": "assets/fa-solid-900.67a880b4.ttf",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.ttf"
   },
   "resources/js/app.js": {
-    "file": "assets/app.7fac84fd.js",
+    "file": "assets/app.2d831a69.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
       "resources/js/views/test.vue",
       "resources/js/views/SoloOperations.vue",
-      "resources/js/views/Timers.vue"
+      "resources/js/views/Timers.vue",
+      "resources/js/views/CustomCampaigns.vue"
     ],
     "css": [
-      "assets/app.57962967.css"
+      "assets/app.4ba9f0e4.css"
     ],
     "assets": [
       "assets/fa-brands-400.f4617423.woff2",
@@ -55,43 +56,43 @@
     ]
   },
   "resources/js/views/test.vue": {
-    "file": "assets/test.e667ef56.js",
+    "file": "assets/test.ea8e2484.js",
     "src": "resources/js/views/test.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_QTable.2b339d37.js",
-      "_QBadge.fe19dac8.js",
-      "__plugin-vue_export-helper.52b323b3.js",
+      "_QTable.30d767f1.js",
+      "_QBadge.7eeac7d3.js",
+      "__plugin-vue_export-helper.a22cb7c3.js",
       "resources/js/app.js"
     ]
   },
-  "_QTable.2b339d37.js": {
-    "file": "assets/QTable.2b339d37.js",
+  "_QTable.30d767f1.js": {
+    "file": "assets/QTable.30d767f1.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_QBadge.fe19dac8.js": {
-    "file": "assets/QBadge.fe19dac8.js",
+  "_QBadge.7eeac7d3.js": {
+    "file": "assets/QBadge.7eeac7d3.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "__plugin-vue_export-helper.52b323b3.js": {
-    "file": "assets/_plugin-vue_export-helper.52b323b3.js",
+  "__plugin-vue_export-helper.a22cb7c3.js": {
+    "file": "assets/_plugin-vue_export-helper.a22cb7c3.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/views/SoloOperations.vue": {
-    "file": "assets/SoloOperations.4c683d69.js",
+    "file": "assets/SoloOperations.3a9a913e.js",
     "src": "resources/js/views/SoloOperations.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTable.2b339d37.js",
-      "_QAvatar.1313c7f3.js",
-      "__plugin-vue_export-helper.52b323b3.js"
+      "_QTable.30d767f1.js",
+      "_QAvatar.34450515.js",
+      "__plugin-vue_export-helper.a22cb7c3.js"
     ],
     "dynamicImports": [
       "resources/js/components/operations/SoloCampaignProgressLine.vue",
@@ -102,44 +103,64 @@
       "resources/js/components/newcampaign/NewCampaginPriorityButton.vue"
     ],
     "css": [
-      "assets/SoloOperations.ff64e041.css"
+      "assets/SoloOperations.de00ecd7.css"
     ]
   },
-  "_QAvatar.1313c7f3.js": {
-    "file": "assets/QAvatar.1313c7f3.js",
+  "_QAvatar.34450515.js": {
+    "file": "assets/QAvatar.34450515.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/views/Timers.vue": {
-    "file": "assets/Timers.1df44a9e.js",
+    "file": "assets/Timers.1567823a.js",
     "src": "resources/js/views/Timers.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTable.2b339d37.js",
-      "_QAvatar.1313c7f3.js"
+      "_QTable.30d767f1.js",
+      "_QToggle.53860dee.js",
+      "_QAvatar.34450515.js"
     ],
     "dynamicImports": [
       "resources/js/components/countup/index.ts",
       "resources/js/components/timers/TimerCountDown.vue"
     ],
     "css": [
-      "assets/Timers.ad81edd0.css"
+      "assets/Timers.62853b8c.css"
+    ]
+  },
+  "_QToggle.53860dee.js": {
+    "file": "assets/QToggle.53860dee.js",
+    "imports": [
+      "resources/js/app.js",
+      "_QTable.30d767f1.js"
+    ]
+  },
+  "resources/js/views/CustomCampaigns.vue": {
+    "file": "assets/CustomCampaigns.fd2e744c.js",
+    "src": "resources/js/views/CustomCampaigns.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "dynamicImports": [
+      "resources/js/components/newcampaign/NewMultiCampaigns.vue",
+      "resources/js/components/startcampaign/StartCampaign.vue"
     ]
   },
   "resources/js/components/operations/SoloCampaignProgressLine.vue": {
-    "file": "assets/SoloCampaignProgressLine.f357841c.js",
+    "file": "assets/SoloCampaignProgressLine.0420fea5.js",
     "src": "resources/js/components/operations/SoloCampaignProgressLine.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QBadge.fe19dac8.js",
-      "_QTable.2b339d37.js"
+      "_QBadge.7eeac7d3.js",
+      "_QTable.30d767f1.js"
     ]
   },
   "resources/js/components/countup/index.ts": {
-    "file": "assets/index.3d8860b4.js",
+    "file": "assets/index.e153b9e1.js",
     "src": "resources/js/components/countup/index.ts",
     "isDynamicEntry": true,
     "imports": [
@@ -147,12 +168,12 @@
     ]
   },
   "resources/js/components/operations/SoloCampaignOperationChip.vue": {
-    "file": "assets/SoloCampaignOperationChip.9b8c9124.js",
+    "file": "assets/SoloCampaignOperationChip.d3b31805.js",
     "src": "resources/js/components/operations/SoloCampaignOperationChip.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTable.2b339d37.js"
+      "_QTable.30d767f1.js"
     ],
     "dynamicImports": [
       "resources/js/components/countdown/index.ts",
@@ -160,7 +181,7 @@
     ]
   },
   "resources/js/components/campaign/CampaignMap.vue": {
-    "file": "assets/CampaignMap.8db6cdb5.js",
+    "file": "assets/CampaignMap.1f787334.js",
     "src": "resources/js/components/campaign/CampaignMap.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -168,7 +189,7 @@
     ]
   },
   "resources/js/components/operations/SoloCampaginWebWay.vue": {
-    "file": "assets/SoloCampaginWebWay.030d12d2.js",
+    "file": "assets/SoloCampaginWebWay.51daa3fa.js",
     "src": "resources/js/components/operations/SoloCampaginWebWay.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -176,7 +197,7 @@
     ]
   },
   "resources/js/components/newcampaign/NewCampaginPriorityButton.vue": {
-    "file": "assets/NewCampaginPriorityButton.a8f03bf7.js",
+    "file": "assets/NewCampaginPriorityButton.ce9d8d47.js",
     "src": "resources/js/components/newcampaign/NewCampaginPriorityButton.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -184,7 +205,7 @@
     ]
   },
   "resources/js/components/timers/TimerCountDown.vue": {
-    "file": "assets/TimerCountDown.b941e96b.js",
+    "file": "assets/TimerCountDown.26f8b932.js",
     "src": "resources/js/components/timers/TimerCountDown.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -194,29 +215,127 @@
       "resources/js/components/countdown/index.ts"
     ]
   },
+  "resources/js/components/newcampaign/NewMultiCampaigns.vue": {
+    "file": "assets/NewMultiCampaigns.e4ddff2f.js",
+    "src": "resources/js/components/newcampaign/NewMultiCampaigns.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_QTable.30d767f1.js"
+    ],
+    "dynamicImports": [
+      "resources/js/components/multicampaigns/AddMultiCampaign.vue",
+      "resources/js/components/newcampaign/NewSystemItemList.vue",
+      "resources/js/components/newcampaign/NewCustomCampaignDeleteButton.vue",
+      "resources/js/components/newcampaign/EditOperation.vue"
+    ],
+    "css": [
+      "assets/NewMultiCampaigns.f4bacb58.css"
+    ]
+  },
+  "resources/js/components/startcampaign/StartCampaign.vue": {
+    "file": "assets/StartCampaign.aa942134.js",
+    "src": "resources/js/components/startcampaign/StartCampaign.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_QTable.30d767f1.js"
+    ],
+    "dynamicImports": [
+      "resources/js/components/startcampaign/AddStartCampaign.vue",
+      "resources/js/components/startcampaign/StartSystemItemList.vue"
+    ],
+    "css": [
+      "assets/StartCampaign.8c78966e.css"
+    ]
+  },
   "resources/js/components/countdown/index.ts": {
-    "file": "assets/index.542d01fe.js",
+    "file": "assets/index.7444e955.js",
     "src": "resources/js/components/countdown/index.ts",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
+  "resources/js/components/multicampaigns/AddMultiCampaign.vue": {
+    "file": "assets/AddMultiCampaign.1e30eb6a.js",
+    "src": "resources/js/components/multicampaigns/AddMultiCampaign.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_QTable.30d767f1.js",
+      "_QToggle.53860dee.js"
+    ]
+  },
+  "resources/js/components/newcampaign/NewSystemItemList.vue": {
+    "file": "assets/NewSystemItemList.1bb56c09.js",
+    "src": "resources/js/components/newcampaign/NewSystemItemList.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_QTable.30d767f1.js",
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/components/newcampaign/NewCustomCampaignDeleteButton.vue": {
+    "file": "assets/NewCustomCampaignDeleteButton.950eb6e0.js",
+    "src": "resources/js/components/newcampaign/NewCustomCampaignDeleteButton.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/components/newcampaign/EditOperation.vue": {
+    "file": "assets/EditOperation.86991177.js",
+    "src": "resources/js/components/newcampaign/EditOperation.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_QTable.30d767f1.js",
+      "_QToggle.53860dee.js"
+    ]
+  },
+  "resources/js/components/startcampaign/AddStartCampaign.vue": {
+    "file": "assets/AddStartCampaign.1c5bd484.js",
+    "src": "resources/js/components/startcampaign/AddStartCampaign.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_QTable.30d767f1.js",
+      "_QToggle.53860dee.js"
+    ]
+  },
+  "resources/js/components/startcampaign/StartSystemItemList.vue": {
+    "file": "assets/StartSystemItemList.f17eb3a3.js",
+    "src": "resources/js/components/startcampaign/StartSystemItemList.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "_QTable.30d767f1.js",
+      "resources/js/app.js"
+    ]
+  },
   "resources/sass/app.scss": {
-    "file": "assets/app.e878e244.css",
+    "file": "assets/app.7b48c86a.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
-  "resources/js/views/Timers.css": {
-    "file": "assets/Timers.ad81edd0.css",
-    "src": "resources/js/views/Timers.css"
+  "resources/js/components/newcampaign/NewMultiCampaigns.css": {
+    "file": "assets/NewMultiCampaigns.f4bacb58.css",
+    "src": "resources/js/components/newcampaign/NewMultiCampaigns.css"
   },
   "resources/js/views/SoloOperations.css": {
-    "file": "assets/SoloOperations.ff64e041.css",
+    "file": "assets/SoloOperations.de00ecd7.css",
     "src": "resources/js/views/SoloOperations.css"
   },
+  "resources/js/views/Timers.css": {
+    "file": "assets/Timers.62853b8c.css",
+    "src": "resources/js/views/Timers.css"
+  },
+  "resources/js/components/startcampaign/StartCampaign.css": {
+    "file": "assets/StartCampaign.8c78966e.css",
+    "src": "resources/js/components/startcampaign/StartCampaign.css"
+  },
   "resources/js/app.css": {
-    "file": "assets/app.57962967.css",
+    "file": "assets/app.4ba9f0e4.css",
     "src": "resources/js/app.css"
   }
 }
