@@ -22,81 +22,173 @@
           </div>
         </div>
         <div class="row full-width q-pt-md justify-between">
-          <div class="col-auto">
+          <div class="col-12">
             <div class="row q-gutter-sm q-pl-md">
-              <q-input
-                rounded
-                standout
-                dense
-                debounce="300"
-                v-model="search"
-                clearable
-                placeholder="Search"
-              >
-                <template v-slot:append>
-                  <q-icon name="fa-solid fa-magnifying-glass" />
-                </template>
-              </q-input>
-              <q-select
-                rounded
-                dense
-                clearable
-                standout
-                input-debounce="0"
-                label-color="webway"
-                option-value="value"
-                option-label="text"
-                v-model="region_id"
-                :options="regionList"
-                ref="toRegionRef"
-                label="Region"
-                @filter="filterFnRegionFinish"
-                @filter-abort="abortFilterFn"
-                map-options
-                use-input
-                hide-selected
-                fill-input
-              />
-              <q-select
-                rounded
-                clearable
-                dense
-                standout
-                input-debounce="0"
-                label-color="webway"
-                option-value="value"
-                option-label="text"
-                v-model="constellation_id"
-                :options="constellationList"
-                ref="toConstellationRef"
-                label="Constellations"
-                @filter="filterFnConstellationFinish"
-                @filter-abort="abortFilterFn"
-                map-options
-                use-input
-                hide-selected
-                fill-input
-              />
-              <q-select
-                rounded
-                clearable
-                dense
-                standout
-                input-debounce="0"
-                label-color="webway"
-                option-value="value"
-                option-label="text"
-                v-model="type_id"
-                :options="typeList"
-                ref="typeRef"
-                label="Type"
-                @filter="filterFnTypeFinish"
-                @filter-abort="abortFilterFn"
-                map-options
-                use-input
-                hide-selected
-                fill-input
-              />
+              <div class="col-1">
+                <q-input
+                  rounded
+                  standout
+                  dense
+                  debounce="300"
+                  v-model="search"
+                  clearable
+                  placeholder="Search"
+                >
+                  <template v-slot:append>
+                    <q-icon name="fa-solid fa-magnifying-glass" />
+                  </template>
+                </q-input>
+              </div>
+              <div class="col-2">
+                <q-select
+                  rounded
+                  dense
+                  clearable
+                  standout
+                  input-debounce="0"
+                  label-color="webway"
+                  option-value="value"
+                  option-label="text"
+                  v-model="region_id"
+                  :options="regionList"
+                  ref="toRegionRef"
+                  label="Region"
+                  @filter="filterFnRegionFinish"
+                  @filter-abort="abortFilterFn"
+                  map-options
+                  use-input
+                  use-chips
+                  multiple
+                  input-style=" max-width: 10px; min-width: 10px"
+                >
+                  <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+                    <q-item v-bind="itemProps">
+                      <q-item-section>
+                        <q-item-label v-html="opt.text" />
+                      </q-item-section>
+                      <q-item-section side>
+                        <q-toggle
+                          :model-value="selected"
+                          @update:model-value="toggleOption(opt)"
+                        />
+                      </q-item-section>
+                    </q-item>
+                  </template>
+
+                  <template v-slot:selected-item="scope">
+                    <q-chip
+                      removable
+                      @remove="scope.removeAtIndex(scope.index)"
+                      :tabindex="scope.tabindex"
+                      text-color="white"
+                      class="q-ma-none"
+                      color="webChip"
+                    >
+                      <span class="text-xs"> {{ scope.opt.text }} </span>
+                    </q-chip>
+                  </template></q-select
+                >
+              </div>
+              <div class="col-4">
+                <q-select
+                  rounded
+                  clearable
+                  dense
+                  standout
+                  input-debounce="0"
+                  label-color="webway"
+                  option-value="value"
+                  option-label="text"
+                  v-model="constellation_id"
+                  :options="constellationList"
+                  ref="toConstellationRef"
+                  label="Constellations"
+                  @filter="filterFnConstellationFinish"
+                  @filter-abort="abortFilterFn"
+                  map-options
+                  use-input
+                  use-chips
+                  multiple
+                  input-style=" max-width: 10px; min-width: 10px"
+                >
+                  <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+                    <q-item v-bind="itemProps">
+                      <q-item-section>
+                        <q-item-label v-html="opt.text" />
+                      </q-item-section>
+                      <q-item-section side>
+                        <q-toggle
+                          :model-value="selected"
+                          @update:model-value="toggleOption(opt)"
+                        />
+                      </q-item-section>
+                    </q-item>
+                  </template>
+
+                  <template v-slot:selected-item="scope">
+                    <q-chip
+                      removable
+                      @remove="scope.removeAtIndex(scope.index)"
+                      :tabindex="scope.tabindex"
+                      text-color="white"
+                      class="q-ma-none"
+                      color="webChip"
+                    >
+                      <span class="text-xs"> {{ scope.opt.text }} </span>
+                    </q-chip>
+                  </template></q-select
+                >
+              </div>
+              <div class="col-4">
+                <q-select
+                  rounded
+                  clearable
+                  dense
+                  standout
+                  input-debounce="0"
+                  label-color="webway"
+                  option-value="value"
+                  option-label="text"
+                  v-model="type_id"
+                  :options="typeList"
+                  ref="typeRef"
+                  label="Type"
+                  @filter="filterFnTypeFinish"
+                  @filter-abort="abortFilterFn"
+                  map-options
+                  use-input
+                  use-chips
+                  multiple
+                  input-style=" max-width: 10px; min-width: 10px"
+                >
+                  <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+                    <q-item v-bind="itemProps">
+                      <q-item-section>
+                        <q-item-label v-html="opt.text" />
+                      </q-item-section>
+                      <q-item-section side>
+                        <q-toggle
+                          :model-value="selected"
+                          @update:model-value="toggleOption(opt)"
+                        />
+                      </q-item-section>
+                    </q-item>
+                  </template>
+
+                  <template v-slot:selected-item="scope">
+                    <q-chip
+                      removable
+                      @remove="scope.removeAtIndex(scope.index)"
+                      :tabindex="scope.tabindex"
+                      text-color="white"
+                      class="q-ma-none"
+                      color="webChip"
+                    >
+                      <span class="text-xs"> {{ scope.opt.text }} </span>
+                    </q-chip>
+                  </template></q-select
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -216,7 +308,7 @@ let abortFilterFn = () => {
   // console.log('delayed filter aborted')
 };
 
-let region_id = $ref(null);
+let region_id = $ref([]);
 let regionText = $ref();
 let regionDropDownList = $computed(() => {
   var data = store.stationList.map((s) => ({
@@ -256,7 +348,7 @@ let filterFnRegionFinish = (val, update, abort) => {
   });
 };
 
-let constellation_id = $ref(null);
+let constellation_id = $ref([]);
 let constellationText = $ref();
 
 let conDropDownList = $computed(() => {
@@ -297,7 +389,7 @@ let filterFnConstellationFinish = (val, update, abort) => {
   });
 };
 
-let type_id = $ref(null);
+let type_id = $ref([]);
 let typeText = $ref();
 
 let typeDropDownList = $computed(() => {
@@ -337,75 +429,43 @@ let filterFnTypeFinish = (val, update, abort) => {
 };
 
 let filterStart = $computed(() => {
-  if (filterItemTypeSelect) {
-    return store.newSoloOperations.filter(
-      (d) => d.campaign[0].event_type == filterItemTypeSelect
-    );
-  } else {
-    return store.newSoloOperations;
+  if (region_id.length > 0) {
+    return store.stationList.filter((s) => {
+      if (region_id.map((p) => p.value).includes(s.system.region.id)) {
+        return true;
+      } else {
+        return false;
+      }
+    });
   }
+  return store.stationList;
 });
 
-let filterMind = $computed(() => {
-  if (region_id) {
-    return filterStart.filter(
-      (d) => d.campaign[0].constellation.region_id == region_id.value
-    );
-  } else {
-    return filterStart;
+let filterCon = $computed(() => {
+  if (constellation_id.length > 0) {
+    return filterStart.filter((s) => {
+      if (constellation_id.map((p) => p.value).includes(s.system.constellation.id)) {
+        return true;
+      } else {
+        return false;
+      }
+    });
   }
-});
-
-let filterMind1 = $computed(() => {
-  if (constellation_id) {
-    return filterMind.filter(
-      (d) => d.campaign[0].constellation_id == constellation_id.value
-    );
-  } else {
-    return filterMind;
-  }
-});
-
-let filterMind2 = $computed(() => {
-  if (filterStandingSelectList) {
-    if (filterStandingSelectList == 3) {
-      return filterMind1.filter((d) => d.campaign[0].alliance.color == 3);
-    } else if (filterStandingSelectList == 2) {
-      return filterMind1.filter((d) => d.campaign[0].alliance.standing > 0);
-    } else {
-      return filterMind1.filter((d) => d.campaign[0].alliance.standing <= 0);
-    }
-  } else {
-    return filterMind1;
-  }
-});
-
-let filterMind3 = $computed(() => {
-  if (pOnly == 1) {
-    return filterMind2.filter((d) => d.priority == 1);
-  } else {
-    return filterMind2;
-  }
+  return filterStart;
 });
 
 let filterEnd = $computed(() => {
-  //   if (filterStatusSelect == 1) {
-  //     return filterMind3.filter(
-  //       (d) =>
-  //         d.campaign[0].status_id == 5 ||
-  //         d.campaign[0].status_id == 1 ||
-  //         d.campaign[0].status_id == 2
-  //     );
-  //   } else if (filterStatusSelect == 2) {
-  //     return filterMind3.filter(
-  //       (d) => d.campaign[0].status_id == 5 || d.campaign[0].status_id == 2
-  //     );
-  //   } else {
-  //     return filterMind3.filter(
-  //       (d) => d.campaign[0].status_id == 3 || d.campaign[0].status_id == 4
-  //     );
-  //   }
-  return store.stationList;
+  if (type_id.length > 0) {
+    return filterCon.filter((s) => {
+      if (type_id.map((p) => p.value).includes(s.item_id)) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }
+
+  return filterCon;
 });
 
 let webwayJumps = (item) => {
@@ -577,8 +637,9 @@ let columns = $ref([
   {
     name: "name",
     label: "Name",
+    align: "left",
     classes: "text-no-wrap",
-    field: (row) => row.item.item_name,
+    field: (row) => row.name,
     format: (val) => `${val}`,
     sortable: false,
     filter: true,
