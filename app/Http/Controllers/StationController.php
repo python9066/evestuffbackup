@@ -690,6 +690,26 @@ class StationController extends Controller
         broadcast(new StationSheetUpdate($flag));
     }
 
+    public function updateStationSheet(Request $request, $id)
+    {
+        $s = Station::whereId($id)->first();
+        $s->station_status_id = $request->station_status_id;
+        $s->show_on_rc = 0;
+        $s->show_on_coord = 1;
+        $s->rc_id = null;
+        $s->rc_fc_id = null;
+        $s->rc_gsol_id = null;
+        $s->rc_recon_id = null;
+        $s->log_helper = 1;
+        $s->save();
+
+        $message = StationRecordsSolo(6, $id);
+        $flag = collect([
+            'message' => $message,
+        ]);
+        broadcast(new StationSheetUpdate($flag));
+    }
+
     public function editUpdate(Request $request, $id)
     {
         // dd($id);

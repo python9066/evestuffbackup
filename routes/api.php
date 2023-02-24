@@ -140,6 +140,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/loadstationdata', 'loadStationData');
         Route::post('/taskrequest', 'taskRequest');
         Route::put('/updatestationnotification/{id}', 'update');
+        Route::put('/stationsheet/updatestationnotification/{id}', 'updateStationSheet');
         Route::put('/updatetimerinfo/{id}', 'editUpdate');
         Route::put('/stationname', 'reconPullbyname');
         Route::put('/stationnew', 'store');

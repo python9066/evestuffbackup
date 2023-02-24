@@ -300,6 +300,12 @@ if (!function_exists('StationRecords')) {
                 $station_query->where('show_on_coord', 1)->whereIn('system_id', $systemIDs);
             }
             $station_query->where('standing', '=<', 0);
+
+            if ($user->can('view_station_logs')) {
+                $station_query->with([
+                    'logs.causer:id,name'
+                ]);
+            }
         }
 
         $station_query->with([
@@ -372,6 +378,11 @@ if (!function_exists('StationRecordsSolo')) {
             if ($user->can('view_coord_sheet')) {
             } else {
                 $station_query->where('show_on_coord', 1)->whereIn('system_id', $systemIDs);
+            }
+            if ($user->can('view_station_logs')) {
+                $station_query->with([
+                    'logs.causer:id,name'
+                ]);
             }
         }
 

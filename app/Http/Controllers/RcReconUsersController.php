@@ -37,7 +37,8 @@ class RcReconUsersController extends Controller
         $reconid = RcReconUsers::where('user_id', $request->user_id)->value('id');
         $s = Station::where('id', $id)->get();
         foreach ($s as $s) {
-            $s->update(['rc_recon_id' => $reconid]);
+            $s->rc_recon_id = $reconid;
+            $s->save();
         }
         $message = StationRecordsSolo(4, $id);
         if ($message) {
@@ -71,7 +72,8 @@ class RcReconUsersController extends Controller
         $username = User::where('id', $userid)->value('name');
         $s = Station::where('id', $id)->get();
         foreach ($s as $s) {
-            $s->update(['rc_recon_id' => null]);
+            $s->rc_recon_id = null;
+            $s->save();
         }
         $message = StationRecordsSolo(4, $id);
         if ($message) {

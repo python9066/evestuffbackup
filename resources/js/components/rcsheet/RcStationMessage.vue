@@ -3,6 +3,7 @@
     <q-btn
       text-color="positive"
       :icon="messageIcon"
+      padding="none"
       round
       flat
       @click="showStationNotes = true"
@@ -78,7 +79,7 @@
             :disable="showSubmit"
             @click="sendMessage()"
           />
-          <q-btn rounded label="Close" color="negative" @click="close()" />
+          <q-btn rounded label="Close" color="negative" @click="close()" v-close-popup />
         </q-card-actions>
       </q-card>
     </q-dialog>

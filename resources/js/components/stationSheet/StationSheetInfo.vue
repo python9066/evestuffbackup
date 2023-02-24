@@ -160,10 +160,10 @@
 
 <script setup>
 import { inject, defineAsyncComponent } from "vue";
-import { useMainStore } from "@/store/useMain.js";
 import { useQuasar } from "quasar";
-const $q = useQuasar();
+import { useMainStore } from "@/store/useMain.js";
 let store = useMainStore();
+const $q = useQuasar();
 let can = inject("can");
 const props = defineProps({
   station: Object,

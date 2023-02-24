@@ -67,7 +67,8 @@ class OperationInfo extends Model
                 'primary_coord_id',
                 'primary_recon_id',
                 'info',
-                'status_id'
+                'status_id',
+
             ])
             ->useLogName('Operation Info')
             ->dontLogIfAttributesChangedOnly([

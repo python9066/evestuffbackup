@@ -236,76 +236,100 @@
           </div>
         </q-th>
       </template>
-      <template v-slot:body-cell-webway="props">
-        <q-td :props="props">
-          <SoloCampaginWebWay
-            v-if="webwayJumps(props.row) && webwayLink(props.row)"
-            :jumps="webwayJumps(props.row)"
-            :web="webwayLink(props.row)"
-          ></SoloCampaginWebWay>
-        </q-td>
-      </template>
-      <template v-slot:body-cell-system="props">
-        <q-td :props="props">
-          <q-btn
-            color="none"
-            flat
-            rounded
-            text-color="positive"
-            icon="fa-solid fa-map"
-            :href="link(props.row)"
-            target="_blank"
-          />
-          <span @click="copySystem(props.value)" class="cursor-pointer">
-            {{ props.value }}</span
-          >
-        </q-td>
-      </template>
 
-      <template v-slot:body-cell-corpTicker="props">
-        <q-td :props="props">
-          <q-avatar size="lg" class="q-pr-xl">
-            <img :src="props.row.corp.url" />
-          </q-avatar>
-          <span :class="standingCheckCorp(props.row)"> {{ props.value }}</span>
-        </q-td>
-      </template>
-      <template v-slot:body-cell-allianceTicker="props">
-        <q-td :props="props">
-          <span v-if="props.row.corp.alliance_id">
-            <q-avatar size="lg" class="q-pr-xl">
-              <img :src="props.row.corp.alliance.url" />
-            </q-avatar>
-            <span :class="standingCheck(props.row)"> {{ props.value }} </span></span
+      <template v-slot:body="props">
+        <q-tr :props="props">
+          <q-td key="webway" :props="props">
+            <SoloCampaginWebWay
+              v-if="webwayJumps(props.row) && webwayLink(props.row)"
+              :jumps="webwayJumps(props.row)"
+              :web="webwayLink(props.row)"
+            ></SoloCampaginWebWay>
+          </q-td>
+          <q-td key="region" :props="props">
+            {{ props.row.system.region.region_name }}
+          </q-td>
+          <q-td key="constellation" :props="props">
+            {{ props.row.system.constellation.constellation_name }}
+          </q-td>
+          <q-td key="system" :props="props">
+            <q-btn
+              color="none"
+              flat
+              rounded
+              text-color="positive"
+              icon="fa-solid fa-map"
+              :href="link(props.row)"
+              target="_blank"
+            />
+            <span
+              @click="copySystem(props.row.system.system_name)"
+              class="cursor-pointer"
+            >
+              {{ props.row.system.system_name }}</span
+            ></q-td
           >
-        </q-td>
-      </template>
-      <template v-slot:body-cell-type="props">
-        <q-td :props="props">
-          <q-avatar size="lg" class="q-pr-xl">
-            <img :src="itemUrl(props.row.item_id)" />
-          </q-avatar>
-          {{ props.value }}
-        </q-td>
-      </template>
-      <template v-slot:body-cell-status="props">
-        <q-td :props="props">
-          <StatusButton v-if="can('add_timer')" :item="props.row" />
-        </q-td>
-      </template>
-      <template v-slot:body-cell-actions="props">
-        <q-td :props="props">
-          <div class="row">
-            <div class="col">T</div>
-            <div class="col">
-              <RcStationMessage :station="props.row" :type="4"></RcStationMessage>
+          <q-td key="corpTicker" :props="props">
+            <q-avatar size="lg" class="q-pr-xl">
+              <img :src="props.row.corp.url" />
+            </q-avatar>
+            <span :class="standingCheckCorp(props.row)">
+              {{ props.row.corp.ticker }}</span
+            >
+          </q-td>
+          <q-td key="allianceTicker" :props="props">
+            <span v-if="props.row.corp.alliance_id">
+              <q-avatar size="lg" class="q-pr-xl">
+                <img :src="props.row.corp.alliance.url" />
+              </q-avatar>
+              <span :class="standingCheck(props.row)">
+                {{ props.row.corp.alliance.ticker }}
+              </span></span
+            >
+          </q-td>
+          <q-td key="type" :props="props">
+            <q-avatar size="lg" class="q-pr-xl">
+              <img :src="itemUrl(props.row.item_id)" />
+            </q-avatar>
+            {{ props.row.item.item_name }}
+          </q-td>
+          <q-td key="name" :props="props">
+            {{ props.row.name }}
+          </q-td>
+          <q-td key="status" :props="props">
+            <StatusButton v-if="can('add_timer')" :item="props.row" />
+          </q-td>
+          <q-td key="actions" :props="props">
+            <div class="row">
+              <div class="col">T</div>
+              <div class="col">
+                <RcStationMessage :station="props.row" :type="4"></RcStationMessage>
+              </div>
+              <div class="col">
+                <StationInfoSheet :station="props.row" v-if="showInfo(props.row)" />
+              </div>
+              <div class="col" v-if="can('view_station_logs')">
+                <q-btn
+                  size="md"
+                  flat
+                  color="none"
+                  text-color="primary"
+                  round
+                  padding="none"
+                  @click="props.expand = !props.expand"
+                  icon="fa-solid fa-clock-rotate-left"
+                />
+              </div>
             </div>
-            <div class="col">
-              <StationInfoSheet :station="props.row" v-if="showInfo(props.row)" />
+          </q-td>
+        </q-tr>
+        <q-tr v-show="props.expand" :props="props">
+          <q-td colspan="100%">
+            <div>
+              <StationSheetLogs :station="props.row" />
             </div>
-            <div class="col">L</div>
-          </div>
-        </q-td>
+          </q-td>
+        </q-tr>
       </template>
     </q-table>
   </div>
@@ -314,7 +338,6 @@
 <script setup>
 import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 import { useMainStore } from "@/store/useMain.js";
-import { useRouter } from "vue-router";
 import { useQuasar, copyToClipboard } from "quasar";
 let store = useMainStore();
 let can = inject("can");
@@ -323,6 +346,10 @@ let search = $ref("");
 
 const SoloCampaginWebWay = defineAsyncComponent(() =>
   import("../components/operations/SoloCampaginWebWay.vue")
+);
+
+const StationSheetLogs = defineAsyncComponent(() =>
+  import("../components/stationSheet/StationSheetLogs.vue")
 );
 
 const SettingPannel = defineAsyncComponent(() =>

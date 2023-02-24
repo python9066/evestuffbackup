@@ -42,12 +42,10 @@ let statusUpdate = async (statusID) => {
   var request = null;
   request = {
     station_status_id: statusID,
-    show_on_rc: 0,
-    show_on_coord: 1,
   };
   await axios({
     method: "put",
-    url: "/api/updatestationnotification/" + props.item.id,
+    url: "/api/stationsheet/updatestationnotification/" + props.item.id,
     data: request,
     withCredentials: true,
     headers: {

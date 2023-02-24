@@ -40,7 +40,8 @@ class RcGsolUsersController extends Controller
         $gsolName = User::where('id', $gsolNameID)->value('name');
         $s = Station::where('id', $id)->get();
         foreach ($s as $s) {
-            $s->update(['rc_gsol_id' => $request->user_id]);
+            $s->rc_gsol_id = $request->user_id;
+            $s->save();
         }
         $message = StationRecordsSolo(4, $id);
         if ($message) {
@@ -73,7 +74,8 @@ class RcGsolUsersController extends Controller
         $gsolName = User::where('id', $gsolNameID)->value('name');
         $s = Station::where('id', $id)->get();
         foreach ($s as $s) {
-            $s->update(['rc_gsol_id' => null]);
+            $s->rc_gsol_id = null;
+            $s->save();
         }
         $message = StationRecordsSolo(4, $id);
         if ($message) {
