@@ -26,16 +26,16 @@ class HotRegionController extends Controller
         $user = Auth::user();
         if ($user->can('edit_hot_region')) {
             $pullStart = HotRegion::where('update', 1)->pluck('region_id');
-            $pull = Region::whereIn('id', $pullStart)->select(['region_name as text', 'id as value'])->get();
+            $pull = Region::whereIn('id', $pullStart)->orderBy('region_name', 'asc')->select(['region_name as text', 'id as value'])->get();
 
             $fcsStart = HotRegion::where('show_fcs', 1)->pluck('region_id');
-            $fcs = Region::whereIn('id', $fcsStart)->select(['region_name as text', 'id as value'])->get();
+            $fcs = Region::whereIn('id', $fcsStart)->orderBy('region_name', 'asc')->select(['region_name as text', 'id as value'])->get();
 
             $webwayStart = WebWayStartSystem::where('system_id', '!=', 30004759)->pluck('system_id');
-            $webway = System::whereIn('id', $webwayStart)->select(['system_name as text', 'id as value'])->get();
+            $webway = System::whereIn('id', $webwayStart)->orderBy('system_name', 'asc')->select(['system_name as text', 'id as value'])->get();
 
-            $regionList = Region::whereNotNull('id')->select(['region_name as text', 'id as value'])->get();
-            $systemList = System::whereNotNull('id')->select(['system_name as text', 'id as value'])->get();
+            $regionList = Region::whereNotNull('id')->orderBy('region_name', 'asc')->select(['region_name as text', 'id as value'])->get();
+            $systemList = System::whereNotNull('id')->orderBy('system_name', 'asc')->select(['system_name as text', 'id as value'])->get();
 
             return [
                 'pull' => $pull,

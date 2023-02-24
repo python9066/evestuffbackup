@@ -416,7 +416,7 @@ let columns = $ref([
   },
 ]);
 let h = $computed(() => {
-  let mins = 50;
+  let mins = 30;
   let window = store.size.height;
 
   return window - mins + "px";

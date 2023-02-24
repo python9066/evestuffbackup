@@ -8,6 +8,7 @@
       table-class=" text-webway"
       table-header-class=" text-weight-bolder"
       row-key="id"
+      no-data-label="All Hostile Stations our reffed!!!!!!"
       dark
       dense
       :filter="search"
@@ -17,8 +18,11 @@
     >
       <template v-slot:top="props">
         <div class="row full-width flex-center q-pt-xs myRoundTop bg-primary">
-          <div class="col-12 flex flex-center">
+          <div class="col-11 flex flex-center">
             <span class="text-h4">Stations</span>
+          </div>
+          <div class="col-1 flex justify-end">
+            <SettingPannel v-if="can('view_coord_sheet')"></SettingPannel>
           </div>
         </div>
         <div class="row full-width q-pt-md justify-between">
@@ -241,6 +245,68 @@
           ></SoloCampaginWebWay>
         </q-td>
       </template>
+      <template v-slot:body-cell-system="props">
+        <q-td :props="props">
+          <q-btn
+            color="none"
+            flat
+            rounded
+            text-color="positive"
+            icon="fa-solid fa-map"
+            :href="link(props.row)"
+            target="_blank"
+          />
+          <span @click="copySystem(props.value)" class="cursor-pointer">
+            {{ props.value }}</span
+          >
+        </q-td>
+      </template>
+
+      <template v-slot:body-cell-corpTicker="props">
+        <q-td :props="props">
+          <q-avatar size="lg" class="q-pr-xl">
+            <img :src="props.row.corp.url" />
+          </q-avatar>
+          <span :class="standingCheckCorp(props.row)"> {{ props.value }}</span>
+        </q-td>
+      </template>
+      <template v-slot:body-cell-allianceTicker="props">
+        <q-td :props="props">
+          <span v-if="props.row.corp.alliance_id">
+            <q-avatar size="lg" class="q-pr-xl">
+              <img :src="props.row.corp.alliance.url" />
+            </q-avatar>
+            <span :class="standingCheck(props.row)"> {{ props.value }} </span></span
+          >
+        </q-td>
+      </template>
+      <template v-slot:body-cell-type="props">
+        <q-td :props="props">
+          <q-avatar size="lg" class="q-pr-xl">
+            <img :src="itemUrl(props.row.item_id)" />
+          </q-avatar>
+          {{ props.value }}
+        </q-td>
+      </template>
+      <template v-slot:body-cell-status="props">
+        <q-td :props="props">
+          <StatusButton v-if="can('add_timer')" :item="props.row" />
+        </q-td>
+      </template>
+      <template v-slot:body-cell-actions="props">
+        <q-td :props="props">
+          <div class="row">
+            <div class="col">T</div>
+            <div class="col">
+              <RcStationMessage :station="props.row" :type="4"></RcStationMessage>
+            </div>
+            <div class="col">
+              <StationInfoSheet :station="props.row" v-if="showInfo(props.row)" />
+            </div>
+            <div class="col">L</div>
+          </div>
+        </q-td>
+      </template>
     </q-table>
   </div>
 </template>
@@ -249,14 +315,29 @@
 import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 import { useMainStore } from "@/store/useMain.js";
 import { useRouter } from "vue-router";
+import { useQuasar, copyToClipboard } from "quasar";
 let store = useMainStore();
 let can = inject("can");
-let pOnly = $ref(0);
-let router = useRouter();
+const $q = useQuasar();
 let search = $ref("");
 
 const SoloCampaginWebWay = defineAsyncComponent(() =>
   import("../components/operations/SoloCampaginWebWay.vue")
+);
+
+const SettingPannel = defineAsyncComponent(() =>
+  import("../components/stationSheet/SettingPannel.vue")
+);
+
+const StatusButton = defineAsyncComponent(() =>
+  import("../components/stationSheet/StatusButton.vue")
+);
+const StationInfoSheet = defineAsyncComponent(() =>
+  import("../components/stationSheet/StationSheetInfo.vue")
+);
+
+const RcStationMessage = defineAsyncComponent(() =>
+  import("../components/rcsheet/RcStationMessage.vue")
 );
 
 onMounted(async () => {
@@ -468,6 +549,10 @@ let filterEnd = $computed(() => {
   return filterCon;
 });
 
+let itemUrl = (item) => {
+  return "https://images.evetech.net/types/" + item + "/icon";
+};
+
 let webwayJumps = (item) => {
   if (item.system.webway) {
     var base = item.system.webway;
@@ -539,6 +624,49 @@ let webwayDropdownList = (value) => {
   return list;
 };
 
+let standingCheckCorp = (item) => {
+  var standing = 0;
+  if (item.corp.alliance) {
+    standing = item.corp.alliance.standing;
+  } else {
+    standing = item.corp.standing;
+  }
+  if (standing > 0) {
+    return "text-blue";
+  } else if (standing < 0) {
+    return "text-red";
+  } else {
+    return "";
+  }
+};
+
+let standingCheck = (item) => {
+  var standing = 0;
+  if (item.corp.alliance) {
+    standing = item.corp.alliance.standing;
+  } else {
+    standing = item.corp.standing;
+  }
+  if (standing > 0) {
+    return "text-blue";
+  } else if (standing < 0) {
+    return "text-red";
+  } else {
+    return "";
+  }
+};
+
+let showInfo = (item) => {
+  if (item.item.id == 37534 || item.item.id == 35841 || item.item.id == 35840) {
+    return false;
+  }
+  if (item.added_from_recon == 1) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 let pagination = $ref({
   sortBy: "progress",
   descending: false,
@@ -569,10 +697,9 @@ let columns = $ref([
     align: "left",
     label: "Region",
     classes: "text-no-wrap",
-    style: "width: 7%",
     field: (row) => row.system.region.region_name,
     format: (val) => `${val}`,
-    sortable: false,
+    sortable: true,
     filter: true,
   },
   {
@@ -583,7 +710,7 @@ let columns = $ref([
     classes: "text-no-wrap",
     field: (row) => row.system.constellation.constellation_name,
     format: (val) => `${val}`,
-    sortable: false,
+    sortable: true,
     filter: true,
   },
   {
@@ -593,7 +720,7 @@ let columns = $ref([
     label: "System",
     field: (row) => row.system.system_name,
     format: (val) => `${val}`,
-    sortable: false,
+    sortable: true,
     filter: true,
   },
   {
@@ -604,7 +731,7 @@ let columns = $ref([
     label: "Corp",
     field: (row) => row.corp.ticker,
     format: (val) => `${val}`,
-    sortable: false,
+    sortable: true,
     filter: true,
   },
   {
@@ -612,7 +739,7 @@ let columns = $ref([
     align: "left",
     required: true,
     label: "Alliance",
-    style: "width: 5%",
+    // style: "width: 5%",
     classes: "text-no-wrap",
     field: (row) => {
       if (row.corp.alliance) {
@@ -622,16 +749,17 @@ let columns = $ref([
       }
     },
     format: (val) => `${val}`,
-    sortable: false,
+    sortable: true,
     filter: true,
   },
   {
     name: "type",
     label: "Type",
+    align: "left",
     classes: "text-no-wrap",
     field: (row) => row.item.item_name,
     format: (val) => `${val}`,
-    sortable: false,
+    sortable: true,
     filter: true,
   },
   {
@@ -641,7 +769,7 @@ let columns = $ref([
     classes: "text-no-wrap",
     field: (row) => row.name,
     format: (val) => `${val}`,
-    sortable: false,
+    sortable: true,
     filter: true,
   },
   {
@@ -649,8 +777,7 @@ let columns = $ref([
     label: "Status",
     classes: "text-no-wrap",
     align: "right",
-    style: "width: 25%",
-    sortable: false,
+    sortable: true,
     field: (row) => row.status.name,
     format: (val) => `${val}`,
   },
@@ -666,8 +793,142 @@ let columns = $ref([
   },
 ]);
 
+let copySystem = (text) => {
+  copyToClipboard(text).then(() => {
+    $q.notify({
+      type: "info",
+      message: text + " copied to your clipboard",
+    });
+  });
+};
+
+let link = (item) => {
+  if (item.system.region.region_name == "Black Rise") {
+    return (
+      "https://evemaps.dotlan.net/map/Black_Rise/" + item.system.system_name + "#const"
+    );
+  }
+  if (item.system.region.region_name == "The Bleak Lands") {
+    return (
+      "https://evemaps.dotlan.net/map/The_Bleak_Lands/" +
+      item.system.system_name +
+      "#const"
+    );
+  }
+  if (item.system.region.region_name == "The Citadel") {
+    return (
+      "https://evemaps.dotlan.net/map/The_Citadel/" + item.system.system_name + "#const"
+    );
+  }
+  if (item.system.region.region_name == "Cloud Ring") {
+    return (
+      "https://evemaps.dotlan.net/map/Cloud_Ring/" + item.system.system_name + "#const"
+    );
+  }
+  if (item.system.region.region_name == "Cobalt Edge") {
+    return (
+      "https://evemaps.dotlan.net/map/Cobalt_Edge/" + item.system.system_name + "#const"
+    );
+  }
+  if (item.system.region.region_name == "Etherium Reach") {
+    return (
+      "https://evemaps.dotlan.net/map/Etherium_Reach/" +
+      item.system.system_name +
+      "#const"
+    );
+  }
+  if (item.system.region.region_name == "The Forge") {
+    return (
+      "https://evemaps.dotlan.net/map/The_Forge/" + item.system.system_name + "#const"
+    );
+  }
+  if (item.system.region.region_name == "The Kalevala Expanse") {
+    return (
+      "https://evemaps.dotlan.net/map/The_Kalevala_Expanse/" +
+      item.system.system_name +
+      "#const"
+    );
+  }
+  if (item.system.region.region_name == "Molden Heath") {
+    return (
+      "https://evemaps.dotlan.net/map/Molden_Heath/" + item.system.system_name + "#const"
+    );
+  }
+  if (item.system.region.region_name == "Outer Passage") {
+    return (
+      "https://evemaps.dotlan.net/map/Outer_Passage/" + item.system.system_name + "#const"
+    );
+  }
+  if (item.system.region.region_name == "Outer Ring") {
+    return (
+      "https://evemaps.dotlan.net/map/Outer_Ring/" + item.system.system_name + "#const"
+    );
+  }
+  if (item.system.region.region_name == "Paragon Soul") {
+    return (
+      "https://evemaps.dotlan.net/map/Paragon_Soul/" + item.system.system_name + "#const"
+    );
+  }
+  if (item.system.region.region_name == "Period Basis") {
+    return (
+      "https://evemaps.dotlan.net/map/Period_Basis/" + item.system.system_name + "#const"
+    );
+  }
+  if (item.system.region.region_name == "Perrigen Falls") {
+    return (
+      "https://evemaps.dotlan.net/map/Perrigen_Falls/" +
+      item.system.system_name +
+      "#const"
+    );
+  }
+  if (item.system.region.region_name == "Pure Blind") {
+    return (
+      "https://evemaps.dotlan.net/map/Pure_Blind/" + item.system.system_name + "#const"
+    );
+  }
+  if (item.system.region.region_name == "Scalding Pass") {
+    return (
+      "https://evemaps.dotlan.net/map/Scalding_Pass/" + item.system.system_name + "#const"
+    );
+  }
+  if (item.system.region.region_name == "Sinq Laison") {
+    return (
+      "https://evemaps.dotlan.net/map/Sinq_Laison/" + item.system.system_name + "#const"
+    );
+  }
+  if (item.system.region.region_name == "The Spire") {
+    return (
+      "https://evemaps.dotlan.net/map/The_Spire/" + item.system.system_name + "#const"
+    );
+  }
+  if (item.system.region.region_name == "Vale of the Silent") {
+    return (
+      "https://evemaps.dotlan.net/map/Vale_of_the_Silent/" +
+      item.system.system_name +
+      "#const"
+    );
+  }
+  if (item.system.region.region_name == "Verge Vendor") {
+    return (
+      "https://evemaps.dotlan.net/map/Verge_Vendor/" + item.system.system_name + "#const"
+    );
+  }
+  if (item.system.region.region_name == "Wicked Creek") {
+    return (
+      "https://evemaps.dotlan.net/map/Wicked_Creek/" + item.system.system_name + "#const"
+    );
+  }
+  return (
+    "https://evemaps.dotlan.net/map/" +
+    item.system.region.region_name +
+    "/" +
+    item.system.system_name +
+    "#const"
+  );
+};
+
 let h = $computed(() => {
-  let mins = 50;
+  let mins = 30;
   let window = store.size.height;
 
   return window - mins + "px";

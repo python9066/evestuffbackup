@@ -12,7 +12,7 @@ import { createApp } from "vue";
 import router from "./router";
 import store from "@/store.js";
 import App from "./views/App.vue";
-import { Quasar, LoadingBar } from "quasar";
+import { Quasar, Notify, LoadingBar } from "quasar";
 import quasarLang from "quasar/lang/en-GB";
 import quasarIconSet from "quasar/icon-set/svg-fontawesome-v6";
 // import VueGridLayout from "vue-grid-layout";
@@ -58,7 +58,7 @@ app.provide("can", function (value) {
 });
 
 app.use(Quasar, {
-    plugins: { LoadingBar }, // import Quasar plugins and add here
+    plugins: { Notify, LoadingBar }, // import Quasar plugins and add here
     lang: quasarLang,
     iconSet: quasarIconSet,
     /*

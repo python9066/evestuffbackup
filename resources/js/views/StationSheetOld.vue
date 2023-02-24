@@ -7,13 +7,15 @@
             <v-card-title class="primary"
               ><v-row no-gutters justify="space-between"
                 ><v-col cols="5"> Stations </v-col
-                ><v-col cols="1" class="d-flex justify-content-end"
-                  ><SettingPannel
+                ><v-col cols="1" class="d-flex justify-content-end">
+                  <!-- <SettingPannel
                     v-if="$can('view_coord_sheet')"
-                  ></SettingPannel></v-col></v-row
-            ></v-card-title>
+                  ></SettingPannel> -->
+                </v-col>
+              </v-row></v-card-title
+            >
             <v-row no-gutters align="baseline" justify="space-between" class="mt-2 ml-2">
-              <v-col cols="1">
+              <!-- <v-col cols="1">
                 <v-text-field
                   label="Search"
                   v-model="search"
@@ -24,8 +26,8 @@
                   clearable
                   color="blue"
                 ></v-text-field>
-              </v-col>
-              <v-col cols="3">
+              </v-col> -->
+              <!-- <v-col cols="3">
                 <v-autocomplete
                   label="Type"
                   :items="typeDropDown"
@@ -41,7 +43,8 @@
                   clearable
                   color="blue"
                 ></v-autocomplete> </v-col
-              ><v-col cols="3">
+              > -->
+              <!-- <v-col cols="3">
                 <v-autocomplete
                   label="Region"
                   :items="regionDrop"
@@ -57,7 +60,8 @@
                   clearable
                   color="blue"
                 ></v-autocomplete> </v-col
-              ><v-col cols="3">
+              > -->
+              <!-- <v-col cols="3">
                 <v-autocomplete
                   label="Constellation"
                   :items="conDrop"
@@ -73,7 +77,7 @@
                   clearable
                   color="blue"
                 ></v-autocomplete>
-              </v-col>
+              </v-col> -->
             </v-row>
             <v-card-text>
               <v-data-table
@@ -94,10 +98,10 @@
                 :sort-desc="[false, true]"
                 multi-sort
               >
-                <template slot="no-data">
+                <!-- <template slot="no-data">
                   All Hostile Stations our reffed!!!!!!
-                </template>
-                <template v-slot:[`header.system.webway[0].jumps`]="{ props }">
+                </template> -->
+                <!-- <template v-slot:[`header.system.webway[0].jumps`]="{ props }">
                   <v-row no-gutters>
                     <v-col>
                       <span class="myFont">Webway</span>
@@ -139,15 +143,15 @@
                       }}</span>
                     </v-col>
                   </v-row>
-                </template>
-                <template v-slot:[`item.system.webway[0].jumps`]="{ item }">
+                </template> -->
+                <!-- <template v-slot:[`item.system.webway[0].jumps`]="{ item }">
                   <SoloCampaginWebWay
                     v-if="webwayJumps(item) && webwayLink(item)"
                     :jumps="webwayJumps(item)"
                     :web="webwayLink(item)"
                   ></SoloCampaginWebWay>
-                </template>
-                <template
+                </template> -->
+                <!-- <template
                   v-slot:[`item.corp.ticker`]="{ item }"
                   class="d-inline-flex align-center"
                 >
@@ -155,8 +159,8 @@
                     <v-avatar size="35"><img :src="item.corp.url" /></v-avatar>
                     <span :class="standingCheckCorp(item)">{{ item.corp.ticker }} </span>
                   </span></template
-                >
-                <template
+                > -->
+                <!-- <template
                   v-slot:[`item.corp.alliance.ticker`]="{ item }"
                   class="d-inline-flex align-center"
                 >
@@ -166,13 +170,8 @@
                       >{{ item.corp.alliance.ticker }}
                     </span>
                   </span>
-
-                  <!-- <span v-else-if="$can('super')">
-                    <AddCorpTicker :station="item"></AddCorpTicker
-                    ><AddAllianceTicker :station="item"></AddAllianceTicker>
-                  </span> -->
-                </template>
-                <template
+                </template> -->
+                <!-- <template
                   v-slot:[`item.system.system_name`]="{ item }"
                   class="d-inline-flex align-center align-items-center"
                 >
@@ -185,14 +184,14 @@
                   >
                     {{ item.system.system_name }}
                   </button>
-                </template>
+                </template> -->
 
-                <template v-slot:[`item.status.name`]="{ item }">
+                <!-- <template v-slot:[`item.status.name`]="{ item }">
                   <StatusButton v-if="$can('add_timer')" :item="item"></StatusButton>
                   <v-chip v-else pill :color="pillColor(item)">
                     {{ buttontext(item) }}
                   </v-chip>
-                </template>
+                </template> -->
                 <template v-slot:[`item.actions`]="{ item }">
                   <div class="d-inline-flex">
                     <v-tooltip bottom :open-delay="1000">
@@ -219,14 +218,14 @@
                       <span>Station Notes</span>
                     </v-tooltip>
                     <v-tooltip bottom :open-delay="1000">
-                      <template v-slot:activator="{ on, attrs }">
+                      <!-- <template v-slot:activator="{ on, attrs }">
                         <div v-bind="attrs" v-on="on">
                           <StationSheetInfo
                             :station="item"
                             v-if="showInfo(item)"
                           ></StationSheetInfo>
                         </div>
-                      </template>
+                      </template> -->
                       <span>Station Info</span>
                     </v-tooltip>
 

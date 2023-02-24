@@ -635,18 +635,14 @@ class StationController extends Controller
         $newStatusID = $request->station_status_id;
         $newStatusName = StationStatus::where('id', $newStatusID)->value('name');
         $newStatusName = str_replace('Upcoming - ', '', $newStatusName);
-        $new = Station::find($id)->update($request->all());
-        $now = now();
-        $s = Station::find($id)->get();
-        foreach ($s as $s) {
-            $s->update([
-                'added_by_user_id' => Auth::id(),
-                'rc_id' => null,
-                'rc_fc_id' => null,
-                'rc_gsol_id' => null,
-                'rc_recon_id' => null,
-            ]);
-        }
+        $s = Station::whereId($id)->first();
+        $s->update($request->all());
+        $s->added_by_user_id = Auth::id();
+        $s->rc_id = null;
+        $s->rc_fc_id = null;
+        $s->rc_gsol_id = null;
+        $s->rc_recon_id = null;
+        $s->save();
         $message = StationRecords::where('id', $id)->first();
         $flag = collect([
             'message' => $message,
