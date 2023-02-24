@@ -257,7 +257,6 @@ if (!function_exists('dubp')) {
 
                     'user_id' => $stations[1]['user_id'] ?? null,
                     'text' => $stations[1]['text'] ?? null,
-                    'notes' => $stations[1]['notes'] ?? null,
                     'attack_notes' => $stations[1]['attack_notes'] ?? null,
                     'attack_adash_link' => $stations[1]['attack_adash_link'] ?? null,
                     'station_status_id' => $stations[1]['station_status_id'] ?? null,

@@ -115,7 +115,6 @@ class ChillStationController extends Controller
             'rc_recon_id' => null,
             'rc_id' => null,
             'timer_image_link' => null,
-            'notes' => null,
         ]);
         $message = ChillStationRecords::where('id', $id)->first();
         $flag = collect([

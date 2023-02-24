@@ -57,6 +57,7 @@ use App\Http\Controllers\StartCampaignJoinController;
 use App\Http\Controllers\StartCampaignSystemController;
 use App\Http\Controllers\StartCampaignSystemRecordsController;
 use App\Http\Controllers\StationController;
+use App\Http\Controllers\StationNotesController;
 use App\Http\Controllers\StationRecordsController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\testController;
@@ -126,7 +127,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/rcStatuslist', 'rcSheetListStatus');
         Route::put('/rcfixcorp/{id}', 'fixcorp');
         Route::put('/rcfixalliance/{id}', 'fixalliance');
+    });
+
+    Route::controller(StationNotesController::class)->group(function () {
         Route::put('/sheetmessage/{id}', 'updateMessage');
+        Route::delete('/sheetmessage/{id}', 'destroy');
+        Route::put('/sheetmessage/{id}/notes', 'addReadBy');
     });
 
     Route::controller(StationController::class)->group(function () {

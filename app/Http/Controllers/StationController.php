@@ -584,7 +584,6 @@ class StationController extends Controller
                 'show_on_rc_move' => 0,
                 'show_on_rc' => 1,
                 'station_status_id' => $statusID,
-                'notes' => null,
                 'timer_image_link' => null,
             ]);
         }
@@ -643,12 +642,6 @@ class StationController extends Controller
         $s->rc_gsol_id = null;
         $s->rc_recon_id = null;
         $s->save();
-        $message = StationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new StationNotificationUpdate($flag));
-        broadcast(new StationUpdateCoord($flag));
 
         $message = StationRecordsSolo(6, $id);
         $flag = collect([
@@ -695,24 +688,6 @@ class StationController extends Controller
         }
 
         broadcast(new StationSheetUpdate($flag));
-
-        $RCmessage = ChillStationRecords::where('id', $id)->first();
-        if ($RCmessage) {
-            $flag = collect([
-                'message' => $RCmessage,
-            ]);
-
-            broadcast(new ChillSheetUpdate($flag));
-        }
-
-        $RCmessage = WelpStationRecords::where('id', $id)->first();
-        if ($RCmessage) {
-            $flag = collect([
-                'message' => $RCmessage,
-            ]);
-
-            broadcast(new WelpSheetUpdate($flag));
-        }
     }
 
     public function editUpdate(Request $request, $id)
@@ -784,7 +759,6 @@ class StationController extends Controller
         $s->show_on_rc = $request->show_on_rc;
         $s->show_on_coord = $request->show_on_coord;
         $s->status_update = $request->status_update;
-        $s->notes = $request->notes;
         $s->save();
 
 

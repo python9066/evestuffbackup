@@ -6,11 +6,11 @@
       round
       flat
       @click="showStationNotes = true"
-      ><q-badge v-if="messageCount" color="red" floating>{{
-        messageCount
+      ><q-badge v-if="messageUnreadCount && !showStationNotes" color="red" floating>{{
+        messageUnreadCount
       }}</q-badge></q-btn
     >
-    <q-dialog v-model="showStationNotes" @before-hide="close()" @before-show="open()">
+    <q-dialog v-model="showStationNotes" @before-show="open()" @before-hide="close()">
       <q-card
         class="my-card myRoundTop"
         style="width: 1000px; max-height: 900px; height: 900px"
@@ -21,11 +21,11 @@
         <q-card-section id="messages" class="overflow-auto" style="height: 600px">
           <transition-group enter-active-class="animate__animated animate__zoomIn">
             <q-chat-message
-              v-for="(message, index) in props.station.notes"
+              v-for="(message, index) in messages"
               :key="`${message.id}-message`"
+              :text="[message.message]"
               :name="name(message.user.name, message.user_id)"
               :avatar="url(message)"
-              :text="[message.message]"
               :sent="sent(message.user_id)"
               :bg-color="messageColor(message.user_id)"
             >
@@ -41,8 +41,18 @@
                   ><span v-if="hours != '00'">{{ hours }}hours,</span
                   ><span> {{ minutes }}minutes</span>
                   ago
-                </VueCountUp></template
-              >
+                </VueCountUp>
+                <q-btn
+                  v-if="olderThan(message.created_at) && sent(message.user_id)"
+                  color="negative"
+                  padding="none"
+                  icon="fa-solid fa-trash-can"
+                  flat
+                  size="xs"
+                  rounded
+                  @click="remove(message.id)"
+                />
+              </template>
             </q-chat-message>
           </transition-group>
         </q-card-section>
@@ -78,78 +88,56 @@
 <script setup>
 import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 import { useMainStore } from "@/store/useMain.js";
+import axios from "axios";
 let can = inject("can");
 let store = useMainStore();
+
 const props = defineProps({
-  item: { station: Object, type: Number },
+  station: Object,
+  type: Number,
 });
 const VueCountUp = defineAsyncComponent(() => import("../countup/index"));
-onMounted(async () => {
-  if (this.type == 4) {
-    Echo.private("stationsheet").listen("StationSheetMessageUpdate", (e) => {
-      if (e.flag.id == props.station.id) {
-        this.$store.dispatch("updateStationList", e.flag.message);
-        if (showStationNotes == false) {
-          this.showNumber = true;
-          this.messageCount = this.messageCount + 1;
-        }
-      }
-    });
-  }
-});
+onMounted(async () => {});
 let mainText = $ref();
 let showStationNotes = $ref(false);
 
+const remove = async (id) => {
+  await axios({
+    method: "delete",
+    url: "/api/sheetmessage/" + id,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+};
+
 const sendMessage = async () => {
-  const sendRoomId = can("super_admin") ? props.item.id : store.supportRoom.id;
   const data = {
     message: mainText,
   };
-  try {
-    await axios.post(`/api/support/message/${sendRoomId}`, data, {
-      withCredentials: true,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
-    mainText = null;
-  } catch (error) {}
+
+  await axios({
+    method: "put",
+    url: "/api/sheetmessage/" + props.station.id,
+    withCredentials: true,
+    data: data,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  mainText = null;
 };
 
 let open = async () => {
-  if (can("super_admin")) {
-    await store.clearWebWayMessageCount(props.item.id);
-  } else {
-    await store.clearUserMessageCount();
-  }
-
-  const sendRoomId = can("super_admin") ? props.item.id : store.supportRoom.id;
-  try {
-    await axios.post(`/api/support/messageclear/${sendRoomId}`, {
-      withCredentials: true,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
-    mainText = null;
-  } catch (error) {}
+  store.stationChatWindowId = props.station.id;
 };
 
 let close = async () => {
-  const sendRoomId = can("super_admin") ? props.item.id : store.supportRoom.id;
-  try {
-    await axios.post(`/api/support/closeroom/${sendRoomId}`, {
-      withCredentials: true,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
-    mainText = null;
-    showStationNotes = false;
-  } catch (error) {}
+  mainText = null;
+  store.stationChatWindowId = null;
 };
 
 let age = (val) => {
@@ -158,12 +146,19 @@ let age = (val) => {
   return timestamp;
 };
 
+let olderThan = (val) => {
+  const timestampDate = new Date(val);
+  const timeDiff = new Date() - timestampDate;
+  const isLessThan30MinsOld = timeDiff < 1800000;
+  return isLessThan30MinsOld;
+};
+
 let messageCount = $computed(() => {
-  if (can("super_admin")) {
-    return store.getWebWayMessageCount(props.item.id);
-  } else {
-    return store.getUserMessageCount;
-  }
+  return messages.length;
+});
+
+let messageUnreadCount = $computed(() => {
+  return store.getUnreadMessageCount(props.station.id);
 });
 
 let messageIcon = $computed(() => {
@@ -186,11 +181,7 @@ let name = (textname, id) => {
   if (store.user_id == id) {
     return "me";
   } else {
-    if (can("super_admin")) {
-      return textname;
-    } else {
-      return "WebWay";
-    }
+    return textname;
   }
 };
 
@@ -209,19 +200,12 @@ let showSubmit = $computed(() => {
   return true;
 });
 
-let url = (item) => {
-  let id = 0;
-  if (can("super_admin")) {
-    id = item.user.main_character_id ?? item.user.character_id;
-  } else {
-    if (item.user.id == 25107) {
-      return "https://goonfleet.com/public/style_extra/team_icons/pf_bee.png";
-    } else {
-      id = item.user.main_character_id ?? item.user.character_id;
-    }
-  }
+let messages = $computed(() => {
+  return store.getStationMessages(props.station.id);
+});
 
-  return "https://image.eveonline.com/Character/" + id + "_128.jpg";
+let url = (item) => {
+  return "https://image.eveonline.com/Character/" + item.user.eve_user_id + "_128.jpg";
 };
 </script>
 

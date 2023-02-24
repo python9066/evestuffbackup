@@ -315,6 +315,7 @@ if (!function_exists('StationRecords')) {
             'item',
             'fit:id,item_name',
             'addedBy:id,name',
+            'notes.user',
 
         ]);
 
@@ -388,7 +389,7 @@ if (!function_exists('StationRecordsSolo')) {
             'corp.alliance:id,name,ticker,standing,url,color',
             'item',
             'fit:id,item_name',
-
+            'notes.user',
             'addedBy:id,name',
         ]);
 

@@ -71,6 +71,11 @@ class Station extends Model
         return $this->hasMany(Logging::class);
     }
 
+    public function notes()
+    {
+        return $this->hasMany(StationNotes::class, 'station_id', 'id')->orderBy('created_at', "desc");
+    }
+
     protected $casts = [
         'id' => 'integer',
         'system_id' => 'integer',

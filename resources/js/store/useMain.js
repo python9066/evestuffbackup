@@ -20,6 +20,7 @@ export const useMainStore = defineStore("main", {
         stationList: [],
         timers: [],
         timersRegions: [],
+        stationChatWindowId: null,
         user_name: null,
         user_id: null,
         webwayStartSystems: [],
@@ -35,6 +36,39 @@ export const useMainStore = defineStore("main", {
                 (c) => c.start_campaign_id == id
             );
             return data;
+        },
+
+        getStationMessages: (state) => (id) => {
+            let station = state.stationList.find((s) => s.id == id);
+            let messages = station.notes;
+            if (messages) {
+                return messages;
+            }
+            return [];
+        },
+
+        getUnreadMessageCount: (state) => (id) => {
+            let station = state.stationList.find((s) => s.id == id);
+            let messages = station.notes;
+            let count = messages.filter(
+                (m) =>
+                    m.read_by &&
+                    m.read_by.user_id &&
+                    !m.read_by.user_id.includes(state.user_id)
+            ).length;
+
+            if (state.stationChatWindowId == id && count > 0) {
+                axios({
+                    method: "put",
+                    url: "/api/sheetmessage/" + id + "/notes",
+                    withCredentials: true,
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    },
+                });
+            }
+            return count;
         },
     },
     actions: {

@@ -365,6 +365,9 @@ onMounted(async () => {
     })
     .listen("StationSheetUpdateWebway", (e) => {
       updateWebwaySystem(e.flag.id);
+    })
+    .listen("StationSheetMessageUpdate", (e) => {
+      store.updateStationList(e.flag.message);
     });
 });
 
