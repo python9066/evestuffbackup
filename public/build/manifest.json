@@ -1,11 +1,11 @@
 {
-  "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2": {
-    "file": "assets/fa-regular-400.7ba24c41.woff2",
-    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2"
-  },
   "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2": {
     "file": "assets/fa-brands-400.f4617423.woff2",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2"
+  },
+  "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400.7ba24c41.woff2",
+    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2"
   },
   "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.woff2": {
     "file": "assets/fa-solid-900.e2c5cf54.woff2",
@@ -32,7 +32,7 @@
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.ttf"
   },
   "resources/js/app.js": {
-    "file": "assets/app.08c7f112.js",
+    "file": "assets/app.b0420997.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -57,43 +57,48 @@
     ]
   },
   "resources/js/views/test.vue": {
-    "file": "assets/test.d40696dd.js",
+    "file": "assets/test.863151f9.js",
     "src": "resources/js/views/test.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_QTable.cb320335.js",
-      "_QBadge.7a574f9e.js",
-      "__plugin-vue_export-helper.25a16b04.js",
+      "_QTable.cffd3fb0.js",
+      "_QBadge.27dc9cbe.js",
+      "_QTr.db13a5a5.js",
+      "__plugin-vue_export-helper.cdc0426e.js",
       "resources/js/app.js"
     ]
   },
-  "_QTable.cb320335.js": {
-    "file": "assets/QTable.cb320335.js",
+  "_QTable.cffd3fb0.js": {
+    "file": "assets/QTable.cffd3fb0.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_QBadge.7a574f9e.js": {
-    "file": "assets/QBadge.7a574f9e.js",
+  "_QBadge.27dc9cbe.js": {
+    "file": "assets/QBadge.27dc9cbe.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "__plugin-vue_export-helper.25a16b04.js": {
-    "file": "assets/_plugin-vue_export-helper.25a16b04.js",
+  "_QTr.db13a5a5.js": {
+    "file": "assets/QTr.db13a5a5.js",
     "imports": [
       "resources/js/app.js"
     ]
+  },
+  "__plugin-vue_export-helper.cdc0426e.js": {
+    "file": "assets/_plugin-vue_export-helper.cdc0426e.js"
   },
   "resources/js/views/SoloOperations.vue": {
-    "file": "assets/SoloOperations.724a0b60.js",
+    "file": "assets/SoloOperations.9f6e1181.js",
     "src": "resources/js/views/SoloOperations.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTable.cb320335.js",
-      "_QAvatar.e82a82d5.js",
-      "__plugin-vue_export-helper.25a16b04.js"
+      "_QTable.cffd3fb0.js",
+      "_QBtnToggle.7c402204.js",
+      "_QTr.db13a5a5.js",
+      "__plugin-vue_export-helper.cdc0426e.js"
     ],
     "dynamicImports": [
       "resources/js/components/operations/SoloCampaignProgressLine.vue",
@@ -104,42 +109,42 @@
       "resources/js/components/newcampaign/NewCampaginPriorityButton.vue"
     ],
     "css": [
-      "assets/SoloOperations.de00ecd7.css"
+      "assets/SoloOperations.3ba59dc1.css"
     ]
   },
-  "_QAvatar.e82a82d5.js": {
-    "file": "assets/QAvatar.e82a82d5.js",
+  "_QBtnToggle.7c402204.js": {
+    "file": "assets/QBtnToggle.7c402204.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/views/Timers.vue": {
-    "file": "assets/Timers.87868844.js",
+    "file": "assets/Timers.cea72bd0.js",
     "src": "resources/js/views/Timers.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTable.cb320335.js",
-      "_QToggle.9173b993.js",
-      "_QAvatar.e82a82d5.js"
+      "_QTable.cffd3fb0.js",
+      "_QToggle.8bc121d2.js",
+      "_QBtnToggle.7c402204.js"
     ],
     "dynamicImports": [
       "resources/js/components/countup/index.ts",
       "resources/js/components/timers/TimerCountDown.vue"
     ],
     "css": [
-      "assets/Timers.62853b8c.css"
+      "assets/Timers.561fde60.css"
     ]
   },
-  "_QToggle.9173b993.js": {
-    "file": "assets/QToggle.9173b993.js",
+  "_QToggle.8bc121d2.js": {
+    "file": "assets/QToggle.8bc121d2.js",
     "imports": [
       "resources/js/app.js",
-      "_QTable.cb320335.js"
+      "_QTable.cffd3fb0.js"
     ]
   },
   "resources/js/views/CustomCampaigns.vue": {
-    "file": "assets/CustomCampaigns.ef058f7e.js",
+    "file": "assets/CustomCampaigns.ffa1bf0d.js",
     "src": "resources/js/views/CustomCampaigns.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -151,33 +156,39 @@
     ]
   },
   "resources/js/views/StationSheet.vue": {
-    "file": "assets/StationSheet.2e525d32.js",
+    "file": "assets/StationSheet.c6b419a2.js",
     "src": "resources/js/views/StationSheet.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTable.cb320335.js",
-      "_QToggle.9173b993.js"
+      "_QTable.cffd3fb0.js",
+      "_QToggle.8bc121d2.js",
+      "_QTr.db13a5a5.js"
     ],
     "dynamicImports": [
-      "resources/js/components/operations/SoloCampaginWebWay.vue"
+      "resources/js/components/operations/SoloCampaginWebWay.vue",
+      "resources/js/components/stationSheet/StationSheetLogs.vue",
+      "resources/js/components/stationSheet/SettingPannel.vue",
+      "resources/js/components/stationSheet/StatusButton.vue",
+      "resources/js/components/stationSheet/StationSheetInfo.vue",
+      "resources/js/components/rcsheet/RcStationMessage.vue"
     ],
     "css": [
-      "assets/StationSheet.26844ff2.css"
+      "assets/StationSheet.3c24086f.css"
     ]
   },
   "resources/js/components/operations/SoloCampaignProgressLine.vue": {
-    "file": "assets/SoloCampaignProgressLine.29ebf854.js",
+    "file": "assets/SoloCampaignProgressLine.f2a2d203.js",
     "src": "resources/js/components/operations/SoloCampaignProgressLine.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QBadge.7a574f9e.js",
-      "_QTable.cb320335.js"
+      "_QBadge.27dc9cbe.js",
+      "_QTable.cffd3fb0.js"
     ]
   },
   "resources/js/components/countup/index.ts": {
-    "file": "assets/index.26ba5f1f.js",
+    "file": "assets/index.ed2e38aa.js",
     "src": "resources/js/components/countup/index.ts",
     "isDynamicEntry": true,
     "imports": [
@@ -185,12 +196,12 @@
     ]
   },
   "resources/js/components/operations/SoloCampaignOperationChip.vue": {
-    "file": "assets/SoloCampaignOperationChip.d157385e.js",
+    "file": "assets/SoloCampaignOperationChip.65117ee1.js",
     "src": "resources/js/components/operations/SoloCampaignOperationChip.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTable.cb320335.js"
+      "_QTable.cffd3fb0.js"
     ],
     "dynamicImports": [
       "resources/js/components/countdown/index.ts",
@@ -198,7 +209,7 @@
     ]
   },
   "resources/js/components/campaign/CampaignMap.vue": {
-    "file": "assets/CampaignMap.b05fe378.js",
+    "file": "assets/CampaignMap.5850988c.js",
     "src": "resources/js/components/campaign/CampaignMap.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -206,7 +217,7 @@
     ]
   },
   "resources/js/components/operations/SoloCampaginWebWay.vue": {
-    "file": "assets/SoloCampaginWebWay.d364c3f9.js",
+    "file": "assets/SoloCampaginWebWay.176c9334.js",
     "src": "resources/js/components/operations/SoloCampaginWebWay.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -214,7 +225,7 @@
     ]
   },
   "resources/js/components/newcampaign/NewCampaginPriorityButton.vue": {
-    "file": "assets/NewCampaginPriorityButton.9265f9c6.js",
+    "file": "assets/NewCampaginPriorityButton.3c56f14f.js",
     "src": "resources/js/components/newcampaign/NewCampaginPriorityButton.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -222,7 +233,7 @@
     ]
   },
   "resources/js/components/timers/TimerCountDown.vue": {
-    "file": "assets/TimerCountDown.558a9b0a.js",
+    "file": "assets/TimerCountDown.5ebf105f.js",
     "src": "resources/js/components/timers/TimerCountDown.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -233,12 +244,12 @@
     ]
   },
   "resources/js/components/newcampaign/NewMultiCampaigns.vue": {
-    "file": "assets/NewMultiCampaigns.7779f61b.js",
+    "file": "assets/NewMultiCampaigns.0aaddf34.js",
     "src": "resources/js/components/newcampaign/NewMultiCampaigns.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTable.cb320335.js"
+      "_QTable.cffd3fb0.js"
     ],
     "dynamicImports": [
       "resources/js/components/multicampaigns/AddMultiCampaign.vue",
@@ -251,12 +262,12 @@
     ]
   },
   "resources/js/components/startcampaign/StartCampaign.vue": {
-    "file": "assets/StartCampaign.ea72b641.js",
+    "file": "assets/StartCampaign.66ee0392.js",
     "src": "resources/js/components/startcampaign/StartCampaign.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTable.cb320335.js"
+      "_QTable.cffd3fb0.js"
     ],
     "dynamicImports": [
       "resources/js/components/startcampaign/AddStartCampaign.vue",
@@ -266,8 +277,64 @@
       "assets/StartCampaign.8c78966e.css"
     ]
   },
+  "resources/js/components/stationSheet/StationSheetLogs.vue": {
+    "file": "assets/StationSheetLogs.953966e9.js",
+    "src": "resources/js/components/stationSheet/StationSheetLogs.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_QTable.cffd3fb0.js",
+      "_QTr.db13a5a5.js"
+    ],
+    "dynamicImports": [
+      "resources/js/components/stationSheet/StationSheetLogText.vue"
+    ]
+  },
+  "resources/js/components/stationSheet/SettingPannel.vue": {
+    "file": "assets/SettingPannel.84ef3608.js",
+    "src": "resources/js/components/stationSheet/SettingPannel.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_QTable.cffd3fb0.js",
+      "_QToggle.8bc121d2.js"
+    ]
+  },
+  "resources/js/components/stationSheet/StatusButton.vue": {
+    "file": "assets/StatusButton.a18c3d79.js",
+    "src": "resources/js/components/stationSheet/StatusButton.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_QTable.cffd3fb0.js"
+    ]
+  },
+  "resources/js/components/stationSheet/StationSheetInfo.vue": {
+    "file": "assets/StationSheetInfo.266599dd.js",
+    "src": "resources/js/components/stationSheet/StationSheetInfo.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_QTable.cffd3fb0.js"
+    ]
+  },
+  "resources/js/components/rcsheet/RcStationMessage.vue": {
+    "file": "assets/RcStationMessage.bce6f2fa.js",
+    "src": "resources/js/components/rcsheet/RcStationMessage.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_QBadge.27dc9cbe.js"
+    ],
+    "dynamicImports": [
+      "resources/js/components/countup/index.ts"
+    ],
+    "css": [
+      "assets/RcStationMessage.91aefcb2.css"
+    ]
+  },
   "resources/js/components/countdown/index.ts": {
-    "file": "assets/index.478ba20a.js",
+    "file": "assets/index.902fe15f.js",
     "src": "resources/js/components/countdown/index.ts",
     "isDynamicEntry": true,
     "imports": [
@@ -275,26 +342,26 @@
     ]
   },
   "resources/js/components/multicampaigns/AddMultiCampaign.vue": {
-    "file": "assets/AddMultiCampaign.472af668.js",
+    "file": "assets/AddMultiCampaign.d477c69f.js",
     "src": "resources/js/components/multicampaigns/AddMultiCampaign.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTable.cb320335.js",
-      "_QToggle.9173b993.js"
+      "_QTable.cffd3fb0.js",
+      "_QToggle.8bc121d2.js"
     ]
   },
   "resources/js/components/newcampaign/NewSystemItemList.vue": {
-    "file": "assets/NewSystemItemList.46412872.js",
+    "file": "assets/NewSystemItemList.18638a1e.js",
     "src": "resources/js/components/newcampaign/NewSystemItemList.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_QTable.cb320335.js",
+      "_QTable.cffd3fb0.js",
       "resources/js/app.js"
     ]
   },
   "resources/js/components/newcampaign/NewCustomCampaignDeleteButton.vue": {
-    "file": "assets/NewCustomCampaignDeleteButton.5d1c5270.js",
+    "file": "assets/NewCustomCampaignDeleteButton.94c08081.js",
     "src": "resources/js/components/newcampaign/NewCustomCampaignDeleteButton.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -302,31 +369,39 @@
     ]
   },
   "resources/js/components/newcampaign/EditOperation.vue": {
-    "file": "assets/EditOperation.706eb9b5.js",
+    "file": "assets/EditOperation.7c5cdf3a.js",
     "src": "resources/js/components/newcampaign/EditOperation.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTable.cb320335.js",
-      "_QToggle.9173b993.js"
+      "_QTable.cffd3fb0.js",
+      "_QToggle.8bc121d2.js"
     ]
   },
   "resources/js/components/startcampaign/AddStartCampaign.vue": {
-    "file": "assets/AddStartCampaign.395bb74f.js",
+    "file": "assets/AddStartCampaign.f715ac9b.js",
     "src": "resources/js/components/startcampaign/AddStartCampaign.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTable.cb320335.js",
-      "_QToggle.9173b993.js"
+      "_QTable.cffd3fb0.js",
+      "_QToggle.8bc121d2.js"
     ]
   },
   "resources/js/components/startcampaign/StartSystemItemList.vue": {
-    "file": "assets/StartSystemItemList.e43474cb.js",
+    "file": "assets/StartSystemItemList.14aa71f3.js",
     "src": "resources/js/components/startcampaign/StartSystemItemList.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_QTable.cb320335.js",
+      "_QTable.cffd3fb0.js",
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/components/stationSheet/StationSheetLogText.vue": {
+    "file": "assets/StationSheetLogText.8e803ce0.js",
+    "src": "resources/js/components/stationSheet/StationSheetLogText.vue",
+    "isDynamicEntry": true,
+    "imports": [
       "resources/js/app.js"
     ]
   },
@@ -336,24 +411,28 @@
     "isEntry": true
   },
   "resources/js/views/Timers.css": {
-    "file": "assets/Timers.62853b8c.css",
+    "file": "assets/Timers.561fde60.css",
     "src": "resources/js/views/Timers.css"
   },
-  "resources/js/views/StationSheet.css": {
-    "file": "assets/StationSheet.26844ff2.css",
-    "src": "resources/js/views/StationSheet.css"
+  "resources/js/components/rcsheet/RcStationMessage.css": {
+    "file": "assets/RcStationMessage.91aefcb2.css",
+    "src": "resources/js/components/rcsheet/RcStationMessage.css"
   },
-  "resources/js/components/startcampaign/StartCampaign.css": {
-    "file": "assets/StartCampaign.8c78966e.css",
-    "src": "resources/js/components/startcampaign/StartCampaign.css"
+  "resources/js/views/StationSheet.css": {
+    "file": "assets/StationSheet.3c24086f.css",
+    "src": "resources/js/views/StationSheet.css"
   },
   "resources/js/components/newcampaign/NewMultiCampaigns.css": {
     "file": "assets/NewMultiCampaigns.f4bacb58.css",
     "src": "resources/js/components/newcampaign/NewMultiCampaigns.css"
   },
   "resources/js/views/SoloOperations.css": {
-    "file": "assets/SoloOperations.de00ecd7.css",
+    "file": "assets/SoloOperations.3ba59dc1.css",
     "src": "resources/js/views/SoloOperations.css"
+  },
+  "resources/js/components/startcampaign/StartCampaign.css": {
+    "file": "assets/StartCampaign.8c78966e.css",
+    "src": "resources/js/components/startcampaign/StartCampaign.css"
   },
   "resources/js/app.css": {
     "file": "assets/app.4ba9f0e4.css",
