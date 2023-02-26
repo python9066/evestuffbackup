@@ -166,11 +166,8 @@ class StationController extends Controller
 
         $client = new GuzzleHttpClient();
         $headers = [
-            // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
             'x-gsf-user' => env('RECON_USER', ($variables && array_key_exists('RECON_USER', $variables)) ? $variables['RECON_USER'] : 'DANCE2'),
-            // 'token' =>  env('RECON_TOKEN', "DANCE")
             'token' => env('RECON_TOKEN', ($variables && array_key_exists('RECON_TOKEN', $variables)) ? $variables['RECON_TOKEN'] : 'DANCE2'),
-
         ];
         $response = $client->request('GET', $url, [
             'headers' => $headers,
@@ -236,11 +233,13 @@ class StationController extends Controller
                 } else {
                     $standing = $corp->standing;
                 }
+
                 Station::updateOrCreate(['id' => $stationdata['str_structure_id']], [
                     'name' => $stationdata['str_name'],
                     'standing' => $standing,
                     'system_id' => $stationdata['str_system_id'],
                     'corp_id' => $stationdata['str_owner_corporation_id'],
+                    'alliance_id' => $stationdata['str_owner_alliance_id'] ?? 0,
                     'item_id' => $stationdata['str_type_id'],
                     'text' => null,
                     'station_status_id' => 10,
@@ -295,8 +294,11 @@ class StationController extends Controller
                     'station_id' => $stationdata['str_structure_id'],
                     'station_name' => $stationdata['str_name'],
                     'structure_name' => $item->item_name,
+                    'structure_id' => $item->id,
                     'system_name' => $system->system_name,
+                    'system_id' => $system->id,
                     'corp_ticker' => $corp->ticker,
+                    'corp_id' => $corp->id,
                 ];
 
                 return $data;
@@ -400,7 +402,7 @@ class StationController extends Controller
                 } else {
                     $standing = $corp->standing;
                 }
-
+                // dd($stationdata);
                 Station::updateOrCreate(['id' => $id], [
                     'id' => $stationdata['str_structure_id'],
                     'standing' => $standing,
@@ -478,13 +480,37 @@ class StationController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
         $id = Station::where('added_from_recon', 0)->max('id');
         if ($id == null) {
             $id = 1;
         } else {
             $id = $id + 1;
         }
-        $new = Station::Create($request->all());
+
+        $new = new Station();
+        $new->id = $id;
+        $new->name = $request->name;
+        $new->system_id = $request->system_id;
+        $new->corp_id = $request->corp_id;
+        $new->item_id = $request->item_id;
+        $new->station_status_id = $request->station_status_id;
+        $new->out_time = $request->out_time;
+        $new->status_update = now();
+        $new->timestamp = now();
+        $new->timer_image_link = $request->timer_image_link;
+        $new->added_by_user_id = $user->id;
+        $new->r_cored = 0;
+        $new->log_helper = 2;
+
+        if ($user->can('add_timer')) {
+            $new->show_on_rc_move = 0;
+        } else {
+            $new->show_on_rc_move = 1;
+        }
+
+
+
         $corp = Corp::where('id', $new->corp_id)->first();
         $corpStanding = $corp->standing;
         $allianceStanding = null;
@@ -503,32 +529,42 @@ class StationController extends Controller
             $standing = $corpStanding;
         }
 
-        $new->update(['standing' => $standing]);
-        $now = now();
-        $new->update(['id' => $id, 'added_by_user_id' => Auth::id()]);
-        $message = StationRecords::where('id', $new->id)->first();
+        $new->standing = $standing;
+        $new->save();
+    }
+
+
+    public function addStationTimer(Request $request, $id)
+    {
+        $user = Auth::user();
+        $station = Station::whereId($id)->first();
+        $station->station_status_id = $request->station_status_id;
+        $station->out_time = $request->out_time;
+        $station->status_update = now();
+        $station->timestamp = now();
+        $station->timer_image_link = $request->timer_image_link;
+        $station->added_by_user_id = $user->id;
+        $station->r_cored = 0;
+        $station->log_helper = 2;
+        $station->show_on_coord = 0;
+        if ($user->can('add_timer')) {
+            $station->show_on_rc_move = 0;
+        } else {
+            $station->show_on_rc_move = 1;
+        }
+
+        $station->save();
+
+        $message = StationRecordsSolo(6, $id);
         $flag = collect([
-            'message' => $message,
+            'flag' => $message,
         ]);
-        broadcast(new StationNotificationNew($flag));
+        broadcast(new StationSheetUpdate($flag));
 
-        broadcast(new RcMoveUpdate($flag));
-
-        if ($request->show_on_chill == 1) {
-            $message = ChillStationRecords::where('id', $new->id)->first();
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new ChillSheetUpdate($flag));
-        }
-
-        if ($request->show_on_welp == 1) {
-            $message = WelpStationRecords::where('id', $new->id)->first();
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new WelpSheetUpdate($flag));
-        }
+        $flag = collect([
+            'id' => $id,
+        ]);
+        broadcast(new StationDeadStationSheet($flag));
     }
 
     public function updateAttackMessage(Request $request, $id)
