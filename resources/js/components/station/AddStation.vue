@@ -1,792 +1,539 @@
 <template>
   <div>
-    <v-dialog
+    <q-btn
+      v-if="props.from == 1"
+      color="primary"
+      icon="fa-solid fa-plus"
+      label="Add Timer"
+      @click="showAddStation = true"
+    />
+    <q-btn
+      v-if="props.from == 2"
+      color="primary"
+      icon="fa-solid fa-clock"
+      round
+      padding="none"
+      flat
+      @click="showAddStation = true"
+    />
+    <q-dialog
+      class="myRoundTop"
+      @before-show="open()"
       max-width="700px"
-      z-index="0"
-      v-model="showStationTimer"
-      @click:outside="close()"
+      v-model="showAddStation"
+      persistent
+      @before-hide="close()"
     >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="pink darken-2"
-          dark
-          v-bind="attrs"
-          v-on="on"
-          @click="open()"
+      <q-card class="myRoundTop" max-width="700px">
+        <q-tab-panels
+          v-model="panel"
+          animated
+          class="shadow-2 rounded-borders myStationPannel"
         >
-          <font-awesome-icon icon="fa-solid fa-plus" />
-          Add Timer
-        </v-btn>
-      </template>
+          <q-tab-panel class="q-pa-none" name="addName">
+            <q-card class="my-card" flat>
+              <img src="https://i.imgur.com/1ASFxRr.gif" />
+              <q-card-section>
+                <div class="text-h6 text-center">Enter Structure Name</div>
+              </q-card-section>
+              <q-card-section>
+                <q-input
+                  v-model="stationName"
+                  type="text"
+                  label="Structure Name"
+                  rounded
+                  label-color="webway"
+                  standout
+                />
+              </q-card-section>
+              <q-card-actions horizontal align="right">
+                <q-btn
+                  rounded
+                  color="primary"
+                  :disable="addNameDisable"
+                  label="Submit"
+                  @click="stationNameAdd()"
+                />
+                <q-btn rounded color="negative" label="Close" v-close-popup />
+              </q-card-actions>
+            </q-card>
+          </q-tab-panel>
 
-      <v-card
-        tile
-        max-width="700px"
-        min-height="200px"
-        max-height="1000px"
-        class="d-flex flex-column"
-      >
-        <v-card-title class="justify-center">
-          <v-img
-            v-if="state == 1"
-            src="https://i.imgur.com/1ASFxRr.gif"
-            max-height="500px"
-            max-width="650px"
-          ></v-img>
-          <p v-if="state == 1">Enter Structure Name</p>
-          <p v-if="state == 2">Enter Details for {{ stationNameEdit }}</p>
-          <p v-if="state == 3">
-            Enter Details for {{ stationPull.station_name }}
-          </p>
-        </v-card-title>
-        <v-card-text>
-          <div
-            class="d-inline-flex align-content-center justify-content-around"
-            v-if="state == 1"
-          >
-            <v-text-field
-              v-model="stationNameEdit"
-              :readonly="stationReadonly"
-              :outlined="stationOutlined"
-              autofocus
-              placeholder="1DQ1-A - Thetastar of Dickbutt"
-              :label="stationLable"
-              :rules="[rules.required]"
-              class="shrink"
-              style="width: 600px"
-            ></v-text-field>
-            <div class="pl-2 pt-2">
-              <v-chip
-                v-if="state == 1"
-                pill
-                :disabled="stationNameNext"
-                color="green"
-                @click="stationNameAdd()"
-              >
-                Next
-              </v-chip>
-            </div>
-          </div>
-          <v-fade-transition>
-            <div v-if="state == 2">
-              <div>
-                <v-autocomplete
-                  v-model="structSelect"
-                  :loading="structLoading"
-                  :items="structItems"
-                  :rules="[rules.required]"
-                  :search-input.sync="structSearch"
-                  clearable
-                  autofocus
+          <q-tab-panel class="q-pa-none myRoundTop" name="details">
+            <q-card class="myRoundTop" flat>
+              <q-card-section class="bg-primary text-center">
+                <h5 class="no-margin">Enter Details for {{ stationName }}</h5>
+              </q-card-section>
+              <q-card-section class="q-py-xs">
+                <q-input
+                  v-model="stationName"
+                  type="text"
+                  label="Structure Name"
+                  label-color="webway"
+                  rounded
+                  outlined
+                  hide-bottom-space
+                  standout
+                  readonly
+                />
+              </q-card-section>
+              <q-card-section class="q-py-xs">
+                <q-select
+                  v-model="structureSelect"
+                  :options="structureListFilter"
+                  :autofocus="focusStructure"
+                  option-value="value"
+                  option-label="text"
                   label="Structure Type"
+                  rounded
                   outlined
-                ></v-autocomplete>
-              </div>
-              <div class="d-inline-flex justify-content-around align-top">
-                <v-autocomplete
-                  v-model="sysSelect"
-                  :loading="sysLoading"
-                  :rules="[rules.required]"
+                  use-input
                   clearable
-                  :items="sysItems"
-                  :search-input.sync="sysSearch"
-                  label="System Name"
-                  outlined
-                ></v-autocomplete>
-                <v-autocomplete
-                  class="ml-2"
-                  v-model="tickSelect"
-                  :loading="tickLoading"
-                  :rules="[rules.required]"
-                  clearable
-                  :items="tickItems"
-                  :search-input.sync="tickSearch"
-                  label="Corp Ticker"
-                  outlined
-                ></v-autocomplete>
-                <AddMissingCorp
-                  class="pt-3 pl-1"
-                  @setTicker="setTicker()"
-                ></AddMissingCorp>
-              </div>
-              <div>
-                <h5><strong>Timer Type</strong></h5>
-                <v-radio-group v-model="refType" row :rules="[rules.required]">
-                  <v-radio label="Anchoring" value="14"></v-radio>
-                  <v-radio label="Armor" value="5"></v-radio>
-                  <v-radio label="Hull" value="13"></v-radio>
-                  <v-radio
-                    v-if="this.type == 1"
-                    label="Online"
-                    value="16"
-                  ></v-radio>
-                </v-radio-group>
-              </div>
-              <div v-if="this.type == 3">
-                <h5><strong>Image Link</strong></h5>
-                <v-img src="../image/info.png"> </v-img>
-                <v-text-field
-                  :rules="[rules.required]"
-                  v-model="imageLink"
+                  @filter="structureFilterStart"
+                  :readonly="setReadOnly()"
+                />
+              </q-card-section>
+              <q-card-section class="q-py-xs">
+                <div class="row">
+                  <div class="col-6">
+                    <q-select
+                      v-model="systemSelect"
+                      :options="systemListFilter"
+                      option-value="value"
+                      option-label="text"
+                      label="System Name"
+                      outlined
+                      rounded
+                      use-input
+                      clearable
+                      @filter="systemFilterStart"
+                      :readonly="setReadOnly()"
+                    />
+                  </div>
+                  <div class="col-6 flex justify-center">
+                    <q-select
+                      v-model="corpSelect"
+                      :options="tickerlistFilter"
+                      option-value="value"
+                      option-label="text"
+                      label="Corp Ticker"
+                      outlined
+                      rounded
+                      use-input
+                      clearable
+                      @filter="tickerFilterStart"
+                      :readonly="setReadOnly()"
+                    />
+                    <AddMissingCorp
+                      v-if="checkIfMissingCorp"
+                      class="pt-3 pl-1"
+                      @missingCorpDone="setTicker()"
+                    ></AddMissingCorp>
+                  </div>
+                </div>
+              </q-card-section>
+              <q-separator inset color="webway" />
+              <q-card-section>
+                <span class="text-subtitle1 text-bold"> Timer Type</span>
+                <q-option-group
+                  v-model="timerTypePick"
+                  color="secondary"
+                  :options="timerTypeOptions"
+                  inline
+                />
+              </q-card-section>
+              <q-separator inset color="webway" />
+              <q-card-section>
+                <span class="text-subtitle1 text-bold"> Image Link</span>
+                <q-img :src="imageUrl" alt="My Image" />
+                <q-input
+                  class="q-pt-xs"
+                  v-model="imgLink"
+                  type="text"
                   label="Selected Items Screen Shot"
-                ></v-text-field>
-              </div>
-              <div>
-                <h5>
-                  <strong>Enter Reinforced Until Timerr</strong>
-                </h5>
-                <v-text-field
-                  :rules="[rules.required]"
-                  v-if="this.type != 1"
-                  v-model="refTime"
+                  rounded
+                  hide-bottom-space
+                  outlined
+                  label-color="webway"
+                  standout
+                />
+              </q-card-section>
+              <q-card-section class="q-pt-none q-pb-none">
+                Enter Reinforced Until Timer enter
+                <q-input
+                  v-model="timer"
+                  mask="####.##.## ##:##:##"
+                  type="text"
+                  :error-message="timeErrorMessage"
                   label="Reinforced unit YYYY.MM.DD hh:mm:ss"
-                  v-mask="'####.##.## ##:##:##'"
-                  placeholder="YYYY.MM.DD HH:mm:ss"
-                  @keyup.enter="(timerShown = false), addHacktime()"
-                  @keyup.esc="(timerShown = false), (hackTime = null)"
-                ></v-text-field>
-                <v-alert
-                  :value="showWarning"
-                  dark
-                  type="warning"
-                  border="top"
-                  icon="mdi-home"
-                  transition="scale-transition"
-                >
-                  <span class="text-center">
-                    TIMER IS NOT VAILD OR INCORRECT FORMAT
-                  </span>
-                </v-alert>
-              </div>
-            </div>
-          </v-fade-transition>
-          <v-fade-transition>
-            <div v-if="state == 3">
-              <div>
-                <v-text-field
-                  v-model="stationPull.structure_name"
-                  label="Structure Type"
-                  readonly
-                ></v-text-field>
-              </div>
-              <div class="d-inline-flex justify-content-around">
-                <v-text-field
-                  v-model="stationPull.system_name"
-                  label="System Name"
-                  readonly
-                ></v-text-field>
-                <v-text-field
-                  v-model="stationPull.corp_ticker"
-                  label="Corp Ticker"
-                  readonly
-                ></v-text-field>
-              </div>
-              <div>
-                <h5><strong>Timer Type</strong></h5>
-                <v-radio-group v-model="refType" row :rules="[rules.required]">
-                  <v-radio label="Anchoring" value="14"></v-radio>
-                  <v-radio label="Armor" value="5"></v-radio>
-                  <v-radio label="Hull" value="13"></v-radio>
-                  <v-radio
-                    v-if="this.type == 1"
-                    label="Online"
-                    value="16"
-                  ></v-radio>
-                </v-radio-group>
-              </div>
-              <div v-if="this.type == 3">
-                <h5><strong>Image Link 1</strong></h5>
-                <v-img src="../image/info.png"> </v-img>
-                <v-text-field
-                  :rules="[rules.required]"
-                  v-model="imageLink"
-                  label="Selected Items Screen Shot"
-                ></v-text-field>
-              </div>
-              <div>
-                <h5>
-                  <strong>Enter Reinforced Until Timer</strong>
-                </h5>
-                <v-text-field
-                  v-model="refTime"
-                  :rules="[rules.required]"
-                  label="Reinforced unit YYYY.MM.DD hh:mm:ss"
-                  v-mask="'####.##.## ##:##:##'"
-                  placeholder="YYYY.MM.DD HH:mm:ss"
-                  @keyup.enter="(timerShown = false), addHacktime()"
-                  @keyup.esc="(timerShown = false), (hackTime = null)"
-                ></v-text-field>
-                <v-alert
-                  :value="showWarning"
-                  dark
-                  type="warning"
-                  border="top"
-                  icon="mdi-home"
-                  transition="scale-transition"
-                >
-                  <span class="text-center">
-                    TIMER IS NOT VAILD OR INCORRECT FORMAT
-                  </span>
-                </v-alert>
-              </div>
-            </div>
-          </v-fade-transition>
-        </v-card-text>
-        <v-spacer></v-spacer
-        ><v-card-actions>
-          <v-btn class="white--text" color="teal" @click="close()">
-            Close
-          </v-btn>
-          <v-btn
-            class="white--text"
-            color="green"
-            :disabled="showSubmit"
-            @click="submit()"
-            v-if="state == 2"
-          >
-            Submit </v-btn
-          ><v-btn
-            class="white--text"
-            color="green"
-            :disabled="showSubmit3"
-            @click="submit3()"
-            v-if="state == 3"
-          >
-            Submit
-          </v-btn></v-card-actions
-        >
-      </v-card>
-    </v-dialog>
+                  rounded
+                  outlined
+                  :error="dateError"
+                  label-color="webway"
+                  standout
+                />
+              </q-card-section>
+              <q-card-actions align="right">
+                <q-btn
+                  :disable="!isFormCorrect"
+                  color="positive"
+                  label="Submit"
+                  @click="submit()"
+                  rounded
+                  v-close-popup
+                />
+                <q-btn label="Close" rounded color="negative" v-close-popup />
+              </q-card-actions>
+            </q-card>
+          </q-tab-panel>
+        </q-tab-panels>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
-<script>
-import { mapState, mapGetters } from "vuex";
-import moment from "moment";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  props: {
-    type: Number,
-    type2: Number,
-  },
+<script setup>
+import { inject, defineAsyncComponent, defineEmits } from "vue";
+import { useMainStore } from "@/store/useMain.js";
+import myImage from "@/img/info.png";
 
-  async created() {
-    this.setShow();
-  },
-  data() {
-    return {
-      imageLink: null,
-      systems: [],
-      stationNameEdit: null,
-      state: 1,
-      showStationTimer: false,
-      stationName: null,
-      sysItems: [],
-      systemEdit: null,
-      sysSearch: null,
-      sysSelect: null,
-      sysLoading: false,
-      tickItems: [],
-      ticktemEdit: null,
-      tickSearch: null,
-      tickSelect: null,
-      tickLoading: false,
-      tickerEdit: null,
-      stationPull: [],
-      structItems: [],
-      structemEdit: null,
-      structSearch: null,
-      structSelect: null,
-      structLoading: false,
-      structerEdit: null,
-      refType: null,
-      refTime: {
-        d: "",
-        hh: "",
-        mm: "",
-        ss: "",
-      },
+let store = useMainStore();
+let can = inject("can");
 
-      rules: {
-        required: (value) => !!value || "Required",
-      },
-      show_on_main: 0,
-      show_on_chill: 0,
-      show_on_welp: 0,
-      show_on_rc_move: 0,
-      show_rc: 0,
+const emit = defineEmits(["missingCorpDone"]);
+const props = defineProps({
+  from: { type: Number, default: 1 },
+  station: { type: Object, required: false },
+});
+
+const AddMissingCorp = defineAsyncComponent(() => import("./AddMissingCorp.vue"));
+
+let imageUrl = $ref(myImage);
+let showAddStation = $ref(false);
+let panel = $ref("addName");
+let stationName = $ref(null);
+let systemSelect = $ref();
+let corpSelect = $ref();
+let timerTypePick = $ref({});
+let imgLink = $ref();
+let timer = $ref("");
+let structureSelect = $ref();
+let state = $ref();
+let stationId = $ref();
+
+let timerTypeOptions = $ref([
+  {
+    label: "Anchoring",
+    value: 14,
+  },
+  {
+    label: "Armor",
+    value: 5,
+  },
+  {
+    label: "Hull",
+    value: 13,
+  },
+]);
+
+let open = async () => {
+  if (props.from == 2) {
+    panel = "details";
+    state = 3;
+
+    corpSelect = {
+      text: props.station.corp.ticker,
+      value: props.station.corp_id,
     };
-  },
+    systemSelect = {
+      text: props.station.system.system_name,
+      value: props.station.system_id,
+    };
+    structureSelect = {
+      text: props.station.item.item_name,
+      value: props.station.item_id,
+    };
+    stationName = props.station.name;
+    stationId = props.station.id;
+  }
+  await store.getSystemList();
+  await store.getTickList();
+  await store.getStructureList();
+};
 
-  watch: {
-    sysSearch(val) {
-      val && val !== this.sysSelect && this.sysQuerySelections(val);
-    },
+let close = () => {
+  panel = "addName";
+  stationName = null;
+  systemSelect = null;
+  corpSelect = null;
+  timerTypePick = {};
+  imgLink = null;
+  timer = "";
+  structureSelect = null;
+  state = null;
+  stationId = null;
+};
 
-    tickSearch(val) {
-      val && val !== this.tickSelect && this.tickQuerySelections(val);
-    },
+let structureText = $ref();
+let structureListFilter = $computed(() => {
+  if (structureText) {
+    return store.structurelist.filter(
+      (d) => d.text.toLowerCase().indexOf(structureText) > -1
+    );
+  }
+  return store.structurelist;
+});
 
-    structSearch(val) {
-      val && val !== this.structSelect && this.structQuerySelections(val);
-    },
-  },
+let structureFilterStart = (val, update, abort) => {
+  update(() => {
+    structureText = val.toLowerCase();
+    if (structureListFilter.length > 0 && val) {
+      structureSelect = structureListFilter[0];
+    }
+  });
+};
 
-  methods: {
-    setShow() {
-      if (this.type == 1) {
-        this.show_on_main = 1;
-      }
-      if (this.type == 2) {
-        if (this.type2 == 1) {
-          this.show_on_chill = 1;
-        }
-        if (this.type2 == 2) {
-          this.show_on_welp = 1;
-        }
-      }
-      if (this.type == 3) {
-        this.show_on_rc_move = 1;
-      }
-    },
-    tickQuerySelections(v) {
-      this.tickLoading = true;
-      // Simulated ajax query
-      setTimeout(() => {
-        this.tickItems = this.tickList.filter((e) => {
-          return (
-            (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1
-          );
-        });
-        this.tickLoading = false;
-      }, 500);
-    },
+let systemText = $ref();
+let systemListFilter = $computed(() => {
+  if (systemText) {
+    return store.systemlist.filter((d) => d.text.toLowerCase().indexOf(systemText) > -1);
+  }
+  return store.systemlist;
+});
 
-    async setTicker() {
-      //   this.$nextTick(() => {
-      //     this.tickSearch = this.$store.state.missingCorpTick;
-      //     this.tickSelect = this.$store.state.missingCorpID;
-      //   });
-      await sleep(1000);
-      this.tickSearch = this.missingCorpTick;
-      this.tickSelect = this.missingCorpID;
-    },
+let systemFilterStart = (val, update, abort) => {
+  update(() => {
+    systemText = val.toLowerCase();
+    if (systemListFilter.length > 0 && val) {
+      systemSelect = systemListFilter[0];
+    }
+  });
+};
 
-    structQuerySelections(v) {
-      this.structLoading = true;
-      // Simulated ajax query
-      setTimeout(() => {
-        this.structItems = this.structureList.filter((e) => {
-          return (
-            (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1
-          );
-        });
-        this.structLoading = false;
-      }, 500);
-    },
+let tickerText = $ref();
+let tickerlistFilter = $computed(() => {
+  if (tickerText) {
+    return store.ticklist.filter((d) => d.text.toLowerCase().indexOf(tickerText) > -1);
+  }
+  return store.ticklist;
+});
 
-    sysQuerySelections(v) {
-      this.sysLoading = true;
-      // Simulated ajax query
-      setTimeout(() => {
-        this.sysItems = this.systemList.filter((e) => {
-          return (
-            (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1
-          );
-        });
-        this.sysLoading = false;
-      }, 500);
-    },
+let tickerFilterStart = (val, update, abort) => {
+  update(() => {
+    tickerText = val.toLowerCase();
+    if (tickerlistFilter.length > 0 && val) {
+      corpSelect = tickerlistFilter[0];
+    }
+  });
+};
 
-    close() {
-      this.imageLink = null;
-      this.refType = null;
-      this.refTime = {
-        d: "",
-        hh: "",
-        mm: "",
-        ss: "",
+let setTicker = async () => {
+  await store.getTickList();
+  tickerText = [];
+  corpSelect = {
+    text: store.missingCorpTick,
+    value: store.missingCorpID,
+  };
+};
+
+let checkIfMissingCorp = $computed(() => {
+  if (tickerlistFilter.length == 0) {
+    return true;
+  }
+  return false;
+});
+
+let focusStructure = $computed(() => {
+  if (state == 2) {
+    return true;
+  }
+  return false;
+});
+
+let stationNameAdd = async () => {
+  var request = {
+    stationName: stationName,
+  };
+  await axios({
+    method: "put", //you can set what request you want to be
+    url: "api/stationname",
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  }).then((response) => {
+    let res = response.data;
+    if (res.state == 2) {
+      state = 2;
+      panel = "details";
+    }
+
+    if (res.state == 3) {
+      state = 3;
+      corpSelect = {
+        text: res.corp_ticker,
+        value: res.corp_id,
       };
-      this.stationNameEdit = null;
-      this.state = 1;
-      this.systems = [];
-      this.sysItems = [];
-      this.systemEdit = null;
-      this.sysLoading = false;
-      this.structemEdit = [];
-      this.stationPull = [];
-      this.structLoading = false;
-      this.structerEdit = null;
-      this.stationName = null;
-      this.structItems = [];
-      this.structSearch = null;
-      this.structSelect = null;
-      this.sysSearch = null;
-      this.sysSelect = null;
-      this.showStationTimer = false;
-      this.ticktemEdit = null;
-      this.tickLoading = false;
-      this.tickerEdit = null;
-      this.tickItems = [];
-      this.tickSearch = null;
-      this.tickSelect = null;
-    },
-
-    async submit() {
-      if (this.type != 1) {
-        var full = this.refTime.replace(".", "-");
-        full = full.replace(".", "-");
-        var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
-      } else {
-        var outTime = moment.utc().format("YYYY-MM-DD HH:mm:ss");
-      }
-
-      // var ds = d * 24 * 60 * 60;
-      // var hs = h * 60 * 60;
-      // var ms = m * 60;
-      // var sec = ds + hs + ms + s;
-      // var outTime = moment
-      //     .utc()
-      //     .add(sec, "seconds")
-      //     .format("YYYY-MM-DD HH:mm:ss");
-
-      var request = {
-        name: this.stationName,
-        system_id: this.sysSelect,
-        corp_id: this.tickSelect,
-        item_id: this.structSelect,
-        station_status_id: this.refType,
-        out_time: outTime,
-        status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-        timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-        show_on_main: this.show_on_main,
-        show_on_chill: this.show_on_chill,
-        show_on_welp: this.show_on_welp,
-        show_on_rc_move: this.show_on_rc_move,
-        timer_image_link: this.imageLink,
-        show_on_rc: 0,
-        rc_id: null,
-        rc_fc_id: null,
-        rc_gsol_id: null,
-        rc_recon_id: null,
-        show_on_main: this.show_on_main,
-        show_on_chill: this.show_on_chill,
-        show_on_welp: this.show_on_welp,
-        show_on_rc_move: this.show_on_rc_move,
-        show_on_rc: this.show_rc,
-        show_on_coord: this.showOnCoord,
+      systemSelect = {
+        text: res.system_name,
+        value: res.system_id,
       };
-
-      await axios({
-        method: "put", //you can set what request you want to be
-        url: "api/stationnew",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }).then(
-        (this.imageLink = null),
-        (this.refType = null),
-        (this.refTime = {
-          d: "",
-          hh: "",
-          mm: "",
-          ss: "",
-        }),
-        (this.stationNameEdit = null),
-        (this.state = 1),
-        (this.systems = []),
-        (this.sysItems = []),
-        (this.systemEdit = null),
-        (this.sysLoading = false),
-        (this.structemEdit = []),
-        (this.stationPull = []),
-        (this.structLoading = false),
-        (this.structerEdit = null),
-        (this.stationName = null),
-        (this.structItems = []),
-        (this.structSearch = null),
-        (this.structSelect = null),
-        (this.sysSearch = null),
-        (this.sysSelect = null),
-        (this.showStationTimer = false),
-        (this.ticktemEdit = null),
-        (this.tickLoading = false),
-        (this.tickerEdit = null),
-        (this.tickItems = []),
-        (this.tickSearch = null),
-        (this.tickSelect = null)
-      );
-    },
-
-    async submit3() {
-      if (this.type != 1) {
-        var full = this.refTime.replace(".", "-");
-        full = full.replace(".", "-");
-        var outTime = moment(full).format("YYYY-MM-DD HH:mm:ss");
-      } else {
-        var outTime = moment.utc().format("YYYY-MM-DD HH:mm:ss");
-      }
-
-      var request = {
-        station_status_id: this.refType,
-        out_time: outTime,
-        status_update: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-        show_on_main: this.show_on_main,
-        show_on_chill: this.show_on_chill,
-        show_on_welp: this.show_on_welp,
-        show_on_rc_move: this.show_on_rc_move,
-        timer_image_link: this.imageLink,
-        show_on_rc: 0,
-        rc_id: null,
-        rc_fc_id: null,
-        rc_gsol_id: null,
-        rc_recon_id: null,
-        show_on_main: this.show_on_main,
-        show_on_chill: this.show_on_chill,
-        show_on_welp: this.show_on_welp,
-        show_on_rc_move: this.show_on_rc_move,
-        show_on_rc: this.show_rc,
+      structureSelect = {
+        text: res.structure_name,
+        value: res.structure_id,
       };
+      stationName = res.station_name;
+      stationId = res.station_id;
 
-      await axios({
-        method: "put", //you can set what request you want to be
-        url: "api/updatestationnotification/" + this.stationPull.station_id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }).then(
-        (this.imageLink = null),
-        (this.refType = null),
-        (this.refTime = {
-          d: "",
-          hh: "",
-          mm: "",
-          ss: "",
-        }),
-        (this.stationNameEdit = null),
-        (this.state = 1),
-        (this.systems = []),
-        (this.sysItems = []),
-        (this.systemEdit = null),
-        (this.sysLoading = false),
-        (this.structemEdit = []),
-        (this.stationPull = []),
-        (this.structLoading = false),
-        (this.structerEdit = null),
-        (this.stationName = null),
-        (this.structItems = []),
-        (this.structSearch = null),
-        (this.structSelect = null),
-        (this.sysSearch = null),
-        (this.sysSelect = null),
-        (this.showStationTimer = false),
-        (this.ticktemEdit = null),
-        (this.tickLoading = false),
-        (this.tickerEdit = null),
-        (this.tickItems = []),
-        (this.tickSearch = null),
-        (this.tickSelect = null)
-      );
-    },
+      panel = "details";
+    }
+  });
+};
 
-    async open() {
-      await this.$store.dispatch("getSystemList");
-      await this.$store.dispatch("getTickList");
-      await this.$store.dispatch("getStructureList");
-    },
+let setReadOnly = () => {
+  if (state == 3) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
-    async stationNameAdd() {
-      var request = {
-        stationName: this.stationNameEdit,
-        show: this.type,
-      };
-      await axios({
-        method: "put", //you can set what request you want to be
-        url: "api/stationname",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }).then((response) => {
-        let res = response.data;
-        if (res.state == 2) {
-          this.stationPull = res;
-          this.stationName = res.station_name;
-          this.state = res.state;
-        }
+let dateError = $computed(() => {
+  if (dateCount) {
+    if (!isDateValidFormat || !isDateWithinTime) {
+      return true;
+    }
+  }
+  return false;
+});
 
-        if (res.state == 3) {
-          this.stationPull = res;
-          this.state = res.state;
-        }
-      });
-    },
-  },
+let dateCount = $computed(() => {
+  if (timer.length == 19) {
+    return true;
+  }
+  return false;
+});
 
-  computed: {
-    ...mapGetters([]),
-    ...mapState([
-      "systemlist",
-      "ticklist",
-      "structurelist",
-      "missingCorpID",
-      "missingCorpTick",
-    ]),
+let isDateValidFormat = $computed(() => {
+  const pattern = /^\d{4}\.\d{2}\.\d{2} \d{2}:\d{2}:\d{2}$/;
+  return pattern.test(timer);
+});
 
-    stationNameNext() {
-      if (this.stationNameEdit == null) {
-        return true;
-      } else {
-        return false;
-      }
-    },
+let isDateWithinTime = $computed(() => {
+  if (isDateValidFormat) {
+    const start = Date.now();
+    const end = start + 5 * 24 * 60 * 60 * 1000;
+    const date = new Date(timer);
+    const time = date.getTime();
+    return time >= start && time <= end;
+  }
+  return false;
+});
 
-    systemList() {
-      return this.systemlist;
-    },
+let timeErrorMessage = $computed(() => {
+  if (!isDateValidFormat) {
+    return "Format is incorrect";
+  }
+  if (!isDateWithinTime) {
+    return "Make sure the date is correct";
+  }
+});
 
-    count() {
-      return this.stationNameEdit.length();
-    },
+let isFormCorrect = $computed(() => {
+  if (
+    dateCount &&
+    isDateValidFormat &&
+    isDateWithinTime &&
+    systemSelect &&
+    corpSelect &&
+    timerTypePick > 0 &&
+    imgLink &&
+    structureSelect
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+});
 
-    stationReadonly() {
-      if (this.state == 1) {
-        return false;
-      } else {
-        return true;
-      }
-    },
-    showSubmit() {
-      if (this.type == 3) {
-        if (
-          this.structSelect != null &&
-          this.sysSelect != null &&
-          this.tickSelect != null &&
-          this.refType != null &&
-          this.imageLink != null &&
-          this.vaildDate == true
-        ) {
-          return false;
-        } else {
-          return true;
-        }
-      } else {
-        if (
-          this.structSelect != null &&
-          this.sysSelect != null &&
-          this.tickSelect != null &&
-          this.refType != null &&
-          this.vaildDate == true
-        ) {
-          return false;
-        } else {
-          return true;
-        }
-      }
-    },
-    showSubmit3() {
-      if (this.type == 3) {
-        if (
-          this.refType != null &&
-          this.vaildDate == true &&
-          this.imageLink != null
-        ) {
-          return false;
-        } else {
-          return true;
-        }
-      } else {
-        if (this.refType != null && this.vaildDate == true) {
-          return false;
-        } else {
-          return true;
-        }
-      }
-    },
-    stationOutlined() {
-      if (this.state == 1) {
-        return true;
-      } else {
-        return false;
-      }
-    },
+let addNameDisable = $computed(() => {
+  if (stationName) {
+    return false;
+  } else {
+    return true;
+  }
+});
 
-    showOnCoord() {
-      if (this.refType == 5 || this.refType == 13) {
-        return 0;
-      } else {
-        return 1;
-      }
-    },
+let submit = () => {
+  if (state == 2) {
+    submitNewStation();
+  }
+  if (state == 3) {
+    updateStation();
+  }
+};
 
-    vaildDate() {
-      if (this.count == 19) {
-        var full = this.refTime.replace(".", "-");
-        full = full.replace(".", "-");
-        var vaild = moment(full).format("YYYY-MM-DD HH:mm:ss", true);
-        if (vaild == "Invalid date") {
-          return false;
-        } else {
-          if (vaild > moment.utc().format("YYYY-MM-DD HH:mm:ss")) {
-            return true;
-          } else {
-            return false;
-          }
-        }
-      } else {
-        return false;
-      }
-    },
+let submitNewStation = async () => {
+  const date = new Date(timer);
+  const year = date.getUTCFullYear();
+  const month = `0${date.getUTCMonth() + 1}`.slice(-2);
+  const day = `0${date.getUTCDate()}`.slice(-2);
+  const hours = `0${date.getUTCHours()}`.slice(-2);
+  const minutes = `0${date.getUTCMinutes()}`.slice(-2);
+  const seconds = `0${date.getUTCSeconds()}`.slice(-2);
+  const newDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
-    count() {
-      return this.refTime.length;
-    },
+  var request = {
+    name: stationName,
+    system_id: systemSelect.value,
+    corp_id: corpSelect.value,
+    item_id: structureSelect.value,
+    station_status_id: timerTypePick,
+    out_time: newDate,
+    timer_image_link: imgLink,
+  };
 
-    showWarning() {
-      if (this.count == 19 && this.vaildDate == false) {
-        return true;
-      } else {
-        return false;
-      }
+  await axios({
+    method: "put", //you can set what request you want to be
+    url: "api/stationnew",
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  });
+};
 
-    structureList() {
-      return this.structurelist;
+let updateStation = async () => {
+  const date = new Date(timer);
+  const year = date.getUTCFullYear();
+  const month = `0${date.getUTCMonth() + 1}`.slice(-2);
+  const day = `0${date.getUTCDate()}`.slice(-2);
+  const hours = `0${date.getUTCHours()}`.slice(-2);
+  const minutes = `0${date.getUTCMinutes()}`.slice(-2);
+  const seconds = `0${date.getUTCSeconds()}`.slice(-2);
+  const newDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+  var request = {
+    station_status_id: timerTypePick,
+    out_time: newDate,
+    timer_image_link: imgLink,
+  };
+
+  await axios({
+    method: "put", //you can set what request you want to be
+    url: "api/timer/addTimer/" + stationId,
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-
-    stationLable() {
-      if (this.state == 1) {
-        return "Enter FULL Structure Name here";
-      } else {
-        return "";
-      }
-    },
-
-    tickList() {
-      return this.ticklist;
-    },
-  },
-
-  beforeDestroy() {},
+  });
 };
 </script>
 
-<style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-</style>
+<style lang="sass" scoped></style>

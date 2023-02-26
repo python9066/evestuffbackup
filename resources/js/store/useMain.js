@@ -17,12 +17,16 @@ export const useMainStore = defineStore("main", {
         stationListFCRegions: [],
         stationListRegionList: [],
         systemlist: [],
+        structurelist: [],
         stationList: [],
         timers: [],
         timersRegions: [],
+        ticklist: [],
         stationChatWindowId: null,
         user_name: null,
         user_id: null,
+        missingCorpID: 0,
+        missingCorpTick: "",
         webwayStartSystems: [],
         webwaySelectedStartSystem: {
             value: 30004759,
@@ -72,6 +76,60 @@ export const useMainStore = defineStore("main", {
         },
     },
     actions: {
+        async updateTickList(ticker) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/addmissingcorp/" + ticker,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.ticklist = res.data.ticklist;
+            this.misingCorpID = res.data.corpID;
+            this.missingCorpTicker = res.data.corpTicker;
+        },
+
+        async getStructureList() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/structurelist",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.structurelist = res.data.structurelist;
+        },
+
+        async getSystemList() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/systemlist",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.systemlist = res.data.systemlist;
+        },
+
+        async getTickList() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/ticklist",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.ticklist = res.data.ticklist;
+        },
+
         markOver(id) {
             var item = this.timers.find((item) => item.id === id);
             item.status = 1;
@@ -322,10 +380,8 @@ export const useMainStore = defineStore("main", {
         },
 
         deleteStationSheetNotification(id) {
-            let index = this.stationList.findIndex((s) => s.id == id);
-            if (index >= 0) {
-                this.stationList.splice(index, 1);
-            }
+            let index = this.stationList.filter((s) => s.id != id);
+            this.stationList = index;
         },
     },
 });

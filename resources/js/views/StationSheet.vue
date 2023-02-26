@@ -301,7 +301,7 @@
           </q-td>
           <q-td key="actions" :props="props">
             <div class="row">
-              <div class="col">T</div>
+              <div class="col"><AddStation :from="2" :station="props.row" /></div>
               <div class="col">
                 <RcStationMessage :station="props.row" :type="4"></RcStationMessage>
               </div>
@@ -365,6 +365,10 @@ const StationInfoSheet = defineAsyncComponent(() =>
 
 const RcStationMessage = defineAsyncComponent(() =>
   import("../components/rcsheet/RcStationMessage.vue")
+);
+
+const AddStation = defineAsyncComponent(() =>
+  import("../components/station/AddStation.vue")
 );
 
 onMounted(async () => {

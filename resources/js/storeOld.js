@@ -77,7 +77,7 @@ export default new Vuex.Store({
         stationFits: [],
         structurelist: [],
         // systemlist: [],
-        ticklist: [],
+        // ticklist: [],
         // timers: [],
         // timersRegions: [],
         tooltipToggle: true,
@@ -575,17 +575,17 @@ export default new Vuex.Store({
             state.moonlist = moonlist;
         },
 
-        SET_STRUCTURELIST(state, structurelist) {
-            state.structurelist = structurelist;
-        },
+        // SET_STRUCTURELIST(state, structurelist) {
+        //     state.structurelist = structurelist;
+        // },
 
         SET_TOWERLIST(state, towerlist) {
             state.towerlist = towerlist;
         },
 
-        SET_TICKLIST(state, ticklist) {
-            state.ticklist = ticklist;
-        },
+        // SET_TICKLIST(state, ticklist) {
+        //     state.ticklist = ticklist;
+        // },
 
         UPDATE_TICKLIST(state, data) {
             state.ticklist.push(data);
@@ -1396,20 +1396,20 @@ export default new Vuex.Store({
         //     commit("SET_TIMERS", res.data.timers);
         // },
 
-        async updateTickList({ commit }, ticker) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/addmissingcorp/" + ticker,
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_TICKLIST", res.data.ticklist);
-            commit("SET_MISSING_CORP_ID", res.data.corpID);
-            commit("SET_MISSING_CORP_TICK", res.data.corpTicker);
-        },
+        // async updateTickList({ commit }, ticker) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/addmissingcorp/" + ticker,
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_TICKLIST", res.data.ticklist);
+        //     commit("SET_MISSING_CORP_ID", res.data.corpID);
+        //     commit("SET_MISSING_CORP_TICK", res.data.corpTicker);
+        // },
 
         // async getTimerDataAllRegion({ commit }) {
         //     let res = await axios({
@@ -1424,18 +1424,18 @@ export default new Vuex.Store({
         //     commit("SET_TIMERS_REGIONS", res.data.timersregions);
         // },
 
-        async getSystemList({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/systemlist",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_SYSTEMLIST", res.data.systemlist);
-        },
+        // async getSystemList({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/systemlist",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_SYSTEMLIST", res.data.systemlist);
+        // },
 
         async getAmmoRequest({ commit }) {
             let res = await axios({
@@ -1463,18 +1463,18 @@ export default new Vuex.Store({
             commit("SET_MOONLIST", res.data.moons);
         },
 
-        async getStructureList({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/structurelist",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_STRUCTURELIST", res.data.structurelist);
-        },
+        // async getStructureList({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/structurelist",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_STRUCTURELIST", res.data.structurelist);
+        // },
 
         async getTowerList({ commit }) {
             let res = await axios({
@@ -1489,18 +1489,18 @@ export default new Vuex.Store({
             commit("SET_TOWERLIST", res.data.towerlist);
         },
 
-        async getTickList({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/ticklist",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_TICKLIST", res.data.ticklist);
-        },
+        // async getTickList({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/ticklist",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_TICKLIST", res.data.ticklist);
+        // },
 
         async getAllianceTickList({ commit }) {
             let res = await axios({

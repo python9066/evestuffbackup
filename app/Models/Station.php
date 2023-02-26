@@ -17,6 +17,8 @@ class Station extends Model
     {
         if ($activity->properties['attributes']['log_helper'] == 1) {
             $activity->description = 'Status Changed';
+        } elseif ($activity->properties['attributes']['log_helper'] == 2) {
+            $activity->description = 'Added Timer';
         } else {
             $activity->description = 'Station Updated';
         }

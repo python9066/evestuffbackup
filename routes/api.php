@@ -141,6 +141,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/taskrequest', 'taskRequest');
         Route::put('/updatestationnotification/{id}', 'update');
         Route::put('/stationsheet/updatestationnotification/{id}', 'updateStationSheet');
+        Route::put('/timer/addTimer/{id}', 'addStationTimer');
         Route::put('/updatetimerinfo/{id}', 'editUpdate');
         Route::put('/stationname', 'reconPullbyname');
         Route::put('/stationnew', 'store');
