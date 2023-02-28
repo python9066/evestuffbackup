@@ -19,6 +19,12 @@ class Station extends Model
             $activity->description = 'Status Changed';
         } elseif ($activity->properties['attributes']['log_helper'] == 2) {
             $activity->description = 'Added Timer';
+        } elseif ($activity->properties['attributes']['log_helper'] == 3) {
+            $activity->description = 'Edited Timer';
+        } elseif ($activity->properties['attributes']['log_helper'] == 4) {
+            $activity->description = 'Rejected Timer';
+        } elseif ($activity->properties['attributes']['log_helper'] == 5) {
+            $activity->description = 'Approved Timer';
         } else {
             $activity->description = 'Station Updated';
         }

@@ -44,7 +44,7 @@
                       >
                     </q-item>
                     <q-item
-                      to="/page10"
+                      to="/addtimer"
                       v-if="can('finish_move_timer')"
                       clickable
                       v-close-popup
@@ -52,7 +52,7 @@
                       <q-item-section>To Check</q-item-section>
                     </q-item>
                     <q-item
-                      to="/page10"
+                      to="/addtimer"
                       v-else-if="can('view_move_timers')"
                       clickable
                       v-close-popup
@@ -64,7 +64,7 @@
               </template></q-tab
             >
             <q-tab to="/page3" label="Operations" />
-            <q-tab to="/page3" label="Towers" />
+            <q-route-tab to="/towers" label="Towers" />
             <q-tab to="/page3" label="Users" />
             <q-tab to="/page3" label="Feedback" />
           </q-tabs>

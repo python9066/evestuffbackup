@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="q-pa-none">
     <q-btn
       v-if="props.from == 1"
       color="primary"
@@ -11,6 +11,15 @@
       v-if="props.from == 2"
       color="primary"
       icon="fa-solid fa-clock"
+      round
+      padding="none"
+      flat
+      @click="showAddStation = true"
+    />
+    <q-btn
+      v-if="props.from == 3"
+      color="primary"
+      icon="fa-solid fa-pen-to-square"
       round
       padding="none"
       flat
@@ -74,7 +83,7 @@
                   outlined
                   hide-bottom-space
                   standout
-                  readonly
+                  :readonly="stationSetReadOnly()"
                 />
               </q-card-section>
               <q-card-section class="q-py-xs">
@@ -165,6 +174,7 @@
                   mask="####.##.## ##:##:##"
                   type="text"
                   :error-message="timeErrorMessage"
+                  ref="fieldRef"
                   label="Reinforced unit YYYY.MM.DD hh:mm:ss"
                   rounded
                   outlined
@@ -175,9 +185,19 @@
               </q-card-section>
               <q-card-actions align="right">
                 <q-btn
+                  v-if="props.from != 3"
                   :disable="!isFormCorrect"
                   color="positive"
                   label="Submit"
+                  @click="submit()"
+                  rounded
+                  v-close-popup
+                />
+                <q-btn
+                  v-if="props.from == 3"
+                  :disable="!isFormCorrect"
+                  color="positive"
+                  label="Update"
                   @click="submit()"
                   rounded
                   v-close-popup
@@ -256,9 +276,39 @@ let open = async () => {
     stationName = props.station.name;
     stationId = props.station.id;
   }
+
+  if (props.from == 3) {
+    panel = "details";
+    state = 4;
+
+    corpSelect = {
+      text: props.station.corp.ticker,
+      value: props.station.corp_id,
+    };
+    systemSelect = {
+      text: props.station.system.system_name,
+      value: props.station.system_id,
+    };
+    structureSelect = {
+      text: props.station.item.item_name,
+      value: props.station.item_id,
+    };
+    stationName = props.station.name;
+    stationId = props.station.id;
+
+    timer = convertTimeBack();
+    timerTypePick = props.station.status.id;
+    imgLink = props.station.timer_image_link;
+  }
   await store.getSystemList();
   await store.getTickList();
   await store.getStructureList();
+};
+
+let convertTimeBack = () => {
+  const outputString = props.station.out_time.replace(/-/g, ".");
+  console.log(outputString);
+  return outputString;
 };
 
 let close = () => {
@@ -400,6 +450,14 @@ let setReadOnly = () => {
   }
 };
 
+let stationSetReadOnly = () => {
+  if (state != 4) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
 let dateError = $computed(() => {
   if (dateCount) {
     if (!isDateValidFormat || !isDateWithinTime) {
@@ -473,17 +531,14 @@ let submit = () => {
   if (state == 3) {
     updateStation();
   }
+
+  if (state == 4) {
+    editStation();
+  }
 };
 
 let submitNewStation = async () => {
-  const date = new Date(timer);
-  const year = date.getUTCFullYear();
-  const month = `0${date.getUTCMonth() + 1}`.slice(-2);
-  const day = `0${date.getUTCDate()}`.slice(-2);
-  const hours = `0${date.getUTCHours()}`.slice(-2);
-  const minutes = `0${date.getUTCMinutes()}`.slice(-2);
-  const seconds = `0${date.getUTCSeconds()}`.slice(-2);
-  const newDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  const inputString = timer.replace(/\./g, "-");
 
   var request = {
     name: stationName,
@@ -491,7 +546,7 @@ let submitNewStation = async () => {
     corp_id: corpSelect.value,
     item_id: structureSelect.value,
     station_status_id: timerTypePick,
-    out_time: newDate,
+    out_time: inputString,
     timer_image_link: imgLink,
   };
 
@@ -508,24 +563,41 @@ let submitNewStation = async () => {
 };
 
 let updateStation = async () => {
-  const date = new Date(timer);
-  const year = date.getUTCFullYear();
-  const month = `0${date.getUTCMonth() + 1}`.slice(-2);
-  const day = `0${date.getUTCDate()}`.slice(-2);
-  const hours = `0${date.getUTCHours()}`.slice(-2);
-  const minutes = `0${date.getUTCMinutes()}`.slice(-2);
-  const seconds = `0${date.getUTCSeconds()}`.slice(-2);
-  const newDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
+  const inputString = timer.replace(/\./g, "-");
   var request = {
     station_status_id: timerTypePick,
-    out_time: newDate,
+    out_time: inputString,
     timer_image_link: imgLink,
   };
 
   await axios({
     method: "put", //you can set what request you want to be
     url: "api/timer/addTimer/" + stationId,
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+let editStation = async () => {
+  const inputString = timer.replace(/\./g, "-");
+
+  var request = {
+    name: stationName,
+    system_id: systemSelect.value,
+    corp_id: corpSelect.value,
+    item_id: structureSelect.value,
+    station_status_id: timerTypePick,
+    out_time: inputString,
+    timer_image_link: imgLink,
+  };
+
+  await axios({
+    method: "put", //you can set what request you want to be
+    url: "api/timer/editStation/" + props.station.id,
     withCredentials: true,
     data: request,
     headers: {

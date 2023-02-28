@@ -667,9 +667,9 @@ export default new Vuex.Store({
             Object.assign(item, data);
         },
 
-        SET_STATIONS(state, stations) {
-            state.stations = stations;
-        },
+        // SET_STATIONS(state, stations) {
+        //     state.stations = stations;
+        // },
 
         SET_STATIONS_FIT(state, fit) {
             state.stationFits = fit;
@@ -1089,12 +1089,12 @@ export default new Vuex.Store({
         //     }
         // },
 
-        DELETE_STATION_NOTIFICATION(state, id) {
-            let index = state.stations.findIndex((s) => s.id == id);
-            if (index >= 0) {
-                state.stations.splice(index, 1);
-            }
-        },
+        // DELETE_STATION_NOTIFICATION(state, id) {
+        //     let index = state.stations.findIndex((s) => s.id == id);
+        //     if (index >= 0) {
+        //         state.stations.splice(index, 1);
+        //     }
+        // },
 
         DELETE_STATION_SHEET_NOTIFICATION(state, id) {
             let index = state.stationList.findIndex((s) => s.id == id);
@@ -1541,31 +1541,31 @@ export default new Vuex.Store({
             commit("SET_TOWERS", res.data.towers);
         },
 
-        async getStationData({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/stationrecords",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_STATIONS", res.data.stations);
-        },
+        // async getStationData({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/stationrecords",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_STATIONS", res.data.stations);
+        // },
 
-        async getStationDataByUserId({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/stationrecordsbyid",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_STATIONS", res.data.stations);
-        },
+        // async getStationDataByUserId({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/stationrecordsbyid",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_STATIONS", res.data.stations);
+        // },
 
         async getCampaignJoinDataByCampaign({ commit }, campid) {
             let res = await axios({
@@ -2071,9 +2071,9 @@ export default new Vuex.Store({
             commit("UPDATE_NOTIFICATIONS", data);
         },
 
-        updateStationNotification({ commit }, data) {
-            commit("UPDATE_STATION_NOTIFICATION", data);
-        },
+        // updateStationNotification({ commit }, data) {
+        //     commit("UPDATE_STATION_NOTIFICATION", data);
+        // },
 
         updateKeyMessage({ commit }, data) {
             commit("UPDATE_KEY_MESSAGE", data);

@@ -81,7 +81,7 @@ class AmmoRequestController extends Controller
         $s = Station::where('id', $new->station_id)->first();
         $s->ammo_request_id = $new->id;
         $s->save();
-        $message = StationRecords::where('id', $new->station_id)->first();
+        $message = stationRecordSolo($new->station_id);
         $flag = collect([
             'message' => $message,
         ]);

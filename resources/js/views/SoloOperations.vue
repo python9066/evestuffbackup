@@ -321,12 +321,14 @@
             <div class="row no-gutters justify-start items-center">
               <SoloCampaignOperationChip :row="props.row" />
               <CampaignMap
+                @click.stop
                 :system_name="props.row.campaign[0].system.system_name"
                 :region_name="props.row.campaign[0].constellation.region.region_name"
               />
               <div class="col-5">
                 <VueCountUp
                   class="q-pl-sm"
+                  :emit-events="false"
                   v-if="props.row.campaign[0].structure != null"
                   :time="countUpTimeMil(props.row.campaign[0].structure.age)"
                   :interval="60000"

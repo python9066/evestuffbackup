@@ -34,6 +34,7 @@ use GuzzleHttp\Utils;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use PHPUnit\Framework\Constraint\IsFalse;
 
 class StationController extends Controller
 {
@@ -306,15 +307,19 @@ class StationController extends Controller
         } else {
             $stationCheck = station::where('name', $name)->first();
             if ($stationCheck) {
-                $station = StationRecords::where('id', $stationCheck->id)->first();
+                $station = Station::where('id', $stationCheck->id)->first();
 
                 return $data = [
                     'state' => 3,
                     'station_id' => $station->id,
                     'station_name' => $station->name,
-                    'structure_name' => $station->item_name,
-                    'system_name' => $station->system_name,
-                    'corp_ticker' => $station->corp_ticker,
+                    'structure_name' => $station->item->item_name,
+                    'structure_id' => $station->id,
+                    'system_name' => $station->system->system_name,
+                    'system_id' => $station->system_id,
+                    'corp_ticker' => $station->corp->ticker,
+                    'corp_id' => $station->corp_id,
+
                 ];
             } else {
                 $data = [
@@ -450,7 +455,8 @@ class StationController extends Controller
                     }
                 }
 
-                $message = StationRecords::where('id', $stationdata['str_structure_id'])->first();
+                $message = stationRecordSolo($stationdata['str_structure_id']);
+
                 $flag = collect([
                     'message' => $message,
                 ]);
@@ -463,7 +469,9 @@ class StationController extends Controller
                 $s->update(['name' => $name, 'added_from_recon' => 0]);
             }
 
-            $message = StationRecords::where('id', $id)->first();
+            $message = stationRecordSolo($id);
+
+
             $flag = collect([
                 'message' => $message,
             ]);
@@ -567,6 +575,73 @@ class StationController extends Controller
         broadcast(new StationDeadStationSheet($flag));
     }
 
+
+    public function editStation(Request $request, $id)
+    {
+        $user = Auth::user();
+        if ($user->can('finish_move_timers')) {
+            $station = Station::whereId($id)->first();
+            $station->name = $request->name;
+            $station->system_id = $request->system_id;
+            $station->corp_id = $request->corp_id;
+            $station->item_id = $request->item_id;
+            $station->station_status_id = $request->station_status_id;
+            $station->out_time = $request->out_time;
+            $station->timer_image_link = $request->timer_image_link;
+            $station->status_update = now();
+            $station->timestamp = now();
+            $station->log_helper = 3;
+            $station->show_on_coord = 0;
+
+            $station->save();
+
+            $message = StationRecordsSolo(6, $id);
+            $flag = collect([
+                'flag' => $message,
+            ]);
+            broadcast(new StationSheetUpdate($flag));
+
+            $message = stationRecordSolo($id);
+            $flag = collect([
+                'message' => $message,
+            ]);
+            broadcast(new RcMoveUpdate($flag));
+
+            $flag = collect([
+                'id' => $id,
+            ]);
+            broadcast(new StationDeadStationSheet($flag));
+        } else {
+            return null;
+        }
+    }
+
+    public function updateTimerStatus(Request $request, $id)
+    {
+        $user = Auth::user();
+        if ($user->can('finish_move_timers')) {
+            $station = Station::whereId($id)->first();
+            $station->show_on_rc_move = 0;
+            if ($request->status == 2) {
+                $station->station_status_id = 16;
+                $station->out_time = null;
+                $station->status_update = now();
+                $station->log_helper = 4;
+                $station->timer_image_link = null;
+            } else {
+                $station->log_helper = 5;
+            }
+            $station->save();
+
+            $flag = collect([
+                'id' => $id,
+            ]);
+            broadcast(new RcMoveDelete($flag));
+        } else {
+            return null;
+        }
+    }
+
     public function updateAttackMessage(Request $request, $id)
     {
         // dd($request->notes);
@@ -576,7 +651,8 @@ class StationController extends Controller
             $s->update($request->all());
         }
 
-        $message = StationRecords::where('id', $id)->first();
+        $message = stationRecordSolo($id);
+
         if ($message->under_attack == 0) {
             $type = 2;
         } else {
@@ -601,7 +677,7 @@ class StationController extends Controller
             $s->update($request->all());
         }
 
-        $message = StationRecords::where('id', $id)->first();
+        $message = stationRecordSolo($id);
         $flag = collect([
             'message' => $message,
             'id' => $id,
@@ -623,7 +699,7 @@ class StationController extends Controller
                 'timer_image_link' => null,
             ]);
         }
-        $message = StationRecords::where('id', $id)->first();
+        $message = stationRecordSolo($id);
         $flag = collect([
             'message' => $message,
         ]);
@@ -822,7 +898,7 @@ class StationController extends Controller
         $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
         $newStatus = str_replace('Upcoming - ', '', $newStatus);
 
-        $message = StationRecords::where('id', $id)->first();
+        $message = stationRecordSolo($id);
         $flag = collect([
             'message' => $message,
         ]);
@@ -931,7 +1007,7 @@ class StationController extends Controller
         $newStatusName = StationStatus::where('id', $newStatusID)->value('name');
         $newStatusName = str_replace('Upcoming - ', '', $newStatusName);
 
-        $message = StationRecords::where('id', $id)->first();
+        $message = stationRecordSolo($id);
         $flag = collect([
             'message' => $message,
         ]);

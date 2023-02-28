@@ -142,6 +142,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/updatestationnotification/{id}', 'update');
         Route::put('/stationsheet/updatestationnotification/{id}', 'updateStationSheet');
         Route::put('/timer/addTimer/{id}', 'addStationTimer');
+        Route::put('/timer/editStation/{id}', 'editStation');
+        Route::put('/timer/statusupdate/{id}', 'updateTimerStatus');
         Route::put('/updatetimerinfo/{id}', 'editUpdate');
         Route::put('/stationname', 'reconPullbyname');
         Route::put('/stationnew', 'store');
@@ -279,8 +281,8 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::controller(StationRecordsController::class)->group(function () {
-        Route::get('/stationrecords', 'index');
-        Route::get('/stationrecordsbyid', 'indexById');
+        Route::get('/stationrecords', 'indexShowOnMove');
+        Route::get('/stationrecordsbyid', 'indexByIdShowOnMove');
         Route::put('/stationrecords/{id}', 'update');
     });
 

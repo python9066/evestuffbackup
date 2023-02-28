@@ -20,7 +20,7 @@ const props = defineProps({
 });
 
 let onCountdownEnd = () => {
-  store.markOver(row.id);
+  store.markOver(props.row.id);
 };
 
 let countUpTimeMil = $computed(() => {
@@ -35,7 +35,8 @@ let countUpTimeMil = $computed(() => {
   let date = new Date(dateString);
   let offset = date.getTimezoneOffset() * 60000;
   let timestamp = Date.parse(dateString) - offset;
-  return timestamp;
+  let count = timestamp - new Date();
+  return count;
 });
 
 let transformSlotProps = (props) => {

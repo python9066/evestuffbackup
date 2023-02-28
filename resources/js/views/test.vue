@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <AddStation :from="2" />
+    <AddStation />
   </div>
 </template>
 

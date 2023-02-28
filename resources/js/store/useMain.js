@@ -19,6 +19,7 @@ export const useMainStore = defineStore("main", {
         systemlist: [],
         structurelist: [],
         stationList: [],
+        stations: [],
         timers: [],
         timersRegions: [],
         ticklist: [],
@@ -133,7 +134,6 @@ export const useMainStore = defineStore("main", {
         markOver(id) {
             var item = this.timers.find((item) => item.id === id);
             item.status = 1;
-            Object.assign(item, timer);
         },
 
         async getLoginInfo() {
@@ -382,6 +382,49 @@ export const useMainStore = defineStore("main", {
         deleteStationSheetNotification(id) {
             let index = this.stationList.filter((s) => s.id != id);
             this.stationList = index;
+        },
+
+        updateStationNotification(data) {
+            const item = this.stations.find((item) => item.id === data.id);
+            const count = this.stations.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.stations.push(data);
+            }
+        },
+
+        deleteStationNotification(id) {
+            let newList = this.stations.filter((s) => s.id != id);
+            this.stations = newList;
+        },
+
+        async getStationData() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/stationrecords",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.stations = res.data.stations;
+        },
+
+        async getStationDataByUserId() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/stationrecordsbyid",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.stations = res.data.stations;
         },
     },
 });
