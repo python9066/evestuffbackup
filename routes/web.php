@@ -53,6 +53,7 @@ Route::controller(testController::class)->group(function () {
     Route::get('testNotes', 'testNotes');
     Route::get('/testDankFleet', 'testDankFleet');
     Route::get('/test/testremove', 'removeOps');
+    Route::get('/test/teststation/{id}', 'testStation');
 });
 
 Route::controller(AuthController::class)->group(function () {

@@ -117,7 +117,6 @@ class WelpStationController extends Controller
                 'rc_recon_id' => null,
                 'rc_id' => null,
                 'timer_image_link' => null,
-                'notes' => null,
             ]);
         }
         $message = WelpStationRecords::where('id', $id)->first();

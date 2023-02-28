@@ -76,8 +76,8 @@ export default new Vuex.Store({
         stations: [],
         stationFits: [],
         structurelist: [],
-        systemlist: [],
-        ticklist: [],
+        // systemlist: [],
+        // ticklist: [],
         // timers: [],
         // timersRegions: [],
         tooltipToggle: true,
@@ -97,11 +97,11 @@ export default new Vuex.Store({
         // newSoloOperationsRegionList: [],
         // newSoloOperationsConstellationList: [],
 
-        stationList: [],
+        // stationList: [],
 
-        stationListPullRegions: [],
-        stationListFCRegions: [],
-        stationListRegionList: [],
+        // stationListPullRegions: [],
+        // stationListFCRegions: [],
+        // stationListRegionList: [],
 
         webwaySelectedStartSystem: {
             value: 30004759,
@@ -225,9 +225,9 @@ export default new Vuex.Store({
             state.opUsers.push(data);
         },
 
-        SET_STATION_LIST(state, stations) {
-            state.stationList = stations;
-        },
+        // SET_STATION_LIST(state, stations) {
+        //     state.stationList = stations;
+        // },
 
         SET_USER_LIST(state, data) {
             state.userList = data;
@@ -353,29 +353,29 @@ export default new Vuex.Store({
         //     state.webwayStartSystems = systems;
         // },
 
-        SET_STATION_REGION_LIST(state, regionlist) {
-            state.stationListRegionList = regionlist;
-        },
+        // SET_STATION_REGION_LIST(state, regionlist) {
+        //     state.stationListRegionList = regionlist;
+        // },
 
-        SET_STATION_PULL_REGIONS(state, pull) {
-            state.stationListPullRegions = pull;
-        },
+        // SET_STATION_PULL_REGIONS(state, pull) {
+        //     state.stationListPullRegions = pull;
+        // },
 
-        SET_STATION_LIST_FC(state, fcs) {
-            state.stationListFCRegions = fcs;
-        },
+        // SET_STATION_LIST_FC(state, fcs) {
+        //     state.stationListFCRegions = fcs;
+        // },
 
-        UPDATE_STATION_LIST(state, data) {
-            const item = state.stationList.find((item) => item.id === data.id);
-            const count = state.stationList.filter(
-                (item) => item.id === data.id
-            ).length;
-            if (count > 0) {
-                Object.assign(item, data);
-            } else {
-                state.stationList.push(data);
-            }
-        },
+        // UPDATE_STATION_LIST(state, data) {
+        //     const item = state.stationList.find((item) => item.id === data.id);
+        //     const count = state.stationList.filter(
+        //         (item) => item.id === data.id
+        //     ).length;
+        //     if (count > 0) {
+        //         Object.assign(item, data);
+        //     } else {
+        //         state.stationList.push(data);
+        //     }
+        // },
 
         UPDATE_FLEET_INFO(state, data) {
             const count = state.operationInfoPage.fleets.filter(
@@ -555,9 +555,9 @@ export default new Vuex.Store({
             }
         },
 
-        SET_SYSTEMLIST(state, systemlist) {
-            state.systemlist = systemlist;
-        },
+        // SET_SYSTEMLIST(state, systemlist) {
+        //     state.systemlist = systemlist;
+        // },
 
         SET_CONSTELLATION_LIST(state, constellationlist) {
             state.constellationlist = constellationlist;
@@ -575,17 +575,17 @@ export default new Vuex.Store({
             state.moonlist = moonlist;
         },
 
-        SET_STRUCTURELIST(state, structurelist) {
-            state.structurelist = structurelist;
-        },
+        // SET_STRUCTURELIST(state, structurelist) {
+        //     state.structurelist = structurelist;
+        // },
 
         SET_TOWERLIST(state, towerlist) {
             state.towerlist = towerlist;
         },
 
-        SET_TICKLIST(state, ticklist) {
-            state.ticklist = ticklist;
-        },
+        // SET_TICKLIST(state, ticklist) {
+        //     state.ticklist = ticklist;
+        // },
 
         UPDATE_TICKLIST(state, data) {
             state.ticklist.push(data);
@@ -667,9 +667,9 @@ export default new Vuex.Store({
             Object.assign(item, data);
         },
 
-        SET_STATIONS(state, stations) {
-            state.stations = stations;
-        },
+        // SET_STATIONS(state, stations) {
+        //     state.stations = stations;
+        // },
 
         SET_STATIONS_FIT(state, fit) {
             state.stationFits = fit;
@@ -1089,12 +1089,12 @@ export default new Vuex.Store({
         //     }
         // },
 
-        DELETE_STATION_NOTIFICATION(state, id) {
-            let index = state.stations.findIndex((s) => s.id == id);
-            if (index >= 0) {
-                state.stations.splice(index, 1);
-            }
-        },
+        // DELETE_STATION_NOTIFICATION(state, id) {
+        //     let index = state.stations.findIndex((s) => s.id == id);
+        //     if (index >= 0) {
+        //         state.stations.splice(index, 1);
+        //     }
+        // },
 
         DELETE_STATION_SHEET_NOTIFICATION(state, id) {
             let index = state.stationList.findIndex((s) => s.id == id);
@@ -1284,18 +1284,18 @@ export default new Vuex.Store({
             commit("SET_OPERATION_INFO_PAGE", res.data.data);
         },
 
-        async getStationList({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/stationsheet",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_STATION_LIST", res.data.stations);
-        },
+        // async getStationList({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/stationsheet",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_STATION_LIST", res.data.stations);
+        // },
         async getUserList({ commit }) {
             let res = await axios({
                 method: "get",
@@ -1335,22 +1335,22 @@ export default new Vuex.Store({
         //     commit("SET_WEBWAY_START_SYSTEMS", res.data.systems);
         // },
 
-        async getStationRegionLists({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/getregionlists",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_STATION_PULL_REGIONS", res.data.pull);
-            commit("SET_STATION_LIST_FC", res.data.fcs);
-            commit("SET_STATION_REGION_LIST", res.data.regionlist);
-            commit("SET_SYSTEMLIST", res.data.systemlist);
-            commit("SET_WEBWAY_START_SYSTEMS", res.data.webwayStartSystems);
-        },
+        // async getStationRegionLists({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/getregionlists",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_STATION_PULL_REGIONS", res.data.pull);
+        //     commit("SET_STATION_LIST_FC", res.data.fcs);
+        //     commit("SET_STATION_REGION_LIST", res.data.regionlist);
+        //     commit("SET_SYSTEMLIST", res.data.systemlist);
+        //     commit("SET_WEBWAY_START_SYSTEMS", res.data.webwayStartSystems);
+        // },
 
         async getSoloOperationList({ commit }) {
             let res = await axios({
@@ -1396,20 +1396,20 @@ export default new Vuex.Store({
         //     commit("SET_TIMERS", res.data.timers);
         // },
 
-        async updateTickList({ commit }, ticker) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/addmissingcorp/" + ticker,
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_TICKLIST", res.data.ticklist);
-            commit("SET_MISSING_CORP_ID", res.data.corpID);
-            commit("SET_MISSING_CORP_TICK", res.data.corpTicker);
-        },
+        // async updateTickList({ commit }, ticker) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/addmissingcorp/" + ticker,
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_TICKLIST", res.data.ticklist);
+        //     commit("SET_MISSING_CORP_ID", res.data.corpID);
+        //     commit("SET_MISSING_CORP_TICK", res.data.corpTicker);
+        // },
 
         // async getTimerDataAllRegion({ commit }) {
         //     let res = await axios({
@@ -1424,18 +1424,18 @@ export default new Vuex.Store({
         //     commit("SET_TIMERS_REGIONS", res.data.timersregions);
         // },
 
-        async getSystemList({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/systemlist",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_SYSTEMLIST", res.data.systemlist);
-        },
+        // async getSystemList({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/systemlist",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_SYSTEMLIST", res.data.systemlist);
+        // },
 
         async getAmmoRequest({ commit }) {
             let res = await axios({
@@ -1463,18 +1463,18 @@ export default new Vuex.Store({
             commit("SET_MOONLIST", res.data.moons);
         },
 
-        async getStructureList({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/structurelist",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_STRUCTURELIST", res.data.structurelist);
-        },
+        // async getStructureList({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/structurelist",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_STRUCTURELIST", res.data.structurelist);
+        // },
 
         async getTowerList({ commit }) {
             let res = await axios({
@@ -1489,18 +1489,18 @@ export default new Vuex.Store({
             commit("SET_TOWERLIST", res.data.towerlist);
         },
 
-        async getTickList({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/ticklist",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_TICKLIST", res.data.ticklist);
-        },
+        // async getTickList({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/ticklist",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_TICKLIST", res.data.ticklist);
+        // },
 
         async getAllianceTickList({ commit }) {
             let res = await axios({
@@ -1541,31 +1541,31 @@ export default new Vuex.Store({
             commit("SET_TOWERS", res.data.towers);
         },
 
-        async getStationData({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/stationrecords",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_STATIONS", res.data.stations);
-        },
+        // async getStationData({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/stationrecords",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_STATIONS", res.data.stations);
+        // },
 
-        async getStationDataByUserId({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/stationrecordsbyid",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_STATIONS", res.data.stations);
-        },
+        // async getStationDataByUserId({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/stationrecordsbyid",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_STATIONS", res.data.stations);
+        // },
 
         async getCampaignJoinDataByCampaign({ commit }, campid) {
             let res = await axios({
@@ -2071,9 +2071,9 @@ export default new Vuex.Store({
             commit("UPDATE_NOTIFICATIONS", data);
         },
 
-        updateStationNotification({ commit }, data) {
-            commit("UPDATE_STATION_NOTIFICATION", data);
-        },
+        // updateStationNotification({ commit }, data) {
+        //     commit("UPDATE_STATION_NOTIFICATION", data);
+        // },
 
         updateKeyMessage({ commit }, data) {
             commit("UPDATE_KEY_MESSAGE", data);
@@ -2095,9 +2095,9 @@ export default new Vuex.Store({
             commit("UPDATE_WELP_STATION", data);
         },
 
-        updateStationList({ commit }, data) {
-            commit("UPDATE_STATION_LIST", data);
-        },
+        // updateStationList({ commit }, data) {
+        //     commit("UPDATE_STATION_LIST", data);
+        // },
 
         updateChillStationCurrent({ commit }, data) {
             commit("UPDATE_CHILL_STATION_CURRENT", data);
@@ -2303,9 +2303,9 @@ export default new Vuex.Store({
             commit("DELETE_STATION_NOTIFICATION", id);
         },
 
-        deleteStationSheetNotification({ commit }, id) {
-            commit("DELETE_STATION_SHEET_NOTIFICATION", id);
-        },
+        // deleteStationSheetNotification({ commit }, id) {
+        //     commit("DELETE_STATION_SHEET_NOTIFICATION", id);
+        // },
 
         deleteUsersChars({ commit }, id) {
             commit("DELETE_USER_CHAR", id);

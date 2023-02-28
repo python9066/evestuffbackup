@@ -6,6 +6,7 @@
     <VueCountDown
       :time="countDownTimeMil(props.row.campaign[0].start_time)"
       :interval="1000"
+      :emit-events="false"
       v-slot="{ hours, minutes, seconds, days }"
       :transform="transformSlotProps"
     >
@@ -93,20 +94,9 @@ const props = defineProps({
 });
 
 let countDownTimeMil = (time) => {
-  const dateString = time;
-  const targetDate = new Date(Date.parse(dateString.replace(" ", "T") + "Z"));
-  const currentTime = new Date(
-    Date.UTC(
-      new Date().getUTCFullYear(),
-      new Date().getUTCMonth(),
-      new Date().getUTCDate(),
-      new Date().getUTCHours(),
-      new Date().getUTCMinutes(),
-      new Date().getUTCSeconds(),
-      new Date().getUTCMilliseconds()
-    )
-  );
-  const timeDiff = targetDate.getTime() - currentTime.getTime();
+  const utcTime = new Date(time + "Z");
+  const currentTimestamp = Date.now();
+  const timeDiff = utcTime.getTime() - currentTimestamp;
   return timeDiff;
 };
 

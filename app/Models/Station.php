@@ -4,10 +4,102 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Models\Activity;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Station extends Model
 {
     use HasFactory;
+    use LogsActivity;
+
+    public function tapActivity(Activity $activity, string $eventName)
+    {
+        if ($activity->properties['attributes']['log_helper'] == 1) {
+            $activity->description = 'Status Changed';
+        } elseif ($activity->properties['attributes']['log_helper'] == 2) {
+            $activity->description = 'Added Timer';
+        } elseif ($activity->properties['attributes']['log_helper'] == 3) {
+            $activity->description = 'Edited Timer';
+        } elseif ($activity->properties['attributes']['log_helper'] == 4) {
+            $activity->description = 'Rejected Timer';
+        } elseif ($activity->properties['attributes']['log_helper'] == 5) {
+            $activity->description = 'Approved Timer';
+        } else {
+            $activity->description = 'Station Updated';
+        }
+
+        if ($eventName == 'created') {
+            $activity->description = 'Station Added';
+        }
+
+        if ($eventName == 'deleted') {
+            $activity->description = 'Station Removed';
+        }
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly([
+                'id',
+                'name',
+                'system_id',
+                'item_id',
+                'corp_id',
+                'alliance_id',
+                'user_id',
+                'station_status_id',
+                'status.name',
+                'gunner_id',
+                'out_time',
+                'repair_time',
+                'ammo_request_id',
+                'status_update',
+                'show_on_main',
+                'show_on_rc',
+                'show_on_rc_move',
+                'show_on_coord',
+                'added_by_user_id',
+                'r_cored',
+                'rc_fc_id',
+                'rc_recon_id',
+                'rc_gsol_id',
+                'rc_id',
+                'log_helper'
+            ])
+            ->useLogName('Stations')
+            ->dontLogIfAttributesChangedOnly([
+                'updated_at',
+                'r_hash',
+                'r_updated_at',
+                'r_fitted',
+                'r_capital_shipyard',
+                'r_hyasyoda',
+                'r_invention',
+                'r_manufacturing',
+                'r_research',
+                'r_supercapital_shipyard',
+                'r_biochemical',
+                'r_hybrid',
+                'r_moon_drilling',
+                'r_reprocessing',
+                'r_point_defense',
+                'r_dooms_day',
+                'r_guide_bombs',
+                'r_anti_cap',
+                'r_anti_subcap',
+                'r_t2_rigged',
+                'r_cloning',
+                'r_composite',
+                'added_from_recon',
+                'attack_notes',
+                'attack_adash_link',
+                'import_flag',
+
+            ]);
+        // Chain fluent methods for configuration options
+    }
 
     protected $guarded = [];
 
@@ -68,7 +160,12 @@ class Station extends Model
 
     public function logs()
     {
-        return $this->hasMany(Logging::class);
+        return $this->hasMany(Activity::class, 'subject_id');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(StationNotes::class, 'station_id', 'id')->orderBy('created_at', "desc");
     }
 
     protected $casts = [

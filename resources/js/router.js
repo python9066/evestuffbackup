@@ -63,6 +63,45 @@ const routes = [
             }
         },
     },
+
+    {
+        path: "/stations",
+        name: "stations",
+        component: () => import("./views/StationSheet.vue"),
+        beforeEnter(to, from, next) {
+            if (can("view_station_list")) {
+                next();
+            } else {
+                next("/");
+            }
+        },
+    },
+
+    {
+        path: "/addtimer",
+        name: "timerstomove",
+        component: () => import("./views/RCMove.vue"),
+        beforeEnter(to, from, next) {
+            if (can("view_move_timers")) {
+                next();
+            } else {
+                next("/");
+            }
+        },
+    },
+
+    {
+        path: "/towers",
+        name: "towers",
+        component: () => import("./views/Towers.vue"),
+        beforeEnter(to, from, next) {
+            if (can("view_towers")) {
+                next();
+            } else {
+                next("/");
+            }
+        },
+    },
 ];
 
 const router = createRouter({
@@ -294,19 +333,6 @@ export default router;
 // },
 
 // {
-//     path: "/addtimer",
-//     name: "timerstomove",
-//     component: RCMOVETIMER,
-//     beforeEnter(to, from, next) {
-//         if (Permissions.indexOf("view_move_timers") !== -1) {
-//             next();
-//         } else {
-//             next("/notifications");
-//         }
-//     },
-// },
-
-// {
 //     path: "/fleetkeys",
 //     name: "fleetkeys",
 //     component: FleetKeys,
@@ -360,17 +386,6 @@ export default router;
 // },
 
 // {
-//     path: "/towers",
-//     name: "towers",
-//     component: Towers,
-//     beforeEnter(to, from, next) {
-//         if (Permissions.indexOf("view_towers") !== -1) {
-//             next();
-//         } else {
-//             next("/redirect/stations");
-//         }
-//     },
-// },
 
 // {
 //     path: "/stest",

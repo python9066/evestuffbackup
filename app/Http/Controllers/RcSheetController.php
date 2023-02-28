@@ -14,8 +14,10 @@ use App\Models\ChillStationRecords;
 use App\Models\Corp;
 use App\Models\RcStationRecords;
 use App\Models\Station;
+use App\Models\StationNotes;
 use App\Models\WelpStationRecords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -140,59 +142,7 @@ class RcSheetController extends Controller
         return ['rcsheetlistStatus' => $data];
     }
 
-    public function updateMessage(Request $request, $id)
-    {
-        // dd($request->notes);
 
-        $s = Station::where('id', $id)->get();
-        foreach ($s as $s) {
-            $s->update($request->all());
-        }
-
-        $message = RcStationRecords::where('id', $id)->first();
-        if ($message) {
-            $flag = collect([
-                'message' => $message,
-                'id' => $id,
-            ]);
-
-            // dd($request, $id, $flag);
-            broadcast(new RcSheetMessageUpdate($flag))->toOthers();
-        }
-
-        $message = ChillStationRecords::where('id', $id)->first();
-        if ($message) {
-            $flag = collect([
-                'message' => $message,
-                'id' => $id,
-            ]);
-
-            // dd($request, $id, $flag);
-            broadcast(new ChillSheetMessageUpdate($flag))->toOthers();
-        }
-
-        $message = WelpStationRecords::where('id', $id)->first();
-        if ($message) {
-            $flag = collect([
-                'message' => $message,
-                'id' => $id,
-            ]);
-
-            // dd($request, $id, $flag);
-            broadcast(new WelpSheetMessageUpdate($flag))->toOthers();
-        }
-
-        $message = StationRecordsSolo(6, $id);
-        if ($message) {
-            $flag = collect([
-                'message' => $message,
-                'id' => $id,
-            ]);
-
-            // dd($request, $id, $flag);
-            broadcast(new StationSheetMessageUpdate($flag))->toOthers();
-        }
-    }
 
     public function rcSheetListRegion()
     {
@@ -227,7 +177,6 @@ class RcSheetController extends Controller
                 'rc_recon_id' => null,
                 'rc_id' => null,
                 'timer_image_link' => null,
-                'notes' => null,
             ]);
         }
         $message = RcStationRecords::where('id', $id)->first();

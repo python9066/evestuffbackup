@@ -35,8 +35,8 @@ class NewCampaignsController extends Controller
             $systemName = $pull->system->system_name;
             $regionName = $pull->system->region->region_name;
             $constellationName = $pull->system->constellation->constellation_name;
-            $allianceName = $pull->alliance->name;
-            $standing = $pull->alliance->standing;
+            $allianceName = $pull->alliance->name ?? null;
+            $standing = $pull->alliance->standing ?? null;
 
             $text = $regionName . ' - ' . $constellationName . ' - ' . $systemName . ' - ' . $allianceName . ' - ' . $eventType . ' - ' . $pull->start_time;
 

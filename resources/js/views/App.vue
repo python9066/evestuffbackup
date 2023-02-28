@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="hHh lpR fFf" class="bg-test">
     <q-header elevated class="bg-webDark text-white" height-hint="98">
       <div class="row justify-between q-px-md">
         <div class="col-2">
@@ -38,13 +38,25 @@
               ><template v-slot:default>
                 <q-menu>
                   <q-list style="min-width: 100px">
-                    <q-item to="/page10" clickable v-close-popup>
-                      <q-item-section>Station List</q-item-section>
+                    <q-item to="/stations" clickable v-close-popup>
+                      <q-item-section v-if="can('view_station_list')"
+                        >Station List</q-item-section
+                      >
                     </q-item>
-                    <q-item to="/page10" clickable v-close-popup>
+                    <q-item
+                      to="/addtimer"
+                      v-if="can('finish_move_timer')"
+                      clickable
+                      v-close-popup
+                    >
                       <q-item-section>To Check</q-item-section>
                     </q-item>
-                    <q-item to="/page10" clickable v-close-popup>
+                    <q-item
+                      to="/addtimer"
+                      v-else-if="can('view_move_timers')"
+                      clickable
+                      v-close-popup
+                    >
                       <q-item-section>Add Timer</q-item-section>
                     </q-item>
                   </q-list>
@@ -52,7 +64,7 @@
               </template></q-tab
             >
             <q-tab to="/page3" label="Operations" />
-            <q-tab to="/page3" label="Towers" />
+            <q-route-tab to="/towers" label="Towers" />
             <q-tab to="/page3" label="Users" />
             <q-tab to="/page3" label="Feedback" />
           </q-tabs>

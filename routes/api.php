@@ -57,6 +57,7 @@ use App\Http\Controllers\StartCampaignJoinController;
 use App\Http\Controllers\StartCampaignSystemController;
 use App\Http\Controllers\StartCampaignSystemRecordsController;
 use App\Http\Controllers\StationController;
+use App\Http\Controllers\StationNotesController;
 use App\Http\Controllers\StationRecordsController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\testController;
@@ -126,7 +127,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/rcStatuslist', 'rcSheetListStatus');
         Route::put('/rcfixcorp/{id}', 'fixcorp');
         Route::put('/rcfixalliance/{id}', 'fixalliance');
+    });
+
+    Route::controller(StationNotesController::class)->group(function () {
         Route::put('/sheetmessage/{id}', 'updateMessage');
+        Route::delete('/sheetmessage/{id}', 'destroy');
+        Route::put('/sheetmessage/{id}/notes', 'addReadBy');
     });
 
     Route::controller(StationController::class)->group(function () {
@@ -134,6 +140,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/loadstationdata', 'loadStationData');
         Route::post('/taskrequest', 'taskRequest');
         Route::put('/updatestationnotification/{id}', 'update');
+        Route::put('/stationsheet/updatestationnotification/{id}', 'updateStationSheet');
+        Route::put('/timer/addTimer/{id}', 'addStationTimer');
+        Route::put('/timer/editStation/{id}', 'editStation');
+        Route::put('/timer/statusupdate/{id}', 'updateTimerStatus');
         Route::put('/updatetimerinfo/{id}', 'editUpdate');
         Route::put('/stationname', 'reconPullbyname');
         Route::put('/stationnew', 'store');
@@ -271,8 +281,8 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::controller(StationRecordsController::class)->group(function () {
-        Route::get('/stationrecords', 'index');
-        Route::get('/stationrecordsbyid', 'indexById');
+        Route::get('/stationrecords', 'indexShowOnMove');
+        Route::get('/stationrecordsbyid', 'indexByIdShowOnMove');
         Route::put('/stationrecords/{id}', 'update');
     });
 
