@@ -213,13 +213,12 @@
 </template>
 
 <script setup>
-import { inject, defineAsyncComponent, defineEmits } from "vue";
+import { inject, defineAsyncComponent } from "vue";
 import { useMainStore } from "@/store/useMain.js";
 import myImage from "@/img/info.png";
 
 let store = useMainStore();
 let can = inject("can");
-
 const emit = defineEmits(["missingCorpDone"]);
 const props = defineProps({
   from: { type: Number, default: 1 },

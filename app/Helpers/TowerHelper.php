@@ -12,7 +12,8 @@ if (!function_exists('towerRecordAll')) {
             'moon.constellation',
             'item',
             'status',
-            'user:id,name,eve_user_id'
+            'user:id,name,eve_user_id',
+            'notes.user',
         ])->get();
         return $data;
     }
@@ -29,15 +30,16 @@ if (!function_exists('towerRecordAll')) {
 if (!function_exists('towerRecordSolo')) {
     function towerRecordSolo($id)
     {
-        $data = Tower::whereId($id)->with([
+        $data = Tower::where('id', $id)->with([
             'corp.alliance',
             'moon.system:region_id,constellation_id,id,system_name',
             'moon.region',
             'moon.constellation',
             'item',
             'status',
-            'user:id,name,eve_user_id'
-        ])->get();
+            'user:id,name,eve_user_id',
+            'notes.user',
+        ])->first();
         return $data;
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TowerChanged;
+use App\Events\TowerNew;
 use App\Models\Constellation;
 use App\Models\Item;
 use App\Models\Moon;
@@ -9,6 +11,7 @@ use App\Models\Region;
 use App\Models\System;
 use App\Models\Tower;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TowerController extends Controller
 {
@@ -21,37 +24,33 @@ class TowerController extends Controller
         return ['towers' => towerRecordAll()];
     }
 
-    public function towerFilters()
+    public function getMoons($id)
     {
-        $regionIDs = Moon::has('towers')->pluck('region_id');
-        $regionList = Region::whereIn('id', $regionIDs)->get();
-        $region = $regionList->map(function ($items) {
+        $moon = Moon::whereSystemId($id)->get();
+        $moonList = $moon->map(function ($items) {
             $data['value'] = $items->id;
-            $data['text'] = $items->region_name;
+            $data['text'] = $items->name;
 
             return $data;
         });
 
+        return [
+            'moonList' => $moonList
+        ];
+    }
+
+    public function towerTypeList()
+    {
 
 
-        $systemsIDs = Moon::has('towers')->pluck('system_id');
-        $systemList = System::whereIn('id', $systemsIDs)->get();
-        $systems = $systemList->map(function ($items) {
+        $systems = System::all();
+        $systemList = $systems->map(function ($items) {
             $data['value'] = $items->id;
             $data['text'] = $items->system_name;
 
             return $data;
         });
 
-
-        $constellationIDs = Moon::has('towers')->pluck('constellation_id');
-        $constellationList = Constellation::whereIn('id', $constellationIDs)->get();
-        $constellations = $constellationList->map(function ($items) {
-            $data['value'] = $items->id;
-            $data['text'] = $items->constellation_name;
-
-            return $data;
-        });
 
         $typeIDs = [
             12235, 20059, 20060, 27539, 27530,
@@ -75,9 +74,7 @@ class TowerController extends Controller
 
         return [
             'towerList' => $list,
-            'towerRegion' => $region,
-            'towerSystems' => $systems,
-            'towerConstellation' => $constellations
+            'systemList' => $systemList
         ];
     }
 
@@ -87,7 +84,17 @@ class TowerController extends Controller
     public function store(Request $request)
     {
         $new = new Tower();
+        $new->corp_id = $request->corp_id;
+        $new->item_id = $request->item_id;
+        $new->moon_id = $request->moon_id;
+        $new->tower_status_id = $request->tower_status_id;
+        $new->user_id = Auth::id();
         $new->save();
+
+        $flag = collect([
+            'flag' => 1,
+        ]);
+        broadcast(new TowerNew($flag));
     }
 
     /**
@@ -97,6 +104,45 @@ class TowerController extends Controller
     {
         $tower = towerRecordSolo($id);
     }
+
+    public function updateStatus(Request $request, $id)
+    {
+
+        $tower = Tower::whereId($id)->first();
+        $tower->tower_status_id = $request->status_id;
+        $tower->out_time = null;
+        $tower->save();
+
+        $message = towerRecordSolo($id);
+
+        $flag = collect([
+            'flag' => 1,
+            'message' => $message
+        ]);
+
+        broadcast(new TowerChanged($flag));
+    }
+
+    public function updateText(Request $request, $id)
+    {
+
+        $tower = Tower::whereId($id)->first();
+        $tower->text = $request->text;
+        $tower->save();
+
+        $message = towerRecordSolo($id);
+
+        $flag = collect([
+            'flag' => 1,
+            'message' => $message
+        ]);
+
+        broadcast(new TowerChanged($flag))->toOthers();
+    }
+
+
+
+
 
     /**
      * Update the specified resource in storage.

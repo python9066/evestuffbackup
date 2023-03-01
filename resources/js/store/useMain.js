@@ -25,9 +25,9 @@ export const useMainStore = defineStore("main", {
         timersRegions: [],
         ticklist: [],
         towerTypes: [],
-        towerRegion: [],
-        towerSystem: [],
         towerConstellation: [],
+        moonList: [],
+        towerChatWindowId: null,
         stationChatWindowId: null,
         user_name: null,
         user_id: null,
@@ -71,6 +71,39 @@ export const useMainStore = defineStore("main", {
                 axios({
                     method: "put",
                     url: "/api/sheetmessage/" + id + "/notes",
+                    withCredentials: true,
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    },
+                });
+            }
+            return count;
+        },
+
+        getTowerMessages: (state) => (id) => {
+            let tower = state.towers.find((s) => s.id == id);
+            let messages = tower.notes;
+            if (messages) {
+                return messages;
+            }
+            return [];
+        },
+
+        getTowerUnreadMessageCount: (state) => (id) => {
+            let tower = state.towers.find((s) => s.id == id);
+            let messages = tower.notes;
+            let count = messages.filter(
+                (m) =>
+                    m.read_by &&
+                    m.read_by.user_id &&
+                    !m.read_by.user_id.includes(state.user_id)
+            ).length;
+
+            if (state.towerChatWindowId == id && count > 0) {
+                axios({
+                    method: "put",
+                    url: "/api/towermessage/" + id + "/notes",
                     withCredentials: true,
                     headers: {
                         Accept: "application/json",
@@ -449,21 +482,39 @@ export const useMainStore = defineStore("main", {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
-                url: "/api/towerfilter",
+                url: "/api/towertypelist",
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 },
             });
             this.towerTypes = res.data.towerList;
-            this.towerRegion = res.data.regions;
-            this.towerSystem = res.data.systems;
-            this.towerConstellation = res.data.constellation;
+            this.systemlist = res.data.systemList;
+        },
+
+        async getMoonList(id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/tower/moonlist/" + id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.moonList = res.data.moonList;
         },
 
         updateTowers(data) {
-            const item = this.towers.find((c) => c.id === data.id);
-            Object.assign(item, data);
+            const item = this.towers.find((item) => item.id === data.id);
+            const count = this.towers.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.towers.push(data);
+            }
         },
 
         deleteTower(id) {

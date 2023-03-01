@@ -39,4 +39,9 @@ class Tower extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function notes()
+    {
+        return $this->hasMany(TowerNote::class)->orderBy('created_at', "desc");
+    }
 }
