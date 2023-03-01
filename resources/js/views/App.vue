@@ -64,9 +64,9 @@
               </template></q-tab
             >
             <q-tab to="/page3" label="Operations" />
-            <q-route-tab to="/towers" label="Towers" />
+            <q-route-tab v-if="can('view_towers')" to="/towers" label="Towers" />
             <q-tab to="/page3" label="Users" />
-            <q-tab to="/page3" label="Feedback" />
+            <q-route-tab v-if="can('super')" to="/feedback" label="Feedback" />
           </q-tabs>
         </div>
         <div class="col-2">

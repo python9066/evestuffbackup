@@ -102,6 +102,19 @@ const routes = [
             }
         },
     },
+
+    {
+        path: "/feedback",
+        name: "feedback",
+        component: () => import("./views/FeedBacknew.vue"),
+        beforeEnter(to, from, next) {
+            if (can("super")) {
+                next();
+            } else {
+                next("/");
+            }
+        },
+    },
 ];
 
 const router = createRouter({
@@ -258,19 +271,6 @@ export default router;
 //     path: "/campaignkick",
 //     name: "campaginSystemKick",
 //     component: campaginSystemKick,
-// },
-
-// {
-//     path: "/feedback",
-//     name: "feedback",
-//     component: FeedBack,
-//     beforeEnter(to, from, next) {
-//         if (Permissions.indexOf("nats") !== -1) {
-//             next();
-//         } else {
-//             next("/notifications");
-//         }
-//     },
 // },
 
 // {
