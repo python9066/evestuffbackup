@@ -28,7 +28,9 @@
                       <q-item-section>Windows</q-item-section>
                     </q-item>
                     <q-item to="/mcampaigns" clickable v-close-popup>
-                      <q-item-section>Custom Campaign</q-item-section>
+                      <q-item-section v-if="can('access_multi_campaigns')"
+                        >Custom Campaign</q-item-section
+                      >
                     </q-item>
                   </q-list>
                 </q-menu>
@@ -63,9 +65,13 @@
                 </q-menu>
               </template></q-tab
             >
-            <q-tab to="/page3" label="Operations" />
+            <q-route-tab
+              v-if="can('view_opertaion_info')"
+              to="/page3"
+              label="Operations"
+            />
             <q-route-tab v-if="can('view_towers')" to="/towers" label="Towers" />
-            <q-tab to="/page3" label="Users" />
+            <q-route-tab v-if="can('edit_users')" to="/page3" label="Users" />
             <q-route-tab v-if="can('super')" to="/feedback" label="Feedback" />
           </q-tabs>
         </div>
