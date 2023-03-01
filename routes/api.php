@@ -62,6 +62,7 @@ use App\Http\Controllers\StationRecordsController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\testController;
 use App\Http\Controllers\TimerController;
+use App\Http\Controllers\TowerController;
 use App\Http\Controllers\TowerRecordsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserKeyJoinControllerController;
@@ -69,6 +70,7 @@ use App\Http\Controllers\UserRolesRecordsController;
 use App\Http\Controllers\WebWayController;
 use App\Http\Controllers\WebWayStartSystemsContorller;
 use App\Http\Controllers\WelpStationController;
+use App\Models\Tower;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -286,11 +288,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/stationrecords/{id}', 'update');
     });
 
-    Route::controller(TowerRecordsController::class)->group(function () {
+    Route::controller(TowerController::class)->group(function () {
         Route::get('/towersrecords', 'index');
         Route::put('/towerrecords/{id}', 'update');
         Route::put('/towerrecords', 'store');
         Route::put('/towermessage/{id}', 'updateMessage');
+        Route::get('/towerfilter', 'towerFilters');
     });
 
     Route::controller(FeedBackController::class)->group(function () {

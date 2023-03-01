@@ -20,9 +20,14 @@ export const useMainStore = defineStore("main", {
         structurelist: [],
         stationList: [],
         stations: [],
+        towers: [],
         timers: [],
         timersRegions: [],
         ticklist: [],
+        towerTypes: [],
+        towerRegion: [],
+        towerSystem: [],
+        towerConstellation: [],
         stationChatWindowId: null,
         user_name: null,
         user_id: null,
@@ -425,6 +430,45 @@ export const useMainStore = defineStore("main", {
                 },
             });
             this.stations = res.data.stations;
+        },
+
+        async getTowerData() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/towersrecords",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.towers = res.data.towers;
+        },
+
+        async getTowerFilter() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/towerfilter",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.towerTypes = res.data.towerList;
+            this.towerRegion = res.data.regions;
+            this.towerSystem = res.data.systems;
+            this.towerConstellation = res.data.constellation;
+        },
+
+        updateTowers(data) {
+            const item = this.towers.find((c) => c.id === data.id);
+            Object.assign(item, data);
+        },
+
+        deleteTower(id) {
+            const items = this.towers.find((t) => t.id != id);
+            this.towers = items;
         },
     },
 });

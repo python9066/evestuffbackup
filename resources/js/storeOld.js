@@ -640,21 +640,21 @@ export default new Vuex.Store({
             state.startcampaignJoin = startcampaignJoin;
         },
 
-        SET_TOWERS(state, towers) {
-            state.towers = towers;
-        },
+        // SET_TOWERS(state, towers) {
+        //     state.towers = towers;
+        // },
 
-        UPDATE_TOWERS(state, data) {
-            const item = state.towers.find((c) => c.id === data.id);
-            Object.assign(item, data);
-        },
+        // UPDATE_TOWERS(state, data) {
+        //     const item = state.towers.find((c) => c.id === data.id);
+        //     Object.assign(item, data);
+        // },
 
-        DELETE_TOWERS(state, id) {
-            let index = state.towers.findIndex((e) => e.id == id);
-            if (index >= 0) {
-                state.towers.splice(index, 1);
-            }
-        },
+        // DELETE_TOWERS(state, id) {
+        //     let index = state.towers.findIndex((e) => e.id == id);
+        //     if (index >= 0) {
+        //         state.towers.splice(index, 1);
+        //     }
+        // },
 
         SET_CAMPAIGN_SOLA_SYSTEMS(state, campaignSolaSystems) {
             state.campaignSolaSystems = campaignSolaSystems;
@@ -1528,18 +1528,18 @@ export default new Vuex.Store({
             commit("SET_NODE_JOIN", res.data.nodeJoin);
         },
 
-        async getTowerData({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/towersrecords",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_TOWERS", res.data.towers);
-        },
+        // async getTowerData({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/towersrecords",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_TOWERS", res.data.towers);
+        // },
 
         // async getStationData({ commit }) {
         //     let res = await axios({
@@ -2147,9 +2147,9 @@ export default new Vuex.Store({
             commit("UPDATE_CAMPAIGNS", data);
         },
 
-        updateTowers({ commit }, data) {
-            commit("UPDATE_TOWERS", data);
-        },
+        // updateTowers({ commit }, data) {
+        //     commit("UPDATE_TOWERS", data);
+        // },
 
         updateCampaignSystem({ commit }, data) {
             commit("UPDATE_CAMPAIGN_SYSTEM", data);
@@ -2323,9 +2323,9 @@ export default new Vuex.Store({
             commit("DELETE_AMMO_REQUEST", id);
         },
 
-        deleteTower({ commit }, id) {
-            commit("DELETE_TOWERS", id);
-        },
+        // deleteTower({ commit }, id) {
+        //     commit("DELETE_TOWERS", id);
+        // },
 
         deleteCampaignSystem({ commit }, id) {
             commit("DELETE_CAMPAIGN_SYSTEM", id);

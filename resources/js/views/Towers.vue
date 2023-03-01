@@ -21,9 +21,6 @@
           <div class="col-11 flex flex-center">
             <span class="text-h4">Stations</span>
           </div>
-          <div class="col-1 flex justify-end">
-            <SettingPannel v-if="can('view_coord_sheet')"></SettingPannel>
-          </div>
         </div>
         <div class="row full-width q-pt-md justify-between">
           <div class="col-12">
@@ -57,6 +54,7 @@
                   :options="regionList"
                   ref="toRegionRef"
                   label="Region"
+                  @clear="region_id = []"
                   @filter="filterFnRegionFinish"
                   @filter-abort="abortFilterFn"
                   map-options
@@ -107,6 +105,7 @@
                   :options="constellationList"
                   ref="toConstellationRef"
                   label="Constellations"
+                  @clear="constellation_id = []"
                   @filter="filterFnConstellationFinish"
                   @filter-abort="abortFilterFn"
                   map-options
@@ -194,6 +193,41 @@
                 >
               </div>
             </div>
+            <div class="row justify-end q-pt-sm">
+              <div class="col-auto">
+                <q-btn-toggle
+                  v-model="filterStandingSelected"
+                  rounded
+                  unelevated
+                  clearable
+                  color="webDark"
+                  text-color="gray"
+                  toggle-color="primary"
+                  toggle-text-color="gray"
+                  :options="[
+                    { label: 'Hostile', value: 1 },
+                    { label: 'Friendly', value: 2 },
+                  ]"
+                />
+                <q-btn-toggle
+                  v-model="filterStatusSelcted"
+                  rounded
+                  unelevated
+                  clearable
+                  color="webDark"
+                  text-color="gray"
+                  toggle-color="primary"
+                  toggle-text-color="gray"
+                  :options="[
+                    { label: 'Scouting', value: 2 },
+                    { label: 'Anchoring', value: 3 },
+                    { label: 'Online', value: 4 },
+                    { label: 'Reffed', value: 5 },
+                    { label: 'Dead', value: 6 },
+                  ]"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </template>
@@ -236,109 +270,324 @@
           </div>
         </q-th>
       </template>
-
-      <template v-slot:body="props">
-        <q-tr :props="props">
-          <q-td key="webway" :props="props">
-            <SoloCampaginWebWay
-              v-if="webwayJumps(props.row) && webwayLink(props.row)"
-              :jumps="webwayJumps(props.row)"
-              :web="webwayLink(props.row)"
-            ></SoloCampaginWebWay>
-          </q-td>
-          <q-td key="region" :props="props">
-            {{ props.row.system.region.region_name }}
-          </q-td>
-          <q-td key="constellation" :props="props">
-            {{ props.row.system.constellation.constellation_name }}
-          </q-td>
-          <q-td key="system" :props="props">
-            <q-btn
-              color="none"
-              flat
-              rounded
-              text-color="positive"
-              icon="fa-solid fa-map"
-              :href="link(props.row)"
-              target="_blank"
-            />
-            <span
-              @click="copySystem(props.row.system.system_name)"
-              class="cursor-pointer"
-            >
-              {{ props.row.system.system_name }}</span
-            ></q-td
-          >
-          <q-td key="corpTicker" :props="props">
-            <q-avatar size="lg" class="q-pr-xl">
-              <img :src="props.row.corp.url" />
-            </q-avatar>
-            <span :class="standingCheckCorp(props.row)">
-              {{ props.row.corp.ticker }}</span
-            >
-          </q-td>
-          <q-td key="allianceTicker" :props="props">
-            <span v-if="props.row.corp.alliance_id">
-              <q-avatar size="lg" class="q-pr-xl">
-                <img :src="props.row.corp.alliance.url" />
-              </q-avatar>
-              <span :class="standingCheck(props.row)">
-                {{ props.row.corp.alliance.ticker }}
-              </span></span
-            >
-          </q-td>
-          <q-td key="type" :props="props">
-            <q-avatar size="lg" class="q-pr-xl">
-              <img :src="itemUrl(props.row.item_id)" />
-            </q-avatar>
-            {{ props.row.item.item_name }}
-          </q-td>
-          <q-td key="name" :props="props">
-            {{ props.row.name }}
-          </q-td>
-          <q-td key="status" :props="props">
-            <StatusButton v-if="can('add_timer')" :item="props.row" />
-          </q-td>
-          <q-td key="actions" :props="props">
-            <div class="row">
-              <div class="col"><AddStation :from="2" :station="props.row" /></div>
-              <div class="col">
-                <RcStationMessage :station="props.row" :type="4"></RcStationMessage>
-              </div>
-              <div class="col">
-                <StationInfoSheet :station="props.row" v-if="showInfo(props.row)" />
-              </div>
-              <div class="col" v-if="can('view_station_logs')">
-                <q-btn
-                  size="md"
-                  flat
-                  color="none"
-                  text-color="primary"
-                  round
-                  padding="none"
-                  @click="props.expand = !props.expand"
-                  icon="fa-solid fa-clock-rotate-left"
-                />
-              </div>
-            </div>
-          </q-td>
-        </q-tr>
-        <q-tr v-show="props.expand" :props="props">
-          <q-td colspan="100%">
-            <div>
-              <StationSheetLogs :station="props.row" />
-            </div>
-          </q-td>
-        </q-tr>
-      </template>
     </q-table>
   </div>
 </template>
 
 <script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 import { useMainStore } from "@/store/useMain.js";
 let store = useMainStore();
 let search = $ref("");
+let can = inject("can");
+let filterStandingSelected = $ref();
+let filterStatusSelcted = $ref();
+
+onMounted(async () => {
+  Echo.private("towers")
+    .listen("TowerChanged", (e) => {
+      store.updateTowers(e.flag.message);
+    })
+    .listen("TowerNew", (e) => {
+      store.getTowerData();
+    })
+    .listen("TowerDelete", (e) => {
+      store.deleteTower(e.flag.id);
+    });
+
+  await store.getTowerData();
+  //   await store.getTowerFilter();
+});
+
+onBeforeUnmount(async () => {
+  Echo.leave("towers");
+});
+
+let filterRegion = $computed(() => {
+  if (region_id.length > 0) {
+    const filteredTowers = store.towers.filter((t) => {
+      return region_id.some((r) => {
+        return r.value === t.moon.region_id;
+      });
+    });
+    return filteredTowers;
+  }
+  return store.towers;
+});
+
+let filterConstellation = $computed(() => {
+  if (constellation_id.length > 0) {
+    const filteredTowers = filterRegion.filter((t) => {
+      return constellation_id.some((c) => {
+        return c.value === t.moon.constellation_id;
+      });
+    });
+    return filteredTowers;
+  }
+  return filterRegion;
+});
+
+let filterType = $computed(() => {
+  if (type_id.length > 0) {
+    const filteredTowers = filterConstellation.filter((t) => {
+      return type_id.some((c) => {
+        return c.value === t.item_id;
+      });
+    });
+    return filteredTowers;
+  }
+  return filterConstellation;
+});
+
+let filterEnd = $computed(() => {
+  return filterType;
+});
+
+let region_id = $ref([]);
+let regionText = $ref();
+let regionDropDownList = $computed(() => {
+  var data = filterEnd.map((s) => ({
+    id: s.moon.region.id,
+    name: s.moon.region.region_name,
+  }));
+  const result = [];
+  const map = new Map();
+  for (const item of data) {
+    if (!map.has(item.id)) {
+      map.set(item.id, true);
+      result.push({
+        value: item.id,
+        text: item.name,
+      });
+    }
+  }
+  result.sort((a, b) => a.text.localeCompare(b.text));
+  return result;
+});
+
+let regionList = $computed(() => {
+  if (regionText) {
+    return regionDropDownList.filter(
+      (d) => d.text.toLowerCase().indexOf(regionText) > -1
+    );
+  }
+  return regionDropDownList;
+});
+
+let filterFnRegionFinish = (val, update, abort) => {
+  update(() => {
+    regionText = val.toLowerCase();
+  });
+};
+
+let constellation_id = $ref([]);
+let constellationText = $ref();
+
+let conDropDownList = $computed(() => {
+  var data = filterEnd.map((s) => ({
+    id: s.moon.constellation.id,
+    name: s.moon.constellation.constellation_name,
+  }));
+  const result = [];
+  const map = new Map();
+  for (const item of data) {
+    if (!map.has(item.id)) {
+      map.set(item.id, true);
+      result.push({
+        value: item.id,
+        text: item.name,
+      });
+    }
+  }
+  result.sort((a, b) => a.text.localeCompare(b.text));
+  return result;
+});
+
+let constellationList = $computed(() => {
+  if (constellationText) {
+    return conDropDownList.filter(
+      (d) => d.text.toLowerCase().indexOf(constellationText) > -1
+    );
+  }
+  return conDropDownList;
+});
+
+let filterFnConstellationFinish = (val, update, abort) => {
+  update(() => {
+    constellationText = val.toLowerCase();
+  });
+};
+
+let type_id = $ref([]);
+let typeText = $ref();
+
+let typeDropDownList = $computed(() => {
+  var data = filterEnd.map((s) => ({
+    id: s.item.id,
+    type: s.item.item_name,
+  }));
+  const result = [];
+  const map = new Map();
+  for (const item of data) {
+    if (!map.has(item.id)) {
+      map.set(item.id, true);
+      result.push({
+        value: item.id,
+        text: item.type,
+      });
+    }
+  }
+  result.sort((a, b) => a.text.localeCompare(b.text));
+  return result;
+});
+
+let typeList = $computed(() => {
+  if (typeText) {
+    return typeDropDownList.filter((d) => d.text.toLowerCase().indexOf(typeText) > -1);
+  }
+  return typeDropDownList;
+});
+
+let filterFnTypeFinish = (val, update, abort) => {
+  update(() => {
+    typeText = val.toLowerCase();
+  });
+};
+let abortFilterFn = () => {
+  // console.log('delayed filter aborted')
+};
+
+let columns = $ref([
+  {
+    name: "region",
+    align: "center",
+    required: false,
+    label: "Region",
+    classes: "text-no-wrap",
+    field: (row) => row.moon.region.region_name,
+    format: (val) => `${val}`,
+    sortable: false,
+  },
+  {
+    name: "constellation",
+    required: true,
+    align: "left",
+    label: "Constellation",
+    classes: "text-no-wrap",
+    field: (row) => row.moon.constellation.constellation_name,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "system",
+    required: true,
+    align: "left",
+    label: "System",
+    classes: "text-no-wrap",
+    field: (row) => row.moon.system.system_name,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "corpTicker",
+    align: "left",
+    classes: "text-no-wrap",
+    label: "Corp",
+    field: (row) => row.corp.ticker,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "allianceTicker",
+    align: "left",
+    required: true,
+    label: "Alliance",
+    // style: "width: 5%",
+    classes: "text-no-wrap",
+    field: (row) => {
+      if (row.corp.alliance) {
+        return row.corp.alliance.ticker;
+      } else {
+        return null;
+      }
+    },
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "moon",
+    align: "left",
+    classes: "text-no-wrap",
+    label: "Moon",
+    field: (row) => row.moon.name,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "type",
+    label: "Type",
+    align: "left",
+    classes: "text-no-wrap",
+    field: (row) => row.item.item_name,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "time",
+    label: "Time",
+    classes: "text-no-wrap",
+    align: "right",
+    sortable: true,
+    field: (row) => row.out_time,
+    format: (val) => `${val}`,
+  },
+  {
+    name: "time",
+    label: "Time Left",
+    classes: "text-no-wrap",
+    align: "right",
+    sortable: true,
+    field: (row) => row.out_time,
+    format: (val) => `${val}`,
+  },
+
+  {
+    name: "status",
+    label: "Status",
+    classes: "text-no-wrap",
+    align: "right",
+    sortable: true,
+    field: (row) => row.status.name,
+    format: (val) => `${val}`,
+  },
+
+  {
+    name: "editedBy",
+    label: "Edited By",
+    classes: "text-no-wrap",
+    align: "right",
+    sortable: true,
+    field: (row) => row.user.name,
+    format: (val) => `${val}`,
+  },
+
+  {
+    name: "actions",
+    label: "",
+    align: "right",
+    classes: "text-no-wrap",
+    sortable: false,
+    field: (row) => row.id,
+    format: (val) => `${val}`,
+  },
+]);
+
 let h = $computed(() => {
   let mins = 30;
   let window = store.size.height;
