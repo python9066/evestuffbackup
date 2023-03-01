@@ -62,9 +62,9 @@ class testController extends Controller
         }
     }
 
-    public function testStation($id)
+    public function testStation()
     {
-        return stationRecordSolo($id);
+        return towerRecordAll();
     }
 
     public function removeOps()

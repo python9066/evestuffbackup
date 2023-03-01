@@ -1,401 +1,278 @@
 <template>
-  <div>
-    <v-dialog max-width="700px" z-index="0" v-model="showAddTower" persistent>
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn color="green" dark v-bind="attrs" v-on="on" @click="open()">
-          <font-awesome-icon icon="fa-solid fa-plus" pull="left" />
-          Add Tower
-        </v-btn>
-      </template>
-
-      <v-card
-        tile
-        max-width="700px"
-        min-height="200px"
-        max-height="1000px"
-        class="d-flex flex-column"
-      >
-        <v-card-title class="justify-center"> Adding a New Tower </v-card-title>
-        <v-card-text class="justify-content-center">
-          <div
-            class="d-inline-block align-content-center justify-content-around"
-          >
-            <div>
-              <v-autocomplete
-                v-model="structSelect"
-                :loading="structLoading"
-                :items="structItems"
-                :search-input.sync="structSearch"
-                clearable
-                autofocus
-                label="Structure Type"
-                outlined
-              ></v-autocomplete>
-            </div>
-            <div class="d-inline-flex justify-content-around">
-              <v-autocomplete
-                v-model="sysSelect"
-                @input="getMoonList()"
-                :loading="sysLoading"
-                clearable
-                :items="sysItems"
-                :search-input.sync="sysSearch"
+  <div class="q-pl-md">
+    <q-btn color="primary" label="Add Tower" @click="showAddTower = true" />
+    <q-dialog
+      class="myRoundTop"
+      max-width="700px"
+      min-width="700px"
+      v-model="showAddTower"
+      persistent
+      @before-hide="close()"
+    >
+      <q-card class="myRoundTop" flat style="width: 700px; max-width: 80vw">
+        <q-card-section class="bg-primary text-center">
+          <h5 class="no-margin">Add Tower</h5>
+        </q-card-section>
+        <q-card-section class="q-py-xs">
+          <q-select
+            v-model="pickedType"
+            :options="typeList"
+            option-value="value"
+            @filter="filterFnTypeFinish"
+            @filter-abort="abortFilterFn"
+            option-label="text"
+            input-debounce="0"
+            label="Structure Type"
+            filled
+            clearable
+            use-input
+          />
+        </q-card-section>
+        <q-card-section class="q-py-xs">
+          <div class="row q-gutter-xs">
+            <div class="col">
+              <q-select
+                v-model="pickedSystem"
+                :options="systemList"
+                option-value="value"
+                @filter="filterFnSystemFinish"
+                @filter-abort="abortFilterFn"
+                option-label="text"
+                input-debounce="0"
                 label="System Name"
-                class="pr-2"
-                outlined
-              ></v-autocomplete>
-              <v-autocomplete
-                v-model="moonSelect"
-                :loading="moonLoading"
-                :disabled="moonDisable"
+                filled
                 clearable
-                :items="moonItems"
-                :search-input.sync="moonSearch"
+                @update:model-value="getMoon"
+                use-input
+              />
+            </div>
+            <div class="col">
+              <q-select
+                v-model="pickedMoon"
+                :options="moonList"
+                option-value="value"
+                @filter="filterFnMoonFinish"
+                @filter-abort="abortFilterFn"
+                option-label="text"
+                input-debounce="0"
                 label="Moon"
-                outlined
-              ></v-autocomplete>
-            </div>
-            <div>
-              <v-autocomplete
-                class="ml-2"
-                v-model="tickSelect"
-                :loading="tickLoading"
+                filled
                 clearable
-                :items="tickItems"
-                :search-input.sync="tickSearch"
-                label="Alliance Ticker"
-                outlined
-              ></v-autocomplete>
-            </div>
-
-            <div>
-              <v-radio-group row v-model="timeType">
-                <v-radio label="Anchoring" value="3"></v-radio>
-                <v-radio label="Anchored" value="9"></v-radio>
-                <v-radio label="Onine" value="4"></v-radio>
-                <v-radio label="Reffed" value="5"></v-radio>
-              </v-radio-group>
-            </div>
-            <div>
-              <v-text-field
-                v-show="addShowTimer()"
-                v-model="timeTime"
-                label="Ref Time d hh:mm:ss"
-                v-mask="'#d ##:##:##'"
-                placeholder="d:hh:mm:ss"
-                @keyup.enter="(timerShown = false), addHacktime()"
-                @keyup.esc="(timerShown = false), (hackTime = null)"
-              ></v-text-field>
+                :disable="store.moonList.length > 0 ? false : true"
+                @update:model-value="getMoon"
+                use-input
+              />
             </div>
           </div>
-        </v-card-text>
-        <v-spacer></v-spacer
-        ><v-card-actions>
-          <v-btn class="white--text" color="teal" @click="close()">
-            Close
-          </v-btn>
-          <v-btn
-            class="white--text"
-            color="green"
-            :disabled="showSubmit"
+        </q-card-section>
+        <q-card-section>
+          <div class="row flex-center">
+            <div class="col-auto">
+              <q-select
+                v-model="corpSelect"
+                :options="tickerlistFilter"
+                option-value="value"
+                option-label="text"
+                label="Corp Ticker"
+                use-input
+                clearable
+                filled
+                @filter="tickerFilterStart"
+              />
+            </div>
+            <div class="col-auto">
+              <AddMissingCorp
+                v-if="checkIfMissingCorp"
+                class="pt-3 pl-1"
+                @missingCorpDone="setTicker()"
+              ></AddMissingCorp>
+            </div>
+          </div>
+        </q-card-section>
+        <q-card-section>
+          <q-card-section>
+            <span class="text-subtitle1 text-bold"> Status Type</span>
+            <q-option-group
+              v-model="timerTypePick"
+              color="secondary"
+              :options="timerTypeOptions"
+              inline
+            />
+          </q-card-section>
+        </q-card-section>
+        <q-card-actions align="center">
+          <q-btn
+            color="positive"
+            label="Submit"
             @click="submit()"
-          >
-            Submit
-          </v-btn></v-card-actions
-        >
-      </v-card>
-
-      <!-- <showAddTower
-                :nodeNotestation="nodeNotestation"
-                v-if="$can('super')"
-                @closeMessage="showAddTower = false"
-            >
-            </showAddTower> -->
-    </v-dialog>
+            rounded
+            v-close-popup
+          />
+          <q-btn label="Close" rounded color="negative" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
-<script>
-import { mapState, mapGetters } from "vuex";
-import moment from "moment";
-export default {
-  props: {
-    station: Object,
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import { useMainStore } from "@/store/useMain.js";
+import axios from "axios";
+let store = useMainStore();
+let can = inject("can");
+
+const emit = defineEmits(["missingCorpDone"]);
+const AddMissingCorp = defineAsyncComponent(() =>
+  import("../station/AddMissingCorp.vue")
+);
+
+let showAddTower = $ref(false);
+
+onMounted(async () => {
+  await store.getTowerFilter();
+  await store.getTickList();
+});
+
+onBeforeUnmount(async () => {});
+
+let abortFilterFn = () => {
+  // console.log('delayed filter aborted')
+};
+
+let pickedType = $ref([]);
+let timerTypePick = $ref({});
+let timerTypeOptions = $ref([
+  {
+    label: "Anchoring",
+    value: 3,
   },
-  data() {
-    return {
-      systems: [],
-      towerNameEdit: null,
-      state: 1,
-      showAddTower: false,
-      stationName: null,
-      sysItems: [],
-      systemEdit: null,
-      sysSearch: null,
-      sysSelect: null,
-      sysLoading: false,
-      moonItems: [],
-      moonEdit: null,
-      moonSearch: null,
-      moonSelect: null,
-      moonLoading: false,
-      tickItems: [],
-      ticktemEdit: null,
-      tickSearch: null,
-      tickSelect: null,
-      tickLoading: false,
-      tickerEdit: null,
-      timeType: null,
-      stationPull: [],
-      structItems: [],
-      structtemEdit: null,
-      structSearch: null,
-      structSelect: null,
-      structLoading: false,
-      structerEdit: null,
-      timeTime: {
-        d: "",
-        hh: "",
-        mm: "",
-        ss: "",
-      },
-    };
+  {
+    label: "Anchored",
+    value: 9,
   },
-
-  watch: {
-    sysSearch(val) {
-      val && val !== this.sysSelect && this.sysQuerySelections(val);
-    },
-
-    tickSearch(val) {
-      val && val !== this.tickSelect && this.tickQuerySelections(val);
-    },
-
-    structSearch(val) {
-      val && val !== this.structSelect && this.structQuerySelections(val);
-    },
-
-    moonSearch(val) {
-      val && val !== this.moonSelect && this.moonQuerySelections(val);
-    },
+  {
+    label: "Onine",
+    value: 4,
   },
-
-  methods: {
-    close() {
-      this.towerNameEdit = null;
-      this.showAddTower = false;
-      this.stationName = null;
-      this.towerNameEdit = null;
-      this.structItems = [];
-      this.structSearch = null;
-      this.structSelect = null;
-      this.sysItems = [];
-      this.timeTime = {
-        d: "",
-        hh: "",
-        mm: "",
-        ss: "",
-      };
-      this.timeType = null;
-      this.sysSearch = null;
-      this.sysSelect = null;
-      this.systems = [];
-      this.tickItems = [];
-      this.tickSearch = null;
-      this.tickSelect = null;
-      this.moonItems = [];
-      this.moonSearch = null;
-      this.moonSelect = null;
-      this.state = 1;
-      this.showAddTower = false;
-    },
-
-    addShowTimer() {
-      if (this.timeType == 3 || this.timeType == 5) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-
-    async submit() {
-      var d = parseInt(this.timeTime.substr(0, 1));
-      var h = parseInt(this.timeTime.substr(3, 2));
-      var m = parseInt(this.timeTime.substr(6, 2));
-      var s = parseInt(this.timeTime.substr(9, 2));
-      var ds = d * 24 * 60 * 60;
-      var hs = h * 60 * 60;
-      var ms = m * 60;
-      var sec = ds + hs + ms + s;
-      var outTime = moment
-        .utc()
-        .add(sec, "seconds")
-        .format("YYYY-MM-DD HH:mm:ss");
-
-      var request = {
-        moon_id: this.moonSelect,
-        alliance_id: this.tickSelect,
-        item_id: this.structSelect,
-        timestamp: moment.utc().format("YYYY-MM-DD HH:mm:ss"),
-        tower_status_id: this.timeType,
-        out_time: outTime,
-      };
-
-      await axios({
-        method: "put", //you can set what request you want to be
-        url: "api/towerrecords",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }).then(
-        (this.towerNameEdit = null),
-        (this.showAddTower = false),
-        (this.stationName = null),
-        (this.towerNameEdit = null),
-        (this.structItems = []),
-        (this.structSearch = null),
-        (this.timeType = null),
-        (this.structSelect = null),
-        (this.sysItems = []),
-        (this.sysSearch = null),
-        (this.sysSelect = null),
-        (this.timeTime = {
-          d: "",
-          hh: "",
-          mm: "",
-          ss: "",
-        }),
-        (this.systems = []),
-        (this.tickItems = []),
-        (this.tickSearch = null),
-        (this.tickSelect = null),
-        (this.moonItems = []),
-        (this.moonSearch = null),
-        (this.moonSelect = null),
-        (this.state = 1),
-        (this.showAddTower = false)
-      );
-    },
-
-    tickQuerySelections(v) {
-      this.tickLoading = true;
-      // Simulated ajax query
-      setTimeout(() => {
-        this.tickItems = this.tickList.filter((e) => {
-          return (
-            (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1
-          );
-        });
-        this.tickLoading = false;
-      }, 500);
-    },
-
-    structQuerySelections(v) {
-      this.structLoading = true;
-      // Simulated ajax query
-      setTimeout(() => {
-        this.structItems = this.structureList.filter((e) => {
-          return (
-            (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1
-          );
-        });
-        this.structLoading = false;
-      }, 500);
-    },
-
-    async getMoonList() {
-      await this.$store
-        .dispatch("getMoonList", this.sysSelect)
-        .then((this.moonSearch = this.sysSearch));
-    },
-
-    sysQuerySelections(v) {
-      this.sysLoading = true;
-      // Simulated ajax query
-      setTimeout(() => {
-        this.sysItems = this.systemList.filter((e) => {
-          return (
-            (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1
-          );
-        });
-        this.sysLoading = false;
-      }, 500);
-    },
-
-    moonQuerySelections(v) {
-      this.moonLoading = true;
-      // Simulated ajax query
-      setTimeout(() => {
-        this.moonItems = this.moonList.filter((e) => {
-          return (
-            (e.text || "").toLowerCase().indexOf((v || "").toLowerCase()) > -1
-          );
-        });
-        this.moonLoading = false;
-      }, 500);
-    },
-
-    async open() {
-      await this.$store.dispatch("getSystemList");
-      await this.$store.dispatch("getAllianceTickList");
-      await this.$store.dispatch("getTowerList");
-    },
+  {
+    label: "Reffed",
+    value: 5,
   },
+]);
+let typeText = $ref();
+let typeList = $computed(() => {
+  if (typeText) {
+    return store.towerTypes.filter((d) => d.text.toLowerCase().indexOf(typeText) > -1);
+  }
+  return store.towerTypes;
+});
 
-  computed: {
-    ...mapGetters([]),
-    ...mapState(["systemlist", "towerlist", "allianceticklist", "moonlist"]),
-    showSubmit() {
-      if (
-        this.structSelect != null &&
-        this.sysSelect != null &&
-        this.tickSelect != null &&
-        this.moonSelect != null
-      ) {
-        return false;
-      } else {
-        return true;
-      }
+let filterFnTypeFinish = (val, update, abort) => {
+  update(() => {
+    typeText = val.toLowerCase();
+  });
+};
+
+let pickedSystem = $ref([]);
+let systemText = $ref();
+let systemList = $computed(() => {
+  if (systemText) {
+    return store.systemlist.filter((d) => d.text.toLowerCase().indexOf(systemText) > -1);
+  }
+  return store.systemlist;
+});
+
+let filterFnSystemFinish = (val, update, abort) => {
+  update(() => {
+    systemText = val.toLowerCase();
+  });
+};
+
+let pickedMoon = $ref([]);
+let moonText = $ref();
+let moonList = $computed(() => {
+  if (moonText) {
+    return store.moonList.filter((d) => d.text.toLowerCase().indexOf(moonText) > -1);
+  }
+  return store.moonList;
+});
+
+let filterFnMoonFinish = (val, update, abort) => {
+  update(() => {
+    moonText = val.toLowerCase();
+  });
+};
+
+let corpSelect = $ref();
+
+let tickerText = $ref();
+let tickerlistFilter = $computed(() => {
+  if (tickerText) {
+    return store.ticklist.filter((d) => d.text.toLowerCase().indexOf(tickerText) > -1);
+  }
+  return store.ticklist;
+});
+
+let tickerFilterStart = (val, update, abort) => {
+  update(() => {
+    tickerText = val.toLowerCase();
+    if (tickerlistFilter.length > 0 && val) {
+      corpSelect = tickerlistFilter[0];
+    }
+  });
+};
+
+let checkIfMissingCorp = $computed(() => {
+  if (tickerlistFilter.length == 0) {
+    return true;
+  }
+  return false;
+});
+
+let getMoon = () => {
+  store.getMoonList(pickedSystem.value);
+};
+
+let setTicker = async () => {
+  await store.getTickList();
+  tickerText = [];
+  corpSelect = {
+    text: store.missingCorpTick,
+    value: store.missingCorpID,
+  };
+};
+
+let submit = async () => {
+  var request = {
+    corp_id: corpSelect.value,
+    item_id: pickedType.value,
+    moon_id: pickedMoon.value,
+    tower_status_id: timerTypePick,
+  };
+
+  await axios({
+    method: "post",
+    url: "api/towerrecords",
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-
-    systemList() {
-      return this.systemlist;
-    },
-
-    structureList() {
-      return this.towerlist;
-    },
-
-    tickList() {
-      return this.allianceticklist;
-    },
-
-    moonDisable() {
-      if (this.sysSelect > 0) {
-        return false;
-      } else {
-        return true;
-      }
-    },
-
-    moonList() {
-      return this.moonlist;
-    },
-  },
-
-  beforeDestroy() {},
+  });
+};
+let close = () => {
+  pickedType = {};
+  timerTypePick = [];
+  typeText = null;
+  pickedSystem = [];
+  systemText = null;
+  pickedMoon = [];
+  moonText = null;
+  corpSelect = null;
+  tickerText = null;
 };
 </script>
 
-<style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-</style>
+<style lang="scss"></style>

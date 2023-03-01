@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobTestController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\testController;
+use App\Http\Controllers\TowerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,10 @@ Route::controller(JobTestController::class)->group(function () {
     Route::get('/jobtest', 'standingJob');
     Route::get('/testGetAliianceJob/{id}', 'jobAllianceTest');
     Route::get('/testGetCorpJob/{id}', 'jobCorpTest');
+});
+
+Route::controller(TowerController::class)->group(function () {
+    Route::get('/test/tower', 'towerFilters');
 });
 
 Route::controller(testController::class)->group(function () {
@@ -53,7 +58,7 @@ Route::controller(testController::class)->group(function () {
     Route::get('testNotes', 'testNotes');
     Route::get('/testDankFleet', 'testDankFleet');
     Route::get('/test/testremove', 'removeOps');
-    Route::get('/test/teststation/{id}', 'testStation');
+    Route::get('/test/teststation', 'testStation');
 });
 
 Route::controller(AuthController::class)->group(function () {

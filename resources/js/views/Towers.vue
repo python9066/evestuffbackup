@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="q-ma-md">
     <q-table
       title="Connections"
       class="myTablePoS myRound bg-webBack"
@@ -14,15 +14,13 @@
       :filter="search"
       ref="tableRef"
       rounded
+      hide-bottom
       :pagination="pagination"
     >
       <template v-slot:top="props">
         <div class="row full-width flex-center q-pt-xs myRoundTop bg-primary">
           <div class="col-11 flex flex-center">
-            <span class="text-h4">Stations</span>
-          </div>
-          <div class="col-1 flex justify-end">
-            <SettingPannel v-if="can('view_coord_sheet')"></SettingPannel>
+            <span class="text-h4">Towers</span>
           </div>
         </div>
         <div class="row full-width q-pt-md justify-between">
@@ -57,6 +55,7 @@
                   :options="regionList"
                   ref="toRegionRef"
                   label="Region"
+                  @clear="region_id = []"
                   @filter="filterFnRegionFinish"
                   @filter-abort="abortFilterFn"
                   map-options
@@ -107,6 +106,7 @@
                   :options="constellationList"
                   ref="toConstellationRef"
                   label="Constellations"
+                  @clear="constellation_id = []"
                   @filter="filterFnConstellationFinish"
                   @filter-abort="abortFilterFn"
                   map-options
@@ -194,139 +194,179 @@
                 >
               </div>
             </div>
-          </div>
-        </div>
-      </template>
-
-      <template v-slot:header-cell-webway="props">
-        <q-th :props="props">
-          <div class="row">
-            <div class="col">
-              <span class="myFont">Webway</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <q-btn
-                v-if="webwayButton"
-                size="sm"
-                :label="store.webwaySelectedStartSystem.text"
-              >
-                <q-menu>
-                  <q-card class="my-card">
-                    <q-list bordered>
-                      <q-item
-                        v-close-popup
-                        clickable
-                        v-ripple
-                        v-for="(list, index) in webwayDropdownList(
-                          store.webwaySelectedStartSystem.value
-                        )"
-                        :key="index"
-                        @click="updateWebwaySelectedStartSystem(list)"
-                      >
-                        <q-item-section>{{ list.text }}</q-item-section>
-                      </q-item>
-                    </q-list>
-                  </q-card>
-                </q-menu></q-btn
-              >
-              <span v-else>{{ store.webwaySelectedStartSystem.text }}</span>
-            </div>
-          </div>
-        </q-th>
-      </template>
-
-      <template v-slot:body="props">
-        <q-tr :props="props">
-          <q-td key="webway" :props="props">
-            <SoloCampaginWebWay
-              v-if="webwayJumps(props.row) && webwayLink(props.row)"
-              :jumps="webwayJumps(props.row)"
-              :web="webwayLink(props.row)"
-            ></SoloCampaginWebWay>
-          </q-td>
-          <q-td key="region" :props="props">
-            {{ props.row.system.region.region_name }}
-          </q-td>
-          <q-td key="constellation" :props="props">
-            {{ props.row.system.constellation.constellation_name }}
-          </q-td>
-          <q-td key="system" :props="props">
-            <q-btn
-              color="none"
-              flat
-              rounded
-              text-color="positive"
-              icon="fa-solid fa-map"
-              :href="link(props.row)"
-              target="_blank"
-            />
-            <span
-              @click="copySystem(props.row.system.system_name)"
-              class="cursor-pointer"
-            >
-              {{ props.row.system.system_name }}</span
-            ></q-td
-          >
-          <q-td key="corpTicker" :props="props">
-            <q-avatar size="lg" class="q-pr-xl">
-              <img :src="props.row.corp.url" />
-            </q-avatar>
-            <span :class="standingCheckCorp(props.row)">
-              {{ props.row.corp.ticker }}</span
-            >
-          </q-td>
-          <q-td key="allianceTicker" :props="props">
-            <span v-if="props.row.corp.alliance_id">
-              <q-avatar size="lg" class="q-pr-xl">
-                <img :src="props.row.corp.alliance.url" />
-              </q-avatar>
-              <span :class="standingCheck(props.row)">
-                {{ props.row.corp.alliance.ticker }}
-              </span></span
-            >
-          </q-td>
-          <q-td key="type" :props="props">
-            <q-avatar size="lg" class="q-pr-xl">
-              <img :src="itemUrl(props.row.item_id)" />
-            </q-avatar>
-            {{ props.row.item.item_name }}
-          </q-td>
-          <q-td key="name" :props="props">
-            {{ props.row.name }}
-          </q-td>
-          <q-td key="status" :props="props">
-            <StatusButton v-if="can('add_timer')" :item="props.row" />
-          </q-td>
-          <q-td key="actions" :props="props">
-            <div class="row">
-              <div class="col"><AddStation :from="2" :station="props.row" /></div>
-              <div class="col">
-                <RcStationMessage :station="props.row" :type="4"></RcStationMessage>
-              </div>
-              <div class="col">
-                <StationInfoSheet :station="props.row" v-if="showInfo(props.row)" />
-              </div>
-              <div class="col" v-if="can('view_station_logs')">
-                <q-btn
-                  size="md"
-                  flat
-                  color="none"
-                  text-color="primary"
-                  round
-                  padding="none"
-                  @click="props.expand = !props.expand"
-                  icon="fa-solid fa-clock-rotate-left"
+            <div class="row justify-end q-pt-sm">
+              <div class="col"><AddTower /></div>
+              <div class="col-auto">
+                <q-btn-toggle
+                  v-model="filterStandingSelected"
+                  rounded
+                  unelevated
+                  class="q-pr-md"
+                  clearable
+                  color="webDark"
+                  text-color="gray"
+                  toggle-color="primary"
+                  toggle-text-color="gray"
+                  :options="[
+                    { label: 'Hostile', value: 1 },
+                    { label: 'Friendly', value: 2 },
+                  ]"
+                />
+                <q-btn-toggle
+                  v-model="filterStatusSelcted"
+                  rounded
+                  unelevated
+                  clearable
+                  color="webDark"
+                  text-color="gray"
+                  toggle-color="primary"
+                  toggle-text-color="gray"
+                  :options="[
+                    { label: 'Scouting', value: 2 },
+                    { label: 'Anchoring', value: 3 },
+                    { label: 'Online', value: 4 },
+                    { label: 'Reffed', value: 5 },
+                    { label: 'Dead', value: 6 },
+                  ]"
                 />
               </div>
             </div>
+          </div>
+        </div>
+      </template>
+      <template v-slot:body="props">
+        <q-tr :props="props">
+          <q-td key="region" :props="props">
+            <div>{{ props.row.moon.region.region_name }}</div>
+          </q-td>
+          <q-td key="constellation" :props="props">
+            <div>{{ props.row.moon.constellation.constellation_name }}</div>
+          </q-td>
+          <q-td key="system" :props="props">
+            <div>{{ props.row.moon.system.system_name }}</div>
+          </q-td>
+          <q-td key="corpTicker" :props="props">
+            <div>
+              <q-avatar size="md" class="q-pa-none">
+                <img :src="props.row.corp.url" />
+              </q-avatar>
+              {{ props.row.corp.ticker }}
+            </div>
+          </q-td>
+          <q-td :props="props" key="allianceTicker">
+            <div v-if="props.row.corp.alliance">
+              <q-avatar size="md" class="q-pa-none">
+                <img :src="props.row.corp.alliance.url" />
+              </q-avatar>
+              {{ props.row.corp.alliance.ticker }}
+            </div>
+          </q-td>
+          <q-td key="moon" :props="props">
+            <div>{{ props.row.moon.name }}</div>
+          </q-td>
+          <q-td key="type" :props="props">
+            <div>{{ props.row.item.item_name }}</div>
+          </q-td>
+          <!-- <q-td key="time" :props="props">
+            <div>{{ props.row.out_time }}</div>
+          </q-td>
+          <q-td :props="props" key="timeLeft">
+            <div>
+              <VueCountDown
+                v-if="props.row.out_time"
+                :time="countDownTimeMil(props.row.out_time)"
+                :interval="1000"
+                :emit-events="false"
+                v-slot="{ hours, minutes, seconds, days }"
+                :transform="transformSlotProps"
+              >
+                <span class="text-red">
+                  <span v-if="days > 0"
+                    >{{ days }}:{{ hours }}:{{ minutes }}:{{ seconds }}</span
+                  >
+                  <span v-else-if="hours > 0">
+                    {{ hours }}:{{ minutes }}:{{ seconds }}
+                  </span>
+                  <span v-else> {{ minutes }}:{{ seconds }} </span>
+                </span>
+              </VueCountDown>
+            </div>
+          </q-td> -->
+          <q-td key="status" :props="props">
+            <div>
+              <q-btn
+                class="myOutLineButtonLarge"
+                :color="chipColor(props.row.status.id)"
+                size="md"
+                rounded
+                :label="props.row.status.name"
+                ><q-menu>
+                  <q-list style="min-width: 100px">
+                    <q-item
+                      v-for="(list, index) in statusDropDownFilter(props.row.status.id)"
+                      :key="index"
+                      @click="menuClick(props.row.id, list.value)"
+                      clickable
+                      v-close-popup
+                    >
+                      <q-item-section>{{ list.title }}</q-item-section>
+                    </q-item>
+                  </q-list>
+                </q-menu>
+              </q-btn>
+            </div>
+          </q-td>
+
+          <q-td key="actions" :props="props">
+            <div class="row flex-center">
+              <TowerMessage class="q-pr-lg" :tower="props.row" :type="4" />
+              <q-btn
+                no-caps
+                color="accent"
+                label="aDash"
+                dense
+                @click="props.expand = !props.expand"
+                :outline="props.row.text ? false : true"
+              />
+            </div>
+          </q-td>
+          <q-td key="editedBy" :props="props">
+            <div>{{ props.row.user.name }}</div>
           </q-td>
         </q-tr>
         <q-tr v-show="props.expand" :props="props">
           <q-td colspan="100%">
-            <div>
-              <StationSheetLogs :station="props.row" />
+            <div class="text-left">
+              <q-input
+                v-model="props.row.text"
+                outlined
+                type="text"
+                label="aDash Board Link - needs to be a link to a scan, making a new scan from where will not save"
+                @update:model-value="updateText(props.row)"
+                debounce="300"
+              />
+              <span
+                v-if="
+                  props.row.text != null &&
+                  props.row.text.includes('https://adashboard.info/intel/dscan/')
+                "
+                ><q-card class="my-card">
+                  <iframe
+                    :src="props.row.text"
+                    frameborder="0"
+                    style="
+                      left: 0;
+                      bottom: 0;
+                      right: 0;
+                      width: 100%;
+                      height: 600px;
+                      border: none;
+                      margin: 0;
+                      padding: 0;
+                      overflow: hidden;
+                    "
+                  ></iframe> </q-card
+              ></span>
             </div>
           </q-td>
         </q-tr>
@@ -336,9 +376,478 @@
 </template>
 
 <script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 import { useMainStore } from "@/store/useMain.js";
+import axios from "axios";
 let store = useMainStore();
 let search = $ref("");
+let can = inject("can");
+let filterStandingSelected = $ref();
+let filterStatusSelcted = $ref();
+
+const VueCountDown = defineAsyncComponent(() => import("../components/countdown/index"));
+const AddTower = defineAsyncComponent(() => import("../components/tower/AddTower.vue"));
+const TowerMessage = defineAsyncComponent(() =>
+  import("../components/tower/TowerMessage.vue")
+);
+
+onMounted(async () => {
+  Echo.private("towers")
+    .listen("TowerChanged", (e) => {
+      store.updateTowers(e.flag.message);
+    })
+    .listen("TowerNew", (e) => {
+      store.getTowerData();
+    })
+    .listen("TowerDelete", (e) => {
+      store.deleteTower(e.flag.id);
+    })
+    .listen("TowerSheetMessageUpdate", (e) => {
+      store.updateTowers(e.flag.message);
+    });
+
+  await store.getTowerData();
+  //   await store.getTowerFilter();
+});
+
+onBeforeUnmount(async () => {
+  Echo.leave("towers");
+});
+
+let pagination = $ref({
+  sortBy: "region",
+  descending: false,
+  page: 1,
+  rowsPerPage: 0,
+});
+let statusDropDown = $ref([
+  { title: "New", value: 1 },
+  { title: "Scouted", value: 2 },
+  { title: "Online", value: 4 },
+  { title: "Reffed", value: 5 },
+  { title: "Anchored", value: 9 },
+  { title: "Anchoring", value: 3 },
+  { title: "Dead", value: 6 },
+]);
+
+let chipColor = (statusId) => {
+  if (statusId == 1) {
+    return "webway";
+  }
+  if (statusId == 2) {
+    return "secondary";
+  }
+  if (statusId == 3) {
+    return "warning";
+  }
+  if (statusId == 4) {
+    return "primary";
+  }
+  if (statusId == 5) {
+    return "negative";
+  }
+  if (statusId == 6) {
+    return "negative";
+  }
+  if (statusId == 7) {
+    return "orange";
+  }
+  if (statusId == 8) {
+    return "warning";
+  }
+
+  if (statusId == 9) {
+    return "teal";
+  }
+};
+
+let updateText = (item) => {
+  var request = {
+    text: item.text,
+  };
+
+  axios({
+    method: "put",
+    url: "api/tower/updatetext/" + item.id,
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+let statusDropDownFilter = (id) => {
+  let list = statusDropDown.filter((s) => s.value != id);
+  return list;
+};
+
+let menuClick = (id, statusID) => {
+  var request = {
+    status_id: statusID,
+  };
+  axios({
+    method: "put",
+    url: "api/tower/updatestatus/" + id,
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+let countDownTimeMil = (time) => {
+  const utcTime = new Date(time + "Z");
+  const currentTimestamp = Date.now();
+  const timeDiff = utcTime.getTime() - currentTimestamp;
+  return timeDiff;
+};
+
+let transformSlotProps = (props) => {
+  const formattedProps = {};
+
+  Object.entries(props).forEach(([key, value]) => {
+    formattedProps[key] = value < 10 ? `0${value}` : String(value);
+  });
+
+  return formattedProps;
+};
+
+let filterRegion = $computed(() => {
+  if (region_id.length > 0) {
+    const filteredTowers = store.towers.filter((t) => {
+      return region_id.some((r) => {
+        return r.value === t.moon.region_id;
+      });
+    });
+    return filteredTowers;
+  }
+  return store.towers;
+});
+
+let filterConstellation = $computed(() => {
+  if (constellation_id.length > 0) {
+    const filteredTowers = filterRegion.filter((t) => {
+      return constellation_id.some((c) => {
+        return c.value === t.moon.constellation_id;
+      });
+    });
+    return filteredTowers;
+  }
+  return filterRegion;
+});
+
+let filterType = $computed(() => {
+  if (type_id.length > 0) {
+    const filteredTowers = filterConstellation.filter((t) => {
+      return type_id.some((c) => {
+        return c.value === t.item_id;
+      });
+    });
+    return filteredTowers;
+  }
+  return filterConstellation;
+});
+
+let filterStanding = $computed(() => {
+  if (filterStandingSelected) {
+    if (filterStandingSelected == 1) {
+      return filterType.filter((f) => {
+        if (f.corp.alliance_id) {
+          if (f.corp.alliance.standing <= 0) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          if (f.corp.standing <= 0) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      });
+    } else {
+      return filterType.filter((f) => {
+        if (f.corp.alliance_id) {
+          if (f.corp.alliance.standing > 0) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          if (f.corp.standing > 0) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      });
+    }
+  } else {
+    return filterType;
+  }
+});
+
+let filterStatus = $computed(() => {
+  if (filterStatusSelcted) {
+    return filterStanding.filter((f) => f.status.id == filterStatusSelcted);
+  } else {
+    return filterStanding;
+  }
+});
+
+let filterEnd = $computed(() => {
+  return filterStatus;
+});
+
+let region_id = $ref([]);
+let regionText = $ref();
+let regionDropDownList = $computed(() => {
+  var data = filterType.map((s) => ({
+    id: s.moon.region.id,
+    name: s.moon.region.region_name,
+  }));
+  const result = [];
+  const map = new Map();
+  for (const item of data) {
+    if (!map.has(item.id)) {
+      map.set(item.id, true);
+      result.push({
+        value: item.id,
+        text: item.name,
+      });
+    }
+  }
+  result.sort((a, b) => a.text.localeCompare(b.text));
+  return result;
+});
+
+let regionList = $computed(() => {
+  if (regionText) {
+    return regionDropDownList.filter(
+      (d) => d.text.toLowerCase().indexOf(regionText) > -1
+    );
+  }
+  return regionDropDownList;
+});
+
+let filterFnRegionFinish = (val, update, abort) => {
+  update(() => {
+    regionText = val.toLowerCase();
+  });
+};
+
+let constellation_id = $ref([]);
+let constellationText = $ref();
+
+let conDropDownList = $computed(() => {
+  var data = filterType.map((s) => ({
+    id: s.moon.constellation.id,
+    name: s.moon.constellation.constellation_name,
+  }));
+  const result = [];
+  const map = new Map();
+  for (const item of data) {
+    if (!map.has(item.id)) {
+      map.set(item.id, true);
+      result.push({
+        value: item.id,
+        text: item.name,
+      });
+    }
+  }
+  result.sort((a, b) => a.text.localeCompare(b.text));
+  return result;
+});
+
+let constellationList = $computed(() => {
+  if (constellationText) {
+    return conDropDownList.filter(
+      (d) => d.text.toLowerCase().indexOf(constellationText) > -1
+    );
+  }
+  return conDropDownList;
+});
+
+let filterFnConstellationFinish = (val, update, abort) => {
+  update(() => {
+    constellationText = val.toLowerCase();
+  });
+};
+
+let type_id = $ref([]);
+let typeText = $ref();
+
+let typeDropDownList = $computed(() => {
+  var data = filterType.map((s) => ({
+    id: s.item.id,
+    type: s.item.item_name,
+  }));
+  const result = [];
+  const map = new Map();
+  for (const item of data) {
+    if (!map.has(item.id)) {
+      map.set(item.id, true);
+      result.push({
+        value: item.id,
+        text: item.type,
+      });
+    }
+  }
+  result.sort((a, b) => a.text.localeCompare(b.text));
+  return result;
+});
+
+let typeList = $computed(() => {
+  if (typeText) {
+    return typeDropDownList.filter((d) => d.text.toLowerCase().indexOf(typeText) > -1);
+  }
+  return typeDropDownList;
+});
+
+let filterFnTypeFinish = (val, update, abort) => {
+  update(() => {
+    typeText = val.toLowerCase();
+  });
+};
+let abortFilterFn = () => {
+  // console.log('delayed filter aborted')
+};
+
+let columns = $ref([
+  {
+    name: "region",
+    align: "left",
+    required: false,
+    label: "Region",
+    classes: "text-no-wrap",
+    field: (row) => row.moon.region.region_name,
+    format: (val) => `${val}`,
+    sortable: false,
+  },
+  {
+    name: "constellation",
+    required: true,
+    align: "left",
+    label: "Constellation",
+    classes: "text-no-wrap",
+    field: (row) => row.moon.constellation.constellation_name,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "system",
+    required: true,
+    align: "left",
+    label: "System",
+    classes: "text-no-wrap",
+    field: (row) => row.moon.system.system_name,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "corpTicker",
+    align: "left",
+    classes: "text-no-wrap",
+    label: "Corp",
+    field: (row) => row.corp.ticker,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "allianceTicker",
+    align: "left",
+    required: true,
+    label: "Alliance",
+    // style: "width: 5%",
+    classes: "text-no-wrap",
+    field: (row) => {
+      if (row.corp.alliance) {
+        return row.corp.alliance.ticker;
+      } else {
+        return null;
+      }
+    },
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "moon",
+    align: "left",
+    classes: "text-no-wrap",
+    label: "Moon",
+    field: (row) => row.moon.name,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "type",
+    label: "Type",
+    align: "left",
+    classes: "text-no-wrap",
+    field: (row) => row.item.item_name,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  //   {
+  //     name: "time",
+  //     label: "Time",
+  //     classes: "text-no-wrap",
+  //     align: "left",
+  //     sortable: true,
+  //     field: (row) => row.out_time,
+  //     format: (val) => `${val}`,
+  //   },
+  //   {
+  //     name: "timeLeft",
+  //     label: "Time Left",
+  //     classes: "text-no-wrap",
+  //     align: "left",
+  //     sortable: true,
+  //     field: (row) => row.out_time,
+  //     format: (val) => `${val}`,
+  //   },
+
+  {
+    name: "status",
+    label: "Status",
+    classes: "text-no-wrap",
+    align: "center",
+    sortable: true,
+    field: (row) => row.status.name,
+    format: (val) => `${val}`,
+  },
+
+  {
+    name: "actions",
+    label: "",
+    align: "right",
+    classes: "text-no-wrap",
+    sortable: false,
+    field: (row) => row.id,
+    format: (val) => `${val}`,
+  },
+  {
+    name: "editedBy",
+    label: "Edited By",
+    classes: "text-no-wrap",
+    align: "right",
+    sortable: true,
+    field: (row) => row.user.name,
+    format: (val) => `${val}`,
+  },
+]);
+
 let h = $computed(() => {
   let mins = 30;
   let window = store.size.height;

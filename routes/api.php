@@ -62,13 +62,15 @@ use App\Http\Controllers\StationRecordsController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\testController;
 use App\Http\Controllers\TimerController;
-use App\Http\Controllers\TowerRecordsController;
+use App\Http\Controllers\TowerController;
+use App\Http\Controllers\TowerNotesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserKeyJoinControllerController;
 use App\Http\Controllers\UserRolesRecordsController;
 use App\Http\Controllers\WebWayController;
 use App\Http\Controllers\WebWayStartSystemsContorller;
 use App\Http\Controllers\WelpStationController;
+use App\Models\Tower;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -133,6 +135,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/sheetmessage/{id}', 'updateMessage');
         Route::delete('/sheetmessage/{id}', 'destroy');
         Route::put('/sheetmessage/{id}/notes', 'addReadBy');
+    });
+
+    Route::controller(TowerNotesController::class)->group(function () {
+        Route::put('/towermessage/{id}', 'updateMessage');
+        Route::delete('/towermessage/{id}', 'destroy');
+        Route::put('/towermessage/{id}/notes', 'addReadBy');
     });
 
     Route::controller(StationController::class)->group(function () {
@@ -286,11 +294,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/stationrecords/{id}', 'update');
     });
 
-    Route::controller(TowerRecordsController::class)->group(function () {
+    Route::controller(TowerController::class)->group(function () {
         Route::get('/towersrecords', 'index');
         Route::put('/towerrecords/{id}', 'update');
-        Route::put('/towerrecords', 'store');
-        Route::put('/towermessage/{id}', 'updateMessage');
+        Route::post('/towerrecords', 'store');
+        Route::get('/towertypelist', 'towerTypeList');
+        Route::get('/tower/moonlist/{id}', 'getMoons');
+        Route::put('/tower/updatestatus/{id}', 'updateStatus');
+        Route::put('/tower/updatetext/{id}', 'updateText');
     });
 
     Route::controller(FeedBackController::class)->group(function () {

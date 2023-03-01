@@ -2,35 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\StationSheetMessageUpdate;
-use App\Models\StationNotes;
+use App\Events\TowerSheetMessageUpdate;
+use App\Models\TowerNote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class StationNotesController extends Controller
+class TowerNotesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-
-    }
-
-
     public function addReadBy($id)
     {
 
-        $notes = StationNotes::whereStationId($id)->get();
+        $notes = TowerNote::whereTowerId($id)->get();
 
         // Check if the current user's ID is not already in the "read_by" column
         foreach ($notes as $note) {
@@ -42,27 +24,22 @@ class StationNotesController extends Controller
             }
         }
 
-        $message = StationRecordsSolo(6, $id);
+        $message = towerRecordSolo($id);
 
         if ($message) {
             $flag = collect([
                 'message' => $message,
                 'id' => $id,
             ]);
-            broadcast(new StationSheetMessageUpdate($flag));
+            broadcast(new TowerSheetMessageUpdate($flag));
         }
     }
 
-
-
-    /**
-     * Store a newly created messages and links them to the stataion.
-     */
     public function updateMessage(Request $request, $id)
     {
 
-        $newMessage = new StationNotes();
-        $newMessage->station_id = $id;
+        $newMessage = new TowerNote();
+        $newMessage->tower_id = $id;
         $newMessage->user_id = Auth::id();
         $newMessage->message = $request->message;
         $readBy = $newMessage->read_by;
@@ -70,7 +47,7 @@ class StationNotesController extends Controller
         $newMessage->read_by = $readBy;
         $newMessage->save();
 
-        $message = StationRecordsSolo(6, $id);
+        $message = towerRecordSolo($id);
 
         if ($message) {
             $flag = collect([
@@ -79,35 +56,16 @@ class StationNotesController extends Controller
             ]);
 
             // dd($request, $id, $flag);
-            broadcast(new StationSheetMessageUpdate($flag));
+            broadcast(new TowerSheetMessageUpdate($flag));
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
-        $message = StationNotes::whereId($id)->first();
-        $stationID = $message->station->id;
+        $message = TowerNote::whereId($id)->first();
+        $towerID = $message->tower->id;
         $message->delete();
-        $message = StationRecordsSolo(6, $stationID);
+        $message = towerRecordSolo($towerID);
 
         if ($message) {
             $flag = collect([
@@ -116,7 +74,7 @@ class StationNotesController extends Controller
             ]);
 
             // dd($request, $id, $flag);
-            broadcast(new StationSheetMessageUpdate($flag));
+            broadcast(new TowerSheetMessageUpdate($flag));
         }
     }
 }

@@ -22,7 +22,6 @@
 
 <script setup>
 import { useMainStore } from "@/store/useMain.js";
-import { defineEmits } from "vue";
 
 const emit = defineEmits(["missingCorpDone"]);
 let store = useMainStore();
