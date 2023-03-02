@@ -12,30 +12,14 @@
       <q-card-section>
         <div class="row justify-between">
           <div class="col-3"><OperationInfoReconCard /></div>
-          <!-- <div class="col-9">
+          <div class="col-9">
             <div class="row">
               <div class="col">
-                <q-table
-                  class="myTablePoS myRound bg-webBack"
-                  :rows="filterEnd"
-                  :columns="columns"
-                  table-class=" text-webway"
-                  table-header-class=" text-weight-bolder"
-                  row-key="id"
-                  no-data-label="All Hostile Stations our reffed!!!!!!"
-                  dark
-                  dense
-                  :filter="search"
-                  ref="tableRef"
-                  rounded
-                  hide-bottom
-                  :pagination="pagination"
-                >
-                </q-table>
+                <OperationInfoSystemTable />
               </div>
             </div>
             <div class="row">
-              <div class="col">
+              <!-- <div class="col">
                 <q-table
                   title="Connections"
                   class="myTablePoS myRound bg-webBack"
@@ -63,9 +47,9 @@
                     </div>
                   </template>
                 </q-table>
-              </div>
+              </div> -->
             </div>
-          </div> -->
+          </div>
         </div>
       </q-card-section>
     </q-card>
@@ -88,6 +72,10 @@ const OperationInfoReconCard = defineAsyncComponent(() =>
 
 const OperationInfoSettingPannel = defineAsyncComponent(() =>
   import("../components/operationinfo/OperationInfoSettingPannel.vue")
+);
+
+const OperationInfoSystemTable = defineAsyncComponent(() =>
+  import("../components/operationinfo/OpertationInfoSystemTable.vue")
 );
 
 onMounted(async () => {

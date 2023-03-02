@@ -162,6 +162,15 @@ export const useMainStore = defineStore("main", {
 
             return values_array;
         },
+
+        getOperationSystemInfo: (state) => (systemID) => {
+            if (state.operationInfoPage.systems) {
+                var systems = state.operationInfoPage.systems;
+                var data = systems.find((s) => s.id == systemID);
+                return data;
+            }
+            return [];
+        },
     },
     actions: {
         async updateTickList(ticker) {
