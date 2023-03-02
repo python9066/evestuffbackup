@@ -796,9 +796,9 @@ export default new Vuex.Store({
             state.campaignmembers = users;
         },
 
-        SET_USERS(state, users) {
-            state.users = users;
-        },
+        // SET_USERS(state, users) {
+        //     state.users = users;
+        // },
 
         SET_USER_KEYS(state, userskeys) {
             state.userkeys = userskeys;
@@ -830,9 +830,9 @@ export default new Vuex.Store({
             state.userschars.push(data);
         },
 
-        SET_ROLES(state, roles) {
-            state.rolesList = roles;
-        },
+        // SET_ROLES(state, roles) {
+        //     state.rolesList = roles;
+        // },
 
         SET_KEYS(state, keys) {
             state.keysList = keys;
@@ -964,9 +964,9 @@ export default new Vuex.Store({
             state.loggingcampaign.push(data);
         },
 
-        SET_LOGGING_ADMIN(state, logs) {
-            state.loggingAdmin = logs;
-        },
+        // SET_LOGGING_ADMIN(state, logs) {
+        //     state.loggingAdmin = logs;
+        // },
 
         SET_NOTIFICATIONS(state, notifications) {
             state.notifications = notifications;
@@ -1662,20 +1662,18 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGN_SOLA_SYSTEMS", res.data.data);
         },
 
-        async getUsers({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/allusersroles",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            // debugger
-            commit("SET_USERS", res.data.usersroles);
-            // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
-        },
+        // async getUsers({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/allusersroles",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_USERS", res.data.usersroles);
+        // },
 
         async getUserKeys({ commit }) {
             let res = await axios({
@@ -1707,19 +1705,19 @@ export default new Vuex.Store({
             // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
         },
 
-        async getRoles({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/roles",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_ROLES", res.data.roles);
-            // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
-        },
+        // async getRoles({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/roles",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_ROLES", res.data.roles);
+        //     // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
+        // },
 
         async getKeys({ commit }) {
             let res = await axios({
@@ -2034,18 +2032,18 @@ export default new Vuex.Store({
             commit("SET_LOGGING_STATIONS", res.data.logs);
         },
 
-        async getLoggingAdmin({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/checkadmin",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_LOGGING_ADMIN", res.data.logs);
-        },
+        // async getLoggingAdmin({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/checkadmin",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_LOGGING_ADMIN", res.data.logs);
+        // },
 
         markOver({ commit }, timer) {
             commit("MARK_TIMER_OVER", timer);
