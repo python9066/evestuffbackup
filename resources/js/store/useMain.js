@@ -128,6 +128,40 @@ export const useMainStore = defineStore("main", {
             }
             return count;
         },
+
+        // {"text":"Yuzier","value":30000007}
+        getOperationInfoSystemList: (state) => {
+            var ids = [];
+            if (state.operationInfoPage.systems) {
+                var systems = state.operationInfoPage.systems;
+
+                systems.forEach((s) => {
+                    if (s.pivot.new_operation_id == null) {
+                        ids.push({ text: s.system_name, value: s.id });
+                    }
+                });
+            }
+            return ids;
+        },
+
+        getOperationInfoTableStatus: (state) => {
+            let values_array = [];
+
+            if (state.operationInfoPage.check_list) {
+                values_array.push("check_list");
+            }
+            if (state.operationInfoPage.fleet_table) {
+                values_array.push("fleet_table");
+            }
+            if (state.operationInfoPage.recon_table) {
+                values_array.push("recon_table");
+            }
+            if (state.operationInfoPage.system_table) {
+                values_array.push("system_table");
+            }
+
+            return values_array;
+        },
     },
     actions: {
         async updateTickList(ticker) {

@@ -1,12 +1,32 @@
 <template>
-  <div class="q-pa-md">
-    <AddStation />
+  <div class="q-pa-lg">
+    <q-option-group v-model="group" :options="options" color="yellow" type="toggle" />
   </div>
 </template>
 
-<script setup>
-import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
-const AddStation = defineAsyncComponent(() =>
-  import("../components/station/AddStation.vue")
-);
+<script>
+import { ref } from "vue";
+
+export default {
+  setup() {
+    return {
+      group: ref(["op1"]),
+
+      options: [
+        {
+          label: "Option 1",
+          value: "op1",
+        },
+        {
+          label: "Option 2",
+          value: "op2",
+        },
+        {
+          label: "Option 3",
+          value: "op3",
+        },
+      ],
+    };
+  },
+};
 </script>
