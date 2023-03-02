@@ -71,7 +71,7 @@
               label="Operations"
             />
             <q-route-tab v-if="can('view_towers')" to="/towers" label="Towers" />
-            <q-route-tab v-if="can('edit_users')" to="/page3" label="Users" />
+            <q-route-tab v-if="can('edit_users')" to="/pannel" label="Users" />
             <q-route-tab v-if="can('super')" to="/feedback" label="Feedback" />
           </q-tabs>
         </div>

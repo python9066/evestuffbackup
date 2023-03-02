@@ -1,534 +1,279 @@
 <template>
-  <div class="pr-16 pl-16" v-resize="onResize">
-    <v-col cols="12">
-      <v-row no-gutters>
-        <v-col cols="8">
-          <v-card rounded="xl">
-            <v-data-table
-              :headers="headers"
-              :items="filteredItems"
-              item-key="id"
-              :height="height"
-              fixed-header
-              :loading="loading"
-              :sort-by="['name']"
-              :search="search"
-              :items-per-page="50"
-              :footer-props="{
-                'items-per-page-options': [10, 20, 30, 50, 100, -1],
-              }"
-              class="elevation-5"
-            >
-              <template v-slot:[`item.roles`]="{ item }">
-                <div class="d-inline-flex">
-                  <v-menu>
-                    <template v-slot:activator="{ on, attrs }">
-                      <div>
-                        <v-btn icon v-bind="attrs" v-on="on" color="success"
-                          ><font-awesome-icon icon="fa-solid fa-plus"
-                        /></v-btn>
-                      </div>
+  <div class="q-ma-md">
+    <div class="row justify-between">
+      <div class="col-8">
+        <q-table
+          title="Connections"
+          class="myTableUsers myRound bg-webBack"
+          :rows="filterEnd"
+          :columns="columns"
+          table-class=" text-webway"
+          table-header-class=" text-weight-bolder"
+          row-key="id"
+          dark
+          dense
+          :filter="search"
+          ref="tableRef"
+          rounded
+          :pagination="pagination"
+        >
+          <template v-slot:top="props">
+            <div class="row full-width flex-center q-pt-xs myRoundTop bg-primary">
+              <div class="col-12 flex flex-center">
+                <span class="text-h4">Users</span>
+              </div>
+            </div>
+            <div class="row full-width q-pt-md justify-between">
+              <div class="col-auto">
+                <div class="row q-gutter-sm q-pl-md">
+                  <q-input
+                    rounded
+                    standout
+                    dense
+                    debounce="300"
+                    v-model="search"
+                    clearable
+                    placeholder="Search"
+                  >
+                    <template v-slot:append>
+                      <q-icon name="fa-solid fa-magnifying-glass" />
                     </template>
-
-                    <v-list>
-                      <v-list-item
-                        v-for="(list, index) in filterDropdownList(item.roles)"
-                        :key="index"
-                        @click="(userAddRoleText = list.id), userAddRole(item)"
-                      >
-                        <v-list-item-title>{{ list.name }}</v-list-item-title>
-                      </v-list-item>
-                    </v-list>
-                  </v-menu>
+                  </q-input>
                 </div>
+              </div>
+            </div>
+          </template>
 
-                <div class="d-inline-flex">
-                  <div
-                    v-for="(role, index) in filterRoles(item.roles)"
-                    :key="index"
-                    class="pr-2"
-                  >
-                    <v-chip
-                      pill
-                      :class="mittin(item)"
-                      :close="pillClose(role.name)"
-                      dark
-                      @click:close="
-                        (userRemoveRoleText = role.id), userRemoveRole(item)
-                      "
-                    >
-                      <font-awesome-icon
-                        icon="fa-solid fa-hat-wizard"
-                        v-if="role.name == 'Wizard'"
-                        size="sm"
-                        pull="left"
-                      />
-                      <span> {{ role.name }}</span>
-                    </v-chip>
-                  </div>
-                </div>
-              </template>
-              <template slot="no-data">
-                No Active or Upcoming Campaigns
-              </template>
-
-              <template v-slot:top>
-                <v-row no-gutters>
-                  <v-col
-                    cols="12"
-                    align-self="center"
-                    class="justify-around d-flex flex-col"
-                  >
-                    <v-card tile flat class="d-inline-flex align-content-start">
-                      <v-card-title>Add/Remove Roles</v-card-title>
-                    </v-card>
-                    <v-spacer></v-spacer>
-                    <v-card tile flat class="align-start">
-                      <v-text-field
-                        v-model="search"
-                        append-icon="mdi-magnify"
-                        label="Search for Users"
-                        single-line
-                        hide-details
-                      ></v-text-field>
-                    </v-card>
-                  </v-col>
-                </v-row>
-              </template>
-            </v-data-table>
-          </v-card>
-        </v-col>
-        <v-col cols="4" class="pl-4 d-lg-flex flex-column">
-          <v-card elevation="10" rounded="xl" class="mb-5">
-            <v-card-title
-              class="pa-3 primary text-center text-capitalize"
-              dark
-              rounded="t-xl"
-            >
-              Roles
-            </v-card-title>
-
-            <v-card-text class="pa-4">
-              <v-chip-group
-                active-class="primary--text"
-                column
-                v-model="wroles"
-              >
-                <v-chip
-                  v-for="(list, index) in buttonList"
+          <template v-slot:body="props">
+            <q-tr :props="props">
+              <q-td key="name" :props="props"> {{ props.row.name }} </q-td>
+              <q-td key="roles" :props="props">
+                <q-chip
+                  v-for="(role, index) in props.row.roles"
                   :key="index"
-                  filter
-                  :value="list.id"
-                  outlined
-                  small
+                  :removable="can('super')"
+                  @remove="userRemoveRole(props.row.id, role.id)"
+                  color="primary"
+                  :label="role.name"
+                />
+                <q-btn
+                  v-if="can('super')"
+                  round
+                  color="green"
+                  flat
+                  icon="fa-solid fa-plus"
+                  ><q-menu>
+                    <q-list style="min-width: 100px">
+                      <q-item
+                        v-for="(role, index) in store.rolesList"
+                        :key="index"
+                        clickable
+                        v-close-popup
+                      >
+                        <q-item-section @click="userAddRole(role.value, props.row.id)">{{
+                          role.text
+                        }}</q-item-section>
+                      </q-item>
+                    </q-list>
+                  </q-menu></q-btn
                 >
-                  {{ list.name }}
-                </v-chip>
-              </v-chip-group>
-            </v-card-text>
-            <v-card-actions class="justify-content-center">
-              <v-btn
-                @click="clearClass"
-                color=" warning"
-                rounded
-                v-if="showClassButton"
-                >Clear</v-btn
-              >
-            </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-col>
-    <v-overlay z-index="0" :value="logs">
-      <AdminLogging v-if="$can('view_admin_logs')" @closeLog="logs = false">
-      </AdminLogging>
-    </v-overlay>
+              </q-td>
+            </q-tr>
+          </template>
+        </q-table>
+      </div>
+      <div class="col-3">
+        <q-card class="myRoundTop">
+          <q-card-section class="bg-primary text-h5 text-center">
+            <h4 class="no-margin">Filter By Roles</h4>
+          </q-card-section>
+          <q-card-section>
+            <q-chip
+              v-for="(role, index) in store.rolesList"
+              :key="index"
+              color="primary"
+              :outline="!role.selected ? true : false"
+              v-model:selected="role.selected"
+              :label="role.text"
+            />
+          </q-card-section>
+          <q-slide-transition>
+            <q-card-section v-if="selectedCount">
+              <q-btn
+                color="primary"
+                label="Clear"
+                @click="clearSelected()"
+              /> </q-card-section
+          ></q-slide-transition>
+        </q-card>
+      </div>
+    </div>
   </div>
 </template>
-<script>
-import Axios from "axios";
-import moment, { now, utc } from "moment";
-import { stringify } from "querystring";
-import { mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 
-export default {
-  title() {
-    return `EveStuff - Admin`;
-  },
-  data() {
-    return {
-      //timersAll: [],
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import { useMainStore } from "@/store/useMain.js";
+let store = useMainStore();
+let can = inject("can");
+let search = $ref();
 
-      headers: [
-        { text: "Name", value: "name" },
-        { text: "Roles", value: "roles", width: "80%" },
-      ],
-      loadingr: false,
-      loadingf: false,
-      loading: false,
-      toggle_exclusive: 0,
-      search: "",
-      addShown: false,
-      userAddRoleText: "",
-      userRemoveRoleText: "",
-      roleflag: 10,
-      logs: false,
-      wroles: 0,
-      windowSize: {
-        x: 0,
-        y: 0,
-      },
-    };
-  },
-
-  async created() {
-    Echo.private("userupdate").listen("UserUpdate", (e) => {
-      this.refresh();
-    });
-    if (this.$can("view_admin_logs")) {
-      await this.$store.dispatch("getLoggingAdmin");
-    }
-  },
-
-  async mounted() {
-    this.onResize();
-    await this.$store.dispatch("getUsers");
-    await this.$store.dispatch("getRoles");
-    this.log();
-  },
-
-  methods: {
-    onResize() {
-      this.windowSize = { x: window.innerWidth, y: window.innerHeight };
-    },
-
-    showClassButton() {
-      if (this.wroles.length > 0) {
-        return true;
-      }
-      return false;
-    },
-
-    clearClass() {
-      this.wroles = [];
-    },
-    log() {
-      var request = {
-        url: this.$route.path,
-      };
-
-      axios({
-        method: "post", //you can set what request you want to be
-        url: "api/url",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-
-    filterRoles(roles) {
-      return roles.filter((r) => r.name != "Super Admin");
-    },
-
-    async refresh() {
-      await this.$store.dispatch("getUsers");
-      await this.$store.dispatch("getRoles");
-    },
-
-    filterDropdownList(item) {
-      let roleID = item.map((i) => i.id);
-      const filter = this.rolesList.filter((r) => !roleID.includes(r.id));
-      let chill = [];
-      let fc = [];
-      let gsfoeFC = [];
-      let gunner = [];
-      let recon = [];
-      let scout = [];
-      let superChilled = [];
-      let start = [];
-      let topChill = [];
-      let megaSheet = [];
-      let welp = [];
-      let violence = [];
-      if (this.$can("edit_all_users")) {
-        return filter.filter((f) => f.name != "Nats");
-      }
-      if (this.$can("edit_welp_users")) {
-        welp = filter.filter((f) => f.name == "Welp");
-      }
-
-      if (this.$can("edit_violence_users")) {
-        violence = filter.filter((f) => f.name == "Violence");
-      }
-
-      if (this.$can("edit_chill_users")) {
-        chill = filter.filter((f) => f.name == "Chilled");
-      }
-      if (this.$can("edit_gsfoe_fc")) {
-        gsfoeFC = filter.filter((f) => f.name == "GSFOE FC");
-      }
-      if (this.$can("edit_gunner_users")) {
-        gunner = filter.filter((f) => f.name == "Gunner");
-      }
-      if (this.$can("edit_super_chilled_users")) {
-        superChilled = filter.filter((f) => f.name == "Super Chilled");
-      }
-      if (this.$can("edit_top_chill_users")) {
-        topChill = filter.filter((f) => f.name == "Top Chill");
-      }
-
-      if (this.$can("edit_mega_sheet_user")) {
-        megaSheet = filter.filter((f) => f.name == "Mega Sheet");
-      }
-
-      return start.concat(
-        chill,
-        fc,
-        gsfoeFC,
-        gunner,
-        recon,
-        scout,
-        superChilled,
-        topChill,
-        megaSheet,
-        welp,
-        violence
-      );
-    },
-
-    pillClose(name) {
-      if (this.$can("edit_all_users")) {
-        if (name == "Wizard" || name == "Nats") {
-          return false;
-        } else {
-          return true;
-        }
-      } else if (
-        this.$can("edit_gsfoe_fc") &&
-        this.$can("edit_recon_users") &&
-        this.$can("edit_scout_users") &&
-        this.$can("edit_mega_sheet_user")
-      ) {
-        if (name == "Coord" || name == "Director" || name == "Wizard") {
-          return false;
-        } else {
-          return true;
-        }
-      } else if (
-        this.$can("edit_recon_users") &&
-        this.$can("edit_scout_users")
-      ) {
-        if (name == "Recon" || name == "Scout") {
-          return true;
-        } else {
-          return false;
-        }
-      } else if (this.$can("edit_gsfoe_fc")) {
-        if (name == "GSFOE FC") {
-          return true;
-        } else {
-          return false;
-        }
-      } else if (this.$can("edit_scout_users")) {
-        if (name == "Scout") {
-          return true;
-        } else {
-          return false;
-        }
-      } else if (this.$can("edit_chill_users")) {
-        if (name == "Chilled") {
-          return true;
-        } else {
-          return false;
-        }
-      } else if (this.$can("edit_super_chilled_users")) {
-        if (name == "Super Chilled") {
-          return true;
-        } else {
-          return false;
-        }
-      } else if (this.$can("edit_welp_users")) {
-        if (name == "Welp") {
-          return true;
-        } else {
-          return false;
-        }
-      } else if (this.$can("edit_violence_users")) {
-        if (name == "Violence") {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    },
-
-    async userAddRole(item) {
-      var request = {
-        roleId: this.userAddRoleText,
-        userId: item.id,
-      };
-
-      await axios({
-        method: "put", //you can set what request you want to be
-        url: "/api/rolesadd",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-      this.$store.dispatch("getUsers");
-      request = null;
-      request = {
-        roleId: this.userAddRoleText,
-        userId: item.id,
-        user_id: this.$store.state.user_id,
-        type: 15,
-      };
-
-      await axios({
-        method: "put", //you can set what request you want to be
-        url: "/api/checkroleaddremove",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (this.$can("view_admin_logs")) {
-        await this.$store.dispatch("getLoggingAdmin");
-      }
-    },
-
-    mittin(item) {
-      if (item.id == 92) {
-        return "rainbow-2";
-      } else {
-        return;
-      }
-    },
-
-    async userRemoveRole(item) {
-      var request = {
-        roleId: this.userRemoveRoleText,
-        userId: item.id,
-      };
-
-      await axios({
-        method: "put", //you can set what request you want to be
-        url: "/api/rolesremove",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-      this.$store.dispatch("getUsers");
-
-      request = null;
-      request = {
-        roleId: this.userAddRoleText,
-        userId: item.id,
-        user_id: this.$store.state.user_id,
-        type: 16,
-      };
-
-      await axios({
-        method: "put", //you can set what request you want to be
-        url: "/api/checkroleaddremove",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (this.$can("view_admin_logs")) {
-        await this.$store.dispatch("getLoggingAdmin");
-      }
-    },
-  },
-
-  computed: {
-    ...mapState(["users", "rolesList"]),
-    filteredItems() {
-      var roleid = this.wroles;
-      if (this.wroles != 0) {
-        return this.users.filter(function (u) {
-          return u.roles.some(function (role) {
-            return role.id == roleid;
-          });
-        });
-      } else {
-        return this.users;
-      }
-      // return this.users;
-    },
-
-    buttonList() {
-      var list = this.rolesList;
-      var data = {
-        id: 0,
-        name: "All",
-      };
-      list.push(data);
-      list.sort(function (a, b) {
-        return a.id - b.id || a.name.localeCompare(b.name);
-      });
-
-      return list;
-    },
-
-    height() {
-      let num = this.windowSize.y - 315;
-      return num;
-    },
-  },
-  beforeDestroy() {
-    Echo.leave("userupdate");
-  },
-};
-</script>
-<style scoped>
-.rainbow-2:hover {
-  background-image: linear-gradient(
-    to right,
-    red,
-    orange,
-    yellow,
-    green,
-    blue,
-    indigo,
-    violet,
-    red
-  );
-  animation: slidebg 2s linear infinite;
-}
-
-@keyframes slidebg {
-  to {
-    background-position: 20vw;
+onMounted(async () => {
+  Echo.private("userupdate").listen("UserUpdate", (e) => {
+    this.refresh;
+  });
+  if (can("view_admin_logs")) {
+    await store.getLoggingAdmin();
   }
-}
 
-.follow {
-  margin-top: 40px;
-}
+  await store.getUsers();
+  await store.getRoles();
+});
 
-.follow a {
-  color: black;
-  padding: 8px 16px;
-  text-decoration: none;
-}
+onBeforeUnmount(async () => {
+  Echo.leave("userupdate");
+});
+
+let pagination = $ref({
+  sortBy: "name",
+  descending: false,
+  page: 1,
+  rowsPerPage: 50,
+});
+
+let selectedCount = $computed(() => {
+  let countSelected = 0;
+  for (let i = 0; i < store.rolesList.length; i++) {
+    if (store.rolesList[i].selected === true) {
+      countSelected++;
+    }
+  }
+  return countSelected;
+});
+
+let clearSelected = () => {
+  for (let i = 0; i < store.rolesList.length; i++) {
+    store.rolesList[i].selected = false;
+  }
+};
+
+let selectedRoles = $computed(() => {
+  return store.rolesList.filter((r) => r.selected == true);
+});
+
+let filterEnd = $computed(() => {
+  if (selectedCount) {
+    const filteredUsers = store.users.filter((user) => {
+      const userRoles = user.roles.map((role) => role.id);
+      return store.rolesList.some(
+        (role) => role.selected && userRoles.includes(role.value)
+      );
+    });
+    return filteredUsers;
+  } else {
+    return store.users;
+  }
+});
+
+let userRemoveRole = async (item, role) => {
+  var request = {
+    roleId: role,
+    userId: item,
+  };
+  await axios({
+    method: "put", //you can set what request you want to be
+    url: "/api/rolesremove",
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  store.getUsers();
+};
+
+let userAddRole = async (role, item) => {
+  var request = {
+    roleId: role,
+    userId: item,
+  };
+
+  await axios({
+    method: "put", //you can set what request you want to be
+    url: "/api/rolesadd",
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  store.getUsers();
+};
+
+let columns = $ref([
+  {
+    name: "name",
+    align: "left",
+    required: false,
+    label: "Name",
+    classes: "text-no-wrap",
+    field: (row) => row.name,
+    format: (val) => `${val}`,
+    sortable: false,
+  },
+  {
+    name: "roles",
+    required: true,
+    align: "center",
+    label: "Roles",
+    classes: "text-no-wrap",
+    style: "width: 80%",
+    field: (row) => row.id,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+]);
+let h = $computed(() => {
+  let mins = 30;
+  let window = store.size.height;
+
+  return window - mins + "px";
+});
+</script>
+
+<style lang="sass">
+.myTableUsers
+  /* height or max-height is important */
+  height: v-bind(h)
+
+  .q-table__top
+    padding-top: 0 !important
+    padding-left: 0 !important
+    padding-right: 0 !important
+
+
+
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: #202020
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+</style>
+
+<style lang="sass" scoped>
+.my-custom-toggle
+  border: 1px solid #027be3
 </style>
