@@ -12,6 +12,7 @@ use App\Models\OperationInfoRecon;
 use App\Models\OperationInfoSystem;
 use App\Models\OperationInfoSystemRecon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -171,23 +172,30 @@ class OperationInfoController extends Controller
     public function editHackOperation(Request $request, $id)
     {
 
+        $soloSystems = collect([]);
+        $systemIDs = collect([]);
+        $show = collect($request->show);
+        if ($request->operation_id) {
+            $campaignIDs = NewCampaignOperation::where('operation_id', $request->operation_id)->pluck('campaign_id');
+            $systemIDs = NewCampaignSystem::whereIn('new_campaign_id', $campaignIDs)->pluck('system_id');
+            $systemIDs = $systemIDs->unique();
+            $systemIDs = $systemIDs->values();
+        }
+
+
+
         if ($request->systemsToUpdate) {
 
-            foreach ($request->systemsToUpdate as $systemID) {
-                $check = OperationInfoSystem::where('system_id', $systemID)->where('operation_info_id', $id)->count();
-                if ($check == 0) {
-                    $new = new OperationInfoSystem();
-                    $new->operation_info_id = $id;
-                    $new->system_id = $systemID;
-                    $new->save();
-                }
-            }
-            $ss = OperationInfoSystem::where('operation_info_id', $id)
-                ->whereNull("new_operation_id")
-                ->whereNotIn('system_id', $request->systemsToUpdate)
-                ->get();
-            foreach ($ss as $s) {
-                $recons = OperationInfoRecon::where('system_id', $s->system_id)->get();
+            $soloSystems = array_column($request->systemsToUpdate, 'value');
+            $soloSystems = collect($soloSystems);
+        }
+
+        $allSystems =  $systemIDs->merge($soloSystems);
+        $systemToDelete = OperationInfoSystem::whereNotIn('system_id', $allSystems)->where('operation_info_id', $id)->get();
+        if ($systemToDelete) {
+            foreach ($systemToDelete as $delete) {
+
+                $recons = OperationInfoRecon::where('system_id', $delete->system_id)->get();
                 foreach ($recons as $recon) {
                     $recon->system_id = null;
                     if ($recon->operation_info_recon_status_id == 4) {
@@ -199,99 +207,61 @@ class OperationInfoController extends Controller
                     $reconSystem->delete();
                     $recon->save();
                     operationReconSoloBcast($recon->id, 5);
+                    operationInfoSystemsSoloBcast($request->operation_id, $id, 14);
                 }
-                $s->delete();
-            }
-        } else {
-
-            $ss = OperationInfoSystem::where('operation_info_id', $id)
-                ->whereNull("new_operation_id")
-                ->get();
-            foreach ($ss as $s) {
-                $recons = OperationInfoRecon::where('system_id', $s->system_id)->get();
-                foreach ($recons as $recon) {
-                    $recon->system_id = null;
-                    if ($recon->operation_info_recon_status_id == 4) {
-                        $recon->operation_info_recon_status_id = 2;
-                    } else {
-                        $recon->operation_info_recon_status_id = 1;
-                    }
-                    $reconSystem = OperationInfoSystemRecon::where('operation_info_recon_id', $recon->id)->first();
-                    $reconSystem->delete();
-                    $recon->save();
-                    operationReconSoloBcast($recon->id, 5);
-                    operationInfoSystemsSoloBcast($request->opID, $id, 14);
-                }
-                $s->delete();
+                $delete->delete();
             }
         }
 
-        if ($request->operation_id) {
-            $operationInfo = OperationInfo::where('id', $id)->first();
-            if ($operationInfo->operation_id != $request->operation_id) {
-                $oldOperationID = $operationInfo->operation_id;
-                $ss = OperationInfoSystem::where('new_operation_id', $oldOperationID)->get();
-                foreach ($ss as $s) {
-                    $recons = OperationInfoRecon::where('system_id', $s->system_id)->get();
-                    foreach ($recons as $recon) {
-                        $recon->system_id = null;
-                        if ($recon->operation_info_recon_status_id == 4) {
-                            $recon->operation_info_recon_status_id = 2;
-                        } else {
-                            $recon->operation_info_recon_status_id = 1;
-                        }
-                        $reconSystem = OperationInfoSystemRecon::where('operation_info_recon_id', $recon->id)->first();
-                        $reconSystem->delete();
-                        $recon->save();
-                        operationReconSoloBcast($recon->id, 5);
-                    }
-                    $s->delete();
-                }
-                $operationInfo->operation_id = $request->operation_id;
-                $operationInfo->save();
-                $campaignIDs = NewCampaignOperation::where('operation_id', $request->operation_id)->pluck('campaign_id');
-                $systemIDs = NewCampaignSystem::whereIn('new_campaign_id', $campaignIDs)->pluck('system_id');
-                $systemIDs = $systemIDs->unique();
-                $systemIDs = $systemIDs->values();
-                foreach ($systemIDs as $systemID) {
-                    $check = OperationInfoSystem::where('system_id', $systemID)->where('operation_info_id', $id)->count();
-                    if ($check == 0) {
-                        $new = new OperationInfoSystem();
-                        $new->operation_info_id = $id;
-                        $new->system_id = $systemID;
-                        $new->new_operation_id = $request->operation_id;
-                        $new->save();
-                    }
-                }
-            }
-        } else {
-            $operationInfo = OperationInfo::where('id', $id)->first();
-            if ($operationInfo->operation_id > 0) {
-                $oldOperationID = $operationInfo->operation_id;
-                $ss = OperationInfoSystem::where('new_operation_id', $oldOperationID)->get();
-
-                foreach ($ss as $s) {
-                    $recons = OperationInfoRecon::where('system_id', $s->system_id)->get();
-                    foreach ($recons as $recon) {
-                        $recon->system_id = null;
-                        if ($recon->operation_info_recon_status_id == 4) {
-                            $recon->operation_info_recon_status_id = 2;
-                        } else {
-                            $recon->operation_info_recon_status_id = 1;
-                        }
-                        $reconSystem = OperationInfoSystemRecon::where('operation_info_recon_id', $recon->id)->first();
-                        $reconSystem->delete();
-                        $recon->save();
-                        operationReconSoloBcast($recon->id, 5);
-                    }
-                    $s->delete();
-                }
-                $operationInfo = OperationInfo::where('id', $id)->first();
-                $operationInfo->operation_id = null;
-                $operationInfo->save();
+        foreach ($soloSystems as $systemID) {
+            $check = OperationInfoSystem::where('system_id', $systemID)->where('operation_info_id', $id)->count();
+            if ($check == 0) {
+                $new = new OperationInfoSystem();
+                $new->operation_info_id = $id;
+                $new->system_id = $systemID;
+                $new->save();
             }
         }
 
+        foreach ($systemIDs as $systemID) {
+            $check = OperationInfoSystem::where('system_id', $systemID)->where('operation_info_id', $id)->count();
+            if ($check == 0) {
+                $new = new OperationInfoSystem();
+                $new->operation_info_id = $id;
+                $new->system_id = $systemID;
+                $new->new_operation_id = $request->operation_id;
+                $new->save();
+            }
+        }
+
+        $operationInfo = OperationInfo::whereId($id)->first();
+        $operationInfo->operation_id = $request->operation_id;
+
+        if ($show->contains('check_list')) {
+            $operationInfo->check_list = 1;
+        } else {
+            $operationInfo->check_list = 0;
+        }
+
+        if ($show->contains('fleet_table')) {
+            $operationInfo->fleet_table = 1;
+        } else {
+            $operationInfo->fleet_table = 0;
+        }
+
+        if ($show->contains('recon_table')) {
+            $operationInfo->recon_table = 1;
+        } else {
+            $operationInfo->recon_table = 0;
+        }
+
+        if ($show->contains('system_table')) {
+            $operationInfo->system_table = 1;
+        } else {
+            $operationInfo->system_table = 0;
+        }
+
+        $operationInfo->save();
 
 
         operationInfoSoloPageBroadcast($id, 1);

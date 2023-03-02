@@ -2,7 +2,12 @@
   <div class="q-ma-md">
     <q-card class="myRoundTop myOperationInfoMainCard">
       <q-card-section class="bg-primary text-center q-py-xs">
-        <h5 class="no-margin">Operation - {{ opInfo.name }}</h5>
+        <div class="row">
+          <div class="col-10">
+            <h5 class="no-margin">Operation - {{ opInfo.name }}</h5>
+          </div>
+          <div class="col-2 flex justify-end"><OperationInfoSettingPannel /></div>
+        </div>
       </q-card-section>
       <q-card-section>
         <div class="row justify-between">
@@ -80,6 +85,11 @@ let can = inject("can");
 const OperationInfoReconCard = defineAsyncComponent(() =>
   import("../components/operationinfo/OperationInfoReconCard.vue")
 );
+
+const OperationInfoSettingPannel = defineAsyncComponent(() =>
+  import("../components/operationinfo/OperationInfoSettingPannel.vue")
+);
+
 onMounted(async () => {
   await store.getOperationSheetInfoPage(route.params.link);
   await store.getOperationUsers();
@@ -131,7 +141,7 @@ onMounted(async () => {
       }
 
       if (e.flag.flag == 9) {
-        store.dispatch("updateOperationOperation", e.flag.message);
+        store.operationInfoPage.operation = e.flag.message;
       }
 
       if (e.flag.flag == 10) {
