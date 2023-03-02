@@ -1,243 +1,204 @@
 <template>
-  <v-menu
-    :close-on-content-click="false"
-    v-model="addShown"
-    z-index="0"
-    content-class="rounded-xl"
-    :close-on-click="false"
-  >
-    <template v-slot:activator="{ on, attrs }">
-      <v-btn
-        fab
-        x-small
-        v-bind="attrs"
-        v-on="on"
-        @click="addShown = true"
-        color="blue"
-        ><font-awesome-icon icon="fa-solid fa-plus" size="2xl"
-      /></v-btn>
-    </template>
-    <v-card tile class="rounded-xl">
-      <v-card-subtitle>
-        <v-menu
-          :close-on-content-click="false"
-          v-model="infoShown"
-          z-index="0"
-          content-class="rounded-xl"
-          ><template v-slot:activator="{ on, attrs }">
-            <v-btn
-              fab
-              x-small
-              v-bind="attrs"
-              v-on="on"
-              @click="infoShown = true"
-              color="blue"
-              ><font-awesome-icon icon="fa-solid fa-circle-info" size="2xl" />
-            </v-btn>
-          </template>
-          <v-card>
-            <v-card-text>
-              If you have added a Cyno before you will find the characters in
-              the drop down list below. Just select it and press ADD<br />
-              <br />
-              Character not in the dropdown:<br />
-              If own character just enter the fullname in the dropdown list and
-              hit ADD.<br /><br />
-              If character is own by someone else. Enter fullname in the drop
-              down list, then toggle the "Add Main"<br />Once toggled a new
-              dropdown should show, find the main character in the dropdown list
-              select it and press add<br />If you cant find the name, that means
-              the person has never logged into the site.</v-card-text
-            ></v-card
-          ></v-menu
-        >
-        <span> {{ infoText }} </span>
-      </v-card-subtitle>
-      <v-card-text>
-        <v-row no-gutters>
-          <v-combobox
-            outlined
-            :items="dropDown"
-            v-model="name"
-            item-text="name"
-            item-value="id"
-            hide-details
-            rounded
-            dense
-          ></v-combobox>
-        </v-row>
-        <v-row no-gutters>
-          <v-col cols="auto">
-            <v-switch
-              v-model="showMain"
-              dense
-              class="mt-0 pt-0"
-              :false-value="0"
-              :true-value="1"
-              hide-details="auto"
-            ></v-switch>
-          </v-col>
-          <v-col cols="auto" class="d-flex align-baseline">
-            <span> Add Main</span>
-          </v-col>
-        </v-row>
-        <v-row no-gutters>
-          <v-autocomplete
-            v-if="showMain"
-            outlined
-            :items="dropDownMain"
-            v-model="mainName"
-            item-text="name"
-            item-value="id"
-            hide-details
-            rounded
-            dense
-          ></v-autocomplete>
-        </v-row>
-      </v-card-text>
-      <v-card-actions
-        ><v-row no-gutters>
-          <v-col cols="auto"
-            ><v-btn rounded color=" primary" @click="addRecon()"
-              >Add</v-btn
-            ></v-col
-          ><v-spacer /><v-col cols="auto"
-            ><v-btn rounded color=" warning" @click="close()"
-              >Close</v-btn
-            ></v-col
+  <div>
+    <q-btn size="lg" padding="none" rounded icon="add" color="accent"
+      ><q-menu class="myRound" @before-hide="close()" persistent>
+        <q-card class="myRound">
+          <q-card-section>
+            <q-btn
+              color="primary"
+              icon="fa-solid fa-circle-info"
+              label="How To add Cynos"
+              rounded
+              ><q-menu>
+                <q-card flat>
+                  <q-card-section class="text-webway">
+                    If you have added a Cyno before you will find the characters in the
+                    drop down list below. Just select it and press ADD<br />
+                    <br />
+                    <span class="text-bold"> Character not in the dropdown:</span><br />
+                    If you own the character just enter the fullname in the dropdown list
+                    and hit ADD.<br /><br />
+                    <span class="text-bold"
+                      >If the character is own by someone else:</span
+                    >
+                    <br />
+                    Enter the fullname in the drop down list, then toggle the "Add
+                    Main"<br />Once toggled a new dropdown should show, find the main
+                    character in the dropdown list select it and press add<br />If you
+                    cant find the name, that means the person has never logged into the
+                    site.
+                  </q-card-section>
+                </q-card>
+              </q-menu></q-btn
+            ></q-card-section
           >
-        </v-row>
-      </v-card-actions>
-    </v-card>
-  </v-menu>
+          <q-card-section>
+            <q-select
+              v-model="name"
+              option-label="name"
+              option-value="id"
+              :options="cynoList"
+              label="Cyno Character"
+              @filter="filterFnCynosFinish"
+              @filter-abort="abortFilterFn"
+              new-value-mode="add-unique"
+              outlined
+              rounded
+              dense
+              :use-input="name ? false : true"
+              clearable
+          /></q-card-section>
+          <q-card-section>
+            <q-toggle v-model="showMain" color="green" label="Add Main"
+          /></q-card-section>
+          <q-card-section>
+            <q-slide-transition>
+              <q-select
+                v-if="showMain"
+                v-model="mainName"
+                option-label="name"
+                option-value="id"
+                :options="mainList"
+                label="Main Character"
+                @filter="filterFnMainFinish"
+                @filter-abort="abortFilterFn"
+                outlined
+                rounded
+                clearable
+                :use-input="mainName ? false : true"
+                dense /></q-slide-transition
+          ></q-card-section>
+
+          <q-card-actions align="center">
+            <q-btn
+              color="positive"
+              label="Submit"
+              @click="addRecon()"
+              rounded
+              v-close-popup
+            />
+            <q-btn label="Close" rounded color="negative" v-close-popup />
+          </q-card-actions>
+        </q-card> </q-menu
+    ></q-btn>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import { EventBus } from "../../app";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {},
-  props: {},
-  data() {
-    return {
-      addShown: false,
-      name: null,
-      infoShown: false,
-      showMain: 0,
-      mainName: null,
-    };
-  },
 
-  async created() {},
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import { useMainStore } from "@/store/useMain.js";
+import { useQuasar } from "quasar";
+let store = useMainStore();
+let name = $ref();
+let mainName = $ref();
+let showMain = $ref(false);
+const $q = useQuasar();
 
-  beforeMonunt() {},
+let dropDown = $computed(() => {
+  var data = store.operationInfoRecon.filter(
+    (r) => r.operation_info_id != store.operationInfoPage.id
+  );
 
-  async beforeCreate() {},
+  return data;
+});
 
-  async mounted() {},
-  methods: {
-    async addRecon() {
-      await sleep(500);
-      if (this.type == "string") {
-        var name = this.name;
-      } else {
-        var name = this.name.name;
-      }
+let dropDownMain = $computed(() => {
+  return store.userList;
+});
 
-      if (this.showMain) {
-        var mainID = this.mainName;
-      } else {
-        var mainID = this.$store.state.user_id;
-      }
-      var request = {
-        name: name,
-        user_id: mainID,
-        opID: this.$store.state.operationInfoPage.id,
-      };
-      await axios({
-        method: "post", //you can set what request you want to be
-        url: "/api/operationinforecon",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }).then((response) => {
-        var code = response.status;
-        if (code == 201) {
-          this.name = null;
-          var text = name + " not found";
-          this.$toast.error(text, {
-            position: "bottom-left",
-            timeout: 2000,
-            closeOnClick: true,
-            pauseOnFocusLoss: false,
-            pauseOnHover: false,
-            draggable: false,
-            draggablePercent: 0.6,
-            showCloseButtonOnHover: false,
-            hideProgressBar: false,
-            closeButton: "button",
-            icon: true,
-          });
-        } else {
-          var text = name + " added";
-          this.name = null;
-          this.addShown = false;
-          this.showMain = 0;
-          this.$toast.success(text, {
-            position: "bottom-left",
-            timeout: 2000,
-            closeOnClick: true,
-            pauseOnFocusLoss: false,
-            pauseOnHover: false,
-            draggable: false,
-            draggablePercent: 0.6,
-            showCloseButtonOnHover: false,
-            hideProgressBar: false,
-            closeButton: "button",
-            icon: true,
-            rtl: false,
-          });
-        }
+let cynoText = $ref();
+let cynoList = $computed(() => {
+  if (cynoText) {
+    return dropDown.filter((d) => d.name.toLowerCase().indexOf(cynoText) > -1);
+  }
+  return dropDown;
+});
+
+let filterFnCynosFinish = (val, update, abort) => {
+  update(() => {
+    cynoText = val.toLowerCase();
+    if (cynoList.length == 0) {
+      name = cynoText;
+    }
+  });
+};
+
+let mainText = $ref();
+let mainList = $computed(() => {
+  if (mainText) {
+    return dropDownMain.filter((d) => d.name.toLowerCase().indexOf(mainText) > -1);
+  }
+  return dropDownMain;
+});
+
+let filterFnMainFinish = (val, update, abort) => {
+  update(() => {
+    mainText = val.toLowerCase();
+    if (mainList.length == 0) {
+      name = mainText;
+    }
+  });
+};
+
+let addRecon = async () => {
+  if (type == "string") {
+    var nameAdd = name;
+  } else {
+    var nameAdd = name.name;
+  }
+
+  if (showMain) {
+    var mainID = mainName.id;
+  } else {
+    var mainID = store.user_id;
+  }
+  var request = {
+    name: nameAdd,
+    user_id: mainID,
+    opID: store.operationInfoPage.id,
+  };
+  await axios({
+    method: "post", //you can set what request you want to be
+    url: "/api/operationinforecon",
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  }).then((response) => {
+    var code = response.status;
+    if (code == 201) {
+      var text = nameAdd + " not found";
+      name = null;
+      $q.notify({
+        type: "negative",
+        message: text,
       });
-    },
+    } else {
+      var text = nameAdd + " added";
+      name = null;
+      $q.notify({
+        type: "positive",
+        message: text,
+      });
+    }
+  });
+};
 
-    close() {
-      this.name = null;
-      this.addShown = false;
-    },
-  },
+let close = () => {
+  name = null;
+  mainName = null;
+  showMain = false;
+};
 
-  computed: {
-    ...mapGetters([]),
+let type = $computed(() => {
+  return typeof name;
+});
 
-    ...mapState(["operationInfoRecon", "userList"]),
-
-    dropDown() {
-      var data = this.operationInfoRecon.filter(
-        (r) => r.operation_info_id != this.$store.state.operationInfoPage.id
-      );
-      return data;
-    },
-
-    dropDownMain() {
-      return this.userList;
-    },
-
-    infoText() {
-      return "<-- read before adding Cyno";
-    },
-
-    type() {
-      return typeof this.name;
-    },
-  },
-  beforeDestroy() {},
+let abortFilterFn = () => {
+  // console.log('delayed filter aborted')
 };
 </script>
+
+<style lang="scss"></style>

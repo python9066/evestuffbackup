@@ -41,6 +41,18 @@ export const useMainStore = defineStore("main", {
             value: 30004759,
             text: "1DQ1-A",
         },
+
+        operationInfo: [],
+        operationInfoPage: [],
+        operationInfoUsers: [],
+        operationInfoMumble: [],
+        operationInfoDoctrines: [],
+        operationInfoRecon: [],
+        allianceticklist: [],
+        operationInfoReconFleetRoleList: [],
+        operationInfoOperationList: [],
+        operationInfoJamList: [],
+        userList: [],
     }),
 
     getters: {
@@ -562,6 +574,301 @@ export const useMainStore = defineStore("main", {
                 },
             });
             this.loggingAdmin = res.data.logs;
+        },
+
+        async getOperationSheetInfo() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfosheet",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.operationInfo = res.data.opinfo;
+        },
+
+        updateOperationPageInfo(data) {
+            const item = this.operationInfo.find((item) => item.id === data.id);
+            const count = this.operationInfo.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.operationInfo.push(data);
+            }
+        },
+
+        removeOperationPageInfo(id) {
+            let newList = this.operationInfo.filter((o) => o.id != id);
+            this.operationInfo = newList;
+        },
+
+        async getOperationSheetInfoPage(id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfopage/" + id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.operationInfoPage = res.data.data;
+        },
+
+        async getOperationUsers() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfousers",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.operationInfoUsers = res.data.users;
+        },
+
+        async getOperationInfoMumble() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfomumble",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.operationInfoMumble = res.data.mumble;
+        },
+
+        async getOperationInfoDoctrines() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfodoctrines",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.operationInfoDoctrines = res.data.doc;
+        },
+
+        async getOperationRecon() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinforecon",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.operationInfoRecon = res.data.recon;
+        },
+
+        async getAllianceTickList() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/allianceticklist",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.allianceticklist = res.data.allianceticklist;
+        },
+
+        async getOperationInfoReconRoles() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfofleetreconrole",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.operationInfoReconFleetRoleList = res.data.roleList;
+        },
+
+        async getOperationSheetInfoOperationList() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationlistinfoop",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.operationInfoOperationList = res.data.operations;
+        },
+
+        async getOperationInfoJamList() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfojammerstatus",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.operationInfoJamList = res.data.jam;
+        },
+
+        async getUserList() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/users",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.userList = res.data.users;
+        },
+
+        updateOperationSheetInfoPage(data) {
+            const item = this.operationInfoPage;
+            Object.assign(item, data);
+        },
+
+        updateOperationSheetInfoPageFleet(data) {
+            const count = this.operationInfoPage.fleets.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                const item = this.operationInfoPage.fleets.find(
+                    (f) => f.id === data.id
+                );
+                Object.assign(item, data);
+            } else {
+                this.operationInfoPage.fleets.push(data);
+            }
+        },
+
+        updateOperationReconSolo(data) {
+            const count = this.operationInfoPage.recons.filter(
+                (item) => item.id === data.id
+            ).length;
+
+            if (count > 0) {
+                const item = this.operationInfoPage.recons.find(
+                    (f) => f.id === data.id
+                );
+                Object.assign(item, data);
+            } else {
+                this.operationInfoPage.recons.push(data);
+            }
+
+            const countRecon = this.operationInfoRecon.filter(
+                (item) => item.id === data.id
+            ).length;
+
+            if (countRecon > 0) {
+                const item = this.operationInfoRecon.find(
+                    (f) => f.id === data.id
+                );
+                Object.assign(item, data);
+            } else {
+                this.operationInfoRecon.push(data);
+            }
+        },
+
+        deleteOperationSheetInfoPageFleet(id) {
+            let check = this.operationInfoPage.fleets.filter(
+                (e) => e.id == id
+            ).length;
+            if (check > 0) {
+                this.operationInfoPage.fleets =
+                    this.operationInfoPage.fleets.filter((e) => e.id != id);
+            }
+        },
+
+        updateOperationMessage(data) {
+            this.operationInfoPage.messages = data;
+            this.operationInfoMessageCount = this.operationInfoMessageCount + 1;
+        },
+
+        removeOperationReconSolo(data) {
+            var info = this.operationInfoPage.recons.filter(
+                (r) => r.id != data.id
+            );
+            this.operationInfoPage.recons = info;
+
+            const count = this.operationInfoRecon.filter(
+                (item) => item.id === data.id
+            ).length;
+
+            if (count > 0) {
+                const item = this.operationInfoRecon.find(
+                    (f) => f.id === data.id
+                );
+                Object.assign(item, data);
+            } else {
+                this.operationInfoRecon.push(data);
+            }
+        },
+
+        updateOperationSoloSystems(data) {
+            const count = this.operationInfoPage.systems.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                const item = this.operationInfoPage.systems.find(
+                    (f) => f.id === data.id
+                );
+                Object.assign(item, data);
+            } else {
+                this.operationInfoPage.systems.push(data);
+            }
+        },
+
+        clearOperationInfoSolo() {
+            this.operationInfoPage = [];
+            this.operationInfoUsers = [];
+            this.operationInfoMumble = [];
+            this.operationInfoDoctrines = [];
+            this.operationInfoRecon = [];
+            this.operationInfoReconFleetRoleList = [];
+            this.operationInfoOperationList = [];
+            this.operationInfoJamList = [];
+        },
+
+        updateNewCampaignSystemInfo(data) {
+            const item = this.operationInfoPage.systems.find(
+                (item) => item.id === data.id
+            );
+            const count = this.operationInfoPage.systems.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.operationInfoPage.systems.push(data);
+            }
+        },
+
+        updateOperationCampaignsSolo(data) {
+            const item = this.operationInfoPage.campaigns.find(
+                (item) => item.id === data.id
+            );
+            const count = this.operationInfoPage.campaigns.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.operationInfoPage.campaigns.push(data);
+            }
         },
     },
 });

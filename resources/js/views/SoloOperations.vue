@@ -373,6 +373,7 @@
 import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 import { useMainStore } from "@/store/useMain.js";
 import { useRouter } from "vue-router";
+
 let store = useMainStore();
 let can = inject("can");
 let pOnly = $ref(0);

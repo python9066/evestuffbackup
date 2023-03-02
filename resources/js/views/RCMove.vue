@@ -178,6 +178,7 @@ import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 import { useMainStore } from "@/store/useMain.js";
 import { useQuasar, copyToClipboard } from "quasar";
 import axios from "axios";
+
 let can = inject("can");
 let store = useMainStore();
 const $q = useQuasar();

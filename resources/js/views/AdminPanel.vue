@@ -114,6 +114,7 @@
 <script setup>
 import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 import { useMainStore } from "@/store/useMain.js";
+
 let store = useMainStore();
 let can = inject("can");
 let search = $ref();

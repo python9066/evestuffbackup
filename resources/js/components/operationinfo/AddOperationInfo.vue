@@ -1,136 +1,98 @@
 <template>
-  <v-dialog
-    :close-on-content-click="false"
-    v-model="addShown"
-    max-width="700px"
-    z-index="0"
-    content-class="rounded-xl"
-  >
-    <template v-slot:activator="{ on, attrs }">
-      <v-btn
-        text
-        v-bind="attrs"
-        v-on="on"
-        @click="addShown = true"
-        color="success"
-        ><font-awesome-icon icon="fa-solid fa-plus" size="xl" pull="left" />
-        Operation</v-btn
-      >
-    </template>
-    <v-card
-      tile
+  <div>
+    <q-btn
+      color="none"
+      flat
+      text-color="green"
+      icon="fa-solid fa-plus"
+      label="Add Operation"
+      @click="showAddOp = true"
+    />
+    <q-dialog
+      class="myRoundTop"
       max-width="700px"
-      min-height="200px"
-      max-height="700px"
-      class="rounded-xl"
+      min-width="700px"
+      v-model="showAddOp"
+      persistent
+      @before-hide="close()"
     >
-      <v-card-title class="primary">Operation Information</v-card-title>
-      <v-card-text>
-        <v-text-field
-          class="pt-2"
-          label="Name"
-          placeholder="Enter Name"
-          rounded
-          filled
-          autofocus
-          v-model="nameText"
-        ></v-text-field>
-        <v-textarea
-          label="Info"
-          filled
-          placeholder="Enter Info"
-          rounded
-          v-model="infoText"
-        ></v-textarea>
-      </v-card-text>
-      <v-card-actions
-        ><v-row no-gutters>
-          <v-col cols="auto"
-            ><v-btn
-              rounded
-              color=" primary"
-              :disabled="showButton"
-              @click="addOperationInfo()"
-              >Add</v-btn
-            ></v-col
-          ><v-spacer /><v-col cols="auto"
-            ><v-btn rounded color=" warning" @click="close()"
-              >Close</v-btn
-            ></v-col
-          >
-        </v-row>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+      <q-card class="myRoundTop" flat style="width: 700px; max-width: 80vw">
+        <q-card-section class="bg-primary text-center">
+          <h5 class="no-margin">Add Tower</h5>
+        </q-card-section>
+        <q-card-section>
+          <q-input
+            v-model="infoTitle"
+            clearable
+            outlined
+            rounded
+            dense
+            type="text"
+            label="Operation Title"
+          />
+        </q-card-section>
+        <q-card-section>
+          <q-input
+            input-style="height: 500px"
+            v-model="infoText"
+            clearable
+            outlined
+            rounded
+            dense
+            type="textarea"
+            label="Describe the operation here"
+          />
+        </q-card-section>
+        <q-card-actions align="center">
+          <q-btn
+            color="positive"
+            label="Submit"
+            @click="submit()"
+            rounded
+            :disable="isDisable"
+            v-close-popup
+          />
+          <q-btn label="Close" rounded color="negative" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import { EventBus } from "../../app";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {},
-  props: {},
-  data() {
-    return {
-      addShown: false,
-      nameText: "",
-      infoText: "",
-    };
-  },
 
-  async created() {},
+<script setup>
+let showAddOp = $ref(false);
+let infoText = $ref();
+let infoTitle = $ref();
 
-  beforeMonunt() {},
-
-  async beforeCreate() {},
-
-  async mounted() {},
-  methods: {
-    async addOperationInfo() {
-      var request = {
-        name: this.nameText,
-        info: this.infoText,
-      };
-      await axios({
-        method: "POST",
-        url: "/api/operationinfosheet",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }).then(
-        (this.nameText = ""),
-        (this.infoText = ""),
-        (this.addShown = false)
-      );
-
-      // TODO Add logging
+let submit = async () => {
+  var request = {
+    name: infoTitle,
+    info: infoText,
+  };
+  await axios({
+    method: "POST",
+    url: "/api/operationinfosheet",
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-
-    close() {
-      (this.nameText = ""), (this.infoText = ""), (this.addShown = false);
-    },
-  },
-
-  computed: {
-    ...mapGetters([]),
-
-    ...mapState([]),
-
-    showButton() {
-      if (this.nameText != "" && this.infoText != "") {
-        return false;
-      } else {
-        return true;
-      }
-    },
-  },
-  beforeDestroy() {},
+  });
 };
+
+let close = () => {
+  infoText = null;
+  infoTitle = null;
+  showAddOp = false;
+};
+
+let isDisable = $computed(() => {
+  if (infoTitle) {
+    return false;
+  }
+  return true;
+});
 </script>
+
+<style lang="scss"></style>

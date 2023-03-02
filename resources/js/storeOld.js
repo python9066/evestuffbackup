@@ -13,15 +13,15 @@ export default new Vuex.Store({
             showFleets: true,
         },
 
-        operationInfoPage: [],
+        // operationInfoPage: [],
 
-        operationInfoUsers: [],
-        operationInfoMumble: [],
-        operationInfoDoctrines: [],
-        operationInfoRecon: [],
-        operationInfoReconFleetRoleList: [],
-        operationInfoOperationList: [],
-        operationInfoJamList: [],
+        // operationInfoUsers: [],
+        // operationInfoMumble: [],
+        // operationInfoDoctrines: [],
+        // operationInfoRecon: [],
+        // operationInfoReconFleetRoleList: [],
+        // operationInfoOperationList: [],
+        // operationInfoJamList: [],
 
         operationInfoMessageCount: 0,
 
@@ -148,26 +148,26 @@ export default new Vuex.Store({
             }
         },
 
-        CLEAR_OPERATION_INFO_SOLO(state) {
-            state.operationInfoPage = [];
-            state.operationInfoUsers = [];
-            state.operationInfoMumble = [];
-            state.operationInfoDoctrines = [];
-            state.operationInfoRecon = [];
-            state.operationInfoReconFleetRoleList = [];
-            state.operationInfoOperationList = [];
-            state.operationInfoJamList = [];
-        },
+        // CLEAR_OPERATION_INFO_SOLO(state) {
+        //     state.operationInfoPage = [];
+        //     state.operationInfoUsers = [];
+        //     state.operationInfoMumble = [];
+        //     state.operationInfoDoctrines = [];
+        //     state.operationInfoRecon = [];
+        //     state.operationInfoReconFleetRoleList = [];
+        //     state.operationInfoOperationList = [];
+        //     state.operationInfoJamList = [];
+        // },
 
-        DELETE_OPERATION_SHEET_INFO_PAGE_FLEET(state, id) {
-            let check = state.operationInfoPage.fleets.filter(
-                (e) => e.id == id
-            ).length;
-            if (check > 0) {
-                state.operationInfoPage.fleets =
-                    state.operationInfoPage.fleets.filter((e) => e.id != id);
-            }
-        },
+        // DELETE_OPERATION_SHEET_INFO_PAGE_FLEET(state, id) {
+        //     let check = state.operationInfoPage.fleets.filter(
+        //         (e) => e.id == id
+        //     ).length;
+        //     if (check > 0) {
+        //         state.operationInfoPage.fleets =
+        //             state.operationInfoPage.fleets.filter((e) => e.id != id);
+        //     }
+        // },
 
         UPDATE_OWN_CHAR(state, data) {
             const item = state.ownChars.find((item) => item.id === data.id);
@@ -197,17 +197,17 @@ export default new Vuex.Store({
             state.operationUserList = data;
         },
 
-        UPDATE_OPERATION_INFO_USER_LIST(state, data) {
-            state.operationInfoUserList = data;
-        },
+        // UPDATE_OPERATION_INFO_USER_LIST(state, data) {
+        //     state.operationInfoUserList = data;
+        // },
 
-        UPDATE_OPERATION_INFO_UPDATE_ALL_FLEETS(state, data) {
-            state.operationInfoPage.fleets = data;
-        },
+        // UPDATE_OPERATION_INFO_UPDATE_ALL_FLEETS(state, data) {
+        //     state.operationInfoPage.fleets = data;
+        // },
 
-        UPDATE_OPERATION_INFO_ADD_DANK_OP(state, data) {
-            state.operationInfoPage.dankop = data;
-        },
+        // UPDATE_OPERATION_INFO_ADD_DANK_OP(state, data) {
+        //     state.operationInfoPage.dankop = data;
+        // },
 
         UPDATE_OP_CHAR(state, data) {
             const item = state.opUsers.find((item) => item.id === data.id);
@@ -229,50 +229,50 @@ export default new Vuex.Store({
         //     state.stationList = stations;
         // },
 
-        SET_USER_LIST(state, data) {
-            state.userList = data;
-        },
+        // SET_USER_LIST(state, data) {
+        //     state.userList = data;
+        // },
 
-        SET_OPERATION_INFO(state, data) {
-            state.operationInfo = data;
-        },
+        // SET_OPERATION_INFO(state, data) {
+        //     state.operationInfo = data;
+        // },
 
-        SET_OPERATION_INFO_OPERATION_LIST(state, operations) {
-            state.operationInfoOperationList = operations;
-        },
+        // SET_OPERATION_INFO_OPERATION_LIST(state, operations) {
+        //     state.operationInfoOperationList = operations;
+        // },
 
-        SET_OPERATION_INFO_PAGE(state, data) {
-            state.operationInfoPage = data;
-        },
+        // SET_OPERATION_INFO_PAGE(state, data) {
+        //     state.operationInfoPage = data;
+        // },
 
-        UPDATE_OPERATION_INFO_PAGE(state, data) {
-            const item = state.operationInfoPage;
-            Object.assign(item, data);
-        },
+        // UPDATE_OPERATION_INFO_PAGE(state, data) {
+        //     const item = state.operationInfoPage;
+        //     Object.assign(item, data);
+        // },
 
-        SET_OPERATION_INFO_USERS(state, data) {
-            state.operationInfoUsers = data;
-        },
+        // SET_OPERATION_INFO_USERS(state, data) {
+        //     state.operationInfoUsers = data;
+        // },
 
-        SET_OPERATION_INFO_RECON(state, data) {
-            state.operationInfoRecon = data;
-        },
+        // SET_OPERATION_INFO_RECON(state, data) {
+        //     state.operationInfoRecon = data;
+        // },
 
-        SET_OPERATION_INFO_MUMBLE(state, data) {
-            state.operationInfoMumble = data;
-        },
+        // SET_OPERATION_INFO_MUMBLE(state, data) {
+        //     state.operationInfoMumble = data;
+        // },
 
-        SET_OPERATION_INFO_JAM_LIST(state, data) {
-            state.operationInfoJamList = data;
-        },
+        // SET_OPERATION_INFO_JAM_LIST(state, data) {
+        //     state.operationInfoJamList = data;
+        // },
 
-        SET_OPERATION_INFO_RECON_FLEET_ROLE_LIST(state, data) {
-            state.operationInfoReconFleetRoleList = data;
-        },
+        // SET_OPERATION_INFO_RECON_FLEET_ROLE_LIST(state, data) {
+        //     state.operationInfoReconFleetRoleList = data;
+        // },
 
-        SET_OPERATION_INFO_DOCTRINES(state, data) {
-            state.operationInfoDoctrines = data;
-        },
+        // SET_OPERATION_INFO_DOCTRINES(state, data) {
+        //     state.operationInfoDoctrines = data;
+        // },
 
         SET_NEW_OPERATION_MESSAGE_OVERLAY(state, num) {
             state.newOperationMessageOverlay = num;
@@ -317,33 +317,33 @@ export default new Vuex.Store({
             }
         },
 
-        UPDATE_CAMPAIGN_SYSTEMS_INFO(state, data) {
-            const item = state.operationInfoPage.systems.find(
-                (item) => item.id === data.id
-            );
-            const count = state.operationInfoPage.systems.filter(
-                (item) => item.id === data.id
-            ).length;
-            if (count > 0) {
-                Object.assign(item, data);
-            } else {
-                state.operationInfoPage.systems.push(data);
-            }
-        },
+        // UPDATE_CAMPAIGN_SYSTEMS_INFO(state, data) {
+        //     const item = state.operationInfoPage.systems.find(
+        //         (item) => item.id === data.id
+        //     );
+        //     const count = state.operationInfoPage.systems.filter(
+        //         (item) => item.id === data.id
+        //     ).length;
+        //     if (count > 0) {
+        //         Object.assign(item, data);
+        //     } else {
+        //         state.operationInfoPage.systems.push(data);
+        //     }
+        // },
 
-        UPDATE_OPERATION_PAGE_INFO(state, data) {
-            const item = state.operationInfo.find(
-                (item) => item.id === data.id
-            );
-            const count = state.operationInfo.filter(
-                (item) => item.id === data.id
-            ).length;
-            if (count > 0) {
-                Object.assign(item, data);
-            } else {
-                state.operationInfo.push(data);
-            }
-        },
+        // UPDATE_OPERATION_PAGE_INFO(state, data) {
+        //     const item = state.operationInfo.find(
+        //         (item) => item.id === data.id
+        //     );
+        //     const count = state.operationInfo.filter(
+        //         (item) => item.id === data.id
+        //     ).length;
+        //     if (count > 0) {
+        //         Object.assign(item, data);
+        //     } else {
+        //         state.operationInfo.push(data);
+        //     }
+        // },
 
         SET_WEBWAY_SELECTED_START_SYSTEM(state, data) {
             state.webwaySelectedStartSystem = data;
@@ -377,122 +377,122 @@ export default new Vuex.Store({
         //     }
         // },
 
-        UPDATE_FLEET_INFO(state, data) {
-            const count = state.operationInfoPage.fleets.filter(
-                (item) => item.id === data.id
-            ).length;
-            if (count > 0) {
-                const item = state.operationInfoPage.fleets.find(
-                    (f) => f.id === data.id
-                );
-                Object.assign(item, data);
-            } else {
-                state.operationInfoPage.fleets.push(data);
-            }
-        },
+        // UPDATE_FLEET_INFO(state, data) {
+        //     const count = state.operationInfoPage.fleets.filter(
+        //         (item) => item.id === data.id
+        //     ).length;
+        //     if (count > 0) {
+        //         const item = state.operationInfoPage.fleets.find(
+        //             (f) => f.id === data.id
+        //         );
+        //         Object.assign(item, data);
+        //     } else {
+        //         state.operationInfoPage.fleets.push(data);
+        //     }
+        // },
 
-        UPDATE_OPERATION_INFO_SYSTEM(state, data) {
-            const count = state.operationInfoPage.systems.filter(
-                (item) => item.id === data.id
-            ).length;
-            if (count > 0) {
-                const item = state.operationInfoPage.systems.find(
-                    (f) => f.id === data.id
-                );
-                Object.assign(item, data);
-            } else {
-                state.operationInfoPage.systems.push(data);
-            }
-        },
+        // UPDATE_OPERATION_INFO_SYSTEM(state, data) {
+        //     const count = state.operationInfoPage.systems.filter(
+        //         (item) => item.id === data.id
+        //     ).length;
+        //     if (count > 0) {
+        //         const item = state.operationInfoPage.systems.find(
+        //             (f) => f.id === data.id
+        //         );
+        //         Object.assign(item, data);
+        //     } else {
+        //         state.operationInfoPage.systems.push(data);
+        //     }
+        // },
 
-        UPDATE_OPERATION_RECON_SOLO(state, data) {
-            const count = state.operationInfoPage.recons.filter(
-                (item) => item.id === data.id
-            ).length;
+        // UPDATE_OPERATION_RECON_SOLO(state, data) {
+        //     const count = state.operationInfoPage.recons.filter(
+        //         (item) => item.id === data.id
+        //     ).length;
 
-            if (count > 0) {
-                const item = state.operationInfoPage.recons.find(
-                    (f) => f.id === data.id
-                );
-                Object.assign(item, data);
-            } else {
-                state.operationInfoPage.recons.push(data);
-            }
+        //     if (count > 0) {
+        //         const item = state.operationInfoPage.recons.find(
+        //             (f) => f.id === data.id
+        //         );
+        //         Object.assign(item, data);
+        //     } else {
+        //         state.operationInfoPage.recons.push(data);
+        //     }
 
-            const countRecon = state.operationInfoRecon.filter(
-                (item) => item.id === data.id
-            ).length;
+        //     const countRecon = state.operationInfoRecon.filter(
+        //         (item) => item.id === data.id
+        //     ).length;
 
-            if (countRecon > 0) {
-                const item = state.operationInfoRecon.find(
-                    (f) => f.id === data.id
-                );
-                Object.assign(item, data);
-            } else {
-                state.operationInfoRecon.push(data);
-            }
-        },
+        //     if (countRecon > 0) {
+        //         const item = state.operationInfoRecon.find(
+        //             (f) => f.id === data.id
+        //         );
+        //         Object.assign(item, data);
+        //     } else {
+        //         state.operationInfoRecon.push(data);
+        //     }
+        // },
 
-        REMOVED_OPERATION_RECON(state, data) {
-            console.log(data);
-            var info = state.operationInfoPage.recons.filter(
-                (r) => r.id != data.id
-            );
-            state.operationInfoPage.recons = info;
+        // REMOVED_OPERATION_RECON(state, data) {
+        //     console.log(data);
+        //     var info = state.operationInfoPage.recons.filter(
+        //         (r) => r.id != data.id
+        //     );
+        //     state.operationInfoPage.recons = info;
 
-            const count = state.operationInfoRecon.filter(
-                (item) => item.id === data.id
-            ).length;
+        //     const count = state.operationInfoRecon.filter(
+        //         (item) => item.id === data.id
+        //     ).length;
 
-            if (count > 0) {
-                const item = state.operationInfoRecon.find(
-                    (f) => f.id === data.id
-                );
-                Object.assign(item, data);
-            } else {
-                state.operationInfoRecon.push(data);
-            }
-        },
+        //     if (count > 0) {
+        //         const item = state.operationInfoRecon.find(
+        //             (f) => f.id === data.id
+        //         );
+        //         Object.assign(item, data);
+        //     } else {
+        //         state.operationInfoRecon.push(data);
+        //     }
+        // },
 
-        UPDATE_OPERATION_MESSAGE(state, data) {
-            state.operationInfoPage.messages = data;
-            state.operationInfoMessageCount =
-                state.operationInfoMessageCount + 1;
-        },
+        // UPDATE_OPERATION_MESSAGE(state, data) {
+        //     state.operationInfoPage.messages = data;
+        //     state.operationInfoMessageCount =
+        //         state.operationInfoMessageCount + 1;
+        // },
 
         CLEAR_OPERATION_MESSAGE_COUNT(state) {
             state.operationInfoMessageCount = 0;
         },
 
-        UPDATE_OPERATION_STATUS(state, data) {
-            state.operationInfoPage.status = data;
-        },
+        // UPDATE_OPERATION_STATUS(state, data) {
+        //     state.operationInfoPage.status = data;
+        // },
 
-        UPDATE_OPERATION_OPERATION(state, data) {
-            state.operationInfoPage.operation = data;
-        },
+        // UPDATE_OPERATION_OPERATION(state, data) {
+        //     state.operationInfoPage.operation = data;
+        // },
 
         UPDATE_OPERATION_CAMPAIGNS(state, data) {
             state.operationInfoPage.campaigns = data;
         },
 
-        UPDATE_OPERATION_CAMPAIGNS_SOLO(state, data) {
-            const item = state.operationInfoPage.campaigns.find(
-                (item) => item.id === data.id
-            );
-            const count = state.operationInfoPage.campaigns.filter(
-                (item) => item.id === data.id
-            ).length;
-            if (count > 0) {
-                Object.assign(item, data);
-            } else {
-                state.operationInfoPage.campaigns.push(data);
-            }
-        },
+        // UPDATE_OPERATION_CAMPAIGNS_SOLO(state, data) {
+        //     const item = state.operationInfoPage.campaigns.find(
+        //         (item) => item.id === data.id
+        //     );
+        //     const count = state.operationInfoPage.campaigns.filter(
+        //         (item) => item.id === data.id
+        //     ).length;
+        //     if (count > 0) {
+        //         Object.assign(item, data);
+        //     } else {
+        //         state.operationInfoPage.campaigns.push(data);
+        //     }
+        // },
 
-        UPDATE_OPERATION_SYSTEMS(state, data) {
-            state.operationInfoPage.systems = data;
-        },
+        // UPDATE_OPERATION_SYSTEMS(state, data) {
+        //     state.operationInfoPage.systems = data;
+        // },
 
         // SET_NEW_SOLO_OPERATIONS(state, solooplist) {
         //     state.newSoloOperations = solooplist;
@@ -591,9 +591,9 @@ export default new Vuex.Store({
             state.ticklist.push(data);
         },
 
-        SET_ALLIANCE_TICKLIST(state, allianceticklist) {
-            state.allianceticklist = allianceticklist;
-        },
+        // SET_ALLIANCE_TICKLIST(state, allianceticklist) {
+        //     state.allianceticklist = allianceticklist;
+        // },
 
         // SET_TIMERS(state, timers) {
         //     state.timers = timers;
@@ -1164,125 +1164,125 @@ export default new Vuex.Store({
     },
 
     actions: {
-        async getOperationUsers({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/operationinfousers",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_OPERATION_INFO_USERS", res.data.users);
-        },
+        // async getOperationUsers({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/operationinfousers",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_OPERATION_INFO_USERS", res.data.users);
+        // },
 
-        async getOperationRecon({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/operationinforecon",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_OPERATION_INFO_RECON", res.data.recon);
-        },
+        // async getOperationRecon({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/operationinforecon",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_OPERATION_INFO_RECON", res.data.recon);
+        // },
 
-        async getOperationInfoMumble({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/operationinfomumble",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_OPERATION_INFO_MUMBLE", res.data.mumble);
-        },
+        // async getOperationInfoMumble({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/operationinfomumble",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_OPERATION_INFO_MUMBLE", res.data.mumble);
+        // },
 
-        async getOperationInfoJamList({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/operationinfojammerstatus",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_OPERATION_INFO_JAM_LIST", res.data.jam);
-        },
+        // async getOperationInfoJamList({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/operationinfojammerstatus",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_OPERATION_INFO_JAM_LIST", res.data.jam);
+        // },
 
-        async getOperationInfoReconRoles({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/operationinfofleetreconrole",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit(
-                "SET_OPERATION_INFO_RECON_FLEET_ROLE_LIST",
-                res.data.roleList
-            );
-        },
+        // async getOperationInfoReconRoles({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/operationinfofleetreconrole",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit(
+        //         "SET_OPERATION_INFO_RECON_FLEET_ROLE_LIST",
+        //         res.data.roleList
+        //     );
+        // },
 
-        async getOperationInfoDoctrines({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/operationinfodoctrines",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_OPERATION_INFO_DOCTRINES", res.data.doc);
-        },
+        // async getOperationInfoDoctrines({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/operationinfodoctrines",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_OPERATION_INFO_DOCTRINES", res.data.doc);
+        // },
 
-        async getOperationSheetInfo({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/operationinfosheet",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_OPERATION_INFO", res.data.opinfo);
-        },
+        // async getOperationSheetInfo({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/operationinfosheet",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_OPERATION_INFO", res.data.opinfo);
+        // },
 
-        async getOperationSheetInfoOperationList({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/operationlistinfoop",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_OPERATION_INFO_OPERATION_LIST", res.data.operations);
-        },
+        // async getOperationSheetInfoOperationList({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/operationlistinfoop",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_OPERATION_INFO_OPERATION_LIST", res.data.operations);
+        // },
 
-        async getOperationSheetInfoPage({ commit }, id) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/operationinfopage/" + id,
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_OPERATION_INFO_PAGE", res.data.data);
-        },
+        // async getOperationSheetInfoPage({ commit }, id) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/operationinfopage/" + id,
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_OPERATION_INFO_PAGE", res.data.data);
+        // },
 
         // async getStationList({ commit }) {
         //     let res = await axios({
@@ -1296,18 +1296,18 @@ export default new Vuex.Store({
         //     });
         //     commit("SET_STATION_LIST", res.data.stations);
         // },
-        async getUserList({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/users",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_USER_LIST", res.data.users);
-        },
+        // async getUserList({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/users",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_USER_LIST", res.data.users);
+        // },
 
         async getOperationInfo({ commit }, id) {
             let res = await axios({
@@ -1502,18 +1502,18 @@ export default new Vuex.Store({
         //     commit("SET_TICKLIST", res.data.ticklist);
         // },
 
-        async getAllianceTickList({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/allianceticklist",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_ALLIANCE_TICKLIST", res.data.allianceticklist);
-        },
+        // async getAllianceTickList({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/allianceticklist",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_ALLIANCE_TICKLIST", res.data.allianceticklist);
+        // },
 
         async getNodeJoinByCampaignId({ commit }, campaign_id) {
             let res = await axios({
@@ -2053,9 +2053,9 @@ export default new Vuex.Store({
             commit("DELETE_OP_CHAR_FROM_CHAR_LIST", id);
         },
 
-        deleteOperationSheetInfoPageFleet({ commit }, id) {
-            commit("DELETE_OPERATION_SHEET_INFO_PAGE_FLEET", id);
-        },
+        // deleteOperationSheetInfoPageFleet({ commit }, id) {
+        //     commit("DELETE_OPERATION_SHEET_INFO_PAGE_FLEET", id);
+        // },
 
         removeCharfromOwnList({ commit }, id) {
             commit("DELETE_OP_CHAR_FROM_OWN_LIST", id);
@@ -2101,21 +2101,21 @@ export default new Vuex.Store({
             commit("UPDATE_CHILL_STATION_CURRENT", data);
         },
 
-        updateOperationPageInfo({ commit }, data) {
-            commit("UPDATE_OPERATION_PAGE_INFO", data);
-        },
+        // updateOperationPageInfo({ commit }, data) {
+        //     commit("UPDATE_OPERATION_PAGE_INFO", data);
+        // },
 
-        removeOperationPageInfo({ commit }, data) {
-            commit("REMOVE_OPERATION_PAGE_INFO", data);
-        },
+        // removeOperationPageInfo({ commit }, data) {
+        //     commit("REMOVE_OPERATION_PAGE_INFO", data);
+        // },
 
-        clearOperationInfoSolo({ commit }) {
-            commit("CLEAR_OPERATION_INFO_SOLO");
-        },
+        // clearOperationInfoSolo({ commit }) {
+        //     commit("CLEAR_OPERATION_INFO_SOLO");
+        // },
 
-        updateOperationSheetInfoPage({ commit }, data) {
-            commit("UPDATE_OPERATION_INFO_PAGE", data);
-        },
+        // updateOperationSheetInfoPage({ commit }, data) {
+        //     commit("UPDATE_OPERATION_INFO_PAGE", data);
+        // },
 
         updateWelpStationCurrent({ commit }, data) {
             commit("UPDATE_WELP_STATION_CURRENT", data);
@@ -2213,17 +2213,17 @@ export default new Vuex.Store({
             commit("UPDATE_OPERATION_USER_LIST", data);
         },
 
-        updateOperationInfoUserList({ commit }, data) {
-            commit("UPDATE_OPERATION_INFO_USER_LIST", data);
-        },
+        // updateOperationInfoUserList({ commit }, data) {
+        //     commit("UPDATE_OPERATION_INFO_USER_LIST", data);
+        // },
 
         updateOperationInfoUpdateAllFleet({ commit }, data) {
             commit("UPDATE_OPERATION_INFO_UPDATE_ALL_FLEETS", data);
         },
 
-        updateOperationInfoAddDankOp({ commit }, data) {
-            commit("UPDATE_OPERATION_INFO_ADD_DANK_OP", data);
-        },
+        // updateOperationInfoAddDankOp({ commit }, data) {
+        //     commit("UPDATE_OPERATION_INFO_ADD_DANK_OP", data);
+        // },
 
         updateNodeJoin({ commit }, data) {
             commit("UPDATE_NODE_JOIN", data);
@@ -2309,9 +2309,9 @@ export default new Vuex.Store({
             commit("DELETE_USER_CHAR", id);
         },
 
-        removeOperationReconSolo({ commit }, data) {
-            commit("REMOVED_OPERATION_RECON", data);
-        },
+        // removeOperationReconSolo({ commit }, data) {
+        //     commit("REMOVED_OPERATION_RECON", data);
+        // },
 
         deleteNodeJoin({ commit }, id) {
             commit("DELETE_NODE_JOIN", id);
@@ -2333,49 +2333,49 @@ export default new Vuex.Store({
             commit("UPDATE_CAMPAIGN_SYSTEMS", data);
         },
 
-        updateNewCampaignSystemInfo({ commit }, data) {
-            commit("UPDATE_CAMPAIGN_SYSTEMS_INFO", data);
-        },
+        // updateNewCampaignSystemInfo({ commit }, data) {
+        //     commit("UPDATE_CAMPAIGN_SYSTEMS_INFO", data);
+        // },
 
-        updateOperationSheetInfoPageFleet({ commit }, data) {
-            commit("UPDATE_FLEET_INFO", data);
-        },
+        // updateOperationSheetInfoPageFleet({ commit }, data) {
+        //     commit("UPDATE_FLEET_INFO", data);
+        // },
 
-        updateOperationSoloSystems({ commit }, data) {
-            commit("UPDATE_OPERATION_INFO_SYSTEM", data);
-        },
+        // updateOperationSoloSystems({ commit }, data) {
+        //     commit("UPDATE_OPERATION_INFO_SYSTEM", data);
+        // },
 
-        updateOperationReconSolo({ commit }, data) {
-            commit("UPDATE_OPERATION_RECON_SOLO", data);
-        },
+        // updateOperationReconSolo({ commit }, data) {
+        //     commit("UPDATE_OPERATION_RECON_SOLO", data);
+        // },
 
-        updateOperationMessage({ commit }, data) {
-            commit("UPDATE_OPERATION_MESSAGE", data);
-        },
+        // updateOperationMessage({ commit }, data) {
+        //     commit("UPDATE_OPERATION_MESSAGE", data);
+        // },
 
-        updateOperationStatus({ commit }, data) {
-            commit("UPDATE_OPERATION_STATUS", data);
-        },
+        // updateOperationStatus({ commit }, data) {
+        //     commit("UPDATE_OPERATION_STATUS", data);
+        // },
 
-        updateOperationOperation({ commit }, data) {
-            commit("UPDATE_OPERATION_OPERATION", data);
-        },
+        // updateOperationOperation({ commit }, data) {
+        //     commit("UPDATE_OPERATION_OPERATION", data);
+        // },
 
         updateOperationCampaigns({ commit }, data) {
             commit("UPDATE_OPERATION_CAMPAIGNS", data);
         },
 
-        updateOperationCampaignsSolo({ commit }, data) {
-            commit("UPDATE_OPERATION_CAMPAIGNS_SOLO", data);
-        },
+        // updateOperationCampaignsSolo({ commit }, data) {
+        //     commit("UPDATE_OPERATION_CAMPAIGNS_SOLO", data);
+        // },
 
-        updateOperationSystems({ commit }, data) {
-            commit("UPDATE_OPERATION_SYSTEMS", data);
-        },
+        // updateOperationSystems({ commit }, data) {
+        //     commit("UPDATE_OPERATION_SYSTEMS", data);
+        // },
 
-        updateOperationUsers({ commit }, data) {
-            commit("SET_OPERATION_INFO_USERS", data);
-        },
+        // updateOperationUsers({ commit }, data) {
+        //     commit("SET_OPERATION_INFO_USERS", data);
+        // },
 
         updateOperationRecon({ commit }, data) {
             commit("SET_OPERATION_INFO_RECON", data);

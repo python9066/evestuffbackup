@@ -379,6 +379,7 @@
 import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 import { useMainStore } from "@/store/useMain.js";
 import axios from "axios";
+
 let store = useMainStore();
 let search = $ref("");
 let can = inject("can");

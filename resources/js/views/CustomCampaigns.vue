@@ -14,6 +14,7 @@
 <script setup>
 import { onMounted, onBeforeUnmount, defineAsyncComponent } from "vue";
 import { useMainStore } from "@/store/useMain.js";
+
 let store = useMainStore();
 const NewMultiCampaigns = defineAsyncComponent(() =>
   import("../components/newcampaign/NewMultiCampaigns.vue")
