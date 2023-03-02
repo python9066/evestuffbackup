@@ -115,6 +115,19 @@ const routes = [
             }
         },
     },
+
+    {
+        path: "/pannel",
+        name: "pannel",
+        component: () => import("./views/AdminPanel.vue"),
+        beforeEnter(to, from, next) {
+            if (can("edit_users")) {
+                next();
+            } else {
+                next("/");
+            }
+        },
+    },
 ];
 
 const router = createRouter({

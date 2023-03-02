@@ -26,11 +26,14 @@ export const useMainStore = defineStore("main", {
         ticklist: [],
         towerTypes: [],
         towerConstellation: [],
+        rolesList: [],
         moonList: [],
         towerChatWindowId: null,
         stationChatWindowId: null,
         user_name: null,
         user_id: null,
+        users: [],
+        loggingAdmin: [],
         missingCorpID: 0,
         missingCorpTick: "",
         webwayStartSystems: [],
@@ -520,6 +523,45 @@ export const useMainStore = defineStore("main", {
         deleteTower(id) {
             const items = this.towers.find((t) => t.id != id);
             this.towers = items;
+        },
+
+        async getUsers() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/allusersroles",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.users = res.data.usersroles;
+        },
+
+        async getRoles() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/roles",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.rolesList = res.data.roles;
+        },
+
+        async getLoggingAdmin() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/checkadmin",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.loggingAdmin = res.data.logs;
         },
     },
 });
