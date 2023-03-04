@@ -1,5 +1,15 @@
 <template>
-  <div>{{ route.params.id }}</div>
+  <div class="q-ma-md">
+    <div class="row">
+      <div class="col">Title Bar</div>
+    </div>
+    <div class="row">
+      <div class="col">Campaign Bar</div>
+    </div>
+    <div class="row">
+      <div class="col">SYSTEMSS</div>
+    </div>
+  </div>
 </template>
 
 <script setup>
