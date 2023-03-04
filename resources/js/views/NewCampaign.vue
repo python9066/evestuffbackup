@@ -1,7 +1,14 @@
 <template>
   <div class="q-ma-md">
     <div class="row">
-      <div class="col">Title Bar</div>
+      <div class="col">
+        <CampaignTitleBar
+          :operationID="operationID"
+          :title="store.newOperationInfo.title"
+          :activeCampaigns="activeCampaigns"
+          :warmUpCampaigns="warmUpCampaigns"
+        />
+      </div>
     </div>
     <div class="row">
       <div class="col">Campaign Bar</div>
@@ -16,11 +23,14 @@
 import { useRoute } from "vue-router";
 import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 import { useMainStore } from "@/store/useMain.js";
-import Echo from "laravel-echo";
 
 let route = useRoute();
 let store = useMainStore();
 let can = inject("can");
+
+const CampaignTitleBar = defineAsyncComponent(() =>
+  import("../components/newcampaign/CampaignTitleBar.vue")
+);
 
 onMounted(async () => {
   await store.getOperationInfo(route.params.id);
@@ -130,6 +140,40 @@ onBeforeUnmount(async () => {
   Echo.leave("operations." + operationID);
   Echo.leave("operationsown." + store.user_id + "-" + operationID);
   Echo.leave("operationsadmin." + operationID);
+});
+
+let activeCampaigns = $computed(() => {
+  var check = store.newCampaigns.length;
+  if (check > 0) {
+    var campaigns = store.newCampaigns.filter((c) => {
+      if (c.status_id == 2) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    return campaigns;
+  } else {
+    return [];
+  }
+});
+
+let warmUpCampaigns = $computed(() => {
+  var check = store.newCampaigns.length;
+  if (check > 0) {
+    var campaigns = store.newCampaigns.filter((c) => {
+      if (c.status_id == 5) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    return campaigns;
+  } else {
+    return [];
+  }
 });
 
 let operationID = $computed(() => {

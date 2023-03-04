@@ -224,6 +224,61 @@ export const useMainStore = defineStore("main", {
             }
             return [];
         },
+
+        getTotalCampaignNodes: (state) => (campaignID) => {
+            var total = 0;
+            state.newCampaignSystems.forEach((c) => {
+                let count = c.new_nodes.filter(
+                    (n) => n.campaign_id === campaignID
+                ).length;
+                total = total + count;
+            });
+
+            return total;
+        },
+
+        getRedCampaignNodes: (state) => (campaignID) => {
+            var red = 0;
+
+            state.newCampaignSystems.forEach((a) => {
+                let nodes = a.new_nodes;
+
+                nodes.forEach((b) => {
+                    if (
+                        (b.node_status.id == 7 || b.node_status.id == 5) &&
+                        b.campaign_id === campaignID
+                    ) {
+                        red = red + 1;
+                    }
+                });
+            });
+
+            return red;
+        },
+
+        getBlueCampaignNodes: (state) => (campaignID) => {
+            var blue = 0;
+
+            state.newCampaignSystems.forEach((a) => {
+                let nodes = a.new_nodes;
+
+                nodes.forEach((b) => {
+                    if (
+                        b.prime_node_user.length > 0 &&
+                        b.campaign_id === campaignID
+                    ) {
+                        blue = blue + 1;
+                    } else if (
+                        (b.node_status.id == 8 || b.node_status.id == 4) &&
+                        b.campaign_id === campaignID
+                    ) {
+                        blue = blue + 1;
+                    }
+                });
+            });
+
+            return blue;
+        },
     },
     actions: {
         async updateTickList(ticker) {
