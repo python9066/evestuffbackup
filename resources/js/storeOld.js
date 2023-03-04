@@ -109,11 +109,11 @@ export default new Vuex.Store({
         },
 
         newOperationInfo: [],
-        newCampaigns: [],
-        opUsers: [],
-        ownChars: {},
-        operationUserList: [],
-        newCampaignSystems: [],
+        // newCampaigns: [],
+        // opUsers: [],
+        // ownChars: {},
+        // operationUserList: [],
+        // newCampaignSystems: [],
         // newCampaignsList: [],
         newOperationList: [],
         newOperationMessageOverlay: 0,
@@ -130,12 +130,12 @@ export default new Vuex.Store({
             }
         },
 
-        DELETE_OP_CHAR_FROM_CHAR_LIST(state, id) {
-            let check = state.opUsers.filter((e) => e.id == id).length;
-            if (check > 0) {
-                state.opUsers = state.opUsers.filter((e) => e.id != id);
-            }
-        },
+        // DELETE_OP_CHAR_FROM_CHAR_LIST(state, id) {
+        //     let check = state.opUsers.filter((e) => e.id == id).length;
+        //     if (check > 0) {
+        //         state.opUsers = state.opUsers.filter((e) => e.id != id);
+        //     }
+        // },
 
         REMOVE_OPERATION_PAGE_INFO(state, id) {
             let check = state.operationInfo.filter((e) => e.id == id).length;
@@ -169,33 +169,33 @@ export default new Vuex.Store({
         //     }
         // },
 
-        UPDATE_OWN_CHAR(state, data) {
-            const item = state.ownChars.find((item) => item.id === data.id);
-            const count = state.ownChars.filter(
-                (item) => item.id === data.id
-            ).length;
-            if (count > 0) {
-                Object.assign(item, data);
-            } else {
-                state.ownChars.push(data);
-            }
-        },
+        // UPDATE_OWN_CHAR(state, data) {
+        //     const item = state.ownChars.find((item) => item.id === data.id);
+        //     const count = state.ownChars.filter(
+        //         (item) => item.id === data.id
+        //     ).length;
+        //     if (count > 0) {
+        //         Object.assign(item, data);
+        //     } else {
+        //         state.ownChars.push(data);
+        //     }
+        // },
 
-        UPDATE_NEW_CAMPAIGNS(state, data) {
-            const item = state.newCampaigns.find((item) => item.id === data.id);
-            const count = state.newCampaigns.filter(
-                (item) => item.id === data.id
-            ).length;
-            if (count > 0) {
-                Object.assign(item, data);
-            } else {
-                state.newCampaigns.push(data);
-            }
-        },
+        // UPDATE_NEW_CAMPAIGNS(state, data) {
+        //     const item = state.newCampaigns.find((item) => item.id === data.id);
+        //     const count = state.newCampaigns.filter(
+        //         (item) => item.id === data.id
+        //     ).length;
+        //     if (count > 0) {
+        //         Object.assign(item, data);
+        //     } else {
+        //         state.newCampaigns.push(data);
+        //     }
+        // },
 
-        UPDATE_OPERATION_USER_LIST(state, data) {
-            state.operationUserList = data;
-        },
+        // UPDATE_OPERATION_USER_LIST(state, data) {
+        //     state.operationUserList = data;
+        // },
 
         // UPDATE_OPERATION_INFO_USER_LIST(state, data) {
         //     state.operationInfoUserList = data;
@@ -209,17 +209,17 @@ export default new Vuex.Store({
         //     state.operationInfoPage.dankop = data;
         // },
 
-        UPDATE_OP_CHAR(state, data) {
-            const item = state.opUsers.find((item) => item.id === data.id);
-            const count = state.opUsers.filter(
-                (item) => item.id === data.id
-            ).length;
-            if (count > 0) {
-                Object.assign(item, data);
-            } else {
-                state.opUsers.push(data);
-            }
-        },
+        // UPDATE_OP_CHAR(state, data) {
+        //     const item = state.opUsers.find((item) => item.id === data.id);
+        //     const count = state.opUsers.filter(
+        //         (item) => item.id === data.id
+        //     ).length;
+        //     if (count > 0) {
+        //         Object.assign(item, data);
+        //     } else {
+        //         state.opUsers.push(data);
+        //     }
+        // },
 
         ADD_NEW_OP_CHAR(state, data) {
             state.opUsers.push(data);
@@ -274,48 +274,48 @@ export default new Vuex.Store({
         //     state.operationInfoDoctrines = data;
         // },
 
-        SET_NEW_OPERATION_MESSAGE_OVERLAY(state, num) {
-            state.newOperationMessageOverlay = num;
-        },
+        // SET_NEW_OPERATION_MESSAGE_OVERLAY(state, num) {
+        //     state.newOperationMessageOverlay = num;
+        // },
 
         NEW_OPEN_OPERATION_ADD_CHAR(state, num) {
             state.setOpenOperationAddChar = num;
         },
 
-        SET_NEW_OPERATION_READ_ONLY(state, num) {
-            state.newOperationInfo.read_only = num;
-        },
+        // SET_NEW_OPERATION_READ_ONLY(state, num) {
+        //     state.newOperationInfo.read_only = num;
+        // },
 
-        SET_OPERATION_PAGE(state, data) {
-            state.newOperationInfo = data.data;
-            state.newCampaignSystems = data.systems;
-            state.opUsers = data.opUsers;
-            state.ownChars = data.ownChars;
-            state.newCampaigns = data.data.campaign;
-            state.operationUserList = data.userList;
-        },
+        // SET_OPERATION_PAGE(state, data) {
+        //     state.newOperationInfo = data.data;
+        //     state.newCampaignSystems = data.systems;
+        //     state.opUsers = data.opUsers;
+        //     state.ownChars = data.ownChars;
+        //     state.newCampaigns = data.data.campaign;
+        //     state.operationUserList = data.userList;
+        // },
 
-        UPDATE_OPERATION_SYSTEMS_ALL(state, data) {
-            state.newCampaignSystems = data;
-        },
+        // UPDATE_OPERATION_SYSTEMS_ALL(state, data) {
+        //     state.newCampaignSystems = data;
+        // },
 
-        UPDATE_OPERATION_PAGE(state, data) {
-            state.newOperationInfo = data;
-        },
+        // UPDATE_OPERATION_PAGE(state, data) {
+        //     state.newOperationInfo = data;
+        // },
 
-        UPDATE_CAMPAIGN_SYSTEMS(state, data) {
-            const item = state.newCampaignSystems.find(
-                (item) => item.id === data.id
-            );
-            const count = state.newCampaignSystems.filter(
-                (item) => item.id === data.id
-            ).length;
-            if (count > 0) {
-                Object.assign(item, data);
-            } else {
-                state.newCampaignSystems.push(data);
-            }
-        },
+        // UPDATE_CAMPAIGN_SYSTEMS(state, data) {
+        //     const item = state.newCampaignSystems.find(
+        //         (item) => item.id === data.id
+        //     );
+        //     const count = state.newCampaignSystems.filter(
+        //         (item) => item.id === data.id
+        //     ).length;
+        //     if (count > 0) {
+        //         Object.assign(item, data);
+        //     } else {
+        //         state.newCampaignSystems.push(data);
+        //     }
+        // },
 
         // UPDATE_CAMPAIGN_SYSTEMS_INFO(state, data) {
         //     const item = state.operationInfoPage.systems.find(
@@ -916,9 +916,9 @@ export default new Vuex.Store({
             state.loggingNewCampaign = logs;
         },
 
-        SET_CAMPAIGNSLIST(state, campaignslist) {
-            state.campaignslist = campaignslist;
-        },
+        // SET_CAMPAIGNSLIST(state, campaignslist) {
+        //     state.campaignslist = campaignslist;
+        // },
 
         // SET_NEW_CAMPAIGNSLIST(state, campaignslist) {
         //     state.newCampaignsList = campaignslist;
@@ -994,9 +994,9 @@ export default new Vuex.Store({
             Object.assign(item, data);
         },
 
-        UPDATE_OPERATION_INFO_SETTING(state, data) {
-            state.operationInfoSetting = data;
-        },
+        // UPDATE_OPERATION_INFO_SETTING(state, data) {
+        //     state.operationInfoSetting = data;
+        // },
 
         UPDATE_CAMPAIGN_SYSTEM(state, data) {
             const item = state.campaignsystems.find(
@@ -1309,18 +1309,18 @@ export default new Vuex.Store({
         //     commit("SET_USER_LIST", res.data.users);
         // },
 
-        async getOperationInfo({ commit }, id) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/operationinfo/" + id,
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_OPERATION_PAGE", res.data);
-        },
+        // async getOperationInfo({ commit }, id) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/operationinfo/" + id,
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_OPERATION_PAGE", res.data);
+        // },
 
         // async getWebwayStartSystems({ commit }) {
         //     let res = await axios({
@@ -1941,18 +1941,18 @@ export default new Vuex.Store({
         //     commit("SET_START_CAMPAIGNS", res.data.campaigns);
         // },
 
-        async getCampaignsList({ commit }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/campaignslist",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
-        },
+        // async getCampaignsList({ commit }) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/campaignslist",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
+        // },
 
         async getCampaignsList({ commit }, op_id) {
             let res = await axios({
@@ -2049,17 +2049,17 @@ export default new Vuex.Store({
             commit("MARK_TIMER_OVER", timer);
         },
 
-        removeCharfromOpList({ commit }, id) {
-            commit("DELETE_OP_CHAR_FROM_CHAR_LIST", id);
-        },
+        // removeCharfromOpList({ commit }, id) {
+        //     commit("DELETE_OP_CHAR_FROM_CHAR_LIST", id);
+        // },
 
         // deleteOperationSheetInfoPageFleet({ commit }, id) {
         //     commit("DELETE_OPERATION_SHEET_INFO_PAGE_FLEET", id);
         // },
 
-        removeCharfromOwnList({ commit }, id) {
-            commit("DELETE_OP_CHAR_FROM_OWN_LIST", id);
-        },
+        // removeCharfromOwnList({ commit }, id) {
+        //     commit("DELETE_OP_CHAR_FROM_OWN_LIST", id);
+        // },
 
         updateWebwaySelectedStartSystem({ commit }, data) {
             commit("SET_WEBWAY_SELECTED_START_SYSTEM", data);
@@ -2077,9 +2077,9 @@ export default new Vuex.Store({
             commit("UPDATE_KEY_MESSAGE", data);
         },
 
-        updateCampaignSystemAll({ commit }, data) {
-            commit("UPDATE_OPERATION_SYSTEMS_ALL", data);
-        },
+        // updateCampaignSystemAll({ commit }, data) {
+        //     commit("UPDATE_OPERATION_SYSTEMS_ALL", data);
+        // },
 
         updateRcStation({ commit }, data) {
             commit("UPDATE_RC_STATION", data);
@@ -2133,9 +2133,9 @@ export default new Vuex.Store({
             commit("UPDATE_RC_FC", data);
         },
 
-        setReadOnly({ commit }, newValue) {
-            commit("SET_NEW_OPERATION_READ_ONLY", newValue);
-        },
+        // setReadOnly({ commit }, newValue) {
+        //     commit("SET_NEW_OPERATION_READ_ONLY", newValue);
+        // },
 
         updateCores({ commit }, data) {
             commit("UPDATE_CORES", data);
@@ -2157,25 +2157,25 @@ export default new Vuex.Store({
             commit("UPDATE_START_CAMPAIGN_SYSTEM", data);
         },
 
-        updateOperationInfoSetting({ commit }, data) {
-            commit("UPDATE_OPERATION_INFO_SETTING", data);
-        },
+        // updateOperationInfoSetting({ commit }, data) {
+        //     commit("UPDATE_OPERATION_INFO_SETTING", data);
+        // },
 
         updateTooltipToggle({ commit }, data) {
             commit("UPDATE_TOOLTIP_TOGGLE", data);
         },
 
-        updateNewCampaigns({ commit }, data) {
-            commit("UPDATE_NEW_CAMPAIGNS", data);
-        },
+        // updateNewCampaigns({ commit }, data) {
+        //     commit("UPDATE_NEW_CAMPAIGNS", data);
+        // },
 
         updateCampaignSystemByUserID({ commit }, payload) {
             commit("UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID", payload);
         },
 
-        updateOperationOverLay({ commit }, num) {
-            commit("SET_NEW_OPERATION_MESSAGE_OVERLAY", num);
-        },
+        // updateOperationOverLay({ commit }, num) {
+        //     commit("SET_NEW_OPERATION_MESSAGE_OVERLAY", num);
+        // },
 
         clearOperationInfoMessageCount({ commit }) {
             commit("CLEAR_OPERATION_MESSAGE_COUNT");
@@ -2209,9 +2209,9 @@ export default new Vuex.Store({
             commit("UPDATE_AMMO_REQUEST", data);
         },
 
-        updateOperationUserList({ commit }, data) {
-            commit("UPDATE_OPERATION_USER_LIST", data);
-        },
+        // updateOperationUserList({ commit }, data) {
+        //     commit("UPDATE_OPERATION_USER_LIST", data);
+        // },
 
         // updateOperationInfoUserList({ commit }, data) {
         //     commit("UPDATE_OPERATION_INFO_USER_LIST", data);
@@ -2245,17 +2245,17 @@ export default new Vuex.Store({
             commit("ADD_AMMO_REQUEST", data);
         },
 
-        updateNewOwnChar({ commit }, data) {
-            commit("UPDATE_OWN_CHAR", data);
-        },
+        // updateNewOwnChar({ commit }, data) {
+        //     commit("UPDATE_OWN_CHAR", data);
+        // },
 
-        updateOpChar({ commit }, data) {
-            commit("UPDATE_OP_CHAR", data);
-        },
+        // updateOpChar({ commit }, data) {
+        //     commit("UPDATE_OP_CHAR", data);
+        // },
 
-        updateOperationInfo({ commit }, data) {
-            commit("UPDATE_OPERATION_PAGE", data);
-        },
+        // updateOperationInfo({ commit }, data) {
+        //     commit("UPDATE_OPERATION_PAGE", data);
+        // },
 
         // updateoperationlist({ commit }, data) {
         //     commit("UPDATE_NEW_OPERATION_LIST", data);
@@ -2329,9 +2329,9 @@ export default new Vuex.Store({
             commit("DELETE_CAMPAIGN_SYSTEM", id);
         },
 
-        updateNewCampaignSystem({ commit }, data) {
-            commit("UPDATE_CAMPAIGN_SYSTEMS", data);
-        },
+        // updateNewCampaignSystem({ commit }, data) {
+        //     commit("UPDATE_CAMPAIGN_SYSTEMS", data);
+        // },
 
         // updateNewCampaignSystemInfo({ commit }, data) {
         //     commit("UPDATE_CAMPAIGN_SYSTEMS_INFO", data);
