@@ -1,256 +1,220 @@
 <template>
-  <div>
-    <v-menu transition="fade-transition" v-if="showButton == 1">
-      <template v-slot:activator="{ on, attrs }">
-        <v-chip
-          dark
-          :color="filterCharsOnTheWay"
-          v-bind="attrs"
-          v-on="on"
-          small
-        >
-          Ready To Go
-        </v-chip>
-      </template>
-      <v-list>
-        <v-list-item
-          v-for="(list, index) in freeChars"
-          :key="index"
-          @click="clickOnTheWay(list.id)"
-        >
-          <v-list-item-title>{{ list.name }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu>
-    <v-btn
-      v-else-if="showButton == 2"
-      dark
+  <div class="row flex-center">
+    <q-btn
+      v-if="showButton == 1"
       :color="filterCharsOnTheWay"
-      small
+      class="myOutLineButtonMid"
+      no-caps
+      label="Ready To Go"
       rounded
-      class="no-uppercase"
+      ><q-menu>
+        <q-list style="min-width: 100px">
+          <q-item
+            clickable
+            v-close-popup
+            v-for="(list, index) in freeChars"
+            :key="index"
+            @click="clickOnTheWay(list.id)"
+          >
+            <q-item-section>{{ list.name }}</q-item-section>
+          </q-item>
+        </q-list>
+      </q-menu></q-btn
     >
-      Ready To Go
-    </v-btn>
+
+    <q-btn
+      v-else-if="showButton == 2"
+      :color="filterCharsOnTheWay"
+      class="myOutLineButtonMid"
+      no-caps
+      label="Ready To Go"
+      rounded
+    />
     <span v-else> Ready To Go - </span>
-    <v-menu transition="fade-transition">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          class="mx-2"
-          v-bind="attrs"
-          :disabled="fabOnTheWayDisbale"
-          v-on="on"
-          fab
-          color="green darken-4"
-          dark
-          x-small
-        >
-          {{ OnTheWayCount }}
-        </v-btn>
-      </template>
-      <v-list>
-        <v-list-item v-for="(list, index) in charsReadyToGoAll" :key="index">
-          <v-list-item-title>
-            {{ list.name }} - {{ list.ship }} - T{{ list.entosis
-            }}<span class="pl-3" v-if="seeReadyToGoOnTheWay(list)">
-              <span
+    <q-btn
+      color="green-4"
+      :label="onTheWayCount"
+      :disabled="fabOnTheWayDisbale"
+      size="sm"
+      round
+    >
+      <q-menu>
+        <q-list style="min-width: 100px">
+          <q-item
+            clickable
+            v-close-popup
+            v-for="(list, index) in charsReadyToGoAll"
+            :key="index"
+          >
+            <q-item-section>
+              {{ list.name }} - {{ list.ship }} - T{{ list.entosis }}
+              <q-btn
+                v-if="seeReadyToGoOnTheWay(list)"
+                flat
+                padding="none"
+                round
+                color="warning"
+                icon="fa-solid fa-trash-can"
+                size="xs"
                 @click="removeReadyToGoOnTheWay(list.id)"
-                color="orange darken-3"
-              >
-                <font-awesome-icon icon="fa-solid fa-trash-can" /></span></span
-          ></v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu>
+              />
+            </q-item-section>
+          </q-item>
+        </q-list> </q-menu
+    ></q-btn>
   </div>
 </template>
-<script>
-import Axios from "axios";
-import { EventBus } from "../../app";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {},
-  props: {
-    item: Object,
-    operationID: Number,
-  },
-  data() {
-    return {};
-  },
 
-  async created() {},
+<script setup>
+import { useMainStore } from "@/store/useMain.js";
+import { inject } from "vue";
 
-  beforeMonunt() {},
+let can = inject("can");
+const store = useMainStore();
+const props = defineProps({
+  item: Object,
+  operationID: Number,
+});
 
-  async beforeCreate() {},
+let clickOnTheWay = async (opUserID) => {
+  var data = {
+    user_status_id: 3,
+    system_id: props.item.id,
+  };
 
-  async mounted() {},
-  methods: {
-    async clickOnTheWay(opUserID) {
-      var request = {
-        user_status_id: 3,
-        system_id: this.item.id,
-      };
-
-      await axios({
-        method: "put",
-        url: "/api/onthewayreadytogo/" + this.operationID + "/" + opUserID,
-        data: request,
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+  await axios({
+    method: "put",
+    url: "/api/onthewayreadytogo/" + props.operationID + "/" + opUserID,
+    data: data,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  });
+};
 
-    async removeReadyToGoOnTheWay(opUserID) {
-      var request = {
-        user_status_id: 1,
-        system_id: null,
-      };
+let seeReadyToGoOnTheWay = (item) => {
+  if (can("campaigns_admin_access") || store.user_id == item.user_id) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
-      await axios({
-        method: "put",
-        url: "/api/onthewayreadytogo/" + this.operationID + "/" + opUserID,
-        data: request,
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+let removeReadyToGoOnTheWay = (opUserID) => {
+  var data = {
+    user_status_id: 1,
+    system_id: null,
+  };
+
+  axios({
+    method: "put",
+    url: "/api/onthewayreadytogo/" + props.operationID + "/" + opUserID,
+    data: data,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  });
+};
 
-    seeReadyToGoOnTheWay(item) {
-      if (
-        this.$can("campaigns_admin_access") ||
-        this.$store.state.user_id == item.user_id
-      ) {
-        return true;
-      } else {
-        false;
-      }
-    },
-  },
+let showButton = $computed(() => {
+  if (allOwnHackingCharsCount > 0) {
+    if (freeCharsCount > 0) {
+      return 1;
+    } else {
+      return 2;
+    }
+  } else {
+    return 0;
+  }
+});
 
-  computed: {
-    ...mapGetters([
-      "getOwnHackingCharOnOp",
-      "getOpUsersReadyToGoAll",
-      "getOwnHackingCharOnOpAllHackers",
-    ]),
+let allOwnHackingChars = $computed(() => {
+  var data = store.getOwnHackingCharOnOpAllHackers(props.operationID);
+  if (data) {
+    return data;
+  } else {
+    return [];
+  }
+});
 
-    ...mapState([]),
+let allOwnHackingCharsCount = $computed(() => {
+  if (allOwnHackingChars) {
+    return allOwnHackingChars.length;
+  } else {
+    return 0;
+  }
+});
 
-    showButton() {
-      if (this.allOwnHackingCharsCount > 0) {
-        if (this.freeCharsCount > 0) {
-          return 1;
+let freeChars = $computed(() => {
+  var data = store.getOwnHackingCharOnOpAllHackers(props.operationID);
+  if (data) {
+    data = data.filter((c) => c.user_status_id != 4);
+    data = data.filter((c) => {
+      if (c.system_id == props.item.id) {
+        if (c.user_status_id != 3) {
+          return true;
         } else {
-          return 2;
+          return false;
         }
       } else {
-        return 0;
-      }
-    },
-
-    allOwnHackingChars() {
-      var data = this.getOwnHackingCharOnOpAllHackers(this.operationID);
-      if (data) {
-        return data;
-      } else {
-        return [];
-      }
-    },
-
-    allOwnHackingCharsCount() {
-      if (this.allOwnHackingChars) {
-        return this.allOwnHackingChars.length;
-      } else {
-        return 0;
-      }
-    },
-
-    freeChars() {
-      var data = this.getOwnHackingCharOnOpAllHackers(this.operationID);
-      if (data) {
-        data = data.filter((c) => c.user_status_id != 4);
-        data = data.filter((c) => {
-          if (c.system_id == this.item.id) {
-            if (c.user_status_id != 3) {
-              return true;
-            } else {
-              return false;
-            }
-          } else {
-            return true;
-          }
-        });
-      }
-      if (data) {
-        return data;
-      } else {
-        return [];
-      }
-    },
-
-    freeCharsCount() {
-      if (this.freeChars) {
-        return this.freeChars.length;
-      } else {
-        return 0;
-      }
-    },
-
-    charsReadyToGoAll() {
-      return this.getOpUsersReadyToGoAll.filter(
-        (q) => q.system_id == this.item.id
-      );
-    },
-
-    OnTheWayCount() {
-      if (this.charsReadyToGoAll) {
-        return this.charsReadyToGoAll.length;
-      } else {
-        return 0;
-      }
-    },
-
-    fabOnTheWayDisbale() {
-      if (this.OnTheWayCount == 0) {
         return true;
-      } else {
-        return false;
       }
-    },
+    });
+  }
+  if (data) {
+    return data;
+  } else {
+    return [];
+  }
+});
 
-    filterCharsOnTheWay() {
-      var data = this.getOwnHackingCharOnOp(this.operationID);
-      if (data) {
-        var count = data.filter(
-          (c) => c.system_id == this.item.id && c.user_status_id == 3
-        ).length;
-      } else {
-        var count = 0;
-      }
+let freeCharsCount = $computed(() => {
+  if (freeChars) {
+    return freeChars.length;
+  } else {
+    return 0;
+  }
+});
 
-      if (count > 0) {
-        return "green";
-      } else {
-        return "red";
-      }
-    },
-  },
-  beforeDestroy() {},
-};
+let charsReadyToGoAll = $computed(() => {
+  return store.getOpUsersReadyToGoAll.filter((q) => q.system_id == props.item.id);
+});
+
+let onTheWayCount = $computed(() => {
+  if (charsReadyToGoAll) {
+    return charsReadyToGoAll.length;
+  } else {
+    return 0;
+  }
+});
+
+let fabOnTheWayDisbale = $computed(() => {
+  if (onTheWayCount == 0) {
+    return true;
+  } else {
+    return false;
+  }
+});
+
+let filterCharsOnTheWay = $computed(() => {
+  var data = store.getOwnHackingCharOnOp(props.operationID);
+  if (data) {
+    var count = data.filter((c) => c.system_id == props.item.id && c.user_status_id == 3)
+      .length;
+  } else {
+    var count = 0;
+  }
+
+  if (count > 0) {
+    return "green";
+  } else {
+    return "red";
+  }
+});
 </script>
-<style scoped>
-.no-uppercase {
-  text-transform: unset !important;
-}
-</style>
+
+<style lang="scss"></style>

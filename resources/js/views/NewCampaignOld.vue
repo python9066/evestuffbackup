@@ -1,6 +1,6 @@
 <template>
   <div v-resize="onResize">
-    <v-row no-gutters justify="center" class="pb-5">
+    <!-- <v-row no-gutters justify="center" class="pb-5">
       <v-col cols="10">
         <CampaignTitleBar
           :operationID="operationID"
@@ -9,7 +9,7 @@
           :warmUpCampaigns="warmUpCampaigns"
         ></CampaignTitleBar>
       </v-col>
-    </v-row>
+    </v-row> -->
     <v-row no-gutters justify="center" class="pb-5">
       <v-col cols="10">
         <CampaignActiveBar

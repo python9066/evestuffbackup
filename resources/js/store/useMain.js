@@ -279,6 +279,57 @@ export const useMainStore = defineStore("main", {
 
             return blue;
         },
+
+        getOwnHackingCharOnOpAllHackers: (state) => (operationid) => {
+            let pull = state.ownChars.filter(
+                (u) => u.role_id == 1 && u.operation_id == operationid
+            );
+            let count = pull.length;
+            if (count != 0) {
+                return pull;
+            } else {
+                return null;
+            }
+        },
+
+        getOpUsersOnTheWayAll: (state) => {
+            let pull = state.opUsers.filter(
+                (u) => u.role_id == 1 && u.user_status_id == 2
+            );
+            let count = pull.length;
+            if (count != 0) {
+                return pull;
+            } else {
+                return [];
+            }
+        },
+
+        getOwnHackingCharOnOp: (state) => (operationid) => {
+            let pull = state.ownChars.filter(
+                (u) =>
+                    u.role_id == 1 &&
+                    u.operation_id == operationid &&
+                    u.user_status_id != 4
+            );
+            let count = pull.length;
+            if (count != 0) {
+                return pull;
+            } else {
+                return null;
+            }
+        },
+
+        getOpUsersReadyToGoAll: (state) => {
+            let pull = state.opUsers.filter(
+                (u) => u.role_id == 1 && u.user_status_id == 3
+            );
+            let count = pull.length;
+            if (count != 0) {
+                return pull;
+            } else {
+                return [];
+            }
+        },
     },
     actions: {
         async updateTickList(ticker) {

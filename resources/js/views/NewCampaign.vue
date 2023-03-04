@@ -14,7 +14,13 @@
       <div class="col">Campaign Bar</div>
     </div>
     <div class="row">
-      <div class="col">SYSTEMSS</div>
+      <div class="col-6 q-pa-sm" v-for="(item, index) in openSystems" :key="index.id">
+        <CampaignSystemCard
+          :key="`${index.id}-card`"
+          :item="item"
+          :operationID="operationID"
+        ></CampaignSystemCard>
+      </div>
     </div>
   </div>
 </template>
@@ -30,6 +36,10 @@ let can = inject("can");
 
 const CampaignTitleBar = defineAsyncComponent(() =>
   import("../components/newcampaign/CampaignTitleBar.vue")
+);
+
+const CampaignSystemCard = defineAsyncComponent(() =>
+  import("../components/newcampaign/CampaignSystemCard.vue")
 );
 
 onMounted(async () => {
@@ -178,6 +188,43 @@ let warmUpCampaigns = $computed(() => {
 
 let operationID = $computed(() => {
   return store.newOperationInfo.id;
+});
+
+let openCampaings = $computed(() => {
+  if (activeCampaigns.length > 0 && warmUpCampaigns.length > 0) {
+    let open = activeCampaigns.concat(warmUpCampaigns);
+    open = open.filter((item, index) => {
+      return open.indexOf(item) == index;
+    });
+    return open;
+  } else if (activeCampaigns.length > 0) {
+    return activeCampaigns;
+  } else if (warmUpCampaigns.length > 0) {
+    return warmUpCampaigns;
+  } else {
+    return [];
+  }
+});
+
+let openCampaignIDs = $computed(() => {
+  if (openCampaings.length > 0) {
+    var ids = openCampaings.map((c) => c.id);
+    return ids;
+  } else {
+    return [];
+  }
+});
+
+let openSystems = $computed(() => {
+  var systems = store.newCampaignSystems.filter((s) => {
+    let systems = s.new_campaigns.filter((c) => openCampaignIDs.includes(c.id));
+    if (systems.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return systems;
 });
 </script>
 
