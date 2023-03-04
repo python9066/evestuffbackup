@@ -14,7 +14,7 @@
           >
             <!-- <template slot="no-data"> No Systems Picked for this Operation </template> -->
             <template v-slot:[`item.actions`]="{ item }">
-              <OperationInfoSystemAddNotes :loaded="loaded" :item="item" />
+              <!-- <OperationInfoSystemAddNotes :loaded="loaded" :item="item" /> -->
               <OperationInfoSystemJammerSetting :loaded="loaded" :item="item" />
             </template>
 
@@ -38,15 +38,15 @@
 
             <template v-slot:[`item.TODORecon`]="{ item }">
               <v-row no-gutters justify="start" align="center">
-                <v-col :cols="colCount(item)">
+                <!-- <v-col :cols="colCount(item)">
                   <OperationInfoSystemReconChips
                     :windowSize="windowSize"
                     :loaded="loaded"
                     :item="item"
-                /></v-col>
-                <v-col cols="1">
+                /></v-col> -->
+                <!-- <v-col cols="1">
                   <OperationInfoSystemAddRecon :loaded="loaded" :item="item"
-                /></v-col>
+                /></v-col> -->
                 <v-col cols="1" v-if="showReconCount(item)">
                   {{ reconCount(item) }} / {{ item.pivot.cynos_needed }}
                 </v-col>

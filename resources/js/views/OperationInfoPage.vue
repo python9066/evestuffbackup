@@ -2,52 +2,76 @@
   <div class="q-ma-md">
     <q-card class="myRoundTop myOperationInfoMainCard">
       <q-card-section class="bg-primary text-center q-py-xs">
-        <div class="row">
-          <div class="col-10">
+        <div class="row full-width justify-between">
+          <div class="col-auto flex">
+            <q-btn text-color="warning" flat icon="fa-solid fa-eye" rounded padding="none"
+              ><q-menu class="myRoundTop">
+                <q-card class="myRoundTop text-webway">
+                  <q-card-section class="bg-primary text-h5 text-center">
+                    <h5 class="no-margin">Page Setting</h5> </q-card-section
+                  ><q-card-section>
+                    Your Own Setting for this page
+                    <q-option-group
+                      class="q-pt-md"
+                      v-model="ownSetting"
+                      :options="store.operationInfoSettingOpetions"
+                      color="yellow"
+                      dense
+                      type="toggle"
+                    >
+                      <template v-slot:label="opt">
+                        <div class="row items-center">
+                          <transition
+                            mode="out-in"
+                            enter-active-class="animate__animated animate__flash"
+                            leave-active-class="animate__animated animate__flash"
+                          >
+                            <span>{{ opt.label }}</span></transition
+                          >
+                        </div>
+                      </template></q-option-group
+                    >
+                  </q-card-section></q-card
+                >
+              </q-menu></q-btn
+            >
+
+            <OperationInfoCheckList class="q-pl-sm" />
+          </div>
+          <div class="col-auto">
             <h5 class="no-margin">Operation - {{ opInfo.name }}</h5>
           </div>
-          <div class="col-2 flex justify-end"><OperationInfoSettingPannel /></div>
+          <div class="col-auto flex justify-end"><OperationInfoSettingPannel /></div>
         </div>
       </q-card-section>
       <q-card-section>
         <div class="row justify-between">
-          <div class="col-3"><OperationInfoReconCard /></div>
-          <div class="col-9">
-            <div class="row">
-              <div class="col">
-                <OperationInfoSystemTable />
-              </div>
+          <transition
+            mode="out-in"
+            enter-active-class="animate__animated animate__backInLeft animate__slower"
+            leave-active-class="animate__animated animate__backOutLeft animate__slower"
+          >
+            <div class="col-3 q-pr-lg" v-if="showReconTable">
+              <OperationInfoReconCard />
             </div>
-            <div class="row">
-              <!-- <div class="col">
-                <q-table
-                  title="Connections"
-                  class="myTablePoS myRound bg-webBack"
-                  :rows="filterEnd"
-                  :columns="columns"
-                  table-class=" text-webway"
-                  table-header-class=" text-weight-bolder"
-                  row-key="id"
-                  no-data-label="All Hostile Stations our reffed!!!!!!"
-                  dark
-                  dense
-                  :filter="search"
-                  ref="tableRef"
-                  rounded
-                  hide-bottom
-                  :pagination="pagination"
-                >
-                  <template v-slot:top="props">
-                    <div
-                      class="row full-width flex-center q-pt-xs myRoundTop bg-secondary"
-                    >
-                      <div class="col-11 flex flex-center">
-                        <span class="text-h4">Fleets</span>
-                      </div>
-                    </div>
-                  </template>
-                </q-table>
-              </div> -->
+          </transition>
+
+          <div class="col-9 col-grow">
+            <div class="column q-gutter-lg">
+              <transition
+                mode="out-in"
+                enter-active-class="animate__animated animate__backInDown animate__slower"
+                leave-active-class="animate__animated animate__backOutUp animate__slower"
+              >
+                <OperationInfoSystemTable v-if="showSystemTable" />
+              </transition>
+              <transition
+                mode="out-in"
+                enter-active-class="animate__animated animate__backInUp animate__slower"
+                leave-active-class="animate__animated animate__backOutDown animate__slower"
+              >
+                <OperationInfoFleetCard v-if="showFleets" />
+              </transition>
             </div>
           </div>
         </div>
@@ -76,6 +100,14 @@ const OperationInfoSettingPannel = defineAsyncComponent(() =>
 
 const OperationInfoSystemTable = defineAsyncComponent(() =>
   import("../components/operationinfo/OpertationInfoSystemTable.vue")
+);
+
+const OperationInfoFleetCard = defineAsyncComponent(() =>
+  import("../components/operationinfo/OperationInfoFleetCard.vue")
+);
+
+const OperationInfoCheckList = defineAsyncComponent(() =>
+  import("../components/operationinfo/OperationInfoCheckList.vue")
 );
 
 onMounted(async () => {
@@ -188,6 +220,31 @@ let opInfo = $computed(() => {
   return store.operationInfoPage;
 });
 
+let showFleets = $computed(() => {
+  if (opSetting.showFleets && opInfo.fleet_table) {
+    return true;
+  }
+  return false;
+});
+
+let showReconTable = $computed(() => {
+  if (opSetting.showReconTable && opInfo.recon_table) {
+    return true;
+  }
+  return false;
+});
+
+let showSystemTable = $computed(() => {
+  if (opSetting.showSystemTable && opInfo.system_table) {
+    return true;
+  }
+  return false;
+});
+
+let opSetting = $computed(() => {
+  return store.operationInfoSetting;
+});
+
 let h = $computed(() => {
   let mins = 30;
   let window = store.size.height;
@@ -195,19 +252,49 @@ let h = $computed(() => {
   return window - mins + "px";
 });
 
-let t = $computed(() => {
-  let mins = 150;
-  let window = store.size.height;
-  let num = (window - mins) / 2;
-
-  return num + "px";
+let ownSetting = $computed({
+  get: () => {
+    return store.getOperationInfoTableSettings;
+  },
+  set: (value) => {
+    console.log(value);
+    store.setOwnOptions(value);
+  },
 });
 
-let r = $computed(() => {
+let reconHeight = $computed(() => {
   let mins = 120;
   let window = store.size.height;
 
   return window - mins + "px";
+});
+
+let fleetHeight = $computed(() => {
+  if (!showSystemTable) {
+    let mins = 120;
+    let window = store.size.height;
+
+    return window - mins + "px";
+  } else {
+    let mins = 60;
+    let window = store.size.height / 2;
+
+    return window - mins + "px";
+  }
+});
+
+let systemHeight = $computed(() => {
+  if (!showFleets) {
+    let mins = 120;
+    let window = store.size.height;
+
+    return window - mins + "px";
+  } else {
+    let mins = 80;
+    let window = store.size.height / 2;
+
+    return window - mins + "px";
+  }
 });
 </script>
 
@@ -218,13 +305,13 @@ let r = $computed(() => {
 
 .myOperationInfoReconCard
   /* height or max-height is important */
-  height: v-bind(r)
+  height: v-bind(reconHeight)
 </style>
 
 <style lang="sass">
-.myTablePoS
+.myOperationSystemTable
   /* height or max-height is important */
-  height: v-bind(t)
+  height: v-bind(systemHeight)
 
   .q-table__top
     padding-top: 0 !important
@@ -244,6 +331,21 @@ let r = $computed(() => {
   thead tr:first-child th
     top: 0
 
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+</style>
+
+<style lang="sass">
+.myOperationFleetTable
+  /* height or max-height is important */
+  height: v-bind(fleetHeight)
+
+  .q-table__top
+    padding-top: 0 !important
+    padding-left: 0 !important
+    padding-right: 0 !important
   /* this is when the loading indicator appears */
   &.q-table--loading thead tr:last-child th
     /* height of all previous header rows */

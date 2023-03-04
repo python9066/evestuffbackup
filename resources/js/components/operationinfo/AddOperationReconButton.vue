@@ -44,8 +44,10 @@
               new-value-mode="add-unique"
               outlined
               rounded
+              input-style="max-width: 15px"
               dense
-              :use-input="name ? false : true"
+              :use-input="useInputCyno"
+              @clear="name = ''"
               clearable
           /></q-card-section>
           <q-card-section>
@@ -64,8 +66,9 @@
                 @filter-abort="abortFilterFn"
                 outlined
                 rounded
+                input-style="max-width: 15px"
                 clearable
-                :use-input="mainName ? false : true"
+                use-input
                 dense /></q-slide-transition
           ></q-card-section>
 
@@ -134,8 +137,8 @@ let mainList = $computed(() => {
 let filterFnMainFinish = (val, update, abort) => {
   update(() => {
     mainText = val.toLowerCase();
-    if (mainList.length == 0) {
-      name = mainText;
+    if (mainList.length > 0 && val) {
+      mainName = mainList[0];
     }
   });
 };
@@ -191,6 +194,14 @@ let close = () => {
   mainName = null;
   showMain = false;
 };
+
+let useInputCyno = $computed(() => {
+  if (type == "object") {
+    return false;
+  } else {
+    return true;
+  }
+});
 
 let type = $computed(() => {
   return typeof name;

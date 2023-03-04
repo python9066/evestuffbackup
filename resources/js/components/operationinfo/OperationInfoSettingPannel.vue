@@ -27,7 +27,7 @@
           :options="campaignList"
           ref="toRegionRef"
           label="Which Hacking Operation would you like to add"
-          @filter="filterFnConstellationFinish"
+          @filter="filterFnHackingOpFinish"
           @filter-abort="abortFilterFn"
           map-options
           use-input
@@ -44,7 +44,9 @@
           option-value="value"
           option-label="text"
           v-model="systemsToUpdate"
-          :options="store.systemlist"
+          :options="systemFindList"
+          @filter="filterFnSystemFinish"
+          @filter-abort="abortFilterFn"
           label="Which none hacking Operation Systems would you like to add"
           use-input
           use-chips
@@ -171,12 +173,28 @@ let campaignList = $computed(() => {
   return store.operationInfoOperationList;
 });
 
-let filterFnConstellationFinish = (val, update, abort) => {
+let filterFnHackingOpFinish = (val, update, abort) => {
   update(() => {
     campaignText = val.toLowerCase();
     if (campaignList.length > 0 && val) {
-      store.operationInfoPage.operation_id = campaignList[0];
+      oldOperation = campaignList[0];
     }
+  });
+};
+
+let systemFindText = $ref();
+let systemFindList = $computed(() => {
+  if (systemFindText) {
+    return store.systemlist.filter(
+      (d) => d.text.toLowerCase().indexOf(systemFindText) > -1
+    );
+  }
+  return store.systemlist;
+});
+
+let filterFnSystemFinish = (val, update, abort) => {
+  update(() => {
+    systemFindText = val.toLowerCase();
   });
 };
 

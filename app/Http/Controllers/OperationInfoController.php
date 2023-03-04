@@ -85,55 +85,86 @@ class OperationInfoController extends Controller
 
     public function updateRecon(Request $request, $id)
     {
-        $reconArray = $request->recons;
-        if (count($reconArray) > 0) {
-            if (gettype($reconArray[0]) == "array") {
-                $reconCollect = collect($reconArray);
-                $reconCollect = $reconCollect->pluck('id');
-                $reconArray = $reconCollect->all();
-            }
-        }
-        $old = OperationInfoSystemRecon::whereNotIn('operation_info_recon_id', $reconArray)
-            ->where('operation_info_system_id', $id)->get();
-        foreach ($old as $old) {
-            $recon = OperationInfoRecon::where('id', $old->operation_info_recon_id)->first();
-            $recon->system_id = null;
-            if ($recon->operation_info_recon_status_id == 4) {
-                $recon->operation_info_recon_status_id = 2;
-            } else {
-                $recon->operation_info_recon_status_id = 1;
-            }
-            $recon->save();
+        // dd($request);
+        // $reconArray = $request->recon;
+        // if (count($reconArray) > 0) {
+        //     if (gettype($reconArray[0]) == "array") {
+        //         $reconCollect = collect($reconArray);
+        //         $reconCollect = $reconCollect->pluck('id');
+        //         $reconArray = $reconCollect->all();
+        //     }
+        // }
+        // $old = OperationInfoSystemRecon::whereNotIn('operation_info_recon_id', $reconArray)
+        //     ->where('operation_info_system_id', $id)->get();
+        // foreach ($old as $old) {
+        //     $recon = OperationInfoRecon::where('id', $old->operation_info_recon_id)->first();
+        //     $recon->system_id = null;
+        //     if ($recon->operation_info_recon_status_id == 4) {
+        //         $recon->operation_info_recon_status_id = 2;
+        //     } else {
+        //         $recon->operation_info_recon_status_id = 1;
+        //     }
+        //     $recon->save();
 
-            $old->delete();
-            operationReconSoloBcast($old->operation_info_recon_id, 5);
-            if ($recon->operation_info_fleet_id) {
-                operationInfoSoloPageFleetBroadcast($recon->operation_info_fleet_id, $recon->operation_info_id, 2);
-            }
+        //     $old->delete();
+        //     operationReconSoloBcast($old->operation_info_recon_id, 5);
+        //     if ($recon->operation_info_fleet_id) {
+        //         operationInfoSoloPageFleetBroadcast($recon->operation_info_fleet_id, $recon->operation_info_id, 2);
+        //     }
+        // }
+        // foreach ($reconArray as $reconID) {
+        //     $check = OperationInfoSystemRecon::where('operation_info_system_id', $id)
+        //         ->where('operation_info_recon_id', $reconID)
+        //         ->count();
+        //     if ($check == 0) {
+        //         $new = new OperationInfoSystemRecon();
+        //         $new->operation_info_recon_id = $reconID;
+        //         $new->operation_info_system_id = $id;
+        //         $new->save();
+        //         $recon = OperationInfoRecon::where('id', $reconID)->first();
+        //         $recon->system_id = $id;
+        //         if ($recon->operation_info_recon_status_id == 2) {
+        //             $recon->operation_info_recon_status_id = 4;
+        //         } else {
+        //             $recon->operation_info_recon_status_id = 3;
+        //         }
+        //         $recon->save();
+        //         operationReconSoloBcast($reconID, 5);
+        //         if ($recon->operation_info_fleet_id) {
+        //             operationInfoSoloPageFleetBroadcast($recon->operation_info_fleet_id, $recon->operation_info_id, 2);
+        //         }
+        //     }
+        // };
+
+
+        $reconInSystem = OperationInfoSystemRecon::where('operation_info_recon_id', $request->recon)->first();
+        if (!$reconInSystem) {
+            $new = new OperationInfoSystemRecon();
+            $new->operation_info_recon_id = $request->recon;
+            $new->operation_info_system_id = $id;
+            $new->save();
+        } else {
+            $oldSystemID = $reconInSystem->operation_info_system_id;
+            $reconInSystem->operation_info_system_id = $id;
+            $reconInSystem->save();
+            operationInfoSystemsSoloBcast($request->opID, $oldSystemID, 14);
         }
-        foreach ($reconArray as $reconID) {
-            $check = OperationInfoSystemRecon::where('operation_info_system_id', $id)
-                ->where('operation_info_recon_id', $reconID)
-                ->count();
-            if ($check == 0) {
-                $new = new OperationInfoSystemRecon();
-                $new->operation_info_recon_id = $reconID;
-                $new->operation_info_system_id = $id;
-                $new->save();
-                $recon = OperationInfoRecon::where('id', $reconID)->first();
-                $recon->system_id = $id;
-                if ($recon->operation_info_recon_status_id == 2) {
-                    $recon->operation_info_recon_status_id = 4;
-                } else {
-                    $recon->operation_info_recon_status_id = 3;
-                }
-                $recon->save();
-                operationReconSoloBcast($reconID, 5);
-                if ($recon->operation_info_fleet_id) {
-                    operationInfoSoloPageFleetBroadcast($recon->operation_info_fleet_id, $recon->operation_info_id, 2);
-                }
-            }
-        };
+
+        $reconInSystem = OperationInfoSystemRecon::where('operation_info_recon_id', $request->recon)->first();
+        $recon = OperationInfoRecon::where('id', $request->recon)->first();
+        $recon->system_id = $id;
+        if ($recon->operation_info_recon_status_id == 2) {
+            $recon->operation_info_recon_status_id = 4;
+        } else {
+            $recon->operation_info_recon_status_id = 3;
+        }
+        $recon->save();
+        operationReconSoloBcast($request->recon, 5);
+        if ($recon->operation_info_fleet_id) {
+            operationInfoSoloPageFleetBroadcast($recon->operation_info_fleet_id, $recon->operation_info_id, 2);
+        }
+
+
 
         operationInfoSystemsSoloBcast($request->opID, $id, 14);
     }
@@ -153,7 +184,9 @@ class OperationInfoController extends Controller
             ->where('operation_info_system_id', $id)->delete();
         operationReconSoloBcast($request->reconID, 5);
         operationInfoSystemsSoloBcast($request->opID, $id, 14);
-        operationInfoSoloPageFleetBroadcast($recon->operation_info_fleet_id, $recon->operation_info_id, 2);
+        if ($recon->operation_info_fleet_id) {
+            operationInfoSoloPageFleetBroadcast($recon->operation_info_fleet_id, $recon->operation_info_id, 2);
+        }
     }
 
 

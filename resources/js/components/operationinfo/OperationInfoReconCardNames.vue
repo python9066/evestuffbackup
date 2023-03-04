@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-between" :key="`${recon.id}-card`">
-    <div class="col-9" :class="textClass">
+    <div class="col-9 ellipsis" :class="textClass">
       {{ recon.name }} - {{ recon.main.name }}
       <q-tooltip v-if="recon.operation_info_recon_status_id == 2" :offset="[0, 10]"
         >{{ recon.name }} - {{ recon.main.name }} <br />
@@ -72,7 +72,7 @@ let textClass = $computed(() => {
 
 let textColor = $computed(() => {
   if (props.recon.operation_info_recon_status_id == 1) {
-    return "text-blue";
+    return "text-light-blue-2";
   }
 
   if (props.recon.operation_info_recon_status_id == 2) {

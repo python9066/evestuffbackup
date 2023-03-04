@@ -53,6 +53,32 @@ export const useMainStore = defineStore("main", {
         operationInfoOperationList: [],
         operationInfoJamList: [],
         userList: [],
+
+        operationInfoSetting: {
+            showReconTable: true,
+            showSystemTable: true,
+            showCheckList: true,
+            showFleets: true,
+        },
+
+        operationInfoSettingOpetions: [
+            {
+                label: "Check List",
+                value: "showCheckList",
+            },
+            {
+                label: "Fleet Table",
+                value: "showFleets",
+            },
+            {
+                label: "Recon List",
+                value: "showReconTable",
+            },
+            {
+                label: "System Table",
+                value: "showSystemTable",
+            },
+        ],
     }),
 
     getters: {
@@ -158,6 +184,25 @@ export const useMainStore = defineStore("main", {
             }
             if (state.operationInfoPage.system_table) {
                 values_array.push("system_table");
+            }
+
+            return values_array;
+        },
+
+        getOperationInfoTableSettings: (state) => {
+            let values_array = [];
+
+            if (state.operationInfoSetting.showReconTable) {
+                values_array.push("showReconTable");
+            }
+            if (state.operationInfoSetting.showSystemTable) {
+                values_array.push("showSystemTable");
+            }
+            if (state.operationInfoSetting.showCheckList) {
+                values_array.push("showCheckList");
+            }
+            if (state.operationInfoSetting.showFleets) {
+                values_array.push("showFleets");
             }
 
             return values_array;
@@ -911,6 +956,19 @@ export const useMainStore = defineStore("main", {
                 Object.assign(item, data);
             } else {
                 this.operationInfoPage.campaigns.push(data);
+            }
+        },
+
+        setOwnOptions(data) {
+            for (const prop in this.operationInfoSetting) {
+                // Check if the property name is in the incoming array
+                if (data.includes(prop)) {
+                    // Set the property value to true
+                    this.operationInfoSetting[prop] = true;
+                } else {
+                    // Set the property value to false
+                    this.operationInfoSetting[prop] = false;
+                }
             }
         },
     },

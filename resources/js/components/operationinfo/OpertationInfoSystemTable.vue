@@ -1,45 +1,56 @@
 <template>
-  <q-table
-    class="myOperationSystemTable myRound bg-webBack"
-    :rows="store.operationInfoPage.systems"
-    :columns="columns"
-    table-class=" text-webway"
-    table-header-class=" text-weight-bolder"
-    row-key="id"
-    no-data-label="All Hostile Stations our reffed!!!!!!"
-    dark
-    dense
-    ref="tableRef"
-    rounded
-    hide-bottom
-    :pagination="pagination"
-  >
-    <template v-slot:body="props">
-      <q-tr :props="props">
-        <q-td key="region" :props="props"> {{ props.row.region.region_name }}</q-td>
-        <q-td key="constellation" :props="props"
-          >{{ props.row.constellation.constellation_name }}
-        </q-td>
-        <q-td key="system" :props="props"> {{ props.row.system_name }}</q-td>
-        <q-td key="recon" :props="props">
-          <div class="row">
-            <div :class="colCount(props.row)">
-              <OperationInfoSystemReconChips :item="props.row" />
+  <div>
+    <q-table
+      class="myOperationSystemTable myRound bg-webBack"
+      :rows="store.operationInfoPage.systems"
+      :columns="columns"
+      table-class=" text-webway"
+      table-header-class=" text-weight-bolder"
+      row-key="id"
+      no-data-label="All Hostile Stations our reffed!!!!!!"
+      dark
+      dense
+      ref="tableRef"
+      rounded
+      hide-bottom
+      :pagination="pagination"
+    >
+      <template v-slot:body="props">
+        <q-tr :props="props">
+          <q-td key="region" :props="props"> {{ props.row.region.region_name }}</q-td>
+          <q-td key="constellation" :props="props"
+            >{{ props.row.constellation.constellation_name }}
+          </q-td>
+          <q-td key="system" :props="props"> {{ props.row.system_name }}</q-td>
+
+          <q-td key="recon" :props="props">
+            <div class="row">
+              <div :class="colCount(props.row)">
+                <OperationInfoSystemReconChips :item="props.row" />
+              </div>
+              <div class="col-1">
+                <OperationInfoSystemAddRecon :item="props.row" />
+              </div>
+              <div class="col-l" v-if="showReconCount(props.row)">
+                {{ reconCount(props.row) }} / {{ props.row.pivot.cynos_needed }}
+              </div>
             </div>
-            <div class="col-1">2</div>
-            <div class="col-l" v-if="showReconCount(props.row)">
-              {{ reconCount(props.row) }} / {{ props.row.pivot.cynos_needed }}
+          </q-td>
+          <q-td key="jammed" :props="props"
+            >{{ jamerText(props.row.pivot.jammed_status) }}
+          </q-td>
+
+          <q-td key="notes" :props="props"> {{ props.row.pivot.notes }}</q-td>
+          <q-td key="actions" :props="props">
+            <div class="row justify-end">
+              <OperationInfoSystemAddNotes :item="props.row" />
+              <OperationInfoSystemJammerSetting :item="props.row" />
             </div>
-          </div>
-        </q-td>
-        <q-td key="jammed" :props="props"
-          >{{ jamerText(props.row.pivot.jammed_status) }}
-        </q-td>
-        <q-td key="notes" :props="props"> {{ props.row.pivot.notes }}</q-td>
-        <q-td key="actions" :props="props"> {{ props.row.id }}</q-td>
-      </q-tr>
-    </template>
-  </q-table>
+          </q-td>
+        </q-tr>
+      </template>
+    </q-table>
+  </div>
 </template>
 
 <script setup>
@@ -49,6 +60,18 @@ import { useMainStore } from "@/store/useMain.js";
 const OperationInfoSystemReconChips = defineAsyncComponent(() =>
   import("./OperationInfoSystemReconChips.vue")
 );
+
+const OperationInfoSystemAddRecon = defineAsyncComponent(() =>
+  import("./OperationInfoSystemAddRecon.vue")
+);
+
+const OperationInfoSystemAddNotes = defineAsyncComponent(() =>
+  import("./OperationInfoSystemAddNotes.vue")
+);
+const OperationInfoSystemJammerSetting = defineAsyncComponent(() =>
+  import("./OperationInfoSystemJammerSetting.vue")
+);
+
 let store = useMainStore();
 let pagination = $ref({
   sortBy: "id",
@@ -165,40 +188,4 @@ let columns = $ref([
     format: (val) => `${val}`,
   },
 ]);
-
-let h = $computed(() => {
-  let mins = 500;
-  let window = store.size.height;
-
-  return window - mins + "px";
-});
 </script>
-
-<style lang="sass">
-.myOperationSystemTable
-  /* height or max-height is important */
-  height: v-bind(h)
-
-  .q-table__top
-    padding-top: 0 !important
-    padding-left: 0 !important
-    padding-right: 0 !important
-
-
-
-  .q-table__bottom,
-  thead tr:first-child th
-    /* bg color is important for th; just specify one */
-    background-color: #202020
-
-  thead tr th
-    position: sticky
-    z-index: 1
-  thead tr:first-child th
-    top: 0
-
-  /* this is when the loading indicator appears */
-  &.q-table--loading thead tr:last-child th
-    /* height of all previous header rows */
-    top: 48px
-</style>

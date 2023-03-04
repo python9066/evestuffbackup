@@ -14,7 +14,7 @@ class OperationInfoJammedStatusController extends Controller
      */
     public function index()
     {
-        $jam = OperationInfoJammedStatus::get();
+        $jam = OperationInfoJammedStatus::select(['id as value', 'name as label'])->get();
         return ['jam' => $jam];
     }
 
