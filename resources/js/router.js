@@ -167,6 +167,26 @@ const routes = [
             }
         },
     },
+
+    {
+        path: "/op/:id/:system?",
+        name: "op",
+        component: () => import("./views/NewCampaign.vue"),
+        props: (route) => {
+            const id = route.params.id;
+            const routeSystem = route.params.system ?? null;
+            return { id, routeSystem };
+        },
+        beforeEnter(to, from, next) {
+            if (can("view_opertaion_info")) {
+                next();
+            } else {
+                next("/");
+            }
+        },
+    },
+
+
 ];
 
 const router = createRouter({

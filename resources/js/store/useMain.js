@@ -79,6 +79,14 @@ export const useMainStore = defineStore("main", {
                 value: "showSystemTable",
             },
         ],
+
+        newOperationInfo: [],
+        newCampaignSystems: [],
+        opUsers: [],
+        ownChars: {},
+        newCampaigns: [],
+        operationUserList: [],
+        campaignslist: [],
     }),
 
     getters: {
@@ -969,6 +977,98 @@ export const useMainStore = defineStore("main", {
                     // Set the property value to false
                     this.operationInfoSetting[prop] = false;
                 }
+            }
+        },
+
+        async getOperationInfo(id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/operationinfo/" + id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.newOperationInfo = res.data.data;
+            this.newCampaignSystems = res.data.systems;
+            this.opUsers = res.data.opUsers;
+            this.ownChars = res.data.ownChars;
+            this.newCampaigns = res.data.data.campaign;
+            this.operationUserList = res.data.userList;
+        },
+
+        async getCampaignsList() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/campaignslist",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.campaignslist = res.data.campaignslist;
+        },
+
+        updateNewCampaigns(data) {
+            const item = this.newCampaigns.find((item) => item.id === data.id);
+            const count = this.newCampaigns.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.newCampaigns.push(data);
+            }
+        },
+
+        removeCharfromOpList(id) {
+            this.opUsers = this.opUsers.filter((e) => e.id != id);
+        },
+
+        updateOpChar(data) {
+            const item = this.opUsers.find((item) => item.id === data.id);
+            const count = this.opUsers.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.opUsers.push(data);
+            }
+        },
+
+        updateNewCampaignSystem(data) {
+            const item = this.newCampaignSystems.find(
+                (item) => item.id === data.id
+            );
+            const count = this.newCampaignSystems.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.newCampaignSystems.push(data);
+            }
+        },
+
+        updateNewOwnChar(data) {
+            const item = this.ownChars.find((item) => item.id === data.id);
+            const count = this.ownChars.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.ownChars.push(data);
+            }
+        },
+
+        removeCharfromOwnList(id) {
+            let check = this.ownChars.filter((e) => e.id == id).length;
+            if (check > 0) {
+                this.ownChars = this.ownChars.filter((e) => e.id != id);
             }
         },
     },
