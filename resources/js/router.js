@@ -128,6 +128,45 @@ const routes = [
             }
         },
     },
+
+    {
+        path: "/operationinfo",
+        name: "operationinfo",
+        component: () => import("./views/OperationInfo.vue"),
+        beforeEnter(to, from, next) {
+            if (can("view_opertaion_info")) {
+                next();
+            } else {
+                next("/");
+            }
+        },
+    },
+
+    {
+        path: "/operationinfo/:link",
+        name: "operationinfopage",
+        component: () => import("./views/OperationInfoPage.vue"),
+        beforeEnter(to, from, next) {
+            if (can("view_opertaion_info")) {
+                next();
+            } else {
+                next("/");
+            }
+        },
+    },
+
+    {
+        path: "/operationinfoover",
+        name: "operationInfoOver",
+        component: () => import("./views/redirect/operationInfoOver.vue"),
+        beforeEnter(to, from, next) {
+            if (can("view_opertaion_info")) {
+                next();
+            } else {
+                next("/");
+            }
+        },
+    },
 ];
 
 const router = createRouter({

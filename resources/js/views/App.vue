@@ -67,7 +67,7 @@
             >
             <q-route-tab
               v-if="can('view_opertaion_info')"
-              to="/page3"
+              to="/operationinfo"
               label="Operations"
             />
             <q-route-tab v-if="can('view_towers')" to="/towers" label="Towers" />
@@ -155,6 +155,7 @@ import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 import { useQuasar } from "quasar";
 import { useMainStore } from "@/store/useMain.js";
 import { useRoute } from "vue-router";
+
 
 let store = useMainStore();
 let can = inject("can");

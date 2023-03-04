@@ -565,6 +565,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/operationinfofleetrecon/{id}', 'reconAdd');
         Route::post('/operationinfofleetreconremove/{id}', "reconRemove");
         Route::post('/operationdanklink', "dankLinkAdd");
+        Route::put('/operationinfo/fleet/update/{id}', 'updateFleet');
     });
 
     Route::controller(OperationInfoReconController::class)->group(function () {

@@ -1,217 +1,181 @@
 <template>
-  <v-row :key="`${recon.id}-card`" no-gutters>
-    <!-- <v-tooltip right> -->
+  <div class="row justify-between" :key="`${recon.id}-card`">
+    <div class="col-9 ellipsis" :class="textClass">
+      {{ recon.name }} - {{ recon.main.name }}
+      <q-tooltip v-if="recon.operation_info_recon_status_id == 2" :offset="[0, 10]"
+        >{{ recon.name }} - {{ recon.main.name }} <br />
+        Fleet - {{ recon.fleet.name }} <br />
+        Role - {{ recon.fleet_role.name }}</q-tooltip
+      >
+      <q-tooltip v-if="recon.operation_info_recon_status_id == 3" :offset="[0, 10]"
+        >{{ recon.name }} - {{ recon.main.name }} <br />
+        System - {{ recon.system.system_name }}</q-tooltip
+      >
+      <q-tooltip v-if="recon.operation_info_recon_status_id == 4" :offset="[0, 10]">
+        {{ recon.name }} - {{ recon.main.name }} <br />
+        Fleet - {{ recon.fleet.name }} <br />
+        Role - {{ recon.fleet_role.name }} <br />System -
+        {{ recon.system.system_name }}</q-tooltip
+      >
 
-    <v-col cols="9" class="text-truncate">
-      <!-- <v-tooltip right :disabled="hideToolTip"> -->
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <span :class="textClass" v-bind="attrs" v-on="on">
-            {{ recon.name }} - {{ recon.main.name }}
-          </span>
-        </template>
-        <span v-if="recon.operation_info_recon_status_id == 2"
-          >{{ recon.name }} - {{ recon.main.name }} <br />
-          Fleet - {{ recon.fleet.name }} <br />
-          Role - {{ recon.fleet_role.name }}</span
-        >
-        <span v-if="recon.operation_info_recon_status_id == 3"
-          >{{ recon.name }} - {{ recon.main.name }} <br />
-          System - {{ recon.system.system_name }}</span
-        >
-
-        <span v-if="recon.operation_info_recon_status_id == 4">
-          {{ recon.name }} - {{ recon.main.name }} <br />
-          Fleet - {{ recon.fleet.name }} <br />
-          Role - {{ recon.fleet_role.name }} <br />System -
-          {{ recon.system.system_name }}
-        </span>
-
-        <span v-if="recon.operation_info_recon_status_id == 1">
-          {{ recon.name }} - {{ recon.main.name }}
-        </span>
-      </v-tooltip>
-    </v-col>
-    <v-col cols="3">
-      <v-btn x-small color="orange" icon @click="removeRecon(recon)"
-        ><font-awesome-icon icon="fa-solid fa-trash"
-      /></v-btn>
-      <v-btn x-small :color="deadColor" icon @click="dead(recon)"
-        ><font-awesome-icon icon="fa-solid fa-skull-crossbones"
-      /></v-btn>
-      <v-btn x-small :color="onlineColor" icon @click="online(recon)"
-        ><font-awesome-icon icon="fa-solid fa-power-off"
-      /></v-btn>
-    </v-col>
-  </v-row>
+      <q-tooltip v-if="recon.operation_info_recon_status_id == 1" :offset="[0, 10]"
+        >{{ recon.name }} - {{ recon.main.name }}</q-tooltip
+      >
+    </div>
+    <div class="col-3 flex justify-end q-gutter-xs">
+      <q-btn
+        color="red"
+        icon="fa-solid fa-trash"
+        flat
+        padding="none"
+        size="sm"
+        rounded
+        @click="removeRecon(recon)"
+      />
+      <q-btn
+        :color="deadColor"
+        icon="fa-solid fa-skull-crossbones"
+        flat
+        padding="none"
+        size="sm"
+        rounded
+        @click="dead(recon)"
+      />
+      <q-btn
+        :color="onlineColor"
+        icon="fa-solid fa-power-off"
+        flat
+        padding="none"
+        size="sm"
+        rounded
+        @click="online(recon)"
+      />
+    </div>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import { EventBus } from "../../app";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {},
-  props: {
-    loaded: Boolean,
-    recon: Object,
-  },
-  data() {
-    return {};
-  },
 
-  async created() {},
+<script setup>
+const props = defineProps({
+  recon: Object,
+});
 
-  beforeMonunt() {},
+let textClass = $computed(() => {
+  var a = textColor;
+  var b = textCross;
+  var c = textOnline;
+  if (c || b) {
+    return c + " " + b;
+  } else {
+    return a;
+  }
+});
 
-  async beforeCreate() {},
+let textColor = $computed(() => {
+  if (props.recon.operation_info_recon_status_id == 1) {
+    return "text-light-blue-2";
+  }
 
-  async mounted() {},
-  methods: {
-    async removeRecon(item) {
-      var request = item;
-      await axios({
-        method: "post", //you can set what request you want to be
-        url: "/api/operationinforeconremove/" + item.operation_info_id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+  if (props.recon.operation_info_recon_status_id == 2) {
+    return "text-green";
+  }
+
+  if (props.recon.operation_info_recon_status_id == 3) {
+    return "text-blue";
+  }
+
+  if (props.recon.operation_info_recon_status_id == 4) {
+    return "gradient-text";
+  }
+});
+
+let textCross = $computed(() => {
+  if (props.recon.dead == 1) {
+    return "text-strike text-webway";
+  } else {
+    return "";
+  }
+});
+
+let textOnline = $computed(() => {
+  if (props.recon.online == 1) {
+    return "";
+  } else {
+    return "text-webway text-italic";
+  }
+});
+
+let deadColor = $computed(() => {
+  if (props.recon.dead == 0) {
+    return "blue";
+  } else {
+    return "red";
+  }
+});
+
+let onlineColor = $computed(() => {
+  if (props.recon.online == 0) {
+    return "negative";
+  } else {
+    return "primary";
+  }
+});
+
+let online = async (item) => {
+  if (item.online == 0) {
+    item.online = 1;
+  } else {
+    item.online = 0;
+  }
+
+  var request = item;
+  await axios({
+    method: "post", //you can set what request you want to be
+    url: "/api/operationinforecononline/" + item.id,
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  });
+};
 
-    async dead(item) {
-      if (item.dead == 0) {
-        item.dead = 1;
-      } else {
-        item.dead = 0;
-      }
-
-      var request = item;
-      await axios({
-        method: "post", //you can set what request you want to be
-        url: "/api/operationinforecondead/" + item.id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+let removeRecon = async (item) => {
+  var request = item;
+  await axios({
+    method: "post", //you can set what request you want to be
+    url: "/api/operationinforeconremove/" + item.operation_info_id,
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  });
+};
 
-    async online(item) {
-      if (item.online == 0) {
-        item.online = 1;
-      } else {
-        item.online = 0;
-      }
+let dead = async (item) => {
+  if (item.dead == 0) {
+    item.dead = 1;
+  } else {
+    item.dead = 0;
+  }
 
-      var request = item;
-      await axios({
-        method: "post", //you can set what request you want to be
-        url: "/api/operationinforecononline/" + item.id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+  var request = item;
+  await axios({
+    method: "post", //you can set what request you want to be
+    url: "/api/operationinforecondead/" + item.id,
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-  },
-
-  computed: {
-    ...mapGetters([]),
-
-    ...mapState([]),
-
-    deadColor() {
-      if (this.recon.dead == 0) {
-        return "blue";
-      } else {
-        return "red";
-      }
-    },
-
-    textColor() {
-      if (this.recon.operation_info_recon_status_id == 1) {
-        return "blue--text text--lighten-4";
-      }
-
-      if (this.recon.operation_info_recon_status_id == 2) {
-        return "green--text";
-      }
-
-      if (this.recon.operation_info_recon_status_id == 3) {
-        return "blue--text";
-      }
-
-      if (this.recon.operation_info_recon_status_id == 4) {
-        return "gradient-text";
-      }
-    },
-
-    textCross() {
-      if (this.recon.dead == 1) {
-        return "text-decoration-line-through";
-      } else {
-        return "";
-      }
-    },
-
-    hideToolTip() {
-      if (this.recon.operation_info_fleet_id || this.recon.system) {
-        return false;
-      }
-      return true;
-    },
-
-    textOnline() {
-      if (this.recon.online == 1) {
-        return "";
-      } else {
-        return "text--disabled font-italic";
-      }
-    },
-
-    textClass() {
-      var a = this.textColor;
-      var b = this.textCross;
-      var c = this.textOnline;
-      if (c || b) {
-        return c + " " + b;
-      } else {
-        return a;
-      }
-    },
-
-    onlineColor() {
-      if (this.recon.online == 0) {
-        return "red";
-      } else {
-        return "blue";
-      }
-    },
-
-    opInfo: {
-      get() {
-        return this.$store.state.operationInfoPage;
-      },
-      set(newValue) {
-        return this.$store.dispatch("updateOperationSheetInfoPage", newValue);
-      },
-    },
-  },
-  beforeDestroy() {},
+  });
 };
 </script>
-<style>
+
+<style lang="scss">
 .gradient-text {
   /* Fallback: Set a background color. */
 

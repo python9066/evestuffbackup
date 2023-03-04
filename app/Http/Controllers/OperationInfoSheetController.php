@@ -69,6 +69,7 @@ class OperationInfoSheetController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $operation = OperationInfo::where('id', $id)->first();
         $operation->form_op_allies_ready = intval($request->form_op_allies_ready);
         $operation->form_op_blackhand_ready = intval($request->form_op_blackhand_ready);

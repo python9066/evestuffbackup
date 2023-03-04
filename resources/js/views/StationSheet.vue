@@ -339,6 +339,7 @@
 import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 import { useMainStore } from "@/store/useMain.js";
 import { useQuasar, copyToClipboard } from "quasar";
+
 let store = useMainStore();
 let can = inject("can");
 const $q = useQuasar();

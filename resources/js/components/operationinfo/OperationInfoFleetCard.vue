@@ -1,174 +1,129 @@
 <template>
-  <v-row no-gutters>
-    <v-col cols="12">
-      <v-card rounded="xl"
-        ><v-card-title class="red pt-1 pb-1"
-          ><v-row no-gutters
-            ><span class="pr-2">Fleets</span>
-            <v-col cols="2">
-              <v-btn fab x-small color="blue" @click="addFleet()"
-                ><font-awesome-icon icon="fa-solid fa-plus" size="2xl" /></v-btn
-            ></v-col>
-            <v-col cols="8" class="d-flex justify-center align-center"
-              ><span class="mr-3">{{ dankTitle }}</span>
-              <AddOperationDankFleetButton />
-            </v-col> </v-row></v-card-title
-        ><v-card-text :style="style">
-          <draggable
-            v-model="opInfo.fleets"
-            key="drag"
-            v-bind="dragOptions"
-            handle=".handle"
-          >
-            <transition-group
-              mode="out-in"
-              tag="v-row"
-              name="flip-list"
-              class="no-gutters justify-space-around"
-              :enter-active-class="showEnter"
-              :leave-active-class="showLeave"
-            >
-              <!-- <v-row no-gutters justify="space-around"> -->
-              <OperationInfoFleetSoloCard
-                v-for="fleet in opInfo.fleets"
-                :key="`${fleet.id}-card`"
-                :loaded="loaded"
-                :fleetID="fleet.id"
-              />
-            </transition-group>
-          </draggable>
-          <!-- </v-row> -->
-        </v-card-text>
-      </v-card>
-    </v-col>
-  </v-row>
+  <div>
+    <q-table
+      title="Connections"
+      class="myOperationFleetTable myRound"
+      :rows="store.operationInfoPage.fleets"
+      table-class=" text-webway"
+      row-key="id"
+      no-data-label="Not Fleets"
+      ref="tableRef"
+      rounded
+      grid
+      card-container-class="justify-evenly overflow-auto "
+      hide-header
+      hide-bottom
+      :pagination="pagination"
+    >
+      <template v-slot:top="props">
+        <div class="row full-width">
+          <div class="col-auto">
+            <q-btn
+              color="primary"
+              icon-right="fa-solid fa-plus"
+              label="Add Fleet"
+              flat
+              @click="addFleet()"
+            />
+          </div>
+          <div class="col-auto">
+            <q-btn
+              color="primary"
+              icon-right="fa-solid fa-plus"
+              label="Add Dank Operation Link"
+              flat
+              ><q-menu @before-hide="dankLink = null">
+                <q-list style="min-width: 100px">
+                  <q-card class="my-card">
+                    <q-card-section>
+                      <q-input
+                        v-model="dankLink"
+                        rounded
+                        outlined
+                        type="text"
+                        label="Dank Link"
+                      />
+                    </q-card-section>
+                    <q-card-actions align="center">
+                      <q-btn
+                        v-close-popup
+                        rounded
+                        @click="addDankLink()"
+                        color="positive"
+                        label="Add"
+                      />
+                      <q-btn v-close-popup rounded color="negative" label="close" />
+                    </q-card-actions>
+                  </q-card>
+                </q-list> </q-menu
+            ></q-btn>
+          </div>
+        </div>
+      </template>
+      <template v-slot:item="props">
+        <transition
+          appear
+          name="fade"
+          enter-active-class="animate__animated animate__zoomIn animate__slow"
+          leave-active-class="animate__animated animate__zoomOut animate__slow"
+        >
+          <OperationInfoFleetSoloCard
+            class="q-pa-xs"
+            :key="`${props.row.id}-card`"
+            :fleet="props.row"
+          />
+        </transition>
+      </template>
+    </q-table>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import { EventBus } from "../../app";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-import draggable from "vuedraggable";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  components: {
-    draggable,
-  },
-  title() {},
-  props: {
-    loaded: Boolean,
-    windowSize: Object,
-    drag: false,
-  },
-  data() {
-    return {};
-  },
 
-  async created() {},
+<script setup>
+import { useMainStore } from "@/store/useMain.js";
+import { defineAsyncComponent, onMounted } from "vue";
 
-  beforeMonunt() {},
+const store = useMainStore();
+const OperationInfoFleetSoloCard = defineAsyncComponent(() =>
+  import("./OperationInfoFleetSoloCard.vue")
+);
+let pagination = $ref({
+  sortBy: "id",
+  descending: false,
+  page: 1,
+  rowsPerPage: 0,
+});
 
-  async beforeCreate() {},
+let dankLink = $ref(null);
 
-  async mounted() {},
-  methods: {
-    async addFleet() {
-      await axios({
-        method: "post", //you can set what request you want to be
-        url: "/api/operationinfofleet/" + this.opInfo.id,
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+let addDankLink = async () => {
+  var data = {
+    link: dankLink,
+    opID: store.operationInfoPage.id,
+  };
+  await axios({
+    method: "post", //you can set what request you want to be
+    url: "/api/operationdanklink",
+    withCredentials: true,
+    data: data,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-  },
-
-  computed: {
-    ...mapGetters([]),
-
-    ...mapState["operationInfoPage"],
-
-    opInfo: {
-      get() {
-        return this.$store.state.operationInfoPage;
-      },
-      set(newValue) {
-        return this.$store.dispatch("updateOperationSheetInfoPage", newValue);
-      },
+    data: {
+      link: dankLink,
     },
+  });
+};
 
-    showEnter() {
-      if (this.loaded == true) {
-        return "animate__animated animate__zoomIn";
-      }
+let addFleet = async () => {
+  await axios({
+    method: "post", //you can set what request you want to be
+    url: "/api/operationinfofleet/" + store.operationInfoPage.id,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-
-    dankTitle() {
-      if (this.opInfo.dankop) {
-        return this.opInfo.dankop.name;
-      } else {
-        return "Add Dank Link";
-      }
-    },
-
-    showLeave() {
-      if (this.loaded == true) {
-        return "animate__animated animate__zoomOut";
-      }
-    },
-
-    style() {
-      return (
-        "overflow-y: auto; height: " +
-        this.heightList +
-        "px; max-height: " +
-        this.heightList +
-        "px;"
-      );
-      //
-    },
-
-    fleetCol() {
-      if (this.windowSize.y <= 1000) {
-        return 6;
-      } else {
-        return 4;
-      }
-    },
-
-    dragOptions() {
-      return {
-        animation: 200,
-        group: "description",
-        disabled: false,
-        ghostClass: "ghost",
-      };
-    },
-  },
-  beforeDestroy() {},
+  });
 };
 </script>
-<style>
-.scroll {
-  overflow-y: auto;
-}
-.compact {
-  transform: scale(0.875);
-  transform-origin: left;
-}
-
-.flip-list-move {
-  transition: transform 0.5s;
-}
-.no-move {
-  transition: transform 0s;
-}
-.ghost {
-  opacity: 0.5;
-  background: #c8ebfb;
-}
-</style>

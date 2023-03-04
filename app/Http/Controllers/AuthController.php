@@ -210,6 +210,7 @@ class AuthController extends Controller
     coord -> 494 -> 4
     TC ->  979 -> 30
     FC -> 731 -> 12
+    SkyTem -> 529 ->32
 
     */
 
@@ -226,6 +227,7 @@ class AuthController extends Controller
         $user->removeRole(7); // Scout
         $user->removeRole(12); // FC
         $user->removeRole(30); // TC
+        $user->removeRole(32); // SkyTem
     }
 
     public function addRoles($user, $role_id)
@@ -286,14 +288,20 @@ class AuthController extends Controller
 
         if ($role_id == 979) {
 
-            // function to assign Scout role
+            // function to assign TC role
             $user->assignRole(30);
         }
 
         if ($role_id == 731) {
 
-            // function to assign Scout role
+            // function to assign FC role
             $user->assignRole(12);
+        }
+
+        if ($role_id == 529) {
+
+            // function to assign SkyTem role
+            $user->assignRole(32);
         }
     }
     public function loginInfo()
