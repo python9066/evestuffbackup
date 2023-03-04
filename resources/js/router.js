@@ -154,6 +154,19 @@ const routes = [
             }
         },
     },
+
+    {
+        path: "/operationinfoover",
+        name: "operationInfoOver",
+        component: () => import("./views/redirect/operationInfoOver.vue"),
+        beforeEnter(to, from, next) {
+            if (can("view_opertaion_info")) {
+                next();
+            } else {
+                next("/");
+            }
+        },
+    },
 ];
 
 const router = createRouter({

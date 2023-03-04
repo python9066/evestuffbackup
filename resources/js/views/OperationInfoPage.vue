@@ -29,14 +29,23 @@
                             <span>{{ opt.label }}</span></transition
                           >
                         </div>
-                      </template></q-option-group
-                    >
-                  </q-card-section></q-card
-                >
+                      </template>
+                    </q-option-group>
+                  </q-card-section>
+                </q-card>
               </q-menu></q-btn
             >
-
-            <OperationInfoCheckList class="q-pl-sm" />
+            <transition
+              mode="out-in"
+              enter-active-class="animate__animated animate__fadeIn animate__slower"
+              leave-active-class="animate__animated animate__fadeOut animate__slower"
+            >
+              <OperationInfoCheckList
+                :key="`${showCheckList}-ownSetting`"
+                v-if="showCheckList"
+                class="q-pl-sm"
+              />
+            </transition>
           </div>
           <div class="col-auto">
             <h5 class="no-margin">Operation - {{ opInfo.name }}</h5>
@@ -236,6 +245,13 @@ let showReconTable = $computed(() => {
 
 let showSystemTable = $computed(() => {
   if (opSetting.showSystemTable && opInfo.system_table) {
+    return true;
+  }
+  return false;
+});
+
+let showCheckList = $computed(() => {
+  if (opSetting.showCheckList && opInfo.check_list) {
     return true;
   }
   return false;
