@@ -4,29 +4,45 @@
   </div>
 </template>
 
-<script>
-import { ref } from "vue";
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+onMounted(async () => {
+  joinChannel();
+});
 
-export default {
-  setup() {
-    return {
-      group: ref(["op1"]),
+onBeforeUnmount(async () => {
+  leaveChannel();
+});
 
-      options: [
-        {
-          label: "Option 1",
-          value: "op1",
-        },
-        {
-          label: "Option 2",
-          value: "op2",
-        },
-        {
-          label: "Option 3",
-          value: "op3",
-        },
-      ],
-    };
-  },
+let joinChannel = () => {
+  options.forEach((o) => {
+    console.log("test." + o.value);
+    Echo.private("test." + o.value);
+  });
 };
+
+let leaveChannel = () => {
+  options.forEach((o) => {
+    console.log("test." + o.value);
+    Echo.leave("test." + o.value);
+  });
+};
+
+let group = $ref(["op1"]);
+let options = $ref([
+  {
+    label: "Option 1",
+    value: "op1",
+  },
+  {
+    label: "Option 2",
+    value: "op2",
+  },
+  {
+    label: "Option 3",
+    value: "op3",
+  },
+]);
 </script>
+
+<style lang="scss"></style>

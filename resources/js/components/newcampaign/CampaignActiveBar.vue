@@ -78,10 +78,34 @@
               :true-value="1"
               :false-value="0"
               color="green"
-              >dwadwa</q-toggle
+            >
+              <template v-slot:default>
+                <transition
+                  mode="out-in"
+                  enter-active-class="animate__animated animate__flash "
+                >
+                  <span :class="toggleTextColor" :key="store.newOperationInfo.read_only">
+                    Read Only - {{ readOnlyText }}</span
+                  >
+                </transition>
+              </template></q-toggle
             >
           </div>
-          <div class="col-auto">Toggle Systems</div>
+          <div class="col-auto q-gutter-sm">
+            <q-btn
+              color="primary"
+              class="myRoundButtonLeft myOutLineButtonMid"
+              label="Open"
+              @click="toggleOpen"
+            />
+
+            <q-btn
+              color="primary"
+              class="myRoundButtonRight myOutLineButtonMid"
+              label="CLose"
+              @click="toggleClose"
+            />
+          </div>
         </div>
       </template>
 
@@ -223,6 +247,22 @@ let sendAddCharMessagePlus = async () => {
     },
   });
 };
+
+let readOnlyText = $computed(() => {
+  if (store.newOperationInfo.read_only == 1) {
+    return "Off";
+  } else {
+    return "On";
+  }
+});
+
+let toggleTextColor = $computed(() => {
+  if (store.newOperationInfo.read_only == 1) {
+    return "text-green";
+  } else {
+    return "text-red";
+  }
+});
 </script>
 
 <style lang="scss"></style>
