@@ -1,320 +1,302 @@
 <template>
-  <v-row no-gutters>
-    <v-col cols="12">
-      <v-row no-gutters>
-        <v-col cols="12">
-          <v-data-table
-            :headers="_headers"
-            :single-expand="singleExpand"
-            :items="nodes"
-            disable-sort
-            dense
-            :item-class="itemRowBackground"
-            :expanded="expanded"
-            hide-default-footer
-            disable-pagination
-            class="elevation-24 rounded-xl full-width"
-          >
-            <template slot="no-data"> No Nodes Reported In System </template>
-            <template v-slot:[`item.actions`]="{ item }">
-              <v-btn icon class="pl-5" @click="removenode(item)">
-                <font-awesome-icon
-                  icon="fa-solid fa-trash-can"
-                  color="orange darken-3"
-              /></v-btn>
-            </template>
-            <template v-slot:[`item.op_users`]="{ item }">
-              <v-row no-gutters align="baseline">
-                <v-col cols="auto">
-                  <AddPilot :node="item" :operationID="operationID" />
-                </v-col>
-                <v-col cols="auto">
-                  <NewNodeExtraChar :node="item" :operationID="operationID" />
-                </v-col>
-                <v-col cols="auto">
+  <div class="row">
+    <div class="col">
+      <q-table
+        v-if="props.activeCampaigns"
+        class="myNewCampaignSystemTable myRound bg-webBack"
+        :rows="props.item.new_nodes"
+        :columns="columns"
+        table-class=" text-webway"
+        table-header-class=" text-weight-bolder"
+        row-key="id"
+        dark
+        dense
+        ref="tableRef"
+        hide-bottom
+        rounded
+        :pagination="pagination"
+      >
+        <template v-slot:header-cell-actions="props">
+          <q-th :props="props">
+            <AddNode
+              :item="item"
+              :operationID="operationID"
+              :activeCampaigns="activeCampaigns"
+            />
+          </q-th>
+        </template>
+
+        <template v-slot:body="props">
+          <q-tr :props="props">
+            <q-td key="campaign" :props="props">
+              {{ props.row.campaign.name }}
+            </q-td>
+            <q-td key="name" :props="props">
+              {{ props.row.name }}
+            </q-td>
+            <q-td key="pilot" :props="props">
+              <div class="row">
+                <div class="col">
+                  <AddPilot :node="props.row" :operationID="operationID" />
+                </div>
+                <div class="col">
+                  <NewNodeExtraChar :node="props.row" :operationID="operationID" />
+                </div>
+                <div class="col">
                   <AddPilotAdmin
-                    v-if="$can('campaigns_admin_access')"
-                    :node="item"
+                    v-if="can('campaigns_admin_access')"
+                    :node="props.row"
                     :operationID="operationID"
                   />
-                </v-col>
-              </v-row>
-            </template>
-            <template v-slot:[`item.TODOMain`]="{ item }">
-              <NewSystemTableSimpleText :node="item" :type="1" />
-            </template>
-            <template v-slot:[`item.TODOShip`]="{ item }">
-              <NewSystemTableSimpleText :node="item" :type="2" />
-            </template>
-            <template v-slot:[`item.node_status.name`]="{ item }">
-              <NewSystemTableStatusButton
-                :node="item"
-                :operationID="operationID"
-              />
-            </template>
-
-            <template v-slot:[`item.created_at`]="{ item }">
+                </div>
+              </div>
+            </q-td>
+            <q-td key="main" :props="props">
+              <NewSystemTableSimpleText :node="props.row" :type="1" />
+            </q-td>
+            <q-td key="ship" :props="props">
+              <NewSystemTableSimpleText :node="props.row" :type="2" />
+            </q-td>
+            <q-td key="status" :props="props">
+              <NewSystemTableStatusButton :node="props.row" :operationID="operationID" />
+            </q-td>
+            <q-td key="age" :props="props">
               <NewSystemTableTimer
-                :node="item"
+                :node="props.row"
                 :operationID="operationID"
                 :extra="1"
-                :tidiProp="item.system.tidi"
-                :systemIDProp="item.system_id"
+                :tidiProp="props.row.system.tidi"
+                :systemIDProp="props.row.system_id"
               />
-            </template>
-
-            <template v-slot:expanded-item="{ headers, item }">
-              <td :colspan="headers.length" align="center">
-                <NewJoinNodeTable :node="item" :operationID="operationID" />
-              </td>
-            </template>
-
-            <template v-slot:[`header.actions`]="{ headers }">
-              <AddNode
-                :item="item"
-                :operationID="operationID"
-                :activeCampaigns="activeCampaigns"
-              />
-            </template>
-          </v-data-table>
-        </v-col>
-      </v-row>
-    </v-col>
-  </v-row>
+            </q-td>
+            <q-td key="actions" :props="props">
+              {{ props.row.id }}
+            </q-td>
+          </q-tr>
+        </template>
+      </q-table>
+    </div>
+  </div>
 </template>
 
-<script>
-import { mapState, mapGetters } from "vuex";
-import moment from "moment";
-export default {
-  props: {
-    item: Object,
-    operationID: Number,
-    activeCampaigns: Array,
-  },
-  data() {
-    return {
-      singleExpand: false,
-      headers: [
-        {
-          text: "NodeID",
-          value: "name",
-          sortable: false,
-        },
-        {
-          text: "Pilot",
-          value: "op_users",
-          sortable: true,
-        },
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import { useMainStore } from "@/store/useMain.js";
 
-        {
-          text: "Main",
-          value: "TODOMain",
-          sortable: true,
-        },
+const props = defineProps({
+  item: Object,
+  operationID: Number,
+  activeCampaigns: Array,
+});
 
-        {
-          text: "Ship",
-          value: "TODOShip",
-          sortable: true,
-        },
-        {
-          text: "Status",
-          value: "node_status.name",
-          sortable: true,
-        },
+const AddNode = defineAsyncComponent(() => import("./AddNode.vue"));
+const AddPilot = defineAsyncComponent(() => import("./AddPilot.vue"));
+const NewNodeExtraChar = defineAsyncComponent(() => import("./NewNodeExtraChar.vue"));
+const AddPilotAdmin = defineAsyncComponent(() => import("./AddPilotAdmin.vue"));
+const NewSystemTableSimpleText = defineAsyncComponent(() =>
+  import("./NewSystemTableSimpleText.vue")
+);
+const NewSystemTableStatusButton = defineAsyncComponent(() =>
+  import("./NewSystemTableStatusButton.vue")
+);
+const NewSystemTableTimer = defineAsyncComponent(() =>
+  import("./NewSystemTableTimer.vue")
+);
+let store = useMainStore();
+let can = inject("can");
 
-        {
-          text: "Age/Hack",
-          value: "created_at",
-          sortable: true,
-          align: "center",
-        },
-        {
-          text: "",
-          value: "actions",
-          align: "end",
-          sortable: false,
-        },
-      ],
-    };
-  },
-
-  methods: {
-    async removenode(item) {
-      var id = item.id;
-
-      await axios({
-        method: "DELETE",
-        url: "/api/deletenode/" + id,
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-
-    itemRowBackground: function (item) {
-      if (item.node_status.id == 7) {
-        return "style-1-table";
-      } else if (item.node_status.id == 8) {
-        return "style-2-table";
-      }
-      //   else if (item.under_attack == 1) {
-      //     return "style-4";
-      //   }
-    },
-  },
-
-  computed: {
-    ...mapState([]),
-
-    ...mapGetters([]),
-
-    nodes() {
-      return this.item.new_nodes;
-    },
-
-    _headers() {
-      if (this.activeCampaigns.length == 1) {
-        var headers = [
-          {
-            text: "NodeID",
-            value: "name",
-            sortable: false,
-          },
-          {
-            text: "Pilot",
-            value: "op_users",
-            sortable: true,
-          },
-
-          {
-            text: "Main",
-            value: "TODOMain",
-            sortable: true,
-          },
-
-          {
-            text: "Ship",
-            value: "TODOShip",
-            sortable: true,
-          },
-          {
-            text: "Status",
-            value: "node_status.name",
-            sortable: true,
-          },
-
-          {
-            text: "Age/Hack",
-            value: "created_at",
-            sortable: true,
-            align: "center",
-          },
-          {
-            text: "",
-            value: "actions",
-            align: "end",
-            sortable: false,
-          },
-        ];
-      } else {
-        var headers = [
-          {
-            text: "Campaign",
-            value: "campaign.name",
-            sortable: false,
-          },
-
-          {
-            text: "NodeID",
-            value: "name",
-            sortable: false,
-          },
-          {
-            text: "Pilot",
-            value: "op_users",
-            sortable: true,
-          },
-
-          {
-            text: "Main",
-            value: "TODOMain",
-            sortable: true,
-          },
-
-          {
-            text: "Ship",
-            value: "TODOShip",
-            sortable: true,
-          },
-          {
-            text: "Status",
-            value: "node_status.name",
-            sortable: true,
-          },
-
-          {
-            text: "Age/Hack",
-            value: "created_at",
-            sortable: true,
-            align: "center",
-          },
-          {
-            text: "",
-            value: "actions",
-            align: "end",
-            sortable: false,
-          },
-        ];
-      }
-      return headers;
-    },
-    count() {
-      var count = this.activeCampaigns.length;
-      return count;
-    },
-
-    expanded() {
-      if (this.nodes) {
-        var data = this.nodes.filter((f) => f.none_prime_node_user.length > 0);
-        return data;
-      }
-    },
-  },
-};
+let pagination = $ref({
+  sortBy: "name",
+  descending: false,
+  page: 1,
+  rowsPerPage: 0,
+});
+let columns = $computed(() => {
+  if (props.activeCampaigns.length == 1) {
+    return [
+      {
+        name: "name",
+        align: "center",
+        required: false,
+        label: "NodeID",
+        classes: "text-no-wrap",
+        field: (row) => row.name,
+        format: (val) => `${val}`,
+        sortable: false,
+      },
+      {
+        name: "pilot",
+        align: "center",
+        required: false,
+        label: "Pilot",
+        classes: "text-no-wrap",
+        field: (row) => row.op_users,
+        format: (val) => `${val}`,
+        sortable: false,
+      },
+      {
+        name: "main",
+        align: "center",
+        required: false,
+        label: "Main",
+        classes: "text-no-wrap",
+        field: (row) => row.id,
+        format: (val) => `${val}`,
+        sortable: false,
+      },
+      {
+        name: "ship",
+        align: "center",
+        required: false,
+        label: "Ship",
+        classes: "text-no-wrap",
+        field: (row) => row.id,
+        format: (val) => `${val}`,
+        sortable: false,
+      },
+      {
+        name: "status",
+        align: "center",
+        required: false,
+        label: "Status",
+        classes: "text-no-wrap",
+        field: (row) => row.node_status.name,
+        format: (val) => `${val}`,
+        sortable: false,
+      },
+      {
+        name: "age",
+        align: "center",
+        required: false,
+        label: "Age/Hack",
+        classes: "text-no-wrap",
+        field: (row) => row.created_at,
+        format: (val) => `${val}`,
+        sortable: false,
+      },
+      {
+        name: "actions",
+        align: "center",
+        required: false,
+        label: "",
+        classes: "text-no-wrap",
+        field: (row) => row.id,
+        format: (val) => `${val}`,
+        sortable: false,
+      },
+    ];
+  } else {
+    return [
+      {
+        name: "campaign",
+        align: "center",
+        required: false,
+        label: "Campaign",
+        classes: "text-no-wrap",
+        field: (row) => row.campaign.name,
+        format: (val) => `${val}`,
+        sortable: false,
+      },
+      {
+        name: "name",
+        align: "center",
+        required: false,
+        label: "NodeID",
+        classes: "text-no-wrap",
+        field: (row) => row.name,
+        format: (val) => `${val}`,
+        sortable: false,
+      },
+      {
+        name: "pilot",
+        align: "center",
+        required: false,
+        label: "Pilot",
+        classes: "text-no-wrap",
+        field: (row) => row.op_users,
+        format: (val) => `${val}`,
+        sortable: false,
+      },
+      {
+        name: "main",
+        align: "center",
+        required: false,
+        label: "Main",
+        classes: "text-no-wrap",
+        field: (row) => row.id,
+        format: (val) => `${val}`,
+        sortable: false,
+      },
+      {
+        name: "ship",
+        align: "center",
+        required: false,
+        label: "Ship",
+        classes: "text-no-wrap",
+        field: (row) => row.id,
+        format: (val) => `${val}`,
+        sortable: false,
+      },
+      {
+        name: "status",
+        align: "center",
+        required: false,
+        label: "Status",
+        classes: "text-no-wrap",
+        field: (row) => row.node_status.name,
+        format: (val) => `${val}`,
+        sortable: false,
+      },
+      {
+        name: "age",
+        align: "center",
+        required: false,
+        label: "Age/Hack",
+        classes: "text-no-wrap",
+        field: (row) => row.created_at,
+        format: (val) => `${val}`,
+        sortable: false,
+      },
+      {
+        name: "actions",
+        align: "center",
+        required: false,
+        label: "",
+        classes: "text-no-wrap",
+        field: (row) => row.id,
+        format: (val) => `${val}`,
+        sortable: false,
+      },
+    ];
+  }
+});
 </script>
 
-<style>
-.style-4-table {
-  background-color: rgba(255, 153, 0, 0.199);
-}
-.style-3-table {
-  background-color: rgb(255, 172, 77);
-}
-.style-2-table {
-  background: linear-gradient(-45deg, #00768b, #00d9ff, #5fccff, #00a2ff);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-}
+<style lang="sass">
+.myNewCampaignSystemTable
+  /* height or max-height is important */
 
-.style-1-table {
-  background: linear-gradient(-45deg, #8b0000, #ff0000, #ff5f5f, #ff0000);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-}
 
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+  .q-table__top
+    padding-top: 0 !important
+    padding-left: 0 !important
+    padding-right: 0 !important
+
+
+
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: #202020
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
 </style>

@@ -20,28 +20,19 @@
           </div>
         </div>
       </template>
-      <!--
-      <template v-slot:body-cell-chars="props">
-        <q-td :props="props">
-          <div class="row justify-center">
-            <q-tabs :style="tableW" outside-arrows class="text-teal">
-              <q-chip
-                v-for="(char, index) in props.row.op_users"
-                :key="index"
-                :label="chipLabel(char)"
-                color="webChip"
-              />
-            </q-tabs>
-          </div>
-        </q-td>
-      </template> -->
+
+      <template v-slot:body-cell-details="props">
+        <q-td :props="props"> <NewCampaignLogText :item="props.row" /> </q-td>
+      </template>
     </q-table>
   </div>
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, inject } from "vue";
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 import { useMainStore } from "@/store/useMain.js";
+
+const NewCampaignLogText = defineAsyncComponent(() => import("./NewCampaignLogText.vue"));
 
 const store = useMainStore();
 

@@ -28,6 +28,8 @@ export const useMainStore = defineStore("main", {
         towerConstellation: [],
         loggingNewCampaign: [],
         rolesList: [],
+        newOperationMessageOverlay: 0,
+        newOperationMessageAddChar: false,
         moonList: [],
         towerChatWindowId: null,
         stationChatWindowId: null,

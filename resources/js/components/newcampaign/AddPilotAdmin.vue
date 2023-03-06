@@ -1,137 +1,178 @@
 <template>
   <div>
-    <v-dialog
-      v-model="overlay"
-      max-width="700px"
-      z-index="0"
-      @click:outside="close()"
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn v-bind="attrs" v-on="on" icon color="blue"
-          ><font-awesome-icon icon="fa-solid fa-plus" />
-        </v-btn>
-      </template>
+    <q-btn
+      color="primary"
+      icon="fa-solid fa-plus"
+      flat
+      rounded
+      padding="none"
+      size="xs"
+      @click="confirm = !confirm"
+    />
+    <q-dialog v-model="confirm" persistent>
+      <q-card class="myRoundTop" style="width: 1200px; max-width: 80vw">
+        <q-table
+          class="myAdminAddHackUserTable myRoundTop bg-webBack"
+          :rows="filteredItems"
+          hide-bottom
+          :columns="columns"
+          table-class=" text-webway"
+          table-header-class=" text-weight-bolder"
+          row-key="id"
+          dark
+          dense
+          ref="tableRef"
+          rounded
+          :pagination="pagination"
+        >
+          <template v-slot:top="props">
+            <div class="row full-width flex-center q-pt-xs myRoundTop bg-primary">
+              <div class="col-12 flex flex-center">
+                <span class="text-h4">All Free Hackers</span>
+              </div>
+            </div>
+          </template>
 
-      <v-card
-        tile
-        max-width="700px"
-        min-height="200px"
-        max-height="700px"
-        class="rounded-xl mt-2"
-      >
-        <v-card-title class="d-flex justify-space-between align-center primary">
-          <div>All Free Hackers</div>
-        </v-card-title>
-        <v-card-text>
-          <v-data-table
-            :headers="headers"
-            :items="filteredItems"
-            item-key="id"
-            disable-pagination
-            fixed-header
-            hide-default-footer
-            class="elevation-24"
-          >
-            <template slot="no-data"> You have no saved Chars </template>
-            <!-- :color="pillColor(item)" -->
-            <template v-slot:[`item.addRemove`]="{ item }">
-              <v-btn rounded x-small outlined color="green" @click="add(item)">
-                <font-awesome-icon icon="fa-solid fa-plus" pull="left" />
-                Add
-              </v-btn>
-            </template>
-          </v-data-table>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn class="white--text" color="teal" @click="close()">
-            Close
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+          <template v-slot:body-cell-actions="props">
+            <q-td :props="props">
+              <q-btn
+                color="positive"
+                icon="fa-solid fa-plus"
+                label="Add"
+                rounded
+                outline
+                class="myOutLineButton"
+                @click="add(props.row)"
+              />
+            </q-td>
+          </template>
+        </q-table>
+
+        <q-card-actions align="right">
+          <q-btn flat label="Close" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
-<script>
-import { mapGetters } from "vuex";
-import { mapState } from "vuex";
-export default {
-  props: {
-    operationID: Number,
-    node: [Array, Object],
-  },
-  data() {
-    return {
-      overlay: false,
-      addShown: false,
-      headers: [
-        { text: "Name", value: "name" },
-        { text: "Role", value: "userrole.role" },
-        { text: "Ship", value: "ship" },
-        { text: "Entosis", value: "entosis" },
-        { text: "", value: "addRemove", align: "center" },
+<script setup>
+import { useMainStore } from "@/store/useMain.js";
+let store = useMainStore();
+const props = defineProps({
+  operationID: Number,
+  node: [Array, Object],
+});
+let pagination = $ref({
+  sortBy: "name",
+  descending: false,
+  page: 1,
+  rowsPerPage: 0,
+});
 
-        // { text: "Vulernable End Time", value: "vulnerable_end_time" }
-      ],
-    };
-  },
-
-  methods: {
-    close() {
-      this.overlay = false;
+let add = async (item) => {
+  let data = {
+    opUserID: item.id,
+    id: props.node.id,
+  };
+  await axios({
+    method: "POST",
+    url: "/api/addcharadmin",
+    withCredentials: true,
+    data: data,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-
-    pillColor(item) {
-      if (item.operation_id == this.operationID) {
-        return "red";
-      } else {
-        return "green";
-      }
-    },
-
-    pillText(item) {
-      if (item.operation_id == this.operationID) {
-        return "Remove";
-      } else {
-        return "Add";
-      }
-    },
-
-    pillIcon(item) {
-      if (item.operation_id == this.operationID) {
-        return "fa-solid fa-minus";
-      } else {
-        return "fa-solid fa-plus";
-      }
-    },
-
-    async add(item) {
-      var request = {
-        opUserID: item.id,
-        id: this.node.id,
-      };
-      await axios({
-        method: "POST",
-        url: "/api/addcharadmin",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-
-    async pillClick(item) {},
-  },
-
-  computed: {
-    ...mapState(["opUsers"]),
-    filteredItems() {
-      return this.opUsers.filter((o) => o.role_id == 1 && o.userstatus.id != 4);
-    },
-  },
+  });
 };
+
+let filteredItems = $computed(() => {
+  return store.opUsers.filter((o) => o.role_id == 1 && o.userstatus.id != 4);
+});
+
+let columns = $ref([
+  {
+    name: "name",
+    align: "left",
+    classes: "ellipsis ",
+    required: false,
+    label: "Name",
+    field: (row) => row.name,
+    format: (val) => `${val}`,
+    sortable: false,
+  },
+  {
+    name: "role",
+    required: false,
+    align: "left",
+    label: "Role",
+    classes: "text-no-wrap",
+    field: (row) => row.userrole.role,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "ship",
+    required: true,
+    align: "left",
+    label: "Ship",
+    classes: "text-no-wrap",
+    field: (row) => row.ship,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "entosis",
+    align: "left",
+    classes: "text-no-wrap",
+    label: "Entosis",
+    field: (row) => row.entosis,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+
+  {
+    name: "actions",
+    label: "",
+    align: "right",
+    classes: "text-no-wrap",
+    sortable: false,
+    field: (row) => row.id,
+    format: (val) => `${val}`,
+  },
+]);
+let confirm = $ref(false);
 </script>
 
-<style></style>
+<style lang="sass">
+.myAdminAddHackUserTable
+  /* height or max-height is important */
+
+
+  .q-table__top
+    padding-top: 0 !important
+    padding-left: 0 !important
+    padding-right: 0 !important
+
+
+
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: #202020
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+</style>

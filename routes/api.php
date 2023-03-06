@@ -484,6 +484,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/setreadonly/{opID}', 'changeReadyOnly');
         Route::post('/newcampaignpriority/{id}', 'updatePriority');
         Route::get('/operationlistinfoop', 'operationlist');
+        Route::post('/operation/toggleWindow/{toggle}/{opID}', 'toggleWindow');
     });
 
     Route::controller(NewCampaignsController::class)->group(function () {

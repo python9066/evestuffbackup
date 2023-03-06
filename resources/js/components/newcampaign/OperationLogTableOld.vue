@@ -19,14 +19,14 @@
           dense
         >
           <template slot="no-data"> No one is here </template>
-          <template v-slot:[`item.created_at`]="{ item }">
+          <!-- <template v-slot:[`item.created_at`]="{ item }">
             <div class="subtitle-1">
               {{ timestamp(item.created_at) }}
             </div>
           </template>
           <template v-slot:[`item.text`]="{ item }">
             <NewCampaignLogText :item="item" />
-          </template>
+          </template> -->
         </v-data-table>
       </v-card-text>
     </v-card>

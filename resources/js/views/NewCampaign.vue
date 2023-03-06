@@ -24,6 +24,71 @@
         ></CampaignSystemCard>
       </div>
     </div>
+
+    <q-dialog v-model="showOverlay1" persistent>
+      <q-card class="myRoundTop">
+        <q-card-section class="bg-primary text-h5 text-center">
+          <h5 class="no-margin">MAKE SURE TO ADD A CHARACTER</h5>
+        </q-card-section>
+        <q-card-section>
+          Remeber to add any chars you have in the campaign by pressing the green
+          "CHARACTER" button
+        </q-card-section>
+        <q-card-actions align="right">
+          <q-btn
+            rounded
+            label="Close"
+            color="negative"
+            @click="store.newOperationMessageOverlay = 0"
+          />
+          <q-btn
+            rounded
+            label="Add Character"
+            color="secondary"
+            @click="addCharOverlay()"
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+
+    <q-dialog v-model="showOverlay2" persistent>
+      <q-card class="myRoundTop">
+        <q-card-section class="bg-primary text-h5 text-center">
+          <h5 class="no-margin">WHAT TO DO</h5>
+        </q-card-section>
+        <q-card-section>
+          Thanks for participating in this Entosis campaign. In order to participate, we
+          need you to add the characters you are using to actively hack to this tool -
+          don't worry - we don't require an ESI link.
+        </q-card-section>
+        <q-card-section>
+          To do this, press the "CHARACTERS" button and pick **Hacker** as the role for
+          each alt.
+        </q-card-section>
+        <q-card-section>
+          Once you have added all of your characters, await instructions from your FC. You
+          will be assigned a specific system, which is done in-game via Squads.
+        </q-card-section>
+        <q-card-section>
+          Check the name of your squad for the assigned system. Once instructed, move to
+          this system and prepare to hack. If in doubt, ask for help.
+        </q-card-section>
+        <q-card-actions align="right">
+          <q-btn
+            rounded
+            label="Close"
+            color="negative"
+            @click="store.newOperationMessageOverlay = 0"
+          />
+          <q-btn
+            rounded
+            label="Add Character"
+            color="secondary"
+            @click="addCharOverlay()"
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
@@ -156,6 +221,19 @@ onBeforeUnmount(async () => {
   Echo.leave("operations." + operationID);
   Echo.leave("operationsown." + store.user_id + "-" + operationID);
   Echo.leave("operationsadmin." + operationID);
+});
+
+let addCharOverlay = () => {
+  store.newOperationMessageAddChar = true;
+  store.newOperationMessageOverlay = 0;
+};
+
+let showOverlay1 = $computed(() => {
+  return store.newOperationMessageOverlay == 1;
+});
+
+let showOverlay2 = $computed(() => {
+  return store.newOperationMessageOverlay == 2;
 });
 
 let activeCampaigns = $computed(() => {

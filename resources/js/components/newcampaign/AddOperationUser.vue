@@ -4,12 +4,12 @@
       color="positive"
       class="myOutLineButtonMid"
       label="characters"
-      @click="confirm = !confirm"
+      @click="store.newOperationMessageAddChar = !store.newOperationMessageAddChar"
       outline
       rounded
     />
 
-    <q-dialog v-model="confirm" persistent>
+    <q-dialog v-model="store.newOperationMessageAddChar" persistent>
       <q-card class="myRoundTop" style="width: 1200px; max-width: 80vw">
         <q-table
           class="myHackCharTable myRoundTop bg-webBack"

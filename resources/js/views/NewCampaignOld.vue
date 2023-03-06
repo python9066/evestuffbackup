@@ -12,10 +12,10 @@
     </v-row> -->
     <v-row no-gutters justify="center" class="pb-5">
       <v-col cols="10">
-        <CampaignActiveBar
+        <!-- <CampaignActiveBar
           :windowSize="windowSize"
           :operationID="operationID"
-        ></CampaignActiveBar>
+        ></CampaignActiveBar> -->
       </v-col>
     </v-row>
     <v-row no-gutters justify="space-around">
@@ -34,7 +34,7 @@
         </transition>
       </v-col>
     </v-row>
-    <v-overlay :value="showOverlay == 1">
+    <!-- <v-overlay :value="showOverlay == 1">
       <v-card :width="cardWidth" rounded="xl">
         <v-card-title> MAKE SURE TO ADD A CHARACTER </v-card-title>
         <v-card-text>
@@ -48,8 +48,8 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-    </v-overlay>
-    <v-overlay :value="showOverlay == 2">
+    </v-overlay> -->
+    <!-- <v-overlay :value="showOverlay == 2">
       <v-card :width="cardWidth" rounded="xl">
         <v-card-title class="warning"> WHAT TO DO </v-card-title>
         <v-card-text>
@@ -78,7 +78,7 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-    </v-overlay>
+    </v-overlay> -->
   </div>
 </template>
 <script>

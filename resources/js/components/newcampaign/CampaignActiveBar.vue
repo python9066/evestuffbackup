@@ -72,7 +72,7 @@
               rounded
             />
           </div>
-          <div class="col-auto">
+          <div class="col-auto" v-if="can('edit_read_only')">
             <q-toggle
               v-model="store.newOperationInfo.read_only"
               :true-value="1"
@@ -133,11 +133,9 @@
 
 <script setup>
 import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
-import { EventBus } from "quasar";
 import { useMainStore } from "@/store/useMain.js";
 
 const store = useMainStore();
-const bus = new EventBus();
 
 const AddOperationUser = defineAsyncComponent(() => import("./AddOperationUser.vue"));
 const OperationCal = defineAsyncComponent(() => import("./OperationCal.vue"));
@@ -206,7 +204,7 @@ let userTableOutlined = $computed(() => {
   }
 });
 
-let btnShowLogTable = () => {
+let btnShowLogTable = async () => {
   if (showPannel && tab == "logTable") {
     showPannel = false;
     tab = null;
@@ -215,11 +213,13 @@ let btnShowLogTable = () => {
 
   if (showPannel && tab != "logTable") {
     tab = "logTable";
+    await store.getCampaignsLogs(props.operationID);
     return;
   }
   if (!showPannel) {
     showPannel = true;
     tab = "logTable";
+    await store.getCampaignsLogs(props.operationID);
     return;
   }
 };
@@ -272,12 +272,28 @@ let toggleTextColor = $computed(() => {
   }
 });
 
-let toggleOpen = () => {
-  bus.emit("showSystemTable", 1);
+let toggleOpen = async () => {
+  await axios({
+    method: "post", //you can set what request you want to be
+    url: "/api/operation/toggleWindow/" + 1 + "/" + props.operationID,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
 };
 
-let toggleClose = () => {
-  bus.emit("showSystemTable", 0);
+let toggleClose = async () => {
+  await axios({
+    method: "post", //you can set what request you want to be
+    url: "/api/operation/toggleWindow/" + 0 + "/" + props.operationID,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
 };
 </script>
 

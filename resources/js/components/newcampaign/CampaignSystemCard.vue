@@ -4,6 +4,7 @@
       class="shadow-1 overflow-hidden"
       style="border-radius: 30px"
       label="dance"
+      v-model:model-value="showPannel"
       expand-icon-toggle
       header-class=" q-py-none bg-webBack text-webway text-center"
       @show="10"
@@ -28,7 +29,12 @@
       </template>
 
       <q-card>
-        <q-card-section> dance </q-card-section>
+        <q-card-section>
+          <CampaignSystemCardContent
+            :item="props.item"
+            :operationID="props.operationID"
+          />
+        </q-card-section>
       </q-card>
     </q-expansion-item>
   </div>
@@ -36,6 +42,9 @@
 
 <script setup>
 import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import { useMainStore } from "@/store/useMain.js";
+
+let store = useMainStore();
 const props = defineProps({
   item: Object,
   operationID: Number,
@@ -44,6 +53,40 @@ const props = defineProps({
 const SystemNodeCount = defineAsyncComponent(() => import("./SystemNodeCount.vue"));
 const OnTheWay = defineAsyncComponent(() => import("./OnTheWay.vue"));
 const ReadyToGo = defineAsyncComponent(() => import("./ReadyToGo.vue"));
+const CampaignSystemCardContent = defineAsyncComponent(() =>
+  import("./CampaignSystemCardContent.vue")
+);
+
+onMounted(() => {
+  Echo.private("operationsown." + store.user_id + "-" + props.operationID).listen(
+    "OperationOwnUpdate",
+    (e) => {
+      if (e.flag.flag == 8) {
+        console.log(e.flag.type);
+        if (e.flag.type == 1) {
+          openPannel();
+        } else {
+          closePannel();
+        }
+      }
+    }
+  );
+});
+
+onBeforeUnmount(() => {
+  Echo.leave("operationsown." + store.user_id + "-" + props.operationID);
+});
+
+let showPannel = $ref(true);
+
+let openPannel = () => {
+  console.log("openPannel");
+  showPannel = true;
+};
+
+let closePannel = () => {
+  showPannel = false;
+};
 </script>
 
 <style lang="scss"></style>

@@ -157,11 +157,11 @@
               :windowSize="windowSize"
             /> -->
 
-            <OperationLogTable
+            <!-- <OperationLogTable
               v-if="logTable"
               :operationID="operationID"
               :windowSize="windowSize"
-            />
+            /> -->
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
