@@ -26,6 +26,7 @@ export const useMainStore = defineStore("main", {
         ticklist: [],
         towerTypes: [],
         towerConstellation: [],
+        loggingNewCampaign: [],
         rolesList: [],
         moonList: [],
         towerChatWindowId: null,
@@ -1116,6 +1117,19 @@ export const useMainStore = defineStore("main", {
                 },
             });
             this.campaignslist = res.data.campaignslist;
+        },
+
+        async getCampaignsLogs(op_id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/newoperationlogs/" + op_id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.loggingNewCampaign = res.data.logs
         },
 
         updateNewCampaigns(data) {

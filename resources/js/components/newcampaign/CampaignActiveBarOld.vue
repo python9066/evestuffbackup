@@ -122,7 +122,7 @@
                   </v-col>
                 </v-row> -->
               </v-col>
-              <v-col cols="auto">
+              <!-- <v-col cols="auto">
                 <v-btn
                   :exact="true"
                   color="primary"
@@ -142,20 +142,20 @@
                 >
                   Close
                 </v-btn>
-              </v-col>
+              </v-col> -->
             </v-row>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <OperationUserTable
+            <!-- <OperationUserTable
               v-if="charTable"
               :operationID="operationID"
               :windowSize="windowSize"
-            />
-            <OperationUserListTable
+            /> -->
+            <!-- <OperationUserListTable
               v-if="usertable"
               :operationID="operationID"
               :windowSize="windowSize"
-            />
+            /> -->
 
             <OperationLogTable
               v-if="logTable"

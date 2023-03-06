@@ -10,7 +10,7 @@
     />
 
     <q-dialog v-model="confirm" persistent>
-      <q-card class="myRoundTop">
+      <q-card class="myRoundTop" style="width: 1200px; max-width: 80vw">
         <q-table
           class="myHackCharTable myRoundTop bg-webBack"
           :rows="store.ownChars"
@@ -48,16 +48,16 @@
           <template v-slot:body="props">
             <q-tr :props="props">
               <q-td key="name" :props="props">
-                {{ props.row.name }}
+                <span> {{ props.row.name }}</span>
               </q-td>
               <q-td key="role" :props="props">
-                {{ props.row.userrole.role }}
+                <span> {{ props.row.userrole.role }} </span>
               </q-td>
               <q-td key="ship" :props="props">
-                {{ props.row.ship }}
+                <span> {{ props.row.ship }}</span>
               </q-td>
               <q-td key="entosis" :props="props">
-                {{ props.row.entosis }}
+                <span>{{ props.row.entosis }}</span>
               </q-td>
               <q-td class="" key="addRove" :props="props">
                 <transition
@@ -211,9 +211,9 @@ let columns = $ref([
   {
     name: "name",
     align: "left",
+    classes: "ellipsis ",
     required: false,
     label: "Name",
-    classes: "text-no-wrap",
     field: (row) => row.name,
     format: (val) => `${val}`,
     sortable: false,
@@ -224,7 +224,6 @@ let columns = $ref([
     align: "left",
     label: "Role",
     classes: "text-no-wrap",
-    style: "width: 7%",
     field: (row) => row.userrole.role,
     format: (val) => `${val}`,
     sortable: false,

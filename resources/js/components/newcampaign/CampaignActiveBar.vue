@@ -13,7 +13,7 @@
       dark
     >
       <template v-slot:header>
-        <div class="row q-gutter-none full-width items-center">
+        <div class="row q-gutter-none full-width items-center justify-between">
           <div class="col-auto">
             <div class="row full-width">
               <div class="col-auto">
@@ -32,7 +32,7 @@
               <div class="col-auto"><OperationCal :operationID="operationID" /></div>
             </div>
           </div>
-          <div v-if="can('access_multi_campaigns')" class="col-auto">
+          <div v-if="can('access_multi_campaigns')" class="col-auto q-gutter-md">
             <q-btn
               v-if="can('access_campaigns')"
               flat
@@ -112,17 +112,17 @@
       <q-card>
         <q-card-section>
           <q-tab-panels v-model="tab" animated>
-            <q-tab-panel name="mails">
-              <div class="text-h6">Mails</div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <q-tab-panel name="charTable">
+              <OperationUserTable :operationID="operationID" />
             </q-tab-panel>
-            <q-tab-panel name="alarms">
-              <div class="text-h6">Alarms</div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <q-tab-panel v-if="can('view_campaign_members')" name="userTable">
+              <OperationUserListTable :operationID="operationID" />
             </q-tab-panel>
-            <q-tab-panel name="movies">
-              <div class="text-h6">Movies</div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            <q-tab-panel name="logTable">
+              <OperationLogTable
+                v-if="can('view_campaign_members')"
+                :operationID="operationID"
+              />
             </q-tab-panel>
           </q-tab-panels>
         </q-card-section>
@@ -133,18 +133,26 @@
 
 <script setup>
 import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import { EventBus } from "quasar";
 import { useMainStore } from "@/store/useMain.js";
 
 const store = useMainStore();
+const bus = new EventBus();
 
 const AddOperationUser = defineAsyncComponent(() => import("./AddOperationUser.vue"));
 const OperationCal = defineAsyncComponent(() => import("./OperationCal.vue"));
+const OperationUserTable = defineAsyncComponent(() => import("./OperationUserTable.vue"));
+const OperationUserListTable = defineAsyncComponent(() =>
+  import("./OperationUserListTable.vue")
+);
+const OperationLogTable = defineAsyncComponent(() => import("./OperationLogTable.vue"));
+
 let can = inject("can");
 const props = defineProps({
   operationID: Number,
 });
 let showPannel = $ref(false);
-let tab = $ref("mails");
+let tab = $ref(null);
 
 let btnShowCharTable = () => {
   if (showPannel && tab == "charTable") {
@@ -263,6 +271,14 @@ let toggleTextColor = $computed(() => {
     return "text-red";
   }
 });
+
+let toggleOpen = () => {
+  bus.emit("showSystemTable", 1);
+};
+
+let toggleClose = () => {
+  bus.emit("showSystemTable", 0);
+};
 </script>
 
 <style lang="scss"></style>
