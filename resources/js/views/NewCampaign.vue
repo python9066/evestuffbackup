@@ -11,7 +11,9 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">Campaign Bar</div>
+      <div class="col">
+        <CampaignActiveBar :operationID="operationID"></CampaignActiveBar>
+      </div>
     </div>
     <div class="row">
       <div class="col-6 q-pa-sm" v-for="(item, index) in openSystems" :key="index.id">
@@ -40,6 +42,10 @@ const CampaignTitleBar = defineAsyncComponent(() =>
 
 const CampaignSystemCard = defineAsyncComponent(() =>
   import("../components/newcampaign/CampaignSystemCard.vue")
+);
+
+const CampaignActiveBar = defineAsyncComponent(() =>
+  import("../components/newcampaign/CampaignActiveBar.vue")
 );
 
 onMounted(async () => {
