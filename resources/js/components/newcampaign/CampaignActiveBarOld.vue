@@ -82,8 +82,7 @@
                 >
                   User List
                 </v-btn> -->
-                </v-col
-              >
+              </v-col>
               <v-col cols="auto" v-if="$can('view_campaign_members')">
                 <!-- <v-btn
                   color="primary"
@@ -94,10 +93,9 @@
                 >
                   Logs
                 </v-btn> -->
-                </v-col
-              >
+              </v-col>
               <v-col cols="auto" v-if="$can('edit_read_only')">
-                <v-row no-gutters>
+                <!-- <v-row no-gutters>
                   <v-col cols="auto">
                     <v-switch
                       class="mt-0 pt-0"
@@ -122,7 +120,7 @@
                       >
                     </transition>
                   </v-col>
-                </v-row>
+                </v-row> -->
               </v-col>
               <v-col cols="auto">
                 <v-btn
@@ -320,13 +318,13 @@ export default {
       },
     },
 
-    readOnlyText() {
-      if (this.opInfoReadOnly == 1) {
-        return "On";
-      } else {
-        return "Off";
-      }
-    },
+    // readOnlyText() {
+    //   if (this.opInfoReadOnly == 1) {
+    //     return "On";
+    //   } else {
+    //     return "Off";
+    //   }
+    // },
 
     readOnlyClassColor() {
       if (this.opInfoReadOnly == 1) {
