@@ -18,7 +18,7 @@ class TowerRecordsController extends Controller
      */
     public function index()
     {
-        return ['towers' => TowerRecord::all()];
+        return ['towers' => []];
     }
 
     /**
@@ -38,12 +38,12 @@ class TowerRecordsController extends Controller
 
         $new = Tower::create($request->all());
         $new->update(['id' => $id]);
-        $message = TowerRecord::where('id', $new->id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
+        // $message = TowerRecord::where('id', $new->id)->first();
+        // $flag = collect([
+        //     'message' => $message,
+        // ]);
 
-        broadcast(new TowerNew($flag));
+        // broadcast(new TowerNew($flag));
     }
 
     /**
@@ -70,13 +70,13 @@ class TowerRecordsController extends Controller
         foreach ($t as $t) {
             $t->update($request->all());
         }
-        $message = TowerRecord::find($id);
-        if ($message->status_id != 10) {
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new TowerChanged($flag));
-        }
+        // $message = TowerRecord::find($id);
+        // if ($message->status_id != 10) {
+        //     $flag = collect([
+        //         'message' => $message,
+        //     ]);
+        //     broadcast(new TowerChanged($flag));
+        // }
     }
 
     public function updateMessage(Request $request, $id)
@@ -88,14 +88,14 @@ class TowerRecordsController extends Controller
             $t->update($request->all());
         }
 
-        $message = TowerRecord::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-            'id' => $id,
-        ]);
+        // $message = TowerRecord::where('id', $id)->first();
+        // $flag = collect([
+        //     'message' => $message,
+        //     'id' => $id,
+        // ]);
 
-        // dd($request, $id, $flag);
-        broadcast(new TowerMessageUpdate($flag))->toOthers();
+        // // dd($request, $id, $flag);
+        // broadcast(new TowerMessageUpdate($flag))->toOthers();
     }
 
     /**

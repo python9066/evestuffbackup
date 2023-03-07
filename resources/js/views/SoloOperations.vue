@@ -141,6 +141,7 @@
             <div class="col">
               <q-btn
                 v-if="webwayButton"
+                color="webChip"
                 size="sm"
                 :label="store.webwaySelectedStartSystem.text"
               >
@@ -610,7 +611,7 @@ let webwayLink = (item) => {
 };
 
 let webwayButton = $computed(() => {
-  if (store.webwaySelectedStartSystem.length > 0) {
+  if (store.webwayStartSystems.length > 0) {
     return true;
   }
   return false;

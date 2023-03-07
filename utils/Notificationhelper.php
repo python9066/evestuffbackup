@@ -34,7 +34,7 @@ class Notifications
     public static function reconRegionPull($id)
     {
         $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
-        $url = 'https://recon.gnf.lt/api/structures/hostile/region/'.$id;
+        $url = 'https://recon.gnf.lt/api/structures/hostile/region/' . $id;
 
         $client = new GuzzleHttpClient();
         $headers = [
@@ -58,7 +58,7 @@ class Notifications
         $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
         $i = 0;
 
-        $url = 'https://recon.gnf.lt/api/structure/'.$id;
+        $url = 'https://recon.gnf.lt/api/structure/' . $id;
         $client = new GuzzleHttpClient();
         $headers = [
             // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
@@ -86,14 +86,14 @@ class Notifications
             $core = 0;
             $standing = 0;
             $corp = Corp::where('id', $stationdata['str_owner_corporation_id'])->first();
-            if (! $corp) {
+            if (!$corp) {
                 $corpPull = 0;
                 do {
                     $response = Http::withHeaders([
                         'Content-Type' => 'application/json',
                         'Accept' => 'application/json',
                         'User-Agent' => 'evestuff.online python9066@gmail.com',
-                    ])->get('https://esi.evetech.net/latest/corporations/'.$stationdata['str_owner_corporation_id'].'/?datasource=tranquility');
+                    ])->get('https://esi.evetech.net/latest/corporations/' . $stationdata['str_owner_corporation_id'] . '/?datasource=tranquility');
                     if ($response->successful()) {
                         $corpPull = 3;
                         $corpInfo = $response->collect();
@@ -106,7 +106,7 @@ class Notifications
                                 'color' => 0,
                                 'standing' => 0,
                                 'active' => 1,
-                                'url' => 'https://images.evetech.net/Corporation/'.$stationdata['str_owner_corporation_id'].'_64.png',
+                                'url' => 'https://images.evetech.net/Corporation/' . $stationdata['str_owner_corporation_id'] . '_64.png',
 
                             ]
                         );
@@ -221,7 +221,7 @@ class Notifications
     public static function reconPull($id)
     {
         $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
-        $url = 'https://recon.gnf.lt/api/structure/'.$id;
+        $url = 'https://recon.gnf.lt/api/structure/' . $id;
 
         $client = new GuzzleHttpClient();
         $headers = [
@@ -292,7 +292,7 @@ class Notifications
         $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
         $stations = Station::where('added_from_recon', 1)->where('import_flag', 0)->get();
         foreach ($stations as $station) {
-            $url = 'https://recon.gnf.lt/api/structure/'.$station->id;
+            $url = 'https://recon.gnf.lt/api/structure/' . $station->id;
             $client = new GuzzleHttpClient();
             $headers = [
                 // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
@@ -407,7 +407,7 @@ class Notifications
         }
         $stations = Station::where('added_from_recon', 0)->get();
         foreach ($stations as $station) {
-            $url = 'https://recon.gnf.lt/api/structure/'.$station->name;
+            $url = 'https://recon.gnf.lt/api/structure/' . $station->name;
             $client = new GuzzleHttpClient();
             $headers = [
                 // 'x-gsf-user' => env('RECON_USER', 'DANCE2'),
@@ -557,7 +557,7 @@ class Notifications
 
             ];
             Tower::updateOrCreate($moon_id, $data);
-        // $check = Tower::where('moon_id', $moon_id)->first();
+            // $check = Tower::where('moon_id', $moon_id)->first();
             // if ($check == null) {
             //     Tower::updateOrCreate($moon_id, $data);
             // } else {
@@ -683,13 +683,13 @@ class Notifications
                 StationNotification::updateOrCreate($station_id, $data);
             }
 
-            $message = StationRecords::where('id', $text['structureID'])->first();
-            $flag = null;
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new StationNotificationNew($flag));
-            broadcast(new StationInfoSet($flag));
+            // $message = StationRecords::where('id', $text['structureID'])->first();
+            // $flag = null;
+            // $flag = collect([
+            //     'message' => $message,
+            // ]);
+            // broadcast(new StationNotificationNew($flag));
+            // broadcast(new StationInfoSet($flag));
         } elseif ($var['type'] == 'StructureLostShields') {
             $outTime = null;
             $ldap = $text['timestamp'];
@@ -807,13 +807,13 @@ class Notifications
                 ];
                 StationNotificationShield::updateOrCreate($station_id, $data);
             }
-            $message = StationRecords::where('id', $text['structureID'])->first();
-            $flag = null;
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new StationNotificationNew($flag));
-            broadcast(new StationInfoSet($flag));
+            // $message = StationRecords::where('id', $text['structureID'])->first();
+            // $flag = null;
+            // $flag = collect([
+            //     'message' => $message,
+            // ]);
+            // broadcast(new StationNotificationNew($flag));
+            // broadcast(new StationInfoSet($flag));
         } elseif ($var['type'] == 'StructureLostArmor') {
             $outTime = null;
             $ldap = $text['timestamp'];
@@ -932,13 +932,13 @@ class Notifications
                     StationNotificationArmor::updateOrCreate($station_id, $data);
                 }
             }
-            $message = StationRecords::where('id', $text['structureID'])->first();
-            $flag = null;
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new StationNotificationNew($flag));
-            broadcast(new StationInfoSet($flag));
+            // $message = StationRecords::where('id', $text['structureID'])->first();
+            // $flag = null;
+            // $flag = collect([
+            //     'message' => $message,
+            // ]);
+            // broadcast(new StationNotificationNew($flag));
+            // broadcast(new StationInfoSet($flag));
         }
     }
 
@@ -1010,7 +1010,7 @@ class Notifications
                         $item = array_values($item);
                         $result[$keys[0]] = $item[0];
                     }
-                    $si_id = $result['system_id'].$result['item_id'];
+                    $si_id = $result['system_id'] . $result['item_id'];
                     $check_si_id = $si_id;
                     $check_si_id = (int) $check_si_id;
                     $si_id = [
@@ -1065,7 +1065,7 @@ class Notifications
                             $result[$keys[0]] = $item[0];
                         }
                     }
-                    $es_id = $result['event_type_id'].$result['system_id'];
+                    $es_id = $result['event_type_id'] . $result['system_id'];
                     $check_es_id = $es_id;
                     $check_es_id = (int) $check_es_id;
                     $es_id = [
@@ -1103,7 +1103,7 @@ class Notifications
                 $stype = 32458;
             }
 
-            $si_id = $tempnote->system_id.$stype;
+            $si_id = $tempnote->system_id . $stype;
             $si_id = (int) $si_id;
             $check = Notification::where('si_id', $si_id)->get();
             if ($check->count() == 1) {
@@ -1197,34 +1197,34 @@ class Notifications
         $checks = Station::where('out_time', '<=', $now)->where('station_status_id', 5)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Upcoming
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 6, 'status_update' => now(), 'out_time' => null, 'timestamp' => now()]);
-            $message = StationRecords::where('id', $check->id)->first();
-            $flag = null;
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new StationNotificationUpdate($flag));
+            // $message = StationRecords::where('id', $check->id)->first();
+            // $flag = null;
+            // $flag = collect([
+            //     'message' => $message,
+            // ]);
+            // broadcast(new StationNotificationUpdate($flag));
         }
 
         $checks = Station::where('out_time', '<=', $now)->where('station_status_id', 13)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Upcoming
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 6, 'status_update' => now(), 'out_time' => null, 'timestamp' => now()]);
-            $message = StationRecords::where('id', $check->id)->first();
-            $flag = null;
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new StationNotificationUpdate($flag));
+            // $message = StationRecords::where('id', $check->id)->first();
+            // $flag = null;
+            // $flag = collect([
+            //     'message' => $message,
+            // ]);
+            // broadcast(new StationNotificationUpdate($flag));
         }
 
         $checks = Station::where('out_time', '<=', $now)->where('station_status_id', 14)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Upcoming
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 15, 'status_update' => now(), 'out_time' => null, 'timestamp' => now()]);
-            $message = StationRecords::where('id', $check->id)->first();
-            $flag = null;
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new StationNotificationUpdate($flag));
+            // $message = StationRecords::where('id', $check->id)->first();
+            // $flag = null;
+            // $flag = collect([
+            //     'message' => $message,
+            // ]);
+            // broadcast(new StationNotificationUpdate($flag));
         }
 
         $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 6)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Out
@@ -1280,23 +1280,23 @@ class Notifications
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 5, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'status_update' => now(), 'gunner_id' => null, 'attack_notes' => null, 'attack_adash_link' => null]);
             $stationID = $check->id;
-            $message = StationRecords::where('id', $check->id)->first();
-            $flag = null;
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new StationNotificationNew($flag));
+            // $message = StationRecords::where('id', $check->id)->first();
+            // $flag = null;
+            // $flag = collect([
+            //     'message' => $message,
+            // ]);
+            // broadcast(new StationNotificationNew($flag));
         }
 
         $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 9)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Reffed - Armor
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 13, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'status_update' => now(), 'gunner_id' => null, 'attack_notes' => null, 'attack_adash_link' => null]);
-            $message = StationRecords::where('id', $check->id)->first();
-            $flag = null;
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new StationNotificationNew($flag));
+            // $message = StationRecords::where('id', $check->id)->first();
+            // $flag = null;
+            // $flag = collect([
+            //     'message' => $message,
+            // ]);
+            // broadcast(new StationNotificationNew($flag));
         }
     }
 

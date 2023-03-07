@@ -23,9 +23,8 @@ class WelpStationController extends Controller
      */
     public function index()
     {
-        $data = WelpStationRecords::where('show_on_welp', 1)->get();
 
-        return ['stations' => $data];
+        return ['stations' => []];
     }
 
     /**
@@ -42,18 +41,18 @@ class WelpStationController extends Controller
     public function welpSheetListRegion()
     {
         $data = [];
-        $pull = WelpStationRecords::where('show_on_welp', 1)->get();
-        $pull = $pull->unique('region_id');
-        $pull = $pull->sortBy('region_name');
-        foreach ($pull as $pull) {
-            $data1 = [];
-            $data1 = [
-                'text' => $pull['region_name'],
-                'value' => $pull['region_id'],
-            ];
+        // $pull = WelpStationRecords::where('show_on_welp', 1)->get();
+        // $pull = $pull->unique('region_id');
+        // $pull = $pull->sortBy('region_name');
+        // foreach ($pull as $pull) {
+        //     $data1 = [];
+        //     $data1 = [
+        //         'text' => $pull['region_name'],
+        //         'value' => $pull['region_id'],
+        //     ];
 
-            array_push($data, $data1);
-        }
+        //     array_push($data, $data1);
+        // }
 
         // dd($data);
 
@@ -64,19 +63,19 @@ class WelpStationController extends Controller
     {
         // dd(WelpStationRecords::where('show_on_welp', 1)->get());
         $data = [];
-        $pull = WelpStationRecords::where('show_on_welp', 1)->get();
-        $pull = $pull->unique('status_id');
-        $pull = $pull->sortBy('status_name');
-        foreach ($pull as $pull) {
-            $text = str_replace('Upcoming - ', '', $pull['status_name']);
-            $data1 = [];
-            $data1 = [
-                'text' => $text,
-                'value' => $pull['status_id'],
-            ];
+        // $pull = WelpStationRecords::where('show_on_welp', 1)->get();
+        // $pull = $pull->unique('status_id');
+        // $pull = $pull->sortBy('status_name');
+        // foreach ($pull as $pull) {
+        //     $text = str_replace('Upcoming - ', '', $pull['status_name']);
+        //     $data1 = [];
+        //     $data1 = [
+        //         'text' => $text,
+        //         'value' => $pull['status_id'],
+        //     ];
 
-            array_push($data, $data1);
-        }
+        //     array_push($data, $data1);
+        // }
 
         // dd($data);
 
@@ -86,19 +85,19 @@ class WelpStationController extends Controller
     public function welpSheetListStatus()
     {
         $data = [];
-        $pull = WelpStationRecords::where('show_on_welp', 1)->get();
-        $pull = $pull->unique('status_id');
-        $pull = $pull->sortBy('status_name');
-        foreach ($pull as $pull) {
-            $text = str_replace('Upcoming - ', '', $pull['status_name']);
-            $data1 = [];
-            $data1 = [
-                'text' => $text,
-                'value' => $pull['status_id'],
-            ];
+        // $pull = WelpStationRecords::where('show_on_welp', 1)->get();
+        // $pull = $pull->unique('status_id');
+        // $pull = $pull->sortBy('status_name');
+        // foreach ($pull as $pull) {
+        //     $text = str_replace('Upcoming - ', '', $pull['status_name']);
+        //     $data1 = [];
+        //     $data1 = [
+        //         'text' => $text,
+        //         'value' => $pull['status_id'],
+        //     ];
 
-            array_push($data, $data1);
-        }
+        //     array_push($data, $data1);
+        // }
 
         // dd($data);
 
@@ -119,28 +118,28 @@ class WelpStationController extends Controller
                 'timer_image_link' => null,
             ]);
         }
-        $message = WelpStationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new WelpSheetUpdate($flag));
+        // $message = WelpStationRecords::where('id', $id)->first();
+        // $flag = collect([
+        //     'message' => $message,
+        // ]);
+        // broadcast(new WelpSheetUpdate($flag));
     }
 
     public function welpSheetListType()
     {
         $data = [];
-        $pull = WelpStationRecords::where('show_on_welp', 1)->get();
-        $pull = $pull->unique('item_id');
-        $pull = $pull->sortBy('item_name');
-        foreach ($pull as $pull) {
-            $data1 = [];
-            $data1 = [
-                'text' => $pull['item_name'],
-                'value' => $pull['item_id'],
-            ];
+        // $pull = WelpStationRecords::where('show_on_welp', 1)->get();
+        // $pull = $pull->unique('item_id');
+        // $pull = $pull->sortBy('item_name');
+        // foreach ($pull as $pull) {
+        //     $data1 = [];
+        //     $data1 = [
+        //         'text' => $pull['item_name'],
+        //         'value' => $pull['item_id'],
+        //     ];
 
-            array_push($data, $data1);
-        }
+        //     array_push($data, $data1);
+        // }
 
         // dd($data);
 
@@ -164,21 +163,21 @@ class WelpStationController extends Controller
         $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
         $newStatus = str_replace('Upcoming - ', '', $newStatus);
 
-        $message = StationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new StationNotificationUpdate($flag));
-        broadcast(new StationUpdateCoord($flag));
-        broadcast(new WelpSheetUpdate($flag));
+        // $message = StationRecords::where('id', $id)->first();
+        // $flag = collect([
+        //     'message' => $message,
+        // ]);
+        // broadcast(new StationNotificationUpdate($flag));
+        // broadcast(new StationUpdateCoord($flag));
+        // broadcast(new WelpSheetUpdate($flag));
 
-        $message = WelpStationRecords::where('id', $id)->first();
-        if ($message) {
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new WelpSheetUpdate($flag));
-        }
+        // $message = WelpStationRecords::where('id', $id)->first();
+        // if ($message) {
+        //     $flag = collect([
+        //         'message' => $message,
+        //     ]);
+        //     broadcast(new WelpSheetUpdate($flag));
+        // }
     }
 
     /**
@@ -205,33 +204,33 @@ class WelpStationController extends Controller
         $oldStatusName = StationStatus::where('id', $oldStatusID)->value('name');
         $oldStatusName = str_replace('Upcoming - ', '', $oldStatusName);
 
-        $RCmessage = WelpStationRecords::where('id', $id)->first();
-        if ($RCmessage) {
-            $RCmessageSend = [
-                'id' => $RCmessage->id,
-                'show_on_rc' => 0,
-            ];
-            $flag = collect([
-                'message' => $RCmessageSend,
-            ]);
-            broadcast(new RcSheetUpdate($flag));
-            $RCmessageSend = [
-                'id' => $RCmessage->id,
-                'show_on_welp' => 0,
-            ];
-            $flag = collect([
-                'message' => $RCmessageSend,
-            ]);
-            broadcast(new WelpSheetUpdate($flag));
-            $RCmessageSend = [
-                'id' => $RCmessage->id,
-                'show_on_chill' => 0,
-            ];
-            $flag = collect([
-                'message' => $RCmessageSend,
-            ]);
-            broadcast(new ChillSheetUpdate($flag));
-        }
+        // $RCmessage = WelpStationRecords::where('id', $id)->first();
+        // if ($RCmessage) {
+        //     $RCmessageSend = [
+        //         'id' => $RCmessage->id,
+        //         'show_on_rc' => 0,
+        //     ];
+        //     $flag = collect([
+        //         'message' => $RCmessageSend,
+        //     ]);
+        //     broadcast(new RcSheetUpdate($flag));
+        //     $RCmessageSend = [
+        //         'id' => $RCmessage->id,
+        //         'show_on_welp' => 0,
+        //     ];
+        //     $flag = collect([
+        //         'message' => $RCmessageSend,
+        //     ]);
+        //     broadcast(new WelpSheetUpdate($flag));
+        //     $RCmessageSend = [
+        //         'id' => $RCmessage->id,
+        //         'show_on_chill' => 0,
+        //     ];
+        //     $flag = collect([
+        //         'message' => $RCmessageSend,
+        //     ]);
+        //     broadcast(new ChillSheetUpdate($flag));
+        // }
 
         $newStatusID = $request->station_status_id;
         $newStatusName = StationStatus::where('id', $newStatusID)->value('name');
@@ -248,12 +247,12 @@ class WelpStationController extends Controller
                 'rc_recon_id' => null,
             ]);
         }
-        $message = StationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new StationNotificationUpdate($flag));
-        broadcast(new StationUpdateCoord($flag));
+        // $message = StationRecords::where('id', $id)->first();
+        // $flag = collect([
+        //     'message' => $message,
+        // ]);
+        // broadcast(new StationNotificationUpdate($flag));
+        // broadcast(new StationUpdateCoord($flag));
     }
 
     /**

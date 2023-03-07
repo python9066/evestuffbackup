@@ -210,6 +210,7 @@
               <q-btn
                 v-if="webwayButton"
                 size="sm"
+                color="webChip"
                 :label="store.webwaySelectedStartSystem.text"
               >
                 <q-menu>
@@ -611,8 +612,6 @@ let updateWebwaySelectedStartSystem = (item) => {
     text: item.text,
   };
 
-  menu = false;
-
   store.updateWebwaySelectedStartSystem(data);
 };
 
@@ -634,7 +633,7 @@ let webwayLink = (item) => {
 };
 
 let webwayButton = $computed(() => {
-  if (store.webwaySelectedStartSystem.length > 0) {
+  if (store.webwayStartSystems.length > 0) {
     return true;
   }
   return false;

@@ -95,18 +95,18 @@ class RcSheetController extends Controller
     public function rcSheetListType()
     {
         $data = [];
-        $pull = RcStationRecords::where('show_on_rc', 1)->get();
-        $pull = $pull->unique('item_id');
-        $pull = $pull->sortBy('item_name');
-        foreach ($pull as $pull) {
-            $data1 = [];
-            $data1 = [
-                'text' => $pull['item_name'],
-                'value' => $pull['item_id'],
-            ];
+        // $pull = RcStationRecords::where('show_on_rc', 1)->get();
+        // $pull = $pull->unique('item_id');
+        // $pull = $pull->sortBy('item_name');
+        // foreach ($pull as $pull) {
+        //     $data1 = [];
+        //     $data1 = [
+        //         'text' => $pull['item_name'],
+        //         'value' => $pull['item_id'],
+        //     ];
 
-            array_push($data, $data1);
-        }
+        //     array_push($data, $data1);
+        // }
 
         // dd($data);
 
@@ -116,19 +116,19 @@ class RcSheetController extends Controller
     public function rcSheetListStatus()
     {
         $data = [];
-        $pull = RcStationRecords::where('show_on_rc', 1)->get();
-        $pull = $pull->unique('status_id');
-        $pull = $pull->sortBy('status_name');
-        foreach ($pull as $pull) {
-            $text = str_replace('Upcoming - ', '', $pull['status_name']);
-            $data1 = [];
-            $data1 = [
-                'text' => $text,
-                'value' => $pull['status_id'],
-            ];
+        // $pull = RcStationRecords::where('show_on_rc', 1)->get();
+        // $pull = $pull->unique('status_id');
+        // $pull = $pull->sortBy('status_name');
+        // foreach ($pull as $pull) {
+        //     $text = str_replace('Upcoming - ', '', $pull['status_name']);
+        //     $data1 = [];
+        //     $data1 = [
+        //         'text' => $text,
+        //         'value' => $pull['status_id'],
+        //     ];
 
-            array_push($data, $data1);
-        }
+        //     array_push($data, $data1);
+        // }
 
         // dd($data);
 
@@ -140,18 +140,18 @@ class RcSheetController extends Controller
     public function rcSheetListRegion()
     {
         $data = [];
-        $pull = RcStationRecords::where('show_on_rc', 1)->get();
-        $pull = $pull->unique('region_id');
-        $pull = $pull->sortBy('region_name');
-        foreach ($pull as $pull) {
-            $data1 = [];
-            $data1 = [
-                'text' => $pull['region_name'],
-                'value' => $pull['region_id'],
-            ];
+        // $pull = RcStationRecords::where('show_on_rc', 1)->get();
+        // $pull = $pull->unique('region_id');
+        // $pull = $pull->sortBy('region_name');
+        // foreach ($pull as $pull) {
+        //     $data1 = [];
+        //     $data1 = [
+        //         'text' => $pull['region_name'],
+        //         'value' => $pull['region_id'],
+        //     ];
 
-            array_push($data, $data1);
-        }
+        //     array_push($data, $data1);
+        // }
 
         // dd($data);
 
@@ -172,11 +172,11 @@ class RcSheetController extends Controller
                 'timer_image_link' => null,
             ]);
         }
-        $message = RcStationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new RcSheetUpdate($flag));
+        // $message = RcStationRecords::where('id', $id)->first();
+        // $flag = collect([
+        //     'message' => $message,
+        // ]);
+        // broadcast(new RcSheetUpdate($flag));
     }
 
     /**

@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Events\TowerChanged;
 use App\Events\TowerNew;
-use App\Models\Constellation;
 use App\Models\Item;
 use App\Models\Moon;
-use App\Models\Region;
 use App\Models\System;
 use App\Models\Tower;
 use Illuminate\Http\Request;

@@ -70,7 +70,6 @@ use App\Http\Controllers\UserRolesRecordsController;
 use App\Http\Controllers\WebWayController;
 use App\Http\Controllers\WebWayStartSystemsContorller;
 use App\Http\Controllers\WelpStationController;
-use App\Models\Tower;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 

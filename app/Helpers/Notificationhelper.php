@@ -1335,25 +1335,25 @@ if (!function_exists('towerUpdate')) {
         $towers = Tower::where('tower_status_id', 3)->where('out_time', '>', now())->get();
         foreach ($towers as $tower) {
             $tower->update(['tower_status_id' => 4, 'out_time' => null]);
-            $message = TowerRecord::where('id', $tower->id)->first();
-            if ($message->status_id != 10) {
-                $flag = collect([
-                    'message' => $message,
-                ]);
-                broadcast(new TowerChanged($flag));
-            }
+            // $message = TowerRecord::where('id', $tower->id)->first();
+            // if ($message->status_id != 10) {
+            //     $flag = collect([
+            //         'message' => $message,
+            //     ]);
+            //     broadcast(new TowerChanged($flag));
+            // }
         }
         $towers = Tower::where('tower_status_id', 5)->where('out_time', '<', now())->get();
         foreach ($towers as $tower) {
             if ($tower->out_time != null) {
                 $tower->update(['tower_status_id' => 8]);
-                $message = TowerRecord::where('id', $tower->id)->first();
-                if ($message->status_id != 10) {
-                    $flag = collect([
-                        'message' => $message,
-                    ]);
-                    broadcast(new TowerChanged($flag));
-                }
+                // $message = TowerRecord::where('id', $tower->id)->first();
+                // if ($message->status_id != 10) {
+                //     $flag = collect([
+                //         'message' => $message,
+                //     ]);
+                //     broadcast(new TowerChanged($flag));
+                // }
             }
         }
     }

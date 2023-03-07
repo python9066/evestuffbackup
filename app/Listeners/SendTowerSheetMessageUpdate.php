@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\TowerSheetMessageUpdate;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SendTowerSheetMessageUpdate
 {
