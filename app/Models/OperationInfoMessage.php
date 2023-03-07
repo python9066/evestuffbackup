@@ -12,6 +12,19 @@ class OperationInfoMessage extends Model
 
     protected $guarded = [];
 
+    protected $fillable = [
+        'read_by',
+    ];
+
+    protected $casts = [
+        'read_by' => 'array',
+    ];
+
+    protected $attributes = [
+
+        'read_by' => '{"user_id": []}',
+    ];
+
     /**
      * Get the user that owns the OperationInfoMessage
      *
@@ -20,5 +33,16 @@ class OperationInfoMessage extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the opeartion that owns the OperationInfoMessage
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+
+    public function operation(): BelongsTo
+    {
+        return $this->belongsTo(OperationInfo::class);
     }
 }

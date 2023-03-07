@@ -1,242 +1,225 @@
 <template>
-  <v-dialog
-    max-width="1200px"
-    v-model="addShown"
-    z-index="0"
-    content-class="rounded-xl"
-    persistent
-  >
-    <template v-slot:activator="{ on, attrs }">
-      <v-badge
-        color="warning"
-        overlap
-        :content="messageCount"
-        :value="showMessageCount"
+  <div>
+    <q-btn
+      text-color="positive"
+      :icon="messageIcon"
+      padding="none"
+      round
+      flat
+      @click="showOperationInfoMessages = true"
+      ><q-badge
+        v-if="messageUnreadCount && !showOperationInfoMessages"
+        color="red"
+        floating
+        >{{ messageUnreadCount }}</q-badge
+      ></q-btn
+    >
+    <q-dialog
+      v-model="showOperationInfoMessages"
+      @before-show="open()"
+      @before-hide="close()"
+    >
+      <q-card
+        class="my-card myRoundTop"
+        style="width: 1000px; max-height: 900px; height: 900px"
       >
-        <v-btn
-          fab
-          x-small
-          v-bind="attrs"
-          v-on="on"
-          @click="open()"
-          class="elevation-10"
-          color="green"
-          ><font-awesome-icon icon="fa-regular fa-comments" size="xl"
-        /></v-btn>
-      </v-badge>
-    </template>
-    <v-row no-gutters>
-      <v-col cols="12"
-        ><v-card rounded="xl"
-          ><v-card-title class="primary"
-            ><v-row no-gutters justify="space-between"
-              ><v-col cols="auto">Messages</v-col
-              ><v-col cols="auto">
-                <v-btn
-                  fab
-                  x-small
-                  @click="close()"
-                  class="elevation-10"
-                  color="red"
-                  ><font-awesome-icon
-                    icon="fa-solid fa-xmark"
-                    size="xl" /></v-btn></v-col></v-row></v-card-title
-          ><v-card-text>
-            <v-list
-              key="dance"
-              class="scroll"
-              :height="heightList"
-              :max-height="heightList"
+        <q-card-section class="bg-primary myCardHeader text-center">
+          <div class="text-h6">
+            Notes for Operation {{ store.operationInfoPage.name }}
+          </div>
+        </q-card-section>
+        <q-card-section id="messages" class="overflow-auto" style="height: 600px">
+          <transition-group enter-active-class="animate__animated animate__zoomIn">
+            <q-chat-message
+              v-for="(message, index) in messages"
+              :key="`${message.id}-message`"
+              :text="[message.message]"
+              :name="name(message.user.name, message.user_id)"
+              :avatar="url(message)"
+              :sent="sent(message.user_id)"
+              :bg-color="messageColor(message.user_id)"
             >
-              <transition-group
-                mode="out-in"
-                :enter-active-class="showEnter"
-                :leave-active-class="showLeave"
-              >
-                <v-list-item v-for="item in opInfo.messages" :key="item.id">
-                  <v-list-item-avatar>
-                    <v-img :src="url(item.user.eve_user_id)"></v-img>
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <span class="h5"> {{ item.message }}</span>
-
-                    <v-list-item-action-text
-                      >{{ textSub(item) }}
-                      <v-btn
-                        icon
-                        color=" warning"
-                        @click="deleteMessage(item.id)"
-                        ><font-awesome-icon
-                          icon="fa-solid fa-trash-can"
-                        /> </v-btn
-                    ></v-list-item-action-text>
-                  </v-list-item-content>
-                </v-list-item>
-              </transition-group>
-            </v-list>
-            <v-text-field
-              class="pt-5"
-              rounded
+              <template :key="`${message.id}-stamp`" v-slot:stamp
+                >Sent:
+                <VueCountUp
+                  :key="`${message.id}-time`"
+                  :interval="60000"
+                  :time="age(message.created_at)"
+                  v-slot="{ days, hours, minutes, seconds }"
+                >
+                  <span v-if="days != '00'">{{ days }}days, </span
+                  ><span v-if="hours != '00'">{{ hours }}hours,</span
+                  ><span> {{ minutes }}minutes</span>
+                  ago
+                </VueCountUp>
+                <q-btn
+                  v-if="olderThan(message.created_at) && sent(message.user_id)"
+                  color="negative"
+                  padding="none"
+                  icon="fa-solid fa-trash-can"
+                  flat
+                  size="xs"
+                  rounded
+                  @click="remove(message.id)"
+                />
+              </template>
+            </q-chat-message>
+          </transition-group>
+        </q-card-section>
+        <q-card-section>
+          <div>
+            <q-input
+              input-style="height: 150px"
+              v-model="mainText"
               clearable
-              autofocus
               outlined
-              v-model="messageText"
-              placeholder="ENTER NOTES HERE"
-              @keyup.enter="submitMessage()"
-              @keyup.esc="messageText = null"
-            ></v-text-field>
-            <!-- <v-btn
-            v-if="messageText"
+              rounded
+              dense
+              type="textarea"
+              label="Message"
+            />
+          </div>
+        </q-card-section>
+        <q-card-actions align="between">
+          <q-btn
             rounded
-            class="primary"
-            @click="submitMessage()"
-            >Submit</v-btn> -->
-          </v-card-text></v-card
-        >
-      </v-col>
-    </v-row>
-  </v-dialog>
+            label="Submit"
+            color="primary"
+            :disable="showSubmit"
+            @click="sendMessage()"
+          />
+          <q-btn rounded label="Close" color="negative" @click="close()" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import { EventBus } from "../../app";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-import moment from "moment";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {},
-  props: {
-    loaded: Boolean,
-    windowSize: Object,
-  },
-  data() {
-    return {
-      messageText: null,
-      addShown: false,
-    };
-  },
 
-  async created() {},
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import { useMainStore } from "@/store/useMain.js";
+import axios from "axios";
+let can = inject("can");
+let store = useMainStore();
 
-  beforeMonunt() {},
+const VueCountUp = defineAsyncComponent(() => import("../countup/index"));
+onMounted(async () => {});
+let mainText = $ref();
+let showOperationInfoMessages = $ref(false);
 
-  async beforeCreate() {},
-
-  async mounted() {},
-  methods: {
-    url(id) {
-      return (
-        "https://images.evetech.net/characters/" +
-        id +
-        "/portrait?tenant=tranquility&size=64"
-      );
+const remove = async (id) => {
+  await axios({
+    method: "delete",
+    url: "/api/operationinfopagemessage/" + id,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  });
+};
 
-    textSub(item) {
-      var name = item.user.name;
-      var time = moment(item.created_at).format("YYYY-MM-DD HH:mm:ss");
-      return name + " " + time;
+const sendMessage = async () => {
+  const data = {
+    message: mainText,
+  };
+
+  await axios({
+    method: "put", //you can set what request you want to be
+    url: "/api/operationinfopagemessage/" + store.operationInfoPage.id,
+    withCredentials: true,
+    data: data,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  });
+  mainText = null;
+};
 
-    textMessage(item) {
-      return item;
-    },
+let open = async () => {
+  store.operationInfoChatWindow = store.operationInfoPage.id;
+};
 
-    open() {
-      this.$store.dispatch("clearOperationInfoMessageCount");
-      this.addShown = true;
-    },
+let close = async () => {
+  mainText = null;
+  store.operationInfoChatWindow = null;
+};
 
-    close() {
-      this.$store.dispatch("clearOperationInfoMessageCount");
-      this.messageText = null;
-      this.addShown = false;
-    },
+let age = (val) => {
+  let date = new Date(val);
+  let timestamp = date.getTime();
+  return timestamp;
+};
 
-    async submitMessage() {
-      var request = { message: this.messageText };
-      await axios({
-        method: "put", //you can set what request you want to be
-        url: "/api/operationinfopagemessage/" + this.opInfo.id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }).then((this.messageText = null));
-    },
+let olderThan = (val) => {
+  const timestampDate = new Date(val);
+  const timeDiff = new Date() - timestampDate;
+  const isLessThan30MinsOld = timeDiff < 1800000;
+  return isLessThan30MinsOld;
+};
 
-    async deleteMessage(id) {
-      await axios({
-        method: "delete", //you can set what request you want to be
-        url: "/api/operationinfopagemessage/" + id,
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }).then((this.messageText = null));
-    },
-  },
+let messageCount = $computed(() => {
+  return store.operationInfoPage.messages.length;
+});
 
-  computed: {
-    ...mapGetters([]),
+let messageUnreadCount = $computed(() => {
+  return store.getOperationInfoUnreadMessageCount;
+});
 
-    ...mapState["operationInfoPage"],
+let messageIcon = $computed(() => {
+  if (messageCount) {
+    return "fa-solid fa-message";
+  } else {
+    return "fa-regular fa-message";
+  }
+});
 
-    showEnter() {
-      if (this.loaded == true) {
-        return "animate__animated animate__flash animate__faster";
-      }
-    },
+let sent = (id) => {
+  if (store.user_id == id) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
-    showLeave() {
-      if (this.loaded == true) {
-        return "animate__animated animate__flash animate__faster";
-      }
-    },
+let name = (textname, id) => {
+  if (store.user_id == id) {
+    return "me";
+  } else {
+    return textname;
+  }
+};
 
-    opInfo: {
-      get() {
-        return this.$store.state.operationInfoPage;
-      },
-      set(newValue) {
-        return this.$store.dispatch("updateOperationSheetInfoPage", newValue);
-      },
-    },
+let messageColor = (id) => {
+  if (store.user_id == id) {
+    return "amber-7";
+  } else {
+    return "positive";
+  }
+};
 
-    messageCount() {
-      return this.$store.state.operationInfoMessageCount;
-    },
+let showSubmit = $computed(() => {
+  if (mainText) {
+    return false;
+  }
+  return true;
+});
 
-    showMessageCount() {
-      if (this.messageCount > 0) {
-        return true;
-      } else {
-        return false;
-      }
-    },
+let messages = $computed(() => {
+  return store.operationInfoPage.messages;
+});
 
-    heightCard() {
-      let num = this.windowSize.y - 232;
-      return num;
-    },
-
-    heightList() {
-      let num = this.windowSize.y - 382;
-      return num;
-    },
-  },
-  beforeDestroy() {},
+let url = (item) => {
+  return "https://image.eveonline.com/Character/" + item.user.eve_user_id + "_128.jpg";
 };
 </script>
 
-<style>
-.scroll {
+<style lang="scss">
+#messages {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100px;
   overflow-y: scroll;
 }
 </style>

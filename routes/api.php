@@ -543,6 +543,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/operationinfopage/{id}', 'update');
         Route::put('/operationinfopagemessage/{id}', 'messageAdd');
         Route::delete('/operationinfopagemessage/{id}', 'messageDelete');
+        Route::put('/operationinfopagemessage/{id}/notes', 'addReadBy');
     });
 
     Route::controller(OperationInfoUserController::class)->group(function () {
