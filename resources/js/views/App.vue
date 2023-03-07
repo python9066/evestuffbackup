@@ -68,7 +68,7 @@
             <q-route-tab
               v-if="can('view_opertaion_info')"
               to="/operationinfo"
-              label="Operations"
+              :label="operationText()"
             />
             <q-route-tab v-if="can('view_towers')" to="/towers" label="Towers" />
             <q-route-tab v-if="can('edit_users')" to="/pannel" label="Users" />
@@ -156,7 +156,6 @@ import { useQuasar } from "quasar";
 import { useMainStore } from "@/store/useMain.js";
 import { useRoute } from "vue-router";
 
-
 let store = useMainStore();
 let can = inject("can");
 let route = useRoute();
@@ -213,5 +212,13 @@ let closeFeedBack = () => {
 
 let onResize = (size) => {
   store.size = size;
+};
+
+let operationText = () => {
+  if (can("recon_role")) {
+    return "Cyno Sheet";
+  } else {
+    return "Operations";
+  }
 };
 </script>

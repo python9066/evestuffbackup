@@ -1,7 +1,9 @@
 <template>
   <div class="row justify-between" :key="`${recon.id}-card`">
     <div class="col-9 ellipsis" :class="textClass">
-      {{ recon.name }} - {{ recon.main.name }}
+      <span class="cursor-pointer" @click="copyName(recon.name)">
+        {{ recon.name }} - {{ recon.main.name }}</span
+      >
       <q-tooltip v-if="recon.operation_info_recon_status_id == 2" :offset="[0, 10]"
         >{{ recon.name }} - {{ recon.main.name }} <br />
         Fleet - {{ recon.fleet.name }} <br />
@@ -55,9 +57,20 @@
 </template>
 
 <script setup>
+import { useQuasar, copyToClipboard } from "quasar";
+const $q = useQuasar();
 const props = defineProps({
   recon: Object,
 });
+
+let copyName = (name) => {
+  copyToClipboard(name).then(() => {
+    $q.notify({
+      type: "info",
+      message: name + " copied to your clipboard",
+    });
+  });
+};
 
 let textClass = $computed(() => {
   var a = textColor;

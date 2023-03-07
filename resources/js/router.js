@@ -36,7 +36,7 @@ const routes = [
     {
         path: "/",
         name: "default",
-        component: () => import("./views/test.vue"),
+        component: () => import("./views/SoloOperations.vue"),
     },
 
     {
