@@ -1,5 +1,0 @@
-<<<<<<<< HEAD:public/build/assets/copy-to-clipboard.65f40d3d.js
-import{aC as n,aD as r}from"./app.c5dec28f.js";function c(o){const e=document.createElement("textarea");e.value=o,e.contentEditable="true",e.style.position="fixed";const t=()=>{};n(t),document.body.appendChild(e),e.focus(),e.select();const a=document.execCommand("copy");return e.remove(),r(t),a}function s(o){return navigator.clipboard!==void 0?navigator.clipboard.writeText(o):new Promise((e,t)=>{const a=c(o);a?e(!0):t(a)})}export{s as c};
-========
-import{aC as n,aD as r}from"./app.ff365efa.js";function c(o){const e=document.createElement("textarea");e.value=o,e.contentEditable="true",e.style.position="fixed";const t=()=>{};n(t),document.body.appendChild(e),e.focus(),e.select();const a=document.execCommand("copy");return e.remove(),r(t),a}function s(o){return navigator.clipboard!==void 0?navigator.clipboard.writeText(o):new Promise((e,t)=>{const a=c(o);a?e(!0):t(a)})}export{s as c};
->>>>>>>> b6590f5b045c7774ca8f5a82ac74ebc5efebc889:public/build/assets/copy-to-clipboard.0c7babe7.js

@@ -1,5 +1,0 @@
-<<<<<<<< HEAD:public/build/assets/SoloCampaginWebWay.f268cbd3.js
-import{c as o,h as n,e as p,f as l,w as u,z as c,A as i,m}from"./app.c5dec28f.js";const f={__name:"SoloCampaginWebWay",props:{jumps:Number,web:String},setup(r){const e=r;let s=o(()=>{var a="https://webway.apps.gnf.lt/routing?share=",t=a+e.web;return t});return(a,t)=>(n(),p("div",null,[l(m,{round:"",size:"sm",href:s.value,target:"_blank",color:"positive",dark:""},{default:u(()=>[c(i(e.jumps),1)]),_:1},8,["href"])]))}};export{f as default};
-========
-import{c as o,h as n,e as p,f as l,w as u,z as c,A as i,m}from"./app.ff365efa.js";const f={__name:"SoloCampaginWebWay",props:{jumps:Number,web:String},setup(r){const e=r;let s=o(()=>{var a="https://webway.apps.gnf.lt/routing?share=",t=a+e.web;return t});return(a,t)=>(n(),p("div",null,[l(m,{round:"",size:"sm",href:s.value,target:"_blank",color:"positive",dark:""},{default:u(()=>[c(i(e.jumps),1)]),_:1},8,["href"])]))}};export{f as default};
->>>>>>>> b6590f5b045c7774ca8f5a82ac74ebc5efebc889:public/build/assets/SoloCampaginWebWay.03d77d24.js

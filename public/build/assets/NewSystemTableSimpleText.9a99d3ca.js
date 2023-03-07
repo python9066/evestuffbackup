@@ -1,5 +1,0 @@
-<<<<<<<< HEAD:public/build/assets/NewSystemTableSimpleText.9a99d3ca.js
-import{c as t,h as p,e as c,A as i}from"./app.c5dec28f.js";const m={__name:"NewSystemTableSimpleText",props:{node:Object,type:Number},setup(s){const r=s;let u=t(()=>r.node.prime_node_user.length),e=t(()=>u.value>0?r.node.prime_node_user[0]:null),a=t(()=>{if(e.value)switch(r.type){case 1:return e.value.op_user.user.name;case 2:var l=" T-"+e.value.op_user.entosis,n=e.value.op_user.ship,o=n+l;return o}else return null});return(l,n)=>(p(),c("div",null,i(a.value),1))}};export{m as default};
-========
-import{c as t,h as p,e as c,A as i}from"./app.ff365efa.js";const m={__name:"NewSystemTableSimpleText",props:{node:Object,type:Number},setup(s){const r=s;let u=t(()=>r.node.prime_node_user.length),e=t(()=>u.value>0?r.node.prime_node_user[0]:null),a=t(()=>{if(e.value)switch(r.type){case 1:return e.value.op_user.user.name;case 2:var l=" T-"+e.value.op_user.entosis,n=e.value.op_user.ship,o=n+l;return o}else return null});return(l,n)=>(p(),c("div",null,i(a.value),1))}};export{m as default};
->>>>>>>> b6590f5b045c7774ca8f5a82ac74ebc5efebc889:public/build/assets/NewSystemTableSimpleText.df86a6f9.js
