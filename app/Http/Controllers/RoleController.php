@@ -23,7 +23,16 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return ['roles' => Role::where('name', '!=', 'Super Admin')->where('name', '!=', 'Wizard')->select('id', 'name')->orderBy('name', 'asc')->get()];
+
+        $roles = Role::orderBy('name', 'asc')->get();
+        $roleList = $roles->map(function ($items) {
+            $data['value'] = $items->id;
+            $data['text'] = $items->name;
+            $data['selected'] = false;
+
+            return $data;
+        });
+        return ['roles' => $roleList];
     }
 
     public function removeRole(Request $request)

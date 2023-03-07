@@ -1,102 +1,59 @@
 <template>
-  <v-row no-gutters class="px-2 pb-2">
-    <v-col cols="12">
-      <v-row no-gutters>
-        <v-col cols="12">
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12">
           <NewSystemTable
             :item="item"
             :operationID="operationID"
             :activeCampaigns="activeCampaigns"
           />
-        </v-col>
-      </v-row>
-      <v-row no-gutters class="pt-5">
-        <v-col cols="8"><SystemCheckButton :item="item" /></v-col>
-        <v-col cols="4"><TidiButton :item="item" /></v-col>
-      </v-row>
-    </v-col>
-  </v-row>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8"><SystemCheckButton :item="item" /></div>
+        <div class="col-4"><TidiButton :item="item" /></div>
+      </div>
+    </div>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import { EventBus } from "../../app";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-import moment from "moment";
-export default {
-  // TODO ADD ALL THE THINGS FOR MULTI CAMPAIGNS
-  title() {},
-  props: {
-    item: Object,
-    operationID: Number,
-  },
-  data() {
-    return {
-      showSystemTable: 0,
-    };
-  },
 
-  async created() {
-    EventBus.$on("showSystemTable", (data) => {
-      if (data == 0) {
-        this.showSystemTable = null;
-      } else {
-        this.showSystemTable = 0;
-      }
-    });
-  },
+<script setup>
+import { defineAsyncComponent } from "vue";
+const props = defineProps({
+  item: Object,
+  operationID: Number,
+});
 
-  beforeMonunt() {},
+const SystemCheckButton = defineAsyncComponent(() => import("./SystemCheckButton.vue"));
+const TidiButton = defineAsyncComponent(() => import("./TidiButton.vue"));
+const NewSystemTable = defineAsyncComponent(() => import("./NewSystemTable.vue"));
 
-  async beforeCreate() {},
+let campaigns = $computed(() => {
+  var camp = props.item.new_campaigns;
+  camp = camp.filter((c) => {
+    let operations = c.operations.filter((o) => o.id == props.operationID);
+    if (operations.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  });
 
-  async mounted() {},
-  methods: {
-    // TODO Workout for multi campagins
-  },
+  return camp;
+});
 
-  computed: {
-    ...mapGetters([]),
+let activeCampaigns = $computed(() => {
+  var active = campaigns.filter((c) => {
+    if (c.status_id == 2) {
+      return true;
+    } else {
+      return false;
+    }
+  });
 
-    ...mapState([]),
-
-    campaigns() {
-      var camp = this.item.new_campaigns;
-      camp = camp.filter((c) => {
-        let operations = c.operations.filter((o) => o.id == this.operationID);
-        if (operations.length > 0) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-
-      return camp;
-    },
-
-    activeCampaigns() {
-      var active = this.campaigns.filter((c) => {
-        if (c.status_id == 2) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-
-      return active;
-    },
-
-    filterRound() {
-      if (this.showSystemTable) {
-        return "rounded-t-xl";
-      } else {
-        return "rounded-xl";
-      }
-    },
-  },
-  beforeDestroy() {},
-};
+  return active;
+});
 </script>
+
+<style lang="scss"></style>

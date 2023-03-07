@@ -9,33 +9,19 @@
               ><AddOperationFleetReconButton :fleetID="fleetID"
             /></v-col> </v-row></v-card-title
         ><v-card-text>
-          <v-row
-            no-gutters
-            v-for="recon in fleetInfo.recons"
-            :key="`${recon.id}-card`"
-          >
+          <v-row no-gutters v-for="recon in fleetInfo.recons" :key="`${recon.id}-card`">
             <v-col cols="auto">
               {{ recon.name }} - {{ recon.main.name }} -
               {{ recon.fleet_role.name }}
-              <span v-if="recon.system">
-                - {{ recon.system.system_name }}
-              </span>
+              <span v-if="recon.system"> - {{ recon.system.system_name }} </span>
             </v-col>
             <v-col cols="auto">
               <v-row no-gutters justify="end">
                 <v-col cols="auto">
-                  <AddOperationFleetReconEditButton
-                    :fleetID="fleetID"
-                    :item="recon"
-                  />
+                  <AddOperationFleetReconEditButton :fleetID="fleetID" :item="recon" />
                 </v-col>
                 <v-col cols="auto">
-                  <v-btn
-                    icon
-                    x-small
-                    color="red"
-                    @click="removeReconFromFleet(recon)"
-                  >
+                  <v-btn icon x-small color="red" @click="removeReconFromFleet(recon)">
                     <font-awesome-icon icon="fa-solid fa-trash-can" />
                   </v-btn>
                 </v-col>
@@ -84,8 +70,6 @@ export default {
     },
 
     async removeReconFromFleet(item) {
-      console.log(item);
-
       var request = item;
       await axios({
         method: "post", //you can set what request you want to be
@@ -126,10 +110,7 @@ export default {
         return this.$store.getters.getFleetInfo(this.fleetID);
       },
       set(newValue) {
-        return this.$store.dispatch(
-          "updateOperationSheetInfoPageFleet",
-          newValue
-        );
+        return this.$store.dispatch("updateOperationSheetInfoPageFleet", newValue);
       },
     },
 

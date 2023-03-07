@@ -18,6 +18,18 @@ if (!function_exists('displayName')) {
         return 'Laravel fefefFramework';
     }
 }
+if (!function_exists('checkPermissions')) {
+    function checkPermissions()
+    {
+        $array =
+            [
+                'roles' => FacadesAuth::user()->roles->pluck('name'),
+                'permissions' => FacadesAuth::user()->allPermissions,
+            ];
+
+        return json_encode($array);
+    }
+}
 if (!function_exists('authcheck')) {
     function authcheck()
     {
@@ -174,20 +186,6 @@ if (!function_exists('checkeve')) {
             return 0;
         }
 
-        // $headers = [
-        //     'Accept' => "application/json",
-        // ];
-
-        // $response = $http->request('GET', 'https://esi.evetech.net/latest/status/?datasource=tranquility', [
-        //     'headers' => $headers,
-        // ]);
-        // $status = Utils::jsonDecode($response->getBody());
-        // $status = $status->players;
-
-        // if ($status < 10) {
-        //     return 0;
-        // }
-
         return 1;
     }
 }
@@ -288,6 +286,12 @@ if (!function_exists('StationRecords')) {
                 $station_query->where('show_on_coord', 1)->whereIn('system_id', $systemIDs);
             }
             $station_query->where('standing', '=<', 0);
+
+            if ($user->can('view_station_logs')) {
+                $station_query->with([
+                    'logs.causer:id,name'
+                ]);
+            }
         }
 
         $station_query->with([
@@ -303,6 +307,7 @@ if (!function_exists('StationRecords')) {
             'item',
             'fit:id,item_name',
             'addedBy:id,name',
+            'notes.user',
 
         ]);
 
@@ -360,6 +365,11 @@ if (!function_exists('StationRecordsSolo')) {
             } else {
                 $station_query->where('show_on_coord', 1)->whereIn('system_id', $systemIDs);
             }
+            if ($user->can('view_station_logs')) {
+                $station_query->with([
+                    'logs.causer:id,name'
+                ]);
+            }
         }
 
         $station_query->where('standing', '=<', 0);
@@ -376,7 +386,7 @@ if (!function_exists('StationRecordsSolo')) {
             'corp.alliance:id,name,ticker,standing,url,color',
             'item',
             'fit:id,item_name',
-
+            'notes.user',
             'addedBy:id,name',
         ]);
 
@@ -410,5 +420,137 @@ if (!function_exists('nameToID')) {
         } else {
             return null;
         }
+    }
+}
+
+if (!function_exists('stationRecordSolo')) {
+    function stationRecordSolo($id)
+    {
+        $station = Station::whereId($id)->select([
+            'id',
+            'name',
+            'system_id',
+            'item_id',
+            'corp_id',
+            'alliance_id',
+            'user_id',
+            'text',
+            'station_status_id',
+            'out_time',
+            'import_flag',
+            'added_from_recon',
+            'r_hash',
+            'status_update',
+            'timestamp',
+            'show_on_rc_move',
+            'show_on_rc',
+            'added_by_user_id',
+            'timer_image_link',
+            'created_at',
+            'updated_at',
+            'standing'
+        ])->with([
+            'system',
+            'corp',
+            'alliance',
+            'system', 'system.constellation',
+            'system.region',
+            'item',
+            'status',
+            'fc',
+            'item',
+            'recon',
+            'gsoluser',
+        ])->first();
+
+        return $station;
+    }
+}
+
+if (!function_exists('stationRecordAll')) {
+    function stationRecordAll()
+    {
+        $station = Station::select([
+            'id',
+            'name',
+            'system_id',
+            'item_id',
+            'corp_id',
+            'alliance_id',
+            'user_id',
+            'text',
+            'station_status_id',
+            'out_time',
+            'import_flag',
+            'added_from_recon',
+            'r_hash',
+            'status_update',
+            'timestamp',
+            'show_on_rc_move',
+            'show_on_rc',
+            'added_by_user_id',
+            'timer_image_link',
+            'created_at',
+            'updated_at',
+            'standing'
+        ])->with([
+            'system',
+            'corp',
+            'alliance',
+            'system', 'system.constellation',
+            'system.region',
+            'item',
+            'status',
+            'fc',
+            'item',
+            'recon',
+            'gsoluser',
+        ])->get();
+
+        return $station;
+    }
+}
+
+if (!function_exists('stationRecordByUserId')) {
+    function stationRecordByUserId($id)
+    {
+        $station = Station::where('added_by_user_id', $id)->select([
+            'id',
+            'name',
+            'system_id',
+            'item_id',
+            'corp_id',
+            'alliance_id',
+            'user_id',
+            'text',
+            'station_status_id',
+            'out_time',
+            'import_flag',
+            'added_from_recon',
+            'r_hash',
+            'status_update',
+            'timestamp',
+            'show_on_rc_move',
+            'show_on_rc',
+            'added_by_user_id',
+            'timer_image_link',
+            'created_at',
+            'updated_at',
+            'standing'
+        ])->with([
+            'system',
+            'corp',
+            'alliance',
+            'system', 'system.constellation',
+            'system.region',
+            'item',
+            'status',
+            'fc',
+            'item',
+            'recon',
+            'gsoluser',
+        ])->first();
+
+        return $station;
     }
 }

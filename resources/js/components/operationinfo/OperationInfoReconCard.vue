@@ -1,66 +1,57 @@
 <template>
-  <v-col cols="12">
-    <v-card rounded="xl"
-      ><v-card-title class="green"
-        ><v-row no-gutters
-          ><v-col cols="auto">Recon</v-col
-          ><v-col cols="auto"
-            ><AddOperationReconButton /></v-col></v-row></v-card-title
-      ><v-card-text>
+  <div>
+    <q-card class="myRoundTop myOperationInfoReconCard">
+      <q-card-section class="bg-positive text-center">
+        <div class="row full-width justify-start">
+          <div class="col-auto"><h5 class="no-margin">Recon</h5></div>
+          <div class="col-auto">
+            <AddOperationReconButton />
+          </div>
+        </div>
+      </q-card-section>
+      <q-card-section>
         <transition-group
-          enter-active-class="animate__animated animate__flash animate__faster"
+          enter-active-class="animate__animated animate__flash"
+          v-if="show"
         >
           <OperationInfoReconCardNames
+            v-if="store.userList"
             :recon="recon"
             no-gutters
             v-for="recon in opInfo.recons"
             :key="`${recon.id}-${recon.operation_info_recon_status_id}-${recon.dead}-${recon.online}-card`"
           />
         </transition-group>
-      </v-card-text>
-    </v-card>
-  </v-col>
+      </q-card-section>
+    </q-card>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import { EventBus } from "../../app";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {},
-  props: {
-    loaded: Boolean,
-  },
-  data() {
-    return {};
-  },
 
-  async created() {},
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import { useMainStore } from "@/store/useMain.js";
+let store = useMainStore();
 
-  beforeMonunt() {},
+onMounted(async () => {
+  setTimeout(() => {
+    show = true;
+  }, 500);
+});
 
-  async beforeCreate() {},
+let show = $ref(false);
 
-  async mounted() {},
-  methods: {},
+const OperationInfoReconCardNames = defineAsyncComponent(() =>
+  import("./OperationInfoReconCardNames.vue")
+);
+const AddOperationReconButton = defineAsyncComponent(() =>
+  import("./AddOperationReconButton.vue")
+);
 
-  computed: {
-    ...mapGetters([]),
+let opInfo = $computed(() => {
+  return store.operationInfoPage;
+});
 
-    ...mapState([]),
-
-    opInfo: {
-      get() {
-        return this.$store.state.operationInfoPage;
-      },
-      set(newValue) {
-        return this.$store.dispatch("updateOperationSheetInfoPage", newValue);
-      },
-    },
-  },
-  beforeDestroy() {},
-};
+let someMethod = () => {};
 </script>
+
+<style lang="scss"></style>

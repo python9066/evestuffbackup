@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\StationRecords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,12 +14,20 @@ class StationRecordsController extends Controller
      */
     public function index()
     {
-        return ['stations' => StationRecords::all()];
+        return ['stations' => stationRecordAll()];
     }
 
-    public function indexById()
+    public function indexShowOnMove()
     {
-        return ['stations' => StationRecords::where('added_by_user_id', Auth::id())->get()];
+        $station = stationRecordAll();
+        return ['stations' => $station->where('show_on_rc_move', 1)->values()];
+    }
+
+    public function indexByIdShowOnMove()
+
+    {
+        $station = stationRecordByUserId(Auth::id())();
+        return ['stations' => $station->where('show_on_rc_move', 1)->values()];
     }
 
     /**

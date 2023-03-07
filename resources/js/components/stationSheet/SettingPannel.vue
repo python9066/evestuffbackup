@@ -1,215 +1,277 @@
 <template>
   <div>
-    <v-dialog
-      max-width="700px"
-      z-index="0"
-      persistent
-      v-model="showStationSettingPannel"
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn color="gray" v-bind="attrs" v-on="on" @click="open()" icon>
-          <font-awesome-icon icon="fa-solid fa-gears" size="2xl" />
-        </v-btn>
-      </template>
-      <v-card
-        tile
-        max-width="1000px"
-        min-height="200px"
-        max-height="700px"
-        class="d-flex flex-column"
-        elevation="10"
-      >
-        <v-card-title class="justify-center primary"
-          >Setting for Station Page</v-card-title
-        >
-        <v-card-text>
-          <v-row no-gutters justify="start">
-            <v-col>
-              <v-autocomplete
-                v-model="pullPicked"
-                :items="regionList"
-                label="Select"
-                chips
-                clearable
-                deletable-chips
-                dense
-                hint="Which Regions would you like updated"
-                hide-selected
-                multiple
-                persistent-hint
+    <q-btn color="white" icon="fa-solid fa-gears" round flat @click="open()" />
+    <q-dialog v-model="showSetting" persistent>
+      <q-card class="myRoundTop" style="width: 1000px; max-width: 80vw">
+        <q-card-section class="bg-primary text-h5 text-center">
+          <h4 class="no-margin">Setting for Station Page</h4>
+        </q-card-section>
+        <q-card-section>
+          <div class="column q-gutter-lg">
+            <div>
+              <q-select
                 rounded
-                small-chips
-                solo-inverted
-                return-object
-              ></v-autocomplete>
-            </v-col>
-          </v-row>
-          <v-row no-gutters justify="start">
-            <v-col>
-              <v-autocomplete
-                v-model="fcPicked"
-                :items="pullPicked"
-                label="Select"
-                chips
-                clearable
-                deletable-chips
                 dense
-                hint="Which Regions would you like FCs to see"
-                hide-selected
+                standout
+                input-debounce="0"
+                label-color="webway"
+                option-value="value"
+                option-label="text"
+                v-model="store.stationListPullRegions"
+                :options="pickedRegions"
+                label="Region To Update"
+                ref="regionDropDown"
+                @filter="pickedRegionStart"
+                @filter-abort="abortFilterFn"
+                map-options
+                use-input
+                use-chips
                 multiple
-                persistent-hint
-                rounded
-                small-chips
-                solo-inverted
-                return-object
-                stationListPullRegions
-              ></v-autocomplete>
-            </v-col>
-          </v-row>
-          <v-row no-gutters justify="start">
-            <v-col>
-              <v-autocomplete
-                v-model="webwayPicked"
-                :items="systemlist"
-                label="Select"
-                chips
-                clearable
-                deletable-chips
-                dense
-                hint="Set Staging Systems for Webway (1DQ is defaulted)"
-                hide-selected
-                multiple
-                persistent-hint
-                rounded
-                small-chips
-                solo-inverted
-                return-object
-              ></v-autocomplete>
-            </v-col>
-          </v-row>
-        </v-card-text>
-        <v-spacer></v-spacer
-        ><v-card-actions>
-          <v-btn rounded @click="submit()" color="primery"> Update </v-btn>
+              >
+                <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+                  <q-item v-bind="itemProps">
+                    <q-item-section>
+                      <q-item-label v-html="opt.text" />
+                    </q-item-section>
+                    <q-item-section side>
+                      <q-toggle
+                        :model-value="selected"
+                        @update:model-value="toggleOption(opt)"
+                      />
+                    </q-item-section>
+                  </q-item>
+                </template>
 
-          <v-btn rounded class="white--text" color="teal" @click="close()">
-            Close
-          </v-btn></v-card-actions
-        >
-      </v-card>
+                <template v-slot:selected-item="scope">
+                  <q-chip
+                    removable
+                    @remove="scope.removeAtIndex(scope.index)"
+                    :tabindex="scope.tabindex"
+                    color="webWay"
+                    text-color="white"
+                    class="q-ma-none"
+                  >
+                    <span class="text-xs"> {{ scope.opt.text }} </span>
+                  </q-chip>
+                </template></q-select
+              >
+            </div>
+            <div>
+              <q-select
+                rounded
+                dense
+                standout
+                input-debounce="0"
+                label-color="webway"
+                option-value="value"
+                option-label="text"
+                v-model="store.stationListFCRegions"
+                :options="fcPickedRegions"
+                label="FC Regions"
+                ref="regionDropDown"
+                @filter="fcPickedRegionStart"
+                @filter-abort="abortFilterFn"
+                map-options
+                use-input
+                use-chips
+                multiple
+              >
+                <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+                  <q-item v-bind="itemProps">
+                    <q-item-section>
+                      <q-item-label v-html="opt.text" />
+                    </q-item-section>
+                    <q-item-section side>
+                      <q-toggle
+                        :model-value="selected"
+                        @update:model-value="toggleOption(opt)"
+                      />
+                    </q-item-section>
+                  </q-item>
+                </template>
 
-      <!-- <showStationSettingPannel
-                :nodeNoteItem="nodeNoteItem"
-                v-if="$can('super')"
-                @closeMessage="showStationSettingPannel = false"
-            >
-            </showStationSettingPannel> -->
-    </v-dialog>
+                <template v-slot:selected-item="scope">
+                  <q-chip
+                    removable
+                    @remove="scope.removeAtIndex(scope.index)"
+                    :tabindex="scope.tabindex"
+                    color="webWay"
+                    text-color="white"
+                    class="q-ma-none"
+                  >
+                    <span class="text-xs"> {{ scope.opt.text }} </span>
+                  </q-chip>
+                </template></q-select
+              >
+            </div>
+            <div>
+              <q-select
+                rounded
+                dense
+                standout
+                input-debounce="0"
+                label-color="webway"
+                option-value="value"
+                option-label="text"
+                v-model="store.webwayStartSystems"
+                :options="webwaySystems"
+                label="Staging Systems (1DQ is defaulted)"
+                ref="regionDropDown"
+                @filter="pickedWebwayStart"
+                map-options
+                use-input
+                use-chips
+                multiple
+              >
+                <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+                  <q-item v-bind="itemProps">
+                    <q-item-section>
+                      <q-item-label v-html="opt.text" />
+                    </q-item-section>
+                    <q-item-section side>
+                      <q-toggle
+                        :model-value="selected"
+                        @update:model-value="toggleOption(opt)"
+                      />
+                    </q-item-section>
+                  </q-item>
+                </template>
+
+                <template v-slot:selected-item="scope">
+                  <q-chip
+                    removable
+                    @remove="scope.removeAtIndex(scope.index)"
+                    :tabindex="scope.tabindex"
+                    color="webWay"
+                    text-color="white"
+                    class="q-ma-none"
+                  >
+                    <span class="text-xs"> {{ scope.opt.text }} </span>
+                  </q-chip>
+                </template></q-select
+              >
+            </div>
+          </div>
+        </q-card-section>
+        <q-card-actions align="right">
+          <q-btn rounded color="primary" label="Submit" @click="submit" v-close-popup />
+          <q-btn rounded color="negative" label="Close" @click="closed" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
-<script>
-import { mapState, mapGetters } from "vuex";
-import moment from "moment";
-export default {
-  props: {},
-  data() {
-    return {
-      openInfo: false,
-      pullPicked: [],
-      fcPicked: [],
-      webwayPicked: [],
-    };
-  },
+<script setup>
+import { useMainStore } from "@/store/useMain.js";
+import axios from "axios";
+let store = useMainStore();
+let showSetting = $ref(false);
 
-  async created() {},
+let open = () => {
+  showSetting = true;
+  setPicked();
+};
 
-  methods: {
-    close() {
-      this.openInfo = false;
+let closed = () => {
+  store.stationListPullRegions = pullPicked;
+  store.stationListFCRegions = fcPicked;
+  store.webwayStartSystems = webwayPicked;
+};
+
+let setPicked = () => {
+  pullPicked = store.stationListPullRegions;
+  fcPicked = store.stationListFCRegions;
+  webwayPicked = store.webwayStartSystems;
+};
+
+let submit = async () => {
+  var request = {
+    system_ids: store.webwayStartSystems,
+  };
+
+  await axios({
+    method: "post",
+    url: "api/updatewebwaystartsystems",
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  });
 
-    submit() {
-      var request = {
-        system_ids: this.webwayPicked,
-      };
+  var request = {
+    pull: store.stationListPullRegions,
+    fc: store.stationListFCRegions,
+  };
 
-      axios({
-        method: "post", //you can set what request you want to be
-        url: "api/updatewebwaystartsystems",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-
-      var request = {
-        pull: this.pullPicked,
-        fc: this.fcPicked,
-      };
-
-      axios({
-        method: "post", //you can set what request you want to be
-        url: "api/updatesetting",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      }).then(this.close());
+  await axios({
+    method: "post", //you can set what request you want to be
+    url: "api/updatesetting",
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  });
+};
 
-    open() {
-      this.openInfo = true;
-      this.setPicked();
-    },
+let regionUpdateText = $ref();
+let pullPicked = $ref([]);
+let pickedRegions = $computed(() => {
+  if (regionUpdateText) {
+    return store.stationListRegionList.filter(
+      (d) => d.text.toLowerCase().indexOf(regionUpdateText) > -1
+    );
+  }
+  return store.stationListRegionList;
+});
 
-    setPicked() {
-      this.pullPicked = this.pullPickedComp;
-      this.fcPicked = this.fcPickedComp;
-      this.webwayPicked = this.webwayPickedComp;
-    },
-  },
+let pickedRegionStart = (val, update, abort) => {
+  update(() => {
+    regionUpdateText = val.toLowerCase();
+  });
+};
 
-  computed: {
-    ...mapState([
-      "stationListPullRegions",
-      "stationListFCRegions",
-      "stationListRegionList",
-      "systemlist",
-      "webwayStartSystems",
-    ]),
+let fcRegionUpdateText = $ref();
+let fcPicked = $ref([]);
+let fcPickedRegions = $computed(() => {
+  if (fcRegionUpdateText) {
+    return store.stationListPullRegions.filter(
+      (d) => d.text.toLowerCase().indexOf(fcRegionUpdateText) > -1
+    );
+  }
+  return store.stationListPullRegions;
+});
 
-    regionList() {
-      return this.stationListRegionList;
-    },
+let fcPickedRegionStart = (val, update, abort) => {
+  update(() => {
+    fcRegionUpdateText = val.toLowerCase();
+  });
+};
 
-    fcPickedComp() {
-      return this.stationListFCRegions;
-    },
+let webwayUpdateText = $ref();
+let webwayPicked = $ref([]);
+let webwaySystems = $computed(() => {
+  if (webwayUpdateText) {
+    return store.systemlist.filter(
+      (d) => d.text.toLowerCase().indexOf(webwayUpdateText) > -1
+    );
+  }
+  return store.systemlist;
+});
 
-    pullPickedComp() {
-      return this.stationListPullRegions;
-    },
+let pickedWebwayStart = (val, update, abort) => {
+  update(() => {
+    webwayUpdateText = val.toLowerCase();
+  });
+};
 
-    webwayPickedComp() {
-      return this.webwayStartSystems;
-    },
-
-    showStationSettingPannel() {
-      if (this.openInfo) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-  },
-
-  beforeDestroy() {},
+let abortFilterFn = () => {
+  // console.log('delayed filter aborted')
 };
 </script>
 
-<style></style>
+<style lang="scss"></style>

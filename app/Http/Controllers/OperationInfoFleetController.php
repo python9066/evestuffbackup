@@ -44,6 +44,41 @@ class OperationInfoFleetController extends Controller
     {
     }
 
+    public function updateFleet(Request $request, $id)
+    {
+        $fleet = OperationInfoFleet::where('id', $id)->first();
+        $fleet->mumble_id = $request->mumble_id['id'] ?? null;
+        $fleet->doctrine_id = $request->doctrine_id['id'] ?? null;
+        if ($request->fc_name) {
+            $userID = checkUserName($request->fc_name, $request->opID);
+            $fleet->fc_id = $userID;
+        } else {
+            $fleet->fc_id = null;
+        }
+
+        if ($request->boss_name) {
+            $userID = checkUserName($request->boss_name, $request->opID);
+            $fleet->boss_id = $userID;
+        } else {
+            $fleet->boss_id = null;
+        }
+        $oldName = $fleet->name;
+        if ($request->fleet_name != $oldName) {
+            $fleet->name = $request->fleet_name;
+        }
+        $fleet->save();
+
+        if ($oldName != $request->fleet_name) {
+            $recons = OperationInfoRecon::where('operation_info_fleet_id', $id)->get();
+            foreach ($recons as $recon) {
+                operationReconSoloBcast($recon->id, 5);
+            }
+        }
+
+
+        operationInfoSoloPageFleetBroadcast($fleet->id, $fleet->operation_info_id, 2);
+    }
+
     public function name(Request $request, $id)
     {
         $fleet = OperationInfoFleet::where('id', $id)->first();
@@ -74,7 +109,7 @@ class OperationInfoFleetController extends Controller
         } else {
             $recon->operation_info_recon_status_id = 2;
         }
-        $recon->role_id = $request->role;
+        $recon->role_id = $request->role_id;
         $recon->save();
 
         operationReconSoloBcast($recon->id, 5);

@@ -1,163 +1,220 @@
 <template>
-  <v-menu
-    :close-on-content-click="false"
-    :value="addShown"
-    transition="fab-transition"
-    origin="100% -30%"
-  >
-    <template v-slot:activator="{ on, attrs }">
-      <v-btn
-        text
-        v-bind="attrs"
-        v-on="on"
-        @click="addShown = true"
-        color="success"
-        ><font-awesome-icon icon="fa-solid fa-plus" pull="left" /> Char</v-btn
-      >
-    </template>
-    <v-row no-gutters>
-      <div>
-        <v-card class="pa-2" tile width="100%">
-          <v-form @submit.prevent="newCharForm()">
-            <v-text-field
-              v-model="newCharName"
-              label="Char Name"
-              required
-              autofocus
-              :rules="newNameRules"
-            ></v-text-field>
-            <v-select
-              v-model="newRole"
-              @change="roleForm($event)"
-              :rules="newRoleRules"
-              :items="dropdown_roles"
-              label="Role"
-              required
-            ></v-select>
-            <v-text-field
-              v-model="newShip"
-              :rules="newShipRules"
-              v-if="this.role == 1"
-              label="Ship"
-              required
-            ></v-text-field>
-            <v-radio-group
-              v-model="newLink"
-              :rules="newLinkRules"
-              v-if="this.role == 1"
-              row
-              label="Entosis Link"
-              required
-            >
-              <v-radio label="Tech 1" value="1"></v-radio>
-              <v-radio label="Tech 2" value="2"></v-radio>
-            </v-radio-group>
-
-            <v-btn color="success" class="mr-4" type="submit">submit</v-btn>
-            <v-btn color="warning" class="mr-4" @click="newCharFormClose()"
-              >Close</v-btn
-            >
-            <!-- <v-btn @click="clear">clear</v-btn> -->
-          </v-form>
-        </v-card>
-      </div>
-    </v-row>
-  </v-menu>
+  <div>
+    <q-btn
+      v-if="props.type == 1"
+      color="positive"
+      icon="fa-solid fa-plus"
+      flat
+      label="Char"
+      @click="confirm = !confirm"
+    />
+    <q-btn
+      v-if="props.type == 2"
+      color="warning"
+      icon="fa-solid fa-edit"
+      flat
+      round
+      padding="none"
+      size="xs"
+      @click="confirm = !confirm"
+    />
+    <!-- style="width: 700px; max-width: 80vw" -->
+    <q-dialog
+      @before-show="open()"
+      @before-hide="close()"
+      class="myRoundTop"
+      v-model="confirm"
+      persistent
+    >
+      <q-card class="myRoundTop" flat>
+        <q-card-section class="bg-primary text-center">
+          <h5 class="no-margin">{{ headerText }}</h5>
+        </q-card-section>
+        <q-card-section>
+          <div class="colum q-gutter-lg">
+            <div class="col">
+              <q-input outlined rounded v-model="pickedName" type="text" label="Name" />
+            </div>
+            <div class="col">
+              <q-select
+                option-label="text"
+                option-value="value"
+                outlined
+                rounded
+                v-model="pickedRole"
+                :options="roleOperations"
+                label="Role"
+              />
+            </div>
+            <q-slide-transition>
+              <div class="col" v-if="showExtra">
+                <q-input outlined rounded v-model="pickedShip" type="text" label="Ship" />
+              </div>
+            </q-slide-transition>
+            <q-slide-transition>
+              <div class="col" v-if="showExtra">
+                <div class="colum">
+                  <div class="col flex flex-center">
+                    <span class="text-caption"> Entosis Link</span>
+                  </div>
+                  <div class="col">
+                    <q-radio v-model="newLink" :val="1" label="Tech 1" />
+                    <q-radio v-model="newLink" :val="2" label="Tech 2" />
+                  </div>
+                </div>
+              </div>
+            </q-slide-transition>
+          </div>
+        </q-card-section>
+        <q-card-actions align="center">
+          <q-btn
+            rounded
+            color="positive"
+            :disable="!showAddButton"
+            :label="buttonText"
+            v-close-popup
+            @click="addChar()"
+          />
+          <q-btn rounded color="negative" label="Close" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import { EventBus } from "../../app";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {},
-  props: { operationID: Number },
-  data() {
-    return {
-      addShown: false,
-      dropdown_roles: [
-        { text: "Hacker", value: 1 },
-        { text: "Support", value: 5 },
-        { text: "Scout", value: 2 },
-        { text: "FC", value: 3 },
-        { text: "Command", value: 4 },
-      ],
-      newCharName: null,
-      newNameRules: [(v) => !!v || "Name is required"],
-      newRole: null,
-      newRoleRules: [(v) => !!v || "You need to pick a role"],
-      newShip: null,
-      newShipRules: [(v) => !!v || "Ship is required"],
-      newLink: 0,
-      newLinkRules: [(v) => !!v || "T1 or T2?"],
-      role: 0,
-      editrole: 0,
-      oldChar: [],
-    };
-  },
 
-  async created() {},
+<script setup>
+import { useMainStore } from "@/store/useMain.js";
 
-  beforeMonunt() {},
+let store = useMainStore();
 
-  async beforeCreate() {},
+const props = defineProps({
+  operationID: Number,
+  type: { type: Number, default: 1 },
+  char: { type: Object, required: false },
+});
+let confirm = $ref(false);
+let roleOperations = $ref([
+  { text: "Hacker", value: 1 },
+  { text: "Support", value: 5 },
+  { text: "Scout", value: 2 },
+  { text: "FC", value: 3 },
+  { text: "Command", value: 4 },
+]);
 
-  async mounted() {},
-  methods: {
-    newCharFormClose() {
-      this.addShown = false;
-      this.newCharName = null;
-      this.newRole = null;
-      this.newShip = null;
-      this.newLink = null;
-    },
+let pickedName = $ref();
+let pickedRole = $ref();
+let pickedShip = $ref();
+let newLink = $ref();
 
-    roleEditForm(a) {
-      this.editrole = a;
-    },
+let showExtra = $computed(() => {
+  if (pickedRole) {
+    if (pickedRole.value == 1) {
+      return true;
+    }
+  }
+  return false;
+});
 
-    roleForm(a) {
-      this.role = a;
-    },
-    async newCharForm() {
-      var request = {
-        user_id: this.$store.state.user_id,
-        operation_id: this.operationID,
-        name: this.newCharName,
-        entosis: this.newLink,
-        ship: this.newShip,
-        role_id: this.newRole,
-        user_status_id: 1,
-      };
-
-      await axios({
-        method: "POST",
-        url:
-          "/api/newcampaignusers/" +
-          this.operationID +
-          "/" +
-          this.$store.state.user_id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-
-      this.role = null;
-      this.newCharName = null;
-      this.newLink = null;
-      this.newShip = null;
-      this.newRole = null;
-      this.addShown = false;
-    },
-  },
-
-  computed: {},
-  beforeDestroy() {},
+let close = () => {
+  confirm = false;
+  pickedName = null;
+  pickedRole = null;
+  pickedShip = null;
+  newLink = null;
 };
+
+let showAddButton = $computed(() => {
+  if (showExtra) {
+    if (pickedName && pickedRole && pickedShip && newLink) {
+      return true;
+    }
+  } else {
+    if (pickedName && pickedRole) {
+      return true;
+    }
+  }
+  return false;
+});
+
+let addChar = async () => {
+  if (props.type == 1) {
+    await newChar();
+  } else {
+    await updateChar();
+  }
+  close();
+};
+
+let newChar = async () => {
+  var data = {
+    user_id: store.user_id,
+    operation_id: props.operationID,
+    name: pickedName,
+    entosis: newLink,
+    ship: pickedShip,
+    role_id: pickedRole.value,
+    user_status_id: 1,
+  };
+  await axios({
+    method: "POST",
+    url: "/api/newcampaignusers/" + props.operationID + "/" + store.user_id,
+    withCredentials: true,
+    data: data,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+let updateChar = async () => {
+  var data = {
+    user_id: store.user_id,
+    operation_id: props.operationID,
+    name: pickedName,
+    user_status_id: 1,
+    role_id: pickedRole.value,
+    entosis: pickedRole.value != 1 ? null : newLink,
+    ship: pickedRole.value != 1 ? null : pickedShip,
+  };
+  await axios({
+    method: "PUT",
+    url: "/api/newcampaignusers/" + props.char.id + "/" + props.operationID,
+    withCredentials: true,
+    data: data,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+let open = () => {
+  if (props.type == 2) {
+    let value = props.char.userrole.id;
+    let text = props.char.userrole.role;
+    pickedName = props.char.name;
+    pickedRole = { value, text };
+    pickedShip = props.char.ship;
+    newLink = props.char.entosis;
+  }
+};
+
+let headerText = $computed(() => {
+  if (props.type == 1) {
+    return "Add Character";
+  } else {
+    return "Edit Character";
+  }
+});
+
+let buttonText = $computed(() => {
+  if (props.type == 1) {
+    return "Add";
+  } else {
+    return "Update";
+  }
+});
 </script>
+
+<style lang="scss"></style>

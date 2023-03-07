@@ -39,6 +39,7 @@ class CleanUpCoordShhet extends Command
      */
     public function handle()
     {
+        activity()->disableLogging();
         Userlogging::create(['url' => 'demon CoordSheet', 'user_id' => 9999999999]);
         $a = Station::where('show_on_coord', 1)->where('show_on_rc', 1)->get();
         foreach ($a as $a) {
@@ -48,5 +49,6 @@ class CleanUpCoordShhet extends Command
         foreach ($b as $b) {
             $b->update(['show_on_coord' => 0]);
         }
+        activity()->enableLogging();
     }
 }

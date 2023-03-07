@@ -41,11 +41,12 @@ class OperationUserController extends Controller
      */
     public function store(Request $request, $opID, $userid)
     {
-        $new = OperationUser::create($request->all());
 
+        $new = OperationUser::create($request->all());
         if (Auth::id() == $userid) {
             broadcastuserOwnSolo($new->id, $userid, 3, $opID);
         }
+
 
         broadcastuserSolo($opID, $new->id, 6);
     }

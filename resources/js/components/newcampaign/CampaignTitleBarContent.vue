@@ -1,421 +1,286 @@
 <template>
-  <v-row no-gutters class="align-items-center">
-    <v-col cols="12">
-      <transition
-        name="custom-classes"
-        enter-active-class="animate__animated animate__heartBeat animate__repeat-2"
-        leave-active-class="animate__animated animate__flash animate__faster"
-        mode="out-in"
-      >
-        <v-row
-          no-gutters
-          v-if="showScore"
-          :key="`${item.id}-score`"
-          class="align-items-center"
-        >
-          <v-col cols="2">
-            <span :class="textColor">
-              {{ item.system.system_name }} - {{ eventType }}:
-              {{ this.item.alliance.ticker }}
-              <v-avatar size="50"
-                ><img :src="this.item.alliance.url" /></v-avatar
-            ></span>
-          </v-col>
-          <v-col
-            cols="6"
-            class="
-              d-flex
-              justify-content-center
-              align-content-center align-items-center
-            "
+  <div>
+    <transition
+      name="custom-classes"
+      enter-active-class="animate__animated animate__heartBeat animate__repeat-2"
+      leave-active-class="animate__animated animate__flash animate__faster"
+      mode="out-in"
+    >
+      <div class="row items-center" :key="`${props.item.id}-score`" v-if="showScore">
+        <div class="col-2">
+          <span :class="textColor">
+            {{ props.item.system.system_name }} - {{ eventType }}:
+            {{ item.alliance.ticker }}
+            <q-avatar size="50px"><img :src="item.alliance.url" /></q-avatar
+          ></span>
+        </div>
+        <div class="col-6">
+          <div class="row full-width justify-around">
+            <div class="col-1 flex justify-end items-center">
+              <q-icon :name="defenderIcon" :class="defenderIconColor" />
+            </div>
+            <div class="col-10 flex-center">
+              <q-linear-progress
+                :value="props.item.defenders_score"
+                rounded
+                color="primary"
+                track-color="red"
+                size="25px"
+              >
+                <div class="absolute-full flex flex-center">
+                  <q-badge color="transparent" text-color="white" :label="text" /></div
+              ></q-linear-progress>
+            </div>
+            <div class="col-1 flex justify-start items-center">
+              <q-icon :name="attackerIcon" :class="attackerIconColor" />
+            </div>
+          </div>
+        </div>
+        <div class="col-4 d-flex justify-content-end align-items-center">
+          <span class="text-caption"> Active Nodes -</span>
+          <q-circular-progress
+            size="50px"
+            :thickness="0.1"
+            :max="totalNodes"
+            rounded
+            show-value
+            :min="0"
+            :value="blueNodes"
+            color="positive"
+            track-color="green-3"
+            class="q-my-md"
+            >{{ blueNodes }}/{{ totalNodes }}</q-circular-progress
           >
-            <div icon dark :color="IconDColor" :class="IconDClass">
-              <font-awesome-icon :icon="IconD" pull="left" />
-            </div>
-            <!-- // TODO Active (only show if campaign is active) -->
-            <v-progress-linear
-              :color="barColor"
-              :value="barScoure"
-              height="20"
-              rounded
-              :active="true"
-              :reverse="barReverse"
-              :background-color="barBgcolor"
-              background-opacity="0.2"
-            >
-              <strong>
-                {{ item.defenders_score * 100 }} ({{ nodesToLose }}) /
-                {{ item.attackers_score * 100 }} ({{ nodesToWin }})
-              </strong>
-            </v-progress-linear>
-            <div dark :color="IconAColor" :class="IconAClass">
-              <font-awesome-icon :icon="IconD" size="sm" pull="left" />
-            </div>
-          </v-col>
-          <v-col cols="4" class="d-flex justify-content-end align-items-center">
-            <span class="text-caption"> Active Nodes -</span>
-            <Vep
-              :progress="blueProgress"
-              :size="50"
-              :legend-value="blueNode"
-              fontSize="0.80rem"
-              color="#00ff00"
-              :thickness="4"
-              :emptyThickness="1"
-              emptyColor="#a4fca4"
-            >
-              <template v-slot:legend-value>
-                <span slot="legend-value"> /{{ totalNode }}</span>
-              </template>
-            </Vep>
-            <Vep
-              :progress="redProgress"
-              :size="50"
-              :legend-value="redNode"
-              fontSize="0.80rem"
-              color="#ff0000"
-              :thickness="4"
-              :emptyThickness="1"
-              emptyColor="#f08d8d"
-            >
-              <template v-slot:legend-value>
-                <span slot="legend-value"> /{{ totalNode }}</span>
-              </template>
-            </Vep>
-            <span class="ml-2"> Completed Nodes -</span>
-            <Vep
-              :progress="totalBlueProgress"
-              :size="50"
-              :legend-value="totalBlueNodeDone"
-              fontSize="0.80rem"
-              color="#00ff00"
-              :thickness="4"
-              :emptyThickness="1"
-              emptyColor="#a4fca4"
-            >
-              <template v-slot:legend-value>
-                <span slot="legend-value"> /{{ totalNodeDone }}</span>
-              </template>
-            </Vep>
-            <Vep
-              :progress="totalRedProgress"
-              :size="50"
-              :legend-value="totalRedNodeDone"
-              fontSize="0.80rem"
-              color="#ff0000"
-              :thickness="4"
-              :emptyThickness="1"
-              emptyColor="#f08d8d"
-            >
-              <template v-slot:legend-value>
-                <span slot="legend-value"> /{{ totalNodeDone }}</span>
-              </template>
-            </Vep>
-          </v-col>
-        </v-row>
-        <v-row
-          no-gutters
-          v-else-if="item.status_id != 3 && item.status_id != 4"
-          :key="`${item.id}-timer`"
-        >
-          <v-col cols="2">
-            <span :class="textColor">
-              {{ item.system.system_name }} - {{ eventType }}:
-              {{ this.item.alliance.ticker }}
-              <v-avatar size="50"
-                ><img :src="this.item.alliance.url" /></v-avatar
-            ></span>
-          </v-col>
-          <v-col cols="3" class="d-flex align-items-center">
-            <CountDowntimer
-              :start-time="moment.utc(item.start_time).unix()"
-              :end-text="'Campaign Over'"
-              :interval="1000"
-            >
-              <template slot="countdown" slot-scope="scope">
-                Warm up -
-                <span class="red--text pl-3">
-                  <span v-if="scope.props.hours > 1">
-                    {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                      scope.props.seconds
-                    }}
-                  </span>
+          <q-circular-progress
+            size="50px"
+            :thickness="0.1"
+            :max="totalNodes"
+            :min="0"
+            :value="redNodes"
+            rounded
+            show-value
+            color="negative"
+            track-color="red-3"
+            class="q-my-md"
+            >{{ redNodes }}/{{ totalNodes }}</q-circular-progress
+          >
+          <span class="ml-2"> Completed Nodes -</span>
+          <q-circular-progress
+            size="50px"
+            :thickness="0.1"
+            :max="totalNodeDone"
+            rounded
+            show-value
+            :min="0"
+            :value="totalBlueNodeDone"
+            color="positive"
+            track-color="green-3"
+            class="q-my-md"
+            >{{ totalBlueNodeDone }}/{{ totalNodeDone }}</q-circular-progress
+          >
+          <q-circular-progress
+            size="50px"
+            :thickness="0.1"
+            :max="totalNodeDone"
+            :min="0"
+            :value="totalRedNodeDone"
+            rounded
+            show-value
+            color="negative"
+            track-color="red-3"
+            class="q-my-md"
+            >{{ totalRedNodeDone }}/{{ totalNodeDone }}</q-circular-progress
+          >
+        </div>
+      </div>
+      <div
+        class="row"
+        v-else-if="props.item.status_id != 3 && props.item.status_id != 4"
+        :key="`${props.item.id}-timer`"
+      >
+        <div class="col-2">
+          <span :class="textColor">
+            {{ item.system.system_name }} - {{ eventType }}:
+            {{ item.alliance.ticker }}
+            <q-avatar size="50px"><img :src="item.alliance.url" /></q-avatar
+          ></span>
+        </div>
+        <div class="col-3 flex flex-center">
+          <VueCountDown
+            :time="countDownTimeMil(item.start_time)"
+            :interval="1000"
+            :emit-events="false"
+            v-slot="{ hours, minutes, seconds, days }"
+            :transform="transformSlotProps"
+          >
+            <span class="text-h5">
+              Warm up -
+              <span class="text-negative pl-3">
+                <span v-if="hours > 1"> {{ hours }}:{{ minutes }}:{{ seconds }} </span>
 
-                  <span v-else>
-                    {{ scope.props.minutes }}:{{ scope.props.seconds }}
-                  </span>
-                </span>
-              </template>
-            </CountDowntimer>
-          </v-col>
-        </v-row>
-        <v-row no-gutters v-else :key="`${item.id}-timer`">
-          <v-col cols="2">
-            <span :class="textColor">
-              {{ item.system.system_name }} - {{ eventType }}:
-              {{ this.item.alliance.ticker }}
-              <v-avatar size="50"
-                ><img :src="this.item.alliance.url" /></v-avatar
-            ></span>
-          </v-col>
-          <v-col cols="3" class="d-flex align-items-center">
-            <span class="red--text"> Campaign Over</span>
-          </v-col>
-        </v-row>
-      </transition>
-    </v-col>
-  </v-row>
+                <span v-else> {{ minutes }}:{{ seconds }} </span>
+              </span></span
+            >
+          </VueCountDown>
+        </div>
+      </div>
+      <div class="row" v-else :key="`${item.id}-over`">
+        <div class="col-2">
+          <span :class="textColor">
+            {{ item.system.system_name }} - {{ eventType }}:
+            {{ item.alliance.ticker }}
+            <q-avatar size="50px"><img :src="item.alliance.url" /></q-avatar
+          ></span>
+        </div>
+        <div class="col-3 flex flex-center">
+          <span class="text-negative text-h5">Campaign Over</span>
+        </div>
+      </div>
+    </transition>
+  </div>
 </template>
 
+<script setup>
+import { defineAsyncComponent } from "vue";
+import { useMainStore } from "@/store/useMain.js";
 
+const store = useMainStore();
 
-<script>
-import Axios from "axios";
-// import { EventBus } from "../event-bus";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {},
-  props: {
-    item: [Object, Array],
-    title: String,
-    operationID: Number,
-    activeCampaigns: Array,
-    warmUpCampaigns: Array,
-  },
-  data() {
-    return {};
-  },
+const VueCountDown = defineAsyncComponent(() => import("../countdown/index"));
+const props = defineProps({
+  item: [Object, Array],
+  title: String,
+  operationID: Number,
+  activeCampaigns: Array,
+  warmUpCampaigns: Array,
+});
 
-  async created() {},
+let eventType = $computed(() => {
+  if (props.item.event_type == "32458") {
+    return "Ihub";
+  } else {
+    return "TCU";
+  }
+});
 
-  beforeMonunt() {},
+let textColor = $computed(() => {
+  if (props.item.alliance.color >= 2) {
+    return "text-primary";
+  }
+  if (props.item.alliance.color < 0) {
+    return "text-negative";
+  }
+});
 
-  async beforeCreate() {},
-
-  async mounted() {},
-  methods: {},
-
-  computed: {
-    ...mapGetters([
-      "getRedCampaignNodes",
-      "getBlueCampaignNodes",
-      "getTotalCampaignNodes",
-    ]),
-
-    ...mapState([]),
-
-    totalNode() {
-      return this.getTotalCampaignNodes(this.item.id);
-    },
-
-    redNode() {
-      return this.getRedCampaignNodes(this.item.id);
-    },
-
-    blueNode() {
-      return this.getBlueCampaignNodes(this.item.id);
-    },
-
-    eventType() {
-      if (this.item.event_type == "32458") {
-        return "Ihub";
-      } else {
-        return "TCU";
-      }
-    },
-
-    blueProgress() {
-      if (this.totalNode) {
-        var num = (this.blueNode / this.totalNode) * 100;
-        return num;
-      } else {
-        return 0;
-      }
-    },
-
-    redProgress() {
-      if (this.totalNode) {
-        var num = (this.redNode / this.totalNode) * 100;
-        return num;
-      } else {
-        return 0;
-      }
-    },
-
-    barScoure() {
-      var d = this.item.defenders_score * 100;
-      var a = this.item.attackers_score * 100;
-
-      if (d > 50) {
-        return d;
-      }
-
-      return a;
-    },
-
-    barReverse() {
-      var d = this.item.defenders_score * 100;
-      if (d > 50) {
-        return false;
-      }
-
-      return true;
-    },
-
-    barColor() {
-      var d = this.item.defenders_score * 100;
-      if (d > 50) {
-        return "blue darken-4";
-      }
-
-      return "red darken-4";
-    },
-
-    barBgcolor() {
-      var d = this.item.defenders_score * 100;
-
-      if (d > 50) {
-        return "red darken-4";
-      }
-      return "blue darken-4";
-    },
-
-    nodesToLose() {
-      var needed = 1 - this.item.defenders_score;
-      var need = needed / 0.07;
-      return Math.ceil(need);
-    },
-
-    nodesToWin() {
-      var needed = 1 - this.item.attackers_score;
-      var need = needed / 0.07;
-      return Math.ceil(need);
-    },
-
-    IconDColor() {
-      if (
-        this.item.defenders_score == this.item.defenders_score_old ||
-        this.item.defenders_score_old === null
-      ) {
-        return "grey darken-3";
-      } else {
-        return "blue darken-4";
-      }
-    },
-
-    IconAColor() {
-      if (
-        this.item.attackers_score == this.item.attackers_score_old ||
-        this.item.attackers_score_old === null
-      ) {
-        return "grey darken-3";
-      } else {
-        return "red darken-4";
-      }
-    },
-
-    IconD() {
-      if (
-        this.item.attackers_score == this.item.attackers_score_old ||
-        this.item.attackers_score_old === null
-      ) {
-        return "fa-solid fa-circle-minus";
-      } else {
-        return "fa-solid fa-circle-up";
-      }
-    },
-
-    IconDClass() {
-      if (
-        this.item.defenders_score > this.item.defenders_score_old &&
-        this.item.defenders_score_old > 0
-      ) {
-        return "rotate mr-2";
-      } else {
-        return "rotate down mr-2";
-      }
-    },
-
-    IconAClass() {
-      if (
-        this.item.attackers_score > this.item.attackers_score_old &&
-        this.item.attackers_score_old > 0
-      ) {
-        return "rotate";
-      } else {
-        return "rotate down ml-2";
-      }
-    },
-
-    totalNodeDone() {
-      return this.totalRedNodeDone + this.totalBlueNodeDone;
-    },
-
-    totalRedNodeDone() {
-      return this.item.r_node;
-    },
-
-    totalBlueNodeDone() {
-      return this.item.b_node;
-    },
-
-    totalBlueProgress() {
-      if (this.totalNodeDone) {
-        var num = (this.totalBlueNodeDone / this.totalNodeDone) * 100;
-        return num;
-      } else {
-        return 0;
-      }
-    },
-
-    totalRedProgress() {
-      if (this.totalNodeDone) {
-        var num = (this.totalRedNodeDone / this.totalNodeDone) * 100;
-        return num;
-      } else {
-        return 0;
-      }
-    },
-
-    textColor() {
-      if (this.item.alliance.color >= 2) {
-        return "blue--text";
-      }
-
-      if (this.item.alliance.color < 0) {
-        return "red--text";
-      }
-    },
-
-    showScore() {
-      var show = false;
-      this.activeCampaigns.forEach((n) => {
-        if (n.id == this.item.id) {
-          show = true;
-        }
-      });
-
-      return show;
-    },
-  },
-  beforeDestroy() {},
+let countDownTimeMil = (time) => {
+  const utcTime = new Date(time + "Z");
+  const currentTimestamp = Date.now();
+  const timeDiff = utcTime.getTime() - currentTimestamp;
+  return timeDiff;
 };
-</script>
-<style scoped>
-.rotate {
-  -moz-transition: all 1s linear;
-  -webkit-transition: all 1s linear;
-  transition: all 1s linear;
-}
+let transformSlotProps = (props) => {
+  const formattedProps = {};
 
-.rotate.down {
-  -ms-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  transform: rotate(180deg);
-}
-</style>
+  Object.entries(props).forEach(([key, value]) => {
+    formattedProps[key] = value < 10 ? `0${value}` : String(value);
+  });
+
+  return formattedProps;
+};
+
+let text = $computed(() => {
+  let a = props.item.attackers_score * 100;
+  let d = props.item.defenders_score * 100;
+
+  let text = d + "/" + a;
+  return text;
+});
+
+let attackerIconColor = $computed(() => {
+  if (props.item.attackers_score_old) {
+    if (props.item.attackers_score_old == props.item.attackers_score) {
+      return "text-gray";
+    } else if (props.item.attackers_score > props.item.attackers_score_old) {
+      return "text-green";
+    } else {
+      return "text-red";
+    }
+  }
+  return "text-gray";
+});
+
+let attackerIcon = $computed(() => {
+  if (props.item.attackers_score_old) {
+    if (props.item.attackers_score_old == props.item.attackers_score) {
+      return "fa-solid fa-circle-minus";
+    } else if (props.item.attackers_score > props.item.attackers_score_old) {
+      return "fa-solid fa-circle-up";
+    } else {
+      return "fa-solid fa-circle-up fa-rotate-180";
+    }
+  }
+  return "fa-solid fa-circle-minus";
+});
+
+let defenderIconColor = $computed(() => {
+  if (props.item.defenders_score_old) {
+    if (props.item.defenders_score_old == props.item.defenders_score) {
+      return "text-gray";
+    } else if (props.item.defenders_score > props.item.defenders_score_old) {
+      return "text-green";
+    } else {
+      return "text-red";
+    }
+  }
+  return "text-gray";
+});
+
+let defenderIcon = $computed(() => {
+  if (props.item.defenders_score_old) {
+    if (props.item.defenders_score_old == props.item.defenders_score) {
+      return "fa-solid fa-circle-minus";
+    } else if (props.item.defenders_score > props.item.defenders_score_old) {
+      return "fa-solid fa-circle-up";
+    } else {
+      return "fa-solid fa-circle-up fa-rotate-180";
+    }
+  }
+  return "fa-solid fa-circle-minus";
+});
+
+let totalNodes = $computed(() => {
+  return store.getTotalCampaignNodes(props.item.id);
+});
+
+let redNodes = $computed(() => {
+  return store.getRedCampaignNodes(props.item.id);
+});
+
+let blueNodes = $computed(() => {
+  return store.getBlueCampaignNodes(props.item.id);
+});
+
+let totalRedNodeDone = $computed(() => {
+  return props.item.r_node;
+});
+
+let totalBlueNodeDone = $computed(() => {
+  return props.item.b_node;
+});
+
+let totalNodeDone = $computed(() => {
+  return totalRedNodeDone + totalBlueNodeDone;
+});
+
+let showScore = $computed(() => {
+  var show = false;
+  props.activeCampaigns.forEach((element) => {
+    if (element.id == props.item.id) {
+      show = true;
+    }
+  });
+  return show;
+});
+</script>
+
+<style lang="scss"></style>

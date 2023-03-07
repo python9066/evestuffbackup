@@ -57,18 +57,20 @@ use App\Http\Controllers\StartCampaignJoinController;
 use App\Http\Controllers\StartCampaignSystemController;
 use App\Http\Controllers\StartCampaignSystemRecordsController;
 use App\Http\Controllers\StationController;
+use App\Http\Controllers\StationNotesController;
 use App\Http\Controllers\StationRecordsController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\testController;
 use App\Http\Controllers\TimerController;
-use App\Http\Controllers\TowerRecordsController;
+use App\Http\Controllers\TowerController;
+use App\Http\Controllers\TowerNotesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserKeyJoinControllerController;
 use App\Http\Controllers\UserRolesRecordsController;
 use App\Http\Controllers\WebWayController;
 use App\Http\Controllers\WebWayStartSystemsContorller;
 use App\Http\Controllers\WelpStationController;
-use App\Models\Notification;
+use App\Models\Tower;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
@@ -97,295 +99,489 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function () {
 
     //BROISES FEED//
-    Route::post('/webway', [WebWayController::class, 'getWebway']);
-    Route::post('/url', [AppController::class, 'url']);
-    Route::post('/brois', [testController::class, 'notifications']);
-    Route::get('/test', [testController::class, 'key']);
-    Route::post('/testscoreupdate/{id}', [testController::class, 'testUpdateScore']);
-    Route::post('/testscorerun', [testController::class, 'testRunScore']);
-    Route::post('/testclearalldata', [testController::class, 'testClearCampaigns']);
-    Route::get('/eveusercount', [EveController::class, 'playerCount']);
-    Route::post('/rcInput', [RcSheetController::class, 'RCInput']);
-    Route::get('/reconpullregion', [StationController::class, 'reconRegionPull']);
 
-    //HACKING NOTIFICATION APIS//
-    Route::get('/notifications/{region_id}', [NotificationRecordsController::class, 'regionLink']);
-    Route::get('/notifications', [NotificationRecordsController::class, 'index']);
-    Route::put('/notifications/{id}', [NotificationController::class, 'update']);
-    Route::put('/notificationsaddtime/{id}', [NotificationController::class, 'addTime']);
+    Route::controller(WebWayController::class)->group(function () {
+        Route::post('/webway', 'getWebway');
+    });
 
-    //IHUB-TCU WINDOWS//
-    Route::get('/timers', [TimerController::class, 'getTimerData']);
-    Route::get('/timersregions', [TimerController::class, 'getTimerDataRegions']);
+    Route::controller(AppController::class)->group(function () {
+        Route::post('/url', 'url');
+    });
 
-    //HACKING Campaign APIs
-    Route::get('/campaigns', [CampaignRecordsController::class, 'index']);
-    Route::get('/campaignsregion', [CampaignRecordsController::class, 'campaignslistRegion']);
-    Route::get('/campaignslist', [CampaignRecordsController::class, 'campaignslist']);
-    Route::put('/campaigns/{id}', [CampaignRecordsController::class, 'update']);
+    Route::controller(testController::class)->group(function () {
+        Route::post('/brois', 'notifications');
+        Route::get('/test', 'key');
+        Route::post('/testscoreupdate/{id}', 'testUpdateScore');
+        Route::post('/testscorerun', 'testRunScore');
+        Route::post('/testclearalldata', 'testClearCampaigns');
+    });
 
-    //CAMPIGN USERS
-    Route::get('/campaignusersrecords/{id}', [CampaignUserRecordsController::class, 'show']);
-    Route::get('/campaignusersrecordsbychar/{id}', [CampaignUserRecordsController::class, 'bychar']);
-    Route::put('/campaignusersrecords/{id}/{campid}', [CampaignUserRecordsController::class, 'update']);
-    Route::post('/campaignusersrecords/{id}/{campid}', [CampaignUserRecordsController::class, 'store']);
+    Route::controller(EveController::class)->group(function () {
+        Route::get('/eveusercount', 'playerCount');
+    });
 
-    Route::post('/campaignusers/{campid}', [CampaignUserController::class, 'store']);
-    Route::put('/campaignusers/{id}/{campid}', [CampaignUserController::class, 'update']);
-    Route::put('/campaignusersadd/{id}/{campid}', [CampaignUserController::class, 'updateadd']);
-    Route::put('/campaignusersremove/{id}/{campid}', [CampaignUserController::class, 'updateremove']);
-    Route::delete('/campaignusers/{id}/{campid}/{siteid}', [CampaignUserController::class, 'destroy']);
+    Route::controller(RcSheetController::class)->group(function () {
+        Route::post('/rcInput', 'RCInput');
+        Route::get('/rcsheet', 'index');
+        Route::put('finishrcstation/{id}', 'stationdone');
+        Route::get('/rcregionlist', 'rcSheetListRegion');
+        Route::get('/rcTypelist', 'rcSheetListType');
+        Route::get('/rcStatuslist', 'rcSheetListStatus');
+        Route::put('/rcfixcorp/{id}', 'fixcorp');
+        Route::put('/rcfixalliance/{id}', 'fixalliance');
+    });
 
-    //Campagin NODES
-    Route::get('/campaignsystemsrecords', [CampaignSystemRecordsController::class, 'index']);
-    Route::get('/campaignsystemsrecords/{id}', [CampaignSystemRecordsController::class, 'show']);
-    Route::put('/campaignsystemsrecords/{id}/{campid}', [CampaignSystemRecordsController::class, 'update']);
-    Route::post('/campaignsystemsrecords/{id}/{campid}', [CampaignSystemRecordsController::class, 'store']);
-    Route::delete('/campaginsystemsrecords/{id}/{campid}', [CampaignSystemRecordsController::class, 'destroy']);
-    Route::post('/campaignpriority/{id}', [CampaignSystemRecordsController::class, 'updatePriority']);
+    Route::controller(StationNotesController::class)->group(function () {
+        Route::put('/sheetmessage/{id}', 'updateMessage');
+        Route::delete('/sheetmessage/{id}', 'destroy');
+        Route::put('/sheetmessage/{id}/notes', 'addReadBy');
+    });
 
-    Route::post('/campaignsystemload', [CampaignSystemsController::class, 'load']);
-    Route::post('/afterextranodeload', [CampaignSystemsController::class, 'afterExtraNodeLoad']);
-    Route::post('/campaignsystems/{campid}', [CampaignSystemsController::class, 'store']);
-    Route::put('/campaignsystems/{id}/{campid}', [CampaignSystemsController::class, 'update']);
-    Route::put('/campaignsystemsnodemessage/{id}', [CampaignSystemsController::class, 'updateMessage']);
-    Route::put('/campaignsystemsattackmessage/{id}', [CampaignSystemsController::class, 'updateAttackMessage']);
-    Route::put('/campaignsystemsupdatetime/{id}/{campid}', [CampaignSystemsController::class, 'updatetime']);
-    Route::delete('/campaignsystems/{id}/{campid}', [CampaignSystemsController::class, 'destroy']);
-    Route::put('/campaignsystemremovechar/{campid}', [CampaignSystemsController::class, 'removechar']);
-    Route::put('/campaignsystemmovechar/{campid}', [CampaignSystemsController::class, 'movechar']);
-    Route::get('/campaignsystemcheckaddchar/{campid}', [CampaignSystemsController::class, 'checkAddChar']);
-    Route::post('/campaignsystemuserskick/{campid}', [CampaignSystemsController::class, 'kickUser']);
-    Route::get('/campaignsystemfinished/{campid}', [CampaignSystemsController::class, 'finishCampaign']);
-    Route::get('/mcampaignsystemfinished/{campid}', [CampaignSystemsController::class, 'mfinishCampaign']);
-    Route::put('/campaignsystemstidi/{sysid}/{campid}', [CampaignSystemsController::class, 'tidi']);
-    Route::put('campaignsystemstidimulti/{sysid}/{campid}', [CampaignSystemsController::class, 'tidimulti']);
+    Route::controller(TowerNotesController::class)->group(function () {
+        Route::put('/towermessage/{id}', 'updateMessage');
+        Route::delete('/towermessage/{id}', 'destroy');
+        Route::put('/towermessage/{id}/notes', 'addReadBy');
+    });
 
-    Route::post('/multicampaigns/{campid}/{name}', [CustomCampaignsController::class, 'store']);
-    Route::get('/multicampaigns', [CustomCampaignsController::class, 'index']);
-    Route::delete('/multicampaigns/{id}', [CustomCampaignsController::class, 'destroy']);
-    Route::post('/multicampaignsedit/{campid}/{name}', [CustomCampaignsController::class, 'edit']);
+    Route::controller(StationController::class)->group(function () {
+        Route::get('/reconpullregion', 'reconRegionPull');
+        Route::get('/loadstationdata', 'loadStationData');
+        Route::post('/taskrequest', 'taskRequest');
+        Route::put('/updatestationnotification/{id}', 'update');
+        Route::put('/stationsheet/updatestationnotification/{id}', 'updateStationSheet');
+        Route::put('/timer/addTimer/{id}', 'addStationTimer');
+        Route::put('/timer/editStation/{id}', 'editStation');
+        Route::put('/timer/statusupdate/{id}', 'updateTimerStatus');
+        Route::put('/updatetimerinfo/{id}', 'editUpdate');
+        Route::put('/stationname', 'reconPullbyname');
+        Route::put('/stationnew', 'store');
+        Route::put('/stationattackmessage/{id}', 'updateAttackMessage');
+        Route::put('/stationmessage/{id}', 'updateMessage');
+        Route::put('/rcmovedone/{id}', 'rcMoveDone');
+        Route::delete('/rcmovedonebad/{id}', 'destroy');
+        Route::put('/softdestory/{id}', 'softDestroy');
+        Route::put('/editstationname/{id}', 'editStationNameReconCheck');
+        Route::get('/stationsheet', 'stationSheet');
+        Route::put('/stationsheetupdatewebway/{id}', 'updateStationSheetWebway');
+    });
 
-    //SYSTEM API
-    Route::get('/systemsinconstellation/{id}', [SystemController::class, 'systemsinconstellation']);
-    Route::get('/systemlist', [SystemController::class, 'index']);
+    Route::controller(NotificationRecordsController::class)->group(function () {
+        Route::get('/notifications/{region_id}', 'regionLink');
+        Route::get('/notifications', 'index');
+    });
 
-    Route::get('/users', [AuthController::class, 'index']);
-    Route::get('/userrolerecord', [UserRolesRecordsController::class, 'index']);
-    Route::get('/roles', [RoleController::class, 'index']);
-    Route::get('/allusersroles', [RoleController::class, 'getAllUsersRoles']);
-    Route::put('/rolesadd', [RoleController::class, 'addRole']);
-    Route::put('/rolesremove', [RoleController::class, 'removeRole']);
-    Route::post('/campaignsystemusers/{campid}', [CampaignSystemUsersController::class, 'store']);
-    Route::get('/campaignsystemusers/{campid}', [CampaignSystemUsersController::class, 'index']);
-    Route::delete('/campaignsystemusers/{id}/{campid}', [CampaignSystemUsersController::class, 'destroy']);
-    Route::get('/campaignjoin', [CampaignJoinsController::class, 'index']);
-    Route::get('/campaignjoinbyid/{campid}', [CampaignJoinsController::class, 'indexByID']);
-    Route::get('/campaignjoin/{id}', [CampaignJoinsController::class, 'show']);
-    Route::get('/campaignjoinlist/{id}', [CampaignJoinsController::class, 'list']);
-    Route::get('/campaignjoinsystems/{id}', [CampaignJoinsController::class, 'campaignSystems']);
-    Route::get('/campaignsolasystems', [CampaignSolaSystemsController::class, 'index']);
-    Route::put('/campaignsolasystems/{solaid}/{campid}', [CampaignSolaSystemsController::class, 'update']);
-    Route::get('/nodejoin/{campid}', [NodeJoinsController::class, 'tableindex']);
-    Route::post('/nodejoin/{campid}', [NodeJoinsController::class, 'store']);
-    Route::put('/nodejoinupdate/{id}/{campid}', [NodeJoinsController::class, 'update']);
-    Route::put('/removecharfromnode/{id}/{campid}', [NodeJoinsController::class, 'removeCharForNode']);
-    Route::put('/addchartonodeadmin/{id}/{campid}', [NodeJoinsController::class, 'addCharToNodeAdmin']);
-    Route::put('/deleteextranode/{id}/{campid}', [NodeJoinsController::class, 'deleteExtraNode']);
-    Route::get('/stationrecords', [StationRecordsController::class, 'index']);
-    Route::get('/stationrecordsbyid', [StationRecordsController::class, 'indexById']);
-    Route::put('/stationrecords/{id}', [StationRecordsController::class, 'update']);
-    Route::get('/towersrecords', [TowerRecordsController::class, 'index']);
-    Route::put('/towerrecords/{id}', [TowerRecordsController::class, 'update']);
-    Route::put('/towerrecords', [TowerRecordsController::class, 'store']);
-    Route::put('/towermessage/{id}', [TowerRecordsController::class, 'updateMessage']);
-    Route::post('/feedback', [FeedBackController::class, 'store']);
-    Route::get('/feedback', [FeedBackController::class, 'index']);
-    Route::delete('/feedback/{id}', [FeedBackController::class, 'destroy']);
-    Route::post('/checkaddnode/{campid}', [LoggingController::class, 'NodeAdd']);
-    Route::post('/checkdeletenode/{campid}', [LoggingController::class, 'NodeDelete']);
-    Route::get('/checkjoinleavecampaign/{campid}/{charid}/{logtype}', [LoggingController::class, 'joinleaveCampaign']);
-    Route::get('/mcheckjoinleavecampaign/{campid}/{charid}/{logtype}', [LoggingController::class, 'mjoinleaveCampaign']);
-    Route::put('/checklastedchecked/{campid}', [LoggingController::class, 'lastchecked']);
-    Route::put('/checkscout/{campid}', [LoggingController::class, 'systemscout']);
-    Route::put('/checkaddremovechar/{campid}', [LoggingController::class, 'addremovechar']);
-    Route::put('/checkroleaddremove', [LoggingController::class, 'addRemoveRoles']);
-    Route::get('/checkcampaign/{campid}', [LoggingController::class, 'logCampaign']);
-    Route::get('/checkadmin', [LoggingController::class, 'logAdmin']);
-    Route::get('/loadstationdata', [StationController::class, 'loadStationData']);
-    Route::post('/taskrequest', [StationController::class, 'taskRequest']);
-    Route::put('/updatestationnotification/{id}', [StationController::class, 'update']);
-    Route::put('/updatetimerinfo/{id}', [StationController::class, 'editUpdate']);
-    Route::put('/stationname', [StationController::class, 'reconPullbyname']);
-    Route::put('/stationnew', [StationController::class, 'store']);
-    Route::put('/stationattackmessage/{id}', [StationController::class, 'updateAttackMessage']);
-    Route::put('/stationmessage/{id}', [StationController::class, 'updateMessage']);
-    Route::get('/ticklist', [CorpController::class, 'index']);
-    Route::get('/allianceticklist', [AllianceController::class, 'allianceTickList']);
-    Route::get('/structurelist', [ItemController::class, 'index']);
-    Route::get('/towerlist', [ItemController::class, 'towerlist']);
-    Route::get('/moons/{sysid}', [MoonController::class, 'bySystem']);
-    Route::post('/ammorequest', [AmmoRequestController::class, 'store']);
-    Route::get('/ammorequestrecords', [AmmoRequestRecordsController::class, 'index']);
-    Route::get('/loadammorequestdata', [AmmoRequestController::class, 'loadAmmoRequestData']);
-    Route::delete('/ammorequestdelete/{id}', [AmmoRequestController::class, 'destroy']);
-    Route::post('/ammorequestupdate/{id}', [AmmoRequestController::class, 'update']);
-    Route::post('/recontask', [ReconTaskController::class, 'store']);
-    Route::get('/recontask', [ReconTaskController::class, 'index']);
-    Route::get('/recontasksystems', [ReconTaskSystemRecordsController::class, 'index']);
-    Route::put('/recontasksystemtimeupdate/{id}', [ReconTaskSystemController::class, 'update']);
-    Route::delete('/recontask/{id}', [ReconTaskController::class, 'destroy']);
-    Route::get('/constellations', [ConstellationsController::class, 'constellationlist']);
-    Route::post('/startcampaigns/{campid}/{name}', [StartCampaignController::class, 'store']);
-    Route::get('/startcampaigns', [StartCampaignController::class, 'index']);
-    Route::get('/startcampaignjoin', [StartCampaignJoinController::class, 'index']);
-    Route::delete('/startcampaigns/{id}', [StartCampaignController::class, 'destroy']);
-    Route::get('/startcampaignjoinbyid/{campid}', [StartCampaignJoinController::class, 'indexByID']);
-    Route::get('/startcampaignsystemsrecords', [StartCampaignSystemRecordsController::class, 'index']);
-    Route::put('/startcampaignsystemupdate/{id}/{campid}', [StartCampaignSystemController::class, 'update']);
-    Route::put('/startcampaignsystemupdatetimer/{id}/{campid}', [StartCampaignSystemController::class, 'updatetimer']);
-    Route::delete('/startcampaignsystemremovechar/{id}/{char}/{campid}', [StartCampaignSystemController::class, 'removeChar']);
-    Route::get('/rcsheet', [RcSheetController::class, 'index']);
-    Route::put('/rcfcuseradd/{id}', [RcFcUsersController::class, 'addFCtoStation']);
-    Route::put('/rcfcuserremove/{id}', [RcFcUsersController::class, 'removeFCtoStation']);
-    Route::put('/rcreconuseradd/{id}', [RcReconUsersController::class, 'addRecontoStation']);
-    Route::put('/rcreconuserremove/{id}', [RcReconUsersController::class, 'removeRecontoStation']);
-    Route::put('/rcgsoluseradd/{id}', [RcGsolUsersController::class, 'addGsoltoStation']);
-    Route::put('/rcgsoluserremove/{id}', [RcGsolUsersController::class, 'removeGsoltoStation']);
-    Route::put('finishrcstation/{id}', [RcSheetController::class, 'stationdone']);
-    Route::get('/rcfc', [RcFcUsersController::class, 'index']);
-    Route::put('/rcfcnew', [RcFcUsersController::class, 'newfc']);
-    Route::delete('/rcfcdelete/{id}', [RcFcUsersController::class, 'removeFC']);
-    Route::post('/rcfcadd/{id}', [RcFcUsersController::class, 'addFCadd']);
-    Route::get('/rcregionlist', [RcSheetController::class, 'rcSheetListRegion']);
-    Route::get('/rcTypelist', [RcSheetController::class, 'rcSheetListType']);
-    Route::get('/rcStatuslist', [RcSheetController::class, 'rcSheetListStatus']);
-    Route::put('/rcfixcorp/{id}', [RcSheetController::class, 'fixcorp']);
-    Route::put('/rcfixalliance/{id}', [RcSheetController::class, 'fixalliance']);
-    Route::put('/sheetmessage/{id}', [RcSheetController::class, 'updateMessage']);
-    Route::get('/rcadminlogs', [LoggingController::class, 'rcSheetLogging']);
-    Route::get('/stationlogs', [LoggingController::class, 'stationLogging']);
-    Route::put('/rcmovedone/{id}', [StationController::class, 'rcMoveDone']);
-    Route::delete('/rcmovedonebad/{id}', [StationController::class, 'destroy']);
-    Route::get('/chillsheet', [ChillStationController::class, 'index']);
-    Route::get('/chillregionlist', [ChillStationController::class, 'chillSheetListRegion']);
-    Route::get('/chillTypelist', [ChillStationController::class, 'chillSheetListType']);
-    Route::get('/chillStatuslist', [ChillstationController::class, 'chillSheetListStatus']);
-    Route::get('/chilltest', [ChillStationController::class, 'test']);
-    Route::put('finishrcstationchill/{id}', [ChillStationController::class, 'stationdone']);
-    Route::put('/chillupdatetimerinfo/{id}', [ChillStationController::class, 'chillEditUpdate']);
-    Route::delete('/chilldelete/{id}', [ChillStationController::class, 'destroy']);
-    Route::put('/chillupdatestationnotification/{id}', [ChillStationController::class, 'update']);
-    Route::get('/welpsheet', [WelpStationController::class, 'index']);
-    Route::get('/welpregionlist', [WelpStationController::class, 'welpSheetListRegion']);
-    Route::get('/welpTypelist', [WelpStationController::class, 'welpSheetListType']);
-    Route::get('/welpStatuslist', [WelpstationController::class, 'welpSheetListStatus']);
-    Route::get('/welptest', [WelpStationController::class, 'test']);
-    Route::put('finishrcstationwelp/{id}', [WelpStationController::class, 'stationdone']);
-    Route::put('/welpupdatetimerinfo/{id}', [WelpStationController::class, 'welpEditUpdate']);
-    Route::delete('/welpdelete/{id}', [WelpStationController::class, 'destroy']);
-    Route::put('/welpupdatestationnotification/{id}', [WelpStationController::class, 'update']);
-    Route::get('/alluserskeys', [KeyTypeController::class, 'getAllUsersKeys']);
-    Route::get('/allkeyfleets', [FleetTypeController::class, 'getAllKeyFleets']);
-    Route::get('/keys', [KeyTypeController::class, 'index']);
-    Route::put('/keysremove', [KeyTypeController::class, 'removeKey']);
-    Route::get('/fleets', [FleetTypeController::class, 'index']);
-    Route::delete('/fleetdelete/{id}', [FleetTypeController::class, 'destroy']);
-    Route::put('/fleetnew', [FleetTypeController::class, 'store']);
-    Route::put('/keynew', [KeyTypeController::class, 'store']);
-    Route::put('/keysadd', [UserKeyJoinControllerController::class, 'store']);
-    Route::delete('/keydelete/{id}', [KeyTypeController::class, 'destroy']);
-    Route::put('/fleetssadd', [KeyFleetJoinControllerController::class, 'store']);
-    Route::put('/fleetsremove', [KeyFleetJoinControllerController::class, 'removefleet']);
-    Route::put('/softdestory/{id}', [StationController::class, 'softDestroy']);
-    Route::get('/coordRegionlist', [CoordSheetController::class, 'coordSheetListRegion']);
-    Route::get('/coordItemlist', [CoordSheetController::class, 'coordSheetListItem']);
-    Route::get('/coordStatuslist', [CoordSheetController::class, 'coordSheetListStatus']);
-    Route::get('/coordsheet', [CoordSheetController::class, 'index']);
-    Route::put('/editstationname/{id}', [StationController::class, 'editStationNameReconCheck']);
-    Route::post('/userupdate/{id}', [UserController::class, 'updateMessage']);
-    Route::get('/addmissingcorp/{name}', [CorpController::class, 'addMissingCorp']);
+    Route::controller(NotificationController::class)->group(function () {
+        Route::put('/notifications/{id}', 'update');
+        Route::put('/notificationsaddtime/{id}', 'addTime');
+    });
 
-    ///
+    Route::controller(TimerController::class)->group(function () {
+        Route::get('/timers', 'getTimerData');
+        Route::get('/timersregions', 'getTimerDataRegions');
+    });
 
-    Route::get('/solooperationlist', [NewOperationsController::class, 'index']);
-    Route::put('/newcampaigns/{id}', [NewCampaignsController::class, 'update']);
-    Route::get('/stationsheet', [StationController::class, 'stationSheet']);
-    Route::get('/getregionlists', [HotRegionController::class, 'index']);
-    Route::post('/hotregionedit/{id}', [HotRegionController::class, 'update']);
-    Route::post('/updatesetting', [HotRegionController::class, 'updateSetting']);
-    Route::get('/getwebwaystartsystems', [WebWayStartSystemsContorller::class, 'getSystemList']);
-    Route::post('/updatewebwaystartsystems', [WebWayStartSystemsContorller::class, 'update']);
-    Route::put('/stationsheetupdatewebway/{id}', [StationController::class, 'updateStationSheetWebway']);
+    Route::controller(CampaignRecordsController::class)->group(function () {
+        Route::get('/campaigns', 'index');
+        Route::get('/campaignsregion', 'campaignslistRegion');
+        Route::get('/campaignslist', 'campaignslist');
+        Route::put('/campaigns/{id}', 'update');
+    });
 
-    // TODO  Add checks to make sure that people should be doing this when they press the link
+    Route::controller(CampaignUserRecordsController::class)->group(function () {
+        Route::get('/campaignusersrecords/{id}', 'show');
+        Route::get('/campaignusersrecordsbychar/{id}', 'bychar');
+        Route::put('/campaignusersrecords/{id}/{campid}', 'update');
+        Route::post('/campaignusersrecords/{id}/{campid}', 'store');
+    });
 
-    Route::get('/operationinfo/{id}', [NewOperationsController::class, 'getInfo']);
-    Route::put('/newcampaignusersremove/{id}/{opID}/{userid}', [OperationUserController::class, 'updateremove']);
-    Route::put('/newcampaignusersadd/{id}/{opID}/{userid}', [OperationUserController::class, 'updateadd']);
-    Route::post('/newcampaignusers/{opID}/{userid}', [OperationUserController::class, 'store']);
-    Route::put('/newcampaignusers/{userid}/{opID}', [OperationUserController::class, 'edit']);
-    Route::delete('/newcampaignusers/{id}/{opID}/{userid}', [OperationUserController::class, 'destroy']);
-    Route::post('/addnode', [NewSystemNodeController::class, 'store']);
-    Route::delete('/deletenode/{id}', [NewSystemNodeController::class, 'destroy']);
-    Route::post('/addusertonode', [NewSystemNodeController::class, 'addCharToNode']);
-    Route::post('/updatenodestats/{id}', [NewSystemNodeController::class, 'updateStatus']);
-    Route::put('/addprimetimer/{id}', [NewUserNodeController::class, 'addTimer']);
-    Route::put('/addtimertonode/{id}', [NewUserNodeController::class, 'addTimertoNode']);
-    Route::put('/onthewayreadytogo/{opID}/{opUserID}', [OperationUserController::class, 'updateOnTheWayReadyToGO']);
-    Route::post('/checkedat/{systemID}', [SystemController::class, 'checkedAt']);
-    Route::post('/edittidi/{systemID}', [SystemController::class, 'editTidi']);
-    Route::get('/newcampaignslist', [NewCampaignsController::class, 'campaignsList']);
-    Route::post('/newoperation', [NewOperationsController::class, 'makeNewOperation']);
-    Route::get('/operationlist', [NewOperationsController::class, 'getCustomOperationList']);
-    Route::post('/editoperation', [NewOperationsController::class, 'edit']);
-    Route::delete('/newoperation/{id}', [NewOperationsController::class, 'destroy']);
-    Route::delete('/newdeleteextanode/{id}', [NewUserNodeController::class, 'destroy']);
-    Route::post('/addcharadmin', [NewSystemNodeController::class, 'addUserToNodeAdmin']);
-    Route::post('/sendadduseroverlay/{opID}/{type}', [NewOperationsController::class, 'sendAddCharOverlay']);
-    Route::post('/setreadonly/{opID}', [NewOperationsController::class, 'changeReadyOnly']);
-    Route::post('/newcampaignpriority/{id}', [NewOperationsController::class, 'updatePriority']);
+    Route::controller(CampaignUserController::class)->group(function () {
+        Route::post('/campaignusers/{campid}', 'store');
+        Route::put('/campaignusers/{id}/{campid}', 'update');
+        Route::put('/campaignusersadd/{id}/{campid}', 'updateadd');
+        Route::put('/campaignusersremove/{id}/{campid}', 'updateremove');
+        Route::delete('/campaignusers/{id}/{campid}/{siteid}', 'destroy');
+    });
 
-    Route::post('/operationinfosheet', [OperationInfoController::class, 'store']);
-    Route::delete('/operationinfosheet/{id}', [OperationInfoController::class, 'destroy']);
-    Route::post('/operationinfostart/{id}', [OperationInfoController::class, 'updateStartTime']);
-    Route::post('/operationinfosheet/{id}', [OperationInfoController::class, 'editHackOperation']);
-    Route::get('/operationinfosheet', [OperationInfoController::class, 'index']);
-    Route::post('/operationinfosystemnoteupdate/{id}', [OperationInfoController::class, 'updateNote']);
-    Route::post('/operationinfosystemjamupdate/{id}', [OperationInfoController::class, 'updateJam']);
-    Route::post('/operationinfosystemreconupdate/{id}', [OperationInfoController::class, 'updateRecon']);
-    Route::delete('/operationinfosystemreconremove/{id}', [OperationInfoController::class, 'deleteRecon']);
+    Route::controller(CampaignSystemRecordsController::class)->group(function () {
+        Route::get('/campaignsystemsrecords', 'index');
+        Route::get('/campaignsystemsrecords/{id}', 'show');
+        Route::put('/campaignsystemsrecords/{id}/{campid}', 'update');
+        Route::post('/campaignsystemsrecords/{id}/{campid}', 'store');
+        Route::delete('/campaginsystemsrecords/{id}/{campid}', 'destroy');
+        Route::post('/campaignpriority/{id}', 'updatePriority');
+    });
+
+    Route::controller(CampaignSystemsController::class)->group(function () {
+        Route::post('/campaignsystemload', 'load');
+        Route::post('/afterextranodeload', 'afterExtraNodeLoad');
+        Route::post('/campaignsystems/{campid}', 'store');
+        Route::put('/campaignsystems/{id}/{campid}', 'update');
+        Route::put('/campaignsystemsnodemessage/{id}', 'updateMessage');
+        Route::put('/campaignsystemsattackmessage/{id}', 'updateAttackMessage');
+        Route::put('/campaignsystemsupdatetime/{id}/{campid}', 'updatetime');
+        Route::delete('/campaignsystems/{id}/{campid}', 'destroy');
+        Route::put('/campaignsystemremovechar/{campid}', 'removechar');
+        Route::put('/campaignsystemmovechar/{campid}', 'movechar');
+        Route::get('/campaignsystemcheckaddchar/{campid}', 'checkAddChar');
+        Route::post('/campaignsystemuserskick/{campid}', 'kickUser');
+        Route::get('/campaignsystemfinished/{campid}', 'finishCampaign');
+        Route::get('/mcampaignsystemfinished/{campid}', 'mfinishCampaign');
+        Route::put('/campaignsystemstidi/{sysid}/{campid}', 'tidi');
+        Route::put('campaignsystemstidimulti/{sysid}/{campid}', 'tidimulti');
+    });
+
+    Route::controller(CustomCampaignsController::class)->group(function () {
+        Route::post('/multicampaigns/{campid}/{name}', 'store');
+        Route::get('/multicampaigns', 'index');
+        Route::delete('/multicampaigns/{id}', 'destroy');
+        Route::post('/multicampaignsedit/{campid}/{name}', 'edit');
+    });
+
+    Route::controller(SystemController::class)->group(function () {
+        Route::get('/systemsinconstellation/{id}', 'systemsinconstellation');
+        Route::get('/systemlist', 'index');
+        Route::post('/checkedat/{systemID}', 'checkedAt');
+        Route::post('/edittidi/{systemID}', 'editTidi');
+    });
+
+    Route::controller(AuthController::class)->group(function () {
+        Route::get('/users', 'index');
+        Route::get('/user/info', 'loginInfo');
+    });
+
+    Route::controller(UserRolesRecordsController::class)->group(function () {
+        Route::get('/userrolerecord', 'index');
+    });
+
+    Route::controller(RoleController::class)->group(function () {
+        Route::get('/roles', 'index');
+        Route::get('/allusersroles', 'getAllUsersRoles');
+        Route::put('/rolesadd', 'addRole');
+        Route::put('/rolesremove', 'removeRole');
+    });
+
+    Route::controller(CampaignSystemUsersController::class)->group(function () {
+        Route::post('/campaignsystemusers/{campid}', 'store');
+        Route::get('/campaignsystemusers/{campid}', 'index');
+        Route::delete('/campaignsystemusers/{id}/{campid}', 'destroy');
+    });
+
+    Route::controller(CampaignJoinsController::class)->group(function () {
+        Route::get('/campaignjoin', 'index');
+        Route::get('/campaignjoinbyid/{campid}', 'indexByID');
+        Route::get('/campaignjoin/{id}', 'show');
+        Route::get('/campaignjoinlist/{id}', 'list');
+        Route::get('/campaignjoinsystems/{id}', 'campaignSystems');
+    });
+
+    Route::controller(CampaignSolaSystemsController::class)->group(function () {
+        Route::get('/campaignsolasystems', 'index');
+        Route::put('/campaignsolasystems/{solaid}/{campid}', 'update');
+    });
+
+    Route::controller(NodeJoinsController::class)->group(function () {
+        Route::get('/nodejoin/{campid}', 'tableindex');
+        Route::post('/nodejoin/{campid}', 'store');
+        Route::put('/nodejoinupdate/{id}/{campid}', 'update');
+        Route::put('/removecharfromnode/{id}/{campid}', 'removeCharForNode');
+        Route::put('/addchartonodeadmin/{id}/{campid}', 'addCharToNodeAdmin');
+        Route::put('/deleteextranode/{id}/{campid}', 'deleteExtraNode');
+    });
+
+    Route::controller(StationRecordsController::class)->group(function () {
+        Route::get('/stationrecords', 'indexShowOnMove');
+        Route::get('/stationrecordsbyid', 'indexByIdShowOnMove');
+        Route::put('/stationrecords/{id}', 'update');
+    });
+
+    Route::controller(TowerController::class)->group(function () {
+        Route::get('/towersrecords', 'index');
+        Route::put('/towerrecords/{id}', 'update');
+        Route::post('/towerrecords', 'store');
+        Route::get('/towertypelist', 'towerTypeList');
+        Route::get('/tower/moonlist/{id}', 'getMoons');
+        Route::put('/tower/updatestatus/{id}', 'updateStatus');
+        Route::put('/tower/updatetext/{id}', 'updateText');
+    });
+
+    Route::controller(FeedBackController::class)->group(function () {
+        Route::post('/feedback', 'store');
+        Route::get('/feedback', 'index');
+        Route::delete('/feedback/{id}', 'destroy');
+    });
+
+    Route::controller(LoggingController::class)->group(function () {
+        Route::post('/checkaddnode/{campid}', 'NodeAdd');
+        Route::post('/checkdeletenode/{campid}', 'NodeDelete');
+        Route::get('/checkjoinleavecampaign/{campid}/{charid}/{logtype}', 'joinleaveCampaign');
+        Route::get('/mcheckjoinleavecampaign/{campid}/{charid}/{logtype}', 'mjoinleaveCampaign');
+        Route::put('/checklastedchecked/{campid}', 'lastchecked');
+        Route::put('/checkscout/{campid}', 'systemscout');
+        Route::put('/checkaddremovechar/{campid}', 'addremovechar');
+        Route::put('/checkroleaddremove', 'addRemoveRoles');
+        Route::get('/checkcampaign/{campid}', 'logCampaign');
+        Route::get('/checkadmin', 'logAdmin');
+        Route::get('/rcadminlogs', 'rcSheetLogging');
+        Route::get('/stationlogs', 'stationLogging');
+    });
+
+    Route::controller(CorpController::class)->group(function () {
+        Route::get('/ticklist', 'index');
+        Route::get('/addmissingcorp/{name}', 'addMissingCorp');
+    });
+
+    Route::controller(AllianceController::class)->group(function () {
+        Route::get('/allianceticklist', 'allianceTickList');
+    });
+
+    Route::controller(ItemController::class)->group(function () {
+        Route::get('/structurelist', 'index');
+        Route::get('/towerlist', 'towerlist');
+    });
+
+    Route::controller(MoonController::class)->group(function () {
+        Route::get('/moons/{sysid}', 'bySystem');
+    });
+
+    Route::controller(AmmoRequestController::class)->group(function () {
+        Route::post('/ammorequest', 'store');
+        Route::get('/loadammorequestdata', 'loadAmmoRequestData');
+        Route::delete('/ammorequestdelete/{id}', 'destroy');
+        Route::post('/ammorequestupdate/{id}', 'update');
+    });
+
+    Route::controller(AmmoRequestRecordsController::class)->group(function () {
+        Route::get('/ammorequestrecords', 'index');
+    });
+
+    Route::controller(ReconTaskController::class)->group(function () {
+        Route::post('/recontask', 'store');
+        Route::get('/recontask', 'index');
+        Route::delete('/recontask/{id}', 'destroy');
+    });
+
+    Route::controller(ReconTaskSystemRecordsController::class)->group(function () {
+        Route::get('/recontasksystems', 'index');
+    });
+
+    Route::controller(ReconTaskSystemController::class)->group(function () {
+        Route::put('/recontasksystemtimeupdate/{id}', 'update');
+    });
+
+    Route::controller(ConstellationsController::class)->group(function () {
+        Route::get('/constellations', 'constellationlist');
+    });
+
+    Route::controller(StartCampaignController::class)->group(function () {
+        Route::post('/startcampaigns/{name}', 'store');
+        Route::get('/startcampaigns', 'index');
+        Route::delete('/startcampaigns/{id}', 'destroy');
+    });
+
+    Route::controller(StartCampaignJoinController::class)->group(function () {
+        Route::get('/startcampaignjoin', 'index');
+        Route::get('/startcampaignjoinbyid/{campid}', 'indexByID');
+    });
+
+    Route::controller(StartCampaignSystemRecordsController::class)->group(function () {
+        Route::get('/startcampaignsystemsrecords', 'index');
+    });
+
+    Route::controller(StartCampaignSystemController::class)->group(function () {
+        Route::put('/startcampaignsystemupdate/{id}/{campid}', 'update');
+        Route::put('/startcampaignsystemupdatetimer/{id}/{campid}', 'updatetimer');
+        Route::delete('/startcampaignsystemremovechar/{id}/{char}/{campid}', 'removeChar');
+    });
 
 
-    Route::get('/operationinfopage/{link}', [OperationInfoSheetController::class, 'index']);
-    Route::put('/operationinfopage/{id}', [OperationInfoSheetController::class, 'update']);
-    Route::put('/operationinfopagemessage/{id}', [OperationInfoSheetController::class, 'messageAdd']);
-    Route::delete('/operationinfopagemessage/{id}', [OperationInfoSheetController::class, 'messageDelete']);
+    Route::controller(RcFcUsersController::class)->group(function () {
+        Route::put('/rcfcuseradd/{id}', 'addFCtoStation');
+        Route::put('/rcfcuserremove/{id}', 'removeFCtoStation');
+        Route::get('/rcfc', 'index');
+        Route::put('/rcfcnew', 'newfc');
+        Route::delete('/rcfcdelete/{id}', 'removeFC');
+        Route::post('/rcfcadd/{id}', 'addFCadd');
+    });
 
-    Route::get('/operationinfousers', [OperationInfoUserController::class, 'index']);
-    Route::get('/operationinfomumble', [OperationInfoMumbleController::class, 'index']);
-    Route::get('/operationinfodoctrines', [OperationInfoDoctrineController::class, 'index']);
+    Route::controller(RcReconUsersController::class)->group(function () {
+        Route::put('/rcreconuseradd/{id}', 'addRecontoStation');
+        Route::put('/rcreconuserremove/{id}', 'removeRecontoStation');
+    });
 
-    Route::post('/operationinfofleet/{id}', [OperationInfoFleetController::class, 'store']);
-    Route::delete('/operationinfofleet/{id}', [OperationInfoFleetController::class, 'destroy']);
-    Route::put('/operationinfofleet/{id}', [OperationInfoFleetController::class, 'update']);
-    Route::put('/operationinfofleetname/{id}', [OperationInfoFleetController::class, 'name']);
-    Route::post('/operationinfofleetrecon/{id}', [OperationInfoFleetController::class, 'reconAdd']);
+    Route::controller(RcGsolUsersController::class)->group(function () {
+        Route::put('/rcgsoluseradd/{id}', 'addGsoltoStation');
+        Route::put('/rcgsoluserremove/{id}', 'removeGsoltoStation');
+    });
 
-    Route::post('/operationinforecon', [OperationInfoReconController::class, 'store']);
-    Route::post('/operationinforeconremove/{id}', [OperationInfoReconController::class, 'removeFromOp']);
-    Route::get('/operationinforecon', [OperationInfoReconController::class, 'index']);
-    Route::post('/operationinforecondead/{id}', [OperationInfoReconController::class, 'updateDeadStatus']);
-    Route::post('/operationinforecononline/{id}', [OperationInfoReconController::class, 'updateOnlineStatus']);
+    Route::controller(ChillStationController::class)->group(function () {
+        Route::get('/chillsheet', 'index');
+        Route::get('/chillregionlist', 'chillSheetListRegion');
+        Route::get('/chillTypelist', 'chillSheetListType');
+        Route::get('/chillStatuslist', 'chillSheetListStatus');
+        Route::get('/chilltest', 'test');
+        Route::put('finishrcstationchill/{id}', 'stationdone');
+        Route::put('/chillupdatetimerinfo/{id}', 'chillEditUpdate');
+        Route::delete('/chilldelete/{id}', 'destroy');
+        Route::put('/chillupdatestationnotification/{id}', 'update');
+    });
 
-    Route::post('/operationinfofleetreconremove/{id}', [OperationInfoFleetController::class, "reconRemove"]);
-    Route::post('/operationdanklink', [OperationInfoFleetController::class, "dankLinkAdd"]);
+    Route::controller(WelpStationController::class)->group(function () {
+        Route::get('/welpsheet', 'index');
+        Route::get('/welpregionlist', 'welpSheetListRegion');
+        Route::get('/welpTypelist', 'welpSheetListType');
+        Route::get('/welpStatuslist', 'welpSheetListStatus');
+        Route::get('/welptest', 'test');
+        Route::put('finishrcstationwelp/{id}', 'stationdone');
+        Route::put('/welpupdatetimerinfo/{id}', 'welpEditUpdate');
+        Route::delete('/welpdelete/{id}', 'destroy');
+        Route::put('/welpupdatestationnotification/{id}', 'update');
+    });
 
-    Route::get('/operationlistinfoop', [NewOperationsController::class, 'operationlist']);
+    Route::controller(KeyTypeController::class)->group(function () {
+        Route::get('/alluserskeys', 'getAllUsersKeys');
+        Route::get('/keys', 'index');
+        Route::put('/keysremove', 'removeKey');
+        Route::put('/keynew', 'store');
+        Route::delete('/keydelete/{id}', 'destroy');
+    });
 
-    Route::get('/operationinfofleetreconrole', [OperationInfoFleetReconRoleController::class, 'index']);
+    Route::controller(FleetTypeController::class)->group(function () {
+        Route::get('/allkeyfleets', 'getAllKeyFleets');
+        Route::get('/fleets', 'index');
+        Route::delete('/fleetdelete/{id}', 'destroy');
+        Route::put('/fleetnew', 'store');
+    });
 
-    Route::get('/operationinfojammerstatus', [OperationInfoJammedStatusController::class, 'index']);
+    Route::controller(UserKeyJoinControllerController::class)->group(function () {
+        Route::put('/keysadd', 'store');
+    });
 
-    Route::get('/newoperationlogs/{opID}', [NewCampaignsController::class, 'logs']);
+    Route::controller(KeyFleetJoinControllerController::class)->group(function () {
+        Route::put('/fleetssadd', 'store');
+        Route::put('/fleetsremove', 'removefleet');
+    });
+
+
+    Route::controller(CoordSheetController::class)->group(function () {
+        Route::get('/coordRegionlist', 'coordSheetListRegion');
+        Route::get('/coordItemlist', 'coordSheetListItem');
+        Route::get('/coordStatuslist', 'coordSheetListStatus');
+        Route::get('/coordsheet', 'index');
+    });
+
+    Route::controller(UserController::class)->group(function () {
+        Route::post('/userupdate/{id}', 'updateMessage');
+    });
+
+    Route::controller(NewOperationsController::class)->group(function () {
+        Route::get('/solooperationlist', 'index');
+        Route::get('/operationinfo/{id}', 'getInfo');
+        Route::post('/newoperation', 'makeNewOperation');
+        Route::get('/operationlist', 'getCustomOperationList');
+        Route::post('/editoperation', 'edit');
+        Route::delete('/newoperation/{id}', 'destroy');
+        Route::post('/sendadduseroverlay/{opID}/{type}', 'sendAddCharOverlay');
+        Route::post('/setreadonly/{opID}', 'changeReadyOnly');
+        Route::post('/newcampaignpriority/{id}', 'updatePriority');
+        Route::get('/operationlistinfoop', 'operationlist');
+        Route::post('/operation/toggleWindow/{toggle}/{opID}', 'toggleWindow');
+    });
+
+    Route::controller(NewCampaignsController::class)->group(function () {
+        Route::put('/newcampaigns/{id}', 'update');
+        Route::get('/newcampaignslist', 'campaignsList');
+        Route::get('/newoperationlogs/{opID}', 'logs');
+    });
+
+    Route::controller(HotRegionController::class)->group(function () {
+        Route::get('/getregionlists', 'index');
+        Route::post('/hotregionedit/{id}', 'update');
+        Route::post('/updatesetting', 'updateSetting');
+    });
+
+    Route::controller(WebWayStartSystemsContorller::class)->group(function () {
+        Route::get('/getwebwaystartsystems', 'getSystemList');
+        Route::post('/updatewebwaystartsystems', 'update');
+    });
+
+    Route::controller(OperationUserController::class)->group(function () {
+        Route::put('/newcampaignusersremove/{id}/{opID}/{userid}', 'updateremove');
+        Route::put('/newcampaignusersadd/{id}/{opID}/{userid}', 'updateadd');
+        Route::post('/newcampaignusers/{opID}/{userid}', 'store');
+        Route::put('/newcampaignusers/{userid}/{opID}', 'edit');
+        Route::delete('/newcampaignusers/{id}/{opID}/{userid}', 'destroy');
+        Route::put('/onthewayreadytogo/{opID}/{opUserID}', 'updateOnTheWayReadyToGO');
+    });
+
+    Route::controller(NewSystemNodeController::class)->group(function () {
+        Route::post('/addnode', 'store');
+        Route::delete('/deletenode/{id}', 'destroy');
+        Route::post('/addusertonode', 'addCharToNode');
+        Route::post('/updatenodestats/{id}', 'updateStatus');
+        Route::post('/addcharadmin', 'addUserToNodeAdmin');
+    });
+
+    Route::controller(NewUserNodeController::class)->group(function () {
+        Route::put('/addprimetimer/{id}', 'addTimer');
+        Route::put('/addtimertonode/{id}', 'addTimertoNode');
+        Route::delete('/newdeleteextanode/{id}', 'destroy');
+    });
+
+    Route::controller(OperationInfoController::class)->group(function () {
+        Route::post('/operationinfosheet', 'store');
+        Route::delete('/operationinfosheet/{id}', 'destroy');
+        Route::post('/operationinfostart/{id}', 'updateStartTime');
+        Route::post('/operationinfosheet/{id}', 'editHackOperation');
+        Route::get('/operationinfosheet', 'index');
+        Route::post('/operationinfosystemnoteupdate/{id}', 'updateNote');
+        Route::post('/operationinfosystemjamupdate/{id}', 'updateJam');
+        Route::post('/operationinfosystemreconupdate/{id}', 'updateRecon');
+        Route::delete('/operationinfosystemreconremove/{id}', 'deleteRecon');
+    });
+
+    Route::controller(OperationInfoSheetController::class)->group(function () {
+        Route::get('/operationinfopage/{link}', 'index');
+        Route::put('/operationinfopage/{id}', 'update');
+        Route::put('/operationinfopagemessage/{id}', 'messageAdd');
+        Route::delete('/operationinfopagemessage/{id}', 'messageDelete');
+    });
+
+    Route::controller(OperationInfoUserController::class)->group(function () {
+        Route::get('/operationinfousers', 'index');
+    });
+
+    Route::controller(OperationInfoMumbleController::class)->group(function () {
+        Route::get('/operationinfomumble', 'index');
+    });
+
+    Route::controller(OperationInfoDoctrineController::class)->group(function () {
+        Route::get('/operationinfodoctrines', 'index');
+    });
+
+    Route::controller(OperationInfoFleetController::class)->group(function () {
+        Route::post('/operationinfofleet/{id}', 'store');
+        Route::delete('/operationinfofleet/{id}', 'destroy');
+        Route::put('/operationinfofleet/{id}', 'update');
+        Route::put('/operationinfofleetname/{id}', 'name');
+        Route::post('/operationinfofleetrecon/{id}', 'reconAdd');
+        Route::post('/operationinfofleetreconremove/{id}', "reconRemove");
+        Route::post('/operationdanklink', "dankLinkAdd");
+        Route::put('/operationinfo/fleet/update/{id}', 'updateFleet');
+    });
+
+    Route::controller(OperationInfoReconController::class)->group(function () {
+        Route::post('/operationinforecon', 'store');
+        Route::post('/operationinforeconremove/{id}', 'removeFromOp');
+        Route::get('/operationinforecon', 'index');
+        Route::post('/operationinforecondead/{id}', 'updateDeadStatus');
+        Route::post('/operationinforecononline/{id}', 'updateOnlineStatus');
+    });
+
+    Route::controller(OperationInfoFleetReconRoleController::class)->group(function () {
+        Route::get('/operationinfofleetreconrole', 'index');
+    });
+
+    Route::controller(OperationInfoJammedStatusController::class)->group(function () {
+        Route::get('/operationinfojammerstatus', 'index');
+    });
 });

@@ -8,8 +8,6 @@ class SendStationSheetMessageUpdate
 {
     /**
      * Create the event listener.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -18,11 +16,8 @@ class SendStationSheetMessageUpdate
 
     /**
      * Handle the event.
-     *
-     * @param  \App\Events\StationSheetMessageUpdate  $event
-     * @return void
      */
-    public function handle(StationSheetMessageUpdate $event)
+    public function handle(StationSheetMessageUpdate $event): void
     {
         //
     }

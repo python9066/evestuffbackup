@@ -1,214 +1,220 @@
 <template>
   <div>
-    <v-dialog
-      max-width="700px"
-      z-index="0"
-      v-model="showStationNotes"
-      @click:outside="close()"
+    <q-btn
+      text-color="positive"
+      :icon="messageIcon"
+      padding="none"
+      round
+      flat
+      @click="showStationNotes = true"
+      ><q-badge v-if="messageUnreadCount && !showStationNotes" color="red" floating>{{
+        messageUnreadCount
+      }}</q-badge></q-btn
     >
-      <template v-slot:activator="{ on, attrs }">
-        <v-badge
-          color="green"
-          overlap
-          :content="messageCount"
-          :value="showNumber"
-        >
-          <v-btn color="blue" icon v-bind="attrs" v-on="on" @click="open()">
-            <font-awesome-icon :icon="icon" size="2xl"
-          /></v-btn>
-        </v-badge>
-      </template>
-
-      <v-card
-        tile
-        max-width="700px"
-        min-height="200px"
-        max-height="700px"
-        class="d-flex flex-column"
+    <q-dialog v-model="showStationNotes" @before-show="open()" @before-hide="close()">
+      <q-card
+        class="my-card myRoundTop"
+        style="width: 1000px; max-height: 900px; height: 900px"
       >
-        <v-card-title>Notes for Station {{ station.name }}. </v-card-title>
-        <v-card-text>
-          <v-textarea
-            height="400px"
-            readonly
-            no-resize
-            v-model="station.notes"
-            outlined
-            placeholder="No Notes"
-          ></v-textarea>
-          <v-divider></v-divider>
-          <div>
-            <v-text-field
-              v-model="editText"
-              auto-grow
-              filled
-              autofocus
-              label="Enter New Notes Here"
-            ></v-text-field>
-          </div>
-        </v-card-text>
-        <v-spacer></v-spacer
-        ><v-card-actions>
-          <v-btn
-            class="white--text"
-            color="green"
-            @click="updatetext()"
-            :disabled="submitActive"
-          >
-            Submit
-          </v-btn>
-
-          <v-btn class="white--text" color="teal" @click="close()">
-            Close
-          </v-btn></v-card-actions
-        >
-      </v-card>
-
-      <!-- <ShowStationNotes
-                :nodeNoteItem="nodeNoteItem"
-                v-if="$can('super')"
-                @closeMessage="showStationNotes = false"
+        <q-card-section class="bg-primary myCardHeader text-center">
+          <div class="text-h6">Notes for Station {{ props.station.name }}</div>
+        </q-card-section>
+        <q-card-section id="messages" class="overflow-auto" style="height: 600px">
+          <transition-group enter-active-class="animate__animated animate__zoomIn">
+            <q-chat-message
+              v-for="(message, index) in messages"
+              :key="`${message.id}-message`"
+              :text="[message.message]"
+              :name="name(message.user.name, message.user_id)"
+              :avatar="url(message)"
+              :sent="sent(message.user_id)"
+              :bg-color="messageColor(message.user_id)"
             >
-            </ShowStationNotes> -->
-    </v-dialog>
+              <template :key="`${message.id}-stamp`" v-slot:stamp
+                >Sent:
+                <VueCountUp
+                  :key="`${message.id}-time`"
+                  :interval="60000"
+                  :time="age(message.created_at)"
+                  v-slot="{ days, hours, minutes, seconds }"
+                >
+                  <span v-if="days != '00'">{{ days }}days, </span
+                  ><span v-if="hours != '00'">{{ hours }}hours,</span
+                  ><span> {{ minutes }}minutes</span>
+                  ago
+                </VueCountUp>
+                <q-btn
+                  v-if="olderThan(message.created_at) && sent(message.user_id)"
+                  color="negative"
+                  padding="none"
+                  icon="fa-solid fa-trash-can"
+                  flat
+                  size="xs"
+                  rounded
+                  @click="remove(message.id)"
+                />
+              </template>
+            </q-chat-message>
+          </transition-group>
+        </q-card-section>
+        <q-card-section>
+          <div>
+            <q-input
+              input-style="height: 150px"
+              v-model="mainText"
+              clearable
+              outlined
+              rounded
+              dense
+              type="textarea"
+              label="Message"
+            />
+          </div>
+        </q-card-section>
+        <q-card-actions align="between">
+          <q-btn
+            rounded
+            label="Submit"
+            color="primary"
+            :disable="showSubmit"
+            @click="sendMessage()"
+          />
+          <q-btn rounded label="Close" color="negative" @click="close()" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
-<script>
-import { mapState, mapGetters } from "vuex";
-import moment from "moment";
-export default {
-  props: {
-    station: Object,
-    type: Number,
-  },
-  data() {
-    return {
-      messageCount: 0,
-      showNumber: false,
-      showStationNotes: false,
-      editText: null,
-    };
-  },
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import { useMainStore } from "@/store/useMain.js";
+import axios from "axios";
+let can = inject("can");
+let store = useMainStore();
 
-  async created() {
-    if (this.type == 1) {
-      Echo.private("rcsheet").listen("RcSheetMessageUpdate", (e) => {
-        if (e.flag.id == this.station.id) {
-          this.$store.dispatch("updateRcStation", e.flag.message);
-          if (this.showStationNotes == false) {
-            this.showNumber = true;
-            this.messageCount = this.messageCount + 1;
-          }
-        }
-      });
-    }
+const props = defineProps({
+  station: Object,
+  type: Number,
+});
+const VueCountUp = defineAsyncComponent(() => import("../countup/index"));
+onMounted(async () => {});
+let mainText = $ref();
+let showStationNotes = $ref(false);
 
-    if (this.type == 2) {
-      Echo.private("chillsheet").listen("ChillSheetMessageUpdate", (e) => {
-        if (e.flag.id == this.station.id) {
-          this.$store.dispatch("updateChillStation", e.flag.message);
-          if (this.showStationNotes == false) {
-            this.showNumber = true;
-            this.messageCount = this.messageCount + 1;
-          }
-        }
-      });
-    }
-
-    if (this.type == 3) {
-      Echo.private("welpsheet").listen("WelpSheetMessageUpdate", (e) => {
-        if (e.flag.id == this.station.id) {
-          this.$store.dispatch("updateWelpStation", e.flag.message);
-          if (this.showStationNotes == false) {
-            this.showNumber = true;
-            this.messageCount = this.messageCount + 1;
-          }
-        }
-      });
-    }
-
-    if (this.type == 4) {
-      Echo.private("stationsheet").listen("StationSheetMessageUpdate", (e) => {
-        if (e.flag.id == this.station.id) {
-          this.$store.dispatch("updateStationList", e.flag.message);
-          if (this.showStationNotes == false) {
-            this.showNumber = true;
-            this.messageCount = this.messageCount + 1;
-          }
-        }
-      });
-    }
-  },
-
-  methods: {
-    close() {
-      this.editText = null;
-      this.showStationNotes = false;
+const remove = async (id) => {
+  await axios({
+    method: "delete",
+    url: "/api/sheetmessage/" + id,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  });
+};
 
-    open() {
-      (this.showNumber = false), (this.messageCount = 0);
+const sendMessage = async () => {
+  const data = {
+    message: mainText,
+  };
+
+  await axios({
+    method: "put",
+    url: "/api/sheetmessage/" + props.station.id,
+    withCredentials: true,
+    data: data,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  });
+  mainText = null;
+};
 
-    updatetext() {
-      this.editText = this.editText + "\n";
-      if (this.station.notes == null) {
-        var note =
-          moment.utc().format("YYYY-MM-DD HH:mm:ss") +
-          " - " +
-          this.$store.state.user_name +
-          ": " +
-          this.editText;
-      } else {
-        var note =
-          moment.utc().format("YYYY-MM-DD HH:mm:ss") +
-          " - " +
-          this.$store.state.user_name +
-          ": " +
-          this.editText +
-          this.station.notes;
-      }
+let open = async () => {
+  store.stationChatWindowId = props.station.id;
+};
 
-      this.station.notes = note;
-      let request = {
-        notes: note,
-      };
-      this.$store.dispatch("updateStationNotification", this.station);
-      axios({
-        method: "put",
-        url: "/api/sheetmessage/" + this.station.id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-      this.editText = null;
-    },
-  },
+let close = async () => {
+  mainText = null;
+  store.stationChatWindowId = null;
+};
 
-  computed: {
-    icon() {
-      if (this.station.notes == null) {
-        return "fa-regular fa-message";
-      } else {
-        return "fa-solid fa-message";
-      }
-    },
+let age = (val) => {
+  let date = new Date(val);
+  let timestamp = date.getTime();
+  return timestamp;
+};
 
-    submitActive() {
-      if (this.editText != null) {
-        return false;
-      } else {
-        return true;
-      }
-    },
-  },
+let olderThan = (val) => {
+  const timestampDate = new Date(val);
+  const timeDiff = new Date() - timestampDate;
+  const isLessThan30MinsOld = timeDiff < 1800000;
+  return isLessThan30MinsOld;
+};
 
-  beforeDestroy() {},
+let messageCount = $computed(() => {
+  return messages.length;
+});
+
+let messageUnreadCount = $computed(() => {
+  return store.getUnreadMessageCount(props.station.id);
+});
+
+let messageIcon = $computed(() => {
+  if (messageCount) {
+    return "fa-solid fa-message";
+  } else {
+    return "fa-regular fa-message";
+  }
+});
+
+let sent = (id) => {
+  if (store.user_id == id) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+let name = (textname, id) => {
+  if (store.user_id == id) {
+    return "me";
+  } else {
+    return textname;
+  }
+};
+
+let messageColor = (id) => {
+  if (store.user_id == id) {
+    return "amber-7";
+  } else {
+    return "positive";
+  }
+};
+
+let showSubmit = $computed(() => {
+  if (mainText) {
+    return false;
+  }
+  return true;
+});
+
+let messages = $computed(() => {
+  return store.getStationMessages(props.station.id);
+});
+
+let url = (item) => {
+  return "https://image.eveonline.com/Character/" + item.user.eve_user_id + "_128.jpg";
 };
 </script>
 
-<style></style>
+<style lang="scss">
+#messages {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100px;
+  overflow-y: scroll;
+}
+</style>

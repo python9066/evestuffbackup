@@ -25,4 +25,8 @@ class Moon extends Model
     {
         return $this->belongsTo(Region::class);
     }
+    public function towers()
+    {
+        return $this->hasMany(Tower::class, 'moon_id', 'id');
+    }
 }

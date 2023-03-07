@@ -1,145 +1,198 @@
 <template>
-  <div>
-    <div class="">
-      Displayed as <code>[x, y, w, h]</code>:
-      <div class="columns">
-        <div class="layoutItem" v-for="item in layout" :key="item.i">
-          <b>{{ item.i }}</b
-          >: [{{ item.x }}, {{ item.y }}, {{ item.w }}, {{ item.h }}]
-        </div>
-      </div>
-    </div>
-    <button @click="addItem">Add an item dynamically</button>
-    <input type="checkbox" v-model="draggable" /> Draggable
-    <input type="checkbox" v-model="resizable" /> Resizable
-    <grid-layout
-      :layout.sync="layout"
-      :col-num="colNum"
-      :row-height="30"
-      :is-draggable="draggable"
-      :is-resizable="resizable"
-      :vertical-compact="true"
-      :use-css-transforms="true"
+  <div class="q-pa-md">
+    <q-table
+      title="Treats"
+      :rows="rows"
+      :columns="columns"
+      row-key="name"
+      v-model:expanded="expanded"
     >
-      <grid-item
-        v-for="item in layout"
-        :static="item.static"
-        :key="item.i"
-        :x="item.x"
-        :y="item.y"
-        :w="item.w"
-        :h="item.h"
-        :i="item.i"
-      >
-        <span class="text">{{ item.i }}</span>
-        <span class="remove" @click="removeItem(item.i)">x</span>
-      </grid-item>
-    </grid-layout>
+      <template v-slot:header="props">
+        <q-tr :props="props">
+          <q-th auto-width />
+
+          <q-th v-for="col in props.cols" :key="col.name" :props="props">
+            {{ col.label }}
+          </q-th>
+        </q-tr>
+      </template>
+
+      <template v-slot:body="props">
+        <q-tr :props="props">
+          <q-td auto-width>
+            <q-toggle v-model="props.expand" checked-icon="add" unchecked-icon="remove" />
+          </q-td>
+
+          <q-td v-for="col in props.cols" :key="col.name" :props="props">
+            {{ col.value }}
+          </q-td>
+        </q-tr>
+        <q-tr v-show="props.expand" :props="props">
+          <q-td colspan="100%">
+            <div class="text-left">
+              This is expand slot for row above: {{ props.row.name }}.
+            </div>
+          </q-td>
+        </q-tr>
+      </template>
+    </q-table>
   </div>
 </template>
 
 <script>
-import VueGridLayout from "vue-grid-layout";
+import { ref } from "vue";
+
+const columns = [
+  {
+    name: "name",
+    required: true,
+    label: "Dessert (100g serving)",
+    align: "left",
+    field: (row) => row.name,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: "calories",
+    align: "center",
+    label: "Calories",
+    field: "calories",
+    sortable: true,
+  },
+  { name: "fat", label: "Fat (g)", field: "fat", sortable: true },
+  { name: "carbs", label: "Carbs (g)", field: "carbs" },
+  { name: "protein", label: "Protein (g)", field: "protein" },
+  { name: "sodium", label: "Sodium (mg)", field: "sodium" },
+  {
+    name: "calcium",
+    label: "Calcium (%)",
+    field: "calcium",
+    sortable: true,
+    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+  },
+  {
+    name: "iron",
+    label: "Iron (%)",
+    field: "iron",
+    sortable: true,
+    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+  },
+];
+
+const rows = [
+  {
+    name: "Frozen Yogurt",
+    calories: 159,
+    fat: 6.0,
+    carbs: 24,
+    protein: 4.0,
+    sodium: 87,
+    calcium: "14%",
+    iron: "1%",
+  },
+  {
+    name: "Ice cream sandwich",
+    calories: 237,
+    fat: 9.0,
+    carbs: 37,
+    protein: 4.3,
+    sodium: 129,
+    calcium: "8%",
+    iron: "1%",
+  },
+  {
+    name: "Eclair",
+    calories: 262,
+    fat: 16.0,
+    carbs: 23,
+    protein: 6.0,
+    sodium: 337,
+    calcium: "6%",
+    iron: "7%",
+  },
+  {
+    name: "Cupcake",
+    calories: 305,
+    fat: 3.7,
+    carbs: 67,
+    protein: 4.3,
+    sodium: 413,
+    calcium: "3%",
+    iron: "8%",
+  },
+  {
+    name: "Gingerbread",
+    calories: 356,
+    fat: 16.0,
+    carbs: 49,
+    protein: 3.9,
+    sodium: 327,
+    calcium: "7%",
+    iron: "16%",
+  },
+  {
+    name: "Jelly bean",
+    calories: 375,
+    fat: 0.0,
+    carbs: 94,
+    protein: 0.0,
+    sodium: 50,
+    calcium: "0%",
+    iron: "0%",
+  },
+  {
+    name: "Lollipop",
+    calories: 392,
+    fat: 0.2,
+    carbs: 98,
+    protein: 0,
+    sodium: 38,
+    calcium: "0%",
+    iron: "2%",
+  },
+  {
+    name: "Honeycomb",
+    calories: 408,
+    fat: 3.2,
+    carbs: 87,
+    protein: 6.5,
+    sodium: 562,
+    calcium: "0%",
+    iron: "45%",
+  },
+  {
+    name: "Donut",
+    calories: 452,
+    fat: 25.0,
+    carbs: 51,
+    protein: 4.9,
+    sodium: 326,
+    calcium: "2%",
+    iron: "22%",
+  },
+  {
+    name: "KitKat",
+    calories: 518,
+    fat: 26.0,
+    carbs: 65,
+    protein: 7,
+    sodium: 54,
+    calcium: "12%",
+    iron: "6%",
+  },
+];
+
 export default {
-  components: {
-    GridLayout: VueGridLayout.GridLayout,
-    GridItem: VueGridLayout.GridItem,
-  },
-  data() {
+  setup() {
     return {
-      layout: [],
-      draggable: true,
-      resizable: true,
-      colNum: 12,
-      index: 0,
+      expanded: ref([
+        // Array of row keys
+        "Ice cream sandwich",
+      ]),
+
+      columns,
+      rows,
     };
-  },
-  mounted() {
-    // this.$gridlayout.load();
-    this.index = this.layout.length;
-  },
-  methods: {
-    addItem: function () {
-      // Add a new item. It must have a unique key!
-      this.layout.push({
-        x: (this.layout.length * 2) % (this.colNum || 12),
-        y: this.layout.length + (this.colNum || 12), // puts it at the bottom
-        w: 2,
-        h: 2,
-        i: this.index,
-      });
-      // Increment the counter to ensure key is always unique.
-      this.index++;
-    },
-    removeItem: function (val) {
-      const index = this.layout.map((item) => item.i).indexOf(val);
-      this.layout.splice(index, 1);
-    },
   },
 };
 </script>
-
-<style>
-.columns {
-  -moz-columns: 120px;
-  -webkit-columns: 120px;
-  columns: 120px;
-}
-/*************************************/
-.remove {
-  position: absolute;
-  right: 2px;
-  top: 0;
-  cursor: pointer;
-}
-.vue-grid-layout {
-  background: #eee;
-}
-.vue-grid-item:not(.vue-grid-placeholder) {
-  background: #ccc;
-  border: 1px solid black;
-}
-.vue-grid-item .resizing {
-  opacity: 0.9;
-}
-.vue-grid-item .static {
-  background: #cce;
-}
-.vue-grid-item .text {
-  font-size: 24px;
-  text-align: center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  height: 100%;
-  width: 100%;
-}
-.vue-grid-item .no-drag {
-  height: 100%;
-  width: 100%;
-}
-.vue-grid-item .minMax {
-  font-size: 12px;
-}
-.vue-grid-item .add {
-  cursor: pointer;
-}
-.vue-draggable-handle {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  top: 0;
-  left: 0;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><circle cx='5' cy='5' r='5' fill='#999999'/></svg>")
-    no-repeat;
-  background-position: bottom right;
-  padding: 0 8px 8px 0;
-  background-repeat: no-repeat;
-  background-origin: content-box;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-</style>

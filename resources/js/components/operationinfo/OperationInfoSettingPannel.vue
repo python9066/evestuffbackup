@@ -1,284 +1,237 @@
 <template>
-  <div>
-    <v-dialog
-      max-width="700px"
-      z-index="0"
-      persistent
-      v-model="openInfo"
-      class="rounded-xl"
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn color="gray" v-bind="attrs" v-on="on" @click="open()" icon>
-          <font-awesome-icon icon="fa-solid fa-gears" size="2xl" />
-        </v-btn>
-      </template>
-      <v-card
-        tile
-        max-width="1000px"
-        min-height="200px"
-        max-height="700px"
-        elevation="10"
-        class="rounded-xl"
+  <q-btn
+    color="warning"
+    icon="fa-solid fa-gears"
+    flat
+    padding="none"
+    @click="showSetting = true"
+  />
+  <q-dialog v-model="showSetting" @before-show="open()" persistent>
+    <q-card class="myRoundTop" style="width: 700px; max-width: 80vw">
+      <q-card-section class="bg-primary text-h5 text-center">
+        <h5 class="no-margin">
+          Globle Setting for Operation - {{ store.operationInfoPage.name }}
+        </h5>
+      </q-card-section>
+      <q-card-section>
+        <q-select
+          rounded
+          dense
+          clearable
+          standout
+          input-debounce="0"
+          label-color="webway"
+          option-value="id"
+          option-label="title"
+          v-model="oldOperation"
+          :options="campaignList"
+          ref="toRegionRef"
+          label="Which Hacking Operation would you like to add"
+          @filter="filterFnHackingOpFinish"
+          @filter-abort="abortFilterFn"
+          map-options
+          use-input
+          hide-selected
+          fill-input
+        />
+        <q-select
+          rounded
+          class="q-pt-sm"
+          dense
+          standout
+          input-debounce="0"
+          label-color="webway"
+          option-value="value"
+          option-label="text"
+          v-model="systemsToUpdate"
+          :options="systemFindList"
+          @filter="filterFnSystemFinish"
+          @filter-abort="abortFilterFn"
+          label="Which none hacking Operation Systems would you like to add"
+          use-input
+          use-chips
+          multiple
+        >
+          <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+            <q-item v-bind="itemProps">
+              <q-item-section>
+                <q-item-label v-html="opt.text" />
+              </q-item-section>
+              <q-item-section side>
+                <q-toggle
+                  :model-value="selected"
+                  @update:model-value="toggleOption(opt)"
+                />
+              </q-item-section>
+            </q-item>
+          </template>
+
+          <template v-slot:selected-item="scope">
+            <q-chip
+              removable
+              @remove="scope.removeAtIndex(scope.index)"
+              :tabindex="scope.tabindex"
+              text-color="white"
+              class="q-ma-none"
+            >
+              <span class="text-xs"> {{ scope.opt.text }} </span>
+            </q-chip>
+          </template>
+        </q-select>
+        <q-option-group
+          class="q-pt-md"
+          v-model="pickedOptions"
+          :options="showOptions"
+          color="yellow"
+          dense
+          type="toggle"
+        >
+          <template v-slot:label="opt">
+            <div class="row items-center">
+              <transition
+                mode="out-in"
+                enter-active-class="animate__animated animate__flash"
+                leave-active-class="animate__animated animate__flash"
+              >
+                <span :key="lableKey(opt.value)" :class="labelText(opt.value)">{{
+                  hideShow(opt)
+                }}</span></transition
+              >
+            </div>
+          </template></q-option-group
+        ></q-card-section
       >
-        <v-card-title class="justify-center primary"
-          >Globle Setting for Operation - {{ opInfo.name }}</v-card-title
-        >
-        <v-card-text>
-          <v-row no-gutters justify="start">
-            <v-col>
-              <v-autocomplete
-                v-model="opInfo.operation_id"
-                :items="operationList"
-                item-text="title"
-                item-value="id"
-                label="Select"
-                clearable
-                dense
-                hint="Which Hacking Operation would you like to add"
-                hide-selected
-                persistent-hint
-                rounded
-                solo-inverted
-              ></v-autocomplete>
-            </v-col>
-          </v-row>
-          <v-row no-gutters justify="start">
-            <v-col>
-              <v-autocomplete
-                v-model="pickedSystems"
-                :items="systemList"
-                label="Select"
-                multiple
-                chips
-                deletable-chips
-                dense
-                hint="Which none hacking Operation Systems would you like to add"
-                hide-selected
-                persistent-hint
-                rounded
-                solo-inverted
-              ></v-autocomplete>
-            </v-col>
-          </v-row>
-
-          <v-row no-gutters justify="start">
-            <v-col cols="auto">
-              <v-row no-gutters>
-                <v-col cols="auto">
-                  <v-switch
-                    v-model="opInfo.check_list"
-                    dense
-                    class="mt-0 pt-0"
-                    :false-value="0"
-                    :true-value="1"
-                    hide-details="auto"
-                    @change="changeCheck()"
-                  ></v-switch>
-                </v-col>
-                <v-col cols="auto" class="d-flex align-baseline">
-                  <transition
-                    mode="out-in"
-                    enter-active-class="animate__animated animate__flash animate__faster"
-                    leave-active-class="animate__animated animate__flash animate__faster"
-                  >
-                    <span :key="opInfo.check_list">
-                      Check List - {{ checkText(opInfo.check_list) }}</span
-                    >
-                  </transition>
-                </v-col>
-              </v-row>
-              <v-row no-gutters>
-                <v-col cols="auto">
-                  <v-switch
-                    v-model="opInfo.fleet_table"
-                    dense
-                    class="mt-0 pt-0"
-                    :false-value="0"
-                    :true-value="1"
-                    hide-details="auto"
-                    @change="changeCheck()"
-                  ></v-switch>
-                </v-col>
-                <v-col cols="auto" class="d-flex align-baseline">
-                  <transition
-                    mode="out-in"
-                    enter-active-class="animate__animated animate__flash animate__faster"
-                    leave-active-class="animate__animated animate__flash animate__faster"
-                  >
-                    <span :key="opInfo.fleet_table">
-                      Fleet Table - {{ checkText(opInfo.fleet_table) }}</span
-                    >
-                  </transition>
-                </v-col>
-              </v-row>
-              <v-row no-gutters>
-                <v-col cols="auto">
-                  <v-switch
-                    v-model="opInfo.recon_table"
-                    dense
-                    class="mt-0 pt-0"
-                    :false-value="0"
-                    :true-value="1"
-                    hide-details="auto"
-                    @change="changeCheck()"
-                  ></v-switch>
-                </v-col>
-                <v-col cols="auto" class="d-flex align-baseline">
-                  <transition
-                    mode="out-in"
-                    enter-active-class="animate__animated animate__flash animate__faster"
-                    leave-active-class="animate__animated animate__flash animate__faster"
-                  >
-                    <span :key="opInfo.recon_table">
-                      Recon List - {{ checkText(opInfo.recon_table) }}</span
-                    >
-                  </transition>
-                </v-col>
-              </v-row>
-              <v-row no-gutters>
-                <v-col cols="auto">
-                  <v-switch
-                    v-model="opInfo.system_table"
-                    dense
-                    class="mt-0 pt-0"
-                    :false-value="0"
-                    :true-value="1"
-                    hide-details="auto"
-                    @change="changeCheck()"
-                  ></v-switch>
-                </v-col>
-                <v-col cols="auto" class="d-flex align-baseline">
-                  <transition
-                    mode="out-in"
-                    enter-active-class="animate__animated animate__flash animate__faster"
-                    leave-active-class="animate__animated animate__flash animate__faster"
-                  >
-                    <span :key="opInfo.system_table">
-                      System Table - {{ checkText(opInfo.system_table) }}</span
-                    >
-                  </transition>
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-card-text>
-        <v-spacer></v-spacer
-        ><v-card-actions>
-          <v-btn rounded @click="submit()" color="primery"> Update </v-btn>
-
-          <v-btn rounded class="white--text" color="teal" @click="close()">
-            Close
-          </v-btn></v-card-actions
-        >
-      </v-card>
-    </v-dialog>
-  </div>
+      <q-card-actions align="center">
+        <q-btn color="positive" label="Update" @click="submit()" rounded v-close-popup />
+        <q-btn label="Close" rounded color="negative" v-close-popup /> </q-card-actions
+    ></q-card>
+  </q-dialog>
 </template>
 
-<script>
-import { mapState, mapGetters } from "vuex";
-import moment from "moment";
-export default {
-  props: {},
-  data() {
-    return {
-      openInfo: false,
-      operationPick: null,
-      systemsToUpdate: [],
-      switch4: 0,
-      switch3: 0,
-      switch2: 0,
-      switch1: 0,
-    };
+<script setup>
+import { useMainStore } from "@/store/useMain.js";
+let store = useMainStore();
+let showSetting = $ref(false);
+let systemsToUpdate = $ref([]);
+let oldOperation = $ref();
+
+let campaignText = $ref();
+
+let pickedOptions = $ref([]);
+let showOptions = $ref([
+  {
+    label: "Check List",
+    value: "check_list",
   },
-
-  async created() {},
-
-  methods: {
-    close() {
-      this.openInfo = false;
-    },
-
-    checkText(num) {
-      if (num == 1) {
-        return "Show";
-      } else {
-        return "Hide";
-      }
-    },
-
-    async changeCheck() {
-      var request = this.opInfo;
-      await axios({
-        method: "put", //you can set what request you want to be
-        url: "/api/operationinfopage/" + this.opInfo.id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-
-    submit() {
-      var request = {
-        operation_id: this.opInfo.operation_id,
-        systemsToUpdate: this.systemsToUpdate,
-      };
-
-      axios({
-        method: "post", //you can set what request you want to be
-        url: "/api/operationinfosheet/" + this.opInfo.id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-
-    open() {
-      this.openInfo = true;
-    },
+  {
+    label: "Fleet Table",
+    value: "fleet_table",
   },
-
-  computed: {
-    ...mapState(["operationInfoOperationList"]),
-
-    ...mapGetters(["getOperationInfoSystemList"]),
-
-    operationList() {
-      return this.operationInfoOperationList;
-    },
-
-    systemList() {
-      return this.$store.state.systemlist;
-    },
-
-    opInfo: {
-      get() {
-        return this.$store.state.operationInfoPage;
-      },
-      set(newValue) {
-        return this.$store.dispatch("updateOperationSheetInfoPage", newValue);
-      },
-    },
-
-    pickedSystems: {
-      get() {
-        this.systemsToUpdate = this.$store.getters.getOperationInfoSystemList;
-        return this.$store.getters.getOperationInfoSystemList;
-      },
-      set(newValue) {
-        this.systemsToUpdate = newValue;
-      },
-    },
+  {
+    label: "Recon List",
+    value: "recon_table",
   },
+  {
+    label: "System Table",
+    value: "system_table",
+  },
+]);
 
-  beforeDestroy() {},
+let hideShow = (value) => {
+  if (pickedOptions.includes(value.value)) {
+    return value.label + " - show";
+  } else {
+    return value.label + " - hide";
+  }
+};
+
+let lableKey = (value) => {
+  let show = 0;
+  if (pickedOptions.includes(value)) {
+    show = 1;
+  } else {
+    show = 0;
+  }
+
+  return value + " - " + show;
+};
+
+let labelText = (value) => {
+  if (pickedOptions.includes(value)) {
+    return "text-primary";
+  } else {
+    return "text-negative";
+  }
+};
+
+let campaignList = $computed(() => {
+  if (campaignText) {
+    return store.operationInfoOperationList.filter(
+      (d) => d.title.toLowerCase().indexOf(campaignText) > -1
+    );
+  }
+  return store.operationInfoOperationList;
+});
+
+let filterFnHackingOpFinish = (val, update, abort) => {
+  update(() => {
+    campaignText = val.toLowerCase();
+    if (campaignList.length > 0 && val) {
+      oldOperation = campaignList[0];
+    }
+  });
+};
+
+let systemFindText = $ref();
+let systemFindList = $computed(() => {
+  if (systemFindText) {
+    return store.systemlist.filter(
+      (d) => d.text.toLowerCase().indexOf(systemFindText) > -1
+    );
+  }
+  return store.systemlist;
+});
+
+let filterFnSystemFinish = (val, update, abort) => {
+  update(() => {
+    systemFindText = val.toLowerCase();
+  });
+};
+
+let open = () => {
+  systemsToUpdate = store.getOperationInfoSystemList;
+  pickedOptions = store.getOperationInfoTableStatus;
+  oldOperation = store.operationInfoOperationList.find(
+    (o) => o.id == store.operationInfoPage.operation_id
+  );
+};
+
+let abortFilterFn = () => {
+  // console.log('delayed filter aborted')
+};
+
+let submit = () => {
+  let opID = null;
+  if (oldOperation) {
+    opID = oldOperation.id;
+  }
+  var request = {
+    operation_id: opID,
+    systemsToUpdate: systemsToUpdate ?? [],
+    show: pickedOptions,
+  };
+
+  axios({
+    method: "post", //you can set what request you want to be
+    url: "/api/operationinfosheet/" + store.operationInfoPage.id,
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
 };
 </script>
 
-<style></style>
+<style lang="scss"></style>

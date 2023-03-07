@@ -1,527 +1,514 @@
 <template>
-  <v-col cols="auto" class="px-2 pt-2" :key="`${fleetID}-start-col`">
-    <v-row no-gutters :key="`${fleetID}-start-row`">
-      <v-col cols="12" :key="`${fleetID}-2-col`">
-        <v-card rounded="xl" :key="`${fleetID}-3-col`"
-          ><v-card-title class="red pt-1 pb-1"
-            ><v-row no-gutters justify="space-between">
-              <v-col cols="auto">
-                <v-btn icon x-small class="handle" color="gray">
-                  <font-awesome-icon icon="fa-solid fa-up-down-left-right" /></v-btn
-              ></v-col>
-              <v-col v-if="readOnly" cols="auto">{{ fleetInfo.name }} </v-col>
-              <v-col v-else-if="!dankfleet" cols="auto">
-                <v-text-field
-                  outlined
-                  rounded
-                  dense
-                  hide-details
-                  filled
-                  v-model="fleetInfo.name"
-                  @change="updateFleet()"
-                ></v-text-field>
-              </v-col>
-              <v-col v-else cols="auto">{{ fleetInfo.name }} </v-col>
-              <v-col cols="auto"
-                ><v-fab-transition
-                  ><v-speed-dial
-                    v-model="fab"
-                    v-if="readOnly"
-                    direction="left"
-                    transition="slide-y-reverse-transition"
-                  >
-                    <template v-slot:activator>
-                      <v-btn v-model="fab" color="blue darken-2" x-small fab>
-                        <font-awesome-icon
-                          v-if="fab"
-                          size="xl"
-                          icon="fa-solid fa-xmark"
-                        />
-                        <font-awesome-icon v-else size="xl" icon="fa-solid fa-bars" />
-                      </v-btn>
-                    </template>
-                    <v-btn fab x-small color="green" @click="readOnlyOff()">
-                      <font-awesome-icon size="xl" icon="fa-solid fa-pen-to-square" />
-                    </v-btn>
-                    <v-btn fab x-small color="red" @click="deleteFleet()">
-                      <font-awesome-icon size="xl" icon="fa-solid fa-trash-can" />
-                    </v-btn>
-                  </v-speed-dial>
-                  <v-btn fab color="green" small v-else @click="readOnlyOn()">
-                    <font-awesome-icon
-                      icon="fa-solid fa-check"
-                      size="xl" /></v-btn></v-fab-transition></v-col></v-row></v-card-title
-          ><v-card-text>
-            <div v-if="!readOnly">
-              <v-row v-if="!dankfleet" class="pt-2" no-gutters
-                ><v-col cols="auto">
-                  <v-combobox
-                    outlined
-                    :clearable="!readOnly"
-                    :readonly="readOnly"
-                    :append-icon="dropDownIcon"
-                    :items="operationInfoUsers"
-                    v-model="fleetInfo.fc"
-                    item-text="name"
-                    item-value="id"
-                    hide-details
-                    rounded
-                    label="FC"
-                    dense
-                    @change="updateFC()"
-                  ></v-combobox></v-col
-              ></v-row>
-              <v-row v-else>
-                <span class="pt-5">FC - {{ fcText }}</span></v-row
-              >
-              <v-row v-if="!dankfleet" class="pt-2" no-gutters
-                ><v-col cols="auto"
-                  ><v-combobox
-                    outlined
-                    :clearable="!readOnly"
-                    :readonly="readOnly"
-                    :append-icon="dropDownIcon"
-                    :items="operationInfoUsers"
-                    v-model="fleetInfo.boss"
-                    item-text="name"
-                    item-value="id"
-                    hide-details
-                    rounded
-                    label="Boss"
-                    dense
-                    @change="updateBoss()"
-                  ></v-combobox></v-col
-              ></v-row>
-              <v-row v-else>
-                <span> Boss - {{ bossText }}</span></v-row
-              >
-              <v-row v-if="!dankfleet" class="pt-2" no-gutters
-                ><v-col cols="auto"
-                  ><v-autocomplete
-                    outlined
-                    :clearable="!readOnly"
-                    :readonly="readOnly"
-                    :append-icon="dropDownIcon"
-                    :items="operationInfoDoctrines"
-                    v-model="fleetInfo.doctrine_id"
-                    item-text="name"
-                    item-value="id"
-                    hide-details
-                    rounded
-                    label="Doctrine"
-                    dense
-                    @change="updateFleet()"
-                  ></v-autocomplete></v-col
-              ></v-row>
-              <v-row v-else>
-                <span class="pb-5"> Doctrine - {{ doctrineText }}</span></v-row
-              >
-              <v-row class="pt-2" no-gutters
-                ><v-col cols="auto"
-                  ><v-autocomplete
-                    outlined
-                    :clearable="!readOnly"
-                    :readonly="readOnly"
-                    :append-icon="dropDownIcon"
-                    :items="operationInfoMumble"
-                    v-model="fleetInfo.mumble_id"
-                    item-text="name"
-                    item-value="id"
-                    hide-details
-                    rounded
-                    label="Mumble"
-                    dense
-                    @change="updateFleet()"
-                  ></v-autocomplete></v-col
-              ></v-row>
-              <v-row class="pt-2" no-gutters
-                ><v-col cols="auto">
-                  <OperationInfoFleetReconCard :fleetID="this.fleetID" />
-                </v-col>
-              </v-row>
+  <div>
+    <q-card class="myRoundTop col-auto q-pb-xs" style="height: fit-content">
+      <q-card-section class="bg-negative text-center q-py-sm">
+        <span class="no-margin text-h6 q-ma-none">{{ fleet.name }}</span>
+        <q-btn
+          color="green"
+          icon="fa-solid fa-edit"
+          round
+          size="xs"
+          @click="showEditMenu = true"
+        />
+      </q-card-section>
+      <q-card-section>
+        <div class="column items-center">
+          <span class="text-webway q-pa-none"> FC - {{ fcText }}</span>
+          <span class="text-webway q-pa-none"> Boss - {{ bossText }} </span>
+          <span class="text-webway q-pa-none"> Doctrine - {{ docText }} </span>
+          <span class="text-webway q-pa-none"> Mumble - {{ mumbleText }} </span>
+        </div>
+      </q-card-section>
+      <q-card-section class="text-center q-py-none">
+        <div class="column items-center">
+          <q-btn
+            class="col"
+            color="primary"
+            no-caps
+            style="width: 50%"
+            rounded=""
+            label="Recon"
+            @click="showReconEdit = true"
+          />
+          <span class="text-webway" v-for="(recon, index) in fleet.recons" :key="index">
+            {{ recon.fleet_role.name }} - {{ recon.name }}
+            <span v-if="recon.system"> - {{ recon.system.system_name }} </span>
+
+            <q-tooltip :delay="500">
+              <span>Main - {{ recon.main.name }}</span>
+              <span v-if="recon.system">
+                <br />
+                System - {{ recon.system.system_name }}
+              </span>
+            </q-tooltip>
+          </span>
+        </div>
+      </q-card-section>
+    </q-card>
+
+    <q-dialog @before-show="openEdit()" v-model="showEditMenu" persistent>
+      <q-card class="myRoundTop col-auto" style="min-height: 300px; width: 500px">
+        <q-card-section class="bg-primary text-center q-py-sm">
+          <span class="no-margin text-h6 q-ma-none">Edit Fleet - {{ fleet.name }}</span
+          ><q-btn
+            color="warning"
+            flat
+            icon="fa-solid fa-trash-can"
+            @click="deleteFleet()"
+            v-close-popup
+        /></q-card-section>
+        <q-card-section>
+          <div class="column q-gutter-lg">
+            <q-input
+              dense
+              outlined
+              rounded
+              v-model="editFleetName"
+              type="text"
+              label="Fleet Name"
+            />
+            <q-select
+              v-model="editFC"
+              dense
+              outlined
+              rounded
+              use-input
+              new-value-mode="add-unique"
+              option-label="name"
+              clearable
+              option-value="id"
+              :options="fcFindList"
+              label="FC"
+              @filter="filterFnFcFinish"
+              @filter-abort="abortFilterFn"
+            />
+            <q-select
+              v-model="editBoss"
+              dense
+              outlined
+              rounded
+              option-label="name"
+              clearable
+              option-value="id"
+              use-input
+              :options="bossFindList"
+              label="Boss"
+              @filter="filterFnBossFinish"
+              @filter-abort="abortFilterFn"
+            />
+
+            <q-select
+              v-model="editDoctrine"
+              dense
+              outlined
+              option-label="name"
+              clearable
+              option-value="id"
+              use-input
+              :options="doctrineFindList"
+              label="Doctrine"
+              @filter="filterFnDoctrineFinish"
+              @filter-abort="abortFilterFn"
+              rounded
+            />
+
+            <q-select
+              v-model="editMumble"
+              dense
+              outlined
+              option-label="name"
+              clearable
+              option-value="id"
+              :options="mumbleFindList"
+              label="Mumble"
+              use-input
+              rounded
+              @filter="filterFnMumbleFinish"
+              @filter-abort="abortFilterFn"
+            />
+          </div>
+        </q-card-section>
+        <q-card-actions align="around">
+          <q-btn
+            rounded
+            color="positive"
+            v-close-popup
+            label="Update"
+            :disable="!editFleetName"
+            @click="update()"
+          />
+          <q-btn rounded color="negative" v-close-popup label="Close" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="showReconEdit" persistent @before-hide="closeRecon()">
+      <q-card class="myRoundTop col-auto" style="width: 500px">
+        <q-card-section class="bg-primary text-center q-py-sm">
+          <span class="no-margin text-h6 q-ma-none"
+            >Edit Recon for {{ fleet.name }}</span
+          ></q-card-section
+        >
+        <q-card-section>
+          <div class="row full-width items-center">
+            <div class="col-5">
+              <q-select
+                v-model="pickedRecon"
+                dense
+                option-label="name"
+                clearable
+                option-value="id"
+                :options="reconFindList"
+                label="Recon"
+                outlined
+                rounded
+                @filter="filterFnReconFinish"
+                @filter-abort="abortFilterFn"
+                use-input
+              />
             </div>
-            <div v-else>
-              <span>FC - {{ fcText }}</span>
-              <br />
-              <span> Boss - {{ bossText }}</span>
-              <br />
-              <span> Doctrine - {{ doctrineText }}</span>
-              <br />
-              <span> Mumble - {{ mumbleText }}</span>
-              <br />
-              <v-row no-gutters align-content="center" justify="center">
-                <v-col cols="auto"> Recon </v-col>
-              </v-row>
-              <v-row no-gutters>
-                <v-col cols="auto">
-                  <v-row no-gutters v-for="(recon, index) in recons" :key="index">
-                    <v-tooltip bottom :disabled="!showreconToolTip"
-                      ><template v-slot:activator="{ on, attrs }"
-                        ><span v-bind="attrs" v-on="on">
-                          {{ recon.fleet_role.name }} - {{ recon.name }}
-                          <span v-if="recon.system">
-                            - {{ recon.system.system_name }}
-                          </span></span
-                        ></template
-                      ><span>Main - {{ recon.main.name }}</span>
-                      <span v-if="recon.system">
-                        <br />
-                        System - {{ recon.system.system_name }}
-                      </span></v-tooltip
+            <div class="col-5">
+              <q-select
+                v-model="pickedRole"
+                dense
+                option-label="name"
+                clearable
+                option-value="id"
+                :options="store.operationInfoReconFleetRoleList"
+                label="Role"
+                outlined
+                rounded
+              />
+            </div>
+            <div class="col-2 q-pl-xs">
+              <q-btn
+                dense
+                color="positive"
+                rounded
+                label="Add"
+                @click="addRecon()"
+                :disable="!pickedRecon || !pickedRole"
+              />
+            </div>
+          </div>
+        </q-card-section>
+        <q-card-section>
+          <div class="column">
+            <span class="text-webway" v-for="(recon, index) in fleet.recons" :key="index">
+              {{ recon.name }} - {{ recon.fleet_role.name }}
+              <q-btn flat round size="xs" color="secondary" icon="fa-solid fa-edit"
+                ><q-menu>
+                  <q-list style="min-width: 100px">
+                    <q-item
+                      clickable
+                      @click="editReconRole(recon, role)"
+                      v-close-popup
+                      v-for="(role, index) in store.operationInfoReconFleetRoleList"
+                      :key="index"
                     >
-                  </v-row>
-                </v-col>
-              </v-row>
-              <!-- <v-menu
-                bottom
-                origin="center center"
-                transition="scale-transition"
-              >
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    class="warning"
-                    icon
-                    x-small
-                    v-if="showReconCount"
-                    v-bind="attrs"
-                    v-on="on"
-                  >
-                    <font-awesome-icon :icon="numberIcon" />
-                  </v-btn>
-                </template>
-                <v-list>
-                  <v-list-item
-                    v-for="(recon, index) in extraRecons"
-                    :key="index"
-                  >
-                    <v-list-item-avatar :size="32">
-                      <v-img :src="recon.url"></v-img>
-                    </v-list-item-avatar>
-                    <v-list-item-content>
-                      <v-list-item-subtitle>
-                        {{ recon.fleet_role.name }} - {{ recon.name }} -
-                        {{ recon.main.name }}
-                        <span v-if="recon.system">
-                          - {{ recon.system.system_name }}
-                        </span>
-                      </v-list-item-subtitle>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list>
-              </v-menu> -->
-              <br />
-              <!-- <span> Alliance - {{ allianceText }}</span> -->
-            </div>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-col>
+                      <q-item-section>{{ role.name }}</q-item-section>
+                    </q-item>
+                    <q-separator />
+                  </q-list> </q-menu
+              ></q-btn>
+              <q-btn
+                flat
+                round
+                size="xs"
+                color="negative"
+                icon="fa-solid fa-trash-can"
+                @click="removeReconFromFleet(recon)"
+              />
+            </span>
+          </div>
+        </q-card-section>
+        <q-card-actions align="center">
+          <q-btn rounded color="negative" v-close-popup label="Close" />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import { EventBus } from "../../app";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {},
-  props: {
-    loaded: Boolean,
-    fleetID: Number,
-  },
-  data() {
-    return {
-      fab: false,
-      readOnly: true,
-    };
-  },
 
-  async created() {},
+<script setup>
+import { useMainStore } from "@/store/useMain.js";
+import axios from "axios";
+let store = useMainStore();
+const props = defineProps({
+  fleet: [Array, Object],
+});
 
-  beforeMonunt() {},
+let showEditMenu = $ref(false);
+let showReconEdit = $ref(false);
+let editFC = $ref();
+let editBoss = $ref();
+let editDoctrine = $ref();
+let editMumble = $ref();
+let editFleetName = $ref();
 
-  async beforeCreate() {},
+let pickedRecon = $ref();
+let pickedRole = $ref();
+let pickedNewRole = $ref();
 
-  async mounted() {},
-  methods: {
-    readOnlyOff() {
-      this.readOnly = false;
-      this.fab = false;
+let openEdit = () => {
+  editFC = props.fleet.fc;
+  editBoss = props.fleet.boss;
+  editDoctrine = props.fleet.doctrine;
+  editMumble = props.fleet.mumble;
+  editFleetName = props.fleet.name;
+};
+
+let update = () => {
+  var fcName = null;
+  var bossName = null;
+  if (typeFC == "string") {
+    fcName = editFC;
+  } else {
+    if (editFC) {
+      fcName = editFC.name;
+    }
+  }
+
+  if (typeBoss == "string") {
+    bossName = editBoss;
+  } else {
+    if (editBoss) {
+      bossName = editBoss.name;
+    }
+  }
+
+  var data = {
+    fleet_name: editFleetName,
+    fc_name: fcName,
+    boss_name: bossName,
+    doctrine_id: editDoctrine,
+    mumble_id: editMumble,
+    opID: store.operationInfoPage.id,
+  };
+
+  axios({
+    method: "put",
+    url: "/api/operationinfo/fleet/update/" + props.fleet.id,
+    withCredentials: true,
+    data: data,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  });
+};
 
-    readOnlyOn() {
-      this.readOnly = true;
+let deleteFleet = () => {
+  axios({
+    method: "delete",
+    url: "/api/operationinfofleet/" + props.fleet.id,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  });
+};
 
-    async updateBoss() {
-      if (this.typeBoss == "string") {
-        var name = this.fleetInfo.boss ?? null;
-      } else {
-        if (this.fleetInfo.boss == null) {
-          var name = null;
-        } else {
-          var name = this.fleetInfo.boss.name ?? null;
-        }
-      }
+let fcText = $computed(() => {
+  if (props.fleet.fc_id) {
+    return props.fleet.fc.name;
+  }
+  return "None";
+});
 
-      var request = {
-        name: name,
-        type: 2,
-        opID: this.opInfo.id,
-      };
-      await axios({
-        method: "put", //you can set what request you want to be
-        url: "/api/operationinfofleetname/" + this.fleetInfo.id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+let bossText = $computed(() => {
+  if (props.fleet.boss_id) {
+    return props.fleet.boss.name;
+  }
+  return "None";
+});
+
+let docText = $computed(() => {
+  if (props.fleet.doctrine_id) {
+    return props.fleet.doctrine.name;
+  }
+  return "None";
+});
+
+let mumbleText = $computed(() => {
+  if (props.fleet.mumble_id) {
+    return props.fleet.mumble.name;
+  }
+  return "None";
+});
+
+let typeFC = $computed(() => {
+  return typeof editFC;
+});
+
+let typeBoss = $computed(() => {
+  return typeof editBoss;
+});
+
+let reconDropDown = $computed(() => {
+  return store.operationInfoRecon.filter(
+    (r) =>
+      r.operation_info_id == store.operationInfoPage.id &&
+      r.operation_info_fleet_id == null
+  );
+});
+
+let closeRecon = () => {
+  pickedRecon = null;
+  pickedRole = null;
+};
+
+let addRecon = () => {
+  var data = {
+    reconID: pickedRecon.id,
+    role_id: pickedRole.id,
+    opID: store.operationInfoPage.id,
+  };
+
+  axios({
+    method: "post",
+    url: "/api/operationinfofleetrecon/" + props.fleet.id,
+    withCredentials: true,
+    data: data,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  }).then((response) => {
+    pickedRecon = null;
+    pickedRole = null;
+  });
+};
 
-    async updateFleet() {
-      var request = this.fleetInfo;
-      await axios({
-        method: "put", //you can set what request you want to be
-        url: "/api/operationinfofleet/" + this.fleetInfo.id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+let removeReconFromFleet = (item) => {
+  var data = item;
+  axios({
+    method: "post",
+    url: "/api/operationinfofleetreconremove/" + item.operation_info_id,
+    withCredentials: true,
+    data: data,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  });
+};
 
-    async updateFC() {
-      if (this.typeFC == "string") {
-        var name = this.fleetInfo.fc ?? null;
-      } else {
-        if (this.fleetInfo.fc == null) {
-          var name = null;
-        } else {
-          var name = this.fleetInfo.fc.name ?? null;
-        }
-      }
+let editReconRole = (recon, role) => {
+  var data = {
+    reconID: recon.id,
+    role_id: role.id,
+    opID: store.operationInfoPage.id,
+  };
 
-      var request = {
-        name: name,
-        type: 1,
-        opID: this.opInfo.id,
-      };
-      await axios({
-        method: "put", //you can set what request you want to be
-        url: "/api/operationinfofleetname/" + this.fleetInfo.id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+  axios({
+    method: "post",
+    url: "/api/operationinfofleetrecon/" + props.fleet.id,
+    withCredentials: true,
+    data: data,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
+  });
+};
 
-    async deleteFleet() {
-      await axios({
-        method: "delete", //you can set what request you want to be
-        url: "/api/operationinfofleet/" + this.fleetInfo.id,
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-  },
+let abortFilterFn = () => {
+  // console.log('delayed filter aborted')
+};
 
-  computed: {
-    ...mapGetters(["getFleetInfo"]),
+let editFCText = $ref();
+let fcFindList = $computed(() => {
+  if (editFCText) {
+    return store.operationInfoUsers.filter(
+      (d) => d.name.toLowerCase().indexOf(editFCText) > -1
+    );
+  }
+  return store.operationInfoUsers;
+});
 
-    ...mapState([
-      "operationInfoPage",
-      "operationInfoMumble",
-      "operationInfoUsers",
-      "operationInfoDoctrines",
-      "allianceticklist",
-      "operationInfoRecon",
-    ]),
+let filterFnFcFinish = (val, update, abort) => {
+  update(() => {
+    editFCText = val.toLowerCase();
+    if (fcFindList.length > 0 && val) {
+      editFC = fcFindList[0];
+    }
+  });
+};
 
-    fleetInfo: {
-      get() {
-        return this.$store.getters.getFleetInfo(this.fleetID);
-      },
-      set(newValue) {
-        return this.$store.dispatch("updateOperationSheetInfoPageFleet", newValue);
-      },
-    },
+let editBossText = $ref();
+let bossFindList = $computed(() => {
+  if (editBossText) {
+    return store.operationInfoUsers.filter(
+      (d) => d.name.toLowerCase().indexOf(editBossText) > -1
+    );
+  }
+  return store.operationInfoUsers;
+});
 
-    dankfleet() {
-      if (this.fleetInfo.uid) {
-        return true;
-      }
-      return false;
-    },
+let filterFnBossFinish = (val, update, abort) => {
+  update(() => {
+    editBossText = val.toLowerCase();
+    if (bossFindList.length > 0 && val) {
+      editBoss = bossFindList[0];
+    }
+  });
+};
 
-    opInfo: {
-      get() {
-        return this.$store.state.operationInfoPage;
-      },
-      set(newValue) {
-        return this.$store.dispatch("updateOperationSheetInfoPage", newValue);
-      },
-    },
+let editDoctrineText = $ref();
+let doctrineFindList = $computed(() => {
+  if (editDoctrineText) {
+    return store.operationInfoDoctrines.filter(
+      (d) => d.name.toLowerCase().indexOf(editDoctrineText) > -1
+    );
+  }
+  return store.operationInfoDoctrines;
+});
 
-    recons() {
-      if (this.fleetInfo.recons) {
-        return this.fleetInfo.recons;
-      } else {
-        return null;
-      }
-    },
+let filterFnDoctrineFinish = (val, update, abort) => {
+  update(() => {
+    editDoctrineText = val.toLowerCase();
+    if (doctrineFindList.length > 0 && val) {
+      editDoctrine = doctrineFindList[0];
+    }
+  });
+};
 
-    extraRecons() {
-      let data = this.recons.filter((r) => r.role_id != 1);
-      return data;
-    },
+let editMumbleText = $ref();
+let mumbleFindList = $computed(() => {
+  if (editMumbleText) {
+    return store.operationInfoMumble.filter(
+      (d) => d.name.toLowerCase().indexOf(editMumbleText) > -1
+    );
+  }
+  return store.operationInfoMumble;
+});
 
-    reconCount() {
-      let length = this.recons.filter((r) => r.role_id != 1).length;
-      return length;
-    },
+let filterFnMumbleFinish = (val, update, abort) => {
+  update(() => {
+    editMumbleText = val.toLowerCase();
+    if (mumbleFindList.length > 0 && val) {
+      editMumble = mumbleFindList[0];
+    }
+  });
+};
 
-    showReconCount() {
-      if (this.reconCount > 0) {
-        return true;
-      } else {
-        return false;
-      }
-    },
+let editReconText = $ref();
+let reconFindList = $computed(() => {
+  if (editReconText) {
+    return reconDropDown.filter((d) => d.name.toLowerCase().indexOf(editReconText) > -1);
+  }
+  return reconDropDown;
+});
 
-    reconMain() {
-      if (this.recons.length > 0) {
-        var main = this.recons.find((r) => r.fleet_role.id == 1);
-        if (main) {
-          return main;
-        } else {
-          return null;
-        }
-      } else {
-        return null;
-      }
-    },
-
-    reconNameText() {
-      if (this.reconMain) {
-        return this.reconMain.name;
-      } else {
-        return "none";
-      }
-    },
-
-    reconMainNameText() {
-      if (this.reconMain) {
-        return this.reconMain.main.name;
-      } else {
-        return "none";
-      }
-    },
-
-    showreconToolTip() {
-      if (this.reconMain) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-
-    numberIcon() {
-      var text = "fa-solid fa-";
-      var num = this.reconCount;
-      var icon = text + num;
-      return icon;
-    },
-
-    showEnter() {
-      if (this.loaded == true) {
-        return "animate__animated animate__zoomIn animate__faster";
-      }
-    },
-
-    showLeave() {
-      if (this.loaded == true) {
-        return "animate__animated animate__zoomOut animate__faster";
-      }
-    },
-
-    typeFC() {
-      return typeof this.fleetInfo.fc;
-    },
-
-    typeBoss() {
-      return typeof this.fleetInfo.boss;
-    },
-
-    fcText() {
-      if (this.fleetInfo.fc) {
-        return this.fleetInfo.fc.name;
-      } else {
-        return "none";
-      }
-    },
-
-    bossText() {
-      if (this.fleetInfo.boss) {
-        return this.fleetInfo.boss.name;
-      } else {
-        return "none";
-      }
-    },
-
-    doctrineText() {
-      if (this.fleetInfo.doctrine) {
-        return this.fleetInfo.doctrine.name;
-      } else {
-        return "none";
-      }
-    },
-
-    mumbleText() {
-      if (this.fleetInfo.mumble) {
-        return this.fleetInfo.mumble.name;
-      } else {
-        return "none";
-      }
-    },
-
-    allianceText() {
-      if (this.fleetInfo.alliance) {
-        return this.fleetInfo.alliance.name;
-      } else {
-        return "none";
-      }
-    },
-
-    cardCols() {
-      if (this.readOnly) {
-        return 3;
-      } else {
-        return 5;
-      }
-    },
-
-    dropDownIcon() {
-      if (this.readOnly) {
-        return "";
-      } else {
-        return "$dropdown";
-      }
-    },
-  },
-  beforeDestroy() {},
+let filterFnReconFinish = (val, update, abort) => {
+  update(() => {
+    editReconText = val.toLowerCase();
+    if (reconFindList.length > 0 && val) {
+      pickedRecon = reconFindList[0];
+    }
+  });
 };
 </script>
+
+<style lang="scss"></style>

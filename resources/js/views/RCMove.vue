@@ -1,583 +1,573 @@
 <template>
-  <div class="pr-16 pl-16">
-    <div class="d-flex align-items-center">
-      <v-card-title>Timers to input to RC</v-card-title>
-      <AddStation :type="3"></AddStation>
-
-      <v-text-field
-        class="ml-5"
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
-    </div>
-    <v-data-table
-      :headers="headers"
-      :items="filteredItems"
-      :item-class="itemRowBackground"
-      :height="height"
-      fixed-header
-      item-key="id"
-      :loading="loadingt"
-      :items-per-page="50"
-      :footer-props="{
-        'items-per-page-options': [10, 20, 30, 50, 100, -1],
-      }"
-      :search="search"
-      multi-sort
-      class="elevation-1"
+  <div class="q-ma-md">
+    <q-table
+      title="Connections"
+      class="myTableMoveRC myRound bg-webBack"
+      :rows="store.stations"
+      :columns="columns"
+      table-class=" text-webway"
+      table-header-class=" text-weight-bolder"
+      row-key="id"
+      dark
+      dense
+      :no-data-label="notDataLableText"
+      :filter="search"
+      ref="tableRef"
+      rounded
+      :pagination="pagination"
     >
-      >
-
-      <template slot="no-data">
-        <p v-if="$can('finish_move_timer')">No timers to move over to RC</p>
-        <p v-else>All your timers have been move</p>
-      </template>
-      <template v-slot:[`item.count`]="{ item }">
-        <CountDowntimer
-          v-if="showCountDown(item)"
-          :start-time="countDownStartTime(item)"
-          :end-text="'Coming Out'"
-          :interval="1000"
-          :day-text="'Days'"
-          @campaignStart="campaignStart(item)"
-        >
-          <template slot="countdown" slot-scope="scope">
-            <span :class="countDownColor(item)" v-if="scope.props.days == 0"
-              >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                scope.props.seconds
-              }}</span
-            >
-            <span :class="countDownColor(item)" v-if="scope.props.days != 0"
-              >{{ numberDay(scope.props.days) }} {{ scope.props.hours }}:{{
-                scope.props.minutes
-              }}:{{ scope.props.seconds }}</span
-            >
-          </template>
-        </CountDowntimer>
-      </template>
-
-      <template
-        v-slot:[`item.station_status_name`]="{ item }"
-        class="align-items-center"
-      >
-        <div>
-          <template>
-            <div class="align-items-center d-inline-flex">
-              <v-chip
-                class="ma-2"
-                lable
-                :color="pillColor(item.station_status_id)"
+      <template v-slot:top="props">
+        <div class="row full-width flex-center q-pt-xs myRoundTop bg-primary">
+          <div class="col-12 flex flex-center">
+            <span class="text-h4">Timers to input to RC</span>
+          </div>
+        </div>
+        <div class="row full-width q-pt-md justify-between">
+          <div class="col-auto">
+            <div class="row q-gutter-sm q-pl-md">
+              <q-input
+                rounded
+                standout
+                dense
+                debounce="300"
+                v-model="search"
+                clearable
+                placeholder="Search"
               >
-                <font-awesome-icon
-                  :icon="pillIcon(item.station_status_id)"
-                  pull="left"
-                />
-                <RcMoveCopyButton :item="item" type="status"></RcMoveCopyButton>
-              </v-chip>
+                <template v-slot:append>
+                  <q-icon name="fa-solid fa-magnifying-glass" />
+                </template>
+              </q-input>
             </div>
-          </template>
+          </div>
+          <div class="col-auto">
+            <div class="row q-pr-md q-gutter-sm"><AddStation /></div>
+          </div>
         </div>
       </template>
 
-      <template
-        v-slot:[`item.station_name`]="{ item }"
-        class="d-inline-flex align-center"
-      >
-        <RcMoveCopyButton :item="item" type="name"></RcMoveCopyButton>
-      </template>
-      <template
-        v-slot:[`item.corp_ticker`]="{ item }"
-        class="d-inline-flex align-center"
-      >
-        <RcMoveCopyButton :item="item" type="corp"></RcMoveCopyButton>
-      </template>
-      <template
-        v-slot:[`item.system_name`]="{ item }"
-        class="d-inline-flex align-center"
-      >
-        <RcMoveCopyButton :item="item" type="system"></RcMoveCopyButton>
-      </template>
-      <template
-        v-slot:[`item.item_name`]="{ item }"
-        class="d-inline-flex align-center"
-      >
-        <RcMoveCopyButton :item="item" type="station"></RcMoveCopyButton>
-      </template>
-      <template
-        v-slot:[`item.alliance_ticker`]="{ item }"
-        class="d-inline-flex align-center"
-      >
-        <span v-if="item.standing > 0" class="blue--text">
-          <RcMoveCopyButton :item="item" type="alliance"></RcMoveCopyButton>
-        </span>
-        <span v-else-if="item.standing < 0" class="red--text"
-          ><RcMoveCopyButton :item="item" type="alliance"></RcMoveCopyButton>
-        </span>
-        <span v-else class=""
-          ><RcMoveCopyButton :item="item" type="alliance"></RcMoveCopyButton
-        ></span>
-      </template>
-
-      <template v-slot:[`item.actions`]="{ item }">
-        <div class="d-inline-flex">
-          <RcStationMessage
-            class="mr-2 pt-2"
-            :station="item"
-          ></RcStationMessage>
-          <v-btn
-            v-if="show()"
-            :href="item.timer_image_link"
-            target="_blank"
-            icon
-            color="green"
+      <template v-slot:body="props">
+        <q-tr :props="props">
+          <q-td key="region" :props="props">{{ props.cols[0].value }}</q-td>
+          <q-td key="constellation" :props="props">{{ props.cols[1].value }}</q-td>
+          <q-td
+            key="system"
+            :props="props"
+            @click="copyText(props.cols[2].value)"
+            class="cursor-pointer"
+            >{{ props.cols[2].value }}</q-td
           >
-            <font-awesome-icon icon="fa-regular fa-image" size="2xl" />
-          </v-btn>
-        </div>
-      </template>
-
-      <template
-        v-slot:[`item.timestamp`]="{ item }"
-        class="d-inline-flex align-center"
-      >
-        <RcMoveCopyButton :item="item" type="outtime"></RcMoveCopyButton>
-      </template>
-
-      <template v-slot:[`item.actions2`]="{ item }">
-        <div class="d-inline-flex align-center">
-          <EditStation :item="item"> </EditStation>
-          <v-btn
-            v-if="show()"
-            @click="removeStationGood(item)"
-            icon
-            color="green"
+          <q-td
+            key="corp"
+            :props="props"
+            @click="copyText(props.cols[3].value)"
+            class="cursor-pointer"
           >
-            <font-awesome-icon icon="fa-solid fa-circle-check" />
-          </v-btn>
+            <q-avatar size="lg" class="q-pr-xl">
+              <img :src="props.row.corp.url" />
+            </q-avatar>
 
-          <v-btn @click="removeStationBad(item)" icon color="red">
-            <font-awesome-icon icon="fa-solid fa-circle-xmark" />
-          </v-btn>
-        </div>
+            <span :class="standingCheckCorp(props.row)"> {{ props.cols[3].value }}</span>
+          </q-td>
+          <q-td
+            key="alliance"
+            :props="props"
+            @click="copyText(props.cols[4].value)"
+            class="cursor-pointer"
+          >
+            <q-avatar v-if="props.cols[4].value" size="lg" class="q-pr-xl">
+              <img :src="props.row.corp.alliance.url" />
+            </q-avatar>
+            <span :class="standingCheck(props.row)">
+              {{ props.cols[4].value }}</span
+            ></q-td
+          >
+          <q-td
+            key="type"
+            :props="props"
+            @click="copyText(props.cols[5].value)"
+            class="cursor-pointer"
+            >{{ props.cols[5].value }}</q-td
+          >
+          <q-td
+            key="name"
+            :props="props"
+            @click="copyText(props.cols[6].value)"
+            class="cursor-pointer"
+            >{{ props.cols[6].value }}</q-td
+          >
+          <q-td
+            class="cursor-pointer"
+            key="timeStamp"
+            :props="props"
+            @click="timeClick(props.cols[7].value)"
+            >{{ props.cols[7].value }}</q-td
+          >
+          <q-td key="count" :props="props">
+            <VueCountDown
+              :time="countDownTime(props.cols[8].value)"
+              :interval="1000"
+              :transform="transformSlotProps"
+              v-slot="{ days, hours, minutes, seconds, totalMilliseconds }"
+            >
+              <span class="text-red" v-if="totalMilliseconds > 0"
+                ><span v-if="days > 0">{{ days }} Days -</span> {{ hours }}:{{
+                  minutes
+                }}:{{ seconds }}
+              </span>
+              <span v-else> Timer Done</span>
+            </VueCountDown>
+          </q-td>
+          <q-td
+            key="status"
+            :props="props"
+            @click="copyText(props.cols[9].value)"
+            class="cursor-pointer"
+          >
+            <q-chip
+              clickable
+              :color="chipColor(props.row.station_status_id)"
+              :icon="chipIcon(props.row.station_status_id)"
+              :label="props.cols[9].value"
+            />
+          </q-td>
+          <q-td key="actions1" :props="props">
+            <q-btn
+              color="none"
+              flat
+              rounded
+              text-color="positive"
+              icon="fa-solid fa-image"
+              :href="props.row.timer_image_link"
+              target="_blank"
+          /></q-td>
+          <q-td key="actions2" :props="props">
+            <div class="row spacear">
+              <div class="col-auto">
+                <AddStation :from="3" :station="props.row" />
+              </div>
+              <div class="col-auto">
+                <q-btn
+                  v-if="can('finish_move_timer')"
+                  flat
+                  round
+                  padding="none"
+                  size="md"
+                  color="positive"
+                  icon="fa-solid fa-circle-check"
+                  @click="timerStatus(1, props.row.id)"
+                />
+                <q-btn
+                  flat
+                  round
+                  padding="none"
+                  size="md"
+                  color="negative"
+                  icon="fa-solid fa-circle-xmark"
+                  @click="timerStatus(2, props.row.id)"
+                />
+              </div>
+            </div>
+          </q-td>
+        </q-tr>
       </template>
-    </v-data-table>
-
-    <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-      {{ snackText }}
-
-      <template v-slot:action="{ attrs }">
-        <v-btn v-bind="attrs" text @click="snack = false"> Copied </v-btn>
-      </template>
-    </v-snackbar>
+    </q-table>
   </div>
 </template>
-<script>
-import Axios from "axios";
-import moment from "moment";
-import { stringify } from "querystring";
-import { mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {
-    return `${this.pageTitle}`;
-  },
-  data() {
-    return {
-      atime: null,
-      check: "not here",
-      componentKey: 0,
-      dialog1: false,
-      dialog2: false,
-      dialog3: false,
-      diff: 0,
-      endcount: "",
-      icon: "justify",
-      loadingt: true,
-      loadingf: true,
-      loadingr: true,
-      name: "Timer",
-      poll: null,
-      search: "",
-      statusflag: 2,
-      snack: false,
-      snackColor: "",
-      snackText: "",
-      toggle_exclusive: 1,
-      today: 0,
-      text: "center",
-      toggle_none: null,
-      sortdesc: true,
-      sortby: "timestamp",
 
-      headers: [
-        {
-          text: "Region",
-          value: "region_name",
-          width: "5%",
-        },
-        {
-          text: "Constellation",
-          value: "constellation_name",
-          width: "5%",
-        },
-        {
-          text: "System",
-          value: "system_name",
-          width: "5%",
-        },
-        {
-          text: "Corp",
-          value: "corp_ticker",
-          width: "5%",
-        },
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import { useMainStore } from "@/store/useMain.js";
+import { useQuasar, copyToClipboard } from "quasar";
+import axios from "axios";
 
-        {
-          text: "Alliance",
-          value: "alliance_ticker",
-          width: "10%",
-        },
-        {
-          text: "Type",
-          value: "item_name",
-          width: "10%",
-        },
-        {
-          text: "Name",
-          value: "station_name",
-          width: "15%",
-          align: "center",
-        },
-        {
-          text: "Timestamp",
-          value: "timestamp",
-          align: "center",
-          width: "15%",
-        },
-        {
-          text: "Age/CountDown",
-          value: "count",
-          width: "5%",
-        },
-        {
-          text: "Status",
-          value: "station_status_name",
-          align: "center",
-          width: "10%",
-        },
-        {
-          text: "",
-          value: "actions",
-          align: "start",
-        },
+let can = inject("can");
+let store = useMainStore();
+const $q = useQuasar();
+const AddStation = defineAsyncComponent(() =>
+  import("../components/station/AddStation.vue")
+);
 
-        {
-          text: "",
-          value: "actions2",
-          align: "end",
-        },
-      ],
-      windowSize: {
-        x: 0,
-        y: 0,
-      },
-    };
-  },
+const VueCountDown = defineAsyncComponent(() => import("../components/countdown/index"));
 
-  async created() {
-    if (this.$can("finish_move_timer")) {
-      Echo.private("rcmovesheet")
-        .listen("RcMoveUpdate", (e) => {
-          if (e.flag.message != null) {
-            this.$store.dispatch("updateStationNotification", e.flag.message);
+let search = $ref();
+
+onMounted(async () => {
+  if (can("finish_move_timer")) {
+    Echo.private("rcmovesheet")
+      .listen("RcMoveUpdate", (e) => {
+        if (e.flag.message != null) {
+          store.updateStationNotification(e.flag.message);
+        }
+      })
+      .listen("RcMoveDelete", (e) => {
+        store.deleteStationNotification(e.flag.id);
+      });
+
+    await store.getStationData();
+  } else {
+    Echo.private("rcmovesheet")
+      .listen("RcMoveUpdate", (e) => {
+        if (e.flag.message != null) {
+          if (e.flag.message.added_by_user_id == this.user_id) {
+            store.updateStationNotification(e.flag.message);
           }
-        })
-        .listen("RcMoveDelete", (e) => {
-          this.$store.dispatch("deleteStationNotification", e.flag.id);
-        });
-      this.$store.dispatch("getStationData").then(() => {
-        this.loadingt = false;
-        this.loadingf = false;
-        this.loadingr = false;
+        }
+      })
+      .listen("RcMoveDelete", (e) => {
+        store.deleteStationNotification(e.flag.id);
       });
-    } else {
-      Echo.private("rcmovesheet")
-        .listen("RcMoveUpdate", (e) => {
-          if (e.flag.message != null) {
-            if (e.flag.message.added_by_user_id == this.user_id) {
-              this.$store.dispatch("updateStationNotification", e.flag.message);
-            }
-          }
-        })
-        .listen("RcMoveDelete", (e) => {
-          this.$store.dispatch("deleteStationNotification", e.flag.id);
-        });
-      this.$store.dispatch("getStationDataByUserId").then(() => {
-        this.loadingt = false;
-        this.loadingf = false;
-        this.loadingr = false;
-      });
-    }
-  },
+    store.getStationDataByUserId();
+  }
 
-  async mounted() {
-    this.log();
-  },
-  methods: {
-    log() {
-      var request = {
-        url: this.$route.path,
-      };
+  setTitle();
+});
 
-      axios({
-        method: "post", //you can set what request you want to be
-        url: "api/url",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
+onBeforeUnmount(async () => {
+  Echo.leave("finsish_move_timer");
+  Echo.leave("RcMoveDelete");
+});
 
-    onResize() {
-      this.windowSize = { x: window.innerWidth, y: window.innerHeight };
-    },
-
-    countDownStartTime(item) {
-      if (item.station_status_id == 11) {
-        return moment.utc(item.repair_time).unix();
-      } else {
-        return moment.utc(item.timestamp).unix();
-      }
-    },
-
-    countDownColor(item) {
-      if (item.station_status_id == 11) {
-        return "green--text pl-3";
-      } else {
-        return "blue--text pl-3";
-      }
-    },
-
-    pillIcon(statusId) {
-      if (statusId == 1) {
-        return "fa-solid fa-plus";
-      }
-      if (statusId == 2) {
-        return "fa-solid fa-route";
-      }
-      if (statusId == 3) {
-        return "fa-solid fa-hand-fist";
-      }
-      if (statusId == 4) {
-        return "fa-solid fa-thumbs-up";
-      }
-      if (statusId == 5 || statusId == 13) {
-        return "fa-solid fa-clock";
-      }
-      if (statusId == 6) {
-        return "fa-solid fa-life-ring";
-      }
-      if (statusId == 7) {
-        return "fa-solid fa-dumpster-fire";
-      }
-      if (statusId == 8) {
-        return "fa-solid fa-shield-halved";
-      }
-      if (statusId == 9) {
-        return "fa-solid fa-house-chimney-crack";
-      }
-      if (statusId == 11) {
-        return "fa-solid fa-toolbox";
-      }
-      if (statusId == 14) {
-        return "fa-solid fa-anchor";
-      }
-    },
-
-    numberDay(day) {
-      return parseInt(day, 10) + "d";
-    },
-
-    pillColor(statusId) {
-      if (statusId == 1) {
-        return "success";
-      }
-      if (statusId == 2) {
-        return "primary";
-      }
-      if (statusId == 3) {
-        return "#FF5EEA";
-      }
-      if (statusId == 4 || statusId == 11 || statusId == 13) {
-        return "dark-orange";
-      }
-      if (statusId == 5) {
-        return "indigo accent-4";
-      }
-      if (statusId == 6) {
-        return "primary";
-      }
-      if (statusId == 7) {
-        return "red";
-      }
-      if (statusId == 8 || statusId == 9) {
-        return "warning";
-      }
-      if (statusId == 14) {
-        return "deep-orange darken-2";
-      }
-    },
-
-    removeStationGood(item) {
-      axios({
-        method: "put", //you can set what request you want to be
-        url: "api/rcmovedone/" + item.id,
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-
-    removeStationBad(item) {
-      axios({
-        method: "delete", //you can set what request you want to be
-        url: "api/rcmovedonebad/" + item.id,
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-
-    campaignStart(item) {
-      item.station_status_id = 6;
-      this.$store.dispatch("updateStationNotification", item);
-    },
-
-    itemRowBackground: function (item) {
-      if (item.under_attack == 1) {
-        return "style-4";
-      }
-    },
-    cancel() {
-      this.snack = true;
-      this.snackColor = "error";
-      this.snackText = "Canceled";
-    },
-    open() {
-      this.snack = true;
-      this.snackColor = "info";
-      this.snackText = "Dialog opened";
-    },
-    close() {},
-
-    click(item, list) {
-      if (item.station_status_id == 11) {
-        item.repair_time = null;
-      }
-      item.station_status_id = list.value;
-      item.station_status_name = list.title;
-      item.user_name = this.user_name;
-
-      var request = {
-        station_status_id: item.station_status_id,
-        user_id: this.$store.state.user_id,
-        status_update: moment.utc().format("YYYY-MM-DD  HH:mm:ss"),
-        out_time: null,
-        repair_time: item.repair_time,
-      };
-      axios({
-        method: "put", //you can set what request you want to be
-        url: "api/updatestationnotification/" + item.id,
-        data: request,
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-
-    show() {
-      if (this.$can("finish_move_timer")) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-
-    sec(item) {
-      var a = moment.utc();
-      var b = moment(item.timestamp);
-      this.diff = a.diff(b);
-      return this.diff;
-    },
-
-    showCountDown(item) {
-      if (
-        item.station_status_id == 5 ||
-        item.station_status_id == 8 ||
-        item.station_status_id == 9 ||
-        item.station_status_id == 11 ||
-        item.station_status_id == 13 ||
-        item.station_status_id == 14
-      ) {
-        return true;
-      }
-
-      return false;
-    },
-
-    fixStatusText(item) {
-      var ret = item.station_status_name.replace("Upcoming - ", "");
-      return ret;
-    },
-  },
-  computed: {
-    ...mapState(["stations"]),
-
-    pageTitle() {
-      if (this.$can("finish_move_timer")) {
-        return "EveStuff - Timers to move";
-      } else {
-        return "Add Timer";
-      }
-    },
-
-    height() {
-      let num = this.windowSize.y - 287;
-      return num;
-    },
-
-    filteredItems() {
-      return this.stations.filter((s) => s.show_on_rc_move == 1);
-    },
-    user_name() {
-      return this.$store.state.user_name;
-    },
-
-    user_id() {
-      return this.$store.state.user_id;
-    },
-  },
-  beforeDestroy() {
-    Echo.leave("rcmovesheet");
-  },
+let setTitle = () => {
+  if (can("finish_move_timer")) {
+    document.title = "Evestuff - Timers to move";
+  } else {
+    document.title = "Evestuff - Add Timer";
+  }
 };
+
+let transformSlotProps = (props) => {
+  const formattedProps = {};
+
+  Object.entries(props).forEach(([key, value]) => {
+    formattedProps[key] = value < 10 ? `0${value}` : String(value);
+  });
+
+  return formattedProps;
+};
+let standingCheckCorp = (item) => {
+  var standing = 0;
+  if (item.corp.alliance) {
+    standing = item.corp.alliance.standing;
+  } else {
+    standing = item.corp.standing;
+  }
+  if (standing > 0) {
+    return "text-blue";
+  } else if (standing < 0) {
+    return "text-red";
+  } else {
+    return "";
+  }
+};
+
+let standingCheck = (item) => {
+  var standing = 0;
+  if (item.corp.alliance) {
+    standing = item.corp.alliance.standing;
+  } else {
+    standing = item.corp.standing;
+  }
+  if (standing > 0) {
+    return "text-blue";
+  } else if (standing < 0) {
+    return "text-red";
+  } else {
+    return "";
+  }
+};
+
+let copyText = (text) => {
+  copyToClipboard(text).then(() => {
+    $q.notify({
+      type: "info",
+      message: text + " copied to your clipboard",
+    });
+  });
+};
+
+let chipColor = (statusId) => {
+  if (statusId == 1) {
+    return "success";
+  }
+  if (statusId == 2) {
+    return "primary";
+  }
+  if (statusId == 3) {
+    return "#FF5EEA";
+  }
+  if (statusId == 4 || statusId == 11 || statusId == 13) {
+    return "orange";
+  }
+  if (statusId == 5) {
+    return "indigo accent-4";
+  }
+  if (statusId == 6) {
+    return "primary";
+  }
+  if (statusId == 7) {
+    return "red";
+  }
+  if (statusId == 8 || statusId == 9) {
+    return "warning";
+  }
+  if (statusId == 14) {
+    return "deep-orange darken-2";
+  }
+};
+
+let chipIcon = (statusId) => {
+  if (statusId == 1) {
+    return "fa-solid fa-plus";
+  }
+  if (statusId == 2) {
+    return "fa-solid fa-route";
+  }
+  if (statusId == 3) {
+    return "fa-solid fa-hand-fist";
+  }
+  if (statusId == 4) {
+    return "fa-solid fa-thumbs-up";
+  }
+  if (statusId == 5 || statusId == 13) {
+    return "fa-solid fa-clock";
+  }
+  if (statusId == 6) {
+    return "fa-solid fa-life-ring";
+  }
+  if (statusId == 7) {
+    return "fa-solid fa-dumpster-fire";
+  }
+  if (statusId == 8) {
+    return "fa-solid fa-shield-halved";
+  }
+  if (statusId == 9) {
+    return "fa-solid fa-house-chimney-crack";
+  }
+  if (statusId == 11) {
+    return "fa-solid fa-toolbox";
+  }
+  if (statusId == 14) {
+    return "fa-solid fa-anchor";
+  }
+};
+
+let countDownTime = (time) => {
+  const utcTime = new Date(time + "Z");
+  const currentTimestamp = Date.now();
+  const timeDiff = utcTime.getTime() - currentTimestamp;
+  return timeDiff;
+};
+
+let timeClick = (time) => {
+  var str = time.replace(/\s+/g, "");
+  str = str.replace(/[:]/g, "");
+  str = str.replace(/[-]/g, "");
+  str = str.substring(2);
+
+  copyToClipboard(str).then(() => {
+    $q.notify({
+      type: "info",
+      message: "Absolute time copied to your clipboard",
+    });
+  });
+};
+
+let timerStatus = async (status, id) => {
+  var request = {
+    status: status,
+  };
+
+  await axios({
+    method: "put", //you can set what request you want to be
+    url: "api/timer/statusupdate/" + id,
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+let pagination = $ref({
+  sortBy: "time",
+  descending: false,
+  page: 1,
+  rowsPerPage: 0,
+});
+
+let columns = $ref([
+  {
+    name: "region",
+    align: "center",
+    required: false,
+    label: "Region",
+    classes: "text-no-wrap",
+    field: (row) => row.system.region.region_name,
+    format: (val) => `${val}`,
+    sortable: false,
+  },
+  {
+    name: "constellation",
+    required: true,
+    align: "left",
+    label: "Constellation",
+    classes: "text-no-wrap",
+    field: (row) => row.system.constellation.constellation_name,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "system",
+    required: true,
+    align: "left",
+    label: "System",
+    classes: "text-no-wrap",
+    field: (row) => row.system.system_name,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "corp",
+    align: "left",
+    classes: "text-no-wrap",
+    label: "Corp",
+    field: (row) => row.corp.ticker,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "alliance",
+    align: "left",
+    required: true,
+    classes: "text-no-wrap",
+    label: "Alliance",
+    field: (row) => {
+      if (row.alliance_id > 0) {
+        return row.alliance.ticker;
+      } else {
+        return "";
+      }
+    },
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "type",
+    align: "left",
+    required: true,
+    label: "Type",
+    classes: "text-no-wrap",
+    field: (row) => row.item.item_name,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "name",
+    label: "Name",
+    classes: "text-no-wrap",
+    sortable: false,
+    filter: false,
+    field: (row) => row.name,
+    format: (val) => `${val}`,
+  },
+  {
+    name: "timeStamp",
+    label: "Time",
+    classes: "text-no-wrap",
+    align: "center",
+    sortable: false,
+    field: (row) => row.out_time,
+    format: (val) => `${val}`,
+  },
+  {
+    name: "count",
+    label: "Countdown",
+    align: "center",
+    classes: "text-no-wrap",
+    sortable: false,
+    field: (row) => row.out_time,
+    format: (val) => `${val}`,
+  },
+
+  {
+    name: "status",
+    label: "Status",
+    align: "right",
+    classes: "text-no-wrap",
+    sortable: false,
+    field: (row) => row.status.name,
+    format: (val) => {
+      return val.replace("Upcoming - ", "");
+    },
+  },
+  {
+    name: "actions1",
+    label: "",
+    align: "right",
+    classes: "text-no-wrap",
+    sortable: false,
+    field: (row) => row.id,
+    format: (val) => `${val}`,
+  },
+  {
+    name: "actions2",
+    label: "",
+    align: "right",
+    classes: "text-no-wrap",
+    sortable: false,
+    field: (row) => row.id,
+    format: (val) => `${val}`,
+  },
+]);
+
+let notDataLableText = $computed(() => {
+  if (can("finish_move_timer")) {
+    return "No timers found";
+  } else {
+    return "No timers found. You can only see timers you created.";
+  }
+});
+
+let h = $computed(() => {
+  let mins = 30;
+  let window = store.size.height;
+
+  return window - mins + "px";
+});
 </script>
 
-<style>
-.style-4 {
-  background-color: rgba(255, 153, 0, 0.199);
-}
+<style lang="sass">
+.myTableMoveRC
+  /* height or max-height is important */
+  height: v-bind(h)
+
+  .q-table__top
+    padding-top: 0 !important
+    padding-left: 0 !important
+    padding-right: 0 !important
+
+
+
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: #202020
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
 </style>

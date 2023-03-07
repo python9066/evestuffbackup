@@ -1,536 +1,371 @@
 <template>
-  <v-row no-gutters v-resize="onResize" justify="center">
-    <v-col cols="12" class="pl-5 pr-5"
-      ><v-card rounded="xl" :min-height="mainHeight"
-        ><v-card-title class="primary pt-2 pb-2"
-          ><v-row no-gutters justify="space-between">
-            <v-col cols="auto">
-              <v-row no-gutters>
-                <v-col cols="auto" class="pr-2">
-                  <OperationInfoShowSetting />
-                </v-col>
-                <transition
-                  mode="out-in"
-                  :enter-active-class="showEnter"
-                  :leave-active-class="showLeave"
-                >
-                  <v-col cols="auto" v-if="showCheckList" class="mr-2">
-                    <transition
-                      mode="out-in"
-                      :enter-active-class="showEnter"
-                      :leave-active-class="showLeave"
+  <div class="q-ma-md">
+    <q-card class="myRoundTop myOperationInfoMainCard">
+      <q-card-section class="bg-primary text-center q-py-xs">
+        <div class="row full-width justify-between">
+          <div class="col-auto flex">
+            <q-btn text-color="warning" flat icon="fa-solid fa-eye" rounded padding="none"
+              ><q-menu class="myRoundTop">
+                <q-card class="myRoundTop text-webway">
+                  <q-card-section class="bg-primary text-h5 text-center">
+                    <h5 class="no-margin">Page Setting</h5> </q-card-section
+                  ><q-card-section>
+                    Your Own Setting for this page
+                    <q-option-group
+                      class="q-pt-md"
+                      v-model="ownSetting"
+                      :options="store.operationInfoSettingOpetions"
+                      color="yellow"
+                      dense
+                      type="toggle"
                     >
-                      <OperationInfoPlanningCard
-                        :loaded="loaded"
-                        v-if="showCard == 1"
-                      />
-                      <OperationPreOpFormUpCard
-                        :loaded="loaded"
-                        v-if="showCard == 2"
-                      />
-                      <OperationInfoPostOpCard
-                        :loaded="loaded"
-                        v-if="showCard == 3"
-                      />
-                    </transition>
-                  </v-col>
-                </transition>
-                <v-col cols="auto">
-                  <OperationInfoMessageCard
-                    :loaded="loaded"
-                    :windowSize="windowSize"
-                /></v-col>
-              </v-row>
-            </v-col>
-            <v-row no-gutters justify="center" align="center">
-              <v-col class="py-0 pr-2" cols="auto">
-                <v-menu
-                  :close-on-content-click="false"
-                  v-model="infoShown"
-                  z-index="0"
-                  content-class="rounded-xl"
-                  ><template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                      icon
-                      v-bind="attrs"
-                      v-on="on"
-                      @click="infoShown = true"
-                      ><font-awesome-icon
-                        icon="fa-solid fa-circle-info"
-                        size="xl"
-                      />
-                    </v-btn>
-                  </template>
-                  <v-card>
-                    <v-card-text>
-                      {{ opInfo.info }}
-                    </v-card-text></v-card
-                  ></v-menu
-                >
-              </v-col>
-              <v-col class="py-0 pr-2" cols="auto"
-                >Operation - {{ opInfo.name }}
-              </v-col>
-              <v-col v-if="opInfo.start" class="pt-0 pb-0" cols="auto">{{
-                moment(opInfo.start).format("YYYY-MM-DD HH:mm:ss")
-              }}</v-col>
-              <v-col v-if="showCountDown" class="pt-0 pb-0" cols="auto">
-                <CountDowntimer
-                  :start-time="moment.utc(opInfo.start).unix()"
-                  :end-text="'Campaign Over'"
-                  :interval="1000"
-                >
-                  <template slot="countdown" slot-scope="scope">
-                    <span class="red--text pl-3">
-                      <span v-if="scope.props.days > 0">
-                        <v-chip color="red">
-                          {{ scope.props.days }} - {{ scope.props.hours }}:{{
-                            scope.props.minutes
-                          }}:{{ scope.props.seconds }}
-                        </v-chip>
-                      </span>
-                      <span
-                        v-else-if="
-                          scope.props.hours > 0 && scope.props.days == 0
-                        "
-                      >
-                        <v-chip color="red">
-                          {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                            scope.props.seconds
-                          }}
-                        </v-chip>
-                      </span>
-
-                      <span v-else>
-                        <v-chip color="red">
-                          {{ scope.props.minutes }}:{{ scope.props.seconds }}
-                        </v-chip>
-                      </span>
-                    </span>
-                  </template>
-                </CountDowntimer></v-col
-              >
-
-              <v-col class="pt-0 pb-0" cols="auto" v-if="showCountUp">
-                <VueCountUptimer
-                  :start-time="moment.utc(opInfo.start).unix()"
-                  :end-text="'Window Closed'"
-                  :interval="1000"
-                >
-                  <template slot="countup" slot-scope="scope">
-                    <span class="green--text pl-3">
-                      <span v-if="scope.props.days > 0">
-                        <v-chip color="green">
-                          {{ scope.props.days }} - {{ scope.props.hours }}:{{
-                            scope.props.minutes
-                          }}:{{ scope.props.seconds }}</v-chip
-                        >
-                      </span>
-                      <span v-else-if="scope.props.hours > 0">
-                        <v-chip color="green">
-                          {{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                            scope.props.seconds
-                          }}</v-chip
-                        >
-                      </span>
-
-                      <span v-else>
-                        <v-chip color="green">
-                          {{ scope.props.minutes }}:{{
-                            scope.props.seconds
-                          }}</v-chip
-                        >
-                      </span>
-                    </span>
-                  </template>
-                </VueCountUptimer></v-col
-              >
-              <v-col v-if="!opInfo.start" class="pt-0 pb-0" cols="auto">
-                <AddOperationStartTime />
-              </v-col>
-            </v-row>
-            <v-col
-              cols="auto"
-              v-if="showHack"
-              class="d-flex justify-content-end pr-2"
+                      <template v-slot:label="opt">
+                        <div class="row items-center">
+                          <transition
+                            mode="out-in"
+                            enter-active-class="animate__animated animate__flash"
+                            leave-active-class="animate__animated animate__flash"
+                          >
+                            <span>{{ opt.label }}</span></transition
+                          >
+                        </div>
+                      </template>
+                    </q-option-group>
+                  </q-card-section>
+                </q-card>
+              </q-menu></q-btn
             >
-              <OperationInfoShowHacking />
-            </v-col>
-            <v-col cols="auto" class="d-flex justify-content-end"
-              ><OperationInfoSettingPannel
-            /></v-col> </v-row></v-card-title
-        ><v-card-text class="pt-3">
-          <v-card rounded="xl" flat class="scroll" :max-height="cardHeight">
-            <v-row no-gutters :justify="cardJustify">
+            <transition
+              mode="out-in"
+              enter-active-class="animate__animated animate__fadeIn animate__slower"
+              leave-active-class="animate__animated animate__fadeOut animate__slower"
+            >
+              <OperationInfoCheckList
+                :key="`${showCheckList}-ownSetting`"
+                v-if="showCheckList"
+                class="q-pl-sm"
+              />
+            </transition>
+          </div>
+          <div class="col-auto">
+            <h5 class="no-margin">Operation - {{ opInfo.name }}</h5>
+          </div>
+          <div class="col-auto flex justify-end"><OperationInfoSettingPannel /></div>
+        </div>
+      </q-card-section>
+      <q-card-section>
+        <div class="row justify-between">
+          <transition
+            mode="out-in"
+            enter-active-class="animate__animated animate__backInLeft animate__slower"
+            leave-active-class="animate__animated animate__backOutLeft animate__slower"
+          >
+            <div class="col-3 q-pr-lg" v-if="showReconTable">
+              <OperationInfoReconCard />
+            </div>
+          </transition>
+
+          <div class="col-9 col-grow">
+            <div class="column q-gutter-lg">
               <transition
                 mode="out-in"
-                :enter-active-class="showEnter"
-                :leave-active-class="showLeave"
+                enter-active-class="animate__animated animate__backInDown animate__slower"
+                leave-active-class="animate__animated animate__backOutUp animate__slower"
               >
-                <v-col cols="3" v-if="showReconTable">
-                  <v-row no-gutters>
-                    <v-col cols="12">
-                      <OperationInfoReconCard
-                        :windowSize="windowSize"
-                        :loaded="loaded"
-                      />
-                    </v-col>
-                  </v-row>
-                </v-col>
+                <OperationInfoSystemTable v-if="showSystemTable" />
               </transition>
-
-              <v-col cols="9">
-                <v-row no-gutters>
-                  <transition
-                    mode="out-in"
-                    :enter-active-class="showEnter"
-                    :leave-active-class="showLeave"
-                  >
-                    <v-col cols="12" v-if="showSystemTable">
-                      <OpertationInfoSystemTable
-                        :loaded="loaded"
-                        :windowSize="windowSize"
-                    /></v-col>
-                  </transition>
-                </v-row>
-                <v-row no-gutters class="pt-2">
-                  <transition
-                    mode="out-in"
-                    :enter-active-class="showEnter"
-                    :leave-active-class="showLeave"
-                  >
-                    <v-col cols="12" v-if="showFleets">
-                      <OperationInfoFleetCard
-                        :loaded="loaded"
-                        :windowSize="windowSize"
-                    /></v-col>
-                  </transition>
-                </v-row>
-              </v-col>
-            </v-row>
-          </v-card>
-        </v-card-text>
-      </v-card>
-    </v-col>
-  </v-row>
+              <transition
+                mode="out-in"
+                enter-active-class="animate__animated animate__backInUp animate__slower"
+                leave-active-class="animate__animated animate__backOutDown animate__slower"
+              >
+                <OperationInfoFleetCard v-if="showFleets" />
+              </transition>
+            </div>
+          </div>
+        </div>
+      </q-card-section>
+    </q-card>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import moment, { now, unix, utc } from "moment";
-import { stringify } from "querystring";
-import { mapGetters, mapState } from "vuex";
-import VueGridLayout from "vue-grid-layout";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 
-export default {
-  title() {
-    return `EveStuff - Operation Info`;
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import { useRoute } from "vue-router";
+import { useMainStore } from "@/store/useMain.js";
+import { useRouter } from "vue-router";
+let router = useRouter();
+let route = useRoute();
+let store = useMainStore();
+let can = inject("can");
+
+const OperationInfoReconCard = defineAsyncComponent(() =>
+  import("../components/operationinfo/OperationInfoReconCard.vue")
+);
+
+const OperationInfoSettingPannel = defineAsyncComponent(() =>
+  import("../components/operationinfo/OperationInfoSettingPannel.vue")
+);
+
+const OperationInfoSystemTable = defineAsyncComponent(() =>
+  import("../components/operationinfo/OpertationInfoSystemTable.vue")
+);
+
+const OperationInfoFleetCard = defineAsyncComponent(() =>
+  import("../components/operationinfo/OperationInfoFleetCard.vue")
+);
+
+const OperationInfoCheckList = defineAsyncComponent(() =>
+  import("../components/operationinfo/OperationInfoCheckList.vue")
+);
+
+onMounted(async () => {
+  await store.getOperationSheetInfoPage(route.params.link);
+  await store.getOperationUsers();
+  await store.getOperationInfoMumble();
+  await store.getOperationInfoDoctrines();
+  await store.getOperationRecon();
+  await store.getAllianceTickList();
+  await store.getSystemList();
+  await store.getOperationInfoReconRoles();
+  await store.getOperationSheetInfoOperationList();
+  await store.getOperationInfoJamList();
+  await store.getUserList();
+
+  Echo.private("operationinfooppageown." + store.user_id + "-" + opInfo.id);
+
+  Echo.private("operationinfooppage." + opInfo.id).listen(
+    "OperationInfoPageSoloUpdate",
+    (e) => {
+      if (e.flag.flag == 1) {
+        store.updateOperationSheetInfoPage(e.flag.message);
+      }
+
+      if (e.flag.flag == 2) {
+        store.updateOperationSheetInfoPageFleet(e.flag.message);
+      }
+
+      if (e.flag.flag == 3) {
+        store.operationInfoUsers = e.flag.message;
+      }
+
+      if (e.flag.flag == 4) {
+        store.operationInfoRecon = e.flag.message;
+      }
+
+      if (e.flag.flag == 5) {
+        store.updateOperationReconSolo(e.flag.message);
+      }
+
+      if (e.flag.flag == 6) {
+        store.deleteOperationSheetInfoPageFleet(e.flag.message);
+      }
+
+      if (e.flag.flag == 7) {
+        store.updateOperationMessage(e.flag.message);
+      }
+
+      if (e.flag.flag == 8) {
+        store.operationInfoPage.status = e.flag.message;
+      }
+
+      if (e.flag.flag == 9) {
+        store.operationInfoPage.operation = e.flag.message;
+      }
+
+      if (e.flag.flag == 10) {
+        store.operationInfoPage.operation = e.flag.message;
+      }
+
+      if (e.flag.flag == 11) {
+        store.operationInfoPage.systems = e.flag.message;
+      }
+
+      if (e.flag.flag == 12) {
+        store.getOperationInfoDoctrines();
+      }
+
+      if (e.flag.flag == 13) {
+        store.removeOperationReconSolo(e.flag.message);
+      }
+
+      if (e.flag.flag == 14) {
+        store.updateOperationSoloSystems(e.flag.message);
+      }
+
+      if (e.flag.flag == 15) {
+        store.clearOperationInfoSolo();
+        router.push({ path: `/operationinfoover` });
+      }
+      if (e.flag.flag == 16) {
+        store.updateNewCampaignSystemInfo(e.flag.message);
+      }
+
+      if (e.flag.flag == 17) {
+        store.updateOperationCampaignsSolo(e.flag.message);
+      }
+
+      if (e.flag.flag == 18) {
+        store.operationInfoUserList = e.flag.message;
+      }
+
+      if (e.flag.flag == 19) {
+        store.operationInfoPage.fleets = e.flag.message;
+      }
+
+      if (e.flag.flag == 20) {
+        store.operationInfoPage.dankop = e.flag.message;
+      }
+    }
+  );
+
+  document.title = "Evestuff - Operation Page - " + opInfo.name;
+});
+
+onBeforeUnmount(async () => {
+  Echo.leave("operationinfooppage." + opInfo.id);
+  Echo.leave("operationinfooppageown." + store.user_id + "-" + opInfo.id);
+});
+
+let opInfo = $computed(() => {
+  return store.operationInfoPage;
+});
+
+let showFleets = $computed(() => {
+  if (opSetting.showFleets && opInfo.fleet_table) {
+    return true;
+  }
+  return false;
+});
+
+let showReconTable = $computed(() => {
+  if (opSetting.showReconTable && opInfo.recon_table) {
+    return true;
+  }
+  return false;
+});
+
+let showSystemTable = $computed(() => {
+  if (opSetting.showSystemTable && opInfo.system_table) {
+    return true;
+  }
+  return false;
+});
+
+let showCheckList = $computed(() => {
+  if (opSetting.showCheckList && opInfo.check_list) {
+    return true;
+  }
+  return false;
+});
+
+let opSetting = $computed(() => {
+  return store.operationInfoSetting;
+});
+
+let h = $computed(() => {
+  let mins = 30;
+  let window = store.size.height;
+
+  return window - mins + "px";
+});
+
+let ownSetting = $computed({
+  get: () => {
+    return store.getOperationInfoTableSettings;
   },
-  data() {
-    return {
-      windowSize: {
-        x: 0,
-        y: 0,
-      },
-      loaded: false,
-      infoShown: false,
-    };
+  set: (value) => {
+    // console.log(value);
+    store.setOwnOptions(value);
   },
+});
 
-  async created() {
-    await this.$store.dispatch(
-      "getOperationSheetInfoPage",
-      this.$route.params.link
-    );
-    await this.$store.dispatch("getOperationUsers");
-    await this.$store.dispatch("getOperationInfoMumble");
-    await this.$store.dispatch("getOperationInfoDoctrines");
-    await this.$store.dispatch("getOperationRecon");
-    await this.$store.dispatch("getAllianceTickList");
-    await this.$store.dispatch("getSystemList");
-    await this.$store.dispatch("getOperationInfoReconRoles");
-    await this.$store.dispatch("getOperationSheetInfoOperationList");
-    await this.$store.dispatch("getOperationInfoJamList");
-    await this.$store.dispatch("getUserList");
-    Echo.private(
-      "operationinfooppageown." +
-        this.$store.state.user_id +
-        "-" +
-        this.opInfo.id
-    );
-    Echo.private("operationinfooppage." + this.opInfo.id).listen(
-      "OperationInfoPageSoloUpdate",
-      (e) => {
-        if (e.flag.flag == 1) {
-          this.$store.dispatch("updateOperationSheetInfoPage", e.flag.message);
-        }
+let reconHeight = $computed(() => {
+  let mins = 120;
+  let window = store.size.height;
 
-        if (e.flag.flag == 2) {
-          this.$store.dispatch(
-            "updateOperationSheetInfoPageFleet",
-            e.flag.message
-          );
-        }
+  return window - mins + "px";
+});
 
-        if (e.flag.flag == 3) {
-          this.$store.dispatch("updateOperationUsers", e.flag.message);
-        }
+let fleetHeight = $computed(() => {
+  if (!showSystemTable) {
+    let mins = 120;
+    let window = store.size.height;
 
-        if (e.flag.flag == 4) {
-          this.$store.dispatch("updateOperationRecon", e.flag.message);
-        }
+    return window - mins + "px";
+  } else {
+    let mins = 60;
+    let window = store.size.height / 2;
 
-        if (e.flag.flag == 5) {
-          this.$store.dispatch("updateOperationReconSolo", e.flag.message);
-        }
+    return window - mins + "px";
+  }
+});
 
-        if (e.flag.flag == 6) {
-          this.$store.dispatch(
-            "deleteOperationSheetInfoPageFleet",
-            e.flag.message
-          );
-        }
+let systemHeight = $computed(() => {
+  if (!showFleets) {
+    let mins = 120;
+    let window = store.size.height;
 
-        if (e.flag.flag == 7) {
-          this.$store.dispatch("updateOperationMessage", e.flag.message);
-        }
+    return window - mins + "px";
+  } else {
+    let mins = 80;
+    let window = store.size.height / 2;
 
-        if (e.flag.flag == 8) {
-          this.$store.dispatch("updateOperationStatus", e.flag.message);
-        }
-
-        if (e.flag.flag == 9) {
-          this.$store.dispatch("updateOperationOperation", e.flag.message);
-        }
-
-        if (e.flag.flag == 10) {
-          this.$store.dispatch("updateOperationCampaigns", e.flag.message);
-        }
-
-        if (e.flag.flag == 11) {
-          this.$store.dispatch("updateOperationSystems", e.flag.message);
-        }
-
-        if (e.flag.flag == 12) {
-          this.$store.dispatch("getOperationInfoDoctrines");
-        }
-
-        if (e.flag.flag == 13) {
-          this.$store.dispatch("removeOperationReconSolo", e.flag.message);
-        }
-
-        if (e.flag.flag == 14) {
-          this.$store.dispatch("updateOperationSoloSystems", e.flag.message);
-        }
-
-        if (e.flag.flag == 15) {
-          this.$store.dispatch("clearOperationInfoSolo");
-          this.$router.push({ path: `/operationinfoover` });
-        }
-        if (e.flag.flag == 16) {
-          this.$store.dispatch("updateNewCampaignSystemInfo", e.flag.message);
-        }
-
-        if (e.flag.flag == 17) {
-          this.$store.dispatch("updateOperationCampaignsSolo", e.flag.message);
-        }
-
-        if (e.flag.flag == 18) {
-          this.$store.dispatch("updateOperationInfoUserList", e.flag.message);
-        }
-
-        if (e.flag.flag == 19) {
-          this.$store.dispatch(
-            "updateOperationInfoUpdateAllFleet",
-            e.flag.message
-          );
-        }
-
-        if (e.flag.flag == 20) {
-          this.$store.dispatch("updateOperationInfoAddDankOp", e.flag.message);
-        }
-      }
-    );
-  },
-
-  async mounted() {
-    this.onResize();
-    this.setLoad();
-  },
-  methods: {
-    onResize() {
-      this.windowSize = { x: window.innerWidth, y: window.innerHeight };
-    },
-
-    async setLoad() {
-      await sleep(1000);
-      this.loaded = true;
-    },
-  },
-  computed: {
-    ...mapState[
-      ("operationInfoPage", "operationInfoUsers", "operationInfoSetting")
-    ],
-
-    cardJustify() {
-      if (this.showReconTable) {
-        return "space-between";
-      } else {
-        return "center";
-      }
-    },
-
-    opSetting: {
-      get() {
-        return this.$store.state.operationInfoSetting;
-      },
-      set(newValue) {
-        return this.$store.dispatch(
-          "updateOperationSheetInfoSetting",
-          newValue
-        );
-      },
-    },
-
-    showHack() {
-      //   if (this.opInfo) {
-      //     var count = this.opInfo.campaigns.length;
-      //     if (count > 0) {
-      //       return true;
-      //     } else {
-      //       return false;
-      //     }
-      //   } else {
-      //     return false;
-      //   }
-
-      if (this.opInfo) {
-        if (this.opInfo.campaigns) {
-          var count = this.opInfo.campaigns.length;
-          if (count > 0) {
-            return true;
-          } else {
-            return false;
-          }
-        } else {
-          return false;
-        }
-      } else {
-        return false;
-      }
-    },
-
-    mainHeight() {
-      let num = this.windowSize.y - 149;
-      return num;
-    },
-
-    cardHeight() {
-      let num = this.windowSize.y - 239;
-      return num;
-    },
-
-    opInfo: {
-      get() {
-        return this.$store.state.operationInfoPage;
-      },
-      set(newValue) {
-        return this.$store.dispatch("updateOperationSheetInfoPage", newValue);
-      },
-    },
-
-    showEnter() {
-      if (this.loaded == true) {
-        return "animate__animated animate__fadeIn animate__faster";
-      }
-    },
-
-    showLeave() {
-      if (this.loaded == true) {
-        return "animate__animated animate__fadeOut animate__faster";
-      }
-    },
-
-    showCard() {
-      if (this.opInfo.status) {
-        return this.opInfo.status.id;
-      } else {
-        return 0;
-      }
-    },
-
-    showCheckList() {
-      if (this.opSetting.showTickList && this.opInfo.check_list) {
-        return true;
-      }
-
-      return false;
-    },
-
-    showFleets() {
-      if (this.opSetting.showFleets && this.opInfo.fleet_table) {
-        return true;
-      }
-
-      return false;
-    },
-
-    showReconTable() {
-      if (this.opSetting.showReconTable && this.opInfo.recon_table) {
-        return true;
-      }
-
-      return false;
-    },
-
-    showSystemTable() {
-      if (this.opSetting.showSystemTable && this.opInfo.system_table) {
-        return true;
-      }
-
-      return false;
-    },
-
-    showCountDown() {
-      if (
-        this.opInfo.start &&
-        moment.utc().format("YYYY-MM-DD HH:mm:ss") <
-          moment(this.opInfo.start).format("YYYY-MM-DD HH:mm:ss")
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-
-    showCountUp() {
-      if (
-        this.opInfo.start &&
-        moment.utc().format("YYYY-MM-DD HH:mm:ss") >
-          moment(this.opInfo.start).format("YYYY-MM-DD HH:mm:ss")
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-  },
-  beforeDestroy() {
-    Echo.leave("operationinfooppage." + this.opInfo.id);
-    Echo.leave(
-      "operationinfooppageown." +
-        this.$store.state.user_id +
-        "-" +
-        this.opInfo.id
-    );
-  },
-};
+    return window - mins + "px";
+  }
+});
 </script>
 
-<style>
-.scroll {
-  overflow-y: auto;
-}
+<style lang="sass">
+.myOperationInfoMainCard
+  /* height or max-height is important */
+  height: v-bind(h)
+
+.myOperationInfoReconCard
+  /* height or max-height is important */
+  height: v-bind(reconHeight)
+</style>
+
+<style lang="sass">
+.myOperationSystemTable
+  /* height or max-height is important */
+  height: v-bind(systemHeight)
+
+  .q-table__top
+    padding-top: 0 !important
+    padding-left: 0 !important
+    padding-right: 0 !important
+
+
+
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: #202020
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+</style>
+
+<style lang="sass">
+.myOperationFleetTable
+  /* height or max-height is important */
+  height: v-bind(fleetHeight)
+
+  .q-table__top
+    padding-top: 0 !important
+    padding-left: 0 !important
+    padding-right: 0 !important
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
 </style>

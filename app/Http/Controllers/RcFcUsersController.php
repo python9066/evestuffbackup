@@ -92,7 +92,8 @@ class RcFcUsersController extends Controller
         $userid = RcFcUsers::where('user_id', $request->user_id)->value('user_id');
         $s = Station::where('id', $id)->get();
         foreach ($s as $s) {
-            $s->update(['rc_fc_id' => $fcid]);
+            $s->rc_fc_id = $fcid;
+            $s->save();
         }
 
         $fcname = User::where('id', $userid)->value('name');
@@ -163,7 +164,8 @@ class RcFcUsersController extends Controller
         $userName = User::where('id', $userid)->value('name');
         $s = Station::where('id', $id)->get();
         foreach ($s as $s) {
-            $s->update(['rc_fc_id' => null]);
+            $s->rc_fc_id = null;
+            $s->save();
         }
         $message = StationRecordsSolo(4, $id);
         if ($message) {
@@ -202,7 +204,7 @@ class RcFcUsersController extends Controller
         }
         $s = Station::where('rc_fc_id', $id)->get();
         foreach ($s as $s) {
-            $s->update(['rc_fc_id' => 0]);
+            $s->rc_fc_id = 0;
         }
         $r = RcFcUsers::where('id', $id)->get();
         foreach ($r as $r) {

@@ -1,109 +1,100 @@
 <template>
   <div>
-    <v-menu offset-y v-if="checkShowAdd">
-      <template v-slot:activator="{ on, attrs }">
-        <div>
-          <v-btn v-bind="attrs" v-on="on" icon color="green darken-3"
-            ><font-awesome-icon icon="fa-solid fa-plus" />
-          </v-btn>
-        </div>
-      </template>
-
-      <v-list>
-        <v-list-item
-          v-for="(list, index) in charsFree"
-          :key="index"
-          @click="clickCharAddNode(list.id)"
-        >
-          <v-list-item-title>{{ list.name }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu>
+    <q-btn
+      color="positive"
+      icon="fa-solid fa-plus"
+      flat
+      padding="none"
+      size="xs"
+      round
+      v-if="checkShowAdd"
+      ><q-menu>
+        <q-list style="min-width: 100px">
+          <q-item
+            clickable
+            v-close-popup
+            v-for="(list, index) in charsFree"
+            :key="index"
+            @click="clickCharAddNode(list.id)"
+          >
+            <q-item-section>{{ list.name }}</q-item-section>
+          </q-item>
+        </q-list>
+      </q-menu></q-btn
+    >
   </div>
 </template>
 
-<script>
-import { mapGetters } from "vuex";
-import { mapState } from "vuex";
-export default {
-  props: {
-    node: Object,
-    operationID: Number,
-  },
-  data() {
-    return {};
-  },
+<script setup>
+import { useMainStore } from "@/store/useMain.js";
 
-  methods: {
-    async clickCharAddNode(op_user_id) {
-      var request = {
-        node_id: this.node.id,
-        op_user_id: op_user_id,
-        system_id: this.node.system_id,
-        opID: this.operationID,
-      };
-      await axios({
-        method: "POST",
-        url: "/api/addusertonode",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+let store = useMainStore();
+
+const props = defineProps({
+  node: Object,
+  operationID: Number,
+});
+
+let nonePrimeNodeUserCount = $computed(() => {
+  return props.node.none_prime_node_user.length;
+});
+
+let primeNodeUserCount = $computed(() => {
+  return props.node.prime_node_user.length;
+});
+
+let freeCharCount = $computed(() => {
+  var data = store.getOwnHackingCharOnOp(props.operationID);
+  if (data) {
+    return data.length;
+  } else {
+    return 0;
+  }
+});
+
+let charsFree = $computed(() => {
+  var data = store.getOwnHackingCharOnOp(props.operationID);
+  if (data) {
+    return data;
+  } else {
+    return [];
+  }
+});
+
+let checkShowAdd = $computed(() => {
+  if (freeCharCount != 0) {
+    if (
+      nonePrimeNodeUserCount > 0 ||
+      primeNodeUserCount > 0 ||
+      props.node.node_status.id == 8
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+});
+
+let clickCharAddNode = (op_user_id) => {
+  var request = {
+    node_id: props.node.id,
+    op_user_id: op_user_id,
+    system_id: props.node.system_id,
+    opID: props.operationID,
+  };
+  axios({
+    method: "POST",
+    url: "/api/addusertonode",
+    withCredentials: true,
+    data: request,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-  },
-
-  computed: {
-    ...mapGetters(["getOwnHackingCharOnOp"]),
-
-    nonePrimeNodeUserCount() {
-      return this.node.none_prime_node_user.length;
-    },
-
-    primeNodeUserCount() {
-      return this.node.prime_node_user.length;
-    },
-
-    freecharCount() {
-      var data = this.getOwnHackingCharOnOp(this.operationID);
-      if (data) {
-        return this.getOwnHackingCharOnOp(this.operationID).length;
-      } else {
-        return 0;
-      }
-    },
-
-    charsFree() {
-      var data = this.getOwnHackingCharOnOp(this.operationID);
-      if (data) {
-        return this.getOwnHackingCharOnOp(this.operationID);
-      } else {
-        return [];
-      }
-    },
-
-    checkShowAdd() {
-      if (this.freecharCount != 0) {
-        if (
-          this.nonePrimeNodeUserCount > 0 ||
-          this.primeNodeUserCount > 0 ||
-          this.node.node_status.id == 8
-          // || (this.node.node_status.id != 4 &&
-          //   this.node.node_status.id != 5 &&
-          //   this.node.node_status.id != 7)
-        ) {
-          return true;
-        } else {
-          return false;
-        }
-      } else {
-        return false;
-      }
-    },
-  },
+  });
 };
 </script>
 
-<style></style>
+<style lang="scss"></style>

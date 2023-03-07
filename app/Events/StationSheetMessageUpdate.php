@@ -10,16 +10,10 @@ use Illuminate\Queue\SerializesModels;
 
 class StationSheetMessageUpdate implements ShouldBroadcastNow
 {
-    use Dispatchable;
-    use InteractsWithSockets;
-    use SerializesModels;
-
+    use Dispatchable;use InteractsWithSockets;use SerializesModels;
     public $flag;
-
     /**
      * Create a new event instance.
-     *
-     * @return void
      */
     public function __construct($flag)
     {
@@ -29,10 +23,12 @@ class StationSheetMessageUpdate implements ShouldBroadcastNow
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return \Illuminate\Broadcasting\Channel|array
+     * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn()
+    public function broadcastOn(): array
     {
-        return new PrivateChannel('stationsheet');
+        return [
+            new PrivateChannel('stationsheet'),
+        ];
     }
 }

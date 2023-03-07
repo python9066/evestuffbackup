@@ -11,7 +11,6 @@ use App\Models\AmmoRequestRecords;
 use App\Models\Station;
 use App\Models\StationItemJoin;
 use App\Models\StationItems;
-use App\Models\StationRecords;
 use Illuminate\Http\Request;
 
 class AmmoRequestController extends Controller
@@ -81,7 +80,7 @@ class AmmoRequestController extends Controller
         $s = Station::where('id', $new->station_id)->first();
         $s->ammo_request_id = $new->id;
         $s->save();
-        $message = StationRecords::where('id', $new->station_id)->first();
+        $message = stationRecordSolo($new->station_id);
         $flag = collect([
             'message' => $message,
         ]);

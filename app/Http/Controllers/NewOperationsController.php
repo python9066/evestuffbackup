@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OperationOwnUpdate;
 use App\Models\Constellation;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
@@ -117,11 +118,11 @@ class NewOperationsController extends Controller
             $newOp->status = 1;
             $newOp->save();
 
+
             $campaignIDs = $request->picked;
             foreach ($campaignIDs as $campaignID) {
-                // NewCampaignOperation::create(['campaign_id' => $campaignID, 'operation_id' => $newOp->id]);
                 $new = new NewCampaignOperation();
-                $new->campaign_id = $campaignID;
+                $new->campaign_id = $campaignID['value'];
                 $new->operation_id = $newOp->id;
                 $new->save();
             }
@@ -229,6 +230,19 @@ class NewOperationsController extends Controller
     public function show($id)
     {
         //
+    }
+
+
+    public function toggleWindow($toggle, $opID)
+    {
+        $flag = collect([
+            'flag' => 8,
+            'op_id' => $opID,
+            'id' => Auth::id(),
+            'type' => $toggle,
+        ]);
+
+        broadcast(new OperationOwnUpdate($flag));
     }
 
     /**

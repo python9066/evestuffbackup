@@ -1,314 +1,455 @@
 <template>
-  <div class="pr-16 pl-16" v-resize="onResize">
-    <div class="d-flex align-items-center">
-      <v-card-title>Vulnerability Windows</v-card-title>
-
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
-
-      <v-card max-width="600px" min-width="600px" color="#121212" elevation="0">
-        <v-card-text>
-          <v-select
-            class="pb-2"
-            v-model="typePicked"
-            :items="dropdown_search_list"
-            label="Filter by Region"
-            multiple
-            chips
-            deletable-chips
-            hide-details
-          ></v-select>
-        </v-card-text>
-      </v-card>
-
-      <v-btn-toggle
-        v-model="toggle_exclusive1"
-        mandatory
-        class="ml-4 mr-15"
-        :value="2"
-      >
-        <v-btn
-          :loading="loading3"
-          :disabled="loading3"
-          @click="(itemFlag = 1), (endtext = 'Time till Change')"
-        >
-          All
-        </v-btn>
-        <v-btn
-          :loading="loading3"
-          :disabled="loading3"
-          @click="(itemFlag = 2), (endtext = 'Time till Closed')"
-        >
-          Open
-        </v-btn>
-        <v-btn
-          :loading="loading3"
-          :disabled="loading3"
-          @click="(itemFlag = 3), (endtext = 'Time till Opened')"
-        >
-          Closed
-        </v-btn>
-      </v-btn-toggle>
-
-      <v-btn-toggle v-model="toggle_exclusive" mandatory :value="1">
-        <v-btn :loading="loading3" :disabled="loading3" @click="colorflag = 4">
-          All
-        </v-btn>
-        <v-btn :loading="loading3" :disabled="loading3" @click="colorflag = 3">
-          Goons
-        </v-btn>
-        <v-btn :loading="loading3" :disabled="loading3" @click="colorflag = 2">
-          Friendly
-        </v-btn>
-        <v-btn :loading="loading3" :disabled="loading3" @click="colorflag = 1">
-          Hostile
-        </v-btn>
-      </v-btn-toggle>
-    </div>
-    <v-data-table
-      :headers="getHeaders()"
-      :items="filterEnd"
-      item-key="id"
-      :height="height"
-      fixed-header
-      :loading="loading"
-      :items-per-page="50"
-      :footer-props="{
-        'items-per-page-options': [10, 20, 30, 50, 100, -1],
-      }"
-      :sort-by="['time']"
-      :search="search"
-      :sort-desc="[false, true]"
-      multi-sort
-      class="elevation-1"
+  <div class="q-ma-md">
+    <q-table
+      title="Connections"
+      class="myTableWindows myRound bg-webBack"
+      :rows="filterEnd"
+      :columns="columns"
+      table-class=" text-webway"
+      table-header-class=" text-weight-bolder"
+      row-key="id"
+      dark
+      dense
+      :filter="search"
+      ref="tableRef"
+      rounded
+      :pagination="pagination"
     >
-      <template slot="no-data"> No open Windows </template>
-      <template v-slot:[`item.alliance`]="{ item }">
-        <!-- <v-img src="https://images.evetech.net/Alliance/1354830081_64.png"  style="height: inherit"></v-img> -->
-        <v-avatar size="35"><img :src="item.url" /></v-avatar>
-        <span v-if="item.standing > 0" class="blue--text pl-3"
-          >{{ item.alliance }}
-        </span>
-        <span v-else-if="item.standing < 0" class="red--text pl-3"
-          >{{ item.alliance }}
-        </span>
-        <span v-else class="pl-3">{{ item.alliance }}</span>
+      <template v-slot:top="props">
+        <div class="row full-width flex-center q-pt-xs myRoundTop bg-primary">
+          <div class="col-12 flex flex-center">
+            <span class="text-h4">Vulnerability Windows</span>
+          </div>
+        </div>
+        <div class="row full-width q-pt-md justify-between">
+          <div class="col-9">
+            <div class="row q-gutter-sm q-pl-md">
+              <q-input
+                rounded
+                standout
+                dense
+                debounce="300"
+                v-model="search"
+                clearable
+                placeholder="Search"
+              >
+                <template v-slot:append>
+                  <q-icon name="fa-solid fa-magnifying-glass" />
+                </template>
+              </q-input>
+              <q-select
+                rounded
+                dense
+                standout
+                input-debounce="0"
+                label-color="webway"
+                option-value="value"
+                option-label="text"
+                v-model="regionPicked"
+                :options="regionPickedEnd"
+                label="Region"
+                ref="regionDropDown"
+                @filter="regionPickStart"
+                map-options
+                use-input
+                use-chips
+                multiple
+              >
+                <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+                  <q-item v-bind="itemProps">
+                    <q-item-section>
+                      <q-item-label v-html="opt.text" />
+                    </q-item-section>
+                    <q-item-section side>
+                      <q-toggle
+                        :model-value="selected"
+                        @update:model-value="toggleOption(opt)"
+                      />
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-slot:selected-item="scope">
+                  <q-chip
+                    removable
+                    @remove="scope.removeAtIndex(scope.index)"
+                    :tabindex="scope.tabindex"
+                    color="webChip"
+                    text-color="white"
+                    class="q-ma-none"
+                  >
+                    <span class="text-xs"> {{ scope.opt.text }} </span>
+                  </q-chip>
+                </template></q-select
+              >
+            </div>
+          </div>
+          <div class="col-auto">
+            <div class="row q-pr-md q-gutter-sm">
+              <q-btn-toggle
+                v-model="filterItemStatusSelect"
+                rounded
+                unelevated
+                color="webDark"
+                text-color="gray"
+                toggle-color="primary"
+                toggle-text-color="gray"
+                :options="[
+                  { label: 'Open', value: 1 },
+                  { label: 'Closed', value: 2 },
+                ]"
+              />
+              <q-btn-toggle
+                v-model="filterStandingSelectList"
+                rounded
+                unelevated
+                clearable
+                color="webDark"
+                text-color="gray"
+                toggle-color="primary"
+                toggle-text-color="gray"
+                :options="[
+                  { label: 'Goon', value: 3 },
+                  { label: 'Friendly', value: 2 },
+                  { label: 'Hostile', value: 1 },
+                ]"
+              />
+            </div>
+          </div>
+        </div>
       </template>
 
-      <template v-slot:[`item.count`]="{ item }">
-        <template>
-          <vue-countdown-timer
-            @end_callback="(item.status = 1), handleCountdownEnd(item)"
-            :start-time="moment.utc(item.start).unix()"
-            :end-time="moment.utc(item.end).unix()"
-            :end-text="'Window Closed'"
-            :interval="1000"
+      <template v-slot:header-cell-progress="props">
+        <q-th :props="props">
+          <div class="row">
+            <div class="col">
+              <span>{{ headText }}</span>
+            </div>
+          </div>
+        </q-th>
+      </template>
+
+      <template v-slot:body-cell-alliance="props">
+        <q-td :props="props">
+          <div class="">
+            <q-avatar size="lg" class="q-pr-xl">
+              <img :src="props.row.url" />
+            </q-avatar>
+
+            <span v-if="props.row.color >= 2" class="text-blue"
+              >{{ props.row.alliance }}
+            </span>
+            <span v-else-if="props.row.color == 1" class="text-red"
+              >{{ props.row.alliance }}
+            </span>
+            <span v-else class="">{{ props.row.alliance }} </span>
+          </div>
+        </q-td>
+      </template>
+      <template v-slot:body-cell-window="props">
+        <q-td :props="props"
+          ><span v-if="props.row.window_station === 'Open'" class="text-positive">{{
+            props.value
+          }}</span>
+          <span v-else class="text-negative">{{ props.value }}</span>
+        </q-td>
+      </template>
+
+      <template v-slot:body-cell-countdown="props">
+        <q-td :props="props">
+          <TimerCountDown :row="props.row" />
+        </q-td>
+      </template>
+      <template v-slot:body-cell-age="props">
+        <q-td :props="props">
+          <VueCountUp
+            class="q-pl-sm"
+            :time="countUpTimeMil(props.row.age)"
+            :interval="60000"
+            v-slot="{ hours, days }"
           >
-            <template slot="countdown" slot-scope="scope">
-              <span class="red--text pl-3"
-                >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                  scope.props.seconds
-                }}</span
-              >
-            </template>
-          </vue-countdown-timer>
-        </template>
+            <span class="text-positive">
+              <span v-if="days != 0"> {{ days }} Days - </span>
+              {{ hours }} Hours
+            </span>
+          </VueCountUp>
+        </q-td>
       </template>
-      <template v-slot:[`item.window_station`]="{ item }">
-        <span v-if="item.window_station == 'Open'" class="green--text"
-          >{{ item.window_station }}
-        </span>
-        <span v-if="item.window_station == 'Closed'" class="red--text"
-          >{{ item.window_station }}
-        </span>
-      </template>
-      <template v-slot:[`item.age`]="{ item }">
-        <template>
-          <VueCountUptimer
-            :start-time="moment.utc(item.age).unix()"
-            :end-text="'Window Closed'"
-            :interval="1000"
-            :leadingZero="false"
-          >
-            <template slot="countup" slot-scope="scope">
-              <span class="green--text pl-3"
-                ><span v-if="scope.props.days != 0">
-                  {{ scope.props.days }} Days - </span
-                >{{ scope.props.hours }} Hours</span
-              >
-            </template>
-          </VueCountUptimer>
-        </template>
-      </template>
-    </v-data-table>
+    </q-table>
   </div>
 </template>
-<script>
-import Axios from "axios";
-import moment, { now, utc } from "moment";
-import { stringify } from "querystring";
-import { mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {
-    return `EveStuff - Vulnerability Windows`;
-  },
-  data() {
-    return {
-      check: "not here",
-      loading: true,
-      loading3: true,
-      endcount: "",
-      search: "",
-      componentKey: 0,
-      toggle_exclusive: 1,
-      toggle_exclusive1: 1,
-      itemFlag: 2,
-      colorflag: 3,
-      today: moment(),
-      name: "Timer",
-      test: now(),
-      endtext: "Time Till Close",
-      typePicked: [],
-      windowSize: {
-        x: 0,
-        y: 0,
-      },
-    };
-  },
-  async mounted() {
-    this.log();
-    this.onResize();
-    this.loadtimers();
-  },
-  methods: {
-    onResize() {
-      this.windowSize = { x: window.innerWidth, y: window.innerHeight };
-    },
-    log() {
-      var request = {
-        url: this.$route.path,
-      };
 
-      axios({
-        method: "post", //you can set what request you want to be
-        url: "api/url",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import { useMainStore } from "@/store/useMain.js";
 
-    async loadtimers() {
-      await this.$store.dispatch("getTimerDataAll");
-      await this.$store.dispatch("getTimerDataAllRegion");
-      this.loading3 = false;
-      this.loading = false;
-    },
+let store = useMainStore();
+let filterItemStatusSelect = $ref(1);
+let filterStandingSelectList = $ref(3);
+const VueCountUp = defineAsyncComponent(() => import("../components/countup/index"));
+const TimerCountDown = defineAsyncComponent(() =>
+  import("../components/timers/TimerCountDown.vue")
+);
 
-    getHeaders() {
-      return [
-        { text: "Region", value: "region", width: "10%" },
-        { text: "Constellation", value: "constellation" },
-        { text: "System", value: "system" },
-        { text: "Alliance", value: "alliance", width: "30%" },
-        { text: "Ticker", value: "ticker" },
-        { text: "Window", value: "window_station" },
-        { text: "Structure", value: "type" },
-        { text: "ADM", value: "adm" },
-        { text: this.endtext, value: "time" },
-        { text: "Countdown", value: "count", sortable: false },
-        { text: "Age", value: "age" },
-      ];
-    },
+let search = $ref("");
 
-    transform(props) {
-      Object.entries(props).forEach(([key, value]) => {
-        // Adds leading zero
-        const digits = value < 10 ? `0${value}` : value;
-        props[key] = `${digits}`;
-      });
+onMounted(async () => {
+  await store.getTimerDataAll();
+  await store.getTimerDataAllRegion();
 
-      return props;
-    },
-    handleCountdownEnd(item) {
-      this.$store.dispatch("markOver", item);
-    },
-  },
-  computed: {
-    ...mapState(["timers", "timersRegions"]),
-    filteredItems_start() {
-      if (this.colorflag == 1) {
-        return this.timers.filter(
-          (timers) => timers.color == 1 && timers.status == 0
-        );
-      }
-      if (this.colorflag == 2) {
-        return this.timers.filter(
-          (timers) => timers.color > 1 && timers.status == 0
-        );
-      }
-      if (this.colorflag == 3) {
-        return this.timers.filter(
-          (timers) => timers.color == 3 && timers.status == 0
-        );
-      } else {
-        return this.timers.filter((timers) => timers.status == 0);
-      }
-    },
+  document.title = "Evestuff - Vulnerability Windows";
+});
+onBeforeUnmount(async () => {});
 
-    height() {
-      let num = this.windowSize.y - 315;
-      return num;
-    },
-
-    dropdown_search_list() {
-      return this.timersRegions;
-    },
-
-    filteredItems() {
-      if (this.itemFlag == 1) {
-        return this.filteredItems_start;
-      }
-
-      if (this.itemFlag == 2) {
-        return this.filteredItems_start.filter(
-          (t) => t.window_station === "Open"
-        );
-      }
-
-      if (this.itemFlag == 3) {
-        return this.filteredItems_start.filter(
-          (t) => t.window_station === "Closed"
-        );
-      }
-    },
-
-    filterEnd() {
-      let data = [];
-      if (this.typePicked.length != 0) {
-        this.typePicked.forEach((p) => {
-          let pick = this.filteredItems.filter((f) => f.region_id == p);
-          if (pick != null) {
-            pick.forEach((pk) => {
-              data.push(pk);
-            });
-          }
-        });
-        return data;
-      }
-      return this.filteredItems;
-    },
-  },
+let abortFilterFn = () => {
+  // console.log('delayed filter aborted')
 };
+
+let regionPickText = $ref();
+let regionPicked = $ref([]);
+let regionPickedEnd = $computed(() => {
+  if (regionPickText) {
+    return store.timersRegions.filter(
+      (d) => d.text.toLowerCase().indexOf(regionPickText) > -1
+    );
+  }
+  return store.timersRegions;
+});
+
+let regionPickStart = (val, update, abort) => {
+  update(() => {
+    regionPickText = val.toLowerCase();
+    if (systemlistFinishEnd.length > 0 && val) {
+      finish_system_id = systemlistFinishEnd[0];
+    }
+  });
+};
+
+let finish_system_id = $ref(null);
+let finsishSystemText = $ref();
+
+let systemlistFinishEnd = $computed(() => {
+  if (finsishSystemText) {
+    return store.timersRegions.filter(
+      (d) => d.text.toLowerCase().indexOf(finsishSystemText) > -1
+    );
+  }
+  return store.timersRegions;
+});
+
+let filteredItems_start = $computed(() => {
+  if (filterStandingSelectList == 3) {
+    return store.timers.filter((t) => t.color == 3 && t.status == 0);
+  }
+
+  if (filterStandingSelectList == 2) {
+    return store.timers.filter((t) => t.color == 2 && t.status == 0);
+  }
+
+  if (filterStandingSelectList == 1) {
+    return store.timers.filter((t) => t.color == 1 && t.status == 0);
+  }
+
+  return store.timers.filter((t) => t.status == 0);
+});
+
+let filteredItems = $computed(() => {
+  if (filterItemStatusSelect == 1) {
+    return filteredItems_start.filter((t) => t.window_station === "Open");
+  }
+  if (filterItemStatusSelect == 2) {
+    return filteredItems_start.filter((t) => t.window_station === "Closed");
+  }
+  return filteredItems_start;
+});
+
+let filterRegion = $computed(() => {
+  if (regionPicked.length > 0) {
+    return filteredItems.filter((t) => {
+      if (regionPicked.map((p) => p.value).includes(t.region_id)) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }
+  return filteredItems;
+});
+
+let filterEnd = $computed(() => {
+  return filterRegion;
+});
+
+let countUpTimeMil = (time) => {
+  let dateString = time;
+  let date = new Date(dateString);
+  let offset = date.getTimezoneOffset() * 60000;
+  let timestamp = Date.parse(dateString) - offset;
+  return timestamp;
+};
+
+let pagination = $ref({
+  sortBy: "progress",
+  descending: false,
+  page: 1,
+  rowsPerPage: 50,
+});
+
+let headText = $computed(() => {
+  if (filterItemStatusSelect == 1) {
+    return "Time Till Close";
+  } else {
+    return "Time Till Open";
+  }
+});
+
+let columns = $ref([
+  {
+    name: "region",
+    align: "region",
+    label: "Region",
+    classes: "text-no-wrap",
+    field: (row) => row.region,
+    format: (val) => `${val}`,
+    sortable: false,
+  },
+  {
+    name: "constellation",
+    align: "left",
+    label: "Constellation",
+    classes: "text-no-wrap",
+    field: (row) => row.constellation,
+    format: (val) => `${val}`,
+    sortable: false,
+  },
+  {
+    name: "system",
+    align: "left",
+    label: "System",
+    classes: "text-no-wrap",
+    field: (row) => row.system,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "alliance",
+    align: "left",
+    classes: "text-no-wrap",
+    label: "Alliance",
+    field: (row) => row.alliance,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+
+  {
+    name: "ticker",
+    align: "left",
+    label: "Ticker",
+    style: "width: 5%",
+    classes: "text-no-wrap",
+    field: (row) => row.ticker,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "window",
+    label: "Window",
+    classes: "text-no-wrap",
+    field: (row) => row.window_station,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "structure",
+    label: "Structure",
+    classes: "text-no-wrap",
+    sortable: false,
+    filter: false,
+    field: (row) => row.type,
+    format: (val) => {
+      if (val == 32458) {
+        return "IHUB";
+      }
+      return "TCU";
+    },
+  },
+
+  {
+    name: "adm",
+    align: "left",
+    classes: "text-no-wrap",
+    label: "ADM",
+    field: (row) => row.adm,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "progress",
+    label: "Start/Progress",
+    classes: "text-no-wrap",
+    align: "center",
+    style: "width: 25%",
+    sortable: false,
+    field: (row) => row.time,
+    format: (val) => `${val}`,
+  },
+  {
+    name: "countdown",
+    label: "Countdown",
+    align: "center",
+    classes: "text-no-wrap",
+    sortable: false,
+    field: (row) => row.standing,
+    format: (val) => `${val}`,
+  },
+
+  {
+    name: "age",
+    label: "Age",
+    align: "right",
+    classes: "text-no-wrap",
+    sortable: false,
+    field: (row) => row.age,
+    format: (val) => `${val}`,
+  },
+]);
+let h = $computed(() => {
+  let mins = 30;
+  let window = store.size.height;
+
+  return window - mins + "px";
+});
 </script>
+
+<style lang="sass">
+.myTableWindows
+  /* height or max-height is important */
+  height: v-bind(h)
+
+  .q-table__top
+    padding-top: 0 !important
+    padding-left: 0 !important
+    padding-right: 0 !important
+
+
+
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: #202020
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+</style>

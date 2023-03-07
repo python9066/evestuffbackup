@@ -62,6 +62,11 @@ class testController extends Controller
         }
     }
 
+    public function testStation()
+    {
+        return towerRecordAll();
+    }
+
     public function removeOps()
     {
         $check = Auth::user();
