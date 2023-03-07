@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OperationOwnUpdate;
 use App\Models\Constellation;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
@@ -229,6 +230,19 @@ class NewOperationsController extends Controller
     public function show($id)
     {
         //
+    }
+
+
+    public function toggleWindow($toggle, $opID)
+    {
+        $flag = collect([
+            'flag' => 8,
+            'op_id' => $opID,
+            'id' => Auth::id(),
+            'type' => $toggle,
+        ]);
+
+        broadcast(new OperationOwnUpdate($flag));
     }
 
     /**

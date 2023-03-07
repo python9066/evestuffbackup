@@ -177,13 +177,6 @@ const routes = [
             const routeSystem = route.params.system ?? null;
             return { id, routeSystem };
         },
-        beforeEnter(to, from, next) {
-            if (can("view_opertaion_info")) {
-                next();
-            } else {
-                next("/");
-            }
-        },
     },
 
 

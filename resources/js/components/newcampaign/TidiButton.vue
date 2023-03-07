@@ -1,124 +1,88 @@
 <template>
-  <v-row no-gutters align="baseline">
-    <v-col cols="12" class="d-flex justify-content-end align-items-center h4">
-      System TiDi:
-      <span :class="colorTidi()">{{ item.tidi }}%</span>
-      <v-menu :close-on-content-click="false" :value="tidiShow">
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            class="pb-1"
-            v-bind="attrs"
-            v-on="on"
-            @click="(tidiShow = true), (tidiEdit = null)"
-            icon
-            color="warning"
-            ><font-awesome-icon icon="fa-solid fa-pen-to-square" />
-          </v-btn>
-        </template>
+  <div class="row align-baseline">
+    <div class="col text-h5">
+      System TiDi
+      <span class="cursor-pointer" :class="colorTidi" @click="dance"
+        >{{ props.item.tidi }}%
 
-        <template>
-          <v-card tile min-height="150px">
-            <v-card-title class="pb-0">
-              <v-text-field
-                v-model="tidiEdit"
-                label="Tidi %"
+        <q-menu
+          @before-show="editTidi = props.item.tidi"
+          @before-hide="editTidi = null"
+          persistent
+        >
+          <q-card class="myRoundTop">
+            <q-card-section>
+              <q-input
+                v-model="editTidi"
                 autofocus
-                v-mask="'###'"
-                :placeholder="placeHolder()"
-                @keyup.enter="(tidiShow = false), editTidi()"
-                @keyup.esc="(tidiShow = false), (tidiEdit = null)"
-              ></v-text-field>
-            </v-card-title>
-            <v-card-text>
-              <v-btn
-                icon
-                fixed
-                left
-                color="success"
-                @click="(tidiShow = false), editTidi()"
-                ><font-awesome-icon icon="fa-solid fa-check"
-              /></v-btn>
-
-              <v-btn
-                fixed
-                right
-                icon
-                color="warning"
-                @click="(tidiShow = false), (tidiEdit = null)"
-                ><font-awesome-icon icon="fa-solid fa-circle-xmark"
-              /></v-btn>
-            </v-card-text>
-          </v-card>
-        </template>
-      </v-menu>
-    </v-col>
-  </v-row>
+                outlined
+                rounded
+                type="text"
+                label="Tidi %"
+              />
+            </q-card-section>
+            <q-card-actions align="center">
+              <q-btn
+                rounded
+                :disable="hideUpdateButton"
+                color="positive"
+                label="Update"
+                @click="updateTidi"
+                v-close-popup
+              />
+              <q-btn rounded color="negative" label="Close" v-close-popup />
+            </q-card-actions>
+          </q-card>
+        </q-menu>
+      </span>
+    </div>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import { EventBus } from "../../app";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {},
-  props: {
-    item: Object,
-  },
-  data() {
-    return {
-      tidiShow: false,
-      tidiEdit: null,
-    };
-  },
 
-  async created() {},
+<script setup>
+const props = defineProps({
+  item: Object,
+  operationID: Number,
+});
 
-  beforeMonunt() {},
+let editTidi = $ref(null);
 
-  async beforeCreate() {},
+let updateTidi = async () => {
+  var data = {
+    tidi: editTidi,
+  };
 
-  async mounted() {},
-  methods: {
-    placeHolder() {
-      return "" + this.item.tidi;
+  await axios({
+    method: "post", //you can set what request you want to be
+    url: "/api/edittidi/" + props.item.id,
+    withCredentials: true,
+    data: data,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-
-    colorTidi() {
-      if (this.item.tidi > 59) {
-        return "green--text font-weight-bold";
-      } else if (this.item.tidi > 34) {
-        return "orange--text font-weight-bold";
-      } else {
-        return "red--text font-weight-bold";
-      }
-    },
-
-    async editTidi() {
-      var request = {
-        tidi: this.tidiEdit,
-      };
-
-      await axios({
-        method: "post", //you can set what request you want to be
-        url: "/api/edittidi/" + this.item.id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-  },
-
-  computed: {
-    ...mapGetters([]),
-
-    ...mapState([]),
-  },
-  beforeDestroy() {},
+  });
 };
+
+let hideUpdateButton = $computed(() => {
+  if (editTidi == null) {
+    return true;
+  }
+  if (editTidi > 100 || editTidi < 0) {
+    return true;
+  }
+  return false;
+});
+
+const colorTidi = $computed(() => {
+  if (props.item.tidi > 59) {
+    return "text-green text-bold";
+  } else if (props.item.tidi > 34) {
+    return "text-orange text-bold";
+  } else {
+    return "text-red text-bold";
+  }
+});
 </script>
+
+<style lang="scss"></style>

@@ -912,9 +912,9 @@ export default new Vuex.Store({
         //     state.startcampaigns = startcampaigns;
         // },
 
-        SET_CAMPAIGN_LOGS(state, logs) {
-            state.loggingNewCampaign = logs;
-        },
+        // SET_CAMPAIGN_LOGS(state, logs) {
+        //     state.loggingNewCampaign = logs;
+        // },
 
         // SET_CAMPAIGNSLIST(state, campaignslist) {
         //     state.campaignslist = campaignslist;
@@ -979,9 +979,9 @@ export default new Vuex.Store({
             Object.assign(item, data);
         },
 
-        SET_CAMPAIGN_SYSTEMS(state, systems) {
-            state.campaignsystems = systems;
-        },
+        // SET_CAMPAIGN_SYSTEMS(state, systems) {
+        //     state.campaignsystems = systems;
+        // },
 
         SET_START_CAMPAIGN_SYSTEMS(state, systems) {
             state.startcampaignsystems = systems;
@@ -3208,17 +3208,17 @@ export default new Vuex.Store({
             }
         },
 
-        getTotalCampaignNodes: (state) => (campaignID) => {
-            var total = 0;
-            state.newCampaignSystems.forEach((c) => {
-                let count = c.new_nodes.filter(
-                    (n) => n.campaign_id === campaignID
-                ).length;
-                total = total + count;
-            });
+        // getTotalCampaignNodes: (state) => (campaignID) => {
+        //     var total = 0;
+        //     state.newCampaignSystems.forEach((c) => {
+        //         let count = c.new_nodes.filter(
+        //             (n) => n.campaign_id === campaignID
+        //         ).length;
+        //         total = total + count;
+        //     });
 
-            return total;
-        },
+        //     return total;
+        // },
 
         getTotalCampaignNodesInfo: (state) => (campaignID) => {
             var total = 0;
@@ -3232,29 +3232,29 @@ export default new Vuex.Store({
             return total;
         },
 
-        getBlueCampaignNodes: (state) => (campaignID) => {
-            var blue = 0;
+        // getBlueCampaignNodes: (state) => (campaignID) => {
+        //     var blue = 0;
 
-            state.newCampaignSystems.forEach((a) => {
-                let nodes = a.new_nodes;
+        //     state.newCampaignSystems.forEach((a) => {
+        //         let nodes = a.new_nodes;
 
-                nodes.forEach((b) => {
-                    if (
-                        b.prime_node_user.length > 0 &&
-                        b.campaign_id === campaignID
-                    ) {
-                        blue = blue + 1;
-                    } else if (
-                        (b.node_status.id == 8 || b.node_status.id == 4) &&
-                        b.campaign_id === campaignID
-                    ) {
-                        blue = blue + 1;
-                    }
-                });
-            });
+        //         nodes.forEach((b) => {
+        //             if (
+        //                 b.prime_node_user.length > 0 &&
+        //                 b.campaign_id === campaignID
+        //             ) {
+        //                 blue = blue + 1;
+        //             } else if (
+        //                 (b.node_status.id == 8 || b.node_status.id == 4) &&
+        //                 b.campaign_id === campaignID
+        //             ) {
+        //                 blue = blue + 1;
+        //             }
+        //         });
+        //     });
 
-            return blue;
-        },
+        //     return blue;
+        // },
 
         getBlueCampaignNodesInfo: (state) => (campaignID) => {
             var blue = 0;
@@ -3278,24 +3278,24 @@ export default new Vuex.Store({
             return blue;
         },
 
-        getRedCampaignNodes: (state) => (campaignID) => {
-            var red = 0;
+        // getRedCampaignNodes: (state) => (campaignID) => {
+        //     var red = 0;
 
-            state.newCampaignSystems.forEach((a) => {
-                let nodes = a.new_nodes;
+        //     state.newCampaignSystems.forEach((a) => {
+        //         let nodes = a.new_nodes;
 
-                nodes.forEach((b) => {
-                    if (
-                        (b.node_status.id == 7 || b.node_status.id == 5) &&
-                        b.campaign_id === campaignID
-                    ) {
-                        red = red + 1;
-                    }
-                });
-            });
+        //         nodes.forEach((b) => {
+        //             if (
+        //                 (b.node_status.id == 7 || b.node_status.id == 5) &&
+        //                 b.campaign_id === campaignID
+        //             ) {
+        //                 red = red + 1;
+        //             }
+        //         });
+        //     });
 
-            return red;
-        },
+        //     return red;
+        // },
 
         getRedCampaignNodesInfo: (state) => (campaignID) => {
             var red = 0;

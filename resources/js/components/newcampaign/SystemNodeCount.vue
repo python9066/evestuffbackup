@@ -1,126 +1,79 @@
 <template>
-  <v-row no-gutters>
-    <v-col class="d-flex justify-start align-center">
-      <span> Nodes -</span>
-      <Vep
-        :progress="blueProgress"
-        :size="50"
-        :legend-value="blueNode"
-        fontSize="0.80rem"
-        color="#00ff00"
-        :thickness="4"
-        :emptyThickness="1"
-        emptyColor="#a4fca4"
-      >
-        <template v-slot:legend-value>
-          <span slot="legend-value"> /{{ totalNode }}</span>
-        </template>
-      </Vep>
-      <Vep
-        :progress="redProgress"
-        :size="50"
-        :legend-value="redNode"
-        fontSize="0.80rem"
-        color="#ff0000"
-        :thickness="4"
-        :emptyThickness="1"
-        emptyColor="#f08d8d"
-      >
-        <template v-slot:legend-value>
-          <span slot="legend-value"> /{{ totalNode }}</span>
-        </template>
-      </Vep>
-    </v-col>
-  </v-row>
+  <div>
+    <div class="row">
+      <div class="col">
+        <span> Nodes -</span>
+        <q-circular-progress
+          show-value
+          :max="totalNodes"
+          :min="0"
+          rounded
+          :value="blueNodes"
+          size="45px"
+          :thickness="0.1"
+          color="positive"
+          track-color="green-3"
+          class=""
+          >{{ blueNodes }}/{{ totalNodes }}</q-circular-progress
+        >
+        <q-circular-progress
+          show-value
+          :max="totalNodes"
+          :min="0"
+          rounded
+          :value="redNodes"
+          size="45px"
+          :thickness="0.1"
+          color="negative"
+          track-color="red-3"
+          class=""
+          >{{ redNodes }}/{{ totalNodes }}</q-circular-progress
+        >
+      </div>
+    </div>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import { EventBus } from "../../app";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {},
-  props: {
-    item: Array,
-  },
-  data() {
-    return {};
-  },
 
-  async created() {},
+<script setup>
+const props = defineProps({
+  item: Object,
+});
+let totalNodes = $computed(() => {
+  var count = null;
+  if (props.item) {
+    count = props.item.length;
+  } else {
+    count = 0;
+  }
+  return count;
+});
 
-  beforeMonunt() {},
+let blueNodes = $computed(() => {
+  var count = null;
+  if (props.item) {
+    count = props.item.filter(
+      (c) =>
+        c.node_status.id == 2 ||
+        c.node_status.id == 3 ||
+        c.node_status.id == 4 ||
+        c.node_status.id == 8
+    ).length;
+  } else {
+    count = 0;
+  }
+  return count;
+});
 
-  async beforeCreate() {},
-
-  async mounted() {},
-  methods: {},
-
-  computed: {
-    ...mapGetters([]),
-
-    ...mapState([]),
-
-    totalNode() {
-      var count = null;
-      if (this.item) {
-        count = this.item.length;
-      } else {
-        count = 0;
-      }
-
-      return count;
-    },
-
-    blueNode() {
-      var count = null;
-      if (this.item) {
-        count = this.item.filter(
-          (c) =>
-            c.node_status.id == 2 ||
-            c.node_status.id == 3 ||
-            c.node_status.id == 4 ||
-            c.node_status.id == 8
-        ).length;
-      } else {
-        count = 0;
-      }
-      return count;
-    },
-
-    redNode() {
-      var count = null;
-      if (this.item) {
-        count = this.item.filter(
-          (n) => n.node_status.id == 5 || n.node_status.id == 7
-        ).length;
-      } else {
-        count = 0;
-      }
-      return count;
-    },
-
-    blueProgress() {
-      if (this.totalNode) {
-        var num = (this.blueNode / this.totalNode) * 100;
-        return num;
-      } else {
-        return 0;
-      }
-    },
-
-    redProgress() {
-      if (this.totalNode) {
-        var num = (this.redNode / this.totalNode) * 100;
-        return num;
-      } else {
-        return 0;
-      }
-    },
-  },
-  beforeDestroy() {},
-};
+let redNodes = $computed(() => {
+  var count = null;
+  if (props.item) {
+    count = props.item.filter((n) => n.node_status.id == 5 || n.node_status.id == 7)
+      .length;
+  } else {
+    count = 0;
+  }
+  return count;
+});
 </script>
+
+<style lang="scss"></style>

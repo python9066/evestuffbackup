@@ -26,7 +26,10 @@ export const useMainStore = defineStore("main", {
         ticklist: [],
         towerTypes: [],
         towerConstellation: [],
+        loggingNewCampaign: [],
         rolesList: [],
+        newOperationMessageOverlay: 0,
+        newOperationMessageAddChar: false,
         moonList: [],
         towerChatWindowId: null,
         stationChatWindowId: null,
@@ -41,6 +44,7 @@ export const useMainStore = defineStore("main", {
             value: 30004759,
             text: "1DQ1-A",
         },
+        campaignsystems: [],
 
         operationInfo: [],
         operationInfoPage: [],
@@ -223,6 +227,112 @@ export const useMainStore = defineStore("main", {
                 return data;
             }
             return [];
+        },
+
+        getTotalCampaignNodes: (state) => (campaignID) => {
+            var total = 0;
+            state.newCampaignSystems.forEach((c) => {
+                let count = c.new_nodes.filter(
+                    (n) => n.campaign_id === campaignID
+                ).length;
+                total = total + count;
+            });
+
+            return total;
+        },
+
+        getRedCampaignNodes: (state) => (campaignID) => {
+            var red = 0;
+
+            state.newCampaignSystems.forEach((a) => {
+                let nodes = a.new_nodes;
+
+                nodes.forEach((b) => {
+                    if (
+                        (b.node_status.id == 7 || b.node_status.id == 5) &&
+                        b.campaign_id === campaignID
+                    ) {
+                        red = red + 1;
+                    }
+                });
+            });
+
+            return red;
+        },
+
+        getBlueCampaignNodes: (state) => (campaignID) => {
+            var blue = 0;
+
+            state.newCampaignSystems.forEach((a) => {
+                let nodes = a.new_nodes;
+
+                nodes.forEach((b) => {
+                    if (
+                        b.prime_node_user.length > 0 &&
+                        b.campaign_id === campaignID
+                    ) {
+                        blue = blue + 1;
+                    } else if (
+                        (b.node_status.id == 8 || b.node_status.id == 4) &&
+                        b.campaign_id === campaignID
+                    ) {
+                        blue = blue + 1;
+                    }
+                });
+            });
+
+            return blue;
+        },
+
+        getOwnHackingCharOnOpAllHackers: (state) => (operationid) => {
+            let pull = state.ownChars.filter(
+                (u) => u.role_id == 1 && u.operation_id == operationid
+            );
+            let count = pull.length;
+            if (count != 0) {
+                return pull;
+            } else {
+                return null;
+            }
+        },
+
+        getOpUsersOnTheWayAll: (state) => {
+            let pull = state.opUsers.filter(
+                (u) => u.role_id == 1 && u.user_status_id == 2
+            );
+            let count = pull.length;
+            if (count != 0) {
+                return pull;
+            } else {
+                return [];
+            }
+        },
+
+        getOwnHackingCharOnOp: (state) => (operationid) => {
+            let pull = state.ownChars.filter(
+                (u) =>
+                    u.role_id == 1 &&
+                    u.operation_id == operationid &&
+                    u.user_status_id != 4
+            );
+            let count = pull.length;
+            if (count != 0) {
+                return pull;
+            } else {
+                return null;
+            }
+        },
+
+        getOpUsersReadyToGoAll: (state) => {
+            let pull = state.opUsers.filter(
+                (u) => u.role_id == 1 && u.user_status_id == 3
+            );
+            let count = pull.length;
+            if (count != 0) {
+                return pull;
+            } else {
+                return [];
+            }
         },
     },
     actions: {
@@ -1011,6 +1121,19 @@ export const useMainStore = defineStore("main", {
             this.campaignslist = res.data.campaignslist;
         },
 
+        async getCampaignsLogs(op_id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/newoperationlogs/" + op_id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.loggingNewCampaign = res.data.logs
+        },
+
         updateNewCampaigns(data) {
             const item = this.newCampaigns.find((item) => item.id === data.id);
             const count = this.newCampaigns.filter(
@@ -1070,6 +1193,20 @@ export const useMainStore = defineStore("main", {
             if (check > 0) {
                 this.ownChars = this.ownChars.filter((e) => e.id != id);
             }
+        },
+
+        async getCampaignSystemsRecords() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
+                url: "/api/campaignsystemsrecords",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+                this.campaignsystems = res.data.systems;
+
         },
     },
 });

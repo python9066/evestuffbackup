@@ -131,6 +131,7 @@ class NewSystemNodeController extends Controller
     {
         $opUserID = null;
         $oldCheck = null;
+        // dd($request->all());
         switch ($request->status_id) {
             case 1: // * new
                 $systemNode = NewSystemNode::where('id', $id)->first();

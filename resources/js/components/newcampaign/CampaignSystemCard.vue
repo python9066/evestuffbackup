@@ -1,142 +1,92 @@
 <template>
-  <v-expansion-panels
-    class="pb-5"
-    v-model="showSystemTable"
-    popout
-    style="cursor: context-menu"
-  >
-    <v-expansion-panel class="rounded-xl" style="cursor: context-menu" readonly>
-      <v-expansion-panel-header
-        style="cursor: context-menu"
-        class="py-0 pr-2"
-        :class="filterRound"
-        hide-actions
-      >
-        <v-row no-gutters>
-          <v-col cols="1" class="d-flex justify-start align-center mr-2">
-            {{ item.system_name }}
-          </v-col>
-          <v-divider class="mx-2" vertical></v-divider>
-          <v-col cols="3" class="d-flex justify-start align-center">
+  <div>
+    <q-expansion-item
+      class="shadow-1 overflow-hidden"
+      style="border-radius: 30px"
+      label="dance"
+      v-model:model-value="showPannel"
+      expand-icon-toggle
+      header-class=" q-py-none bg-webBack text-webway text-center"
+      @show="10"
+      @hide="10"
+      dark
+    >
+      <template v-slot:header>
+        <div class="row q-gutter-none full-width items-center">
+          <div class="col-1">{{ props.item.system_name }}</div>
+          <q-separator vertical class="" color="webChip" />
+          <div class="col-3">
             <SystemNodeCount :item="item.new_nodes" />
-          </v-col>
+          </div>
+          <div class="col-6 flex justify-end full-height align-center">
+            <q-separator vertical class="" color="webChip" />
+            <OnTheWay class="q-px-md" :operationID="operationID" :item="item" />
+            <q-separator vertical class="" color="webChip" />
+            <ReadyToGo class="q-px-md" :operationID="operationID" :item="item" />
+            <q-separator vertical class="" color="webChip" />
+          </div>
+        </div>
+      </template>
 
-          <v-col cols="6" class="d-flex justify-end align-center">
-            <v-divider class="mx-2" vertical></v-divider>
-            <OnTheWay :operationID="operationID" :item="item" />
-            <v-divider class="mx-2" vertical></v-divider>
-            <ReadyToGo :operationID="operationID" :item="item" />
-          </v-col>
-          <v-divider class="mx-2" vertical></v-divider>
-          <v-col cols="1" class="d-flex justify-end align-center">
-            <v-btn icon @click="clickIcon()">
-              <font-awesome-icon
-                icon="fa-solid fa-angle-up"
-                :class="iconRotate"
-                size="xl"
-            /></v-btn>
-          </v-col>
-        </v-row>
-      </v-expansion-panel-header>
-      <v-expansion-panel-content id="expansion-panel-content-1"
-        ><CampaignSystemCardContent :item="item" :operationID="operationID" />
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-  </v-expansion-panels>
+      <q-card>
+        <q-card-section>
+          <CampaignSystemCardContent
+            :item="props.item"
+            :operationID="props.operationID"
+          />
+        </q-card-section>
+      </q-card>
+    </q-expansion-item>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import { EventBus } from "../../app";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {},
-  props: {
-    item: Object,
-    operationID: Number,
-  },
-  data() {
-    return {
-      showSystemTable: 0,
-    };
-  },
 
-  async created() {
-    EventBus.$on("showSystemTable", (data) => {
-      if (data == 0) {
-        this.showSystemTable = null;
-      } else {
-        this.showSystemTable = 0;
-      }
-    });
-    this.checkRoute();
-  },
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import { useMainStore } from "@/store/useMain.js";
 
-  beforeMonunt() {},
+let store = useMainStore();
+const props = defineProps({
+  item: Object,
+  operationID: Number,
+});
 
-  async beforeCreate() {},
+const SystemNodeCount = defineAsyncComponent(() => import("./SystemNodeCount.vue"));
+const OnTheWay = defineAsyncComponent(() => import("./OnTheWay.vue"));
+const ReadyToGo = defineAsyncComponent(() => import("./ReadyToGo.vue"));
+const CampaignSystemCardContent = defineAsyncComponent(() =>
+  import("./CampaignSystemCardContent.vue")
+);
 
-  async mounted() {},
-  methods: {
-    clickIcon() {
-      if (this.showSystemTable == 0) {
-        this.showSystemTable = null;
-      } else {
-        this.showSystemTable = 0;
-      }
-    },
-
-    checkRoute() {
-      if (this.$route.params.system) {
-        if (this.$route.params.system == this.item.system_name) {
-          this.showSystemTable = 0;
+onMounted(() => {
+  Echo.private("operationsown." + store.user_id + "-" + props.operationID).listen(
+    "OperationOwnUpdate",
+    (e) => {
+      if (e.flag.flag == 8) {
+        // console.log(e.flag.type);
+        if (e.flag.type == 1) {
+          openPannel();
         } else {
-          this.showSystemTable = null;
+          closePannel();
         }
       }
-    },
-  },
+    }
+  );
+});
 
-  computed: {
-    ...mapGetters([]),
+onBeforeUnmount(() => {
+  Echo.leave("operationsown." + store.user_id + "-" + props.operationID);
+});
 
-    ...mapState([]),
+let showPannel = $ref(true);
 
-    iconRotate() {
-      if (this.showSystemTable == 0) {
-        return "toggleUpDown";
-      } else {
-        return "toggleUpDown rotate";
-      }
-    },
+let openPannel = () => {
+  //   console.log("openPannel");
+  showPannel = true;
+};
 
-    filterRound() {
-      if (this.showSystemTable) {
-        return "rounded-t-xl";
-      } else {
-        return "rounded-xl";
-      }
-    },
-  },
-  beforeDestroy() {},
+let closePannel = () => {
+  showPannel = false;
 };
 </script>
 
-<style scoped>
-.toggleUpDown {
-  transition: transform 0.3s ease-in-out !important;
-}
-
-.toggleUpDown.rotate {
-  transform: rotate(180deg);
-}
-
-#expansion-panel-content-1::v-deep .v-expansion-panel-content__wrap {
-  padding: 0 !important;
-}
-</style>
-
-
+<style lang="scss"></style>

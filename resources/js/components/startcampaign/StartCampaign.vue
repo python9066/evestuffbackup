@@ -140,7 +140,7 @@ let columns = $ref([
 ]);
 
 let clickCampaign = (item) => {
-  console.log(item);
+  //   console.log(item);
   router.push({ path: `/scampaign/${item.link}` }); // -> /user/123
 };
 

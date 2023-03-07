@@ -1,104 +1,82 @@
 <template>
-  <v-row no-gutter>
-    <v-col cols="12">
-      <v-row no-gutters align="baseline">
-        <v-col cols="9">
-          <v-btn color="green" x-small @click="checkClick()">
-            <font-awesome-icon
-              icon="fa-solid fa-magnifying-glass-location"
-              pull="left"
-            />
-
-            System Checked</v-btn
-          ></v-col
+  <div>
+    <div class="row">
+      <div class="col-9">
+        <q-btn
+          color="positive"
+          icon="fa-solid fa-magnifying-glass-location"
+          label="System Checked"
+          @click="checkClick"
+          rounded
+          class="myOutLineButton"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" v-if="props.item.check_user">
+        Check By {{ props.item.check_user.name }}
+        <VueCountUp
+          :time="countUpTimeMil(props.item.scouted_at)"
+          :interval="1000"
+          v-slot="{ hours, minutes, seconds }"
         >
-      </v-row>
-      <v-row no-gutters>
-        <v-col cols="9" class="d-flex" v-if="item.check_user"
-          >Checked By {{ item.check_user.name }}
-          <VueCountUptimer
-            :start-time="moment.utc(item.scouted_at).unix()"
-            :end-text="'Window Closed'"
-            :interval="1000"
-            ><template slot="countup" slot-scope="scope">
-              <transition
-                name="custom-classes"
-                enter-active-class="animate__animated animate__heartBeat animate__repeat-2"
-                leave-active-class="animate__animated animate__flash animate__faster"
-                mode="out-in"
-                ><span
-                  :key="`${item.id}-1-timer-age`"
-                  v-if="scope.props.minutes < 5"
-                  class="green--text pl-2 pr-2"
-                  >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                    scope.props.seconds
-                  }}</span
-                >
-                <span
-                  :key="`${item.id}-2-timer-age`"
-                  v-else
-                  class="red--text pl-2 pr-2"
-                  >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                    scope.props.seconds
-                  }}</span
-                >
-              </transition>
-            </template>
-          </VueCountUptimer>
-          ago.
-        </v-col>
-      </v-row>
-    </v-col>
-  </v-row>
+          <transition
+            name="custom-classes"
+            enter-active-class="animate__animated animate__heartBeat animate__repeat-2"
+            leave-active-class="animate__animated animate__flash"
+            mode="out-in"
+          >
+            <span
+              :key="`${props.item.id}-1-timer-age`"
+              v-if="hours == 0 && minutes < 5"
+              class="text-positive"
+            >
+              {{ hours }}:{{ minutes }}:{{ seconds }}</span
+            >
+            <span v-else :key="`${props.item.id}-2-timer-age`" class="text-negative">
+              {{ hours }}:{{ minutes }}:{{ seconds }}</span
+            >
+          </transition>
+        </VueCountUp>
+      </div>
+    </div>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import { EventBus } from "../../app";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {},
-  props: {
-    item: Object,
-  },
-  data() {
-    return {};
-  },
 
-  async created() {},
+<script setup>
+import { useMainStore } from "@/store/useMain.js";
+import { defineAsyncComponent } from "vue";
+let store = useMainStore();
 
-  beforeMonunt() {},
+const VueCountUp = defineAsyncComponent(() => import("../countup/index"));
+const props = defineProps({
+  item: Object,
+  operationID: Number,
+});
+let checkClick = async () => {
+  var data = {
+    user_id: store.user_id,
+  };
 
-  async beforeCreate() {},
-
-  async mounted() {},
-  methods: {
-    async checkClick() {
-      var request = {
-        user_id: this.$store.state.user_id,
-      };
-
-      await axios({
-        method: "POST",
-        url: "/api/checkedat/" + this.item.id,
-        data: request,
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+  await axios({
+    method: "POST",
+    url: "/api/checkedat/" + props.item.id,
+    data: data,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-  },
+  });
+};
 
-  computed: {
-    ...mapGetters([]),
-
-    ...mapState([]),
-  },
-  beforeDestroy() {},
+let countUpTimeMil = (time) => {
+  let dateString = time;
+  let date = new Date(dateString);
+  let offset = date.getTimezoneOffset() * 60000;
+  let timestamp = Date.parse(dateString) - offset;
+  return timestamp;
 };
 </script>
+
+<style lang="scss"></style>
