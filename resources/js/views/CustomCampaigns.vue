@@ -4,9 +4,9 @@
       <div class="col">
         <NewMultiCampaigns />
       </div>
-      <div class="col">
+      <!-- <div class="col">
         <StartCampaign />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

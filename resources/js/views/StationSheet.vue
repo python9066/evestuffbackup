@@ -22,7 +22,7 @@
             <span class="text-h4">Stations</span>
           </div>
           <div class="col-1 flex justify-end">
-            <SettingPannel v-if="can('view_coord_sheet')"></SettingPannel>
+            <SettingPannel v-if="can('access_station_sheet_setting_tab')"></SettingPannel>
           </div>
         </div>
         <div class="row full-width q-pt-md justify-between">
@@ -376,6 +376,7 @@ const AddStation = defineAsyncComponent(() =>
 onMounted(async () => {
   await store.getStationRegionLists();
   await store.getStationList();
+  await store.getWebwayStartSystems();
 
   Echo.private("stationsheet")
     .listen("StationSheetUpdate", (e) => {
@@ -633,8 +634,10 @@ let webwayLink = (item) => {
 };
 
 let webwayButton = $computed(() => {
-  if (store.webwayStartSystems.length > 0) {
-    return true;
+  if (store.webwayStartSystems) {
+    if (store.webwayStartSystems.length > 0) {
+      return true;
+    }
   }
   return false;
 });

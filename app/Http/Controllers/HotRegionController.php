@@ -24,7 +24,7 @@ class HotRegionController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if ($user->can('edit_hot_region')) {
+        if ($user->can('access_station_sheet_setting_tab')) {
             $pullStart = HotRegion::where('update', 1)->pluck('region_id');
             $pull = Region::whereIn('id', $pullStart)->orderBy('region_name', 'asc')->select(['region_name as text', 'id as value'])->get();
 

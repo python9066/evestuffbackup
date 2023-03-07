@@ -611,8 +611,10 @@ let webwayLink = (item) => {
 };
 
 let webwayButton = $computed(() => {
-  if (store.webwayStartSystems.length > 0) {
-    return true;
+  if (store.webwayStartSystems) {
+    if (store.webwayStartSystems.length > 0) {
+      return true;
+    }
   }
   return false;
 });

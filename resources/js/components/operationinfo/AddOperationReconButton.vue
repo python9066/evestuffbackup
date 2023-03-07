@@ -92,7 +92,7 @@ import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 import { useMainStore } from "@/store/useMain.js";
 import { useQuasar } from "quasar";
 let store = useMainStore();
-let name = $ref();
+let name = $ref("");
 let mainName = $ref();
 let showMain = $ref(false);
 const $q = useQuasar();
@@ -173,14 +173,14 @@ let addRecon = async () => {
     var code = response.status;
     if (code == 201) {
       var text = nameAdd + " not found";
-      name = null;
+      name = "";
       $q.notify({
         type: "negative",
         message: text,
       });
     } else {
       var text = nameAdd + " added";
-      name = null;
+      name = "";
       $q.notify({
         type: "positive",
         message: text,
@@ -190,7 +190,7 @@ let addRecon = async () => {
 };
 
 let close = () => {
-  name = null;
+  name = "";
   mainName = null;
   showMain = false;
 };
