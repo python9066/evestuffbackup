@@ -19,6 +19,24 @@ class OperationInfoSheetController extends Controller
         return ['data' => operationInfoSoloPagePullLink($link)];
     }
 
+    public function addReadBy($id)
+    {
+
+        $notes = OperationInfoMessage::whereOperationInfoId($id)->get();
+
+        // Check if the current user's ID is not already in the "read_by" column
+        foreach ($notes as $note) {
+            if (!in_array(Auth::id(), $note->read_by['user_id'])) {
+                $readBy = $note->read_by;
+                $readBy['user_id'][] = Auth::id();
+                $note->read_by = $readBy;
+                $note->save();
+            }
+        }
+
+        operationInfoPageMessageBroadcast($id, 7);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -48,6 +66,8 @@ class OperationInfoSheetController extends Controller
         $new->operation_info_id = $id;
         $new->user_id = Auth::id();
         $new->message = $request->message;
+        $readBy['user_id'][] = Auth::id();
+        $new->read_by = $readBy;
         $new->save();
         operationInfoPageMessageBroadcast($id, 7);
     }

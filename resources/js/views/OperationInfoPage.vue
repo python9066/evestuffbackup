@@ -3,7 +3,7 @@
     <q-card class="myRoundTop myOperationInfoMainCard">
       <q-card-section class="bg-primary text-center q-py-xs">
         <div class="row full-width justify-between">
-          <div class="col-auto flex">
+          <div class="col-auto flex align-baseline">
             <q-btn text-color="warning" flat icon="fa-solid fa-eye" rounded padding="none"
               ><q-menu class="myRoundTop">
                 <q-card class="myRoundTop text-webway">
@@ -46,11 +46,16 @@
                 class="q-pl-sm"
               />
             </transition>
+            <div class="col flex flex-center q-pl-lg">
+              <OperationInfoMessageCard v-if="store.operationInfoPage.messages" />
+            </div>
           </div>
           <div class="col-auto">
             <h5 class="no-margin">Operation - {{ opInfo.name }}</h5>
           </div>
-          <div class="col-auto flex justify-end"><OperationInfoSettingPannel /></div>
+          <div class="">
+            <OperationInfoSettingPannel />
+          </div>
         </div>
       </q-card-section>
       <q-card-section>
@@ -117,6 +122,10 @@ const OperationInfoFleetCard = defineAsyncComponent(() =>
 
 const OperationInfoCheckList = defineAsyncComponent(() =>
   import("../components/operationinfo/OperationInfoCheckList.vue")
+);
+
+const OperationInfoMessageCard = defineAsyncComponent(() =>
+  import("../components/operationinfo/OperationInfoMessageCard.vue")
 );
 
 onMounted(async () => {
@@ -226,6 +235,8 @@ onBeforeUnmount(async () => {
   Echo.leave("operationinfooppage." + opInfo.id);
   Echo.leave("operationinfooppageown." + store.user_id + "-" + opInfo.id);
 });
+
+let showMessage = $ref(false);
 
 let opInfo = $computed(() => {
   return store.operationInfoPage;

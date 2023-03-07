@@ -51,6 +51,7 @@ export const useMainStore = defineStore("main", {
         operationInfoUsers: [],
         operationInfoMumble: [],
         operationInfoDoctrines: [],
+        operationInfoChatWindow: [],
         operationInfoRecon: [],
         allianceticklist: [],
         operationInfoReconFleetRoleList: [],
@@ -157,6 +158,33 @@ export const useMainStore = defineStore("main", {
                 axios({
                     method: "put",
                     url: "/api/towermessage/" + id + "/notes",
+                    withCredentials: true,
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    },
+                });
+            }
+            return count;
+        },
+
+
+
+
+        getOperationInfoUnreadMessageCount: (state)  => {
+
+            let messages = state.operationInfoPage.messages;
+            let count = messages.filter(
+                (m) =>
+                    m.read_by &&
+                    m.read_by.user_id &&
+                    !m.read_by.user_id.includes(state.user_id)
+            ).length;
+
+            if (state.operationInfoChatWindow == state.operationInfoPage.id && count > 0) {
+                axios({
+                    method: "put",
+                    url: "/api/operationinfopagemessage/" + state.operationInfoPage.id + "/notes",
                     withCredentials: true,
                     headers: {
                         Accept: "application/json",
