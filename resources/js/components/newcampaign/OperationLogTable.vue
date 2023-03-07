@@ -24,6 +24,10 @@
       <template v-slot:body-cell-details="props">
         <q-td :props="props"> <NewCampaignLogText :item="props.row" /> </q-td>
       </template>
+
+      <template v-slot:body-cell-date="props">
+        <q-td :props="props"> {{ converTime(props.row.created_at) }} </q-td>
+      </template>
     </q-table>
   </div>
 </template>
@@ -41,8 +45,8 @@ let filteredItems = $computed(() => {
 });
 
 let pagination = $ref({
-  sortBy: "name",
-  descending: false,
+  sortBy: "date",
+  descending: true,
   page: 1,
   rowsPerPage: 0,
 });
@@ -63,7 +67,7 @@ let columns = $ref([
     required: false,
     align: "center",
     label: "Event",
-    field: (row) => row.descroption,
+    field: (row) => row.description,
     format: (val) => `${val}`,
     sortable: false,
   },
@@ -97,15 +101,6 @@ let columns = $ref([
     format: (val) => `${val}`,
     sortable: false,
   },
-  {
-    name: "actions",
-    required: false,
-    align: "center",
-    label: "",
-    field: (row) => row.id,
-    format: (val) => `${val}`,
-    sortable: false,
-  },
 ]);
 
 // 25px; max-width: 1200px; width: 1200px
@@ -117,6 +112,13 @@ let tableW = $computed(() => {
 
   return "max-width: " + num + "px; width: " + num + "px";
 });
+
+let converTime = (inputDate) => {
+  var dateObj = new Date(inputDate);
+  var isoString = dateObj.toISOString();
+  var formattedDate = isoString.slice(0, 19).replace("T", " ");
+  return formattedDate;
+};
 
 let h = $computed(() => {
   let mins = 300;

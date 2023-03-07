@@ -273,7 +273,7 @@ let ownSetting = $computed({
     return store.getOperationInfoTableSettings;
   },
   set: (value) => {
-    console.log(value);
+    // console.log(value);
     store.setOwnOptions(value);
   },
 });

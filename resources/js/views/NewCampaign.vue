@@ -1,7 +1,7 @@
 <template>
   <div class="q-ma-md">
     <div class="row">
-      <div class="col">
+      <div class="col q-pb-md">
         <CampaignTitleBar
           :operationID="operationID"
           :title="store.newOperationInfo.title"
@@ -17,11 +17,18 @@
     </div>
     <div class="row">
       <div class="col-6 q-pa-sm" v-for="(item, index) in openSystems" :key="index.id">
-        <CampaignSystemCard
-          :key="`${index.id}-card`"
-          :item="item"
-          :operationID="operationID"
-        ></CampaignSystemCard>
+        <transition
+          name="custom-classes"
+          enter-active-class="animate__animated animate__heartBeat animate__repeat-2"
+          leave-active-class="animate__animated animate__flash"
+          mode="out-in"
+        >
+          <CampaignSystemCard
+            :key="`${index.id}-card`"
+            :item="item"
+            :operationID="operationID"
+          ></CampaignSystemCard>
+        </transition>
       </div>
     </div>
 

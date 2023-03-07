@@ -48,7 +48,7 @@
               <NewSystemTableStatusButton :node="item" :operationID="operationID" />
             </template> -->
 
-            <template v-slot:[`item.created_at`]="{ item }">
+            <!-- <template v-slot:[`item.created_at`]="{ item }">
               <NewSystemTableTimer
                 :node="item"
                 :operationID="operationID"
@@ -56,7 +56,7 @@
                 :tidiProp="item.system.tidi"
                 :systemIDProp="item.system_id"
               />
-            </template>
+            </template> -->
 
             <template v-slot:expanded-item="{ headers, item }">
               <td :colspan="headers.length" align="center">

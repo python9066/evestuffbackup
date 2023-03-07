@@ -62,7 +62,7 @@ onMounted(() => {
     "OperationOwnUpdate",
     (e) => {
       if (e.flag.flag == 8) {
-        console.log(e.flag.type);
+        // console.log(e.flag.type);
         if (e.flag.type == 1) {
           openPannel();
         } else {
@@ -80,7 +80,7 @@ onBeforeUnmount(() => {
 let showPannel = $ref(true);
 
 let openPannel = () => {
-  console.log("openPannel");
+  //   console.log("openPannel");
   showPannel = true;
 };
 

@@ -18,7 +18,7 @@
         ></CampaignActiveBar> -->
       </v-col>
     </v-row>
-    <v-row no-gutters justify="space-around">
+    <!-- <v-row no-gutters justify="space-around">
       <v-col cols="6" class="px-5" v-for="(item, index) in openSystems" :key="index.id">
         <transition
           name="custom-classes"
@@ -33,7 +33,7 @@
           ></CampaignSystemCard>
         </transition>
       </v-col>
-    </v-row>
+    </v-row> -->
     <!-- <v-overlay :value="showOverlay == 1">
       <v-card :width="cardWidth" rounded="xl">
         <v-card-title> MAKE SURE TO ADD A CHARACTER </v-card-title>

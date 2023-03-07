@@ -15,6 +15,7 @@
         hide-bottom
         rounded
         :pagination="pagination"
+        v-model:expanded="expanded"
       >
         <template v-slot:header-cell-actions="props">
           <q-th :props="props">
@@ -36,18 +37,14 @@
             </q-td>
             <q-td key="pilot" :props="props">
               <div class="row">
-                <div class="col">
+                <div class="col-auto">
                   <AddPilot :node="props.row" :operationID="operationID" />
                 </div>
-                <div class="col">
+                <div class="col-auto">
                   <NewNodeExtraChar :node="props.row" :operationID="operationID" />
                 </div>
-                <div class="col">
-                  <AddPilotAdmin
-                    v-if="can('campaigns_admin_access')"
-                    :node="props.row"
-                    :operationID="operationID"
-                  />
+                <div class="col-auto" v-if="can('campaigns_admin_access')">
+                  <AddPilotAdmin :node="props.row" :operationID="operationID" />
                 </div>
               </div>
             </q-td>
@@ -70,7 +67,22 @@
               />
             </q-td>
             <q-td key="actions" :props="props">
-              {{ props.row.id }}
+              <q-btn
+                color="warning"
+                icon="fa-solid fa-trash-can"
+                rounded
+                flat
+                size="xs"
+                padding="none"
+                @click="removenode(props.row)"
+              />
+            </q-td>
+          </q-tr>
+          <q-tr v-show="props.expand" :props="props">
+            <q-td colspan="100%">
+              <div class="text-left">
+                <NewJoinNodeTable :node="props.row" :operationID="operationID" />
+              </div>
             </q-td>
           </q-tr>
         </template>
@@ -102,6 +114,8 @@ const NewSystemTableStatusButton = defineAsyncComponent(() =>
 const NewSystemTableTimer = defineAsyncComponent(() =>
   import("./NewSystemTableTimer.vue")
 );
+
+const NewJoinNodeTable = defineAsyncComponent(() => import("./NewJoinNodeTable.vue"));
 let store = useMainStore();
 let can = inject("can");
 
@@ -111,6 +125,28 @@ let pagination = $ref({
   page: 1,
   rowsPerPage: 0,
 });
+
+let removenode = async (item) => {
+  var id = item.id;
+  await axios({
+    method: "DELETE",
+    url: "/api/deletenode/" + id,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+let expanded = $computed(() => {
+  if (props.item.new_nodes) {
+    var data = props.item.new_nodes.filter((f) => f.none_prime_node_user.length > 0);
+    var ids = data.map((data) => data.id);
+    return ids;
+  }
+});
+
 let columns = $computed(() => {
   if (props.activeCampaigns.length == 1) {
     return [

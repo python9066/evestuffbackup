@@ -1,8 +1,6 @@
 <template>
   <v-row no-gutters>
     <v-col>
-      <!-- v-if="this.node.node_status.id < 3 && item.end_time == null" -->
-
       <VueCountUptimer
         v-if="showAgeCountUp"
         :start-time="moment.utc(timeMoment).unix()"
@@ -90,10 +88,12 @@
             ><span v-if="scope.props.hours > 0">{{ scope.props.hours }}:</span
             >{{ scope.props.minutes }}:{{ scope.props.seconds }}</span
           >
+
           <v-chip color="blue darken-4" v-else
             ><span v-if="scope.props.hours > 0">{{ scope.props.hours }}:</span
             >{{ scope.props.minutes }}:{{ scope.props.seconds }}</v-chip
           >
+
           <v-menu :close-on-content-click="false" :value="timerShown">
             <template v-slot:activator="{ on, attrs }">
               <v-btn
@@ -309,60 +309,60 @@ export default {
       }
     },
 
-    opUserInfo() {
-      if (this.extra == 1) {
-        if (this.node.prime_node_user.length > 0) {
-          return this.node.prime_node_user[0];
-        } else {
-          return null;
-        }
-      } else {
-        return null;
-      }
-    },
+    // opUserInfo() {
+    //   if (this.extra == 1) {
+    //     if (this.node.prime_node_user.length > 0) {
+    //       return this.node.prime_node_user[0];
+    //     } else {
+    //       return null;
+    //     }
+    //   } else {
+    //     return null;
+    //   }
+    // },
 
-    showAgeCountUp() {
-      if (this.extra == 1) {
-        if (this.node.prime_node_user.length > 0) {
-          var use = this.node.prime_node_user[0].node_status.id;
-        } else {
-          var use = this.node.node_status.id;
-        }
-      } else {
-        var use = this.node.node_status.id;
-      }
-      switch (use) {
-        case 1: // * New
-          return true;
+    // showAgeCountUp() {
+    //   if (this.extra == 1) {
+    //     if (this.node.prime_node_user.length > 0) {
+    //       var use = this.node.prime_node_user[0].node_status.id;
+    //     } else {
+    //       var use = this.node.node_status.id;
+    //     }
+    //   } else {
+    //     var use = this.node.node_status.id;
+    //   }
+    //   switch (use) {
+    //     case 1: // * New
+    //       return true;
 
-        case 2: // * Warm up
-          return true;
+    //     case 2: // * Warm up
+    //       return true;
 
-        case 3: // * Hacking
-          return false;
+    //     case 3: // * Hacking
+    //       return false;
 
-        case 4: // * Success
-          return false;
+    //     case 4: // * Success
+    //       return false;
 
-        case 5: // * Failed
-          return false;
+    //     case 5: // * Failed
+    //       return false;
 
-        case 6: // * Pushed off
-          return true;
+    //     case 6: // * Pushed off
+    //       return true;
 
-        case 7: // * Hostile Hacking
-          return false;
+    //     case 7: // * Hostile Hacking
+    //       return false;
 
-        case 8: // * Friendly Hacking
-          return false;
+    //     case 8: // * Friendly Hacking
+    //       return false;
 
-        case 9: // * Passive
-          return false;
+    //     case 9: // * Passive
+    //       return false;
 
-        case 10: // * Other
-          return true;
-      }
-    },
+    //     case 10: // * Other
+    //       return true;
+    //   }
+    // },
 
     startTime() {
       if (this.extra == 1) {
@@ -434,17 +434,17 @@ export default {
       }
     },
 
-    timeMoment() {
-      if (this.extra == 1) {
-        if (this.node.node_status.id == 2) {
-          return moment.utc(this.opUserInfo.updated_at).format("YYYY-MM-DD HH:mm:ss");
-        } else {
-          return moment.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
-        }
-      } else {
-        return moment.utc(this.node.created_at);
-      }
-    },
+    // timeMoment() {
+    //   if (this.extra == 1) {
+    //     if (this.node.node_status.id == 2) {
+    //       return moment.utc(this.opUserInfo.updated_at).format("YYYY-MM-DD HH:mm:ss");
+    //     } else {
+    //       return moment.utc(this.node.created_at).format("YYYY-MM-DD HH:mm:ss");
+    //     }
+    //   } else {
+    //     return moment.utc(this.node.created_at);
+    //   }
+    // },
 
     countUptimerColor() {},
   },

@@ -10,9 +10,9 @@
           rounded
           :value="blueNodes"
           size="45px"
-          :thickness="0.05"
+          :thickness="0.1"
           color="positive"
-          track-color="transparent"
+          track-color="green-3"
           class=""
           >{{ blueNodes }}/{{ totalNodes }}</q-circular-progress
         >
@@ -23,9 +23,9 @@
           rounded
           :value="redNodes"
           size="45px"
-          :thickness="0.05"
+          :thickness="0.1"
           color="negative"
-          track-color="transparent"
+          track-color="red-3"
           class=""
           >{{ redNodes }}/{{ totalNodes }}</q-circular-progress
         >
