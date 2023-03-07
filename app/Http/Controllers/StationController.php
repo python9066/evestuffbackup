@@ -836,17 +836,17 @@ class StationController extends Controller
             broadcast(new RcSheetUpdate($flag));
         }
 
-        $RCmessage = ChillStationRecords::where('id', $id)->first();
-        if ($RCmessage) {
-            $RCmessageSend = [
-                'id' => $RCmessage->id,
-                'show_on_rc' => 0,
-            ];
-            $flag = collect([
-                'message' => $RCmessageSend,
-            ]);
-            broadcast(new ChillSheetUpdate($flag));
-        }
+        // $RCmessage = ChillStationRecords::where('id', $id)->first();
+        // if ($RCmessage) {
+        //     $RCmessageSend = [
+        //         'id' => $RCmessage->id,
+        //         'show_on_rc' => 0,
+        //     ];
+        //     $flag = collect([
+        //         'message' => $RCmessageSend,
+        //     ]);
+        //     broadcast(new ChillSheetUpdate($flag));
+        // }
 
         $RCmessage = WelpStationRecords::where('id', $id)->first();
         if ($RCmessage) {
@@ -960,17 +960,17 @@ class StationController extends Controller
             broadcast(new RcSheetUpdate($flag));
         }
 
-        $RCmessage = ChillStationRecords::where('id', $id)->first();
-        if ($RCmessage) {
-            $RCmessageSend = [
-                'id' => $RCmessage->id,
-                'show_on_chill' => 0,
-            ];
-            $flag = collect([
-                'message' => $RCmessageSend,
-            ]);
-            broadcast(new ChillSheetUpdate($flag));
-        }
+        // $RCmessage = ChillStationRecords::where('id', $id)->first();
+        // if ($RCmessage) {
+        //     $RCmessageSend = [
+        //         'id' => $RCmessage->id,
+        //         'show_on_chill' => 0,
+        //     ];
+        //     $flag = collect([
+        //         'message' => $RCmessageSend,
+        //     ]);
+        //     broadcast(new ChillSheetUpdate($flag));
+        // }
 
         $RCmessage = WelpStationRecords::where('id', $id)->first();
         if ($RCmessage) {

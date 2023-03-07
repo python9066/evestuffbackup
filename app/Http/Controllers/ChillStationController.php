@@ -22,7 +22,7 @@ class ChillStationController extends Controller
      */
     public function index()
     {
-        $data = ChillStationRecords::where('show_on_chill', 1)->get();
+        $data = [];
 
         return ['stations' => $data];
     }
@@ -41,20 +41,20 @@ class ChillStationController extends Controller
     public function chillSheetListRegion()
     {
         $data = [];
-        $pull = ChillStationRecords::where('show_on_chill', 1)->get();
-        $pull = $pull->unique('region_id');
-        $pull = $pull->sortBy('region_name');
-        foreach ($pull as $pull) {
-            $data1 = [];
-            $data1 = [
-                'text' => $pull['region_name'],
-                'value' => $pull['region_id'],
-            ];
+        // $pull = ChillStationRecords::where('show_on_chill', 1)->get();
+        // $pull = $pull->unique('region_id');
+        // $pull = $pull->sortBy('region_name');
+        // foreach ($pull as $pull) {
+        //     $data1 = [];
+        //     $data1 = [
+        //         'text' => $pull['region_name'],
+        //         'value' => $pull['region_id'],
+        //     ];
 
-            array_push($data, $data1);
-        }
+        //     array_push($data, $data1);
+        // }
 
-        // dd($data);
+        // // dd($data);
 
         return ['chillsheetlistRegion' => $data];
     }
@@ -63,19 +63,19 @@ class ChillStationController extends Controller
     {
         // dd(ChillStationRecords::where('show_on_chill', 1)->get());
         $data = [];
-        $pull = ChillStationRecords::where('show_on_chill', 1)->get();
-        $pull = $pull->unique('status_id');
-        $pull = $pull->sortBy('status_name');
-        foreach ($pull as $pull) {
-            $text = str_replace('Upcoming - ', '', $pull['status_name']);
-            $data1 = [];
-            $data1 = [
-                'text' => $text,
-                'value' => $pull['status_id'],
-            ];
+        // $pull = ChillStationRecords::where('show_on_chill', 1)->get();
+        // $pull = $pull->unique('status_id');
+        // $pull = $pull->sortBy('status_name');
+        // foreach ($pull as $pull) {
+        //     $text = str_replace('Upcoming - ', '', $pull['status_name']);
+        //     $data1 = [];
+        //     $data1 = [
+        //         'text' => $text,
+        //         'value' => $pull['status_id'],
+        //     ];
 
-            array_push($data, $data1);
-        }
+        //     array_push($data, $data1);
+        // }
 
         // dd($data);
 
@@ -85,19 +85,19 @@ class ChillStationController extends Controller
     public function chillSheetListStatus()
     {
         $data = [];
-        $pull = ChillStationRecords::where('show_on_chill', 1)->get();
-        $pull = $pull->unique('status_id');
-        $pull = $pull->sortBy('status_name');
-        foreach ($pull as $pull) {
-            $text = str_replace('Upcoming - ', '', $pull['status_name']);
-            $data1 = [];
-            $data1 = [
-                'text' => $text,
-                'value' => $pull['status_id'],
-            ];
+        // $pull = ChillStationRecords::where('show_on_chill', 1)->get();
+        // $pull = $pull->unique('status_id');
+        // $pull = $pull->sortBy('status_name');
+        // foreach ($pull as $pull) {
+        //     $text = str_replace('Upcoming - ', '', $pull['status_name']);
+        //     $data1 = [];
+        //     $data1 = [
+        //         'text' => $text,
+        //         'value' => $pull['status_id'],
+        //     ];
 
-            array_push($data, $data1);
-        }
+        //     array_push($data, $data1);
+        // }
 
         // dd($data);
 
@@ -106,38 +106,38 @@ class ChillStationController extends Controller
 
     public function stationdone($id)
     {
-        $s = Station::where('id', $id)->first();
-        $s->update([
-            'show_on_chill' => 2,
-            'station_status_id' => 10,
-            'rc_fc_id' => null,
-            'rc_gsol_id' => null,
-            'rc_recon_id' => null,
-            'rc_id' => null,
-            'timer_image_link' => null,
-        ]);
-        $message = ChillStationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new ChillSheetUpdate($flag));
+        // $s = Station::where('id', $id)->first();
+        // $s->update([
+        //     'show_on_chill' => 2,
+        //     'station_status_id' => 10,
+        //     'rc_fc_id' => null,
+        //     'rc_gsol_id' => null,
+        //     'rc_recon_id' => null,
+        //     'rc_id' => null,
+        //     'timer_image_link' => null,
+        // ]);
+        // $message = ChillStationRecords::where('id', $id)->first();
+        // $flag = collect([
+        //     'message' => $message,
+        // ]);
+        // broadcast(new ChillSheetUpdate($flag));
     }
 
     public function chillSheetListType()
     {
         $data = [];
-        $pull = ChillStationRecords::where('show_on_chill', 1)->get();
-        $pull = $pull->unique('item_id');
-        $pull = $pull->sortBy('item_name');
-        foreach ($pull as $pull) {
-            $data1 = [];
-            $data1 = [
-                'text' => $pull['item_name'],
-                'value' => $pull['item_id'],
-            ];
+        // $pull = ChillStationRecords::where('show_on_chill', 1)->get();
+        // $pull = $pull->unique('item_id');
+        // $pull = $pull->sortBy('item_name');
+        // foreach ($pull as $pull) {
+        //     $data1 = [];
+        //     $data1 = [
+        //         'text' => $pull['item_name'],
+        //         'value' => $pull['item_id'],
+        //     ];
 
-            array_push($data, $data1);
-        }
+        //     array_push($data, $data1);
+        // }
 
         // dd($data);
 
@@ -169,13 +169,13 @@ class ChillStationController extends Controller
         broadcast(new StationUpdateCoord($flag));
         broadcast(new ChillSheetUpdate($flag));
 
-        $message = ChillStationRecords::where('id', $id)->first();
-        if ($message) {
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new ChillSheetUpdate($flag));
-        }
+        // $message = ChillStationRecords::where('id', $id)->first();
+        // if ($message) {
+        //     $flag = collect([
+        //         'message' => $message,
+        //     ]);
+        //     broadcast(new ChillSheetUpdate($flag));
+        // }
     }
 
     /**
@@ -202,18 +202,18 @@ class ChillStationController extends Controller
         $oldStatusName = StationStatus::where('id', $oldStatusID)->value('name');
         $oldStatusName = str_replace('Upcoming - ', '', $oldStatusName);
 
-        $RCmessage = ChillStationRecords::where('id', $id)->first();
-        if ($RCmessage) {
-            $RCmessageSend = [
-                'id' => $RCmessage->id,
-                'show_on_chill' => 0,
-            ];
-            $flag = collect([
-                'message' => $RCmessageSend,
-            ]);
-            broadcast(new RcSheetUpdate($flag));
-            broadcast(new ChillSheetUpdate($flag));
-        }
+        // $RCmessage = ChillStationRecords::where('id', $id)->first();
+        // if ($RCmessage) {
+        //     $RCmessageSend = [
+        //         'id' => $RCmessage->id,
+        //         'show_on_chill' => 0,
+        //     ];
+        //     $flag = collect([
+        //         'message' => $RCmessageSend,
+        //     ]);
+        //     broadcast(new RcSheetUpdate($flag));
+        //     broadcast(new ChillSheetUpdate($flag));
+        // }
 
         $newStatusID = $request->station_status_id;
         $newStatusName = StationStatus::where('id', $newStatusID)->value('name');

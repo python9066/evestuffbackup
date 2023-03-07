@@ -48,13 +48,13 @@ class RcReconUsersController extends Controller
             broadcast(new RcSheetUpdate($flag));
         }
 
-        $message = ChillStationRecords::where('id', $id)->first();
-        if ($message) {
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new ChillSheetUpdate($flag));
-        }
+        // $message = ChillStationRecords::where('id', $id)->first();
+        // if ($message) {
+        //     $flag = collect([
+        //         'message' => $message,
+        //     ]);
+        //     broadcast(new ChillSheetUpdate($flag));
+        // }
 
         $message = WelpStationRecords::where('id', $id)->first();
         if ($message) {
@@ -83,13 +83,13 @@ class RcReconUsersController extends Controller
             broadcast(new RcSheetUpdate($flag));
         }
 
-        $message = ChillStationRecords::where('id', $id)->first();
-        if ($message) {
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new ChillSheetUpdate($flag));
-        }
+        // $message = ChillStationRecords::where('id', $id)->first();
+        // if ($message) {
+        //     $flag = collect([
+        //         'message' => $message,
+        //     ]);
+        //     broadcast(new ChillSheetUpdate($flag));
+        // }
         $message = WelpStationRecords::where('id', $id)->first();
         if ($message) {
             $flag = collect([
