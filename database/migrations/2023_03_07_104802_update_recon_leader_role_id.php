@@ -12,9 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $role = Role::where('name', 'Recon Leader')->first();
-        $role->id = 14;
-        $role->save();
+        // $role = Role::where('name', 'Recon Leader')->first();
+        // $role->id = 14;
+        // $role->save();
     }
 
     /**

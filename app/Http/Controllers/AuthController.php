@@ -220,7 +220,7 @@ class AuthController extends Controller
         $user->removeRole(5); // Recon
         $user->removeRole(6); // ops
         $user->removeRole(13); // Director
-        $user->removeRole(14); // Recon Leader
+        $user->removeRole(33); // Recon Leader
         $user->removeRole(16); // GSFOE Leader
         $user->removeRole(17); // GSOL
         $user->removeRole(31); // sFC
@@ -259,7 +259,7 @@ class AuthController extends Controller
         if ($role_id == 1094) {
 
             // function to assign recon leader
-            $user->assignRole(14);
+            $user->assignRole(33);
         }
 
         if ($role_id == 47) {
