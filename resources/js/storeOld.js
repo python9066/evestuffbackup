@@ -912,9 +912,9 @@ export default new Vuex.Store({
         //     state.startcampaigns = startcampaigns;
         // },
 
-        SET_CAMPAIGN_LOGS(state, logs) {
-            state.loggingNewCampaign = logs;
-        },
+        // SET_CAMPAIGN_LOGS(state, logs) {
+        //     state.loggingNewCampaign = logs;
+        // },
 
         // SET_CAMPAIGNSLIST(state, campaignslist) {
         //     state.campaignslist = campaignslist;
@@ -979,9 +979,9 @@ export default new Vuex.Store({
             Object.assign(item, data);
         },
 
-        SET_CAMPAIGN_SYSTEMS(state, systems) {
-            state.campaignsystems = systems;
-        },
+        // SET_CAMPAIGN_SYSTEMS(state, systems) {
+        //     state.campaignsystems = systems;
+        // },
 
         SET_START_CAMPAIGN_SYSTEMS(state, systems) {
             state.startcampaignsystems = systems;

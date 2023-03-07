@@ -47,7 +47,7 @@
             :min="0"
             :value="blueNodes"
             color="positive"
-            track-color=" transparent"
+            track-color="green-3"
             class="q-my-md"
             >{{ blueNodes }}/{{ totalNodes }}</q-circular-progress
           >
@@ -60,7 +60,7 @@
             rounded
             show-value
             color="negative"
-            track-color=" transparent"
+            track-color="red-3"
             class="q-my-md"
             >{{ redNodes }}/{{ totalNodes }}</q-circular-progress
           >
@@ -74,7 +74,7 @@
             :min="0"
             :value="totalBlueNodeDone"
             color="positive"
-            track-color=" transparent"
+            track-color="green-3"
             class="q-my-md"
             >{{ totalBlueNodeDone }}/{{ totalNodeDone }}</q-circular-progress
           >
@@ -87,7 +87,7 @@
             rounded
             show-value
             color="negative"
-            track-color=" transparent"
+            track-color="red-3"
             class="q-my-md"
             >{{ totalRedNodeDone }}/{{ totalNodeDone }}</q-circular-progress
           >

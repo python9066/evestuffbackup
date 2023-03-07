@@ -40,24 +40,22 @@
     >
       <q-menu>
         <q-list style="min-width: 100px">
-          <q-item
-            clickable
-            v-close-popup
-            v-for="(list, index) in charsOnTheWayAll"
-            :key="index"
-          >
+          <q-item v-close-popup v-for="(list, index) in charsOnTheWayAll" :key="index">
             <q-item-section>
-              {{ list.name }} - {{ list.ship }} - T{{ list.entosis }}
-              <q-btn
-                v-if="seeReadyToGoOnTheWay(list)"
-                flat
-                padding="none"
-                round
-                color="warning"
-                icon="fa-solid fa-trash-can"
-                size="xs"
-                @click="removeReadyToGoOnTheWay(list.id)"
-              />
+              <div class="row">
+                {{ list.name }} - {{ list.ship }} - T{{ list.entosis }}
+                <q-btn
+                  v-if="seeReadyToGoOnTheWay(list)"
+                  flat
+                  class="q-ml-sm"
+                  padding="none"
+                  round
+                  color="warning"
+                  icon="fa-solid fa-trash-can"
+                  size="xs"
+                  @click="removeReadyToGoOnTheWay(list.id)"
+                />
+              </div>
             </q-item-section>
           </q-item>
         </q-list> </q-menu

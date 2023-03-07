@@ -1,233 +1,303 @@
 <template>
   <div>
-    <v-dialog
-      v-model="overlay"
-      max-width="700px"
-      z-index="0"
-      @click:outside="close()"
-      class="rounded-xl"
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          class="mr-4"
-          color="green lighten-1"
-          v-bind="attrs"
-          v-on="on"
-          rounded
-          small
-          outlined
-          >characters</v-btn
-        >
-      </template>
+    <q-btn
+      color="positive"
+      class="myOutLineButtonMid"
+      label="characters"
+      @click="store.newOperationMessageAddChar = !store.newOperationMessageAddChar"
+      outline
+      rounded
+    />
 
-      <v-card
-        tile
-        max-width="700px"
-        min-height="200px"
-        max-height="700px"
-        class="rounded-xl"
-      >
-        <v-card-title class="d-flex justify-space-between align-center primary">
-          <div>Table of all your saved Characters</div>
-        </v-card-title>
-        <v-card-text>
-          <v-data-table
-            :headers="headers"
-            :items="filteredItems"
-            item-key="id"
-            disable-pagination
-            fixed-header
-            hide-default-footer
-          >
-            <template v-slot:[`header.actions`]="{ headers }">
-              <AddOperationUserButton :operationID="operationID" />
-            </template>
-            <template slot="no-data"> You have no saved Chars </template>
-            <!-- :color="pillColor(item)" -->
-            <template v-slot:[`item.addRemove`]="{ item }">
-              <span>
-                <v-btn
-                  rounded
-                  :outlined="true"
-                  x-small
-                  :color="pillColor(item)"
-                  @click="pillClick(item)"
+    <q-dialog v-model="store.newOperationMessageAddChar" persistent>
+      <q-card class="myRoundTop" style="width: 1200px; max-width: 80vw">
+        <q-table
+          class="myHackCharTable myRoundTop bg-webBack"
+          :rows="store.ownChars"
+          hide-bottom
+          :columns="columns"
+          table-class=" text-webway"
+          table-header-class=" text-weight-bolder"
+          row-key="id"
+          dark
+          dense
+          ref="tableRef"
+          rounded
+          :pagination="pagination"
+        >
+          <template v-slot:top="props">
+            <div class="row full-width flex-center q-pt-xs myRoundTop bg-primary">
+              <div class="col-12 flex flex-center">
+                <span class="text-h4">Table of all your Saved Characters</span>
+              </div>
+            </div>
+          </template>
+
+          <template v-slot:header-cell-actions="props">
+            <q-th :props="props">
+              <div class="row">
+                <div class="col">
+                  <span class="myFont">
+                    <AddOperationUserButton :operationID="operationID"
+                  /></span>
+                </div>
+              </div>
+            </q-th>
+          </template>
+
+          <template v-slot:body="props">
+            <q-tr :props="props">
+              <q-td key="name" :props="props">
+                <span> {{ props.row.name }}</span>
+              </q-td>
+              <q-td key="role" :props="props">
+                <span> {{ props.row.userrole.role }} </span>
+              </q-td>
+              <q-td key="ship" :props="props">
+                <span> {{ props.row.ship }}</span>
+              </q-td>
+              <q-td key="entosis" :props="props">
+                <span>{{ props.row.entosis }}</span>
+              </q-td>
+              <q-td class="" key="addRove" :props="props">
+                <transition
+                  mode="out-in"
+                  enter-active-class="animate__animated animate__flash"
+                  leave-active-class="animate__animated animate__flash"
                 >
-                  <font-awesome-icon :icon="pillIcon(item)" pull="left" />
-                  {{ pillText(item) }}
-                </v-btn>
-              </span>
-            </template>
-            <template v-slot:[`item.actions`]="{ item }">
-              <span>
-                <NewUserEdit :char="item" :operationID="operationID" />
-                <v-btn icon @click="removeChar(item)">
-                  <font-awesome-icon
-                    icon="fa-solid fa-trash-can"
-                    color="orange darken-3"
+                  <q-btn
+                    :key="`${props.row.operation_id}-addButton`"
+                    :color="pillColor(props.row)"
+                    outline
+                    rounded
+                    class="myOutLineButton"
+                    :icon="pillIcon(props.row)"
+                    :label="pillText(props.row)"
+                    @click="pillClick(props.row)"
                   />
-                </v-btn>
-              </span>
-            </template>
-          </v-data-table>
-        </v-card-text>
-        <v-card-actions>
-          <v-btn class="white--text" color="teal" @click="close()">
-            Close
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+                </transition>
+              </q-td>
+              <q-td key="actions" :props="props">
+                <div class="row q-gutter-md justify-end">
+                  <AddOperationUserButton
+                    :char="props.row"
+                    :type="2"
+                    :operationID="operationID"
+                  />
+                  <q-btn
+                    color="negative"
+                    icon="fa-solid fa-trash-can"
+                    flat
+                    padding="none"
+                    size="sm"
+                    @click="removeChar(props.row)"
+                  />
+                </div>
+              </q-td>
+            </q-tr>
+          </template>
+        </q-table>
+
+        <q-card-actions align="right">
+          <q-btn flat label="Close" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
-<script>
-import { mapGetters } from "vuex";
-import { mapState } from "vuex";
-export default {
-  props: {
-    operationID: Number,
-  },
-  data() {
-    return {
-      headers: [
-        { text: "Name", value: "name" },
-        { text: "Role", value: "userrole.role" },
-        { text: "Ship", value: "ship" },
-        { text: "Entosis", value: "entosis" },
-        { text: "", value: "addRemove", align: "center" },
-        { text: "", value: "actions", align: "end" },
+<script setup>
+import { useMainStore } from "@/store/useMain.js";
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 
-        // { text: "Vulernable End Time", value: "vulnerable_end_time" }
-      ],
-      statusflag: 0,
-      toggle_exclusive: 0,
-      //   overlay: false,
-    };
-  },
-  async created() {},
+const AddOperationUserButton = defineAsyncComponent(() =>
+  import("./AddOperationUserButton.vue")
+);
 
-  async mounted() {},
+let store = useMainStore();
+const props = defineProps({
+  operationID: Number,
+});
 
-  methods: {
-    close() {
-      this.overlay = false;
-    },
+let confirm = $ref(false);
 
-    open() {
-      this.overlay = true;
-    },
+let pagination = $ref({
+  sortBy: "name",
+  descending: false,
+  page: 1,
+  rowsPerPage: 0,
+});
 
-    pillColor(item) {
-      if (item.operation_id == this.operationID) {
-        return "red";
-      } else {
-        return "green";
-      }
-    },
-
-    pillText(item) {
-      if (item.operation_id == this.operationID) {
-        return "Remove";
-      } else {
-        return "Add";
-      }
-    },
-
-    pillIcon(item) {
-      if (item.operation_id == this.operationID) {
-        return "fa-solid fa-minus";
-      } else {
-        return "fa-solid fa-plus";
-      }
-    },
-
-    async pillClick(item) {
-      if (item.operation_id == this.operationID) {
-        var request = {
-          operation_id: null,
-          system_id: null,
-          user_status_id: 1,
-        };
-
-        await axios({
-          //removes char from campaign
-          method: "PUT",
-          url:
-            "/api/newcampaignusersremove/" +
-            item.id +
-            "/" +
-            this.operationID +
-            "/" +
-            this.$store.state.user_id,
-          withCredentials: true,
-          data: request,
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        });
-      } else {
-        var request = {
-          operation_id: this.operationID,
-          system_id: null,
-          user_status_id: 1,
-        };
-        await axios({
-          method: "PUT",
-          url:
-            "/api/newcampaignusersadd/" +
-            item.id +
-            "/" +
-            this.operationID +
-            "/" +
-            this.$store.state.user_id,
-          withCredentials: true,
-          data: request,
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        });
-      }
-    },
-
-    async removeChar(item) {
-      await axios({
-        method: "DELETE",
-        url:
-          "/api/newcampaignusers/" +
-          item.id +
-          "/" +
-          this.operationID +
-          "/" +
-          this.$store.state.user_id,
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-      this.$store.dispatch("getCampaignSystemsRecords");
-    },
-  },
-
-  computed: {
-    ...mapState(["campaignusers", "ownChars", "setOpenOperationAddChar"]),
-    filteredItems() {
-      return this.ownChars;
-    },
-
-    overlay: {
-      get() {
-        return this.setOpenOperationAddChar;
-      },
-      set(newValue) {
-        return this.$store.dispatch("setOpenOperationAddChar", newValue);
-      },
-    },
-  },
+let pillColor = (item) => {
+  return item.operation_id == props.operationID ? "negative" : "positive";
 };
+
+let pillText = (item) => {
+  return item.operation_id == props.operationID ? "Remove" : "Add";
+};
+
+let pillIcon = (item) => {
+  return item.operation_id == props.operationID
+    ? "fa-solid fa-minus"
+    : "fa-solid fa-plus";
+};
+
+let pillClick = async (item) => {
+  if (item.operation_id == props.operationID) {
+    var data = {
+      operation_id: null,
+      system_id: null,
+      user_status_id: 1,
+    };
+
+    await axios({
+      //removes char from campaign
+      method: "PUT",
+      url:
+        "/api/newcampaignusersremove/" +
+        item.id +
+        "/" +
+        props.operationID +
+        "/" +
+        store.user_id,
+      withCredentials: true,
+      data: data,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+  } else {
+    var data = {
+      operation_id: props.operationID,
+      system_id: null,
+      user_status_id: 1,
+    };
+
+    await axios({
+      method: "PUT",
+      url:
+        "/api/newcampaignusersadd/" +
+        item.id +
+        "/" +
+        props.operationID +
+        "/" +
+        store.user_id,
+      withCredentials: true,
+      data: data,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+  }
+};
+
+let removeChar = async (item) => {
+  await axios({
+    method: "DELETE",
+    url:
+      "/api/newcampaignusers/" + item.id + "/" + props.operationID + "/" + store.user_id,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  store.getCampaignSystemsRecords();
+};
+
+let columns = $ref([
+  {
+    name: "name",
+    align: "left",
+    classes: "ellipsis ",
+    required: false,
+    label: "Name",
+    field: (row) => row.name,
+    format: (val) => `${val}`,
+    sortable: false,
+  },
+  {
+    name: "role",
+    required: false,
+    align: "left",
+    label: "Role",
+    classes: "text-no-wrap",
+    field: (row) => row.userrole.role,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "ship",
+    required: true,
+    align: "left",
+    label: "Ship",
+    classes: "text-no-wrap",
+    field: (row) => row.ship,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "entosis",
+    align: "left",
+    classes: "text-no-wrap",
+    label: "Entosis",
+    field: (row) => row.entosis,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "addRove",
+    align: "left",
+    required: true,
+    classes: "text-no-wrap",
+    label: "",
+    field: (row) => row.id,
+    format: (val) => `${val}`,
+    sortable: false,
+    filter: true,
+  },
+  {
+    name: "actions",
+    label: "",
+    align: "right",
+    classes: "text-no-wrap",
+    sortable: false,
+    field: (row) => row.id,
+    format: (val) => `${val}`,
+  },
+]);
 </script>
 
-<style></style>
+<style lang="sass">
+.myHackCharTable
+  /* height or max-height is important */
+
+
+  .q-table__top
+    padding-top: 0 !important
+    padding-left: 0 !important
+    padding-right: 0 !important
+
+
+
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: #202020
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+</style>

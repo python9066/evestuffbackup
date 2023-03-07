@@ -65,6 +65,7 @@ if (!function_exists('broadcastuserSolo')) {
     function broadcastuserSolo($opID, $opUserID, $flagNumber)
     {
         $message = opUserSolo($opID, $opUserID);
+        // dd($message,$opID, $opUserID, $flagNumber);
         $flag = collect([
             'flag' => $flagNumber,
             'message' => $message,

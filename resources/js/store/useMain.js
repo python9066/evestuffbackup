@@ -26,7 +26,10 @@ export const useMainStore = defineStore("main", {
         ticklist: [],
         towerTypes: [],
         towerConstellation: [],
+        loggingNewCampaign: [],
         rolesList: [],
+        newOperationMessageOverlay: 0,
+        newOperationMessageAddChar: false,
         moonList: [],
         towerChatWindowId: null,
         stationChatWindowId: null,
@@ -41,6 +44,7 @@ export const useMainStore = defineStore("main", {
             value: 30004759,
             text: "1DQ1-A",
         },
+        campaignsystems: [],
 
         operationInfo: [],
         operationInfoPage: [],
@@ -1117,6 +1121,19 @@ export const useMainStore = defineStore("main", {
             this.campaignslist = res.data.campaignslist;
         },
 
+        async getCampaignsLogs(op_id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/newoperationlogs/" + op_id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.loggingNewCampaign = res.data.logs
+        },
+
         updateNewCampaigns(data) {
             const item = this.newCampaigns.find((item) => item.id === data.id);
             const count = this.newCampaigns.filter(
@@ -1176,6 +1193,20 @@ export const useMainStore = defineStore("main", {
             if (check > 0) {
                 this.ownChars = this.ownChars.filter((e) => e.id != id);
             }
+        },
+
+        async getCampaignSystemsRecords() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
+                url: "/api/campaignsystemsrecords",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+                this.campaignsystems = res.data.systems;
+
         },
     },
 });

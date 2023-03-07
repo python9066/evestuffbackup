@@ -1,176 +1,142 @@
 <template>
-  <v-menu
-    v-if="showButton"
-    :close-on-content-click="false"
-    origin="center center"
-    transition="scale-transition"
-    :value="addShown"
-    rounded="xl"
-  >
-    <template v-slot:activator="{ on, attrs }">
-      <v-btn
-        text
-        v-bind="attrs"
-        v-on="on"
-        @click="addShown = true"
-        color="success"
-        ><font-awesome-icon icon="fa-solid fa-plus" size="xl" pull="left" />
-        Node</v-btn
-      >
-    </template>
-    <v-card :min-height="cardHight">
-      <v-card-text>
-        <v-select
-          v-if="dropDownFocus"
-          class="mt-2"
-          v-model="nodeCampaignID"
-          label="Campaign"
-          placeholder="Which Hack is this for"
-          item-text="name"
-          item-value="id"
-          :items="activeCampaigns"
-          :autofocus="dropDownFocus"
-        >
-        </v-select>
-        <v-text-field
-          label="Node"
-          placeholder="Enter Node"
-          flat
-          :autofocus="textFocus"
-          v-mask="'AA##'"
-          v-model="nodeText"
-          @keyup.enter="addNode()"
-          @keyup.esc="
-            (addShown = false), (nodeText = ''), (nodeCampaignID = null)
-          "
-        ></v-text-field>
-      </v-card-text>
-      <v-card-actions>
-        <v-btn icon fixed left color="success" @click="addNode()"
-          ><font-awesome-icon icon="fa-solid fa-check" size="xl"
-        /></v-btn>
-
-        <v-btn
-          fixed
-          right
-          icon
-          color="warning"
-          @click="(addShown = false), (nodeText = ''), (nodeCampaignID = null)"
-          ><font-awesome-icon icon="fa-solid fa-circle-xmark" size="xl"
-        /></v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-menu>
+  <div>
+    <q-btn
+      v-if="showButton"
+      color="positive"
+      padding="none"
+      flat
+      icon="fa-solid fa-plus"
+      label="Node"
+      ><q-menu persistent v-model="addShow" @before-hide="beforeHide">
+        <q-card class="myRoundTop" style="width: 250px; max-width: 80vw">
+          <q-card-section>
+            <div class="column q-gutter-md">
+              <q-select
+                v-if="dropDownFocus"
+                v-model="nodeCampaignID"
+                label="Campaign"
+                option-label="name"
+                option-value="id"
+                :options="props.activeCampaigns"
+                :autofocus="dropDownFocus"
+                outlined
+                rounded
+              />
+              <q-input
+                label="Node Name"
+                :autofocus="textFocus"
+                mask="AA##"
+                v-model="nodeText"
+                type="text"
+                @keyup.enter="addNode()"
+                outlined
+                rounded
+              />
+            </div>
+          </q-card-section>
+          <q-card-actions align="center">
+            <q-btn
+              rounded
+              color="positive"
+              label="Add"
+              :disable="nodeText.length != 4"
+              @click="addNode()"
+            />
+            <q-btn rounded color="negative" label="Close" v-close-popup />
+          </q-card-actions>
+        </q-card> </q-menu
+    ></q-btn>
+  </div>
 </template>
-<script>
-import Axios from "axios";
-import { EventBus } from "../../app";
-// import ApiL from "../service/apil";
-import { mapGetters, mapState } from "vuex";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {},
-  props: {
-    item: Object,
-    operationID: Number,
-    activeCampaigns: Array,
-  },
-  data() {
-    return {
-      addShown: false,
-      nodeText: "",
-      nodeCampaignID: null,
-    };
-  },
 
-  async created() {},
+<script setup>
+import { useMainStore } from "@/store/useMain.js";
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 
-  beforeMonunt() {},
+let can = inject("can");
 
-  async beforeCreate() {},
+let store = useMainStore();
 
-  async mounted() {},
-  methods: {
-    async addNode() {
-      if (this.activeCount == 1) {
-        var campaign_id = this.activeCampaigns[0].id;
-      } else {
-        var campaign_id = this.nodeCampaignID;
-      }
-      let node = this.nodeText.toUpperCase();
-      var request = {
-        system_id: this.item.id,
-        campaign_id: campaign_id, //TODO need to code this so hardcode it
-        name: node,
-      };
-      this.nodeText = "";
-      this.addShown = false;
-      await axios({
-        method: "POST",
-        url: "/api/addnode",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+const props = defineProps({
+  item: Object,
+  operationID: Number,
+  activeCampaigns: Array,
+});
+let nodeCampaignID = $ref(null);
+let nodeText = $ref("");
+let addShow = $ref(false);
 
-      // TODO Add logging
-    },
-  },
-
-  computed: {
-    ...mapGetters([]),
-
-    ...mapState(["newOperationInfo"]),
-
-    textFocus() {
-      if (this.activeCount == 1) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-
-    showButton() {
-      if (this.activeCount > 0) {
-        if (this.newOperationInfo.read_only == 1) {
-          if (this.$can("view_operation_read_only")) {
-            return true;
-          } else {
-            return false;
-          }
-        } else {
-          return true;
-        }
-      } else {
-        return false;
-      }
-    },
-
-    dropDownFocus() {
-      if (this.activeCount == 1) {
-        return false;
-      } else {
-        return true;
-      }
-    },
-
-    cardHight() {
-      if (this.activeCount == 1) {
-        return "150px";
-      } else {
-        return "230px";
-      }
-    },
-
-    activeCount() {
-      return this.activeCampaigns.length;
-    },
-  },
-  beforeDestroy() {},
+let beforeHide = () => {
+  nodeText = "";
+  nodeCampaignID = null;
+  addShow = false;
 };
+
+let addNode = async () => {
+  if (activeCount == 1) {
+    var campaign_id = props.activeCampaigns[0].id;
+  } else {
+    // console.log("activeCount != 1");
+    var campaign_id = nodeCampaignID.id;
+  }
+
+  let node = nodeText.toUpperCase();
+  var data = {
+    system_id: props.item.id,
+    campaign_id: campaign_id,
+    name: node,
+  };
+
+  nodeText = "";
+  addShow = false;
+
+  await axios({
+    method: "POST",
+    url: "/api/addnode",
+    withCredentials: true,
+    data: data,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+let showButton = $computed(() => {
+  if (activeCount > 0) {
+    if (store.newOperationInfo.read_only == 1) {
+      if (can("view_operation_read_only")) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  } else {
+    return false;
+  }
+});
+
+let activeCount = $computed(() => {
+  return props.activeCampaigns.length;
+});
+
+let dropDownFocus = $computed(() => {
+  if (activeCount == 1) {
+    return false;
+  } else {
+    return true;
+  }
+});
+
+let textFocus = $computed(() => {
+  if (activeCount == 1) {
+    return true;
+  } else {
+    return false;
+  }
+});
 </script>
+
+<style lang="scss"></style>

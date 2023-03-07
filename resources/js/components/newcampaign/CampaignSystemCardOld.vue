@@ -22,20 +22,20 @@
           </v-col> -->
 
           <v-col cols="6" class="d-flex justify-end align-center">
-            <v-divider class="mx-2" vertical></v-divider>
+            <!-- <v-divider class="mx-2" vertical></v-divider> -->
             <!-- <OnTheWay :operationID="operationID" :item="item" /> -->
-            <v-divider class="mx-2" vertical></v-divider>
-            <ReadyToGo :operationID="operationID" :item="item" />
+            <!-- <v-divider class="mx-2" vertical></v-divider> -->
+            <!-- <ReadyToGo :operationID="operationID" :item="item" /> -->
           </v-col>
           <v-divider class="mx-2" vertical></v-divider>
-          <v-col cols="1" class="d-flex justify-end align-center">
+          <!-- <v-col cols="1" class="d-flex justify-end align-center">
             <v-btn icon @click="clickIcon()">
               <font-awesome-icon
                 icon="fa-solid fa-angle-up"
                 :class="iconRotate"
                 size="xl"
             /></v-btn>
-          </v-col>
+          </v-col> -->
         </v-row>
       </v-expansion-panel-header>
       <v-expansion-panel-content id="expansion-panel-content-1"
