@@ -824,7 +824,7 @@ export default {
       return list;
     },
     webwayButton() {
-      if (this.webwayStartSystems.length > 0) {
+      if (this.webwayButtonList.length > 1) {
         return true;
       } else {
         return false;

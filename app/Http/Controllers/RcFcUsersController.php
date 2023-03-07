@@ -114,13 +114,13 @@ class RcFcUsersController extends Controller
         //     broadcast(new ChillSheetUpdate($flag));
         // }
 
-        $message = WelpStationRecords::where('id', $id)->first();
-        if ($message) {
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new WelpSheetUpdate($flag));
-        }
+        // $message = WelpStationRecords::where('id', $id)->first();
+        // if ($message) {
+        //     $flag = collect([
+        //         'message' => $message,
+        //     ]);
+        //     broadcast(new WelpSheetUpdate($flag));
+        // }
     }
 
     public function addFCadd(Request $request, $id)
@@ -148,13 +148,13 @@ class RcFcUsersController extends Controller
         //     broadcast(new ChillSheetUpdate($flag));
         // }
 
-        $message = WelpStationRecords::where('id', $id)->first();
-        if ($message) {
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new WelpSheetUpdate($flag));
-        }
+        // $message = WelpStationRecords::where('id', $id)->first();
+        // if ($message) {
+        //     $flag = collect([
+        //         'message' => $message,
+        //     ]);
+        //     broadcast(new WelpSheetUpdate($flag));
+        // }
     }
 
     public function removeFCtoStation($id)
@@ -183,13 +183,13 @@ class RcFcUsersController extends Controller
         //     broadcast(new ChillSheetUpdate($flag));
         // }
 
-        $message = WelpStationRecords::where('id', $id)->first();
-        if ($message) {
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new WelpSheetUpdate($flag));
-        }
+        // $message = WelpStationRecords::where('id', $id)->first();
+        // if ($message) {
+        //     $flag = collect([
+        //         'message' => $message,
+        //     ]);
+        //     broadcast(new WelpSheetUpdate($flag));
+        // }
     }
 
     public function removeFC($id)

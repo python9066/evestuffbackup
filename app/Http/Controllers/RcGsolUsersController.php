@@ -59,13 +59,13 @@ class RcGsolUsersController extends Controller
         //     broadcast(new ChillSheetUpdate($flag));
         // }
 
-        $message = WelpStationRecords::where('id', $id)->first();
-        if ($message) {
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new WelpSheetUpdate($flag));
-        }
+        // $message = WelpStationRecords::where('id', $id)->first();
+        // if ($message) {
+        //     $flag = collect([
+        //         'message' => $message,
+        //     ]);
+        //     broadcast(new WelpSheetUpdate($flag));
+        // }
     }
 
     public function removeGsoltoStation($id)
@@ -93,13 +93,13 @@ class RcGsolUsersController extends Controller
         //     broadcast(new ChillSheetUpdate($flag));
         // }
 
-        $message = WelpStationRecords::where('id', $id)->first();
-        if ($message) {
-            $flag = collect([
-                'message' => $message,
-            ]);
-            broadcast(new WelpSheetUpdate($flag));
-        }
+        // $message = WelpStationRecords::where('id', $id)->first();
+        // if ($message) {
+        //     $flag = collect([
+        //         'message' => $message,
+        //     ]);
+        //     broadcast(new WelpSheetUpdate($flag));
+        // }
     }
 
     /**

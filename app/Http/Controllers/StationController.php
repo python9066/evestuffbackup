@@ -848,17 +848,17 @@ class StationController extends Controller
         //     broadcast(new ChillSheetUpdate($flag));
         // }
 
-        $RCmessage = WelpStationRecords::where('id', $id)->first();
-        if ($RCmessage) {
-            $RCmessageSend = [
-                'id' => $RCmessage->id,
-                'show_on_rc' => 0,
-            ];
-            $flag = collect([
-                'message' => $RCmessageSend,
-            ]);
-            broadcast(new WelpSheetUpdate($flag));
-        }
+        // $RCmessage = WelpStationRecords::where('id', $id)->first();
+        // if ($RCmessage) {
+        //     $RCmessageSend = [
+        //         'id' => $RCmessage->id,
+        //         'show_on_rc' => 0,
+        //     ];
+        //     $flag = collect([
+        //         'message' => $RCmessageSend,
+        //     ]);
+        //     broadcast(new WelpSheetUpdate($flag));
+        // }
 
         $RCmessage = StationRecordsSolo(6, $id);
         if ($RCmessage) {
@@ -972,17 +972,17 @@ class StationController extends Controller
         //     broadcast(new ChillSheetUpdate($flag));
         // }
 
-        $RCmessage = WelpStationRecords::where('id', $id)->first();
-        if ($RCmessage) {
-            $RCmessageSend = [
-                'id' => $RCmessage->id,
-                'show_on_welp' => 0,
-            ];
-            $flag = collect([
-                'message' => $RCmessageSend,
-            ]);
-            broadcast(new WelpSheetUpdate($flag));
-        }
+        // $RCmessage = WelpStationRecords::where('id', $id)->first();
+        // if ($RCmessage) {
+        //     $RCmessageSend = [
+        //         'id' => $RCmessage->id,
+        //         'show_on_welp' => 0,
+        //     ];
+        //     $flag = collect([
+        //         'message' => $RCmessageSend,
+        //     ]);
+        //     broadcast(new WelpSheetUpdate($flag));
+        // }
 
         $s = Station::where('id', $id)->get();
 

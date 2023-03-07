@@ -161,13 +161,13 @@ class ChillStationController extends Controller
         $newStatus = StationStatus::where('id', $newStation->station_status_id)->value('name');
         $newStatus = str_replace('Upcoming - ', '', $newStatus);
 
-        $message = StationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new StationNotificationUpdate($flag));
-        broadcast(new StationUpdateCoord($flag));
-        broadcast(new ChillSheetUpdate($flag));
+        // $message = StationRecords::where('id', $id)->first();
+        // $flag = collect([
+        //     'message' => $message,
+        // ]);
+        // broadcast(new StationNotificationUpdate($flag));
+        // broadcast(new StationUpdateCoord($flag));
+        // broadcast(new ChillSheetUpdate($flag));
 
         // $message = ChillStationRecords::where('id', $id)->first();
         // if ($message) {
@@ -228,12 +228,12 @@ class ChillStationController extends Controller
             'rc_gsol_id' => null,
             'rc_recon_id' => null,
         ]);
-        $message = StationRecords::where('id', $id)->first();
-        $flag = collect([
-            'message' => $message,
-        ]);
-        broadcast(new StationNotificationUpdate($flag));
-        broadcast(new StationUpdateCoord($flag));
+        // $message = StationRecords::where('id', $id)->first();
+        // $flag = collect([
+        //     'message' => $message,
+        // ]);
+        // broadcast(new StationNotificationUpdate($flag));
+        // broadcast(new StationUpdateCoord($flag));
     }
 
     /**
