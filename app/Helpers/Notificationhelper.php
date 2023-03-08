@@ -13,6 +13,7 @@ use App\Models\Notification;
 use App\Models\Station;
 use App\Models\StationItemJoin;
 use App\Models\StationItems;
+use App\Models\StationNotes;
 use App\Models\StationNotification;
 use App\Models\StationNotificationArmor;
 use App\Models\StationNotificationShield;
@@ -24,6 +25,7 @@ use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Spatie\Activitylog\Models\Activity;
 use Symfony\Component\Yaml\Yaml;
 
 if (!function_exists('reconRegionPull')) {
@@ -53,6 +55,7 @@ if (!function_exists('reconRegionPull')) {
 if (!function_exists('reconRegionPullIdCheck')) {
     function reconRegionPullIdCheck($id)
     {
+
         $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
         $i = 0;
 
@@ -191,9 +194,6 @@ if (!function_exists('reconRegionPullIdCheck')) {
             }
 
             if ($stationdata['str_has_no_fitting'] != null) {
-                // echo '<pre>';
-                // print_r($stationdata);
-                // echo '</pre>';
                 if ($stationdata['str_has_no_fitting'] != 'No Fitting') {
                     $s = StationItemJoin::where('station_id', $id)->get();
                     foreach ($s as $s) {
@@ -252,6 +252,8 @@ if (!function_exists('dubp')) {
             if ($dup->total > 1) {
                 $stations = Station::where('name', $dup->name)->orderByDesc('id')->get();
 
+
+
                 $stations[0]->update([
 
                     'user_id' => $stations[1]['user_id'] ?? null,
@@ -281,6 +283,11 @@ if (!function_exists('dubp')) {
                     'rc_corp_id' => $stations[1]['rc_corp_id'] ?? null,
 
                 ]);
+
+                $oldStationId = $stations[1]->id;
+                StationNotes::where('station_id', $oldStationId)->update(['station_id' => $stations[0]->id]);
+                Activity::where('subject_id', $oldStationId)->where('subject_type', 'App\Station')->update(['subject_id' => $stations[0]->id]);
+                $stations[1]->delete();
             }
         }
     }
@@ -628,9 +635,7 @@ if (!function_exists('test')) {
                             'r_composite' => $stationdata['str_composite'],
                             'r_cored' => $core,
                             'status_update' => $current,
-                            'show_on_main' => setShowMainNew($show),
-                            'show_on_chill' => setShowChillNew($show),
-                            'show_on_welp' => setShowWelpNew($show),
+                            'show_on_main' => 1,
                             'added_from_recon' => 1,
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
@@ -656,9 +661,7 @@ if (!function_exists('test')) {
                             'timestamp' => $time,
                             'status_update' => $current,
                             'out_time' => null,
-                            'show_on_main' => setShowMainNew($show),
-                            'show_on_chill' => setShowChillNew($show),
-                            'show_on_welp' => setShowWelpNew($show),
+                            'show_on_main' => 1,
                         ]);
                     }
                 } else {
@@ -673,9 +676,7 @@ if (!function_exists('test')) {
                         'station_status_id' => $status,
                         'timestamp' => $time,
                         'status_update' => $current,
-                        'show_on_main' => setShowMain($station, $show),
-                        'show_on_chill' => setShowChill($station, $show),
-                        'show_on_welp' => setShowWelp($station, $show),
+                        'show_on_main' => 1,
                     ]);
                 }
 
@@ -758,9 +759,7 @@ if (!function_exists('test')) {
                             'r_cored' => $core,
                             'status_update' => $current,
                             'out_time' => $outTime,
-                            'show_on_main' => setShowMainNew($show),
-                            'show_on_chill' => setShowChillNew($show),
-                            'show_on_welp' => setShowWelpNew($show),
+                            'show_on_main' => 1,
                             'added_from_recon' => 1,
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
@@ -786,9 +785,7 @@ if (!function_exists('test')) {
                             'timestamp' => $time,
                             'out_time' => $outTime,
                             'status_update' => $current,
-                            'show_on_main' => setShowMainNew($show),
-                            'show_on_chill' => setShowChillNew($show),
-                            'show_on_welp' => setShowWelpNew($show),
+                            'show_on_main' => 1,
                         ]);
                     }
                 } else {
@@ -799,9 +796,7 @@ if (!function_exists('test')) {
                         'timestamp' => $time,
                         'status_update' => $current,
                         'out_time' => $outTime,
-                        'show_on_main' => setShowMain($station, $show),
-                        'show_on_chill' => setShowChill($station, $show),
-                        'show_on_welp' => setShowWelp($station, $show),
+                        'show_on_main' => 1,
                     ]);
                 }
 
@@ -884,9 +879,7 @@ if (!function_exists('test')) {
                             'r_cored' => $core,
                             'status_update' => $current,
                             'out_time' => $outTime,
-                            'show_on_main' => setShowMainNew($show),
-                            'show_on_chill' => setShowChillNew($show),
-                            'show_on_welp' => setShowWelpNew($show),
+                            'show_on_main' => 1,
                             'added_from_recon' => 1,
                         ]);
                         if ($stationdata['str_has_no_fitting'] != null) {
@@ -912,9 +905,7 @@ if (!function_exists('test')) {
                             'timestamp' => $time,
                             'out_time' => $outTime,
                             'status_update' => $current,
-                            'show_on_main' => setShowMainNew($show),
-                            'show_on_chill' => setShowChillNew($show),
-                            'show_on_welp' => setShowWelpNew($show),
+                            'show_on_main' => 1,
                         ]);
                     }
                 } else {
@@ -925,9 +916,7 @@ if (!function_exists('test')) {
                         'timestamp' => $time,
                         'status_update' => $current,
                         'out_time' => $outTime,
-                        'show_on_main' => setShowMain($station, $show),
-                        'show_on_chill' => setShowChill($station, $show),
-                        'show_on_welp' => setShowWelp($station, $show),
+                        'show_on_main' => 1,
                     ]);
 
                     $data = [
@@ -1162,7 +1151,85 @@ if (!function_exists('stationNotificationCheck')) {
         $now5hour = now()->subHours(5); //if less than
         $soon24hour = now()->addDay();
 
-        $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 1)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //New
+        $checks = Station::where('status_update', '<', $now5hour)
+            ->where('station_status_id', 1)
+            ->where('show_on_rc', 0)
+            ->where('show_on_rc_move', 0)
+            ->where('show_on_coord', 0)
+            ->where('show_on_chill', 0)
+            ->where('show_on_welp', 0)
+            ->get(); //New
+        foreach ($checks as $check) {
+            $check->update([
+                'station_status_id' => 10,
+                'user_id' => null,
+                'text' => null,
+                'gunner_id' => null,
+                'out_time' => null
+            ]);
+            $stationID = $check->id;
+            $flag = null;
+            $flag = collect([
+                'id' => $check->id,
+            ]);
+            broadcast(new StationNotificationDelete($flag));
+        }
+
+        $checks = Station::where('status_update', '<', $now5hour)
+            ->where('station_status_id', 2)
+            ->where('show_on_rc', 0)
+            ->where('show_on_rc_move', 0)
+            ->where('show_on_coord', 0)
+            ->where('show_on_chill', 0)
+            ->where('show_on_welp', 0)
+            ->get(); //On They way
+        foreach ($checks as $check) {
+            $check->update([
+                'station_status_id' => 10,
+                'user_id' => null,
+                'text' => null,
+                'gunner_id' => null,
+                'out_time' => null
+            ]);
+            $stationID = $check->id;
+            $flag = null;
+            $flag = collect([
+                'id' => $check->id,
+            ]);
+            broadcast(new StationNotificationDelete($flag));
+        }
+
+        $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 3)
+            ->where('show_on_rc', 0)
+            ->where('show_on_rc_move', 0)
+            ->where('show_on_coord', 0)
+            ->where('show_on_chill', 0)
+            ->where('show_on_welp', 0)
+            ->get(); //Gunning
+        foreach ($checks as $check) {
+            $check->update([
+                'station_status_id' => 10,
+                'user_id' => null,
+                'text' => null,
+                'gunner_id' => null,
+                'out_time' => null
+            ]);
+            $stationID = $check->id;
+            $flag = null;
+            $flag = collect([
+                'id' => $check->id,
+            ]);
+            broadcast(new StationNotificationDelete($flag));
+        }
+
+        $checks = Station::where('status_update', '<', $now10min)
+            ->where('station_status_id', 4)
+            ->where('show_on_rc', 0)
+            ->where('show_on_rc_move', 0)
+            ->where('show_on_coord', 0)
+            ->where('show_on_chill', 0)
+            ->where('show_on_welp', 0)
+            ->get(); //Saved
         foreach ($checks as $check) {
             $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
             $stationID = $check->id;
@@ -1173,42 +1240,21 @@ if (!function_exists('stationNotificationCheck')) {
             broadcast(new StationNotificationDelete($flag));
         }
 
-        $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 2)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //On They way
+        $checks = Station::where('out_time', '<=', $now)
+            ->where('station_status_id', 5)
+            ->where('show_on_rc', 0)
+            ->where('show_on_rc_move', 0)
+            ->where('show_on_coord', 0)
+            ->where('show_on_chill', 0)
+            ->where('show_on_welp', 0)
+            ->get(); //Upcoming
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
-            $stationID = $check->id;
-            $flag = null;
-            $flag = collect([
-                'id' => $check->id,
+            $check->update([
+                'station_status_id' => 6,
+                'status_update' => now(),
+                'out_time' => null,
+                'timestamp' => now()
             ]);
-            broadcast(new StationNotificationDelete($flag));
-        }
-
-        $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 3)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Gunning
-        foreach ($checks as $check) {
-            $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
-            $stationID = $check->id;
-            $flag = null;
-            $flag = collect([
-                'id' => $check->id,
-            ]);
-            broadcast(new StationNotificationDelete($flag));
-        }
-
-        $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 4)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Saved
-        foreach ($checks as $check) {
-            $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
-            $stationID = $check->id;
-            $flag = null;
-            $flag = collect([
-                'id' => $check->id,
-            ]);
-            broadcast(new StationNotificationDelete($flag));
-        }
-
-        $checks = Station::where('out_time', '<=', $now)->where('station_status_id', 5)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Upcoming
-        foreach ($checks as $check) {
-            $check->update(['station_status_id' => 6, 'status_update' => now(), 'out_time' => null, 'timestamp' => now()]);
 
             $message = stationRecordSolo($check->id);
             $flag = null;
@@ -1218,9 +1264,21 @@ if (!function_exists('stationNotificationCheck')) {
             broadcast(new StationNotificationUpdate($flag));
         }
 
-        $checks = Station::where('out_time', '<=', $now)->where('station_status_id', 13)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Upcoming
+        $checks = Station::where('out_time', '<=', $now)
+            ->where('station_status_id', 13)
+            ->where('show_on_rc', 0)
+            ->where('show_on_rc_move', 0)
+            ->where('show_on_coord', 0)
+            ->where('show_on_chill', 0)
+            ->where('show_on_welp', 0)
+            ->get(); //Upcoming
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 6, 'status_update' => now(), 'out_time' => null, 'timestamp' => now()]);
+            $check->update([
+                'station_status_id' => 6,
+                'status_update' => now(),
+                'out_time' => null,
+                'timestamp' => now()
+            ]);
             $message = stationRecordSolo($check->id);
             $flag = null;
             $flag = collect([
@@ -1229,9 +1287,21 @@ if (!function_exists('stationNotificationCheck')) {
             broadcast(new StationNotificationUpdate($flag));
         }
 
-        $checks = Station::where('out_time', '<=', $now)->where('station_status_id', 14)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Upcoming
+        $checks = Station::where('out_time', '<=', $now)
+            ->where('station_status_id', 14)
+            ->where('show_on_rc', 0)
+            ->where('show_on_rc_move', 0)
+            ->where('show_on_coord', 0)
+            ->where('show_on_chill', 0)
+            ->where('show_on_welp', 0)
+            ->get(); //Upcoming
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 15, 'status_update' => now(), 'out_time' => null, 'timestamp' => now()]);
+            $check->update([
+                'station_status_id' => 15,
+                'status_update' => now(),
+                'out_time' => null,
+                'timestamp' => now()
+            ]);
 
             $message = stationRecordSolo($check->id);
             $flag = null;
@@ -1241,9 +1311,22 @@ if (!function_exists('stationNotificationCheck')) {
             broadcast(new StationNotificationUpdate($flag));
         }
 
-        $checks = Station::where('status_update', '<', $now5hour)->where('station_status_id', 6)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Out
+        $checks = Station::where('status_update', '<', $now5hour)
+            ->where('station_status_id', 6)
+            ->where('show_on_rc', 0)
+            ->where('show_on_rc_move', 0)
+            ->where('show_on_coord', 0)
+            ->where('show_on_chill', 0)
+            ->where('show_on_welp', 0)
+            ->get(); //Out
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
+            $check->update([
+                'station_status_id' => 10,
+                'user_id' => null,
+                'text' => null,
+                'gunner_id' => null,
+                'out_time' => null
+            ]);
             $stationID = $check->id;
             $flag = null;
             $flag = collect([
@@ -1252,9 +1335,22 @@ if (!function_exists('stationNotificationCheck')) {
             broadcast(new StationNotificationDelete($flag));
         }
 
-        $checks = Station::where('out_time', '<', $now10min)->where('station_status_id', 15)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Out
+        $checks = Station::where('out_time', '<', $now10min)
+            ->where('station_status_id', 15)
+            ->where('show_on_rc', 0)
+            ->where('show_on_rc_move', 0)
+            ->where('show_on_coord', 0)
+            ->where('show_on_chill', 0)
+            ->where('show_on_welp', 0)
+            ->get(); //Out
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 10, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'out_time' => null]);
+            $check->update([
+                'station_status_id' => 10,
+                'user_id' => null,
+                'text' => null,
+                'gunner_id' => null,
+                'out_time' => null
+            ]);
             $stationID = $check->id;
             $flag = null;
             $flag = collect([
@@ -1263,7 +1359,14 @@ if (!function_exists('stationNotificationCheck')) {
             broadcast(new StationNotificationDelete($flag));
         }
 
-        $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 7)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Destoryed
+        $checks = Station::where('status_update', '<', $now10min)
+            ->where('station_status_id', 7)
+            ->where('show_on_rc', 0)
+            ->where('show_on_rc_move', 0)
+            ->where('show_on_coord', 0)
+            ->where('show_on_chill', 0)
+            ->where('show_on_welp', 0)
+            ->get(); //Destoryed
         foreach ($checks as $check) {
             $stationID = $check->id;
             $flag = null;
@@ -1290,9 +1393,25 @@ if (!function_exists('stationNotificationCheck')) {
             $check->delete();
         }
 
-        $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 8)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Reffed - Shield
+        $checks = Station::where('status_update', '<', $now10min)
+            ->where('station_status_id', 8)
+            ->where('show_on_rc', 0)
+            ->where('show_on_rc_move', 0)
+            ->where('show_on_coord', 0)
+            ->where('show_on_chill', 0)
+            ->where('show_on_welp', 0)
+            ->get(); //Reffed - Shield
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 5, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'status_update' => now(), 'gunner_id' => null, 'attack_notes' => null, 'attack_adash_link' => null]);
+            $check->update([
+                'station_status_id' => 5,
+                'user_id' => null,
+                'text' => null,
+                'gunner_id' => null,
+                'status_update' => now(),
+                'gunner_id' => null,
+                'attack_notes' => null,
+                'attack_adash_link' => null
+            ]);
             $stationID = $check->id;
 
             $message = stationRecordSolo($check->id);
@@ -1303,9 +1422,24 @@ if (!function_exists('stationNotificationCheck')) {
             broadcast(new StationNotificationNew($flag));
         }
 
-        $checks = Station::where('status_update', '<', $now10min)->where('station_status_id', 9)->where('show_on_rc', 0)->where('show_on_rc_move', 0)->where('show_on_coord', 0)->where('show_on_chill', 0)->where('show_on_welp', 0)->get(); //Reffed - Armor
+        $checks = Station::where('status_update', '<', $now10min)
+            ->where('station_status_id', 9)
+            ->where('show_on_rc', 0)
+            ->where('show_on_rc_move', 0)
+            ->where('show_on_coord', 0)
+            ->where('show_on_chill', 0)
+            ->where('show_on_welp', 0)
+            ->get(); //Reffed - Armor
         foreach ($checks as $check) {
-            $check->update(['station_status_id' => 13, 'user_id' => null, 'text' => null, 'gunner_id' => null, 'status_update' => now(), 'gunner_id' => null, 'attack_notes' => null, 'attack_adash_link' => null]);
+            $check->update([
+                'station_status_id' => 13, 'user_id' => null,
+                'text' => null,
+                'gunner_id' => null,
+                'status_update' => now(),
+                'gunner_id' => null,
+                'attack_notes' => null,
+                'attack_adash_link' => null
+            ]);
 
             $message = stationRecordSolo($check->id);
             $flag = null;
@@ -1355,73 +1489,6 @@ if (!function_exists('towerUpdate')) {
                 //     broadcast(new TowerChanged($flag));
                 // }
             }
-        }
-    }
-}
-
-if (!function_exists('setShowMain')) {
-    function setShowMain($pull, $show)
-    {
-        $showMain = $pull->show_on_main;
-
-        if ($show == 1) {
-            return 1;
-        } else {
-            return $showMain;
-        }
-    }
-}
-if (!function_exists('setShowChill')) {
-    function setShowChill($pull, $show)
-    {
-        $showChill = $pull->show_on_chill;
-
-        if ($show == 2) {
-            return 1;
-        } else {
-            return $showChill;
-        }
-    }
-}
-if (!function_exists('setShowWelp')) {
-    function setShowWelp($pull, $show)
-    {
-        $showWelp = $pull->show_on_welp;
-
-        if ($show == 3) {
-            return 1;
-        } else {
-            return $showWelp;
-        }
-    }
-}
-if (!function_exists('setShowMainNew')) {
-    function setShowMainNew($show)
-    {
-        if ($show == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-}
-if (!function_exists('setShowChillNew')) {
-    function setShowChillNew($show)
-    {
-        if ($show == 2) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-}
-if (!function_exists('setShowWelpNew')) {
-    function setShowWelpNew($show)
-    {
-        if ($show == 3) {
-            return 1;
-        } else {
-            return 0;
         }
     }
 }

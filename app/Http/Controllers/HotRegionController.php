@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Events\StationSheetUpdate;
+use App\Events\StationWatchListSettingPageUpdate;
 use App\Jobs\updateWebwayJob;
 use App\Models\Campaign;
+use App\Models\Constellation;
 use App\Models\HotRegion;
 use App\Models\Region;
 use App\Models\Station;
@@ -43,6 +45,62 @@ class HotRegionController extends Controller
                 'webwayStartSystems' => $webway,
                 'regionlist' => $regionList,
                 'systemlist' => $systemList,
+
+            ];
+        }
+    }
+
+    public function stationWatchListNeededInfo()
+    {
+        $user = Auth::user();
+        if ($user->can('view_station_watch_list_setup')) {
+            $pullStart = HotRegion::where('update', 1)->pluck('region_id');
+            $pull = Region::whereIn('id', $pullStart)
+                ->orderBy('region_name', 'asc')
+                ->select(['region_name as text', 'id as value'])
+                ->get();
+
+            $webwayStart = WebWayStartSystem::where('system_id', '!=', 30004759)
+                ->pluck('system_id');
+            $webway = System::whereIn('id', $webwayStart)
+                ->orderBy('system_name', 'asc')
+                ->select(['system_name as text', 'id as value'])
+                ->get();
+
+            // $regionList = Region::whereIn('id', $pullStart)
+            //     ->orderBy('region_name', 'asc')
+            //     ->select(['region_name as text', 'id as value'])
+            //     ->get();
+
+            $regionList = Region::whereNotNull('id')
+                ->orderBy('region_name', 'asc')
+                ->select(['region_name as text', 'id as value'])
+                ->get();
+            $systemList = System::whereIn('region_id', $pullStart)
+                ->orderBy('system_name', 'asc')
+                ->select(['system_name as text', 'id as value'])
+                ->get();
+            $constellationList = Constellation::whereIn('region_id', $pullStart)
+                ->orderBy('constellation_name', 'asc')
+                ->select(['constellation_name as text', 'id as value'])
+                ->get();
+
+
+
+            $stationList = Station::join('systems', 'stations.system_id', '=', 'systems.id')
+                ->whereIn('systems.region_id', $pullStart)
+                ->where('stations.added_from_recon', 1)
+                ->orderBy('name', 'asc')
+                ->select(['name as text', 'stations.id as value'])->get();
+
+
+            return [
+                'pull' => $pull,
+                'webwayStartSystems' => $webway,
+                'regionlist' => $regionList,
+                'systemlist' => $systemList,
+                'stationlist' => $stationList,
+                'constellationlist' => $constellationList,
 
             ];
         }
@@ -153,6 +211,38 @@ class HotRegionController extends Controller
             'flag' => 2,
         ]);
         broadcast(new StationSheetUpdate($flag));
+    }
+
+
+    public function stationWatchListRegionUpdate(Request $request)
+    {
+        $user = Auth::user();
+        if ($user->can('view_station_watch_list_setup')) {
+            $ids = [];
+            $pull = $request->pull;
+            foreach ($pull as $pull) {
+                array_push($ids, $pull['value']);
+            }
+
+            $h = HotRegion::whereIn('region_id', $ids)->get();
+            foreach ($h as $h) {
+                $h->update = 1;
+                $h->save();
+            }
+            $h = HotRegion::whereNotIn('region_id', $ids)->whereUpdate(1)->get();
+            foreach ($h as $h) {
+                $h->update = 0;
+                $h->save();
+            }
+
+
+            $data = $this->stationWatchListNeededInfo();
+            $flag = collect([
+                'flag' => 1,
+                'message' => $data,
+            ]);
+            broadcast(new StationWatchListSettingPageUpdate($flag));
+        }
     }
 
     /**

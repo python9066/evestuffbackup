@@ -45,6 +45,8 @@ const routes = [
         component: () => import("./views/SoloOperations.vue"),
     },
 
+
+
     {
         path: "/windows",
         name: "windows",
@@ -70,6 +72,19 @@ const routes = [
         component: () => import("./views/StationSheet.vue"),
         beforeEnter(to, from, next) {
             if (can("view_station_list")) {
+                next();
+            } else {
+                next("/");
+            }
+        },
+    },
+
+        {
+        path: "/stationwatchlist/settings",
+        name: "stations",
+        component: () => import("./views/StationWatchListSetupPage.vue"),
+        beforeEnter(to, from, next) {
+            if (can("view_station_watch_list_setup")) {
                 next();
             } else {
                 next("/");

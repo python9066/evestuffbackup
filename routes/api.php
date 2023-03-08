@@ -496,6 +496,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/getregionlists', 'index');
         Route::post('/hotregionedit/{id}', 'update');
         Route::post('/updatesetting', 'updateSetting');
+        Route::get('/watchlist/getneededinfo', 'stationWatchListNeededInfo');
+        Route::post('/watchlist/getneededinfo', 'stationWatchListRegionUpdate');
     });
 
     Route::controller(WebWayStartSystemsContorller::class)->group(function () {

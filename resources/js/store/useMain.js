@@ -1,4 +1,6 @@
-import { defineStore } from "pinia";
+import {
+    defineStore
+} from "pinia";
 //
 
 export const useMainStore = defineStore("main", {
@@ -66,8 +68,7 @@ export const useMainStore = defineStore("main", {
             showFleets: true,
         },
 
-        operationInfoSettingOpetions: [
-            {
+        operationInfoSettingOpetions: [{
                 label: "Check List",
                 value: "showCheckList",
             },
@@ -116,9 +117,9 @@ export const useMainStore = defineStore("main", {
             let messages = station.notes;
             let count = messages.filter(
                 (m) =>
-                    m.read_by &&
-                    m.read_by.user_id &&
-                    !m.read_by.user_id.includes(state.user_id)
+                m.read_by &&
+                m.read_by.user_id &&
+                !m.read_by.user_id.includes(state.user_id)
             ).length;
 
             if (state.stationChatWindowId == id && count > 0) {
@@ -149,9 +150,9 @@ export const useMainStore = defineStore("main", {
             let messages = tower.notes;
             let count = messages.filter(
                 (m) =>
-                    m.read_by &&
-                    m.read_by.user_id &&
-                    !m.read_by.user_id.includes(state.user_id)
+                m.read_by &&
+                m.read_by.user_id &&
+                !m.read_by.user_id.includes(state.user_id)
             ).length;
 
             if (state.towerChatWindowId == id && count > 0) {
@@ -171,14 +172,14 @@ export const useMainStore = defineStore("main", {
 
 
 
-        getOperationInfoUnreadMessageCount: (state)  => {
+        getOperationInfoUnreadMessageCount: (state) => {
 
             let messages = state.operationInfoPage.messages;
             let count = messages.filter(
                 (m) =>
-                    m.read_by &&
-                    m.read_by.user_id &&
-                    !m.read_by.user_id.includes(state.user_id)
+                m.read_by &&
+                m.read_by.user_id &&
+                !m.read_by.user_id.includes(state.user_id)
             ).length;
 
             if (state.operationInfoChatWindow == state.operationInfoPage.id && count > 0) {
@@ -203,7 +204,10 @@ export const useMainStore = defineStore("main", {
 
                 systems.forEach((s) => {
                     if (s.pivot.new_operation_id == null) {
-                        ids.push({ text: s.system_name, value: s.id });
+                        ids.push({
+                            text: s.system_name,
+                            value: s.id
+                        });
                     }
                 });
             }
@@ -339,9 +343,9 @@ export const useMainStore = defineStore("main", {
         getOwnHackingCharOnOp: (state) => (operationid) => {
             let pull = state.ownChars.filter(
                 (u) =>
-                    u.role_id == 1 &&
-                    u.operation_id == operationid &&
-                    u.user_status_id != 4
+                u.role_id == 1 &&
+                u.operation_id == operationid &&
+                u.user_status_id != 4
             );
             let count = pull.length;
             if (count != 0) {
@@ -640,6 +644,36 @@ export const useMainStore = defineStore("main", {
             this.systemlist = res.data.systemlist;
             this.webwayStartSystems = res.data.webwayStartSystems;
         },
+
+
+        async getStationWatchListNeededInfo() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/watchlist/getneededinfo",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+
+            this.stationListPullRegions = res.data.pull;
+            this.stationListFCRegions = res.data.fcs;
+            this.stationListRegionList = res.data.regionlist;
+            this.systemlist = res.data.systemlist;
+            this.stationList = res.data.stationlist;
+            this.constellationlist = res.data.constellationlist;
+        },
+
+        async updateStationWatchListNeededInfo(data) {
+            this.stationListPullRegions = data.pull;
+            this.stationListFCRegions = data.fcs;
+            this.stationListRegionList = data.regionlist;
+            this.systemlist = data.systemlist;
+            this.stationList = data.stationlist;
+            this.constellationlist = data.constellationlist;
+        },
+
 
         async getStationList() {
             let res = await axios({
@@ -1233,7 +1267,7 @@ export const useMainStore = defineStore("main", {
                     "Content-Type": "application/json",
                 },
             });
-                this.campaignsystems = res.data.systems;
+            this.campaignsystems = res.data.systems;
 
         },
     },
