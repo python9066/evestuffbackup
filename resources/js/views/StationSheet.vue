@@ -374,7 +374,7 @@ const AddStation = defineAsyncComponent(() =>
 );
 
 onMounted(async () => {
-  await store.getStationRegionLists();
+  console.log("mounted");
   await store.getStationList();
   await store.getWebwayStartSystems();
 
@@ -385,7 +385,6 @@ onMounted(async () => {
       }
 
       if (e.flag.flag == 1) {
-        store.getStationRegionLists();
       }
 
       if (e.flag.flag == 2) {

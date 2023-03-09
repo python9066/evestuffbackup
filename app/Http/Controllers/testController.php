@@ -7,6 +7,7 @@ use App\Models\AdashLocalScan;
 use App\Models\AdashLocalScanAlliance;
 use App\Models\AdashLocalScanCorp;
 use App\Models\Campaign;
+use App\Models\ConstellationStationWatchList;
 use App\Models\DankOperation;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
@@ -22,8 +23,13 @@ use App\Models\OperationInfoUserList;
 use App\Models\OperationUser;
 use App\Models\OperationUserList;
 use App\Models\Region;
+use App\Models\RegionStationWatchList;
+use App\Models\RoleStationWatchList;
 use App\Models\Station;
+use App\Models\StationStationWatchList;
+use App\Models\StationWatchList;
 use App\Models\System;
+use App\Models\SystemStationWatchList;
 use App\Models\testNote;
 use App\Models\User;
 use App\Models\WebWay;
@@ -40,6 +46,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
+use GuzzleHttp\Client as GuzzleHttpClient;
 
 class testController extends Controller
 {
@@ -50,6 +57,16 @@ class testController extends Controller
     {
         return view('test2');
     }
+
+    public function testWatchListPull()
+    {
+        $check = Auth::user();
+        if ($check->can('super')) {
+            return getAllallowedStations();
+        }
+    }
+
+
 
     public function removeFC()
     {
@@ -748,6 +765,7 @@ class testController extends Controller
                 }
                 $noCampaign->delete();
             }
+
 
             // * Change new upcoming status to warmup (done an hour before start time)
             $warmupCampaigns = NewCampaign::where('start_time', '>', now())

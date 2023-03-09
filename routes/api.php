@@ -500,6 +500,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/watchlist/getneededinfo', 'stationWatchListRegionUpdate');
     });
 
+    Route::controller(StationWatchListController::class)->group(function () {
+        Route::get('/watchlist', 'index');
+        Route::post('/watchlist', 'store');
+        Route::put('/watchlist/{id}', 'update');
+        Route::delete('/watchlist/{id}', 'destroy');
+    });
+
     Route::controller(WebWayStartSystemsContorller::class)->group(function () {
         Route::get('/getwebwaystartsystems', 'getSystemList');
         Route::post('/updatewebwaystartsystems', 'update');

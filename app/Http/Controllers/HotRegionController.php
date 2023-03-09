@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\StationSheetUpdate;
 use App\Events\StationWatchListSettingPageUpdate;
+use App\Jobs\ReconRegionPullJob;
 use App\Jobs\updateWebwayJob;
 use App\Models\Campaign;
 use App\Models\Constellation;
@@ -11,10 +12,12 @@ use App\Models\HotRegion;
 use App\Models\Region;
 use App\Models\Station;
 use App\Models\System;
+use App\Models\User;
 use App\Models\WebWay;
 use App\Models\WebWayStartSystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class HotRegionController extends Controller
 {
@@ -25,29 +28,6 @@ class HotRegionController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        if ($user->can('access_station_sheet_setting_tab')) {
-            $pullStart = HotRegion::where('update', 1)->pluck('region_id');
-            $pull = Region::whereIn('id', $pullStart)->orderBy('region_name', 'asc')->select(['region_name as text', 'id as value'])->get();
-
-            $fcsStart = HotRegion::where('show_fcs', 1)->pluck('region_id');
-            $fcs = Region::whereIn('id', $fcsStart)->orderBy('region_name', 'asc')->select(['region_name as text', 'id as value'])->get();
-
-            $webwayStart = WebWayStartSystem::where('system_id', '!=', 30004759)->pluck('system_id');
-            $webway = System::whereIn('id', $webwayStart)->orderBy('system_name', 'asc')->select(['system_name as text', 'id as value'])->get();
-
-            $regionList = Region::whereNotNull('id')->orderBy('region_name', 'asc')->select(['region_name as text', 'id as value'])->get();
-            $systemList = System::whereNotNull('id')->orderBy('system_name', 'asc')->select(['system_name as text', 'id as value'])->get();
-
-            return [
-                'pull' => $pull,
-                'fcs' => $fcs,
-                'webwayStartSystems' => $webway,
-                'regionlist' => $regionList,
-                'systemlist' => $systemList,
-
-            ];
-        }
     }
 
     public function stationWatchListNeededInfo()
@@ -67,20 +47,29 @@ class HotRegionController extends Controller
                 ->select(['system_name as text', 'id as value'])
                 ->get();
 
-            // $regionList = Region::whereIn('id', $pullStart)
-            //     ->orderBy('region_name', 'asc')
-            //     ->select(['region_name as text', 'id as value'])
-            //     ->get();
+            $regionDropDownList = Region::whereIn('id', $pullStart)
+                ->orderBy('region_name', 'asc')
+                ->select(['region_name as text', 'id as value'])
+                ->get();
 
             $regionList = Region::whereNotNull('id')
                 ->orderBy('region_name', 'asc')
                 ->select(['region_name as text', 'id as value'])
                 ->get();
-            $systemList = System::whereIn('region_id', $pullStart)
+
+
+            $systemDropDownList = System::whereIn('region_id', $pullStart)
                 ->orderBy('system_name', 'asc')
                 ->select(['system_name as text', 'id as value'])
                 ->get();
-            $constellationList = Constellation::whereIn('region_id', $pullStart)
+
+            $systemList = System::whereNotNull('id')
+                ->orderBy('system_name', 'asc')
+                ->select(['system_name as text', 'id as value'])
+                ->get();
+
+
+            $constellationDropDownList = Constellation::whereIn('region_id', $pullStart)
                 ->orderBy('constellation_name', 'asc')
                 ->select(['constellation_name as text', 'id as value'])
                 ->get();
@@ -93,6 +82,19 @@ class HotRegionController extends Controller
                 ->orderBy('name', 'asc')
                 ->select(['name as text', 'stations.id as value'])->get();
 
+            $roles = Role::whereNot('name', 'Super Admin')->orderBy('name', 'asc')->get();
+
+
+            $roleList = $roles->map(function ($items) {
+                $data['value'] = $items->id;
+                $data['text'] = $items->name;
+                $data['selected'] = false;
+
+                return $data;
+            });
+
+            $userList = User::select('id', 'name')->where('id', '>', 5)->orderBy("name")->get();
+
 
             return [
                 'pull' => $pull,
@@ -100,8 +102,11 @@ class HotRegionController extends Controller
                 'regionlist' => $regionList,
                 'systemlist' => $systemList,
                 'stationlist' => $stationList,
-                'constellationlist' => $constellationList,
-
+                'constellationDropDownlist' => $constellationDropDownList,
+                'regiondropdownlist' => $regionDropDownList,
+                'systemdropdownlist' => $systemDropDownList,
+                'roles' => $roleList,
+                'userList' => $userList
             ];
         }
     }
@@ -234,6 +239,16 @@ class HotRegionController extends Controller
                 $h->update = 0;
                 $h->save();
             }
+
+            $ids = HotRegion::where('update', 1)->pluck('region_id');
+            foreach ($ids as $id) {
+                $stations = reconRegionPull($id);
+
+                foreach ($stations as $station) {
+                    ReconRegionPullJob::dispatch($station);
+                }
+            }
+
 
 
             $data = $this->stationWatchListNeededInfo();

@@ -1,6 +1,11 @@
-import { createWebHistory, createRouter } from "vue-router";
+import {
+    createWebHistory,
+    createRouter
+} from "vue-router";
 import pinia from "@/store.js";
-import { useMainStore } from "@/store/useMain";
+import {
+    useMainStore
+} from "@/store/useMain";
 // import Timers from "./views/Timers.vue";
 // import Notifications from "./views/Notifications.vue";
 // import Campagins from "./views/Campaigns.vue";
@@ -32,8 +37,7 @@ import { useMainStore } from "@/store/useMain";
 // import OperationInfoPage from "./views/OperationInfoPage.vue";
 // import OperationInfoOver from "./views/redirect/operationInfoOver.vue";
 
-const routes = [
-    {
+const routes = [{
         path: "/",
         name: "default",
         component: () => import("./views/SoloOperations.vue"),
@@ -70,18 +74,12 @@ const routes = [
         path: "/stations",
         name: "stations",
         component: () => import("./views/StationSheet.vue"),
-        beforeEnter(to, from, next) {
-            if (can("view_station_list")) {
-                next();
-            } else {
-                next("/");
-            }
-        },
     },
 
-        {
+
+    {
         path: "/stationwatchlist/settings",
-        name: "stations",
+        name: "stationWatchListSettings",
         component: () => import("./views/StationWatchListSetupPage.vue"),
         beforeEnter(to, from, next) {
             if (can("view_station_watch_list_setup")) {
@@ -190,7 +188,10 @@ const routes = [
         props: (route) => {
             const id = route.params.id;
             const routeSystem = route.params.system ?? null;
-            return { id, routeSystem };
+            return {
+                id,
+                routeSystem
+            };
         },
     },
 

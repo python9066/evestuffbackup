@@ -39,20 +39,12 @@
                 </q-menu>
               </template></q-tab
             >
-            <q-tab
-              label="Stations"
-              v-if="
-                can('view_station_list') ||
-                can('view_move_timers') ||
-                can('finish_move_timer')
-              "
+            <q-tab label="Stations"
               ><template v-slot:default>
                 <q-menu>
                   <q-list style="min-width: 100px">
                     <q-item to="/stations" clickable v-close-popup>
-                      <q-item-section v-if="can('view_station_list')"
-                        >Station List</q-item-section
-                      >
+                      <q-item-section>Station List</q-item-section>
                     </q-item>
                     <q-item
                       to="/addtimer"

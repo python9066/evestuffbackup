@@ -16,11 +16,15 @@ export const useMainStore = defineStore("main", {
         startcampaigns: [],
         startcampaignJoin: [],
         stationListPullRegions: [],
+        stationWatchListPullRegions: [],
         stationListFCRegions: [],
+        stationWatchListFCRegions: [],
         stationListRegionList: [],
+        stationWatchListRegionList: [],
         systemlist: [],
         structurelist: [],
         stationList: [],
+        stationWatchList: [],
         stations: [],
         towers: [],
         timers: [],
@@ -38,6 +42,7 @@ export const useMainStore = defineStore("main", {
         user_name: null,
         user_id: null,
         users: [],
+        roleListForWatchListSetting: [],
         loggingAdmin: [],
         missingCorpID: 0,
         missingCorpTick: "",
@@ -60,6 +65,10 @@ export const useMainStore = defineStore("main", {
         operationInfoOperationList: [],
         operationInfoJamList: [],
         userList: [],
+
+        regiondropdownlist: [],
+        systemdropdownlist: [],
+        constellationDropDownlist: [],
 
         operationInfoSetting: {
             showReconTable: true,
@@ -93,6 +102,7 @@ export const useMainStore = defineStore("main", {
         newCampaigns: [],
         operationUserList: [],
         campaignslist: [],
+        watchListList: [],
     }),
 
     getters: {
@@ -657,21 +667,41 @@ export const useMainStore = defineStore("main", {
                 },
             });
 
-            this.stationListPullRegions = res.data.pull;
-            this.stationListFCRegions = res.data.fcs;
-            this.stationListRegionList = res.data.regionlist;
+            this.stationWatchListPullRegions = res.data.pull;
+            this.stationWatchListFCRegions = res.data.fcs;
+            this.stationWatchListRegionList = res.data.regionlist;
             this.systemlist = res.data.systemlist;
-            this.stationList = res.data.stationlist;
-            this.constellationlist = res.data.constellationlist;
+            this.stationWatchList = res.data.stationlist;
+            this.constellationDropDownlist = res.data.constellationDropDownlist;
+            this.webwayStartSystems = res.data.webwayStartSystems;
+            this.regiondropdownlist = res.data.regiondropdownlist;
+            this.systemdropdownlist = res.data.systemdropdownlist;
+            this.roleListForWatchListSetting = res.data.roles;
+            this.userList = res.data.userList;
         },
 
         async updateStationWatchListNeededInfo(data) {
-            this.stationListPullRegions = data.pull;
-            this.stationListFCRegions = data.fcs;
-            this.stationListRegionList = data.regionlist;
+            this.stationWatchListPullRegions = data.pull;
+            this.stationWatchListFCRegions = data.fcs;
+            this.stationWatchListRegionList = data.regionlist;
             this.systemlist = data.systemlist;
-            this.stationList = data.stationlist;
-            this.constellationlist = data.constellationlist;
+            this.stationWatchList = data.stationlist;
+            this.constellationDropDownlist = data.constellationDropDownlist;
+            this.webwayStartSystems = data.webwayStartSystems;
+            this.regiondropdownlist = data.regiondropdownlist;
+            this.systemdropdownlist = data.systemdropdownlist;
+        },
+
+        updateStationDropDown(data) {
+            const item = this.stationList.find((item) => item.value === data.value);
+            const count = this.stationList.filter(
+                (item) => item.value === data.value
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.stationList.push(data);
+            }
         },
 
 
@@ -1270,5 +1300,36 @@ export const useMainStore = defineStore("main", {
             this.campaignsystems = res.data.systems;
 
         },
+
+        async getWatchListList() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
+                url: "/api/watchlist",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.watchListList = res.data.watchList;
+        },
+
+        updateWatchListList(data) {
+            const item = this.watchListList.find((item) => item.id === data.id);
+            const count = this.watchListList.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.watchListList.push(data);
+            }
+        },
+
+        deleteWatchListList(id) {
+            this.watchListList = this.watchListList.filter((e) => e.id != id);
+        },
+
+
     },
 });
