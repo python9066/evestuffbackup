@@ -8,6 +8,7 @@ use App\Models\AdashLocalScanAlliance;
 use App\Models\AdashLocalScanCorp;
 use App\Models\Alliance;
 use App\Models\AllianceStationWatchList;
+use App\Models\Auth as ModelsAuth;
 use App\Models\Campaign;
 use App\Models\ConstellationStationWatchList;
 use App\Models\Corp;
@@ -69,65 +70,9 @@ class testController extends Controller
     {
         $check = Auth::user();
         if ($check->can('super')) {
-            $stationIds = collect();
-            $user = User::whereId(Auth::id())->first();
-            $roleIDs = $user->roles()->pluck('id');
-
-            if (!$roleIDs->contains(2)) {
-                $roleList = RoleStationWatchList::whereIn('role_id', $roleIDs)->pluck('station_watch_list_id');
-                $userList = UserStationWatchList::where('user_id', Auth::id())->pluck('station_watch_list_id');
-
-                $merge = $roleList->merge($userList);
-                $watchlists = StationWatchList::whereIn('id', $merge)->where('active', true)->pluck('id');
-            } else {
-                $watchlists = StationWatchList::where('active', true)->pluck('id');
-            }
-
-            foreach ($watchlists as $watchlist) {
-                $station = StationStationWatchList::where('station_watch_list_id', $watchlist)->pluck('station_id');
-                $system = SystemStationWatchList::where('station_watch_list_id', $watchlist)->pluck('system_id');
-                $constellation = ConstellationStationWatchList::where('station_watch_list_id', $watchlist)->pluck('constellation_id');
-                $region = RegionStationWatchList::where('station_watch_list_id', $watchlist)->pluck('region_id');
-                $alliance = AllianceStationWatchList::where('station_watch_list_id', $watchlist)->pluck('alliance_id');
-                $item = ItemStationWatchList::where('station_watch_list_id', $watchlist)->pluck('item_id');
-
-                $station_query = Station::query();
-                $station_query->join('systems', 'stations.system_id', '=', 'systems.id');
-                if (count($station)) {
-                    $station_query->whereIn('stations.id', $station);
-                }
-                if (count($system)) {
-                    $station_query->orWhereIn('stations.system_id', $system);
-                }
-                if (count($constellation)) {
-                    $station_query->orWhereIn('systems.constellation_id', $constellation);
-                }
-                if (count($region)) {
-                    $station_query->orWhereIn('systems.region_id', $region);
-                }
-                if (count($alliance)) {
-                    $station_query->whereHas(
-                        'alliance',
-                        function ($query) use ($alliance) {
-                            $query->whereIn('alliances.id', $alliance);
-                        }
-                    );
-                }
-                if (count($item)) {
-                    $station_query->whereIn('stations.item_id', $item);
-                }
-
-
-                $stations =
-                    $station_query->pluck('stations.id')
-                    ->unique()
-                    ->values();
-
-                $stationIds = $stationIds->merge($stations);
-            }
-            return $stationIds;
-
-            return $stations;
+            $type = 'note';
+            $data = authpull($type, 0);
+            return $data;
         }
     }
 
@@ -721,8 +666,8 @@ class testController extends Controller
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
                 'User-Agent' => 'evestuff.online python9066@gmail.com',
-            ])->get('https://628189349fac04c6540639f6.mockapi.io/timers');
-            $campaigns = $response->collect();
+            ])->get('https://run.mocky.io/v3/8b7b063f-52fc-4f19-81cb-60eb8c37bc0f');
+            return $response;
 
             foreach ($campaigns as $campaign) {
                 $event_type = $campaign['event_type'];
@@ -1253,6 +1198,29 @@ class testController extends Controller
 
             $logs = $systemNode->merge($userNode);
             return ['logs' => $logs];
+        }
+    }
+
+    public function testAPI()
+    {
+        if (Auth::user()->can('super')) {
+
+            $char = ModelsAuth::where('flag_note', 0)->first();
+            if ($char) {
+                $charID = $char->char_id;
+                $char->flag_note = 1;
+            } else {
+                ModelsAuth::where('flag_note', 1)->update(['flag_note' => 0]);
+                $char = ModelsAuth::where('flag_note', 0)->first();
+                $charID = $char->char_id;
+                $char->flag_note = 1;
+            }
+
+            $refreshToken = refreshToken($charID);
+            if ($refreshToken) {
+                $data = getNotifications($charID);
+                return $data;
+            }
         }
     }
 }
