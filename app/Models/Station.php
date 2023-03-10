@@ -108,6 +108,18 @@ class Station extends Model
         return $this->belongsTo(System::class);
     }
 
+    public function region()
+    {
+        return $this->hasOneThrough(
+            Region::class,
+            System::class,
+            'id',
+            'id',
+            'system_id',
+            'region_id'
+        );
+    }
+
     public function alliance()
     {
         return $this->hasOneThrough(

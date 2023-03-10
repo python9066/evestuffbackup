@@ -69,7 +69,7 @@ class testController extends Controller
     {
         $check = Auth::user();
         if ($check->can('super')) {
-
+            $stationIds = collect();
             $user = User::whereId(Auth::id())->first();
             $roleIDs = $user->roles()->pluck('id');
 
@@ -78,52 +78,64 @@ class testController extends Controller
                 $userList = UserStationWatchList::where('user_id', Auth::id())->pluck('station_watch_list_id');
 
                 $merge = $roleList->merge($userList);
-                $watchlist = StationWatchList::whereIn('id', $merge)->where('active', true)->pluck('id');
+                $watchlists = StationWatchList::whereIn('id', $merge)->where('active', true)->pluck('id');
             } else {
-                $watchlist = StationWatchList::where('active', true)->pluck('id');
+                $watchlists = StationWatchList::where('active', true)->pluck('id');
             }
 
+            foreach ($watchlists as $watchlist) {
+                $station = StationStationWatchList::where('station_watch_list_id', $watchlist)->pluck('station_id');
+                $system = SystemStationWatchList::where('station_watch_list_id', $watchlist)->pluck('system_id');
+                $constellation = ConstellationStationWatchList::where('station_watch_list_id', $watchlist)->pluck('constellation_id');
+                $region = RegionStationWatchList::where('station_watch_list_id', $watchlist)->pluck('region_id');
+                $alliance = AllianceStationWatchList::where('station_watch_list_id', $watchlist)->pluck('alliance_id');
+                $item = ItemStationWatchList::where('station_watch_list_id', $watchlist)->pluck('item_id');
 
-            $station = StationStationWatchList::whereIn('station_watch_list_id', $watchlist)->pluck('station_id');
-            $system = SystemStationWatchList::whereIn('station_watch_list_id', $watchlist)->pluck('system_id');
-            $constellation = ConstellationStationWatchList::whereIn('station_watch_list_id', $watchlist)->pluck('constellation_id');
-            $region = RegionStationWatchList::whereIn('station_watch_list_id', $watchlist)->pluck('region_id');
-            $alliance = AllianceStationWatchList::whereIn('station_watch_list_id', $watchlist)->pluck('alliance_id');
-            $item = ItemStationWatchList::whereIn('station_watch_list_id', $watchlist)->pluck('item_id');
-
-            $station_query = Station::query();
-            $station_query->join('systems', 'stations.system_id', '=', 'systems.id');
-            if (count($station)) {
-                $station_query->whereIn('stations.id', $station);
-            }
-            if (count($system)) {
-                $station_query->orWhereIn('stations.system_id', $system);
-            }
-            if (count($constellation)) {
-                $station_query->orWhereIn('systems.constellation_id', $constellation);
-            }
-            if (count($region)) {
-                $station_query->orWhereIn('systems.region_id', $region);
-            }
-            if (count($alliance)) {
-                $station_query->whereHas(
-                    'alliance',
-                    function ($query) use ($alliance) {
-                        $query->whereIn('alliances.id', $alliance);
-                    }
-                );
-            }
-            if (count($item)) {
-                $station_query->whereIn('stations.item_id', $item);
-            }
+                $station_query = Station::query();
+                $station_query->join('systems', 'stations.system_id', '=', 'systems.id');
+                if (count($station)) {
+                    $station_query->whereIn('stations.id', $station);
+                }
+                if (count($system)) {
+                    $station_query->orWhereIn('stations.system_id', $system);
+                }
+                if (count($constellation)) {
+                    $station_query->orWhereIn('systems.constellation_id', $constellation);
+                }
+                if (count($region)) {
+                    $station_query->orWhereIn('systems.region_id', $region);
+                }
+                if (count($alliance)) {
+                    $station_query->whereHas(
+                        'alliance',
+                        function ($query) use ($alliance) {
+                            $query->whereIn('alliances.id', $alliance);
+                        }
+                    );
+                }
+                if (count($item)) {
+                    $station_query->whereIn('stations.item_id', $item);
+                }
 
 
-            $stations =
-                $station_query->pluck('stations.id')
-                ->unique()
-                ->values();
+                $stations =
+                    $station_query->pluck('stations.id')
+                    ->unique()
+                    ->values();
+
+                $stationIds = $stationIds->merge($stations);
+            }
+            return $stationIds;
 
             return $stations;
+        }
+    }
+
+    public function testStationPull($id)
+    {
+        $check = Auth::user();
+        if ($check->can('super')) {
+            return reconRegionPullIdCheck($id);
         }
     }
 

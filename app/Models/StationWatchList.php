@@ -20,7 +20,7 @@ class StationWatchList extends Model
     ];
 
     protected $attributes = [
-        'settings' => '{"station_id": [], "system_id": [], "constellation_id": [], "region_id": [], "role_id": [], "alliance_id": [], "item_id": [], "user_id": []}'
+        'settings' => '{"station_id": [], "system_id": [], "constellation_id": [], "region_id": [], "role_id": [], "alliance_id": [], "type_id": [], "user_id": []}'
     ];
 
 
