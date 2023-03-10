@@ -609,7 +609,7 @@ let allianceUpdateText = $ref();
 let filtAllianceList = $computed(() => {
   if (allianceUpdateText) {
     return store.stationWatchListAllianceList.filter(
-      (d) => d.name.toLowerCase().indexOf(allianceUpdateText) > -1
+      (d) => d.text.toLowerCase().indexOf(allianceUpdateText) > -1
     );
   }
   return store.stationWatchListAllianceList;
