@@ -6,8 +6,15 @@ use App\Jobs\updateWebwayJob;
 use App\Models\AdashLocalScan;
 use App\Models\AdashLocalScanAlliance;
 use App\Models\AdashLocalScanCorp;
+use App\Models\Alliance;
+use App\Models\AllianceStationWatchList;
 use App\Models\Campaign;
+use App\Models\ConstellationStationWatchList;
+use App\Models\Corp;
 use App\Models\DankOperation;
+use App\Models\HotRegion;
+use App\Models\Item;
+use App\Models\ItemStationWatchList;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
@@ -22,11 +29,17 @@ use App\Models\OperationInfoUserList;
 use App\Models\OperationUser;
 use App\Models\OperationUserList;
 use App\Models\Region;
+use App\Models\RegionStationWatchList;
+use App\Models\RoleStationWatchList;
 use App\Models\Station;
+use App\Models\StationStationWatchList;
+use App\Models\StationWatchList;
 use App\Models\System;
+use App\Models\SystemStationWatchList;
 use App\Models\testNote;
 use App\Models\testTable;
 use App\Models\User;
+use App\Models\UserStationWatchList;
 use App\Models\WebWay;
 use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
@@ -57,27 +70,51 @@ class testController extends Controller
         $check = Auth::user();
         if ($check->can('super')) {
 
-            reconRegionPullIdCheck(1021712448454);
+            $user = User::whereId(Auth::id())->first();
+            $roleIDs = $user->roles()->pluck('id');
 
-            if (testTable::whereId(2)->exists()) {
-                $test = testTable::whereId(2)->first();
+            if (!$roleIDs->contains(2)) {
+                $roleList = RoleStationWatchList::whereIn('role_id', $roleIDs)->pluck('station_watch_list_id');
+                $userList = UserStationWatchList::where('user_id', Auth::id())->pluck('station_watch_list_id');
+
+                $merge = $roleList->merge($userList);
+                $watchlist = StationWatchList::whereIn('id', $merge)->where('active', true)->pluck('id');
             } else {
-                $test = new testTable();
+                $watchlist = StationWatchList::where('active', true)->pluck('id');
             }
 
-            $test->test_text = 'text10';
-            if ($test->isDirty()) {
-                $count = count($test->getDirty());
-            } else {
-                $test->save();
-                dd('nope');
+            $station = StationStationWatchList::whereIn('station_watch_list_id', $watchlist)->pluck('station_id');
+            $system = SystemStationWatchList::whereIn('station_watch_list_id', $watchlist)->pluck('system_id');
+            $constellation = ConstellationStationWatchList::whereIn('station_watch_list_id', $watchlist)->pluck('constellation_id');
+            $region = RegionStationWatchList::whereIn('station_watch_list_id', $watchlist)->pluck('region_id');
+            $alliance = AllianceStationWatchList::whereIn('station_watch_list_id', $watchlist)->pluck('alliance_id');
+            $item = ItemStationWatchList::whereIn('station_watch_list_id', $watchlist)->pluck('item_id');
+
+            $station_query = Station::query();
+            $station_query->join('systems', 'stations.system_id', '=', 'systems.id');
+            $station_query->whereIn('stations.id', $station);
+            $station_query->orWhereIn('stations.system_id', $system);
+            $station_query->orWhereIn('systems.constellation_id', $constellation);
+            $station_query->orWhereIn('systems.region_id', $region);
+
+            if (count($alliance)) {
+                $station_query->whereHas(
+                    'alliance',
+                    function ($query) use ($alliance) {
+                        $query->whereIn('alliances.id', $alliance);
+                    }
+                );
             }
-            $test->save();
-            return $count;
+            if (count($item)) {
+                $station_query->whereIn('stations.item_id', $item);
+            }
 
+            $stations =
+                $station_query->pluck('stations.id')
+                ->unique()
+                ->values();
 
-
-            return getStationWatchListIDs(1032845786104);
+            return $stations;
         }
     }
 

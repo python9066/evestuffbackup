@@ -9,10 +9,10 @@ class Alliance extends Model
     //
     protected $guarded = [];
 
-    public function alliance_id()
-    {
-        return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
-    }
+    // public function alliance_id()
+    // {
+    //     return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
+    // }
 
     public function campaigns()
     {

@@ -44,6 +44,8 @@ export const useMainStore = defineStore("main", {
         user_id: null,
         users: [],
         roleListForWatchListSetting: [],
+        stationWatchListAllianceList: [],
+        stationWatchListItemList: [],
         loggingAdmin: [],
         missingCorpID: 0,
         missingCorpTick: "",
@@ -719,6 +721,9 @@ export const useMainStore = defineStore("main", {
             this.systemdropdownlist = res.data.systemdropdownlist;
             this.roleListForWatchListSetting = res.data.roles;
             this.userList = res.data.userList;
+            this.stationWatchListAllianceList = res.data.allianceList;
+            this.stationWatchListItemList = res.data.itemList;
+
         },
 
         async updateStationWatchListNeededInfo(data) {
@@ -731,6 +736,8 @@ export const useMainStore = defineStore("main", {
             this.webwayStartSystems = data.webwayStartSystems;
             this.regiondropdownlist = data.regiondropdownlist;
             this.systemdropdownlist = data.systemdropdownlist;
+            this.stationWatchListAllianceList = data.allianceList;
+            this.stationWatchListItemList = data.itemList;
         },
 
         updateStationDropDown(data) {

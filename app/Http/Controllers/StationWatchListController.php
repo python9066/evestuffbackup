@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Events\StationSheetUpdate;
 use App\Events\StationWatchListSettingPageUpdate;
+use App\Models\AllianceStationWatchList;
+use App\Models\AllianceStationWathList;
 use App\Models\ConstellationStationWatchList;
+use App\Models\ItemStationWatchList;
+use App\Models\ItemStationWathList;
 use App\Models\RegionStationWatchList;
 use App\Models\RoleStationWatchList;
 use App\Models\StationStationWatchList;
@@ -60,6 +64,8 @@ class StationWatchListController extends Controller
             'region_id' => $request->region_id,
             'role_id' => $request->role_id,
             'user_id' => $request->user_id,
+            'alliance_id' => $request->alliance_id,
+            'item_id' => $request->item_id,
         ];
 
         $new->save();
@@ -106,6 +112,20 @@ class StationWatchListController extends Controller
             $userJoin->save();
         }
 
+        foreach ($request->alliance_id as $alliance) {
+            $allianceJoin = new AllianceStationWatchList();
+            $allianceJoin->station_watch_list_id = $new->id;
+            $allianceJoin->alliance_id = $alliance;
+            $allianceJoin->save();
+        }
+
+        foreach ($request->type_id as $item) {
+            $itemJoin = new ItemStationWatchList();
+            $itemJoin->station_watch_list_id = $new->id;
+            $itemJoin->item_id = $item;
+            $itemJoin->save();
+        }
+
         $message = allWatchListSolo($new->id);
         $flag = collect([
             'flag' => 3,
@@ -146,6 +166,8 @@ class StationWatchListController extends Controller
             'region_id' => $request->region_id,
             'role_id' => $request->role_id,
             'user_id' => $request->user_id,
+            'alliance_id' => $request->alliance_id,
+            'type_id' => $request->type_id,
         ];
         $list->active = $request->active ?? $list->active;
         $list->save();
@@ -209,6 +231,26 @@ class StationWatchListController extends Controller
             $userJoin->save();
         }
 
+        AllianceStationWatchList::whereStationWatchListId($id)
+            ->delete();
+
+        foreach ($request->alliance_id as $alliance) {
+            $allianceJoin = new AllianceStationWatchList();
+            $allianceJoin->station_watch_list_id = $list->id;
+            $allianceJoin->alliance_id = $alliance;
+            $allianceJoin->save();
+        }
+
+        ItemStationWatchList::whereStationWatchListId($id)
+            ->delete();
+
+        foreach ($request->type_id as $item) {
+            $itemJoin = new ItemStationWatchList();
+            $itemJoin->station_watch_list_id = $list->id;
+            $itemJoin->item_id = $item;
+            $itemJoin->save();
+        }
+
 
         $message = allWatchListSolo($id);
         $flag = collect([
@@ -235,6 +277,8 @@ class StationWatchListController extends Controller
         RegionStationWatchList::where('station_watch_list_id', $id)->delete();
         RoleStationWatchList::where('station_watch_list_id', $id)->delete();
         UserStationWatchList::where('station_watch_list_id', $id)->delete();
+        AllianceStationWatchList::where('station_watch_list_id', $id)->delete();
+        ItemStationWatchList::where('station_watch_list_id', $id)->delete();
         StationWatchList::where('id', $id)->delete();
 
 

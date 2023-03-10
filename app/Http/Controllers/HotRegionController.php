@@ -6,9 +6,11 @@ use App\Events\StationSheetUpdate;
 use App\Events\StationWatchListSettingPageUpdate;
 use App\Jobs\ReconRegionPullJob;
 use App\Jobs\updateWebwayJob;
+use App\Models\Alliance;
 use App\Models\Campaign;
 use App\Models\Constellation;
 use App\Models\HotRegion;
+use App\Models\Item;
 use App\Models\Region;
 use App\Models\Station;
 use App\Models\System;
@@ -38,83 +40,7 @@ class HotRegionController extends Controller
 
     public function stationWatchListNeededInfo()
     {
-        $user = Auth::user();
-        if ($user->can('view_station_watch_list_setup')) {
-            $pullStart = HotRegion::where('update', 1)->pluck('region_id');
-            $pull = Region::whereIn('id', $pullStart)
-                ->orderBy('region_name', 'asc')
-                ->select(['region_name as text', 'id as value'])
-                ->get();
-
-            $webwayStart = WebWayStartSystem::where('system_id', '!=', 30004759)
-                ->pluck('system_id');
-            $webway = System::whereIn('id', $webwayStart)
-                ->orderBy('system_name', 'asc')
-                ->select(['system_name as text', 'id as value'])
-                ->get();
-
-            $regionDropDownList = Region::whereIn('id', $pullStart)
-                ->orderBy('region_name', 'asc')
-                ->select(['region_name as text', 'id as value'])
-                ->get();
-
-            $regionList = Region::whereNotNull('id')
-                ->orderBy('region_name', 'asc')
-                ->select(['region_name as text', 'id as value'])
-                ->get();
-
-
-            $systemDropDownList = System::whereIn('region_id', $pullStart)
-                ->orderBy('system_name', 'asc')
-                ->select(['system_name as text', 'id as value'])
-                ->get();
-
-            $systemList = System::whereNotNull('id')
-                ->orderBy('system_name', 'asc')
-                ->select(['system_name as text', 'id as value'])
-                ->get();
-
-
-            $constellationDropDownList = Constellation::whereIn('region_id', $pullStart)
-                ->orderBy('constellation_name', 'asc')
-                ->select(['constellation_name as text', 'id as value'])
-                ->get();
-
-
-
-            $stationList = Station::join('systems', 'stations.system_id', '=', 'systems.id')
-                ->whereIn('systems.region_id', $pullStart)
-                ->where('stations.added_from_recon', 1)
-                ->orderBy('name', 'asc')
-                ->select(['name as text', 'stations.id as value'])->get();
-
-            $roles = Role::whereNot('name', 'Super Admin')->orderBy('name', 'asc')->get();
-
-
-            $roleList = $roles->map(function ($items) {
-                $data['value'] = $items->id;
-                $data['text'] = $items->name;
-                $data['selected'] = false;
-
-                return $data;
-            });
-
-            $userList = User::select('id', 'name')->where('id', '>', 5)->orderBy("name")->get();
-
-
-            return [
-                'pull' => $pull,
-                'webwayStartSystems' => $webway,
-                'regionlist' => $regionList,
-                'systemlist' => $systemList,
-                'stationlist' => $stationList,
-                'constellationDropDownlist' => $constellationDropDownList,
-                'regiondropdownlist' => $regionDropDownList,
-                'systemdropdownlist' => $systemDropDownList,
-                'roles' => $roleList,
-                'userList' => $userList
-            ];
-        }
+        return getGtationWatchListNeededInfo();
     }
 
     /**

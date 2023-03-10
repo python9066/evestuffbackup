@@ -23,8 +23,8 @@
       v-model="showAddEdit"
       persistent
     >
-      <q-card class="myRoundTop">
-        <q-card-section class="bg-primary text-center text-h3">
+      <q-card class="myRoundTop" style="max-width: 1000px">
+        <q-card-section class="bg-primary text-center text-h4 q-pa-none">
           Make a WatchList
         </q-card-section>
         <q-card-section>
@@ -43,71 +43,212 @@
           Here is where you select which roles and users can see this list
         </q-card-section>
         <q-card-section>
-          <q-select
-            v-model="rolesPicked"
-            option-label="text"
-            option-value="value"
-            label="Roles with access"
-            :options="filtRolesList"
-            @filter="filtRolesListStart"
-            emit-value
-            map-options
-            rounded
-            standout
-            dense
-            input-debounce="0"
-            label-color="webway"
-            ref="rolesDropDown"
-            use-input
-            use-chips
-            multiple
-          >
-            <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
-              <q-item v-bind="itemProps">
-                <q-item-section>
-                  <q-item-label v-html="opt.text" />
-                </q-item-section>
-                <q-item-section side>
-                  <q-toggle
-                    :model-value="selected"
-                    @update:model-value="toggleOption(opt)"
-                  />
-                </q-item-section>
-              </q-item>
-            </template>
-
-            <template v-slot:selected-item="scope">
-              <q-chip
-                removable
-                @remove="scope.removeAtIndex(scope.index)"
-                :tabindex="scope.tabindex"
-                color="webWay"
-                text-color="white"
-                class="q-ma-none"
+          <div class="row">
+            <div class="col">
+              <q-select
+                v-model="rolesPicked"
+                option-label="text"
+                option-value="value"
+                label="Roles with access"
+                :options="filtRolesList"
+                @filter="filtRolesListStart"
+                emit-value
+                map-options
+                rounded
+                standout
+                dense
+                input-debounce="0"
+                label-color="webway"
+                ref="rolesDropDown"
+                use-input
+                use-chips
+                multiple
+                style="width: 100%"
               >
-                <span class="text-xs"> {{ scope.opt.text }} </span>
-              </q-chip>
-            </template>
-          </q-select>
-          <q-select
-            v-model="usersPicked"
-            option-label="name"
-            option-value="id"
-            label="Users with access"
-            :options="filtUsersList"
-            @filter="filtUsersListStart"
-            emit-value
-            map-options
-            rounded
-            standout
-            dense
-            input-debounce="0"
-            label-color="webway"
-            ref="usersDropDown"
-            use-input
-            use-chips
-            multiple
-          />
+                <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+                  <q-item v-bind="itemProps">
+                    <q-item-section>
+                      <q-item-label v-html="opt.text" />
+                    </q-item-section>
+                    <q-item-section side>
+                      <q-toggle
+                        :model-value="selected"
+                        @update:model-value="toggleOption(opt)"
+                      />
+                    </q-item-section>
+                  </q-item>
+                </template>
+
+                <template v-slot:selected-item="scope">
+                  <q-chip
+                    removable
+                    @remove="scope.removeAtIndex(scope.index)"
+                    :tabindex="scope.tabindex"
+                    color="webWay"
+                    text-color="white"
+                    class="q-ma-none"
+                  >
+                    <span class="text-xs"> {{ scope.opt.text }} </span>
+                  </q-chip>
+                </template>
+              </q-select>
+            </div>
+            <div class="col">
+              <q-select
+                v-model="usersPicked"
+                option-label="name"
+                option-value="id"
+                label="Users with access"
+                :options="filtUsersList"
+                @filter="filtUsersListStart"
+                emit-value
+                map-options
+                rounded
+                standout
+                dense
+                input-debounce="0"
+                label-color="webway"
+                ref="usersDropDown"
+                use-input
+                use-chips
+                multiple
+                style="width: 100%"
+              >
+                <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+                  <q-item v-bind="itemProps">
+                    <q-item-section>
+                      <q-item-label v-html="opt.name" />
+                    </q-item-section>
+                    <q-item-section side>
+                      <q-toggle
+                        :model-value="selected"
+                        @update:model-value="toggleOption(opt)"
+                      />
+                    </q-item-section>
+                  </q-item>
+                </template>
+
+                <template v-slot:selected-item="scope">
+                  <q-chip
+                    removable
+                    @remove="scope.removeAtIndex(scope.index)"
+                    :tabindex="scope.tabindex"
+                    color="webWay"
+                    text-color="white"
+                    class="q-ma-none"
+                  >
+                    <span class="text-xs"> {{ scope.opt.name }} </span>
+                  </q-chip>
+                </template>
+              </q-select>
+            </div>
+          </div>
+        </q-card-section>
+        <q-separator color="webChip" />
+        <q-card-section class="text-center text-subtitle1">
+          Here you select the Owership and Type of stations
+        </q-card-section>
+        <q-card-section>
+          <div class="row">
+            <div class="col">
+              <q-select
+                v-model="alliancePicked"
+                option-label="text"
+                option-value="value"
+                label="Alliance"
+                :options="filtAllianceList"
+                @filter="filtAllianceListStart"
+                emit-value
+                map-options
+                rounded
+                standout
+                dense
+                input-debounce="0"
+                label-color="webway"
+                ref="aliianceDropDown"
+                use-input
+                use-chips
+                multiple
+                style="width: 100%"
+              >
+                <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+                  <q-item v-bind="itemProps">
+                    <q-item-section>
+                      <q-item-label v-html="opt.text" />
+                    </q-item-section>
+                    <q-item-section side>
+                      <q-toggle
+                        :model-value="selected"
+                        @update:model-value="toggleOption(opt)"
+                      />
+                    </q-item-section>
+                  </q-item>
+                </template>
+
+                <template v-slot:selected-item="scope">
+                  <q-chip
+                    removable
+                    @remove="scope.removeAtIndex(scope.index)"
+                    :tabindex="scope.tabindex"
+                    color="webWay"
+                    text-color="white"
+                    class="q-ma-none"
+                  >
+                    <span class="text-xs"> {{ scope.opt.text }} </span>
+                  </q-chip>
+                </template>
+              </q-select>
+            </div>
+            <div class="col">
+              <q-select
+                v-model="typePicked"
+                option-label="text"
+                option-value="value"
+                label="Station Type"
+                :options="filtTypeList"
+                @filter="filtTypeListStart"
+                emit-value
+                map-options
+                rounded
+                standout
+                dense
+                input-debounce="0"
+                label-color="webway"
+                ref="TypeDropDown"
+                use-input
+                use-chips
+                multiple
+                style="width: 100%"
+              >
+                <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+                  <q-item v-bind="itemProps">
+                    <q-item-section>
+                      <q-item-label v-html="opt.text" />
+                    </q-item-section>
+                    <q-item-section side>
+                      <q-toggle
+                        :model-value="selected"
+                        @update:model-value="toggleOption(opt)"
+                      />
+                    </q-item-section>
+                  </q-item>
+                </template>
+
+                <template v-slot:selected-item="scope">
+                  <q-chip
+                    removable
+                    @remove="scope.removeAtIndex(scope.index)"
+                    :tabindex="scope.tabindex"
+                    color="webWay"
+                    text-color="white"
+                    class="q-ma-none"
+                  >
+                    <span class="text-xs"> {{ scope.opt.text }} </span>
+                  </q-chip>
+                </template>
+              </q-select>
+            </div>
+          </div>
         </q-card-section>
         <q-separator color="webChip" />
         <q-card-section class="text-center">
@@ -142,6 +283,7 @@
             use-input
             use-chips
             multiple
+            style="width: 100%"
           >
             <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
               <q-item v-bind="itemProps">
@@ -188,6 +330,7 @@
             use-input
             use-chips
             multiple
+            style="width: 100%"
           >
             <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
               <q-item v-bind="itemProps">
@@ -234,6 +377,7 @@
             use-input
             use-chips
             multiple
+            style="width: 100%"
           >
             <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
               <q-item v-bind="itemProps">
@@ -281,6 +425,7 @@
             use-input
             use-chips
             multiple
+            style="width: 100%"
           >
             <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
               <q-item v-bind="itemProps">
@@ -456,7 +601,47 @@ let filtUsersListStart = (val, update, abort) => {
   });
 };
 
-/////////edit of Users filter
+/////////edit of Alliance filter
+
+//////////Start of Users filter
+let alliancePicked = $ref([]);
+let allianceUpdateText = $ref();
+let filtAllianceList = $computed(() => {
+  if (allianceUpdateText) {
+    return store.stationWatchListAllianceList.filter(
+      (d) => d.name.toLowerCase().indexOf(allianceUpdateText) > -1
+    );
+  }
+  return store.stationWatchListAllianceList;
+});
+
+let filtAllianceListStart = (val, update, abort) => {
+  update(() => {
+    allianceUpdateText = val.toLowerCase();
+  });
+};
+
+/////////edit of Alliance filter
+
+//////////Start of Type filter
+let typePicked = $ref([]);
+let typeUpdateText = $ref();
+let filtTypeList = $computed(() => {
+  if (typeUpdateText) {
+    return store.stationWatchListItemList.filter(
+      (d) => d.text.toLowerCase().indexOf(typeUpdateText) > -1
+    );
+  }
+  return store.stationWatchListItemList;
+});
+
+let filtTypeListStart = (val, update, abort) => {
+  update(() => {
+    typeUpdateText = val.toLowerCase();
+  });
+};
+
+/////////edit of Type filter
 
 let submit = async () => {
   var data = {
@@ -468,6 +653,8 @@ let submit = async () => {
     region_id: regionsPicked,
     role_id: rolesPicked,
     user_id: usersPicked,
+    alliance_id: alliancePicked,
+    type_id: typePicked,
   };
   if (props.edit == 0) {
     await axios({
@@ -516,6 +703,8 @@ let open = () => {
     regionsPicked = props.list.settings.region_id;
     rolesPicked = props.list.settings.role_id;
     usersPicked = props.list.settings.user_id;
+    alliancePicked = props.list.settings.alliance_id;
+    typePicked = props.list.settings.type_id;
   }
 };
 
