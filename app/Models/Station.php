@@ -110,7 +110,14 @@ class Station extends Model
 
     public function alliance()
     {
-        return $this->belongsTo(Alliance::class);
+        return $this->hasOneThrough(
+            Alliance::class,
+            Corp::class,
+            'id',
+            'id',
+            'corp_id',
+            'alliance_id'
+        );
     }
 
     public function notification()

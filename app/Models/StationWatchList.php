@@ -20,7 +20,7 @@ class StationWatchList extends Model
     ];
 
     protected $attributes = [
-        'settings' => '{"station_id": [], "system_id": [], "constellation_id": [], "region_id": [], "role_id": [], "user_id": []}'
+        'settings' => '{"station_id": [], "system_id": [], "constellation_id": [], "region_id": [], "role_id": [], "alliance_id": [], "item_id": [], "user_id": []}'
     ];
 
 
@@ -53,5 +53,15 @@ class StationWatchList extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_station_watch_lists', 'station_watch_list_id', 'user_id');
+    }
+
+    public function alliances()
+    {
+        return $this->belongsToMany(Alliance::class, 'alliance_station_watch_lists', 'station_watch_list_id', 'alliance_id');
+    }
+
+    public function items()
+    {
+        return $this->belongsToMany(Item::class, 'item_station_watch_lists', 'station_watch_list_id', 'item_id');
     }
 }

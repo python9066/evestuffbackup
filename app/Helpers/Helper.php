@@ -31,6 +31,12 @@ if (!function_exists('sendStationListUpdateToWatchListPage')) {
             'message' => $stationList,
         ]);
         broadcast(new StationWatchListSettingPageUpdate($flag));
+        $data = getGtationWatchListNeededInfo();
+        $flag = collect([
+            'flag' => 1,
+            'message' => $data,
+        ]);
+        broadcast(new StationWatchListSettingPageUpdate($flag));
     }
 }
 
