@@ -92,11 +92,18 @@ class testController extends Controller
 
             $station_query = Station::query();
             $station_query->join('systems', 'stations.system_id', '=', 'systems.id');
-            $station_query->whereIn('stations.id', $station);
-            $station_query->orWhereIn('stations.system_id', $system);
-            $station_query->orWhereIn('systems.constellation_id', $constellation);
-            $station_query->orWhereIn('systems.region_id', $region);
-
+            if (count($station)) {
+                $station_query->whereIn('stations.id', $station);
+            }
+            if (count($system)) {
+                $station_query->orWhereIn('stations.system_id', $system);
+            }
+            if (count($constellation)) {
+                $station_query->orWhereIn('systems.constellation_id', $constellation);
+            }
+            if (count($region)) {
+                $station_query->orWhereIn('systems.region_id', $region);
+            }
             if (count($alliance)) {
                 $station_query->whereHas(
                     'alliance',
@@ -108,7 +115,6 @@ class testController extends Controller
             if (count($item)) {
                 $station_query->whereIn('stations.item_id', $item);
             }
-
             $stations =
                 $station_query->pluck('stations.id')
                 ->unique()
