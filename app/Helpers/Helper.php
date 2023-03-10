@@ -549,3 +549,115 @@ if (!function_exists('stationRecordByUserId')) {
         return $station;
     }
 }
+
+if (!function_exists('refreshToken')) {
+    function refreshToken($charID)
+    {
+        $run = true;
+        $char = Auth::where('char_id', $charID)->first();
+        $refreshToken = $char->refresh_token;
+
+        if ($char->expire_date <= now()) {
+            $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+            $client_id = env('EVEONLINE_CLIENT_ID', ($variables && array_key_exists('EVEONLINE_CLIENT_ID', $variables)) ? $variables['EVEONLINE_CLIENT_ID'] : 'null');
+            $client_secret = env('EVEONLINE_CLIENT_SECRET', ($variables && array_key_exists('EVEONLINE_CLIENT_SECRET', $variables)) ? $variables['EVEONLINE_CLIENT_SECRET'] : 'null');
+            $code = base64_encode($client_id . ':' . $client_secret);
+            $response = Http::withHeaders([
+                'Authorization' => 'Basic ' . $code,
+                'Content-Type' => 'application/x-www-form-urlencoded',
+                'Host' => 'login.eveonline.com',
+                'User-Agent' => 'webway python9066@gmail.com',
+            ])->asForm()->post('https://login.eveonline.com/v2/oauth/token', [
+                'grant_type' => 'refresh_token',
+                'refresh_token' => $refreshToken,
+            ]);
+
+            if ($response->successful()) {
+                $data = $response->collect();
+                $newRefreshTime = now()->addMinutes(19);
+                $char->update([
+                    'expire_date' => $newRefreshTime,
+                    'access_token' => $data['access_token'],
+                    'refresh_token' => $data['refresh_token'],
+                ]);
+
+                return $run;
+            } else {
+                $run = false;
+
+                return $run;
+            }
+        } else {
+            return $run;
+        }
+    }
+}
+
+if (!function_exists('getNotifications')) {
+    function getNotifications($charID)
+    {
+        $done = 0;
+        $char = Auth::where('char_id', $charID)->first();
+        $token = $char->access_token;
+
+        do {
+            $url = 'https://esi.evetech.net/latest/characters/' . $charID . '/notifications/';
+            // $url = 'https://run.mocky.io/v3/8b7b063f-52fc-4f19-81cb-60eb8c37bc0f';
+
+
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . $token,
+                'Content-Type' => 'application/x-www-form-urlencoded',
+                'User-Agent' => 'evestuff python9066@gmail.com',
+            ])->get($url);
+
+            if ($response->successful()) {
+                $data = Utils::jsonDecode($response->getBody(), true);
+                $done = 3;
+                $notifications = $data;
+
+                return $notifications;
+            } else {
+                $errorCode = $response->status();
+                switch ($errorCode) {
+                    case 400:
+                        $done++;
+                        sleep(5);
+                        break;
+
+                    case 401:
+                        $done++;
+                        sleep(5);
+                        break;
+
+                    case 403:
+                        $done++;
+                        sleep(5);
+                        break;
+
+                    case 420:
+                        $done++;
+                        $headers = $response->headers();
+                        $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
+                        sleep($sleep);
+                        break;
+
+                    case 500:
+                        $done++;
+                        sleep(5);
+                        break;
+
+                    case 503:
+                        $done++;
+                        sleep(5);
+                        break;
+
+                    case 504:
+                        $done++;
+                        sleep(5);
+                        break;
+                }
+            }
+        } while ($done != 3);
+    }
+}

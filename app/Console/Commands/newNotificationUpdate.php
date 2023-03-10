@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Events\NotificationNew;
+use App\Models\Auth;
 use App\Models\EveEsiStatus;
 use App\Models\Userlogging;
 use Illuminate\Console\Command;
@@ -45,11 +46,23 @@ class newNotificationUpdate extends Command
         $check = true;
         // if ($check->status = 'green') {
         if ($check) {
-            $type = 'note';
-            $data = authpull($type, 0);
-            $flag = notificationUpdate($data);
-            if ($flag['notificationflag'] == 1) {
-                broadcast(new NotificationNew($flag['notificationflag']))->toOthers();
+            $char = Auth::where('flag_note', 0)->first();
+            if ($char) {
+                $charID = $char->char_id;
+                $char->flag_note = 1;
+            } else {
+                Auth::where('flag_note', 1)->update(['flag_note' => 0]);
+                $char = Auth::where('flag_note', 0)->first();
+                $charID = $char->char_id;
+                $char->flag_note = 1;
+            }
+            $refreshToken = refreshToken($charID);
+            if ($refreshToken) {
+                $data = getNotifications($charID);
+                $flag = notificationUpdate($data);
+                if ($flag['notificationflag'] == 1) {
+                    broadcast(new NotificationNew($flag['notificationflag']))->toOthers();
+                }
             }
         }
     }
