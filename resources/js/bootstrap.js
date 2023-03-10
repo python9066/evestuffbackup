@@ -44,8 +44,8 @@ window.Pusher = Pusher;
 
 window.Echo = new Echo({
   broadcaster: "pusher",
-  key: "588e30b463a02a48ec1c",
-//   key: "python9066",
+//   key: "588e30b463a02a48ec1c",
+  key: "python9066",
   cluster: "eu",
   wsHost: "sockets.scopeh.co.uk",
   wsPort: 443,

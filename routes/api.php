@@ -121,13 +121,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::controller(RcSheetController::class)->group(function () {
         Route::post('/rcInput', 'RCInput');
-        Route::get('/rcsheet', 'index');
-        Route::put('finishrcstation/{id}', 'stationdone');
-        Route::get('/rcregionlist', 'rcSheetListRegion');
-        Route::get('/rcTypelist', 'rcSheetListType');
-        Route::get('/rcStatuslist', 'rcSheetListStatus');
-        Route::put('/rcfixcorp/{id}', 'fixcorp');
-        Route::put('/rcfixalliance/{id}', 'fixalliance');
     });
 
     Route::controller(StationNotesController::class)->group(function () {
@@ -144,22 +137,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::controller(StationController::class)->group(function () {
         Route::get('/reconpullregion', 'reconRegionPull');
-        Route::get('/loadstationdata', 'loadStationData');
         Route::post('/taskrequest', 'taskRequest');
-        Route::put('/updatestationnotification/{id}', 'update');
         Route::put('/stationsheet/updatestationnotification/{id}', 'updateStationSheet');
         Route::put('/timer/addTimer/{id}', 'addStationTimer');
         Route::put('/timer/editStation/{id}', 'editStation');
         Route::put('/timer/statusupdate/{id}', 'updateTimerStatus');
-        Route::put('/updatetimerinfo/{id}', 'editUpdate');
         Route::put('/stationname', 'reconPullbyname');
         Route::put('/stationnew', 'store');
-        Route::put('/stationattackmessage/{id}', 'updateAttackMessage');
-        Route::put('/stationmessage/{id}', 'updateMessage');
-        Route::put('/rcmovedone/{id}', 'rcMoveDone');
-        Route::delete('/rcmovedonebad/{id}', 'destroy');
-        Route::put('/softdestory/{id}', 'softDestroy');
-        Route::put('/editstationname/{id}', 'editStationNameReconCheck');
         Route::get('/stationsheet', 'stationSheet');
         Route::put('/stationsheetupdatewebway/{id}', 'updateStationSheetWebway');
     });
@@ -373,6 +357,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::controller(StartCampaignController::class)->group(function () {
         Route::post('/startcampaigns/{name}', 'store');
+        Route::get('/startcampaigns/{link}', 'show');
         Route::get('/startcampaigns', 'index');
         Route::delete('/startcampaigns/{id}', 'destroy');
     });
@@ -496,6 +481,16 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/getregionlists', 'index');
         Route::post('/hotregionedit/{id}', 'update');
         Route::post('/updatesetting', 'updateSetting');
+        Route::get('/watchlist/getneededinfo', 'stationWatchListNeededInfo');
+        Route::post('/watchlist/getneededinfo', 'stationWatchListRegionUpdate');
+    });
+
+    Route::controller(StationWatchListController::class)->group(function () {
+        Route::get('/watchlist', 'index');
+        Route::get('/watchlist/byuser', 'userWatchLists');
+        Route::post('/watchlist', 'store');
+        Route::put('/watchlist/{id}', 'update');
+        Route::delete('/watchlist/{id}', 'destroy');
     });
 
     Route::controller(WebWayStartSystemsContorller::class)->group(function () {

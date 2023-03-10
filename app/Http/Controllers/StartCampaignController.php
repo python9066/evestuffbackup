@@ -77,7 +77,19 @@ class StartCampaignController extends Controller
      */
     public function show($id)
     {
-        //
+        $list = [];
+        $pull = StartCampaigns::whereLink($id)->first();
+        // foreach ($pull as $pull) {
+        //     $data = [];
+        //     $data = [
+        //         'id' => $pull['id'],
+        //         'name' => $pull['name'],
+        //         'link' => $pull['link']
+        //     ];
+        //     array_push($list, $data);
+        // }
+
+        return ['campaign' => $pull];
     }
 
     /**

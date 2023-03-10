@@ -25,6 +25,7 @@ use App\Models\Region;
 use App\Models\Station;
 use App\Models\System;
 use App\Models\testNote;
+use App\Models\testTable;
 use App\Models\User;
 use App\Models\WebWay;
 use GuzzleHttp\Client;
@@ -50,6 +51,37 @@ class testController extends Controller
     {
         return view('test2');
     }
+
+    public function testWatchListPull()
+    {
+        $check = Auth::user();
+        if ($check->can('super')) {
+
+            reconRegionPullIdCheck(1021712448454);
+
+            if (testTable::whereId(2)->exists()) {
+                $test = testTable::whereId(2)->first();
+            } else {
+                $test = new testTable();
+            }
+
+            $test->test_text = 'text10';
+            if ($test->isDirty()) {
+                $count = count($test->getDirty());
+            } else {
+                $test->save();
+                dd('nope');
+            }
+            $test->save();
+            return $count;
+
+
+
+            return getStationWatchListIDs(1032845786104);
+        }
+    }
+
+
 
     public function removeFC()
     {
@@ -748,6 +780,7 @@ class testController extends Controller
                 }
                 $noCampaign->delete();
             }
+
 
             // * Change new upcoming status to warmup (done an hour before start time)
             $warmupCampaigns = NewCampaign::where('start_time', '>', now())

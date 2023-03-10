@@ -1,4 +1,6 @@
-import { defineStore } from "pinia";
+import {
+    defineStore
+} from "pinia";
 //
 
 export const useMainStore = defineStore("main", {
@@ -12,13 +14,18 @@ export const useMainStore = defineStore("main", {
         newOperationList: [],
         size: [],
         startcampaigns: [],
+        startcampaign: [],
         startcampaignJoin: [],
         stationListPullRegions: [],
+        stationWatchListPullRegions: [],
         stationListFCRegions: [],
+        stationWatchListFCRegions: [],
         stationListRegionList: [],
+        stationWatchListRegionList: [],
         systemlist: [],
         structurelist: [],
         stationList: [],
+        stationWatchList: [],
         stations: [],
         towers: [],
         timers: [],
@@ -36,6 +43,7 @@ export const useMainStore = defineStore("main", {
         user_name: null,
         user_id: null,
         users: [],
+        roleListForWatchListSetting: [],
         loggingAdmin: [],
         missingCorpID: 0,
         missingCorpTick: "",
@@ -59,6 +67,10 @@ export const useMainStore = defineStore("main", {
         operationInfoJamList: [],
         userList: [],
 
+        regiondropdownlist: [],
+        systemdropdownlist: [],
+        constellationDropDownlist: [],
+
         operationInfoSetting: {
             showReconTable: true,
             showSystemTable: true,
@@ -66,8 +78,7 @@ export const useMainStore = defineStore("main", {
             showFleets: true,
         },
 
-        operationInfoSettingOpetions: [
-            {
+        operationInfoSettingOpetions: [{
                 label: "Check List",
                 value: "showCheckList",
             },
@@ -92,6 +103,8 @@ export const useMainStore = defineStore("main", {
         newCampaigns: [],
         operationUserList: [],
         campaignslist: [],
+        watchListList: [],
+        watchListListForUser: [],
     }),
 
     getters: {
@@ -116,9 +129,9 @@ export const useMainStore = defineStore("main", {
             let messages = station.notes;
             let count = messages.filter(
                 (m) =>
-                    m.read_by &&
-                    m.read_by.user_id &&
-                    !m.read_by.user_id.includes(state.user_id)
+                m.read_by &&
+                m.read_by.user_id &&
+                !m.read_by.user_id.includes(state.user_id)
             ).length;
 
             if (state.stationChatWindowId == id && count > 0) {
@@ -149,9 +162,9 @@ export const useMainStore = defineStore("main", {
             let messages = tower.notes;
             let count = messages.filter(
                 (m) =>
-                    m.read_by &&
-                    m.read_by.user_id &&
-                    !m.read_by.user_id.includes(state.user_id)
+                m.read_by &&
+                m.read_by.user_id &&
+                !m.read_by.user_id.includes(state.user_id)
             ).length;
 
             if (state.towerChatWindowId == id && count > 0) {
@@ -171,14 +184,14 @@ export const useMainStore = defineStore("main", {
 
 
 
-        getOperationInfoUnreadMessageCount: (state)  => {
+        getOperationInfoUnreadMessageCount: (state) => {
 
             let messages = state.operationInfoPage.messages;
             let count = messages.filter(
                 (m) =>
-                    m.read_by &&
-                    m.read_by.user_id &&
-                    !m.read_by.user_id.includes(state.user_id)
+                m.read_by &&
+                m.read_by.user_id &&
+                !m.read_by.user_id.includes(state.user_id)
             ).length;
 
             if (state.operationInfoChatWindow == state.operationInfoPage.id && count > 0) {
@@ -203,7 +216,10 @@ export const useMainStore = defineStore("main", {
 
                 systems.forEach((s) => {
                     if (s.pivot.new_operation_id == null) {
-                        ids.push({ text: s.system_name, value: s.id });
+                        ids.push({
+                            text: s.system_name,
+                            value: s.id
+                        });
                     }
                 });
             }
@@ -339,9 +355,9 @@ export const useMainStore = defineStore("main", {
         getOwnHackingCharOnOp: (state) => (operationid) => {
             let pull = state.ownChars.filter(
                 (u) =>
-                    u.role_id == 1 &&
-                    u.operation_id == operationid &&
-                    u.user_status_id != 4
+                u.role_id == 1 &&
+                u.operation_id == operationid &&
+                u.user_status_id != 4
             );
             let count = pull.length;
             if (count != 0) {
@@ -609,6 +625,19 @@ export const useMainStore = defineStore("main", {
             this.startcampaigns = res.data.campaigns;
         },
 
+        async getStartCampaign(id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/startcampaigns/" + id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.startcampaign = res.data.campaign;
+        },
+
         async getStartCampaignJoinData() {
             let res = await axios({
                 method: "get",
@@ -623,6 +652,37 @@ export const useMainStore = defineStore("main", {
             this.startcampaignJoin = res.data.value;
         },
 
+        async getUsersChars(user_id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/campaignusersrecordsbychar/" + user_id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.userschars = res.data.users;
+
+        },
+
+        async getCampaignUsersRecords(id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
+                url: "/api/campaignusersrecords/" + id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            if (res.data.length != 0) {
+                this.campaignusers = res.data.users;
+            }
+
+
+        },
+
         async getStationRegionLists() {
             let res = await axios({
                 method: "get",
@@ -633,13 +693,58 @@ export const useMainStore = defineStore("main", {
                     "Content-Type": "application/json",
                 },
             });
-
-            this.stationListPullRegions = res.data.pull;
-            this.stationListFCRegions = res.data.fcs;
-            this.stationListRegionList = res.data.regionlist;
-            this.systemlist = res.data.systemlist;
             this.webwayStartSystems = res.data.webwayStartSystems;
         },
+
+
+        async getStationWatchListNeededInfo() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/watchlist/getneededinfo",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+
+            this.stationWatchListPullRegions = res.data.pull;
+            this.stationWatchListFCRegions = res.data.fcs;
+            this.stationWatchListRegionList = res.data.regionlist;
+            this.systemlist = res.data.systemlist;
+            this.stationWatchList = res.data.stationlist;
+            this.constellationDropDownlist = res.data.constellationDropDownlist;
+            this.webwayStartSystems = res.data.webwayStartSystems;
+            this.regiondropdownlist = res.data.regiondropdownlist;
+            this.systemdropdownlist = res.data.systemdropdownlist;
+            this.roleListForWatchListSetting = res.data.roles;
+            this.userList = res.data.userList;
+        },
+
+        async updateStationWatchListNeededInfo(data) {
+            this.stationWatchListPullRegions = data.pull;
+            this.stationWatchListFCRegions = data.fcs;
+            this.stationWatchListRegionList = data.regionlist;
+            this.systemlist = data.systemlist;
+            this.stationWatchList = data.stationlist;
+            this.constellationDropDownlist = data.constellationDropDownlist;
+            this.webwayStartSystems = data.webwayStartSystems;
+            this.regiondropdownlist = data.regiondropdownlist;
+            this.systemdropdownlist = data.systemdropdownlist;
+        },
+
+        updateStationDropDown(data) {
+            const item = this.stationList.find((item) => item.value === data.value);
+            const count = this.stationList.filter(
+                (item) => item.value === data.value
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.stationList.push(data);
+            }
+        },
+
 
         async getStationList() {
             let res = await axios({
@@ -1233,8 +1338,53 @@ export const useMainStore = defineStore("main", {
                     "Content-Type": "application/json",
                 },
             });
-                this.campaignsystems = res.data.systems;
+            this.campaignsystems = res.data.systems;
 
         },
+
+        async getWatchListList() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
+                url: "/api/watchlist",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.watchListList = res.data.watchList;
+        },
+
+        updateWatchListList(data) {
+            const item = this.watchListList.find((item) => item.id === data.id);
+            const count = this.watchListList.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.watchListList.push(data);
+            }
+        },
+
+        deleteWatchListList(id) {
+            this.watchListList = this.watchListList.filter((e) => e.id != id);
+        },
+
+
+        async getWatchListListForUser() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
+                url: "/api/watchlist/byuser",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.watchListListForUser = res.data.watchList;
+        },
+
+
     },
 });
