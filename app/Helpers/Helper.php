@@ -1,11 +1,10 @@
 <?php
 
+use App\Events\StationWatchListSettingPageUpdate;
 use App\Models\Auth;
 use App\Models\Campaign;
 use App\Models\Client;
-use App\Models\HotRegion;
 use App\Models\Station;
-use App\Models\System;
 use App\Models\User;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Utils;
@@ -18,6 +17,24 @@ if (!function_exists('displayName')) {
         return 'Laravel fefefFramework';
     }
 }
+
+if (!function_exists('sendStationListUpdateToWatchListPage')) {
+    function sendStationListUpdateToWatchListPage($id)
+    {
+        $stationList = Station::whereId($id)
+            ->orderBy('name', 'asc')
+            ->select(['name as text', 'stations.id as value'])
+            ->first();
+
+        $flag = collect([
+            'flag' => 2,
+            'message' => $stationList,
+        ]);
+        broadcast(new StationWatchListSettingPageUpdate($flag));
+    }
+}
+
+
 if (!function_exists('checkPermissions')) {
     function checkPermissions()
     {
@@ -240,24 +257,14 @@ if (!function_exists('stationlogs')) {
     }
 }
 if (!function_exists('StationRecords')) {
-    function StationRecords($type)
+    function StationRecords($type, $ids)
     {
-        $regionIDs = HotRegion::where('show_fcs', 1)->pluck('region_id');
-        $systemIDs = System::whereIn('region_id', $regionIDs)->pluck('id');
 
         $user = FacadesAuth::user();
         $type = $type;
         $station_query = Station::query();
         if ($type == 1) {
             $station_query->where('show_on_main', 1);
-        }
-
-        if ($type == 2) {
-            $station_query->where('show_on_chill', 1);
-        }
-
-        if ($type == 3) {
-            $station_query->where('show_on_welp', 1);
         }
 
         if ($type == 4) {
@@ -278,14 +285,6 @@ if (!function_exists('StationRecords')) {
         }
 
         if ($type == 6) {
-            $station_query->where('show_on_coord', 1)->with(['system.webway' => function ($t) {
-                $t->where('permissions', 1);
-            }]);
-            if ($user->can('view_coord_sheet')) {
-            } else {
-                $station_query->where('show_on_coord', 1)->whereIn('system_id', $systemIDs);
-            }
-            $station_query->where('standing', '=<', 0);
 
             if ($user->can('view_station_logs')) {
                 $station_query->with([
@@ -293,7 +292,10 @@ if (!function_exists('StationRecords')) {
                 ]);
             }
         }
-
+        $station_query->whereIn('id', $ids)->with(['system.webway' => function ($t) {
+            $t->where('permissions', 1);
+        }]);
+        $station_query->where('standing', '=<', 0);
         $station_query->with([
             'system',
             'system.constellation',
@@ -312,6 +314,7 @@ if (!function_exists('StationRecords')) {
         ]);
 
         $stationRecords = $station_query->get();
+        $stationRecords->each->append('list');
 
         return $stationRecords;
     }
@@ -319,22 +322,12 @@ if (!function_exists('StationRecords')) {
 if (!function_exists('StationRecordsSolo')) {
     function StationRecordsSolo($type, $id)
     {
-        $regionIDs = HotRegion::where('show_fcs', 1)->pluck('region_id');
-        $systemIDs = System::whereIn('region_id', $regionIDs)->pluck('id');
         $user = FacadesAuth::user();
         $type = $type;
         $station_query = Station::query();
 
         if ($type == 1) {
             $station_query->where('show_on_main', 1);
-        }
-
-        if ($type == 2) {
-            $station_query->where('show_on_chill', 1);
-        }
-
-        if ($type == 3) {
-            $station_query->where('show_on_welp', 1);
         }
 
         //rchsheet
@@ -352,19 +345,10 @@ if (!function_exists('StationRecordsSolo')) {
         }
 
         if ($type == 5) {
-            $station_query->where('show_on_rc_move', 1);
         }
 
         //station sheet
         if ($type == 6) {
-            $station_query->where('show_on_coord', 1)->with(['system.webway' => function ($t) {
-                $t->where('permissions', 1);
-            }]);
-
-            if ($user->can('view_coord_sheet')) {
-            } else {
-                $station_query->where('show_on_coord', 1)->whereIn('system_id', $systemIDs);
-            }
             if ($user->can('view_station_logs')) {
                 $station_query->with([
                     'logs.causer:id,name'
@@ -373,7 +357,9 @@ if (!function_exists('StationRecordsSolo')) {
         }
 
         $station_query->where('standing', '=<', 0);
-        $station_query->where('id', $id);
+        $station_query->where('id', $id)->with(['system.webway' => function ($t) {
+            $t->where('permissions', 1);
+        }]);;
         $station_query->with([
             'system',
             'system.constellation',
@@ -391,6 +377,7 @@ if (!function_exists('StationRecordsSolo')) {
         ]);
 
         $stationRecords = $station_query->first();
+        $stationRecords->append('list');
 
         return $stationRecords;
     }
@@ -510,6 +497,8 @@ if (!function_exists('stationRecordAll')) {
         return $station;
     }
 }
+
+
 
 if (!function_exists('stationRecordByUserId')) {
     function stationRecordByUserId($id)

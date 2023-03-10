@@ -3,10 +3,6 @@
     "file": "assets/info.a6adef34.png",
     "src": "resources/js/img/info.png"
   },
-  "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2": {
-    "file": "assets/fa-brands-400.f4617423.woff2",
-    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2"
-  },
   "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2": {
     "file": "assets/fa-regular-400.7ba24c41.woff2",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.woff2"
@@ -19,24 +15,28 @@
     "file": "assets/fa-v4compatibility.7c377405.woff2",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.woff2"
   },
+  "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400.f4617423.woff2",
+    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.woff2"
+  },
   "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.ttf": {
     "file": "assets/fa-regular-400.12dea17b.ttf",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-regular-400.ttf"
-  },
-  "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.ttf": {
-    "file": "assets/fa-brands-400.2ef6fdde.ttf",
-    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.ttf"
-  },
-  "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.ttf": {
-    "file": "assets/fa-solid-900.67a880b4.ttf",
-    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.ttf"
   },
   "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.ttf": {
     "file": "assets/fa-v4compatibility.8d9500e8.ttf",
     "src": "node_modules/@quasar/extras/fontawesome-v6/fa-v4compatibility.ttf"
   },
+  "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900.67a880b4.ttf",
+    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-solid-900.ttf"
+  },
+  "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.ttf": {
+    "file": "assets/fa-brands-400.2ef6fdde.ttf",
+    "src": "node_modules/@quasar/extras/fontawesome-v6/fa-brands-400.ttf"
+  },
   "resources/js/app.js": {
-    "file": "assets/app.b8bc639a.js",
+    "file": "assets/app.ed7db7fc.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -44,7 +44,9 @@
       "resources/js/views/Timers.vue",
       "resources/js/views/CustomCampaigns.vue",
       "resources/js/views/StationSheet.vue",
+      "resources/js/views/StationWatchListSetupPage.vue",
       "resources/js/views/RCMove.vue",
+      "resources/js/views/StartCampaignSystem.vue",
       "resources/js/views/Towers.vue",
       "resources/js/views/FeedBacknew.vue",
       "resources/js/views/AdminPanel.vue",
@@ -68,23 +70,23 @@
     ]
   },
   "resources/js/views/SoloOperations.vue": {
-    "file": "assets/SoloOperations.d3449cbc.js",
+    "file": "assets/SoloOperations.d3fa9682.js",
     "src": "resources/js/views/SoloOperations.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QSelect.2a457a6e.js",
-      "_QBtnToggle.63331e64.js",
-      "_QTable.9ca148f2.js",
-      "_QTd.b9eedba1.js",
-      "_QTr.91d3a6df.js",
+      "_QSelect.1655d965.js",
+      "_QBtnToggle.4e506650.js",
+      "_QTable.238b17fe.js",
+      "_QTd.ff6de4f9.js",
+      "_QTr.3790db86.js",
       "__plugin-vue_export-helper.cdc0426e.js",
-      "_QItemLabel.65cea28b.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QItemLabel.e92e7759.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ],
     "dynamicImports": [
       "resources/js/components/operations/SoloCampaignProgressLine.vue",
@@ -98,38 +100,38 @@
       "assets/SoloOperations.0060ff86.css"
     ]
   },
-  "_QSelect.2a457a6e.js": {
-    "file": "assets/QSelect.2a457a6e.js",
+  "_QSelect.1655d965.js": {
+    "file": "assets/QSelect.1655d965.js",
     "imports": [
       "resources/js/app.js",
-      "_QItemLabel.65cea28b.js"
+      "_QItemLabel.e92e7759.js"
     ]
   },
-  "_QBtnToggle.63331e64.js": {
-    "file": "assets/QBtnToggle.63331e64.js",
+  "_QBtnToggle.4e506650.js": {
+    "file": "assets/QBtnToggle.4e506650.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_QTable.9ca148f2.js": {
-    "file": "assets/QTable.9ca148f2.js",
+  "_QTable.238b17fe.js": {
+    "file": "assets/QTable.238b17fe.js",
     "imports": [
       "resources/js/app.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QSelect.2a457a6e.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js"
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QSelect.1655d965.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js"
     ]
   },
-  "_QTd.b9eedba1.js": {
-    "file": "assets/QTd.b9eedba1.js",
+  "_QTd.ff6de4f9.js": {
+    "file": "assets/QTd.ff6de4f9.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_QTr.91d3a6df.js": {
-    "file": "assets/QTr.91d3a6df.js",
+  "_QTr.3790db86.js": {
+    "file": "assets/QTr.3790db86.js",
     "imports": [
       "resources/js/app.js"
     ]
@@ -137,60 +139,60 @@
   "__plugin-vue_export-helper.cdc0426e.js": {
     "file": "assets/_plugin-vue_export-helper.cdc0426e.js"
   },
-  "_QItemLabel.65cea28b.js": {
-    "file": "assets/QItemLabel.65cea28b.js",
+  "_QItemLabel.e92e7759.js": {
+    "file": "assets/QItemLabel.e92e7759.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_QSeparator.7f571c71.js": {
-    "file": "assets/QSeparator.7f571c71.js",
+  "_QSeparator.f7b1f111.js": {
+    "file": "assets/QSeparator.f7b1f111.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_QLinearProgress.ceb52d52.js": {
-    "file": "assets/QLinearProgress.ceb52d52.js",
+  "_QLinearProgress.26abd8fa.js": {
+    "file": "assets/QLinearProgress.26abd8fa.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_QCheckbox.c77fa795.js": {
-    "file": "assets/QCheckbox.c77fa795.js",
+  "_QCheckbox.99bdbe93.js": {
+    "file": "assets/QCheckbox.99bdbe93.js",
     "imports": [
       "resources/js/app.js",
-      "_use-checkbox.93d37e49.js"
+      "_use-checkbox.8afa37ee.js"
     ]
   },
-  "_QMarkupTable.d8dc2097.js": {
-    "file": "assets/QMarkupTable.d8dc2097.js",
+  "_QMarkupTable.108a3ec1.js": {
+    "file": "assets/QMarkupTable.108a3ec1.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_use-checkbox.93d37e49.js": {
-    "file": "assets/use-checkbox.93d37e49.js",
+  "_use-checkbox.8afa37ee.js": {
+    "file": "assets/use-checkbox.8afa37ee.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/views/Timers.vue": {
-    "file": "assets/Timers.180e0b74.js",
+    "file": "assets/Timers.b808d14f.js",
     "src": "resources/js/views/Timers.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QItemLabel.65cea28b.js",
-      "_QToggle.cf0cba15.js",
-      "_QSelect.2a457a6e.js",
-      "_QBtnToggle.63331e64.js",
-      "_QTable.9ca148f2.js",
-      "_QTd.b9eedba1.js",
-      "_use-checkbox.93d37e49.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js"
+      "_QItemLabel.e92e7759.js",
+      "_QToggle.fde4e4f8.js",
+      "_QSelect.1655d965.js",
+      "_QBtnToggle.4e506650.js",
+      "_QTable.238b17fe.js",
+      "_QTd.ff6de4f9.js",
+      "_use-checkbox.8afa37ee.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js"
     ],
     "dynamicImports": [
       "resources/js/components/countup/index.ts",
@@ -200,15 +202,15 @@
       "assets/Timers.517a74d8.css"
     ]
   },
-  "_QToggle.cf0cba15.js": {
-    "file": "assets/QToggle.cf0cba15.js",
+  "_QToggle.fde4e4f8.js": {
+    "file": "assets/QToggle.fde4e4f8.js",
     "imports": [
       "resources/js/app.js",
-      "_use-checkbox.93d37e49.js"
+      "_use-checkbox.8afa37ee.js"
     ]
   },
   "resources/js/views/CustomCampaigns.vue": {
-    "file": "assets/CustomCampaigns.77c835ae.js",
+    "file": "assets/CustomCampaigns.bfdbf604.js",
     "src": "resources/js/views/CustomCampaigns.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -220,60 +222,71 @@
     ]
   },
   "resources/js/views/StationSheet.vue": {
-    "file": "assets/StationSheet.fba8893d.js",
+    "file": "assets/StationSheet.06a01844.js",
     "src": "resources/js/views/StationSheet.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QItemLabel.65cea28b.js",
-      "_QToggle.cf0cba15.js",
-      "_QSelect.2a457a6e.js",
-      "_QTable.9ca148f2.js",
-      "_QTd.b9eedba1.js",
-      "_QTr.91d3a6df.js",
-      "_copy-to-clipboard.d88da222.js",
-      "_use-checkbox.93d37e49.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js"
+      "_QItemLabel.e92e7759.js",
+      "_QToggle.fde4e4f8.js",
+      "_QSelect.1655d965.js",
+      "_QTable.238b17fe.js",
+      "_QTd.ff6de4f9.js",
+      "_QTr.3790db86.js",
+      "_copy-to-clipboard.14071bd1.js",
+      "_use-checkbox.8afa37ee.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js"
     ],
     "dynamicImports": [
       "resources/js/components/operations/SoloCampaginWebWay.vue",
       "resources/js/components/stationSheet/StationSheetLogs.vue",
-      "resources/js/components/stationSheet/SettingPannel.vue",
       "resources/js/components/stationSheet/StatusButton.vue",
       "resources/js/components/stationSheet/StationSheetInfo.vue",
       "resources/js/components/rcsheet/RcStationMessage.vue",
       "resources/js/components/station/AddStation.vue"
     ],
     "css": [
-      "assets/StationSheet.3523ee5a.css"
+      "assets/StationSheet.f96c3bcc.css"
     ]
   },
-  "_copy-to-clipboard.d88da222.js": {
-    "file": "assets/copy-to-clipboard.d88da222.js",
+  "_copy-to-clipboard.14071bd1.js": {
+    "file": "assets/copy-to-clipboard.14071bd1.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
+  "resources/js/views/StationWatchListSetupPage.vue": {
+    "file": "assets/StationWatchListSetupPage.8751c869.js",
+    "src": "resources/js/views/StationWatchListSetupPage.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "dynamicImports": [
+      "resources/js/components/StationWatchList/StationWatchListSettingPannel.vue",
+      "resources/js/components/StationWatchList/StationWatchListTable.vue"
+    ]
+  },
   "resources/js/views/RCMove.vue": {
-    "file": "assets/RCMove.9b0322c4.js",
+    "file": "assets/RCMove.cffd6af1.js",
     "src": "resources/js/views/RCMove.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTd.b9eedba1.js",
-      "_QSelect.2a457a6e.js",
-      "_QTr.91d3a6df.js",
-      "_QTable.9ca148f2.js",
-      "_copy-to-clipboard.d88da222.js",
-      "_QItemLabel.65cea28b.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QTd.ff6de4f9.js",
+      "_QSelect.1655d965.js",
+      "_QTr.3790db86.js",
+      "_QTable.238b17fe.js",
+      "_copy-to-clipboard.14071bd1.js",
+      "_QItemLabel.e92e7759.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ],
     "dynamicImports": [
       "resources/js/components/station/AddStation.vue",
@@ -283,24 +296,32 @@
       "assets/RCMove.6340e698.css"
     ]
   },
+  "resources/js/views/StartCampaignSystem.vue": {
+    "file": "assets/StartCampaignSystem.6c4f602d.js",
+    "src": "resources/js/views/StartCampaignSystem.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
   "resources/js/views/Towers.vue": {
-    "file": "assets/Towers.28c00d39.js",
+    "file": "assets/Towers.66839857.js",
     "src": "resources/js/views/Towers.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QItemLabel.65cea28b.js",
-      "_QToggle.cf0cba15.js",
-      "_QSelect.2a457a6e.js",
-      "_QBtnToggle.63331e64.js",
-      "_QTd.b9eedba1.js",
-      "_QTr.91d3a6df.js",
-      "_QTable.9ca148f2.js",
-      "_use-checkbox.93d37e49.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js"
+      "_QItemLabel.e92e7759.js",
+      "_QToggle.fde4e4f8.js",
+      "_QSelect.1655d965.js",
+      "_QBtnToggle.4e506650.js",
+      "_QTd.ff6de4f9.js",
+      "_QTr.3790db86.js",
+      "_QTable.238b17fe.js",
+      "_use-checkbox.8afa37ee.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js"
     ],
     "dynamicImports": [
       "resources/js/components/countdown/index.ts",
@@ -312,7 +333,7 @@
     ]
   },
   "resources/js/views/FeedBacknew.vue": {
-    "file": "assets/FeedBacknew.4ba2f152.js",
+    "file": "assets/FeedBacknew.2baa792c.js",
     "src": "resources/js/views/FeedBacknew.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -320,50 +341,50 @@
     ]
   },
   "resources/js/views/AdminPanel.vue": {
-    "file": "assets/AdminPanel.0839ab4d.js",
+    "file": "assets/AdminPanel.d1c4e934.js",
     "src": "resources/js/views/AdminPanel.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTd.b9eedba1.js",
-      "_QSelect.2a457a6e.js",
-      "_QTr.91d3a6df.js",
-      "_QTable.9ca148f2.js",
-      "_QSlideTransition.7f35110f.js",
+      "_QTd.ff6de4f9.js",
+      "_QSelect.1655d965.js",
+      "_QTr.3790db86.js",
+      "_QTable.238b17fe.js",
+      "_QSlideTransition.8a5e600c.js",
       "__plugin-vue_export-helper.cdc0426e.js",
-      "_QItemLabel.65cea28b.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QItemLabel.e92e7759.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ],
     "css": [
-      "assets/AdminPanel.5dcd5492.css"
+      "assets/AdminPanel.0457b242.css"
     ]
   },
-  "_QSlideTransition.7f35110f.js": {
-    "file": "assets/QSlideTransition.7f35110f.js",
+  "_QSlideTransition.8a5e600c.js": {
+    "file": "assets/QSlideTransition.8a5e600c.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/views/OperationInfo.vue": {
-    "file": "assets/OperationInfo.654f8e0a.js",
+    "file": "assets/OperationInfo.ad1ebf6a.js",
     "src": "resources/js/views/OperationInfo.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTd.b9eedba1.js",
-      "_QTr.91d3a6df.js",
-      "_QTable.9ca148f2.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QSelect.2a457a6e.js",
-      "_QItemLabel.65cea28b.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QTd.ff6de4f9.js",
+      "_QTr.3790db86.js",
+      "_QTable.238b17fe.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QSelect.1655d965.js",
+      "_QItemLabel.e92e7759.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ],
     "dynamicImports": [
       "resources/js/components/operationinfo/AddOperationInfo.vue"
@@ -373,16 +394,16 @@
     ]
   },
   "resources/js/views/OperationInfoPage.vue": {
-    "file": "assets/OperationInfoPage.071cc6c5.js",
+    "file": "assets/OperationInfoPage.358cb13c.js",
     "src": "resources/js/views/OperationInfoPage.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QOptionGroup.59156b95.js",
-      "_QRadio.f5fcb3ac.js",
-      "_use-checkbox.93d37e49.js",
-      "_QCheckbox.c77fa795.js",
-      "_QToggle.cf0cba15.js"
+      "_QOptionGroup.23b63c30.js",
+      "_QRadio.aa92bd40.js",
+      "_use-checkbox.8afa37ee.js",
+      "_QCheckbox.99bdbe93.js",
+      "_QToggle.fde4e4f8.js"
     ],
     "dynamicImports": [
       "resources/js/components/operationinfo/OperationInfoReconCard.vue",
@@ -396,24 +417,24 @@
       "assets/OperationInfoPage.e6036be8.css"
     ]
   },
-  "_QOptionGroup.59156b95.js": {
-    "file": "assets/QOptionGroup.59156b95.js",
+  "_QOptionGroup.23b63c30.js": {
+    "file": "assets/QOptionGroup.23b63c30.js",
     "imports": [
-      "_QRadio.f5fcb3ac.js",
-      "_QCheckbox.c77fa795.js",
-      "_QToggle.cf0cba15.js",
+      "_QRadio.aa92bd40.js",
+      "_QCheckbox.99bdbe93.js",
+      "_QToggle.fde4e4f8.js",
       "resources/js/app.js"
     ]
   },
-  "_QRadio.f5fcb3ac.js": {
-    "file": "assets/QRadio.f5fcb3ac.js",
+  "_QRadio.aa92bd40.js": {
+    "file": "assets/QRadio.aa92bd40.js",
     "imports": [
       "resources/js/app.js",
-      "_use-checkbox.93d37e49.js"
+      "_use-checkbox.8afa37ee.js"
     ]
   },
   "resources/js/views/redirect/operationInfoOver.vue": {
-    "file": "assets/operationInfoOver.12bc3e65.js",
+    "file": "assets/operationInfoOver.8985cc6a.js",
     "src": "resources/js/views/redirect/operationInfoOver.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -421,7 +442,7 @@
     ]
   },
   "resources/js/views/NewCampaign.vue": {
-    "file": "assets/NewCampaign.3c2d18bc.js",
+    "file": "assets/NewCampaign.cae28421.js",
     "src": "resources/js/views/NewCampaign.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -434,23 +455,23 @@
     ]
   },
   "resources/js/components/operations/SoloCampaignProgressLine.vue": {
-    "file": "assets/SoloCampaignProgressLine.36a5c14b.js",
+    "file": "assets/SoloCampaignProgressLine.761ecff6.js",
     "src": "resources/js/components/operations/SoloCampaignProgressLine.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QBadge.97e3edf6.js",
-      "_QLinearProgress.ceb52d52.js"
+      "_QBadge.04cff2a7.js",
+      "_QLinearProgress.26abd8fa.js"
     ]
   },
-  "_QBadge.97e3edf6.js": {
-    "file": "assets/QBadge.97e3edf6.js",
+  "_QBadge.04cff2a7.js": {
+    "file": "assets/QBadge.04cff2a7.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/components/countup/index.ts": {
-    "file": "assets/index.a56bdeea.js",
+    "file": "assets/index.4a03ac0d.js",
     "src": "resources/js/components/countup/index.ts",
     "isDynamicEntry": true,
     "imports": [
@@ -458,13 +479,13 @@
     ]
   },
   "resources/js/components/operations/SoloCampaignOperationChip.vue": {
-    "file": "assets/SoloCampaignOperationChip.4ff48cf6.js",
+    "file": "assets/SoloCampaignOperationChip.a9c32834.js",
     "src": "resources/js/components/operations/SoloCampaignOperationChip.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QSelect.2a457a6e.js",
-      "_QItemLabel.65cea28b.js"
+      "_QSelect.1655d965.js",
+      "_QItemLabel.e92e7759.js"
     ],
     "dynamicImports": [
       "resources/js/components/countdown/index.ts",
@@ -472,22 +493,22 @@
     ]
   },
   "resources/js/components/campaign/CampaignMap.vue": {
-    "file": "assets/CampaignMap.50026cb4.js",
+    "file": "assets/CampaignMap.6af221be.js",
     "src": "resources/js/components/campaign/CampaignMap.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTooltip.3c76ec35.js"
+      "_QTooltip.b6975b27.js"
     ]
   },
-  "_QTooltip.3c76ec35.js": {
-    "file": "assets/QTooltip.3c76ec35.js",
+  "_QTooltip.b6975b27.js": {
+    "file": "assets/QTooltip.b6975b27.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/components/operations/SoloCampaginWebWay.vue": {
-    "file": "assets/SoloCampaginWebWay.3c9eea81.js",
+    "file": "assets/SoloCampaginWebWay.2419a1bf.js",
     "src": "resources/js/components/operations/SoloCampaginWebWay.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -495,7 +516,7 @@
     ]
   },
   "resources/js/components/newcampaign/NewCampaginPriorityButton.vue": {
-    "file": "assets/NewCampaginPriorityButton.ab0170a0.js",
+    "file": "assets/NewCampaginPriorityButton.00dff614.js",
     "src": "resources/js/components/newcampaign/NewCampaginPriorityButton.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -503,7 +524,7 @@
     ]
   },
   "resources/js/components/timers/TimerCountDown.vue": {
-    "file": "assets/TimerCountDown.b17e7b26.js",
+    "file": "assets/TimerCountDown.e0d1a625.js",
     "src": "resources/js/components/timers/TimerCountDown.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -514,20 +535,20 @@
     ]
   },
   "resources/js/components/newcampaign/NewMultiCampaigns.vue": {
-    "file": "assets/NewMultiCampaigns.7d084a11.js",
+    "file": "assets/NewMultiCampaigns.649b8995.js",
     "src": "resources/js/components/newcampaign/NewMultiCampaigns.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTd.b9eedba1.js",
-      "_QTable.9ca148f2.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QSelect.2a457a6e.js",
-      "_QItemLabel.65cea28b.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QTd.ff6de4f9.js",
+      "_QTable.238b17fe.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QSelect.1655d965.js",
+      "_QItemLabel.e92e7759.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ],
     "dynamicImports": [
       "resources/js/components/multicampaigns/AddMultiCampaign.vue",
@@ -540,96 +561,83 @@
     ]
   },
   "resources/js/components/startcampaign/StartCampaign.vue": {
-    "file": "assets/StartCampaign.be008008.js",
+    "file": "assets/StartCampaign.b48c8fc1.js",
     "src": "resources/js/components/startcampaign/StartCampaign.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTd.b9eedba1.js",
-      "_QTable.9ca148f2.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QSelect.2a457a6e.js",
-      "_QItemLabel.65cea28b.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QTd.ff6de4f9.js",
+      "_QTable.238b17fe.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QSelect.1655d965.js",
+      "_QItemLabel.e92e7759.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ],
     "dynamicImports": [
       "resources/js/components/startcampaign/AddStartCampaign.vue",
       "resources/js/components/startcampaign/StartSystemItemList.vue"
     ],
     "css": [
-      "assets/StartCampaign.bcd2df75.css"
+      "assets/StartCampaign.45c52d00.css"
     ]
   },
   "resources/js/components/stationSheet/StationSheetLogs.vue": {
-    "file": "assets/StationSheetLogs.0d439c25.js",
+    "file": "assets/StationSheetLogs.0ecd02fe.js",
     "src": "resources/js/components/stationSheet/StationSheetLogs.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTd.b9eedba1.js",
-      "_QTr.91d3a6df.js",
-      "_QTable.9ca148f2.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QSelect.2a457a6e.js",
-      "_QItemLabel.65cea28b.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QTd.ff6de4f9.js",
+      "_QTr.3790db86.js",
+      "_QTable.238b17fe.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QSelect.1655d965.js",
+      "_QItemLabel.e92e7759.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ],
     "dynamicImports": [
       "resources/js/components/stationSheet/StationSheetLogText.vue"
     ]
   },
-  "resources/js/components/stationSheet/SettingPannel.vue": {
-    "file": "assets/SettingPannel.c9c9fe23.js",
-    "src": "resources/js/components/stationSheet/SettingPannel.vue",
-    "isDynamicEntry": true,
-    "imports": [
-      "resources/js/app.js",
-      "_QItemLabel.65cea28b.js",
-      "_QToggle.cf0cba15.js",
-      "_QSelect.2a457a6e.js",
-      "_use-checkbox.93d37e49.js"
-    ]
-  },
   "resources/js/components/stationSheet/StatusButton.vue": {
-    "file": "assets/StatusButton.063a7676.js",
+    "file": "assets/StatusButton.ca8e2148.js",
     "src": "resources/js/components/stationSheet/StatusButton.vue",
     "isDynamicEntry": true,
     "imports": [
-      "resources/js/app.js",
-      "_QSeparator.7f571c71.js"
+      "resources/js/app.js"
     ]
   },
   "resources/js/components/stationSheet/StationSheetInfo.vue": {
-    "file": "assets/StationSheetInfo.b446d84e.js",
+    "file": "assets/StationSheetInfo.21a7d855.js",
     "src": "resources/js/components/stationSheet/StationSheetInfo.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QSelect.2a457a6e.js",
-      "_QTd.b9eedba1.js",
-      "_QTable.9ca148f2.js",
-      "_QItemLabel.65cea28b.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QSelect.1655d965.js",
+      "_QTd.ff6de4f9.js",
+      "_QTable.238b17fe.js",
+      "_QItemLabel.e92e7759.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ]
   },
   "resources/js/components/rcsheet/RcStationMessage.vue": {
-    "file": "assets/RcStationMessage.fa63f8dc.js",
+    "file": "assets/RcStationMessage.4eb0fe36.js",
     "src": "resources/js/components/rcsheet/RcStationMessage.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QBadge.97e3edf6.js",
-      "_QChatMessage.795b9995.js"
+      "_QBadge.04cff2a7.js",
+      "_QChatMessage.19241726.js"
     ],
     "dynamicImports": [
       "resources/js/components/countup/index.ts"
@@ -638,27 +646,27 @@
       "assets/RcStationMessage.ef1b6d44.css"
     ]
   },
-  "_QChatMessage.795b9995.js": {
-    "file": "assets/QChatMessage.795b9995.js",
+  "_QChatMessage.19241726.js": {
+    "file": "assets/QChatMessage.19241726.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/components/station/AddStation.vue": {
-    "file": "assets/AddStation.1d206b7f.js",
+    "file": "assets/AddStation.beff66a7.js",
     "src": "resources/js/components/station/AddStation.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTabPanels.81a24c88.js",
-      "_QSelect.2a457a6e.js",
-      "_QSeparator.7f571c71.js",
-      "_QOptionGroup.59156b95.js",
-      "_QItemLabel.65cea28b.js",
-      "_QRadio.f5fcb3ac.js",
-      "_use-checkbox.93d37e49.js",
-      "_QCheckbox.c77fa795.js",
-      "_QToggle.cf0cba15.js"
+      "_QTabPanels.43b4ae9a.js",
+      "_QSelect.1655d965.js",
+      "_QSeparator.f7b1f111.js",
+      "_QOptionGroup.23b63c30.js",
+      "_QItemLabel.e92e7759.js",
+      "_QRadio.aa92bd40.js",
+      "_use-checkbox.8afa37ee.js",
+      "_QCheckbox.99bdbe93.js",
+      "_QToggle.fde4e4f8.js"
     ],
     "dynamicImports": [
       "resources/js/components/station/AddMissingCorp.vue"
@@ -667,14 +675,52 @@
       "assets/info.a6adef34.png"
     ]
   },
-  "_QTabPanels.81a24c88.js": {
-    "file": "assets/QTabPanels.81a24c88.js",
+  "_QTabPanels.43b4ae9a.js": {
+    "file": "assets/QTabPanels.43b4ae9a.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
+  "resources/js/components/StationWatchList/StationWatchListSettingPannel.vue": {
+    "file": "assets/StationWatchListSettingPannel.526eb1ea.js",
+    "src": "resources/js/components/StationWatchList/StationWatchListSettingPannel.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_QItemLabel.e92e7759.js",
+      "_QToggle.fde4e4f8.js",
+      "_QSelect.1655d965.js",
+      "_QSeparator.f7b1f111.js",
+      "_use-checkbox.8afa37ee.js"
+    ]
+  },
+  "resources/js/components/StationWatchList/StationWatchListTable.vue": {
+    "file": "assets/StationWatchListTable.0f3e76b2.js",
+    "src": "resources/js/components/StationWatchList/StationWatchListTable.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_QTd.ff6de4f9.js",
+      "_QSelect.1655d965.js",
+      "_QTr.3790db86.js",
+      "_QTable.238b17fe.js",
+      "_QItemLabel.e92e7759.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
+    ],
+    "dynamicImports": [
+      "resources/js/components/StationWatchList/StationWatchListAddList.vue",
+      "resources/js/components/StationWatchList/StationWatchListTableCard.vue"
+    ],
+    "css": [
+      "assets/StationWatchListTable.4c9ce035.css"
+    ]
+  },
   "resources/js/components/countdown/index.ts": {
-    "file": "assets/index.64ab5fea.js",
+    "file": "assets/index.e915ca23.js",
     "src": "resources/js/components/countdown/index.ts",
     "isDynamicEntry": true,
     "imports": [
@@ -682,31 +728,31 @@
     ]
   },
   "resources/js/components/tower/AddTower.vue": {
-    "file": "assets/AddTower.033668d6.js",
+    "file": "assets/AddTower.2c9e7261.js",
     "src": "resources/js/components/tower/AddTower.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QSelect.2a457a6e.js",
-      "_QOptionGroup.59156b95.js",
-      "_QItemLabel.65cea28b.js",
-      "_QRadio.f5fcb3ac.js",
-      "_use-checkbox.93d37e49.js",
-      "_QCheckbox.c77fa795.js",
-      "_QToggle.cf0cba15.js"
+      "_QSelect.1655d965.js",
+      "_QOptionGroup.23b63c30.js",
+      "_QItemLabel.e92e7759.js",
+      "_QRadio.aa92bd40.js",
+      "_use-checkbox.8afa37ee.js",
+      "_QCheckbox.99bdbe93.js",
+      "_QToggle.fde4e4f8.js"
     ],
     "dynamicImports": [
       "resources/js/components/station/AddMissingCorp.vue"
     ]
   },
   "resources/js/components/tower/TowerMessage.vue": {
-    "file": "assets/TowerMessage.9fee5928.js",
+    "file": "assets/TowerMessage.18bc72d5.js",
     "src": "resources/js/components/tower/TowerMessage.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QBadge.97e3edf6.js",
-      "_QChatMessage.795b9995.js"
+      "_QBadge.04cff2a7.js",
+      "_QChatMessage.19241726.js"
     ],
     "dynamicImports": [
       "resources/js/components/countup/index.ts"
@@ -716,7 +762,7 @@
     ]
   },
   "resources/js/components/operationinfo/AddOperationInfo.vue": {
-    "file": "assets/AddOperationInfo.e9ae5a78.js",
+    "file": "assets/AddOperationInfo.09cef46e.js",
     "src": "resources/js/components/operationinfo/AddOperationInfo.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -724,7 +770,7 @@
     ]
   },
   "resources/js/components/operationinfo/OperationInfoReconCard.vue": {
-    "file": "assets/OperationInfoReconCard.ac62c07b.js",
+    "file": "assets/OperationInfoReconCard.c9d789dc.js",
     "src": "resources/js/components/operationinfo/OperationInfoReconCard.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -736,36 +782,36 @@
     ]
   },
   "resources/js/components/operationinfo/OperationInfoSettingPannel.vue": {
-    "file": "assets/OperationInfoSettingPannel.08f80087.js",
+    "file": "assets/OperationInfoSettingPannel.6f1aa25d.js",
     "src": "resources/js/components/operationinfo/OperationInfoSettingPannel.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QSelect.2a457a6e.js",
-      "_QItemLabel.65cea28b.js",
-      "_QToggle.cf0cba15.js",
-      "_QOptionGroup.59156b95.js",
-      "_use-checkbox.93d37e49.js",
-      "_QRadio.f5fcb3ac.js",
-      "_QCheckbox.c77fa795.js"
+      "_QSelect.1655d965.js",
+      "_QItemLabel.e92e7759.js",
+      "_QToggle.fde4e4f8.js",
+      "_QOptionGroup.23b63c30.js",
+      "_use-checkbox.8afa37ee.js",
+      "_QRadio.aa92bd40.js",
+      "_QCheckbox.99bdbe93.js"
     ]
   },
   "resources/js/components/operationinfo/OpertationInfoSystemTable.vue": {
-    "file": "assets/OpertationInfoSystemTable.f4590bea.js",
+    "file": "assets/OpertationInfoSystemTable.db782c2b.js",
     "src": "resources/js/components/operationinfo/OpertationInfoSystemTable.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTd.b9eedba1.js",
-      "_QTr.91d3a6df.js",
-      "_QTable.9ca148f2.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QSelect.2a457a6e.js",
-      "_QItemLabel.65cea28b.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QTd.ff6de4f9.js",
+      "_QTr.3790db86.js",
+      "_QTable.238b17fe.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QSelect.1655d965.js",
+      "_QItemLabel.e92e7759.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ],
     "dynamicImports": [
       "resources/js/components/operationinfo/OperationInfoSystemReconChips.vue",
@@ -775,52 +821,52 @@
     ]
   },
   "resources/js/components/operationinfo/OperationInfoFleetCard.vue": {
-    "file": "assets/OperationInfoFleetCard.d5be8144.js",
+    "file": "assets/OperationInfoFleetCard.74ba02a7.js",
     "src": "resources/js/components/operationinfo/OperationInfoFleetCard.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTable.9ca148f2.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QSelect.2a457a6e.js",
-      "_QItemLabel.65cea28b.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QTable.238b17fe.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QSelect.1655d965.js",
+      "_QItemLabel.e92e7759.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ],
     "dynamicImports": [
       "resources/js/components/operationinfo/OperationInfoFleetSoloCard.vue"
     ]
   },
   "resources/js/components/operationinfo/OperationInfoCheckList.vue": {
-    "file": "assets/OperationInfoCheckList.03edd890.js",
+    "file": "assets/OperationInfoCheckList.f83170c2.js",
     "src": "resources/js/components/operationinfo/OperationInfoCheckList.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QCircularProgress.657549a5.js",
-      "_QSlideTransition.7f35110f.js",
-      "_QTabPanels.81a24c88.js"
+      "_QCircularProgress.be3872be.js",
+      "_QSlideTransition.8a5e600c.js",
+      "_QTabPanels.43b4ae9a.js"
     ],
     "dynamicImports": [
       "resources/js/components/operationinfo/OperationInfoCheckListTickBox.vue"
     ]
   },
-  "_QCircularProgress.657549a5.js": {
-    "file": "assets/QCircularProgress.657549a5.js",
+  "_QCircularProgress.be3872be.js": {
+    "file": "assets/QCircularProgress.be3872be.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/components/operationinfo/OperationInfoMessageCard.vue": {
-    "file": "assets/OperationInfoMessageCard.cf812198.js",
+    "file": "assets/OperationInfoMessageCard.d31572e8.js",
     "src": "resources/js/components/operationinfo/OperationInfoMessageCard.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QBadge.97e3edf6.js",
-      "_QChatMessage.795b9995.js"
+      "_QBadge.04cff2a7.js",
+      "_QChatMessage.19241726.js"
     ],
     "dynamicImports": [
       "resources/js/components/countup/index.ts"
@@ -830,39 +876,39 @@
     ]
   },
   "resources/js/components/newcampaign/CampaignTitleBar.vue": {
-    "file": "assets/CampaignTitleBar.08c0b2b8.js",
+    "file": "assets/CampaignTitleBar.68ea67b8.js",
     "src": "resources/js/components/newcampaign/CampaignTitleBar.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QExpansionItem.6067fa24.js",
-      "_QItemLabel.65cea28b.js",
-      "_QSlideTransition.7f35110f.js",
-      "_QSeparator.7f571c71.js"
+      "_QExpansionItem.470980e6.js",
+      "_QItemLabel.e92e7759.js",
+      "_QSlideTransition.8a5e600c.js",
+      "_QSeparator.f7b1f111.js"
     ],
     "dynamicImports": [
       "resources/js/components/newcampaign/CampaignTitleBarContent.vue"
     ]
   },
-  "_QExpansionItem.6067fa24.js": {
-    "file": "assets/QExpansionItem.6067fa24.js",
+  "_QExpansionItem.470980e6.js": {
+    "file": "assets/QExpansionItem.470980e6.js",
     "imports": [
       "resources/js/app.js",
-      "_QItemLabel.65cea28b.js",
-      "_QSlideTransition.7f35110f.js",
-      "_QSeparator.7f571c71.js"
+      "_QItemLabel.e92e7759.js",
+      "_QSlideTransition.8a5e600c.js",
+      "_QSeparator.f7b1f111.js"
     ]
   },
   "resources/js/components/newcampaign/CampaignSystemCard.vue": {
-    "file": "assets/CampaignSystemCard.f16ddc2c.js",
+    "file": "assets/CampaignSystemCard.fb53daf5.js",
     "src": "resources/js/components/newcampaign/CampaignSystemCard.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QSeparator.7f571c71.js",
-      "_QExpansionItem.6067fa24.js",
-      "_QItemLabel.65cea28b.js",
-      "_QSlideTransition.7f35110f.js"
+      "_QSeparator.f7b1f111.js",
+      "_QExpansionItem.470980e6.js",
+      "_QItemLabel.e92e7759.js",
+      "_QSlideTransition.8a5e600c.js"
     ],
     "dynamicImports": [
       "resources/js/components/newcampaign/SystemNodeCount.vue",
@@ -872,18 +918,18 @@
     ]
   },
   "resources/js/components/newcampaign/CampaignActiveBar.vue": {
-    "file": "assets/CampaignActiveBar.3015e241.js",
+    "file": "assets/CampaignActiveBar.58fa22c6.js",
     "src": "resources/js/components/newcampaign/CampaignActiveBar.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QToggle.cf0cba15.js",
-      "_QTabPanels.81a24c88.js",
-      "_QExpansionItem.6067fa24.js",
-      "_use-checkbox.93d37e49.js",
-      "_QItemLabel.65cea28b.js",
-      "_QSlideTransition.7f35110f.js",
-      "_QSeparator.7f571c71.js"
+      "_QToggle.fde4e4f8.js",
+      "_QTabPanels.43b4ae9a.js",
+      "_QExpansionItem.470980e6.js",
+      "_use-checkbox.8afa37ee.js",
+      "_QItemLabel.e92e7759.js",
+      "_QSlideTransition.8a5e600c.js",
+      "_QSeparator.f7b1f111.js"
     ],
     "dynamicImports": [
       "resources/js/components/newcampaign/AddOperationUser.vue",
@@ -894,29 +940,29 @@
     ]
   },
   "resources/js/components/multicampaigns/AddMultiCampaign.vue": {
-    "file": "assets/AddMultiCampaign.27050de1.js",
+    "file": "assets/AddMultiCampaign.c6975f77.js",
     "src": "resources/js/components/multicampaigns/AddMultiCampaign.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QItemLabel.65cea28b.js",
-      "_QToggle.cf0cba15.js",
-      "_QSelect.2a457a6e.js",
-      "_use-checkbox.93d37e49.js"
+      "_QItemLabel.e92e7759.js",
+      "_QToggle.fde4e4f8.js",
+      "_QSelect.1655d965.js",
+      "_use-checkbox.8afa37ee.js"
     ]
   },
   "resources/js/components/newcampaign/NewSystemItemList.vue": {
-    "file": "assets/NewSystemItemList.5243c636.js",
+    "file": "assets/NewSystemItemList.7fc590c5.js",
     "src": "resources/js/components/newcampaign/NewSystemItemList.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_QSelect.2a457a6e.js",
+      "_QSelect.1655d965.js",
       "resources/js/app.js",
-      "_QItemLabel.65cea28b.js"
+      "_QItemLabel.e92e7759.js"
     ]
   },
   "resources/js/components/newcampaign/NewCustomCampaignDeleteButton.vue": {
-    "file": "assets/NewCustomCampaignDeleteButton.1bb3934b.js",
+    "file": "assets/NewCustomCampaignDeleteButton.9f2075bc.js",
     "src": "resources/js/components/newcampaign/NewCustomCampaignDeleteButton.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -924,41 +970,41 @@
     ]
   },
   "resources/js/components/newcampaign/EditOperation.vue": {
-    "file": "assets/EditOperation.7607762a.js",
+    "file": "assets/EditOperation.07d91c2e.js",
     "src": "resources/js/components/newcampaign/EditOperation.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QItemLabel.65cea28b.js",
-      "_QToggle.cf0cba15.js",
-      "_QSelect.2a457a6e.js",
-      "_use-checkbox.93d37e49.js"
+      "_QItemLabel.e92e7759.js",
+      "_QToggle.fde4e4f8.js",
+      "_QSelect.1655d965.js",
+      "_use-checkbox.8afa37ee.js"
     ]
   },
   "resources/js/components/startcampaign/AddStartCampaign.vue": {
-    "file": "assets/AddStartCampaign.251de2c0.js",
+    "file": "assets/AddStartCampaign.ae3473ae.js",
     "src": "resources/js/components/startcampaign/AddStartCampaign.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QItemLabel.65cea28b.js",
-      "_QToggle.cf0cba15.js",
-      "_QSelect.2a457a6e.js",
-      "_use-checkbox.93d37e49.js"
+      "_QItemLabel.e92e7759.js",
+      "_QToggle.fde4e4f8.js",
+      "_QSelect.1655d965.js",
+      "_use-checkbox.8afa37ee.js"
     ]
   },
   "resources/js/components/startcampaign/StartSystemItemList.vue": {
-    "file": "assets/StartSystemItemList.e91a513f.js",
+    "file": "assets/StartSystemItemList.3c9049a3.js",
     "src": "resources/js/components/startcampaign/StartSystemItemList.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_QSelect.2a457a6e.js",
+      "_QSelect.1655d965.js",
       "resources/js/app.js",
-      "_QItemLabel.65cea28b.js"
+      "_QItemLabel.e92e7759.js"
     ]
   },
   "resources/js/components/stationSheet/StationSheetLogText.vue": {
-    "file": "assets/StationSheetLogText.d794276f.js",
+    "file": "assets/StationSheetLogText.344fbb65.js",
     "src": "resources/js/components/stationSheet/StationSheetLogText.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -966,61 +1012,87 @@
     ]
   },
   "resources/js/components/station/AddMissingCorp.vue": {
-    "file": "assets/AddMissingCorp.024c9e5e.js",
+    "file": "assets/AddMissingCorp.856d0acf.js",
     "src": "resources/js/components/station/AddMissingCorp.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
+  "resources/js/components/StationWatchList/StationWatchListAddList.vue": {
+    "file": "assets/StationWatchListAddList.f3467330.js",
+    "src": "resources/js/components/StationWatchList/StationWatchListAddList.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_QSeparator.f7b1f111.js",
+      "_QItemLabel.e92e7759.js",
+      "_QToggle.fde4e4f8.js",
+      "_QSelect.1655d965.js",
+      "_use-checkbox.8afa37ee.js"
+    ]
+  },
+  "resources/js/components/StationWatchList/StationWatchListTableCard.vue": {
+    "file": "assets/StationWatchListTableCard.423883f0.js",
+    "src": "resources/js/components/StationWatchList/StationWatchListTableCard.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_QSeparator.f7b1f111.js",
+      "_QBadge.04cff2a7.js"
+    ],
+    "dynamicImports": [
+      "resources/js/components/StationWatchList/StationWatchListAddList.vue"
+    ]
+  },
   "resources/js/components/operationinfo/OperationInfoReconCardNames.vue": {
-    "file": "assets/OperationInfoReconCardNames.e6ff17fb.js",
+    "file": "assets/OperationInfoReconCardNames.70685e87.js",
     "src": "resources/js/components/operationinfo/OperationInfoReconCardNames.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_QTooltip.3c76ec35.js",
+      "_QTooltip.b6975b27.js",
       "resources/js/app.js",
-      "_copy-to-clipboard.d88da222.js"
+      "_copy-to-clipboard.14071bd1.js"
     ],
     "css": [
       "assets/OperationInfoReconCardNames.5203d4ba.css"
     ]
   },
   "resources/js/components/operationinfo/AddOperationReconButton.vue": {
-    "file": "assets/AddOperationReconButton.b9f2e9bf.js",
+    "file": "assets/AddOperationReconButton.f000f47e.js",
     "src": "resources/js/components/operationinfo/AddOperationReconButton.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QSelect.2a457a6e.js",
-      "_QToggle.cf0cba15.js",
-      "_QSlideTransition.7f35110f.js",
-      "_QItemLabel.65cea28b.js",
-      "_use-checkbox.93d37e49.js"
+      "_QSelect.1655d965.js",
+      "_QToggle.fde4e4f8.js",
+      "_QSlideTransition.8a5e600c.js",
+      "_QItemLabel.e92e7759.js",
+      "_use-checkbox.8afa37ee.js"
     ]
   },
   "resources/js/components/operationinfo/OperationInfoSystemReconChips.vue": {
-    "file": "assets/OperationInfoSystemReconChips.33255989.js",
+    "file": "assets/OperationInfoSystemReconChips.ee4ba6ee.js",
     "src": "resources/js/components/operationinfo/OperationInfoSystemReconChips.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QSelect.2a457a6e.js",
-      "_QItemLabel.65cea28b.js"
+      "_QSelect.1655d965.js",
+      "_QItemLabel.e92e7759.js"
     ]
   },
   "resources/js/components/operationinfo/OperationInfoSystemAddRecon.vue": {
-    "file": "assets/OperationInfoSystemAddRecon.914f9fbb.js",
+    "file": "assets/OperationInfoSystemAddRecon.d4d7464b.js",
     "src": "resources/js/components/operationinfo/OperationInfoSystemAddRecon.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_QSelect.2a457a6e.js",
+      "_QSelect.1655d965.js",
       "resources/js/app.js",
-      "_QItemLabel.65cea28b.js"
+      "_QItemLabel.e92e7759.js"
     ]
   },
   "resources/js/components/operationinfo/OperationInfoSystemAddNotes.vue": {
-    "file": "assets/OperationInfoSystemAddNotes.050b76cb.js",
+    "file": "assets/OperationInfoSystemAddNotes.a0e1bfcb.js",
     "src": "resources/js/components/operationinfo/OperationInfoSystemAddNotes.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1028,68 +1100,68 @@
     ]
   },
   "resources/js/components/operationinfo/OperationInfoSystemJammerSetting.vue": {
-    "file": "assets/OperationInfoSystemJammerSetting.daf4f89d.js",
+    "file": "assets/OperationInfoSystemJammerSetting.b953a14b.js",
     "src": "resources/js/components/operationinfo/OperationInfoSystemJammerSetting.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QBtnToggle.63331e64.js",
-      "_QSlider.b3dfeb81.js"
+      "_QBtnToggle.4e506650.js",
+      "_QSlider.1d132947.js"
     ]
   },
-  "_QSlider.b3dfeb81.js": {
-    "file": "assets/QSlider.b3dfeb81.js",
+  "_QSlider.1d132947.js": {
+    "file": "assets/QSlider.1d132947.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/components/operationinfo/OperationInfoFleetSoloCard.vue": {
-    "file": "assets/OperationInfoFleetSoloCard.54d14f61.js",
+    "file": "assets/OperationInfoFleetSoloCard.a3710ed1.js",
     "src": "resources/js/components/operationinfo/OperationInfoFleetSoloCard.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTooltip.3c76ec35.js",
-      "_QSelect.2a457a6e.js",
-      "_QSeparator.7f571c71.js",
-      "_QItemLabel.65cea28b.js"
+      "_QTooltip.b6975b27.js",
+      "_QSelect.1655d965.js",
+      "_QSeparator.f7b1f111.js",
+      "_QItemLabel.e92e7759.js"
     ]
   },
   "resources/js/components/operationinfo/OperationInfoCheckListTickBox.vue": {
-    "file": "assets/OperationInfoCheckListTickBox.1843fb08.js",
+    "file": "assets/OperationInfoCheckListTickBox.c956db44.js",
     "src": "resources/js/components/operationinfo/OperationInfoCheckListTickBox.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_QCheckbox.c77fa795.js",
+      "_QCheckbox.99bdbe93.js",
       "resources/js/app.js",
-      "_use-checkbox.93d37e49.js"
+      "_use-checkbox.8afa37ee.js"
     ]
   },
   "resources/js/components/newcampaign/CampaignTitleBarContent.vue": {
-    "file": "assets/CampaignTitleBarContent.32700a56.js",
+    "file": "assets/CampaignTitleBarContent.ea8e44b6.js",
     "src": "resources/js/components/newcampaign/CampaignTitleBarContent.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QBadge.97e3edf6.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCircularProgress.657549a5.js"
+      "_QBadge.04cff2a7.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCircularProgress.be3872be.js"
     ],
     "dynamicImports": [
       "resources/js/components/countdown/index.ts"
     ]
   },
   "resources/js/components/newcampaign/SystemNodeCount.vue": {
-    "file": "assets/SystemNodeCount.02ece362.js",
+    "file": "assets/SystemNodeCount.6d98e494.js",
     "src": "resources/js/components/newcampaign/SystemNodeCount.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_QCircularProgress.657549a5.js",
+      "_QCircularProgress.be3872be.js",
       "resources/js/app.js"
     ]
   },
   "resources/js/components/newcampaign/OnTheWay.vue": {
-    "file": "assets/OnTheWay.0a4ed089.js",
+    "file": "assets/OnTheWay.e906a3fb.js",
     "src": "resources/js/components/newcampaign/OnTheWay.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1097,7 +1169,7 @@
     ]
   },
   "resources/js/components/newcampaign/ReadyToGo.vue": {
-    "file": "assets/ReadyToGo.537dfee3.js",
+    "file": "assets/ReadyToGo.dffc193d.js",
     "src": "resources/js/components/newcampaign/ReadyToGo.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1105,7 +1177,7 @@
     ]
   },
   "resources/js/components/newcampaign/CampaignSystemCardContent.vue": {
-    "file": "assets/CampaignSystemCardContent.b18406e0.js",
+    "file": "assets/CampaignSystemCardContent.a95086a2.js",
     "src": "resources/js/components/newcampaign/CampaignSystemCardContent.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1118,21 +1190,21 @@
     ]
   },
   "resources/js/components/newcampaign/AddOperationUser.vue": {
-    "file": "assets/AddOperationUser.7ce5f846.js",
+    "file": "assets/AddOperationUser.ab185fbb.js",
     "src": "resources/js/components/newcampaign/AddOperationUser.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTable.9ca148f2.js",
-      "_QTd.b9eedba1.js",
-      "_QTr.91d3a6df.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QSelect.2a457a6e.js",
-      "_QItemLabel.65cea28b.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QTable.238b17fe.js",
+      "_QTd.ff6de4f9.js",
+      "_QTr.3790db86.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QSelect.1655d965.js",
+      "_QItemLabel.e92e7759.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ],
     "dynamicImports": [
       "resources/js/components/newcampaign/AddOperationUserButton.vue"
@@ -1142,70 +1214,70 @@
     ]
   },
   "resources/js/components/newcampaign/OperationCal.vue": {
-    "file": "assets/OperationCal.3183dd5f.js",
+    "file": "assets/OperationCal.58db6406.js",
     "src": "resources/js/components/newcampaign/OperationCal.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QSlider.b3dfeb81.js",
-      "_QMarkupTable.d8dc2097.js"
+      "_QSlider.1d132947.js",
+      "_QMarkupTable.108a3ec1.js"
     ]
   },
   "resources/js/components/newcampaign/OperationUserTable.vue": {
-    "file": "assets/OperationUserTable.88521120.js",
+    "file": "assets/OperationUserTable.43f8c8b1.js",
     "src": "resources/js/components/newcampaign/OperationUserTable.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QBtnToggle.63331e64.js",
-      "_QTable.9ca148f2.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QSelect.2a457a6e.js",
-      "_QItemLabel.65cea28b.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QBtnToggle.4e506650.js",
+      "_QTable.238b17fe.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QSelect.1655d965.js",
+      "_QItemLabel.e92e7759.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ],
     "css": [
       "assets/OperationUserTable.490c3f75.css"
     ]
   },
   "resources/js/components/newcampaign/OperationUserListTable.vue": {
-    "file": "assets/OperationUserListTable.e6cedd07.js",
+    "file": "assets/OperationUserListTable.ded48f6c.js",
     "src": "resources/js/components/newcampaign/OperationUserListTable.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_QSelect.2a457a6e.js",
+      "_QSelect.1655d965.js",
       "resources/js/app.js",
-      "_QTd.b9eedba1.js",
-      "_QTable.9ca148f2.js",
-      "_QItemLabel.65cea28b.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QTd.ff6de4f9.js",
+      "_QTable.238b17fe.js",
+      "_QItemLabel.e92e7759.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ],
     "css": [
       "assets/OperationUserListTable.e469a459.css"
     ]
   },
   "resources/js/components/newcampaign/OperationLogTable.vue": {
-    "file": "assets/OperationLogTable.a7ec3911.js",
+    "file": "assets/OperationLogTable.9455ba99.js",
     "src": "resources/js/components/newcampaign/OperationLogTable.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTd.b9eedba1.js",
-      "_QTable.9ca148f2.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QSelect.2a457a6e.js",
-      "_QItemLabel.65cea28b.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QTd.ff6de4f9.js",
+      "_QTable.238b17fe.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QSelect.1655d965.js",
+      "_QItemLabel.e92e7759.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ],
     "dynamicImports": [
       "resources/js/components/newcampaign/NewCampaignLogText.vue"
@@ -1215,7 +1287,7 @@
     ]
   },
   "resources/js/components/newcampaign/SystemCheckButton.vue": {
-    "file": "assets/SystemCheckButton.28184c48.js",
+    "file": "assets/SystemCheckButton.af819797.js",
     "src": "resources/js/components/newcampaign/SystemCheckButton.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1226,7 +1298,7 @@
     ]
   },
   "resources/js/components/newcampaign/TidiButton.vue": {
-    "file": "assets/TidiButton.a91bcbfe.js",
+    "file": "assets/TidiButton.ed4fc835.js",
     "src": "resources/js/components/newcampaign/TidiButton.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1234,21 +1306,21 @@
     ]
   },
   "resources/js/components/newcampaign/NewSystemTable.vue": {
-    "file": "assets/NewSystemTable.4b76f04e.js",
+    "file": "assets/NewSystemTable.a6db9f13.js",
     "src": "resources/js/components/newcampaign/NewSystemTable.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTable.9ca148f2.js",
-      "_QSelect.2a457a6e.js",
-      "_QTd.b9eedba1.js",
-      "_QTr.91d3a6df.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js",
-      "_QItemLabel.65cea28b.js"
+      "_QTable.238b17fe.js",
+      "_QSelect.1655d965.js",
+      "_QTd.ff6de4f9.js",
+      "_QTr.3790db86.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js",
+      "_QItemLabel.e92e7759.js"
     ],
     "dynamicImports": [
       "resources/js/components/newcampaign/AddNode.vue",
@@ -1265,20 +1337,20 @@
     ]
   },
   "resources/js/components/newcampaign/AddOperationUserButton.vue": {
-    "file": "assets/AddOperationUserButton.ef7dfe0b.js",
+    "file": "assets/AddOperationUserButton.27dee4ca.js",
     "src": "resources/js/components/newcampaign/AddOperationUserButton.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QSelect.2a457a6e.js",
-      "_QSlideTransition.7f35110f.js",
-      "_QRadio.f5fcb3ac.js",
-      "_QItemLabel.65cea28b.js",
-      "_use-checkbox.93d37e49.js"
+      "_QSelect.1655d965.js",
+      "_QSlideTransition.8a5e600c.js",
+      "_QRadio.aa92bd40.js",
+      "_QItemLabel.e92e7759.js",
+      "_use-checkbox.8afa37ee.js"
     ]
   },
   "resources/js/components/newcampaign/NewCampaignLogText.vue": {
-    "file": "assets/NewCampaignLogText.14af0a2a.js",
+    "file": "assets/NewCampaignLogText.53b9bebb.js",
     "src": "resources/js/components/newcampaign/NewCampaignLogText.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1286,17 +1358,17 @@
     ]
   },
   "resources/js/components/newcampaign/AddNode.vue": {
-    "file": "assets/AddNode.dc7e3acb.js",
+    "file": "assets/AddNode.4f8c8322.js",
     "src": "resources/js/components/newcampaign/AddNode.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_QSelect.2a457a6e.js",
+      "_QSelect.1655d965.js",
       "resources/js/app.js",
-      "_QItemLabel.65cea28b.js"
+      "_QItemLabel.e92e7759.js"
     ]
   },
   "resources/js/components/newcampaign/AddPilot.vue": {
-    "file": "assets/AddPilot.ed774e5f.js",
+    "file": "assets/AddPilot.80fa80ce.js",
     "src": "resources/js/components/newcampaign/AddPilot.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1304,7 +1376,7 @@
     ]
   },
   "resources/js/components/newcampaign/NewNodeExtraChar.vue": {
-    "file": "assets/NewNodeExtraChar.48b554d4.js",
+    "file": "assets/NewNodeExtraChar.e6caab44.js",
     "src": "resources/js/components/newcampaign/NewNodeExtraChar.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1312,27 +1384,27 @@
     ]
   },
   "resources/js/components/newcampaign/AddPilotAdmin.vue": {
-    "file": "assets/AddPilotAdmin.0f86a232.js",
+    "file": "assets/AddPilotAdmin.791fd4cd.js",
     "src": "resources/js/components/newcampaign/AddPilotAdmin.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTd.b9eedba1.js",
-      "_QTable.9ca148f2.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QSelect.2a457a6e.js",
-      "_QItemLabel.65cea28b.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QTd.ff6de4f9.js",
+      "_QTable.238b17fe.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QSelect.1655d965.js",
+      "_QItemLabel.e92e7759.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ],
     "css": [
       "assets/AddPilotAdmin.7413b1d5.css"
     ]
   },
   "resources/js/components/newcampaign/NewSystemTableSimpleText.vue": {
-    "file": "assets/NewSystemTableSimpleText.0043b4ce.js",
+    "file": "assets/NewSystemTableSimpleText.0036219a.js",
     "src": "resources/js/components/newcampaign/NewSystemTableSimpleText.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1340,7 +1412,7 @@
     ]
   },
   "resources/js/components/newcampaign/NewSystemTableStatusButton.vue": {
-    "file": "assets/NewSystemTableStatusButton.1d51db71.js",
+    "file": "assets/NewSystemTableStatusButton.b8c4d396.js",
     "src": "resources/js/components/newcampaign/NewSystemTableStatusButton.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -1348,13 +1420,13 @@
     ]
   },
   "resources/js/components/newcampaign/NewSystemTableTimer.vue": {
-    "file": "assets/NewSystemTableTimer.efd67fb5.js",
+    "file": "assets/NewSystemTableTimer.5a55d18a.js",
     "src": "resources/js/components/newcampaign/NewSystemTableTimer.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QSelect.2a457a6e.js",
-      "_QItemLabel.65cea28b.js"
+      "_QSelect.1655d965.js",
+      "_QItemLabel.e92e7759.js"
     ],
     "dynamicImports": [
       "resources/js/components/countup/index.ts",
@@ -1362,21 +1434,21 @@
     ]
   },
   "resources/js/components/newcampaign/NewJoinNodeTable.vue": {
-    "file": "assets/NewJoinNodeTable.87d2e148.js",
+    "file": "assets/NewJoinNodeTable.1f283f8b.js",
     "src": "resources/js/components/newcampaign/NewJoinNodeTable.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_QTd.b9eedba1.js",
-      "_QTr.91d3a6df.js",
-      "_QTable.9ca148f2.js",
-      "_QSeparator.7f571c71.js",
-      "_QMarkupTable.d8dc2097.js",
-      "_QSelect.2a457a6e.js",
-      "_QItemLabel.65cea28b.js",
-      "_QLinearProgress.ceb52d52.js",
-      "_QCheckbox.c77fa795.js",
-      "_use-checkbox.93d37e49.js"
+      "_QTd.ff6de4f9.js",
+      "_QTr.3790db86.js",
+      "_QTable.238b17fe.js",
+      "_QSeparator.f7b1f111.js",
+      "_QMarkupTable.108a3ec1.js",
+      "_QSelect.1655d965.js",
+      "_QItemLabel.e92e7759.js",
+      "_QLinearProgress.26abd8fa.js",
+      "_QCheckbox.99bdbe93.js",
+      "_use-checkbox.8afa37ee.js"
     ],
     "dynamicImports": [
       "resources/js/components/newcampaign/NewSystemTableStatusButton.vue",
@@ -1391,13 +1463,21 @@
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
+  "resources/js/views/Timers.css": {
+    "file": "assets/Timers.517a74d8.css",
+    "src": "resources/js/views/Timers.css"
+  },
+  "resources/js/components/StationWatchList/StationWatchListTable.css": {
+    "file": "assets/StationWatchListTable.4c9ce035.css",
+    "src": "resources/js/components/StationWatchList/StationWatchListTable.css"
+  },
   "resources/js/components/startcampaign/StartCampaign.css": {
-    "file": "assets/StartCampaign.bcd2df75.css",
+    "file": "assets/StartCampaign.45c52d00.css",
     "src": "resources/js/components/startcampaign/StartCampaign.css"
   },
-  "resources/js/components/operationinfo/OperationInfoMessageCard.css": {
-    "file": "assets/OperationInfoMessageCard.ef1b6d44.css",
-    "src": "resources/js/components/operationinfo/OperationInfoMessageCard.css"
+  "resources/js/components/tower/TowerMessage.css": {
+    "file": "assets/TowerMessage.ef1b6d44.css",
+    "src": "resources/js/components/tower/TowerMessage.css"
   },
   "resources/js/components/rcsheet/RcStationMessage.css": {
     "file": "assets/RcStationMessage.ef1b6d44.css",
@@ -1407,37 +1487,37 @@
     "file": "assets/OperationInfo.69d697b3.css",
     "src": "resources/js/views/OperationInfo.css"
   },
-  "resources/js/components/tower/TowerMessage.css": {
-    "file": "assets/TowerMessage.ef1b6d44.css",
-    "src": "resources/js/components/tower/TowerMessage.css"
+  "resources/js/components/operationinfo/OperationInfoMessageCard.css": {
+    "file": "assets/OperationInfoMessageCard.ef1b6d44.css",
+    "src": "resources/js/components/operationinfo/OperationInfoMessageCard.css"
   },
-  "resources/js/components/newcampaign/NewSystemTable.css": {
-    "file": "assets/NewSystemTable.56203542.css",
-    "src": "resources/js/components/newcampaign/NewSystemTable.css"
+  "resources/js/views/AdminPanel.css": {
+    "file": "assets/AdminPanel.0457b242.css",
+    "src": "resources/js/views/AdminPanel.css"
   },
-  "resources/js/views/Towers.css": {
-    "file": "assets/Towers.67ca4f27.css",
-    "src": "resources/js/views/Towers.css"
+  "resources/js/views/SoloOperations.css": {
+    "file": "assets/SoloOperations.0060ff86.css",
+    "src": "resources/js/views/SoloOperations.css"
   },
-  "resources/js/components/newcampaign/NewJoinNodeTable.css": {
-    "file": "assets/NewJoinNodeTable.c406d57e.css",
-    "src": "resources/js/components/newcampaign/NewJoinNodeTable.css"
+  "resources/js/views/OperationInfoPage.css": {
+    "file": "assets/OperationInfoPage.e6036be8.css",
+    "src": "resources/js/views/OperationInfoPage.css"
   },
-  "resources/js/components/newcampaign/AddPilotAdmin.css": {
-    "file": "assets/AddPilotAdmin.7413b1d5.css",
-    "src": "resources/js/components/newcampaign/AddPilotAdmin.css"
-  },
-  "resources/js/components/operationinfo/OperationInfoReconCardNames.css": {
-    "file": "assets/OperationInfoReconCardNames.5203d4ba.css",
-    "src": "resources/js/components/operationinfo/OperationInfoReconCardNames.css"
+  "resources/js/views/StationSheet.css": {
+    "file": "assets/StationSheet.f96c3bcc.css",
+    "src": "resources/js/views/StationSheet.css"
   },
   "resources/js/components/newcampaign/OperationUserListTable.css": {
     "file": "assets/OperationUserListTable.e469a459.css",
     "src": "resources/js/components/newcampaign/OperationUserListTable.css"
   },
-  "resources/js/views/OperationInfoPage.css": {
-    "file": "assets/OperationInfoPage.e6036be8.css",
-    "src": "resources/js/views/OperationInfoPage.css"
+  "resources/js/views/RCMove.css": {
+    "file": "assets/RCMove.6340e698.css",
+    "src": "resources/js/views/RCMove.css"
+  },
+  "resources/js/components/newcampaign/NewSystemTable.css": {
+    "file": "assets/NewSystemTable.56203542.css",
+    "src": "resources/js/components/newcampaign/NewSystemTable.css"
   },
   "resources/js/components/newcampaign/AddOperationUser.css": {
     "file": "assets/AddOperationUser.4fb2d066.css",
@@ -1447,33 +1527,29 @@
     "file": "assets/OperationUserTable.490c3f75.css",
     "src": "resources/js/components/newcampaign/OperationUserTable.css"
   },
-  "resources/js/views/AdminPanel.css": {
-    "file": "assets/AdminPanel.5dcd5492.css",
-    "src": "resources/js/views/AdminPanel.css"
+  "resources/js/components/newcampaign/NewMultiCampaigns.css": {
+    "file": "assets/NewMultiCampaigns.4d51de22.css",
+    "src": "resources/js/components/newcampaign/NewMultiCampaigns.css"
+  },
+  "resources/js/components/newcampaign/NewJoinNodeTable.css": {
+    "file": "assets/NewJoinNodeTable.c406d57e.css",
+    "src": "resources/js/components/newcampaign/NewJoinNodeTable.css"
+  },
+  "resources/js/views/Towers.css": {
+    "file": "assets/Towers.67ca4f27.css",
+    "src": "resources/js/views/Towers.css"
+  },
+  "resources/js/components/operationinfo/OperationInfoReconCardNames.css": {
+    "file": "assets/OperationInfoReconCardNames.5203d4ba.css",
+    "src": "resources/js/components/operationinfo/OperationInfoReconCardNames.css"
   },
   "resources/js/components/newcampaign/OperationLogTable.css": {
     "file": "assets/OperationLogTable.bf8abdb0.css",
     "src": "resources/js/components/newcampaign/OperationLogTable.css"
   },
-  "resources/js/views/Timers.css": {
-    "file": "assets/Timers.517a74d8.css",
-    "src": "resources/js/views/Timers.css"
-  },
-  "resources/js/views/StationSheet.css": {
-    "file": "assets/StationSheet.3523ee5a.css",
-    "src": "resources/js/views/StationSheet.css"
-  },
-  "resources/js/views/SoloOperations.css": {
-    "file": "assets/SoloOperations.0060ff86.css",
-    "src": "resources/js/views/SoloOperations.css"
-  },
-  "resources/js/components/newcampaign/NewMultiCampaigns.css": {
-    "file": "assets/NewMultiCampaigns.4d51de22.css",
-    "src": "resources/js/components/newcampaign/NewMultiCampaigns.css"
-  },
-  "resources/js/views/RCMove.css": {
-    "file": "assets/RCMove.6340e698.css",
-    "src": "resources/js/views/RCMove.css"
+  "resources/js/components/newcampaign/AddPilotAdmin.css": {
+    "file": "assets/AddPilotAdmin.7413b1d5.css",
+    "src": "resources/js/components/newcampaign/AddPilotAdmin.css"
   },
   "resources/js/app.css": {
     "file": "assets/app.7b67968f.css",

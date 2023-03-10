@@ -74,7 +74,8 @@
             "app/Helpers/Timerhelper.php",
             "app/Helpers/DiscordBot.php",
             "app/Helpers/OperationInfoHelper.php",
-            "app/Helpers/TowerHelper.php"
+            "app/Helpers/TowerHelper.php",
+            "app/Helpers/StationWatchListHelper.php"
 
         ]
     },

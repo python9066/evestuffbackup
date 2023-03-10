@@ -24,7 +24,7 @@ class RoleController extends Controller
     public function index()
     {
 
-        $roles = Role::orderBy('name', 'asc')->get();
+        $roles = Role::whereNot('name', 'Super Admin')->orderBy('name', 'asc')->get();
         $roleList = $roles->map(function ($items) {
             $data['value'] = $items->id;
             $data['text'] = $items->name;

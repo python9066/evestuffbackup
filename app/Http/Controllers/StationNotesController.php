@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\StationSheetMessageUpdate;
+use App\Events\WatchListStationPageUpdate;
 use App\Models\StationNotes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,11 +45,15 @@ class StationNotesController extends Controller
         $message = StationRecordsSolo(6, $id);
 
         if ($message) {
-            $flag = collect([
-                'message' => $message,
-                'id' => $id,
-            ]);
-            broadcast(new StationSheetMessageUpdate($flag));
+            $watchListIDs = getStationWatchListIDs($message->id);
+            foreach ($watchListIDs as $watchListID) {
+                $flag = collect([
+                    'flag' => 1,
+                    'message' => $message,
+                    'id' => $watchListID,
+                ]);
+                broadcast(new WatchListStationPageUpdate($flag));
+            }
         }
     }
 
@@ -73,13 +77,15 @@ class StationNotesController extends Controller
         $message = StationRecordsSolo(6, $id);
 
         if ($message) {
-            $flag = collect([
-                'message' => $message,
-                'id' => $id,
-            ]);
-
-            // dd($request, $id, $flag);
-            broadcast(new StationSheetMessageUpdate($flag));
+            $watchListIDs = getStationWatchListIDs($message->id);
+            foreach ($watchListIDs as $watchListID) {
+                $flag = collect([
+                    'flag' => 1,
+                    'message' => $message,
+                    'id' => $watchListID,
+                ]);
+                broadcast(new WatchListStationPageUpdate($flag));
+            }
         }
     }
 
@@ -110,13 +116,15 @@ class StationNotesController extends Controller
         $message = StationRecordsSolo(6, $stationID);
 
         if ($message) {
-            $flag = collect([
-                'message' => $message,
-                'id' => $id,
-            ]);
-
-            // dd($request, $id, $flag);
-            broadcast(new StationSheetMessageUpdate($flag));
+            $watchListIDs = getStationWatchListIDs($message->id);
+            foreach ($watchListIDs as $watchListID) {
+                $flag = collect([
+                    'flag' => 1,
+                    'message' => $message,
+                    'id' => $watchListID,
+                ]);
+                broadcast(new WatchListStationPageUpdate($flag));
+            }
         }
     }
 }

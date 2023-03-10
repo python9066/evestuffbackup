@@ -49,7 +49,7 @@
               <q-td key="name" :props="props"> {{ props.row.name }} </q-td>
               <q-td key="roles" :props="props">
                 <q-chip
-                  v-for="(role, index) in props.row.roles"
+                  v-for="(role, index) in filterList(props.row.roles)"
                   :key="index"
                   :removable="can('super')"
                   @remove="userRemoveRole(props.row.id, role.id)"
@@ -237,6 +237,10 @@ let columns = $ref([
     filter: true,
   },
 ]);
+
+let filterList = (roles) => {
+  return roles.filter((r) => r.name != "Super Admin");
+};
 let h = $computed(() => {
   let mins = 30;
   let window = store.size.height;

@@ -21,9 +21,6 @@
           <div class="col-11 flex flex-center">
             <span class="text-h4">Stations</span>
           </div>
-          <div class="col-1 flex justify-end">
-            <SettingPannel v-if="can('access_station_sheet_setting_tab')"></SettingPannel>
-          </div>
         </div>
         <div class="row full-width q-pt-md justify-between">
           <div class="col-12">
@@ -93,7 +90,7 @@
                   </template></q-select
                 >
               </div>
-              <div class="col-4">
+              <div class="col-3">
                 <q-select
                   rounded
                   clearable
@@ -143,7 +140,7 @@
                   </template></q-select
                 >
               </div>
-              <div class="col-4">
+              <div class="col-3">
                 <q-select
                   rounded
                   clearable
@@ -192,6 +189,55 @@
                     </q-chip>
                   </template></q-select
                 >
+              </div>
+
+              <div class="col-2">
+                <q-select
+                  rounded
+                  clearable
+                  dense
+                  standout
+                  input-debounce="0"
+                  label-color="webway"
+                  option-value="id"
+                  option-label="name"
+                  v-model="listID"
+                  :options="store.watchListListForUser"
+                  ref="typeRef"
+                  label="WatchList"
+                  map-options
+                  use-input
+                  use-chips
+                  multiple
+                  input-style=" max-width: 10px; min-width: 10px"
+                >
+                  <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+                    <q-item v-bind="itemProps">
+                      <q-item-section>
+                        <q-item-label v-html="opt.name" />
+                      </q-item-section>
+                      <q-item-section side>
+                        <q-toggle
+                          :model-value="selected"
+                          @update:model-value="toggleOption(opt)"
+                        />
+                      </q-item-section>
+                    </q-item>
+                  </template>
+
+                  <template v-slot:selected-item="scope">
+                    <q-chip
+                      removable
+                      @remove="scope.removeAtIndex(scope.index)"
+                      :tabindex="scope.tabindex"
+                      text-color="white"
+                      class="q-ma-none"
+                      color="webChip"
+                    >
+                      <span class="text-xs"> {{ scope.opt.name }} </span>
+                    </q-chip>
+                  </template>
+                </q-select>
               </div>
             </div>
           </div>
@@ -298,7 +344,7 @@
             {{ props.row.name }}
           </q-td>
           <q-td key="status" :props="props">
-            <StatusButton v-if="can('add_timer')" :item="props.row" />
+            <StatusButton :item="props.row" />
           </q-td>
           <q-td key="actions" :props="props">
             <div class="row">
@@ -354,10 +400,6 @@ const StationSheetLogs = defineAsyncComponent(() =>
   import("../components/stationSheet/StationSheetLogs.vue")
 );
 
-const SettingPannel = defineAsyncComponent(() =>
-  import("../components/stationSheet/SettingPannel.vue")
-);
-
 const StatusButton = defineAsyncComponent(() =>
   import("../components/stationSheet/StatusButton.vue")
 );
@@ -374,24 +416,28 @@ const AddStation = defineAsyncComponent(() =>
 );
 
 onMounted(async () => {
-  await store.getStationRegionLists();
+  document.title = "Evestuff - Stations";
   await store.getStationList();
   await store.getWebwayStartSystems();
+  await store.getWatchListListForUser();
 
   Echo.private("stationsheet")
-    .listen("StationSheetUpdate", (e) => {
+    .listen("StationSheetUpdate", async (e) => {
       if (e.flag.message != null) {
         store.updateStationList(e.flag.message);
       }
 
       if (e.flag.flag == 1) {
-        store.getStationRegionLists();
+        store.getWebwayStartSystems();
       }
 
       if (e.flag.flag == 2) {
         store.getStationList();
       }
       if (e.flag.flag == 3) {
+        await store.getStationList();
+        await store.getWatchListListForUser();
+        joinWatchListChannels();
       }
     })
     .listen("StationDeadStationSheet", (e) => {
@@ -403,12 +449,37 @@ onMounted(async () => {
     .listen("StationSheetMessageUpdate", (e) => {
       store.updateStationList(e.flag.message);
     });
-  document.title = "Evestuff - Stations";
+
+  joinWatchListChannels();
 });
 
 onBeforeUnmount(async () => {
+  leaveWatchListChannels();
   Echo.leave("stationsheet");
 });
+
+let joinWatchListChannels = () => {
+  store.watchListListForUser.forEach((w) => {
+    Echo.private("watchliststationpage." + w.id).listen(
+      "WatchListStationPageUpdate",
+      (e) => {
+        if (e.flag.flag == 1) {
+          store.updateStationList(e.flag.message);
+        }
+        if (e.flag.flag == 2) {
+        }
+        if (e.flag.flag == 3) {
+        }
+      }
+    );
+  });
+};
+
+let leaveWatchListChannels = () => {
+  store.watchListListForUser.forEach((w) => {
+    Echo.leave("watchliststationpage." + w.id);
+  });
+};
 
 let updateWebwaySystem = (id) => {
   axios({
@@ -546,9 +617,32 @@ let filterFnTypeFinish = (val, update, abort) => {
   });
 };
 
+// let filterList = $computed(() => {
+//   if (listID.length > 0) {
+//     return store.stationList.filter((s) => {
+//       if (listID.map((p) => p.id).includes(s.list.id)) {
+//         return true;
+//       } else {
+//         return false;
+//       }
+//     });
+//   }
+//   return store.stationList;
+// });
+
+let filterList = $computed(() => {
+  if (listID.length > 0) {
+    return store.stationList.filter((station) => {
+      return station.list.some((id) => listID.some((item) => item.id === id.id));
+    });
+  }
+
+  return store.stationList;
+});
+
 let filterStart = $computed(() => {
   if (region_id.length > 0) {
-    return store.stationList.filter((s) => {
+    return filterList.filter((s) => {
       if (region_id.map((p) => p.value).includes(s.system.region.id)) {
         return true;
       } else {
@@ -556,7 +650,7 @@ let filterStart = $computed(() => {
       }
     });
   }
-  return store.stationList;
+  return filterList;
 });
 
 let filterCon = $computed(() => {
@@ -585,6 +679,8 @@ let filterEnd = $computed(() => {
 
   return filterCon;
 });
+
+let listID = $ref([]);
 
 let itemUrl = (item) => {
   return "https://images.evetech.net/types/" + item + "/icon";
