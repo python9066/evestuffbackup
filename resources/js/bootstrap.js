@@ -8,10 +8,10 @@ window._ = _;
  */
 
 try {
-  window.Popper = require("popper.js").default;
-  window.$ = window.jQuery = require("jquery");
+    window.Popper = require("popper.js").default;
+    window.$ = window.jQuery = require("jquery");
 
-  require("bootstrap");
+    require("bootstrap");
 } catch (e) {}
 
 /**
@@ -43,15 +43,15 @@ window.Pusher = Pusher;
 // });
 
 window.Echo = new Echo({
-  broadcaster: "pusher",
-//   key: "588e30b463a02a48ec1c",
-  key: "python9066",
-  cluster: "eu",
-  wsHost: "sockets.scopeh.co.uk",
-  wsPort: 443,
-  wssPort: 443,
-  disableStats: true,
-  encrypted: true,
-  forceTLS: true,
-  enabledTransports: ["ws", "wss"],
+    broadcaster: "pusher",
+    key: "588e30b463a02a48ec1c",
+    //   key: "python9066",
+    cluster: "eu",
+    wsHost: "sockets.scopeh.co.uk",
+    wsPort: 443,
+    wssPort: 443,
+    disableStats: true,
+    encrypted: true,
+    forceTLS: true,
+    enabledTransports: ["ws", "wss"],
 });
