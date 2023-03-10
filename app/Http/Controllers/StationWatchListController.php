@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\StationSheetUpdate;
 use App\Events\StationWatchListSettingPageUpdate;
 use App\Models\ConstellationStationWatchList;
 use App\Models\RegionStationWatchList;
@@ -24,6 +25,19 @@ class StationWatchListController extends Controller
             'watchList' => allWatchList()
         ];
     }
+
+
+    /**
+     * Display a list of watch lists a user has.
+     */
+    public function userWatchLists()
+    {
+        return [
+            'watchList' => getUsersWatchLists()
+        ];
+    }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -98,6 +112,12 @@ class StationWatchListController extends Controller
             'message' => $message,
         ]);
         broadcast(new StationWatchListSettingPageUpdate($flag));
+
+        $flag = collect([
+            'flag' => 3,
+        ]);
+
+        broadcast(new StationSheetUpdate($flag));
     }
 
     /**
@@ -196,6 +216,12 @@ class StationWatchListController extends Controller
             'message' => $message,
         ]);
         broadcast(new StationWatchListSettingPageUpdate($flag));
+
+        $flag = collect([
+            'flag' => 3,
+        ]);
+
+        broadcast(new StationSheetUpdate($flag));
     }
 
     /**
@@ -217,5 +243,11 @@ class StationWatchListController extends Controller
             'id' => $id,
         ]);
         broadcast(new StationWatchListSettingPageUpdate($flag));
+
+        $flag = collect([
+            'flag' => 3,
+        ]);
+
+        broadcast(new StationSheetUpdate($flag));
     }
 }

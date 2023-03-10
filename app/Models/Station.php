@@ -168,6 +168,13 @@ class Station extends Model
         return $this->hasMany(StationNotes::class, 'station_id', 'id')->orderBy('created_at', "desc");
     }
 
+    public function getListAttribute()
+    {
+        $test = getStationWatchListIDs($this->id);
+        $watchLists = StationWatchList::whereActive(1)->whereIn('id', $test)->select(['id', 'name', 'description'])->get();
+        return  $watchLists;
+    }
+
     protected $casts = [
         'id' => 'integer',
         'system_id' => 'integer',

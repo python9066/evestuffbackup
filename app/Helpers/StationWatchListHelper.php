@@ -26,6 +26,9 @@ if (!function_exists('allWatchList')) {
 
         return $watchList;
     }
+}
+
+if (!function_exists('allWatchListSolo')) {
 
     function allWatchListSolo($id)
     {
@@ -41,8 +44,9 @@ if (!function_exists('allWatchList')) {
 
         return $watchList;
     }
+}
 
-
+if (!function_exists('getAllallowedStations')) {
     function getAllallowedStations()
     {
         $user = User::whereId(Auth::id())->first();
@@ -53,12 +57,9 @@ if (!function_exists('allWatchList')) {
             $userList = UserStationWatchList::where('user_id', Auth::id())->pluck('station_watch_list_id');
 
             $merge = $roleList->merge($userList);
-            $watchlist = StationWatchList::whereIn('id',$merge)->where('active', true)->pluck('id');
-
+            $watchlist = StationWatchList::whereIn('id', $merge)->where('active', true)->pluck('id');
         } else {
             $watchlist = StationWatchList::where('active', true)->pluck('id');
-
-
         }
 
 
@@ -68,31 +69,57 @@ if (!function_exists('allWatchList')) {
         $constellation = ConstellationStationWatchList::whereIn('station_watch_list_id', $watchlist)->pluck('constellation_id');
         $region = RegionStationWatchList::whereIn('station_watch_list_id', $watchlist)->pluck('region_id');
 
-
-        // $stations = Station::whereIn('id', $station)->orWhereIn('system_id', $system)
-        //     ->with(['system' => function ($query) use ($constellation) {
-        //         $query->whereIn('constellation_id', $constellation);
-
-        //     }])
-        //     ->with(['system' => function ($query) use ( $region) {
-        //         $query->whereIn('region_id', $region);
-
-        //     }])
-        //     ->pluck('id');
-
         $stations = Station::join('systems', 'stations.system_id', '=', 'systems.id')
-        ->whereIn('stations.id', $station)
-        ->orWhereIn('stations.system_id', $system)
-        ->orWhereIn('systems.constellation_id', $constellation)
-        ->orWhereIn('systems.region_id', $region)
-        ->pluck('stations.id')
-        ->unique()
-        ->values();
+            ->whereIn('stations.id', $station)
+            ->orWhereIn('stations.system_id', $system)
+            ->orWhereIn('systems.constellation_id', $constellation)
+            ->orWhereIn('systems.region_id', $region)
+            ->pluck('stations.id')
+            ->unique()
+            ->values();
 
 
 
 
         $data = StationRecords(6, $stations);
         return $data;
+    }
+}
+
+
+if (!function_exists('getStationWatchListIDs')) {
+    function getStationWatchListIDs($stationID)
+    {
+
+        $station = Station::whereId($stationID)->first();
+        $listBySstationId = StationStationWatchList::where('station_id', $stationID)->pluck('station_watch_list_id');
+        $listByRegionID = RegionStationWatchList::where('region_id', $station->system->region_id)->pluck('station_watch_list_id');
+        $listByConstellationID = ConstellationStationWatchList::where('constellation_id', $station->system->constellation_id)->pluck('station_watch_list_id');
+        $listBySystemID = SystemStationWatchList::where('system_id', $station->system_id)->pluck('station_watch_list_id');
+
+        $listIDs = array_merge($listBySstationId->toArray(), $listByRegionID->toArray(), $listByConstellationID->toArray(), $listBySystemID->toArray());
+        return $listIDs;
+    }
+}
+
+if (!function_exists('getUsersWatchLists')) {
+    function getUsersWatchLists()
+    {
+        $user = User::whereId(Auth::id())->first();
+        $roleIDs = $user->roles()->pluck('id');
+
+        if (!$roleIDs->contains(2)) {
+            $roleList = RoleStationWatchList::whereIn('role_id', $roleIDs)->pluck('station_watch_list_id');
+            $userList = UserStationWatchList::where('user_id', Auth::id())->pluck('station_watch_list_id');
+
+            $merge = $roleList->merge($userList);
+            $watchlist = StationWatchList::whereIn('id', $merge)->where('active', true)->pluck('id');
+        } else {
+            $watchlist = StationWatchList::where('active', true)->pluck('id');
+        }
+
+        $lists = StationWatchList::whereIn('id', $watchlist)->whereActive(1)->select('id', 'name')->get();
+
+        return $lists;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Events\StationUpdateCoord;
+use App\Jobs\ReconRegionPullJob;
 use App\Models\HotRegion;
 use App\Models\Station;
 use App\Models\Userlogging;
@@ -56,15 +57,15 @@ class UpdateReconStations extends Command
         foreach ($ids as $id) {
             $stations = reconRegionPull($id);
             foreach ($stations as $station) {
-                reconRegionPullIdCheck($station);
+                ReconRegionPullJob::dispatch($station);
             }
         }
 
-        $flag = collect([
-            'flag' => 1,
-        ]);
-        broadcast(new StationUpdateCoord($flag));
-        reconUpdate();
-        activity()->enableLogging();
+        // $flag = collect([
+        //     'flag' => 1,
+        // ]);
+        // broadcast(new StationUpdateCoord($flag));
+        // reconUpdate();
+        // activity()->enableLogging();
     }
 }

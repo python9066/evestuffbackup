@@ -182,6 +182,10 @@ Broadcast::channel('stationwatchlistsetuppage', function () {
     return Auth::check();
 });
 
+Broadcast::channel('watchliststationpage.{id}', function () {
+    return Auth::check();
+});
+
 
 //  Broadcast::channel('App.User.{id}', function ($user, $id) {
 //     return true;

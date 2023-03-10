@@ -808,9 +808,9 @@ export default new Vuex.Store({
             state.keyfleets = keyfleets;
         },
 
-        SET_USERS_CHARS(state, data) {
-            state.userschars = data;
-        },
+        // SET_USERS_CHARS(state, data) {
+        //     state.userschars = data;
+        // },
 
         UPDATE_USERS_CHARS(state, data) {
             const item = state.userschars.find((item) => item.id == data.id);
@@ -1032,9 +1032,9 @@ export default new Vuex.Store({
             }
         },
 
-        SET_CAMPAIGN_USERS(state, data) {
-            state.campaignusers = data;
-        },
+        // SET_CAMPAIGN_USERS(state, data) {
+        //     state.campaignusers = data;
+        // },
 
         UPDATE_CAMPAIGN_USERS(state, data) {
             const item = state.campaignusers.find(
@@ -1352,7 +1352,9 @@ export default new Vuex.Store({
         //     commit("SET_WEBWAY_START_SYSTEMS", res.data.webwayStartSystems);
         // },
 
-        async getSoloOperationList({ commit }) {
+        async getSoloOperationList({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1437,7 +1439,9 @@ export default new Vuex.Store({
         //     commit("SET_SYSTEMLIST", res.data.systemlist);
         // },
 
-        async getAmmoRequest({ commit }) {
+        async getAmmoRequest({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1450,7 +1454,9 @@ export default new Vuex.Store({
             commit("SET_AMMO_REQUEST", res.data.ammorequest);
         },
 
-        async getMoonList({ commit }, system_id) {
+        async getMoonList({
+            commit
+        }, system_id) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1476,7 +1482,9 @@ export default new Vuex.Store({
         //     commit("SET_STRUCTURELIST", res.data.structurelist);
         // },
 
-        async getTowerList({ commit }) {
+        async getTowerList({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1515,7 +1523,9 @@ export default new Vuex.Store({
         //     commit("SET_ALLIANCE_TICKLIST", res.data.allianceticklist);
         // },
 
-        async getNodeJoinByCampaignId({ commit }, campaign_id) {
+        async getNodeJoinByCampaignId({
+            commit
+        }, campaign_id) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1567,7 +1577,9 @@ export default new Vuex.Store({
         //     commit("SET_STATIONS", res.data.stations);
         // },
 
-        async getCampaignJoinDataByCampaign({ commit }, campid) {
+        async getCampaignJoinDataByCampaign({
+            commit
+        }, campid) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1581,7 +1593,9 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGN_JOIN", res.data.value);
         },
 
-        async getCampaignJoinData({ commit }, campid) {
+        async getCampaignJoinData({
+            commit
+        }, campid) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1595,7 +1609,9 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGN_JOIN", res.data.value);
         },
 
-        async getStartCampaignJoinDataByCampaign({ commit }, campid) {
+        async getStartCampaignJoinDataByCampaign({
+            commit
+        }, campid) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1623,7 +1639,9 @@ export default new Vuex.Store({
         //     commit("SET_START_CAMPAIGN_JOIN", res.data.value);
         // },
 
-        async getCampaignMembers({ commit }, campaign_id) {
+        async getCampaignMembers({
+            commit
+        }, campaign_id) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1636,20 +1654,22 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGN_MEMBERS", res.data.users);
         },
 
-        async getUsersChars({ commit }, user_id) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true,
-                url: "/api/campaignusersrecordsbychar/" + user_id,
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_USERS_CHARS", res.data.users);
-        },
+        // async getUsersChars({ commit }, user_id) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true,
+        //         url: "/api/campaignusersrecordsbychar/" + user_id,
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_USERS_CHARS", res.data.users);
+        // },
 
-        async getCampaignSolaSystems({ commit }) {
+        async getCampaignSolaSystems({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1675,7 +1695,9 @@ export default new Vuex.Store({
         //     commit("SET_USERS", res.data.usersroles);
         // },
 
-        async getUserKeys({ commit }) {
+        async getUserKeys({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1690,7 +1712,9 @@ export default new Vuex.Store({
             // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
         },
 
-        async getKeyFleets({ commit }) {
+        async getKeyFleets({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1719,7 +1743,9 @@ export default new Vuex.Store({
         //     // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
         // },
 
-        async getKeys({ commit }) {
+        async getKeys({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1733,7 +1759,9 @@ export default new Vuex.Store({
             // commit("SET_USER_ROLES", userRoles.map(u => ({id: u.id, name: u.name})));
         },
 
-        async getCampaigns({ commit }) {
+        async getCampaigns({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1746,7 +1774,9 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGNS", res.data.campaigns);
         },
 
-        async getCampaignsRegions({ commit }) {
+        async getCampaignsRegions({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1759,7 +1789,9 @@ export default new Vuex.Store({
             commit("SET_CAMPAIGNS_REGION", res.data.campaignslistRegion);
         },
 
-        async getRcRegions({ commit }) {
+        async getRcRegions({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1772,7 +1804,9 @@ export default new Vuex.Store({
             commit("SET_RC_REGION", res.data.rcsheetlistRegion);
         },
 
-        async getChillRegions({ commit }) {
+        async getChillRegions({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1785,7 +1819,9 @@ export default new Vuex.Store({
             commit("SET_CHILL_REGION", res.data.chillsheetlistRegion);
         },
 
-        async getWelpRegions({ commit }) {
+        async getWelpRegions({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1798,7 +1834,9 @@ export default new Vuex.Store({
             commit("SET_WELP_REGION", res.data.welpsheetlistRegion);
         },
 
-        async getRcItems({ commit }) {
+        async getRcItems({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1811,7 +1849,9 @@ export default new Vuex.Store({
             commit("SET_RC_TYPE", res.data.rcsheetlistType);
         },
 
-        async getChillItems({ commit }) {
+        async getChillItems({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1824,7 +1864,9 @@ export default new Vuex.Store({
             commit("SET_CHILL_TYPE", res.data.chillsheetlistType);
         },
 
-        async getWelpItems({ commit }) {
+        async getWelpItems({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1837,7 +1879,9 @@ export default new Vuex.Store({
             commit("SET_WELP_TYPE", res.data.welpsheetlistType);
         },
 
-        async getRcStatus({ commit }) {
+        async getRcStatus({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1850,7 +1894,9 @@ export default new Vuex.Store({
             commit("SET_RC_STATUS", res.data.rcsheetlistStatus);
         },
 
-        async getChillStatus({ commit }) {
+        async getChillStatus({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1863,7 +1909,9 @@ export default new Vuex.Store({
             commit("SET_CHILL_STATUS", res.data.chillsheetlistStatus);
         },
 
-        async getWelpStatus({ commit }) {
+        async getWelpStatus({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1876,7 +1924,9 @@ export default new Vuex.Store({
             commit("SET_WELP_STATUS", res.data.welpsheetlistStatus);
         },
 
-        async getCoordStatus({ commit }) {
+        async getCoordStatus({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1889,7 +1939,9 @@ export default new Vuex.Store({
             commit("SET_COORD_STATUS", res.data.coordsheetlistStatus);
         },
 
-        async getCoordRegions({ commit }) {
+        async getCoordRegions({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1902,7 +1954,9 @@ export default new Vuex.Store({
             commit("SET_COORD_REGION", res.data.coordsheetlistRegion);
         },
 
-        async getCoordItems({ commit }) {
+        async getCoordItems({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1915,7 +1969,9 @@ export default new Vuex.Store({
             commit("SET_COORD_ITEM", res.data.coordsheetlistType);
         },
 
-        async getMultiCampaigns({ commit }) {
+        async getMultiCampaigns({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1954,7 +2010,9 @@ export default new Vuex.Store({
         //     commit("SET_CAMPAIGNSLIST", res.data.campaignslist);
         // },
 
-        async getCampaignsList({ commit }, op_id) {
+        async getCampaignsList({
+            commit
+        }, op_id) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -1993,7 +2051,9 @@ export default new Vuex.Store({
         //     commit("SET_NEW_OPERATION_LIST", res.data.operations);
         // },
 
-        async getLoggingCampaign({ commit }, campaign_id) {
+        async getLoggingCampaign({
+            commit
+        }, campaign_id) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -2006,7 +2066,9 @@ export default new Vuex.Store({
             commit("SET_LOGGING_CAMPAIGN", res.data.logs);
         },
 
-        async getLoggingRcSheet({ commit }) {
+        async getLoggingRcSheet({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -2019,7 +2081,9 @@ export default new Vuex.Store({
             commit("SET_LOGGING_RC_SHEET", res.data.logs);
         },
 
-        async getLoggingStations({ commit }) {
+        async getLoggingStations({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true,
@@ -2045,7 +2109,9 @@ export default new Vuex.Store({
         //     commit("SET_LOGGING_ADMIN", res.data.logs);
         // },
 
-        markOver({ commit }, timer) {
+        markOver({
+            commit
+        }, timer) {
             commit("MARK_TIMER_OVER", timer);
         },
 
@@ -2061,11 +2127,15 @@ export default new Vuex.Store({
         //     commit("DELETE_OP_CHAR_FROM_OWN_LIST", id);
         // },
 
-        updateWebwaySelectedStartSystem({ commit }, data) {
+        updateWebwaySelectedStartSystem({
+            commit
+        }, data) {
             commit("SET_WEBWAY_SELECTED_START_SYSTEM", data);
         },
 
-        updateNotification({ commit }, data) {
+        updateNotification({
+            commit
+        }, data) {
             commit("UPDATE_NOTIFICATIONS", data);
         },
 
@@ -2073,7 +2143,9 @@ export default new Vuex.Store({
         //     commit("UPDATE_STATION_NOTIFICATION", data);
         // },
 
-        updateKeyMessage({ commit }, data) {
+        updateKeyMessage({
+            commit
+        }, data) {
             commit("UPDATE_KEY_MESSAGE", data);
         },
 
@@ -2081,15 +2153,21 @@ export default new Vuex.Store({
         //     commit("UPDATE_OPERATION_SYSTEMS_ALL", data);
         // },
 
-        updateRcStation({ commit }, data) {
+        updateRcStation({
+            commit
+        }, data) {
             commit("UPDATE_RC_STATION", data);
         },
 
-        updateChillStation({ commit }, data) {
+        updateChillStation({
+            commit
+        }, data) {
             commit("UPDATE_CHILL_STATION", data);
         },
 
-        updateWelpStation({ commit }, data) {
+        updateWelpStation({
+            commit
+        }, data) {
             commit("UPDATE_WELP_STATION", data);
         },
 
@@ -2097,7 +2175,9 @@ export default new Vuex.Store({
         //     commit("UPDATE_STATION_LIST", data);
         // },
 
-        updateChillStationCurrent({ commit }, data) {
+        updateChillStationCurrent({
+            commit
+        }, data) {
             commit("UPDATE_CHILL_STATION_CURRENT", data);
         },
 
@@ -2117,11 +2197,15 @@ export default new Vuex.Store({
         //     commit("UPDATE_OPERATION_INFO_PAGE", data);
         // },
 
-        updateWelpStationCurrent({ commit }, data) {
+        updateWelpStationCurrent({
+            commit
+        }, data) {
             commit("UPDATE_WELP_STATION_CURRENT", data);
         },
 
-        updateRcStationCurrent({ commit }, data) {
+        updateRcStationCurrent({
+            commit
+        }, data) {
             commit("UPDATE_RC_STATION_CURRENT", data);
         },
 
@@ -2129,7 +2213,9 @@ export default new Vuex.Store({
         //     commit("UPDATE_NEW_SOLO_OPERATIONS", data);
         // },
 
-        updateRcFC({ commit }, data) {
+        updateRcFC({
+            commit
+        }, data) {
             commit("UPDATE_RC_FC", data);
         },
 
@@ -2137,11 +2223,15 @@ export default new Vuex.Store({
         //     commit("SET_NEW_OPERATION_READ_ONLY", newValue);
         // },
 
-        updateCores({ commit }, data) {
+        updateCores({
+            commit
+        }, data) {
             commit("UPDATE_CORES", data);
         },
 
-        updateCampaigns({ commit }, data) {
+        updateCampaigns({
+            commit
+        }, data) {
             commit("UPDATE_CAMPAIGNS", data);
         },
 
@@ -2149,11 +2239,15 @@ export default new Vuex.Store({
         //     commit("UPDATE_TOWERS", data);
         // },
 
-        updateCampaignSystem({ commit }, data) {
+        updateCampaignSystem({
+            commit
+        }, data) {
             commit("UPDATE_CAMPAIGN_SYSTEM", data);
         },
 
-        updateStartCampaignSystem({ commit }, data) {
+        updateStartCampaignSystem({
+            commit
+        }, data) {
             commit("UPDATE_START_CAMPAIGN_SYSTEM", data);
         },
 
@@ -2161,7 +2255,9 @@ export default new Vuex.Store({
         //     commit("UPDATE_OPERATION_INFO_SETTING", data);
         // },
 
-        updateTooltipToggle({ commit }, data) {
+        updateTooltipToggle({
+            commit
+        }, data) {
             commit("UPDATE_TOOLTIP_TOGGLE", data);
         },
 
@@ -2169,7 +2265,9 @@ export default new Vuex.Store({
         //     commit("UPDATE_NEW_CAMPAIGNS", data);
         // },
 
-        updateCampaignSystemByUserID({ commit }, payload) {
+        updateCampaignSystemByUserID({
+            commit
+        }, payload) {
             commit("UPDATE_CAMPAIGN_SYSTEM_BY_USER_ID", payload);
         },
 
@@ -2177,35 +2275,51 @@ export default new Vuex.Store({
         //     commit("SET_NEW_OPERATION_MESSAGE_OVERLAY", num);
         // },
 
-        clearOperationInfoMessageCount({ commit }) {
+        clearOperationInfoMessageCount({
+            commit
+        }) {
             commit("CLEAR_OPERATION_MESSAGE_COUNT");
         },
 
-        setOpenOperationAddChar({ commit }, num) {
+        setOpenOperationAddChar({
+            commit
+        }, num) {
             commit("NEW_OPEN_OPERATION_ADD_CHAR", num);
         },
 
-        updateCampaignSolaSystem({ commit }, data) {
+        updateCampaignSolaSystem({
+            commit
+        }, data) {
             commit("UPDATE_CAMPAIGN_SOLA_SYSTEMS", data);
         },
 
-        updateCampaignSystemBar({ commit }, data) {
+        updateCampaignSystemBar({
+            commit
+        }, data) {
             commit("UPDATE_CAMPAIGN_SYSTEM_UPDATE", data);
         },
 
-        updateCampaign({ commit }, data) {
+        updateCampaign({
+            commit
+        }, data) {
             commit("UPDATE_CAMPAIGN", data);
         },
 
-        updateCampaignUsers({ commit }, data) {
+        updateCampaignUsers({
+            commit
+        }, data) {
             commit("UPDATE_CAMPAIGN_USERS", data);
         },
 
-        updateUsersChars({ commit }, data) {
+        updateUsersChars({
+            commit
+        }, data) {
             commit("UPDATE_USERS_CHARS", data);
         },
 
-        updateAmmoRequest({ commit }, data) {
+        updateAmmoRequest({
+            commit
+        }, data) {
             commit("UPDATE_AMMO_REQUEST", data);
         },
 
@@ -2217,7 +2331,9 @@ export default new Vuex.Store({
         //     commit("UPDATE_OPERATION_INFO_USER_LIST", data);
         // },
 
-        updateOperationInfoUpdateAllFleet({ commit }, data) {
+        updateOperationInfoUpdateAllFleet({
+            commit
+        }, data) {
             commit("UPDATE_OPERATION_INFO_UPDATE_ALL_FLEETS", data);
         },
 
@@ -2225,23 +2341,33 @@ export default new Vuex.Store({
         //     commit("UPDATE_OPERATION_INFO_ADD_DANK_OP", data);
         // },
 
-        updateNodeJoin({ commit }, data) {
+        updateNodeJoin({
+            commit
+        }, data) {
             commit("UPDATE_NODE_JOIN", data);
         },
 
-        updateReconTaskSystems({ commit }, data) {
+        updateReconTaskSystems({
+            commit
+        }, data) {
             commit("UPDATE_RECON_TASK_SYSTEMS", data);
         },
 
-        updateEveUserCount({ commit }, data) {
+        updateEveUserCount({
+            commit
+        }, data) {
             commit("UPDATE_EVE_USER_COUNT", data);
         },
 
-        addNodeJoin({ commit }, data) {
+        addNodeJoin({
+            commit
+        }, data) {
             commit("ADD_NODE_JOIN", data);
         },
 
-        addAmmoRequest({ commit }, data) {
+        addAmmoRequest({
+            commit
+        }, data) {
             commit("ADD_AMMO_REQUEST", data);
         },
 
@@ -2269,35 +2395,51 @@ export default new Vuex.Store({
         //     commit("DELETE_OPERATION_FROM_LSIT", num);
         // },
 
-        addStationNotification({ commit }, data) {
+        addStationNotification({
+            commit
+        }, data) {
             commit("ADD_STATION_NOTIFICATION", data);
         },
 
-        addLoggingCampaign({ commit }, data) {
+        addLoggingCampaign({
+            commit
+        }, data) {
             commit("ADD_LOGGING_CAMPGIN", data);
         },
 
-        addLoggingRcSheet({ commit }, data) {
+        addLoggingRcSheet({
+            commit
+        }, data) {
             commit("ADD_LOGGING_RC_SHEET", data);
         },
 
-        addLoggingStation({ commit }, data) {
+        addLoggingStation({
+            commit
+        }, data) {
             commit("ADD_LOGGING_STATION", data);
         },
 
-        addCampaignUserNew({ commit }, data) {
+        addCampaignUserNew({
+            commit
+        }, data) {
             commit("ADD_CAMPAIGN_USERS", data);
         },
 
-        addCampaignSystem({ commit }, data) {
+        addCampaignSystem({
+            commit
+        }, data) {
             commit("ADD_CAMPAIGN_SYSTEM", data);
         },
 
-        deleteCampaignUser({ commit }, id) {
+        deleteCampaignUser({
+            commit
+        }, id) {
             commit("DELETE_CAMPAIGN_USER", id);
         },
 
-        deleteStationNotification({ commit }, id) {
+        deleteStationNotification({
+            commit
+        }, id) {
             commit("DELETE_STATION_NOTIFICATION", id);
         },
 
@@ -2305,7 +2447,9 @@ export default new Vuex.Store({
         //     commit("DELETE_STATION_SHEET_NOTIFICATION", id);
         // },
 
-        deleteUsersChars({ commit }, id) {
+        deleteUsersChars({
+            commit
+        }, id) {
             commit("DELETE_USER_CHAR", id);
         },
 
@@ -2313,11 +2457,15 @@ export default new Vuex.Store({
         //     commit("REMOVED_OPERATION_RECON", data);
         // },
 
-        deleteNodeJoin({ commit }, id) {
+        deleteNodeJoin({
+            commit
+        }, id) {
             commit("DELETE_NODE_JOIN", id);
         },
 
-        deleteAmmoRequest({ commit }, id) {
+        deleteAmmoRequest({
+            commit
+        }, id) {
             commit("DELETE_AMMO_REQUEST", id);
         },
 
@@ -2325,7 +2473,9 @@ export default new Vuex.Store({
         //     commit("DELETE_TOWERS", id);
         // },
 
-        deleteCampaignSystem({ commit }, id) {
+        deleteCampaignSystem({
+            commit
+        }, id) {
             commit("DELETE_CAMPAIGN_SYSTEM", id);
         },
 
@@ -2361,7 +2511,9 @@ export default new Vuex.Store({
         //     commit("UPDATE_OPERATION_OPERATION", data);
         // },
 
-        updateOperationCampaigns({ commit }, data) {
+        updateOperationCampaigns({
+            commit
+        }, data) {
             commit("UPDATE_OPERATION_CAMPAIGNS", data);
         },
 
@@ -2377,11 +2529,15 @@ export default new Vuex.Store({
         //     commit("SET_OPERATION_INFO_USERS", data);
         // },
 
-        updateOperationRecon({ commit }, data) {
+        updateOperationRecon({
+            commit
+        }, data) {
             commit("SET_OPERATION_INFO_RECON", data);
         },
 
-        async getNotifications({ commit }) {
+        async getNotifications({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true, //you can set what request you want to be
@@ -2395,7 +2551,9 @@ export default new Vuex.Store({
             commit("SET_NOTIFICATIONS", res.data.notifications);
         },
 
-        async getdelveLink({ commit }) {
+        async getdelveLink({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true, //you can set what request you want to be
@@ -2408,7 +2566,9 @@ export default new Vuex.Store({
             commit("SET_DELVE_LINK", res.data.link);
         },
 
-        async getqueriousLink({ commit }) {
+        async getqueriousLink({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true, //you can set what request you want to be
@@ -2421,7 +2581,9 @@ export default new Vuex.Store({
             commit("SET_QUERIOUS_LINK", res.data.link);
         },
 
-        async getperiodbasisLink({ commit }) {
+        async getperiodbasisLink({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true, //you can set what request you want to be
@@ -2447,29 +2609,35 @@ export default new Vuex.Store({
         //     commit("SET_EVE_USER_COUNT", res.data.count);
         // },
 
-        setUser_id({ commit }, user_id) {
+        setUser_id({
+            commit
+        }, user_id) {
             commit("SET_USER_ID", user_id);
         },
-        setUser_name({ commit }, user_name) {
+        setUser_name({
+            commit
+        }, user_name) {
             commit("SET_USER_NAME", user_name);
         },
 
-        async getCampaignUsersRecords({ commit }, id) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true, //you can set what request you want to be
-                url: "/api/campaignusersrecords/" + id,
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            if (res.data.length != 0) {
-                commit("SET_CAMPAIGN_USERS", res.data.users);
-            }
-        },
+        // async getCampaignUsersRecords({ commit }, id) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true, //you can set what request you want to be
+        //         url: "/api/campaignusersrecords/" + id,
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     if (res.data.length != 0) {
+        //         commit("SET_CAMPAIGN_USERS", res.data.users);
+        //     }
+        // },
 
-        async getCampaignSystemsRecords({ commit }) {
+        async getCampaignSystemsRecords({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true, //you can set what request you want to be
@@ -2484,7 +2652,9 @@ export default new Vuex.Store({
             }
         },
 
-        async getStartCampaignSystemsRecords({ commit }) {
+        async getStartCampaignSystemsRecords({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true, //you can set what request you want to be
@@ -2499,7 +2669,9 @@ export default new Vuex.Store({
             }
         },
 
-        async getReconTaskSystemsRecords({ commit }) {
+        async getReconTaskSystemsRecords({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true, //you can set what request you want to be
@@ -2514,7 +2686,9 @@ export default new Vuex.Store({
             }
         },
 
-        async getRcStationRecords({ commit }) {
+        async getRcStationRecords({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true, //you can set what request you want to be
@@ -2529,7 +2703,9 @@ export default new Vuex.Store({
             }
         },
 
-        async getChillStationRecords({ commit }) {
+        async getChillStationRecords({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true, //you can set what request you want to be
@@ -2544,7 +2720,9 @@ export default new Vuex.Store({
             }
         },
 
-        async getWelpStationRecords({ commit }) {
+        async getWelpStationRecords({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true, //you can set what request you want to be
@@ -2559,7 +2737,9 @@ export default new Vuex.Store({
             }
         },
 
-        async getCoordStationRecords({ commit }) {
+        async getCoordStationRecords({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true, //you can set what request you want to be
@@ -2574,7 +2754,9 @@ export default new Vuex.Store({
             }
         },
 
-        async getRcFcs({ commit }) {
+        async getRcFcs({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true, //you can set what request you want to be
@@ -2589,7 +2771,9 @@ export default new Vuex.Store({
             }
         },
 
-        async getFleets({ commit }) {
+        async getFleets({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true, //you can set what request you want to be
@@ -2618,7 +2802,9 @@ export default new Vuex.Store({
         //     commit("SET_CONSTELLATION_LIST", res.data.constellationlist);
         // },
 
-        async loadCampaignSystemData({ commit }, payload) {
+        async loadCampaignSystemData({
+            commit
+        }, payload) {
             let request = {
                 user_id: payload.user_id,
                 campaign_id: payload.campaign_id,
@@ -2646,7 +2832,9 @@ export default new Vuex.Store({
             }
         },
 
-        async loadStationInfo({ commit }) {
+        async loadStationInfo({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true, //you can set what request you want to be
@@ -2664,7 +2852,9 @@ export default new Vuex.Store({
             }
         },
 
-        async loadAmmoRequestInfo({ commit }) {
+        async loadAmmoRequestInfo({
+            commit
+        }) {
             let res = await axios({
                 method: "get",
                 withCredentials: true, //you can set what request you want to be
@@ -2700,26 +2890,26 @@ export default new Vuex.Store({
         getSystemReadyToGoCount: (state) => (payload) => {
             return state.campaignusers.filter(
                 (u) =>
-                    u.campaign_id == payload.campaign_id &&
-                    u.system_id == payload.system_id &&
-                    u.status_id == 3
+                u.campaign_id == payload.campaign_id &&
+                u.system_id == payload.system_id &&
+                u.status_id == 3
             ).length;
         },
 
         getCampaignSolaSystemFilter: (state) => (payload) => {
             return state.campaignSolaSystems.filter(
                 (u) =>
-                    u.campaign_id == payload.campaign_id &&
-                    u.system_id == payload.system_id
+                u.campaign_id == payload.campaign_id &&
+                u.system_id == payload.system_id
             );
         },
 
         getSystemOnTheWayCount: (state) => (payload) => {
             return state.campaignusers.filter(
                 (u) =>
-                    u.campaign_id == payload.campaign_id &&
-                    u.system_id == payload.system_id &&
-                    u.status_id == 2
+                u.campaign_id == payload.campaign_id &&
+                u.system_id == payload.system_id &&
+                u.status_id == 2
             ).length;
         },
 
@@ -2746,10 +2936,10 @@ export default new Vuex.Store({
         getsActiveCampaignById: (state) => (payload) => {
             return state.campaignJoin.filter(
                 (c) =>
-                    c.custom_campaign_id == payload.id &&
-                    (c.status_id == 2 || c.status_id == 1) &&
-                    c.constellation_id == payload.constellation_id &&
-                    c.warmup == 1
+                c.custom_campaign_id == payload.id &&
+                (c.status_id == 2 || c.status_id == 1) &&
+                c.constellation_id == payload.constellation_id &&
+                c.warmup == 1
             );
         },
 
@@ -2758,10 +2948,10 @@ export default new Vuex.Store({
         getsActiveCampaignByIdDrop: (state) => (payload) => {
             return state.campaignJoin.filter(
                 (c) =>
-                    c.custom_campaign_id == payload.id &&
-                    c.status_id == 2 &&
-                    c.constellation_id == payload.constellation_id &&
-                    c.warmup == 1
+                c.custom_campaign_id == payload.id &&
+                c.status_id == 2 &&
+                c.constellation_id == payload.constellation_id &&
+                c.warmup == 1
             );
         },
 
@@ -2786,16 +2976,16 @@ export default new Vuex.Store({
         getCampaignUsersReadyToGoAll: (state) => (id) => {
             return state.campaignusers.filter(
                 (campaignusers) =>
-                    campaignusers.system_id == id &&
-                    campaignusers.status_id == 3
+                campaignusers.system_id == id &&
+                campaignusers.status_id == 3
             );
         },
 
         getCampaignUsersOnTheWayAll: (state) => (id) => {
             return state.campaignusers.filter(
                 (campaignusers) =>
-                    campaignusers.system_id == id &&
-                    campaignusers.status_id == 2
+                campaignusers.system_id == id &&
+                campaignusers.status_id == 2
             );
         },
 
@@ -2814,32 +3004,32 @@ export default new Vuex.Store({
         getCampaignUsersByUserIdEntosis: (state) => (id) => {
             return state.campaignusers.filter(
                 (campaignusers) =>
-                    campaignusers.site_id == id && campaignusers.role_id == 1
+                campaignusers.site_id == id && campaignusers.role_id == 1
             );
         },
 
         getCampaignUsersByUserIdEntosisFree: (state) => (id) => {
             return state.campaignusers.filter(
                 (campaignusers) =>
-                    campaignusers.site_id == id &&
-                    campaignusers.role_id == 1 &&
-                    campaignusers.node_id == null
+                campaignusers.site_id == id &&
+                campaignusers.role_id == 1 &&
+                campaignusers.node_id == null
             );
         },
 
         getCampaignUsersByUserIdEntosisFreeCount: (state) => (id) => {
             return state.campaignusers.filter(
                 (campaignusers) =>
-                    campaignusers.site_id == id &&
-                    campaignusers.role_id == 1 &&
-                    campaignusers.node_id == null
+                campaignusers.site_id == id &&
+                campaignusers.role_id == 1 &&
+                campaignusers.node_id == null
             ).length;
         },
 
         getCampaignUsersByUserIdEntosisCount: (state) => (id) => {
             return state.campaignusers.filter(
                 (campaignusers) =>
-                    campaignusers.site_id == id && campaignusers.role_id == 1
+                campaignusers.site_id == id && campaignusers.role_id == 1
             ).length;
         },
 
@@ -2863,42 +3053,42 @@ export default new Vuex.Store({
         getHackingNodeCountByCampaign: (state) => (id) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                    sys.campaign_id == id &&
-                    sys.status_id != 1 &&
-                    (sys.status_id == 2 ||
-                        sys.status_id == 3 ||
-                        sys.status_id == 4 ||
-                        sys.status_id == 8)
+                sys.campaign_id == id &&
+                sys.status_id != 1 &&
+                (sys.status_id == 2 ||
+                    sys.status_id == 3 ||
+                    sys.status_id == 4 ||
+                    sys.status_id == 8)
             ).length;
         },
 
         getRedHackingNodeCountByCampaign: (state) => (id) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                    sys.campaign_id == id &&
-                    (sys.status_id == 7 || sys.status_id == 5)
+                sys.campaign_id == id &&
+                (sys.status_id == 7 || sys.status_id == 5)
             ).length;
         },
 
         getHackingNodeCountByMultiCampaign: (state) => (id) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                    sys.custom_campaign_id == id &&
-                    sys.warmup == 1 &&
-                    sys.status_id != 1 &&
-                    (sys.status_id == 2 ||
-                        sys.status_id == 3 ||
-                        sys.status_id == 4 ||
-                        sys.status_id == 8)
+                sys.custom_campaign_id == id &&
+                sys.warmup == 1 &&
+                sys.status_id != 1 &&
+                (sys.status_id == 2 ||
+                    sys.status_id == 3 ||
+                    sys.status_id == 4 ||
+                    sys.status_id == 8)
             ).length;
         },
 
         getRedHackingNodeCountByMultiCampaign: (state) => (id) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                    sys.custom_campaign_id == id &&
-                    sys.warmup == 1 &&
-                    (sys.status_id == 7 || sys.status_id == 5)
+                sys.custom_campaign_id == id &&
+                sys.warmup == 1 &&
+                (sys.status_id == 7 || sys.status_id == 5)
             ).length;
         },
 
@@ -2911,62 +3101,62 @@ export default new Vuex.Store({
         getTotalNodeCountBySystem: (state) => (payload) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                    sys.system_id == payload.system_id &&
-                    sys.campaign_id == payload.campaign_id
+                sys.system_id == payload.system_id &&
+                sys.campaign_id == payload.campaign_id
             ).length;
         },
 
         getTotalNodeCountBySystemByMultiCampaign: (state) => (payload) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                    sys.system_id == payload.system_id &&
-                    sys.warmup == 1 &&
-                    sys.custom_campaign_id == payload.campaign_id
+                sys.system_id == payload.system_id &&
+                sys.warmup == 1 &&
+                sys.custom_campaign_id == payload.campaign_id
             ).length;
         },
 
         getHackingNodeCountBySystem: (state) => (payload) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                    sys.system_id == payload.system_id &&
-                    sys.status_id != 1 &&
-                    sys.campaign_id == payload.campaign_id &&
-                    (sys.status_id == 2 ||
-                        sys.status_id == 3 ||
-                        sys.status_id == 4 ||
-                        sys.status_id == 8)
+                sys.system_id == payload.system_id &&
+                sys.status_id != 1 &&
+                sys.campaign_id == payload.campaign_id &&
+                (sys.status_id == 2 ||
+                    sys.status_id == 3 ||
+                    sys.status_id == 4 ||
+                    sys.status_id == 8)
             ).length;
         },
 
         getHackingNodeCountBySystemByMultiCampaign: (state) => (payload) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                    sys.system_id == payload.system_id &&
-                    sys.warmup == 1 &&
-                    sys.custom_campaign_id == payload.campaign_id &&
-                    (sys.status_id == 2 ||
-                        sys.status_id == 4 ||
-                        sys.status_id == 8 ||
-                        sys.status_id == 3)
+                sys.system_id == payload.system_id &&
+                sys.warmup == 1 &&
+                sys.custom_campaign_id == payload.campaign_id &&
+                (sys.status_id == 2 ||
+                    sys.status_id == 4 ||
+                    sys.status_id == 8 ||
+                    sys.status_id == 3)
             ).length;
         },
 
         getRedHackingNodeCountBySystem: (state) => (payload) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                    sys.system_id == payload.system_id &&
-                    sys.campaign_id == payload.campaign_id &&
-                    (sys.status_id == 7 || sys.status_id == 5)
+                sys.system_id == payload.system_id &&
+                sys.campaign_id == payload.campaign_id &&
+                (sys.status_id == 7 || sys.status_id == 5)
             ).length;
         },
 
         getRedHackingNodeCountBySystemByMultiCampaign: (state) => (payload) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                    sys.system_id == payload.system_id &&
-                    sys.warmup == 1 &&
-                    sys.custom_campaign_id == payload.campaign_id &&
-                    (sys.status_id == 5 || sys.status_id == 7)
+                sys.system_id == payload.system_id &&
+                sys.warmup == 1 &&
+                sys.custom_campaign_id == payload.campaign_id &&
+                (sys.status_id == 5 || sys.status_id == 7)
             ).length;
         },
 
@@ -2977,11 +3167,11 @@ export default new Vuex.Store({
 
             let hack = state.campaignsystems.filter(
                 (sys) =>
-                    sys.system_id == payload.system_id &&
-                    sys.status_id != 1 &&
-                    sys.campaign_id == payload.campaign_id &&
-                    sys.status_id != 7 &&
-                    sys.status_id != 6
+                sys.system_id == payload.system_id &&
+                sys.status_id != 1 &&
+                sys.campaign_id == payload.campaign_id &&
+                sys.status_id != 7 &&
+                sys.status_id != 6
             ).length;
 
             let num = (hack / total) * 100;
@@ -3002,8 +3192,8 @@ export default new Vuex.Store({
         getLoggingCampaignByCampaign: (state) => (campid) => {
             return state.loggingcampaign.filter(
                 (log) =>
-                    log.campaign_sola_system_id == null &&
-                    log.campaign_id == campid
+                log.campaign_sola_system_id == null &&
+                log.campaign_id == campid
             );
         },
 
@@ -3028,8 +3218,8 @@ export default new Vuex.Store({
         getLoggingAdmin: (state) => (campid) => {
             return state.loggingcampaign.filter(
                 (log) =>
-                    log.campaign_sola_system_id == null &&
-                    log.campaign_id == campid
+                log.campaign_sola_system_id == null &&
+                log.campaign_id == campid
             );
         },
 
@@ -3052,9 +3242,9 @@ export default new Vuex.Store({
         getSystemTableExpandable: (state) => (payload) => {
             let count = state.campaignsystems.filter(
                 (node) =>
-                    node.system_id == payload.system_id &&
-                    node.campaign_id == payload.campid &&
-                    node.node_join_count > 0
+                node.system_id == payload.system_id &&
+                node.campaign_id == payload.campid &&
+                node.node_join_count > 0
             );
             if (count != null) {
                 return count;
@@ -3116,9 +3306,9 @@ export default new Vuex.Store({
         getSystemTableExpandableMulti: (state) => (payload) => {
             let count = state.campaignsystems.filter(
                 (node) =>
-                    node.system_id == payload.system_id &&
-                    node.custom_campaign_id == payload.campid &&
-                    node.node_join_count > 0
+                node.system_id == payload.system_id &&
+                node.custom_campaign_id == payload.campid &&
+                node.node_join_count > 0
             );
             if (count != null) {
                 return count;
@@ -3160,9 +3350,9 @@ export default new Vuex.Store({
         getOwnHackingCharOnOp: (state) => (operationid) => {
             let pull = state.ownChars.filter(
                 (u) =>
-                    u.role_id == 1 &&
-                    u.operation_id == operationid &&
-                    u.user_status_id != 4
+                u.role_id == 1 &&
+                u.operation_id == operationid &&
+                u.user_status_id != 4
             );
             let count = pull.length;
             if (count != 0) {

@@ -2,9 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Events\StationWatchListSettingPageUpdate;
+use App\Events\WatchListStationPageUpdate;
 
-class SendStationWatchListSettingPageUpdate
+class UpdateWatchListStationPageUPdate
 {
     /**
      * Create the event listener.
@@ -17,7 +17,7 @@ class SendStationWatchListSettingPageUpdate
     /**
      * Handle the event.
      */
-    public function handle(StationWatchListSettingPageUpdate $event): void
+    public function handle(WatchListStationPageUpdate $event): void
     {
         //
     }

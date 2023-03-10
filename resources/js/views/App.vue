@@ -44,8 +44,9 @@
                 <q-menu>
                   <q-list style="min-width: 100px">
                     <q-item to="/stations" clickable v-close-popup>
-                      <q-item-section>Station List</q-item-section>
+                      <q-item-section>Stations List</q-item-section>
                     </q-item>
+
                     <q-item
                       to="/addtimer"
                       v-if="can('finish_move_timer')"
@@ -61,6 +62,14 @@
                       v-close-popup
                     >
                       <q-item-section>Add Timer</q-item-section>
+                    </q-item>
+                    <q-item
+                      v-if="can('view_station_watch_list_setup')"
+                      to="/stationwatchlist/settings"
+                      clickable
+                      v-close-popup
+                    >
+                      <q-item-section>Hit Lists</q-item-section>
                     </q-item>
                   </q-list>
                 </q-menu>

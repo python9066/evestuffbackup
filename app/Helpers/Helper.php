@@ -1,13 +1,10 @@
 <?php
 
 use App\Events\StationWatchListSettingPageUpdate;
-use App\Listeners\SendStationWatchListSettingPageUpdate;
 use App\Models\Auth;
 use App\Models\Campaign;
 use App\Models\Client;
-use App\Models\HotRegion;
 use App\Models\Station;
-use App\Models\System;
 use App\Models\User;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Utils;
@@ -317,6 +314,7 @@ if (!function_exists('StationRecords')) {
         ]);
 
         $stationRecords = $station_query->get();
+        $stationRecords->each->append('list');
 
         return $stationRecords;
     }
@@ -347,12 +345,10 @@ if (!function_exists('StationRecordsSolo')) {
         }
 
         if ($type == 5) {
-            $station_query->where('show_on_rc_move', 1);
         }
 
         //station sheet
         if ($type == 6) {
-
             if ($user->can('view_station_logs')) {
                 $station_query->with([
                     'logs.causer:id,name'
@@ -381,6 +377,7 @@ if (!function_exists('StationRecordsSolo')) {
         ]);
 
         $stationRecords = $station_query->first();
+        $stationRecords->append('list');
 
         return $stationRecords;
     }

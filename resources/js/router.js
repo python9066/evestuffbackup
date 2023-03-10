@@ -104,6 +104,26 @@ const routes = [{
     },
 
     {
+        path: "/scampaign/:id",
+        name: "scampaign",
+        component: () => import("./views/StartCampaignSystem.vue"),
+
+    },
+
+
+    // {
+    //     path: "/scampaign/:id",
+    //     name: "scampaign",
+    //     component: StartCampaign,
+    //     props: (route) => {
+    //         const id = Number.parseInt(route.params.id, 10);
+    //         if (Number.isNaN(id)) {
+    //             return 0;
+    //         }
+    //         return { id };
+    //     },
+
+    {
         path: "/towers",
         name: "towers",
         component: () => import("./views/Towers.vue"),

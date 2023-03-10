@@ -28,6 +28,12 @@ class HotRegionController extends Controller
      */
     public function index()
     {
+        $webwayStart = WebWayStartSystem::where('system_id', '!=', 30004759)->pluck('system_id');
+        $webway = System::whereIn('id', $webwayStart)->orderBy('system_name', 'asc')->select(['system_name as text', 'id as value'])->get();
+
+        return [
+            'webwayStartSystems' => $webway
+        ];
     }
 
     public function stationWatchListNeededInfo()
@@ -134,88 +140,88 @@ class HotRegionController extends Controller
 
     public function updateSetting(Request $request)
     {
-        $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
-        $ids = [];
-        $fcIds = [];
-        $fc = $request->fc;
-        $pull = $request->pull;
-        foreach ($pull as $pull) {
-            array_push($ids, $pull['value']);
-        }
+        // $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+        // $ids = [];
+        // $fcIds = [];
+        // $fc = $request->fc;
+        // $pull = $request->pull;
+        // foreach ($pull as $pull) {
+        //     array_push($ids, $pull['value']);
+        // }
 
-        foreach ($fc as $fc) {
-            array_push($fcIds, $fc['value']);
-        }
+        // foreach ($fc as $fc) {
+        //     array_push($fcIds, $fc['value']);
+        // }
 
-        $h = HotRegion::whereNotNull('id')->get();
-        activity()->disableLogging();
-        foreach ($h as $h) {
-            $h->update(['update' => 0, 'show_fcs' => 0]);
-        }
-        activity()->enableLogging();
-        $h = HotRegion::whereIn('region_id', $ids)->get();
-        foreach ($h as $h) {
-            $h->update = 1;
-            $h->save();
-        }
-        $h = HotRegion::whereIn('region_id', $fcIds)->get();
-        foreach ($h as $h) {
-            $h->show_fcs = 1;
-            $h->save();
-        }
+        // $h = HotRegion::whereNotNull('id')->get();
+        // activity()->disableLogging();
+        // foreach ($h as $h) {
+        //     $h->update(['update' => 0, 'show_fcs' => 0]);
+        // }
+        // activity()->enableLogging();
+        // $h = HotRegion::whereIn('region_id', $ids)->get();
+        // foreach ($h as $h) {
+        //     $h->update = 1;
+        //     $h->save();
+        // }
+        // $h = HotRegion::whereIn('region_id', $fcIds)->get();
+        // foreach ($h as $h) {
+        //     $h->show_fcs = 1;
+        //     $h->save();
+        // }
 
-        $flag = collect([
-            'flag' => 1,
-        ]);
-        broadcast(new StationSheetUpdate($flag));
+        // $flag = collect([
+        //     'flag' => 1,
+        // ]);
+        // broadcast(new StationSheetUpdate($flag));
 
-        $ids = HotRegion::where('update', 1)->pluck('region_id');
+        // $ids = HotRegion::where('update', 1)->pluck('region_id');
 
-        foreach ($ids as $id) {
-            $stations = reconRegionPull($id);
-            foreach ($stations as $station) {
-                reconRegionPullIdCheck($station);
-            }
-        }
+        // foreach ($ids as $id) {
+        //     $stations = reconRegionPull($id);
+        //     foreach ($stations as $station) {
+        //         reconRegionPullIdCheck($station);
+        //     }
+        // }
 
-        $w = WebWay::where('id', '>', 0)->get();
-        foreach ($w as $w) {
-            $w->update(['active' => 0]);
-        }
-        $stations = Station::get();
-        $stationSystems = $stations->pluck('system_id');
-        $campaigns = Campaign::get();
-        $campaginSystems = $campaigns->pluck('system_id');
+        // $w = WebWay::where('id', '>', 0)->get();
+        // foreach ($w as $w) {
+        //     $w->update(['active' => 0]);
+        // }
+        // $stations = Station::get();
+        // $stationSystems = $stations->pluck('system_id');
+        // $campaigns = Campaign::get();
+        // $campaginSystems = $campaigns->pluck('system_id');
 
-        $systemIDs = $stationSystems->merge($campaginSystems);
-        $systemIDs = $systemIDs->unique();
-        $systemIDs = $systemIDs->values();
-        $w = WebWay::whereIn('system_id', $systemIDs)->get();
-        foreach ($w as $w) {
-            $w->update(['active' => 1]);
-        }
-        $w = WebWay::where('active', 0)->get();
-        foreach ($w as $w) {
-            $w->delete();
-        }
+        // $systemIDs = $stationSystems->merge($campaginSystems);
+        // $systemIDs = $systemIDs->unique();
+        // $systemIDs = $systemIDs->values();
+        // $w = WebWay::whereIn('system_id', $systemIDs)->get();
+        // foreach ($w as $w) {
+        //     $w->update(['active' => 1]);
+        // }
+        // $w = WebWay::where('active', 0)->get();
+        // foreach ($w as $w) {
+        //     $w->delete();
+        // }
 
-        $start_system_id = env('HOME_SYSTEM_ID', ($variables && array_key_exists('HOME_SYSTEM_ID', $variables)) ? $variables['HOME_SYSTEM_ID'] : null);
+        // $start_system_id = env('HOME_SYSTEM_ID', ($variables && array_key_exists('HOME_SYSTEM_ID', $variables)) ? $variables['HOME_SYSTEM_ID'] : null);
 
-        foreach ($systemIDs as $end_system_id) {
-            updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');
-        }
+        // foreach ($systemIDs as $end_system_id) {
+        //     updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');
+        // }
 
-        $start_system_ids = WebWayStartSystem::where('system_id', '!=', 30004759)->pluck('system_id');
-        foreach ($start_system_ids as $start_system_id) {
-            foreach ($systemIDs as $end_system_id) {
-                updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');
-            }
-        }
+        // $start_system_ids = WebWayStartSystem::where('system_id', '!=', 30004759)->pluck('system_id');
+        // foreach ($start_system_ids as $start_system_id) {
+        //     foreach ($systemIDs as $end_system_id) {
+        //         updateWebwayJob::dispatch($start_system_id, $end_system_id)->onQueue('webway');
+        //     }
+        // }
 
-        $flag = collect([
-            'flag' => 2,
-        ]);
-        broadcast(new StationSheetUpdate($flag));
+        // $flag = collect([
+        //     'flag' => 2,
+        // ]);
+        // broadcast(new StationSheetUpdate($flag));
     }
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\StationSheetUpdate;
 use App\Models\System;
 use App\Models\WebWay;
 use App\Models\WebWayStartSystem;
@@ -76,10 +77,14 @@ class WebWayStartSystemsContorller extends Controller
         }
         foreach ($ids as $system_id) {
             WebWayStartSystem::updateOrCreate(
-                ['system_id' => $system_id],
-                []
+                ['system_id' => $system_id]
             );
         }
+
+        $flag = collect([
+            'flag' => 1,
+        ]);
+        broadcast(new StationSheetUpdate($flag));
     }
 
     /**

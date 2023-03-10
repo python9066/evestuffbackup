@@ -14,6 +14,7 @@ export const useMainStore = defineStore("main", {
         newOperationList: [],
         size: [],
         startcampaigns: [],
+        startcampaign: [],
         startcampaignJoin: [],
         stationListPullRegions: [],
         stationWatchListPullRegions: [],
@@ -103,6 +104,7 @@ export const useMainStore = defineStore("main", {
         operationUserList: [],
         campaignslist: [],
         watchListList: [],
+        watchListListForUser: [],
     }),
 
     getters: {
@@ -623,6 +625,19 @@ export const useMainStore = defineStore("main", {
             this.startcampaigns = res.data.campaigns;
         },
 
+        async getStartCampaign(id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/startcampaigns/" + id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.startcampaign = res.data.campaign;
+        },
+
         async getStartCampaignJoinData() {
             let res = await axios({
                 method: "get",
@@ -637,6 +652,37 @@ export const useMainStore = defineStore("main", {
             this.startcampaignJoin = res.data.value;
         },
 
+        async getUsersChars(user_id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true,
+                url: "/api/campaignusersrecordsbychar/" + user_id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.userschars = res.data.users;
+
+        },
+
+        async getCampaignUsersRecords(id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
+                url: "/api/campaignusersrecords/" + id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            if (res.data.length != 0) {
+                this.campaignusers = res.data.users;
+            }
+
+
+        },
+
         async getStationRegionLists() {
             let res = await axios({
                 method: "get",
@@ -647,11 +693,6 @@ export const useMainStore = defineStore("main", {
                     "Content-Type": "application/json",
                 },
             });
-
-            this.stationListPullRegions = res.data.pull;
-            this.stationListFCRegions = res.data.fcs;
-            this.stationListRegionList = res.data.regionlist;
-            this.systemlist = res.data.systemlist;
             this.webwayStartSystems = res.data.webwayStartSystems;
         },
 
@@ -1328,6 +1369,20 @@ export const useMainStore = defineStore("main", {
 
         deleteWatchListList(id) {
             this.watchListList = this.watchListList.filter((e) => e.id != id);
+        },
+
+
+        async getWatchListListForUser() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
+                url: "/api/watchlist/byuser",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.watchListListForUser = res.data.watchList;
         },
 
 

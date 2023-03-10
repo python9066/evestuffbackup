@@ -10,11 +10,8 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('system_station_watch_lists', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('station_watch_list_id')->constrained();
-            $table->foreignId('system_id')->constrained();
-            $table->timestamps();
+        Schema::table('test_tables', function (Blueprint $table) {
+            $table->text('test_text')->nullable();
         });
     }
 
@@ -23,6 +20,8 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('system_station_watch_lists');
+        Schema::table('test_tables', function (Blueprint $table) {
+            //
+        });
     }
 };

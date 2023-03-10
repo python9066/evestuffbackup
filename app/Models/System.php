@@ -83,6 +83,12 @@ class System extends Model
         return $this->belongsToMany(OperationInfoRecon::class, 'operation_info_system_recons', 'operation_info_system_id', 'operation_info_recon_id');
     }
 
+    public function stationWatchLists()
+    {
+        return $this->belongsToMany(StationWatchList::class, 'system_station_watch_lists');
+    }
+
+
     protected $casts = [
         'region_id ' => 'integer',
         'constellation_id' => 'integer',

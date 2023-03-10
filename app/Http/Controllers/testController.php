@@ -7,7 +7,6 @@ use App\Models\AdashLocalScan;
 use App\Models\AdashLocalScanAlliance;
 use App\Models\AdashLocalScanCorp;
 use App\Models\Campaign;
-use App\Models\ConstellationStationWatchList;
 use App\Models\DankOperation;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
@@ -23,14 +22,10 @@ use App\Models\OperationInfoUserList;
 use App\Models\OperationUser;
 use App\Models\OperationUserList;
 use App\Models\Region;
-use App\Models\RegionStationWatchList;
-use App\Models\RoleStationWatchList;
 use App\Models\Station;
-use App\Models\StationStationWatchList;
-use App\Models\StationWatchList;
 use App\Models\System;
-use App\Models\SystemStationWatchList;
 use App\Models\testNote;
+use App\Models\testTable;
 use App\Models\User;
 use App\Models\WebWay;
 use GuzzleHttp\Client;
@@ -46,7 +41,6 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
-use GuzzleHttp\Client as GuzzleHttpClient;
 
 class testController extends Controller
 {
@@ -62,7 +56,28 @@ class testController extends Controller
     {
         $check = Auth::user();
         if ($check->can('super')) {
-            return getAllallowedStations();
+
+            reconRegionPullIdCheck(1021712448454);
+
+            if (testTable::whereId(2)->exists()) {
+                $test = testTable::whereId(2)->first();
+            } else {
+                $test = new testTable();
+            }
+
+            $test->test_text = 'text10';
+            if ($test->isDirty()) {
+                $count = count($test->getDirty());
+            } else {
+                $test->save();
+                dd('nope');
+            }
+            $test->save();
+            return $count;
+
+
+
+            return getStationWatchListIDs(1032845786104);
         }
     }
 

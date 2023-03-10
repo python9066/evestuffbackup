@@ -7,6 +7,7 @@ use App\Events\StationNotificationNew;
 use App\Events\StationNotificationUpdate;
 use App\Events\TowerChanged;
 use App\Events\TowerDelete;
+use App\Events\WatchListStationPageUpdate;
 use App\Models\Alliance;
 use App\Models\Corp;
 use App\Models\Notification;
@@ -58,6 +59,7 @@ if (!function_exists('reconRegionPullIdCheck')) {
 
         $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
         $i = 0;
+        $stationUpdated = false;
 
         $url = 'https://recon.gnf.lt/api/structure/' . $id;
         $client = new GuzzleHttpClient();
@@ -75,9 +77,12 @@ if (!function_exists('reconRegionPullIdCheck')) {
 
         $stationdata = Utils::jsonDecode($response->getBody(), true);
         if ($stationdata == 'Error, Structure Not Found') {
-            $s = Station::find($id)->get();
             $s = Station::where('id', $id)->first();
             $s->delete();
+            $flag = collect([
+                'id' => $id,
+            ]);
+            broadcast(new StationNotificationDelete($flag));
             $s = StationItemJoin::where('station_id', $id)->get();
             foreach ($s as $s) {
                 $s->delete();
@@ -138,41 +143,48 @@ if (!function_exists('reconRegionPullIdCheck')) {
             foreach ($s as $s) {
                 $s->delete();
             }
-            $oldStation = Station::where('id', $id)->first();
 
-            Station::updateOrCreate(['id' => $id], [
-                'name' => $stationdata['str_name'],
-                'standing' => $standing,
-                'r_hash' => $stationdata['str_structure_id_md5'],
-                'corp_id' => $stationdata['str_owner_corporation_id'],
-                'r_updated_at' => $stationdata['updated_at'],
-                'r_fitted' => $stationdata['str_has_no_fitting'],
-                'r_capital_shipyard' => $stationdata['str_capital_shipyard'],
-                'r_hyasyoda' => $stationdata['str_hyasyoda'],
-                'r_invention' => $stationdata['str_invention'],
-                'r_manufacturing' => $stationdata['str_manufacturing'],
-                'r_research' => $stationdata['str_research'],
-                'r_supercapital_shipyard' => $stationdata['str_supercapital_shipyard'],
-                'r_biochemical' => $stationdata['str_biochemical'],
-                'r_hybrid' => $stationdata['str_hybrid'],
-                'r_moon_drilling' => $stationdata['str_moon_drilling'],
-                'r_reprocessing' => $stationdata['str_reprocessing'],
-                'r_point_defense' => $stationdata['str_point_defense'],
-                'r_dooms_day' => $stationdata['str_dooms_day'],
-                'r_guide_bombs' => $stationdata['str_guide_bombs'],
-                'r_anti_cap' => $stationdata['str_anti_cap'],
-                'r_anti_subcap' => $stationdata['str_anti_subcap'],
-                'r_t2_rigged' => $stationdata['str_t2_rigged'],
-                'r_cloning' => $stationdata['str_cloning'],
-                'r_composite' => $stationdata['str_composite'],
-                'r_cored' => $core,
-                'system_id' => $stationdata['str_system_id'],
-                'item_id' => $stationdata['str_type_id'],
-                'added_from_recon' => 1,
-                'import_flag' => 1,
-
-            ]);
-            $stationNew = Station::where('id', $id)->first();
+            if (Station::where('id', $id)->exists()) {
+                $stationUpdate = Station::where('id', $id)->first();
+                $stationUpdate->import_flag = 0;
+                $stationUpdate->save();
+            } else {
+                $stationUpdate = new Station();
+            }
+            $stationUpdate->id = $stationdata['str_structure_id'];
+            $stationUpdate->name = $stationdata['str_name'];
+            $stationUpdate->standing = $standing;
+            $stationUpdate->r_hash = $stationdata['str_structure_id_md5'];
+            $stationUpdate->corp_id = $stationdata['str_owner_corporation_id'];
+            $stationUpdate->r_updated_at = $stationdata['updated_at'];
+            $stationUpdate->r_fitted = $stationdata['str_has_no_fitting'];
+            $stationUpdate->r_capital_shipyard = $stationdata['str_capital_shipyard'];
+            $stationUpdate->r_hyasyoda = $stationdata['str_hyasyoda'];
+            $stationUpdate->r_invention = $stationdata['str_invention'];
+            $stationUpdate->r_manufacturing = $stationdata['str_manufacturing'];
+            $stationUpdate->r_research = $stationdata['str_research'];
+            $stationUpdate->r_supercapital_shipyard = $stationdata['str_supercapital_shipyard'];
+            $stationUpdate->r_biochemical = $stationdata['str_biochemical'];
+            $stationUpdate->r_hybrid = $stationdata['str_hybrid'];
+            $stationUpdate->r_moon_drilling = $stationdata['str_moon_drilling'];
+            $stationUpdate->r_reprocessing = $stationdata['str_reprocessing'];
+            $stationUpdate->r_point_defense = $stationdata['str_point_defense'];
+            $stationUpdate->r_dooms_day = $stationdata['str_dooms_day'];
+            $stationUpdate->r_guide_bombs = $stationdata['str_guide_bombs'];
+            $stationUpdate->r_anti_cap = $stationdata['str_anti_cap'];
+            $stationUpdate->r_anti_subcap = $stationdata['str_anti_subcap'];
+            $stationUpdate->r_t2_rigged = $stationdata['str_t2_rigged'];
+            $stationUpdate->r_cloning = $stationdata['str_cloning'];
+            $stationUpdate->r_composite = $stationdata['str_composite'];
+            $stationUpdate->r_cored = $core;
+            $stationUpdate->system_id = $stationdata['str_system_id'];
+            $stationUpdate->item_id = $stationdata['str_type_id'];
+            $stationUpdate->added_from_recon = 1;
+            $stationUpdate->import_flag = 1;
+            if (count($stationUpdate->getDirty()) > 1) {
+                $stationUpdated = true;
+            }
+            $stationUpdate->save();
 
             $status_id = Station::where('id', $id)->value('station_status_id');
             if ($status_id == 7) {
@@ -208,6 +220,23 @@ if (!function_exists('reconRegionPullIdCheck')) {
                             }
                             StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $id]);
                         }
+                    }
+                }
+            }
+
+            if ($stationUpdate->wasRecentlyCreated || $stationUpdated) {
+                $message = StationRecordsSolo(5, $id);
+
+
+                if ($message) {
+                    $watchListIDs = getStationWatchListIDs($stationUpdate->id);
+                    foreach ($watchListIDs as $watchListID) {
+                        $flag = collect([
+                            'flag' => 1,
+                            'message' => $message,
+                            'id' => $watchListID,
+                        ]);
+                        broadcast(new WatchListStationPageUpdate($flag));
                     }
                 }
             }
@@ -248,8 +277,11 @@ if (!function_exists('dubp')) {
     function dubp()
     {
         $dups = Station::groupBy('name')->select('name', DB::raw('count(*) as total'))->get();
+
         foreach ($dups as $dup) {
+
             if ($dup->total > 1) {
+                echo $dup->name . ' ' . $dup->total;
                 $stations = Station::where('name', $dup->name)->orderByDesc('id')->get();
 
 
@@ -269,7 +301,7 @@ if (!function_exists('dubp')) {
                     'timestamp' => $stations[1]['timestamp'] ?? null,
                     'show_on_main' => $stations[1]['show_on_main'] ?? null,
                     'show_on_chill' => $stations[1]['show_on_chill'] ?? null,
-                    'show_welp' => $stations[1]['show_welp'] ?? null,
+                    'show_on_welp' => $stations[1]['show_on_welp'] ?? null,
                     'show_on_rc' => $stations[1]['show_on_rc'] ?? null,
                     'show_on_rc_move' => $stations[1]['show_on_rc_move'] ?? null,
                     'show_on_coord' => $stations[1]['show_on_coord'] ?? null,
@@ -279,15 +311,17 @@ if (!function_exists('dubp')) {
                     'rc_fc_id' => $stations[1]['rc_fc_id'] ?? null,
                     'rc_gsol_id' => $stations[1]['rc_gsol_id'] ?? null,
                     'rc_recon_id' => $stations[1]['rc_recon_id'] ?? null,
-                    'rc_alliance_id' => $stations[1]['rc_alliance_id'] ?? null,
-                    'rc_corp_id' => $stations[1]['rc_corp_id'] ?? null,
 
                 ]);
 
                 $oldStationId = $stations[1]->id;
                 StationNotes::where('station_id', $oldStationId)->update(['station_id' => $stations[0]->id]);
                 Activity::where('subject_id', $oldStationId)->where('subject_type', 'App\Station')->update(['subject_id' => $stations[0]->id]);
-                $stations[1]->delete();
+                Station::whereId($oldStationId)->delete();
+                $flag = collect([
+                    'id' => $stations[1]->id,
+                ]);
+                broadcast(new StationNotificationDelete($flag));
             }
         }
     }
