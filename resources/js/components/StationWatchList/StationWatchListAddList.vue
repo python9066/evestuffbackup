@@ -695,16 +695,16 @@ let close = () => {
 
 let open = () => {
   if (props.edit == 1) {
-    namePicked = props.list.name;
-    descriptionPicked = props.list.description;
-    stationsPicked = props.list.settings.station_id;
-    systemsPicked = props.list.settings.system_id;
-    constellationsPicked = props.list.settings.constellation_id;
-    regionsPicked = props.list.settings.region_id;
-    rolesPicked = props.list.settings.role_id;
-    usersPicked = props.list.settings.user_id;
-    alliancePicked = props.list.settings.alliance_id;
-    typePicked = props.list.settings.type_id;
+    namePicked = props.list.name ?? null;
+    descriptionPicked = props.list.description ?? null;
+    stationsPicked = props.list.settings.station_id ?? [];
+    systemsPicked = props.list.settings.system_id ?? [];
+    constellationsPicked = props.list.settings.constellation_id ?? [];
+    regionsPicked = props.list.settings.region_id ?? [];
+    rolesPicked = props.list.settings.role_id ?? [];
+    usersPicked = props.list.settings.user_id ?? [];
+    alliancePicked = props.list.settings.alliance_id ?? [];
+    typePicked = props.list.settings.type_id ?? [];
   }
 };
 

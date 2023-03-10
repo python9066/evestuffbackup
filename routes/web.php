@@ -60,6 +60,7 @@ Route::controller(testController::class)->group(function () {
     Route::get('/test/testremove', 'removeOps');
     Route::get('/test/teststation', 'testStation');
     Route::get('/test/testwatch', 'testWatchListPull');
+    Route::get('/test/reconpull/{id}', 'testStationPull');
 });
 
 Route::controller(AuthController::class)->group(function () {
