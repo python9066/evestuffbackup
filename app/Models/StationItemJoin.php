@@ -10,4 +10,9 @@ class StationItemJoin extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function item()
+    {
+        return $this->hasOne(StationItems::class, 'id', 'station_item_id');
+    }
 }

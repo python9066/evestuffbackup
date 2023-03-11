@@ -84,6 +84,17 @@ class testController extends Controller
         }
     }
 
+    public function testStationItemPull($id)
+    {
+        $check = Auth::user($id);
+        if ($check->can('super')) {
+            $text =  getStationFitBlockSolo($id);
+            Station::where('id', $id)->update(['fit_text' => $text]);
+            $station = Station::where('id', $id)->first();
+            dd($text, $station->fit_text);
+        }
+    }
+
 
 
     public function removeFC()

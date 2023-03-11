@@ -50,6 +50,13 @@ const routes = [{
     },
 
 
+    // {
+    //     path: "/test",
+    //     name: "operations",
+    //     component: () => import("./views/test.vue"),
+    // },
+
+
 
     {
         path: "/windows",
@@ -207,7 +214,7 @@ const routes = [{
         component: () => import("./views/NewCampaign.vue"),
         props: (route) => {
             const id = route.params.id;
-            const routeSystem = route.params.system ?? null;
+            const routeSystem = route.params.system ? route.params.system : null;
             return {
                 id,
                 routeSystem
