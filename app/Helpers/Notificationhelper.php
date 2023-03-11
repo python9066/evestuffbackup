@@ -215,11 +215,52 @@ if (!function_exists('reconRegionPullIdCheck')) {
                         $items = Utils::jsonDecode($stationdata['str_fitting'], true);
                         foreach ($items as $item) {
                             StationItems::where('id', $item['type_id'])->get()->count();
-                            if (StationItems::where('id', $item['type_id'])->get()->count() == 0) {
-                                StationItems::Create(['id' => $item['type_id'], 'item_name' => $item['name']]);
+                            if (StationItems::where('id', $item['type_id'])->whereNull('slot')->get()->count() == 0) {
+                                StationItems::updateOrCreate(
+                                    ['id' => $item['type_id']],
+                                    ['item_name' => $item['name']]
+                                );
+                                $url = 'https://esi.evetech.net/latest/universe/types/' . $item['type_id'] . '/';
+                                $response = Http::withHeaders([
+                                    'Content-Type' => 'application/json',
+                                    'Accept' => 'application/json',
+                                    'User-Agent' => 'evestuff.online python9066@gmail.com',
+                                ])->get($url);
+                                $itemdata = $response->json();
+                                $dogs = $itemdata['dogma_effects'];
+                                foreach ($dogs as $dog) {
+                                    $newStationItem = StationItems::where('id', $item['type_id'])->first();
+                                    if ($dog['effect_id'] == 11) {
+                                        $newStationItem->slot = "Low";
+                                        $newStationItem->slot_value = 3;
+                                        $newStationItem->save();
+                                    }
+                                    if ($dog['effect_id'] == 12) {
+                                        $newStationItem->slot = "High";
+                                        $newStationItem->slot_value = 5;
+                                        $newStationItem->save();
+                                    }
+                                    if ($dog['effect_id'] == 13) {
+                                        $newStationItem->slot = "Medium";
+                                        $newStationItem->slot_value = 4;
+                                        $newStationItem->save();
+                                    }
+                                    if ($dog['effect_id'] == 6306) {
+                                        $newStationItem->slot = "Service";
+                                        $newStationItem->slot_value = 1;
+                                        $newStationItem->save();
+                                    }
+                                    if ($dog['effect_id'] == 2663) {
+                                        $newStationItem->slot = "Rig";
+                                        $newStationItem->slot_value = 2;
+                                        $newStationItem->save();
+                                    }
+                                }
                             }
                             StationItemJoin::create(['station_item_id' => $item['type_id'], 'station_id' => $id]);
                         }
+                        $fitText = getStationFitBlockSolo($id);
+                        Station::where('id', $id)->update(['fit_text' => $fitText]);
                     }
                 }
             }

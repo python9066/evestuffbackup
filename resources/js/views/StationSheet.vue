@@ -790,6 +790,9 @@ let standingCheck = (item) => {
 };
 
 let showInfo = (item) => {
+  if (!can("view_station_info_killsheet")) {
+    return false;
+  }
   if (item.item.id == 37534 || item.item.id == 35841 || item.item.id == 35840) {
     return false;
   }

@@ -9,7 +9,7 @@
       @click="openStationInfo()"
     />
   </div>
-  <q-dialog v-model="stationInfo">
+  <q-dialog v-model="stationInfo" persistent>
     <q-card class="myRoundTop" style="width: 500px">
       <q-card-section class="bg-primary text-h5 text-center">
         <span class="no-margin">{{ props.station.name }}</span>
@@ -151,7 +151,15 @@
           </div>
         </div>
       </q-card-section>
-      <q-card-actions align="right">
+      <q-card-actions align="between">
+        <q-btn
+          v-if="showfit()"
+          rounded
+          outline
+          color="info"
+          label="Copy Fit"
+          @click="copyFit()"
+        />
         <q-btn color="negative" label="Close" v-close-popup />
       </q-card-actions>
     </q-card>
@@ -160,7 +168,7 @@
 
 <script setup>
 import { inject, defineAsyncComponent } from "vue";
-import { useQuasar } from "quasar";
+import { useQuasar, copyToClipboard } from "quasar";
 import { useMainStore } from "@/store/useMain.js";
 let store = useMainStore();
 const $q = useQuasar();
@@ -173,8 +181,8 @@ const props = defineProps({
 //   import("../components/operations/SoloCampaginWebWay.vue")
 // );
 let pagination = $ref({
-  sortBy: "item",
-  descending: false,
+  sortBy: "slot_value",
+  descending: true,
   page: 1,
   rowsPerPage: 0,
 });
@@ -238,6 +246,15 @@ let openRecon = () => {
 
 let url = (item) => {
   return "https://images.evetech.net/types/" + item.id + "/icon";
+};
+
+let copyFit = () => {
+  copyToClipboard(props.station.fit_text).then(() => {
+    $q.notify({
+      type: "info",
+      message: "fit copied to your clipboard",
+    });
+  });
 };
 
 let taskRequest = () => {

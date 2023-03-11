@@ -313,7 +313,7 @@ if (!function_exists('StationRecords')) {
             'corp:id,alliance_id,name,ticker,standing,url,color',
             'corp.alliance:id,name,ticker,standing,url,color',
             'item',
-            'fit:id,item_name',
+            'fit',
             'addedBy:id,name',
             'notes.user',
 
@@ -377,7 +377,7 @@ if (!function_exists('StationRecordsSolo')) {
             'corp:id,alliance_id,name,ticker,standing,url,color',
             'corp.alliance:id,name,ticker,standing,url,color',
             'item',
-            'fit:id,item_name',
+            'fit',
             'notes.user',
             'addedBy:id,name',
         ]);
