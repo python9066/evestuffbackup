@@ -30,6 +30,8 @@ class Kernel extends ConsoleKernel
         Commands\UpdateWebWayRoutes::class,
         Commands\getDankDocsCommand::class,
         Commands\newnewnewcampaignsupdate::class,
+        Commands\updateCatGroup::class,
+        Commands\updateItems::class,
     ];
 
     /**
@@ -61,6 +63,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('update:alliances')->dailyAt('22:00');
         $schedule->command('clear:remembertoken')->twiceDaily(9, 21);
         $schedule->command('get:dankdocs')->twiceDaily(9, 21);
+        $schedule->command('update:updateCatGroup')->daily();
+        $schedule->command('update:items')->dailyAt('00:30');
     }
 
     /**

@@ -10,9 +10,15 @@ use App\Models\Alliance;
 use App\Models\AllianceStationWatchList;
 use App\Models\Auth as ModelsAuth;
 use App\Models\Campaign;
+use App\Models\Categorie;
 use App\Models\ConstellationStationWatchList;
 use App\Models\Corp;
 use App\Models\DankOperation;
+use App\Models\Dscan;
+use App\Models\DscanItem;
+use App\Models\Eve;
+use App\Models\EveCategorie;
+use App\Models\Group;
 use App\Models\HotRegion;
 use App\Models\Item;
 use App\Models\ItemStationWatchList;
@@ -49,6 +55,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use PhpParser\Node\Expr\Cast;
 use Pusher\Pusher;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Permission\Models\Permission;
@@ -66,13 +73,210 @@ class testController extends Controller
         return view('test2');
     }
 
+    public function dscanTest(Request $request)
+    {
+        $check = Auth::user();
+        if ($check->can('super')) {
+
+            $sunIDs = collect([
+                6,
+                7,
+                8,
+                3796,
+                3797,
+                3798,
+                3799,
+                3800,
+                3802,
+                45030,
+                45031,
+                45032,
+                45033,
+                45036,
+                45037,
+                45038,
+                45039,
+                45040,
+                45041,
+                45047
+            ]);
+
+            $stations = collect([
+                54,
+                56,
+                57,
+                58,
+                59,
+                1529,
+                1530,
+                1531,
+                1926,
+                1927,
+                1928,
+                1929,
+                1930,
+                1931,
+                1932,
+                2071,
+                2496,
+                2497,
+                2498,
+                2499,
+                2500,
+                2501,
+                2502,
+                3864,
+                3865,
+                3866,
+                3867,
+                3868,
+                3869,
+                3870,
+                3871,
+                3872,
+                4023,
+                4024,
+                9856,
+                9857,
+                9867,
+                9868,
+                9873,
+                10795,
+                12242,
+                12294,
+                12295,
+                19757,
+                21642,
+                21644,
+                21645,
+                21646,
+                22296,
+                22297,
+                22298,
+                29323,
+                29387,
+                29388,
+                29389,
+                29390,
+                34325,
+                34326,
+                52678,
+                59956,
+                71361,
+                74397,
+                35832,
+                35834,
+                35827,
+                35833,
+                35825,
+                35826,
+                35835,
+                35836,
+                47512,
+                47516,
+                47514,
+                47515,
+                35832,
+                47513
+            ]);
+
+
+            $dscan_results = $request->dscan;
+            $newDscan = new Dscan();
+            $newDscan->user_id = Auth::user()->id;
+            $newDscan->link = Str::uuid();
+            $newDscan->save();
+
+            $rows = explode("\n", $dscan_results);
+
+            foreach ($rows as $row) {
+                $columns = explode("\t", $row);
+                $newDscanItem = new DscanItem();
+                $newDscanItem->dscan_id = $newDscan->id;
+                $newDscanItem->item_id = $columns[0];
+                $newDscanItem->name = $columns[1];
+                $newDscanItem->distance = $columns[3];
+                $newDscanItem->save();
+                if (!$newDscan->system_id) {
+                    if ($sunIDs->contains($columns[0])) {
+                        $systemName = explode(" - ", $columns[1])[0];
+                        $system = System::where('system_name', $systemName)->first();
+                        $newDscan->system_id = $system->id;
+                        $newDscan->save();
+                    }
+
+                    if ($stations->contains($columns[0])) {
+                        $systemName = explode(" - ", $columns[1])[0];
+                        $system = System::where('system_name', $systemName)->first();
+                        $newDscan->system_id = $system->id;
+                        $newDscan->save();
+                    }
+                }
+            }
+        }
+    }
+
+    public function testItemPull()
+    {
+        $check = Auth::user();
+        if ($check->can('super')) {
+            $items = Item::whereNull('item_name')->get();
+            foreach ($items as $item) {
+                $pull = 0;
+                $itemID = $item->id;
+
+                $item = Item::where('id', $itemID)->first();
+
+
+                do {
+
+                    $response = Http::withHeaders([
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                        'User-Agent' => 'evestuff.online python9066@gmail.com',
+                    ])->get('https://esi.evetech.net/latest/universe/types/' . $itemID . '/?datasource=tranquility&language=en');
+                    if ($response->successful()) {
+                        $itemres = $response->json();
+                        dd($itemres);
+                        $item->name = $itemres['name'];
+                    } else {
+                        $headers = $response->headers();
+                        $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
+                        sleep($sleep);
+                        $pull++;
+                    }
+                } while ($pull != 3);
+            }
+        }
+    }
+
     public function testWatchListPull()
     {
         $check = Auth::user();
         if ($check->can('super')) {
-            $type = 'note';
-            $data = authpull($type, 0);
-            return $data;
+
+            $groups = Group::all();
+            foreach ($groups as $group) {
+
+
+                $response = Http::withHeaders([
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
+                ])->get('https://esi.evetech.net/latest/universe/groups/' . $group->id . '/?datasource=tranquility&language=en');
+
+                $res = $response->json();
+                dd($res);
+                $name = $res['name'];
+                $group->name = $name;
+                $group->save();
+                $types = $res['types'];
+                foreach ($types as $type) {
+                    $item = Item::where('id', $type)->first();
+                    $item->group_id = $group->id;
+                    $item->save();
+                }
+            }
         }
     }
 

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <span @click="copyText(setText)">{{ setText }}</span>
+    <q-input v-model="dscan" type="textarea" label="Label" />
+    <q-btn color="primary" icon="check" label="OK" @click="setTextStart" />
+    <span>{{ result }}</span>
   </div>
 </template>
 
@@ -8,23 +10,26 @@
 import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
 import { useQuasar, copyToClipboard } from "quasar";
 const $q = useQuasar();
-var setText = $ref("Hello World");
+var dscan = $ref(null);
+var result = $ref(null);
 
-onMounted(async () => {
-  setTextStart();
-});
+onMounted(async () => {});
 
 let setTextStart = async () => {
+  let data = {
+    dscan: dscan,
+  };
   let res = await axios({
-    method: "get",
+    method: "post",
     withCredentials: true,
-    url: "/api/teststationitempull/1038739510399",
+    url: "/api/testdscan",
+    data: data,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
   });
-  setText = res.data;
+  result = res.data;
 };
 
 let copyText = (name) => {

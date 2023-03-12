@@ -114,6 +114,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/testscorerun', 'testRunScore');
         Route::post('/testclearalldata', 'testClearCampaigns');
         Route::get('/teststationitempull/{id}', 'testStationItemPull');
+        Route::post('/testdscan', 'dscanTest');
     });
 
     Route::controller(EveController::class)->group(function () {

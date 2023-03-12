@@ -50,11 +50,11 @@ const routes = [{
     },
 
 
-    // {
-    //     path: "/test",
-    //     name: "operations",
-    //     component: () => import("./views/test.vue"),
-    // },
+    {
+        path: "/test",
+        name: "testingpage",
+        component: () => import("./views/test.vue"),
+    },
 
 
 
