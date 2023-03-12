@@ -51,10 +51,16 @@ const routes = [{
 
 
     {
-        path: "/test",
+        path: "/dscan",
         name: "testingpage",
         component: () => import("./views/test.vue"),
     },
+
+    // {
+    //     path: "/dscan/:id",
+    //     name: "testingpage",
+    //     component: () => import("./views/test.vue"),
+    // },
 
 
 

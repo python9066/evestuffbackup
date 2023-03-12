@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     use HasFactory;
+
+    public function item()
+    {
+        return $this->hasMany(Item::class);
+    }
+
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class);
+    }
 }

@@ -19,6 +19,11 @@ class Item extends Model
         return $this->hasMany(ChillStation::class);
     }
 
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
+
     protected $casts = [
         'id' => 'integer',
     ];

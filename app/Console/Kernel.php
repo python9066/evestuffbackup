@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
         Commands\UpdateWebWayRoutes::class,
         Commands\getDankDocsCommand::class,
         Commands\newnewnewcampaignsupdate::class,
-        Commands\updateCatGroup::class,
+        Commands\updateGroupAndCat::class,
         Commands\updateItems::class,
     ];
 

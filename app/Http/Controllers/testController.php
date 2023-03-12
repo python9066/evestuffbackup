@@ -78,28 +78,7 @@ class testController extends Controller
         $check = Auth::user();
         if ($check->can('super')) {
 
-            $sunIDs = collect([
-                6,
-                7,
-                8,
-                3796,
-                3797,
-                3798,
-                3799,
-                3800,
-                3802,
-                45030,
-                45031,
-                45032,
-                45033,
-                45036,
-                45037,
-                45038,
-                45039,
-                45040,
-                45041,
-                45047
-            ]);
+
 
             $stations = collect([
                 54,
@@ -198,7 +177,9 @@ class testController extends Controller
                 $newDscanItem->distance = $columns[3];
                 $newDscanItem->save();
                 if (!$newDscan->system_id) {
-                    if ($sunIDs->contains($columns[0])) {
+                    $item = Item::whereId($columns[0])->fisrt();
+                    $groupName = $item->group->name;
+                    if ($groupName == "Sun") {
                         $systemName = explode(" - ", $columns[1])[0];
                         $system = System::where('system_name', $systemName)->first();
                         $newDscan->system_id = $system->id;
@@ -213,6 +194,19 @@ class testController extends Controller
                     }
                 }
             }
+        }
+    }
+
+    public function testDscanPull()
+    {
+        $check = Auth::user();
+        if ($check->can('super')) {
+            $dscan = Dscan::whereId(6)
+                ->with([
+                    'items.item.group'
+                ])
+                ->first();
+            return $dscan;
         }
     }
 

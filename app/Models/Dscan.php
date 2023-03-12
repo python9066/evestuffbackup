@@ -9,4 +9,9 @@ class Dscan extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function items()
+    {
+        return $this->hasMany(DscanItem::class);
+    }
 }
