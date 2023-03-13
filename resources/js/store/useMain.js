@@ -5,6 +5,7 @@ import {
 
 export const useMainStore = defineStore("main", {
     state: () => ({
+        dScan: [],
         constellationlist: [],
         eveUserCount: 0,
         newSoloOperations: [],
@@ -188,7 +189,7 @@ export const useMainStore = defineStore("main", {
 
         getOperationInfoUnreadMessageCount: (state) => {
 
-            let messages = state.operationInfoPage.messages;
+            let messages = state.operationInfoPage.messages ? state.operationInfoPage.messages : [];
             let count = messages.filter(
                 (m) =>
                 m.read_by &&
@@ -380,6 +381,82 @@ export const useMainStore = defineStore("main", {
                 return [];
             }
         },
+
+        getDscanAllNewShips: (state) => {
+            return state.dScan.totals ?
+                Object.values(state.dScan.totals.totals.items.new)
+                .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
+                null;
+
+        },
+
+
+        getDscanAllNewShipsGroups: (state) => {
+            return state.dScan.totals ?
+                Object.values(state.dScan.totals.totals.groups.new)
+                .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
+                null;
+        },
+
+
+
+        getDscanAllNewStructures: (state) => {
+
+            return state.dScan.totals ?
+                Object.values(state.dScan.totals.totals.groups.new)
+                .filter(item => item.category_id === 65).sort((a, b) => b.total - a.total) :
+                null;
+        },
+
+
+        getDscanOnGridNewShips: (state) => {
+            return state.dScan.totals ?
+                Object.values(state.dScan.totals.totals.items.new)
+                .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
+                null;
+        },
+
+
+        getDscanOnGridNewShipsGroups: (state) => {
+            return state.dScan.totals ?
+                Object.values(state.dScan.totals.totals.groups.new)
+                .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
+                null;
+        },
+
+        getDscanOnGridNewStructures: (state) => {
+            return state.dScan.totals ?
+                Object.values(state.dScan.totals.totals.groups.new)
+                .filter(item => item.category_id === 65 && item.on).sort((a, b) => b.on - a.on) :
+                null;
+        },
+
+
+        getDscanOffGridNewShips: (state) => {
+            return state.dScan.totals ?
+                Object.values(state.dScan.totals.totals.groups.new)
+                .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
+                null;
+        },
+
+        getDscanOffGridNewShipsGroups: (state) => {
+            return state.dScan.totals ?
+                Object.values(state.dScan.totals.totals.groups.new)
+                .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
+                null;
+        },
+
+        getDscanOffGridNewStructures: (state) => {
+            return state.dScan.totals ?
+                Object.values(state.dScan.totals.totals.groups.new)
+                .filter(item => item.category_id === 65 && item.off).sort((a, b) => b.total - a.total) :
+                null;
+        },
+
+
+
+
+
     },
     actions: {
         async updateTickList(ticker) {
@@ -1391,6 +1468,22 @@ export const useMainStore = defineStore("main", {
             });
             this.watchListListForUser = res.data.watchList;
         },
+
+        async getDscan(id) {
+            let res = await axios({
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
+                url: "/api/testdscan/" + id,
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.dScan = res.data.dscan;
+        },
+
+
+
 
 
     },

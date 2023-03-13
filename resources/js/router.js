@@ -51,7 +51,8 @@ const routes = [{
 
 
     {
-        path: "/dscan",
+        path: "/dscan/:link",
+        alias: '/dscan',
         name: "testingpage",
         component: () => import("./views/test.vue"),
     },

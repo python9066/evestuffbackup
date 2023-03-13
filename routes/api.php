@@ -18,6 +18,7 @@ use App\Http\Controllers\ConstellationsController;
 use App\Http\Controllers\CoordSheetController;
 use App\Http\Controllers\CorpController;
 use App\Http\Controllers\CustomCampaignsController;
+use App\Http\Controllers\DscanController;
 use App\Http\Controllers\EveController;
 use App\Http\Controllers\FeedBackController;
 use App\Http\Controllers\FleetTypeController;
@@ -115,10 +116,18 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/testclearalldata', 'testClearCampaigns');
         Route::get('/teststationitempull/{id}', 'testStationItemPull');
         Route::post('/testdscan', 'dscanTest');
+        Route::get('/testdscan/{id}', 'testDscanPull');
     });
 
     Route::controller(EveController::class)->group(function () {
         Route::get('/eveusercount', 'playerCount');
+    });
+
+    Route::controller(DscanController::class)->group(function () {
+        Route::post('/dscan', 'dscan');
+        Route::post('/dscan/{link}', 'update');
+        Route::get('/dscan/{link}', 'dscanPull');
+        Route::get('/dscan', 'dscanPullAll');
     });
 
     Route::controller(RcSheetController::class)->group(function () {
