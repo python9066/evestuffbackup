@@ -62,7 +62,9 @@ Route::controller(testController::class)->group(function () {
     Route::get('/test/testwatch', 'testWatchListPull');
     Route::get('/test/reconpull/{id}', 'testStationPull');
     Route::get('/test/fitpull/{id}', 'testStationItemPull');
-
+    Route::get('/test/pullitem', 'testItemPull');
+    Route::get('/test/dscan/{id}', 'testDscanPull');
+    Route::get('/test/descanlocal', 'testDscanLocal');
 });
 
 Route::controller(AuthController::class)->group(function () {

@@ -50,9 +50,23 @@ const routes = [{
     },
 
 
+    {
+        path: "/dscan/:link",
+        alias: '/dscan',
+        name: "dscan",
+        component: () => import("./views/Dscan.vue"),
+                beforeEnter(to, from, next) {
+            if (can("view_dscan")) {
+                next();
+            } else {
+                next("/");
+            }
+        },
+    },
+
     // {
-    //     path: "/test",
-    //     name: "operations",
+    //     path: "/dscan/:id",
+    //     name: "testingpage",
     //     component: () => import("./views/test.vue"),
     // },
 

@@ -32,6 +32,7 @@
         "symfony/yaml": "^5.1"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.13",
         "laravel/pint": "^0.2.2",
         "laravel/sail": "^1.14",
         "mockery/mockery": "^1.4.4",
@@ -75,7 +76,8 @@
             "app/Helpers/DiscordBot.php",
             "app/Helpers/OperationInfoHelper.php",
             "app/Helpers/TowerHelper.php",
-            "app/Helpers/StationWatchListHelper.php"
+            "app/Helpers/StationWatchListHelper.php",
+            "app/Helpers/Dscanhelper.php"
 
         ]
     },

@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Dscan extends Model
+{
+    use HasFactory;
+    protected $guarded = [];
+
+    public function items()
+    {
+        return $this->hasMany(DscanItem::class);
+    }
+
+    public function madeBy()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function system()
+    {
+        return $this->belongsTo(System::class);
+    }
+
+    public function totals()
+    {
+        return $this->hasOne(DscanTotal::class);
+    }
+
+    public function locals()
+    {
+        return $this->belongsToMany(Character::class, 'dscan_locals', 'dscan_id', 'character_id')
+            ->withPivot('new', 'left', 'same');
+    }
+}

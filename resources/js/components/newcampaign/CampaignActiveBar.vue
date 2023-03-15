@@ -29,7 +29,9 @@
               <div class="col-auto">
                 <AddOperationUser :operationID="props.operationID" />
               </div>
-              <div class="col-auto"><OperationCal :operationID="operationID" /></div>
+              <div class="col-auto">
+                <OperationCal :operationID="operationID" />
+              </div>
             </div>
           </div>
           <div v-if="can('access_multi_campaigns')" class="col-auto q-gutter-md">
@@ -82,7 +84,8 @@
               <template v-slot:default>
                 <transition
                   mode="out-in"
-                  enter-active-class="animate__animated animate__flash "
+                  enter-active-class="animate__animated animate__flash animate__slower"
+                  leave-active-class="animate__animated animate__flash animate__slower"
                 >
                   <span :class="toggleTextColor" :key="store.newOperationInfo.read_only">
                     Read Only - {{ readOnlyText }}</span

@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\getLocalNamesJob;
 use App\Jobs\updateWebwayJob;
 use App\Models\AdashLocalScan;
 use App\Models\AdashLocalScanAlliance;
 use App\Models\AdashLocalScanCorp;
-use App\Models\Alliance;
-use App\Models\AllianceStationWatchList;
 use App\Models\Auth as ModelsAuth;
 use App\Models\Campaign;
-use App\Models\ConstellationStationWatchList;
+use App\Models\Categorie;
+use App\Models\Character;
 use App\Models\Corp;
 use App\Models\DankOperation;
-use App\Models\HotRegion;
+use App\Models\Dscan;
+use App\Models\DscanItem;
+use App\Models\DscanLocal;
+use App\Models\DscanTotal;
+use App\Models\Group;
 use App\Models\Item;
-use App\Models\ItemStationWatchList;
 use App\Models\NewCampaign;
 use App\Models\NewCampaignOperation;
 use App\Models\NewCampaignSystem;
@@ -30,20 +33,14 @@ use App\Models\OperationInfoUserList;
 use App\Models\OperationUser;
 use App\Models\OperationUserList;
 use App\Models\Region;
-use App\Models\RegionStationWatchList;
-use App\Models\RoleStationWatchList;
 use App\Models\Station;
-use App\Models\StationStationWatchList;
-use App\Models\StationWatchList;
 use App\Models\System;
-use App\Models\SystemStationWatchList;
 use App\Models\testNote;
-use App\Models\testTable;
 use App\Models\User;
-use App\Models\UserStationWatchList;
 use App\Models\WebWay;
 use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
+use Illuminate\Console\View\Components\Info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -55,6 +52,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\HasRoles;
+use Termwind\Components\Dd;
 
 class testController extends Controller
 {
@@ -66,13 +64,332 @@ class testController extends Controller
         return view('test2');
     }
 
+    public function dscanTest(Request $request)
+    {
+        $check = Auth::user();
+        if ($check->can('super')) {
+            $dscan_results = $request->dscan;
+            $newDscan = new Dscan();
+            $newDscan->user_id = Auth::user()->id;
+            $newDscan->link = Str::uuid();
+            $newDscan->save();
+
+            $rows = explode("\n", $dscan_results);
+            $newTotal = new DscanTotal();
+            $newTotal->dscan_id = $newDscan->id;
+            $newTotal->save();
+
+            foreach ($rows as $row) {
+                $on = false;
+                $columns = explode("\t", $row);
+                $newDscanItem = new DscanItem();
+                $newDscanItem->dscan_id = $newDscan->id;
+                $newDscanItem->item_id = $columns[0];
+                $newDscanItem->name = $columns[1];
+                $components = explode(" ", $columns[3]);
+                if (count($components) > 1) {
+                    $newDscanItem->distance_value = $components[0]; // "9.1";
+                    $newDscanItem->distance_unit = $components[1];
+                } else {
+                    $newDscanItem->distance_value = 0; // "9.1";
+                    $newDscanItem->distance_unit = "m";
+                }
+                $newDscanItem->save();
+                $item = Item::whereId($columns[0])->first();
+                $group = Group::whereId($item->group_id)->first();
+                $category = Categorie::whereId($group->category_id)->first();
+
+                if ($newDscanItem->distance_unit == "km" && $newDscanItem->distance_value <= 8000) {
+                    $on = true;
+                }
+
+                if ($newDscanItem->distance_unit == "m") {
+                    $on = true;
+                }
+
+                $totals = $newTotal->totals;
+
+                $current = $totals['items']['new'][$item->item_name]['gorup_id'] = $group->id;
+                $current = $totals['items']['new'][$item->item_name]['category_id'] = $category->id;
+                $current = $totals['items']['new'][$item->item_name]['item_name'] = $item->item_name;
+                $current = $totals['items']['new'][$item->item_name]['item_id'] = $item->id;
+                $newTotal->totals = $current;
+
+                $current = $totals['groups']['new'][$group->name]['category_id'] = $category->id;
+                $current = $totals['groups']['new'][$group->name]['group_id'] = $group->id;
+                $current = $totals['groups']['new'][$group->name]['group_name'] = $group->name;
+                $newTotal->totals = $current;
+
+                $current = $totals['categories']['new'][$category->name]['category_id'] = $category->id;
+                $current = $totals['categories']['new'][$category->name]['category_name'] = $category->name;
+                $newTotal->totals = $current;
+
+                if ($on) {
+                    $current = $totals['items']['new'][$item->item_name]['on'] ?? 0;
+                } else {
+                    $current = $totals['items']['new'][$item->item_name]['off'] ?? 0;
+                }
+
+                $new = $current + 1;
+                if ($on) {
+                    $totals['items']['new'][$item->item_name]['on'] = $new;
+                } else {
+
+                    $totals['items']['new'][$item->item_name]['off'] = $new;
+                }
+                $newTotal->totals = $totals;
+                $newTotal->save();
+
+                $current = $totals['items']['new'][$item->item_name]['total'] ?? 0;
+                $new = $current + 1;
+                $totals['items']['new'][$item->item_name]['total'] = $new;
+                $newTotal->save();
+
+                if ($on) {
+                    $current = $totals['categories']['new'][$category->name]['on'] ?? 0;
+                } else {
+
+                    $current = $totals['categories']['new'][$category->name]['off'] ?? 0;
+                }
+
+                $new = $current + 1;
+                if ($on) {
+                    $totals['categories']['new'][$category->name]['on'] = $new;
+                } else {
+
+                    $totals['categories']['new'][$category->name]['off'] = $new;
+                }
+                $newTotal->totals = $totals;
+                $newTotal->save();
+
+                $current = $totals['categories']['new'][$category->name]['total'] ?? 0;
+                $new = $current + 1;
+                $totals['categories']['new'][$category->name]['total'] = $new;
+                $newTotal->save();
+
+                if ($on) {
+                    $current = $totals['groups']['new'][$group->name]['on'] ?? 0;
+                } else {
+
+                    $current = $totals['groups']['new'][$group->name]['off'] ?? 0;
+                }
+
+                $new = $current + 1;
+
+                if ($on) {
+                    $totals['groups']['new'][$group->name]['on'] = $new;
+                } else {
+
+                    $totals['groups']['new'][$group->name]['off'] = $new;
+                }
+                $newTotal->totals = $totals;
+                $newTotal->save();
+
+                $current = $totals['groups']['new'][$group->name]['total'] ?? 0;
+                $new = $current + 1;
+                $totals['groups']['new'][$group->name]['total'] = $new;
+                $newTotal->totals = $totals;
+                $newTotal->save();
+
+                if (!$newDscan->system_id) {
+                    $groupName = $item->group->name;
+                    if ($groupName == "Sun") {
+                        $systemName = explode(" - ", $columns[1])[0];
+                        $system = System::where('system_name', $systemName)->first();
+                        $newDscan->system_id = $system->id;
+                        $newDscan->save();
+                    }
+
+                    if (
+                        $group->id == 1406 ||
+                        $group->id == 1876 ||
+                        $group->id == 1657 ||
+                        $group->id == 1404 ||
+                        $group->id == 15
+                    ) {
+                        $systemName = explode(" - ", $columns[1])[0];
+                        $system = System::where('system_name', $systemName)->first();
+                        $newDscan->system_id = $system->id;
+                        $newDscan->save();
+                    }
+                }
+            }
+
+            return [
+                'link' => $newDscan->link,
+            ];
+        }
+    }
+
+    public function testDscanPull($id)
+    {
+        $check = Auth::user();
+        if ($check->can('super')) {
+            $dscan = Dscan::whereLink($id)
+                ->with([
+                    'system:id,region_id,constellation_id,system_name',
+                    'system.region',
+                    'system.constellation',
+                    'user:id,name',
+                    'items.item.group',
+                    'totals',
+                ])
+                ->first();
+            return [
+                'dscan' => $dscan,
+            ];
+        }
+    }
+
+    public function testDscanLocal(Request $request)
+    {
+
+        $check = Auth::user();
+        if ($check->can('super')) {
+
+            $dscan = Dscan::whereLink('8f939f04-bf9b-4ea1-bc0c-6c02d507a450')
+                ->with([
+                    'system:id,region_id,constellation_id,system_name',
+                    'system.region',
+                    'system.constellation',
+                    'updatedBy:id,name',
+                    'madeby:id,name',
+                    'items.item.group',
+                    'totals',
+                    'locals.corp.alliance'
+                ])
+                ->first();
+
+
+            $allLocals = $dscan->locals;
+            // return $allLocals;
+            $corpsTotal = [];
+            $allianceTotal = [];
+
+
+
+
+
+            foreach ($allLocals as $local) {
+                $corpsTotal[$local->corp->name]['details'] = $local->corp;
+                $corpsTotal[$local->corp->name]['total'] = 0;
+                $corpsTotal[$local->corp->name]['new'] = 0;
+                $corpsTotal[$local->corp->name]['old'] = 0;
+
+                $allianceTotal[$local->corp->alliance->name]['details'] = $local->corp->alliance;
+                $allianceTotal[$local->corp->alliance->name]['total'] = 0;
+                $allianceTotal[$local->corp->alliance->name]['new'] = 0;
+                $allianceTotal[$local->corp->alliance->name]['old'] = 0;
+            }
+
+            foreach ($allLocals as $local) {
+                $total =  $corpsTotal[$local->corp->name]['total'] ?? 0;
+                $total++;
+                $corpsTotal[$local->corp->name]['total'] = $total;
+
+                $allianceTotal[$local->corp->alliance->name]['total'] = $allianceTotal[$local->corp->alliance->name]['total'] + 1;
+
+
+
+                if ($local->pivot->new) {
+                    $new =  $corpsTotal[$local->corp->name]['new'] ?? 0;
+                    $new++;
+                    $corpsTotal[$local->corp->name]['new'] = $new;
+
+                    $allianceTotal[$local->corp->alliance->name]['new'] = $allianceTotal[$local->corp->alliance->name]['new'] + 1;
+                }
+
+                if ($local->pivot->openssl_decrypt) {
+                    $old =  $corpsTotal[$local->corp->name]['old'] ?? 0;
+                    $old++;
+                    $corpsTotal[$local->corp->name]['old'] = $old;
+
+                    $allianceTotal[$local->corp->alliance->name]['old'] = $allianceTotal[$local->corp->alliance->name]['old'] + 1;
+                }
+            }
+
+            foreach ($corpsTotal as $key => $corp) {
+                $old =   $corpsTotal[$key]['old'];
+                $new =   $corpsTotal[$key]['new'];
+                $diff = $new - $old;
+                $corpsTotal[$key]['diff'] = $diff;
+            }
+
+            foreach ($allianceTotal as $key => $alliance) {
+                $old =   $allianceTotal[$key]['old'];
+                $new =   $allianceTotal[$key]['new'];
+                $diff = $new - $old;
+                $allianceTotal[$key]['diff'] = $diff;
+            }
+
+            return $allianceTotal;
+            return [
+                'dscan' => $dscan,
+                'corpsTotal' => $corpsTotal,
+                'allianceTotal' => $allianceTotal,
+            ];
+        }
+    }
+
+    public function testItemPull()
+    {
+        $check = Auth::user();
+        if ($check->can('super')) {
+            $items = Item::whereNull('item_name')->get();
+            foreach ($items as $item) {
+                $pull = 0;
+                $itemID = $item->id;
+
+                $item = Item::where('id', $itemID)->first();
+
+                do {
+
+                    $response = Http::withHeaders([
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                        'User-Agent' => 'evestuff.online python9066@gmail.com',
+                    ])->get('https://esi.evetech.net/latest/universe/types/' . $itemID . '/?datasource=tranquility&language=en');
+                    if ($response->successful()) {
+                        $itemres = $response->json();
+                        dd($itemres);
+                        $item->name = $itemres['name'];
+                    } else {
+                        $headers = $response->headers();
+                        $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
+                        sleep($sleep);
+                        $pull++;
+                    }
+                } while ($pull != 3);
+            }
+        }
+    }
+
     public function testWatchListPull()
     {
         $check = Auth::user();
         if ($check->can('super')) {
-            $type = 'note';
-            $data = authpull($type, 0);
-            return $data;
+
+            $groups = Group::all();
+            foreach ($groups as $group) {
+
+                $response = Http::withHeaders([
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
+                ])->get('https://esi.evetech.net/latest/universe/groups/' . $group->id . '/?datasource=tranquility&language=en');
+
+                $res = $response->json();
+                dd($res);
+                $name = $res['name'];
+                $group->name = $name;
+                $group->save();
+                $types = $res['types'];
+                foreach ($types as $type) {
+                    $item = Item::where('id', $type)->first();
+                    $item->group_id = $group->id;
+                    $item->save();
+                }
+            }
         }
     }
 
@@ -88,14 +405,12 @@ class testController extends Controller
     {
         $check = Auth::user($id);
         if ($check->can('super')) {
-            $text =  getStationFitBlockSolo($id);
+            $text = getStationFitBlockSolo($id);
             Station::where('id', $id)->update(['fit_text' => $text]);
             $station = Station::where('id', $id)->first();
             dd($text, $station->fit_text);
         }
     }
-
-
 
     public function removeFC()
     {
@@ -172,7 +487,6 @@ class testController extends Controller
         }
     }
 
-
     public function testDankFleet()
     {
         $user = Auth::user();
@@ -192,8 +506,7 @@ class testController extends Controller
                 'User-Agent' => 'evestuff.online python9066@gmail.com',
             ])->get($url1);
 
-            $fleets =  $response->json();
-
+            $fleets = $response->json();
 
             $response = Http::withHeaders([
                 'X-ApiKey' => $token,
@@ -202,7 +515,7 @@ class testController extends Controller
                 'User-Agent' => 'evestuff.online python9066@gmail.com',
             ])->get($url);
 
-            $operation =  $response->json();
+            $operation = $response->json();
             dd($operation);
 
             if (DankOperation::where('id', $opID)->count() == 0) {
@@ -295,7 +608,6 @@ class testController extends Controller
         return nameToID($name);
     }
 
-
     public function adashLScan()
     {
         $user = Auth::user();
@@ -335,7 +647,7 @@ class testController extends Controller
                     $a = collect();
                     foreach ($alliances as $aKey => $alliance) {
                         $allianceID = key($alliance);
-                        $text =  $alliance[$allianceID];
+                        $text = $alliance[$allianceID];
                         $text = substr($text, 0, -1);
                         $textx = explode("(", $text);
                         $textx[1];
@@ -346,7 +658,7 @@ class testController extends Controller
                     $c = collect();
                     foreach ($unaffiliated as $uKey => $un) {
                         $corpID = key($un);
-                        $text =  $un[$corpID];
+                        $text = $un[$corpID];
                         $text = substr($text, 0, -1);
                         $textx = explode("(", $text);
                         $textx[1];
@@ -414,7 +726,7 @@ class testController extends Controller
                 'User-Agent' => 'evestuff.online python9066@gmail.com',
             ])->get('https://adashboard.info/recon/api/ds/recentfromsystem/' . $systemID);
 
-            $data =  $response->json();
+            $data = $response->json();
             return $data;
             // $json = '[{"hbVcQHOh":[{"total":128},{"alliances":[{"1354830081":"CONDI(96)"},{"99004425":"BASTN(11)"}]},{"unaffiliated":[]}]},{"0Tz5k6yS":[{"total":128},{"alliances":[{"1354830081":"CONDI(96)"},{"99004425":"BASTN(11)"}]},{"unaffiliated":[]}]},{"MH3Iixzr":[{"total":128},{"alliances":[{"1354830081":"CONDI(96)"},{"99004425":"BASTN(11)"}]},{"unaffiliated":[]}]}]';
             // $data = json_decode($json, true);
@@ -438,7 +750,7 @@ class testController extends Controller
                     $a = collect();
                     foreach ($alliances as $aKey => $alliance) {
                         $allianceID = key($alliance);
-                        $text =  $alliance[$allianceID];
+                        $text = $alliance[$allianceID];
                         $text = substr($text, 0, -1);
                         $textx = explode("(", $text);
                         $textx[1];
@@ -482,12 +794,10 @@ class testController extends Controller
         }
     }
 
-
     public function dankDoc()
     {
         $user = Auth::user();
         if ($user->can('super')) {
-
 
             $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
             $token = env('DANK_TOKEN', ($variables && array_key_exists('DANK_TOKEN', $variables)) ? $variables['DANK_TOKEN'] : 'null');
@@ -498,13 +808,12 @@ class testController extends Controller
                 'User-Agent' => 'evestuff.online python9066@gmail.com',
             ])->get('https://fleets.apps.gnf.lt/api/v1/coordination/fleet-setups');
 
-            $datas =  $response->json();
+            $datas = $response->json();
             foreach ($datas as $data) {
                 dd($data['id'], $data['name']);
             }
         }
     }
-
 
     public function testClearCampaigns()
     {
@@ -795,7 +1104,6 @@ class testController extends Controller
                 $noCampaign->delete();
             }
 
-
             // * Change new upcoming status to warmup (done an hour before start time)
             $warmupCampaigns = NewCampaign::where('start_time', '>', now())
                 ->where('start_time', '<=', now()->addHour())
@@ -871,7 +1179,6 @@ class testController extends Controller
             }
         }
     }
-
 
     public function testOpLogging()
     {
@@ -984,7 +1291,7 @@ class testController extends Controller
                     },
                     'campaign.structure:id,item_id,age',
                 ])
-                ->get(),];
+                ->get()];
         } else {
             return null;
         }
@@ -1009,8 +1316,6 @@ class testController extends Controller
             return null;
         }
     }
-
-
 
     public function testGetAlliance($id)
     {
@@ -1176,7 +1481,6 @@ class testController extends Controller
         }
     }
 
-
     public function testNotes()
     {
         $user = Auth::user();
@@ -1186,7 +1490,6 @@ class testController extends Controller
             return null;
         }
     }
-
 
     public function testLogs()
     {

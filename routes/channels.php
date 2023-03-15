@@ -186,6 +186,14 @@ Broadcast::channel('watchliststationpage.{id}', function () {
     return Auth::check();
 });
 
+Broadcast::channel('dscanall', function () {
+    return Auth::check();
+});
+
+Broadcast::channel('dscansolo.{id}', function () {
+    return Auth::check();
+});
+
 
 //  Broadcast::channel('App.User.{id}', function ($user, $id) {
 //     return true;

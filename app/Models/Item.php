@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     protected $guarded = [];
+    public $timestamps = false;
 
     public function stations()
     {
@@ -16,6 +17,11 @@ class Item extends Model
     public function chillStations()
     {
         return $this->hasMany(ChillStation::class);
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
     }
 
     protected $casts = [
