@@ -4,16 +4,19 @@
       <div class="col-4">
         <q-card class="my-card overflow-auto" :style="h">
           <q-card-section class="q-py-none text-center">
-            All Ships - {{ totalShips }} <span> old</span>
+            All Ships - {{ newTotalShips }}
+            <span v-if="shipDff != 0" :class="textColor(shipDff)"> ({{ shipDff }})</span>
           </q-card-section>
           <q-card-section>
             <q-list bordered dense>
-              <q-item clickable v-for="(list, index) in tableShipData" :key="index">
+              <q-item clickable v-for="(list, index) in tableNewShipData" :key="index">
                 <div class="row full-width justify-between">
                   <div class="col-auto">
                     <q-avatar size="32px"> <img :src="listUrl(list.item_id)" /></q-avatar>
                   </div>
-                  <div class="col-auto">{{ list.item_name }}</div>
+                  <div class="col-auto">
+                    {{ list.item_name }}
+                  </div>
                   <div class="col-auto">
                     {{ list.total }}
                     <span
@@ -32,7 +35,8 @@
       <div class="col-4">
         <q-card class="my-card overflow-auto" :style="h">
           <q-card-section class="q-py-none text-center">
-            All Combat - {{ totalShips }}
+            All Combat - {{ newTotalShips }}
+            <span v-if="shipDff != 0" :class="textColor(shipDff)"> ({{ shipDff }})</span>
           </q-card-section>
           <q-card-section>
             <q-list bordered dense>
@@ -175,7 +179,9 @@
                       />
                     </q-avatar>
                   </div>
-                  <div class="col-auto">{{ list.group_name }}</div>
+                  <div class="col-auto">
+                    {{ list.group_name }}
+                  </div>
                   <div class="col-auto">{{ list.total }}</div>
                 </div>
               </q-item>
@@ -195,7 +201,9 @@
                   <div class="col-auto">
                     <q-avatar size="32px"></q-avatar>
                   </div>
-                  <div class="col-auto">{{ list.group_name }}</div>
+                  <div class="col-auto">
+                    {{ list.group_name }}
+                  </div>
                   <div class="col-auto">{{ list.total }}</div>
                 </div>
               </q-item>
@@ -219,7 +227,7 @@ let listUrl = (id) => {
   return "https://imageserver.eveonline.com/Type/" + id + "_64.png";
 };
 
-let tableShipData = $computed(() => {
+let tableNewShipData = $computed(() => {
   if (props.type == 1) {
     if (store.getDscanAllNewShips) {
       return store.getDscanAllNewShips;
@@ -239,6 +247,32 @@ let tableShipData = $computed(() => {
   if (props.type == 3) {
     if (store.getDscanOffGridNewShips) {
       return store.getDscanOffGridNewShips;
+    } else {
+      return [];
+    }
+  }
+});
+
+let tableOldShipData = $computed(() => {
+  if (props.type == 1) {
+    if (store.getDscanAllOldShips) {
+      return store.getDscanAllOldShips;
+    } else {
+      return [];
+    }
+  }
+
+  if (props.type == 2) {
+    if (store.getDscanOnGridOldShips) {
+      return store.getDscanOnGridOldShips;
+    } else {
+      return [];
+    }
+  }
+
+  if (props.type == 3) {
+    if (store.getDscanOffGridOldShips) {
+      return store.getDscanOffGridOldShips;
     } else {
       return [];
     }
@@ -297,12 +331,12 @@ let stableStructureData = $computed(() => {
   }
 });
 
-let totalShips = $computed(() => {
+let newTotalShips = $computed(() => {
   if (props.type == 1) {
-    if (tableShipData) {
+    if (tableNewShipData) {
       let totalOfTotals = 0;
-      for (let i = 0; i < tableShipData.length; i++) {
-        totalOfTotals += tableShipData[i].total;
+      for (let i = 0; i < tableNewShipData.length; i++) {
+        totalOfTotals += tableNewShipData[i].total;
       }
 
       return totalOfTotals;
@@ -312,10 +346,10 @@ let totalShips = $computed(() => {
   }
 
   if (props.type == 2) {
-    if (tableShipData) {
+    if (tableNewShipData) {
       let totalOfTotals = 0;
-      for (let i = 0; i < tableShipData.length; i++) {
-        totalOfTotals += tableShipData[i].on;
+      for (let i = 0; i < tableNewShipData.length; i++) {
+        totalOfTotals += tableNewShipData[i].on;
       }
 
       return totalOfTotals;
@@ -325,10 +359,10 @@ let totalShips = $computed(() => {
   }
 
   if (props.type == 3) {
-    if (tableShipData) {
+    if (tableNewShipData) {
       let totalOfTotals = 0;
-      for (let i = 0; i < tableShipData.length; i++) {
-        totalOfTotals += tableShipData[i].off;
+      for (let i = 0; i < tableNewShipData.length; i++) {
+        totalOfTotals += tableNewShipData[i].off;
       }
 
       return totalOfTotals;
@@ -336,6 +370,54 @@ let totalShips = $computed(() => {
       return 0;
     }
   }
+});
+
+let oldTotalShips = $computed(() => {
+  if (props.type == 1) {
+    if (tableOldShipData) {
+      let totalOfTotals = 0;
+      for (let i = 0; i < tableOldShipData.length; i++) {
+        totalOfTotals += tableOldShipData[i].total;
+      }
+
+      return totalOfTotals;
+    } else {
+      return 0;
+    }
+  }
+
+  if (props.type == 2) {
+    if (tableOldShipData) {
+      let totalOfTotals = 0;
+      for (let i = 0; i < tableOldShipData.length; i++) {
+        totalOfTotals += tableOldShipData[i].on;
+      }
+
+      return totalOfTotals;
+    } else {
+      return 0;
+    }
+  }
+
+  if (props.type == 3) {
+    if (tableOldShipData) {
+      let totalOfTotals = 0;
+      for (let i = 0; i < tableOldShipData.length; i++) {
+        totalOfTotals += tableOldShipData[i].off;
+      }
+
+      return totalOfTotals;
+    } else {
+      return 0;
+    }
+  }
+});
+
+let shipDff = $computed(() => {
+  var newNum = newTotalShips;
+  var oldNum = oldTotalShips;
+  var diff = newNum - oldNum;
+  return diff;
 });
 
 let totalStructure = $computed(() => {
@@ -385,8 +467,17 @@ let oldAllShipNumber = (list) => {
     (item) => item.item_id == list.item_id
   );
 
-  var oldNum = old ? old.total : newNum;
+  if (props.type == 1) {
+    var oldNum = old ? old.total : newNum;
+  }
 
+  if (props.type == 2) {
+    var oldNum = old ? old.on : newNum;
+  }
+
+  if (props.type == 3) {
+    var oldNum = old ? old.off : newNum;
+  }
   var total = newNum - oldNum;
 
   return total;

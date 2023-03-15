@@ -16,9 +16,14 @@ class Dscan extends Model
         return $this->hasMany(DscanItem::class);
     }
 
-    public function user()
+    public function madeBy()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
     }
 
     public function system()
@@ -29,5 +34,11 @@ class Dscan extends Model
     public function totals()
     {
         return $this->hasOne(DscanTotal::class);
+    }
+
+    public function locals()
+    {
+        return $this->belongsToMany(Character::class, 'dscan_locals', 'dscan_id', 'character_id')
+            ->withPivot('new', 'left', 'same');
     }
 }

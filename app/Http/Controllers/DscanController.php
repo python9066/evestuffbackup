@@ -23,6 +23,7 @@ class DscanController extends Controller
         //
     }
 
+
     /**
      * Store a newly created resource in storage.
      */
@@ -70,7 +71,7 @@ class DscanController extends Controller
 
             $totals = $newTotal->totals;
 
-            $current = $totals['items']['new'][$item->item_name]['gorup_id'] = $group->id;
+            $current = $totals['items']['new'][$item->item_name]['group_id'] = $group->id;
             $current = $totals['items']['new'][$item->item_name]['category_id'] = $category->id;
             $current = $totals['items']['new'][$item->item_name]['item_name'] = $item->item_name;
             $current = $totals['items']['new'][$item->item_name]['item_id'] = $item->id;
@@ -185,19 +186,7 @@ class DscanController extends Controller
      */
     public function show(string $id)
     {
-        $dscan = Dscan::whereLink($id)
-            ->with([
-                'system:id,region_id,constellation_id,system_name',
-                'system.region',
-                'system.constellation',
-                'user:id,name',
-                'items.item.group',
-                'totals'
-            ])
-            ->first();
-        return [
-            'dscan' => $dscan
-        ];
+        return getDscanInfo($id);
     }
 
     /**
@@ -259,7 +248,7 @@ class DscanController extends Controller
 
             $totals = $newTotal->totals;
 
-            $current = $totals['items']['new'][$item->item_name]['gorup_id'] = $group->id;
+            $current = $totals['items']['new'][$item->item_name]['group_id'] = $group->id;
             $current = $totals['items']['new'][$item->item_name]['category_id'] = $category->id;
             $current = $totals['items']['new'][$item->item_name]['item_name'] = $item->item_name;
             $current = $totals['items']['new'][$item->item_name]['item_id'] = $item->id;

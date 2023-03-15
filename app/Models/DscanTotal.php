@@ -26,11 +26,23 @@ class DscanTotal extends Model
     "old": {},
     "new": {}
   },
-    "items": {
+  "items": {
     "old": {},
     "new": {}
   },
   "categories": {
+    "old": {},
+    "new": {}
+  },
+  "chars": {
+    "old": {},
+    "new": {}
+  },
+  "corps": {
+    "old": {},
+    "new": {}
+  },
+  "alliances": {
     "old": {},
     "new": {}
   }

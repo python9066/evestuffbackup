@@ -11,7 +11,10 @@ use Illuminate\Queue\SerializesModels;
 
 class ReconRegionPullJob implements ShouldQueue
 {
-    use Dispatchable;use InteractsWithQueue;use Queueable;use SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     protected $stationID;
 
@@ -37,7 +40,7 @@ class ReconRegionPullJob implements ShouldQueue
         if ($station) {
             if ($station->updated_at <= $x_minutes_ago) {
                 reconRegionPullIdCheck($this->stationID);
-                sendStationListUpdateToWatchListPage($this->stationID);
+                // sendStationListUpdateToWatchListPage($this->stationID);
             }
         } else {
             reconRegionPullIdCheck($this->stationID);
