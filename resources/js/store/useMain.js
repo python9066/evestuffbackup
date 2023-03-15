@@ -84,21 +84,21 @@ export const useMainStore = defineStore("main", {
         },
 
         operationInfoSettingOpetions: [{
-                label: "Check List",
-                value: "showCheckList",
-            },
-            {
-                label: "Fleet Table",
-                value: "showFleets",
-            },
-            {
-                label: "Recon List",
-                value: "showReconTable",
-            },
-            {
-                label: "System Table",
-                value: "showSystemTable",
-            },
+            label: "Check List",
+            value: "showCheckList",
+        },
+        {
+            label: "Fleet Table",
+            value: "showFleets",
+        },
+        {
+            label: "Recon List",
+            value: "showReconTable",
+        },
+        {
+            label: "System Table",
+            value: "showSystemTable",
+        },
         ],
 
         newOperationInfo: [],
@@ -134,9 +134,9 @@ export const useMainStore = defineStore("main", {
             let messages = station.notes;
             let count = messages.filter(
                 (m) =>
-                m.read_by &&
-                m.read_by.user_id &&
-                !m.read_by.user_id.includes(state.user_id)
+                    m.read_by &&
+                    m.read_by.user_id &&
+                    !m.read_by.user_id.includes(state.user_id)
             ).length;
 
             if (state.stationChatWindowId == id && count > 0) {
@@ -167,9 +167,9 @@ export const useMainStore = defineStore("main", {
             let messages = tower.notes;
             let count = messages.filter(
                 (m) =>
-                m.read_by &&
-                m.read_by.user_id &&
-                !m.read_by.user_id.includes(state.user_id)
+                    m.read_by &&
+                    m.read_by.user_id &&
+                    !m.read_by.user_id.includes(state.user_id)
             ).length;
 
             if (state.towerChatWindowId == id && count > 0) {
@@ -194,9 +194,9 @@ export const useMainStore = defineStore("main", {
             let messages = state.operationInfoPage.messages ? state.operationInfoPage.messages : [];
             let count = messages.filter(
                 (m) =>
-                m.read_by &&
-                m.read_by.user_id &&
-                !m.read_by.user_id.includes(state.user_id)
+                    m.read_by &&
+                    m.read_by.user_id &&
+                    !m.read_by.user_id.includes(state.user_id)
             ).length;
 
             if (state.operationInfoChatWindow == state.operationInfoPage.id && count > 0) {
@@ -360,9 +360,9 @@ export const useMainStore = defineStore("main", {
         getOwnHackingCharOnOp: (state) => (operationid) => {
             let pull = state.ownChars.filter(
                 (u) =>
-                u.role_id == 1 &&
-                u.operation_id == operationid &&
-                u.user_status_id != 4
+                    u.role_id == 1 &&
+                    u.operation_id == operationid &&
+                    u.user_status_id != 4
             );
             let count = pull.length;
             if (count != 0) {
@@ -387,7 +387,7 @@ export const useMainStore = defineStore("main", {
         getDscanAllNewShips: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.items.new)
-                .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
+                    .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
                 null;
 
         },
@@ -395,7 +395,7 @@ export const useMainStore = defineStore("main", {
         getDscanAllOldShips: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.items.old)
-                .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
+                    .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
                 null;
 
         },
@@ -404,14 +404,14 @@ export const useMainStore = defineStore("main", {
         getDscanAllNewShipsGroups: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.groups.new)
-                .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
+                    .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
                 null;
         },
 
         getDscanAllOldShipsGroups: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.groups.old)
-                .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
+                    .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
                 null;
         },
 
@@ -421,7 +421,7 @@ export const useMainStore = defineStore("main", {
 
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.groups.new)
-                .filter(item => item.category_id === 65).sort((a, b) => b.total - a.total) :
+                    .filter(item => item.category_id === 65).sort((a, b) => b.total - a.total) :
                 null;
         },
 
@@ -429,7 +429,7 @@ export const useMainStore = defineStore("main", {
 
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.groups.old)
-                .filter(item => item.category_id === 65).sort((a, b) => b.total - a.total) :
+                    .filter(item => item.category_id === 65).sort((a, b) => b.total - a.total) :
                 null;
         },
 
@@ -437,14 +437,14 @@ export const useMainStore = defineStore("main", {
         getDscanOnGridNewShips: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.items.new)
-                .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
+                    .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
                 null;
         },
 
         getDscanOnGridOldShips: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.items.old)
-                .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
+                    .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
                 null;
         },
 
@@ -452,28 +452,28 @@ export const useMainStore = defineStore("main", {
         getDscanOnGridNewShipsGroups: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.groups.new)
-                .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
+                    .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
                 null;
         },
 
         getDscanOnGridOldShipsGroups: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.groups.old)
-                .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
+                    .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
                 null;
         },
 
         getDscanOnGridNewStructures: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.groups.new)
-                .filter(item => item.category_id === 65 && item.on).sort((a, b) => b.on - a.on) :
+                    .filter(item => item.category_id === 65 && item.on).sort((a, b) => b.on - a.on) :
                 null;
         },
 
         getDscanOnGridOldStructures: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.groups.old)
-                .filter(item => item.category_id === 65 && item.on).sort((a, b) => b.on - a.on) :
+                    .filter(item => item.category_id === 65 && item.on).sort((a, b) => b.on - a.on) :
                 null;
         },
 
@@ -481,42 +481,42 @@ export const useMainStore = defineStore("main", {
         getDscanOffGridNewShips: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.groups.new)
-                .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
+                    .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
                 null;
         },
 
         getDscanOffGridOldShips: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.groups.old)
-                .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
+                    .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
                 null;
         },
 
         getDscanOffGridNewShipsGroups: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.groups.new)
-                .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
+                    .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
                 null;
         },
 
         getDscanOffGridOldShipsGroups: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.groups.old)
-                .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
+                    .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
                 null;
         },
 
         getDscanOffGridNewStructures: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.groups.new)
-                .filter(item => item.category_id === 65 && item.off).sort((a, b) => b.total - a.total) :
+                    .filter(item => item.category_id === 65 && item.off).sort((a, b) => b.total - a.total) :
                 null;
         },
 
         getDscanOffGridOldStructures: (state) => {
             return state.dScan.totals ?
                 Object.values(state.dScan.totals.totals.groups.old)
-                .filter(item => item.category_id === 65 && item.off).sort((a, b) => b.total - a.total) :
+                    .filter(item => item.category_id === 65 && item.off).sort((a, b) => b.total - a.total) :
                 null;
         },
 
@@ -1554,9 +1554,17 @@ export const useMainStore = defineStore("main", {
             this.dScanLocalAlliance = res.data.allianceTotal;
         },
 
-
-
-
+        updateLocalDscan(data) {
+            const item = this.dScan.locals.find((item) => item.id === data.id);
+            const count = this.dScan.locals.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.towers.push(data);
+            }
+        },
 
     },
 });

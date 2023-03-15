@@ -56,9 +56,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('update:standing')->everyTenMinutes();
         $schedule->command('clean:coordsheet')->everyMinute();
         $schedule->command('update:towers')->everyMinute();
-        $schedule->command('update:reconstations')->everyFiveMinutes();
+        $schedule->command('update:reconstations')->everyTenMinutes();
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
-        $schedule->command('update:webway')->everyFiveMinutes();
+        $schedule->command('update:webway')->everyTenMinutes();
         $schedule->command('update:timers')->hourly();
         $schedule->command('update:alliances')->dailyAt('22:00');
         $schedule->command('clear:remembertoken')->twiceDaily(9, 21);
