@@ -26,7 +26,6 @@ if (!function_exists('getDscanInfo')) {
 
 
         $allLocals = $dscan->locals;
-        // return $allLocals;
         $corpsTotal = [];
         $allianceTotal = [];
 
@@ -156,13 +155,25 @@ if (!function_exists('getDscanInfo')) {
 }
 
 if (!function_exists('getDscanLocalInfo')) {
-    function getDscanLocalInfo($link)
+    function getDscanLocalInfo($link, $charID)
     {
-        $dscan = Dscan::whereLink($link)->first();
+        $dscan = Dscan::whereLink($link)
+            ->with([
+                'system:id,region_id,constellation_id,system_name',
+                'system.region',
+                'system.constellation',
+                'updatedBy:id,name',
+                'madeby:id,name',
+                'items.item.group',
+                'totals',
+                'locals.corp.alliance'
+            ])
+            ->first();
 
 
         $allLocals = $dscan->locals;
         $corpsTotal = [];
+
         $allianceTotal = [];
 
         foreach ($allLocals as $local) {
@@ -281,8 +292,9 @@ if (!function_exists('getDscanLocalInfo')) {
 
         $corpsTotal = collect($corpsTotal)->sortByDesc('totalInSystem')->values()->all();
         $allianceTotal = collect($allianceTotal)->sortByDesc('totalInSystem')->values()->all();
-
+        $soloLocal = $allLocals->where('id', $charID)->first();
         return [
+            'soloLocal' => $soloLocal,
             'corpsTotal' => $corpsTotal,
             'allianceTotal' => $allianceTotal,
         ];

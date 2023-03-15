@@ -52,7 +52,7 @@ class DscanLocalController extends Controller
         $newNames = [];
         foreach ($rows as $key => $row) {
             $pullName =   $rows[$key] = trim($row);
-            $char = Character::where('name', $pullName)->first();
+            $char = Character::where('name', $pullName)->whereNotNull('corp_id')->first();
             if (!$char) {
                 $newNames[] = $pullName;
             } else {
@@ -77,7 +77,7 @@ class DscanLocalController extends Controller
             ])
                 ->withBody(json_encode($chunk), 'application/json')
                 ->post('https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en');
-
+            dd($response->json());
             if ($response->successful()) {
                 $responses[] = $response->json();
             }
@@ -86,7 +86,7 @@ class DscanLocalController extends Controller
             $chars = $response['characters'];
 
             foreach ($chars as $char) {
-                $newChar = new Character();
+                $newChar = Character::whereId($char['id'])->first() ?? new Character();
                 $newChar->id = $char['id'];
                 $newChar->name = $char['name'];
                 $newChar->save();
@@ -100,7 +100,7 @@ class DscanLocalController extends Controller
 
         $charIDs = Character::whereNull('corp_id')->pluck('id');
         foreach ($charIDs as $charID) {
-            getLocalNamesJob::dispatch($charID);
+            getLocalNamesJob::dispatch($charID)->onQueue('alliance');
         }
 
         return response()->json([
@@ -136,7 +136,7 @@ class DscanLocalController extends Controller
         $newNames = [];
         foreach ($rows as $key => $row) {
             $pullName =   $rows[$key] = trim($row);
-            $char = Character::where('name', $pullName)->first();
+            $char = Character::where('name', $pullName)->whereNotNull('corp_id')->first();
             if (!$char) {
                 $newNames[] = $pullName;
             } else {
@@ -214,7 +214,7 @@ class DscanLocalController extends Controller
 
         $charIDs = Character::whereNull('corp_id')->pluck('id');
         foreach ($charIDs as $charID) {
-            getLocalNamesJob::dispatch($charID);
+            getLocalNamesJob::dispatch($charID)->onQueue('alliance');
         }
 
         return getDscanInfo($dScan->link);

@@ -16,7 +16,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
 
-class getLocalNamesJob implements ShouldQueue, ShouldBeUnique
+class getLocalNamesJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -39,11 +39,14 @@ class getLocalNamesJob implements ShouldQueue, ShouldBeUnique
     public function handle(): void
     {
         activity()->disableLogging();
-        $this->addCorpID($this->charID);
+        if (Character::whereId($this->charID)->whereNull('corp_id')->first()) {
+            $this->addCorpID($this->charID);
+        }
+
 
         $dscans = DscanLocal::where('character_id', $this->charID)->get();
         foreach ($dscans as $dscan) {
-            $message = getDscanInfo($dscan->dscan->link);
+            $message = getDscanLocalInfo($dscan->dscan->link, $this->charID);
             $flag = collect([
                 'id' => $dscan->dscan->link,
                 'flag' => 2,
@@ -56,10 +59,6 @@ class getLocalNamesJob implements ShouldQueue, ShouldBeUnique
         activity()->enableLogging();
     }
 
-    public function uniqueId(): string
-    {
-        return $this->charID . 'getLocalNamesJob';
-    }
 
     public function addCorpID($charID)
     {

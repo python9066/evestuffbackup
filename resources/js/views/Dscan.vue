@@ -169,7 +169,8 @@ let checkDscan = () => {
       if (e.flag.flag == 2) {
         store.dScanLocalCorp = e.flag.message.corpsTotal;
         store.dScanLocalAlliance = e.flag.message.allianceTotal;
-        store.dScan = e.flag.message.dscan;
+        store.updateLocalDscan(e.flag.message.soloLocal);
+        console.log(e.flag.message.soloLocal);
       }
     });
   }
