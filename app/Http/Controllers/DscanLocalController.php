@@ -24,7 +24,7 @@ class DscanLocalController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage. forece update
+     * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
@@ -77,7 +77,7 @@ class DscanLocalController extends Controller
             ])
                 ->withBody(json_encode($chunk), 'application/json')
                 ->post('https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en');
-            dd($response->json());
+
             if ($response->successful()) {
                 $responses[] = $response->json();
             }
