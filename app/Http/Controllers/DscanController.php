@@ -53,8 +53,8 @@ class DscanController extends Controller
                 $newDscanItem->distance_value = $components[0]; // "9.1";
                 $newDscanItem->distance_unit = $components[1];
             } else {
-                $newDscanItem->distance_value = 0; // "9.1";
-                $newDscanItem->distance_unit = "m";
+                $newDscanItem->distance_value = 1; // "9.1";
+                $newDscanItem->distance_unit = "au";
             }
             $newDscanItem->save();
             $item = Item::whereId($columns[0])->first();
@@ -230,8 +230,8 @@ class DscanController extends Controller
                 $newDscanItem->distance_value = $components[0]; // "9.1";
                 $newDscanItem->distance_unit = $components[1];
             } else {
-                $newDscanItem->distance_value = 0; // "9.1";
-                $newDscanItem->distance_unit = "m";
+                $newDscanItem->distance_value = 1; // "9.1";
+                $newDscanItem->distance_unit = "au";
             }
             $newDscanItem->save();
             $item = Item::whereId($columns[0])->first();
