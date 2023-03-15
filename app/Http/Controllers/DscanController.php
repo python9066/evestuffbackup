@@ -186,7 +186,11 @@ class DscanController extends Controller
      */
     public function show(string $id)
     {
-        return getDscanInfo($id);
+        if (Dscan::whereLink($id)->exists()) {
+            return getDscanInfo($id);
+        } else {
+            return loadDscanHistory($id);
+        }
     }
 
     /**

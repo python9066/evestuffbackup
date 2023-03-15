@@ -96,8 +96,8 @@ class DscanLocalController extends Controller
                 $newDscanLocal->save();
             }
         }
-
-        $charIDs = Character::whereNull('corp_id')->pluck('id');
+        $dScanCharIds = DscanLocal::where('dscan_id', $newDscan->id)->pluck('character_id');
+        $charIDs = Character::whereIn('id', $dScanCharIds)->whereNull('corp_id')->pluck('id');
         foreach ($charIDs as $charID) {
             getLocalNamesJob::dispatch($charID)->onQueue('alliance');
         }
@@ -210,8 +210,8 @@ class DscanLocalController extends Controller
                 $newDscanLocal->save();
             }
         }
-
-        $charIDs = Character::whereNull('corp_id')->pluck('id');
+        $dScanCharIDs = DscanLocal::where('dscan_id', $dScan->id)->pluck('character_id');
+        $charIDs = Character::whereIn('id', $dScanCharIDs)->whereNull('corp_id')->pluck('id');
         foreach ($charIDs as $charID) {
             getLocalNamesJob::dispatch($charID)->onQueue('alliance');
         }

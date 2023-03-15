@@ -252,7 +252,7 @@ let openAllIanceDetails = (alliance) => {
 let allianceDialogPilots = $computed(() => {
   if (clickedAlliace) {
     return store.dScan.locals
-      .filter((l) => l.corp.alliance_id == clickedAlliace.details.id)
+      .filter((l) => l.corp && l.corp.alliance_id == clickedAlliace.details.id)
       .sort((a, b) => a.name.localeCompare(b.name));
   }
 });

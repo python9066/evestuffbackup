@@ -65,6 +65,7 @@ Route::controller(testController::class)->group(function () {
     Route::get('/test/pullitem', 'testItemPull');
     Route::get('/test/dscan/{id}', 'testDscanPull');
     Route::get('/test/descanlocal', 'testDscanLocal');
+    Route::get('/test/testdscanhistory/{link}', 'testDscanHistory');
 });
 
 Route::controller(AuthController::class)->group(function () {

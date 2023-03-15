@@ -364,6 +364,14 @@ class testController extends Controller
         }
     }
 
+    public function testDscanHistory($link)
+    {
+        $check = Auth::user();
+        if ($check->can('super')) {
+            return  loadDscanHistory($link);
+        }
+    }
+
     public function testWatchListPull()
     {
         $check = Auth::user();
