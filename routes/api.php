@@ -134,8 +134,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::controller(DscanController::class)->group(function () {
-        Route::post('/dscan', 'store');
-        Route::post('/dscan/{link}', 'update');
+        Route::post('/dscan', 'checkInputNew');
+        Route::post('/dscan/{link}', 'checkInputUpdate');
         Route::get('/dscan/{link}', 'show');
         Route::get('/dscan', 'dscanPullAll');
     });

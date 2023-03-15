@@ -62,7 +62,11 @@
           <div class="col-auto text-h6">
             <q-card class="my-card myRoundTop">
               <q-card-section>
-                <q-input v-model="dScanText" type="textarea" label="Dscan" />
+                <q-input
+                  v-model="dScanText"
+                  type="textarea"
+                  label="Paste your Dscan or local here"
+                />
               </q-card-section>
               <q-card-actions align="center">
                 <q-btn
@@ -81,31 +85,6 @@
                 />
               </q-card-actions>
             </q-card>
-          </div>
-          <div class="col-auto">
-            <div class="col">
-              <q-card class="my-card myRoundTop">
-                <q-card-section>
-                  <q-input v-model="dScanLocal" type="textarea" label="Local" />
-                </q-card-section>
-                <q-card-actions align="center">
-                  <q-btn
-                    rounded
-                    color="primary"
-                    label="New"
-                    :loading="loading"
-                    @click="subLocal()"
-                  />
-                  <q-btn
-                    rounded
-                    color="secondary"
-                    label="Update"
-                    :loading="loading"
-                    @click="updateLocal()"
-                  />
-                </q-card-actions>
-              </q-card>
-            </div>
           </div>
         </div>
       </div>
@@ -138,7 +117,6 @@ let router = useRouter();
 let scanLink = $ref(null);
 let dScanText = $ref(null);
 let loading = $ref(false);
-let dScanLocal = $ref(null);
 let tab = $ref("total");
 
 onMounted(async () => {
@@ -199,7 +177,7 @@ let age = $computed(() => {
 let subScan = async () => {
   loading = true;
   var data = {
-    dscan: dScanText,
+    text: dScanText,
   };
   await axios({
     method: "post",
@@ -219,7 +197,7 @@ let subScan = async () => {
 let updateScan = async () => {
   loading = true;
   var data = {
-    dscan: dScanText,
+    text: dScanText,
   };
   await axios({
     method: "post",
@@ -234,52 +212,6 @@ let updateScan = async () => {
     loading = false;
     store.dScan = res.data.data.dscan;
     dScanText = null;
-  });
-};
-
-let subLocal = async () => {
-  loading = true;
-  var data = {
-    local: dScanLocal,
-  };
-  await axios({
-    method: "post",
-    withCredentials: true,
-    data: data,
-    url: "/api/dscanlocal",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  }).then((res) => {
-    loading = false;
-    router.push({ path: `/dscan/${res.data.link}` });
-    dScanLocal = null;
-    tab = "local";
-  });
-};
-
-let updateLocal = async () => {
-  loading = true;
-  var data = {
-    local: dScanLocal,
-  };
-  await axios({
-    method: "post",
-    withCredentials: true,
-    data: data,
-    url: "/api/dscanlocal/" + scanLink,
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  }).then((res) => {
-    loading = false;
-    store.dScan = res.data.dscan;
-    store.dScanLocalCorp = res.data.corpsTotal;
-    store.dScanLocalAlliance = res.data.allianceTotal;
-    dScanLocal = null;
-    tab = "local";
   });
 };
 
