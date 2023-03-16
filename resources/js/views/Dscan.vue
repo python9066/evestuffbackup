@@ -59,7 +59,8 @@
               </div>
             </q-card>
           </div>
-          <div class="col-auto text-h6">
+
+          <div class="col-auto text-h6" v-if="!store.dScanIsHistory">
             <q-card class="my-card myRoundTop">
               <q-card-section>
                 <q-input
@@ -84,6 +85,26 @@
                   @click="updateScan()"
                 />
               </q-card-actions>
+            </q-card>
+          </div>
+          <div class="col-auto" v-if="store.dScanHistory || store.dScanIsHistory">
+            <q-card class="my-card myRoundTop">
+              <q-card-section>
+                <q-list bordered dense>
+                  <q-item
+                    clickable
+                    @click="clickHistory(list.link)"
+                    :active="isHistoryActive(list.link)"
+                    v-for="(list, index) in store.dScanHistory"
+                    :key="index"
+                  >
+                    {{ fixTime(list.created_at) }}
+                  </q-item>
+                  <q-item clickable v-if="store.dScanIsHistory" @click="clickLive()">
+                    Live
+                  </q-item>
+                </q-list>
+              </q-card-section>
             </q-card>
           </div>
         </div>
@@ -136,20 +157,43 @@ onBeforeUnmount(() => {
   Echo.leave("dscanall");
 });
 
-let checkDscan = () => {
+let checkDscan = async () => {
   if (scanLink) {
-    store.getDscan(scanLink);
-    Echo.private("dscansolo." + scanLink).listen("dScanSoloUpdate", (e) => {
-      if (e.flag.flag == 1) {
-        //update items
-      }
+    await store.getDscan(scanLink);
+    if (!store.dScanIsHistory) {
+      Echo.private("dscansolo." + scanLink).listen("dScanSoloUpdate", (e) => {
+        if (e.flag.flag == 1) {
+          //update items
+        }
 
-      if (e.flag.flag == 2) {
-        store.dScanLocalCorp = e.flag.message.corpsTotal;
-        store.dScanLocalAlliance = e.flag.message.allianceTotal;
-        store.updateLocalDscan(e.flag.message.soloLocal);
-      }
-    });
+        if (e.flag.flag == 2) {
+          store.dScanLocalCorp = e.flag.message.corpsTotal;
+          store.dScanLocalAlliance = e.flag.message.allianceTotal;
+          store.updateLocalDscan(e.flag.message.soloLocal);
+        }
+
+        //         store.dScanLocalCorp = res.data.data.corpsTotal;
+        // store.dScanLocalAlliance = res.data.data.allianceTotal;
+        // store.dScan = res.data.data.dscan;
+        // store.dScanHistory = res.data.data.dscan.history;
+
+        if (e.flag.flag == 3) {
+          store.dScanLocalCorp = e.flag.message;
+        }
+
+        if (e.flag.flag == 4) {
+          store.dScanLocalAlliance = e.flag.message;
+        }
+
+        if (e.flag.flag == 5) {
+          store.dScan = e.flag.message;
+        }
+
+        if (e.flag.flag == 6) {
+          store.dScanHistory = e.flag.message;
+        }
+      });
+    }
   }
 };
 
@@ -214,6 +258,7 @@ let updateScan = async () => {
     store.dScanLocalCorp = res.data.data.corpsTotal;
     store.dScanLocalAlliance = res.data.data.allianceTotal;
     store.dScan = res.data.data.dscan;
+    store.dScanHistory = res.data.data.dscan.history;
     dScanText = null;
   });
 };
@@ -232,6 +277,34 @@ let countUpTimeMil = (time) => {
 let colClass = $computed(() => {
   return scanLink ? "full-height justify-between" : "q-gutter-lg full-height justify-end";
 });
+
+const fixTime = (utcDateString) => {
+  const utcDate = new Date(utcDateString);
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+    timeZone: "UTC",
+  };
+  const localDateString = utcDate.toLocaleString("en-US", options).replace(",", "");
+  return localDateString;
+};
+
+let isHistoryActive = (link) => {
+  return link == scanLink ? true : false;
+};
+
+let clickHistory = (link) => {
+  router.push({ path: `/dscan/${link}` });
+};
+
+let clickLive = () => {
+  router.push({ path: `/dscan/${store.dScanLiveLink}` });
+};
 
 let h = $computed(() => {
   let mins = 70;

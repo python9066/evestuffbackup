@@ -41,4 +41,9 @@ class Dscan extends Model
         return $this->belongsToMany(Character::class, 'dscan_locals', 'dscan_id', 'character_id')
             ->withPivot('new', 'left', 'same');
     }
+
+    public function history()
+    {
+        return $this->hasMany(DscanHistory::class);
+    }
 }

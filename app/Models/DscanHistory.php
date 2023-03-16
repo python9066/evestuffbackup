@@ -8,4 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class DscanHistory extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "totals",
+        'dscan',
+        'corpsTotal',
+        'alliancesTotal'
+
+
+
+    ];
+
+    protected $casts = [
+        'totals' => 'array',
+        'dscan' => 'array',
+        'corpsTotal' => 'array',
+        'alliancesTotal' => 'array'
+
+
+    ];
 }

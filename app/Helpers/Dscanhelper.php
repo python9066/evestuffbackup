@@ -22,7 +22,8 @@ if (!function_exists('getDscanInfo')) {
                 'madeby:id,name',
                 'items.item.group',
                 'totals',
-                'locals.corp.alliance'
+                'locals.corp.alliance',
+                'history:dscan_id,link,history_count,created_at'
             ])
             ->first();
 
@@ -452,9 +453,9 @@ if (!function_exists('makeDscanHistoy')) {
         $newHisotry->link = str::uuid();
         $newHisotry->updated_by = $dscan->updated_by ?? null;
         $newHisotry->totals = $dscan->totals;
-        $newHisotry->corpsTotal = json_encode($corpsTotal);
-        $newHisotry->alliancesTotal = json_encode($allianceTotal);
-        $newHisotry->dscan = json_encode($dscan);
+        $newHisotry->corpsTotal = $corpsTotal;
+        $newHisotry->alliancesTotal = $allianceTotal;
+        $newHisotry->dscan = $dscan;
         $newHisotry->history_count = $count;
         $newHisotry->save();
     }
@@ -464,12 +465,19 @@ if (!function_exists('loadDscanHistory')) {
     function loadDscanHistory($link)
     {
         $dscan = DscanHistory::where('link', $link)->first();
+        $allHistory = DscanHistory::where('dscan_id', $dscan->dscan_id)
+            ->orderBy('history_count', 'desc')
+            ->select(['id', 'link', 'created_at'])->get();
+
+        $liveDscan = Dscan::where('id', $dscan->dscan_id)->pluck('link')->first();
 
         return [
             'dscan' => $dscan->dscan,
             'corpsTotal' => $dscan->corpsTotal,
             'allianceTotal' => $dscan->alliancesTotal,
             'history' => true,
+            'allHistory' => $allHistory,
+            'liveDscan' => $liveDscan,
         ];
     }
 }

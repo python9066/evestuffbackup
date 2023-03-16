@@ -41,7 +41,7 @@ class DscanController extends Controller
 
             $data =  $this->addNewDscan($text);
 
-            response()->json([
+            return  response()->json([
                 'link' => $data,
             ]);
         }
@@ -49,22 +49,38 @@ class DscanController extends Controller
 
     public function checkInputUpdate(Request $request, $link)
     {
+        makeDscanHistoy($link);
         $text = $request->text;
         $lines = explode("\n", $text);
+        $data = null;
 
         if (count(explode("\t", $lines[0])) == 1) {
             $data =  $this->updateLocal($text, $link);
-
+            $this->sendUpdateBoardCasts($data, $link);
             return response()->json([
                 'data' => $data,
             ]);
         } else {
 
             $data =   $this->updateDscan($text, $link);
+            $this->sendUpdateBoardCasts($data, $link);
             return   response()->json([
                 'data' => $data,
             ]);
         }
+
+        // $flag = collect([
+        //     'id' => $dscan->dscan->link,
+        //     'flag' => 2,
+        //     'message' => $message,
+        // ]);
+        // broadcast(new dScanSoloUpdate($flag));
+
+    }
+
+    public function sendUpdateBoardCasts($data, $link)
+    {
+        dd($data, $link);
     }
 
     public function addNewLocal($local)
@@ -289,9 +305,7 @@ class DscanController extends Controller
             }
         }
 
-        return [
-            'link' => $newDscan->link
-        ];
+        return  $newDscan->link;
     }
 
     /**
@@ -299,12 +313,11 @@ class DscanController extends Controller
      */
     public function show(string $id)
     {
-        return getDscanInfo($id);
-        // if (Dscan::whereLink($id)->exists()) {
-
-        // } else {
-        //     return loadDscanHistory($id);
-        // }
+        if (Dscan::whereLink($id)->exists()) {
+            return getDscanInfo($id);
+        } else {
+            return loadDscanHistory($id);
+        }
     }
 
     /**
