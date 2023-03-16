@@ -3,11 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Jobs\updateGroupJob;
-use App\Jobs\updateItemJob;
 use App\Models\Categorie;
 use App\Models\Group;
 use Illuminate\Console\Command;
-use Illuminate\Console\View\Components\Info;
 use Illuminate\Support\Facades\Http;
 
 class updateGroupAndCat extends Command

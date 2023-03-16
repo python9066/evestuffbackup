@@ -4,11 +4,11 @@ namespace App\Events;
 
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class dScanSoloUpdate implements ShouldBroadcastNow
+class AffilationUpdate implements ShouldBroadcast
 {
     use Dispatchable;use InteractsWithSockets;use SerializesModels;
 
@@ -32,7 +32,7 @@ class dScanSoloUpdate implements ShouldBroadcastNow
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('dscansolo.' . $this->flag['id']),
+            new PrivateChannel('affilation'),
         ];
     }
 }

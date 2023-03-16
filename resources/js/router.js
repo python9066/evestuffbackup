@@ -38,203 +38,216 @@ import {
 // import OperationInfoOver from "./views/redirect/operationInfoOver.vue";
 
 const routes = [{
-        path: "/",
-        name: "default",
-        component: () => import("./views/SoloOperations.vue"),
+    path: "/",
+    name: "default",
+    component: () => import("./views/SoloOperations.vue"),
+},
+
+{
+    path: "/operations",
+    name: "operations",
+    component: () => import("./views/SoloOperations.vue"),
+},
+
+
+{
+    path: "/dscan/:link",
+    alias: '/dscan',
+    name: "dscan",
+    component: () => import("./views/Dscan.vue"),
+    beforeEnter(to, from, next) {
+        if (can("view_dscan")) {
+            next();
+        } else {
+            next("/");
+        }
     },
+},
 
-    {
-        path: "/operations",
-        name: "operations",
-        component: () => import("./views/SoloOperations.vue"),
+// {
+//     path: "/dscan/:id",
+//     name: "testingpage",
+//     component: () => import("./views/test.vue"),
+// },
+
+
+
+{
+    path: "/windows",
+    name: "windows",
+    component: () => import("./views/Timers.vue"),
+},
+
+{
+    path: "/mcampaigns",
+    name: "mcampaigns",
+    component: () => import("./views/CustomCampaigns.vue"),
+    beforeEnter(to, from, next) {
+        if (can("access_multi_campaigns")) {
+            next();
+        } else {
+            next("/");
+        }
     },
+},
+
+{
+    path: "/stations",
+    name: "stations",
+    component: () => import("./views/StationSheet.vue"),
+},
 
 
-    {
-        path: "/dscan/:link",
-        alias: '/dscan',
-        name: "dscan",
-        component: () => import("./views/Dscan.vue"),
-                beforeEnter(to, from, next) {
-            if (can("view_dscan")) {
-                next();
-            } else {
-                next("/");
-            }
-        },
+{
+    path: "/stationwatchlist/settings",
+    name: "stationWatchListSettings",
+    component: () => import("./views/StationWatchListSetupPage.vue"),
+    beforeEnter(to, from, next) {
+        if (can("view_station_watch_list_setup")) {
+            next();
+        } else {
+            next("/");
+        }
     },
+},
 
-    // {
-    //     path: "/dscan/:id",
-    //     name: "testingpage",
-    //     component: () => import("./views/test.vue"),
+{
+    path: "/addtimer",
+    name: "timerstomove",
+    component: () => import("./views/RCMove.vue"),
+    beforeEnter(to, from, next) {
+        if (can("view_move_timers")) {
+            next();
+        } else {
+            next("/");
+        }
+    },
+},
+
+{
+    path: "/scampaign/:id",
+    name: "scampaign",
+    component: () => import("./views/StartCampaignSystem.vue"),
+
+},
+
+
+// {
+//     path: "/scampaign/:id",
+//     name: "scampaign",
+//     component: StartCampaign,
+//     props: (route) => {
+//         const id = Number.parseInt(route.params.id, 10);
+//         if (Number.isNaN(id)) {
+//             return 0;
+//         }
+//         return { id };
+//     },
+
+{
+    path: "/towers",
+    name: "towers",
+    component: () => import("./views/Towers.vue"),
+    beforeEnter(to, from, next) {
+        if (can("view_towers")) {
+            next();
+        } else {
+            next("/");
+        }
+    },
+},
+
+{
+    path: "/feedback",
+    name: "feedback",
+    component: () => import("./views/FeedBacknew.vue"),
+    beforeEnter(to, from, next) {
+        if (can("super")) {
+            next();
+        } else {
+            next("/");
+        }
+    },
+},
+
+{
+    path: "/pannel",
+    name: "pannel",
+    component: () => import("./views/AdminPanel.vue"),
+    beforeEnter(to, from, next) {
+        if (can("edit_users")) {
+            next();
+        } else {
+            next("/");
+        }
+    },
+},
+
+{
+    path: "/affilations",
+    name: "affilations",
+    component: () => import("./views/Affilations.vue"),
+    // beforeEnter(to, from, next) {
+    //     if (can("super")) {
+    //         next();
+    //     } else {
+    //         next("/");
+    //     }
     // },
+},
 
-
-
-    {
-        path: "/windows",
-        name: "windows",
-        component: () => import("./views/Timers.vue"),
+{
+    path: "/operationinfo",
+    name: "operationinfo",
+    component: () => import("./views/OperationInfo.vue"),
+    beforeEnter(to, from, next) {
+        if (can("view_opertaion_info")) {
+            next();
+        } else {
+            next("/");
+        }
     },
+},
 
-    {
-        path: "/mcampaigns",
-        name: "mcampaigns",
-        component: () => import("./views/CustomCampaigns.vue"),
-        beforeEnter(to, from, next) {
-            if (can("access_multi_campaigns")) {
-                next();
-            } else {
-                next("/");
-            }
-        },
+{
+    path: "/operationinfo/:link",
+    name: "operationinfopage",
+    component: () => import("./views/OperationInfoPage.vue"),
+    beforeEnter(to, from, next) {
+        if (can("view_opertaion_info")) {
+            next();
+        } else {
+            next("/");
+        }
     },
+},
 
-    {
-        path: "/stations",
-        name: "stations",
-        component: () => import("./views/StationSheet.vue"),
+{
+    path: "/operationinfoover",
+    name: "operationInfoOver",
+    component: () => import("./views/redirect/operationInfoOver.vue"),
+    beforeEnter(to, from, next) {
+        if (can("view_opertaion_info")) {
+            next();
+        } else {
+            next("/");
+        }
     },
+},
 
-
-    {
-        path: "/stationwatchlist/settings",
-        name: "stationWatchListSettings",
-        component: () => import("./views/StationWatchListSetupPage.vue"),
-        beforeEnter(to, from, next) {
-            if (can("view_station_watch_list_setup")) {
-                next();
-            } else {
-                next("/");
-            }
-        },
+{
+    path: "/op/:id/:system?",
+    name: "op",
+    component: () => import("./views/NewCampaign.vue"),
+    props: (route) => {
+        const id = route.params.id;
+        const routeSystem = route.params.system ? route.params.system : null;
+        return {
+            id,
+            routeSystem
+        };
     },
-
-    {
-        path: "/addtimer",
-        name: "timerstomove",
-        component: () => import("./views/RCMove.vue"),
-        beforeEnter(to, from, next) {
-            if (can("view_move_timers")) {
-                next();
-            } else {
-                next("/");
-            }
-        },
-    },
-
-    {
-        path: "/scampaign/:id",
-        name: "scampaign",
-        component: () => import("./views/StartCampaignSystem.vue"),
-
-    },
-
-
-    // {
-    //     path: "/scampaign/:id",
-    //     name: "scampaign",
-    //     component: StartCampaign,
-    //     props: (route) => {
-    //         const id = Number.parseInt(route.params.id, 10);
-    //         if (Number.isNaN(id)) {
-    //             return 0;
-    //         }
-    //         return { id };
-    //     },
-
-    {
-        path: "/towers",
-        name: "towers",
-        component: () => import("./views/Towers.vue"),
-        beforeEnter(to, from, next) {
-            if (can("view_towers")) {
-                next();
-            } else {
-                next("/");
-            }
-        },
-    },
-
-    {
-        path: "/feedback",
-        name: "feedback",
-        component: () => import("./views/FeedBacknew.vue"),
-        beforeEnter(to, from, next) {
-            if (can("super")) {
-                next();
-            } else {
-                next("/");
-            }
-        },
-    },
-
-    {
-        path: "/pannel",
-        name: "pannel",
-        component: () => import("./views/AdminPanel.vue"),
-        beforeEnter(to, from, next) {
-            if (can("edit_users")) {
-                next();
-            } else {
-                next("/");
-            }
-        },
-    },
-
-    {
-        path: "/operationinfo",
-        name: "operationinfo",
-        component: () => import("./views/OperationInfo.vue"),
-        beforeEnter(to, from, next) {
-            if (can("view_opertaion_info")) {
-                next();
-            } else {
-                next("/");
-            }
-        },
-    },
-
-    {
-        path: "/operationinfo/:link",
-        name: "operationinfopage",
-        component: () => import("./views/OperationInfoPage.vue"),
-        beforeEnter(to, from, next) {
-            if (can("view_opertaion_info")) {
-                next();
-            } else {
-                next("/");
-            }
-        },
-    },
-
-    {
-        path: "/operationinfoover",
-        name: "operationInfoOver",
-        component: () => import("./views/redirect/operationInfoOver.vue"),
-        beforeEnter(to, from, next) {
-            if (can("view_opertaion_info")) {
-                next();
-            } else {
-                next("/");
-            }
-        },
-    },
-
-    {
-        path: "/op/:id/:system?",
-        name: "op",
-        component: () => import("./views/NewCampaign.vue"),
-        props: (route) => {
-            const id = route.params.id;
-            const routeSystem = route.params.system ? route.params.system : null;
-            return {
-                id,
-                routeSystem
-            };
-        },
-    },
+},
 
 
 ];

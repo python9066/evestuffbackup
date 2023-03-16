@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AffilationController;
 use App\Http\Controllers\AllianceController;
 use App\Http\Controllers\AmmoRequestController;
 use App\Http\Controllers\AmmoRequestRecordsController;
@@ -123,6 +124,16 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::controller(EveController::class)->group(function () {
         Route::get('/eveusercount', 'playerCount');
+    });
+
+    Route::controller(AffilationController::class)->group(function () {
+        Route::get('/affiliation', 'index');
+        Route::get('/affiliation/{id}', 'show');
+        Route::post('/affiliation', 'store');
+        Route::put('/affiliation/{id}', 'update');
+        Route::delete('/affiliation/{id}', 'destroy');
+        Route::post('/affiliation/alliance/{id}', 'addAlliance');
+        Route::delete('/affiliation/alliance/{id}', 'removeAlliance');
     });
 
     Route::controller(DscanLocalController::class)->group(function () {

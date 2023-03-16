@@ -1,14 +1,8 @@
 <?php
 
-use App\Models\Character;
 use App\Models\Dscan;
 use App\Models\DscanHistory;
 use Illuminate\Support\Str;
-use App\Models\DscanLocal;
-use App\Models\Structure;
-use App\Models\System;
-use GuzzleHttp\Client;
-use GuzzleHttp\Utils;
 
 if (!function_exists('getDscanInfo')) {
     function getDscanInfo($link)
@@ -22,7 +16,7 @@ if (!function_exists('getDscanInfo')) {
                 'madeby:id,name',
                 'items.item.group',
                 'totals',
-                'locals.corp.alliance',
+                'locals.corp.alliance.affiliation',
                 'history:dscan_id,link,history_count,created_at'
             ])
             ->first();
@@ -49,6 +43,14 @@ if (!function_exists('getDscanInfo')) {
                 $allianceTotal[$local->corp->alliance->name]['left'] = 0;
                 $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = 0;
             }
+            if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['details'] = $local->corp->alliance->affiliation;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = 0;
+            }
             if (!$local->corp) {
                 $corpsTotal['unknown']['details']['standings'] = 0;
                 $corpsTotal['unknown']['details']['name'] = 'Unknown';
@@ -69,6 +71,9 @@ if (!function_exists('getDscanInfo')) {
             if ($local->corp && $local->corp->alliance) {
                 $allianceTotal[$local->corp->alliance->name]['total'] = $allianceTotal[$local->corp->alliance->name]['total'] + 1;
             }
+            if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] + 1;
+            }
             if (!$local->corp) {
                 $corpsTotal['unknown']['total'] = $corpsTotal['unknown']['total'] + 1;
             }
@@ -82,6 +87,12 @@ if (!function_exists('getDscanInfo')) {
                     $allianceTotal[$local->corp->alliance->name]['new'] = $allianceTotal[$local->corp->alliance->name]['new'] + 1;
                     $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = $allianceTotal[$local->corp->alliance->name]['totalInSystem'] + 1;
                 }
+
+                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] + 1;
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] + 1;
+                }
+
                 if (!$local->corp) {
                     $corpsTotal['unknown']['new'] = $corpsTotal['unknown']['new'] + 1;
                     $corpsTotal['unknown']['totalInSystem'] = $corpsTotal['unknown']['totalInSystem'] + 1;
@@ -97,6 +108,12 @@ if (!function_exists('getDscanInfo')) {
                     $allianceTotal[$local->corp->alliance->name]['same'] = $allianceTotal[$local->corp->alliance->name]['same'] + 1;
                     $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = $allianceTotal[$local->corp->alliance->name]['totalInSystem'] + 1;
                 }
+
+                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] + 1;
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] + 1;
+                }
+
                 if (!$local->corp) {
                     $corpsTotal['unknown']['same'] = $corpsTotal['unknown']['same'] + 1;
                     $corpsTotal['unknown']['totalInSystem'] = $corpsTotal['unknown']['totalInSystem'] + 1;
@@ -109,6 +126,10 @@ if (!function_exists('getDscanInfo')) {
                 }
                 if ($local->corp && $local->corp->alliance) {
                     $allianceTotal[$local->corp->alliance->name]['left'] = $allianceTotal[$local->corp->alliance->name]['left'] + 1;
+                }
+
+                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] + 1;
                 }
                 if (!$local->corp) {
                     $corpsTotal['unknown']['left'] = $corpsTotal['unknown']['left'] + 1;
@@ -145,14 +166,30 @@ if (!function_exists('getDscanInfo')) {
             $allianceTotal[$key]['diff'] = $diff;
         }
 
+        foreach ($affiliationTotal as $key => $affiliation) {
+            $same =   $affiliationTotal[$key]['same'];
+            $new =   $affiliationTotal[$key]['new'];
+            $left =   $affiliationTotal[$key]['left'];
+
+            if ($new == 0 && $left == 0) {
+                $diff = 0;
+            } else {
+
+                $diff = $new - $left;
+            }
+            $affiliationTotal[$key]['diff'] = $diff;
+        }
+
 
         $corpsTotal = collect($corpsTotal)->sortByDesc('totalInSystem')->values()->all();
         $allianceTotal = collect($allianceTotal)->sortByDesc('totalInSystem')->values()->all();
+        $affiliationTotal = collect($affiliationTotal)->sortByDesc('totalInSystem')->values()->all();
 
         return [
             'dscan' => $dscan,
             'corpsTotal' => $corpsTotal,
             'allianceTotal' => $allianceTotal,
+            'affiliationTotal' => $affiliationTotal,
             'history' => false,
 
         ];
@@ -171,7 +208,7 @@ if (!function_exists('getDscanLocalInfo')) {
                 'madeby:id,name',
                 'items.item.group',
                 'totals',
-                'locals.corp.alliance'
+                'locals.corp.alliance.affiliation'
             ])
             ->first();
 
@@ -198,6 +235,16 @@ if (!function_exists('getDscanLocalInfo')) {
                 $allianceTotal[$local->corp->alliance->name]['left'] = 0;
                 $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = 0;
             }
+
+            if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['details'] = $local->corp->alliance->affiliation;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = 0;
+            }
+
             if (!$local->corp) {
                 $corpsTotal['unknown']['details']['standings'] = 0;
                 $corpsTotal['unknown']['details']['name'] = 'Unknown';
@@ -218,6 +265,11 @@ if (!function_exists('getDscanLocalInfo')) {
             if ($local->corp && $local->corp->alliance) {
                 $allianceTotal[$local->corp->alliance->name]['total'] = $allianceTotal[$local->corp->alliance->name]['total'] + 1;
             }
+
+            if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] + 1;
+            }
+
             if (!$local->corp) {
                 $corpsTotal['unknown']['total'] = $corpsTotal['unknown']['total'] + 1;
             }
@@ -230,6 +282,11 @@ if (!function_exists('getDscanLocalInfo')) {
                 if ($local->corp && $local->corp->alliance) {
                     $allianceTotal[$local->corp->alliance->name]['new'] = $allianceTotal[$local->corp->alliance->name]['new'] + 1;
                     $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = $allianceTotal[$local->corp->alliance->name]['totalInSystem'] + 1;
+                }
+
+                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] + 1;
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] + 1;
                 }
                 if (!$local->corp) {
                     $corpsTotal['unknown']['new'] = $corpsTotal['unknown']['new'] + 1;
@@ -246,6 +303,11 @@ if (!function_exists('getDscanLocalInfo')) {
                     $allianceTotal[$local->corp->alliance->name]['same'] = $allianceTotal[$local->corp->alliance->name]['same'] + 1;
                     $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = $allianceTotal[$local->corp->alliance->name]['totalInSystem'] + 1;
                 }
+
+                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] + 1;
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] + 1;
+                }
                 if (!$local->corp) {
                     $corpsTotal['unknown']['same'] = $corpsTotal['unknown']['same'] + 1;
                     $corpsTotal['unknown']['totalInSystem'] = $corpsTotal['unknown']['totalInSystem'] + 1;
@@ -258,6 +320,10 @@ if (!function_exists('getDscanLocalInfo')) {
                 }
                 if ($local->corp && $local->corp->alliance) {
                     $allianceTotal[$local->corp->alliance->name]['left'] = $allianceTotal[$local->corp->alliance->name]['left'] + 1;
+                }
+
+                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] + 1;
                 }
                 if (!$local->corp) {
                     $corpsTotal['unknown']['left'] = $corpsTotal['unknown']['left'] + 1;
@@ -294,14 +360,30 @@ if (!function_exists('getDscanLocalInfo')) {
             $allianceTotal[$key]['diff'] = $diff;
         }
 
+        foreach ($affiliationTotal as $key => $affiliation) {
+            $same =   $affiliationTotal[$key]['same'];
+            $new =   $affiliationTotal[$key]['new'];
+            $left =   $affiliationTotal[$key]['left'];
+
+            if ($new == 0 && $left == 0) {
+                $diff = 0;
+            } else {
+
+                $diff = $new - $left;
+            }
+            $affiliationTotal[$key]['diff'] = $diff;
+        }
+
 
         $corpsTotal = collect($corpsTotal)->sortByDesc('totalInSystem')->values()->all();
         $allianceTotal = collect($allianceTotal)->sortByDesc('totalInSystem')->values()->all();
+        $affiliationTotal = collect($affiliationTotal)->sortByDesc('totalInSystem')->values()->all();
         $soloLocal = $allLocals->where('id', $charID)->first();
         return [
             'soloLocal' => $soloLocal,
             'corpsTotal' => $corpsTotal,
             'allianceTotal' => $allianceTotal,
+            'affiliationTotal' => $affiliationTotal,
         ];
     }
 }
@@ -319,7 +401,7 @@ if (!function_exists('makeDscanHistoy')) {
                 'madeby:id,name',
                 'items.item.group',
                 'totals',
-                'locals.corp.alliance'
+                'locals.corp.alliance.affiliation'
             ])
             ->first();
 
@@ -345,6 +427,15 @@ if (!function_exists('makeDscanHistoy')) {
                 $allianceTotal[$local->corp->alliance->name]['left'] = 0;
                 $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = 0;
             }
+
+            if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['details'] = $local->corp->alliance->affiliation;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = 0;
+            }
             if (!$local->corp) {
                 $corpsTotal['unknown']['details']['standings'] = 0;
                 $corpsTotal['unknown']['details']['name'] = 'Unknown';
@@ -365,6 +456,10 @@ if (!function_exists('makeDscanHistoy')) {
             if ($local->corp && $local->corp->alliance) {
                 $allianceTotal[$local->corp->alliance->name]['total'] = $allianceTotal[$local->corp->alliance->name]['total'] + 1;
             }
+
+            if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] + 1;
+            }
             if (!$local->corp) {
                 $corpsTotal['unknown']['total'] = $corpsTotal['unknown']['total'] + 1;
             }
@@ -377,6 +472,11 @@ if (!function_exists('makeDscanHistoy')) {
                 if ($local->corp && $local->corp->alliance) {
                     $allianceTotal[$local->corp->alliance->name]['new'] = $allianceTotal[$local->corp->alliance->name]['new'] + 1;
                     $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = $allianceTotal[$local->corp->alliance->name]['totalInSystem'] + 1;
+                }
+
+                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] + 1;
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] + 1;
                 }
                 if (!$local->corp) {
                     $corpsTotal['unknown']['new'] = $corpsTotal['unknown']['new'] + 1;
@@ -393,6 +493,11 @@ if (!function_exists('makeDscanHistoy')) {
                     $allianceTotal[$local->corp->alliance->name]['same'] = $allianceTotal[$local->corp->alliance->name]['same'] + 1;
                     $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = $allianceTotal[$local->corp->alliance->name]['totalInSystem'] + 1;
                 }
+
+                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] + 1;
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] + 1;
+                }
                 if (!$local->corp) {
                     $corpsTotal['unknown']['same'] = $corpsTotal['unknown']['same'] + 1;
                     $corpsTotal['unknown']['totalInSystem'] = $corpsTotal['unknown']['totalInSystem'] + 1;
@@ -405,6 +510,10 @@ if (!function_exists('makeDscanHistoy')) {
                 }
                 if ($local->corp && $local->corp->alliance) {
                     $allianceTotal[$local->corp->alliance->name]['left'] = $allianceTotal[$local->corp->alliance->name]['left'] + 1;
+                }
+
+                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] + 1;
                 }
                 if (!$local->corp) {
                     $corpsTotal['unknown']['left'] = $corpsTotal['unknown']['left'] + 1;
@@ -441,9 +550,24 @@ if (!function_exists('makeDscanHistoy')) {
             $allianceTotal[$key]['diff'] = $diff;
         }
 
+        foreach ($affiliationTotal as $key => $affiliation) {
+            $same =   $affiliationTotal[$key]['same'];
+            $new =   $affiliationTotal[$key]['new'];
+            $left =   $affiliationTotal[$key]['left'];
+
+            if ($new == 0 && $left == 0) {
+                $diff = 0;
+            } else {
+
+                $diff = $new - $left;
+            }
+            $affiliationTotal[$key]['diff'] = $diff;
+        }
+
 
         $corpsTotal = collect($corpsTotal)->sortByDesc('totalInSystem')->values()->all();
         $allianceTotal = collect($allianceTotal)->sortByDesc('totalInSystem')->values()->all();
+        $affiliationTotal = collect($affiliationTotal)->sortByDesc('totalInSystem')->values()->all();
 
         $count = DscanHistory::where('dscan_id', $dscan->id)->count() + 1;
         $newHisotry = new DscanHistory();
@@ -455,6 +579,7 @@ if (!function_exists('makeDscanHistoy')) {
         $newHisotry->totals = $dscan->totals;
         $newHisotry->corpsTotal = $corpsTotal;
         $newHisotry->alliancesTotal = $allianceTotal;
+        $newHisotry->affiliationTotal = $affiliationTotal;
         $newHisotry->dscan = $dscan;
         $newHisotry->history_count = $count;
         $newHisotry->save();
@@ -475,6 +600,7 @@ if (!function_exists('loadDscanHistory')) {
             'dscan' => $dscan->dscan,
             'corpsTotal' => $dscan->corpsTotal,
             'allianceTotal' => $dscan->alliancesTotal,
+            'affiliationTotal' => $dscan->affiliationTotal,
             'history' => true,
             'allHistory' => $allHistory,
             'liveDscan' => $liveDscan,

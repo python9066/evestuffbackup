@@ -10,11 +10,8 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('groups', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('category_id');
-            $table->string('name')->nullable();
-            $table->timestamps();
+        Schema::table('dscan_histories', function (Blueprint $table) {
+            $table->json('affiliationsTotal')->nullable();
         });
     }
 
@@ -23,6 +20,8 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('groups');
+        Schema::table('dscan_histories', function (Blueprint $table) {
+            $table->dropColumn('affiliationsTotal');
+        });
     }
 };

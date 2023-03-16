@@ -2,16 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\getLocalNamesJob;
-use App\Models\Character;
-use App\Models\Dscan;
-use App\Models\DscanLocal;
-use App\Models\DscanTotal;
-use Auth;
-use Http;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Termwind\Components\Dd;
 
 class DscanLocalController extends Controller
 {

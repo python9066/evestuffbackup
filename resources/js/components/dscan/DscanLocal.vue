@@ -139,8 +139,72 @@
           </q-card-section>
         </q-card>
       </div>
+      <div class="col">
+        <q-card class="my-card">
+          <q-card-section class="q-py-none text-center">
+            All Affiliations - {{ totalAffiliationTotalInSystem }}
+            <span :class="textColor(totalAffiliationDff)">
+              ({{ totalAffiliationDff }})</span
+            >
+          </q-card-section>
+          <q-card-section class="overflow-auto" :style="h">
+            <q-list bordered dense>
+              <transition-group
+                mode="out-in"
+                enter-active-class="animate__animated animate__bounceIn animate__slower"
+                leave-active-class="animate__animated animate__bounceOut animate__slower"
+              >
+                <q-item
+                  clickable
+                  :class="[
+                    affiliationBgColor(list.details),
+                    { ownD: !list.totalInSystem },
+                  ]"
+                  v-for="(list, index) in store.dScanLocalAffiliation"
+                  :key="index"
+                  @click="openAffiliationDetails(list)"
+                >
+                  <div
+                    :key="`${list.id}-row-Affiliation`"
+                    class="row full-width justify-between items-center"
+                  >
+                    <div class="col" :key="`${list.id}-ticket-col-Affiliation`">
+                      <span :key="`${list.id}-row-ticker-Affiliation`">
+                        {{ list.details.short_name }}</span
+                      >
+                    </div>
+                    <div class="col" :key="`${list.id}-totalinsystem-col-Affiliation`">
+                      <transition
+                        mode="out-in"
+                        enter-active-class="animate__animated animate__flash "
+                      >
+                        <span
+                          :key="`${list.totalInSystem}${list.id}-row-totalinsystem-Affiliation`"
+                        >
+                          {{ list.totalInSystem }}</span
+                        ></transition
+                      >
 
-      <div class="col"></div>
+                      <transition
+                        mode="out-in"
+                        enter-active-class="animate__animated animate__flash "
+                      >
+                        <span
+                          :class="textColor(list.diff)"
+                          v-if="list.diff"
+                          :key="`${list.totalInSystem}${list.id}-row-diffNumber-Affiliation`"
+                        >
+                          ({{ list.diff }})</span
+                        ></transition
+                      >
+                    </div>
+                  </div>
+                </q-item>
+              </transition-group>
+            </q-list>
+          </q-card-section>
+        </q-card>
+      </div>
     </div>
     <q-dialog v-model="showAllianceDetails" persistent>
       <q-card class="myRoundTop" style="min-width: 20vw; max-width: 30vw">
@@ -229,6 +293,55 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+
+    <q-dialog v-model="showAffiliationDetails" persistent>
+      <q-card class="myRoundTop" style="min-width: 20vw; max-width: 30vw">
+        <q-card-section class="row items-center">
+          <span class="q-ml-sm">Pilots in {{ clickedAffiliation.details.name }}.</span>
+        </q-card-section>
+        <q-card-section class="overflow-auto" :style="h">
+          <q-list bordered dense>
+            <q-item
+              v-for="(list, index) in AffiliationDialogPilots"
+              :key="index"
+              dense
+              :class="pilotBgColor(list.pivot)"
+            >
+              <div class="row full-width justify-start items-baseline">
+                <div class="col-auto">
+                  <q-avatar size="32px" :key="`${list.id}-ave-affilition-dialog-list`">
+                    <q-img
+                      :src="list.corp.alliance.url"
+                      :key="`${list.id}-img-affilition-dialog-list`"
+                    />
+                  </q-avatar>
+                  <q-avatar size="32px" :key="`${list.id}-ave-affilition-dialog-list`">
+                    <q-img
+                      :src="list.corp.url"
+                      :key="`${list.id}-img-affilition-dialog-list`"
+                    />
+                  </q-avatar>
+                  <q-avatar size="32px" :key="`${list.id}-ave-affilition-dialog-list`">
+                    <q-img
+                      :src="charURL(list.id)"
+                      :key="`${list.id}-img-affilition-dialog-list`"
+                    />
+                  </q-avatar>
+                </div>
+                <div class="col-auto q-pl-lg">
+                  {{ list.name }} - {{ list.corp.alliance.ticker }} - ({{
+                    list.corp.ticker
+                  }})
+                </div>
+              </div>
+            </q-item>
+          </q-list>
+        </q-card-section>
+        <q-card-actions align="right">
+          <q-btn rounded label="close" color="negative" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
@@ -239,6 +352,8 @@ let clickedAlliace = $ref(null);
 let showAllianceDetails = $ref(false);
 let clickedCorp = $ref(null);
 let showCorpDetails = $ref(false);
+let showAffiliationDetails = $ref(false);
+let clickedAffiliation = $ref(null);
 
 // const props = defineProps({
 //   type: Number,
@@ -262,10 +377,28 @@ let openCorpDetails = (corp) => {
   showCorpDetails = true;
 };
 
+let openAffiliationDetails = (corp) => {
+  clickedAffiliation = corp;
+  showAffiliationDetails = true;
+};
+
 let CorpDialogPilots = $computed(() => {
   if (clickedCorp) {
     return store.dScan.locals
       .filter((l) => l.corp_id == clickedCorp.details.id)
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }
+});
+
+let AffiliationDialogPilots = $computed(() => {
+  if (clickedAffiliation) {
+    return store.dScan.locals
+      .filter(
+        (l) =>
+          l.corp &&
+          l.corp.alliance_id &&
+          l.corp.alliance.affiliation_id == clickedAffiliation.details.id
+      )
       .sort((a, b) => a.name.localeCompare(b.name));
   }
 });
@@ -406,6 +539,71 @@ let totalCorpDff = $computed(() => {
   return diff;
 });
 
+///////#
+let totalAffiliationNew = $computed(() => {
+  let total = 0;
+  if (Object.values(store.dScanLocalAffiliation).length == 0) {
+    return 0;
+  }
+  Object.values(store.dScanLocalAffiliation).forEach((affiliation) => {
+    total += affiliation.new;
+  });
+
+  return total;
+});
+
+let totalAffiliationleft = $computed(() => {
+  let total = 0;
+  if (Object.values(store.dScanLocalAffiliation).length == 0) {
+    return 0;
+  }
+  Object.values(store.dScanLocalAffiliation).forEach((affiliation) => {
+    total += affiliation.left;
+  });
+
+  return total;
+});
+
+let totalAffiliationSame = $computed(() => {
+  let total = 0;
+  if (Object.values(store.dScanLocalAffiliation).length == 0) {
+    return 0;
+  }
+  Object.values(store.dScanLocalAffiliation).forEach((affiliation) => {
+    total += affiliation.same;
+  });
+
+  return total;
+});
+
+let totalAffiliationTotalInSystem = $computed(() => {
+  let total = 0;
+  if (Object.values(store.dScanLocalAffiliation).length == 0) {
+    return 0;
+  }
+  Object.values(store.dScanLocalAffiliation).forEach((affiliation) => {
+    total += affiliation.totalInSystem;
+  });
+
+  return total;
+});
+
+let totalAffiliationDff = $computed(() => {
+  var newNum = totalAffiliationNew;
+  var leftNum = totalAffiliationleft * -1;
+  var sameNum = totalAffiliationSame;
+
+  if (sameNum > 0) {
+    var diff = newNum + leftNum;
+  } else {
+    var diff = 0;
+  }
+
+  return diff;
+});
+
+///////
+
 let textColor = (count) => {
   if (count > 0) {
     return "text-green";
@@ -447,10 +645,10 @@ let corpBgColor = (details) => {
   var cStanding = details.standing ? details.standing : 0;
   var aStanding = details.alliance ? details.alliance.standing : 0;
 
-  if (cStanding >= aStanding) {
-    standing = cStanding;
-  } else {
+  if (cStanding == 0) {
     standing = aStanding;
+  } else {
+    standing = cStanding;
   }
   if (standing == 10) {
     return "bg-blue-10";
@@ -473,6 +671,16 @@ let corpBgColor = (details) => {
 
   if (standing < -5) {
     return "bg-red-10";
+  }
+};
+
+let affiliationBgColor = (details) => {
+  if (details.color == 2) {
+    return "bg-blue-10";
+  }
+
+  if (details.color == 1) {
+    return "bg-red-5";
   }
 };
 

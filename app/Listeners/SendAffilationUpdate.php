@@ -2,9 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Events\DscanAllUpdate;
+use App\Events\AffilationUpdate;
 
-class SendDscanAllUpdate
+class SendAffilationUpdate
 {
     /**
      * Create the event listener.
@@ -17,7 +17,7 @@ class SendDscanAllUpdate
     /**
      * Handle the event.
      */
-    public function handle(DscanAllUpdate $event): void
+    public function handle(AffilationUpdate $event): void
     {
         //
     }
