@@ -33,10 +33,17 @@ class DscanController extends Controller
         $lines = explode("\n", $text);
 
         if (count(explode("\t", $lines[0])) == 1) {
-            $this->addNewLocal($text);
+            $data = $this->addNewLocal($text);
+            return response()->json([
+                'link' => $data,
+            ]);
         } else {
 
-            $this->addNewDscan($text);
+            $data =  $this->addNewDscan($text);
+
+            response()->json([
+                'link' => $data,
+            ]);
         }
     }
 
@@ -46,9 +53,17 @@ class DscanController extends Controller
         $lines = explode("\n", $text);
 
         if (count(explode("\t", $lines[0])) == 1) {
-            $this->updateLocal($text, $link);
+            $data =  $this->updateLocal($text, $link);
+
+            return response()->json([
+                'data' => $data,
+            ]);
         } else {
-            $this->updateDscan($text, $link);
+
+            $data =   $this->updateDscan($text, $link);
+            return   response()->json([
+                'data' => $data,
+            ]);
         }
     }
 
@@ -116,9 +131,9 @@ class DscanController extends Controller
             getLocalNamesJob::dispatch($charID)->onQueue('alliance');
         }
 
-        return response()->json([
-            'link' => $newDscan->link,
-        ]);
+
+
+        return $newDscan->link;
     }
 
 
@@ -461,9 +476,7 @@ class DscanController extends Controller
             }
         }
 
-        return [
-            'data' => $this->show($dScan->link),
-        ];
+        return  $this->show($dScan->link);
     }
 
     public function updateLocal($local, string $id)

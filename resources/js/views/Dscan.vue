@@ -148,7 +148,6 @@ let checkDscan = () => {
         store.dScanLocalCorp = e.flag.message.corpsTotal;
         store.dScanLocalAlliance = e.flag.message.allianceTotal;
         store.updateLocalDscan(e.flag.message.soloLocal);
-        console.log(e.flag.message.soloLocal);
       }
     });
   }
@@ -210,6 +209,10 @@ let updateScan = async () => {
     },
   }).then((res) => {
     loading = false;
+    console.log(res.data);
+
+    store.dScanLocalCorp = res.data.data.corpsTotal;
+    store.dScanLocalAlliance = res.data.data.allianceTotal;
     store.dScan = res.data.data.dscan;
     dScanText = null;
   });
