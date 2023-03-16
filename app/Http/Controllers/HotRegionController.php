@@ -6,20 +6,15 @@ use App\Events\StationSheetUpdate;
 use App\Events\StationWatchListSettingPageUpdate;
 use App\Jobs\ReconRegionPullJob;
 use App\Jobs\updateWebwayJob;
-use App\Models\Alliance;
 use App\Models\Campaign;
-use App\Models\Constellation;
 use App\Models\HotRegion;
-use App\Models\Item;
 use App\Models\Region;
 use App\Models\Station;
 use App\Models\System;
-use App\Models\User;
 use App\Models\WebWay;
 use App\Models\WebWayStartSystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Spatie\Permission\Models\Role;
 
 class HotRegionController extends Controller
 {

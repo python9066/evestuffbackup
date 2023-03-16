@@ -5,9 +5,14 @@ import {
 
 export const useMainStore = defineStore("main", {
     state: () => ({
+        affiliations: [],
         dScan: [],
+        dScanIsHistory: false,
+        dScanHistory: [],
+        dScanLiveLink: null,
         dScanLocalAlliance: [],
         dScanLocalCorp: [],
+        dScanLocalAffiliation: [],
         constellationlist: [],
         eveUserCount: 0,
         newSoloOperations: [],
@@ -1552,6 +1557,11 @@ export const useMainStore = defineStore("main", {
             this.dScan = res.data.dscan;
             this.dScanLocalCorp = res.data.corpsTotal;
             this.dScanLocalAlliance = res.data.allianceTotal;
+            this.dScanLocalAffiliation = res.data.affiliationTotal;
+            this.dScanIsHistory = res.data.history;
+            this.dScanIsHistory ? this.dScanHistory = res.data.allHistory : this.dScanHistory = res.data.dscan.history;
+            this.dScanIsHistory ? this.dScanLiveLink = res.data.liveDscan : null;
+
         },
 
         updateLocalDscan(data) {
@@ -1562,7 +1572,34 @@ export const useMainStore = defineStore("main", {
             if (count > 0) {
                 Object.assign(item, data);
             } else {
-                this.towers.push(data);
+                this.dScan.locals.push(data);
+            }
+        },
+
+        async getAffilationTable() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
+                url: "/api/affiliation",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+
+            this.affiliations = res.data.affiliations;
+
+        },
+
+        updateAffilation(data) {
+            const item = this.affiliations.find((item) => item.id === data.id);
+            const count = this.affiliations.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.affiliations.push(data);
             }
         },
 

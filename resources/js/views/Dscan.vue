@@ -59,10 +59,15 @@
               </div>
             </q-card>
           </div>
-          <div class="col-auto text-h6">
+
+          <div class="col-auto text-h6" v-if="!store.dScanIsHistory">
             <q-card class="my-card myRoundTop">
               <q-card-section>
-                <q-input v-model="dScanText" type="textarea" label="Dscan" />
+                <q-input
+                  v-model="dScanText"
+                  type="textarea"
+                  label="Paste your Dscan or local here"
+                />
               </q-card-section>
               <q-card-actions align="center">
                 <q-btn
@@ -82,30 +87,25 @@
               </q-card-actions>
             </q-card>
           </div>
-          <div class="col-auto">
-            <div class="col">
-              <q-card class="my-card myRoundTop">
-                <q-card-section>
-                  <q-input v-model="dScanLocal" type="textarea" label="Local" />
-                </q-card-section>
-                <q-card-actions align="center">
-                  <q-btn
-                    rounded
-                    color="primary"
-                    label="New"
-                    :loading="loading"
-                    @click="subLocal()"
-                  />
-                  <q-btn
-                    rounded
-                    color="secondary"
-                    label="Update"
-                    :loading="loading"
-                    @click="updateLocal()"
-                  />
-                </q-card-actions>
-              </q-card>
-            </div>
+          <div class="col-auto" v-if="store.dScanHistory || store.dScanIsHistory">
+            <q-card class="my-card myRoundTop">
+              <q-card-section>
+                <q-list bordered dense>
+                  <q-item
+                    clickable
+                    @click="clickHistory(list.link)"
+                    :active="isHistoryActive(list.link)"
+                    v-for="(list, index) in store.dScanHistory"
+                    :key="index"
+                  >
+                    {{ fixTime(list.created_at) }}
+                  </q-item>
+                  <q-item clickable v-if="store.dScanIsHistory" @click="clickLive()">
+                    Live
+                  </q-item>
+                </q-list>
+              </q-card-section>
+            </q-card>
           </div>
         </div>
       </div>
@@ -138,7 +138,6 @@ let router = useRouter();
 let scanLink = $ref(null);
 let dScanText = $ref(null);
 let loading = $ref(false);
-let dScanLocal = $ref(null);
 let tab = $ref("total");
 
 onMounted(async () => {
@@ -158,21 +157,39 @@ onBeforeUnmount(() => {
   Echo.leave("dscanall");
 });
 
-let checkDscan = () => {
+let checkDscan = async () => {
   if (scanLink) {
-    store.getDscan(scanLink);
-    Echo.private("dscansolo." + scanLink).listen("dScanSoloUpdate", (e) => {
-      if (e.flag.flag == 1) {
-        //update items
-      }
+    await store.getDscan(scanLink);
+    if (!store.dScanIsHistory) {
+      Echo.private("dscansolo." + scanLink).listen("dScanSoloUpdate", (e) => {
+        if (e.flag.flag == 1) {
+          //update items
+        }
 
-      if (e.flag.flag == 2) {
-        store.dScanLocalCorp = e.flag.message.corpsTotal;
-        store.dScanLocalAlliance = e.flag.message.allianceTotal;
-        store.updateLocalDscan(e.flag.message.soloLocal);
-        console.log(e.flag.message.soloLocal);
-      }
-    });
+        if (e.flag.flag == 2) {
+          store.dScanLocalCorp = e.flag.message.corpsTotal;
+          store.dScanLocalAlliance = e.flag.message.allianceTotal;
+          store.updateLocalDscan(e.flag.message.soloLocal);
+        }
+
+        if (e.flag.flag == 3) {
+          store.dScanLocalCorp = e.flag.message;
+        }
+
+        if (e.flag.flag == 4) {
+          store.dScanLocalAlliance = e.flag.message;
+        }
+
+        if (e.flag.flag == 5) {
+          store.dScan = e.flag.message;
+          store.dScanHistory = e.flag.message.history;
+        }
+
+        if (e.flag.flag == 6) {
+          store.dScanIsHistory = e.flag.message;
+        }
+      });
+    }
   }
 };
 
@@ -199,7 +216,7 @@ let age = $computed(() => {
 let subScan = async () => {
   loading = true;
   var data = {
-    dscan: dScanText,
+    text: dScanText,
   };
   await axios({
     method: "post",
@@ -219,7 +236,7 @@ let subScan = async () => {
 let updateScan = async () => {
   loading = true;
   var data = {
-    dscan: dScanText,
+    text: dScanText,
   };
   await axios({
     method: "post",
@@ -232,54 +249,13 @@ let updateScan = async () => {
     },
   }).then((res) => {
     loading = false;
+    console.log(res.data);
+
+    store.dScanLocalCorp = res.data.data.corpsTotal;
+    store.dScanLocalAlliance = res.data.data.allianceTotal;
     store.dScan = res.data.data.dscan;
+    store.dScanHistory = res.data.data.dscan.history;
     dScanText = null;
-  });
-};
-
-let subLocal = async () => {
-  loading = true;
-  var data = {
-    local: dScanLocal,
-  };
-  await axios({
-    method: "post",
-    withCredentials: true,
-    data: data,
-    url: "/api/dscanlocal",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  }).then((res) => {
-    loading = false;
-    router.push({ path: `/dscan/${res.data.link}` });
-    dScanLocal = null;
-    tab = "local";
-  });
-};
-
-let updateLocal = async () => {
-  loading = true;
-  var data = {
-    local: dScanLocal,
-  };
-  await axios({
-    method: "post",
-    withCredentials: true,
-    data: data,
-    url: "/api/dscanlocal/" + scanLink,
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  }).then((res) => {
-    loading = false;
-    store.dScan = res.data.dscan;
-    store.dScanLocalCorp = res.data.corpsTotal;
-    store.dScanLocalAlliance = res.data.allianceTotal;
-    dScanLocal = null;
-    tab = "local";
   });
 };
 
@@ -297,6 +273,34 @@ let countUpTimeMil = (time) => {
 let colClass = $computed(() => {
   return scanLink ? "full-height justify-between" : "q-gutter-lg full-height justify-end";
 });
+
+const fixTime = (utcDateString) => {
+  const utcDate = new Date(utcDateString);
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+    timeZone: "UTC",
+  };
+  const localDateString = utcDate.toLocaleString("en-US", options).replace(",", "");
+  return localDateString;
+};
+
+let isHistoryActive = (link) => {
+  return link == scanLink ? true : false;
+};
+
+let clickHistory = (link) => {
+  router.push({ path: `/dscan/${link}` });
+};
+
+let clickLive = () => {
+  router.push({ path: `/dscan/${store.dScanLiveLink}` });
+};
 
 let h = $computed(() => {
   let mins = 70;

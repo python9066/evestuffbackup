@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\getLocalNamesJob;
 use App\Jobs\updateWebwayJob;
 use App\Models\AdashLocalScan;
 use App\Models\AdashLocalScanAlliance;
@@ -10,12 +9,10 @@ use App\Models\AdashLocalScanCorp;
 use App\Models\Auth as ModelsAuth;
 use App\Models\Campaign;
 use App\Models\Categorie;
-use App\Models\Character;
 use App\Models\Corp;
 use App\Models\DankOperation;
 use App\Models\Dscan;
 use App\Models\DscanItem;
-use App\Models\DscanLocal;
 use App\Models\DscanTotal;
 use App\Models\Group;
 use App\Models\Item;
@@ -361,6 +358,14 @@ class testController extends Controller
                     }
                 } while ($pull != 3);
             }
+        }
+    }
+
+    public function testDscanHistory($link)
+    {
+        $check = Auth::user();
+        if ($check->can('super')) {
+            return  loadDscanHistory($link);
         }
     }
 

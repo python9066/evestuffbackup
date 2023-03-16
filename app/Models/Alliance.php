@@ -24,6 +24,11 @@ class Alliance extends Model
         return $this->hasMany(Corp::class);
     }
 
+    public function affiliation()
+    {
+        return $this->belongsTo(Affiliation::class);
+    }
+
     public $incrementing = false;
 
     protected $primaryKey = 'id';

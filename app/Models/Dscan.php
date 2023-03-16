@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -40,5 +39,10 @@ class Dscan extends Model
     {
         return $this->belongsToMany(Character::class, 'dscan_locals', 'dscan_id', 'character_id')
             ->withPivot('new', 'left', 'same');
+    }
+
+    public function history()
+    {
+        return $this->hasMany(DscanHistory::class);
     }
 }

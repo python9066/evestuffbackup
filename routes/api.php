@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AffilationController;
 use App\Http\Controllers\AllianceController;
 use App\Http\Controllers\AmmoRequestController;
 use App\Http\Controllers\AmmoRequestRecordsController;
@@ -125,6 +126,16 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/eveusercount', 'playerCount');
     });
 
+    Route::controller(AffilationController::class)->group(function () {
+        Route::get('/affiliation', 'index');
+        Route::get('/affiliation/{id}', 'show');
+        Route::post('/affiliation', 'store');
+        Route::put('/affiliation/{id}', 'update');
+        Route::delete('/affiliation/{id}', 'destroy');
+        Route::post('/affiliation/alliance/{id}', 'addAlliance');
+        Route::delete('/affiliation/alliance/{id}', 'removeAlliance');
+    });
+
     Route::controller(DscanLocalController::class)->group(function () {
         Route::post('/dscanlocal', 'addNewLocal');
         Route::post('/dscanlocal/{link}', 'update');
@@ -134,8 +145,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::controller(DscanController::class)->group(function () {
-        Route::post('/dscan', 'store');
-        Route::post('/dscan/{link}', 'update');
+        Route::post('/dscan', 'checkInputNew');
+        Route::post('/dscan/{link}', 'checkInputUpdate');
         Route::get('/dscan/{link}', 'show');
         Route::get('/dscan', 'dscanPullAll');
     });
