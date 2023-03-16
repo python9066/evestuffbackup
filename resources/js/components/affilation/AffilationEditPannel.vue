@@ -2,9 +2,10 @@
   <div>
     <q-btn
       v-if="!edit"
-      color="primary"
-      icon="check"
-      label="OK"
+      flat
+      color="warning"
+      icon="fa-solid fa-plus"
+      label="Add Affiliation"
       @click="showPannel = !showPannel"
     />
 
@@ -25,7 +26,7 @@
     >
       <q-card class="myRoundTop">
         <q-card-section class="myCardHeader bg-primary text-h3">
-          Make a new Affilation
+          Make a new Affiliation
         </q-card-section>
         <q-card-section>
           <q-input v-model="name" label="Name" />

@@ -187,13 +187,13 @@ const routes = [{
     path: "/affilations",
     name: "affilations",
     component: () => import("./views/Affilations.vue"),
-    // beforeEnter(to, from, next) {
-    //     if (can("super")) {
-    //         next();
-    //     } else {
-    //         next("/");
-    //     }
-    // },
+    beforeEnter(to, from, next) {
+        if (can("view_affiliation_page")) {
+            next();
+        } else {
+            next("/");
+        }
+    },
 },
 
 {

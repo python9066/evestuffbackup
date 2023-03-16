@@ -15,9 +15,15 @@
       :pagination="pagination"
     >
       <template v-slot:top="props">
-        <div class="row full-width flex-center q-pt-xs myRoundTop bg-primary">
-          <div class="col-12 flex flex-center">
-            <span class="text-h4">Affilations</span>
+        <div
+          class="row justify-between full-width flex-center q-pt-xs myRoundTop bg-primary"
+        >
+          <div class="col-auto"></div>
+          <div class="col-auto">
+            <span class="text-h4">Affiliations</span>
+          </div>
+
+          <div class="col-auto">
             <AffilationEditPannel />
           </div>
         </div>
