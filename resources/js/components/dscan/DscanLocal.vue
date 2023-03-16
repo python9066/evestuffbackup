@@ -8,7 +8,7 @@
             All Alliances - {{ totalAllianceTotalInSystem }}
             <span :class="textColor(totalAllianceDff)"> ({{ totalAllianceDff }})</span>
           </q-card-section>
-          <q-card-section>
+          <q-card-section class="overflow-auto" :style="h">
             <transition-group
               mode="out-in"
               enter-active-class="animate__animated animate__bounceIn animate__slower"
@@ -252,7 +252,7 @@ let openAllIanceDetails = (alliance) => {
 let allianceDialogPilots = $computed(() => {
   if (clickedAlliace) {
     return store.dScan.locals
-      .filter((l) => l.corp.alliance_id == clickedAlliace.details.id)
+      .filter((l) => l.corp && l.corp.alliance_id == clickedAlliace.details.id)
       .sort((a, b) => a.name.localeCompare(b.name));
   }
 });

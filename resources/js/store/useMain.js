@@ -6,6 +6,9 @@ import {
 export const useMainStore = defineStore("main", {
     state: () => ({
         dScan: [],
+        dScanIsHistory: false,
+        dScanHistory:[],
+        dScanLiveLink: null,
         dScanLocalAlliance: [],
         dScanLocalCorp: [],
         constellationlist: [],
@@ -1552,6 +1555,10 @@ export const useMainStore = defineStore("main", {
             this.dScan = res.data.dscan;
             this.dScanLocalCorp = res.data.corpsTotal;
             this.dScanLocalAlliance = res.data.allianceTotal;
+            this.dScanIsHistory = res.data.history;
+            this.dScanIsHistory ? this.dScanHistory = res.data.allHistory : this.dScanHistory = res.data.dscan.history;
+            this.dScanIsHistory ? this.dScanLiveLink = res.data.liveDscan : null;
+
         },
 
         updateLocalDscan(data) {
