@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\dScanSoloUpdate;
 use App\Jobs\getLocalNamesJob;
 use App\Models\Categorie;
 use App\Models\Character;
@@ -80,7 +81,37 @@ class DscanController extends Controller
 
     public function sendUpdateBoardCasts($data, $link)
     {
-        dd($data, $link);
+        $message = $data['corpsTotal'];
+        $flag = collect([
+            'id' => $link,
+            'flag' => 3,
+            'message' => $message,
+        ]);
+        broadcast(new dScanSoloUpdate($flag))->toOthers();
+
+        $message = $data['allianceTotal'];
+        $flag = collect([
+            'id' => $link,
+            'flag' => 4,
+            'message' => $message,
+        ]);
+        broadcast(new dScanSoloUpdate($flag))->toOthers();
+
+        $message = $data['dscan'];
+        $flag = collect([
+            'id' => $link,
+            'flag' => 5,
+            'message' => $message,
+        ]);
+        broadcast(new dScanSoloUpdate($flag))->toOthers();
+
+        $message = $data['history'];
+        $flag = collect([
+            'id' => $link,
+            'flag' => 6,
+            'message' => $message,
+        ]);
+        broadcast(new dScanSoloUpdate($flag))->toOthers();
     }
 
     public function addNewLocal($local)

@@ -8,7 +8,7 @@
             All Alliances - {{ totalAllianceTotalInSystem }}
             <span :class="textColor(totalAllianceDff)"> ({{ totalAllianceDff }})</span>
           </q-card-section>
-          <q-card-section>
+          <q-card-section class="overflow-auto" :style="h">
             <transition-group
               mode="out-in"
               enter-active-class="animate__animated animate__bounceIn animate__slower"

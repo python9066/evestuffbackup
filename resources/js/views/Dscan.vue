@@ -172,11 +172,6 @@ let checkDscan = async () => {
           store.updateLocalDscan(e.flag.message.soloLocal);
         }
 
-        //         store.dScanLocalCorp = res.data.data.corpsTotal;
-        // store.dScanLocalAlliance = res.data.data.allianceTotal;
-        // store.dScan = res.data.data.dscan;
-        // store.dScanHistory = res.data.data.dscan.history;
-
         if (e.flag.flag == 3) {
           store.dScanLocalCorp = e.flag.message;
         }
@@ -187,10 +182,11 @@ let checkDscan = async () => {
 
         if (e.flag.flag == 5) {
           store.dScan = e.flag.message;
+          store.dScanHistory = e.flag.message.history;
         }
 
         if (e.flag.flag == 6) {
-          store.dScanHistory = e.flag.message;
+          store.dScanIsHistory = e.flag.message;
         }
       });
     }
