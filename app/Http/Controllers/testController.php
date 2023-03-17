@@ -238,6 +238,11 @@ class testController extends Controller
         }
     }
 
+
+    public function testWebwayPull()
+    {
+    }
+
     public function testDscanLocal(Request $request)
     {
 

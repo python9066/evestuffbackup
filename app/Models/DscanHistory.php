@@ -13,7 +13,8 @@ class DscanHistory extends Model
         "totals",
         'dscan',
         'corpsTotal',
-        'alliancesTotal'
+        'alliancesTotal',
+        'affiliationsTotal'
 
 
 
@@ -23,7 +24,8 @@ class DscanHistory extends Model
         'totals' => 'array',
         'dscan' => 'array',
         'corpsTotal' => 'array',
-        'alliancesTotal' => 'array'
+        'alliancesTotal' => 'array',
+        'affiliationsTotal' => 'array'
 
 
     ];

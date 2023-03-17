@@ -25,6 +25,7 @@ if (!function_exists('getDscanInfo')) {
         $allLocals = $dscan->locals;
         $corpsTotal = [];
         $allianceTotal = [];
+        $affiliationTotal = [];
 
         foreach ($allLocals as $local) {
             if ($local->corp) {
@@ -215,8 +216,8 @@ if (!function_exists('getDscanLocalInfo')) {
 
         $allLocals = $dscan->locals;
         $corpsTotal = [];
-
         $allianceTotal = [];
+        $affiliationTotal = [];
 
         foreach ($allLocals as $local) {
             if ($local->corp) {
@@ -409,6 +410,7 @@ if (!function_exists('makeDscanHistoy')) {
         $allLocals = $dscan->locals;
         $corpsTotal = [];
         $allianceTotal = [];
+        $affiliationTotal = [];
 
         foreach ($allLocals as $local) {
             if ($local->corp) {
@@ -568,6 +570,7 @@ if (!function_exists('makeDscanHistoy')) {
         $corpsTotal = collect($corpsTotal)->sortByDesc('totalInSystem')->values()->all();
         $allianceTotal = collect($allianceTotal)->sortByDesc('totalInSystem')->values()->all();
         $affiliationTotal = collect($affiliationTotal)->sortByDesc('totalInSystem')->values()->all();
+        // dd($corpsTotal, $allianceTotal, $affiliationTotal);
 
         $count = DscanHistory::where('dscan_id', $dscan->id)->count() + 1;
         $newHisotry = new DscanHistory();
@@ -579,7 +582,7 @@ if (!function_exists('makeDscanHistoy')) {
         $newHisotry->totals = $dscan->totals;
         $newHisotry->corpsTotal = $corpsTotal;
         $newHisotry->alliancesTotal = $allianceTotal;
-        $newHisotry->affiliationTotal = $affiliationTotal;
+        $newHisotry->affiliationsTotal = $affiliationTotal;
         $newHisotry->dscan = $dscan;
         $newHisotry->history_count = $count;
         $newHisotry->save();
@@ -600,7 +603,7 @@ if (!function_exists('loadDscanHistory')) {
             'dscan' => $dscan->dscan,
             'corpsTotal' => $dscan->corpsTotal,
             'allianceTotal' => $dscan->alliancesTotal,
-            'affiliationTotal' => $dscan->affiliationTotal,
+            'affiliationTotal' => $dscan->affiliationsTotal,
             'history' => true,
             'allHistory' => $allHistory,
             'liveDscan' => $liveDscan,

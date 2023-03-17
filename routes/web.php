@@ -66,6 +66,7 @@ Route::controller(testController::class)->group(function () {
     Route::get('/test/dscan/{id}', 'testDscanPull');
     Route::get('/test/descanlocal', 'testDscanLocal');
     Route::get('/test/testdscanhistory/{link}', 'testDscanHistory');
+    Route::get('/test/location', 'testWebwayPull');
 });
 
 Route::controller(AuthController::class)->group(function () {

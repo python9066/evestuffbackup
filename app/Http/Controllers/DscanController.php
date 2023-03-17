@@ -180,6 +180,26 @@ class DscanController extends Controller
 
 
 
+
+        if (!$newDscan->system_id) {
+            $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+            $webwayToken = env('WEBWAY_TOKEN', ($variables && array_key_exists('WEBWAY_TOKEN', $variables)) ? $variables['WEBWAY_TOKEN'] : null);
+            $webwayURL = env('WEBWAY_URL2', ($variables && array_key_exists('WEBWAY_URL2', $variables)) ? $variables['WEBWAY_URL2'] : null);
+            $dScanCharIdsSend = DscanLocal::where('dscan_id', $newDscan->id)->pluck('character_id');
+            $res =  Http::withToken($webwayToken)
+                ->withHeaders([
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
+                ])->post($webwayURL, $dScanCharIdsSend);
+
+            $info =  $res->json();
+            if ($info['status']) {
+                $newDscan->system_id = $info['system_id'];
+                $newDscan->save();
+            }
+        }
+
         return $newDscan->link;
     }
 
@@ -616,6 +636,25 @@ class DscanController extends Controller
         $charIDs = Character::whereIn('id', $dScanCharIDs)->whereNull('corp_id')->pluck('id');
         foreach ($charIDs as $charID) {
             getLocalNamesJob::dispatch($charID)->onQueue('alliance');
+        }
+
+        if (!$dScan->system_id) {
+            $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+            $webwayToken = env('WEBWAY_TOKEN', ($variables && array_key_exists('WEBWAY_TOKEN', $variables)) ? $variables['WEBWAY_TOKEN'] : null);
+            $webwayURL = env('WEBWAY_URL2', ($variables && array_key_exists('WEBWAY_URL2', $variables)) ? $variables['WEBWAY_URL2'] : null);
+            $dScanCharIdsSend = DscanLocal::where('dscan_id', $dScan->id)->pluck('character_id');
+            $res =  Http::withToken($webwayToken)
+                ->withHeaders([
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
+                ])->post($webwayURL, $dScanCharIdsSend);
+
+            $info =  $res->json();
+            if ($info['status']) {
+                $dScan->system_id = $info['system_id'];
+                $dScan->save();
+            }
         }
 
         return getDscanInfo($dScan->link);
