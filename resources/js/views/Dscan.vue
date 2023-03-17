@@ -78,6 +78,7 @@
                   @click="subScan()"
                 />
                 <q-btn
+                  v-if="scanLink"
                   rounded
                   color="secondary"
                   label="Update"
@@ -87,7 +88,7 @@
               </q-card-actions>
             </q-card>
           </div>
-          <div class="col-auto" v-if="store.dScanHistory || store.dScanIsHistory">
+          <div class="col-auto" v-if="store.dScanHistory.length || store.dScanIsHistory">
             <q-card class="my-card myRoundTop">
               <q-card-section>
                 <q-list bordered dense>

@@ -23,28 +23,34 @@ class DscanTotal extends Model
     protected $attributes = [
         'totals' => '{
   "groups": {
-    "old": {},
-    "new": {}
+    "new": {},
+    "same": {},
+    "left":{},
   },
   "items": {
-    "old": {},
-    "new": {}
+    "new": {},
+    "same": {},
+    "left":{},
   },
   "categories": {
-    "old": {},
-    "new": {}
+    "new": {},
+    "same": {},
+    "left":{},
   },
   "chars": {
-    "old": {},
-    "new": {}
+    "new": {},
+    "same": {},
+    "left":{},
   },
   "corps": {
-    "old": {},
-    "new": {}
+    "new": {},
+    "same": {},
+    "left":{},
   },
   "alliances": {
-    "old": {},
-    "new": {}
+    "new": {},
+    "same": {},
+    "left":{},
   }
 }'
     ];
