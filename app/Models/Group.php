@@ -14,8 +14,8 @@ class Group extends Model
         return $this->hasMany(Item::class);
     }
 
-    public function categorie()
+    public function category()
     {
-        return $this->belongsTo(Categorie::class);
+        return $this->belongsTo(Categorie::class, 'category_id');
     }
 }

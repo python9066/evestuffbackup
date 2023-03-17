@@ -229,7 +229,6 @@ class testController extends Controller
                     'system.constellation',
                     'user:id,name',
                     'items.item.group',
-                    'totals',
                 ])
                 ->first();
             return [
@@ -257,7 +256,6 @@ class testController extends Controller
                     'updatedBy:id,name',
                     'madeby:id,name',
                     'items.item.group',
-                    'totals',
                     'locals.corp.alliance'
                 ])
                 ->first();

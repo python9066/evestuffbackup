@@ -69,14 +69,6 @@ class DscanController extends Controller
                 'data' => $data,
             ]);
         }
-
-        // $flag = collect([
-        //     'id' => $dscan->dscan->link,
-        //     'flag' => 2,
-        //     'message' => $message,
-        // ]);
-        // broadcast(new dScanSoloUpdate($flag));
-
     }
 
     public function sendUpdateBoardCasts($data, $link)
@@ -112,6 +104,30 @@ class DscanController extends Controller
             'message' => $message,
         ]);
         broadcast(new dScanSoloUpdate($flag))->toOthers();
+
+        $message = $data['categoryTotals'];
+        $flag = collect([
+            'id' => $link,
+            'flag' => 7,
+            'message' => $message,
+        ]);
+        broadcast(new dScanSoloUpdate($flag))->toOthers();
+
+        $message = $data['groupTotals'];
+        $flag = collect([
+            'id' => $link,
+            'flag' => 8,
+            'message' => $message,
+        ]);
+        broadcast(new dScanSoloUpdate($flag))->toOthers();
+
+        $message = $data['itemTotals'];
+        $flag = collect([
+            'id' => $link,
+            'flag' => 9,
+            'message' => $message,
+        ]);
+        broadcast(new dScanSoloUpdate($flag))->toOthers();
     }
 
     public function addNewLocal($local)
@@ -120,9 +136,9 @@ class DscanController extends Controller
         $newDscan->user_id = Auth::user()->id;
         $newDscan->link = Str::uuid();
         $newDscan->save();
-        $newDscanTotal = new DscanTotal();
-        $newDscanTotal->dscan_id = $newDscan->id;
-        $newDscanTotal->save();
+        // $newDscanTotal = new DscanTotal();
+        // $newDscanTotal->dscan_id = $newDscan->id;
+        // $newDscanTotal->save();
 
         $rows = explode("\n", $local);
         $newNames = [];
@@ -217,9 +233,9 @@ class DscanController extends Controller
         $newDscan->save();
 
         $rows = explode("\n", $dscan_results);
-        $newTotal = new DscanTotal();
-        $newTotal->dscan_id = $newDscan->id;
-        $newTotal->save();
+        // $newTotal = new DscanTotal();
+        // $newTotal->dscan_id = $newDscan->id;
+        // $newTotal->save();
 
         foreach ($rows as $row) {
             $on = false;
@@ -236,11 +252,6 @@ class DscanController extends Controller
                 $newDscanItem->distance_value = 1; // "9.1";
                 $newDscanItem->distance_unit = "au";
             }
-            $newDscanItem->save();
-            $item = Item::whereId($columns[0])->first();
-            $group = Group::whereId($item->group_id)->first();
-            $category = Categorie::whereId($group->category_id)->first();
-
             if ($newDscanItem->distance_unit == "km" && $newDscanItem->distance_value <= 8000) {
                 $on = true;
             }
@@ -248,90 +259,11 @@ class DscanController extends Controller
             if ($newDscanItem->distance_unit == "m") {
                 $on = true;
             }
-
-            $totals = $newTotal->totals;
-
-            $current = $totals['items']['new'][$item->item_name]['group_id'] = $group->id;
-            $current = $totals['items']['new'][$item->item_name]['category_id'] = $category->id;
-            $current = $totals['items']['new'][$item->item_name]['item_name'] = $item->item_name;
-            $current = $totals['items']['new'][$item->item_name]['item_id'] = $item->id;
-            $newTotal->totals = $current;
-
-
-            $current = $totals['groups']['new'][$group->name]['category_id'] = $category->id;
-            $current = $totals['groups']['new'][$group->name]['group_id'] = $group->id;
-            $current = $totals['groups']['new'][$group->name]['group_name'] = $group->name;
-            $newTotal->totals = $current;
-
-            $current = $totals['categories']['new'][$category->name]['category_id'] = $category->id;
-            $current = $totals['categories']['new'][$category->name]['category_name'] = $category->name;
-            $newTotal->totals = $current;
-
-
-            if ($on) {
-                $current = $totals['items']['new'][$item->item_name]['on'] ?? 0;
-            } else {
-                $current = $totals['items']['new'][$item->item_name]['off'] ?? 0;
-            }
-
-            $new = $current + 1;
-            if ($on) {
-                $totals['items']['new'][$item->item_name]['on'] = $new;
-            } else {
-
-                $totals['items']['new'][$item->item_name]['off'] = $new;
-            }
-            $newTotal->totals = $totals;
-
-            $current = $totals['items']['new'][$item->item_name]['total'] ?? 0;
-            $new = $current + 1;
-            $totals['items']['new'][$item->item_name]['total'] = $new;
-
-            if ($on) {
-                $current = $totals['categories']['new'][$category->name]['on'] ?? 0;
-            } else {
-
-                $current = $totals['categories']['new'][$category->name]['off'] ?? 0;
-            }
-
-
-            $new = $current + 1;
-            if ($on) {
-                $totals['categories']['new'][$category->name]['on'] = $new;
-            } else {
-
-                $totals['categories']['new'][$category->name]['off'] = $new;
-            }
-            $newTotal->totals = $totals;
-
-            $current = $totals['categories']['new'][$category->name]['total'] ?? 0;
-            $new = $current + 1;
-            $totals['categories']['new'][$category->name]['total'] = $new;
-
-
-            if ($on) {
-                $current = $totals['groups']['new'][$group->name]['on'] ?? 0;
-            } else {
-
-                $current = $totals['groups']['new'][$group->name]['off'] ?? 0;
-            }
-
-            $new = $current + 1;
-
-            if ($on) {
-                $totals['groups']['new'][$group->name]['on'] = $new;
-            } else {
-
-                $totals['groups']['new'][$group->name]['off'] = $new;
-            }
-            $newTotal->totals = $totals;
-
-            $current = $totals['groups']['new'][$group->name]['total'] ?? 0;
-            $new = $current + 1;
-            $totals['groups']['new'][$group->name]['total'] = $new;
-            $newTotal->totals = $totals;
-            $newTotal->save();
-
+            $newDscanItem->on_grid = $on;
+            $newDscanItem->new = true;
+            $newDscanItem->save();
+            $item = Item::whereId($columns[0])->first();
+            $group = Group::whereId($item->group_id)->first();
             if (!$newDscan->system_id) {
                 $groupName = $item->group->name;
                 if ($groupName == "Sun") {
@@ -382,140 +314,69 @@ class DscanController extends Controller
         $dScan->updated_by = Auth::user()->id;
         $dScan->save();
 
+
+
         $rows = explode("\n", $dscan_results);
-        $newTotal = DscanTotal::where('dscan_id', $dScan->id)->first();
 
-        $totals = $newTotal->totals;
-        $newItem = $totals['items']['new'];
-        $totals['items']['old'] = $newItem;
-        $totals['items']['new'] = [];
-        $newCategory = $totals['categories']['new'];
-        $totals['categories']['old'] = $newCategory;
-        $totals['categories']['new'] = [];
-        $newGroup = $totals['groups']['new'];
-        $totals['groups']['old'] = $newGroup;
-        $totals['groups']['new'] = [];
-        $newTotal->totals = $totals;
-        $newTotal->save();
 
-        DscanItem::where('dscan_id', $dScan->id)->delete();
+        DscanItem::where('dscan_id', $dScan->id)->update(['updated' => false]);
 
         foreach ($rows as $row) {
             $on = false;
             $columns = explode("\t", $row);
-            $newDscanItem = new DscanItem();
-            $newDscanItem->dscan_id = $dScan->id;
-            $newDscanItem->item_id = $columns[0];
-            $newDscanItem->name = $columns[1];
-            $components = explode(" ", $columns[3]);
-            if (count($components) > 1) {
-                $newDscanItem->distance_value = $components[0]; // "9.1";
-                $newDscanItem->distance_unit = $components[1];
+            $dScanItem = DscanItem::where('dscan_id', $dScan->id)->where('item_id', $columns[0])->where('updated', false)->first();
+            if ($dScanItem) {
+                $dScanItem->updated = true;
+                $dScanItem->new = false;
+                $dScanItem->same = true;
+                $components = explode(" ", $columns[3]);
+                if (count($components) > 1) {
+                    $dScanItem->distance_value = $components[0]; // "9.1";
+                    $dScanItem->distance_unit = $components[1];
+                } else {
+                    $dScanItem->distance_value = 1; // "9.1";
+                    $dScanItem->distance_unit = "au";
+                }
+
+                if ($dScanItem->distance_unit == "km" && $dScanItem->distance_value <= 8000) {
+                    $on = true;
+                }
+
+                if ($dScanItem->distance_unit == "m") {
+                    $on = true;
+                }
+                $dScanItem->on_grid = $on;
+                $dScanItem->save();
+                $item = Item::whereId($columns[0])->first();
+                $group = Group::whereId($item->group_id)->first();
             } else {
-                $newDscanItem->distance_value = 1; // "9.1";
-                $newDscanItem->distance_unit = "au";
+                $newDscanItem = new DscanItem();
+                $newDscanItem->dscan_id = $dScan->id;
+                $newDscanItem->item_id = $columns[0];
+                $newDscanItem->name = $columns[1];
+                $newDscanItem->updated = true;
+                $components = explode(" ", $columns[3]);
+                if (count($components) > 1) {
+                    $newDscanItem->distance_value = $components[0]; // "9.1";
+                    $newDscanItem->distance_unit = $components[1];
+                } else {
+                    $newDscanItem->distance_value = 1; // "9.1";
+                    $newDscanItem->distance_unit = "au";
+                }
+                if ($newDscanItem->distance_unit == "km" && $newDscanItem->distance_value <= 8000) {
+                    $on = true;
+                }
+
+                if ($newDscanItem->distance_unit == "m") {
+                    $on = true;
+                }
+                $newDscanItem->on_grid = $on;
+                $newDscanItem->new = true;
+                $newDscanItem->save();
             }
-            $newDscanItem->save();
+
             $item = Item::whereId($columns[0])->first();
             $group = Group::whereId($item->group_id)->first();
-            $category = Categorie::whereId($group->category_id)->first();
-
-            if ($newDscanItem->distance_unit == "km" && $newDscanItem->distance_value <= 8000) {
-                $on = true;
-            }
-
-            if ($newDscanItem->distance_unit == "m") {
-                $on = true;
-            }
-
-            $totals = $newTotal->totals;
-
-            $current = $totals['items']['new'][$item->item_name]['group_id'] = $group->id;
-            $current = $totals['items']['new'][$item->item_name]['category_id'] = $category->id;
-            $current = $totals['items']['new'][$item->item_name]['item_name'] = $item->item_name;
-            $current = $totals['items']['new'][$item->item_name]['item_id'] = $item->id;
-            $newTotal->totals = $current;
-
-
-            $current = $totals['groups']['new'][$group->name]['category_id'] = $category->id;
-            $current = $totals['groups']['new'][$group->name]['group_id'] = $group->id;
-            $current = $totals['groups']['new'][$group->name]['group_name'] = $group->name;
-            $newTotal->totals = $current;
-
-            $current = $totals['categories']['new'][$category->name]['category_id'] = $category->id;
-            $current = $totals['categories']['new'][$category->name]['category_name'] = $category->name;
-            $newTotal->totals = $current;
-
-
-            if ($on) {
-                $current = $totals['items']['new'][$item->item_name]['on'] ?? 0;
-            } else {
-                $current = $totals['items']['new'][$item->item_name]['off'] ?? 0;
-            }
-
-            $new = $current + 1;
-            if ($on) {
-                $totals['items']['new'][$item->item_name]['on'] = $new;
-            } else {
-
-                $totals['items']['new'][$item->item_name]['off'] = $new;
-            }
-            $newTotal->totals = $totals;
-            $newTotal->save();
-
-            $current = $totals['items']['new'][$item->item_name]['total'] ?? 0;
-            $new = $current + 1;
-            $totals['items']['new'][$item->item_name]['total'] = $new;
-            $newTotal->save();
-
-            if ($on) {
-                $current = $totals['categories']['new'][$category->name]['on'] ?? 0;
-            } else {
-
-                $current = $totals['categories']['new'][$category->name]['off'] ?? 0;
-            }
-
-
-            $new = $current + 1;
-            if ($on) {
-                $totals['categories']['new'][$category->name]['on'] = $new;
-            } else {
-
-                $totals['categories']['new'][$category->name]['off'] = $new;
-            }
-            $newTotal->totals = $totals;
-            $newTotal->save();
-
-            $current = $totals['categories']['new'][$category->name]['total'] ?? 0;
-            $new = $current + 1;
-            $totals['categories']['new'][$category->name]['total'] = $new;
-            $newTotal->save();
-
-
-            if ($on) {
-                $current = $totals['groups']['new'][$group->name]['on'] ?? 0;
-            } else {
-
-                $current = $totals['groups']['new'][$group->name]['off'] ?? 0;
-            }
-
-            $new = $current + 1;
-
-            if ($on) {
-                $totals['groups']['new'][$group->name]['on'] = $new;
-            } else {
-
-                $totals['groups']['new'][$group->name]['off'] = $new;
-            }
-            $newTotal->totals = $totals;
-            $newTotal->save();
-
-            $current = $totals['groups']['new'][$group->name]['total'] ?? 0;
-            $new = $current + 1;
-            $totals['groups']['new'][$group->name]['total'] = $new;
-            $newTotal->totals = $totals;
-            $newTotal->save();
-
             if (!$dScan->system_id) {
                 $groupName = $item->group->name;
                 if ($groupName == "Sun") {
@@ -539,6 +400,24 @@ class DscanController extends Controller
                 }
             }
         }
+
+        DscanItem::where('dscan_id', $dScan->id)
+            ->where('updated', false)
+            ->where(function ($query) {
+                $query->where('new', true)
+                    ->orWhere('same', true);
+            })
+            ->update([
+                'new' => false,
+                'same' => false,
+                'left' => true,
+                'updated' => true
+            ]);
+
+        DscanItem::where('dscan_id', $dScan->id)
+            ->where('updated', false)
+            ->where('left', true)
+            ->delete();
 
         return  $this->show($dScan->link);
     }

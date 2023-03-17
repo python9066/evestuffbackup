@@ -14,183 +14,29 @@ if (!function_exists('getDscanInfo')) {
                 'system.constellation',
                 'updatedBy:id,name',
                 'madeby:id,name',
-                'items.item.group',
-                'totals',
+                'items.item.group.category',
                 'locals.corp.alliance.affiliation',
                 'history:dscan_id,link,history_count,created_at'
             ])
             ->first();
 
+        $allItems = $dscan->items;
+        $items = workOutItemNumbers($allItems);
 
         $allLocals = $dscan->locals;
-        $corpsTotal = [];
-        $allianceTotal = [];
-        $affiliationTotal = [];
-
-        foreach ($allLocals as $local) {
-            if ($local->corp) {
-                $corpsTotal[$local->corp->name]['details'] = $local->corp;
-                $corpsTotal[$local->corp->name]['total'] = 0;
-                $corpsTotal[$local->corp->name]['new'] = 0;
-                $corpsTotal[$local->corp->name]['same'] = 0;
-                $corpsTotal[$local->corp->name]['left'] = 0;
-                $corpsTotal[$local->corp->name]['totalInSystem'] = 0;
-            }
-            if ($local->corp && $local->corp->alliance) {
-                $allianceTotal[$local->corp->alliance->name]['details'] = $local->corp->alliance;
-                $allianceTotal[$local->corp->alliance->name]['total'] = 0;
-                $allianceTotal[$local->corp->alliance->name]['new'] = 0;
-                $allianceTotal[$local->corp->alliance->name]['same'] = 0;
-                $allianceTotal[$local->corp->alliance->name]['left'] = 0;
-                $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = 0;
-            }
-            if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['details'] = $local->corp->alliance->affiliation;
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] = 0;
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] = 0;
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] = 0;
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] = 0;
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = 0;
-            }
-            if (!$local->corp) {
-                $corpsTotal['unknown']['details']['standings'] = 0;
-                $corpsTotal['unknown']['details']['name'] = 'Unknown';
-                $corpsTotal['unknown']['details']['ticker'] = '???';
-                $corpsTotal['unknown']['details']['url'] = 'https://images.evetech.net/Corporation/1_64.png';
-                $corpsTotal['unknown']['total'] = 0;
-                $corpsTotal['unknown']['new'] = 0;
-                $corpsTotal['unknown']['same'] = 0;
-                $corpsTotal['unknown']['left'] = 0;
-                $corpsTotal['unknown']['totalInSystem'] = 0;
-            }
-        }
-
-        foreach ($allLocals as $local) {
-            if ($local->corp) {
-                $corpsTotal[$local->corp->name]['total'] = $corpsTotal[$local->corp->name]['total'] + 1;
-            }
-            if ($local->corp && $local->corp->alliance) {
-                $allianceTotal[$local->corp->alliance->name]['total'] = $allianceTotal[$local->corp->alliance->name]['total'] + 1;
-            }
-            if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] + 1;
-            }
-            if (!$local->corp) {
-                $corpsTotal['unknown']['total'] = $corpsTotal['unknown']['total'] + 1;
-            }
-
-            if ($local->pivot->new) {
-                if ($local->corp) {
-                    $corpsTotal[$local->corp->name]['new'] = $corpsTotal[$local->corp->name]['new'] + 1;
-                    $corpsTotal[$local->corp->name]['totalInSystem'] = $corpsTotal[$local->corp->name]['totalInSystem'] + 1;
-                }
-                if ($local->corp && $local->corp->alliance) {
-                    $allianceTotal[$local->corp->alliance->name]['new'] = $allianceTotal[$local->corp->alliance->name]['new'] + 1;
-                    $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = $allianceTotal[$local->corp->alliance->name]['totalInSystem'] + 1;
-                }
-
-                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
-                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] + 1;
-                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] + 1;
-                }
-
-                if (!$local->corp) {
-                    $corpsTotal['unknown']['new'] = $corpsTotal['unknown']['new'] + 1;
-                    $corpsTotal['unknown']['totalInSystem'] = $corpsTotal['unknown']['totalInSystem'] + 1;
-                }
-            }
-
-            if ($local->pivot->same) {
-                if ($local->corp) {
-                    $corpsTotal[$local->corp->name]['same'] = $corpsTotal[$local->corp->name]['same'] + 1;
-                    $corpsTotal[$local->corp->name]['totalInSystem'] = $corpsTotal[$local->corp->name]['totalInSystem'] + 1;
-                }
-                if ($local->corp && $local->corp->alliance) {
-                    $allianceTotal[$local->corp->alliance->name]['same'] = $allianceTotal[$local->corp->alliance->name]['same'] + 1;
-                    $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = $allianceTotal[$local->corp->alliance->name]['totalInSystem'] + 1;
-                }
-
-                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
-                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] + 1;
-                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] + 1;
-                }
-
-                if (!$local->corp) {
-                    $corpsTotal['unknown']['same'] = $corpsTotal['unknown']['same'] + 1;
-                    $corpsTotal['unknown']['totalInSystem'] = $corpsTotal['unknown']['totalInSystem'] + 1;
-                }
-            }
-
-            if ($local->pivot->left) {
-                if ($local->corp) {
-                    $corpsTotal[$local->corp->name]['left'] = $corpsTotal[$local->corp->name]['left'] + 1;
-                }
-                if ($local->corp && $local->corp->alliance) {
-                    $allianceTotal[$local->corp->alliance->name]['left'] = $allianceTotal[$local->corp->alliance->name]['left'] + 1;
-                }
-
-                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
-                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] + 1;
-                }
-                if (!$local->corp) {
-                    $corpsTotal['unknown']['left'] = $corpsTotal['unknown']['left'] + 1;
-                }
-            }
-        }
-
-        foreach ($corpsTotal as $key => $corp) {
-
-            $same =   $corpsTotal[$key]['same'];
-            $new =   $corpsTotal[$key]['new'];
-            $left =   $corpsTotal[$key]['left'];
-
-            if ($new == 0 && $left == 0) {
-                $diff = 0;
-            } else {
-
-                $diff = $new - $left;
-            }
-            $corpsTotal[$key]['diff'] = $diff;
-        }
-
-        foreach ($allianceTotal as $key => $alliance) {
-            $same =   $allianceTotal[$key]['same'];
-            $new =   $allianceTotal[$key]['new'];
-            $left =   $allianceTotal[$key]['left'];
-
-            if ($new == 0 && $left == 0) {
-                $diff = 0;
-            } else {
-
-                $diff = $new - $left;
-            }
-            $allianceTotal[$key]['diff'] = $diff;
-        }
-
-        foreach ($affiliationTotal as $key => $affiliation) {
-            $same =   $affiliationTotal[$key]['same'];
-            $new =   $affiliationTotal[$key]['new'];
-            $left =   $affiliationTotal[$key]['left'];
-
-            if ($new == 0 && $left == 0) {
-                $diff = 0;
-            } else {
-
-                $diff = $new - $left;
-            }
-            $affiliationTotal[$key]['diff'] = $diff;
-        }
+        $local = workOutLocalNumbers($allLocals);
 
 
-        $corpsTotal = collect($corpsTotal)->sortByDesc('totalInSystem')->values()->all();
-        $allianceTotal = collect($allianceTotal)->sortByDesc('totalInSystem')->values()->all();
-        $affiliationTotal = collect($affiliationTotal)->sortByDesc('totalInSystem')->values()->all();
+
 
         return [
             'dscan' => $dscan,
-            'corpsTotal' => $corpsTotal,
-            'allianceTotal' => $allianceTotal,
-            'affiliationTotal' => $affiliationTotal,
+            'corpsTotal' => $local['corps'],
+            'allianceTotal' => $local['alliances'],
+            'affiliationTotal' => $local['affiliations'],
+            'itemTotals' => $items['items'],
+            'groupTotals' => $items['groups'],
+            'categoryTotals' => $items['category'],
             'history' => false,
 
         ];
@@ -208,183 +54,22 @@ if (!function_exists('getDscanLocalInfo')) {
                 'updatedBy:id,name',
                 'madeby:id,name',
                 'items.item.group',
-                'totals',
                 'locals.corp.alliance.affiliation'
             ])
             ->first();
 
 
+
+
         $allLocals = $dscan->locals;
-        $corpsTotal = [];
-        $allianceTotal = [];
-        $affiliationTotal = [];
+        $local = workOutLocalNumbers($allLocals);
 
-        foreach ($allLocals as $local) {
-            if ($local->corp) {
-                $corpsTotal[$local->corp->name]['details'] = $local->corp;
-                $corpsTotal[$local->corp->name]['total'] = 0;
-                $corpsTotal[$local->corp->name]['new'] = 0;
-                $corpsTotal[$local->corp->name]['same'] = 0;
-                $corpsTotal[$local->corp->name]['left'] = 0;
-                $corpsTotal[$local->corp->name]['totalInSystem'] = 0;
-            }
-            if ($local->corp && $local->corp->alliance) {
-                $allianceTotal[$local->corp->alliance->name]['details'] = $local->corp->alliance;
-                $allianceTotal[$local->corp->alliance->name]['total'] = 0;
-                $allianceTotal[$local->corp->alliance->name]['new'] = 0;
-                $allianceTotal[$local->corp->alliance->name]['same'] = 0;
-                $allianceTotal[$local->corp->alliance->name]['left'] = 0;
-                $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = 0;
-            }
-
-            if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['details'] = $local->corp->alliance->affiliation;
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] = 0;
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] = 0;
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] = 0;
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] = 0;
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = 0;
-            }
-
-            if (!$local->corp) {
-                $corpsTotal['unknown']['details']['standings'] = 0;
-                $corpsTotal['unknown']['details']['name'] = 'Unknown';
-                $corpsTotal['unknown']['details']['ticker'] = '???';
-                $corpsTotal['unknown']['details']['url'] = 'https://images.evetech.net/Corporation/1_64.png';
-                $corpsTotal['unknown']['total'] = 0;
-                $corpsTotal['unknown']['new'] = 0;
-                $corpsTotal['unknown']['same'] = 0;
-                $corpsTotal['unknown']['left'] = 0;
-                $corpsTotal['unknown']['totalInSystem'] = 0;
-            }
-        }
-
-        foreach ($allLocals as $local) {
-            if ($local->corp) {
-                $corpsTotal[$local->corp->name]['total'] = $corpsTotal[$local->corp->name]['total'] + 1;
-            }
-            if ($local->corp && $local->corp->alliance) {
-                $allianceTotal[$local->corp->alliance->name]['total'] = $allianceTotal[$local->corp->alliance->name]['total'] + 1;
-            }
-
-            if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] + 1;
-            }
-
-            if (!$local->corp) {
-                $corpsTotal['unknown']['total'] = $corpsTotal['unknown']['total'] + 1;
-            }
-
-            if ($local->pivot->new) {
-                if ($local->corp) {
-                    $corpsTotal[$local->corp->name]['new'] = $corpsTotal[$local->corp->name]['new'] + 1;
-                    $corpsTotal[$local->corp->name]['totalInSystem'] = $corpsTotal[$local->corp->name]['totalInSystem'] + 1;
-                }
-                if ($local->corp && $local->corp->alliance) {
-                    $allianceTotal[$local->corp->alliance->name]['new'] = $allianceTotal[$local->corp->alliance->name]['new'] + 1;
-                    $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = $allianceTotal[$local->corp->alliance->name]['totalInSystem'] + 1;
-                }
-
-                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
-                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] + 1;
-                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] + 1;
-                }
-                if (!$local->corp) {
-                    $corpsTotal['unknown']['new'] = $corpsTotal['unknown']['new'] + 1;
-                    $corpsTotal['unknown']['totalInSystem'] = $corpsTotal['unknown']['totalInSystem'] + 1;
-                }
-            }
-
-            if ($local->pivot->same) {
-                if ($local->corp) {
-                    $corpsTotal[$local->corp->name]['same'] = $corpsTotal[$local->corp->name]['same'] + 1;
-                    $corpsTotal[$local->corp->name]['totalInSystem'] = $corpsTotal[$local->corp->name]['totalInSystem'] + 1;
-                }
-                if ($local->corp && $local->corp->alliance) {
-                    $allianceTotal[$local->corp->alliance->name]['same'] = $allianceTotal[$local->corp->alliance->name]['same'] + 1;
-                    $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = $allianceTotal[$local->corp->alliance->name]['totalInSystem'] + 1;
-                }
-
-                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
-                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] + 1;
-                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] + 1;
-                }
-                if (!$local->corp) {
-                    $corpsTotal['unknown']['same'] = $corpsTotal['unknown']['same'] + 1;
-                    $corpsTotal['unknown']['totalInSystem'] = $corpsTotal['unknown']['totalInSystem'] + 1;
-                }
-            }
-
-            if ($local->pivot->left) {
-                if ($local->corp) {
-                    $corpsTotal[$local->corp->name]['left'] = $corpsTotal[$local->corp->name]['left'] + 1;
-                }
-                if ($local->corp && $local->corp->alliance) {
-                    $allianceTotal[$local->corp->alliance->name]['left'] = $allianceTotal[$local->corp->alliance->name]['left'] + 1;
-                }
-
-                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
-                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] + 1;
-                }
-                if (!$local->corp) {
-                    $corpsTotal['unknown']['left'] = $corpsTotal['unknown']['left'] + 1;
-                }
-            }
-        }
-
-        foreach ($corpsTotal as $key => $corp) {
-
-            $same =   $corpsTotal[$key]['same'];
-            $new =   $corpsTotal[$key]['new'];
-            $left =   $corpsTotal[$key]['left'];
-
-            if ($new == 0 && $left == 0) {
-                $diff = 0;
-            } else {
-
-                $diff = $new - $left;
-            }
-            $corpsTotal[$key]['diff'] = $diff;
-        }
-
-        foreach ($allianceTotal as $key => $alliance) {
-            $same =   $allianceTotal[$key]['same'];
-            $new =   $allianceTotal[$key]['new'];
-            $left =   $allianceTotal[$key]['left'];
-
-            if ($new == 0 && $left == 0) {
-                $diff = 0;
-            } else {
-
-                $diff = $new - $left;
-            }
-            $allianceTotal[$key]['diff'] = $diff;
-        }
-
-        foreach ($affiliationTotal as $key => $affiliation) {
-            $same =   $affiliationTotal[$key]['same'];
-            $new =   $affiliationTotal[$key]['new'];
-            $left =   $affiliationTotal[$key]['left'];
-
-            if ($new == 0 && $left == 0) {
-                $diff = 0;
-            } else {
-
-                $diff = $new - $left;
-            }
-            $affiliationTotal[$key]['diff'] = $diff;
-        }
-
-
-        $corpsTotal = collect($corpsTotal)->sortByDesc('totalInSystem')->values()->all();
-        $allianceTotal = collect($allianceTotal)->sortByDesc('totalInSystem')->values()->all();
-        $affiliationTotal = collect($affiliationTotal)->sortByDesc('totalInSystem')->values()->all();
         $soloLocal = $allLocals->where('id', $charID)->first();
         return [
             'soloLocal' => $soloLocal,
-            'corpsTotal' => $corpsTotal,
-            'allianceTotal' => $allianceTotal,
-            'affiliationTotal' => $affiliationTotal,
+            'corpsTotal' => $local['corps'],
+            'allianceTotal' => $local['alliances'],
+            'affiliationTotal' => $local['affiliations'],
         ];
     }
 }
@@ -401,191 +86,41 @@ if (!function_exists('makeDscanHistoy')) {
                 'updatedBy:id,name',
                 'madeby:id,name',
                 'items.item.group',
-                'totals',
                 'locals.corp.alliance.affiliation'
             ])
             ->first();
 
 
+        $allItems = $dscan->items;
+        $items = workOutItemNumbers($allItems);
+
+        $itemTotals = $items['items'];
+        $groupTotals = $items['groups'];
+        $categoryTotals = $items['category'];
+
         $allLocals = $dscan->locals;
-        $corpsTotal = [];
-        $allianceTotal = [];
-        $affiliationTotal = [];
-
-        foreach ($allLocals as $local) {
-            if ($local->corp) {
-                $corpsTotal[$local->corp->name]['details'] = $local->corp;
-                $corpsTotal[$local->corp->name]['total'] = 0;
-                $corpsTotal[$local->corp->name]['new'] = 0;
-                $corpsTotal[$local->corp->name]['same'] = 0;
-                $corpsTotal[$local->corp->name]['left'] = 0;
-                $corpsTotal[$local->corp->name]['totalInSystem'] = 0;
-            }
-            if ($local->corp && $local->corp->alliance) {
-                $allianceTotal[$local->corp->alliance->name]['details'] = $local->corp->alliance;
-                $allianceTotal[$local->corp->alliance->name]['total'] = 0;
-                $allianceTotal[$local->corp->alliance->name]['new'] = 0;
-                $allianceTotal[$local->corp->alliance->name]['same'] = 0;
-                $allianceTotal[$local->corp->alliance->name]['left'] = 0;
-                $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = 0;
-            }
-
-            if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['details'] = $local->corp->alliance->affiliation;
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] = 0;
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] = 0;
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] = 0;
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] = 0;
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = 0;
-            }
-            if (!$local->corp) {
-                $corpsTotal['unknown']['details']['standings'] = 0;
-                $corpsTotal['unknown']['details']['name'] = 'Unknown';
-                $corpsTotal['unknown']['details']['ticker'] = '???';
-                $corpsTotal['unknown']['details']['url'] = 'https://images.evetech.net/Corporation/1_64.png';
-                $corpsTotal['unknown']['total'] = 0;
-                $corpsTotal['unknown']['new'] = 0;
-                $corpsTotal['unknown']['same'] = 0;
-                $corpsTotal['unknown']['left'] = 0;
-                $corpsTotal['unknown']['totalInSystem'] = 0;
-            }
-        }
-
-        foreach ($allLocals as $local) {
-            if ($local->corp) {
-                $corpsTotal[$local->corp->name]['total'] = $corpsTotal[$local->corp->name]['total'] + 1;
-            }
-            if ($local->corp && $local->corp->alliance) {
-                $allianceTotal[$local->corp->alliance->name]['total'] = $allianceTotal[$local->corp->alliance->name]['total'] + 1;
-            }
-
-            if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
-                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] + 1;
-            }
-            if (!$local->corp) {
-                $corpsTotal['unknown']['total'] = $corpsTotal['unknown']['total'] + 1;
-            }
-
-            if ($local->pivot->new) {
-                if ($local->corp) {
-                    $corpsTotal[$local->corp->name]['new'] = $corpsTotal[$local->corp->name]['new'] + 1;
-                    $corpsTotal[$local->corp->name]['totalInSystem'] = $corpsTotal[$local->corp->name]['totalInSystem'] + 1;
-                }
-                if ($local->corp && $local->corp->alliance) {
-                    $allianceTotal[$local->corp->alliance->name]['new'] = $allianceTotal[$local->corp->alliance->name]['new'] + 1;
-                    $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = $allianceTotal[$local->corp->alliance->name]['totalInSystem'] + 1;
-                }
-
-                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
-                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] + 1;
-                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] + 1;
-                }
-                if (!$local->corp) {
-                    $corpsTotal['unknown']['new'] = $corpsTotal['unknown']['new'] + 1;
-                    $corpsTotal['unknown']['totalInSystem'] = $corpsTotal['unknown']['totalInSystem'] + 1;
-                }
-            }
-
-            if ($local->pivot->same) {
-                if ($local->corp) {
-                    $corpsTotal[$local->corp->name]['same'] = $corpsTotal[$local->corp->name]['same'] + 1;
-                    $corpsTotal[$local->corp->name]['totalInSystem'] = $corpsTotal[$local->corp->name]['totalInSystem'] + 1;
-                }
-                if ($local->corp && $local->corp->alliance) {
-                    $allianceTotal[$local->corp->alliance->name]['same'] = $allianceTotal[$local->corp->alliance->name]['same'] + 1;
-                    $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = $allianceTotal[$local->corp->alliance->name]['totalInSystem'] + 1;
-                }
-
-                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
-                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] + 1;
-                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] + 1;
-                }
-                if (!$local->corp) {
-                    $corpsTotal['unknown']['same'] = $corpsTotal['unknown']['same'] + 1;
-                    $corpsTotal['unknown']['totalInSystem'] = $corpsTotal['unknown']['totalInSystem'] + 1;
-                }
-            }
-
-            if ($local->pivot->left) {
-                if ($local->corp) {
-                    $corpsTotal[$local->corp->name]['left'] = $corpsTotal[$local->corp->name]['left'] + 1;
-                }
-                if ($local->corp && $local->corp->alliance) {
-                    $allianceTotal[$local->corp->alliance->name]['left'] = $allianceTotal[$local->corp->alliance->name]['left'] + 1;
-                }
-
-                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
-                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] + 1;
-                }
-                if (!$local->corp) {
-                    $corpsTotal['unknown']['left'] = $corpsTotal['unknown']['left'] + 1;
-                }
-            }
-        }
-
-        foreach ($corpsTotal as $key => $corp) {
-
-            $same =   $corpsTotal[$key]['same'];
-            $new =   $corpsTotal[$key]['new'];
-            $left =   $corpsTotal[$key]['left'];
-
-            if ($new == 0 && $left == 0) {
-                $diff = 0;
-            } else {
-
-                $diff = $new - $left;
-            }
-            $corpsTotal[$key]['diff'] = $diff;
-        }
-
-        foreach ($allianceTotal as $key => $alliance) {
-            $same =   $allianceTotal[$key]['same'];
-            $new =   $allianceTotal[$key]['new'];
-            $left =   $allianceTotal[$key]['left'];
-
-            if ($new == 0 && $left == 0) {
-                $diff = 0;
-            } else {
-
-                $diff = $new - $left;
-            }
-            $allianceTotal[$key]['diff'] = $diff;
-        }
-
-        foreach ($affiliationTotal as $key => $affiliation) {
-            $same =   $affiliationTotal[$key]['same'];
-            $new =   $affiliationTotal[$key]['new'];
-            $left =   $affiliationTotal[$key]['left'];
-
-            if ($new == 0 && $left == 0) {
-                $diff = 0;
-            } else {
-
-                $diff = $new - $left;
-            }
-            $affiliationTotal[$key]['diff'] = $diff;
-        }
-
-
-        $corpsTotal = collect($corpsTotal)->sortByDesc('totalInSystem')->values()->all();
-        $allianceTotal = collect($allianceTotal)->sortByDesc('totalInSystem')->values()->all();
-        $affiliationTotal = collect($affiliationTotal)->sortByDesc('totalInSystem')->values()->all();
-        // dd($corpsTotal, $allianceTotal, $affiliationTotal);
+        $local = workOutLocalNumbers($allLocals);
+        $corpsTotal = $local['corps'];
+        $allianceTotal = $local['alliances'];
+        $affiliationTotal = $local['affiliations'];
 
         $count = DscanHistory::where('dscan_id', $dscan->id)->count() + 1;
-        $newHisotry = new DscanHistory();
-        $newHisotry->dscan_id = $dscan->id;
-        $newHisotry->user_id = $dscan->user_id;
-        $newHisotry->system_id = $dscan->system_id ?? null;
-        $newHisotry->link = str::uuid();
-        $newHisotry->updated_by = $dscan->updated_by ?? null;
-        $newHisotry->totals = $dscan->totals;
-        $newHisotry->corpsTotal = $corpsTotal;
-        $newHisotry->alliancesTotal = $allianceTotal;
-        $newHisotry->affiliationsTotal = $affiliationTotal;
-        $newHisotry->dscan = $dscan;
-        $newHisotry->history_count = $count;
-        $newHisotry->save();
+        $newHistory = new DscanHistory();
+        $newHistory->dscan_id = $dscan->id;
+        $newHistory->user_id = $dscan->user_id;
+        $newHistory->system_id = $dscan->system_id ?? null;
+        $newHistory->link = str::uuid();
+        $newHistory->updated_by = $dscan->updated_by ?? null;
+        $newHistory->totals = $dscan->totals;
+        $newHistory->corpsTotal = $corpsTotal;
+        $newHistory->alliancesTotal = $allianceTotal;
+        $newHistory->affiliationsTotal = $affiliationTotal;
+        $newHistory->itemTotals = $itemTotals;
+        $newHistory->groupTotals = $groupTotals;
+        $newHistory->categoryTotals = $categoryTotals;
+        $newHistory->dscan = $dscan;
+        $newHistory->history_count = $count;
+        $newHistory->save();
     }
 }
 
@@ -604,9 +139,386 @@ if (!function_exists('loadDscanHistory')) {
             'corpsTotal' => $dscan->corpsTotal,
             'allianceTotal' => $dscan->alliancesTotal,
             'affiliationTotal' => $dscan->affiliationsTotal,
+            'itemTotals' => $dscan->itemTotals,
+            'groupTotals' => $dscan->groupTotals,
+            'categoryTotals' => $dscan->categoryTotals,
             'history' => true,
             'allHistory' => $allHistory,
             'liveDscan' => $liveDscan,
+        ];
+    }
+}
+
+
+if (!function_exists('workOutLocalNumbers')) {
+    function workOutLocalNumbers($allLocals)
+    {
+
+        $corpsTotal = [];
+        $allianceTotal = [];
+        $affiliationTotal = [];
+
+        foreach ($allLocals as $local) {
+            if ($local->corp) {
+                $corpsTotal[$local->corp->name]['details'] = $local->corp;
+                $corpsTotal[$local->corp->name]['total'] = 0;
+                $corpsTotal[$local->corp->name]['new'] = 0;
+                $corpsTotal[$local->corp->name]['same'] = 0;
+                $corpsTotal[$local->corp->name]['left'] = 0;
+                $corpsTotal[$local->corp->name]['totalInSystem'] = 0;
+            }
+            if ($local->corp && $local->corp->alliance) {
+                $allianceTotal[$local->corp->alliance->name]['details'] = $local->corp->alliance;
+                $allianceTotal[$local->corp->alliance->name]['total'] = 0;
+                $allianceTotal[$local->corp->alliance->name]['new'] = 0;
+                $allianceTotal[$local->corp->alliance->name]['same'] = 0;
+                $allianceTotal[$local->corp->alliance->name]['left'] = 0;
+                $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = 0;
+            }
+
+            if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['details'] = $local->corp->alliance->affiliation;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] = 0;
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = 0;
+            }
+            if (!$local->corp) {
+                $corpsTotal['unknown']['details']['standings'] = 0;
+                $corpsTotal['unknown']['details']['name'] = 'Unknown';
+                $corpsTotal['unknown']['details']['ticker'] = '???';
+                $corpsTotal['unknown']['details']['url'] = 'https://images.evetech.net/Corporation/1_64.png';
+                $corpsTotal['unknown']['total'] = 0;
+                $corpsTotal['unknown']['new'] = 0;
+                $corpsTotal['unknown']['same'] = 0;
+                $corpsTotal['unknown']['left'] = 0;
+                $corpsTotal['unknown']['totalInSystem'] = 0;
+            }
+        }
+
+        foreach ($allLocals as $local) {
+            if ($local->corp) {
+                $corpsTotal[$local->corp->name]['total'] = $corpsTotal[$local->corp->name]['total'] + 1;
+            }
+
+            if ($local->corp && $local->corp->alliance) {
+                $allianceTotal[$local->corp->alliance->name]['total'] = $allianceTotal[$local->corp->alliance->name]['total'] + 1;
+            }
+
+            if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['total'] + 1;
+            }
+
+            if (!$local->corp) {
+                $corpsTotal['unknown']['total'] = $corpsTotal['unknown']['total'] + 1;
+            }
+
+            if ($local->pivot->new) {
+                if ($local->corp) {
+                    $corpsTotal[$local->corp->name]['new'] = $corpsTotal[$local->corp->name]['new'] + 1;
+                    $corpsTotal[$local->corp->name]['totalInSystem'] = $corpsTotal[$local->corp->name]['totalInSystem'] + 1;
+                }
+                if ($local->corp && $local->corp->alliance) {
+                    $allianceTotal[$local->corp->alliance->name]['new'] = $allianceTotal[$local->corp->alliance->name]['new'] + 1;
+                    $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = $allianceTotal[$local->corp->alliance->name]['totalInSystem'] + 1;
+                }
+
+                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['new'] + 1;
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] + 1;
+                }
+
+                if (!$local->corp) {
+                    $corpsTotal['unknown']['new'] = $corpsTotal['unknown']['new'] + 1;
+                    $corpsTotal['unknown']['totalInSystem'] = $corpsTotal['unknown']['totalInSystem'] + 1;
+                }
+            }
+
+            if ($local->pivot->same) {
+                if ($local->corp) {
+                    $corpsTotal[$local->corp->name]['same'] = $corpsTotal[$local->corp->name]['same'] + 1;
+                    $corpsTotal[$local->corp->name]['totalInSystem'] = $corpsTotal[$local->corp->name]['totalInSystem'] + 1;
+                }
+                if ($local->corp && $local->corp->alliance) {
+                    $allianceTotal[$local->corp->alliance->name]['same'] = $allianceTotal[$local->corp->alliance->name]['same'] + 1;
+                    $allianceTotal[$local->corp->alliance->name]['totalInSystem'] = $allianceTotal[$local->corp->alliance->name]['totalInSystem'] + 1;
+                }
+
+                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['same'] + 1;
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['totalInSystem'] + 1;
+                }
+
+                if (!$local->corp) {
+                    $corpsTotal['unknown']['same'] = $corpsTotal['unknown']['same'] + 1;
+                    $corpsTotal['unknown']['totalInSystem'] = $corpsTotal['unknown']['totalInSystem'] + 1;
+                }
+            }
+
+            if ($local->pivot->left) {
+                if ($local->corp) {
+                    $corpsTotal[$local->corp->name]['left'] = $corpsTotal[$local->corp->name]['left'] + 1;
+                }
+                if ($local->corp && $local->corp->alliance) {
+                    $allianceTotal[$local->corp->alliance->name]['left'] = $allianceTotal[$local->corp->alliance->name]['left'] + 1;
+                }
+
+                if ($local->corp && $local->corp->alliance && $local->corp->alliance->affiliation) {
+                    $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] = $affiliationTotal[$local->corp->alliance->affiliation->short_name]['left'] + 1;
+                }
+                if (!$local->corp) {
+                    $corpsTotal['unknown']['left'] = $corpsTotal['unknown']['left'] + 1;
+                }
+            }
+        }
+
+        foreach ($corpsTotal as $key => $corp) {
+
+            $same =   $corpsTotal[$key]['same'];
+            $new =   $corpsTotal[$key]['new'];
+            $left =   $corpsTotal[$key]['left'];
+
+            if ($new == 0 && $left == 0) {
+                $diff = 0;
+            } else {
+
+                $diff = $new - $left;
+            }
+            $corpsTotal[$key]['diff'] = $diff;
+        }
+
+        foreach ($allianceTotal as $key => $alliance) {
+            $same =   $allianceTotal[$key]['same'];
+            $new =   $allianceTotal[$key]['new'];
+            $left =   $allianceTotal[$key]['left'];
+
+            if ($new == 0 && $left == 0) {
+                $diff = 0;
+            } else {
+
+                $diff = $new - $left;
+            }
+            $allianceTotal[$key]['diff'] = $diff;
+        }
+
+        foreach ($affiliationTotal as $key => $affiliation) {
+            $same =   $affiliationTotal[$key]['same'];
+            $new =   $affiliationTotal[$key]['new'];
+            $left =   $affiliationTotal[$key]['left'];
+
+            if ($new == 0 && $left == 0) {
+                $diff = 0;
+            } else {
+
+                $diff = $new - $left;
+            }
+            $affiliationTotal[$key]['diff'] = $diff;
+        }
+
+        $corpsTotal = collect($corpsTotal)->sortByDesc('totalInSystem')->values()->all();
+        $allianceTotal = collect($allianceTotal)->sortByDesc('totalInSystem')->values()->all();
+        $affiliationTotal = collect($affiliationTotal)->sortByDesc('totalInSystem')->values()->all();
+
+        return [
+            'corps' => $corpsTotal,
+            'alliances' => $allianceTotal,
+            'affiliations' => $affiliationTotal,
+        ];
+    }
+}
+
+
+if (!function_exists('workOutItemNumbers')) {
+    function workOutItemNumbers($allAllItems)
+    {
+
+        $itemTotals = [];
+        $groupTotals = [];
+        $categoryTotals = [];
+
+        foreach ($allAllItems as $item) {
+            if ($item->item) {
+                $itemTotals[$item->item->item_name]['details'] = $item->item;
+                $itemTotals[$item->item->item_name]['total'] = 0;
+                $itemTotals[$item->item->item_name]['new'] = 0;
+
+                $itemTotals[$item->item->item_name]['same'] = 0;
+                $itemTotals[$item->item->item_name]['left'] = 0;
+                $itemTotals[$item->item->item_name]['totalOnGrid'] = 0;
+                $itemTotals[$item->item->item_name]['totalOffGrid'] = 0;
+                $itemTotals[$item->item->item_name]['totalInSystem'] = 0;
+            }
+            if ($item->item && $item->item->group) {
+                $groupTotals[$item->item->group->name]['details'] = $item->item->group;
+                $groupTotals[$item->item->group->name]['total'] = 0;
+                $groupTotals[$item->item->group->name]['new'] = 0;
+                $groupTotals[$item->item->group->name]['same'] = 0;
+                $groupTotals[$item->item->group->name]['left'] = 0;
+                $groupTotals[$item->item->group->name]['totalOnGrid'] = 0;
+                $groupTotals[$item->item->group->name]['totalOffGrid'] = 0;
+                $groupTotals[$item->item->group->name]['totalInSystem'] = 0;
+            }
+
+            if ($item->item && $item->item->group && $item->item->group->category) {
+                $categoryTotals[$item->item->group->category->name]['details'] = $item->item->group->category;
+                $categoryTotals[$item->item->group->category->name]['total'] = 0;
+                $categoryTotals[$item->item->group->category->name]['new'] = 0;
+                $categoryTotals[$item->item->group->category->name]['same'] = 0;
+                $categoryTotals[$item->item->group->category->name]['left'] = 0;
+                $categoryTotals[$item->item->group->category->name]['totalOnGrid'] = 0;
+                $categoryTotals[$item->item->group->category->name]['totalOffGrid'] = 0;
+                $categoryTotals[$item->item->group->category->name]['totalInSystem'] = 0;
+            }
+        }
+
+
+
+        foreach ($allAllItems as $item) {
+
+            if ($item->item) {
+                $itemTotals[$item->item->item_name]['total'] = $itemTotals[$item->item->item_name]['total'] + 1;
+            }
+
+            if ($item->item && $item->item->group) {
+                $groupTotals[$item->item->group->name]['total'] = $groupTotals[$item->item->group->name]['total'] + 1;
+            }
+
+            if ($item->item && $item->item->group && $item->item->group->category) {
+                $categoryTotals[$item->item->group->category->name]['total'] = $categoryTotals[$item->item->group->category->name]['total'] + 1;
+            }
+
+
+            if ($item->new) {
+                if ($item->item) {
+                    $itemTotals[$item->item->item_name]['new'] = $itemTotals[$item->item->item_name]['new'] + 1;
+                    $itemTotals[$item->item->item_name]['totalInSystem'] = $itemTotals[$item->item->item_name]['totalInSystem'] + 1;
+                    if ($item->on_grid) {
+                        $itemTotals[$item->item->item_name]['totalOnGrid'] = $itemTotals[$item->item->item_name]['totalOnGrid'] + 1;
+                    } else {
+                        $itemTotals[$item->item->item_name]['totalOffGrid'] = $itemTotals[$item->item->item_name]['totalOffGrid'] + 1;
+                    }
+                }
+                if ($item->item && $item->item->group) {
+                    $groupTotals[$item->item->group->name]['new'] = $groupTotals[$item->item->group->name]['new'] + 1;
+                    $groupTotals[$item->item->group->name]['totalInSystem'] = $groupTotals[$item->item->group->name]['totalInSystem'] + 1;
+                    if ($item->on_grid) {
+                        $groupTotals[$item->item->group->name]['totalOnGrid'] = $groupTotals[$item->item->group->name]['totalOnGrid'] + 1;
+                    } else {
+                        $groupTotals[$item->item->group->name]['totalOffGrid'] = $groupTotals[$item->item->group->name]['totalOffGrid'] + 1;
+                    }
+                }
+                if ($item->item && $item->item->group && $item->item->group->category) {
+                    $categoryTotals[$item->item->group->category->name]['new'] = $categoryTotals[$item->item->group->category->name]['new'] + 1;
+                    $categoryTotals[$item->item->group->category->name]['totalInSystem'] = $categoryTotals[$item->item->group->category->name]['totalInSystem'] + 1;
+                    if ($item->on_grid) {
+                        $categoryTotals[$item->item->group->category->name]['totalOnGrid'] = $categoryTotals[$item->item->group->category->name]['totalOnGrid'] + 1;
+                    } else {
+                        $categoryTotals[$item->item->group->category->name]['totalOffGrid'] = $categoryTotals[$item->item->group->category->name]['totalOffGrid'] + 1;
+                    }
+                }
+            }
+
+            if ($item->same) {
+                if ($item->item) {
+                    $itemTotals[$item->item->item_name]['same'] = $itemTotals[$item->item->item_name]['same'] + 1;
+                    $itemTotals[$item->item->item_name]['totalInSystem'] = $itemTotals[$item->item->item_name]['totalInSystem'] + 1;
+                    if ($item->on_grid) {
+                        $itemTotals[$item->item->item_name]['totalOnGrid'] = $itemTotals[$item->item->item_name]['totalOnGrid'] + 1;
+                    } else {
+                        $itemTotals[$item->item->item_name]['totalOffGrid'] = $itemTotals[$item->item->item_name]['totalOffGrid'] + 1;
+                    }
+                }
+                if ($item->item && $item->item->group) {
+                    $groupTotals[$item->item->group->name]['same'] = $groupTotals[$item->item->group->name]['same'] + 1;
+                    $groupTotals[$item->item->group->name]['totalInSystem'] = $groupTotals[$item->item->group->name]['totalInSystem'] + 1;
+                    if ($item->on_grid) {
+                        $groupTotals[$item->item->group->name]['totalOnGrid'] = $groupTotals[$item->item->group->name]['totalOnGrid'] + 1;
+                    } else {
+                        $groupTotals[$item->item->group->name]['totalOffGrid'] = $groupTotals[$item->item->group->name]['totalOffGrid'] + 1;
+                    }
+                }
+                if ($item->item && $item->item->group && $item->item->group->category) {
+                    $categoryTotals[$item->item->group->category->name]['same'] = $categoryTotals[$item->item->group->category->name]['same'] + 1;
+                    $categoryTotals[$item->item->group->category->name]['totalInSystem'] = $categoryTotals[$item->item->group->category->name]['totalInSystem'] + 1;
+                    if ($item->on_grid) {
+                        $categoryTotals[$item->item->group->category->name]['totalOnGrid'] = $categoryTotals[$item->item->group->category->name]['totalOnGrid'] + 1;
+                    } else {
+                        $categoryTotals[$item->item->group->category->name]['totalOffGrid'] = $categoryTotals[$item->item->group->category->name]['totalOffGrid'] + 1;
+                    }
+                }
+            }
+
+            if ($item->left) {
+                if ($item->item) {
+                    $itemTotals[$item->item->item_name]['left'] = $itemTotals[$item->item->item_name]['left'] + 1;
+                }
+                if ($item->item && $item->item->group) {
+                    $groupTotals[$item->item->group->name]['left'] = $groupTotals[$item->item->group->name]['left'] + 1;
+                }
+                if ($item->item && $item->item->group && $item->item->group->category) {
+                    $categoryTotals[$item->item->group->category->name]['left'] = $categoryTotals[$item->item->group->category->name]['left'] + 1;
+                }
+            }
+        }
+
+
+
+
+
+        foreach ($itemTotals as $key => $item) {
+            $same =   $itemTotals[$key]['same'];
+            $new =   $itemTotals[$key]['new'];
+            $left =   $itemTotals[$key]['left'];
+
+            if ($new == 0 && $left == 0) {
+                $diff = 0;
+            } else {
+
+                $diff = $new - $left;
+            }
+            $itemTotals[$key]['diff'] = $diff;
+        }
+
+        foreach ($groupTotals as $key => $group) {
+            $same =   $groupTotals[$key]['same'];
+            $new =   $groupTotals[$key]['new'];
+            $left =   $groupTotals[$key]['left'];
+
+            if ($new == 0 && $left == 0) {
+                $diff = 0;
+            } else {
+
+                $diff = $new - $left;
+            }
+            $groupTotals[$key]['diff'] = $diff;
+        }
+
+        foreach ($categoryTotals as $key => $category) {
+            $same =   $categoryTotals[$key]['same'];
+            $new =   $categoryTotals[$key]['new'];
+            $left =   $categoryTotals[$key]['left'];
+
+            if ($new == 0 && $left == 0) {
+                $diff = 0;
+            } else {
+
+                $diff = $new - $left;
+            }
+            $categoryTotals[$key]['diff'] = $diff;
+        }
+
+
+
+        $itemTotals = collect($itemTotals)->sortByDesc('totalInSystem')->values()->all();
+        $groupTotals = collect($groupTotals)->sortByDesc('totalInSystem')->values()->all();
+        $categoryTotals = collect($categoryTotals)->sortByDesc('totalInSystem')->values()->all();
+
+
+        return [
+            'items' => $itemTotals,
+            'groups' => $groupTotals,
+            'category' => $categoryTotals,
         ];
     }
 }

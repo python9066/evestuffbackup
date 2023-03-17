@@ -13,6 +13,9 @@ export const useMainStore = defineStore("main", {
         dScanLocalAlliance: [],
         dScanLocalCorp: [],
         dScanLocalAffiliation: [],
+        dScanItemCategory: [],
+        dScanItemGroup: [],
+        dScanItemItem: [],
         constellationlist: [],
         eveUserCount: 0,
         newSoloOperations: [],
@@ -389,159 +392,159 @@ export const useMainStore = defineStore("main", {
             }
         },
 
-        getDscanAllNewShips: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.items.new)
-                    .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
-                null;
+        // getDscanAllNewShips: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.items.new)
+        //             .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
+        //         null;
 
-        },
+        // },
 
-        getDscanAllNewShipsGroups: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.new)
-                    .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
-                null;
-        },
+        // getDscanAllNewShipsGroups: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.groups.new)
+        //             .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
+        //         null;
+        // },
 
-        getDscanAllNewStructures: (state) => {
+        // getDscanAllNewStructures: (state) => {
 
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.new)
-                    .filter(item => item.category_id === 65).sort((a, b) => b.total - a.total) :
-                null;
-        },
-
-
-
-
-        getDscanAllOldShips: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.items.old)
-                    .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
-                null;
-
-        },
-
-        getDscanAllOldShipsGroups: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.old)
-                    .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
-                null;
-        },
-
-        getDscanAllOldStructures: (state) => {
-
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.old)
-                    .filter(item => item.category_id === 65).sort((a, b) => b.total - a.total) :
-                null;
-        },
-
-
-        getDscanOnGridNewShips: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.items.new)
-                    .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
-                null;
-        },
-
-
-        getDscanOnGridNewStructures: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.new)
-                    .filter(item => item.category_id === 65 && item.on).sort((a, b) => b.on - a.on) :
-                null;
-        },
-
-
-        getDscanOnGridNewShipsGroups: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.new)
-                    .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
-                null;
-        },
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.groups.new)
+        //             .filter(item => item.category_id === 65).sort((a, b) => b.total - a.total) :
+        //         null;
+        // },
 
 
 
 
-        getDscanOnGridOldShips: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.items.old)
-                    .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
-                null;
-        },
+        // getDscanAllOldShips: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.items.old)
+        //             .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
+        //         null;
+
+        // },
+
+        // getDscanAllOldShipsGroups: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.groups.old)
+        //             .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
+        //         null;
+        // },
+
+        // getDscanAllOldStructures: (state) => {
+
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.groups.old)
+        //             .filter(item => item.category_id === 65).sort((a, b) => b.total - a.total) :
+        //         null;
+        // },
 
 
-        getDscanOnGridOldShipsGroups: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.old)
-                    .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
-                null;
-        },
+        // getDscanOnGridNewShips: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.items.new)
+        //             .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
+        //         null;
+        // },
 
 
-        getDscanOnGridOldStructures: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.old)
-                    .filter(item => item.category_id === 65 && item.on).sort((a, b) => b.on - a.on) :
-                null;
-        },
+        // getDscanOnGridNewStructures: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.groups.new)
+        //             .filter(item => item.category_id === 65 && item.on).sort((a, b) => b.on - a.on) :
+        //         null;
+        // },
 
 
-
-
-
-
-        getDscanOffGridNewShips: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.items.new)
-                    .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
-                null;
-        },
-
-
-        getDscanOffGridNewShipsGroups: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.new)
-                    .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
-                null;
-        },
-
-
-        getDscanOffGridNewStructures: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.new)
-                    .filter(item => item.category_id === 65 && item.off).sort((a, b) => b.total - a.total) :
-                null;
-        },
+        // getDscanOnGridNewShipsGroups: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.groups.new)
+        //             .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
+        //         null;
+        // },
 
 
 
-        getDscanOffGridOldShips: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.items.old)
-                    .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
-                null;
-        },
+
+        // getDscanOnGridOldShips: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.items.old)
+        //             .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
+        //         null;
+        // },
+
+
+        // getDscanOnGridOldShipsGroups: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.groups.old)
+        //             .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
+        //         null;
+        // },
+
+
+        // getDscanOnGridOldStructures: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.groups.old)
+        //             .filter(item => item.category_id === 65 && item.on).sort((a, b) => b.on - a.on) :
+        //         null;
+        // },
 
 
 
-        getDscanOffGridOldShipsGroups: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.old)
-                    .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
-                null;
-        },
 
 
 
-        getDscanOffGridOldStructures: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.old)
-                    .filter(item => item.category_id === 65 && item.off).sort((a, b) => b.total - a.total) :
-                null;
-        },
+        // getDscanOffGridNewShips: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.items.new)
+        //             .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
+        //         null;
+        // },
+
+
+        // getDscanOffGridNewShipsGroups: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.groups.new)
+        //             .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
+        //         null;
+        // },
+
+
+        // getDscanOffGridNewStructures: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.groups.new)
+        //             .filter(item => item.category_id === 65 && item.off).sort((a, b) => b.total - a.total) :
+        //         null;
+        // },
+
+
+
+        // getDscanOffGridOldShips: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.items.old)
+        //             .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
+        //         null;
+        // },
+
+
+
+        // getDscanOffGridOldShipsGroups: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.groups.old)
+        //             .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
+        //         null;
+        // },
+
+
+
+        // getDscanOffGridOldStructures: (state) => {
+        //     return state.dScan.totals ?
+        //         Object.values(state.dScan.totals.totals.groups.old)
+        //             .filter(item => item.category_id === 65 && item.off).sort((a, b) => b.total - a.total) :
+        //         null;
+        // },
 
 
 
@@ -1576,6 +1579,9 @@ export const useMainStore = defineStore("main", {
             this.dScanLocalCorp = res.data.corpsTotal;
             this.dScanLocalAlliance = res.data.allianceTotal;
             this.dScanLocalAffiliation = res.data.affiliationTotal;
+            this.dScanItemCategory = res.data.categoryTotals
+            this.dScanItemGroup = res.data.groupTotals
+            this.dScanItemItem = res.data.itemTotals
             this.dScanIsHistory = res.data.history;
             this.dScanIsHistory ? this.dScanHistory = res.data.allHistory : this.dScanHistory = res.data.dscan.history;
             this.dScanIsHistory ? this.dScanLiveLink = res.data.liveDscan : null;

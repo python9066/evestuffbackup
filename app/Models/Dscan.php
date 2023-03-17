@@ -30,11 +30,6 @@ class Dscan extends Model
         return $this->belongsTo(System::class);
     }
 
-    public function totals()
-    {
-        return $this->hasOne(DscanTotal::class);
-    }
-
     public function locals()
     {
         return $this->belongsToMany(Character::class, 'dscan_locals', 'dscan_id', 'character_id')
