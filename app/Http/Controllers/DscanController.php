@@ -28,6 +28,18 @@ class DscanController extends Controller
         //
     }
 
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        if (Dscan::whereLink($id)->exists()) {
+            return getDscanInfo($id);
+        } else {
+            return loadDscanHistory($id);
+        }
+    }
+
     public function checkInputNew(Request $request)
     {
         $text = $request->text;
@@ -73,6 +85,8 @@ class DscanController extends Controller
 
     public function sendUpdateBoardCasts($data, $link)
     {
+
+
         $message = $data['corpsTotal'];
         $flag = collect([
             'id' => $link,
@@ -125,6 +139,14 @@ class DscanController extends Controller
         $flag = collect([
             'id' => $link,
             'flag' => 9,
+            'message' => $message,
+        ]);
+        broadcast(new dScanSoloUpdate($flag))->toOthers();
+
+        $message = $data['affiliationTotal'];
+        $flag = collect([
+            'id' => $link,
+            'flag' => 10,
             'message' => $message,
         ]);
         broadcast(new dScanSoloUpdate($flag))->toOthers();
@@ -209,216 +231,12 @@ class DscanController extends Controller
             $info =  $res->json();
             if ($info['status']) {
                 $newDscan->system_id = $info['system_id'];
+                $newDscan->addedBySystem = false;
                 $newDscan->save();
             }
         }
-
+        newLocal($newDscan->link);
         return $newDscan->link;
-    }
-
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function addNewDscan($dscan_results)
-    {
-
-
-        $newDscan = new Dscan();
-        $newDscan->user_id = Auth::user()->id;
-        $newDscan->link = Str::uuid();
-        $newDscan->save();
-
-        $rows = explode("\n", $dscan_results);
-        // $newTotal = new DscanTotal();
-        // $newTotal->dscan_id = $newDscan->id;
-        // $newTotal->save();
-
-        foreach ($rows as $row) {
-            $on = false;
-            $columns = explode("\t", $row);
-            $newDscanItem = new DscanItem();
-            $newDscanItem->dscan_id = $newDscan->id;
-            $newDscanItem->item_id = $columns[0];
-            $newDscanItem->name = $columns[1];
-            $components = explode(" ", $columns[3]);
-            if (count($components) > 1) {
-                $newDscanItem->distance_value = $components[0]; // "9.1";
-                $newDscanItem->distance_unit = $components[1];
-            } else {
-                $newDscanItem->distance_value = 1; // "9.1";
-                $newDscanItem->distance_unit = "au";
-            }
-            if ($newDscanItem->distance_unit == "km" && $newDscanItem->distance_value <= 8000) {
-                $on = true;
-            }
-
-            if ($newDscanItem->distance_unit == "m") {
-                $on = true;
-            }
-            $newDscanItem->on_grid = $on;
-            $newDscanItem->new = true;
-            $newDscanItem->save();
-            $item = Item::whereId($columns[0])->first();
-            $group = Group::whereId($item->group_id)->first();
-            if (!$newDscan->system_id) {
-                $groupName = $item->group->name;
-                if ($groupName == "Sun") {
-                    $systemName = explode(" - ", $columns[1])[0];
-                    $system = System::where('system_name', $systemName)->first();
-                    $newDscan->system_id = $system->id;
-                    $newDscan->save();
-                }
-
-                if (
-                    $group->id == 1406 ||
-                    $group->id == 1876 ||
-                    $group->id == 1657 ||
-                    $group->id == 1404 ||
-                    $group->id == 15
-                ) {
-                    $systemName = explode(" - ", $columns[1])[0];
-                    $system = System::where('system_name', $systemName)->first();
-                    $newDscan->system_id = $system->id;
-                    $newDscan->save();
-                }
-            }
-        }
-
-
-
-        return  $newDscan->link;
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        if (Dscan::whereLink($id)->exists()) {
-            return getDscanInfo($id);
-        } else {
-            return loadDscanHistory($id);
-        }
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function updateDscan($dscan_results, $link)
-    {
-
-
-        $dScan = Dscan::whereLink($link)->first();
-        $dScan->updated_by = Auth::user()->id;
-        $dScan->save();
-
-
-
-        $rows = explode("\n", $dscan_results);
-
-
-        DscanItem::where('dscan_id', $dScan->id)->update(['updated' => false]);
-
-        foreach ($rows as $row) {
-            $on = false;
-            $columns = explode("\t", $row);
-            $dScanItem = DscanItem::where('dscan_id', $dScan->id)->where('item_id', $columns[0])->where('updated', false)->first();
-            if ($dScanItem) {
-                $dScanItem->updated = true;
-                $dScanItem->new = false;
-                $dScanItem->same = true;
-                $components = explode(" ", $columns[3]);
-                if (count($components) > 1) {
-                    $dScanItem->distance_value = $components[0]; // "9.1";
-                    $dScanItem->distance_unit = $components[1];
-                } else {
-                    $dScanItem->distance_value = 1; // "9.1";
-                    $dScanItem->distance_unit = "au";
-                }
-
-                if ($dScanItem->distance_unit == "km" && $dScanItem->distance_value <= 8000) {
-                    $on = true;
-                }
-
-                if ($dScanItem->distance_unit == "m") {
-                    $on = true;
-                }
-                $dScanItem->on_grid = $on;
-                $dScanItem->save();
-                $item = Item::whereId($columns[0])->first();
-                $group = Group::whereId($item->group_id)->first();
-            } else {
-                $newDscanItem = new DscanItem();
-                $newDscanItem->dscan_id = $dScan->id;
-                $newDscanItem->item_id = $columns[0];
-                $newDscanItem->name = $columns[1];
-                $newDscanItem->updated = true;
-                $components = explode(" ", $columns[3]);
-                if (count($components) > 1) {
-                    $newDscanItem->distance_value = $components[0]; // "9.1";
-                    $newDscanItem->distance_unit = $components[1];
-                } else {
-                    $newDscanItem->distance_value = 1; // "9.1";
-                    $newDscanItem->distance_unit = "au";
-                }
-                if ($newDscanItem->distance_unit == "km" && $newDscanItem->distance_value <= 8000) {
-                    $on = true;
-                }
-
-                if ($newDscanItem->distance_unit == "m") {
-                    $on = true;
-                }
-                $newDscanItem->on_grid = $on;
-                $newDscanItem->new = true;
-                $newDscanItem->save();
-            }
-
-            $item = Item::whereId($columns[0])->first();
-            $group = Group::whereId($item->group_id)->first();
-            if (!$dScan->system_id) {
-                $groupName = $item->group->name;
-                if ($groupName == "Sun") {
-                    $systemName = explode(" - ", $columns[1])[0];
-                    $system = System::where('system_name', $systemName)->first();
-                    $dScan->system_id = $system->id;
-                    $dScan->save();
-                }
-
-                if (
-                    $group->id == 1406 ||
-                    $group->id == 1876 ||
-                    $group->id == 1657 ||
-                    $group->id == 1404 ||
-                    $group->id == 15
-                ) {
-                    $systemName = explode(" - ", $columns[1])[0];
-                    $system = System::where('system_name', $systemName)->first();
-                    $dScan->system_id = $system->id;
-                    $dScan->save();
-                }
-            }
-        }
-
-        DscanItem::where('dscan_id', $dScan->id)
-            ->where('updated', false)
-            ->where(function ($query) {
-                $query->where('new', true)
-                    ->orWhere('same', true);
-            })
-            ->update([
-                'new' => false,
-                'same' => false,
-                'left' => true,
-                'updated' => true
-            ]);
-
-        DscanItem::where('dscan_id', $dScan->id)
-            ->where('updated', false)
-            ->where('left', true)
-            ->delete();
-
-        return  $this->show($dScan->link);
     }
 
     public function updateLocal($local, string $id)
@@ -531,12 +349,215 @@ class DscanController extends Controller
             $info =  $res->json();
             if ($info['status']) {
                 $dScan->system_id = $info['system_id'];
+                $dScan->addedBySystem = false;
                 $dScan->save();
             }
         }
-
+        newLocal($dScan->link);
         return getDscanInfo($dScan->link);
     }
+
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function addNewDscan($dscan_results)
+    {
+
+
+        $newDscan = new Dscan();
+        $newDscan->user_id = Auth::user()->id;
+        $newDscan->link = Str::uuid();
+        $newDscan->save();
+
+        $rows = explode("\n", $dscan_results);
+
+        foreach ($rows as $row) {
+            $on = false;
+            $columns = explode("\t", $row);
+            $newDscanItem = new DscanItem();
+            $newDscanItem->dscan_id = $newDscan->id;
+            $newDscanItem->item_id = $columns[0];
+            $newDscanItem->name = $columns[1];
+            $components = explode(" ", $columns[3]);
+            if (count($components) > 1) {
+                $newDscanItem->distance_value = $components[0]; // "9.1";
+                $newDscanItem->distance_unit = $components[1];
+            } else {
+                $newDscanItem->distance_value = 1; // "9.1";
+                $newDscanItem->distance_unit = "au";
+            }
+            if ($newDscanItem->distance_unit == "km" && $newDscanItem->distance_value <= 8000) {
+                $on = true;
+            }
+
+            if ($newDscanItem->distance_unit == "m") {
+                $on = true;
+            }
+            $newDscanItem->on_grid = $on;
+            $newDscanItem->new = true;
+            $newDscanItem->save();
+            $item = Item::whereId($columns[0])->first();
+            $group = Group::whereId($item->group_id)->first();
+            if (!$newDscan->system_id || !$newDscan->addedBySystem) {
+                $groupName = $item->group->name;
+                if ($groupName == "Sun") {
+                    $systemName = explode(" - ", $columns[1])[0];
+                    $system = System::where('system_name', $systemName)->first();
+                    $newDscan->system_id = $system->id;
+                    $newDscan->addedBySystem = true;
+                    $newDscan->save();
+                }
+
+                if (
+                    $group->id == 1406 ||
+                    $group->id == 1876 ||
+                    $group->id == 1657 ||
+                    $group->id == 1404 ||
+                    $group->id == 15
+                ) {
+                    $systemName = explode(" - ", $columns[1])[0];
+                    $system = System::where('system_name', $systemName)->first();
+                    $newDscan->system_id = $system->id;
+                    $newDscan->addedBySystem = true;
+                    $newDscan->save();
+                }
+            }
+        }
+
+        newDscan($newDscan->link);
+        return  $newDscan->link;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function updateDscan($dscan_results, $link)
+    {
+
+
+        $dScan = Dscan::whereLink($link)->first();
+        $dScan->updated_by = Auth::user()->id;
+        $dScan->save();
+
+
+
+        $rows = explode("\n", $dscan_results);
+
+
+        DscanItem::where('dscan_id', $dScan->id)->update(['updated' => false]);
+
+        foreach ($rows as $row) {
+            $on = false;
+            $columns = explode("\t", $row);
+            $dScanItem = DscanItem::where('dscan_id', $dScan->id)->where('item_id', $columns[0])->where('updated', false)->first();
+            if ($dScanItem) {
+                $dScanItem->updated = true;
+                $dScanItem->new = false;
+                $dScanItem->same = true;
+                $components = explode(" ", $columns[3]);
+                if (count($components) > 1) {
+                    $dScanItem->distance_value = $components[0]; // "9.1";
+                    $dScanItem->distance_unit = $components[1];
+                } else {
+                    $dScanItem->distance_value = 1; // "9.1";
+                    $dScanItem->distance_unit = "au";
+                }
+
+                if ($dScanItem->distance_unit == "km" && $dScanItem->distance_value <= 8000) {
+                    $on = true;
+                }
+
+                if ($dScanItem->distance_unit == "m") {
+                    $on = true;
+                }
+                $dScanItem->on_grid = $on;
+                $dScanItem->save();
+                $item = Item::whereId($columns[0])->first();
+                $group = Group::whereId($item->group_id)->first();
+            } else {
+                $newDscanItem = new DscanItem();
+                $newDscanItem->dscan_id = $dScan->id;
+                $newDscanItem->item_id = $columns[0];
+                $newDscanItem->name = $columns[1];
+                $newDscanItem->updated = true;
+                $components = explode(" ", $columns[3]);
+                if (count($components) > 1) {
+                    $newDscanItem->distance_value = $components[0]; // "9.1";
+                    $newDscanItem->distance_unit = $components[1];
+                } else {
+                    $newDscanItem->distance_value = 1; // "9.1";
+                    $newDscanItem->distance_unit = "au";
+                }
+                if ($newDscanItem->distance_unit == "km" && $newDscanItem->distance_value <= 8000) {
+                    $on = true;
+                }
+
+                if ($newDscanItem->distance_unit == "m") {
+                    $on = true;
+                }
+                $newDscanItem->on_grid = $on;
+                $newDscanItem->new = true;
+                $newDscanItem->save();
+            }
+
+            $item = Item::whereId($columns[0])->first();
+            $group = Group::whereId($item->group_id)->first();
+            if (!$dScan->system_id || !$dScan->addedBySystem) {
+                $groupName = $item->group->name;
+                if ($groupName == "Sun") {
+                    $systemName = explode(" - ", $columns[1])[0];
+                    $system = System::where('system_name', $systemName)->first();
+                    $dScan->system_id = $system->id;
+                    $dScan->addedBySystem = true;
+                    $dScan->save();
+                }
+
+                if (
+                    $group->id == 1406 ||
+                    $group->id == 1876 ||
+                    $group->id == 1657 ||
+                    $group->id == 1404 ||
+                    $group->id == 15
+                ) {
+                    $systemName = explode(" - ", $columns[1])[0];
+                    $system = System::where('system_name', $systemName)->first();
+                    $dScan->system_id = $system->id;
+                    $dScan->addedBySystem = true;
+                    $dScan->save();
+                }
+            }
+        }
+
+        DscanItem::where('dscan_id', $dScan->id)
+            ->where('updated', false)
+            ->where(function ($query) {
+                $query->where('new', true)
+                    ->orWhere('same', true);
+            })
+            ->update([
+                'new' => false,
+                'same' => false,
+                'left' => true,
+                'updated' => true
+            ]);
+
+        DscanItem::where('dscan_id', $dScan->id)
+            ->where('updated', false)
+            ->where('left', true)
+            ->delete();
+
+
+
+        newDscan($dScan->link);
+        return  $this->show($dScan->link);
+    }
+
+
+
+
+
+
 
     /**
      * Remove the specified resource from storage.

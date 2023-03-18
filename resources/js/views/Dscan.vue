@@ -198,6 +198,10 @@ let checkDscan = async () => {
         if (e.flag.flag == 9) {
           store.dScanItemItem = e.flag.message;
         }
+
+        if(e.flag.flag == 10){
+          store.dScanLocalAffiliation = e.flag.message;
+        }
       });
     }
   }

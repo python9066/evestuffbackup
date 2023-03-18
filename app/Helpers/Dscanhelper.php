@@ -4,6 +4,45 @@ use App\Models\Dscan;
 use App\Models\DscanHistory;
 use Illuminate\Support\Str;
 
+if (!function_exists('newDscan')) {
+    function newDscan($link)
+    {
+        $dscan = Dscan::whereLink($link)
+            ->with([
+                'items.item.group.category'
+            ])
+            ->first();
+
+        $allItems = $dscan->items;
+        $items = workOutItemNumbers($allItems, $dscan->id);
+        $dscan->itemsTotals = $items['items'];
+        $dscan->groupTotals = $items['groups'];
+        $dscan->categoryTotals = $items['category'];
+        $dscan->save();
+    }
+}
+
+
+
+if (!function_exists('newLocal')) {
+    function newLocal($link)
+    {
+        $dscan = Dscan::whereLink($link)
+            ->with([
+                'locals.corp.alliance.affiliation',
+            ])
+            ->first();
+
+
+
+        $allLocals = $dscan->locals;
+        $local = workOutLocalNumbers($allLocals);
+        $dscan->corpTotal = $local['corps'];
+        $dscan->allianceTotal = $local['alliances'];
+        $dscan->affiliationsTotal = $local['affiliations'];
+        $dscan->save();
+    }
+}
 if (!function_exists('getDscanInfo')) {
     function getDscanInfo($link)
     {
@@ -20,23 +59,14 @@ if (!function_exists('getDscanInfo')) {
             ])
             ->first();
 
-        $allItems = $dscan->items;
-        $items = workOutItemNumbers($allItems, $dscan->id);
-
-        $allLocals = $dscan->locals;
-        $local = workOutLocalNumbers($allLocals);
-
-
-
-
         return [
             'dscan' => $dscan,
-            'corpsTotal' => $local['corps'],
-            'allianceTotal' => $local['alliances'],
-            'affiliationTotal' => $local['affiliations'],
-            'itemTotals' => $items['items'],
-            'groupTotals' => $items['groups'],
-            'categoryTotals' => $items['category'],
+            'corpsTotal' => $dscan->corpTotal,
+            'allianceTotal' => $dscan->allianceTotal,
+            'affiliationTotal' => $dscan->affiliationsTotal,
+            'itemTotals' => $dscan->itemsTotals,
+            'groupTotals' => $dscan->groupTotals,
+            'categoryTotals' => $dscan->categoryTotals,
             'history' => false,
 
         ];
@@ -64,6 +94,11 @@ if (!function_exists('getDscanLocalInfo')) {
         $allLocals = $dscan->locals;
         $local = workOutLocalNumbers($allLocals);
 
+        $dscan->corpTotal = $local['corps'];
+        $dscan->allianceTotal = $local['alliances'];
+        $dscan->affiliationsTotal = $local['affiliations'];
+        $dscan->save();
+
         $soloLocal = $allLocals->where('id', $charID)->first();
         return [
             'soloLocal' => $soloLocal,
@@ -79,30 +114,7 @@ if (!function_exists('makeDscanHistoy')) {
     function makeDscanHistoy($link)
     {
         $dscan = Dscan::whereLink($link)
-            ->with([
-                'system:id,region_id,constellation_id,system_name',
-                'system.region',
-                'system.constellation',
-                'updatedBy:id,name',
-                'madeby:id,name',
-                'items.item.group',
-                'locals.corp.alliance.affiliation'
-            ])
             ->first();
-
-
-        $allItems = $dscan->items;
-        $items = workOutItemNumbers($allItems, $dscan->id);
-
-        $itemTotals = $items['items'];
-        $groupTotals = $items['groups'];
-        $categoryTotals = $items['category'];
-
-        $allLocals = $dscan->locals;
-        $local = workOutLocalNumbers($allLocals);
-        $corpsTotal = $local['corps'];
-        $allianceTotal = $local['alliances'];
-        $affiliationTotal = $local['affiliations'];
 
         $count = DscanHistory::where('dscan_id', $dscan->id)->count() + 1;
         $newHistory = new DscanHistory();
@@ -112,12 +124,12 @@ if (!function_exists('makeDscanHistoy')) {
         $newHistory->link = str::uuid();
         $newHistory->updated_by = $dscan->updated_by ?? null;
         $newHistory->totals = $dscan->totals;
-        $newHistory->corpsTotal = $corpsTotal;
-        $newHistory->alliancesTotal = $allianceTotal;
-        $newHistory->affiliationsTotal = $affiliationTotal;
-        $newHistory->itemTotals = $itemTotals;
-        $newHistory->groupTotals = $groupTotals;
-        $newHistory->categoryTotals = $categoryTotals;
+        $newHistory->corpsTotal = $dscan->corpTotal;
+        $newHistory->alliancesTotal = $dscan->allianceTotal;
+        $newHistory->affiliationsTotal = $dscan->affiliationsTotal;
+        $newHistory->itemTotals = $dscan->itemsTotals;
+        $newHistory->groupTotals = $dscan->groupTotals;
+        $newHistory->categoryTotals = $dscan->categoryTotals;
         $newHistory->dscan = $dscan;
         $newHistory->history_count = $count;
         $newHistory->save();
