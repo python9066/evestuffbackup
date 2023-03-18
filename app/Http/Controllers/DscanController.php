@@ -136,9 +136,6 @@ class DscanController extends Controller
         $newDscan->user_id = Auth::user()->id;
         $newDscan->link = Str::uuid();
         $newDscan->save();
-        // $newDscanTotal = new DscanTotal();
-        // $newDscanTotal->dscan_id = $newDscan->id;
-        // $newDscanTotal->save();
 
         $rows = explode("\n", $local);
         $newNames = [];

@@ -21,7 +21,7 @@ if (!function_exists('getDscanInfo')) {
             ->first();
 
         $allItems = $dscan->items;
-        $items = workOutItemNumbers($allItems);
+        $items = workOutItemNumbers($allItems, $dscan->id);
 
         $allLocals = $dscan->locals;
         $local = workOutLocalNumbers($allLocals);
@@ -92,7 +92,7 @@ if (!function_exists('makeDscanHistoy')) {
 
 
         $allItems = $dscan->items;
-        $items = workOutItemNumbers($allItems);
+        $items = workOutItemNumbers($allItems, $dscan->id);
 
         $itemTotals = $items['items'];
         $groupTotals = $items['groups'];
@@ -330,12 +330,25 @@ if (!function_exists('workOutLocalNumbers')) {
 
 
 if (!function_exists('workOutItemNumbers')) {
-    function workOutItemNumbers($allAllItems)
+    function workOutItemNumbers($allAllItems, $dscanID)
     {
 
         $itemTotals = [];
         $groupTotals = [];
         $categoryTotals = [];
+
+
+        $dscanHistory = DscanHistory::where('dscan_id', $dscanID)->latest()->first();
+        if ($dscanHistory) {
+            $oldItemTotals = collect($dscanHistory->itemTotals);
+            $oldGroupTotals = collect($dscanHistory->groupTotals);
+            $oldCategoryTotals = collect($dscanHistory->categoryTotals);
+        } else {
+            $oldItemTotals = collect([]);
+            $oldGroupTotals = collect([]);
+            $oldCategoryTotals = collect([]);
+        }
+
 
         foreach ($allAllItems as $item) {
             if ($item->item) {
@@ -478,6 +491,11 @@ if (!function_exists('workOutItemNumbers')) {
                 $diff = $new - $left;
             }
             $itemTotals[$key]['diff'] = $diff;
+
+            $oldItem = $oldItemTotals->where('details.id', $itemTotals[$key]['details']['id'])->first();
+
+            $itemTotals[$key]['oldTotalOffGrid'] = $oldItem['totalOffGrid'] ?? 0;
+            $itemTotals[$key]['oldTotalOnGrid'] = $oldItem['totalOnGrid'] ?? 0;
         }
 
         foreach ($groupTotals as $key => $group) {
@@ -492,6 +510,12 @@ if (!function_exists('workOutItemNumbers')) {
                 $diff = $new - $left;
             }
             $groupTotals[$key]['diff'] = $diff;
+
+
+            $oldGroup = $oldGroupTotals->where('details.id', $groupTotals[$key]['details']['id'])->first();
+
+            $groupTotals[$key]['oldTotalOffGrid'] = $oldGroup['totalOffGrid'] ?? 0;
+            $groupTotals[$key]['oldTotalOnGrid'] = $oldGroup['totalOnGrid'] ?? 0;
         }
 
         foreach ($categoryTotals as $key => $category) {
@@ -506,6 +530,14 @@ if (!function_exists('workOutItemNumbers')) {
                 $diff = $new - $left;
             }
             $categoryTotals[$key]['diff'] = $diff;
+
+
+            $oldCategory = $oldCategoryTotals->where('details.id', $categoryTotals[$key]['details']['id'])->first();
+
+            $categoryTotals[$key]['oldTotalOffGrid'] = $oldCategory['totalOffGrid'] ?? 0;
+            $categoryTotals[$key]['oldTotalOnGrid'] = $oldCategory['totalOnGrid'] ?? 0;
+
+            dd($categoryTotals[$key]);
         }
 
 
