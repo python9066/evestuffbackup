@@ -65,6 +65,6 @@ class Dscan extends Model
 
     public function history()
     {
-        return $this->hasMany(DscanHistory::class);
+        return $this->hasMany(DscanHistory::class)->orderBy('history_count', 'desc');
     }
 }

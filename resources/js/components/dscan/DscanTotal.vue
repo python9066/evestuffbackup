@@ -8,33 +8,43 @@
             <span v-if="shipDff != 0" :class="textColor(shipDff)"> ({{ shipDff }})</span>
           </q-card-section>
           <q-card-section class="overflow-auto" :style="h">
-            <q-list bordered dense>
-              <q-item
-                :disable="shipIsDisable(list)"
-                v-for="(list, index) in tableShips"
-                :key="index"
-              >
-                <div class="row full-width justify-between">
-                  <div class="col-auto">
-                    <q-avatar size="32px">
-                      <img :src="listUrl(list.details.id)"
-                    /></q-avatar>
+            <transition-group
+              mode="out-in"
+              enter-active-class="animate__animated animate__bounceIn animate__slower"
+              leave-active-class="animate__animated animate__bounceOut animate__slower"
+            >
+              <q-list bordered dense key="shiplist">
+                <q-item
+                  :disable="shipIsDisable(list)"
+                  v-for="(list, index) in tableShips"
+                  :key="index"
+                >
+                  <div
+                    class="row full-width justify-between"
+                    :key="`${list.id}-div-shipList`"
+                  >
+                    <div class="col-auto">
+                      <q-avatar size="32px">
+                        <img :src="listUrl(list.details.id)"
+                      /></q-avatar>
+                    </div>
+                    <div class="col-auto" :key="`${list.id}-shipList-name`">
+                      {{ list.details.item_name }}
+                    </div>
+                    <div class="col-auto" :key="`${list.id}-shipList-total`">
+                      {{ list.totalInSystem }}
+                      <span
+                        :key="`${list.id}-shipList-oldTotal`"
+                        v-if="oldAllShipNumber(list) != 0"
+                        :class="textColor(oldAllShipNumber(list))"
+                      >
+                        ({{ oldAllShipNumber(list) }})</span
+                      >
+                    </div>
                   </div>
-                  <div class="col-auto">
-                    {{ list.details.item_name }}
-                  </div>
-                  <div class="col-auto">
-                    {{ list.totalInSystem }}
-                    <span
-                      v-if="oldAllShipNumber(list) != 0"
-                      :class="textColor(oldAllShipNumber(list))"
-                    >
-                      ({{ oldAllShipNumber(list) }})</span
-                    >
-                  </div>
-                </div>
-              </q-item>
-            </q-list>
+                </q-item>
+              </q-list>
+            </transition-group>
           </q-card-section>
         </q-card>
       </div>
@@ -215,7 +225,12 @@
           </q-card-section>
           <q-card-section>
             <q-list bordered dense>
-              <q-item clickable v-for="(list, index) in tableStructure" :key="index">
+              <q-item
+                :disable="shipIsDisable(list)"
+                clickable
+                v-for="(list, index) in tableStructure"
+                :key="index"
+              >
                 <div class="row full-width justify-between">
                   <div class="col-auto">
                     <q-avatar size="32px"></q-avatar>
@@ -223,7 +238,15 @@
                   <div class="col-auto">
                     {{ list.details.name }}
                   </div>
-                  <div class="col-auto">{{ list.totalInSystem }}</div>
+                  <div class="col-auto">
+                    {{ list.totalInSystem }}
+                    <span
+                      v-if="oldAllShipNumber(list) != 0"
+                      :class="textColor(oldAllShipNumber(list))"
+                    >
+                      ({{ oldAllShipNumber(list) }})</span
+                    >
+                  </div>
                 </div>
               </q-item>
             </q-list>
@@ -258,7 +281,8 @@ let tableShips = $computed(() => {
   if (props.type == 2) {
     if (store.dScanItemItem) {
       return store.dScanItemItem.filter(
-        (i) => i.details.group.category_id == 6 && i.totalOnGrid > 0
+        (i) =>
+          i.details.group.category_id == 6 && (i.totalOnGrid > 0 || i.oldTotalOnGrid > 0)
       );
     } else {
       return [];
@@ -268,7 +292,9 @@ let tableShips = $computed(() => {
   if (props.type == 3) {
     if (store.dScanItemItem) {
       return store.dScanItemItem.filter(
-        (i) => i.details.group.category_id == 6 && i.totalOffGrid > 0
+        (i) =>
+          i.details.group.category_id == 6 &&
+          (i.totalOffGrid > 0 || i.oldTotalOffGrid > 0)
       );
     } else {
       return [];
@@ -340,7 +366,7 @@ let tableGroups = $computed(() => {
   if (props.type == 2) {
     if (store.dScanItemGroup) {
       return store.dScanItemGroup.filter(
-        (i) => i.details.category_id == 6 && i.totalOnGrid > 0
+        (i) => i.details.category_id == 6 && (i.totalOnGrid > 0 || i.oldTotalOnGrid > 0)
       );
     } else {
       return [];
@@ -350,7 +376,7 @@ let tableGroups = $computed(() => {
   if (props.type == 3) {
     if (store.dScanItemGroup) {
       return store.dScanItemGroup.filter(
-        (i) => i.details.category_id == 6 && i.totalOffGrid > 0
+        (i) => i.details.category_id == 6 && (i.totalOffGrid > 0 || i.oldTotalOffGrid > 0)
       );
     } else {
       return [];
@@ -422,7 +448,7 @@ let tableStructure = $computed(() => {
   if (props.type == 2) {
     if (store.dScanItemGroup) {
       return store.dScanItemGroup.filter(
-        (i) => i.details.category_id == 65 && i.totalOnGrid > 0
+        (i) => i.details.category_id == 65 && (i.totalOnGrid > 0 || i.oldTotalOnGrid > 0)
       );
     } else {
       return [];
@@ -432,7 +458,8 @@ let tableStructure = $computed(() => {
   if (props.type == 3) {
     if (store.dScanItemGroup) {
       return store.dScanItemGroup.filter(
-        (i) => i.details.category_id == 65 && i.totalOffGrid > 0
+        (i) =>
+          i.details.category_id == 65 && (i.totalOffGrid > 0 || i.oldTotalOffGrid > 0)
       );
     } else {
       return [];
