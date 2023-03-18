@@ -285,6 +285,8 @@ class DscanController extends Controller
             }
         }
 
+
+
         return  $newDscan->link;
     }
 

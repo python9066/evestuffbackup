@@ -10,6 +10,33 @@ class Dscan extends Model
     use HasFactory;
     protected $guarded = [];
 
+    protected $fillable = [
+        "totals",
+        'dscan',
+        'corpsTotal',
+        'alliancesTotal',
+        'affiliationsTotal',
+        'itemTotals',
+        'groupTotals',
+        'categoryTotals',
+
+
+
+    ];
+
+    protected $casts = [
+        'totals' => 'array',
+        'dscan' => 'array',
+        'corpsTotal' => 'array',
+        'alliancesTotal' => 'array',
+        'affiliationsTotal' => 'array',
+        'itemTotals' => 'array',
+        'groupTotals' => 'array',
+        'categoryTotals' => 'array',
+
+
+    ];
+
     public function items()
     {
         return $this->hasMany(DscanItem::class);

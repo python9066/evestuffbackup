@@ -537,7 +537,7 @@ if (!function_exists('workOutItemNumbers')) {
             $categoryTotals[$key]['oldTotalOffGrid'] = $oldCategory['totalOffGrid'] ?? 0;
             $categoryTotals[$key]['oldTotalOnGrid'] = $oldCategory['totalOnGrid'] ?? 0;
 
-            dd($categoryTotals[$key]);
+            // dd($categoryTotals[$key]);
         }
 
 
