@@ -73,6 +73,8 @@ class DscanController extends Controller
 
     public function sendUpdateBoardCasts($data, $link)
     {
+
+
         $message = $data['corpsTotal'];
         $flag = collect([
             'id' => $link,
@@ -125,6 +127,14 @@ class DscanController extends Controller
         $flag = collect([
             'id' => $link,
             'flag' => 9,
+            'message' => $message,
+        ]);
+        broadcast(new dScanSoloUpdate($flag))->toOthers();
+
+        $message = $data['affiliationTotal'];
+        $flag = collect([
+            'id' => $link,
+            'flag' => 10,
             'message' => $message,
         ]);
         broadcast(new dScanSoloUpdate($flag))->toOthers();
@@ -193,26 +203,26 @@ class DscanController extends Controller
 
 
 
+        //todo: Uncomment this when webway is back up and I am home to test it
+        // if (!$newDscan->system_id) {
+        //     $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+        //     $webwayToken = env('WEBWAY_TOKEN', ($variables && array_key_exists('WEBWAY_TOKEN', $variables)) ? $variables['WEBWAY_TOKEN'] : null);
+        //     $webwayURL = env('WEBWAY_URL2', ($variables && array_key_exists('WEBWAY_URL2', $variables)) ? $variables['WEBWAY_URL2'] : null);
+        //     $dScanCharIdsSend = DscanLocal::where('dscan_id', $newDscan->id)->pluck('character_id');
+        //     $res =  Http::withToken($webwayToken)
+        //         ->withHeaders([
+        //             'Content-Type' => 'application/json',
+        //             'Accept' => 'application/json',
+        //             'User-Agent' => 'evestuff.online python9066@gmail.com',
+        //         ])->post($webwayURL, $dScanCharIdsSend);
 
-        if (!$newDscan->system_id) {
-            $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
-            $webwayToken = env('WEBWAY_TOKEN', ($variables && array_key_exists('WEBWAY_TOKEN', $variables)) ? $variables['WEBWAY_TOKEN'] : null);
-            $webwayURL = env('WEBWAY_URL2', ($variables && array_key_exists('WEBWAY_URL2', $variables)) ? $variables['WEBWAY_URL2'] : null);
-            $dScanCharIdsSend = DscanLocal::where('dscan_id', $newDscan->id)->pluck('character_id');
-            $res =  Http::withToken($webwayToken)
-                ->withHeaders([
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                    'User-Agent' => 'evestuff.online python9066@gmail.com',
-                ])->post($webwayURL, $dScanCharIdsSend);
-
-            $info =  $res->json();
-            if ($info['status']) {
-                $newDscan->system_id = $info['system_id'];
-                $newDscan->save();
-            }
-        }
-
+        //     $info =  $res->json();
+        //     if ($info['status']) {
+        //         $newDscan->system_id = $info['system_id'];
+        //         $newDscan->save();
+        //     }
+        // }
+        newLocal($newDscan->link);
         return $newDscan->link;
     }
 
@@ -230,9 +240,6 @@ class DscanController extends Controller
         $newDscan->save();
 
         $rows = explode("\n", $dscan_results);
-        // $newTotal = new DscanTotal();
-        // $newTotal->dscan_id = $newDscan->id;
-        // $newTotal->save();
 
         foreach ($rows as $row) {
             $on = false;
@@ -285,8 +292,7 @@ class DscanController extends Controller
             }
         }
 
-
-
+        newDscan($newDscan->link);
         return  $newDscan->link;
     }
 
@@ -418,6 +424,9 @@ class DscanController extends Controller
             ->where('left', true)
             ->delete();
 
+
+
+        newDscan($dScan->link);
         return  $this->show($dScan->link);
     }
 
@@ -515,26 +524,26 @@ class DscanController extends Controller
         foreach ($charIDs as $charID) {
             getLocalNamesJob::dispatch($charID)->onQueue('alliance');
         }
+        //todo: uncomment this when I am home
+        // if (!$dScan->system_id) {
+        //     $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+        //     $webwayToken = env('WEBWAY_TOKEN', ($variables && array_key_exists('WEBWAY_TOKEN', $variables)) ? $variables['WEBWAY_TOKEN'] : null);
+        //     $webwayURL = env('WEBWAY_URL2', ($variables && array_key_exists('WEBWAY_URL2', $variables)) ? $variables['WEBWAY_URL2'] : null);
+        //     $dScanCharIdsSend = DscanLocal::where('dscan_id', $dScan->id)->pluck('character_id');
+        //     $res =  Http::withToken($webwayToken)
+        //         ->withHeaders([
+        //             'Content-Type' => 'application/json',
+        //             'Accept' => 'application/json',
+        //             'User-Agent' => 'evestuff.online python9066@gmail.com',
+        //         ])->post($webwayURL, $dScanCharIdsSend);
 
-        if (!$dScan->system_id) {
-            $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
-            $webwayToken = env('WEBWAY_TOKEN', ($variables && array_key_exists('WEBWAY_TOKEN', $variables)) ? $variables['WEBWAY_TOKEN'] : null);
-            $webwayURL = env('WEBWAY_URL2', ($variables && array_key_exists('WEBWAY_URL2', $variables)) ? $variables['WEBWAY_URL2'] : null);
-            $dScanCharIdsSend = DscanLocal::where('dscan_id', $dScan->id)->pluck('character_id');
-            $res =  Http::withToken($webwayToken)
-                ->withHeaders([
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                    'User-Agent' => 'evestuff.online python9066@gmail.com',
-                ])->post($webwayURL, $dScanCharIdsSend);
-
-            $info =  $res->json();
-            if ($info['status']) {
-                $dScan->system_id = $info['system_id'];
-                $dScan->save();
-            }
-        }
-
+        //     $info =  $res->json();
+        //     if ($info['status']) {
+        //         $dScan->system_id = $info['system_id'];
+        //         $dScan->save();
+        //     }
+        // }
+        newLocal($dScan->link);
         return getDscanInfo($dScan->link);
     }
 

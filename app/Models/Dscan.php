@@ -13,10 +13,10 @@ class Dscan extends Model
     protected $fillable = [
         "totals",
         'dscan',
-        'corpsTotal',
-        'alliancesTotal',
+        'corpTotal',
+        'allianceTotal',
         'affiliationsTotal',
-        'itemTotals',
+        'itemsTotals',
         'groupTotals',
         'categoryTotals',
 
@@ -27,10 +27,10 @@ class Dscan extends Model
     protected $casts = [
         'totals' => 'array',
         'dscan' => 'array',
-        'corpsTotal' => 'array',
-        'alliancesTotal' => 'array',
+        'corpTotal' => 'array',
+        'allianceTotal' => 'array',
         'affiliationsTotal' => 'array',
-        'itemTotals' => 'array',
+        'itemsTotals' => 'array',
         'groupTotals' => 'array',
         'categoryTotals' => 'array',
 
