@@ -417,7 +417,7 @@ let pilotBgColor = (pivot) => {
 
 let totalAllianceNew = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAlliance).length == 0) {
+  if (!store.dScanLocalAlliance || Object.values(store.dScanLocalAlliance).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalAlliance).forEach((alliance) => {
@@ -429,7 +429,7 @@ let totalAllianceNew = $computed(() => {
 
 let totalAllianceleft = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAlliance).length == 0) {
+  if (!store.dScanLocalAlliance || Object.values(store.dScanLocalAlliance).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalAlliance).forEach((alliance) => {
@@ -441,7 +441,7 @@ let totalAllianceleft = $computed(() => {
 
 let totalAllianceSame = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAlliance).length == 0) {
+  if (!store.dScanLocalAlliance || Object.values(store.dScanLocalAlliance).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalAlliance).forEach((alliance) => {
@@ -453,7 +453,7 @@ let totalAllianceSame = $computed(() => {
 
 let totalAllianceTotalInSystem = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAlliance).length == 0) {
+  if (!store.dScanLocalAlliance || Object.values(store.dScanLocalAlliance).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalAlliance).forEach((alliance) => {
@@ -479,7 +479,7 @@ let totalAllianceDff = $computed(() => {
 
 let totalCorpNew = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalCorp).length == 0) {
+  if (!store.dScanLocalCorp || Object.values(store.dScanLocalCorp).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalCorp).forEach((corp) => {
@@ -491,7 +491,7 @@ let totalCorpNew = $computed(() => {
 
 let totalCorpleft = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalCorp).length == 0) {
+  if (!store.dScanLocalCorp || Object.values(store.dScanLocalCorp).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalCorp).forEach((corp) => {
@@ -503,7 +503,7 @@ let totalCorpleft = $computed(() => {
 
 let totalCorpSame = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalCorp).length == 0) {
+  if (!store.dScanLocalCorp || Object.values(store.dScanLocalCorp).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalCorp).forEach((corp) => {
@@ -515,7 +515,7 @@ let totalCorpSame = $computed(() => {
 
 let totalCorpTotalInSystem = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalCorp).length == 0) {
+  if (!store.dScanLocalCorp || Object.values(store.dScanLocalCorp).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalCorp).forEach((corp) => {
@@ -542,7 +542,10 @@ let totalCorpDff = $computed(() => {
 ///////#
 let totalAffiliationNew = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAffiliation).length == 0) {
+  if (
+    !store.dScanLocalAffiliation ||
+    Object.values(store.dScanLocalAffiliation).length == 0
+  ) {
     return 0;
   }
   Object.values(store.dScanLocalAffiliation).forEach((affiliation) => {
@@ -554,7 +557,10 @@ let totalAffiliationNew = $computed(() => {
 
 let totalAffiliationleft = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAffiliation).length == 0) {
+  if (
+    !store.dScanLocalAffiliation ||
+    Object.values(store.dScanLocalAffiliation).length == 0
+  ) {
     return 0;
   }
   Object.values(store.dScanLocalAffiliation).forEach((affiliation) => {
@@ -566,7 +572,10 @@ let totalAffiliationleft = $computed(() => {
 
 let totalAffiliationSame = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAffiliation).length == 0) {
+  if (
+    !store.dScanLocalAffiliation ||
+    Object.values(store.dScanLocalAffiliation).length == 0
+  ) {
     return 0;
   }
   Object.values(store.dScanLocalAffiliation).forEach((affiliation) => {
@@ -578,7 +587,10 @@ let totalAffiliationSame = $computed(() => {
 
 let totalAffiliationTotalInSystem = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAffiliation).length == 0) {
+  if (
+    !store.dScanLocalAffiliation ||
+    Object.values(store.dScanLocalAffiliation).length == 0
+  ) {
     return 0;
   }
   Object.values(store.dScanLocalAffiliation).forEach((affiliation) => {

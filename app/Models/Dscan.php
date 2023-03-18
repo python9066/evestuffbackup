@@ -10,6 +10,33 @@ class Dscan extends Model
     use HasFactory;
     protected $guarded = [];
 
+    protected $fillable = [
+        "totals",
+        'dscan',
+        'corpTotal',
+        'allianceTotal',
+        'affiliationsTotal',
+        'itemsTotals',
+        'groupTotals',
+        'categoryTotals',
+
+
+
+    ];
+
+    protected $casts = [
+        'totals' => 'array',
+        'dscan' => 'array',
+        'corpTotal' => 'array',
+        'allianceTotal' => 'array',
+        'affiliationsTotal' => 'array',
+        'itemsTotals' => 'array',
+        'groupTotals' => 'array',
+        'categoryTotals' => 'array',
+
+
+    ];
+
     public function items()
     {
         return $this->hasMany(DscanItem::class);
@@ -30,11 +57,6 @@ class Dscan extends Model
         return $this->belongsTo(System::class);
     }
 
-    public function totals()
-    {
-        return $this->hasOne(DscanTotal::class);
-    }
-
     public function locals()
     {
         return $this->belongsToMany(Character::class, 'dscan_locals', 'dscan_id', 'character_id')
@@ -43,6 +65,6 @@ class Dscan extends Model
 
     public function history()
     {
-        return $this->hasMany(DscanHistory::class);
+        return $this->hasMany(DscanHistory::class)->orderBy('history_count', 'desc');
     }
 }

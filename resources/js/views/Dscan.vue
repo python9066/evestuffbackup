@@ -92,6 +92,9 @@
             <q-card class="my-card myRoundTop">
               <q-card-section>
                 <q-list bordered dense>
+                  <q-item clickable v-if="store.dScanIsHistory" @click="clickLive()">
+                    Live
+                  </q-item>
                   <q-item
                     clickable
                     @click="clickHistory(list.link)"
@@ -100,9 +103,6 @@
                     :key="index"
                   >
                     {{ fixTime(list.created_at) }}
-                  </q-item>
-                  <q-item clickable v-if="store.dScanIsHistory" @click="clickLive()">
-                    Live
                   </q-item>
                 </q-list>
               </q-card-section>
@@ -189,6 +189,19 @@ let checkDscan = async () => {
         if (e.flag.flag == 6) {
           store.dScanIsHistory = e.flag.message;
         }
+        if (e.flag.flag == 7) {
+          store.dScanItemCategory = e.flag.message;
+        }
+        if (e.flag.flag == 8) {
+          store.dScanItemGroup = e.flag.message;
+        }
+        if (e.flag.flag == 9) {
+          store.dScanItemItem = e.flag.message;
+        }
+
+        if (e.flag.flag == 10) {
+          store.dScanLocalAffiliation = e.flag.message;
+        }
       });
     }
   }
@@ -256,6 +269,14 @@ let updateScan = async () => {
     store.dScanLocalAlliance = res.data.data.allianceTotal;
     store.dScan = res.data.data.dscan;
     store.dScanHistory = res.data.data.dscan.history;
+    res.data.data.categoryTotals
+      ? (store.dScanItemCategory = res.data.data.categoryTotals)
+      : null;
+    res.data.data.groupTotals ? (store.dScanItemGroup = res.data.data.groupTotals) : null;
+    res.data.data.itemTotals ? (store.dScanItemItem = res.data.data.itemTotals) : null;
+    res.data.data.affiliationTotal
+      ? (store.dScanLocalAffiliation = res.data.data.affiliationTotal)
+      : null;
     dScanText = null;
   });
 };
