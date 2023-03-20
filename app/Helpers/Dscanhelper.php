@@ -53,7 +53,7 @@ if (!function_exists('getDscanInfo')) {
                 'system.constellation',
                 'updatedBy:id,name',
                 'madeby:id,name',
-                // 'items.item.group.category',
+                'messages.user',
                 'locals.corp.alliance.affiliation',
                 'history:dscan_id,link,history_count,created_at,corpsTotalNumber,alliancesTotalNumber,affiliationsTotalNumber,itemTotalsNumber,groupTotalsNumber,categoryTotalsNumber'
             ])
@@ -66,6 +66,7 @@ if (!function_exists('getDscanInfo')) {
             'affiliationTotal' => $dscan->affiliationsTotal,
             'itemTotals' => $dscan->itemsTotals,
             'groupTotals' => $dscan->groupTotals,
+            'messages' => $dscan->messages,
             'categoryTotals' => $dscan->categoryTotals,
             'history' => false,
 
@@ -83,7 +84,6 @@ if (!function_exists('getDscanLocalInfo')) {
                 'system.constellation',
                 'updatedBy:id,name',
                 'madeby:id,name',
-                // 'items.item.group',
                 'locals.corp.alliance.affiliation'
             ])
             ->first();
@@ -119,7 +119,6 @@ if (!function_exists('makeDscanHistoy')) {
             'system.constellation',
             'updatedBy:id,name',
             'madeby:id,name',
-            // 'items.item.group',
             'locals.corp.alliance.affiliation'
         ])
             ->first();
@@ -169,7 +168,7 @@ if (!function_exists('makeDscanHistoy')) {
 if (!function_exists('loadDscanHistory')) {
     function loadDscanHistory($link)
     {
-        $dscan = DscanHistory::where('link', $link)->first();
+        $dscan = DscanHistory::where('link', $link)->with('messages.user')->first();
         $allHistory = DscanHistory::where('dscan_id', $dscan->dscan_id)
             ->orderBy('history_count', 'desc')
             ->select([
@@ -190,6 +189,7 @@ if (!function_exists('loadDscanHistory')) {
 
         return [
             'dscan' => $dscan->dscan,
+            'messages' => $dscan->messages,
             'corpsTotal' => $dscan->corpsTotal,
             'allianceTotal' => $dscan->alliancesTotal,
             'affiliationTotal' => $dscan->affiliationsTotal,

@@ -67,4 +67,9 @@ class Dscan extends Model
     {
         return $this->hasMany(DscanHistory::class)->orderBy('history_count', 'desc');
     }
+
+    public function messages()
+    {
+        return $this->hasMany(DscanNote::class)->orderBy('created_at', "desc");
+    }
 }

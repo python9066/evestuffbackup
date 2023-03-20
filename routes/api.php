@@ -168,6 +168,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/towermessage/{id}/notes', 'addReadBy');
     });
 
+    Route::controller(DscanMessageController::class)->group(function () {
+        Route::put('/dscanmessage/{id}', 'updateMessage');
+        Route::delete('/dscanmessage/{id}', 'destroy');
+        Route::put('/dscanmessage/{id}/notes', 'addReadBy');
+    });
+
+
+
     Route::controller(StationController::class)->group(function () {
         Route::get('/reconpullregion', 'reconRegionPull');
         Route::post('/taskrequest', 'taskRequest');
