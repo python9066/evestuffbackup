@@ -40,6 +40,7 @@ export const useMainStore = defineStore("main", {
         stationList: [],
         stationWatchList: [],
         stations: [],
+        stagingSystems: [],
         towers: [],
         timers: [],
         timersRegions: [],
@@ -1493,6 +1494,38 @@ export const useMainStore = defineStore("main", {
                 this.affiliations.push(data);
             }
         },
+        async getStagingSystemInfo() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
+                url: "/api/staging",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            console.log(res.data)
+            this.stagingSystems = res.data;
+
+        },
+
+        updateStagingSystem(data) {
+            const item = this.stagingSystems.find((item) => item.id === data.id);
+            const count = this.stagingSystems.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.stagingSystems.push(data);
+            }
+        },
+
+        deleteStagingSystem(id) {
+            this.stagingSystems = this.stagingSystems.filter((e) => e.id != id);
+        },
+
+
 
     },
 });

@@ -7,7 +7,6 @@ use App\Models\Dscan;
 use App\Models\DscanHistory;
 use App\Models\DscanItem;
 use App\Models\DscanLocal;
-use App\Models\DscanTotal;
 use Illuminate\Console\Command;
 
 class ClearAddDscanInfo extends Command

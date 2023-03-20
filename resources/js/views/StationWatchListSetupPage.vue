@@ -36,7 +36,6 @@ onMounted(async () => {
       }
 
       if (e.flag.flag == 2) {
-        console.log(e.flag.message);
         store.updateStationDropDown(e.flag.message);
       }
 

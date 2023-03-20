@@ -10,8 +10,6 @@ use Illuminate\Http\Request;
 
 class DscanMessageController extends Controller
 {
-
-
     public function addReadBy($id)
     {
 

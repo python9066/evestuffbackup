@@ -64,6 +64,21 @@ const routes = [{
     },
 },
 
+
+{
+    path: "/staging",
+    name: "staging",
+    component: () => import("./views/StagingSystems.vue"),
+    beforeEnter(to, from, next) {
+        if (can("super")) {
+            next();
+        } else {
+            next("/");
+        }
+    },
+},
+
+
 // {
 //     path: "/dscan/:id",
 //     name: "testingpage",

@@ -156,6 +156,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/rcInput', 'RCInput');
     });
 
+    Route::controller(StagingSystemContoller::class)->group(function () {
+        Route::post('/staging', 'store');
+        Route::put('/staging/{id}', 'updateStaging');
+        Route::delete('/staging/{id}', 'destroy');
+        Route::get('/staging', 'index');
+        Route::get('/staging/{id}', 'show');
+    });
+
     Route::controller(StationNotesController::class)->group(function () {
         Route::put('/sheetmessage/{id}', 'updateMessage');
         Route::delete('/sheetmessage/{id}', 'destroy');

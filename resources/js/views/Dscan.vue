@@ -310,7 +310,6 @@ let updateScan = async () => {
     },
   }).then((res) => {
     loading = false;
-    console.log(res.data);
 
     store.dScanLocalCorp = res.data.data.corpsTotal;
     store.dScanLocalAlliance = res.data.data.allianceTotal;
