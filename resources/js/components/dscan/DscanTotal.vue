@@ -221,37 +221,76 @@
       </div>
       <!-- /////////////////////////// 3rd Card /////////////////////////// -->
       <div class="col-3">
-        <q-card class="my-card overflow-auto" :style="h">
-          <q-card-section class="q-py-none text-center">
-            {{ titleStructureText }} - {{ structureSystemTotals }}
-            <span v-if="strDff != 0" :class="textColor(strDff)"> ({{ strDff }})</span>
-          </q-card-section>
-          <q-card-section>
-            <q-list bordered dense>
-              <q-item
-                :disable="shipIsDisable(list)"
-                clickable
-                v-for="(list, index) in tableStructure"
-                :key="index"
-              >
-                <div class="row full-width justify-between">
-                  <div class="col-auto">
-                    {{ list.details.name }}
-                  </div>
-                  <div class="col-auto">
-                    {{ itemCount(list) }}
-                    <span
-                      v-if="oldAllShipNumber(list) != 0"
-                      :class="textColor(oldAllShipNumber(list))"
-                    >
-                      ({{ oldAllShipNumber(list) }})</span
-                    >
-                  </div>
-                </div>
-              </q-item>
-            </q-list>
-          </q-card-section>
-        </q-card>
+        <div class="column q-gutter-lg">
+          <div class="col-auto">
+            <q-card class="my-card overflow-auto" :style="h">
+              <q-card-section class="q-py-none text-center">
+                {{ titleStructureText }} - {{ structureSystemTotals }}
+                <span v-if="strDff != 0" :class="textColor(strDff)"> ({{ strDff }})</span>
+              </q-card-section>
+              <q-card-section>
+                <q-list bordered dense>
+                  <q-item
+                    :disable="shipIsDisable(list)"
+                    clickable
+                    v-for="(list, index) in tableStructure"
+                    :key="index"
+                  >
+                    <div class="row full-width justify-between">
+                      <div class="col-auto">
+                        {{ list.details.name }}
+                      </div>
+                      <div class="col-auto">
+                        {{ itemCount(list) }}
+                        <span
+                          v-if="oldAllShipNumber(list) != 0"
+                          :class="textColor(oldAllShipNumber(list))"
+                        >
+                          ({{ oldAllShipNumber(list) }})</span
+                        >
+                      </div>
+                    </div>
+                  </q-item>
+                </q-list>
+              </q-card-section>
+            </q-card>
+          </div>
+          <div class="col-auto">
+            <q-card class="my-card overflow-auto" :style="h">
+              <q-card-section class="q-py-none text-center">
+                {{ titleOtherText }} - {{ otherSystemTotals }}
+                <span v-if="otherDff != 0" :class="textColor(otherDff)">
+                  ({{ otherDff }})</span
+                >
+              </q-card-section>
+              <q-card-section>
+                <q-list bordered dense>
+                  <q-item
+                    :disable="shipIsDisable(list)"
+                    clickable
+                    v-for="(list, index) in tableOthers"
+                    :key="index"
+                  >
+                    <div class="row full-width justify-between">
+                      <div class="col-auto">
+                        {{ list.details.item_name }}
+                      </div>
+                      <div class="col-auto">
+                        {{ itemCount(list) }}
+                        <span
+                          v-if="oldAllShipNumber(list) != 0"
+                          :class="textColor(oldAllShipNumber(list))"
+                        >
+                          ({{ oldAllShipNumber(list) }})</span
+                        >
+                      </div>
+                    </div>
+                  </q-item>
+                </q-list>
+              </q-card-section>
+            </q-card>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -531,6 +570,107 @@ let structureTotals = $computed(() => {
   }
 });
 
+let tableOthers = $computed(() => {
+  if (props.type == 1) {
+    if (store.dScanItemItem) {
+      return store.dScanItemItem.filter(
+        (i) =>
+          i.details.group.category_id != 6 &&
+          i.details.group.category_id != 65 &&
+          i.details.group.category_id != 2 &&
+          i.details.group.category_id != 40 &&
+          i.details.group.category_id != 22
+      );
+    } else {
+      return [];
+    }
+  }
+
+  if (props.type == 2) {
+    if (store.dScanItemItem) {
+      return store.dScanItemItem.filter(
+        (i) =>
+          i.details.group.category_id != 6 &&
+          i.details.group.category_id != 65 &&
+          i.details.group.category_id != 2 &&
+          i.details.group.category_id != 40 &&
+          i.details.group.category_id != 22 &&
+          (i.totalOnGrid > 0 || i.oldTotalOnGrid > 0)
+      );
+    } else {
+      return [];
+    }
+  }
+
+  if (props.type == 3) {
+    if (store.dScanItemItem) {
+      return store.dScanItemItem.filter(
+        (i) =>
+          i.details.group.category_id != 6 &&
+          i.details.group.category_id != 2 &&
+          i.details.group.category_id != 65 &&
+          i.details.group.category_id != 40 &&
+          i.details.group.category_id != 22 &&
+          (i.totalOffGrid > 0 || i.oldTotalOffGrid > 0)
+      );
+    } else {
+      return [];
+    }
+  }
+});
+
+let otherSystemTotals = $computed(() => {
+  if (props.type == 1) {
+    if (tableShips) {
+      return tableOthers.reduce((acc, item) => acc + item.totalInSystem, 0);
+    } else {
+      return 0;
+    }
+  }
+
+  if (props.type == 2) {
+    if (tableOthers) {
+      return tableOthers.reduce((acc, item) => acc + item.totalOnGrid, 0);
+    } else {
+      return 0;
+    }
+  }
+
+  if (props.type == 3) {
+    if (tableOthers) {
+      return tableOthers.reduce((acc, item) => acc + item.totalOffGrid, 0);
+    } else {
+      return 0;
+    }
+  }
+});
+
+let otherTotals = $computed(() => {
+  if (props.type == 1) {
+    if (tableOthers) {
+      return tableOthers.reduce((acc, item) => acc + item.total, 0);
+    } else {
+      return 0;
+    }
+  }
+
+  if (props.type == 2) {
+    if (tableOthers) {
+      return tableOthers.reduce((acc, item) => acc + item.totalOnGrid, 0);
+    } else {
+      return 0;
+    }
+  }
+
+  if (props.type == 3) {
+    if (tableOthers) {
+      return tableOthers.reduce((acc, item) => acc + item.totalOffGrid, 0);
+    } else {
+      return 0;
+    }
+  }
+});
+
 let shipIsDisable = (list) => {
   if (props.type == 1) {
     return list.totalInSystem ? false : true;
@@ -560,6 +700,13 @@ let catDff = $computed(() => {
 let strDff = $computed(() => {
   var totalStructureInSystem = structureSystemTotals;
   var totalStructure = structureTotals;
+  var diff = totalStructureInSystem - totalStructure;
+  return diff;
+});
+
+let otherDff = $computed(() => {
+  var totalStructureInSystem = otherSystemTotals;
+  var totalStructure = otherTotals;
   var diff = totalStructureInSystem - totalStructure;
   return diff;
 });
@@ -619,6 +766,20 @@ let titleStructureText = $computed(() => {
 
   if (props.type == 3) {
     return "Structures Off Grid";
+  }
+});
+
+let titleOtherText = $computed(() => {
+  if (props.type == 1) {
+    return "All Others";
+  }
+
+  if (props.type == 2) {
+    return "Others On Grid";
+  }
+
+  if (props.type == 3) {
+    return "Others Off Grid";
   }
 });
 
