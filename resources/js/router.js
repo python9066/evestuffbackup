@@ -70,7 +70,7 @@ const routes = [{
     name: "staging",
     component: () => import("./views/StagingSystems.vue"),
     beforeEnter(to, from, next) {
-        if (can("super")) {
+        if (can("view_staging_page")) {
             next();
         } else {
             next("/");
