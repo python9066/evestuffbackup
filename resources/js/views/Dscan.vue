@@ -3,7 +3,7 @@
     <div class="row q-gutter-lg">
       <div class="col-9" v-if="show">
         <q-tabs dense="" v-model="tab" class="text-teal">
-          <q-tab v-if="store.dScan.locals" name="local" label="Local" />
+          <q-tab v-if="showLocalTab" name="local" label="Local" />
           <q-tab name="total" label="Total" />
           <q-tab name="onGrid" label="On Grid" />
           <q-tab name="offGrid" label="Off Grid" />
@@ -89,20 +89,21 @@
             </q-card>
           </div>
           <div class="col-auto" v-if="store.dScanHistory.length || store.dScanIsHistory">
-            <q-card class="my-card myRoundTop">
-              <q-card-section>
-                <q-list bordered dense>
+            <q-card class="my-card myRoundTop overflow-auto" :style="hh">
+              <q-card-section class="q-px-none">
+                <q-list dense>
                   <q-item clickable v-if="store.dScanIsHistory" @click="clickLive()">
                     Live
                   </q-item>
                   <q-item
+                    class="myListNoPadding"
                     clickable
-                    @click="clickHistory(list.link)"
+                    @click="clickHistory(list)"
                     :active="isHistoryActive(list.link)"
                     v-for="(list, index) in store.dScanHistory"
                     :key="index"
                   >
-                    {{ fixTime(list.created_at) }}
+                    <DscanHistoryList :list="list" />
                   </q-item>
                 </q-list>
               </q-card-section>
@@ -111,11 +112,33 @@
         </div>
       </div>
     </div>
+    <q-dialog v-model="showESIError" persistent>
+      <q-card class="myRoundTop">
+        <q-card-section class="myCardHeader bg-warning text-center text-h5">
+          Somthing went wrong
+        </q-card-section>
+        <q-card-section class="row items-center">
+          <span class="q-ml-sm"
+            >There was a error with the EVE ESI while trying add the local scan. You may
+            need to enter the scan again</span
+          >
+        </q-card-section>
+        <q-card-actions align="right">
+          <q-btn rounded label="close" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
 <script setup>
-import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import {
+  onMounted,
+  onBeforeUnmount,
+  defineAsyncComponent,
+  inject,
+  onBeforeMount,
+} from "vue";
 import { useQuasar, copyToClipboard } from "quasar";
 import { useRoute, useRouter } from "vue-router";
 import { useMainStore } from "@/store/useMain.js";
@@ -126,6 +149,10 @@ const DscanTotal = defineAsyncComponent(() =>
 
 const DscanLocal = defineAsyncComponent(() =>
   import("@/components/dscan/DscanLocal.vue")
+);
+
+const DscanHistoryList = defineAsyncComponent(() =>
+  import("@/components/dscan/DscanHistoryList.vue")
 );
 
 const VueCountUp = defineAsyncComponent(() => import("@/components/countup/index"));
@@ -140,18 +167,19 @@ let scanLink = $ref(null);
 let dScanText = $ref(null);
 let loading = $ref(false);
 let tab = $ref("total");
+let showESIError = $ref(false);
 
-onMounted(async () => {
-  document.title = "Evestuff - Operations";
-  scanLink = route.params.link ? route.params.link : null;
+onBeforeMount(() => {}),
+  onMounted(async () => {
+    document.title = "Evestuff - Dscan";
+    scanLink = route.params.link ? route.params.link : null;
+    Echo.private("dscanall").listen("DscanAllUpdate", (e) => {
+      if (e.flag.flag == 1) {
+      }
+    });
 
-  Echo.private("dscanall").listen("DscanAllUpdate", (e) => {
-    if (e.flag.flag == 1) {
-    }
+    await checkDscan();
   });
-
-  await checkDscan();
-});
 
 onBeforeUnmount(() => {
   Echo.leave("dscansolo." + scanLink);
@@ -164,12 +192,13 @@ let checkDscan = async () => {
     if (!store.dScanIsHistory) {
       Echo.private("dscansolo." + scanLink).listen("dScanSoloUpdate", (e) => {
         if (e.flag.flag == 1) {
-          //update items
+          showESIError = true;
         }
 
         if (e.flag.flag == 2) {
           store.dScanLocalCorp = e.flag.message.corpsTotal;
           store.dScanLocalAlliance = e.flag.message.allianceTotal;
+          store.dScanLocalAffiliation = e.flag.message.affiliationTotal;
           store.updateLocalDscan(e.flag.message.soloLocal);
         }
 
@@ -202,6 +231,10 @@ let checkDscan = async () => {
         if (e.flag.flag == 10) {
           store.dScanLocalAffiliation = e.flag.message;
         }
+
+        if (e.flag.flag == 11) {
+          router.push({ path: `/dscanisnomore` });
+        }
       });
     }
   }
@@ -209,6 +242,7 @@ let checkDscan = async () => {
 
 let show = $computed(() => {
   return store.dScan ? true : false;
+  //   return true;
 });
 
 let systemName = $computed(() => {
@@ -243,7 +277,7 @@ let subScan = async () => {
     },
   }).then((res) => {
     loading = false;
-    router.push({ path: `/dscan/${res.data.link}` });
+    router.push({ path: `/dscan/${res.data.link}/` });
   });
 };
 
@@ -296,32 +330,16 @@ let colClass = $computed(() => {
   return scanLink ? "full-height justify-between" : "q-gutter-lg full-height justify-end";
 });
 
-const fixTime = (utcDateString) => {
-  const utcDate = new Date(utcDateString);
-  const options = {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
-    timeZone: "UTC",
-  };
-  const localDateString = utcDate.toLocaleString("en-US", options).replace(",", "");
-  return localDateString;
-};
-
 let isHistoryActive = (link) => {
   return link == scanLink ? true : false;
 };
 
-let clickHistory = (link) => {
-  router.push({ path: `/dscan/${link}` });
+let clickHistory = (list) => {
+  router.push({ path: `/dscan/${list.link}/${checkTab(list)}` });
 };
 
 let clickLive = () => {
-  router.push({ path: `/dscan/${store.dScanLiveLink}` });
+  router.push({ path: `/dscan/${store.dScanLiveLink}/${tab}` });
 };
 
 let h = $computed(() => {
@@ -330,6 +348,41 @@ let h = $computed(() => {
 
   let size = window - mins + "px";
   return "height:" + size;
+});
+
+let showLocalTab = $computed(() => {
+  return store.dScan && store.dScan.locals && store.dScan.locals.length > 0;
+  //   return store.dScan.locals && store.dScan.locals.length > 0 ? true : false;
+});
+
+let checkTab = (list) => {
+  if (tab == "local") {
+    let total = 0;
+    if (!list.corpsTotal || Object.values(list.corpsTotal).length == 0) {
+      total = 0;
+    } else {
+      Object.values(list.corpsTotal).forEach((corp) => {
+        total += corp.totalInSystem;
+      });
+    }
+
+    if (total > 0) {
+      return "local";
+    } else {
+      return "total";
+    }
+    return "total";
+  }
+
+  return tab;
+};
+
+let hh = $computed(() => {
+  let mins = 500;
+  let window = store.size.height;
+
+  let size = window - mins + "px";
+  return "max-height:" + size;
 });
 </script>
 

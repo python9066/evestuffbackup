@@ -51,8 +51,8 @@ const routes = [{
 
 
 {
-    path: "/dscan/:link",
-    alias: '/dscan',
+    path: "/dscan/:link/:tab",
+    alias: ['/dscan', '/dscan/:link'],
     name: "dscan",
     component: () => import("./views/Dscan.vue"),
     beforeEnter(to, from, next) {
@@ -233,6 +233,13 @@ const routes = [{
             next("/");
         }
     },
+},
+
+{
+    path: "/dscanisnomore",
+    name: "dscanredirect",
+    component: () => import("./views/redirect/dscanremoved.vue"),
+
 },
 
 {

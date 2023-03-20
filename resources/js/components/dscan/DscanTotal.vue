@@ -2,6 +2,7 @@
   <div>
     <div class="row justify-around">
       <div class="col-4">
+        <!-- /////////////////////////// 1st Card /////////////////////////// -->
         <q-card class="my-card">
           <q-card-section class="q-py-none text-center">
             {{ titleShipText }} - {{ shipSystemTotals }}
@@ -32,7 +33,7 @@
                       {{ list.details.item_name }}
                     </div>
                     <div class="col-auto" :key="`${list.id}-shipList-total`">
-                      {{ list.totalInSystem }}
+                      {{ itemCount(list) }}
                       <span
                         :key="`${list.id}-shipList-oldTotal`"
                         v-if="oldAllShipNumber(list) != 0"
@@ -48,6 +49,7 @@
           </q-card-section>
         </q-card>
       </div>
+      <!-- /////////////////////////// 2nd Card /////////////////////////// -->
       <div class="col-4">
         <q-card class="my-card overflow-auto" :style="h">
           <q-card-section class="q-py-none text-center">
@@ -203,7 +205,7 @@
                     {{ list.details.name }}
                   </div>
                   <div class="col-auto">
-                    {{ list.totalInSystem }}
+                    {{ itemCount(list) }}
                     <span
                       v-if="oldAllShipNumber(list) != 0"
                       :class="textColor(oldAllShipNumber(list))"
@@ -217,10 +219,11 @@
           </q-card-section>
         </q-card>
       </div>
+      <!-- /////////////////////////// 3rd Card /////////////////////////// -->
       <div class="col-3">
         <q-card class="my-card overflow-auto" :style="h">
           <q-card-section class="q-py-none text-center">
-            All Structures - {{ structureSystemTotals }}
+            {{ titleStructureText }} - {{ structureSystemTotals }}
             <span v-if="strDff != 0" :class="textColor(strDff)"> ({{ strDff }})</span>
           </q-card-section>
           <q-card-section>
@@ -233,13 +236,10 @@
               >
                 <div class="row full-width justify-between">
                   <div class="col-auto">
-                    <q-avatar size="32px"></q-avatar>
-                  </div>
-                  <div class="col-auto">
                     {{ list.details.name }}
                   </div>
                   <div class="col-auto">
-                    {{ list.totalInSystem }}
+                    {{ itemCount(list) }}
                     <span
                       v-if="oldAllShipNumber(list) != 0"
                       :class="textColor(oldAllShipNumber(list))"
@@ -439,7 +439,12 @@ let groupTotals = $computed(() => {
 let tableStructure = $computed(() => {
   if (props.type == 1) {
     if (store.dScanItemGroup) {
-      return store.dScanItemGroup.filter((i) => i.details.category_id == 65);
+      return store.dScanItemGroup.filter(
+        (i) =>
+          i.details.category_id == 65 ||
+          i.details.category_id == 40 ||
+          i.details.category_id == 22
+      );
     } else {
       return [];
     }
@@ -448,7 +453,11 @@ let tableStructure = $computed(() => {
   if (props.type == 2) {
     if (store.dScanItemGroup) {
       return store.dScanItemGroup.filter(
-        (i) => i.details.category_id == 65 && (i.totalOnGrid > 0 || i.oldTotalOnGrid > 0)
+        (i) =>
+          (i.details.category_id == 65 ||
+            i.details.category_id == 40 ||
+            i.details.category_id == 22) &&
+          (i.totalOnGrid > 0 || i.oldTotalOnGrid > 0)
       );
     } else {
       return [];
@@ -459,7 +468,10 @@ let tableStructure = $computed(() => {
     if (store.dScanItemGroup) {
       return store.dScanItemGroup.filter(
         (i) =>
-          i.details.category_id == 65 && (i.totalOffGrid > 0 || i.oldTotalOffGrid > 0)
+          (i.details.category_id == 65 ||
+            i.details.category_id == 40 ||
+            i.details.category_id == 22) &&
+          (i.totalOffGrid > 0 || i.oldTotalOffGrid > 0)
       );
     } else {
       return [];
@@ -595,6 +607,34 @@ let titleCombatText = $computed(() => {
     return "Combat Off Grid";
   }
 });
+
+let titleStructureText = $computed(() => {
+  if (props.type == 1) {
+    return "All Structures";
+  }
+
+  if (props.type == 2) {
+    return "Structures On Grid";
+  }
+
+  if (props.type == 3) {
+    return "Structures Off Grid";
+  }
+});
+
+let itemCount = (list) => {
+  if (props.type == 1) {
+    return list.totalInSystem;
+  }
+
+  if (props.type == 2) {
+    return list.totalOnGrid;
+  }
+
+  if (props.type == 3) {
+    return list.totalOffGrid;
+  }
+};
 
 let h = $computed(() => {
   let mins = 110;

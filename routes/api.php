@@ -149,6 +149,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/dscan/{link}', 'checkInputUpdate');
         Route::get('/dscan/{link}', 'show');
         Route::get('/dscan', 'dscanPullAll');
+        Route::post('/dscan/localupdate/{link}', 'updateLocalNamePull');
     });
 
     Route::controller(RcSheetController::class)->group(function () {

@@ -53,9 +53,9 @@ if (!function_exists('getDscanInfo')) {
                 'system.constellation',
                 'updatedBy:id,name',
                 'madeby:id,name',
-                'items.item.group.category',
+                // 'items.item.group.category',
                 'locals.corp.alliance.affiliation',
-                'history:dscan_id,link,history_count,created_at'
+                'history:dscan_id,link,history_count,created_at,corpsTotalNumber,alliancesTotalNumber,affiliationsTotalNumber,itemTotalsNumber,groupTotalsNumber,categoryTotalsNumber'
             ])
             ->first();
 
@@ -83,7 +83,7 @@ if (!function_exists('getDscanLocalInfo')) {
                 'system.constellation',
                 'updatedBy:id,name',
                 'madeby:id,name',
-                'items.item.group',
+                // 'items.item.group',
                 'locals.corp.alliance.affiliation'
             ])
             ->first();
@@ -113,12 +113,42 @@ if (!function_exists('getDscanLocalInfo')) {
 if (!function_exists('makeDscanHistoy')) {
     function makeDscanHistoy($link)
     {
-        $dscan = Dscan::whereLink($link)
+        $dscan = Dscan::whereLink($link)->with([
+            'system:id,region_id,constellation_id,system_name',
+            'system.region',
+            'system.constellation',
+            'updatedBy:id,name',
+            'madeby:id,name',
+            // 'items.item.group',
+            'locals.corp.alliance.affiliation'
+        ])
             ->first();
+
+        $filtered = collect($dscan->corpTotal);
+        $corpTotalNum = $filtered->sum('totalInSystem');
+
+        $filtered = collect($dscan->allianceTotal);
+        $allianceTotalNum = $filtered->sum('totalInSystem');
+
+        $filtered = collect($dscan->affiliationsTotal);
+        $affiliationTotalNum = $filtered->sum('totalInSystem');
+
+        $filtered = collect($dscan->itemsTotals)->where('details.group.category.id', 6);
+        $itemsTotalsNum = $filtered->sum('totalInSystem');
+
+        $filtered = collect($dscan->categoryTotals)->whereIn('details.id', [65, 40, 22]);
+        $categoryTotalsNum = $filtered->sum('totalInSystem');
+
 
         $count = DscanHistory::where('dscan_id', $dscan->id)->count() + 1;
         $newHistory = new DscanHistory();
         $newHistory->dscan_id = $dscan->id;
+        $newHistory->corpsTotalNumber = $corpTotalNum;
+        $newHistory->alliancesTotalNumber = $allianceTotalNum;
+        $newHistory->affiliationsTotalNumber = $affiliationTotalNum;
+        $newHistory->itemTotalsNumber = $itemsTotalsNum;
+        $newHistory->groupTotalsNumber = $itemsTotalsNum;
+        $newHistory->categoryTotalsNumber = $categoryTotalsNum;
         $newHistory->user_id = $dscan->user_id;
         $newHistory->system_id = $dscan->system_id ?? null;
         $newHistory->link = str::uuid();
@@ -142,7 +172,19 @@ if (!function_exists('loadDscanHistory')) {
         $dscan = DscanHistory::where('link', $link)->first();
         $allHistory = DscanHistory::where('dscan_id', $dscan->dscan_id)
             ->orderBy('history_count', 'desc')
-            ->select(['id', 'link', 'created_at'])->get();
+            ->select([
+                'id',
+                'link',
+                'created_at',
+                'corpsTotalNumber',
+                'alliancesTotalNumber',
+                'affiliationsTotalNumber',
+                'itemTotalsNumber',
+                'groupTotalsNumber',
+                'categoryTotalsNumber'
+            ])->get();
+
+
 
         $liveDscan = Dscan::where('id', $dscan->dscan_id)->pluck('link')->first();
 
@@ -350,7 +392,14 @@ if (!function_exists('workOutItemNumbers')) {
         $categoryTotals = [];
 
 
-        $dscanHistory = DscanHistory::where('dscan_id', $dscanID)->latest()->first();
+        $dscanHistory = DscanHistory::where('dscan_id', $dscanID)
+            ->select(
+                'itemTotals',
+                'groupTotals',
+                'categoryTotals'
+            )
+            ->latest()
+            ->first();
         if ($dscanHistory) {
             $oldItemTotals = collect($dscanHistory->itemTotals);
             $oldGroupTotals = collect($dscanHistory->groupTotals);

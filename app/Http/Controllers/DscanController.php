@@ -17,6 +17,7 @@ use Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Termwind\Components\Dd;
 
 class DscanController extends Controller
 {
@@ -190,9 +191,17 @@ class DscanController extends Controller
                 ->post('https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en');
             if ($response->successful()) {
                 $responses[] = $response->json();
+            } else {
+
+                $flag = collect([
+                    'id' => $newDscan->link,
+                    'flag' => 1,
+                ]);
+                broadcast(new dScanSoloUpdate($flag))->toOthers();
             }
         }
         foreach ($responses as $response) {
+            // dd($response, $newNamesChunks);
             $chars = $response['characters'];
 
             foreach ($chars as $char) {
@@ -229,7 +238,7 @@ class DscanController extends Controller
                 ])->post($webwayURL, $dScanCharIdsSend);
 
             $info =  $res->json();
-            if ($info['status']) {
+            if ($info['status'] == "true") {
                 $newDscan->system_id = $info['system_id'];
                 $newDscan->addedBySystem = false;
                 $newDscan->save();
@@ -310,13 +319,19 @@ class DscanController extends Controller
 
             if ($response->successful()) {
                 $responses[] = $response->json();
+            } else {
+                $flag = collect([
+                    'id' => $dScan->link,
+                    'flag' => 1,
+                ]);
+                broadcast(new dScanSoloUpdate($flag))->toOthers();
             }
         }
         foreach ($responses as $response) {
             $chars = $response['characters'];
 
             foreach ($chars as $char) {
-                $newChar = new Character();
+                $newChar = Character::whereId($char['id'])->first() ?? new Character();
                 $newChar->id = $char['id'];
                 $newChar->name = $char['name'];
                 $newChar->save();
@@ -347,7 +362,7 @@ class DscanController extends Controller
                 ])->post($webwayURL, $dScanCharIdsSend);
 
             $info =  $res->json();
-            if ($info['status']) {
+            if ($info['status'] == "true") {
                 $dScan->system_id = $info['system_id'];
                 $dScan->addedBySystem = false;
                 $dScan->save();
@@ -370,23 +385,30 @@ class DscanController extends Controller
         $newDscan->link = Str::uuid();
         $newDscan->save();
 
-        $rows = explode("\n", $dscan_results);
+        $lines  = explode("\n", $dscan_results);
+        $data = array();
+        foreach ($lines as $line) {
+            $data[] = explode("\t", $line);
+        }
 
-        foreach ($rows as $row) {
+        foreach ($data as $row) {
             $on = false;
-            $columns = explode("\t", $row);
+            $distance_parts = explode(" ", $row[3]);
+            $row[3] = str_replace(',', '', $distance_parts[0]);
+            if (count($distance_parts) == 2) {
+                $row[] = $distance_parts[1];
+            } else {
+                $row[] = 'AU';
+                if (empty($row[3]) || $row[3] == "-") {
+                    $row[3] = 1;
+                }
+            }
             $newDscanItem = new DscanItem();
             $newDscanItem->dscan_id = $newDscan->id;
-            $newDscanItem->item_id = $columns[0];
-            $newDscanItem->name = $columns[1];
-            $components = explode(" ", $columns[3]);
-            if (count($components) > 1) {
-                $newDscanItem->distance_value = $components[0]; // "9.1";
-                $newDscanItem->distance_unit = $components[1];
-            } else {
-                $newDscanItem->distance_value = 1; // "9.1";
-                $newDscanItem->distance_unit = "au";
-            }
+            $newDscanItem->distance_value = $row[3];
+            $newDscanItem->distance_unit = $row[4];
+            $newDscanItem->item_id = $row[0];
+            $newDscanItem->name = $row[1];
             if ($newDscanItem->distance_unit == "km" && $newDscanItem->distance_value <= 8000) {
                 $on = true;
             }
@@ -397,12 +419,12 @@ class DscanController extends Controller
             $newDscanItem->on_grid = $on;
             $newDscanItem->new = true;
             $newDscanItem->save();
-            $item = Item::whereId($columns[0])->first();
+            $item = Item::whereId($row[0])->first();
             $group = Group::whereId($item->group_id)->first();
             if (!$newDscan->system_id || !$newDscan->addedBySystem) {
                 $groupName = $item->group->name;
                 if ($groupName == "Sun") {
-                    $systemName = explode(" - ", $columns[1])[0];
+                    $systemName = explode(" - ", $row[1])[0];
                     $system = System::where('system_name', $systemName)->first();
                     $newDscan->system_id = $system->id;
                     $newDscan->addedBySystem = true;
@@ -416,7 +438,7 @@ class DscanController extends Controller
                     $group->id == 1404 ||
                     $group->id == 15
                 ) {
-                    $systemName = explode(" - ", $columns[1])[0];
+                    $systemName = explode(" - ", $row[1])[0];
                     $system = System::where('system_name', $systemName)->first();
                     $newDscan->system_id = $system->id;
                     $newDscan->addedBySystem = true;
@@ -442,27 +464,35 @@ class DscanController extends Controller
 
 
 
-        $rows = explode("\n", $dscan_results);
+        $lines  = explode("\n", $dscan_results);
+        $data = array();
+        foreach ($lines as $line) {
+            $data[] = explode("\t", $line);
+        }
 
 
         DscanItem::where('dscan_id', $dScan->id)->update(['updated' => false]);
 
-        foreach ($rows as $row) {
+        foreach ($data as $row) {
             $on = false;
-            $columns = explode("\t", $row);
-            $dScanItem = DscanItem::where('dscan_id', $dScan->id)->where('item_id', $columns[0])->where('updated', false)->first();
+            $distance_parts = explode(" ", $row[3]);
+            $row[3] = str_replace(',', '', $distance_parts[0]);
+            if (count($distance_parts) == 2) {
+                $row[] = $distance_parts[1];
+            } else {
+                $row[] = 'AU';
+                if (empty($row[3]) || $row[3] == "-") {
+                    $row[3] = 1;
+                }
+            }
+
+            $dScanItem = DscanItem::where('dscan_id', $dScan->id)->where('item_id', $row[0])->where('updated', false)->first();
             if ($dScanItem) {
                 $dScanItem->updated = true;
                 $dScanItem->new = false;
                 $dScanItem->same = true;
-                $components = explode(" ", $columns[3]);
-                if (count($components) > 1) {
-                    $dScanItem->distance_value = $components[0]; // "9.1";
-                    $dScanItem->distance_unit = $components[1];
-                } else {
-                    $dScanItem->distance_value = 1; // "9.1";
-                    $dScanItem->distance_unit = "au";
-                }
+                $dScanItem->distance_value = $row[3];
+                $dScanItem->distance_unit = $row[4];
 
                 if ($dScanItem->distance_unit == "km" && $dScanItem->distance_value <= 8000) {
                     $on = true;
@@ -473,22 +503,16 @@ class DscanController extends Controller
                 }
                 $dScanItem->on_grid = $on;
                 $dScanItem->save();
-                $item = Item::whereId($columns[0])->first();
+                $item = Item::whereId($row[0])->first();
                 $group = Group::whereId($item->group_id)->first();
             } else {
                 $newDscanItem = new DscanItem();
                 $newDscanItem->dscan_id = $dScan->id;
-                $newDscanItem->item_id = $columns[0];
-                $newDscanItem->name = $columns[1];
+                $newDscanItem->item_id = $row[0];
+                $newDscanItem->distance_value = $row[3];
+                $newDscanItem->distance_unit = $row[4];
+                $newDscanItem->name = $row[1];
                 $newDscanItem->updated = true;
-                $components = explode(" ", $columns[3]);
-                if (count($components) > 1) {
-                    $newDscanItem->distance_value = $components[0]; // "9.1";
-                    $newDscanItem->distance_unit = $components[1];
-                } else {
-                    $newDscanItem->distance_value = 1; // "9.1";
-                    $newDscanItem->distance_unit = "au";
-                }
                 if ($newDscanItem->distance_unit == "km" && $newDscanItem->distance_value <= 8000) {
                     $on = true;
                 }
@@ -501,12 +525,12 @@ class DscanController extends Controller
                 $newDscanItem->save();
             }
 
-            $item = Item::whereId($columns[0])->first();
+            $item = Item::whereId($row[0])->first();
             $group = Group::whereId($item->group_id)->first();
             if (!$dScan->system_id || !$dScan->addedBySystem) {
                 $groupName = $item->group->name;
                 if ($groupName == "Sun") {
-                    $systemName = explode(" - ", $columns[1])[0];
+                    $systemName = explode(" - ", $row[1])[0];
                     $system = System::where('system_name', $systemName)->first();
                     $dScan->system_id = $system->id;
                     $dScan->addedBySystem = true;
@@ -520,7 +544,7 @@ class DscanController extends Controller
                     $group->id == 1404 ||
                     $group->id == 15
                 ) {
-                    $systemName = explode(" - ", $columns[1])[0];
+                    $systemName = explode(" - ", $row[1])[0];
                     $system = System::where('system_name', $systemName)->first();
                     $dScan->system_id = $system->id;
                     $dScan->addedBySystem = true;
@@ -554,7 +578,15 @@ class DscanController extends Controller
     }
 
 
-
+    public function updateLocalNamePull($linkID)
+    {
+        $dScan = Dscan::whereLink($linkID)->first();
+        $dScanCharIDs = DscanLocal::where('dscan_id', $dScan->id)->pluck('character_id');
+        $charIDs = Character::whereIn('id', $dScanCharIDs)->whereNull('corp_id')->pluck('id');
+        foreach ($charIDs as $charID) {
+            getLocalNamesJob::dispatch($charID)->onQueue('alliance');
+        }
+    }
 
 
 
