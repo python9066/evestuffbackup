@@ -25,7 +25,12 @@
         <div :class="colClass" class="column">
           <div class="col-auto" v-if="scanLink">
             <q-card class="my-card">
-              <div class="col text-h6">System: {{ systemName }}</div>
+              <div class="col">
+                <div class="row justify-between items-center">
+                  <div class="col-auto text-h6">System: {{ systemName }}</div>
+                  <div class="col-2"><DscanMessage /></div>
+                </div>
+              </div>
               <div class="col text-h6">Created By: {{ createdBy }}</div>
               <div class="col text-h6">Edited By: {{ updatedBy }}</div>
               <div class="col text-h6">
@@ -155,6 +160,10 @@ const DscanHistoryList = defineAsyncComponent(() =>
   import("@/components/dscan/DscanHistoryList.vue")
 );
 
+const DscanMessage = defineAsyncComponent(() =>
+  import("@/components/dscan/DscanMessage.vue")
+);
+
 const VueCountUp = defineAsyncComponent(() => import("@/components/countup/index"));
 
 let store = useMainStore();
@@ -234,6 +243,10 @@ let checkDscan = async () => {
 
         if (e.flag.flag == 11) {
           router.push({ path: `/dscanisnomore` });
+        }
+
+        if (e.flag.flag == 12) {
+          store.dScanMessages = e.flag.message;
         }
       });
     }
