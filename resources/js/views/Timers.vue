@@ -200,9 +200,7 @@ onMounted(async () => {
 });
 onBeforeUnmount(async () => {});
 
-let abortFilterFn = () => {
-  // console.log('delayed filter aborted')
-};
+let abortFilterFn = () => {};
 
 let regionPickText = $ref();
 let regionPicked = $ref([]);

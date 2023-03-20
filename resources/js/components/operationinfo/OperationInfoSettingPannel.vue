@@ -206,9 +206,7 @@ let open = () => {
   );
 };
 
-let abortFilterFn = () => {
-  // console.log('delayed filter aborted')
-};
+let abortFilterFn = () => {};
 
 let submit = () => {
   let opID = null;

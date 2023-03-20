@@ -123,7 +123,7 @@ const StagingDscan = defineAsyncComponent(() =>
 );
 
 const SoloCampaginWebWay = defineAsyncComponent(() =>
-  import("@/components/staging/SoloCampaginWebWay.vue")
+  import("@/components/operations/SoloCampaginWebWay.vue")
 );
 
 let pagination = $ref({

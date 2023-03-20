@@ -91,9 +91,7 @@ let done = async () => {
   });
 };
 
-let abortFilterFn = () => {
-  // console.log('delayed filter aborted')
-};
+let abortFilterFn = () => {};
 </script>
 
 <style lang="scss"></style>

@@ -1504,7 +1504,6 @@ export const useMainStore = defineStore("main", {
                     "Content-Type": "application/json",
                 },
             });
-            console.log(res.data)
             this.stagingSystems = res.data;
 
         },

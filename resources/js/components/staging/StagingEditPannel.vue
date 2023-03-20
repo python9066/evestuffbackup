@@ -110,6 +110,8 @@ let submit = async () => {
     }).then((response) => {});
   }
 };
+
+let abortFilterFn = () => {};
 let systemsToUpdate = $ref([]);
 let systemFindText = $ref();
 

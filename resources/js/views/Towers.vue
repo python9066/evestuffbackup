@@ -716,9 +716,7 @@ let filterFnTypeFinish = (val, update, abort) => {
     typeText = val.toLowerCase();
   });
 };
-let abortFilterFn = () => {
-  // console.log('delayed filter aborted')
-};
+let abortFilterFn = () => {};
 
 let columns = $ref([
   {

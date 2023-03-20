@@ -493,9 +493,7 @@ let updateWebwaySystem = (id) => {
   });
 };
 
-let abortFilterFn = () => {
-  // console.log('delayed filter aborted')
-};
+let abortFilterFn = () => {};
 
 let region_id = $ref([]);
 let regionText = $ref();

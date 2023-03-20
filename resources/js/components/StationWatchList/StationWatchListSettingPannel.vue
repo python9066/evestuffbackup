@@ -127,9 +127,7 @@ let pickedRegionStart = (val, update, abort) => {
   });
 };
 
-let abortFilterFn = () => {
-  // console.log('delayed filter aborted')
-};
+let abortFilterFn = () => {};
 
 let submit = async () => {
   var request = {

@@ -306,7 +306,6 @@ let open = async () => {
 
 let convertTimeBack = () => {
   const outputString = props.station.out_time.replace(/-/g, ".");
-  //   console.log(outputString);
   return outputString;
 };
 

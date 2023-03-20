@@ -90,6 +90,13 @@
                   :loading="loading"
                   @click="updateScan()"
                 />
+                <q-btn
+                  v-if="store.dScanHistory.length || store.dScanIsHistory"
+                  color="accent"
+                  rounded
+                  label="Share"
+                  @click="clickShare"
+                />
               </q-card-actions>
             </q-card>
           </div>
@@ -366,6 +373,16 @@ let showLocalTab = $computed(() => {
   return store.dScan && store.dScan.locals && store.dScan.locals.length > 0;
   //   return store.dScan.locals && store.dScan.locals.length > 0 ? true : false;
 });
+
+let clickShare = () => {
+  let text = "https://evestuff.apps.gnf.lt" + route.path;
+  copyToClipboard(text).then(() => {
+    $q.notify({
+      type: "info",
+      message: text + " copied to your clipboard",
+    });
+  });
+};
 
 let checkTab = (list) => {
   if (tab == "local") {

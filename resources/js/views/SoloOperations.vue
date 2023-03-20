@@ -418,9 +418,7 @@ onBeforeUnmount(async () => {
 
 document.title = "Evestuff - Operations";
 
-let abortFilterFn = () => {
-  // console.log('delayed filter aborted')
-};
+let abortFilterFn = () => {};
 
 let region_id = $ref(null);
 let regionText = $ref();
