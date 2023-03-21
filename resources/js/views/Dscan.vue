@@ -40,26 +40,15 @@
                   :emit-events="false"
                   :time="countUpTimeMil(age)"
                   :interval="1000"
-                  v-slot="{ hours, minutes, seconds, days }"
+                  v-slot="{ hours, minutes, seconds }"
                 >
-                  <span v-if="hours <= 1 && days == 0" class="text-red">
-                    <q-chip
-                      class=""
-                      filter
-                      pill
-                      clickable
-                      color="primary"
-                      text-color="white"
-                    >
-                      <span v-if="hours == 1">
-                        {{ hours }}:{{ minutes }}:{{ seconds }}
-                      </span>
-                      <span v-else> {{ minutes }}:{{ seconds }} </span>
-                    </q-chip>
-                  </span>
-                  <span v-else class="text-red"
-                    ><span>{{ days }}:{{ hours }}:{{ minutes }}:{{ seconds }}</span></span
+                  <span class="text-red" v-if="hours >= 1"
+                    >{{ hours }}:{{ minutes }}:{{ seconds }}</span
                   >
+                  <span class="text-red" v-else-if="minutes >= 20"
+                    >{{ minutes }}:{{ seconds }}</span
+                  >
+                  <span v-else class="text-primary">{{ minutes }}:{{ seconds }}</span>
                 </VueCountUp>
               </div>
             </q-card>

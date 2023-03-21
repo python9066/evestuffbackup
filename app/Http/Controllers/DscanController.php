@@ -195,7 +195,7 @@ class DscanController extends Controller
                     'id' => $newDscan->link,
                     'flag' => 1,
                 ]);
-                broadcast(new dScanSoloUpdate($flag))->toOthers();
+                broadcast(new dScanSoloUpdate($flag));
             }
         }
         foreach ($responses as $response) {
