@@ -175,27 +175,40 @@ class DscanController extends Controller
         }
 
 
-        $newNamesChunks = array_chunk($newNames, 500);
+        $newNamesChunks = array_chunk($newNames, 400);
 
         $responses = [];
 
         foreach ($newNamesChunks as $chunk) {
-            $response = Http::withHeaders([
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-                'User-Agent' => 'evestuff.online python9066@gmail.com',
-            ])
-                ->withBody(json_encode($chunk), 'application/json')
-                ->post('https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en');
-            if ($response->successful()) {
-                $responses[] = $response->json();
-            } else {
+            $done = 0;
+            $passed = false;
 
+            do {
+                $response = Http::withHeaders([
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
+                ])
+                    ->withBody(json_encode($chunk), 'application/json')
+                    ->post('https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en');
+
+                if ($response->successful()) {
+                    $done = 3;
+                    $passed = true;
+                    $responses[] = $response->json();
+                } else {
+                    $headers = $response->headers();
+                    $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
+                    sleep($sleep);
+                    $done++;
+                }
+            } while ($done != 3);
+            if (!$passed) {
                 $flag = collect([
                     'id' => $newDscan->link,
                     'flag' => 1,
                 ]);
-                broadcast(new dScanSoloUpdate($flag));
+                broadcast(new dScanSoloUpdate($flag))->toOthers();
             }
         }
         foreach ($responses as $response) {
@@ -316,22 +329,35 @@ class DscanController extends Controller
 
 
 
-        $newNamesChunks = array_chunk($newNames, 500);
+        $newNamesChunks = array_chunk($newNames, 400);
 
         $responses = [];
 
         foreach ($newNamesChunks as $chunk) {
-            $response = Http::withHeaders([
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-                'User-Agent' => 'evestuff.online python9066@gmail.com',
-            ])
-                ->withBody(json_encode($chunk), 'application/json')
-                ->post('https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en');
+            $done = 0;
+            $passed = false;
 
-            if ($response->successful()) {
-                $responses[] = $response->json();
-            } else {
+            do {
+                $response = Http::withHeaders([
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
+                ])
+                    ->withBody(json_encode($chunk), 'application/json')
+                    ->post('https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en');
+
+                if ($response->successful()) {
+                    $done = 3;
+                    $passed = true;
+                    $responses[] = $response->json();
+                } else {
+                    $headers = $response->headers();
+                    $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
+                    sleep($sleep);
+                    $done++;
+                }
+            } while ($done != 3);
+            if (!$passed) {
                 $flag = collect([
                     'id' => $dScan->link,
                     'flag' => 1,
