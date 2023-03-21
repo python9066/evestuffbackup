@@ -134,9 +134,6 @@ let pagination = $ref({
 });
 
 let store = useMainStore();
-let can = inject("can");
-const $q = useQuasar();
-let menu = $ref(false);
 onMounted(async () => {
   document.title = "Evestuff - Staging Systems";
   await store.getWebwayStartSystems();

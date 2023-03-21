@@ -86,26 +86,6 @@ class DscanController extends Controller
 
     public function sendUpdateBoardCasts($data, $link)
     {
-        $dscans = Dscan::whereLink($link)->first();
-        $dscanSystemID = $dscans->system_id;
-        $stagingSystems = StagingSystem::whereSystemId($dscanSystemID)->with(
-            'system:id,constellation_id,system_name',
-            'system.constellation:id,constellation_name,region_id',
-            'system.constellation.region:id,region_name',
-            'system.webway',
-            'dscan'
-        )->get();
-        foreach ($stagingSystems as $stagingSystem) {
-            $flag = collect([
-                'flag' => 1,
-                'message' => $stagingSystem
-            ]);
-            broadcast(new StagingSystemUpdate($flag));
-        }
-
-
-
-
         $message = $data['corpsTotal'];
         $flag = collect([
             'id' => $link,
@@ -401,6 +381,25 @@ class DscanController extends Controller
             }
         }
         newLocal($dScan->link);
+
+
+        $dScan = Dscan::where('link', $id)->first();
+        $dscanSystemID = $dScan->system_id;
+        $stagingSystems = StagingSystem::whereSystemId($dscanSystemID)->with(
+            'system:id,constellation_id,system_name',
+            'system.constellation:id,constellation_name,region_id',
+            'system.constellation.region:id,region_name',
+            'system.webway',
+            'dscan'
+        )->get();
+        foreach ($stagingSystems as $stagingSystem) {
+            $flag = collect([
+                'flag' => 1,
+                'message' => $stagingSystem
+            ]);
+            broadcast(new StagingSystemUpdate($flag));
+        }
+
         return getDscanInfo($dScan->link);
     }
 
@@ -621,6 +620,23 @@ class DscanController extends Controller
 
 
         newDscan($dScan->link);
+
+        $dScan = Dscan::whereLink($link)->first();
+        $dscanSystemID = $dScan->system_id;
+        $stagingSystems = StagingSystem::whereSystemId($dscanSystemID)->with(
+            'system:id,constellation_id,system_name',
+            'system.constellation:id,constellation_name,region_id',
+            'system.constellation.region:id,region_name',
+            'system.webway',
+            'dscan'
+        )->get();
+        foreach ($stagingSystems as $stagingSystem) {
+            $flag = collect([
+                'flag' => 1,
+                'message' => $stagingSystem
+            ]);
+            broadcast(new StagingSystemUpdate($flag));
+        }
         return  $this->show($dScan->link);
     }
 
