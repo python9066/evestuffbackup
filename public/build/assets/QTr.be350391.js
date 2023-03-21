@@ -1,1 +1,0 @@
-import{J as t,c as s,Y as a,ae as n}from"./app.94516e8c.js";const c=t({name:"QTr",props:{props:Object,noHover:Boolean},setup(e,{slots:o}){const r=s(()=>"q-tr"+(e.props===void 0||e.props.header===!0?"":" "+e.props.__trClass)+(e.noHover===!0?" q-tr--no-hover":""));return()=>a("tr",{class:r.value},n(o.default))}});export{c as Q};
