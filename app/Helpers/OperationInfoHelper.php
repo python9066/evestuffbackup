@@ -15,6 +15,7 @@ use App\Models\OperationInfoStatus;
 use App\Models\OperationInfoSystem;
 use App\Models\OperationInfoUser;
 use App\Models\OperationInfoUserList;
+use App\Models\OperationInfoWatchedSystem;
 use App\Models\System;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
@@ -714,6 +715,27 @@ if (!function_exists('operationInfoSystemsBcast')) {
         broadcast(new OperationInfoPageSoloUpdate($flag));
     }
 }
+
+if (!function_exists('operationInfoWatchedSystemBcast')) {
+    function operationInfoWatchedSystemBcast($opID)
+    {
+        $info = OperationInfo::where('id', $opID)->with([
+            'watchSystems:id,system_name,constellation_id,region_id',
+            'watchSystems.region:id,region_name',
+            'watchSystems.constellation:id,constellation_name',
+            'watchSystems.dscan',
+        ])->first();
+        $message = $info->watchSystems;
+        $flag = collect([
+            'flag' => 21,
+            'message' => $message,
+            'id' => $opID,
+        ]);
+        broadcast(new OperationInfoPageSoloUpdate($flag));
+    }
+}
+
+
 
 if (!function_exists('operationInfoSoloSystems')) {
 

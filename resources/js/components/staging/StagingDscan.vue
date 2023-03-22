@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cursor-pointer" @click="openDscan">
     {{ totalAllianceTotalInSystem
     }}<span :class="textColor(totalAllianceDff)">({{ totalAllianceDff }})</span>/{{
       totalCorpTotalInSystem
@@ -39,6 +39,12 @@ let alliance = $computed(() => {
     ? props.item.dscan.allianceTotal
     : 0;
 });
+
+let openDscan = () => {
+  const uuid = props.item.dscan.link;
+  const dscanUrl = `https://evestuff.apps/dscan/${uuid}`;
+  window.open(dscanUrl, "_blank");
+};
 
 let totalAllianceTotalInSystem = $computed(() => {
   let total = 0;

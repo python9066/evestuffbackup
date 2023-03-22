@@ -11,6 +11,7 @@ use App\Models\DscanItem;
 use App\Models\DscanLocal;
 use App\Models\Group;
 use App\Models\Item;
+use App\Models\OperationInfoWatchedSystem;
 use App\Models\StagingSystem;
 use App\Models\System;
 use Http;
@@ -256,20 +257,7 @@ class DscanController extends Controller
             }
         }
         newLocal($newDscan->link);
-        $stagingSystems = StagingSystem::whereSystemId($newDscan->system_id)->with(
-            'system:id,constellation_id,system_name',
-            'system.constellation:id,constellation_name,region_id',
-            'system.constellation.region:id,region_name',
-            'system.webway',
-            'dscan'
-        )->get();
-        foreach ($stagingSystems as $stagingSystem) {
-            $flag = collect([
-                'flag' => 1,
-                'message' => $stagingSystem
-            ]);
-            broadcast(new StagingSystemUpdate($flag));
-        }
+        $this->sendUpdatedDscanInfo($newDscan->link);
         return $newDscan->link;
     }
 
@@ -407,24 +395,7 @@ class DscanController extends Controller
             }
         }
         newLocal($dScan->link);
-
-
-        $dScan = Dscan::where('link', $id)->first();
-        $dscanSystemID = $dScan->system_id;
-        $stagingSystems = StagingSystem::whereSystemId($dscanSystemID)->with(
-            'system:id,constellation_id,system_name',
-            'system.constellation:id,constellation_name,region_id',
-            'system.constellation.region:id,region_name',
-            'system.webway',
-            'dscan'
-        )->get();
-        foreach ($stagingSystems as $stagingSystem) {
-            $flag = collect([
-                'flag' => 1,
-                'message' => $stagingSystem
-            ]);
-            broadcast(new StagingSystemUpdate($flag));
-        }
+        $this->sendUpdatedDscanInfo($dScan->link);
 
         return getDscanInfo($dScan->link);
     }
@@ -505,21 +476,7 @@ class DscanController extends Controller
         }
 
         newDscan($newDscan->link);
-
-        $stagingSystems = StagingSystem::whereSystemId($newDscan->system_id)->with(
-            'system:id,constellation_id,system_name',
-            'system.constellation:id,constellation_name,region_id',
-            'system.constellation.region:id,region_name',
-            'system.webway',
-            'dscan'
-        )->get();
-        foreach ($stagingSystems as $stagingSystem) {
-            $flag = collect([
-                'flag' => 1,
-                'message' => $stagingSystem
-            ]);
-            broadcast(new StagingSystemUpdate($flag));
-        }
+        $this->sendUpdatedDscanInfo($newDscan->link);
         return  $newDscan->link;
     }
 
@@ -647,7 +604,28 @@ class DscanController extends Controller
 
         newDscan($dScan->link);
 
-        $dScan = Dscan::whereLink($link)->first();
+        $this->sendUpdatedDscanInfo($dScan->link);
+
+
+        return  $this->show($dScan->link);
+    }
+
+
+
+
+    public function updateLocalNamePull($linkID)
+    {
+        $dScan = Dscan::whereLink($linkID)->first();
+        $dScanCharIDs = DscanLocal::where('dscan_id', $dScan->id)->pluck('character_id');
+        $charIDs = Character::whereIn('id', $dScanCharIDs)->whereNull('corp_id')->pluck('id');
+        foreach ($charIDs as $charID) {
+            getLocalNamesJob::dispatch($charID)->onQueue('alliance');
+        }
+    }
+
+    public function sendUpdatedDscanInfo($linkID)
+    {
+        $dScan = Dscan::whereLink($linkID)->first();
         $dscanSystemID = $dScan->system_id;
         $stagingSystems = StagingSystem::whereSystemId($dscanSystemID)->with(
             'system:id,constellation_id,system_name',
@@ -663,17 +641,11 @@ class DscanController extends Controller
             ]);
             broadcast(new StagingSystemUpdate($flag));
         }
-        return  $this->show($dScan->link);
-    }
 
-
-    public function updateLocalNamePull($linkID)
-    {
-        $dScan = Dscan::whereLink($linkID)->first();
-        $dScanCharIDs = DscanLocal::where('dscan_id', $dScan->id)->pluck('character_id');
-        $charIDs = Character::whereIn('id', $dScanCharIDs)->whereNull('corp_id')->pluck('id');
-        foreach ($charIDs as $charID) {
-            getLocalNamesJob::dispatch($charID)->onQueue('alliance');
+        $watchedSystems = OperationInfoWatchedSystem::whereIn('system_id', [$dscanSystemID])->get();
+        foreach ($watchedSystems as $watchedSystem) {
+            $opID = $watchedSystem->operation_info_id;
+            operationInfoWatchedSystemBcast($opID);
         }
     }
 

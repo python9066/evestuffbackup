@@ -232,6 +232,10 @@ onMounted(async () => {
       if (e.flag.flag == 20) {
         store.operationInfoPage.dankop = e.flag.message;
       }
+
+      if (e.flag.flag == 21) {
+        store.operationInfoPage.watch_systems = e.flag.message;
+      }
     }
   );
 

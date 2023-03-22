@@ -316,6 +316,7 @@ class OperationInfoController extends Controller
         operationInfoOperationBcast($id, 9);
         operationInfoCampaignsBcast($id, 10);
         operationInfoSystemsBcast($id, 11);
+        operationInfoWatchedSystemBcast($id, 21);
     }
 
     /**
