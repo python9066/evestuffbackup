@@ -11,6 +11,7 @@ use App\Models\OperationInfoMessage;
 use App\Models\OperationInfoRecon;
 use App\Models\OperationInfoSystem;
 use App\Models\OperationInfoSystemRecon;
+use App\Models\OperationInfoWatchedSystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -204,6 +205,8 @@ class OperationInfoController extends Controller
     public function editHackOperation(Request $request, $id)
     {
 
+
+
         $soloSystems = collect([]);
         $systemIDs = collect([]);
         $show = collect($request->show);
@@ -294,6 +297,19 @@ class OperationInfoController extends Controller
         }
 
         $operationInfo->save();
+
+        OperationInfoWatchedSystem::where('operation_info_id', $id)->delete();
+        if ($request->systemsToUpdateWatched) {
+            foreach ($request->systemsToUpdateWatched as $system) {
+                $systemsToUpdateWatched = OperationInfoWatchedSystem::where('system_id', $system['value'])->where('operation_info_id', $id)->first();
+                if (!$systemsToUpdateWatched) {
+                    $systemsToUpdateWatched = new OperationInfoWatchedSystem();
+                    $systemsToUpdateWatched->system_id = $system['value'];
+                    $systemsToUpdateWatched->operation_info_id = $id;
+                    $systemsToUpdateWatched->save();
+                }
+            }
+        }
 
 
         operationInfoSoloPageBroadcast($id, 1);

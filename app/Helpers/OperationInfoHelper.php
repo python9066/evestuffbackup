@@ -226,7 +226,11 @@ if (!function_exists('operationInfoSoloPagePull')) {
             'campaigns.system',
             'campaigns.alliance',
             'operation',
-            'dankop'
+            'dankop',
+            'watchSystems:id,system_name,constellation_id,region_id',
+            'watchSystems.region:id,region_name',
+            'watchSystems.constellation:id,constellation_name',
+            'watchSystems.dscan',
         ])->first();
     }
 }
@@ -277,7 +281,12 @@ if (!function_exists('operationInfoSoloPagePullLink')) {
             'campaigns.system',
             'campaigns.alliance',
             'operation',
-            'dankop'
+            'dankop',
+            'watchSystems:id,system_name,constellation_id,region_id',
+            'watchSystems.region:id,region_name',
+            'watchSystems.constellation:id,constellation_name',
+            'watchSystems.dscan',
+
         ])->first();
     }
 }

@@ -92,6 +92,7 @@ export const useMainStore = defineStore("main", {
             showSystemTable: true,
             showCheckList: true,
             showFleets: true,
+            showWatchedSystems: true,
         },
 
         operationInfoSettingOpetions: [{
@@ -109,6 +110,11 @@ export const useMainStore = defineStore("main", {
         {
             label: "System Table",
             value: "showSystemTable",
+        },
+
+        {
+            label: "Watched Systems Table",
+            value: "showWatchedSystems",
         },
         ],
 
@@ -267,6 +273,23 @@ export const useMainStore = defineStore("main", {
             return ids;
         },
 
+        getOperationInfoWatchedSystemList: (state) => {
+            var ids = [];
+            if (state.operationInfoPage.systems) {
+                var systems = state.operationInfoPage.watch_systems;
+
+                systems.forEach((s) => {
+                    if (s.pivot.new_operation_id == null) {
+                        ids.push({
+                            text: s.system_name,
+                            value: s.id
+                        });
+                    }
+                });
+            }
+            return ids;
+        },
+
         getOperationInfoTableStatus: (state) => {
             let values_array = [];
 
@@ -281,6 +304,10 @@ export const useMainStore = defineStore("main", {
             }
             if (state.operationInfoPage.system_table) {
                 values_array.push("system_table");
+            }
+
+            if (state.operationInfoPage.watched_system_table) {
+                values_array.push("watched_system_table");
             }
 
             return values_array;
@@ -300,6 +327,10 @@ export const useMainStore = defineStore("main", {
             }
             if (state.operationInfoSetting.showFleets) {
                 values_array.push("showFleets");
+            }
+
+            if (state.operationInfoSetting.showWatchedSystems) {
+                values_array.push("showWatchedSystems");
             }
 
             return values_array;

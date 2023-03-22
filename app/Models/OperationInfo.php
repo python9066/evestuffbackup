@@ -151,4 +151,9 @@ class OperationInfo extends Model
     {
         return $this->hasOne(DankOperation::class, 'operation_info_id', 'id');
     }
+
+    public function watchSystems(): BelongsToMany
+    {
+        return $this->belongsToMany(System::class, 'operation_info_watched_systems', 'operation_info_id', 'system_id');
+    }
 }

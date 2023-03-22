@@ -78,6 +78,50 @@
             </q-chip>
           </template>
         </q-select>
+        <q-select
+          rounded
+          class="q-pt-sm"
+          dense
+          standout
+          input-debounce="0"
+          label-color="webway"
+          option-value="value"
+          option-label="text"
+          v-model="systemsToUpdateWatched"
+          :options="systemFindList"
+          @filter="filterFnSystemFinish"
+          @filter-abort="abortFilterFn"
+          label="Which Systems would you like to see dscan info for"
+          use-input
+          use-chips
+          multiple
+        >
+          <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+            <q-item v-bind="itemProps">
+              <q-item-section>
+                <q-item-label v-html="opt.text" />
+              </q-item-section>
+              <q-item-section side>
+                <q-toggle
+                  :model-value="selected"
+                  @update:model-value="toggleOption(opt)"
+                />
+              </q-item-section>
+            </q-item>
+          </template>
+
+          <template v-slot:selected-item="scope">
+            <q-chip
+              removable
+              @remove="scope.removeAtIndex(scope.index)"
+              :tabindex="scope.tabindex"
+              text-color="white"
+              class="q-ma-none"
+            >
+              <span class="text-xs"> {{ scope.opt.text }} </span>
+            </q-chip>
+          </template>
+        </q-select>
         <q-option-group
           class="q-pt-md"
           v-model="pickedOptions"
@@ -113,6 +157,7 @@ import { useMainStore } from "@/store/useMain.js";
 let store = useMainStore();
 let showSetting = $ref(false);
 let systemsToUpdate = $ref([]);
+let systemsToUpdateWatched = $ref([]);
 let oldOperation = $ref();
 
 let campaignText = $ref();
@@ -201,6 +246,7 @@ let filterFnSystemFinish = (val, update, abort) => {
 let open = () => {
   systemsToUpdate = store.getOperationInfoSystemList;
   pickedOptions = store.getOperationInfoTableStatus;
+  systemsToUpdateWatched = store.getOperationInfoWatchedSystemList;
   oldOperation = store.operationInfoOperationList.find(
     (o) => o.id == store.operationInfoPage.operation_id
   );
@@ -216,6 +262,7 @@ let submit = () => {
   var request = {
     operation_id: opID,
     systemsToUpdate: systemsToUpdate ?? [],
+    systemsToUpdateWatched: systemsToUpdateWatched ?? [],
     show: pickedOptions,
   };
 
