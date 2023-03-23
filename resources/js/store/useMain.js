@@ -13,6 +13,11 @@ export const useMainStore = defineStore("main", {
         dScanLocalAlliance: [],
         dScanLocalCorp: [],
         dScanLocalAffiliation: [],
+        dScanItemCategory: [],
+        dScanItemGroup: [],
+        dScanItemItem: [],
+        dScanMessages: [],
+        dScanChatWindowId: null,
         constellationlist: [],
         eveUserCount: 0,
         newSoloOperations: [],
@@ -35,6 +40,7 @@ export const useMainStore = defineStore("main", {
         stationList: [],
         stationWatchList: [],
         stations: [],
+        stagingSystems: [],
         towers: [],
         timers: [],
         timersRegions: [],
@@ -86,6 +92,7 @@ export const useMainStore = defineStore("main", {
             showSystemTable: true,
             showCheckList: true,
             showFleets: true,
+            showWatchedSystems: true,
         },
 
         operationInfoSettingOpetions: [{
@@ -103,6 +110,11 @@ export const useMainStore = defineStore("main", {
         {
             label: "System Table",
             value: "showSystemTable",
+        },
+
+        {
+            label: "Watched Systems Table",
+            value: "showWatchedSystems",
         },
         ],
 
@@ -193,6 +205,31 @@ export const useMainStore = defineStore("main", {
 
 
 
+        getDscanUnreadMessageCount: (state) => (id) => {
+            let messages = state.dScanMessages;
+            let count = messages.filter(
+                (m) =>
+                    m.read_by &&
+                    m.read_by.user_id &&
+                    !m.read_by.user_id.includes(state.user_id)
+            ).length;
+
+            if (state.dScanChatWindowId == id && count > 0) {
+                axios({
+                    method: "put",
+                    url: "/api/dscanmessage/" + id + "/notes",
+                    withCredentials: true,
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    },
+                });
+            }
+            return count;
+        },
+
+
+
 
         getOperationInfoUnreadMessageCount: (state) => {
 
@@ -236,6 +273,23 @@ export const useMainStore = defineStore("main", {
             return ids;
         },
 
+        getOperationInfoWatchedSystemList: (state) => {
+            var ids = [];
+            if (state.operationInfoPage.systems) {
+                var systems = state.operationInfoPage.watch_systems;
+
+                systems.forEach((s) => {
+                    if (s.pivot.new_operation_id == null) {
+                        ids.push({
+                            text: s.system_name,
+                            value: s.id
+                        });
+                    }
+                });
+            }
+            return ids;
+        },
+
         getOperationInfoTableStatus: (state) => {
             let values_array = [];
 
@@ -250,6 +304,10 @@ export const useMainStore = defineStore("main", {
             }
             if (state.operationInfoPage.system_table) {
                 values_array.push("system_table");
+            }
+
+            if (state.operationInfoPage.watched_system_table) {
+                values_array.push("watched_system_table");
             }
 
             return values_array;
@@ -269,6 +327,10 @@ export const useMainStore = defineStore("main", {
             }
             if (state.operationInfoSetting.showFleets) {
                 values_array.push("showFleets");
+            }
+
+            if (state.operationInfoSetting.showWatchedSystems) {
+                values_array.push("showWatchedSystems");
             }
 
             return values_array;
@@ -388,149 +450,6 @@ export const useMainStore = defineStore("main", {
                 return [];
             }
         },
-
-        getDscanAllNewShips: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.items.new)
-                    .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
-                null;
-
-        },
-
-        getDscanAllOldShips: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.items.old)
-                    .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
-                null;
-
-        },
-
-
-        getDscanAllNewShipsGroups: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.new)
-                    .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
-                null;
-        },
-
-        getDscanAllOldShipsGroups: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.old)
-                    .filter(item => item.category_id === 6).sort((a, b) => b.total - a.total) :
-                null;
-        },
-
-
-
-        getDscanAllNewStructures: (state) => {
-
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.new)
-                    .filter(item => item.category_id === 65).sort((a, b) => b.total - a.total) :
-                null;
-        },
-
-        getDscanAllOldStructures: (state) => {
-
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.old)
-                    .filter(item => item.category_id === 65).sort((a, b) => b.total - a.total) :
-                null;
-        },
-
-
-        getDscanOnGridNewShips: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.items.new)
-                    .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
-                null;
-        },
-
-        getDscanOnGridOldShips: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.items.old)
-                    .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
-                null;
-        },
-
-
-        getDscanOnGridNewShipsGroups: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.new)
-                    .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
-                null;
-        },
-
-        getDscanOnGridOldShipsGroups: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.old)
-                    .filter(item => item.category_id === 6 && item.on).sort((a, b) => b.on - a.on) :
-                null;
-        },
-
-        getDscanOnGridNewStructures: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.new)
-                    .filter(item => item.category_id === 65 && item.on).sort((a, b) => b.on - a.on) :
-                null;
-        },
-
-        getDscanOnGridOldStructures: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.old)
-                    .filter(item => item.category_id === 65 && item.on).sort((a, b) => b.on - a.on) :
-                null;
-        },
-
-
-        getDscanOffGridNewShips: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.new)
-                    .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
-                null;
-        },
-
-        getDscanOffGridOldShips: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.old)
-                    .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
-                null;
-        },
-
-        getDscanOffGridNewShipsGroups: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.new)
-                    .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
-                null;
-        },
-
-        getDscanOffGridOldShipsGroups: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.old)
-                    .filter(item => item.category_id === 6 && item.off).sort((a, b) => b.total - a.total) :
-                null;
-        },
-
-        getDscanOffGridNewStructures: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.new)
-                    .filter(item => item.category_id === 65 && item.off).sort((a, b) => b.total - a.total) :
-                null;
-        },
-
-        getDscanOffGridOldStructures: (state) => {
-            return state.dScan.totals ?
-                Object.values(state.dScan.totals.totals.groups.old)
-                    .filter(item => item.category_id === 65 && item.off).sort((a, b) => b.total - a.total) :
-                null;
-        },
-
-
-
-
-
-
-
 
     },
     actions: {
@@ -1558,9 +1477,13 @@ export const useMainStore = defineStore("main", {
             this.dScanLocalCorp = res.data.corpsTotal;
             this.dScanLocalAlliance = res.data.allianceTotal;
             this.dScanLocalAffiliation = res.data.affiliationTotal;
+            this.dScanItemCategory = res.data.categoryTotals
+            this.dScanItemGroup = res.data.groupTotals
+            this.dScanItemItem = res.data.itemTotals
             this.dScanIsHistory = res.data.history;
             this.dScanIsHistory ? this.dScanHistory = res.data.allHistory : this.dScanHistory = res.data.dscan.history;
             this.dScanIsHistory ? this.dScanLiveLink = res.data.liveDscan : null;
+            this.dScanMessages = res.data.messages
 
         },
 
@@ -1602,6 +1525,37 @@ export const useMainStore = defineStore("main", {
                 this.affiliations.push(data);
             }
         },
+        async getStagingSystemInfo() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
+                url: "/api/staging",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.stagingSystems = res.data;
+
+        },
+
+        updateStagingSystem(data) {
+            const item = this.stagingSystems.find((item) => item.id === data.id);
+            const count = this.stagingSystems.filter(
+                (item) => item.id === data.id
+            ).length;
+            if (count > 0) {
+                Object.assign(item, data);
+            } else {
+                this.stagingSystems.push(data);
+            }
+        },
+
+        deleteStagingSystem(id) {
+            this.stagingSystems = this.stagingSystems.filter((e) => e.id != id);
+        },
+
+
 
     },
 });

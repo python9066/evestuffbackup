@@ -16,7 +16,10 @@ use Illuminate\Queue\SerializesModels;
 
 class getLocalNamesJob implements ShouldQueue
 {
-    use Dispatchable;use InteractsWithQueue;use Queueable;use SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
 
     protected $charID;
@@ -37,7 +40,8 @@ class getLocalNamesJob implements ShouldQueue
     public function handle(): void
     {
         activity()->disableLogging();
-        if (Character::whereId($this->charID)->whereNull('corp_id')->first()) {
+        $char = Character::whereId($this->charID)->whereNull('corp_id')->first();
+        if ($char) {
             $this->addCorpID($this->charID);
         }
 

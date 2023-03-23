@@ -87,6 +87,7 @@
               to="/affilations"
               label="Affiliations"
             />
+            <q-route-tab v-if="can('view_staging_page')" to="/staging" label="staging" />
             <q-route-tab v-if="can('super')" to="/feedback" label="Feedback" />
           </q-tabs>
         </div>

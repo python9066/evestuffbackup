@@ -4,9 +4,9 @@ namespace App\Console\Commands;
 
 use App\Models\Character;
 use App\Models\Dscan;
+use App\Models\DscanHistory;
 use App\Models\DscanItem;
 use App\Models\DscanLocal;
-use App\Models\DscanTotal;
 use Illuminate\Console\Command;
 
 class ClearAddDscanInfo extends Command
@@ -32,8 +32,8 @@ class ClearAddDscanInfo extends Command
     {
         $this->info('Clearing Dscan Info');
         DscanItem::truncate();
+        DscanHistory::truncate();
         DscanLocal::truncate();
-        DscanTotal::truncate();
         Dscan::truncate();
         Character::whereNull('corp_id')->delete();
         $this->info('Dscan Info Cleared');

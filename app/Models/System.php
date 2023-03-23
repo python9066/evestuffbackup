@@ -88,6 +88,11 @@ class System extends Model
         return $this->belongsToMany(StationWatchList::class, 'system_station_watch_lists');
     }
 
+    public function dscan()
+    {
+        return $this->hasOne(Dscan::class)->latest();
+    }
+
 
     protected $casts = [
         'region_id ' => 'integer',

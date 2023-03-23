@@ -60,9 +60,11 @@ class UpdateWebWayRoutes extends Command
         $campaginSystems = $campaigns->pluck('system_id');
         $newCampaigns = NewCampaignSystem::get();
         $newCampaignsSystems = $newCampaigns->pluck('system_id');
+        $stagingSystems = $campaigns->pluck('staging_system_id');
 
         $systemIDs = $stationSystems->merge($campaginSystems);
         $systemIDs = $systemIDs->merge($newCampaignsSystems);
+        $systemIDs = $systemIDs->merge($stagingSystems);
         $systemIDs = $systemIDs->unique();
         $systemIDs = $systemIDs->values();
         $w = WebWay::whereIn('system_id', $systemIDs)->get();

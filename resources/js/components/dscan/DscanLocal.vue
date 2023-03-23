@@ -76,8 +76,21 @@
       <div class="col">
         <q-card class="my-card">
           <q-card-section class="q-py-none text-center">
-            All Corporations - {{ totalCorpTotalInSystem }}
-            <span :class="textColor(totalCorpDff)"> ({{ totalCorpDff }})</span>
+            <div class="row flex-center">
+              All Corporations - {{ totalCorpTotalInSystem }}
+              <span :class="textColor(totalCorpDff)"> ({{ totalCorpDff }})</span>
+              <q-btn
+                color="warning"
+                flat
+                v-if="unknownCount"
+                padding="none"
+                class="q-ml-sm"
+                size="sm"
+                round
+                icon="fa-solid fa-arrows-rotate"
+                @click="getNames"
+              />
+            </div>
           </q-card-section>
           <q-card-section class="overflow-auto" :style="h">
             <q-list bordered dense>
@@ -347,6 +360,9 @@
 
 <script setup>
 import { useMainStore } from "@/store/useMain.js";
+import { useRoute, useRouter } from "vue-router";
+let route = useRoute();
+let router = useRouter();
 let store = useMainStore();
 let clickedAlliace = $ref(null);
 let showAllianceDetails = $ref(false);
@@ -417,7 +433,7 @@ let pilotBgColor = (pivot) => {
 
 let totalAllianceNew = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAlliance).length == 0) {
+  if (!store.dScanLocalAlliance || Object.values(store.dScanLocalAlliance).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalAlliance).forEach((alliance) => {
@@ -429,7 +445,7 @@ let totalAllianceNew = $computed(() => {
 
 let totalAllianceleft = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAlliance).length == 0) {
+  if (!store.dScanLocalAlliance || Object.values(store.dScanLocalAlliance).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalAlliance).forEach((alliance) => {
@@ -441,7 +457,7 @@ let totalAllianceleft = $computed(() => {
 
 let totalAllianceSame = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAlliance).length == 0) {
+  if (!store.dScanLocalAlliance || Object.values(store.dScanLocalAlliance).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalAlliance).forEach((alliance) => {
@@ -453,7 +469,7 @@ let totalAllianceSame = $computed(() => {
 
 let totalAllianceTotalInSystem = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAlliance).length == 0) {
+  if (!store.dScanLocalAlliance || Object.values(store.dScanLocalAlliance).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalAlliance).forEach((alliance) => {
@@ -479,7 +495,7 @@ let totalAllianceDff = $computed(() => {
 
 let totalCorpNew = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalCorp).length == 0) {
+  if (!store.dScanLocalCorp || Object.values(store.dScanLocalCorp).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalCorp).forEach((corp) => {
@@ -491,7 +507,7 @@ let totalCorpNew = $computed(() => {
 
 let totalCorpleft = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalCorp).length == 0) {
+  if (!store.dScanLocalCorp || Object.values(store.dScanLocalCorp).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalCorp).forEach((corp) => {
@@ -503,7 +519,7 @@ let totalCorpleft = $computed(() => {
 
 let totalCorpSame = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalCorp).length == 0) {
+  if (!store.dScanLocalCorp || Object.values(store.dScanLocalCorp).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalCorp).forEach((corp) => {
@@ -515,7 +531,7 @@ let totalCorpSame = $computed(() => {
 
 let totalCorpTotalInSystem = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalCorp).length == 0) {
+  if (!store.dScanLocalCorp || Object.values(store.dScanLocalCorp).length == 0) {
     return 0;
   }
   Object.values(store.dScanLocalCorp).forEach((corp) => {
@@ -542,7 +558,10 @@ let totalCorpDff = $computed(() => {
 ///////#
 let totalAffiliationNew = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAffiliation).length == 0) {
+  if (
+    !store.dScanLocalAffiliation ||
+    Object.values(store.dScanLocalAffiliation).length == 0
+  ) {
     return 0;
   }
   Object.values(store.dScanLocalAffiliation).forEach((affiliation) => {
@@ -554,7 +573,10 @@ let totalAffiliationNew = $computed(() => {
 
 let totalAffiliationleft = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAffiliation).length == 0) {
+  if (
+    !store.dScanLocalAffiliation ||
+    Object.values(store.dScanLocalAffiliation).length == 0
+  ) {
     return 0;
   }
   Object.values(store.dScanLocalAffiliation).forEach((affiliation) => {
@@ -566,7 +588,10 @@ let totalAffiliationleft = $computed(() => {
 
 let totalAffiliationSame = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAffiliation).length == 0) {
+  if (
+    !store.dScanLocalAffiliation ||
+    Object.values(store.dScanLocalAffiliation).length == 0
+  ) {
     return 0;
   }
   Object.values(store.dScanLocalAffiliation).forEach((affiliation) => {
@@ -578,7 +603,10 @@ let totalAffiliationSame = $computed(() => {
 
 let totalAffiliationTotalInSystem = $computed(() => {
   let total = 0;
-  if (Object.values(store.dScanLocalAffiliation).length == 0) {
+  if (
+    !store.dScanLocalAffiliation ||
+    Object.values(store.dScanLocalAffiliation).length == 0
+  ) {
     return 0;
   }
   Object.values(store.dScanLocalAffiliation).forEach((affiliation) => {
@@ -682,6 +710,27 @@ let affiliationBgColor = (details) => {
   if (details.color == 1) {
     return "bg-red-5";
   }
+};
+
+let unknownCount = $computed(() => {
+  return store.dScanLocalCorp &&
+    Object.values(store.dScanLocalCorp).filter((corp) => corp.details.ticker == "???")
+      .length
+    ? true
+    : false;
+});
+
+let getNames = async () => {
+  var link = route.params.link;
+  await axios({
+    method: "post",
+    withCredentials: true,
+    url: "/api/dscan/localupdate/" + link,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
 };
 
 let h = $computed(() => {

@@ -229,13 +229,17 @@ class testController extends Controller
                     'system.constellation',
                     'user:id,name',
                     'items.item.group',
-                    'totals',
                 ])
                 ->first();
             return [
                 'dscan' => $dscan,
             ];
         }
+    }
+
+
+    public function testWebwayPull()
+    {
     }
 
     public function testDscanLocal(Request $request)
@@ -252,7 +256,6 @@ class testController extends Controller
                     'updatedBy:id,name',
                     'madeby:id,name',
                     'items.item.group',
-                    'totals',
                     'locals.corp.alliance'
                 ])
                 ->first();
@@ -1183,6 +1186,17 @@ class testController extends Controller
                 ]);
             }
         }
+    }
+
+    function testAthing()
+    {
+        $user = User::where('name', 'Webway')->first();
+        if ($user->fc_notes) {
+            $user->fc_notes = null;
+        } else {
+            $user->fc_notes = "write away";
+        }
+        $user->save();
     }
 
     public function testOpLogging()

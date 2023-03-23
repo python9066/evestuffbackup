@@ -76,7 +76,6 @@ let addNode = async () => {
   if (activeCount == 1) {
     var campaign_id = props.activeCampaigns[0].id;
   } else {
-    // console.log("activeCount != 1");
     var campaign_id = nodeCampaignID.id;
   }
 

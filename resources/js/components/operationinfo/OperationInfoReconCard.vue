@@ -9,7 +9,7 @@
           </div>
         </div>
       </q-card-section>
-      <q-card-section>
+      <q-card-section class="overflow-auto myReconNames">
         <transition-group
           enter-active-class="animate__animated animate__flash"
           v-if="show"

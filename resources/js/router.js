@@ -51,18 +51,27 @@ const routes = [{
 
 
 {
-    path: "/dscan/:link",
-    alias: '/dscan',
+    path: "/dscan/:link/:tab",
+    alias: ['/dscan', '/dscan/:link'],
     name: "dscan",
     component: () => import("./views/Dscan.vue"),
+
+},
+
+
+{
+    path: "/staging",
+    name: "staging",
+    component: () => import("./views/StagingSystems.vue"),
     beforeEnter(to, from, next) {
-        if (can("view_dscan")) {
+        if (can("view_staging_page")) {
             next();
         } else {
             next("/");
         }
     },
 },
+
 
 // {
 //     path: "/dscan/:id",
@@ -233,6 +242,13 @@ const routes = [{
             next("/");
         }
     },
+},
+
+{
+    path: "/dscanisnomore",
+    name: "dscanredirect",
+    component: () => import("./views/redirect/dscanremoved.vue"),
+
 },
 
 {

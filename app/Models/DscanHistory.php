@@ -13,7 +13,11 @@ class DscanHistory extends Model
         "totals",
         'dscan',
         'corpsTotal',
-        'alliancesTotal'
+        'alliancesTotal',
+        'affiliationsTotal',
+        'itemTotals',
+        'groupTotals',
+        'categoryTotals',
 
 
 
@@ -23,8 +27,17 @@ class DscanHistory extends Model
         'totals' => 'array',
         'dscan' => 'array',
         'corpsTotal' => 'array',
-        'alliancesTotal' => 'array'
+        'alliancesTotal' => 'array',
+        'affiliationsTotal' => 'array',
+        'itemTotals' => 'array',
+        'groupTotals' => 'array',
+        'categoryTotals' => 'array',
 
 
     ];
+
+    public function messages()
+    {
+        return $this->hasMany(DscanNote::class, 'dscan_id', 'dscan_id')->orderBy('created_at', "desc");
+    }
 }

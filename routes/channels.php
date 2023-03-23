@@ -198,6 +198,12 @@ Broadcast::channel('affilation', function () {
     return Auth::check();
 });
 
+Broadcast::channel('stagingsystem', function () {
+    return Auth::check();
+});
+
+
+
 
 //  Broadcast::channel('App.User.{id}', function ($user, $id) {
 //     return true;

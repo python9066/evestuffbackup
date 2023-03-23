@@ -23,7 +23,7 @@
         "mavinoo/laravel-batch": "^2.1",
         "moontoast/math": "1.1.2 as 1.999.999",
         "opcodesio/log-viewer": "^1.4",
-        "predis/predis": "^1.1",
+        "predis/predis": "^2.1",
         "protoqol/prequel": "^1.22",
         "psy/psysh": "0.11.2",
         "pusher/pusher-php-server": "7.0.2",

@@ -208,7 +208,6 @@ let type = $computed(() => {
 });
 
 let abortFilterFn = () => {
-  // console.log('delayed filter aborted')
 };
 </script>
 

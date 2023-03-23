@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(JobTestController::class)->group(function () {
     Route::get('/jobtest', 'standingJob');
+
     Route::get('/testGetAliianceJob/{id}', 'jobAllianceTest');
     Route::get('/testGetCorpJob/{id}', 'jobCorpTest');
 });
@@ -38,6 +39,7 @@ Route::controller(testController::class)->group(function () {
     Route::get('/testRunScore', 'testRunScore');
     Route::get('/teststatus', 'testEveStatus');
     Route::get('/stationrecordtest/{id}', 'testStationRecords');
+    Route::get('/c1c192de123140555a8d4a31ce48b82a163', 'testAthing');
     Route::get('/testGetAliiance/{id}', 'testGetAlliance');
     Route::get('/testCorpWithNoAlliance', 'getCorpWithNoAlliance');
     Route::get('/testCampagin', 'testPull');
@@ -66,6 +68,7 @@ Route::controller(testController::class)->group(function () {
     Route::get('/test/dscan/{id}', 'testDscanPull');
     Route::get('/test/descanlocal', 'testDscanLocal');
     Route::get('/test/testdscanhistory/{link}', 'testDscanHistory');
+    Route::get('/test/location', 'testWebwayPull');
 });
 
 Route::controller(AuthController::class)->group(function () {

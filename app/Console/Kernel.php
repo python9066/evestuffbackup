@@ -32,6 +32,7 @@ class Kernel extends ConsoleKernel
         Commands\newnewnewcampaignsupdate::class,
         Commands\updateGroupAndCat::class,
         Commands\updateItems::class,
+        Commands\DeleteOldDscans::class,
     ];
 
     /**
@@ -60,6 +61,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
         $schedule->command('update:webway')->everyTenMinutes();
         $schedule->command('update:timers')->hourly();
+        $schedule->command('clean:removeOldDscans')->hourly();
         $schedule->command('update:alliances')->dailyAt('22:00');
         $schedule->command('clear:remembertoken')->twiceDaily(9, 21);
         $schedule->command('get:dankdocs')->twiceDaily(9, 21);

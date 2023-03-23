@@ -3,20 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Events\dScanSoloUpdate;
+use App\Events\StagingSystemUpdate;
 use App\Jobs\getLocalNamesJob;
-use App\Models\Categorie;
 use App\Models\Character;
 use App\Models\Dscan;
 use App\Models\DscanItem;
 use App\Models\DscanLocal;
-use App\Models\DscanTotal;
 use App\Models\Group;
 use App\Models\Item;
+use App\Models\OperationInfoWatchedSystem;
+use App\Models\StagingSystem;
 use App\Models\System;
 use Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Termwind\Components\Dd;
 
 class DscanController extends Controller
 {
@@ -26,6 +28,18 @@ class DscanController extends Controller
     public function index()
     {
         //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        if (Dscan::whereLink($id)->exists()) {
+            return getDscanInfo($id);
+        } else {
+            return loadDscanHistory($id);
+        }
     }
 
     public function checkInputNew(Request $request)
@@ -69,14 +83,6 @@ class DscanController extends Controller
                 'data' => $data,
             ]);
         }
-
-        // $flag = collect([
-        //     'id' => $dscan->dscan->link,
-        //     'flag' => 2,
-        //     'message' => $message,
-        // ]);
-        // broadcast(new dScanSoloUpdate($flag));
-
     }
 
     public function sendUpdateBoardCasts($data, $link)
@@ -112,6 +118,38 @@ class DscanController extends Controller
             'message' => $message,
         ]);
         broadcast(new dScanSoloUpdate($flag))->toOthers();
+
+        $message = $data['categoryTotals'];
+        $flag = collect([
+            'id' => $link,
+            'flag' => 7,
+            'message' => $message,
+        ]);
+        broadcast(new dScanSoloUpdate($flag))->toOthers();
+
+        $message = $data['groupTotals'];
+        $flag = collect([
+            'id' => $link,
+            'flag' => 8,
+            'message' => $message,
+        ]);
+        broadcast(new dScanSoloUpdate($flag))->toOthers();
+
+        $message = $data['itemTotals'];
+        $flag = collect([
+            'id' => $link,
+            'flag' => 9,
+            'message' => $message,
+        ]);
+        broadcast(new dScanSoloUpdate($flag))->toOthers();
+
+        $message = $data['affiliationTotal'];
+        $flag = collect([
+            'id' => $link,
+            'flag' => 10,
+            'message' => $message,
+        ]);
+        broadcast(new dScanSoloUpdate($flag))->toOthers();
     }
 
     public function addNewLocal($local)
@@ -120,9 +158,6 @@ class DscanController extends Controller
         $newDscan->user_id = Auth::user()->id;
         $newDscan->link = Str::uuid();
         $newDscan->save();
-        $newDscanTotal = new DscanTotal();
-        $newDscanTotal->dscan_id = $newDscan->id;
-        $newDscanTotal->save();
 
         $rows = explode("\n", $local);
         $newNames = [];
@@ -141,23 +176,44 @@ class DscanController extends Controller
         }
 
 
-        $newNamesChunks = array_chunk($newNames, 500);
+        $newNamesChunks = array_chunk($newNames, 400);
 
         $responses = [];
 
         foreach ($newNamesChunks as $chunk) {
-            $response = Http::withHeaders([
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-                'User-Agent' => 'evestuff.online python9066@gmail.com',
-            ])
-                ->withBody(json_encode($chunk), 'application/json')
-                ->post('https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en');
-            if ($response->successful()) {
-                $responses[] = $response->json();
+            $done = 0;
+            $passed = false;
+
+            do {
+                $response = Http::withHeaders([
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
+                ])
+                    ->withBody(json_encode($chunk), 'application/json')
+                    ->post('https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en');
+
+                if ($response->successful()) {
+                    $done = 3;
+                    $passed = true;
+                    $responses[] = $response->json();
+                } else {
+                    $headers = $response->headers();
+                    $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
+                    sleep($sleep);
+                    $done++;
+                }
+            } while ($done != 3);
+            if (!$passed) {
+                $flag = collect([
+                    'id' => $newDscan->link,
+                    'flag' => 1,
+                ]);
+                broadcast(new dScanSoloUpdate($flag))->toOthers();
             }
         }
         foreach ($responses as $response) {
+            // dd($response, $newNamesChunks);
             $chars = $response['characters'];
 
             foreach ($chars as $char) {
@@ -180,347 +236,29 @@ class DscanController extends Controller
 
 
 
+
+        if (!$newDscan->system_id) {
+            $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+            $webwayToken = env('WEBWAY_TOKEN', ($variables && array_key_exists('WEBWAY_TOKEN', $variables)) ? $variables['WEBWAY_TOKEN'] : null);
+            $webwayURL = env('WEBWAY_URL2', ($variables && array_key_exists('WEBWAY_URL2', $variables)) ? $variables['WEBWAY_URL2'] : null);
+            $dScanCharIdsSend = DscanLocal::where('dscan_id', $newDscan->id)->pluck('character_id');
+            $res =  Http::withToken($webwayToken)
+                ->withHeaders([
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
+                ])->post($webwayURL, $dScanCharIdsSend);
+
+            $info =  $res->json();
+            if ($info['status'] == "true") {
+                $newDscan->system_id = $info['system_id'];
+                $newDscan->addedBySystem = false;
+                $newDscan->save();
+            }
+        }
+        newLocal($newDscan->link);
+        $this->sendUpdatedDscanInfo($newDscan->link);
         return $newDscan->link;
-    }
-
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function addNewDscan($dscan_results)
-    {
-
-
-        $newDscan = new Dscan();
-        $newDscan->user_id = Auth::user()->id;
-        $newDscan->link = Str::uuid();
-        $newDscan->save();
-
-        $rows = explode("\n", $dscan_results);
-        $newTotal = new DscanTotal();
-        $newTotal->dscan_id = $newDscan->id;
-        $newTotal->save();
-
-        foreach ($rows as $row) {
-            $on = false;
-            $columns = explode("\t", $row);
-            $newDscanItem = new DscanItem();
-            $newDscanItem->dscan_id = $newDscan->id;
-            $newDscanItem->item_id = $columns[0];
-            $newDscanItem->name = $columns[1];
-            $components = explode(" ", $columns[3]);
-            if (count($components) > 1) {
-                $newDscanItem->distance_value = $components[0]; // "9.1";
-                $newDscanItem->distance_unit = $components[1];
-            } else {
-                $newDscanItem->distance_value = 1; // "9.1";
-                $newDscanItem->distance_unit = "au";
-            }
-            $newDscanItem->save();
-            $item = Item::whereId($columns[0])->first();
-            $group = Group::whereId($item->group_id)->first();
-            $category = Categorie::whereId($group->category_id)->first();
-
-            if ($newDscanItem->distance_unit == "km" && $newDscanItem->distance_value <= 8000) {
-                $on = true;
-            }
-
-            if ($newDscanItem->distance_unit == "m") {
-                $on = true;
-            }
-
-            $totals = $newTotal->totals;
-
-            $current = $totals['items']['new'][$item->item_name]['group_id'] = $group->id;
-            $current = $totals['items']['new'][$item->item_name]['category_id'] = $category->id;
-            $current = $totals['items']['new'][$item->item_name]['item_name'] = $item->item_name;
-            $current = $totals['items']['new'][$item->item_name]['item_id'] = $item->id;
-            $newTotal->totals = $current;
-
-
-            $current = $totals['groups']['new'][$group->name]['category_id'] = $category->id;
-            $current = $totals['groups']['new'][$group->name]['group_id'] = $group->id;
-            $current = $totals['groups']['new'][$group->name]['group_name'] = $group->name;
-            $newTotal->totals = $current;
-
-            $current = $totals['categories']['new'][$category->name]['category_id'] = $category->id;
-            $current = $totals['categories']['new'][$category->name]['category_name'] = $category->name;
-            $newTotal->totals = $current;
-
-
-            if ($on) {
-                $current = $totals['items']['new'][$item->item_name]['on'] ?? 0;
-            } else {
-                $current = $totals['items']['new'][$item->item_name]['off'] ?? 0;
-            }
-
-            $new = $current + 1;
-            if ($on) {
-                $totals['items']['new'][$item->item_name]['on'] = $new;
-            } else {
-
-                $totals['items']['new'][$item->item_name]['off'] = $new;
-            }
-            $newTotal->totals = $totals;
-
-            $current = $totals['items']['new'][$item->item_name]['total'] ?? 0;
-            $new = $current + 1;
-            $totals['items']['new'][$item->item_name]['total'] = $new;
-
-            if ($on) {
-                $current = $totals['categories']['new'][$category->name]['on'] ?? 0;
-            } else {
-
-                $current = $totals['categories']['new'][$category->name]['off'] ?? 0;
-            }
-
-
-            $new = $current + 1;
-            if ($on) {
-                $totals['categories']['new'][$category->name]['on'] = $new;
-            } else {
-
-                $totals['categories']['new'][$category->name]['off'] = $new;
-            }
-            $newTotal->totals = $totals;
-
-            $current = $totals['categories']['new'][$category->name]['total'] ?? 0;
-            $new = $current + 1;
-            $totals['categories']['new'][$category->name]['total'] = $new;
-
-
-            if ($on) {
-                $current = $totals['groups']['new'][$group->name]['on'] ?? 0;
-            } else {
-
-                $current = $totals['groups']['new'][$group->name]['off'] ?? 0;
-            }
-
-            $new = $current + 1;
-
-            if ($on) {
-                $totals['groups']['new'][$group->name]['on'] = $new;
-            } else {
-
-                $totals['groups']['new'][$group->name]['off'] = $new;
-            }
-            $newTotal->totals = $totals;
-
-            $current = $totals['groups']['new'][$group->name]['total'] ?? 0;
-            $new = $current + 1;
-            $totals['groups']['new'][$group->name]['total'] = $new;
-            $newTotal->totals = $totals;
-            $newTotal->save();
-
-            if (!$newDscan->system_id) {
-                $groupName = $item->group->name;
-                if ($groupName == "Sun") {
-                    $systemName = explode(" - ", $columns[1])[0];
-                    $system = System::where('system_name', $systemName)->first();
-                    $newDscan->system_id = $system->id;
-                    $newDscan->save();
-                }
-
-                if (
-                    $group->id == 1406 ||
-                    $group->id == 1876 ||
-                    $group->id == 1657 ||
-                    $group->id == 1404 ||
-                    $group->id == 15
-                ) {
-                    $systemName = explode(" - ", $columns[1])[0];
-                    $system = System::where('system_name', $systemName)->first();
-                    $newDscan->system_id = $system->id;
-                    $newDscan->save();
-                }
-            }
-        }
-
-        return  $newDscan->link;
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        if (Dscan::whereLink($id)->exists()) {
-            return getDscanInfo($id);
-        } else {
-            return loadDscanHistory($id);
-        }
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function updateDscan($dscan_results, $link)
-    {
-
-
-        $dScan = Dscan::whereLink($link)->first();
-        $dScan->updated_by = Auth::user()->id;
-        $dScan->save();
-
-        $rows = explode("\n", $dscan_results);
-        $newTotal = DscanTotal::where('dscan_id', $dScan->id)->first();
-
-        $totals = $newTotal->totals;
-        $newItem = $totals['items']['new'];
-        $totals['items']['old'] = $newItem;
-        $totals['items']['new'] = [];
-        $newCategory = $totals['categories']['new'];
-        $totals['categories']['old'] = $newCategory;
-        $totals['categories']['new'] = [];
-        $newGroup = $totals['groups']['new'];
-        $totals['groups']['old'] = $newGroup;
-        $totals['groups']['new'] = [];
-        $newTotal->totals = $totals;
-        $newTotal->save();
-
-        DscanItem::where('dscan_id', $dScan->id)->delete();
-
-        foreach ($rows as $row) {
-            $on = false;
-            $columns = explode("\t", $row);
-            $newDscanItem = new DscanItem();
-            $newDscanItem->dscan_id = $dScan->id;
-            $newDscanItem->item_id = $columns[0];
-            $newDscanItem->name = $columns[1];
-            $components = explode(" ", $columns[3]);
-            if (count($components) > 1) {
-                $newDscanItem->distance_value = $components[0]; // "9.1";
-                $newDscanItem->distance_unit = $components[1];
-            } else {
-                $newDscanItem->distance_value = 1; // "9.1";
-                $newDscanItem->distance_unit = "au";
-            }
-            $newDscanItem->save();
-            $item = Item::whereId($columns[0])->first();
-            $group = Group::whereId($item->group_id)->first();
-            $category = Categorie::whereId($group->category_id)->first();
-
-            if ($newDscanItem->distance_unit == "km" && $newDscanItem->distance_value <= 8000) {
-                $on = true;
-            }
-
-            if ($newDscanItem->distance_unit == "m") {
-                $on = true;
-            }
-
-            $totals = $newTotal->totals;
-
-            $current = $totals['items']['new'][$item->item_name]['group_id'] = $group->id;
-            $current = $totals['items']['new'][$item->item_name]['category_id'] = $category->id;
-            $current = $totals['items']['new'][$item->item_name]['item_name'] = $item->item_name;
-            $current = $totals['items']['new'][$item->item_name]['item_id'] = $item->id;
-            $newTotal->totals = $current;
-
-
-            $current = $totals['groups']['new'][$group->name]['category_id'] = $category->id;
-            $current = $totals['groups']['new'][$group->name]['group_id'] = $group->id;
-            $current = $totals['groups']['new'][$group->name]['group_name'] = $group->name;
-            $newTotal->totals = $current;
-
-            $current = $totals['categories']['new'][$category->name]['category_id'] = $category->id;
-            $current = $totals['categories']['new'][$category->name]['category_name'] = $category->name;
-            $newTotal->totals = $current;
-
-
-            if ($on) {
-                $current = $totals['items']['new'][$item->item_name]['on'] ?? 0;
-            } else {
-                $current = $totals['items']['new'][$item->item_name]['off'] ?? 0;
-            }
-
-            $new = $current + 1;
-            if ($on) {
-                $totals['items']['new'][$item->item_name]['on'] = $new;
-            } else {
-
-                $totals['items']['new'][$item->item_name]['off'] = $new;
-            }
-            $newTotal->totals = $totals;
-            $newTotal->save();
-
-            $current = $totals['items']['new'][$item->item_name]['total'] ?? 0;
-            $new = $current + 1;
-            $totals['items']['new'][$item->item_name]['total'] = $new;
-            $newTotal->save();
-
-            if ($on) {
-                $current = $totals['categories']['new'][$category->name]['on'] ?? 0;
-            } else {
-
-                $current = $totals['categories']['new'][$category->name]['off'] ?? 0;
-            }
-
-
-            $new = $current + 1;
-            if ($on) {
-                $totals['categories']['new'][$category->name]['on'] = $new;
-            } else {
-
-                $totals['categories']['new'][$category->name]['off'] = $new;
-            }
-            $newTotal->totals = $totals;
-            $newTotal->save();
-
-            $current = $totals['categories']['new'][$category->name]['total'] ?? 0;
-            $new = $current + 1;
-            $totals['categories']['new'][$category->name]['total'] = $new;
-            $newTotal->save();
-
-
-            if ($on) {
-                $current = $totals['groups']['new'][$group->name]['on'] ?? 0;
-            } else {
-
-                $current = $totals['groups']['new'][$group->name]['off'] ?? 0;
-            }
-
-            $new = $current + 1;
-
-            if ($on) {
-                $totals['groups']['new'][$group->name]['on'] = $new;
-            } else {
-
-                $totals['groups']['new'][$group->name]['off'] = $new;
-            }
-            $newTotal->totals = $totals;
-            $newTotal->save();
-
-            $current = $totals['groups']['new'][$group->name]['total'] ?? 0;
-            $new = $current + 1;
-            $totals['groups']['new'][$group->name]['total'] = $new;
-            $newTotal->totals = $totals;
-            $newTotal->save();
-
-            if (!$dScan->system_id) {
-                $groupName = $item->group->name;
-                if ($groupName == "Sun") {
-                    $systemName = explode(" - ", $columns[1])[0];
-                    $system = System::where('system_name', $systemName)->first();
-                    $dScan->system_id = $system->id;
-                    $dScan->save();
-                }
-
-                if (
-                    $group->id == 1406 ||
-                    $group->id == 1876 ||
-                    $group->id == 1657 ||
-                    $group->id == 1404 ||
-                    $group->id == 15
-                ) {
-                    $systemName = explode(" - ", $columns[1])[0];
-                    $system = System::where('system_name', $systemName)->first();
-                    $dScan->system_id = $system->id;
-                    $dScan->save();
-                }
-            }
-        }
-
-        return  $this->show($dScan->link);
     }
 
     public function updateLocal($local, string $id)
@@ -579,28 +317,47 @@ class DscanController extends Controller
 
 
 
-        $newNamesChunks = array_chunk($newNames, 500);
+        $newNamesChunks = array_chunk($newNames, 400);
 
         $responses = [];
 
         foreach ($newNamesChunks as $chunk) {
-            $response = Http::withHeaders([
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-                'User-Agent' => 'evestuff.online python9066@gmail.com',
-            ])
-                ->withBody(json_encode($chunk), 'application/json')
-                ->post('https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en');
+            $done = 0;
+            $passed = false;
 
-            if ($response->successful()) {
-                $responses[] = $response->json();
+            do {
+                $response = Http::withHeaders([
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
+                ])
+                    ->withBody(json_encode($chunk), 'application/json')
+                    ->post('https://esi.evetech.net/latest/universe/ids/?datasource=tranquility&language=en');
+
+                if ($response->successful()) {
+                    $done = 3;
+                    $passed = true;
+                    $responses[] = $response->json();
+                } else {
+                    $headers = $response->headers();
+                    $sleep = $headers['X-Esi-Error-Limit-Reset'][0];
+                    sleep($sleep);
+                    $done++;
+                }
+            } while ($done != 3);
+            if (!$passed) {
+                $flag = collect([
+                    'id' => $dScan->link,
+                    'flag' => 1,
+                ]);
+                broadcast(new dScanSoloUpdate($flag))->toOthers();
             }
         }
         foreach ($responses as $response) {
             $chars = $response['characters'];
 
             foreach ($chars as $char) {
-                $newChar = new Character();
+                $newChar = Character::whereId($char['id'])->first() ?? new Character();
                 $newChar->id = $char['id'];
                 $newChar->name = $char['name'];
                 $newChar->save();
@@ -618,8 +375,282 @@ class DscanController extends Controller
             getLocalNamesJob::dispatch($charID)->onQueue('alliance');
         }
 
+        if (!$dScan->system_id) {
+            $variables = json_decode(base64_decode(getenv('PLATFORM_VARIABLES')), true);
+            $webwayToken = env('WEBWAY_TOKEN', ($variables && array_key_exists('WEBWAY_TOKEN', $variables)) ? $variables['WEBWAY_TOKEN'] : null);
+            $webwayURL = env('WEBWAY_URL2', ($variables && array_key_exists('WEBWAY_URL2', $variables)) ? $variables['WEBWAY_URL2'] : null);
+            $dScanCharIdsSend = DscanLocal::where('dscan_id', $dScan->id)->pluck('character_id');
+            $res =  Http::withToken($webwayToken)
+                ->withHeaders([
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'User-Agent' => 'evestuff.online python9066@gmail.com',
+                ])->post($webwayURL, $dScanCharIdsSend);
+
+            $info =  $res->json();
+            if ($info['status'] == "true") {
+                $dScan->system_id = $info['system_id'];
+                $dScan->addedBySystem = false;
+                $dScan->save();
+            }
+        }
+        newLocal($dScan->link);
+        $this->sendUpdatedDscanInfo($dScan->link);
+
         return getDscanInfo($dScan->link);
     }
+
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function addNewDscan($dscan_results)
+    {
+
+
+        $newDscan = new Dscan();
+        $newDscan->user_id = Auth::user()->id;
+        $newDscan->link = Str::uuid();
+        $newDscan->save();
+
+        $lines  = explode("\n", $dscan_results);
+        $data = array();
+        foreach ($lines as $line) {
+            $data[] = explode("\t", $line);
+        }
+
+        foreach ($data as $row) {
+            $on = false;
+            $distance_parts = explode(" ", $row[3]);
+            $row[3] = str_replace(',', '', $distance_parts[0]);
+            if (count($distance_parts) == 2) {
+                $row[] = $distance_parts[1];
+            } else {
+                $row[] = 'AU';
+                if (empty($row[3]) || $row[3] == "-") {
+                    $row[3] = 1;
+                }
+            }
+            $newDscanItem = new DscanItem();
+            $newDscanItem->dscan_id = $newDscan->id;
+            $newDscanItem->distance_value = $row[3];
+            $newDscanItem->distance_unit = $row[4];
+            $newDscanItem->item_id = $row[0];
+            $newDscanItem->name = $row[1];
+            if ($newDscanItem->distance_unit == "km" && $newDscanItem->distance_value <= 8000) {
+                $on = true;
+            }
+
+            if ($newDscanItem->distance_unit == "m") {
+                $on = true;
+            }
+            $newDscanItem->on_grid = $on;
+            $newDscanItem->new = true;
+            $newDscanItem->save();
+            $item = Item::whereId($row[0])->first();
+            $group = Group::whereId($item->group_id)->first();
+            if (!$newDscan->system_id || !$newDscan->addedBySystem) {
+                $groupName = $item->group->name;
+                if ($groupName == "Sun") {
+                    $systemName = explode(" - ", $row[1])[0];
+                    $system = System::where('system_name', $systemName)->first();
+                    $newDscan->system_id = $system->id;
+                    $newDscan->addedBySystem = true;
+                    $newDscan->save();
+                }
+
+                if (
+                    $group->id == 1406 ||
+                    $group->id == 1876 ||
+                    $group->id == 1657 ||
+                    $group->id == 1404 ||
+                    $group->id == 15
+                ) {
+                    $systemName = explode(" - ", $row[1])[0];
+                    $system = System::where('system_name', $systemName)->first();
+                    $newDscan->system_id = $system->id;
+                    $newDscan->addedBySystem = true;
+                    $newDscan->save();
+                }
+            }
+        }
+
+        newDscan($newDscan->link);
+        $this->sendUpdatedDscanInfo($newDscan->link);
+        return  $newDscan->link;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function updateDscan($dscan_results, $link)
+    {
+
+
+        $dScan = Dscan::whereLink($link)->first();
+        $dScan->updated_by = Auth::user()->id;
+        $dScan->save();
+
+
+
+        $lines  = explode("\n", $dscan_results);
+        $data = array();
+        foreach ($lines as $line) {
+            $data[] = explode("\t", $line);
+        }
+
+
+        DscanItem::where('dscan_id', $dScan->id)->update(['updated' => false]);
+
+        foreach ($data as $row) {
+            $on = false;
+            $distance_parts = explode(" ", $row[3]);
+            $row[3] = str_replace(',', '', $distance_parts[0]);
+            if (count($distance_parts) == 2) {
+                $row[] = $distance_parts[1];
+            } else {
+                $row[] = 'AU';
+                if (empty($row[3]) || $row[3] == "-") {
+                    $row[3] = 1;
+                }
+            }
+
+            $dScanItem = DscanItem::where('dscan_id', $dScan->id)->where('item_id', $row[0])->where('updated', false)->first();
+            if ($dScanItem) {
+                $dScanItem->updated = true;
+                $dScanItem->new = false;
+                $dScanItem->same = true;
+                $dScanItem->distance_value = $row[3];
+                $dScanItem->distance_unit = $row[4];
+
+                if ($dScanItem->distance_unit == "km" && $dScanItem->distance_value <= 8000) {
+                    $on = true;
+                }
+
+                if ($dScanItem->distance_unit == "m") {
+                    $on = true;
+                }
+                $dScanItem->on_grid = $on;
+                $dScanItem->save();
+                $item = Item::whereId($row[0])->first();
+                $group = Group::whereId($item->group_id)->first();
+            } else {
+                $newDscanItem = new DscanItem();
+                $newDscanItem->dscan_id = $dScan->id;
+                $newDscanItem->item_id = $row[0];
+                $newDscanItem->distance_value = $row[3];
+                $newDscanItem->distance_unit = $row[4];
+                $newDscanItem->name = $row[1];
+                $newDscanItem->updated = true;
+                if ($newDscanItem->distance_unit == "km" && $newDscanItem->distance_value <= 8000) {
+                    $on = true;
+                }
+
+                if ($newDscanItem->distance_unit == "m") {
+                    $on = true;
+                }
+                $newDscanItem->on_grid = $on;
+                $newDscanItem->new = true;
+                $newDscanItem->save();
+            }
+
+            $item = Item::whereId($row[0])->first();
+            $group = Group::whereId($item->group_id)->first();
+            if (!$dScan->system_id || !$dScan->addedBySystem) {
+                $groupName = $item->group->name;
+                if ($groupName == "Sun") {
+                    $systemName = explode(" - ", $row[1])[0];
+                    $system = System::where('system_name', $systemName)->first();
+                    $dScan->system_id = $system->id;
+                    $dScan->addedBySystem = true;
+                    $dScan->save();
+                }
+
+                if (
+                    $group->id == 1406 ||
+                    $group->id == 1876 ||
+                    $group->id == 1657 ||
+                    $group->id == 1404 ||
+                    $group->id == 15
+                ) {
+                    $systemName = explode(" - ", $row[1])[0];
+                    $system = System::where('system_name', $systemName)->first();
+                    $dScan->system_id = $system->id;
+                    $dScan->addedBySystem = true;
+                    $dScan->save();
+                }
+            }
+        }
+
+        DscanItem::where('dscan_id', $dScan->id)
+            ->where('updated', false)
+            ->where(function ($query) {
+                $query->where('new', true)
+                    ->orWhere('same', true);
+            })
+            ->update([
+                'new' => false,
+                'same' => false,
+                'left' => true,
+                'updated' => true
+            ]);
+
+        DscanItem::where('dscan_id', $dScan->id)
+            ->where('updated', false)
+            ->where('left', true)
+            ->delete();
+
+
+
+        newDscan($dScan->link);
+
+        $this->sendUpdatedDscanInfo($dScan->link);
+
+
+        return  $this->show($dScan->link);
+    }
+
+
+
+
+    public function updateLocalNamePull($linkID)
+    {
+        $dScan = Dscan::whereLink($linkID)->first();
+        $dScanCharIDs = DscanLocal::where('dscan_id', $dScan->id)->pluck('character_id');
+        $charIDs = Character::whereIn('id', $dScanCharIDs)->whereNull('corp_id')->pluck('id');
+        foreach ($charIDs as $charID) {
+            getLocalNamesJob::dispatch($charID)->onQueue('alliance');
+        }
+    }
+
+    public function sendUpdatedDscanInfo($linkID)
+    {
+        $dScan = Dscan::whereLink($linkID)->first();
+        $dscanSystemID = $dScan->system_id;
+        $stagingSystems = StagingSystem::whereSystemId($dscanSystemID)->with(
+            'system:id,constellation_id,system_name',
+            'system.constellation:id,constellation_name,region_id',
+            'system.constellation.region:id,region_name',
+            'system.webway',
+            'dscan'
+        )->get();
+        foreach ($stagingSystems as $stagingSystem) {
+            $flag = collect([
+                'flag' => 1,
+                'message' => $stagingSystem
+            ]);
+            broadcast(new StagingSystemUpdate($flag));
+        }
+
+        $watchedSystems = OperationInfoWatchedSystem::whereIn('system_id', [$dscanSystemID])->get();
+        foreach ($watchedSystems as $watchedSystem) {
+            $opID = $watchedSystem->operation_info_id;
+            operationInfoWatchedSystemBcast($opID);
+        }
+    }
+
+
+
 
     /**
      * Remove the specified resource from storage.

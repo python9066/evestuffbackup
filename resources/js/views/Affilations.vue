@@ -118,6 +118,7 @@ const AffilationAllianceChips = defineAsyncComponent(() =>
 );
 
 onMounted(async () => {
+  document.title = "Evestuff - Affilations";
   store.getAffilationTable();
   store.getAllianceTickList();
   Echo.private("affilation").listen("AffilationUpdate", (e) => {

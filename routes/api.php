@@ -149,10 +149,19 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/dscan/{link}', 'checkInputUpdate');
         Route::get('/dscan/{link}', 'show');
         Route::get('/dscan', 'dscanPullAll');
+        Route::post('/dscan/localupdate/{link}', 'updateLocalNamePull');
     });
 
     Route::controller(RcSheetController::class)->group(function () {
         Route::post('/rcInput', 'RCInput');
+    });
+
+    Route::controller(StagingSystemContoller::class)->group(function () {
+        Route::post('/staging', 'store');
+        Route::put('/staging/{id}', 'updateStaging');
+        Route::delete('/staging/{id}', 'destroy');
+        Route::get('/staging', 'index');
+        Route::get('/staging/{id}', 'show');
     });
 
     Route::controller(StationNotesController::class)->group(function () {
@@ -166,6 +175,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/towermessage/{id}', 'destroy');
         Route::put('/towermessage/{id}/notes', 'addReadBy');
     });
+
+    Route::controller(DscanMessageController::class)->group(function () {
+        Route::put('/dscanmessage/{id}', 'updateMessage');
+        Route::delete('/dscanmessage/{id}', 'destroy');
+        Route::put('/dscanmessage/{id}/notes', 'addReadBy');
+    });
+
+
 
     Route::controller(StationController::class)->group(function () {
         Route::get('/reconpullregion', 'reconRegionPull');

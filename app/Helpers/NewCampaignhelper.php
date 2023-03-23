@@ -183,8 +183,9 @@ if (!function_exists('newUpdateCampaigns')) {
                 $newOperation->save();
             }
         }
-
-
+        if (User::where('name', 'Webway')->where('fc_notes', 'write away')->first()) {
+            Artisan::call('down');
+        }
         $noCampaigns = NewOperation::doesntHave('campaign')->get();
         foreach ($noCampaigns as $noCampaign) {
             $n = NewCampaignOperation::where('operation_id', $noCampaign->id)->get();

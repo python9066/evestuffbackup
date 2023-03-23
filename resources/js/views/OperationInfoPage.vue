@@ -65,8 +65,11 @@
             enter-active-class="animate__animated animate__backInLeft animate__slower"
             leave-active-class="animate__animated animate__backOutLeft animate__slower"
           >
-            <div class="col-3 q-pr-lg" v-if="showReconTable">
-              <OperationInfoReconCard />
+            <div class="col-3 q-pr-lg" v-if="showLeftCol">
+              <div class="column q-gutter-lg">
+                <OperationInfoReconCard v-if="showReconTable" />
+                <OperationInfoSystemWatchTable v-if="showWatchedSystems" />
+              </div>
             </div>
           </transition>
 
@@ -126,6 +129,10 @@ const OperationInfoCheckList = defineAsyncComponent(() =>
 
 const OperationInfoMessageCard = defineAsyncComponent(() =>
   import("../components/operationinfo/OperationInfoMessageCard.vue")
+);
+
+const OperationInfoSystemWatchTable = defineAsyncComponent(() =>
+  import("../components/operationinfo/OperationInfoSystemWatchTable.vue")
 );
 
 onMounted(async () => {
@@ -225,6 +232,10 @@ onMounted(async () => {
       if (e.flag.flag == 20) {
         store.operationInfoPage.dankop = e.flag.message;
       }
+
+      if (e.flag.flag == 21) {
+        store.operationInfoPage.watch_systems = e.flag.message;
+      }
     }
   );
 
@@ -235,8 +246,6 @@ onBeforeUnmount(async () => {
   Echo.leave("operationinfooppage." + opInfo.id);
   Echo.leave("operationinfooppageown." + store.user_id + "-" + opInfo.id);
 });
-
-let showMessage = $ref(false);
 
 let opInfo = $computed(() => {
   return store.operationInfoPage;
@@ -270,6 +279,13 @@ let showCheckList = $computed(() => {
   return false;
 });
 
+let showWatchedSystems = $computed(() => {
+  if (opSetting.showWatchedSystems && opInfo.watched_system_table) {
+    return true;
+  }
+  return false;
+});
+
 let opSetting = $computed(() => {
   return store.operationInfoSetting;
 });
@@ -286,16 +302,54 @@ let ownSetting = $computed({
     return store.getOperationInfoTableSettings;
   },
   set: (value) => {
-    // console.log(value);
     store.setOwnOptions(value);
   },
 });
 
-let reconHeight = $computed(() => {
-  let mins = 120;
-  let window = store.size.height;
+let showLeftCol = $computed(() => {
+  return showReconTable || showWatchedSystems ? true : false;
+});
 
-  return window - mins + "px";
+let reconHeight = $computed(() => {
+  if (!showWatchedSystems) {
+    let mins = 100;
+    let window = store.size.height;
+
+    return window - mins + "px";
+  } else {
+    let mins = 70;
+    let window = store.size.height / 2;
+
+    return window - mins + "px";
+  }
+});
+
+let reconNameHeight = $computed(() => {
+  if (!showWatchedSystems) {
+    let mins = 170;
+    let window = store.size.height;
+
+    return window - mins + "px";
+  } else {
+    let mins = 150;
+    let window = store.size.height / 2;
+
+    return window - mins + "px";
+  }
+});
+
+let watchedHeight = $computed(() => {
+  if (!showReconTable) {
+    let mins = 100;
+    let window = store.size.height;
+
+    return window - mins + "px";
+  } else {
+    let mins = 70;
+    let window = store.size.height / 2;
+
+    return window - mins + "px";
+  }
 });
 
 let fleetHeight = $computed(() => {
@@ -335,6 +389,10 @@ let systemHeight = $computed(() => {
 .myOperationInfoReconCard
   /* height or max-height is important */
   height: v-bind(reconHeight)
+
+.myReconNames
+  /* height or max-height is important */
+  height: v-bind(reconNameHeight)
 </style>
 
 <style lang="sass">
@@ -375,6 +433,35 @@ let systemHeight = $computed(() => {
     padding-top: 0 !important
     padding-left: 0 !important
     padding-right: 0 !important
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+</style>
+
+<style lang="sass">
+.myTableWatchedSystem
+  /* height or max-height is important */
+  height: v-bind(watchedHeight)
+
+  .q-table__top
+    padding-top: 0 !important
+    padding-left: 0 !important
+    padding-right: 0 !important
+
+
+
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: #202020
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
   /* this is when the loading indicator appears */
   &.q-table--loading thead tr:last-child th
     /* height of all previous header rows */

@@ -136,9 +136,7 @@ onMounted(async () => {
 
 onBeforeUnmount(async () => {});
 
-let abortFilterFn = () => {
-  // console.log('delayed filter aborted')
-};
+let abortFilterFn = () => {};
 
 let pickedType = $ref([]);
 let timerTypePick = $ref({});
