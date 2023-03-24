@@ -180,6 +180,10 @@ let showOptions = $ref([
     label: "System Table",
     value: "system_table",
   },
+  {
+    label: "Watched Table",
+    value: "watched_system_table",
+  },
 ]);
 
 let hideShow = (value) => {

@@ -296,6 +296,12 @@ class OperationInfoController extends Controller
             $operationInfo->system_table = 0;
         }
 
+        if ($show->contains('watched_system_table')) {
+            $operationInfo->watched_system_table = 1;
+        } else {
+            $operationInfo->watched_system_table = 0;
+        }
+
         $operationInfo->save();
 
         OperationInfoWatchedSystem::where('operation_info_id', $id)->delete();
