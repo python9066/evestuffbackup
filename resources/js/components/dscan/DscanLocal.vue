@@ -3,7 +3,7 @@
     <!-- <div class="row justify-around">{{ store.getDscanLocalCorps }}</div> -->
     <div class="row justify-around">
       <div class="col">
-        <q-card class="my-card overflow-auto" :style="h">
+        <q-card class="my-card">
           <q-card-section class="q-py-none text-center">
             All Alliances - {{ totalAllianceTotalInSystem }}
             <span :class="textColor(totalAllianceDff)"> ({{ totalAllianceDff }})</span>
