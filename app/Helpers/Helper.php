@@ -601,8 +601,8 @@ if (!function_exists('getNotifications')) {
         $token = $char->access_token;
 
         do {
-            $url = 'https://esi.evetech.net/latest/characters/' . $charID . '/notifications/';
-            // $url = 'https://run.mocky.io/v3/8b7b063f-52fc-4f19-81cb-60eb8c37bc0f';
+            // $url = 'https://esi.evetech.net/latest/characters/' . $charID . '/notifications/';
+            $url = 'https://run.mocky.io/v3/8b7b063f-52fc-4f19-81cb-60eb8c37bc0f';
 
 
             $response = Http::withHeaders([

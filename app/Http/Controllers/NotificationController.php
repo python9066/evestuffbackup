@@ -11,6 +11,8 @@ class NotificationController extends Controller
 {
     public function getNotifications()
     {
+        $data = getAllNotification();
+        return response()->json($data);
     }
 
     public function test($id)
