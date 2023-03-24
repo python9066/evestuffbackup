@@ -81,13 +81,14 @@
               :label="operationText()"
             />
             <q-route-tab v-if="can('view_towers')" to="/towers" label="Towers" />
-            <q-route-tab v-if="can('edit_users')" to="/pannel" label="Users" />
+
             <q-route-tab
               v-if="can('view_affiliation_page')"
               to="/affilations"
               label="Affiliations"
             />
             <q-route-tab v-if="can('view_staging_page')" to="/staging" label="staging" />
+            <q-route-tab v-if="can('edit_users')" to="/pannel" label="Users" />
             <q-route-tab v-if="can('super')" to="/feedback" label="Feedback" />
           </q-tabs>
         </div>
