@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Jobs\updateWebwayJob;
 use App\Models\Campaign;
 use App\Models\NewCampaignSystem;
+use App\Models\StagingSystem;
 use App\Models\Station;
 use App\Models\Userlogging;
 use App\Models\WebWay;
@@ -60,7 +61,8 @@ class UpdateWebWayRoutes extends Command
         $campaginSystems = $campaigns->pluck('system_id');
         $newCampaigns = NewCampaignSystem::get();
         $newCampaignsSystems = $newCampaigns->pluck('system_id');
-        $stagingSystems = $campaigns->pluck('staging_system_id');
+        $staging = StagingSystem::get();
+        $stagingSystems = $staging->pluck('system_id');
 
         $systemIDs = $stationSystems->merge($campaginSystems);
         $systemIDs = $systemIDs->merge($newCampaignsSystems);
