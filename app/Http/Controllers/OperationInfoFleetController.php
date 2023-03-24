@@ -199,4 +199,9 @@ class OperationInfoFleetController extends Controller
     {
         operationInfoAddDankLink($request->link, $request->opID);
     }
+
+    public function dankLinkRemove($id)
+    {
+        operationInfoRemoveDankLink($id);
+    }
 }

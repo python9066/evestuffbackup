@@ -458,6 +458,29 @@ if (!function_exists('operationInfoSoloPageAddDankOp')) {
     }
 }
 
+if (!function_exists('operationInfoSoloPageRemoveDankOp')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     *
+     *  @param  int  $opID
+     * OP ID
+     *
+     * @param  int  $flagNumber
+     * 22 = remove Dank
+
+     */
+    function operationInfoSoloPageRemoveDankOp($opID, $flagNumber)
+    {
+
+        $flag = collect([
+            'flag' => $flagNumber,
+            'id' => $opID
+        ]);
+        broadcast(new OperationInfoPageSoloUpdate($flag));
+    }
+}
+
 
 if (!function_exists('operationInfoSoloPageFleetBroadcast')) {
     /**
@@ -1163,5 +1186,25 @@ if (!function_exists('operationInfoAddDankLink')) {
 
         operationInfoSoloPageAllFleetBroadcast($id, 19);
         operationInfoSoloPageAddDankOp($id, 20);
+    }
+}
+
+if (!function_exists('operationInfoRemoveDankLink')) {
+    /**
+     * Example of documenting multiple possible datatypes for a given parameter
+
+     * @param  string  $link
+     * Link to operation/fleet page
+     * @param  int  $id
+     * Op ID
+     */
+    function operationInfoRemoveDankLink($id)
+    {
+
+
+        $opInfo = OperationInfo::where('id', $id)->first();
+        $DankOp = DankOperation::where('operation_info_id', $opInfo->id)->first();
+        $DankOp->delete();
+        operationInfoSoloPageRemoveDankOp($id, 22);
     }
 }
