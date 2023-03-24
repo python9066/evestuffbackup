@@ -2,25 +2,20 @@
 
 namespace App\Jobs;
 
-use App\Events\dScanSoloUpdate;
 use App\Models\Alliance;
 use App\Models\Character;
 use App\Models\Corp;
-use App\Models\DscanLocal;
 use Http;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class getLocalNamesJob implements ShouldQueue
+class UpdateCharInfo implements ShouldQueue
 {
-    use Dispatchable;
-    use InteractsWithQueue;
-    use Queueable;
-    use SerializesModels;
-
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $charID;
     /**
@@ -31,36 +26,17 @@ class getLocalNamesJob implements ShouldQueue
         $this->charID = $charID;
     }
 
-
-
-
     /**
      * Execute the job.
      */
     public function handle(): void
     {
         activity()->disableLogging();
-        $char = Character::whereId($this->charID)->whereNull('corp_id')->first();
-        if ($char) {
-            $this->addCorpID($this->charID);
-        }
 
-
-        $dscans = DscanLocal::where('character_id', $this->charID)->get();
-        foreach ($dscans as $dscan) {
-            $message = getDscanLocalInfo($dscan->dscan->link, $this->charID);
-            $flag = collect([
-                'id' => $dscan->dscan->link,
-                'flag' => 2,
-                'message' => $message,
-            ]);
-            broadcast(new dScanSoloUpdate($flag));
-        }
-
+        $this->addCorpID($this->charID);
 
         activity()->enableLogging();
     }
-
 
     public function addCorpID($charID)
     {
@@ -76,8 +52,10 @@ class getLocalNamesJob implements ShouldQueue
 
                 $resChar = $charRes->json();
 
+
                 $char->corp_id = $resChar['corporation_id'];
                 $char->save();
+                $char->touch();
                 $this->addCorp($resChar['corporation_id']);
                 $done = 3;
             } else {
@@ -89,7 +67,6 @@ class getLocalNamesJob implements ShouldQueue
             }
         } while ($done != 3);
     }
-
 
     public function addCorp($corpID)
     {
@@ -116,6 +93,7 @@ class getLocalNamesJob implements ShouldQueue
 
                         ]
                     );
+
                     $this->addAlliance($corpInfo->get('alliance_id'));
                 } else {
                     $headers = $corpRes->headers();
