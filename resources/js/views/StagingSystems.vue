@@ -251,6 +251,18 @@ let columns = $ref([
     format: (val) => `${val}`,
     sortable: false,
   },
+
+  {
+    name: "name",
+    align: "left",
+    required: false,
+    label: "Name",
+    style: "width: 15%",
+    classes: "text-no-wrap",
+    field: (row) => row.name,
+    format: (val) => `${val}`,
+    sortable: false,
+  },
   {
     name: "region",
     required: true,
