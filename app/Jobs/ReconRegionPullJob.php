@@ -34,6 +34,9 @@ class ReconRegionPullJob implements ShouldQueue
     public function handle(): void
     {
         activity()->disableLogging();
+        if ($this->stationID == 0) {
+            return;
+        }
         $current_time = now();
         $x_minutes_ago = $current_time->subMinutes(5);
         $station = Station::whereId($this->stationID)->first();
