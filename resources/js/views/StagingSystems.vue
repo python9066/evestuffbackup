@@ -154,6 +154,8 @@ onBeforeUnmount(() => {
   Echo.leave("stagingsystem");
 });
 
+let menu = $ref(false);
+
 let removeSystem = async (id) => {
   await axios({
     method: "delete", //you can set what request you want to be

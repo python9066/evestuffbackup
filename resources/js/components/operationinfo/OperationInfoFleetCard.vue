@@ -27,36 +27,56 @@
             />
           </div>
           <div class="col-auto">
-            <q-btn
-              color="primary"
-              icon-right="fa-solid fa-plus"
-              label="Add Dank Operation Link"
-              flat
-              ><q-menu @before-hide="dankLink = null">
-                <q-list style="min-width: 100px">
-                  <q-card class="my-card">
-                    <q-card-section>
-                      <q-input
-                        v-model="dankLink"
-                        rounded
-                        outlined
-                        type="text"
-                        label="Dank Link"
-                      />
-                    </q-card-section>
-                    <q-card-actions align="center">
-                      <q-btn
-                        v-close-popup
-                        rounded
-                        @click="addDankLink()"
-                        color="positive"
-                        label="Add"
-                      />
-                      <q-btn v-close-popup rounded color="negative" label="close" />
-                    </q-card-actions>
-                  </q-card>
-                </q-list> </q-menu
-            ></q-btn>
+            <span v-if="showAddDank">
+              <q-btn
+                color="primary"
+                icon-right="fa-solid fa-plus"
+                label="Add Dank Operation Link"
+                flat
+                ><q-menu @before-hide="dankLink = null">
+                  <q-list style="min-width: 100px">
+                    <q-card class="my-card">
+                      <q-card-section>
+                        <q-input
+                          v-model="dankLink"
+                          rounded
+                          outlined
+                          type="text"
+                          label="Dank Link"
+                        />
+                      </q-card-section>
+                      <q-card-actions align="center">
+                        <q-btn
+                          v-close-popup
+                          rounded
+                          @click="addDankLink()"
+                          color="positive"
+                          label="Add"
+                        />
+                        <q-btn v-close-popup rounded color="negative" label="close" />
+                      </q-card-actions>
+                    </q-card>
+                  </q-list> </q-menu
+              ></q-btn>
+            </span>
+            <span v-else>
+              <q-btn
+                color="primary"
+                flat
+                :label="dankOpName"
+                :href="store.operationInfoPage.dankop.link"
+                target="_blank"
+              />
+              <q-btn
+                round
+                padding="none"
+                flat
+                size="sm"
+                color="warning"
+                icon="fa-solid fa-trash-alt"
+                @click="removeDankLink()"
+              />
+            </span>
           </div>
         </div>
       </template>
@@ -100,6 +120,7 @@ let addDankLink = async () => {
     link: dankLink,
     opID: store.operationInfoPage.id,
   };
+  console.log(store.operationInfoPage.id);
   await axios({
     method: "post", //you can set what request you want to be
     url: "/api/operationdanklink",
@@ -109,11 +130,35 @@ let addDankLink = async () => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    data: {
-      link: dankLink,
+  });
+};
+
+let removeDankLink = async () => {
+  console.log(store.operationInfoPage.id);
+  await axios({
+    method: "delete", //you can set what request you want to be
+    url: "/api/operationdanklink/" + store.operationInfoPage.id,
+    withCredentials: true,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
   });
 };
+
+let dankOpName = $computed(() => {
+  if (store.operationInfoPage.dankop) {
+    return store.operationInfoPage.dankop.name;
+  }
+  return "No Dank Link";
+});
+
+let showAddDank = $computed(() => {
+  if (store.operationInfoPage.dankop && store.operationInfoPage.dankop.link) {
+    return false;
+  }
+  return true;
+});
 
 let addFleet = async () => {
   await axios({
