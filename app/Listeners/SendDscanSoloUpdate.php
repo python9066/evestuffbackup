@@ -17,7 +17,7 @@ class SendDscanSoloUpdate
     /**
      * Handle the event.
      */
-    public function handle(DscanSoloUpdate $event): void
+    public function handle(dScanSoloUpdate $event): void
     {
         //
     }
