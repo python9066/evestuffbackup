@@ -652,7 +652,7 @@ let allianceBgColor = (standing) => {
   }
 
   if (standing > 0) {
-    return "bg-blue-2";
+    return "bg-light-blue-5";
   }
 
   if (standing == 0) {
