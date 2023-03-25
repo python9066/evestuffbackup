@@ -199,12 +199,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::controller(NotificationRecordsController::class)->group(function () {
         Route::get('/notifications/{region_id}', 'regionLink');
-        Route::get('/notifications', 'index');
     });
 
     Route::controller(NotificationController::class)->group(function () {
         Route::put('/notifications/{id}', 'update');
         Route::put('/notificationsaddtime/{id}', 'addTime');
+        Route::get('/notifications', 'getNotifications');
     });
 
     Route::controller(TimerController::class)->group(function () {

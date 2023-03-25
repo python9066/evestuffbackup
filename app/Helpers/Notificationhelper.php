@@ -1026,7 +1026,6 @@ if (!function_exists('notificationUpdate')) {
         $check = Notification::where('status_id', 2)
             ->where('timestamp', '<=', $now)
             ->count();
-        // dd($check);
         if ($check > 0) {
             $n = Notification::where('status_id', 2)
                 ->where('timestamp', '<=', $now)->get();
@@ -1214,6 +1213,19 @@ if (!function_exists('notificationUpdate')) {
         ];
     }
 }
+
+if (!function_exists('getAllNotification')) {
+    function getAllNotification()
+    {
+
+        $notifications = Notification::whereNot('status_id', 10)->get();
+
+        return $notifications;
+    }
+}
+
+
+
 if (!function_exists('stationNotificationCheck')) {
     function stationNotificationCheck()
     {

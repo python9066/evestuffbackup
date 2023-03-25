@@ -60,6 +60,7 @@ class newNotificationUpdate extends Command
             if ($refreshToken) {
                 $data = getNotifications($charID);
                 $flag = notificationUpdate($data);
+                dd($flag);
                 if ($flag['notificationflag'] == 1) {
                     broadcast(new NotificationNew($flag['notificationflag']))->toOthers();
                 }
