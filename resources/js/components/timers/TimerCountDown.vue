@@ -33,8 +33,7 @@ let countUpTimeMil = $computed(() => {
 
   let dateString = time;
   let date = new Date(dateString);
-  let offset = date.getTimezoneOffset() * 60000;
-  let timestamp = Date.parse(dateString) - offset;
+  let timestamp = date.getTime();
   let count = timestamp - new Date();
   return count;
 });

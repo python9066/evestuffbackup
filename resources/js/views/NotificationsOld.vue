@@ -5,7 +5,7 @@
         <v-card-title>Hack Notifications</v-card-title>
         <div v-if="$can('access hacks')">You can edit posts.</div>
 
-        <v-btn
+        <!-- <v-btn
           :loading="loadingr"
           :disabled="loadingr"
           color="primary"
@@ -19,8 +19,8 @@
             pull="right"
             size="2xl"
           />
-        </v-btn>
-        <div>
+        </v-btn> -->
+        <!-- <div>
           <v-btn-toggle v-model="icon" borderless group>
             <v-dialog
               v-model="dialog1"
@@ -203,17 +203,17 @@
               </v-card>
             </v-dialog>
           </v-btn-toggle>
-        </div>
-
+        </div> -->
+        <!--
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
           label="Search"
           single-line
           hide-details
-        ></v-text-field>
+        ></v-text-field> -->
 
-        <v-btn-toggle
+        <!-- <v-btn-toggle
           right-align
           v-model="toggle_exclusive"
           mandatory
@@ -254,7 +254,7 @@
           >
             Contested
           </v-btn>
-        </v-btn-toggle>
+        </v-btn-toggle> -->
       </div>
       <v-data-table
         :headers="headers"
@@ -298,10 +298,7 @@
           v-slot:[`item.status_name`]="{ item }"
           class="align-items-center d-inline-flex"
         >
-          <div
-            v-if="$can('edit_notifications')"
-            class="d-inline-flex align-items-center"
-          >
+          <div v-if="$can('edit_notifications')" class="d-inline-flex align-items-center">
             <v-menu offset-y>
               <template v-slot:activator="{ on, attrs }">
                 <div class="align-content-center d-inline-flex">
@@ -313,10 +310,7 @@
                     outlined
                     :color="statusButtonColor(item)"
                   >
-                    <font-awesome-icon
-                      :icon="statusButtonIcon(item)"
-                      pull="left"
-                    />
+                    <font-awesome-icon :icon="statusButtonIcon(item)" pull="left" />
                     {{ item.status_name }}
                   </v-btn>
                 </div>
@@ -371,21 +365,11 @@
           <div v-else>
             <template>
               <div class="align-items-center d-inline-flex">
-                <v-chip
-                  v-if="item.status_id == 1"
-                  class="ma-2"
-                  label
-                  color="success"
-                >
+                <v-chip v-if="item.status_id == 1" class="ma-2" label color="success">
                   <font-awesome-icon icon="fa-solid fa-plus" pull="left" />
                   {{ item.status_name }}
                 </v-chip>
-                <v-chip
-                  v-if="item.status_id == 2"
-                  class="ma-2"
-                  label
-                  color="error"
-                >
+                <v-chip v-if="item.status_id == 2" class="ma-2" label color="error">
                   <font-awesome-icon
                     icon="fa-solid fa-fire-flame"
                     size="sm"
@@ -393,34 +377,16 @@
                   />
                   {{ item.status_name }}
                 </v-chip>
-                <v-chip
-                  v-if="item.status_id == 3"
-                  class="ma-2"
-                  label
-                  color="dark-orange"
-                >
+                <v-chip v-if="item.status_id == 3" class="ma-2" label color="dark-orange">
                   <font-awesome-icon icon="fa-solid fa-toolbox" pull="left" />
                   {{ item.status_name }}
                 </v-chip>
-                <v-chip
-                  v-if="item.status_id == 4"
-                  class="ma-2"
-                  label
-                  color="primary"
-                >
+                <v-chip v-if="item.status_id == 4" class="ma-2" label color="primary">
                   <font-awesome-icon icon="fa-solid fa-thumbs-up" pull="left" />
                   {{ item.status_name }}
                 </v-chip>
-                <v-chip
-                  v-if="item.status_id == 5"
-                  class="ma-2"
-                  label
-                  color="warning"
-                >
-                  <font-awesome-icon
-                    icon="fa-solid fa-circle-exclamation"
-                    pull="left"
-                  />
+                <v-chip v-if="item.status_id == 5" class="ma-2" label color="warning">
+                  <font-awesome-icon icon="fa-solid fa-circle-exclamation" pull="left" />
                   {{ item.status_name }}
                 </v-chip>
 
@@ -430,16 +396,12 @@
                   label
                   color="light-green darken-1"
                 >
-                  <font-awesome-icon
-                    icon="fa-solid fa-magnifying-glass"
-                    pull="left"
-                  />
+                  <font-awesome-icon icon="fa-solid fa-magnifying-glass" pull="left" />
                   {{ item.status_name }}
                 </v-chip>
                 <CountDowntimer
                   v-if="
-                    (item.status_id == 3 || item.status_id == 5) &&
-                    item.end_time != null
+                    (item.status_id == 3 || item.status_id == 5) && item.end_time != null
                   "
                   :start-time="moment.utc(item.end_time).unix()"
                   :interval="1000"
@@ -503,10 +465,7 @@
             </div>
           </td>
         </template>
-        <template
-          v-slot:[`item.user_name`]="{ item }"
-          class="d-flex align-center"
-        >
+        <template v-slot:[`item.user_name`]="{ item }" class="d-flex align-center">
           <p v-if="$can('edit_notifications')">
             {{ item.user_name }}
           </p>
@@ -808,34 +767,21 @@ export default {
   },
 
   computed: {
-    ...mapState([
-      "notifications",
-      "delveLink",
-      "queriousLink",
-      "periodbasisLink",
-    ]),
+    ...mapState(["notifications", "delveLink", "queriousLink", "periodbasisLink"]),
 
     filteredItems() {
       // var timers = this.$store.state.timers;
       if (this.statusflag == 1) {
-        return this.notifications.filter(
-          (notifications) => notifications.status_id == 1
-        );
+        return this.notifications.filter((notifications) => notifications.status_id == 1);
       }
       if (this.statusflag == 3) {
-        return this.notifications.filter(
-          (notifications) => notifications.status_id == 3
-        );
+        return this.notifications.filter((notifications) => notifications.status_id == 3);
       }
       if (this.statusflag == 5) {
-        return this.notifications.filter(
-          (notifications) => notifications.status_id == 5
-        );
+        return this.notifications.filter((notifications) => notifications.status_id == 5);
       }
       if (this.statusflag == 6) {
-        return this.notifications.filter(
-          (notifications) => notifications.status_id == 6
-        );
+        return this.notifications.filter((notifications) => notifications.status_id == 6);
       } else {
         return this.notifications.filter(
           (notifications) => notifications.status_id != 10

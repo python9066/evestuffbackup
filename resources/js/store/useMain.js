@@ -127,6 +127,7 @@ export const useMainStore = defineStore("main", {
         campaignslist: [],
         watchListList: [],
         watchListListForUser: [],
+        notifications: [],
     }),
 
     getters: {
@@ -1574,7 +1575,7 @@ export const useMainStore = defineStore("main", {
                     "Content-Type": "application/json",
                 },
             });
-            this.notifications = res.data.notifications;
+            this.notifications = res.data;
 
         },
     },

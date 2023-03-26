@@ -278,10 +278,7 @@ let filterEnd = $computed(() => {
 });
 
 let countUpTimeMil = (time) => {
-  let dateString = time;
-  let date = new Date(dateString);
-  let offset = date.getTimezoneOffset() * 60000;
-  let timestamp = Date.parse(dateString) - offset;
+  const timestamp = Date.parse(time);
   return timestamp;
 };
 

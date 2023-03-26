@@ -80,6 +80,11 @@
               to="/operationinfo"
               :label="operationText()"
             />
+            <q-route-tab
+              v-if="can('edit_notifications')"
+              to="/notifications"
+              label="Notifications"
+            />
             <q-route-tab v-if="can('view_towers')" to="/towers" label="Towers" />
             <q-route-tab v-if="can('edit_users')" to="/pannel" label="Users" />
             <q-route-tab

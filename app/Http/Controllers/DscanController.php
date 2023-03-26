@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\dScanSoloUpdate;
+use App\Events\NotificationChanged;
 use App\Events\StagingSystemUpdate;
 use App\Jobs\getLocalNamesJob;
 use App\Models\Character;
@@ -11,6 +12,7 @@ use App\Models\DscanItem;
 use App\Models\DscanLocal;
 use App\Models\Group;
 use App\Models\Item;
+use App\Models\Notification;
 use App\Models\OperationInfoWatchedSystem;
 use App\Models\StagingSystem;
 use App\Models\System;
@@ -40,6 +42,26 @@ class DscanController extends Controller
         } else {
             return loadDscanHistory($id);
         }
+    }
+
+    public function checkInputNewNotfication(Request $request, $id)
+    {
+        $text = $request->text;
+        $lines = explode("\n", $text);
+
+        if (count(explode("\t", $lines[0])) == 1) {
+            $data = $this->addNewLocal($text, 1);
+        } else {
+
+            $data =  $this->addNewDscan($text, 1);
+        }
+
+        $dscan_results = Dscan::whereLink($data)->first();
+        $notification = Notification::whereId($id)->first();
+        $notification->dscan_id = $dscan_results->id;
+        $notification->save();
+        $message = getSoloNotification($id);
+        broadcast(new NotificationChanged($message));
     }
 
     public function checkInputNew(Request $request)
@@ -87,6 +109,14 @@ class DscanController extends Controller
 
     public function sendUpdateBoardCasts($data, $link)
     {
+
+
+        if ($data['dscan']['type'] == 1) {
+            $dscan_results = Dscan::whereLink($data['dscan']['link'])->first();
+            $notification = Notification::whereDscanId($dscan_results->id)->first();
+            $message = getSoloNotification($notification->id);
+            broadcast(new NotificationChanged($message));
+        }
         $message = $data['corpsTotal'];
         $flag = collect([
             'id' => $link,
@@ -152,11 +182,12 @@ class DscanController extends Controller
         broadcast(new dScanSoloUpdate($flag))->toOthers();
     }
 
-    public function addNewLocal($local)
+    public function addNewLocal($local, $type = 0)
     {
         $newDscan = new Dscan();
         $newDscan->user_id = Auth::user()->id;
         $newDscan->link = Str::uuid();
+        $newDscan->type = $type;
         $newDscan->save();
 
         $rows = explode("\n", $local);
@@ -404,12 +435,13 @@ class DscanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function addNewDscan($dscan_results)
+    public function addNewDscan($dscan_results, $type = 0)
     {
 
 
         $newDscan = new Dscan();
         $newDscan->user_id = Auth::user()->id;
+        $newDscan->type = $type;
         $newDscan->link = Str::uuid();
         $newDscan->save();
 
