@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\NotificationRecords;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -28,7 +28,7 @@ class NotificationChanged implements ShouldBroadcastNow
      *
      * @return void
      */
-    public function __construct(NotificationRecords $notifications)
+    public function __construct(Notification $notifications)
     {
         $this->notifications = $notifications;
     }

@@ -30,7 +30,9 @@ class DeleteOldDscans extends Command
      */
     public function handle(): void
     {
-        $dscans = Dscan::where('updated_at', '<', now()->subHours(6))->get();
+        $dscans = Dscan::where('updated_at', '<', now()->subHours(6))
+            ->whereType(0)
+            ->get();
         foreach ($dscans as $dscan) {
             DscanHistory::where('dscan_id', $dscan->id)->delete();
             DscanItem::where('dscan_id', $dscan->id)->delete();

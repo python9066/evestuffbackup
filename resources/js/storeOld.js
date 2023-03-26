@@ -968,16 +968,16 @@ export default new Vuex.Store({
         //     state.loggingAdmin = logs;
         // },
 
-        SET_NOTIFICATIONS(state, notifications) {
-            state.notifications = notifications;
-        },
+        // SET_NOTIFICATIONS(state, notifications) {
+        //     state.notifications = notifications;
+        // },
 
-        UPDATE_NOTIFICATIONS(state, data) {
-            const item = state.notifications.find(
-                (item) => item.id === data.id
-            );
-            Object.assign(item, data);
-        },
+        // UPDATE_NOTIFICATIONS(state, data) {
+        //     const item = state.notifications.find(
+        //         (item) => item.id === data.id
+        //     );
+        //     Object.assign(item, data);
+        // },
 
         // SET_CAMPAIGN_SYSTEMS(state, systems) {
         //     state.campaignsystems = systems;
@@ -2133,11 +2133,11 @@ export default new Vuex.Store({
             commit("SET_WEBWAY_SELECTED_START_SYSTEM", data);
         },
 
-        updateNotification({
-            commit
-        }, data) {
-            commit("UPDATE_NOTIFICATIONS", data);
-        },
+        // updateNotification({
+        //     commit
+        // }, data) {
+        //     commit("UPDATE_NOTIFICATIONS", data);
+        // },
 
         // updateStationNotification({ commit }, data) {
         //     commit("UPDATE_STATION_NOTIFICATION", data);
@@ -2535,21 +2535,19 @@ export default new Vuex.Store({
             commit("SET_OPERATION_INFO_RECON", data);
         },
 
-        async getNotifications({
-            commit
-        }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true, //you can set what request you want to be
-                url: "/api/notifications",
-                // data: {id: varID},
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_NOTIFICATIONS", res.data.notifications);
-        },
+        // async getNotifications({commit}) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true, //you can set what request you want to be
+        //         url: "/api/notifications",
+        //         // data: {id: varID},
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_NOTIFICATIONS", res.data.notifications);
+        // },
 
         async getdelveLink({
             commit
@@ -2566,20 +2564,18 @@ export default new Vuex.Store({
             commit("SET_DELVE_LINK", res.data.link);
         },
 
-        async getqueriousLink({
-            commit
-        }) {
-            let res = await axios({
-                method: "get",
-                withCredentials: true, //you can set what request you want to be
-                url: "/api/notifications/10000050",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-            });
-            commit("SET_QUERIOUS_LINK", res.data.link);
-        },
+        // async getqueriousLink({commit}) {
+        //     let res = await axios({
+        //         method: "get",
+        //         withCredentials: true, //you can set what request you want to be
+        //         url: "/api/notifications/10000050",
+        //         headers: {
+        //             Accept: "application/json",
+        //             "Content-Type": "application/json",
+        //         },
+        //     });
+        //     commit("SET_QUERIOUS_LINK", res.data.link);
+        // },
 
         async getperiodbasisLink({
             commit
@@ -2890,26 +2886,26 @@ export default new Vuex.Store({
         getSystemReadyToGoCount: (state) => (payload) => {
             return state.campaignusers.filter(
                 (u) =>
-                u.campaign_id == payload.campaign_id &&
-                u.system_id == payload.system_id &&
-                u.status_id == 3
+                    u.campaign_id == payload.campaign_id &&
+                    u.system_id == payload.system_id &&
+                    u.status_id == 3
             ).length;
         },
 
         getCampaignSolaSystemFilter: (state) => (payload) => {
             return state.campaignSolaSystems.filter(
                 (u) =>
-                u.campaign_id == payload.campaign_id &&
-                u.system_id == payload.system_id
+                    u.campaign_id == payload.campaign_id &&
+                    u.system_id == payload.system_id
             );
         },
 
         getSystemOnTheWayCount: (state) => (payload) => {
             return state.campaignusers.filter(
                 (u) =>
-                u.campaign_id == payload.campaign_id &&
-                u.system_id == payload.system_id &&
-                u.status_id == 2
+                    u.campaign_id == payload.campaign_id &&
+                    u.system_id == payload.system_id &&
+                    u.status_id == 2
             ).length;
         },
 
@@ -2936,10 +2932,10 @@ export default new Vuex.Store({
         getsActiveCampaignById: (state) => (payload) => {
             return state.campaignJoin.filter(
                 (c) =>
-                c.custom_campaign_id == payload.id &&
-                (c.status_id == 2 || c.status_id == 1) &&
-                c.constellation_id == payload.constellation_id &&
-                c.warmup == 1
+                    c.custom_campaign_id == payload.id &&
+                    (c.status_id == 2 || c.status_id == 1) &&
+                    c.constellation_id == payload.constellation_id &&
+                    c.warmup == 1
             );
         },
 
@@ -2948,10 +2944,10 @@ export default new Vuex.Store({
         getsActiveCampaignByIdDrop: (state) => (payload) => {
             return state.campaignJoin.filter(
                 (c) =>
-                c.custom_campaign_id == payload.id &&
-                c.status_id == 2 &&
-                c.constellation_id == payload.constellation_id &&
-                c.warmup == 1
+                    c.custom_campaign_id == payload.id &&
+                    c.status_id == 2 &&
+                    c.constellation_id == payload.constellation_id &&
+                    c.warmup == 1
             );
         },
 
@@ -2976,16 +2972,16 @@ export default new Vuex.Store({
         getCampaignUsersReadyToGoAll: (state) => (id) => {
             return state.campaignusers.filter(
                 (campaignusers) =>
-                campaignusers.system_id == id &&
-                campaignusers.status_id == 3
+                    campaignusers.system_id == id &&
+                    campaignusers.status_id == 3
             );
         },
 
         getCampaignUsersOnTheWayAll: (state) => (id) => {
             return state.campaignusers.filter(
                 (campaignusers) =>
-                campaignusers.system_id == id &&
-                campaignusers.status_id == 2
+                    campaignusers.system_id == id &&
+                    campaignusers.status_id == 2
             );
         },
 
@@ -3004,32 +3000,32 @@ export default new Vuex.Store({
         getCampaignUsersByUserIdEntosis: (state) => (id) => {
             return state.campaignusers.filter(
                 (campaignusers) =>
-                campaignusers.site_id == id && campaignusers.role_id == 1
+                    campaignusers.site_id == id && campaignusers.role_id == 1
             );
         },
 
         getCampaignUsersByUserIdEntosisFree: (state) => (id) => {
             return state.campaignusers.filter(
                 (campaignusers) =>
-                campaignusers.site_id == id &&
-                campaignusers.role_id == 1 &&
-                campaignusers.node_id == null
+                    campaignusers.site_id == id &&
+                    campaignusers.role_id == 1 &&
+                    campaignusers.node_id == null
             );
         },
 
         getCampaignUsersByUserIdEntosisFreeCount: (state) => (id) => {
             return state.campaignusers.filter(
                 (campaignusers) =>
-                campaignusers.site_id == id &&
-                campaignusers.role_id == 1 &&
-                campaignusers.node_id == null
+                    campaignusers.site_id == id &&
+                    campaignusers.role_id == 1 &&
+                    campaignusers.node_id == null
             ).length;
         },
 
         getCampaignUsersByUserIdEntosisCount: (state) => (id) => {
             return state.campaignusers.filter(
                 (campaignusers) =>
-                campaignusers.site_id == id && campaignusers.role_id == 1
+                    campaignusers.site_id == id && campaignusers.role_id == 1
             ).length;
         },
 
@@ -3053,42 +3049,42 @@ export default new Vuex.Store({
         getHackingNodeCountByCampaign: (state) => (id) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                sys.campaign_id == id &&
-                sys.status_id != 1 &&
-                (sys.status_id == 2 ||
-                    sys.status_id == 3 ||
-                    sys.status_id == 4 ||
-                    sys.status_id == 8)
+                    sys.campaign_id == id &&
+                    sys.status_id != 1 &&
+                    (sys.status_id == 2 ||
+                        sys.status_id == 3 ||
+                        sys.status_id == 4 ||
+                        sys.status_id == 8)
             ).length;
         },
 
         getRedHackingNodeCountByCampaign: (state) => (id) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                sys.campaign_id == id &&
-                (sys.status_id == 7 || sys.status_id == 5)
+                    sys.campaign_id == id &&
+                    (sys.status_id == 7 || sys.status_id == 5)
             ).length;
         },
 
         getHackingNodeCountByMultiCampaign: (state) => (id) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                sys.custom_campaign_id == id &&
-                sys.warmup == 1 &&
-                sys.status_id != 1 &&
-                (sys.status_id == 2 ||
-                    sys.status_id == 3 ||
-                    sys.status_id == 4 ||
-                    sys.status_id == 8)
+                    sys.custom_campaign_id == id &&
+                    sys.warmup == 1 &&
+                    sys.status_id != 1 &&
+                    (sys.status_id == 2 ||
+                        sys.status_id == 3 ||
+                        sys.status_id == 4 ||
+                        sys.status_id == 8)
             ).length;
         },
 
         getRedHackingNodeCountByMultiCampaign: (state) => (id) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                sys.custom_campaign_id == id &&
-                sys.warmup == 1 &&
-                (sys.status_id == 7 || sys.status_id == 5)
+                    sys.custom_campaign_id == id &&
+                    sys.warmup == 1 &&
+                    (sys.status_id == 7 || sys.status_id == 5)
             ).length;
         },
 
@@ -3101,62 +3097,62 @@ export default new Vuex.Store({
         getTotalNodeCountBySystem: (state) => (payload) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                sys.system_id == payload.system_id &&
-                sys.campaign_id == payload.campaign_id
+                    sys.system_id == payload.system_id &&
+                    sys.campaign_id == payload.campaign_id
             ).length;
         },
 
         getTotalNodeCountBySystemByMultiCampaign: (state) => (payload) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                sys.system_id == payload.system_id &&
-                sys.warmup == 1 &&
-                sys.custom_campaign_id == payload.campaign_id
+                    sys.system_id == payload.system_id &&
+                    sys.warmup == 1 &&
+                    sys.custom_campaign_id == payload.campaign_id
             ).length;
         },
 
         getHackingNodeCountBySystem: (state) => (payload) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                sys.system_id == payload.system_id &&
-                sys.status_id != 1 &&
-                sys.campaign_id == payload.campaign_id &&
-                (sys.status_id == 2 ||
-                    sys.status_id == 3 ||
-                    sys.status_id == 4 ||
-                    sys.status_id == 8)
+                    sys.system_id == payload.system_id &&
+                    sys.status_id != 1 &&
+                    sys.campaign_id == payload.campaign_id &&
+                    (sys.status_id == 2 ||
+                        sys.status_id == 3 ||
+                        sys.status_id == 4 ||
+                        sys.status_id == 8)
             ).length;
         },
 
         getHackingNodeCountBySystemByMultiCampaign: (state) => (payload) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                sys.system_id == payload.system_id &&
-                sys.warmup == 1 &&
-                sys.custom_campaign_id == payload.campaign_id &&
-                (sys.status_id == 2 ||
-                    sys.status_id == 4 ||
-                    sys.status_id == 8 ||
-                    sys.status_id == 3)
+                    sys.system_id == payload.system_id &&
+                    sys.warmup == 1 &&
+                    sys.custom_campaign_id == payload.campaign_id &&
+                    (sys.status_id == 2 ||
+                        sys.status_id == 4 ||
+                        sys.status_id == 8 ||
+                        sys.status_id == 3)
             ).length;
         },
 
         getRedHackingNodeCountBySystem: (state) => (payload) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                sys.system_id == payload.system_id &&
-                sys.campaign_id == payload.campaign_id &&
-                (sys.status_id == 7 || sys.status_id == 5)
+                    sys.system_id == payload.system_id &&
+                    sys.campaign_id == payload.campaign_id &&
+                    (sys.status_id == 7 || sys.status_id == 5)
             ).length;
         },
 
         getRedHackingNodeCountBySystemByMultiCampaign: (state) => (payload) => {
             return state.campaignsystems.filter(
                 (sys) =>
-                sys.system_id == payload.system_id &&
-                sys.warmup == 1 &&
-                sys.custom_campaign_id == payload.campaign_id &&
-                (sys.status_id == 5 || sys.status_id == 7)
+                    sys.system_id == payload.system_id &&
+                    sys.warmup == 1 &&
+                    sys.custom_campaign_id == payload.campaign_id &&
+                    (sys.status_id == 5 || sys.status_id == 7)
             ).length;
         },
 
@@ -3167,11 +3163,11 @@ export default new Vuex.Store({
 
             let hack = state.campaignsystems.filter(
                 (sys) =>
-                sys.system_id == payload.system_id &&
-                sys.status_id != 1 &&
-                sys.campaign_id == payload.campaign_id &&
-                sys.status_id != 7 &&
-                sys.status_id != 6
+                    sys.system_id == payload.system_id &&
+                    sys.status_id != 1 &&
+                    sys.campaign_id == payload.campaign_id &&
+                    sys.status_id != 7 &&
+                    sys.status_id != 6
             ).length;
 
             let num = (hack / total) * 100;
@@ -3192,8 +3188,8 @@ export default new Vuex.Store({
         getLoggingCampaignByCampaign: (state) => (campid) => {
             return state.loggingcampaign.filter(
                 (log) =>
-                log.campaign_sola_system_id == null &&
-                log.campaign_id == campid
+                    log.campaign_sola_system_id == null &&
+                    log.campaign_id == campid
             );
         },
 
@@ -3218,8 +3214,8 @@ export default new Vuex.Store({
         getLoggingAdmin: (state) => (campid) => {
             return state.loggingcampaign.filter(
                 (log) =>
-                log.campaign_sola_system_id == null &&
-                log.campaign_id == campid
+                    log.campaign_sola_system_id == null &&
+                    log.campaign_id == campid
             );
         },
 
@@ -3242,9 +3238,9 @@ export default new Vuex.Store({
         getSystemTableExpandable: (state) => (payload) => {
             let count = state.campaignsystems.filter(
                 (node) =>
-                node.system_id == payload.system_id &&
-                node.campaign_id == payload.campid &&
-                node.node_join_count > 0
+                    node.system_id == payload.system_id &&
+                    node.campaign_id == payload.campid &&
+                    node.node_join_count > 0
             );
             if (count != null) {
                 return count;
@@ -3306,9 +3302,9 @@ export default new Vuex.Store({
         getSystemTableExpandableMulti: (state) => (payload) => {
             let count = state.campaignsystems.filter(
                 (node) =>
-                node.system_id == payload.system_id &&
-                node.custom_campaign_id == payload.campid &&
-                node.node_join_count > 0
+                    node.system_id == payload.system_id &&
+                    node.custom_campaign_id == payload.campid &&
+                    node.node_join_count > 0
             );
             if (count != null) {
                 return count;
@@ -3350,9 +3346,9 @@ export default new Vuex.Store({
         getOwnHackingCharOnOp: (state) => (operationid) => {
             let pull = state.ownChars.filter(
                 (u) =>
-                u.role_id == 1 &&
-                u.operation_id == operationid &&
-                u.user_status_id != 4
+                    u.role_id == 1 &&
+                    u.operation_id == operationid &&
+                    u.user_status_id != 4
             );
             let count = pull.length;
             if (count != 0) {

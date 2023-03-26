@@ -1026,7 +1026,6 @@ if (!function_exists('notificationUpdate')) {
         $check = Notification::where('status_id', 2)
             ->where('timestamp', '<=', $now)
             ->count();
-        // dd($check);
         if ($check > 0) {
             $n = Notification::where('status_id', 2)
                 ->where('timestamp', '<=', $now)->get();
@@ -1214,6 +1213,68 @@ if (!function_exists('notificationUpdate')) {
         ];
     }
 }
+
+if (!function_exists('getAllNotification')) {
+    function getAllNotification()
+    {
+
+        $notifications = Notification::whereNot('status_id', 10)
+            ->with([
+                'system:id,constellation_id,region_id,system_name',
+                'system.constellation:id,constellation_name',
+                'system.region:id,region_name',
+                'item:id,item_name',
+                'notification_type:id,name',
+                'status:id,name',
+                'user:id,name',
+                'dscan',
+                'dscan.system:id,region_id,constellation_id,system_name',
+                'dscan.system.region',
+                'dscan.system.constellation',
+                'dscan.updatedBy:id,name',
+                'dscan.madeby:id,name',
+                'dscan.messages.user',
+                'dscan.locals.corp.alliance.affiliation',
+                'dscan.history:dscan_id,link,history_count,created_at,corpsTotalNumber,alliancesTotalNumber,affiliationsTotalNumber,itemTotalsNumber,groupTotalsNumber,categoryTotalsNumber'
+            ])
+            ->get();
+
+        return $notifications;
+    }
+}
+
+if (!function_exists('getSoloNotification')) {
+    function getSoloNotification($id)
+    {
+
+        $notifications = Notification::whereNot('status_id', 10)
+            ->whereId($id)
+            ->with([
+                'system:id,constellation_id,region_id,system_name',
+                'system.constellation:id,constellation_name',
+                'system.region:id,region_name',
+                'item:id,item_name',
+                'notification_type:id,name',
+                'status:id,name',
+                'user:id,name',
+                'dscan',
+                'dscan.system:id,region_id,constellation_id,system_name',
+                'dscan.system.region',
+                'dscan.system.constellation',
+                'dscan.updatedBy:id,name',
+                'dscan.madeby:id,name',
+                'dscan.messages.user',
+                'dscan.locals.corp.alliance.affiliation',
+                'dscan.history:dscan_id,link,history_count,created_at,corpsTotalNumber,alliancesTotalNumber,affiliationsTotalNumber,itemTotalsNumber,groupTotalsNumber,categoryTotalsNumber'
+            ])
+            ->first();
+
+        return $notifications;
+    }
+}
+
+
+
 if (!function_exists('stationNotificationCheck')) {
     function stationNotificationCheck()
     {

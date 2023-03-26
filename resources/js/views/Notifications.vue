@@ -1,884 +1,727 @@
 <template>
-  <div class="pr-16 pl-16">
-    <div>
-      <div class="d-flex align-items-center">
-        <v-card-title>Hack Notifications</v-card-title>
-        <div v-if="$can('access hacks')">You can edit posts.</div>
-
-        <v-btn
-          :loading="loadingr"
-          :disabled="loadingr"
-          color="primary"
-          class="ma-2 white--text"
-          @click="loadtimers()"
-        >
-          Update
-
-          <font-awesome-icon
-            icon="fa-solid fa-rotate"
-            pull="right"
-            size="2xl"
-          />
-        </v-btn>
-        <div>
-          <v-btn-toggle v-model="icon" borderless group>
-            <v-dialog
-              v-model="dialog1"
-              fullscreen
-              hide-overlay
-              transition="dialog-bottom-transition"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <template>
-                  <v-btn
-                    v-show="delvecheck == 1"
-                    color="primary"
-                    class="ma-2 white--text"
-                    v-bind="attrs"
-                    v-on="on"
-                    @click="dialog1 = true"
-                  >
-                    Delve
-                    <font-awesome-icon
-                      icon="fa-solid fa-map"
-                      pull="right"
-                      size="xs"
-                    />
-                  </v-btn>
-                </template>
-              </template>
-              <v-card>
-                <v-toolbar dark color="primary">
-                  <v-btn icon dark @click="dialog1 = false">
-                    <font-awesome-icon icon="fa-solid fa-circle-xmark" />
-                  </v-btn>
-                  <v-toolbar-title>Delve</v-toolbar-title>
-                  <v-spacer></v-spacer>
-                </v-toolbar>
-                <div
-                  style="
-                    position: absolute;
-                    top: 64px;
-                    right: 0px;
-                    bottom: 0px;
-                    left: 0px;
-                  "
-                >
-                  <iframe
-                    :src="delveLink"
-                    style="
-                      left: 0;
-                      bottom: 0;
-                      right: 0;
-                      width: 100%;
-                      height: 100%;
-                      border: none;
-                      margin: 0;
-                      padding: 0;
-                      overflow: hidden;
-                      z-index: 999999;
-                    "
-                  >
-                  </iframe>
-                </div>
-              </v-card>
-            </v-dialog>
-
-            <v-dialog
-              v-model="dialog2"
-              fullscreen
-              hide-overlay
-              transition="dialog-bottom-transition"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  v-show="queriousCheck == 1"
-                  color="primary"
-                  class="ma-2 white--text"
-                  v-bind="attrs"
-                  v-on="on"
-                  @click="dialog2 = true"
-                >
-                  Querious
-                  <font-awesome-icon
-                    icon="fa-solid fa-map"
-                    pull="right"
-                    size="xs"
-                  />
-                </v-btn>
-              </template>
-              <v-card>
-                <v-toolbar dark color="primary">
-                  <v-btn icon dark @click="dialog2 = false">
-                    <font-awesome-icon icon="fa-solid fa-circle-xmark" />
-                  </v-btn>
-                  <v-toolbar-title>Querious</v-toolbar-title>
-                  <v-spacer></v-spacer>
-                </v-toolbar>
-                <div
-                  style="
-                    position: absolute;
-                    top: 64px;
-                    right: 0px;
-                    bottom: 0px;
-                    left: 0px;
-                  "
-                >
-                  <iframe
-                    :src="queriousLink"
-                    style="
-                      left: 0;
-                      bottom: 0;
-                      right: 0;
-                      width: 100%;
-                      height: 100%;
-                      border: none;
-                      margin: 0;
-                      padding: 0;
-                      overflow: hidden;
-                      z-index: 999999;
-                    "
-                  >
-                  </iframe>
-                </div>
-              </v-card>
-            </v-dialog>
-            <v-dialog
-              v-model="dialog3"
-              fullscreen
-              hide-overlay
-              transition="dialog-bottom-transition"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  v-show="periodbasisCheck == 1"
-                  color="primary"
-                  class="ma-2 white--text"
-                  v-bind="attrs"
-                  v-on="on"
-                  @click="dialog3 = true"
-                >
-                  Period Basis
-                  <font-awesome-icon
-                    icon="fa-solid fa-map"
-                    pull="right"
-                    size="xs"
-                  />
-                </v-btn>
-              </template>
-              <v-card>
-                <v-toolbar dark color="primary">
-                  <v-btn icon dark @click="dialog3 = false">
-                    <font-awesome-icon icon="fa-solid fa-circle-xmark" />
-                  </v-btn>
-                  <v-toolbar-title>Period Basis</v-toolbar-title>
-                  <v-spacer></v-spacer>
-                </v-toolbar>
-                <div
-                  style="
-                    position: absolute;
-                    top: 64px;
-                    right: 0px;
-                    bottom: 0px;
-                    left: 0px;
-                  "
-                >
-                  <iframe
-                    :src="periodbasisLink"
-                    style="
-                      left: 0;
-                      bottom: 0;
-                      right: 0;
-                      width: 100%;
-                      height: 100%;
-                      border: none;
-                      margin: 0;
-                      padding: 0;
-                      overflow: hidden;
-                      z-index: 999999;
-                    "
-                  >
-                  </iframe>
-                </div>
-              </v-card>
-            </v-dialog>
-          </v-btn-toggle>
+  <div class="q-ma-md">
+    <q-table
+      title="Connections"
+      class="myHackNotificationsTable myRound bg-webBack"
+      :rows="filterEnd"
+      :columns="columns"
+      table-class=" text-webway"
+      table-header-class=" text-weight-bolder"
+      row-key="id"
+      no-data-label="No hacking notifications to show"
+      dark
+      dense
+      :filter="search"
+      ref="tableRef"
+      rounded
+      hide-bottom
+      :pagination="pagination"
+    >
+      <template v-slot:top="props">
+        <div class="row full-width flex-center q-pt-xs myRoundTop bg-primary">
+          <div class="col-11 flex flex-center">
+            <span class="text-h4">Hack Notifications</span>
+          </div>
         </div>
-
-        <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="Search"
-          single-line
-          hide-details
-        ></v-text-field>
-
-        <v-btn-toggle
-          right-align
-          v-model="toggle_exclusive"
-          mandatory
-          :value="0"
-        >
-          <v-btn
-            :loading="loadingf"
-            :disabled="loadingf"
-            @click="statusflag = 4"
-          >
-            All
-          </v-btn>
-          <v-btn
-            :loading="loadingf"
-            :disabled="loadingf"
-            @click="statusflag = 1"
-          >
-            New
-          </v-btn>
-          <v-btn
-            :loading="loadingf"
-            :disabled="loadingf"
-            @click="statusflag = 6"
-          >
-            Scouting
-          </v-btn>
-          <v-btn
-            :loading="loadingf"
-            :disabled="loadingf"
-            @click="statusflag = 3"
-          >
-            Repairing
-          </v-btn>
-          <v-btn
-            :loading="loadingf"
-            :disabled="loadingf"
-            @click="statusflag = 5"
-          >
-            Contested
-          </v-btn>
-        </v-btn-toggle>
-      </div>
-      <v-data-table
-        :headers="headers"
-        :items="filteredItems"
-        :expanded.sync="expanded"
-        item-key="id"
-        :loading="loadingt"
-        :items-per-page="25"
-        :footer-props="{
-          'items-per-page-options': [15, 25, 50, 100, -1],
-        }"
-        :sort-by="['timestamp']"
-        :search="search"
-        :sort-desc="[true, false]"
-        multi-sort
-        class="elevation-1"
-      >
-        >
-
-        <template slot="no-data">
-          No hacking notifications to show, which I would say is a good thing?
-        </template>
-        <template v-slot:[`item.count`]="{ item }">
-          <VueCountUptimer
-            :start-time="moment.utc(item.timestamp).unix()"
-            :end-text="'Window Closed'"
-            :interval="1000"
-            @timecheck="timecheck(item)"
-          >
-            <template slot="countup" slot-scope="scope">
-              <span class="red--text pl-3"
-                >{{ scope.props.hours }}:{{ scope.props.minutes }}:{{
-                  scope.props.seconds
-                }}</span
-              >
-            </template>
-          </VueCountUptimer>
-        </template>
-
-        <template
-          v-slot:[`item.status_name`]="{ item }"
-          class="align-items-center d-inline-flex"
-        >
-          <div
-            v-if="$can('edit_notifications')"
-            class="d-inline-flex align-items-center"
-          >
-            <v-menu offset-y>
-              <template v-slot:activator="{ on, attrs }">
-                <div class="align-content-center d-inline-flex">
-                  <v-btn
-                    class="ma-2"
-                    v-bind="attrs"
-                    v-on="on"
-                    tile
-                    outlined
-                    :color="statusButtonColor(item)"
-                  >
-                    <font-awesome-icon
-                      :icon="statusButtonIcon(item)"
-                      pull="left"
-                    />
-                    {{ item.status_name }}
-                  </v-btn>
-                </div>
-              </template>
-
-              <v-list>
-                <v-list-item
-                  v-for="(list, index) in dropdown_edit"
-                  :key="index"
-                  @click="
-                    (item.status_id = list.value),
-                      (item.status_name = list.title),
-                      (item.user_name = user_name),
-                      click(item)
-                  "
+        <div class="row full-width q-pt-md justify-between">
+          <div class="col-12">
+            <div class="row q-gutter-sm q-pl-md">
+              <div class="col-1">
+                <q-input
+                  rounded
+                  standout
+                  dense
+                  debounce="300"
+                  v-model="search"
+                  clearable
+                  placeholder="Search"
                 >
-                  <v-list-item-title>{{ list.title }}</v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-            <v-slide-x-transition group>
-              <v-chip
-                pill
-                :key="'adash' + item.id"
-                outlined
-                small
-                @click="(expanded = [item]), (expanded_id = item.id)"
-                v-show="item.status_id == 5 && !expanded.includes(item)"
-                color="success"
-                >aDash</v-chip
-              >
-              <v-btn
-                icon
-                :key="'adash_' + item.id"
-                @click="(expanded = []), (expanded_id = 0)"
-                v-show="item.status_id == 5 && expanded.includes(item)"
-                color="error"
-                ><font-awesome-icon icon="fa-solid fa-minus"
-              /></v-btn>
-            </v-slide-x-transition>
-            <v-slide-x-transition>
-              <NotificationTimer
-                :item="item"
-                :key="'NoteTimer' + item.id"
-                v-show="
-                  (item.status_id == 5 || item.status_id == 3) &&
-                  $can('edit_notifications')
-                "
-              ></NotificationTimer>
-            </v-slide-x-transition>
-          </div>
-          <div v-else>
-            <template>
-              <div class="align-items-center d-inline-flex">
-                <v-chip
-                  v-if="item.status_id == 1"
-                  class="ma-2"
-                  label
-                  color="success"
-                >
-                  <font-awesome-icon icon="fa-solid fa-plus" pull="left" />
-                  {{ item.status_name }}
-                </v-chip>
-                <v-chip
-                  v-if="item.status_id == 2"
-                  class="ma-2"
-                  label
-                  color="error"
-                >
-                  <font-awesome-icon
-                    icon="fa-solid fa-fire-flame"
-                    size="sm"
-                    pull="left"
-                  />
-                  {{ item.status_name }}
-                </v-chip>
-                <v-chip
-                  v-if="item.status_id == 3"
-                  class="ma-2"
-                  label
-                  color="dark-orange"
-                >
-                  <font-awesome-icon icon="fa-solid fa-toolbox" pull="left" />
-                  {{ item.status_name }}
-                </v-chip>
-                <v-chip
-                  v-if="item.status_id == 4"
-                  class="ma-2"
-                  label
-                  color="primary"
-                >
-                  <font-awesome-icon icon="fa-solid fa-thumbs-up" pull="left" />
-                  {{ item.status_name }}
-                </v-chip>
-                <v-chip
-                  v-if="item.status_id == 5"
-                  class="ma-2"
-                  label
-                  color="warning"
-                >
-                  <font-awesome-icon
-                    icon="fa-solid fa-circle-exclamation"
-                    pull="left"
-                  />
-                  {{ item.status_name }}
-                </v-chip>
-
-                <v-chip
-                  v-if="item.status_id == 6"
-                  class="ma-2"
-                  label
-                  color="light-green darken-1"
-                >
-                  <font-awesome-icon
-                    icon="fa-solid fa-magnifying-glass"
-                    pull="left"
-                  />
-                  {{ item.status_name }}
-                </v-chip>
-                <CountDowntimer
-                  v-if="
-                    (item.status_id == 3 || item.status_id == 5) &&
-                    item.end_time != null
-                  "
-                  :start-time="moment.utc(item.end_time).unix()"
-                  :interval="1000"
-                  end-text="Is it Secured?"
-                >
-                  <template slot="countdown" slot-scope="scope">
-                    <span class="blue--text pl-3"
-                      >{{ scope.props.minutes }}:{{ scope.props.seconds }}</span
-                    >
+                  <template v-slot:append>
+                    <q-icon name="fa-solid fa-magnifying-glass" />
                   </template>
-                </CountDowntimer>
+                </q-input>
               </div>
-            </template>
-          </div>
-        </template>
-        <template
-          v-slot:expanded-item="{ headers, item }"
-          class="align-center"
-          height="100%"
-        >
-          <td :colspan="headers.length" align="center">
-            <div>
-              <v-col class="align-center">
-                <v-text-field
-                  v-bind:value="item.text"
-                  label="aDash Board Link - needs to be a link to a scan, making a new scan from where will not save"
-                  outlined
-                  shaped
-                  @change="(payload = $event), updatetext(payload, item)"
-                ></v-text-field>
-              </v-col>
-            </div>
-            <div
-              v-if="
-                item.text != null &&
-                item.text.includes('https://adashboard.info/intel/dscan/')
-              "
-            >
-              <v-card class="mx-auto" elevation="24">
-                <iframe
-                  :name="'ifram' + item.id"
-                  :src="item.text"
-                  style="
-                    left: 0;
-                    bottom: 0;
-                    right: 0;
-                    width: 100%;
-                    height: 600px;
-                    border: none;
-                    margin: 0;
-                    padding: 0;
-                    overflow: hidden;
-                    z-index: 999999;
-                  "
+              <div class="col-2">
+                <q-select
+                  rounded
+                  dense
+                  clearable
+                  standout
+                  input-debounce="0"
+                  label-color="webway"
+                  option-value="value"
+                  option-label="text"
+                  v-model="region_id"
+                  :options="regionList"
+                  ref="toRegionRef"
+                  label="Region"
+                  @clear="region_id = []"
+                  @filter="filterFnRegionFinish"
+                  @filter-abort="abortFilterFn"
+                  map-options
+                  use-input
+                  use-chips
+                  multiple
+                  input-style=" max-width: 10px; min-width: 10px"
                 >
-                </iframe>
-              </v-card>
-            </div>
-            <div>
-              {{ item.text }}
-            </div>
-          </td>
-        </template>
-        <template
-          v-slot:[`item.user_name`]="{ item }"
-          class="d-flex align-center"
-        >
-          <p v-if="$can('edit_notifications')">
-            {{ item.user_name }}
-          </p>
-        </template>
-      </v-data-table>
-      <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-        {{ snackText }}
+                  <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+                    <q-item v-bind="itemProps">
+                      <q-item-section>
+                        <q-item-label v-html="opt.text" />
+                      </q-item-section>
+                      <q-item-section side>
+                        <q-toggle
+                          :model-value="selected"
+                          @update:model-value="toggleOption(opt)"
+                        />
+                      </q-item-section>
+                    </q-item>
+                  </template>
 
-        <template v-slot:action="{ attrs }">
-          <v-btn v-bind="attrs" text @click="snack = false">Close</v-btn>
-        </template>
-      </v-snackbar>
-    </div>
-    <Structure v-if="$can('view_station_notifications')"></Structure>
+                  <template v-slot:selected-item="scope">
+                    <q-chip
+                      removable
+                      @remove="scope.removeAtIndex(scope.index)"
+                      :tabindex="scope.tabindex"
+                      text-color="white"
+                      class="q-ma-none"
+                      color="webChip"
+                    >
+                      <span class="text-xs"> {{ scope.opt.text }} </span>
+                    </q-chip>
+                  </template></q-select
+                >
+              </div>
+              <div class="col-4">
+                <q-select
+                  rounded
+                  clearable
+                  dense
+                  standout
+                  input-debounce="0"
+                  label-color="webway"
+                  option-value="value"
+                  option-label="text"
+                  v-model="constellation_id"
+                  :options="constellationList"
+                  ref="toConstellationRef"
+                  label="Constellations"
+                  @clear="constellation_id = []"
+                  @filter="filterFnConstellationFinish"
+                  @filter-abort="abortFilterFn"
+                  map-options
+                  use-input
+                  use-chips
+                  multiple
+                  input-style=" max-width: 10px; min-width: 10px"
+                >
+                  <template v-slot:option="{ itemProps, opt, selected, toggleOption }">
+                    <q-item v-bind="itemProps">
+                      <q-item-section>
+                        <q-item-label v-html="opt.text" />
+                      </q-item-section>
+                      <q-item-section side>
+                        <q-toggle
+                          :model-value="selected"
+                          @update:model-value="toggleOption(opt)"
+                        />
+                      </q-item-section>
+                    </q-item>
+                  </template>
+
+                  <template v-slot:selected-item="scope">
+                    <q-chip
+                      removable
+                      @remove="scope.removeAtIndex(scope.index)"
+                      :tabindex="scope.tabindex"
+                      text-color="white"
+                      class="q-ma-none"
+                      color="webChip"
+                    >
+                      <span class="text-xs"> {{ scope.opt.text }} </span>
+                    </q-chip>
+                  </template></q-select
+                >
+              </div>
+            </div>
+            <div class="row justify-end q-pt-sm">
+              <div class="col-auto">
+                <q-btn-toggle
+                  v-model="filterTypeSelected"
+                  rounded
+                  unelevated
+                  class="q-pr-md"
+                  clearable
+                  color="webDark"
+                  text-color="gray"
+                  toggle-color="primary"
+                  toggle-text-color="gray"
+                  :options="[
+                    { label: 'Ihub', value: 32458 },
+                    { label: 'TCU', value: 32226 },
+                  ]"
+                />
+                <q-btn-toggle
+                  v-model="filterStatusSelcted"
+                  rounded
+                  unelevated
+                  clearable
+                  color="webDark"
+                  text-color="gray"
+                  toggle-color="primary"
+                  toggle-text-color="gray"
+                  :options="[
+                    { label: 'Scouting', value: 6 },
+                    { label: 'Reffed', value: 2 },
+                    { label: 'Repairing', value: 3 },
+                    { label: 'Secured', value: 4 },
+                    { label: 'Hostile', value: 5 },
+                    { label: 'New', value: 1 },
+                  ]"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+      <template v-slot:body="props">
+        <q-tr :props="props">
+          <q-td key="region" :props="props">
+            <div>{{ props.row.system.region.region_name }}</div>
+          </q-td>
+          <q-td key="constellation" :props="props">
+            <div>{{ props.row.system.constellation.constellation_name }}</div>
+          </q-td>
+          <q-td key="system" :props="props">
+            <div>{{ props.row.system.system_name }}</div>
+          </q-td>
+          <q-td key="type" :props="props">
+            <div>{{ props.row.item.item_name }}</div>
+          </q-td>
+          <q-td key="timeStamp" :props="props">
+            <div>
+              {{ props.row.timestamp }}
+            </div>
+          </q-td>
+          <q-td :props="props" key="age">
+            <div>
+              <VueCountUp
+                class="q-pl-sm"
+                :emit-events="false"
+                :time="countUpTimeMil(props.row.timestamp)"
+                :interval="1000"
+                v-slot="{ hours, minutes, seconds }"
+              >
+                <span class="text-negative">
+                  {{ hours }}:{{ minutes }}:{{ seconds }}
+                </span>
+              </VueCountUp>
+            </div>
+          </q-td>
+          <q-td key="status" :props="props">
+            <div class="row flex-center">
+              <q-btn
+                v-if="can('edit_notifications')"
+                class="myOutLineButtonLarge"
+                size="md"
+                rounded
+                :color="statusButtonColor(props.row)"
+                :label="props.row.status.name"
+                ><q-menu>
+                  <q-list style="min-width: 100px">
+                    <q-item
+                      v-close-popup
+                      clickable
+                      v-ripple
+                      v-for="(list, index) in statusDropDownFilter(props.row.status_id)"
+                      :key="index"
+                      @click="updateStatus(list.value, props.row.id)"
+                    >
+                      <q-item-section>{{ list.label }}</q-item-section>
+                    </q-item>
+                  </q-list>
+                </q-menu></q-btn
+              >
+
+              <q-chip
+                class="myOutLineButtonLarge q-ma-none"
+                v-else
+                dense
+                :ripple="false"
+                rounded
+                :color="statusButtonColor(props.row)"
+                :label="props.row.status.name"
+              />
+            </div>
+          </q-td>
+          <q-td key="actions" :props="props">
+            <div class="row flex-center">
+              <div class="col">
+                <q-btn
+                  no-caps
+                  color="accent"
+                  label="Dscan"
+                  dense
+                  :outline="props.row.dscan_id ? false : true"
+                  ><q-menu>
+                    <div>
+                      <q-card class="my-card" style="width: 20vw">
+                        <q-card-section>
+                          <q-input
+                            v-model="dScanText"
+                            type="textarea"
+                            label="Paste your Dscan or local here"
+                          />
+                        </q-card-section>
+                        <q-card-actions align="between">
+                          <q-btn
+                            v-if="!props.row.dscan_id"
+                            rounded
+                            color="primary"
+                            label="Submit"
+                            v-close-popup
+                            @click="subNewScan(props.row.id)"
+                          />
+                          <q-btn
+                            v-else
+                            rounded
+                            color="primary"
+                            label="Update"
+                            v-close-popup
+                            @click="subUpdateScan(props.row.dscan.link)"
+                          />
+                          <q-btn rounded color="negative" label="close" v-close-popup />
+
+                          <q-btn
+                            v-if="props.row.dscan_id"
+                            rounded
+                            color="info"
+                            label="open"
+                            :href="dscanLink(props.row.dscan.link)"
+                            target="_blank"
+                            v-close-popup
+                          />
+                        </q-card-actions>
+                      </q-card>
+                    </div> </q-menu
+                ></q-btn>
+              </div>
+              <div class="col"><StagingDscan :item="props.row" /></div>
+              <div class="col">
+                <NotificationTimer
+                  v-if="props.row.status_id == 5 || props.row.status_id == 3"
+                  :item="props.row"
+                />
+              </div>
+            </div>
+          </q-td>
+          <q-td key="editedBy" :props="props">
+            <div>
+              {{ props.row.user && props.row.user.name ? props.row.user.name : null }}
+            </div>
+          </q-td>
+        </q-tr>
+      </template>
+    </q-table>
   </div>
 </template>
-<script>
-import Axios from "axios";
-import moment from "moment";
-import { stringify } from "querystring";
-import { mapState } from "vuex";
-import ApiL from "../service/apil";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-export default {
-  title() {
-    return `EveStuff - Notifications`;
-  },
-  data() {
-    return {
-      atime: null,
-      check: "not here",
-      componentKey: 0,
-      dialog1: false,
-      dialog2: false,
-      dialog3: false,
-      diff: 0,
-      delve: 0,
-      endcount: "",
-      expanded: [],
-      expanded_id: 0,
-      icon: "justify",
-      loadingt: true,
-      loadingf: true,
-      loadingr: true,
-      name: "Timer",
-      poll: null,
-      periodbasis: 0,
-      search: "",
-      statusflag: 4,
-      snack: false,
-      snackColor: "",
-      snackText: "",
-      toggle_exclusive: 0,
-      today: 0,
-      text: "center",
-      toggle_none: null,
-      querious: 0,
 
-      dropdown_edit: [
-        { title: "Scouting", value: 6 },
-        { title: "Reffed", value: 2 },
-        { title: "Repairing", value: 3 },
-        { title: "Secured", value: 4 },
-        { title: "Hostile", value: 5 },
-        { title: "New", value: 1 },
-      ],
+<script setup>
+import { onMounted, onBeforeUnmount, defineAsyncComponent, inject } from "vue";
+import { useMainStore } from "@/store/useMain.js";
+import { useRouter } from "vue-router";
 
-      headers: [
-        { text: "Region", value: "region_name", width: "10%" },
-        {
-          text: "Constellation",
-          value: "constellation_name",
-          width: "8%",
-        },
-        { text: "System", value: "system_name", width: "8%" },
-        { text: "Structure", value: "item_name", width: "8%" },
-        { text: "ADM", value: "adm", width: "5%" },
-        {
-          text: "Timestamp",
-          value: "timestamp",
-          align: "center",
-          width: "20%",
-        },
-        { text: "Age", value: "count", sortable: false, width: "10%" },
-        { text: "Status", value: "status_name", width: "20%" },
-        {
-          text: "Edited By",
-          value: "user_name",
-          width: "10%",
-          align: "start",
-        },
+const VueCountUp = defineAsyncComponent(() => import("../components/countup/index"));
+const NotificationTimer = defineAsyncComponent(() =>
+  import("@/components/notification/NotificationTimer.vue")
+);
 
-        // { text: "Vulernable End Time", value: "vulnerable_end_time" }
-      ],
-    };
-  },
+const StagingDscan = defineAsyncComponent(() =>
+  import("@/components/staging/StagingDscan.vue")
+);
 
-  created() {
-    Echo.private("notes")
-      .listen("NotificationChanged", (e) => {
-        this.checkexpanded(e.notifications);
-        this.$store.dispatch("updateNotification", e.notifications);
-      })
+let store = useMainStore();
+let can = inject("can");
+let loadingf = $ref(true);
+let loadingt = $ref(true);
+let loadingr = $ref(true);
+let search = $ref("");
+let filterTypeSelected = $ref();
+let filterStatusSelcted = $ref();
+let dScanText = $ref("");
 
-      .listen("NotificationNew", (e) => {
-        this.loadtimers();
-      });
-    this.$store.dispatch("getNotifications").then(() => {
-      this.loadingt = false;
-      this.loadingf = false;
-      this.loadingr = false;
+let pagination = $ref({
+  sortBy: "region",
+  descending: false,
+  page: 1,
+  rowsPerPage: 0,
+});
+
+let abortFilterFn = () => {};
+
+onMounted(async () => {
+  Echo.private("notes")
+    .listen("NotificationChanged", (e) => {
+      store.updateNotification(e.notifications);
+    })
+
+    .listen("NotificationNew", (e) => {
+      loadTimers();
     });
+  store.getNotifications().then(() => {
+    loadingt = false;
+    loadingf = false;
+    loadingr = false;
+  });
+});
 
-    this.$store.dispatch("getqueriousLink");
-    this.$store.dispatch("getdelveLink");
-    this.$store.dispatch("getperiodbasisLink");
-  },
+onBeforeUnmount(async () => {
+  Echo.leave("notes");
+});
 
-  async mounted() {
-    this.log();
-  },
-  methods: {
-    log() {
-      var request = {
-        url: this.$route.path,
-      };
-
-      axios({
-        method: "post", //you can set what request you want to be
-        url: "api/url",
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+let subNewScan = async (id) => {
+  var data = {
+    text: dScanText,
+  };
+  await axios({
+    method: "post",
+    withCredentials: true,
+    data: data,
+    url: "/api/notifications/dscan/" + id,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
-
-    timecheck(item) {
-      if (item.status_id == 4 || item.status_id == 2) {
-        item.status_id = 10;
-        this.$store.dispatch("updateNotification", item);
-        if (item.region_name === "Querious") {
-          this.$store.dispatch("getqueriousLink");
-        }
-        if (item.region_name === "Period Basis") {
-          this.$store.dispatch("getperiodbasisLink");
-        }
-        if (item.region_name === "Delve") {
-          this.$store.dispatch("getdelveLink");
-        }
-        var request = {
-          status_id: 10,
-        };
-        axios({
-          method: "put", //you can set what request you want to be
-          url: "api/notifications/" + item.id,
-          withCredentials: true,
-          data: request,
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        });
-      }
-    },
-
-    seeMessage() {
-      if (this.$can("edit_notifications")) {
-        return false;
-      } else {
-        return true;
-      }
-    },
-
-    checkexpanded(notifications) {
-      if (notifications.status_id != 5) {
-        if (notifications.id == this.expanded_id) {
-          this.expanded = [];
-          this.expanded_id = 0;
-        }
-      }
-    },
-
-    updatetext(payload, item) {
-      if (item.text != payload) {
-        item.text = payload;
-        var request = {
-          text: item.text,
-        };
-        this.$store.dispatch("updateNotification", item);
-        axios({
-          method: "put", //you can set what request you want to be
-          url: "api/notifications/" + item.id,
-          withCredentials: true,
-          data: request,
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        });
-      }
-    },
-
-    loadtimers() {
-      this.loadingr = true;
-      this.$store.dispatch("getNotifications").then(() => {
-        this.loadingr = false;
-      });
-      this.$store.dispatch("getqueriousLink");
-      this.$store.dispatch("getdelveLink");
-      this.$store.dispatch("getperiodbasisLink");
-    },
-
-    save() {
-      this.snack = true;
-      this.snackColor = "success";
-      this.snackText = "Data saved";
-    },
-    cancel() {
-      this.snack = true;
-      this.snackColor = "error";
-      this.snackText = "Canceled";
-    },
-    open() {
-      this.snack = true;
-      this.snackColor = "info";
-      this.snackText = "Dialog opened";
-    },
-    close() {},
-
-    statusButtonColor(item) {
-      if (item.status_id == 1) {
-        return "success";
-      } else if (item.status_id == 2) {
-        return "error";
-      } else if (item.status_id == 3) {
-        return "dark-orange";
-      } else if (item.status_id == 4) {
-        return "primary";
-      } else if (item.status_id == 5) {
-        return "warning";
-      } else if (item.status_id == 6) {
-        return "light-green darken-1";
-      }
-    },
-
-    statusButtonIcon(item) {
-      if (item.status_id == 1) {
-        return "fa-solid fa-plus";
-      } else if (item.status_id == 2) {
-        return "fa-solid fa-fire-flame";
-      } else if (item.status_id == 3) {
-        return "fa-solid fa-toolbox";
-      } else if (item.status_id == 4) {
-        return "fa-solid fa-thumbs-up";
-      } else if (item.status_id == 5) {
-        return "fa-solid fa-circle-exclamation";
-      } else if (item.status_id == 6) {
-        return "fa-solid fa-magnifying-glass";
-      }
-    },
-
-    click(item) {
-      if (item.status_id != 5) {
-        this.expanded = [];
-        item.text = null;
-      }
-
-      if (item.status_id != 3) {
-        item.end_time = null;
-      }
-      var request = {
-        status_id: item.status_id,
-        user_id: this.$store.state.user_id,
-        end_time: item.end_time,
-      };
-      axios({
-        method: "put", //you can set what request you want to be
-        url: "api/notifications/" + item.id,
-        withCredentials: true,
-        data: request,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-    },
-
-    sec(item) {
-      var a = moment.utc();
-      var b = moment(item.timestamp);
-      this.diff = a.diff(b);
-      return this.diff;
-    },
-  },
-
-  computed: {
-    ...mapState([
-      "notifications",
-      "delveLink",
-      "queriousLink",
-      "periodbasisLink",
-    ]),
-
-    filteredItems() {
-      // var timers = this.$store.state.timers;
-      if (this.statusflag == 1) {
-        return this.notifications.filter(
-          (notifications) => notifications.status_id == 1
-        );
-      }
-      if (this.statusflag == 3) {
-        return this.notifications.filter(
-          (notifications) => notifications.status_id == 3
-        );
-      }
-      if (this.statusflag == 5) {
-        return this.notifications.filter(
-          (notifications) => notifications.status_id == 5
-        );
-      }
-      if (this.statusflag == 6) {
-        return this.notifications.filter(
-          (notifications) => notifications.status_id == 6
-        );
-      } else {
-        return this.notifications.filter(
-          (notifications) => notifications.status_id != 10
-        );
-      }
-    },
-
-    delvecheck() {
-      if (this.delveLink === "") {
-        return 0;
-      } else if (this.delveLink === "nope") {
-        return 0;
-      } else {
-        return 1;
-      }
-    },
-
-    periodbasisCheck() {
-      if (this.periodbasisLink === "") {
-        return 0;
-      } else if (this.periodbasisLink === "nope") {
-        return 0;
-      } else {
-        return 1;
-      }
-    },
-
-    user_name() {
-      return this.$store.state.user_name;
-    },
-
-    queriousCheck() {
-      if (this.queriousLink === "") {
-        return 0;
-      } else if (this.queriousLink === "nope") {
-        return 0;
-      } else {
-        return 1;
-      }
-    },
-  },
-  beforeDestroy() {
-    Echo.leave("notes");
-  },
+  }).then((response) => {
+    dScanText = "";
+  });
 };
+
+let subUpdateScan = async (link) => {
+  var data = {
+    text: dScanText,
+  };
+  await axios({
+    method: "post",
+    withCredentials: true,
+    data: data,
+    url: "/api/dscan/" + link,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  }).then((response) => {
+    dScanText = "";
+  });
+};
+
+let loadTimers = () => {
+  loadingr = true;
+  store.getNotifications().then(() => {
+    loadingr = false;
+  });
+};
+
+let statusDropDown = $ref([
+  { label: "Scouting", value: 6 },
+  { label: "Reffed", value: 2 },
+  { label: "Repairing", value: 3 },
+  { label: "Secured", value: 4 },
+  { label: "Hostile", value: 5 },
+  { label: "New", value: 1 },
+]);
+
+let statusDropDownFilter = (status_id) => {
+  return statusDropDown.filter((s) => s.value != status_id);
+};
+
+let updateStatus = async (status_id, id) => {
+  let data = {
+    status_id: status_id,
+  };
+  await axios({
+    method: "put",
+    withCredentials: true, //you can set what request you want to be
+    url: "/api/notifications/" + id,
+    data: data,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+};
+
+let statusButtonColor = (item) => {
+  if (item.status_id == 1) {
+    return "accent";
+  } else if (item.status_id == 2) {
+    return "negative";
+  } else if (item.status_id == 3) {
+    return "warning";
+  } else if (item.status_id == 4) {
+    return "primary";
+  } else if (item.status_id == 5) {
+    return "red-6";
+  } else if (item.status_id == 6) {
+    return "light-green darken-1";
+  }
+};
+
+let region_id = $ref([]);
+let regionText = $ref();
+let regionDropDownList = $computed(() => {
+  var data = filterByStatusSelected.map((s) => ({
+    id: s.system.region.id,
+    name: s.system.region.region_name,
+  }));
+  const result = [];
+  const map = new Map();
+  for (const item of data) {
+    if (!map.has(item.id)) {
+      map.set(item.id, true);
+      result.push({
+        value: item.id,
+        text: item.name,
+      });
+    }
+  }
+  result.sort((a, b) => a.text.localeCompare(b.text));
+  return result;
+});
+
+let regionList = $computed(() => {
+  if (regionText) {
+    return regionDropDownList.filter(
+      (d) => d.text.toLowerCase().indexOf(regionText) > -1
+    );
+  }
+  return regionDropDownList;
+});
+
+let filterFnRegionFinish = (val, update, abort) => {
+  update(() => {
+    regionText = val.toLowerCase();
+  });
+};
+
+let constellation_id = $ref([]);
+let constellationText = $ref();
+
+let conDropDownList = $computed(() => {
+  var data = filterByStatusSelected.map((s) => ({
+    id: s.system.constellation.id,
+    name: s.system.constellation.constellation_name,
+  }));
+  const result = [];
+  const map = new Map();
+  for (const item of data) {
+    if (!map.has(item.id)) {
+      map.set(item.id, true);
+      result.push({
+        value: item.id,
+        text: item.name,
+      });
+    }
+  }
+  result.sort((a, b) => a.text.localeCompare(b.text));
+  return result;
+});
+
+let constellationList = $computed(() => {
+  if (constellationText) {
+    return conDropDownList.filter(
+      (d) => d.text.toLowerCase().indexOf(constellationText) > -1
+    );
+  }
+  return conDropDownList;
+});
+
+let filterFnConstellationFinish = (val, update, abort) => {
+  update(() => {
+    constellationText = val.toLowerCase();
+  });
+};
+
+let filterRegion = $computed(() => {
+  if (region_id.length > 0) {
+    const filteredHacks = store.notifications.filter((t) => {
+      return region_id.some((r) => {
+        return r.value === t.system.region_id;
+      });
+    });
+    return filteredHacks;
+  }
+  return store.notifications;
+});
+
+let filterConstellation = $computed(() => {
+  if (constellation_id.length > 0) {
+    const filteredHacks = filterRegion.filter((t) => {
+      return constellation_id.some((c) => {
+        return c.value === t.system.constellation_id;
+      });
+    });
+    return filteredHacks;
+  }
+  return filterRegion;
+});
+
+let filterByTypeSelected = $computed(() => {
+  if (filterTypeSelected) {
+    return filterConstellation.filter((n) => n.item_id == filterTypeSelected);
+  }
+  return filterConstellation;
+});
+
+let filterByStatusSelected = $computed(() => {
+  if (filterStatusSelcted) {
+    return filterByTypeSelected.filter((n) => n.status_id == filterStatusSelcted);
+  }
+  return filterByTypeSelected;
+});
+
+let filterEnd = $computed(() => {
+  return filterByStatusSelected;
+});
+
+let columns = $ref([
+  {
+    name: "region",
+    align: "left",
+    required: false,
+    label: "Region",
+    classes: "text-no-wrap",
+    field: (row) => row.system.region.region_name,
+    format: (val) => `${val}`,
+    sortable: false,
+  },
+  {
+    name: "constellation",
+    required: true,
+    align: "left",
+    label: "Constellation",
+    classes: "text-no-wrap",
+    field: (row) => row.system.constellation.constellation_name,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "system",
+    required: true,
+    align: "left",
+    label: "System",
+    classes: "text-no-wrap",
+    field: (row) => row.system.system_name,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "type",
+    required: true,
+    align: "left",
+    label: "Type",
+    classes: "text-no-wrap",
+    field: (row) => row.item.item_name,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "timeStamp",
+    align: "left",
+    classes: "text-no-wrap",
+    label: "Time Stamp",
+    field: (row) => row.timestamp,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "age",
+    align: "left",
+    required: true,
+    label: "Age",
+    classes: "text-no-wrap",
+    field: (row) => row.age,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "status",
+    align: "center",
+    classes: "text-no-wrap",
+    label: "Status",
+    field: (row) => row.status.name,
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+  {
+    name: "actions",
+    label: "",
+    align: "center",
+    classes: "text-no-wrap",
+    sortable: false,
+    field: (row) => row.id,
+    format: (val) => `${val}`,
+  },
+  {
+    name: "editedBy",
+    label: "Edited By",
+    align: "right",
+    classes: "text-no-wrap",
+    field: (row) => (row.user && row.user.name ? row.user.name : "Unknown"),
+    format: (val) => `${val}`,
+    sortable: true,
+    filter: true,
+  },
+]);
+
+let dscanLink = (link) => {
+  return "dscan/" + link;
+};
+
+let countUpTimeMil = (time) => {
+  const timestamp = Date.parse(time);
+  return timestamp;
+};
+
+let h = $computed(() => {
+  let mins = 30;
+  let window = store.size.height;
+
+  return window - mins + "px";
+});
 </script>
+
+<style lang="sass">
+.myHackNotificationsTable
+  /* height or max-height is important */
+  height: v-bind(h)
+
+  .q-table__top
+    padding-top: 0 !important
+    padding-left: 0 !important
+    padding-right: 0 !important
+
+
+
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: #202020
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+</style>

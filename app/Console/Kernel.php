@@ -13,7 +13,6 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\UpdateNotifications::class,
         Commands\UpdateAlliances::class,
         Commands\UpdateCampaigns::class,
         Commands\UpdateTimers::class,
@@ -44,11 +43,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('update:eveiduser')->everyMinute()->withoutOverlapping();
-        // $schedule->command('update:campaigns')->everyMinute()->withoutOverlapping();
-        // $schedule->command('update:campaginFix')->everyMinute()->withoutOverlapping();
-        // $schedule->command('update:notifications')->everyMinute()->withoutOverlapping();
-        // $schedule->command('update:stationnotifications')->everyMinute()->withoutOverlapping();
         $schedule->command('update:EveEsiStatus')->everyMinute();
         $schedule->command('update:newnewnewCampaigns')->everyMinute();
         $schedule->command('update:newnotifications')->everyMinute();

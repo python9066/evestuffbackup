@@ -28,6 +28,16 @@ class Notification extends Model
         return $this->belongsTo(Status::class);
     }
 
+    public function dscan()
+    {
+        return $this->belongsTo(Dscan::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected $casts = [
         'id' => 'integer',
         'system_id' => 'integer',

@@ -127,6 +127,7 @@ export const useMainStore = defineStore("main", {
         campaignslist: [],
         watchListList: [],
         watchListListForUser: [],
+        notifications: [],
     }),
 
     getters: {
@@ -1556,6 +1557,26 @@ export const useMainStore = defineStore("main", {
         },
 
 
+        updateNotification(data) {
+            const item = this.notifications.find(
+                (item) => item.id === data.id
+            );
+            Object.assign(item, data);
+        },
 
+        async getNotifications() {
+            let res = await axios({
+                method: "get",
+                withCredentials: true, //you can set what request you want to be
+                url: "/api/notifications",
+                // data: {id: varID},
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            this.notifications = res.data;
+
+        },
     },
 });
