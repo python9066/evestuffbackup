@@ -91,6 +91,13 @@ const routes = [{
     path: "/notifications",
     name: "notifications",
     component: () => import("./views/Notifications.vue"),
+    beforeEnter(to, from, next) {
+        if (can("edit_notifications")) {
+            next();
+        } else {
+            next("/");
+        }
+    },
 },
 
 {
