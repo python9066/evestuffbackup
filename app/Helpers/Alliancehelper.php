@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Utils;
 use Illuminate\Support\Facades\Http;
 
-if (! function_exists('getCorpWithNoAlliance')) {
+if (!function_exists('getCorpWithNoAlliance')) {
     function getCorpWithNoAlliance($id)
     {
         $corpID = null;
@@ -24,15 +24,16 @@ if (! function_exists('getCorpWithNoAlliance')) {
                 $corpRep = Http::withHeaders([
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
-                ])->get('https://esi.evetech.net/latest/corporations/'.$var[0]['id'].'/?datasource=tranquility');
+                ])->get('https://esi.evetech.net/latest/corporations/' . $var[0]['id'] . '/?datasource=tranquility');
 
                 $corpReturn = $corpRep->collect();
-                Corp::create([
-                    'id' => $var[0]['id'],
+                $test =  Corp::updateOrCreate([
+                    'id' => $var[0]['id']
+                ], [
                     'alliance_id' => 1,
                     'name' => $corpReturn['name'],
                     'ticker' => $corpReturn['ticker'],
-                    'url' => 'https://images.evetech.net/Corporation/'.$var[0]['id'].'_64.png',
+                    'url' => 'https://images.evetech.net/Corporation/' . $var[0]['id'] . '_64.png',
                     'active' => 1,
                 ]);
 
@@ -51,7 +52,7 @@ if (! function_exists('getCorpWithNoAlliance')) {
     }
 }
 
-if (! function_exists('updateAlliances')) {
+if (!function_exists('updateAlliances')) {
     function updateAlliances()
     {
         Userlogging::create(['url' => 'demon alliances', 'user_id' => 9999999999]);
@@ -91,7 +92,7 @@ if (! function_exists('updateAlliances')) {
         $errorCount = 100;
         $errorTime = 30;
         for ($i = 0; $i < count($allianceID); $i++) {
-            $url = 'https://esi.evetech.net/latest/alliances/'.$allianceID[$i].'/corporations/?datasource=tranquility';
+            $url = 'https://esi.evetech.net/latest/alliances/' . $allianceID[$i] . '/corporations/?datasource=tranquility';
             $response = $client->request('GET', $url, [
                 'headers' => $headers,
                 'http_errors' => false,
@@ -119,7 +120,7 @@ if (! function_exists('updateAlliances')) {
                         [
                             'active' => 1,
                             'alliance_id' => $allianceID[$i],
-                            'url' => 'https://images.evetech.net/Corporation/'.$corpID.'_64.png',
+                            'url' => 'https://images.evetech.net/Corporation/' . $corpID . '_64.png',
                         ]
                     );
                 }
@@ -137,7 +138,7 @@ if (! function_exists('updateAlliances')) {
         $errorTime = 30;
 
         for ($i = 0; $i < count($data); $i++) {
-            $url = 'https://esi.evetech.net/latest/alliances/'.$data[$i].'/?datasource=tranquility';
+            $url = 'https://esi.evetech.net/latest/alliances/' . $data[$i] . '/?datasource=tranquility';
             $response = $client->request('GET', $url, [
                 'headers' => $headers,
                 'http_errors' => false,
@@ -165,7 +166,7 @@ if (! function_exists('updateAlliances')) {
                 $body = [
                     'name' => $body['name'],
                     'ticker' => $body['ticker'],
-                    'url' => 'https://images.evetech.net/Alliance/'.$data[$i].'_64.png',
+                    'url' => 'https://images.evetech.net/Alliance/' . $data[$i] . '_64.png',
                     'color' => 1,
                 ];
                 $a = Alliance::where('id', $data[$i])->get();
@@ -183,7 +184,7 @@ if (! function_exists('updateAlliances')) {
         $errorTime = 30;
 
         for ($i = 0; $i < count($data); $i++) {
-            $url = 'https://esi.evetech.net/latest/corporations/'.$data[$i].'/?datasource=tranquility';
+            $url = 'https://esi.evetech.net/latest/corporations/' . $data[$i] . '/?datasource=tranquility';
             $response = $client->request('GET', $url, [
                 'headers' => $headers,
                 'http_errors' => false,

@@ -33,6 +33,7 @@ use App\Models\Region;
 use App\Models\Station;
 use App\Models\System;
 use App\Models\testNote;
+use App\Models\TowerItem;
 use App\Models\User;
 use App\Models\WebWay;
 use GuzzleHttp\Client;
@@ -238,8 +239,13 @@ class testController extends Controller
     }
 
 
-    public function testWebwayPull()
+    public function testTowerItems()
     {
+        $check = Auth::user();
+        if ($check->can('super')) {
+
+            return TowerItem::with('item.group.category')->get();
+        }
     }
 
     public function testDscanLocal(Request $request)

@@ -44,4 +44,9 @@ class Tower extends Model
     {
         return $this->hasMany(TowerNote::class)->orderBy('created_at', "desc");
     }
+
+    public function fit()
+    {
+        return $this->hasMany(TowerItem::class);
+    }
 }
