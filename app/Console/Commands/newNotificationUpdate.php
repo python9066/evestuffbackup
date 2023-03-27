@@ -50,11 +50,13 @@ class newNotificationUpdate extends Command
             if ($char) {
                 $charID = $char->char_id;
                 $char->flag_note = 1;
+                $char->save();
             } else {
                 Auth::where('flag_note', 1)->update(['flag_note' => 0]);
                 $char = Auth::where('flag_note', 0)->first();
                 $charID = $char->char_id;
                 $char->flag_note = 1;
+                $char->save();
             }
             $refreshToken = refreshToken($charID);
             if ($refreshToken) {
