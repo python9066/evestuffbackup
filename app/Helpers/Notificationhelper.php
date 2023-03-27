@@ -125,12 +125,8 @@ if (!function_exists('reconRegionPullIdCheck')) {
                 } while ($corpPull != 3);
             }
             $alliance = Alliance::where('id', $corp->alliance_id)->first();
-            if ($alliance) {
-                if ($corp->standing > $alliance->standing) {
-                    $standing = $corp->standing;
-                } else {
-                    $standing = $alliance->standing;
-                }
+            if ($alliance && $alliance->standing != 0) {
+                $standing = ($corp->standing > $alliance->standing) ? $corp->standing : $alliance->standing;
             } else {
                 $standing = $corp->standing;
             }
