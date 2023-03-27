@@ -8,6 +8,7 @@ use App\Models\Item;
 use App\Models\Moon;
 use App\Models\System;
 use App\Models\Tower;
+use App\Models\TowerItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -156,5 +157,57 @@ class TowerController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Add Fit to a tower.
+     */
+    public function addFit(Request $request, $id)
+    {
+
+        TowerItem::whereTowerId($id)->delete();
+        $dscan_results = $request->text;
+        $lines  = explode("\n", $dscan_results);
+        $data = array();
+        foreach ($lines as $line) {
+            $data[] = explode("\t", $line);
+        }
+
+        foreach ($data as $row) {
+
+            $distance_parts = explode(" ", $row[3]);
+            $row[3] = str_replace(',', '', $distance_parts[0]);
+            if (count($distance_parts) == 2) {
+                $row[] = $distance_parts[1];
+            } else {
+                $row[] = 'AU';
+                if (empty($row[3]) || $row[3] == "-") {
+                    $row[3] = 1;
+                }
+            }
+
+            $item = Item::whereId($row[0])->first();
+            $catID = $item->group->category->id;
+            if ($catID == 23) {
+
+                if (($row[4] == "km" && $row[3] <= 8000) || $row[4] == "m") {
+
+                    $newTowerItem = new TowerItem();
+                    $newTowerItem->tower_id = $id;
+                    $newTowerItem->item_id = $row[0];
+                    $newTowerItem->user_id = Auth::id();
+                    $newTowerItem->save();
+                }
+
+                $message = towerRecordSolo($id);
+
+                $flag = collect([
+                    'flag' => 1,
+                    'message' => $message
+                ]);
+
+                broadcast(new TowerChanged($flag));
+            }
+        }
     }
 }

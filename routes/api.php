@@ -335,6 +335,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/tower/moonlist/{id}', 'getMoons');
         Route::put('/tower/updatestatus/{id}', 'updateStatus');
         Route::put('/tower/updatetext/{id}', 'updateText');
+        Route::post('/tower/addfit/{id}', 'addFit');
     });
 
     Route::controller(FeedBackController::class)->group(function () {

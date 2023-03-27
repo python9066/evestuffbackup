@@ -14,6 +14,7 @@ if (!function_exists('towerRecordAll')) {
             'status',
             'user:id,name,eve_user_id',
             'notes.user',
+            'fit.item'
         ])->get();
         return $data;
     }
@@ -39,6 +40,7 @@ if (!function_exists('towerRecordSolo')) {
             'status',
             'user:id,name,eve_user_id',
             'notes.user',
+            'fit.item'
         ])->first();
         return $data;
     }

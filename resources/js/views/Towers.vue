@@ -321,53 +321,42 @@
             <div class="row flex-center">
               <TowerMessage class="q-pr-lg" :tower="props.row" :type="4" />
               <q-btn
-                no-caps
+                class="myOutLineButtonLarge"
+                :outline="fitOutLine(props.row)"
+                v-if="fitOutLine(props.row)"
+                rounded
                 color="accent"
-                label="aDash"
-                dense
-                @click="props.expand = !props.expand"
-                :outline="props.row.text ? false : true"
-              />
+                label="Fit"
+              >
+                <q-menu>
+                  <q-card class="my-card" style="width: 20vw">
+                    <q-card-section>
+                      <q-input
+                        v-model="dScanText"
+                        type="textarea"
+                        label="Paste The Dscan of the fit here"
+                      />
+                    </q-card-section>
+                    <q-card-actions align="between">
+                      <q-btn
+                        v-if="!props.row.dscan_id"
+                        rounded
+                        color="primary"
+                        label="Submit"
+                        v-close-popup
+                        @click="subNewScan(props.row.id)"
+                      />
+
+                      <q-btn rounded color="negative" label="close" v-close-popup />
+                    </q-card-actions>
+                  </q-card>
+                </q-menu>
+              </q-btn>
+              <TowerFit v-else :tower="props.row" />
             </div>
           </q-td>
           <q-td key="editedBy" :props="props">
             <div>{{ props.row.user.name }}</div>
-          </q-td>
-        </q-tr>
-        <q-tr v-show="props.expand" :props="props">
-          <q-td colspan="100%">
-            <div class="text-left">
-              <q-input
-                v-model="props.row.text"
-                outlined
-                type="text"
-                label="aDash Board Link - needs to be a link to a scan, making a new scan from where will not save"
-                @update:model-value="updateText(props.row)"
-                debounce="300"
-              />
-              <span
-                v-if="
-                  props.row.text != null &&
-                  props.row.text.includes('https://adashboard.info/intel/dscan/')
-                "
-                ><q-card class="my-card">
-                  <iframe
-                    :src="props.row.text"
-                    frameborder="0"
-                    style="
-                      left: 0;
-                      bottom: 0;
-                      right: 0;
-                      width: 100%;
-                      height: 600px;
-                      border: none;
-                      margin: 0;
-                      padding: 0;
-                      overflow: hidden;
-                    "
-                  ></iframe> </q-card
-              ></span>
-            </div>
           </q-td>
         </q-tr>
       </template>
@@ -385,12 +374,14 @@ let search = $ref("");
 let can = inject("can");
 let filterStandingSelected = $ref();
 let filterStatusSelcted = $ref();
+let dScanText = $ref("");
 
 const VueCountDown = defineAsyncComponent(() => import("../components/countdown/index"));
 const AddTower = defineAsyncComponent(() => import("../components/tower/AddTower.vue"));
 const TowerMessage = defineAsyncComponent(() =>
   import("../components/tower/TowerMessage.vue")
 );
+const TowerFit = defineAsyncComponent(() => import("../components/tower/TowerFit.vue"));
 
 onMounted(async () => {
   document.title = "Evestuff - Towers";
@@ -422,6 +413,7 @@ let pagination = $ref({
   page: 1,
   rowsPerPage: 0,
 });
+
 let statusDropDown = $ref([
   { title: "New", value: 1 },
   { title: "Scouted", value: 2 },
@@ -463,20 +455,28 @@ let chipColor = (statusId) => {
   }
 };
 
-let updateText = (item) => {
-  var request = {
-    text: item.text,
-  };
+let fitOutLine = (item) => {
+  if (item.fit.length > 0) {
+    return false;
+  }
+  return true;
+};
 
-  axios({
-    method: "put",
-    url: "api/tower/updatetext/" + item.id,
+let subNewScan = async (id) => {
+  var data = {
+    text: dScanText,
+  };
+  await axios({
+    method: "post",
     withCredentials: true,
-    data: request,
+    data: data,
+    url: "/api/tower/addfit/" + id,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
+  }).then((response) => {
+    dScanText = "";
   });
 };
 
