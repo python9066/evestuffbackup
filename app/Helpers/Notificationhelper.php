@@ -439,13 +439,12 @@ if (!function_exists('reconNameUpdate')) {
                 }
             }
         }
+        $flag = [
+            'message' => 'yoyo',
+        ];
+        broadcast(new StationDataSet($flag));
+        broadcast(new StationInfoSet($flag));
     }
-
-    $flag = [
-        'message' => 'yoyo',
-    ];
-    broadcast(new StationDataSet($flag));
-    broadcast(new StationInfoSet($flag));
 }
 
 
