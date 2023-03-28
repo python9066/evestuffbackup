@@ -58,8 +58,11 @@ class UpdateReconStations extends Command
         foreach ($ids as $id) {
             $stations = reconRegionPull($id);
             foreach ($stations as $station) {
-                $station->import_flag = 1;
-                $station->save();
+                $stationDB = Station::where('id', $station)->first();
+                if ($stationDB) {
+                    $stationDB->import_flag = 1;
+                    $stationDB->save();
+                }
                 ReconRegionPullJob::dispatch($station);
             }
         }
