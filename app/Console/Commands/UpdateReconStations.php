@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Events\StationUpdateCoord;
+use App\Jobs\ReconNameUpdateJob;
 use App\Jobs\ReconRegionPullJob;
 use App\Models\HotRegion;
 use App\Models\Station;
@@ -66,14 +67,22 @@ class UpdateReconStations extends Command
         $missedStations = Station::where('import_flag', 0)->where('added_from_recon', 1)->get();
         foreach ($missedStations as $station) {
             $station->update(['import_flag' => 1]);
-            ReconRegionPullJob::dispatch($station);
+            $stationID = $station->id;
+            ReconRegionPullJob::dispatch($stationID);
+        }
+
+        $stations = Station::where('import_flag', 0)->where('added_from_recon', 0)->get();
+        foreach ($stations as $station) {
+            $station->update(['import_flag' => 1]);
+            $StationId = $station->id;
+            ReconNameUpdateJob::dispatch($StationId);
         }
 
         // $flag = collect([
         //     'flag' => 1,
         // ]);
-        // broadcast(new StationUpdateCoord($flag));
         // reconUpdate();
-        // activity()->enableLogging();
+        // broadcast(new StationUpdateCoord($flag));
+        activity()->enableLogging();
     }
 }
