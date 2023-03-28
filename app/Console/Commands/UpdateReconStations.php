@@ -63,7 +63,7 @@ class UpdateReconStations extends Command
             }
         }
 
-        $missedStations = Station::where('import_flag', 0)->get();
+        $missedStations = Station::where('import_flag', 0)->where('added_from_recon', 1)->get();
         foreach ($missedStations as $station) {
             $station->update(['import_flag' => 1]);
             ReconRegionPullJob::dispatch($station);
