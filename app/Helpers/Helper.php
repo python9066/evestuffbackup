@@ -383,9 +383,12 @@ if (!function_exists('StationRecordsSolo')) {
         ]);
 
         $stationRecords = $station_query->first();
-        $stationRecords->append('list');
+        if ($stationRecords) {
 
-        return $stationRecords;
+            $stationRecords->append('list');
+            return $stationRecords;
+        }
+        return null;
     }
 }
 

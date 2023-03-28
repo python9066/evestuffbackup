@@ -263,8 +263,6 @@ if (!function_exists('reconRegionPullIdCheck')) {
 
             if ($stationUpdate->wasRecentlyCreated || $stationUpdated) {
                 $message = StationRecordsSolo(5, $id);
-
-
                 if ($message) {
                     $watchListIDs = getStationWatchListIDs($stationUpdate->id);
                     foreach ($watchListIDs as $watchListID) {
