@@ -87,7 +87,7 @@ workers:
   queue1:
     size: S
     commands:
-      # To minimize leakage, the queue worker will stop every hour
+      # To minimize leakage, the queue worker will stop every hour lots lots lots and lots lots of things
       # and get restarted automatically.
       start: |
         php artisan queue:work queue:work --queue=defualt,campaigns,webway,alliance,corp --max-time=3600
