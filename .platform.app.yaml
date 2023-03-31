@@ -78,7 +78,7 @@ workers:
   #   commands:
   #     start: |
   #       php artisan horizon
-  schedule-work7:
+  schedule-work8:
     size: S
     commands:
       start: |
