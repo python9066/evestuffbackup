@@ -62,6 +62,43 @@ return [
         'redis' => [
             'driver' => 'redis',
             'connection' => 'default',
+            'queue' => 'default',
+            'queue' => env('REDIS_QUEUE', 'default'),
+            'retry_after' => 90,
+            'block_for' => null,
+        ],
+
+        'redis_campaigns' => [
+            'driver' => 'redis',
+            'connection' => 'default',
+            'queue' => 'campaigns',
+            'queue' => env('REDIS_QUEUE', 'default'),
+            'retry_after' => 90,
+            'block_for' => null,
+        ],
+
+        'redis_webway' => [
+            'driver' => 'redis',
+            'connection' => 'default',
+            'queue' => 'webway',
+            'queue' => env('REDIS_QUEUE', 'default'),
+            'retry_after' => 90,
+            'block_for' => null,
+        ],
+
+        'redis_alliance' => [
+            'driver' => 'redis',
+            'connection' => 'default',
+            'queue' => 'alliance',
+            'queue' => env('REDIS_QUEUE', 'default'),
+            'retry_after' => 90,
+            'block_for' => null,
+        ],
+
+        'redis_corp' => [
+            'driver' => 'redis',
+            'connection' => 'default',
+            'queue' => 'corp',
             'queue' => env('REDIS_QUEUE', 'default'),
             'retry_after' => 90,
             'block_for' => null,
