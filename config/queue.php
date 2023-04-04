@@ -65,7 +65,7 @@ return [
             'queue' => 'default,campaigns,webway,alliance,corp',
             'retry_after' => 90,
             'block_for' => null,
-        // ],
+        ],
 
         // 'redis_campaigns' => [
         //     'driver' => 'redis',
