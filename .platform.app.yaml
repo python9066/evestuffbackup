@@ -96,7 +96,7 @@ workers:
     disk: 2048
     commands:
       start: |
-        php artisan queue:work --queue=alliance,campaigns,webway,corp --max-time=3600
+        php artisan queue:work --queue=alliance,corp,default,webway,campaigns --max-time=3600
 
   # queue3:
   #   size: S
