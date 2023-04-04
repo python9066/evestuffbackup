@@ -89,121 +89,121 @@ workers:
     disk: 2048
     commands:
       start: |
-        php artisan queue:work --queue=defualt,campaigns,webway,alliance,corp --max-time=3600
+        php artisan queue:work --queue=default,campaigns,webway,alliance,corp --max-time=3600
 
   queue2:
     size: S
     disk: 2048
     commands:
       start: |
-        php artisan queue:work --queue=defualt,campaigns,webway,alliance,corp --max-time=3600
+        php artisan queue:work --queue=default,campaigns,webway,alliance,corp --max-time=3600
 
   # queue3:
   #   size: S
   #   disk: 2048
   #   commands:
   #     start: |
-  #       php artisan queue:work queue:work --queue=defualt,campaigns,webway,alliance,corp --max-time=3600
+  #       php artisan queue:work --queue=default,campaigns,webway,alliance,corp --max-time=3600
 
   # queue4:
   #   size: S
   #   disk: 2048
   #   commands:
   #     start: |
-  #       php artisan queue:work queue:work --queue=defualt,campaigns,webway,alliance,corp --max-time=3600
+  #       php artisan queue:work --queue=default,campaigns,webway,alliance,corp --max-time=3600
 
 #   queue5:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=campaigns,defualt,webway,alliance,corp --max-time=3600
+#         php artisan queue:work --queue=campaigns,default,webway,alliance,corp --max-time=3600
 
 #   queue6:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=campaigns,defualt,webway,alliance,corp --max-time=3600
+#         php artisan queue:work --queue=campaigns,default,webway,alliance,corp --max-time=3600
 
 #   queue7:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=campaigns,defualt,webway,alliance,corp --max-time=3600
+#         php artisan queue:work --queue=campaigns,default,webway,alliance,corp --max-time=3600
 
 #   queue8:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=campaigns,defualt,webway,alliance,corp --max-time=3600
+#         php artisan queue:work --queue=campaigns,default,webway,alliance,corp --max-time=3600
 
 #   queue9:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=webway,defualt,campaigns,alliance,corp --max-time=3600
+#         php artisan queue:work --queue=webway,default,campaigns,alliance,corp --max-time=3600
 
 #   queue10:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=webway,defualt,campaigns,alliance,corp --max-time=3600
+#         php artisan queue:work --queue=webway,default,campaigns,alliance,corp --max-time=3600
 
 #   queue11:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=webway,defualt,campaigns,alliance,corp --max-time=3600
+#         php artisan queue:work --queue=webway,default,campaigns,alliance,corp --max-time=3600
 
 #   queue12:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=webway,defualt,campaigns,alliance,corp --max-time=3600
+#         php artisan queue:work --queue=webway,default,campaigns,alliance,corp --max-time=3600
 
 # queue13:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=alliance,defualt,campaigns,webway,corp --max-time=3600
+#         php artisan queue:work --queue=alliance,default,campaigns,webway,corp --max-time=3600
 
 #   queue14:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=alliance,defualt,campaigns,webway,corp --max-time=3600
+#         php artisan queue:work --queue=alliance,default,campaigns,webway,corp --max-time=3600
 
 #   queue15:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=alliance,defualt,campaigns,webway,corp --max-time=3600
+#         php artisan queue:work --queue=alliance,default,campaigns,webway,corp --max-time=3600
 
 #   queue16:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=alliance,defualt,campaigns,webway,corp --max-time=3600
+#         php artisan queue:work --queue=alliance,default,campaigns,webway,corp --max-time=3600
 
 # queue17:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=corp,defualt,campaigns,webway,alliance --max-time=3600
+#         php artisan queue:work --queue=corp,default,campaigns,webway,alliance --max-time=3600
 
 #   queue18:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=corp,defualt,campaigns,webway,alliance --max-time=3600
+#         php artisan queue:work --queue=corp,default,campaigns,webway,alliance --max-time=3600
 
 #   queue19:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=corp,defualt,campaigns,webway,alliance --max-time=3600
+#         php artisan queue:work --queue=corp,default,campaigns,webway,alliance --max-time=3600
 
 #   queue20:
 #     size: S
 #     commands:
 #       start: |
-#         php artisan queue:work queue:work --queue=corp,defualt,campaigns,webway,alliance --max-time=3600
+#         php artisan queue:work --queue=corp,default,campaigns,webway,alliance --max-time=3600
