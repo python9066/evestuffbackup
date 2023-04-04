@@ -1,6 +1,6 @@
 # The routes of the project.
 #
-# Each route describes how an incoming dddddddddURL is going
+# Each route describes how an incoming ddddfffffffffffffffffffffffffdddddURL is going
 # to be processed by Platform.sh.
 
 "https://{default}/":
