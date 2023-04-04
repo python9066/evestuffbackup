@@ -62,18 +62,18 @@ return [
         'redis' => [
             'driver' => 'redis',
             'connection' => 'default',
-            'queue' => 'default,campaigns,webway,alliance,corp',
+            'queue' => 'default',
             'retry_after' => 90,
             'block_for' => null,
         ],
 
-        // 'redis_campaigns' => [
-        //     'driver' => 'redis',
-        //     'connection' => 'default',
-        //     'queue' => 'campaigns',
-        //     'retry_after' => 90,
-        //     'block_for' => null,
-        // ],
+        'webway' => [
+            'driver' => 'redis',
+            'connection' => 'default',
+            'queue' => 'webway',
+            'retry_after' => 90,
+            'block_for' => null,
+        ],
 
         // 'redis_webway' => [
         //     'driver' => 'redis',
