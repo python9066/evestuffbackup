@@ -62,42 +62,42 @@ return [
         'redis' => [
             'driver' => 'redis',
             'connection' => 'default',
-            'queue' => 'default',
+            'queue' => 'default,campaigns,webway,alliance,corp',
             'retry_after' => 90,
             'block_for' => null,
-        ],
+        // ],
 
-        'redis_campaigns' => [
-            'driver' => 'redis',
-            'connection' => 'default',
-            'queue' => 'campaigns',
-            'retry_after' => 90,
-            'block_for' => null,
-        ],
+        // 'redis_campaigns' => [
+        //     'driver' => 'redis',
+        //     'connection' => 'default',
+        //     'queue' => 'campaigns',
+        //     'retry_after' => 90,
+        //     'block_for' => null,
+        // ],
 
-        'redis_webway' => [
-            'driver' => 'redis',
-            'connection' => 'default',
-            'queue' => 'webway',
-            'retry_after' => 90,
-            'block_for' => null,
-        ],
+        // 'redis_webway' => [
+        //     'driver' => 'redis',
+        //     'connection' => 'default',
+        //     'queue' => 'webway',
+        //     'retry_after' => 90,
+        //     'block_for' => null,
+        // ],
 
-        'redis_alliance' => [
-            'driver' => 'redis',
-            'connection' => 'default',
-            'queue' => 'alliance',
-            'retry_after' => 90,
-            'block_for' => null,
-        ],
+        // 'redis_alliance' => [
+        //     'driver' => 'redis',
+        //     'connection' => 'default',
+        //     'queue' => 'alliance',
+        //     'retry_after' => 90,
+        //     'block_for' => null,
+        // ],
 
-        'redis_corp' => [
-            'driver' => 'redis',
-            'connection' => 'default',
-            'queue' => 'corp',
-            'retry_after' => 90,
-            'block_for' => null,
-        ],
+        // 'redis_corp' => [
+        //     'driver' => 'redis',
+        //     'connection' => 'default',
+        //     'queue' => 'corp',
+        //     'retry_after' => 90,
+        //     'block_for' => null,
+        // ],
 
     ],
 
