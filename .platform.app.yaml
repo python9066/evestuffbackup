@@ -98,19 +98,19 @@ workers:
       start: |
         php artisan queue:work queue:work --queue=defualt,campaigns,webway,alliance,corp --max-time=3600
 
-  queue3:
-    size: S
-    disk: 2048
-    commands:
-      start: |
-        php artisan queue:work queue:work --queue=defualt,campaigns,webway,alliance,corp --max-time=3600
+  # queue3:
+  #   size: S
+  #   disk: 2048
+  #   commands:
+  #     start: |
+  #       php artisan queue:work queue:work --queue=defualt,campaigns,webway,alliance,corp --max-time=3600
 
-  queue4:
-    size: S
-    disk: 2048
-    commands:
-      start: |
-        php artisan queue:work queue:work --queue=defualt,campaigns,webway,alliance,corp --max-time=3600
+  # queue4:
+  #   size: S
+  #   disk: 2048
+  #   commands:
+  #     start: |
+  #       php artisan queue:work queue:work --queue=defualt,campaigns,webway,alliance,corp --max-time=3600
 
 #   queue5:
 #     size: S
