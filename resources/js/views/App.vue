@@ -186,6 +186,7 @@ let $q = useQuasar();
 $q.dark.set(true); // or false or "auto"
 
 onMounted(async () => {
+  console.log(window);
   await store.getLoginInfo();
   await store.geteveusercount();
   leftDrawerOpen = false;
