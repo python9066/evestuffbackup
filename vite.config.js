@@ -17,18 +17,23 @@ export default defineConfig({
             refresh: true,
         }),
         vue({
-            template: { transformAssetUrls },
-            reactivityTransform: true,
+            template: {
+                transformAssetUrls: {
+                    base: null,
+                    includeAbsolute: false,
+                }
+            }
         }),
+        ReactivityTransform(),
 
         quasar({
-            sassVariables: "./resources/sass/quasar.variables.sass",
+            sassVariables: "/resources/sass/quasar.variables.sass",
         }),
-        ReactivityTransform()
     ],
     resolve: {
         alias: {
             "@": "/resources/js",
+            vue: 'vue/dist/vue.esm-bundler.js',
         },
     },
 });

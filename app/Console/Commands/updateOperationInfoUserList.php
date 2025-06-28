@@ -39,7 +39,7 @@ class updateOperationInfoUserList extends Command
                 'cluster' => env('PUSHER_APP_CLUSTER', ($variables && array_key_exists('PUSHER_APP_CLUSTER', $variables)) ? $variables['PUSHER_APP_CLUSTER'] : 'null'),
                 'encrypted' => true,
                 'useTLS' => true,
-                'host' => 'https://sockets.scopeh.co.uk',
+                'host' => 'https://newsocket.ledom.uk',
                 'port' => 443,
                 'scheme' => 'https',
             ]

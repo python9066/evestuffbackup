@@ -10,6 +10,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="icon" href="{!! asset('svg/logo.svg') !!}" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- Scripts -->
     {{-- @vite('resources/js/manifest.js') --}}
