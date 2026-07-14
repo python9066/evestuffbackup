@@ -1,0 +1,19 @@
+#!/bin/sh
+# After git pull (merge): install PHP deps to match committed composer.lock.
+# Local dev should run `vendor/bin/sail composer update` before push; this hook
+# only runs `composer install` so the server matches the lock without rewriting it.
+
+set -e
+cd "$(git rev-parse --show-toplevel 2>/dev/null)" || exit 0
+
+if [ ! -f composer.json ]; then
+  exit 0
+fi
+
+if command -v composer >/dev/null 2>&1; then
+  composer install --no-interaction --no-progress --prefer-dist
+elif [ -f ./vendor/bin/composer ]; then
+  php ./vendor/bin/composer install --no-interaction --no-progress --prefer-dist
+else
+  echo "post-merge: composer not found in PATH or ./vendor/bin/composer; install dependencies manually." >&2
+fi

@@ -1,0 +1,36 @@
+---
+description: Eve Stuff project conventions — Quasar SPA, skills, and git hooks
+alwaysApply: true
+---
+
+# Project conventions (eveback.local)
+
+## Skills Activation
+
+Domain-specific skills live in `.cursor/skills/`. Activate the relevant skill when working in that domain.
+
+- **Quasar** (`quasar-development`): `QSelect`, `QDialog`, `QBanner`, `useQuasar`, and other Quasar components in `resources/js/`. Not for Blade-only pages or PHP.
+- **Laravel** (`laravel-best-practices`): controllers, models, migrations, queries, policies, jobs.
+
+## Quasar + Laravel Architecture
+
+- Laravel Blade gates authentication: authenticated users see the Quasar SPA via `resources/views/home.blade.php`.
+- Unauthenticated users are redirected to `/login`.
+- The Quasar app boots from `resources/js/app.js` and renders `<app>` in `resources/js/views/App.vue`.
+- Use Sanctum for CSRF protection and API authentication.
+- API routes in `routes/api.php` should be protected with `auth:sanctum` where appropriate.
+- Vue Router routes live in `resources/js/router.js`.
+- Pinia store: `resources/js/store/` (and legacy `resources/js/store.js`).
+- Components live in `resources/js/components/`; pages in `resources/js/views/`.
+
+## Git hooks (server / any clone)
+
+- This repo ships **`.githooks/post-merge`**: after a successful **`git pull`** (merge), it runs **`composer install --no-interaction`** so `vendor/` matches the committed lockfile.
+- One-time setup per clone: `./scripts/install-git-hooks.sh` (sets `git config core.hooksPath .githooks`).
+- Do **not** run `composer update` on production servers; updates happen locally before push, then the lock is installed on pull.
+
+## Laravel Boost MCP
+
+- MCP config: `.cursor/mcp.json` (runs via Sail: `vendor/bin/sail artisan boost:mcp`).
+- Prefer Boost tools (`search-docs`, `database-schema`, `database-query`, `browser-logs`, `get-absolute-url`) over manual alternatives when available.
+- Re-run `vendor/bin/sail artisan boost:install` after major dependency changes if Boost assets need refreshing.

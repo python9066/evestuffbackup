@@ -1,0 +1,15 @@
+---
+description: Run Composer update before commit/push; server uses hooks + install
+alwaysApply: true
+---
+
+# Git commit, push, and Composer
+
+When the user asks you to **commit**, **push**, or both (including phrases like "ship it", "merge to main", "save to git"):
+
+1. **Before staging or committing**, run `vendor/bin/sail composer update` from the project root unless they **explicitly** ask to skip Composer for that request.
+2. If `composer.lock` or `composer.json` changed, **stage and commit** those files together with their other changes (the lockfile is expected to move when constraints allow updates).
+3. Run **tests** after meaningful changes (at least affected tests; full suite if they asked or risk is broad) before pushing.
+4. Do **not** push if `composer update` or tests fail unless the user clearly chooses to proceed anyway.
+
+On **servers** after `git pull`, the repo can use a **`post-merge` hook** (see `.githooks/post-merge` and `project-conventions` rule) that runs **`composer install`** so `vendor/` matches the **committed** `composer.lock`. Do not run `composer update` on production; updates happen locally before push, then the lock is installed on pull.

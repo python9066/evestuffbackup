@@ -1,0 +1,48 @@
+---
+description: Mandatory Red-Green-Refactor TDD for backend and frontend behavioral changes
+alwaysApply: true
+---
+
+# TDD: Red → Green → Refactor
+
+For every **behavioral change**, follow test-driven development in this order. Do not write production code before a failing test exists, except for pure config/scaffolding, dependency-only changes, or when the user explicitly skips TDD.
+
+## Cycle
+
+1. **Red** — Write the smallest test that expresses one behavior. Run it and confirm it **fails for the right reason**.
+2. **Green** — Write the minimum production code to pass. Run the test and confirm **pass**.
+3. **Refactor** — Improve structure/naming without changing behavior. Run tests again and confirm **still green**.
+
+One behavior per cycle. Avoid large “write everything then test” batches.
+
+## Backend (PHP / Laravel)
+
+| Phase | Action |
+|-------|--------|
+| Red | Feature test for HTTP/API/auth; unit test for pure logic |
+| Green | Minimal controller, model, service, or policy change |
+| Refactor | Extract helpers; run Pint on dirty PHP files |
+
+```bash
+vendor/bin/sail artisan test --compact path-or-filter
+```
+
+Reuse patterns from existing tests under `tests/Feature/`. Use factories and `RefreshDatabase` where appropriate.
+
+## Frontend (Vue / Quasar / Pinia)
+
+This project does not yet have a Vitest suite. For frontend behavioral changes:
+
+| Phase | Action |
+|-------|--------|
+| Red | Prefer an API/feature test covering the backend contract the UI depends on |
+| Green | Minimal component, store, or composable change in `resources/js/` |
+| Refactor | Extract composables; keep PHPUnit tests green |
+
+When Vitest is added later, co-locate `*.test.js` under `resources/js/` and run `vendor/bin/sail npm run test`.
+
+## Rules
+
+- Do **not** delete or weaken tests to make code pass.
+- When work is commit-ready, briefly note which Red/Green/Refactor phases were completed (keep it concise).
+- Before push: run PHPUnit for PHP changes (`vendor/bin/sail artisan test --compact`).
